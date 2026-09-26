@@ -47,6 +47,7 @@ docs/
 │
 ├── fases/                         # Design de fases e áreas
 │   ├── README.md                  # Estrutura e funcionamento do level design no campus
+│   ├── biblioteca.md              # Fase 1 (Confirmada): O despertar na Biblioteca Central
 │   └── template_fase.md           # Modelo padronizado para documentação de novas fases/áreas
 │
 ├── personagens/                   # Fichas técnicas e mecânica de personagens

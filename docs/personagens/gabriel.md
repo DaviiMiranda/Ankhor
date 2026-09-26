@@ -8,7 +8,8 @@ Este documento descreve como o personagem controlado pelo jogador funciona em te
 
 - **Nome:** Gabriel *(decisão registrada em `docs/decisoes.md`)*
 - **Tipo:** Protagonista / Personagem Controlável pelo Jogador
-- **Papel:** Aluno que acorda mil anos depois na Biblioteca e investiga as ruínas da Unifor.
+- **Origem Temporal:** Madrugada de 2026 (puxado da Biblioteca pela fenda temporal)
+- **Papel:** Estudante que acorda em 3026 após a explosão da Âncora. Precisa investigar o campus e fechar a fenda antes que ela engula o passado e sua própria época.
 
 ---
 

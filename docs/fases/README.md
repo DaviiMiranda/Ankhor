@@ -2,8 +2,8 @@
 
 Este documento define como as fases e áreas do **Projeto The Game** funcionam em termos de arquitetura, fluxo de jogo e design de níveis (*level design*).
 
-> [!NOTE]
-> A divisão exata de fases (seja por áreas geográficas, prédios ou etapas da progressão) ainda está sendo definida pelo grupo. Este módulo fornece a **estrutura conceitual e o template padronizado** para a criação de qualquer fase.
+> [!IMPORTANT]
+> **Primeira Fase Definida:** A primeira fase do jogo é a **Biblioteca** ([`biblioteca.md`](biblioteca.md)). As fases seguintes serão definidas em conjunto com a equipe. Este módulo fornece a **estrutura conceitual e o template padronizado** para documentação de cada área.
 
 ---
 

@@ -12,11 +12,11 @@
 
 ## 2. Resumo da Premissa
 
-Gabriel, um estudante universitário exausto, pega no sono enquanto estuda numa cabine da Biblioteca da Unifor na véspera da semana de provas. Ele acorda **mil anos depois**.
+Gabriel, um estudante universitário, acorda **mil anos no futuro, em 3026**.
 
-O campus não passa de uma gigantesca ruína tomada por dunas, árvores centenárias e vegetação descontrolada; a cidade de Fortaleza desapareceu ao redor. Gabriel não sabe o que ocorreu nem quanto tempo se passou. Logo descobre que não está sozinho: as pessoas que habitavam o campus naquela fatídica semana ainda vagam por ali. Transformadas em seres decaídos chamados **Insones**, elas estão há dez séculos presas num ciclo perpétuo de repetição da rotina da semana de provas.
+Ele descobre o que aconteceu com ele e com outras pessoas de outras épocas: em 3026, a Unifor é um centro de pesquisa em física do tempo, e a explosão de um aparelho chamado **Âncora** rasgou o tempo dentro do campus. A fenda temporal encosta em momentos aleatórios do passado e puxa quem estiver perto — numa madrugada de 2026, puxou Gabriel da Biblioteca.
 
-Para sobreviver e desvendar a verdade, Gabriel precisa explorar os prédios arruinados, evitar os Insones, desvendar o mistério do estimulante experimental **VIGÍLIA-7** e descobrir por que foi o único que conseguiu dormir — e por que despertou agora.
+A fenda está crescendo e, se não for fechada, vai engolir o passado do campus, incluindo o tempo de Gabriel. Gabriel não é o primeiro a ser puxado: antes dele vieram uma aluna de 1994, um segurança de 2008, um professor de 2019 e alguém de 2041, e ninguém conseguiu. Para sobreviver, impedir o colapso e salvar seu próprio tempo, Gabriel precisa investigar as ruínas do campus, entender o que ocorreu e fechar a fenda.
 
 ---
 
@@ -41,6 +41,6 @@ Gabriel é um estudante comum, não um combatente. Fugir e se esconder é a regr
 ## 4. Escopo do Projeto
 
 O jogo foi concebido sob a filosofia de **"o menor passo que funciona com excelência"**:
-- **Ambiente Contínuo:** Campus da Unifor em ruínas, com áreas interligadas por portas, passagens e atalhos no grafo.
-- **Progressão Narrativa:** Avanço por resolução de puzzles, exploração e conhecimento adquirido nos sonhos (divisão de fases a ser definida pela equipe).
+- **Ambiente Contínuo:** Campus da Unifor em ruínas, com áreas interligadas por portas, passagens e atalhos no grafo. A primeira fase definida é a **Biblioteca**.
+- **Progressão Narrativa:** Avanço por resolução de puzzles, exploração e conhecimento adquirido nos sonhos e nas pistas deixadas por outras épocas.
 - **Entrega Acadêmica:** Atendimento integral aos requisitos da disciplina de Computação Gráfica através de mecânicas jogáveis (Grafos, BFS, A*, Coloração, Markov, Visão 2D com Produto Escalar e Shaders).
