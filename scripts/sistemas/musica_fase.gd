@@ -8,7 +8,7 @@ extends AudioStreamPlayer
 ## assets/modelagem/audio/gerar_trilha_gameplay.py.
 
 ## Volume final da música, em dB. Trilha de fundo: baixa, para não brigar com os passos.
-@export var volume_final_db: float = -8.0
+@export var volume_final_db: float = -18.0
 ## Quanto tempo o fade-in leva, em segundos.
 @export var duracao_fade: float = 4.0
 
