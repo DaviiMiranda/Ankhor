@@ -27,6 +27,16 @@ audio/
 └── vozes/               falas e murmúrios (ex.: a Pesquisadora)
 ```
 
+## Sons gerados por código
+
+Alguns sons são compostos por script, sem gravação (e sem problema de licença):
+
+| Arquivo | Script | Como é |
+|---|---|---|
+| `musica/menu/menu_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_menu.py` | 64 s em loop, ré menor, 60 BPM: pad escuro, drone grave, relógio e uma caixinha de música (canção de ninar) na segunda metade |
+
+Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py` (precisa de numpy e ffmpeg).
+
 ## Nomes de arquivo
 
 Formato: `onde_o_que_variacao.ext`, em `snake_case`, português, sem acento.
