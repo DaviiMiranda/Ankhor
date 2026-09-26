@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/menu/menu_fundo.png" id="4_fundo"]
 [ext_resource type="Texture2D" path="res://assets/sprites/menu/menu_mesa.png" id="5_mesa"]
 [ext_resource type="Texture2D" path="res://assets/sprites/menu/menu_frente.png" id="6_frente"]
-[ext_resource type="AudioStream" path="res://assets/audio/musica/menu/menu_trilha.mp3" id="7_trilha"]
+[ext_resource type="AudioStream" path="res://assets/audio/musica/menu/menu_trilha.ogg" id="7_trilha"]
 [ext_resource type="PackedScene" path="res://cenas/cutscenes/seg_acordar.tscn" id="8_novo_jogo"]
 
 [sub_resource type="Gradient" id="Gradient_luz"]
