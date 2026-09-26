@@ -8,6 +8,7 @@ Todo som do jogo fica aqui. **Dono:** papel 4 (Roteiro e fases, que inclui o áu
 audio/
 ├── musica/              trilhas que tocam em loop
 │   ├── menu/            menu principal
+│   ├── gameplay/        exploração da Biblioteca (mistério, tocada de fundo)
 │   ├── sonho/           o campus na última semana antes de tudo
 │   ├── perseguicao/     quando um Insone sai da rotina e caça
 │   └── final/           o final no portão
@@ -35,7 +36,9 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 |---|---|---|
 | `musica/menu/menu_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_menu.py` | 64 s em loop, ré menor, 60 BPM: pad escuro, drone grave, relógio e uma caixinha de música (canção de ninar) na segunda metade |
 
-Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py` (precisa de numpy e ffmpeg).
+| `musica/gameplay/gameplay_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_gameplay.py` | 70 s em loop, 48 BPM em 7/4, Mi menor sem resolução: pad escuro, pulso grave, sino de vidro com eco, gongo da Âncora, tom de Shepard descendo (a fenda) e goteiras. Toca pela cena `cenas/sistemas/musica_fase.tscn` |
+
+Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py` (ou `gerar_trilha_gameplay.py`) (precisa de numpy e ffmpeg).
 
 ## Nomes de arquivo
 
