@@ -425,7 +425,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Musica" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("m_tema")
-volume_db = -16.0
+volume_db = -22.0
 autoplay = true
 
 [node name="Guias" type="Node2D" parent="."]
