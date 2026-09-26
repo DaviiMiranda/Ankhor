@@ -75,5 +75,5 @@ O HUD e a tela do inventário já estão no `modelo_sala.tscn`: toda sala nova h
 
 - Itens que empilham (as cápsulas de clarão têm máximo de 2).
 - Descartar ou usar itens que não são gadgets pelo inventário.
-- A luz do pote chamar a atenção dos Insones (depende da IA deles).
+- A luz do pote chamar a atenção dos robôs (depende da IA deles).
 - Salvar o inventário ao dormir (depende do sistema de save).

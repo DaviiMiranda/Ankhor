@@ -14,7 +14,7 @@ Gabriel coleta amostras de fungos e as armazena em um pote de conserva de vidro:
 
 - **Luz Suave Esmeralda/Ciano:** Ilumina um raio de 2 a 3 metros ao redor de Gabriel em luz difusa suave.
 - **O Dilema (Ver vs. Ser Visto):**
-  - **Luz Ligada (Pote Destampado):** Permite ler pistas em paredes, enxergar frestas no piso para não tropeçar e localizar itens colecionáveis. Porém, expande o campo de visão dos Insones (especialmente o **Vigia**, que tem atração extrema por luz).
+  - **Luz Ligada (Pote Destampado):** Permite ler pistas em paredes, enxergar frestas no piso para não tropeçar e localizar itens colecionáveis. Porém, expande a chance de detecção por robôs (especialmente robôs com sensores fotossensíveis).
   - **Luz Desligada (Pote Tampado):** Torna Gabriel praticamente invisível nas sombras a mais de 1 metro de distância, mas o jogador caminha quase às cegas.
 - **Decaimento e Alimentação:**
   - A bioluminescência enfraquece gradualmente ao longo de 4 a 5 minutos de uso contínuo.
@@ -27,10 +27,10 @@ Gabriel coleta amostras de fungos e as armazena em um pote de conserva de vidro:
 A única ferramenta defensiva de Gabriel contra ataques iminentes:
 
 - **O que é:** Pequenas esferas orgânicas formadas por esporos de fungos concentrados sob alta pressão.
-- **Acionamento (`Q` ou Botão do Meio do Mouse):** Gabriel esmaga a cápsula com os dedos, liberando um clarão fotoquímico ofuscante instantâneo.
+- **Acionamento (`Q` ou tecla de gadget equipada):** Gabriel esmaga a cápsula com os dedos, liberando um clarão fotoquímico ofuscante instantâneo.
 - **Efeito:**
-  - Atordoa qualquer Insone próximo por 3 a 5 segundos, fazendo-os cobrir os olhos e entrar em estado de desorientação.
-  - Dispersa temporariamente grupos de Calouros.
+  - Provoca sobrecarga temporária nos sensores de qualquer robô próximo por 3 a 5 segundos, atordoando-o e permitindo a fuga de Gabriel.
+  - Dispersa temporariamente unidades de enxame.
 - **Escassez Extrema:**
   - O jogador carrega no máximo **2 cápsulas por vez**.
   - Encontradas apenas em cantos perigosos e distantes das ruínas.

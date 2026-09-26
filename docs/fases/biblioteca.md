@@ -27,17 +27,17 @@
 
 ## 3. Objetivos e Progressão
 
-- **Objetivo Principal:** Explorar a Biblioteca, recuperar os primeiros itens (como a lanterna/pote de fungos), entender o que ocorreu e encontrar a saída/acesso para as próximas áreas.
+- **Objetivo Principal:** Explorar a Biblioteca, recuperar os primeiros itens (como a lanterna/pote de fungos), encontrar bilhetes deixados pelas pessoas de outras épocas, evitar os robôs de patrulha e encontrar a saída/acesso para as próximas áreas.
 - **Passos e Puzzles:** *(A definir com a equipe)*
 
 ---
 
-## 4. Insones e Ameaças
+## 4. Inimigos e Ameaças
 
-- *(A definir com a equipe quais entidades, Insones ou perigos patrulham a Biblioteca)*
+- *(A definir com a equipe quais modelos de robôs patrulham a Biblioteca)*
 
 ---
 
 ## 5. Sala Segura e Sonho
 
-- *(A definir com a equipe a localização da sala segura e a interação de sonho correspondente)*
+- *(A definir com a equipe a localização da sala segura e a interação correspondente)*

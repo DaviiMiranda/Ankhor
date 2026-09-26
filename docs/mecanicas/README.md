@@ -1,6 +1,6 @@
 # Mecânicas — Visão Geral e Core Loop
 
-Esta seção detalha todas as regras sistêmicas de jogabilidade de *Projeto The Game*, cobrindo locomoção, sobrevivência, iluminação, furtividade e a mecânica central do sono/sonhos.
+Esta seção detalha todas as regras sistêmicas de jogabilidade de *Ankhor*, cobrindo locomoção, sobrevivência, iluminação, furtividade e a mecânica central do sono/sonhos.
 
 ---
 
@@ -9,7 +9,7 @@ Esta seção detalha todas as regras sistêmicas de jogabilidade de *Projeto The
 ```mermaid
 graph TD
     A["Despertar no Presente (Ruínas)"] --> B["Exploração e Travessia 2.5D"]
-    B --> C{"Encontro com Insones"}
+    B --> C{"Encontro com Robôs"}
     C -- "Detecção" --> D["Fuga, Distração ou Microgame de Esconderijo"]
     C -- "Evasão Silenciosa" --> E["Coleta de Pistas, Itens e Acesso a Portas"]
     D --> E
@@ -20,11 +20,11 @@ graph TD
     I --> A
 ```
 
-1. **Explorar Ruínas no Presente:** Navegar pelo campus desabado, recolhendo fungos bioluminescentes, relíquias e itens-chave.
-2. **Evitar e Sobreviver aos Insones:** Usar passos lentos, esconderijos com microgames interativos, gestão de luz e arremesso de objetos de distração.
+1. **Explorar Ruínas no Presente:** Navegar pelo campus desabado, recolhendo fungos bioluminescentes, bilhetes e itens-chave.
+2. **Evitar e Sobreviver aos Robôs:** Usar passos lentos, esconderijos com microgames interativos, gestão de luz e arremesso de objetos de distração.
 3. **Alcançar Sala Segura:** Localizar áreas estruturalmente intactas com trancas internas.
 4. **Dormir para Salvar:** Salvar o progresso e transitar para a dimensão do sonho.
-5. **Investigar o Passado:** Conversar com personagens normais (Rafa, alunos), ler quadros de avisos e aprender a grade horária e códigos que abrem caminhos no presente.
+5. **Investigar o Passado:** Conversar com personagens, examinar o passado e encontrar códigos que abrem caminhos no presente.
 
 ---
 

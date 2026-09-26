@@ -1,6 +1,6 @@
 # Diálogos — Arquitetura Técnica e Funcionamento
 
-Este documento define como o sistema de diálogos é estruturado e executado no **Projeto The Game**.
+Este documento define como o sistema de diálogos é estruturado e executado no **Ankhor**.
 
 ---
 

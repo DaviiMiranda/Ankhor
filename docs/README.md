@@ -1,6 +1,6 @@
-# Documentação — Projeto The Game
+# Documentação — Ankhor
 
-Bem-vindo ao repositório de documentação do **Projeto The Game**, jogo de terror atmosférico e sobrevivência em pixel art 2.5D desenvolvido para a disciplina de Computação Gráfica (Semestre 6) na Unifor.
+Bem-vindo ao repositório de documentação do **Ankhor**, jogo de terror atmosférico e sobrevivência em pixel art 2.5D desenvolvido para a disciplina de Computação Gráfica (Semestre 6) na Unifor.
 
 ---
 
@@ -51,9 +51,9 @@ docs/
 │   └── template_fase.md           # Modelo padronizado para documentação de novas fases/áreas
 │
 ├── personagens/                   # Fichas técnicas e mecânica de personagens
-│   ├── README.md                  # Arquitetura de personagens no Godot (Jogador vs Insones)
+│   ├── README.md                  # Arquitetura de personagens no Godot (Jogador vs Robôs)
 │   ├── gabriel.md                 # Funcionamento mecânico do jogador (estados, estamina, inventário)
-│   ├── insones.md                 # Funcionamento dos inimigos de IA (sensores, FSM e sentidos)
+│   ├── robos.md                   # Funcionamento dos robôs de IA (sensores, FSM e patrulhas)
 │   └── template_personagem.md     # Modelo padronizado para novas fichas de personagens
 │
 ├── dialogos/                      # Sistema de conversação e falas

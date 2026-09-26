@@ -1,6 +1,6 @@
 # GDD — respostas dos itens 1 a 4
 
-> **Título do Jogo:** Projeto The Game  
+> **Título do Jogo:** Ankhor  
 > **Hierarquia:** Para decisões recentes, consulte [`decisoes.md`](decisoes.md). Para a documentação técnica aprofundada, consulte o índice mestre em [`README.md`](README.md).
 
 > [!TIP]
@@ -9,7 +9,7 @@
 > - ⚙️ **[Mecânicas e Core Loop](mecanicas/README.md)** | **[Furtividade](mecanicas/furtividade_e_esconderijos.md)** | **[Iluminação](mecanicas/iluminacao_e_fungos.md)** | **[Sono e Sonhos](mecanicas/sono_e_sonhos.md)**
 > - 💻 **[Conceitos de Computação](computacao/README.md)** (Grafos, Coloração, BFS, A*, Markov, Shaders)
 > - 📜 **[Estrutura Narrativa](historia/README.md)** | **[Template de Documentos](historia/template_documento.md)**
-> - 👥 **[Personagens e IA](personagens/README.md)** ([Gabriel](personagens/gabriel.md), [Insones](personagens/insones.md), [Template](personagens/template_personagem.md))
+> - 👥 **[Personagens e IA](personagens/README.md)** ([Gabriel](personagens/gabriel.md), [Robôs](personagens/robos.md), [Template](personagens/template_personagem.md))
 > - 🗺️ **[Design de Fases](fases/README.md)** | **[Template de Fase](fases/template_fase.md)**
 > - 💬 **[Sistema de Diálogos](dialogos/README.md)** | **[Template de Diálogo](dialogos/template_dialogo.md)**
 
@@ -40,21 +40,21 @@ O que torna o jogo diferente:
 
 ### Jogabilidade Central
 
-O jogador explora as ruínas em vista lateral, sala por sala e prédio por prédio, procurando passagens, itens e pistas, enquanto evita os **Insones** — as pessoas que nunca mais dormiram.
+O jogador explora as ruínas em vista lateral, sala por sala e prédio por prédio, procurando passagens, itens e pistas, enquanto evita os **robôs** que patrulham o campus.
 
 **Explorar.** Andar, correr (faz barulho), se espremer por frestas, atravessar tetos desabados, vasculhar o que restou, examinar objetos e marcas nas paredes.
 
 **Iluminar.** Nada elétrico funciona depois de mil anos. A luz vem de **fungos bioluminescentes** que cresceram nas ruínas: o protagonista os recolhe em potes e usa como lanterna. Luz ajuda a ver e ajuda a ser visto, e o brilho enfraquece com o tempo.
 
-**Ler a grade.** Cada Insone cumpre a rotina da semana de provas: o Professor vai para a sala da aula dele no horário, a Bibliotecária arruma estantes que já não têm livros, o Vigia faz a ronda. A grade horária não existe mais em papel — o jogador a aprende nos sonhos. Fora da rotina, quando ouve ou vê o protagonista, o Insone sai do roteiro e caça.
+**Rondas e rotinas.** Cada robô cumpre sua rotina de patrulha programada pelo campus. Fora da rotina, quando ouve ou vê o protagonista, o robô sai do protocolo padrão e caça.
 
-**Esconder-se.** Armários enferrujados, buracos no piso, raízes, cabines de estudo. Com um Insone por perto, o jogador passa por um **microgame** rápido e diferente em cada esconderijo: prender a respiração no tempo certo, segurar a porta, ficar imóvel.
+**Esconder-se.** Armários enferrujados, buracos no piso, raízes, cabines de estudo. Com um robô por perto, o jogador passa por um **microgame** rápido e diferente em cada esconderijo: prender a respiração no tempo certo, segurar a porta, ficar imóvel.
 
-**Distrair.** Jogar pedras e objetos, derrubar estantes, fazer ruído num lugar para atrair os Insones para longe.
+**Distrair.** Jogar pedras e objetos, derrubar estantes, fazer ruído num lugar para atrair os robôs para longe.
 
-**Defender-se (limitado).** Esmagar uma **cápsula de fungo** libera um clarão forte por um instante e atordoa o Insone por alguns segundos. As cápsulas são escassas — é para escapar, não para vencer.
+**Defender-se (limitado).** Esmagar uma **cápsula de fungo** libera um clarão forte por um instante e atordoa o robô por alguns segundos. As cápsulas são escassas — é para escapar, não para vencer.
 
-**Dormir.** Em salas seguras e fechadas, o jogador pode dormir. Dormir **salva o jogo** e leva a um **sonho**: o mesmo lugar na última semana antes de tudo, com as pessoas ainda normais. Nos sonhos não há perigo — há conversas, quadros de horário, senhas e detalhes que servem no presente.
+**Dormir.** Em salas seguras e fechadas, o jogador pode dormir. Dormir **salva o jogo** e leva a um **sonho**: o mesmo lugar no passado antes de tudo. Nos sonhos não há perigo — há conversas, detalhes e senhas que servem no presente.
 
 ### Objetivos e Progressão
 

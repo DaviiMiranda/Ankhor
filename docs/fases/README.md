@@ -1,6 +1,6 @@
 # Fases — Estrutura e Funcionamento
 
-Este documento define como as fases e áreas do **Projeto The Game** funcionam em termos de arquitetura, fluxo de jogo e design de níveis (*level design*).
+Este documento define como as fases e áreas do **Ankhor** funcionam em termos de arquitetura, fluxo de jogo e design de níveis (*level design*).
 
 > [!IMPORTANT]
 > **Primeira Fase Definida:** A primeira fase do jogo é a **Biblioteca** ([`biblioteca.md`](biblioteca.md)). As fases seguintes serão definidas em conjunto com a equipe. Este módulo fornece a **estrutura conceitual e o template padronizado** para documentação de cada área.
@@ -19,8 +19,8 @@ Diferente de fases lineares isoladas com telas de carregamento tradicionais, o m
    - **Objetivo Principal:** Uma meta clara que motiva o jogador a atravessar a área (ex.: encontrar uma chave, alcançar um terminal, desobstruir uma passagem).
    - **Objetivos Secundários:** Exploração opcional para coletar recursos adicionais (fungos, cápsulas de clarão, documentos ou relíquias).
 
-3. **Dinâmica de Inimigos (Insones):**
-   - Cada área possui Insones alocados que operam sob uma rotina inicial ditada pela grade horária.
+3. **Dinâmica de Inimigos (Robôs):**
+   - Cada área possui robôs alocados que operam sob uma rotina inicial ditada pela grade horária.
    - O nível de desafio é modulado pela densidade de inimigos, pelos tipos de sentidos dominantes (audição, visão, luz) e pela disponibilidade de esconderijos na área.
 
 4. **Puzzles e Travessia:**

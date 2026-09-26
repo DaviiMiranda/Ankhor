@@ -1,16 +1,16 @@
-# CLAUDE.md — contexto do Projeto The Game
+# CLAUDE.md — contexto de Ankhor
 
 Este arquivo dá contexto a qualquer sessão do Claude que trabalhe neste repositório. Leia antes de mexer em qualquer coisa.
 
 ## O projeto
 
-**Projeto The Game** é o jogo do trabalho de Computação Gráfica (Semestre 6) de um grupo de 4 alunos da Unifor.
+**Ankhor** é o jogo do trabalho de Computação Gráfica (Semestre 6) de um grupo de 4 alunos da Unifor.
 
-- **Premissa:** Gabriel, um aluno, pega no sono estudando na Biblioteca da Unifor na véspera da semana de provas e acorda **mil anos depois**. O campus virou ruína tomada pela natureza. As pessoas que estavam lá naquela semana ainda estão — transformadas nos **Insones**, que repetem há mil anos a rotina da semana de provas. Gabriel investiga para descobrir o que aconteceu.
+- **Premissa:** Em 3026 (mil anos no futuro), a Unifor é um centro de pesquisa em física do tempo. A explosão de um aparelho chamado **Âncora** rasgou o tempo dentro do campus. A fenda puxa pessoas do passado — puxou Gabriel da Biblioteca numa madrugada de 2026. A fenda cresce e, se não for fechada, vai engolir o passado do campus e a época de Gabriel. Antes dele vieram uma aluna de 1994, um segurança de 2008, um professor de 2019 e alguém de 2041, que deixaram bilhetes pelo campus. Os inimigos que patrulham o local são **robôs**. A primeira fase é a Biblioteca.
 - **Estilo:** pixel art em vista lateral 2.5D, inspirado em *Five Nights at Freddy's: Into the Pit*. Terror atmosférico, fuga e esconderijo, defesa limitada.
 - **O roteiro e parte das mecânicas ainda estão sendo definidos** ao longo do projeto. A fonte da verdade é `docs/gdd.md` + `docs/decisoes.md`. Se algo aqui contradizer `docs/decisoes.md`, vale o registro de decisões (é o mais recente).
 
-**Requisito obrigatório da disciplina:** o jogo precisa usar conteúdos de computação — grafos, estruturas de dados avançadas, matemática. Planejado: campus como grafo, BFS para propagação de som, A\* para perseguição, cadeia de Markov no movimento dos Insones, coloração de grafos na grade horária, máquina de estados, campo de visão por produto escalar. Detalhes em `docs/gdd.md`, item 2.4.
+**Requisito obrigatório da disciplina:** o jogo precisa usar conteúdos de computação — grafos, estruturas de dados avançadas, matemática. Planejado: campus como grafo, BFS para propagação de som, A\* para perseguição, cadeia de Markov no movimento dos inimigos, coloração de grafos em rotinas de patrulha, máquina de estados, campo de visão por produto escalar. Detalhes em `docs/gdd.md`, item 2.4.
 
 ## Stack
 
@@ -91,5 +91,5 @@ Em `.claude/agents/`:
 |---|---|
 | `revisor` | revisar uma branch ou PR antes de pedir revisão humana: regras do `CONTRIBUTING.md`, bugs, cenas misturadas, arquivos que não deviam estar no commit |
 | `roteirista` | escrever e revisar história, diálogos e textos, checando consistência com o que já foi decidido |
-| `sistemas` | grafos, IA dos Insones, algoritmos — e explicar a matemática para a apresentação da disciplina |
+| `sistemas` | grafos, IA dos robôs, algoritmos — e explicar a matemática para a apresentação da disciplina |
 | `artista` | guia de estilo, shaders, iluminação 2D, placeholders e listas de assets por sala; conferir se a arte conta o que o roteiro pede |

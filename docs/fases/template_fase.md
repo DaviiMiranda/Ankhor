@@ -35,9 +35,9 @@ Liste as principais salas ou cômodos que compõem esta fase e suas conexões:
 
 ---
 
-## 4. Insones e Ameaças
+## 4. Robôs e Ameaças
 
-- **Insones Presentes:** (ex.: Bibliotecária, Vigia, etc.)
+- **Robôs Presentes:** (ex.: Patrulheiro, Sentinela, etc.)
 - **Rotinas Padrão:** Quais salas percorrem enquanto estiverem no estado *Rotina*.
 - **Sentidos em Destaque:** O que o jogador deve evitar nesta área (barulho, luz da lanterna, visão direta).
 

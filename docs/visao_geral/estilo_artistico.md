@@ -7,7 +7,7 @@
 - **Filtragem de Texturas:** *Nearest* (sem interpolação linear, preservando a nitidez de cada pixel).
 - **Camadas de Profundidade:**
   - **Fundo (Background):** Paredes distantes, janelas com luz exterior filtrada, silhuetas de prédios ao longe.
-  - **Plano de Ação (Midground):** Gabriel, Insones, portas, móveis interativos e obstáculos navegáveis.
+  - **Plano de Ação (Midground):** Gabriel, robôs, portas, móveis interativos e obstáculos navegáveis.
   - **Primeiro Plano (Foreground):** Raízes caídas, colunas em primeiro plano, folhas e poeira em suspensão que geram sensação claustrofóbica e tridimensional.
 
 ---

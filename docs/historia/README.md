@@ -1,6 +1,6 @@
 # História e Narrativa — Estrutura e Funcionamento
 
-Este documento define como a narrativa de **Projeto The Game** é estruturada e como as informações são entregues ao jogador.
+Este documento define como a narrativa de **Ankhor** é estruturada e como as informações são entregues ao jogador.
 
 ---
 
@@ -10,12 +10,13 @@ Este documento define como a narrativa de **Projeto The Game** é estruturada e 
 - **O Incidente:** A explosão de um aparelho experimental chamado **Âncora** rasgou o tempo dentro do campus.
 - **A Fenda Temporal:** A fenda encosta em momentos aleatórios do passado e puxa quem estiver por perto. Numa madrugada de 2026, puxou Gabriel da Biblioteca.
 - **A Ameaça:** A fenda está em expansão contínua. Se não for fechada, vai engolir todo o passado do campus, incluindo a época e o tempo original de Gabriel.
+- **Os Inimigos:** O campus milenar é patrulhado por **robôs**.
 - **Os que Vieram Antes:** Gabriel descobre que não foi o primeiro a ser puxado para 3026. Antes dele, a fenda puxou:
   1. Uma aluna de 1994
   2. Um segurança de 2008
   3. Um professor de 2019
-  4. Alguém de 2041
-  - Ninguém conseguiu fechar a fenda ou reverter o colapso.
+  4. Alguém de 2041 *(a definir)*
+  - Ninguém conseguiu fechar a fenda, mas essas pessoas deixaram **bilhetes** pelo campus explicando os acontecimentos (textos a serem definidos/escritos).
 
 ---
 

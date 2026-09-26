@@ -21,7 +21,7 @@ O script do jogador opera sob uma máquina de estados finita:
 |---|---|---|---|---|
 | **PARADO** | 0 px/s | Nula | Regeneração rápida | Em repouso. |
 | **ANDANDO** | Padrão (100%) | Baixo (mesma sala) | Nulo | Movimento padrão de exploração. |
-| **CORRENDO** | Rápido (180%) | **Alto** (propaga no grafo) | Alto (~4s contínuos) | Fuga rápida; alerta Insones próximos. |
+| **CORRENDO** | Rápido (180%) | **Alto** (propaga no grafo) | Alto (~4s contínuos) | Fuga rápida; alerta robôs próximos. |
 | **AGACHADO** | Lento (50%) | **Silencioso** | Nulo | Permite passar por vãos e não faz barulho. |
 | **ESCONDIDO** | 0 px/s | Condicionado ao microgame | Nulo | Dentro de armário ou cabine. |
 | **EXAUSTO** | Lento (40%) | Respiração ofegante | Nulo (bloqueio temporário) | Ocorre quando a estamina se esgota totalmente. |
@@ -34,14 +34,14 @@ O jogador interage com o ambiente através de itens específicos:
 
 - **Pote de Fungos (Lanterna):**
   - Alterna entre ligado/desligado.
-  - Ilumina a escuridão mas pode ser detectado pelo Vigia.
+  - Ilumina a escuridão mas pode ser detectado por robôs com sensores ópticos/fotossensíveis.
 - **Cápsulas de Clarão:**
   - Item consumível de defesa (máximo 2 unidades).
-  - Atordoa temporariamente Insones próximos para permitir fuga.
+  - Provoca sobrecarga e atordoa temporariamente robôs próximos para permitir fuga.
 - **Objetos de Arremesso (Pedras/Entulho):**
   - Geram distração acústica em salas distantes via propagação BFS.
 - **Caderno de Anotações:**
-  - Registra pistas, senhas e detalhes da grade horária descobertos nos sonhos.
+  - Registra pistas, bilhetes deixados pelos antecessores e detalhes descobertos.
 
 ---
 
