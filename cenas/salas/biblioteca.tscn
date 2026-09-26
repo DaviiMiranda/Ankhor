@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="i_item"]
 [ext_resource type="Resource" path="res://dados/itens/pote_fungos.tres" id="i_pote"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fungo.tscn" id="i_luz_fungo"]
+[ext_resource type="AudioStream" path="res://assets/audio/musica/biblioteca/biblioteca_tema.ogg" id="m_tema"]
 
 [sub_resource type="ShaderMaterial" id="Raios_grande"]
 shader = ExtResource("3_raios")
@@ -421,6 +422,11 @@ color = Color(0, 0, 0, 1)
 [node name="Hud" parent="." instance=ExtResource("i_hud")]
 
 [node name="TelaInventario" parent="." instance=ExtResource("i_inventario")]
+
+[node name="Musica" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("m_tema")
+volume_db = -10.0
+autoplay = true
 
 [node name="Guias" type="Node2D" parent="."]
 script = ExtResource("6_guias")
