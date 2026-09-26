@@ -60,7 +60,7 @@ Formato: `tipo/descricao-curta`, tudo minúsculo, com hífen, sem acento.
 Formato: `tipo: o que mudou`, em português, no presente.
 
 ```
-feat: Insone persegue o jogador pelo grafo
+feat: robô persegue o jogador pelo grafo
 fix: microgame do armário não fechava
 arte: animação de corrida do Gabriel
 roteiro: diálogo da Bibliotecária no sonho
@@ -99,7 +99,7 @@ git merge main
 
 O Godot guarda cenas (`.tscn`) em texto, mas **mesclar duas edições da mesma cena quase sempre dá errado**. Por isso:
 
-1. **Cada sistema é uma cena separada.** O Gabriel é uma cena, cada Insone é uma cena, cada sala é uma cena. A cena principal só junta as outras.
+1. **Cada sistema é uma cena separada.** O Gabriel é uma cena, cada robô é uma cena, cada sala é uma cena. A cena principal só junta as outras.
 2. **Uma pessoa por cena de cada vez.** Vai mexer numa cena que é de outra pessoa? Avise no grupo antes.
 3. **Nunca edite a mesma cena em duas branches ao mesmo tempo.**
 4. **Commite os arquivos `.import` e `.uid`** que o Godot cria ao lado dos assets e scripts. Eles fazem parte do projeto.
@@ -132,7 +132,7 @@ Git não consegue mesclar binário. Se duas pessoas editarem o mesmo PNG, uma da
 
 ### Nomes de arquivo
 
-- Arquivos e pastas: `snake_case`, sem acento → `insone_bibliotecaria.tscn`, `grafo_campus.gd`
+- Arquivos e pastas: `snake_case`, sem acento → `robo_sentinela.tscn`, `grafo_campus.gd`
 - Classes (`class_name`): `PascalCase` → `GrafoCampus`
 - Variáveis e funções: `snake_case` → `velocidade_corrida`, `func calcular_caminho()`
 - Pode escrever em português. Só não misture: se a função é `calcular_caminho`, a próxima não vira `get_path`.

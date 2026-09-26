@@ -1,3 +1,6 @@
+# ATENÇÃO: o Vigia é da premissa antiga (Insones). Com os robôs (docs/decisoes.md,
+# 2026-09-26), o papel dele está a definir; o modelo fica como referência.
+#
 # gerar_vigia.py — modela o Vigia (um dos Insones) no Blender, por código,
 # nas duas versões do jogo, e renderiza sprites e folha de referência.
 #

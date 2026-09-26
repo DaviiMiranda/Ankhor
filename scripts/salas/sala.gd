@@ -4,7 +4,7 @@ extends Node2D
 ## Base de toda sala do jogo.
 ##
 ## Cada sala é um nó do grafo do campus (docs/equipe.md, "1 ↔ 4"): o id
-## identifica a sala para a IA dos Insones e para as portas.
+## identifica a sala para a IA dos robôs e para as portas.
 ## Ao abrir, a tela sai do preto, para a troca de cena não ser um corte seco.
 ##
 ## Para montar uma sala nova, veja docs/guia_montar_salas.md: você cria uma

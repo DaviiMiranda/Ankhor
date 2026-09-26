@@ -11,7 +11,7 @@
 //      atraves  = p · d_perp   (em qual raio ele está, de lado a lado)
 //    onde d_perp = (-d.y, d.x) é d girado 90°. O produto escalar (·) mede a
 //    "sombra" de um vetor sobre o outro: é a mesma conta do campo de visão
-//    dos Insones (docs/gdd.md, item 2.4).
+//    dos robôs (docs/gdd.md, item 2.4).
 //
 // 2. Faixas. Uma onda seno de "atraves" dá faixas claras e escuras
 //    paralelas. Três ondas com frequências que não se repetem juntas

@@ -58,6 +58,8 @@ O jogador explora as ruínas em vista lateral, sala por sala e prédio por préd
 
 ### Objetivos e Progressão
 
+> ⚠️ **A definir com a nova premissa** (fenda da Âncora, 3026 — `docs/decisoes.md`, 2026-09-26). O texto abaixo é da premissa antiga (Insones e semana de provas) e fica como referência até o grupo decidir.
+
 **Objetivo geral:** descobrir o que aconteceu, por que ele dormiu mil anos, e sair do campus.
 
 **Estrutura em cinco dias**, um para cada dia da semana de provas que os Insones continuam repetindo. Cada dia abre uma nova área e fica mais perigoso: mais Insones ativos, rotinas mais agressivas, menos recursos.
@@ -87,13 +89,13 @@ Os conteúdos de computação estão **dentro das mecânicas**, não só no cód
 | Conteúdo | Onde aparece no jogo |
 |---|---|
 | **Grafos** | O campus é um grafo: cada sala é um nó, cada porta, corredor, escada ou buraco no teto é uma aresta com peso (distância e barulho). Desabamentos removem arestas; passagens abertas pelo jogador criam novas. |
-| **Coloração de grafos** | A grade horária da semana de provas é gerada por coloração de grafos: aulas que dividem professor ou sala não podem ter o mesmo horário. É essa grade que define onde cada Insone está a cada hora do jogo. |
+| **Coloração de grafos** | ⚠️ _A definir com a nova premissa:_ antes, a grade horária da semana de provas era gerada por coloração de grafos: aulas que dividem professor ou sala não podem ter o mesmo horário. Essa grade definia onde cada Insone estava a cada hora. Com os robôs em patrulha programada (`docs/personagens/robos.md`), falta decidir de onde vem a grade. |
 | **Busca em largura (BFS)** | O som se propaga pelo grafo e enfraquece a cada sala. Um passo correndo é ouvido a duas salas; uma estante caindo, a cinco. |
-| **A\* (caminho mínimo)** | Quando um Insone ouve ou vê o jogador, sai da rotina e o persegue pelo menor caminho no grafo. |
-| **Cadeia de Markov** | Fora da rotina, cada Insone escolhe a próxima sala por probabilidade, com chances que crescem a cada dia. É o modelo de movimento dos perseguidores do FNAF, formalizado. |
-| **Máquina de estados** | Cada Insone alterna entre *rotina*, *desconfiado*, *caçando*, *atordoado* e *voltando à rotina*. |
-| **Estruturas de dados** | Inventário em grade (matriz), fila de eventos da rotina de cada Insone, dicionário de flags do mundo (passagens abertas, pistas encontradas, sonhos vistos). |
-| **Matemática / geometria** | Campo de visão dos Insones por produto escalar e linha de visão por *ray casting*; luz dos fungos decaindo com o tempo e com a distância. |
+| **A\* (caminho mínimo)** | Quando um robô ouve ou vê o jogador, sai da rotina e o persegue pelo menor caminho no grafo. |
+| **Cadeia de Markov** | Fora da rotina, cada robô escolhe a próxima sala por probabilidade, com chances que crescem a cada dia. É o modelo de movimento dos perseguidores do FNAF, formalizado. |
+| **Máquina de estados** | Cada robô alterna entre *rotina*, *investigando*, *perseguindo*, *atordoado* e *retornando* (`docs/personagens/robos.md`). |
+| **Estruturas de dados** | Inventário em grade (matriz), fila de eventos da rotina de cada robô, dicionário de flags do mundo (passagens abertas, pistas encontradas, sonhos vistos). |
+| **Matemática / geometria** | Campo de visão dos robôs por produto escalar e linha de visão por *ray casting*; luz dos fungos decaindo com o tempo e com a distância. |
 
 ---
 
@@ -134,6 +136,8 @@ E, nos sonhos, o mesmo campus **na última semana antes de tudo**: cheio, ilumin
 
 ### Estrutura dos Níveis
 
+> ⚠️ **A definir com a nova premissa** (fenda da Âncora, 3026 — `docs/decisoes.md`, 2026-09-26). O texto abaixo é da premissa antiga (Insones e semana de provas) e fica como referência até o grupo decidir.
+
 Um campus contínuo, dividido em **cinco áreas** ligadas entre si, uma aberta a cada dia. As áreas visitadas continuam acessíveis — voltar faz parte do jogo, e cada volta encontra os Insones num horário diferente da grade.
 
 As áreas externas entre prédios são as mais expostas: abertas, com dunas e mato alto, poucos esconderijos, e a rota do Vigia. Em vários pontos, o caminho entre dois prédios não é mais pelo chão: é por um teto desabado, uma árvore caída ou um andar enterrado.
@@ -151,7 +155,7 @@ As áreas externas entre prédios são as mais expostas: abertas, com dunas e ma
 
 ### Desafios e Obstáculos
 
-- **Os Insones**, cada um com rotina, sentido dominante (audição, visão, luz) e área própria.
+- **Os robôs**, cada tipo com seu sensor dominante (som, visão, luz) e padrão de patrulha (`docs/personagens/robos.md`).
 - **Barulho:** correr, pisar em entulho e derrubar coisas se ouve pelo grafo.
 - **Escuridão:** os fungos ajudam a ver e ajudam a ser visto; o brilho enfraquece.
 - **Recursos escassos:** fungos para luz e cápsulas de clarão nunca sobram.

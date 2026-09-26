@@ -1,15 +1,15 @@
-# Projeto The Game
+# Ankhor
 
 Jogo de terror em pixel art 2.5D, feito em Godot 4.7 para a disciplina de Computação Gráfica — Unifor, Semestre 6.
 
-> Gabriel pega no sono estudando na Biblioteca da Unifor na véspera da semana de provas e acorda mil anos depois. O campus virou ruína, e as pessoas que estavam lá ainda estão — sem nunca terem dormido.
+> Em 3026, a Unifor é um centro de pesquisa em física do tempo, e a explosão de um aparelho chamado Âncora rasgou o tempo dentro do campus. A fenda puxa quem está por perto em momentos do passado: numa madrugada de 2026, puxou Gabriel da Biblioteca. Ela está crescendo, e ele não foi o primeiro. Robôs patrulham o campus.
 
 ## Documentos
 
 | Arquivo | O que tem |
 |---|---|
 | [`docs/gdd.md`](docs/gdd.md) | Game Design Document (itens 1 a 4) |
-| [`docs/fases.md`](docs/fases.md) | Cada fase em detalhe: salas, Insones, puzzles e sonho |
+| [`docs/fases.md`](docs/fases.md) | Cada fase em detalhe: salas, robôs, puzzles e sonho |
 | [`docs/decisoes.md`](docs/decisoes.md) | Registro das decisões de design e de história, com data |
 | [`docs/equipe.md`](docs/equipe.md) | Papéis e divisão de tarefas |
 | [`docs/roteiro/`](docs/roteiro/) | História, personagens, diálogos |
