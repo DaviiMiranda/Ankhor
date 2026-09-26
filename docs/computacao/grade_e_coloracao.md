@@ -27,8 +27,8 @@ $$(t_i, t_j) \in C \implies c(t_i) \neq c(t_j)$$
 
 A coloração de grafos não é apenas um gerador de dados estáticos; ela controla dinamicamente a jogabilidade:
 
-1. **A Agenda dos Insones:** O algoritmo de coloração define a matriz de horários dos professores e monitores.
+1. **A Rotina das Patrulhas de Robôs:** O algoritmo de coloração define a matriz de horários e rotas de patrulha.
 2. **Previsibilidade Estratégica:**
-   - Nos **sonhos**, Gabriel examina o mural de provas e memoriza a alocação (ex.: *"O professor de Cálculo está na sala D-104 no primeiro horário e vai para a sala D-208 no segundo"*).
-   - Nas **ruínas**, um alarme periódico ressoa nos alto-falantes carcomidos do campus marcando a troca de horário. O Professor interrompe o que está fazendo e caminha para a próxima sala ditada pela cor da grade horária.
-3. **Puzzles de Evitamento:** O jogador planeja sua travessia pelos blocos de aula sabendo exatamente quais salas estarão ocupadas ou vazias em cada bloco de tempo.
+   - Nos **sonhos**, Gabriel examina o mural de horários e memoriza a alocação e rotinas do campus.
+   - Nas **ruínas**, um alarme periódico ressoa nos alto-falantes carcomidos do campus marcando a troca de ciclo. Os robôs de patrulha reorganizam suas rotas e caminham para as salas ditadas pela nova alocação.
+3. **Puzzles de Evitamento:** O jogador planeja sua travessia sabendo exatamente quais salas estarão sob patrulha ou livres em cada intervalo de tempo.

@@ -2,10 +2,10 @@
 
 ## 1. O Ponto de Salvamento (Salas Seguras)
 
-Diferente de jogos com salvamento automático contínuo, no *Projeto The Game* salvar o jogo é uma decisão consciente do jogador integrada à narrativa:
+Diferente de jogos com salvamento automático contínuo, em *Ankhor* salvar o jogo é uma decisão consciente do jogador integrada à narrativa:
 
 - **Localização:** Em cada área do campus existe pelo menos uma **Sala Segura** (ex.: uma sala de professores com porta blindada, uma cabine isolada de estudo, uma enfermaria com tranca interna).
-- **Condição de Segurança:** Não deve haver Insones perseguindo Gabriel no momento da entrada. Gabriel deve passar a tranca na porta.
+- **Condição de Segurança:** Não deve haver robôs perseguindo Gabriel no momento da entrada. Gabriel deve passar a tranca na porta.
 - **O Ato de Dormir (`E` na cama/colchonete improvisado):**
   - **Salva o Jogo:** Serializa o estado atual (nós do grafo explorados, portas abertas, inventário de fungos e cápsulas, relíquias encontradas).
   - **Inicia a Transição do Sonho:** A tela sofre um efeito visual de desfoque e transição cromática, levando Gabriel de volta ao passado.

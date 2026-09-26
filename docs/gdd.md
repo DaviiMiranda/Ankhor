@@ -1,6 +1,6 @@
 # GDD — respostas dos itens 1 a 4
 
-> **Título do Jogo:** Projeto The Game  
+> **Título do Jogo:** Ankhor  
 > **Hierarquia:** Para decisões recentes, consulte [`decisoes.md`](decisoes.md). Para a documentação técnica aprofundada, consulte o índice mestre em [`README.md`](README.md).
 
 > [!TIP]
@@ -9,7 +9,7 @@
 > - ⚙️ **[Mecânicas e Core Loop](mecanicas/README.md)** | **[Furtividade](mecanicas/furtividade_e_esconderijos.md)** | **[Iluminação](mecanicas/iluminacao_e_fungos.md)** | **[Sono e Sonhos](mecanicas/sono_e_sonhos.md)**
 > - 💻 **[Conceitos de Computação](computacao/README.md)** (Grafos, Coloração, BFS, A*, Markov, Shaders)
 > - 📜 **[Estrutura Narrativa](historia/README.md)** | **[Template de Documentos](historia/template_documento.md)**
-> - 👥 **[Personagens e IA](personagens/README.md)** ([Gabriel](personagens/gabriel.md), [Insones](personagens/insones.md), [Template](personagens/template_personagem.md))
+> - 👥 **[Personagens e IA](personagens/README.md)** ([Gabriel](personagens/gabriel.md), [Robôs](personagens/robos.md), [Template](personagens/template_personagem.md))
 > - 🗺️ **[Design de Fases](fases/README.md)** | **[Template de Fase](fases/template_fase.md)**
 > - 💬 **[Sistema de Diálogos](dialogos/README.md)** | **[Template de Diálogo](dialogos/template_dialogo.md)**
 
@@ -25,7 +25,7 @@
 
 **Público-alvo:** adolescentes e adultos, a partir de 14 anos. Terror de tensão, sem violência explícita. Pensado primeiro para quem conhece a Unifor: alunos e ex-alunos reconhecem cada prédio, mesmo em ruínas.
 
-**Resumo do Conceito:** um aluno pega no sono estudando na Biblioteca da Unifor na véspera da semana de provas e acorda **mil anos depois**. O campus virou ruína tomada pela natureza, a cidade sumiu, e ele não sabe o que aconteceu. Mas não está sozinho: as pessoas que estavam no campus naquela semana ainda estão lá, transformadas em algo que já não é humano, repetindo há mil anos a rotina daquela semana de provas. Ele investiga as ruínas para descobrir o que houve, por que só ele dormiu e por que acordou agora.
+**Resumo do Conceito:** Gabriel acorda mil anos no futuro, no ano de 3026. Ele descobre que a Unifor tornou-se um centro de pesquisa em física do tempo e que a explosão de um aparelho chamado **Âncora** rasgou o tempo dentro do campus. Essa fenda temporal encosta em momentos aleatórios do passado e puxa quem estiver por perto — numa madrugada de 2026, puxou Gabriel da Biblioteca. A fenda está em expansão contínua e, caso não seja fechada, engolirá o passado do campus e a própria época de Gabriel. Ele descobre que não foi o primeiro: antes vieram uma aluna de 1994, um segurança de 2008, um professor de 2019 e alguém de 2041, e nenhum deles conseguiu. A primeira fase do jogo é a Biblioteca.
 
 O que torna o jogo diferente:
 - **Estranhamento do familiar:** o jogador reconhece a catraca, o bebedouro, o quadro, a Biblioteca. O mundo em volta não reconhece mais nada disso.
@@ -40,21 +40,21 @@ O que torna o jogo diferente:
 
 ### Jogabilidade Central
 
-O jogador explora as ruínas em vista lateral, sala por sala e prédio por prédio, procurando passagens, itens e pistas, enquanto evita os **Insones** — as pessoas que nunca mais dormiram.
+O jogador explora as ruínas em vista lateral, sala por sala e prédio por prédio, procurando passagens, itens e pistas, enquanto evita os **robôs** que patrulham o campus.
 
 **Explorar.** Andar, correr (faz barulho), se espremer por frestas, atravessar tetos desabados, vasculhar o que restou, examinar objetos e marcas nas paredes.
 
 **Iluminar.** Nada elétrico funciona depois de mil anos. A luz vem de **fungos bioluminescentes** que cresceram nas ruínas: o protagonista os recolhe em potes e usa como lanterna. Luz ajuda a ver e ajuda a ser visto, e o brilho enfraquece com o tempo.
 
-**Ler a grade.** Cada Insone cumpre a rotina da semana de provas: o Professor vai para a sala da aula dele no horário, a Bibliotecária arruma estantes que já não têm livros, o Vigia faz a ronda. A grade horária não existe mais em papel — o jogador a aprende nos sonhos. Fora da rotina, quando ouve ou vê o protagonista, o Insone sai do roteiro e caça.
+**Rondas e rotinas.** Cada robô cumpre sua rotina de patrulha programada pelo campus. Fora da rotina, quando ouve ou vê o protagonista, o robô sai do protocolo padrão e caça.
 
-**Esconder-se.** Armários enferrujados, buracos no piso, raízes, cabines de estudo. Com um Insone por perto, o jogador passa por um **microgame** rápido e diferente em cada esconderijo: prender a respiração no tempo certo, segurar a porta, ficar imóvel.
+**Esconder-se.** Armários enferrujados, buracos no piso, raízes, cabines de estudo. Com um robô por perto, o jogador passa por um **microgame** rápido e diferente em cada esconderijo: prender a respiração no tempo certo, segurar a porta, ficar imóvel.
 
-**Distrair.** Jogar pedras e objetos, derrubar estantes, fazer ruído num lugar para atrair os Insones para longe.
+**Distrair.** Jogar pedras e objetos, derrubar estantes, fazer ruído num lugar para atrair os robôs para longe.
 
-**Defender-se (limitado).** Esmagar uma **cápsula de fungo** libera um clarão forte por um instante e atordoa o Insone por alguns segundos. As cápsulas são escassas — é para escapar, não para vencer.
+**Defender-se (limitado).** Esmagar uma **cápsula de fungo** libera um clarão forte por um instante e atordoa o robô por alguns segundos. As cápsulas são escassas — é para escapar, não para vencer.
 
-**Dormir.** Em salas seguras e fechadas, o jogador pode dormir. Dormir **salva o jogo** e leva a um **sonho**: o mesmo lugar na última semana antes de tudo, com as pessoas ainda normais. Nos sonhos não há perigo — há conversas, quadros de horário, senhas e detalhes que servem no presente.
+**Dormir.** Em salas seguras e fechadas, o jogador pode dormir. Dormir **salva o jogo** e leva a um **sonho**: o mesmo lugar no passado antes de tudo. Nos sonhos não há perigo — há conversas, detalhes e senhas que servem no presente.
 
 ### Objetivos e Progressão
 
@@ -107,41 +107,24 @@ E, nos sonhos, o mesmo campus **na última semana antes de tudo**: cheio, ilumin
 
 ### História e Personagens
 
-**O começo.** Véspera da semana de provas. Gabriel estuda até tarde numa cabine da Biblioteca e pega no sono. Acorda com luz do sol entrando por um teto que não existe mais, uma árvore no meio da sala e as estantes caídas e vazias. Não há ninguém — até ele ouvir, entre as estantes, o som de alguém arrumando livros que não estão mais lá.
+**O começo.** Gabriel, um estudante universitário, acorda no ano de 3026 (mil anos no futuro) na Biblioteca da Unifor. Ele descobre que o campus se transformou em um centro de pesquisa em física do tempo e que a explosão de um aparelho experimental chamado **Âncora** rasgou o tempo dentro do campus.
 
-**O mistério, em camadas:**
+**A Fenda Temporal e o Colapso:**
+- A fenda encosta em momentos aleatórios do passado e puxa quem estiver por perto — numa madrugada de 2026, puxou Gabriel da Biblioteca.
+- A fenda está em expansão contínua: caso não seja fechada, engolirá todo o passado do campus, incluindo a época original de Gabriel.
+- **Os que vieram antes:** Gabriel descobre que não foi o primeiro. Antes dele, a fenda puxou pessoas de diferentes épocas:
+  1. Uma aluna de 1994
+  2. Um segurança de 2008
+  3. Um professor de 2019
+  4. Alguém de 2041
+  - Ninguém conseguiu fechar a fenda ou reverter o processo.
 
-1. **Onde estão todos?** Aqui. Os Insones são as pessoas que estavam no campus naquela semana.
-2. **Quanto tempo passou?** Muito mais do que parece. Os tracinhos que um Insone risca na parede há séculos, os anéis de uma árvore que cresceu dentro da Biblioteca, as dunas sobre os blocos — a resposta vem aos poucos, e o número final é mil anos.
-3. **Por que ninguém dorme?** Na semana de provas, um projeto de pesquisa recrutou alunos e funcionários para testar um estimulante experimental, o **VIGÍLIA-7**, que prometia dias de foco sem sono. Funcionou além do previsto: quem tomou nunca mais conseguiu desligar o corpo — nem para dormir, nem para morrer. Mil anos acordados reduziram essas pessoas ao último fio de rotina que tinham.
-4. **Por que ele dormiu?** Gabriel também estava na lista de voluntários. Nele, o efeito foi o inverso: o corpo desligou e não religou. Os Insones ficaram presos acordados; ele ficou preso dormindo. É a mesma suspensão, dos dois lados. O jogador descobre isso no NAMI, vendo o próprio nome.
-5. **O que aconteceu com o mundo?** O teste foi considerado um sucesso antes de os efeitos aparecerem, e o VIGÍLIA-7 saiu do campus. A Unifor não foi o único lugar abandonado — foi o primeiro.
-
-**O final.** No último dia, Gabriel chega ao portão principal. Tudo que aprendeu nos sonhos aponta para uma coisa: o que falta aos Insones é exatamente o que só ele teve — dormir.
-
-- **Sair sozinho:** atravessar o portão para um mundo vazio e ver o que mais sobrou.
-- **Fazer o campus dormir:** com o que descobriu no NAMI, devolver o sono aos Insones, deixando que finalmente descansem — sabendo que talvez ele mesmo não acorde de novo.
-
-As opções disponíveis dependem do que o jogador descobriu ao longo do jogo.
+**Fases:**
+- A primeira fase do jogo é a **Biblioteca**.
 
 **Personagens:**
-
-- **Gabriel** *(provisório)* — o protagonista. Aluno comum, cansado, que só queria passar nas provas. Não é herói nem investigador; é alguém tentando entender como a sua última lembrança é de ontem e o mundo tem mil anos a mais.
-- **Rafa** *(provisório)* — o colega que estudava com ele na Biblioteca naquela noite e também tomou a dose. É o Insone que aparece em todos os dias e o coração emocional do jogo: nos sonhos, é o melhor amigo; no presente, é o que mais o caça. E às vezes parece reconhecê-lo.
-- **A Bibliotecária** — arruma há mil anos estantes vazias. Ouve tudo. Barulho na Biblioteca atrai ela na hora.
-- **O Professor** — dá aula para salas sem teto, trocando de sala conforme a grade. Aluno fora de sala no horário de aula é aluno que precisa ser levado de volta.
-- **O Vigia** — faz a ronda noturna. É quem risca os dias nas paredes, e o mais atento à luz.
-- **Os Calouros** — um grupo que anda junto, lento e numeroso. As cápsulas de clarão dão conta deles.
-- **A Pesquisadora** — responsável pelo projeto VIGÍLIA-7, a Insone mais antiga e degradada do campus, no fundo do NAMI. É a única que ainda murmura palavras soltas, e o que ela diz só faz sentido depois dos sonhos.
-
-### Elementos de Lore
-
-- **O VIGÍLIA-7:** gravado em frascos de vidro, placas de metal e no cofre do NAMI — o que resistiu ao tempo. O slogan do recrutamento sobrevive pintado numa parede: *"Durma menos. Renda mais."*
-- **Os tracinhos:** paredes inteiras cobertas de riscos contando dias, feitos por um Insone ao longo de séculos. É a primeira pista de quanto tempo passou.
-- **A árvore da Biblioteca:** cresceu no lugar onde ficava a cabine vizinha à de Gabriel. Os anéis do tronco caído são uma das formas de estimar os anos.
-- **A cápsula do tempo:** enterrada no campus anos antes do incidente, lacrada, com mensagens de alunos para o futuro. É um dos poucos lugares onde papel sobreviveu, e onde Gabriel encontra algo escrito por alguém que ele conhecia.
-- **As relíquias:** objetos do cotidiano de hoje vistos como artefatos, cada um com a história de quem o usava.
-- **Os sonhos:** a única memória viva do campus; tudo que ele sabe da última semana vem deles.
+- **Gabriel** — o protagonista. Estudante universitário puxado de uma madrugada de 2026 para 3026 pela fenda da Âncora. Precisa entender o que aconteceu e fechar a fenda antes que ela consuma seu próprio tempo.
+- *(Demais personagens, entidades e desdobramentos de outras épocas a serem definidos em conjunto com a equipe)*
 
 ---
 

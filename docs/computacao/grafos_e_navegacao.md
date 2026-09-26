@@ -2,7 +2,7 @@
 
 ## 1. O Campus como Grafo Ponderado
 
-A topologia do campus da Unifor em *Projeto The Game* é formalmente estruturada como um grafo não direcionado ponderado $G = (V, E, W)$:
+A topologia do campus da Unifor em *Ankhor* é formalmente estruturada como um grafo não direcionado ponderado $G = (V, E, W)$:
 
 - **Vértices ($V$):** Cada sala de aula, corredor, saguão da biblioteca, cabine de estudo, pátio externo e laboratório do NAMI é representado por um nó no grafo com coordenadas espaciais e propriedades ambientais.
 - **Arestas ($E$):** As conexões físicas transitáveis entre dois nós vizinhos — portas, arcos de corredor, vãos em tetos desabados, escadas e frestas de passagem.
@@ -19,11 +19,11 @@ O grafo não é estático; ele sofre mutações conforme o jogador progride e os
 ### A. Remoção de Arestas (Desabamentos e Bloqueios)
 - Eventos climáticos ou abalos estruturais causam novos desabamentos entre um dia e outro.
 - Se uma laje desaba bloqueando o corredor entre o Bloco D e o Bloco E, a aresta $(D_1, E_1)$ é removida do grafo ou seu peso é ajustado para $\infty$.
-- Isso força Gabriel (e os Insones) a recalcularem rotas por caminhos alternativos.
+- Isso força Gabriel (e os robôs) a recalcularem rotas por caminhos alternativos.
 
 ### B. Inserção de Arestas (Atalhos e Chaves)
 - Ao encontrar uma chave enferrujada ou desobstruir uma porta escorada por raízes, o jogador adiciona uma nova aresta $(u, v)$ ao conjunto $E$.
-- Esses atalhos reduzem o caminho mínimo entre as áreas seguras e os objetivos, diminuindo o tempo de exposição aos Insones.
+- Esses atalhos reduzem o caminho mínimo entre as áreas seguras e os objetivos, diminuindo o tempo de exposição aos robôs.
 
 ---
 
