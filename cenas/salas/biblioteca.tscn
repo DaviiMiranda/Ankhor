@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cbk4hsrp0m71x" path="res://scripts/salas/sala.gd" id="1_sala"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/gabriel.tscn" id="2_gabriel"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="m_musica"]
 [ext_resource type="Shader" uid="uid://cb8ygb308rjtx" path="res://shaders/raios_de_sol.gdshader" id="3_raios"]
 [ext_resource type="Shader" uid="uid://dkfsu5mqayu3p" path="res://shaders/vinheta.gdshader" id="4_vinheta"]
 [ext_resource type="Script" uid="uid://hw73x131ple" path="res://scripts/salas/luz_pulsante.gd" id="5_pulsante"]
@@ -424,3 +425,5 @@ color = Color(0, 0, 0, 1)
 
 [node name="Guias" type="Node2D" parent="."]
 script = ExtResource("6_guias")
+
+[node name="MusicaFase" parent="." instance=ExtResource("m_musica")]
