@@ -36,9 +36,15 @@ git config --global user.email "seu-email-do-github@exemplo.com"
 
 ```bash
 cd C:\dev
-git clone https://github.com/DaviiMiranda/Projeto_thegame.git
-cd Projeto_thegame
+git clone https://github.com/DaviiMiranda/Ankhor.git
+cd Ankhor
 ```
+
+> **Já tinha clonado quando o repositório se chamava `Projeto_thegame`?** O GitHub redireciona o endereço antigo, mas atualize uma vez, dentro da pasta do projeto:
+> ```bash
+> git remote set-url origin https://github.com/DaviiMiranda/Ankhor.git
+> ```
+> (Esse comando só troca o endereço que o git usa para `pull` e `push`; seus arquivos não mudam.) Renomear a pasta no seu computador para `Ankhor` é opcional: feche o Godot e o VS Code antes.
 
 ### 4. Abra no Godot
 

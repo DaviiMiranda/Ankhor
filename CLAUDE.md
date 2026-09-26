@@ -52,29 +52,29 @@ As regras completas estão em `CONTRIBUTING.md`. O essencial:
 
 ### Toda tarefa numa pasta separada (git worktree)
 
-A pasta `Projeto_thegame` é compartilhada: outras pessoas e outras sessões do Claude trabalham nela ao mesmo tempo. **Nunca troque de branch nem faça mudanças diretamente nela.** Trocar a branch ali muda os arquivos debaixo de quem está trabalhando, e o commit dessa pessoa acaba na branch errada.
+A pasta `Ankhor` é compartilhada: outras pessoas e outras sessões do Claude trabalham nela ao mesmo tempo. **Nunca troque de branch nem faça mudanças diretamente nela.** Trocar a branch ali muda os arquivos debaixo de quem está trabalhando, e o commit dessa pessoa acaba na branch errada.
 
 Em vez disso, para cada tarefa:
 
 1. **Crie uma pasta separada com a branch nova, a partir da `main` atualizada**, ao lado da pasta do projeto:
    ```bash
    git fetch origin
-   git worktree add ../Projeto_thegame-<tarefa> -b tipo/descricao-curta origin/main
+   git worktree add ../Ankhor-<tarefa> -b tipo/descricao-curta origin/main
    ```
-   Ex.: `../Projeto_thegame-audio` com a branch `docs/estrutura-audio`. Se a tarefa depende de outra ainda não mesclada, crie a partir da branch dela e abra o PR apontando para ela.
-2. **Faça todas as mudanças e commits dentro dessa pasta.** A pasta `Projeto_thegame` não é tocada.
+   Ex.: `../Ankhor-audio` com a branch `docs/estrutura-audio`. Se a tarefa depende de outra ainda não mesclada, crie a partir da branch dela e abra o PR apontando para ela.
+2. **Faça todas as mudanças e commits dentro dessa pasta.** A pasta `Ankhor` não é tocada.
 3. **Push e PR** para a `main`: `git push -u origin <branch>` e `gh pr create`.
 4. **Se a mudança precisa do Godot** (gerar `.import`, testar a cena), peça ao usuário para abrir o projeto nessa pasta, e commite os `.import` gerados.
 5. **Mescle quando o usuário pedir**, com squash: `gh pr merge <número> --squash`.
-6. **Limpe depois do merge**, a partir da pasta `Projeto_thegame`:
+6. **Limpe depois do merge**, a partir da pasta `Ankhor`:
    ```bash
    git push origin --delete <branch>
-   git worktree remove ../Projeto_thegame-<tarefa>
+   git worktree remove ../Ankhor-<tarefa>
    git branch -D <branch>
    ```
    Se o Windows não deixar apagar a pasta, algum programa está com ela aberta (Godot, Explorador ou o próprio terminal). Peça para fechar e tente de novo.
 
-A mesma regra vale para agentes do projeto: passe para eles o caminho da pasta separada e deixe claro que não devem mexer em `Projeto_thegame`.
+A mesma regra vale para agentes do projeto: passe para eles o caminho da pasta separada e deixe claro que não devem mexer em `Ankhor`.
 
 ## Como ajudar este grupo
 
