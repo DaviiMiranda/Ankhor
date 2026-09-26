@@ -7,7 +7,7 @@
 #   python assets/modelagem/audio/gerar_tema_biblioteca.py
 #
 # O que sai:
-#   assets/audio/musica/biblioteca/biblioteca_tema.ogg   ~82 s, estéreo, loop sem emenda
+#   assets/audio/musica/biblioteca/biblioteca_tema.ogg   ~115 s, estéreo, loop sem emenda
 #
 # ---------------------------------------------------------------------------
 # O TEMA DO DAVI (transcrito do áudio original)
@@ -15,7 +15,7 @@
 #
 # A melodia foi transcrita por análise do som: os ATAQUES (quando cada nota
 # começa) por fluxo espectral, e a ALTURA de cada nota pela FFT (qual
-# frequência apareceu naquele instante). 140 batidas por minuto, uma frase
+# frequência apareceu naquele instante). 140 batidas por minuto (aqui tocado a 100), uma frase
 # de 2 compassos em colcheias, lá menor:
 #
 #   colcheia: 1    2    3        4  5    6        7  8  9    10 11       12..16
@@ -56,11 +56,11 @@ PASTA_PROJETO = os.path.normpath(os.path.join(PASTA_SCRIPT, "..", "..", ".."))
 SAIDA = os.path.join(PASTA_PROJETO, "assets", "audio", "musica", "biblioteca", "biblioteca_tema.ogg")
 
 TAXA = 44100
-BPM = 140
-COLCHEIA = 60.0 / BPM / 2        # 0,214 s
-COMPASSO = 8 * COLCHEIA          # 1,714 s (4/4)
+BPM = 100                        # o tema original do Davi é 140; mais lento fica mais sombrio
+COLCHEIA = 60.0 / BPM / 2        # 0,3 s
+COMPASSO = 8 * COLCHEIA          # 2,4 s (4/4)
 COMPASSOS = 48
-DURACAO = COMPASSOS * COMPASSO   # ~82,3 s
+DURACAO = COMPASSOS * COMPASSO   # ~115 s
 N = int(round(DURACAO * TAXA))
 T = np.arange(N) / TAXA
 
