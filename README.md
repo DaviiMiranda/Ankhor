@@ -44,7 +44,7 @@ cd Ankhor
 > ```bash
 > git remote set-url origin https://github.com/DaviiMiranda/Ankhor.git
 > ```
-> (Esse comando só troca o endereço que o git usa para `pull` e `push`; seus arquivos não mudam.) Renomear a pasta no seu computador para `Ankhor` é opcional: feche o Godot e o VS Code antes.
+> (Esse comando só troca o endereço que o git usa para `pull` e `push`; seus arquivos não mudam.) Renomear a pasta no seu computador para `Ankhor` é opcional: feche o Godot e o VS Code antes. Se você tiver pastas de tarefa abertas (`git worktree list` mostra quais), elas perdem a ligação com o repositório depois de renomear. Para consertar, rode dentro da pasta renomeada `git worktree repair ../<pasta-da-tarefa>`, uma vez para cada pasta.
 
 ### 4. Abra no Godot
 

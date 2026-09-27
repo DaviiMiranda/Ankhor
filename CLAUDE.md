@@ -52,29 +52,31 @@ As regras completas estão em `CONTRIBUTING.md`. O essencial:
 
 ### Toda tarefa numa pasta separada (git worktree)
 
-A pasta `Ankhor` é compartilhada: outras pessoas e outras sessões do Claude trabalham nela ao mesmo tempo. **Nunca troque de branch nem faça mudanças diretamente nela.** Trocar a branch ali muda os arquivos debaixo de quem está trabalhando, e o commit dessa pessoa acaba na branch errada.
+A **pasta principal** do projeto (onde o repositório foi clonado) é compartilhada. O nome dela muda de computador para computador (`Ankhor`, `Projeto_Ankhor`, ou `Projeto_thegame` num clone antigo). Confira com `git worktree list`: ela é a primeira linha. Abaixo, `<pasta>` é esse nome. Outras pessoas e outras sessões do Claude trabalham nela ao mesmo tempo. **Nunca troque de branch nem faça mudanças diretamente nela.** Trocar a branch ali muda os arquivos debaixo de quem está trabalhando, e o commit dessa pessoa acaba na branch errada.
 
 Em vez disso, para cada tarefa:
 
 1. **Crie uma pasta separada com a branch nova, a partir da `main` atualizada**, ao lado da pasta do projeto:
    ```bash
    git fetch origin
-   git worktree add ../Ankhor-<tarefa> -b tipo/descricao-curta origin/main
+   git worktree add ../<pasta>-<tarefa> -b tipo/descricao-curta origin/main
    ```
-   Ex.: `../Ankhor-audio` com a branch `docs/estrutura-audio`. Se a tarefa depende de outra ainda não mesclada, crie a partir da branch dela e abra o PR apontando para ela.
-2. **Faça todas as mudanças e commits dentro dessa pasta.** A pasta `Ankhor` não é tocada.
+   Ex.: `../Projeto_Ankhor-audio` com a branch `docs/estrutura-audio`. Se a tarefa depende de outra ainda não mesclada, crie a partir da branch dela e abra o PR apontando para ela.
+2. **Faça todas as mudanças e commits dentro dessa pasta.** A pasta principal não é tocada.
 3. **Push e PR** para a `main`: `git push -u origin <branch>` e `gh pr create`.
 4. **Se a mudança precisa do Godot** (gerar `.import`, testar a cena), peça ao usuário para abrir o projeto nessa pasta, e commite os `.import` gerados.
 5. **Mescle quando o usuário pedir**, com squash: `gh pr merge <número> --squash`.
-6. **Limpe depois do merge**, a partir da pasta `Ankhor`:
+6. **Limpe depois do merge**, a partir da pasta principal:
    ```bash
    git push origin --delete <branch>
-   git worktree remove ../Ankhor-<tarefa>
+   git worktree remove ../<pasta>-<tarefa>
    git branch -D <branch>
    ```
    Se o Windows não deixar apagar a pasta, algum programa está com ela aberta (Godot, Explorador ou o próprio terminal). Peça para fechar e tente de novo.
 
-A mesma regra vale para agentes do projeto: passe para eles o caminho da pasta separada e deixe claro que não devem mexer em `Ankhor`.
+**Se a pasta principal for renomeada** com pastas separadas ainda abertas, o git perde a ligação com elas e responde `not a git repository` lá dentro. Para consertar, rode a partir da pasta principal `git worktree repair ../<pasta-da-tarefa>` (uma por pasta separada). Esse comando só refaz a ligação, sem mexer em nenhum arquivo.
+
+A mesma regra vale para agentes do projeto: passe para eles o caminho da pasta separada e deixe claro que não devem mexer na pasta principal.
 
 ## Como ajudar este grupo
 
