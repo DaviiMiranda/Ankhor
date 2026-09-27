@@ -144,6 +144,8 @@ As áreas externas entre prédios são as mais expostas: abertas, com dunas e ma
 
 ### Design dos Ambientes
 
+> ⚠️ **A definir com a nova premissa** (fenda da Âncora, 3026 — `docs/decisoes.md`, 2026-09-26). A coluna "Função" ainda cita a premissa antiga (a Bibliotecária, o Professor e os Calouros, que eram Insones, e o projeto VIGÍLIA-7) e fica como referência até o grupo decidir.
+
 | Área | Visual | Função |
 |---|---|---|
 | **Biblioteca** | Estantes caídas e vazias, uma árvore no meio do salão, luz do sol por um teto aberto, poeira e pólen no ar | Tutorial e primeiro contato. Silêncio é regra: correr aqui chama a Bibliotecária. |
