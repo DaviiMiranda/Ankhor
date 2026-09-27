@@ -1,5 +1,5 @@
 # gerar_efeitos_gabriel.py — compõe por código os efeitos sonoros do Gabriel:
-# os passos e o som de abrir o inventário (a mochila).
+# os passos e os sons de abrir e fechar o inventário (a mochila).
 #
 # Como rodar (Python 3 + numpy):
 #   python assets/modelagem/audio/gerar_efeitos_gabriel.py
@@ -7,6 +7,7 @@
 # Gera (efeitos curtos são .wav: tocam sem atraso, ver assets/audio/README.md):
 #   assets/audio/efeitos/gabriel/gabriel_passo_ceramica_01.wav ... _06.wav
 #   assets/audio/efeitos/interface/inventario_abrir.wav
+#   assets/audio/efeitos/interface/inventario_fechar.wav
 #
 # Nenhuma gravação: todo som aqui é soma de ondas e de RUÍDO (números
 # sorteados) passando por filtros. É a mesma ideia dos scripts das trilhas
@@ -171,26 +172,8 @@ def inventario_abrir():
     t = tempo(duracao)
     n = len(t)
 
-    # Zíper: de 0,03 s a 0,33 s. 'u' vai de 0 a 1 ao longo do puxão; a
-    # velocidade (dentes por segundo) é 40 + 140·sin(π·u).
-    inicio, fim = 0.03, 0.33
-    dentes = np.zeros(n)
-    instante = inicio
-    while instante < fim:
-        u = (instante - inicio) / (fim - inicio)
-        velocidade = 40 + 140 * np.sin(np.pi * u)
-        dentes[int(instante * TAXA)] += rng.uniform(0.6, 1.0)
-        instante += 1.0 / velocidade * rng.uniform(0.85, 1.15)
-    # Cada dente vira um estalo de ~2 ms, com a cor de metal e plástico.
-    estalo = np.hanning(90) * np.sin(2 * np.pi * 3200 * np.arange(90) / TAXA)
-    ziper = filtrar(np.convolve(dentes, estalo, "same"), corte_baixo=1200, corte_alto=7000)
-    ziper /= np.max(np.abs(ziper)) + 1e-9
-
-    # Tecido: ruído de faixa média, com envelope suave (sobe e desce).
-    tecido = filtrar(ruido(n), corte_baixo=300, corte_alto=3000)
-    tecido /= np.max(np.abs(tecido))
-    forma = np.sin(np.pi * np.clip(t / duracao, 0, 1)) ** 2
-    tecido *= 0.35 * forma
+    ziper = som_ziper(n, 0.03, 0.33, velocidade_max=140)
+    tecido = pano(t, duracao)
 
     # A aba da mochila caindo aberta no fim: um baque macio e grave.
     aba = filtrar(ruido(n), corte_alto=500) * envelope(t, 0.36, 0.035)
@@ -202,11 +185,66 @@ def inventario_abrir():
     return normalizar(sala(som, mistura=0.08), -6.0)
 
 
+def inventario_fechar():
+    """O contrário de abrir, na ordem de quem fecha a mochila com pressa:
+    primeiro a aba é empurrada para baixo (baque), depois o zíper corre
+    mais RÁPIDO que ao abrir (um puxão decidido) e termina num "tec": o
+    cursor batendo no fim do zíper. Mais curto que abrir: o jogo volta logo."""
+    duracao = 0.45
+    t = tempo(duracao)
+    n = len(t)
+
+    # A aba empurrada: baque grave logo no começo.
+    aba = filtrar(ruido(n), corte_alto=450) * envelope(t, 0.01, 0.03)
+    aba *= 0.7 / (np.max(np.abs(aba)) + 1e-9)
+
+    inicio, fim = 0.08, 0.30
+    ziper = som_ziper(n, inicio, fim, velocidade_max=200)
+    tecido = pano(t, duracao)
+
+    # O "tec" do fim: um estalo metálico curto (duas frequências que não
+    # formam acorde, como metal batendo) logo depois do último dente.
+    tec = (np.sin(2 * np.pi * 2900 * t) + 0.6 * np.sin(2 * np.pi * 4700 * t))
+    tec *= envelope(t, fim + 0.01, 0.006, ataque=0.0005) * 0.9
+
+    som = aba + 0.6 * ziper + tecido + tec
+    som *= np.clip((duracao - t) / 0.03, 0, 1)
+    return normalizar(sala(som, mistura=0.08), -6.0)
+
+
+def som_ziper(n, inicio, fim, velocidade_max):
+    """Os dentes do zíper passando pelo cursor, de 'inicio' a 'fim' segundos.
+    'u' vai de 0 a 1 ao longo do puxão; a velocidade (dentes por segundo) é
+    40 + velocidade_max·sin(π·u): a mão acelera, chega no máximo no meio do
+    caminho e freia no fim."""
+    dentes = np.zeros(n)
+    instante = inicio
+    while instante < fim:
+        u = (instante - inicio) / (fim - inicio)
+        velocidade = 40 + velocidade_max * np.sin(np.pi * u)
+        dentes[int(instante * TAXA)] += rng.uniform(0.6, 1.0)
+        instante += 1.0 / velocidade * rng.uniform(0.85, 1.15)
+    # Cada dente vira um estalo de ~2 ms, com a cor de metal e plástico.
+    estalo = np.hanning(90) * np.sin(2 * np.pi * 3200 * np.arange(90) / TAXA)
+    ziper = filtrar(np.convolve(dentes, estalo, "same"), corte_baixo=1200, corte_alto=7000)
+    return ziper / (np.max(np.abs(ziper)) + 1e-9)
+
+
+def pano(t, duracao):
+    """O tecido da mochila mexendo: ruído de faixa média, com um envelope
+    suave que sobe e desce (sin² vai de 0 a 1 e volta a 0)."""
+    tecido = filtrar(ruido(len(t)), corte_baixo=300, corte_alto=3000)
+    tecido /= np.max(np.abs(tecido))
+    forma = np.sin(np.pi * np.clip(t / duracao, 0, 1)) ** 2
+    return 0.35 * tecido * forma
+
+
 def main():
     print("[efeitos do Gabriel]")
     for i in range(1, VARIACOES_PASSO + 1):
         salvar(os.path.join(PASTA_GABRIEL, f"gabriel_passo_ceramica_{i:02d}.wav"), passo())
     salvar(os.path.join(PASTA_INTERFACE, "inventario_abrir.wav"), inventario_abrir())
+    salvar(os.path.join(PASTA_INTERFACE, "inventario_fechar.wav"), inventario_fechar())
 
 
 if __name__ == "__main__":
