@@ -137,6 +137,12 @@ Git não consegue mesclar binário. Se duas pessoas editarem o mesmo PNG, uma da
 - Variáveis e funções: `snake_case` → `velocidade_corrida`, `func calcular_caminho()`
 - Pode escrever em português. Só não misture: se a função é `calcular_caminho`, a próxima não vira `get_path`.
 
+### Comentários
+
+- **Scripts `.gd` não têm comentários** (nem `#` nem `##`). Nomes claros fazem o papel do comentário: `_contar_passos()` em vez de `# conta os passos`.
+- A explicação de um sistema (algoritmo, matemática, como usar) vai para `docs/`, por exemplo `docs/computacao/`.
+- Geradores em Python (`assets/modelagem/`) e shaders (`.gdshader`) podem e devem ser comentados, explicando a matemática.
+
 ---
 
 ## Tarefas e decisões

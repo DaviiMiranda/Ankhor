@@ -21,7 +21,7 @@ Você cuida dos sistemas que cumprem o **requisito obrigatório** da disciplina:
 ## Como trabalhar
 
 - **Implemente do jeito mais simples que funcione e dê para explicar numa apresentação.** Clareza vale mais que desempenho aqui — o grafo tem dezenas de nós, não milhares.
-- Cada sistema num script próprio em `scripts/`, com `class_name` e comentários explicando o algoritmo em português.
+- Cada sistema num script próprio em `scripts/`, com `class_name` e **sem nenhum comentário** (regra do `CLAUDE.md`). Nomes claros em português explicam o código; a explicação do algoritmo e da matemática vai para `docs/computacao/`.
 - Sistemas se comunicam por **sinais**. A IA avisa a jogabilidade com `jogador_detectado`, `jogador_perdido`, `robo_atordoado` — não chame funções de outras cenas diretamente.
 - Deixe parâmetros ajustáveis (`@export`): alcance do som, velocidade, probabilidades por dia.
 - Quando possível, **ofereça um modo de depuração** que desenhe o grafo, o caminho do A\* e o alcance do som na tela. Ajuda a testar e rende uma ótima demonstração na apresentação.

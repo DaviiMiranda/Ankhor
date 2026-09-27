@@ -35,7 +35,7 @@ docs/roteiro/   história, personagens, diálogos
 ## Convenções
 
 - Arquivos, pastas, variáveis e funções em `snake_case`; `class_name` em `PascalCase`. Nomes em português, sem acento em nome de arquivo.
-- Código comentado em português, simples e didático: o grupo está aprendendo.
+- **Scripts GDScript (`.gd`) sem nenhum comentário**: nem `#` nem `##`. O código se explica pelos nomes (em português, `snake_case`) e por funções curtas. O que precisa de explicação (algoritmo, matemática, como usar um sistema) vai para `docs/` (ex.: `docs/computacao/`, `docs/mecanicas/`). Os geradores em Python (`assets/modelagem/`) e os shaders (`.gdshader`) continuam comentados, explicando a matemática.
 - Cada sistema, personagem e sala é uma **cena separada**. Não coloque vários sistemas numa cena só.
 - Comunicação entre sistemas por **sinais** do Godot (ex.: `jogador_detectado`, `jogador_perdido`), não por referências diretas entre cenas de pessoas diferentes.
 - Commite os arquivos `.import` e `.uid`. Nunca commite `.godot/`.

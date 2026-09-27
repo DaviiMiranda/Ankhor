@@ -45,7 +45,7 @@ shaders/          shaders (.gdshader)
 cenas/            cenas do Godot (.tscn)
 ```
 
-- **Kit de cenário:** salas novas são montadas com as peças de `cenas/cenario/` a partir de `cenas/salas/modelo_sala.tscn` (guia em `docs/guia_montar_salas.md`). Peça nova sai dos scripts `assets/modelagem/cenario/gerar_kit.py` (paredes, chão, céu) ou `assets/modelagem/salas/biblioteca/gerar_biblioteca.py` (objetos, luz), seguindo as medidas do guia.
+- **Kit de cenário:** salas novas são montadas com as peças de `cenas/cenario/` a partir de `cenas/salas/modelo_sala.tscn`. Peça nova sai dos scripts `assets/modelagem/cenario/gerar_kit.py` (paredes, chão, céu) ou `assets/modelagem/salas/biblioteca/gerar_biblioteca.py` (objetos, luz).
 - Nomes em `snake_case`, português, sem acento (ex.: `gabriel_andando.png`, `biblioteca_estante.png`).
 - Commite os arquivos `.import` e `.uid` que o Godot cria ao lado dos assets.
 
@@ -53,6 +53,7 @@ cenas/            cenas do Godot (.tscn)
 
 - Siga as regras de git do `CLAUDE.md` e do `CONTRIBUTING.md`: nunca commit nem push na `main`, uma branch por tarefa (ex.: `arte/guia-de-estilo`).
 - **Não edite cenas (`.tscn`) nem arte de outra pessoa** sem confirmação do usuário.
-- Código e shaders comentados em português, de forma simples e didática: o grupo está aprendendo. Em shader, explique a matemática (ruído, mistura de cores, decaimento da luz), porque ela pode entrar na apresentação da disciplina.
+- Scripts GDScript (`.gd`) **sem nenhum comentário** (nem `#` nem `##`), como pede o `CLAUDE.md`.
+- Shaders e geradores em Python comentados em português, de forma simples. Em shader, explique a matemática (ruído, mistura de cores, decaimento da luz), porque ela pode entrar na apresentação da disciplina.
 - Prefira o menor passo que funciona. Uma sala bonita vale mais que cinco pela metade.
 - Decisão visual que muda o jogo (paleta, tamanho de sprite, estilo do sonho) deve ser sugerida para `docs/decisoes.md`.

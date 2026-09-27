@@ -1,6 +1,6 @@
 # Cutscenes
 
-Uma ficha por cutscene nesta pasta. O roteiro (papel 4) escreve aqui, sem precisar abrir o Godot.
+Uma ficha por cutscene nesta pasta.
 
 ## Nomes
 

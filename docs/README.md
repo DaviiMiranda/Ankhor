@@ -25,7 +25,7 @@ docs/
 ├── equipe.md                      # Papéis da equipe e entregas acadêmicas
 ├── fases.md                       # Ponto de entrada para o design de fases
 ├── gdd.md                         # GDD executivo integrado
-├── guia_montar_salas.md           # Como montar uma sala com o kit de cenário (passo a passo)
+├── sugestao-melhoramento-futuro.md # Backlog de melhorias secundárias, polimento e QoL
 │
 ├── visao_geral/                   # Pilares conceituais, escopo e identidade
 │   ├── conceito.md                # Premissa, público-alvo, escopo e pilares de design
@@ -70,14 +70,3 @@ docs/
         ├── README.md              # Padrão de implementação de cutscenes no Godot
         └── seg_acordar.md         # Cutscene inicial do despertar de Gabriel
 ```
-
----
-
-## ⚡ Guia Rápido para a Equipe
-
-- **Vai criar ou alterar uma mecânica?** Consulte [`docs/mecanicas/`](mecanicas/) e [`docs/computacao/`](computacao/).
-- **Vai planejar uma sala ou área?** Utilize [`docs/fases/template_fase.md`](fases/template_fase.md).
-- **Vai criar uma nova fala ou diálogo?** Utilize [`docs/dialogos/template_dialogo.md`](dialogos/template_dialogo.md).
-- **Vai adicionar um documento ou relíquia de lore?** Utilize [`docs/historia/template_documento.md`](historia/template_documento.md).
-- **Vai adicionar um novo personagem ou inimigo?** Utilize [`docs/personagens/template_personagem.md`](personagens/template_personagem.md).
-- **Tomou uma decisão que muda o design ou escopo?** Registre imediatamente em [`docs/decisoes.md`](decisoes.md).

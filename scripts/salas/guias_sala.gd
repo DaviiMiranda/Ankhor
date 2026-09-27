@@ -1,12 +1,5 @@
 @tool
 extends Node2D
-## Guias de montagem que só aparecem no EDITOR (no jogo, somem).
-##
-## Fica como o último filho da sala, então é desenhado por cima de tudo:
-##   - amarelo: o tamanho da sala (a câmera nunca mostra nada fora dele);
-##   - linhas amarelas fracas: onde acaba cada tela (320 x 180 px);
-##   - azul: a faixa de chão onde os pés do Gabriel podem andar.
-## Os números vêm da sala (Inspetor da raiz: largura, chao_fundo...).
 
 
 func _ready() -> void:
