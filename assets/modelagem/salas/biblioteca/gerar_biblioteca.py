@@ -81,8 +81,8 @@ PREVIA = os.environ.get("PREVIA", "")
 
 LARGURA_SALA = 960        # 3 telas de 320
 ALTURA_TELA = 180         # altura de uma tela do jogo
-ALTURA_SALA = 300         # a parte sul (a frente do chão) passa da tela:
-                          # a câmera também anda na vertical
+ALTURA_SALA = 420         # a parte sul (a frente do chão) passa da tela:
+                          # a câmera também anda na vertical (2 telas e 1/3)
 Y_CHAO = 112              # linha onde a parede encontra o chão
 PARALAXE_CEU = 0.5        # o céu anda na metade da velocidade da câmera
 # O céu precisa cobrir a tela quando a câmera está no fim da sala:
@@ -128,6 +128,34 @@ OBJETOS = [
     ("fungo", 800, 262, False),
     ("fungo", 884, 212, True),
     ("fungo", 934, 288, False),
+    # Fundo da parte sul (y de 300 a 416): a área mais escura da sala.
+    # À esquerda, um canto desabado.
+    ("estante_caida", 150, 334, False),
+    ("entulho", 86, 372, True),
+    ("livros", 190, 392, False),
+    ("entulho", 238, 410, False),
+    ("cabine", 300, 404, False),
+    # No meio, o acervo: duas fileiras de estantes em pé, com corredores de
+    # 32 px entre elas (o Gabriel tem 12 de largura). Passando atrás de uma
+    # estante, ele some da vista: é um lugar para se esconder dos robôs.
+    # A fileira de trás tem um vão no meio (a entrada do acervo), para não
+    # tapar o carrinho e os livros que estão logo atrás, em y 282 e 290.
+    ("estante_vazia", 424, 336, False),
+    ("estante_quebrada", 648, 336, True),
+    ("livros", 536, 366, True),
+    ("estante_quebrada", 488, 394, False),
+    ("estante_vazia", 584, 394, False),
+    # À direita, um canto de leitura.
+    ("mesa_leitura", 790, 376, False),
+    ("cadeira", 738, 388, False),
+    ("cadeira", 842, 362, True),
+    ("carrinho", 900, 408, False),
+    ("livros", 700, 408, False),
+    # Fungos: no escuro, são a única luz.
+    ("fungo", 120, 410, False),
+    ("fungo", 372, 326, True),
+    ("fungo", 660, 372, True),
+    ("fungo", 920, 330, False),
 ]
 
 # ---------------------------------------------------------------------------
@@ -661,7 +689,8 @@ def desenhar_porta(img, xa, xb, ya):
 # fica achatado, o que está perto (embaixo) fica maior. Na parte sul ela
 # para de crescer em 16 px, senão as lajotas da frente ficariam enormes.
 FILEIRAS = [112, 115, 119, 124, 130, 137, 145, 154, 164, 175, 188,
-            202, 217, 233, 249, 265, 281, 297, 313]
+            202, 217, 233, 249, 265, 281, 297, 313,
+            329, 345, 361, 377, 393, 409, 425]
 
 
 def desenhar_chao():
@@ -687,20 +716,25 @@ def desenhar_chao():
         valor[faixa] = (0.35 + 0.18 * sorteio[coluna])[faixa]
         junta |= faixa & ((Y == ya) | ((X + desloc) % larg == 0))
     valor = valor + 0.1 * manchas + 0.05 * fino
-    # Escurece no canto com a parede e, de leve, na beira da frente (a
-    # parte sul fica longe dos buracos do teto).
-    valor = valor * luz - 0.2 * np.clip((122 - Y) / 10, 0, 1)         - 0.08 * np.clip((Y - 240) / 60, 0, 1)
+    # Escurece no canto com a parede e na parte sul, que fica longe dos
+    # buracos do teto: de leve a partir de y = 240 e mais forte no fundo
+    # (de y = 320 para baixo, onde só os fungos iluminam).
+    valor = valor * luz - 0.2 * np.clip((122 - Y) / 10, 0, 1) \
+        - 0.08 * np.clip((Y - 240) / 60, 0, 1) - 0.07 * np.clip((Y - 320) / 80, 0, 1)
     img.pintar(chao, "piso", valor)
     img.pintar(chao & junta, "piso", valor - 0.22, achatar=False)
 
     # 2. Tapete podre embaixo da área das mesas de leitura.
-    tapete = img.poligono([(500, 132), (660, 132), (668, 172), (492, 172)])         | img.poligono([(96, 206), (246, 206), (256, 258), (86, 258)])   # parte sul
+    tapete = img.poligono([(500, 132), (660, 132), (668, 172), (492, 172)]) \
+        | img.poligono([(96, 206), (246, 206), (256, 258), (86, 258)]) \
+        | img.poligono([(716, 344), (866, 344), (878, 402), (704, 402)])   # parte sul
     buracos = ruido(img.w, img.h, 6, 4, 63) > 0.66
     img.pintar(tapete & ~buracos, "tapete", (0.45 + 0.25 * manchas + 0.1 * fino) * luz)
     img.pintar(tapete & ~buracos & ((X + Y) % 6 == 0), "tapete", 0.25 * luz, achatar=False)
 
-    # 3. Lajotas faltando: terra aparecendo.
-    for _ in range(60):
+    # 3. Lajotas faltando: terra aparecendo. Quantidade proporcional ao
+    #    tamanho do chão (60 para os 188 px da sala de 300 de altura).
+    for _ in range(60 * (ALTURA_SALA - Y_CHAO) // 188):
         x = rng.integers(20, 940)
         y = rng.integers(118, ALTURA_SALA - 4)
         buraco = img.elipse(x, y, rng.uniform(4, 10), rng.uniform(2, 4)) & chao
@@ -752,11 +786,13 @@ def desenhar_chao():
         rampa = "areia" if rng.random() < 0.6 else "ferrugem"
         img.pintar(img.ret(x, y, x + 2, y + 1), rampa, 0.5 + 0.3 * rng.random())
 
-    # 8. Musgo e fungos no chão do lado escuro.
-    musgo = chao & (X > 740) & (ruido(img.w, img.h, 7, 4, 64) > 0.68)
+    # 8. Musgo e fungos no chão do lado escuro e no fundo da parte sul
+    #    (úmido e sem sol, de y = 330 para baixo).
+    musgo = chao & ((X > 740) | (Y > 330)) & (ruido(img.w, img.h, 7, 4, 64) > 0.68)
     img.pintar(musgo, "verde", 0.15 + 0.2 * fino)
     for (cx, cy) in ((786, 150), (884, 130), (934, 162), (822, 174),
-                     (700, 250), (910, 240)):
+                     (700, 250), (910, 240),
+                     (140, 404), (380, 332), (664, 380), (918, 340)):
         colar_fungos(img, cx, cy, cx)
 
     # 9. Sombras de contato: embaixo de cada objeto, uma elipse escura.
