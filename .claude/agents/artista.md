@@ -45,7 +45,7 @@ shaders/          shaders (.gdshader)
 cenas/            cenas do Godot (.tscn)
 ```
 
-- **Kit de cenário:** salas novas são montadas com as peças de `cenas/cenario/` a partir de `cenas/salas/modelo_sala.tscn` (guia em `docs/guia_montar_salas.md`). Peça nova sai dos scripts `assets/modelagem/cenario/gerar_kit.py` (paredes, chão, céu) ou `assets/modelagem/salas/biblioteca/gerar_biblioteca.py` (objetos, luz), seguindo as medidas do guia.
+- **Kit de cenário:** salas novas são montadas com as peças de `cenas/cenario/` a partir de `cenas/salas/modelo_sala.tscn`. Peça nova sai dos scripts `assets/modelagem/cenario/gerar_kit.py` (paredes, chão, céu) ou `assets/modelagem/salas/biblioteca/gerar_biblioteca.py` (objetos, luz).
 - Nomes em `snake_case`, português, sem acento (ex.: `gabriel_andando.png`, `biblioteca_estante.png`).
 - Commite os arquivos `.import` e `.uid` que o Godot cria ao lado dos assets.
 
