@@ -27,6 +27,9 @@ var _espacos_gadget: Array[EspacoItem] = []
 @onready var nome: Label = $Janela/Nome
 @onready var descricao: Label = $Janela/Descricao
 @onready var situacao: Label = $Janela/Situacao
+## O zíper da mochila (gerado por assets/modelagem/audio/gerar_efeitos_gabriel.py).
+## Toca mesmo com o jogo pausado: ele herda o process_mode Sempre desta tela.
+@onready var som_abrir: AudioStreamPlayer = $SomAbrir
 
 
 func _ready() -> void:
@@ -79,6 +82,8 @@ func _abrir(abrir: bool) -> void:
 	visible = abrir
 	# Pausa o jogo inteiro (Gabriel, robôs, animações) enquanto está aberto.
 	get_tree().paused = abrir
+	if abrir:
+		som_abrir.play()
 	_atualizar()
 
 
