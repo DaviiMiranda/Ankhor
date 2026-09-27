@@ -77,7 +77,7 @@ func _unhandled_input(evento: InputEvent) -> void:
 func _abrir(abrir: bool) -> void:
 	aberto = abrir
 	visible = abrir
-	# Pausa o jogo inteiro (Gabriel, Insones, animações) enquanto está aberto.
+	# Pausa o jogo inteiro (Gabriel, robôs, animações) enquanto está aberto.
 	get_tree().paused = abrir
 	_atualizar()
 

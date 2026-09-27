@@ -1,6 +1,6 @@
 # Fases e Áreas — Visão Geral
 
-Tudo que é específico de cada fase e área do **Projeto The Game** fica documentado na pasta [`fases/`](fases/): salas, puzzles, Insones presentes e eventos de sonho.
+Tudo que é específico de cada fase e área do **Ankhor** fica documentado na pasta [`fases/`](fases/): salas, puzzles, robôs presentes e eventos de sonho.
 
 > [!NOTE]
 > - **Primeira Fase (Confirmada):** [`fases/biblioteca.md`](fases/biblioteca.md).
