@@ -12,9 +12,6 @@ var _espacos_gadget: Array[EspacoItem] = []
 @onready var nome: Label = $Janela/Nome
 @onready var descricao: Label = $Janela/Descricao
 @onready var situacao: Label = $Janela/Situacao
-## O zíper da mochila abrindo e fechando (gerados por
-## assets/modelagem/audio/gerar_efeitos_gabriel.py). Tocam mesmo com o jogo
-## pausado: eles herdam o process_mode Sempre desta tela.
 @onready var som_abrir: AudioStreamPlayer = $SomAbrir
 @onready var som_fechar: AudioStreamPlayer = $SomFechar
 
@@ -66,7 +63,6 @@ func _abrir(abrir: bool) -> void:
 	aberto = abrir
 	visible = abrir
 	get_tree().paused = abrir
-	# Abrir e fechar rápido: um som corta o outro, para não tocarem juntos.
 	if abrir:
 		som_fechar.stop()
 		som_abrir.play()
