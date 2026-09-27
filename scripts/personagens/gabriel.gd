@@ -27,6 +27,11 @@ extends CharacterBody2D
 ## Para cada gadget equipado, o Gabriel cria a cena do efeito dele (ex.: a
 ## luz do pote de fungos) dentro do nó "Gadgets", na altura da mão.
 
+## Um pé acabou de tocar o chão. Quem toca o som é a cena dos passos
+## (cenas/sistemas/passos.tscn); a IA dos robôs pode ouvir o mesmo sinal
+## para o barulho (correndo = alto, agachado = silencioso).
+signal passo_dado(correndo: bool, agachado: bool)
+
 ## Velocidade andando para os lados, em pixels por segundo.
 @export var velocidade_andar: float = 45.0
 ## Andar para o fundo/frente é mais lento que para os lados. Na tela, o chão
@@ -91,6 +96,8 @@ var vista := "lado"
 var _distancia := 0.0
 ## Tempo parado desde que parou de andar (escolhe o quadro da respiração).
 var _tempo_parado := 0.0
+## Quantos passos já foram dados desde que começou a andar.
+var _passos := 0
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var no_gadgets: Node2D = $Gadgets
@@ -224,14 +231,33 @@ func _animar(andou: float, delta: float) -> void:
 		# O resto da divisão (%) faz a conta voltar ao quadro 0 depois do
 		# último: o ciclo se repete enquanto ele anda.
 		_mostrar(andando[vista], quadros_andar, int(_distancia / px_por_quadro) % quadros_andar)
+		_contar_passos()
 	elif respirando[vista]:
 		_distancia = 0.0
+		_passos = 0
 		_tempo_parado += delta
 		_mostrar(respirando[vista], quadros_parado,
 				int(_tempo_parado / segundos_por_quadro_parado) % quadros_parado)
 	elif imovel[vista]:
 		_distancia = 0.0
+		_passos = 0
 		_mostrar(imovel[vista], 1, 0)
+
+
+## Avisa (sinal passo_dado) cada vez que um pé toca o chão.
+##
+## O ciclo da caminhada tem dois passos. Os pés tocam o chão quando as pernas
+## estão mais abertas: nos quadros 3 e 9 de 12 (fases 90° e 270° em
+## gerar_gabriel.py). Cada passo ocupa meio ciclo (6 quadros = ~17 px), e o
+## pé toca no MEIO dele. Por isso somamos meio passo antes de dividir: o
+## primeiro passo cai em 8,4 px, o segundo em 25,2 px, e assim por diante.
+## Como tudo sai da distância, o som acompanha a animação ao correr e agachar.
+func _contar_passos() -> void:
+	var px_por_passo := px_por_quadro * quadros_andar / 2.0
+	var passos := int((_distancia + px_por_passo / 2.0) / px_por_passo)
+	if passos > _passos:
+		_passos = passos
+		passo_dado.emit(correndo, agachado)
 
 
 ## Troca a imagem do sprite para o quadro 'quadro' de uma tira com

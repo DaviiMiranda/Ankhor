@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://c34ncdvdmx15p" path="res://assets/sprites/personagens/gabriel/gabriel_tres_quartos_costas.png" id="14_tres_quartos_costas"]
 [ext_resource type="Texture2D" uid="uid://byonomx3llekp" path="res://assets/sprites/personagens/gabriel/gabriel_andar_tres_quartos_costas.png" id="15_andar_tres_quartos_costas"]
 [ext_resource type="Texture2D" uid="uid://c4r4wpja27qd1" path="res://assets/sprites/personagens/gabriel/gabriel_parado_tres_quartos_costas.png" id="16_parado_tres_quartos_costas"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/passos.tscn" id="17_passos"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pes"]
 size = Vector2(12, 4)
@@ -50,3 +51,7 @@ shape = SubResource("RectangleShape2D_pes")
 
 [node name="Gadgets" type="Node2D" parent="."]
 position = Vector2(0, -24)
+
+[node name="Passos" parent="." instance=ExtResource("17_passos")]
+
+[connection signal="passo_dado" from="." to="Passos" method="tocar"]
