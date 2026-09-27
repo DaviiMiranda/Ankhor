@@ -13,7 +13,7 @@
 - **Implementação no Godot:**
   - Cena: `cenas/salas/biblioteca.tscn`
   - Script: `scripts/salas/biblioteca.gd`
-  - Formato: Sala em vista lateral 2.5D ampliada (300 px de altura com parte sul, profundidade y-sort de 122 a 296).
+  - Formato: Sala em vista lateral 2.5D ampliada (420 px de altura com parte sul, profundidade y-sort de 122 a 416).
   - Itens iniciais: Pote de fungos (lanterna) próximo ao ponto de despertar de Gabriel e colônia de fungos para recarga.
 
 ---

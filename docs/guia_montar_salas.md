@@ -24,7 +24,7 @@ A sala é vista de lado, mas o chão tem profundidade (2.5D). O Gabriel anda par
 ```
 
 - A tela do jogo tem **320 × 180** pixels. Uma sala tem 180 de altura e a largura que você quiser (use múltiplos de 80).
-- A sala pode ser **mais alta que a tela**, para o chão ter mais profundidade para a frente: aí a câmera anda também na vertical. A Biblioteca tem 300 de altura. As paredes continuam acabando em y = 112; o que cresce é o chão.
+- A sala pode ser **mais alta que a tela**, para o chão ter mais profundidade para a frente: aí a câmera anda também na vertical. A Biblioteca tem 420 de altura. As paredes continuam acabando em y = 112; o que cresce é o chão.
 - **Quem está mais embaixo na tela aparece na frente.** O Godot faz isso sozinho no nó `Objetos` (y-sort), pelo **pé** de cada coisa. Por isso todo objeto do kit tem a origem no pé.
 - **Só os pés colidem.** Cada objeto tem uma "pegada", um retângulo baixo no chão. O Gabriel pode passar com a cabeça na frente de uma estante, mas os pés dele esbarram na base dela.
 
