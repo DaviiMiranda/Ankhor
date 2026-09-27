@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/passos.gd" id="1_passos"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/gabriel/gabriel_passo_ceramica_01.wav" id="2_p01"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/gabriel/gabriel_passo_ceramica_02.wav" id="3_p02"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/gabriel/gabriel_passo_ceramica_03.wav" id="4_p03"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/gabriel/gabriel_passo_ceramica_04.wav" id="5_p04"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/gabriel/gabriel_passo_ceramica_05.wav" id="6_p05"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/gabriel/gabriel_passo_ceramica_06.wav" id="7_p06"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_passos"]
+random_pitch = 1.06
+random_volume_offset_db = 2.0
+streams_count = 6
+stream_0/stream = ExtResource("2_p01")
+stream_1/stream = ExtResource("3_p02")
+stream_2/stream = ExtResource("4_p03")
+stream_3/stream = ExtResource("5_p04")
+stream_4/stream = ExtResource("6_p05")
+stream_5/stream = ExtResource("7_p06")
+
+[node name="Passos" type="AudioStreamPlayer2D"]
+stream = SubResource("AudioStreamRandomizer_passos")
+volume_db = -10.0
+max_polyphony = 3
+script = ExtResource("1_passos")

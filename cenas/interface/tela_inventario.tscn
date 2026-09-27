@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/interface/tela_inventario.gd" id="1_tela"]
 [ext_resource type="Texture2D" path="res://assets/sprites/interface/painel.png" id="2_painel"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/inventario_abrir.wav" id="3_som_abrir"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/inventario_fechar.wav" id="4_som_fechar"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
 font_size = 8
@@ -122,3 +124,11 @@ offset_right = 238.0
 offset_bottom = 140.0
 text = "Setas: escolher     1 2 3: equipar     Tab: fechar"
 label_settings = SubResource("LabelSettings_dica")
+
+[node name="SomAbrir" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_som_abrir")
+volume_db = -8.0
+
+[node name="SomFechar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_som_fechar")
+volume_db = -8.0

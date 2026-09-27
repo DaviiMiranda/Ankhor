@@ -36,8 +36,11 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 |---|---|---|
 | `musica/menu/menu_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_menu.py` | 64 s em loop, ré menor, 60 BPM: pad escuro, drone grave, relógio e uma caixinha de música (canção de ninar) na segunda metade |
 | `musica/gameplay/gameplay_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_gameplay.py` | 70 s em loop, 48 BPM em 7/4, Mi menor sem resolução: pad escuro, pulso grave, sino de vidro com eco, gongo da Âncora, tom de Shepard descendo (a fenda) e goteiras. Toca pela cena `cenas/sistemas/musica_fase.tscn` |
+| `efeitos/gabriel/gabriel_passo_ceramica_01.wav` … `_06.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 6 passos de tênis em cerâmica antiga com areia: baque do calcanhar, sola, grãos e um pouco do eco do salão. Tocados pela cena `cenas/sistemas/passos.tscn` (dentro do Gabriel), sorteando a variação |
+| `efeitos/interface/inventario_abrir.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 0,55 s: zíper da mochila (acelera e freia), tecido e a aba caindo. Toca ao abrir o inventário |
+| `efeitos/interface/inventario_fechar.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 0,45 s: a aba empurrada, o zíper mais rápido e o "tec" do cursor no fim. Toca ao fechar o inventário |
 
-Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py` ou `gerar_trilha_gameplay.py` (precisa de numpy e ffmpeg).
+Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py` ou `gerar_trilha_gameplay.py` (precisa de numpy e ffmpeg). Os efeitos saem de `gerar_efeitos_gabriel.py` (só numpy).
 
 ## Nomes de arquivo
 
