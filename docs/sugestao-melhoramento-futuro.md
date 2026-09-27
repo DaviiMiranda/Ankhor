@@ -23,7 +23,7 @@ Registro de melhorias secundárias, polimento visual, sonoro e ajustes de qualid
   - Efeito sonoro de respiração pesada/ofegante do Gabriel quando estiver sendo ativamente perseguido por robôs ou em momentos de fuga sob alta tensão.
 
 - [ ] **Efeitos sonoros de interface:**
-  - Som de zíper/abertura de mochila ao entrar no inventário.
+  - ~~Som de zíper/abertura de mochila ao entrar no inventário.~~ Feito no PR #30 (abrir e fechar).
   - Efeito sutil ao equipar/desequipar gadgets.
 
 ## Interface e Qualidade de Vida (QoL)

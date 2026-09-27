@@ -25,6 +25,7 @@ Antes de revisar, leia `CONTRIBUTING.md` e `CLAUDE.md`.
 - Nomes em `snake_case`, `class_name` em `PascalCase`, português sem misturar com inglês.
 - Comunicação entre sistemas por sinais, não por caminho fixo até nós de outras cenas.
 - Números mágicos que deviam ser `@export` para o time ajustar no editor.
+- Comentário em script `.gd` (`#` ou `##`)? Peça para tirar: a regra do projeto é `.gd` sem comentários. Se a explicação for importante, ela vai para `docs/`.
 
 **Cenas**
 - Vários sistemas enfiados numa cena só? Sugira separar.
