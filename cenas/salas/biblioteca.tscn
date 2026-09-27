@@ -468,7 +468,7 @@ color = Color(0.55, 0.65, 0.85, 1)
 energy = 0.15
 texture = ExtResource("t_luz")
 
-[node name="Fungo15" type="PointLight2D" parent="Luzes"]
+[node name="Fungo19" type="PointLight2D" parent="Luzes"]
 position = Vector2(136, 400)
 scale = Vector2(1.8, 1.8)
 color = Color(0.35, 1, 0.88, 1)
@@ -476,7 +476,7 @@ energy = 0.7
 texture = ExtResource("t_luz")
 script = ExtResource("5_pulsante")
 
-[node name="Fungo16" type="PointLight2D" parent="Luzes"]
+[node name="Fungo20" type="PointLight2D" parent="Luzes"]
 position = Vector2(378, 324)
 scale = Vector2(1.4, 1.4)
 color = Color(0.35, 1, 0.88, 1)
@@ -484,7 +484,7 @@ energy = 0.6
 texture = ExtResource("t_luz")
 script = ExtResource("5_pulsante")
 
-[node name="Fungo17" type="PointLight2D" parent="Luzes"]
+[node name="Fungo21" type="PointLight2D" parent="Luzes"]
 position = Vector2(662, 374)
 scale = Vector2(1.6, 1.6)
 color = Color(0.35, 1, 0.88, 1)
@@ -492,7 +492,7 @@ energy = 0.6
 texture = ExtResource("t_luz")
 script = ExtResource("5_pulsante")
 
-[node name="Fungo18" type="PointLight2D" parent="Luzes"]
+[node name="Fungo22" type="PointLight2D" parent="Luzes"]
 position = Vector2(918, 334)
 scale = Vector2(1.8, 1.8)
 color = Color(0.35, 1, 0.88, 1)
