@@ -11,8 +11,10 @@
 #   paredes/pilar.png    16 x 112 px: acabamento para as pontas da sala
 #   chao/<peça>.png      128 x 68 px: um pedaço do chão (a faixa onde se anda)
 #   ceu/ceu.png          320 x 180 px: céu e mata lá fora, repete sem emenda
-# E as folhas de catálogo, com o nome de cada peça, para o guia
-# (docs/imagens/kit_*.png).
+# Com CATALOGO=1 ele também monta folhas de catálogo, com o nome de cada peça
+# (kit_paredes.png, kit_chao.png, kit_objetos.png), nesta pasta. Com
+# CATALOGO=<pasta>, salva nela. O catálogo NÃO vai para o jogo e não deve ser
+# commitado.
 #
 # Os objetos (estantes, mesa, árvore...) e a textura das luzes saem do
 # gerar_biblioteca.py, que também desenha a Biblioteca inteira. Este script
@@ -43,7 +45,8 @@ import numpy as np
 PASTA_SCRIPT = os.path.dirname(os.path.abspath(__file__))
 PASTA_PROJETO = os.path.normpath(os.path.join(PASTA_SCRIPT, "..", "..", ".."))
 PASTA_KIT = os.path.join(PASTA_PROJETO, "assets", "sprites", "cenario")
-PASTA_DOCS = os.path.join(PASTA_PROJETO, "docs", "imagens")
+# CATALOGO=1 salva o catálogo nesta pasta; CATALOGO=<pasta> salva nela.
+CATALOGO = os.environ.get("CATALOGO", "")
 
 # Importa o gerar_biblioteca.py como um módulo (sem rodar o main dele).
 _spec = importlib.util.spec_from_file_location(
@@ -55,7 +58,7 @@ _spec.loader.exec_module(bib)
 Imagem, RAMPAS, SOMBRA, dilatar = bib.Imagem, bib.RAMPAS, bib.SOMBRA, bib.dilatar
 
 # ---------------------------------------------------------------------------
-# Medidas do kit (as mesmas da Biblioteca e do guia docs/guia_montar_salas.md)
+# Medidas do kit (as mesmas da Biblioteca)
 # ---------------------------------------------------------------------------
 
 LARGURA_PAREDE = 80      # peças de parede: 80 px (4 por tela de 320)
@@ -458,15 +461,18 @@ def main():
     img_ceu = ceu()
     img_ceu.salvar("ceu.png", os.path.join(PASTA_KIT, "ceu"))
 
-    # Catálogo para o guia.
+    # Catálogo (só com CATALOGO=1): uma folha com o nome de cada peça.
+    if not CATALOGO:
+        return
+    pasta = PASTA_SCRIPT if CATALOGO == "1" else CATALOGO
     objetos = [(nome, f()[0]) for nome, f in bib.FUNCOES_OBJETOS.items()]
-    os.makedirs(PASTA_DOCS, exist_ok=True)
+    os.makedirs(pasta, exist_ok=True)
     for nome, pecas, colunas, com_ceu in (("kit_paredes", list(paredes.items()), 5, True),
                                           ("kit_chao", list(chaos.items()), 4, False),
                                           ("kit_objetos", objetos, 6, False)):
-        bib.salvar_png(os.path.join(PASTA_DOCS, f"{nome}.png"),
+        bib.salvar_png(os.path.join(pasta, f"{nome}.png"),
                        catalogo(pecas, colunas, img_ceu if com_ceu else None))
-        print("  catálogo:", f"docs/imagens/{nome}.png")
+        print("  catálogo:", f"{nome}.png (não commitar)")
 
 
 if __name__ == "__main__":
