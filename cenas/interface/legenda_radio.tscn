@@ -1,0 +1,60 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interface/legenda_radio.gd" id="1_legenda"]
+[ext_resource type="Texture2D" path="res://assets/sprites/interface/painel.png" id="2_painel"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/radio.png" id="3_radio"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/radio_chiado.wav" id="4_chiado"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/radio_clique.wav" id="5_clique"]
+
+[node name="LegendaRadio" type="CanvasLayer"]
+layer = 7
+script = ExtResource("1_legenda")
+
+[node name="Caixa" type="NinePatchRect" parent="."]
+offset_left = 74.0
+offset_top = 136.0
+offset_right = 316.0
+offset_bottom = 176.0
+mouse_filter = 2
+texture = ExtResource("2_painel")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Icone" type="TextureRect" parent="Caixa"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 22.0
+offset_bottom = 22.0
+texture = ExtResource("3_radio")
+
+[node name="Falante" type="Label" parent="Caixa"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 5.0
+offset_right = 236.0
+offset_bottom = 14.0
+theme_override_colors/font_color = Color(0.95, 0.88, 0.7, 1)
+
+[node name="Fala" type="Label" parent="Caixa"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 16.0
+offset_right = 236.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.72, 1)
+autowrap_mode = 3
+max_lines_visible = 2
+visible_characters_behavior = 1
+
+[node name="Chiado" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_chiado")
+volume_db = -22.0
+
+[node name="Clique" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_clique")
+volume_db = -10.0
+
+[node name="Voz" type="AudioStreamPlayer" parent="."]
