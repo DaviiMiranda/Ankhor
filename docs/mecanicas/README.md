@@ -20,7 +20,7 @@ graph TD
     I --> A
 ```
 
-1. **Explorar Ruínas no Presente:** Navegar pelo campus desabado, recolhendo fungos bioluminescentes, bilhetes e itens-chave.
+1. **Explorar Ruínas no Presente:** Navegar pelo campus desabado, recolhendo pilhas para a lanterna, bilhetes e itens-chave.
 2. **Evitar e Sobreviver aos Robôs:** Usar passos lentos, esconderijos com microgames interativos, gestão de luz e arremesso de objetos de distração.
 3. **Alcançar Sala Segura:** Localizar áreas estruturalmente intactas com trancas internas.
 4. **Dormir para Salvar:** Salvar o progresso e transitar para a dimensão do sonho.
@@ -32,7 +32,8 @@ graph TD
 
 - **[`movimentacao_e_terreno.md`](movimentacao_e_terreno.md):** Controles de locomoção, corrida, gestão de estamina, ruído de passos e navegação vertical/obstáculos.
 - **[`furtividade_e_esconderijos.md`](furtividade_e_esconderijos.md):** Tipos de esconderijos (armários, cabines, raízes), microgames de tensão (respiração, imobilidade) e distrações.
-- **[`iluminacao_e_fungos.md`](iluminacao_e_fungos.md):** Gestão de iluminação com pote de fungos, decaimento biológico e cápsulas de clarão atordoadoras.
-- **[`itens_e_inventario.md`](itens_e_inventario.md):** Pegar, guardar, equipar e usar itens: inventário em grade (matriz), espaços de gadget e o pote de fungos.
+- **[`iluminacao_e_lanterna.md`](iluminacao_e_lanterna.md):** A lanterna a pilha, o dilema ver/ser visto, as luzes de emergência e as cápsulas de clarão (previstas).
+- **[`vida_e_checkpoint.md`](vida_e_checkpoint.md):** 3 corações, dano dos robôs, tela de morte e checkpoints.
+- **[`itens_e_inventario.md`](itens_e_inventario.md):** Pegar, guardar, equipar e usar itens: inventário em grade (matriz), espaços de gadget e a lanterna.
 - **[`registros_e_caderno.md`](registros_e_caderno.md):** Ler os documentos dos antecessores, as transmissões de rádio do Valdir e o Caderno do Gabriel (tecla N).
 - **[`sono_e_sonhos.md`](sono_e_sonhos.md):** Arquitetura do sistema de save game e jogabilidade investigativa nos sonhos.

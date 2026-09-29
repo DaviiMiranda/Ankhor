@@ -49,6 +49,6 @@ func pode_ver_jogador(pos_robo: Vector2, pos_jogador: Vector2, dir_olhar: Vector
 - Simula feixes de luz que descem através das lajes quebradas da Biblioteca e salas de aula.
 - Utiliza funções de ruído procedural com coordenadas rotacionadas para criar faixas dinâmicas de luz solar que interagem com a poeira e pólen suspensos no ar.
 
-### Atenuação e Pulsação da Luz dos Fungos
-- No fragment shader de iluminação 2D, o decaimento luminoso é calculado com atenuação quadrática suave combinada a uma função senoidal lenta para representar a respiração biológica da colônia de fungos:
+### Atenuação e Tremor das Luzes de Emergência
+- No fragment shader de iluminação 2D, o decaimento luminoso é calculado com atenuação quadrática suave combinada a uma função senoidal lenta para o tremor das lâmpadas de emergência (o feixe da lanterna usa, além disso, a queda com o ângulo, calculada por produto escalar: ver `gerar_labirinto.py`, função `luz_cone`):
   $$\text{Intensidade}(r, t) = \frac{I_{base} + A \sin(\omega t)}{1.0 + k \cdot r^2}$$

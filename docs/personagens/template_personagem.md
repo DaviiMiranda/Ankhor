@@ -19,9 +19,9 @@
 - **Sensores e Percepção (Para Robôs Inimigos):**
   - **Sensor Acústico:** [Alto / Médio / Nenhum] — Raio de detecção em nós do grafo.
   - **Sensor Visual:** [Cone angular em graus / Alcance em pixels].
-  - **Sensor Fotossensível:** Reage à luz do pote de fungos? [Sim / Não].
+  - **Sensor Fotossensível:** Enxerga mais longe com a lanterna acesa? [Sim / Não].
 - **Rotina Padrão:** O que faz quando não está em perseguição (ex.: ronda programada, varredura de área, etc.).
-- **Reação a Distrações / Clarão:** Como responde a pedras jogadas ou cápsulas de clarão de fungos.
+- **Reação a Distrações / Clarão:** Como responde a pedras jogadas ou cápsulas de clarão.
 
 ---
 

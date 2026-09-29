@@ -13,6 +13,23 @@ Formato:
 
 ---
 
+## 2026-09-29 — Fim dos fungos: lanterna a pilha e luzes de emergência
+**Decisão:** saem os fungos bioluminescentes (pote de fungos, colônias, fungos pintados no cenário). A luz passa a ser elétrica: o Gabriel usa uma **lanterna a pilha** (feixe em cone, bateria de 4 min, recarregada com **pilhas** achadas no mapa) e o cenário tem **luminárias de emergência** de parede e **lampiões** no chão, que tremem e piscam. As cápsulas de clarão continuam previstas, como flash descartável.
+**Por quê:** pedido do Davi.
+**Afeta:** `gerar_biblioteca.py`, `gerar_kit.py` e `gerar_interface.py` (arte refeita), `cenas/salas/biblioteca.tscn` e `sala_exemplo.tscn`, itens (`lanterna`, `pilha_no_chao`), `docs/mecanicas/iluminacao_e_lanterna.md` (antes `iluminacao_e_fungos.md`), GDD e docs que citavam fungos.
+
+## 2026-09-29 — Vida, checkpoint, Labirinto, robôs e menu Fases
+**Decisão:**
+- **Vida:** 3 corações; toque de robô tira 1, com 1,5 s de invulnerabilidade; zerou, volta ao último **checkpoint** com vida cheia.
+- **Checkpoint:** postos de emergência no mapa; passar por um salva a posição e recupera os corações.
+- **Labirinto:** segunda fase jogável, um subsolo escuro com saída marcada. A ordem na história está a definir.
+- **Robôs:** os dois primeiros tipos, a **Sentinela** (visão) e o **Rastreador** (audição), modelados no Blender e com IA: máquina de estados, cone de visão por produto escalar, audição por BFS, perseguição por A\* e patrulha por cadeia de Markov.
+- **Trilha adaptativa** do labirinto em duas camadas.
+- **Menu Fases**, com todas as fases previstas. As que ainda não existem aparecem apagadas.
+
+**Por quê:** pedido do Davi. Cobre boa parte dos conteúdos de computação exigidos pela disciplina.
+**Afeta:** `project.godot` (autoloads `Vida` e `Checkpoints`), `cenas/salas/labirinto.tscn` e `scripts/labirinto/`, `cenas/personagens/robo_*.tscn`, `scripts/personagens/robo.gd`, HUD, Gabriel, `sala.gd`, menu. Detalhes em `docs/mecanicas/vida_e_checkpoint.md`, `docs/fases/labirinto.md` e `docs/computacao/ia_e_perseguicao.md` (seção 5).
+
 ## 2026-09-29 — Leitura de documentos, Caderno do Gabriel e rádio do Valdir
 **Decisão:**
 - Os documentos dos antecessores abrem numa tela de leitura que **pausa o jogo**, com um papel diferente para cada época.

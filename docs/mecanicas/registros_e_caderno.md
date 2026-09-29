@@ -41,7 +41,7 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../personagen
 | Rádio portátil | (628, 162), ao lado da mesa de leitura | `E` para pegar |
 | Transmissão `valdir_01` (`GatilhoValdir1`) | círculo de 40 px em volta do rádio | toca ao pegar o rádio |
 | Terminal + bilhete da Clarice (`BilheteClarice`) | (470, 236), na parte sul | `E` perto |
-| Colônia de fungos do terminal | (492, 240) | ilumina o terminal e recarrega o pote |
+| Lampião do terminal | (492, 240) | ilumina o terminal |
 | Transmissão `valdir_02` (`GatilhoValdir2`) | retângulo 270 × 110 no acervo, centro (548, 360) | toca ao entrar no acervo com o rádio |
 
 ---

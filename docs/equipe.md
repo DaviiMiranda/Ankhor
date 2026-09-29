@@ -149,7 +149,7 @@ Combinem isso no primeiro sprint:
 - **1 → 2:** a IA avisa a jogabilidade por sinais do Godot (`jogador_detectado`, `jogador_perdido`, `robo_atordoado`). Nomes definidos uma vez e não mexe mais.
 - **1 ↔ 4:** cada sala montada é um nó do grafo. Formato combinado: cada sala tem um ID e uma lista de portas com peso.
 - **3 → 1:** guia de estilo (paleta, tamanho dos sprites, padrão de nome de arquivo) definido junto antes da primeira arte; depois, uma ficha de arte para cada personagem, inimigo ou cenário.
-- **2 ↔ 3:** a luz dos fungos é mecânica (2 controla a intensidade) e visual (3 decide como aparece).
+- **2 ↔ 3:** a luz da lanterna é mecânica (2 controla a bateria e o alcance) e visual (3 decide como aparece).
 - **3 ↔ 4:** os dois roteiristas revisam juntos o que cada sala conta, pela imagem e pelo espaço.
 
 ## Sprints (exemplo)
@@ -160,7 +160,7 @@ Sprints de duas semanas. Ajustem a cada início de sprint conforme o que foi dec
 |---|---|---|---|---|
 | 1 | Grafo com 3 salas de teste, um robô com rotina fixa. Placeholders do Gabriel e do primeiro robô | Movimento, corrida, colisão, câmera | Guia de estilo (com o Davi), ficha do Gabriel, primeira luz 2D | Roteiro da Segunda (Biblioteca): o que o jogador descobre e como. Sala de aula de protótipo |
 | 2 | Som por BFS, perseguição por A\*, máquina de estados. Animações do Gabriel | Esconderijo com um microgame, cápsula de clarão | Ficha do primeiro robô, atmosfera da Biblioteca | Textos e documentos da Biblioteca, montagem da Biblioteca no grafo |
-| 3 | Grade horária, cadeia de Markov. Primeiro robô e tiles da Biblioteca | Inventário, fungos como recurso | Roteiro do primeiro sonho, visual da luz dos fungos | Pistas e esconderijos da Biblioteca, som ambiente |
+| 3 | Grade horária, cadeia de Markov. Primeiro robô e tiles da Biblioteca | Inventário, pilhas como recurso | Roteiro do primeiro sonho, visual da luz da lanterna | Pistas e esconderijos da Biblioteca, som ambiente |
 | 4 | Ajuste da IA na Biblioteca completa. Arte da versão "sonho" da Biblioteca | Dormir, salvar, transição para o sonho | Diferença visual entre presente e sonho, aprovação da arte | Diálogos do sonho (com o papel 3), polimento da Biblioteca |
 
 **Marco do Sprint 4:** a Biblioteca jogável do começo ao fim: um robô, esconderijo, luz, sono e sonho. Se o prazo apertar, isso já é um jogo entregável; o resto é expansão.

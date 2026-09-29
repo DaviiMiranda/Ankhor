@@ -6,7 +6,7 @@
 > [!TIP]
 > **Documentação Modular Detalhada:**
 > - 🎯 **[Visão Geral e Pilares](visao_geral/conceito.md)** | **[Estilo Artístico 2.5D](visao_geral/estilo_artistico.md)**
-> - ⚙️ **[Mecânicas e Core Loop](mecanicas/README.md)** | **[Furtividade](mecanicas/furtividade_e_esconderijos.md)** | **[Iluminação](mecanicas/iluminacao_e_fungos.md)** | **[Sono e Sonhos](mecanicas/sono_e_sonhos.md)**
+> - ⚙️ **[Mecânicas e Core Loop](mecanicas/README.md)** | **[Furtividade](mecanicas/furtividade_e_esconderijos.md)** | **[Iluminação](mecanicas/iluminacao_e_lanterna.md)** | **[Vida e Checkpoint](mecanicas/vida_e_checkpoint.md)** | **[Sono e Sonhos](mecanicas/sono_e_sonhos.md)**
 > - 💻 **[Conceitos de Computação](computacao/README.md)** (Grafos, Coloração, BFS, A*, Markov, Shaders)
 > - 📜 **[Estrutura Narrativa](historia/README.md)** | **[Template de Documentos](historia/template_documento.md)**
 > - 👥 **[Personagens e IA](personagens/README.md)** ([Gabriel](personagens/gabriel.md), [Robôs](personagens/robos.md), [Template](personagens/template_personagem.md))
@@ -32,7 +32,7 @@ O que torna o jogo diferente:
 - **Os perseguidores seguem a grade horária** da semana de provas, mil anos depois. Quem descobre a grade sabe onde cada um vai estar.
 - **Dormir é salvar e é voltar ao passado.** Cada sono leva o protagonista, em sonho, à última semana antes de tudo — e é só lá que ele aprende a grade, as senhas e a verdade.
 
-**Visão Artística:** pixel art em vista lateral 2.5D, com camadas de profundidade, no estilo de *Five Nights at Freddy's: Into the Pit*. O jogo retrata a Unifor mil anos no futuro como uma ruína tomada pela natureza: concreto rachado e desabado, árvores crescendo dentro das salas, areia de dunas cobrindo corredores, e objetos do cotidiano de hoje transformados em relíquias. A atmosfera é de mistério, solidão e estranhamento — um terror silencioso, mais de tensão do que de susto, em que o maior choque é perceber quanto tempo passou. Luz natural filtrada pela vegetação contrasta com interiores escuros iluminados só pelo brilho frio de fungos bioluminescentes. Nos sonhos, o mesmo campus aparece cheio, iluminado e normal.
+**Visão Artística:** pixel art em vista lateral 2.5D, com camadas de profundidade, no estilo de *Five Nights at Freddy's: Into the Pit*. O jogo retrata a Unifor mil anos no futuro como uma ruína tomada pela natureza: concreto rachado e desabado, árvores crescendo dentro das salas, areia de dunas cobrindo corredores, e objetos do cotidiano de hoje transformados em relíquias. A atmosfera é de mistério, solidão e estranhamento — um terror silencioso, mais de tensão do que de susto, em que o maior choque é perceber quanto tempo passou. Luz natural filtrada pela vegetação contrasta com interiores escuros iluminados só por luzes de emergência que piscam e pela lanterna. Nos sonhos, o mesmo campus aparece cheio, iluminado e normal.
 
 ---
 
@@ -44,7 +44,7 @@ O jogador explora as ruínas em vista lateral, sala por sala e prédio por préd
 
 **Explorar.** Andar, correr (faz barulho), se espremer por frestas, atravessar tetos desabados, vasculhar o que restou, examinar objetos e marcas nas paredes.
 
-**Iluminar.** Nada elétrico funciona depois de mil anos. A luz vem de **fungos bioluminescentes** que cresceram nas ruínas: o protagonista os recolhe em potes e usa como lanterna. Luz ajuda a ver e ajuda a ser visto, e o brilho enfraquece com o tempo.
+**Iluminar.** Quase nada elétrico funciona: só as luzes de emergência do centro de pesquisa. O protagonista usa uma **lanterna a pilha**. Luz ajuda a ver e ajuda a ser visto (os robôs enxergam mais longe), e a bateria acaba: é preciso achar pilhas.
 
 **Rondas e rotinas.** Cada robô cumpre sua rotina de patrulha programada pelo campus. Fora da rotina, quando ouve ou vê o protagonista, o robô sai do protocolo padrão e caça.
 
@@ -52,7 +52,7 @@ O jogador explora as ruínas em vista lateral, sala por sala e prédio por préd
 
 **Distrair.** Jogar pedras e objetos, derrubar estantes, fazer ruído num lugar para atrair os robôs para longe.
 
-**Defender-se (limitado).** Esmagar uma **cápsula de fungo** libera um clarão forte por um instante e atordoa o robô por alguns segundos. As cápsulas são escassas — é para escapar, não para vencer.
+**Defender-se (limitado).** Disparar uma **cápsula de clarão** (um flash descartável) libera um clarão forte por um instante e atordoa o robô por alguns segundos. As cápsulas são escassas — é para escapar, não para vencer.
 
 **Dormir.** Em salas seguras e fechadas, o jogador pode dormir. Dormir **salva o jogo** e leva a um **sonho**: o mesmo lugar no passado antes de tudo. Nos sonhos não há perigo — há conversas, detalhes e senhas que servem no presente.
 
@@ -77,7 +77,7 @@ A progressão entre áreas é por **passagens abertas, mecanismos e senhas**, pa
 ### Sistema de Recompensas
 
 - **Acesso:** novas áreas do campus e atalhos entre elas.
-- **Recursos:** fungos para luz e cápsulas de clarão, sempre escassos.
+- **Recursos:** pilhas para a lanterna e cápsulas de clarão, sempre escassos.
 - **Verdade:** cada pista, marca na parede e sonho revela uma parte do mistério. A história é a principal recompensa.
 - **Colecionáveis:** relíquias do cotidiano (um crachá, um celular fossilizado, uma caneca da cantina) com a descrição de quem eram seus donos, e páginas do diário que o protagonista vai escrevendo.
 - **Final:** o que o jogador descobriu muda as opções disponíveis no final.
@@ -95,7 +95,7 @@ Os conteúdos de computação estão **dentro das mecânicas**, não só no cód
 | **Cadeia de Markov** | Fora da rotina, cada robô escolhe a próxima sala por probabilidade, com chances que crescem a cada dia. É o modelo de movimento dos perseguidores do FNAF, formalizado. |
 | **Máquina de estados** | Cada robô alterna entre *rotina*, *investigando*, *perseguindo*, *atordoado* e *retornando* (`docs/personagens/robos.md`). |
 | **Estruturas de dados** | Inventário em grade (matriz), fila de eventos da rotina de cada robô, dicionário de flags do mundo (passagens abertas, pistas encontradas, sonhos vistos). |
-| **Matemática / geometria** | Campo de visão dos robôs por produto escalar e linha de visão por *ray casting*; luz dos fungos decaindo com o tempo e com a distância. |
+| **Matemática / geometria** | Campo de visão dos robôs por produto escalar e linha de visão por *ray casting*; luz da lanterna em cone (a mesma conta do produto escalar) e decaindo com a bateria. |
 
 ---
 
@@ -152,15 +152,15 @@ As áreas externas entre prédios são as mais expostas: abertas, com dunas e ma
 | **Biblioteca** | Estantes caídas e vazias, uma árvore no meio do salão, luz do sol por um teto aberto, poeira e pólen no ar | Tutorial e primeiro contato. Silêncio é regra: correr aqui chama a Bibliotecária. |
 | **Blocos de aula** | Corredores parcialmente enterrados em areia, salas sem teto, quadros ainda presos às paredes, paredes cobertas de tracinhos | Onde a grade mais importa: o Professor muda de sala a cada horário. |
 | **Centro de Convivência** | Estrutura aberta tomada pelo mato, balcões e mesas cobertos de raízes, o céu aparecendo pela cobertura | Área ampla, poucos esconderijos, os Calouros andam em grupo. |
-| **Espaço Cultural** | Galeria escura e fechada, obras irreconhecíveis, fungos brilhando nas paredes | Puzzles visuais e as primeiras peças do projeto VIGÍLIA-7. |
-| **NAMI** | Corredores de azulejo rachado, macas de metal, o andar de baixo alagado, a luz fria dos fungos como única iluminação | O ponto alto da tensão e das revelações. |
+| **Espaço Cultural** | Galeria escura e fechada, obras irreconhecíveis, só as luzes de emergência piscando | Puzzles visuais e as primeiras peças do projeto VIGÍLIA-7. |
+| **NAMI** | Corredores de azulejo rachado, macas de metal, o andar de baixo alagado, as luzes de emergência como única iluminação | O ponto alto da tensão e das revelações. |
 | **Reitoria e portão** | O prédio mais conservado, com o cofre e os arquivos; do lado de fora do portão, só vegetação | O final. |
 
 ### Desafios e Obstáculos
 
 - **Os robôs**, cada tipo com seu sensor dominante (som, visão, luz) e padrão de patrulha (`docs/personagens/robos.md`).
 - **Barulho:** correr, pisar em entulho e derrubar coisas se ouve pelo grafo.
-- **Escuridão:** os fungos ajudam a ver e ajudam a ser visto; o brilho enfraquece.
-- **Recursos escassos:** fungos para luz e cápsulas de clarão nunca sobram.
+- **Escuridão:** a lanterna ajuda a ver e ajuda a ser visto; a bateria acaba.
+- **Recursos escassos:** pilhas e cápsulas de clarão nunca sobram.
 - **O próprio lugar:** pisos que cedem, passagens enterradas, andares alagados, caminhos que só existem por cima.
 - **O tempo da grade:** a mesma sala é segura num horário e perigosa no seguinte, e o jogador só conhece a grade pelo que viu nos sonhos.

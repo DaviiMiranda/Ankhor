@@ -14,7 +14,7 @@
   - Cena: `cenas/salas/biblioteca.tscn`
   - Script: `scripts/salas/biblioteca.gd`
   - Formato: Sala em vista lateral 2.5D ampliada (420 px de altura com parte sul, profundidade y-sort de 122 a 416).
-  - Itens iniciais: Pote de fungos (lanterna) próximo ao ponto de despertar de Gabriel e colônia de fungos para recarga.
+  - Itens iniciais: lanterna perto do ponto de despertar do Gabriel; duas pilhas no lado escuro; oito lampiões de emergência e quatro luminárias de parede.
 
 ---
 
@@ -27,7 +27,7 @@
 
 ## 3. Objetivos e Progressão
 
-- **Objetivo Principal:** Explorar a Biblioteca, recuperar os primeiros itens (como a lanterna/pote de fungos), encontrar bilhetes deixados pelas pessoas de outras épocas, evitar os robôs de patrulha e encontrar a saída/acesso para as próximas áreas.
+- **Objetivo Principal:** Explorar a Biblioteca, recuperar os primeiros itens (como a lanterna), encontrar bilhetes deixados pelas pessoas de outras épocas, evitar os robôs de patrulha e encontrar a saída/acesso para as próximas áreas.
 - **Passos e Puzzles:** *(A definir com a equipe)*
 
 ---
