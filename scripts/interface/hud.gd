@@ -1,15 +1,22 @@
 extends CanvasLayer
 
 const CENA_ESPACO := preload("res://cenas/interface/espaco_item.tscn")
+const CORACAO_CHEIO := preload("res://assets/sprites/interface/coracao_cheio.png")
+const CORACAO_VAZIO := preload("res://assets/sprites/interface/coracao_vazio.png")
 
 @export var duracao_mensagem: float = 3.5
 
 var _espacos: Array[EspacoItem] = []
+var _coracoes: Array[TextureRect] = []
 var _tween_mensagem: Tween
+var _tween_dano: Tween
 
 @onready var caixa_gadgets: HBoxContainer = $Gadgets
 @onready var aviso: Label = $Aviso
 @onready var mensagem: Label = $Mensagem
+@onready var caixa_coracoes: HBoxContainer = $Coracoes
+@onready var flash_dano: ColorRect = $FlashDano
+@onready var som_dano: AudioStreamPlayer = $SomDano
 
 
 func _ready() -> void:
@@ -18,8 +25,19 @@ func _ready() -> void:
 		espaco.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		caixa_gadgets.add_child(espaco)
 		_espacos.append(espaco)
+	for i in Vida.MAXIMA:
+		var coracao := TextureRect.new()
+		coracao.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		caixa_coracoes.add_child(coracao)
+		_coracoes.append(coracao)
 	Inventario.item_pego.connect(_ao_pegar_item)
+	Inventario.aviso.connect(_mostrar_mensagem)
 	Caderno.anotado.connect(_ao_anotar)
+	Checkpoints.marcado.connect(_ao_marcar_checkpoint)
+	Vida.mudou.connect(_atualizar_coracoes)
+	Vida.dano_recebido.connect(_ao_receber_dano)
+	_atualizar_coracoes(Vida.vida)
+	flash_dano.color.a = 0.0
 	mensagem.modulate.a = 0.0
 	aviso.hide()
 
@@ -65,6 +83,24 @@ func _ao_pegar_item(item: Item) -> void:
 		texto += "   [%d] usar" % (espaco + 1)
 	texto += "   [Tab] inventário"
 	_mostrar_mensagem(texto)
+
+
+func _atualizar_coracoes(vida: int) -> void:
+	for i in _coracoes.size():
+		_coracoes[i].texture = CORACAO_CHEIO if i < vida else CORACAO_VAZIO
+
+
+func _ao_receber_dano(_origem: Vector2) -> void:
+	som_dano.play()
+	if _tween_dano:
+		_tween_dano.kill()
+	flash_dano.color.a = 0.45
+	_tween_dano = create_tween()
+	_tween_dano.tween_property(flash_dano, "color:a", 0.0, 0.5)
+
+
+func _ao_marcar_checkpoint(_id: String) -> void:
+	_mostrar_mensagem("Checkpoint salvo")
 
 
 func _ao_anotar(titulo: String) -> void:

@@ -41,7 +41,7 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../personagen
 | Rádio portátil | (628, 162), ao lado da mesa de leitura | `E` para pegar |
 | Transmissão `valdir_01` (`GatilhoValdir1`) | círculo de 40 px em volta do rádio | toca ao pegar o rádio |
 | Terminal + bilhete da Clarice (`BilheteClarice`) | (470, 236), na parte sul | `E` perto |
-| Colônia de fungos do terminal | (492, 240) | ilumina o terminal e recarrega o pote |
+| Lampião do terminal | (492, 240) | ilumina o terminal |
 | Transmissão `valdir_02` (`GatilhoValdir2`) | retângulo 270 × 110 no acervo, centro (548, 360) | toca ao entrar no acervo com o rádio |
 
 ---
@@ -74,16 +74,16 @@ As três telas já estão no `modelo_sala.tscn`: toda sala nova herda.
 
 1. No Godot, botão direito em `dados/documentos/` → *Novo* → *Recurso...* → `Documento`.
 2. Preencha `id` (único), `titulo` (vai no alto da folha), `autor` (vira o título da anotação no caderno, ex.: `Clarice, 1994`), `papel` e a `anotacao`.
-3. Em `paginas`, **uma entrada por página**. Cada página tem no máximo **9 linhas** de ~45 caracteres (a linha em branco entre parágrafos conta). Se passar, o fim não aparece e o Godot mostra um aviso no painel de saída. Termine cada página no fim de um parágrafo.
-4. A anotação também cabe em 9 linhas.
+3. Em `paginas`, **uma entrada por página**. Cada página tem no máximo **8 linhas** de ~45 caracteres (a linha em branco entre parágrafos conta). Se passar, o fim não aparece e o Godot mostra um aviso no painel de saída. Termine cada página no fim de um parágrafo.
+4. A anotação também cabe em 8 linhas.
 5. No mapa: arraste `cenas/itens/documento_no_mundo.tscn` para `Objetos`, na posição do objeto (a origem é o pé), escolha o `documento` e troque o `texto_acao` (ex.: `Ler o bilhete`). Se o objeto for alto, aumente `altura_aviso`.
 
-**Papel novo:** desenhe a função em `gerar_interface.py` (200 × 156 px, as pautas nas medidas explicadas no topo do script), adicione em `PAPEIS` lá e em `PAPEIS` de `scripts/interface/tela_documento.gd` (textura e cor da tinta), e na lista do `@export_enum` de `documento.gd`.
+**Papel novo:** desenhe a função em `gerar_interface.py` (248 × 156 px, as pautas nas medidas explicadas no topo do script), adicione em `PAPEIS` lá e em `PAPEIS` de `scripts/interface/tela_documento.gd` (textura e cor da tinta), e na lista do `@export_enum` de `documento.gd`.
 
 ## 5. Como criar uma transmissão nova
 
 1. Botão direito em `dados/transmissoes/` → *Novo* → *Recurso...* → `Transmissao`.
-2. `falante` aparece em cima da fala (ex.: `VALDIR (rádio)`). Em `falas`, uma entrada por fala, com no máximo **2 linhas** (~100 caracteres).
+2. `falante` aparece em cima da fala (ex.: `VALDIR (rádio)`). Em `falas`, uma entrada por fala, com no máximo **2 linhas** (~85 caracteres).
 3. `vozes` é opcional: um áudio por fala, na mesma ordem. Com voz gravada, a fala espera o áudio acabar. As gravações vão em `assets/audio/vozes/`.
 4. No mapa: arraste `cenas/sistemas/gatilho_transmissao.tscn` para `Objetos`, escolha a `transmissao` e ajuste a forma da área (`Area`). O gatilho só toca com o item `item_necessario` (padrão: `radio`) no inventário.
 

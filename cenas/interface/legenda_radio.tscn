@@ -12,7 +12,7 @@ script = ExtResource("1_legenda")
 
 [node name="Caixa" type="NinePatchRect" parent="."]
 offset_left = 74.0
-offset_top = 136.0
+offset_top = 128.0
 offset_right = 316.0
 offset_bottom = 176.0
 mouse_filter = 2
@@ -33,17 +33,17 @@ texture = ExtResource("3_radio")
 [node name="Falante" type="Label" parent="Caixa"]
 layout_mode = 0
 offset_left = 26.0
-offset_top = 5.0
+offset_top = 3.0
 offset_right = 236.0
-offset_bottom = 14.0
+offset_bottom = 17.0
 theme_override_colors/font_color = Color(0.95, 0.88, 0.7, 1)
 
 [node name="Fala" type="Label" parent="Caixa"]
 layout_mode = 0
 offset_left = 26.0
-offset_top = 16.0
+offset_top = 17.0
 offset_right = 236.0
-offset_bottom = 37.0
+offset_bottom = 45.0
 theme_override_colors/font_color = Color(0.82, 0.8, 0.72, 1)
 autowrap_mode = 3
 max_lines_visible = 2

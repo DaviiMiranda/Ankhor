@@ -32,9 +32,10 @@ O script do jogador opera sob uma máquina de estados finita:
 
 O jogador interage com o ambiente através de itens específicos:
 
-- **Pote de Fungos (Lanterna):**
-  - Alterna entre ligado/desligado.
-  - Ilumina a escuridão mas pode ser detectado por robôs com sensores ópticos/fotossensíveis.
+- **Lanterna (a pilha):**
+  - Liga e desliga com a tecla do espaço de gadget. O feixe aponta para onde ele anda.
+  - Ilumina à frente, mas os robôs enxergam o Gabriel de mais longe com ela acesa. A bateria acaba (4 min) e é trocada com pilhas achadas no mapa. Ver [`../mecanicas/iluminacao_e_lanterna.md`](../mecanicas/iluminacao_e_lanterna.md).
+- **Vida:** 3 corações; toque de robô tira 1. Ver [`../mecanicas/vida_e_checkpoint.md`](../mecanicas/vida_e_checkpoint.md).
 - **Cápsulas de Clarão:**
   - Item consumível de defesa (máximo 2 unidades).
   - Provoca sobrecarga e atordoa temporariamente robôs próximos para permitir fuga.

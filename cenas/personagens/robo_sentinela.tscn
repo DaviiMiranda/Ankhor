@@ -1,0 +1,103 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/personagens/robo.gd" id="1_robo"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/sentinela_andar_lado.png" id="2_lado"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/sentinela_andar_frente.png" id="3_frente"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/sentinela_andar_costas.png" id="4_costas"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/sentinela_andar_lado_olhos.png" id="5_olhos_lado"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/sentinela_andar_frente_olhos.png" id="6_olhos_frente"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/sentinela_andar_costas_olhos.png" id="7_olhos_costas"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/luzes/luz_cone.png" id="8_cone"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="9_luz"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/sentinela_passo.wav" id="10_passo"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/robo_zumbido.wav" id="11_zumbido"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/robo_alerta.wav" id="12_alerta"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pes"]
+size = Vector2(14, 5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_garra"]
+radius = 15.0
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
+[node name="Sentinela" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_robo")
+nome_tipo = "Sentinela"
+velocidade_patrulha = 22.0
+velocidade_investigando = 30.0
+velocidade_perseguicao = 44.0
+alcance_visao = 170.0
+angulo_visao = 60.0
+fator_lanterna = 1.7
+fator_audicao = 0.5
+segundos_memoria = 1.5
+andar_lado = ExtResource("2_lado")
+andar_frente = ExtResource("3_frente")
+andar_costas = ExtResource("4_costas")
+olhos_lado = ExtResource("5_olhos_lado")
+olhos_frente = ExtResource("6_olhos_frente")
+olhos_costas = ExtResource("7_olhos_costas")
+px_por_quadro = 4.5
+px_por_passo = 18.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lado")
+centered = false
+offset = Vector2(-36, -69)
+hframes = 8
+
+[node name="Olhos" type="Sprite2D" parent="."]
+material = SubResource("SemLuz")
+texture = ExtResource("5_olhos_lado")
+centered = false
+offset = Vector2(-36, -69)
+hframes = 8
+
+[node name="Pes" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_pes")
+
+[node name="Farol" type="PointLight2D" parent="."]
+position = Vector2(19, -54)
+color = Color(1, 0.32, 0.26, 1)
+energy = 0.9
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("8_cone")
+texture_scale = 1.0
+
+[node name="LuzOlho" type="PointLight2D" parent="."]
+position = Vector2(0, -56)
+color = Color(1, 0.25, 0.2, 1)
+energy = 0.6
+range_item_cull_mask = 3
+texture = ExtResource("9_luz")
+texture_scale = 0.6
+
+[node name="Garra" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+
+[node name="Alcance" type="CollisionShape2D" parent="Garra"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_garra")
+
+[node name="Passos" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_passo")
+volume_db = -3.0
+max_distance = 340.0
+attenuation = 1.6
+
+[node name="Zumbido" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_zumbido")
+volume_db = -16.0
+autoplay = true
+max_distance = 180.0
+
+[node name="Alerta" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_alerta")
+max_distance = 700.0

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="m_musica"]
 [ext_resource type="Shader" uid="uid://cb8ygb308rjtx" path="res://shaders/raios_de_sol.gdshader" id="3_raios"]
 [ext_resource type="Shader" uid="uid://dkfsu5mqayu3p" path="res://shaders/vinheta.gdshader" id="4_vinheta"]
-[ext_resource type="Script" uid="uid://hw73x131ple" path="res://scripts/salas/luz_pulsante.gd" id="5_pulsante"]
+[ext_resource type="Script" path="res://scripts/salas/luz_tremula.gd" id="5_tremula"]
 [ext_resource type="Texture2D" uid="uid://c0edn1sdwkasp" path="res://assets/sprites/salas/biblioteca/biblioteca_ceu.png" id="t_ceu"]
 [ext_resource type="Texture2D" uid="uid://dglxwc7al2aj7" path="res://assets/sprites/salas/biblioteca/biblioteca_fundo.png" id="t_fundo"]
 [ext_resource type="Texture2D" uid="uid://c1igp2y6yy0jq" path="res://assets/sprites/salas/biblioteca/biblioteca_chao.png" id="t_chao"]
@@ -19,15 +19,16 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_caida.tscn" id="o_estante_caida"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_quebrada.tscn" id="o_estante_quebrada"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_vazia.tscn" id="o_estante_vazia"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/fungo.tscn" id="o_fungo"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="o_lampada"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/livros.tscn" id="o_livros"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/mesa_leitura.tscn" id="o_mesa_leitura"]
 [ext_resource type="Script" path="res://scripts/salas/guias_sala.gd" id="6_guias"]
 [ext_resource type="PackedScene" path="res://cenas/interface/hud.tscn" id="i_hud"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_inventario.tscn" id="i_inventario"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="i_item"]
-[ext_resource type="Resource" path="res://dados/itens/pote_fungos.tres" id="i_pote"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fungo.tscn" id="i_luz_fungo"]
+[ext_resource type="Resource" path="res://dados/itens/lanterna.tres" id="i_lanterna"]
+[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="i_pilha"]
+[ext_resource type="PackedScene" path="res://cenas/interface/tela_morte.tscn" id="i_tela_morte"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_documento.tscn" id="i_tela_documento"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_caderno.tscn" id="i_tela_caderno"]
 [ext_resource type="PackedScene" path="res://cenas/interface/legenda_radio.tscn" id="i_legenda_radio"]
@@ -163,24 +164,18 @@ position = Vector2(800, 134)
 position = Vector2(878, 164)
 espelhado = true
 
-[node name="Fungo1" parent="Objetos" instance=ExtResource("o_fungo")]
+[node name="Lampada1" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(758, 168)
 
-[node name="Fungo2" parent="Objetos" instance=ExtResource("o_fungo")]
+[node name="Pilha1" parent="Objetos" instance=ExtResource("i_pilha")]
 position = Vector2(846, 140)
-espelhado = true
 
-[node name="Fungo3" parent="Objetos" instance=ExtResource("o_fungo")]
+[node name="Lampada2" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(912, 124)
 
-[node name="PoteFungos" parent="Objetos" instance=ExtResource("i_item")]
+[node name="Lanterna" parent="Objetos" instance=ExtResource("i_item")]
 position = Vector2(192, 160)
-item = ExtResource("i_pote")
-
-[node name="Luz" parent="Objetos/PoteFungos" instance=ExtResource("i_luz_fungo")]
-position = Vector2(0, -4)
-scale = Vector2(1.2, 1.2)
-energy = 0.7
+item = ExtResource("i_lanterna")
 
 [node name="AcampamentoBaltazar" parent="Objetos" instance=ExtResource("r_acampamento")]
 position = Vector2(262, 148)
@@ -210,7 +205,7 @@ texto_acao = "Ler o bilhete"
 altura_aviso = 48.0
 documento = ExtResource("r_bilhete")
 
-[node name="FungoTerminal" parent="Objetos" instance=ExtResource("o_fungo")]
+[node name="Lampada3" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(492, 240)
 
 [node name="GatilhoValdir2" parent="Objetos" instance=ExtResource("r_gatilho")]
@@ -263,15 +258,11 @@ espelhado = true
 position = Vector2(72, 288)
 espelhado = true
 
-[node name="Fungo10" parent="Objetos" instance=ExtResource("o_fungo")]
+[node name="Lampada4" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(800, 262)
 
-[node name="Fungo11" parent="Objetos" instance=ExtResource("o_fungo")]
+[node name="Pilha2" parent="Objetos" instance=ExtResource("i_pilha")]
 position = Vector2(884, 212)
-espelhado = true
-
-[node name="Fungo12" parent="Objetos" instance=ExtResource("o_fungo")]
-position = Vector2(934, 288)
 
 [node name="EstanteCaidaFundoSul" parent="Objetos" instance=ExtResource("o_estante_caida")]
 position = Vector2(150, 334)
@@ -322,18 +313,16 @@ position = Vector2(900, 408)
 [node name="Livros7" parent="Objetos" instance=ExtResource("o_livros")]
 position = Vector2(700, 408)
 
-[node name="Fungo15" parent="Objetos" instance=ExtResource("o_fungo")]
+[node name="Lampada5" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(120, 410)
 
-[node name="Fungo16" parent="Objetos" instance=ExtResource("o_fungo")]
+[node name="Lampada6" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(372, 326)
-espelhado = true
 
-[node name="Fungo17" parent="Objetos" instance=ExtResource("o_fungo")]
+[node name="Lampada7" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(660, 372)
-espelhado = true
 
-[node name="Fungo18" parent="Objetos" instance=ExtResource("o_fungo")]
+[node name="Lampada8" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(920, 330)
 
 [node name="RaiosGrande" type="ColorRect" parent="."]
@@ -437,53 +426,37 @@ color = Color(0.6, 0.75, 0.9, 1)
 energy = 0.35
 texture = ExtResource("t_luz")
 
-[node name="Fungo4" type="PointLight2D" parent="Luzes"]
-position = Vector2(758, 96)
-scale = Vector2(1.6, 1.6)
-color = Color(0.35, 1, 0.88, 1)
-energy = 0.6
-texture = ExtResource("t_luz")
-script = ExtResource("5_pulsante")
-
-[node name="Fungo5" type="PointLight2D" parent="Luzes"]
-position = Vector2(870, 72)
-scale = Vector2(1.4, 1.4)
-color = Color(0.35, 1, 0.88, 1)
-energy = 0.5
-texture = ExtResource("t_luz")
-script = ExtResource("5_pulsante")
-
-[node name="Fungo6" type="PointLight2D" parent="Luzes"]
-position = Vector2(930, 104)
+[node name="Arandela1" type="PointLight2D" parent="Luzes"]
+position = Vector2(758, 92)
 scale = Vector2(2.2, 2.2)
-color = Color(0.35, 1, 0.88, 1)
+color = Color(1, 0.78, 0.5, 1)
 energy = 0.8
 texture = ExtResource("t_luz")
-script = ExtResource("5_pulsante")
+script = ExtResource("5_tremula")
 
-[node name="Fungo7" type="PointLight2D" parent="Luzes"]
-position = Vector2(800, 104)
-scale = Vector2(2.4, 2.4)
-color = Color(0.35, 1, 0.88, 1)
-energy = 0.7
+[node name="Arandela2" type="PointLight2D" parent="Luzes"]
+position = Vector2(870, 68)
+scale = Vector2(2.2, 2.2)
+color = Color(1, 0.78, 0.5, 1)
+energy = 0.8
 texture = ExtResource("t_luz")
-script = ExtResource("5_pulsante")
+script = ExtResource("5_tremula")
 
-[node name="Fungo8" type="PointLight2D" parent="Luzes"]
-position = Vector2(786, 150)
-scale = Vector2(1.4, 1.4)
-color = Color(0.35, 1, 0.88, 1)
-energy = 0.6
+[node name="Arandela3" type="PointLight2D" parent="Luzes"]
+position = Vector2(930, 100)
+scale = Vector2(2.2, 2.2)
+color = Color(1, 0.78, 0.5, 1)
+energy = 0.8
 texture = ExtResource("t_luz")
-script = ExtResource("5_pulsante")
+script = ExtResource("5_tremula")
 
-[node name="Fungo9" type="PointLight2D" parent="Luzes"]
-position = Vector2(934, 162)
-scale = Vector2(1.8, 1.8)
-color = Color(0.35, 1, 0.88, 1)
-energy = 0.7
+[node name="Arandela4" type="PointLight2D" parent="Luzes"]
+position = Vector2(60, 92)
+scale = Vector2(2.2, 2.2)
+color = Color(1, 0.78, 0.5, 1)
+energy = 0.8
 texture = ExtResource("t_luz")
-script = ExtResource("5_pulsante")
+script = ExtResource("5_tremula")
 
 [node name="SolSul" type="PointLight2D" parent="Luzes"]
 position = Vector2(390, 246)
@@ -506,60 +479,12 @@ color = Color(0.55, 0.65, 0.85, 1)
 energy = 0.25
 texture = ExtResource("t_luz")
 
-[node name="Fungo13" type="PointLight2D" parent="Luzes"]
-position = Vector2(700, 244)
-scale = Vector2(1.4, 1.4)
-color = Color(0.35, 1, 0.88, 1)
-energy = 0.6
-texture = ExtResource("t_luz")
-script = ExtResource("5_pulsante")
-
-[node name="Fungo14" type="PointLight2D" parent="Luzes"]
-position = Vector2(910, 234)
-scale = Vector2(1.6, 1.6)
-color = Color(0.35, 1, 0.88, 1)
-energy = 0.6
-texture = ExtResource("t_luz")
-script = ExtResource("5_pulsante")
-
 [node name="RebatidaFundoSul" type="PointLight2D" parent="Luzes"]
 position = Vector2(520, 370)
 scale = Vector2(6, 2.4)
 color = Color(0.55, 0.65, 0.85, 1)
 energy = 0.15
 texture = ExtResource("t_luz")
-
-[node name="Fungo19" type="PointLight2D" parent="Luzes"]
-position = Vector2(136, 400)
-scale = Vector2(1.8, 1.8)
-color = Color(0.35, 1, 0.88, 1)
-energy = 0.7
-texture = ExtResource("t_luz")
-script = ExtResource("5_pulsante")
-
-[node name="Fungo20" type="PointLight2D" parent="Luzes"]
-position = Vector2(378, 324)
-scale = Vector2(1.4, 1.4)
-color = Color(0.35, 1, 0.88, 1)
-energy = 0.6
-texture = ExtResource("t_luz")
-script = ExtResource("5_pulsante")
-
-[node name="Fungo21" type="PointLight2D" parent="Luzes"]
-position = Vector2(662, 374)
-scale = Vector2(1.6, 1.6)
-color = Color(0.35, 1, 0.88, 1)
-energy = 0.6
-texture = ExtResource("t_luz")
-script = ExtResource("5_pulsante")
-
-[node name="Fungo22" type="PointLight2D" parent="Luzes"]
-position = Vector2(918, 334)
-scale = Vector2(1.8, 1.8)
-color = Color(0.35, 1, 0.88, 1)
-energy = 0.7
-texture = ExtResource("t_luz")
-script = ExtResource("5_pulsante")
 
 [node name="Escuridao" type="CanvasModulate" parent="."]
 color = Color(0.52, 0.54, 0.64, 1)
@@ -591,6 +516,8 @@ color = Color(0, 0, 0, 1)
 [node name="TelaCaderno" parent="." instance=ExtResource("i_tela_caderno")]
 
 [node name="LegendaRadio" parent="." instance=ExtResource("i_legenda_radio")]
+
+[node name="TelaMorte" parent="." instance=ExtResource("i_tela_morte")]
 
 [node name="Guias" type="Node2D" parent="."]
 script = ExtResource("6_guias")

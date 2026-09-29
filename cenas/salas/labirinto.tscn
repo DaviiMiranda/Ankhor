@@ -1,0 +1,99 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/salas/labirinto.gd" id="1_labirinto"]
+[ext_resource type="Resource" path="res://dados/labirinto/mapa_labirinto.tres" id="2_mapa"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/piso.png" id="3_piso"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/parede_topo_0.png" id="4_topo0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/parede_topo_1.png" id="5_topo1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/parede_topo_2.png" id="6_topo2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/parede_frente_0.png" id="7_frente0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/parede_frente_1.png" id="8_frente1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/parede_frente_2.png" id="9_frente2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/parede_frente_3.png" id="10_frente3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/porta_saida.png" id="11_porta"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/marcas_garra.png" id="12_garra"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/poca.png" id="13_poca"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/papel.png" id="14_papel"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/gabriel.tscn" id="15_gabriel"]
+[ext_resource type="Shader" uid="uid://dkfsu5mqayu3p" path="res://shaders/vinheta.gdshader" id="16_vinheta"]
+[ext_resource type="PackedScene" path="res://cenas/interface/hud.tscn" id="17_hud"]
+[ext_resource type="PackedScene" path="res://cenas/interface/tela_inventario.tscn" id="18_inventario"]
+[ext_resource type="PackedScene" path="res://cenas/interface/tela_documento.tscn" id="19_documento"]
+[ext_resource type="PackedScene" path="res://cenas/interface/tela_caderno.tscn" id="20_caderno"]
+[ext_resource type="PackedScene" path="res://cenas/interface/legenda_radio.tscn" id="21_legenda"]
+[ext_resource type="PackedScene" path="res://cenas/interface/tela_morte.tscn" id="22_morte"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_labirinto.tscn" id="23_musica"]
+
+[sub_resource type="ShaderMaterial" id="Vinheta"]
+shader = ExtResource("16_vinheta")
+
+[node name="Labirinto" type="Node2D"]
+script = ExtResource("1_labirinto")
+mapa = ExtResource("2_mapa")
+topos = Array[Texture2D]([ExtResource("4_topo0"), ExtResource("5_topo1"), ExtResource("6_topo2")])
+frentes = Array[Texture2D]([ExtResource("7_frente0"), ExtResource("8_frente1"), ExtResource("9_frente2"), ExtResource("10_frente3")])
+textura_porta = ExtResource("11_porta")
+decalques = Array[Texture2D]([ExtResource("12_garra"), ExtResource("13_poca"), ExtResource("14_papel")])
+id = "labirinto"
+duracao_entrada = 1.5
+largura = 1184
+altura = 800
+criar_limites = false
+
+[node name="Chao" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("3_piso")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1184, 800)
+
+[node name="Decalques" type="Node2D" parent="."]
+
+[node name="Objetos" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Gabriel" parent="Objetos" instance=ExtResource("15_gabriel")]
+position = Vector2(48, 720)
+fator_profundidade = 0.85
+
+[node name="Camera2D" type="Camera2D" parent="Objetos/Gabriel"]
+position = Vector2(0, -24)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="Luzes" type="Node2D" parent="."]
+
+[node name="Escuridao" type="CanvasModulate" parent="."]
+color = Color(0.13, 0.13, 0.17, 1)
+
+[node name="Vinheta" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Tela" type="ColorRect" parent="Vinheta"]
+material = SubResource("Vinheta")
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+
+[node name="Transicao" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Escuro" type="ColorRect" parent="Transicao"]
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Hud" parent="." instance=ExtResource("17_hud")]
+
+[node name="TelaInventario" parent="." instance=ExtResource("18_inventario")]
+
+[node name="TelaDocumento" parent="." instance=ExtResource("19_documento")]
+
+[node name="TelaCaderno" parent="." instance=ExtResource("20_caderno")]
+
+[node name="LegendaRadio" parent="." instance=ExtResource("21_legenda")]
+
+[node name="TelaMorte" parent="." instance=ExtResource("22_morte")]
+
+[node name="MusicaLabirinto" parent="." instance=ExtResource("23_musica")]

@@ -6,27 +6,32 @@
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/inventario_fechar.wav" id="4_som_fechar"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
-font_size = 8
+font_size = 10
+line_spacing = 0.0
 font_color = Color(0.95, 0.88, 0.7, 1)
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nome"]
-font_size = 8
+font_size = 10
+line_spacing = 0.0
 font_color = Color(0.64, 0.9, 0.85, 1)
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_texto"]
-font_size = 8
+font_size = 10
+line_spacing = 0.0
 font_color = Color(0.82, 0.8, 0.72, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_situacao"]
-font_size = 8
+font_size = 10
+line_spacing = 0.0
 font_color = Color(0.64, 0.9, 0.85, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dica"]
-font_size = 8
+font_size = 10
+line_spacing = 0.0
 font_color = Color(0.55, 0.56, 0.52, 1)
 
 [node name="TelaInventario" type="CanvasLayer"]
@@ -57,9 +62,9 @@ patch_margin_bottom = 6
 [node name="Titulo" type="Label" parent="Janela"]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 5.0
+offset_top = 4.0
 offset_right = 120.0
-offset_bottom = 19.0
+offset_bottom = 18.0
 text = "INVENTÁRIO"
 label_settings = SubResource("LabelSettings_titulo")
 
@@ -76,9 +81,9 @@ columns = 4
 [node name="TituloGadgets" type="Label" parent="Janela"]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 92.0
+offset_top = 90.0
 offset_right = 96.0
-offset_bottom = 103.0
+offset_bottom = 104.0
 text = "GADGETS"
 label_settings = SubResource("LabelSettings_titulo")
 
@@ -103,26 +108,26 @@ layout_mode = 0
 offset_left = 108.0
 offset_top = 36.0
 offset_right = 238.0
-offset_bottom = 112.0
+offset_bottom = 108.0
 label_settings = SubResource("LabelSettings_texto")
 autowrap_mode = 3
-max_lines_visible = 6
+max_lines_visible = 5
 
 [node name="Situacao" type="Label" parent="Janela"]
 layout_mode = 0
 offset_left = 108.0
-offset_top = 114.0
+offset_top = 110.0
 offset_right = 238.0
-offset_bottom = 126.0
+offset_bottom = 124.0
 label_settings = SubResource("LabelSettings_situacao")
 
 [node name="Dica" type="Label" parent="Janela"]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 130.0
+offset_top = 128.0
 offset_right = 238.0
-offset_bottom = 140.0
-text = "Setas: escolher     1 2 3: equipar     Tab: fechar"
+offset_bottom = 142.0
+text = "Setas: escolher   1-3: equipar   Tab: fechar"
 label_settings = SubResource("LabelSettings_dica")
 
 [node name="SomAbrir" type="AudioStreamPlayer" parent="."]

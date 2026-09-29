@@ -18,4 +18,4 @@ Este módulo documenta a aplicação direta de conceitos fundamentais da Ciênci
 | **Cadeias de Markov** | Movimentação errante dos robôs fora da rotina: matriz de probabilidades de transição entre salas vizinhas, modelando o comportamento imprevisível estilo FNAF. | [`ia_e_perseguicao.md`](ia_e_perseguicao.md) |
 | **Máquina de Estados Finita (FSM)** | Controla a inteligência e o comportamento de cada robô (Rotina, Investigando, Caçando, Atordoado, Retornando). | [`ia_e_perseguicao.md`](ia_e_perseguicao.md) |
 | **Geometria / Produto Escalar** | Campo de visão cônico dos robôs calculado via $\vec{u} \cdot \vec{v}$ (produto escalar entre vetor de olhar e vetor para o jogador) e verificação de oclusão por raycasting 2D. | [`geometria_e_shaders.md`](geometria_e_shaders.md) |
-| **Shaders em GDShader** | Simulação de iluminação volumétrica, decaimento de luz dos fungos e feixes solares atravessando lajes desabadas. | [`geometria_e_shaders.md`](geometria_e_shaders.md) |
+| **Shaders em GDShader** | Simulação de iluminação volumétrica, feixe da lanterna em cone e feixes solares atravessando lajes desabadas. | [`geometria_e_shaders.md`](geometria_e_shaders.md) |

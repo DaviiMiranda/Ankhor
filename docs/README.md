@@ -35,7 +35,8 @@ docs/
 │   ├── README.md                  # Diagrama do Core Loop de gameplay
 │   ├── movimentacao_e_terreno.md  # Andar, correr, estamina, ruído e tipos de superfícies
 │   ├── furtividade_e_esconderijos.md # Esconderijos, microgames de tensão e distrações
-│   ├── iluminacao_e_fungos.md     # Pote de fungos, dilema luz/perigo e cápsulas de clarão
+│   ├── iluminacao_e_lanterna.md   # Lanterna a pilha, dilema luz/perigo, luzes de emergência
+│   ├── vida_e_checkpoint.md       # 3 corações, dano, tela de morte e checkpoints
 │   ├── registros_e_caderno.md     # Documentos dos antecessores, rádio do Valdir e o Caderno do Gabriel
 │   └── sono_e_sonhos.md           # Salas seguras, mecânica de save e investigação no passado
 │
@@ -49,6 +50,7 @@ docs/
 ├── fases/                         # Design de fases e áreas
 │   ├── README.md                  # Estrutura e funcionamento do level design no campus
 │   ├── biblioteca.md              # Fase 1 (Confirmada): O despertar na Biblioteca Central
+│   ├── labirinto.md               # Labirinto escuro com robôs (jogável pelo menu Fases)
 │   └── template_fase.md           # Modelo padronizado para documentação de novas fases/áreas
 │
 ├── personagens/                   # Fichas técnicas e mecânica de personagens

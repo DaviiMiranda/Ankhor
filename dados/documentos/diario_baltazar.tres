@@ -8,18 +8,18 @@ id = "diario_baltazar"
 titulo = "Diário de pergaminho"
 autor = "Baltazar, 1750"
 papel = "pergaminho"
-paginas = PackedStringArray("Anno de 1750. Vi pela luneta hũa luz que nam era estrella, pousada sobre a matta. Fui ter com ella, e a noite rasgou-se como panno velho.
+paginas = PackedStringArray("Anno de 1750. Vi pela luneta hũa luz que nam era estrella, sobre a matta. Fui ter com ella, e a noite rasgou-se como panno velho.
 
-Acordei neste lugar de pedra morta, com arvores dentro das casas. Nam sei se he o Juizo ou o Inferno. Chamo-lhe o Tormento de Leviatam.", "Andam por aqui machinas de ferro que caminham sós. Tem hum olho de vidro so, e so vem o que lhes fica defronte. Quem lhes passa pelas costas, ou de ilharga, nam he visto.
+Acordei neste lugar de pedra morta, com arvores dentro das casas. Nam sei se he o Juizo ou o Inferno. Chamo-lhe o Tormento de Leviatam.", "Andam machinas de ferro que caminham sós. Tem hum olho de vidro so, e so vem o que lhes fica defronte. Quem lhes passa pelas costas, ou de ilharga, nam he visto.
 
 Quando lhe cheguei a vella rente ao olho, a machina ficou cega pelo tempo de rezar hum Credo.", "Assi desmanchei hũa, peça por peça, para lhe estudar as entranhas. Deixo o desenho nesta folha.
 
 Risquei na arvore as estrellas desta terra. Nam sam as minhas: mudaram de lugar, como se muitos seculos houvessem passado.", "A luz tornou esta noite. Hei de seguir a luz até onde ella nasce. Se alguem achar este caderno, reze por mim.
 
 Dies irae, dies illa.")
-anotacao = "Um astrônomo de 1750 viveu aqui, entre as raízes da árvore.
+anotacao = "Um astrônomo de 1750 viveu na árvore.
 
-- Os robôs têm um olho só e só enxergam para a frente. Pelas costas ou pelo lado, dá para passar.
-- Luz forte bem perto do olho cega o robô por uns segundos.
+- Robôs têm um olho só e só veem à frente: dá para passar pelas costas ou pelo lado.
+- Luz forte no olho cega o robô por segundos.
 
 Ele seguiu uma luz e sumiu."

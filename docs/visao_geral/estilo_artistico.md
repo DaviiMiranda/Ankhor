@@ -17,8 +17,8 @@
 A direção de arte estabelece um contraste visceral e imediato entre as duas temporalidades do jogo:
 
 ### O Presente (Ruína Milenar)
-- **Cores Predominantes:** Cinzas de concreto desgastado, marrons terrosos, verde-musgo profundo, tons de areia de dunas e o ciano/esmeralda gélido dos fungos bioluminescentes.
-- **Iluminação:** Fortemente contrastada. A luz do sol entra em feixes poeirentos por buracos de lajes e tetos desabados (via `shaders/raios_de_sol.gdshader`). Os interiores são escuros, dependentes do brilho frágil da lanterna de fungos.
+- **Cores Predominantes:** Cinzas de concreto desgastado, marrons terrosos, verde-musgo profundo, tons de areia de dunas e o âmbar quente e fraco das luzes de emergência (o verde fica para checkpoints e saídas; o vermelho, para os olhos dos robôs).
+- **Iluminação:** Fortemente contrastada. A luz do sol entra em feixes poeirentos por buracos de lajes e tetos desabados (via `shaders/raios_de_sol.gdshader`). Os interiores são escuros, dependentes de luzes de emergência que tremem e piscam e da lanterna do Gabriel.
 - **Sensação:** Silêncio melancólico, poeira, pólen, degradação natural e abandono cósmico.
 
 ### O Passado / Sonhos (Véspera de Provas)

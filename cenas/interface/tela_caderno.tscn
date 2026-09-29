@@ -19,44 +19,44 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.7)
 
 [node name="Papel" type="TextureRect" parent="."]
-offset_left = 60.0
-offset_top = 12.0
-offset_right = 260.0
-offset_bottom = 168.0
+offset_left = 36.0
+offset_top = 4.0
+offset_right = 284.0
+offset_bottom = 160.0
 texture = ExtResource("2_papel")
 
 [node name="Titulo" type="Label" parent="Papel"]
 layout_mode = 0
 offset_left = 14.0
-offset_top = 8.0
-offset_right = 186.0
-offset_bottom = 17.0
+offset_top = 6.0
+offset_right = 234.0
+offset_bottom = 20.0
 theme_override_colors/font_color = Color(0.18, 0.18, 0.21, 1)
 text_overrun_behavior = 3
 
 [node name="Texto" type="Label" parent="Papel"]
 layout_mode = 0
 offset_left = 14.0
-offset_top = 24.0
-offset_right = 186.0
-offset_bottom = 129.0
+offset_top = 22.0
+offset_right = 234.0
+offset_bottom = 134.0
 theme_override_colors/font_color = Color(0.18, 0.18, 0.21, 1)
 autowrap_mode = 3
-max_lines_visible = 9
+max_lines_visible = 8
 
 [node name="NumeroPagina" type="Label" parent="Papel"]
 layout_mode = 0
-offset_left = 140.0
-offset_top = 142.0
-offset_right = 186.0
-offset_bottom = 151.0
+offset_left = 180.0
+offset_top = 140.0
+offset_right = 234.0
+offset_bottom = 154.0
 theme_override_colors/font_color = Color(0.18, 0.18, 0.21, 1)
 horizontal_alignment = 2
 
 [node name="Dica" type="Label" parent="."]
-offset_top = 170.0
+offset_top = 163.0
 offset_right = 320.0
-offset_bottom = 179.0
+offset_bottom = 177.0
 theme_override_colors/font_color = Color(0.95, 0.88, 0.7, 1)
 text = "CADERNO     Setas: folhear     N: fechar"
 horizontal_alignment = 1

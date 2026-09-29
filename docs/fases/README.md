@@ -3,7 +3,7 @@
 Este documento define como as fases e áreas do **Ankhor** funcionam em termos de arquitetura, fluxo de jogo e design de níveis (*level design*).
 
 > [!IMPORTANT]
-> **Primeira Fase Definida:** A primeira fase do jogo é a **Biblioteca** ([`biblioteca.md`](biblioteca.md)). As fases seguintes serão definidas em conjunto com a equipe. Este módulo fornece a **estrutura conceitual e o template padronizado** para documentação de cada área.
+> **Primeira Fase Definida:** A primeira fase do jogo é a **Biblioteca** ([`biblioteca.md`](biblioteca.md)). O **Labirinto** ([`labirinto.md`](labirinto.md)) é jogável pelo menu Fases; a posição dele na história está a definir. As fases seguintes serão definidas em conjunto com a equipe. Este módulo fornece a **estrutura conceitual e o template padronizado** para documentação de cada área.
 
 ---
 
@@ -17,7 +17,7 @@ Diferente de fases lineares isoladas com telas de carregamento tradicionais, o m
 
 2. **Fluxo de Objetivos:**
    - **Objetivo Principal:** Uma meta clara que motiva o jogador a atravessar a área (ex.: encontrar uma chave, alcançar um terminal, desobstruir uma passagem).
-   - **Objetivos Secundários:** Exploração opcional para coletar recursos adicionais (fungos, cápsulas de clarão, documentos ou relíquias).
+   - **Objetivos Secundários:** Exploração opcional para coletar recursos adicionais (pilhas, cápsulas de clarão, documentos ou relíquias).
 
 3. **Dinâmica de Inimigos (Robôs):**
    - Cada área possui robôs alocados que operam sob uma rotina inicial ditada pela grade horária.

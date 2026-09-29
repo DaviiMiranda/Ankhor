@@ -7,7 +7,7 @@ Diferente de jogos com salvamento automático contínuo, em *Ankhor* salvar o jo
 - **Localização:** Em cada área do campus existe pelo menos uma **Sala Segura** (ex.: uma sala de professores com porta blindada, uma cabine isolada de estudo, uma enfermaria com tranca interna).
 - **Condição de Segurança:** Não deve haver robôs perseguindo Gabriel no momento da entrada. Gabriel deve passar a tranca na porta.
 - **O Ato de Dormir (`E` na cama/colchonete improvisado):**
-  - **Salva o Jogo:** Serializa o estado atual (nós do grafo explorados, portas abertas, inventário de fungos e cápsulas, relíquias encontradas).
+  - **Salva o Jogo:** Serializa o estado atual (nós do grafo explorados, portas abertas, inventário, carga da lanterna e cápsulas, relíquias encontradas).
   - **Inicia a Transição do Sonho:** A tela sofre um efeito visual de desfoque e transição cromática, levando Gabriel de volta ao passado.
 
 ---

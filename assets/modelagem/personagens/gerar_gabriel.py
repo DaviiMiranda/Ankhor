@@ -24,7 +24,7 @@
 # tênis e mochila. Nada de herói: ombros caídos e cabeça um pouco baixa.
 #
 # Cores: o moletom é vermelho-tijolo de propósito. Os cenários do jogo são
-# verdes (mato), bege (areia), cinza (concreto) e azul-frio (fungos); um
+# verdes (mato), bege (areia), cinza (concreto) e o escuro frio dos subsolos; um
 # tom quente e contrário a eles faz o jogador achar o Gabriel na tela.
 #
 # Modelagem: só primitivas (caixas, cones de 6 lados, esferas facetadas).

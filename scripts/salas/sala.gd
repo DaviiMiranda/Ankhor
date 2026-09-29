@@ -36,6 +36,7 @@ func _ready() -> void:
 		return
 	if criar_limites:
 		_criar_limites()
+	_posicionar_no_checkpoint()
 	_ajustar_camera()
 	if escuro:
 		escuro.color.a = 1.0
@@ -62,6 +63,12 @@ func _criar_limites() -> void:
 		forma.position = p[0]
 		corpo.add_child(forma)
 	add_child(corpo)
+
+
+func _posicionar_no_checkpoint() -> void:
+	var gabriel := get_node_or_null("Objetos/Gabriel") as Node2D
+	if gabriel and Checkpoints.tem_checkpoint_em(scene_file_path):
+		gabriel.global_position = Checkpoints.posicao
 
 
 func _ajustar_camera() -> void:

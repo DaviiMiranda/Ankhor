@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/interface/hud.gd" id="1_hud"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/gabriel/gabriel_dano.wav" id="2_dano"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fundo"]
 content_margin_left = 3.0
@@ -10,7 +11,8 @@ content_margin_bottom = 1.0
 bg_color = Color(0, 0, 0, 0.55)
 
 [sub_resource type="LabelSettings" id="LabelSettings_aviso"]
-font_size = 8
+font_size = 10
+line_spacing = 0.0
 font_color = Color(0.95, 0.88, 0.7, 1)
 
 [node name="Hud" type="CanvasLayer"]
@@ -35,8 +37,26 @@ label_settings = SubResource("LabelSettings_aviso")
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 6.0
-offset_bottom = 17.0
+offset_bottom = 20.0
 grow_horizontal = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_fundo")
 label_settings = SubResource("LabelSettings_aviso")
 horizontal_alignment = 1
+
+[node name="FlashDano" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+color = Color(0.7, 0.02, 0.02, 0)
+
+[node name="Coracoes" type="HBoxContainer" parent="."]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 12.0
+mouse_filter = 2
+theme_override_constants/separation = 1
+
+[node name="SomDano" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_dano")
+volume_db = -3.0

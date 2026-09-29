@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://kj31b6jbiwy2" path="res://scripts/cenario/objeto_cenario.gd" id="1_objeto"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/lampada.png" id="2_sprite"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="3_luz"]
+
+[node name="Lampada" type="StaticBody2D"]
+script = ExtResource("1_objeto")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_sprite")
+centered = false
+offset = Vector2(-5, -14)
+
+[node name="LuzLampada" parent="." instance=ExtResource("3_luz")]
+position = Vector2(0, -8)

@@ -34,7 +34,7 @@ Os robôs patrulham o campus seguindo rotinas e rondas estruturadas. O jogador q
 Em jogos tradicionais de sobrevivência, salvar é uma ação puramente técnica. Em *Ankhor*, dormir é salvar o jogo e é **a única maneira de acessar o passado**. Ao dormir em salas seguras, Gabriel é transportado em sonho para a última semana antes da catástrofe, onde o campus está iluminado, cheio e funcional. É nos sonhos que o jogador obtém senhas, lê os quadros de aviso originais e descobre a rotina dos robôs para usar no presente.
 
 ### IV. Vulnerabilidade e Defesa Restrita (*Stealth over Combat*)
-Gabriel é um estudante comum, não um combatente. Fugir e se esconder é a regra absoluta; defender-se é uma exceção cara e desesperada. A luz revela caminhos mas atrai perigo; correr acelera o deslocamento mas reverbera sons pelas salas do campus. Cada recurso (fungos de iluminação e cápsulas de clarão) é escasso e precioso.
+Gabriel é um estudante comum, não um combatente. Fugir e se esconder é a regra absoluta; defender-se é uma exceção cara e desesperada. A luz revela caminhos mas atrai perigo; correr acelera o deslocamento mas reverbera sons pelas salas do campus. Cada recurso (pilhas para a lanterna e cápsulas de clarão) é escasso e precioso.
 
 ---
 

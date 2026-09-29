@@ -1,6 +1,6 @@
 # Mecânicas — Itens, Inventário e Gadgets
 
-Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão no documento da mecânica dele (o pote de fungos, por exemplo, em [`iluminacao_e_fungos.md`](iluminacao_e_fungos.md)). Aqui fica o sistema que serve para todos.
+Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão no documento da mecânica dele (a lanterna, por exemplo, em [`iluminacao_e_lanterna.md`](iluminacao_e_lanterna.md)). Aqui fica o sistema que serve para todos.
 
 ---
 
@@ -8,21 +8,20 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 
 | Tecla | O que faz |
 |---|---|
-| `E` | Interage com o que está mais perto: pega um item do chão, recarrega o pote numa colônia de fungos |
+| `E` | Interage com o que está mais perto: pega um item do chão, troca a pilha da lanterna |
 | `Tab` ou `I` | Abre e fecha o inventário (o jogo pausa enquanto ele está aberto) |
 | `1`, `2`, `3` | Usam o gadget equipado naquele espaço. Com o inventário aberto, equipam o item escolhido |
 
 - **Inventário:** uma grade de **3 linhas × 4 colunas**. Todo item pego entra no primeiro espaço livre.
-- **Gadgets:** **3 espaços**, um para cada ferramenta equipável prevista em [`docs/personagens/gabriel.md`](../personagens/gabriel.md): pote de fungos, cápsulas de clarão e objetos de arremesso. Equipar não tira o item da grade; o espaço de gadget é um atalho para ele.
+- **Gadgets:** **3 espaços**, um para cada ferramenta equipável prevista em [`docs/personagens/gabriel.md`](../personagens/gabriel.md): lanterna, cápsulas de clarão e objetos de arremesso. Equipar não tira o item da grade; o espaço de gadget é um atalho para ele.
 - Ao pegar um gadget com um espaço livre, ele já é equipado.
 - Na tela, os espaços de gadget ficam no canto de baixo à esquerda, com o número da tecla. A borda acende enquanto o gadget está em uso (pote destampado), e a barrinha embaixo mostra a carga.
 
-### Pote de fungos (a lanterna)
+### Lanterna
 
-- Está no chão da Biblioteca, perto de onde o Gabriel acorda, brilhando.
-- Tecla do espaço dele: tampa e destampa. Destampado, ilumina ~2,5 m em volta do Gabriel com luz ciano.
-- A carga cai ao longo de 4,5 minutos destampado; a luz fica mais fraca e menor junto. Com a carga no zero, o pote se tampa sozinho.
-- Recarrega em qualquer objeto `fungo` do kit de cenário (`E` perto dele: "Recarregar pote").
+- Fica no chão, perto de onde o Gabriel acorda na Biblioteca (e perto do início do labirinto). Pegar com `E` já equipa no espaço 1.
+- Liga e desliga com a tecla do espaço. A bateria dura 4 minutos acesa; troca-se com **pilhas** achadas no mapa (`E` perto da pilha: "Trocar a pilha").
+- Regras completas em [`iluminacao_e_lanterna.md`](iluminacao_e_lanterna.md).
 
 ---
 
@@ -52,8 +51,8 @@ grade = [ [pote, null, null, null],     linha 0
 | Os itens do jogo | `dados/itens/*.tres` |
 | Item no chão | `cenas/itens/item_no_chao.tscn` |
 | Base de tudo que interage com `E` (`Interagivel`) | `scripts/itens/interagivel.gd` |
-| Efeito do pote equipado (a luz) | `cenas/itens/pote_fungos.tscn` |
-| Colônia de fungos (recarga) | `scripts/cenario/colonia_fungos.gd`, dentro de `cenas/cenario/objetos/fungo.tscn` |
+| Efeito da lanterna equipada (a luz) | `cenas/itens/lanterna.tscn` |
+| Pilha no chão (recarga) | `cenas/itens/pilha_no_chao.tscn` |
 | HUD (espaços de gadget, aviso "[E]", mensagem) | `cenas/interface/hud.tscn` |
 | Tela do inventário | `cenas/interface/tela_inventario.tscn` |
 | Ícones e peças da interface (gerados por script) | `assets/modelagem/interface/gerar_interface.py` |
@@ -66,7 +65,7 @@ O HUD e a tela do inventário já estão no `modelo_sala.tscn`: toda sala nova h
 
 1. **Desenho:** escreva a função do ícone (16 × 16) e, se quiser, a do item no chão em `gerar_interface.py`, adicione no dicionário `ICONES` e rode `python assets/modelagem/interface/gerar_interface.py`. Abra o Godot para gerar os `.import`.
 2. **Dados:** no Godot, botão direito em `dados/itens/` → *Novo* → *Recurso...* → `Item`. Preencha `id`, `nome`, `descricao`, `icone` e `sprite_chao`.
-3. **Se for gadget:** marque `equipavel` e crie a cena do efeito (como `cenas/itens/pote_fungos.tscn`), com um script que tenha a função `usar()`. Coloque essa cena em `cena_gadget`. Guarde o que precisa sobreviver à troca de sala em `Inventario.estado_de(id)`, não no script.
+3. **Se for gadget:** marque `equipavel` e crie a cena do efeito (como `cenas/itens/lanterna.tscn`), com um script que tenha a função `usar()`. Coloque essa cena em `cena_gadget`. Guarde o que precisa sobreviver à troca de sala em `Inventario.estado_de(id)`, não no script.
 4. **No mapa:** arraste `cenas/itens/item_no_chao.tscn` para o nó `Objetos` da sala (a origem é o pé) e escolha o item no Inspetor.
 
 ---

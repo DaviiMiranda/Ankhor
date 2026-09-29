@@ -18,7 +18,7 @@ Cada robô inimigo é controlado por um script derivado de uma classe base de IA
 2. **Sensores de Percepção:**
    - **Sensor Acústico:** Conectado aos eventos sonoros emitidos no grafo do campus via BFS (passos correndo, colisões, pedras arremessadas).
    - **Sensor Óptico / Visual:** Cone angular calculado via produto escalar ($\vec{u} \cdot \vec{v}$) e verificação de oclusão física por raycasting 2D.
-   - **Sensor Fotossensível:** Detecta feixes de luz do pote de fungos do jogador a distâncias maiores em áreas escuras.
+   - **Sensor Fotossensível:** Detecta o Gabriel a distâncias maiores quando a lanterna está acesa.
 
 ---
 
@@ -30,6 +30,26 @@ Os robôs inimigos são categorizados pelo seu sentido ou padrão de comportamen
 |---|---|---|---|
 | **Sensor Acústico** | Audição apurada | Detecta passos correndo e ruídos de impacto a múltiplas salas de distância | Mover-se agachado; distrair com arremesso de pedras |
 | **Patrulha Programada** | Rotina de circuito | Percorre salas e corredores em horários e rotas fixas pelo grafo | Mapear os horários de patrulha para planejar rotas seguras |
-| **Sentinela Fotossensível** | Varredura óptica de luz | Patrulha áreas abertas e detecta lanternas acesas a longa distância | Tampar/apagar o pote de fungos ao cruzar seu campo visual |
+| **Sentinela Fotossensível** | Varredura óptica de luz | Patrulha áreas abertas e detecta lanternas acesas a longa distância | Apagar a lanterna ao cruzar seu campo visual |
 | **Unidades de Enxame** | Proximidade em grupo | Movem-se em conjunto, bloqueando passagens e corredores estreitos | Uso de cápsula de clarão para dispersar temporariamente o grupo |
 | **Perseguidor Persistente** | Rastreamento contínuo | Persegue o jogador por múltiplos cômodos via $A^*$ sem desistir facilmente | Microgames de esconderijo e controle de respiração até o robô passar |
+
+---
+
+## 3. Robôs implementados (Labirinto)
+
+Os dois primeiros tipos foram modelados no Blender (`assets/modelagem/personagens/gerar_robos.py`, mesmo pipeline do Gabriel) e têm IA completa. Os olhos são renderizados numa tira separada e desenhados **sem luz** no Godot: no escuro, o jogador vê os pontos vermelhos antes do robô.
+
+| | **Sentinela** (tipo "Sentinela Fotossensível") | **Rastreador** (tipo "Sensor Acústico") |
+|---|---|---|
+| Visual | 2,1 m, magra, curvada para a frente, braços que quase arrastam no chão, garras de 3 dedos, cabeça-globo com **um olho** (a lente é o sensor óptico) | Quadrúpede de 0,8 m, corpo de placas e cabos, espinhos nas costas, **três olhos** e **antenas parabólicas** no lugar das orelhas |
+| Sentido forte | Visão: cone de 60°, 170 px; farol vermelho mostra para onde olha | Audição ×1,8; visão curta e larga (80 px, 100°) |
+| Velocidade | lenta (patrulha 22, perseguição 44 px/s) | rápida (30 / 62 px/s) |
+| Som | pisada pesada de metal, zumbido, guincho | garras correndo no concreto, zumbido mais agudo, guincho |
+| Cena | `cenas/personagens/robo_sentinela.tscn` | `cenas/personagens/robo_rastreador.tscn` |
+
+Os dois usam o mesmo script (`scripts/personagens/robo.gd`); o que muda são os números no Inspetor. Um tipo novo = uma cena nova com outros números e outros sprites.
+
+Sprites: `assets/sprites/personagens/robos/<robo>_andar_<lado|frente|costas>.png` (8 quadros) e `..._olhos.png`. Folha de referência: `robos_referencia.png`.
+
+IA (máquina de estados, cone de visão, BFS, A\*, Markov): [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md), seção 5.

@@ -46,7 +46,7 @@ Liste as principais salas ou cômodos que compõem esta fase e suas conexões:
 ## 5. Puzzles e Desafios Mecânicos
 
 - **Descrição do Puzzle:** Como funciona o obstáculo.
-- **Mecânica Utilizada:** (ex.: Acústica/BFS, Coloração da Grade, Pote de Fungos, Microgame).
+- **Mecânica Utilizada:** (ex.: Acústica/BFS, Coloração da Grade, Lanterna, Microgame).
 - **Solução:** Como o jogador resolve o problema.
 
 ---

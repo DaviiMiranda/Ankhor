@@ -1,0 +1,99 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/personagens/robo.gd" id="1_robo"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/rastreador_andar_lado.png" id="2_lado"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/rastreador_andar_frente.png" id="3_frente"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/rastreador_andar_costas.png" id="4_costas"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/rastreador_andar_lado_olhos.png" id="5_olhos_lado"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/rastreador_andar_frente_olhos.png" id="6_olhos_frente"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/rastreador_andar_costas_olhos.png" id="7_olhos_costas"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="8_luz"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/rastreador_passo.wav" id="9_passo"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/robo_zumbido.wav" id="10_zumbido"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/robo_alerta.wav" id="11_alerta"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pes"]
+size = Vector2(18, 5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_garra"]
+radius = 13.0
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
+[node name="Rastreador" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_robo")
+nome_tipo = "Rastreador"
+velocidade_patrulha = 30.0
+velocidade_investigando = 52.0
+velocidade_perseguicao = 62.0
+alcance_visao = 80.0
+angulo_visao = 100.0
+fator_lanterna = 1.3
+fator_audicao = 1.8
+segundos_memoria = 2.5
+segundos_olhando_em_volta = 1.5
+andar_lado = ExtResource("2_lado")
+andar_frente = ExtResource("3_frente")
+andar_costas = ExtResource("4_costas")
+olhos_lado = ExtResource("5_olhos_lado")
+olhos_frente = ExtResource("6_olhos_frente")
+olhos_costas = ExtResource("7_olhos_costas")
+px_por_quadro = 3.0
+px_por_passo = 10.0
+testa_lado = Vector2(23, -15)
+testa_frente = Vector2(0, -18)
+testa_costas = Vector2(0, -19)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lado")
+centered = false
+offset = Vector2(-32, -37)
+hframes = 8
+
+[node name="Olhos" type="Sprite2D" parent="."]
+material = SubResource("SemLuz")
+texture = ExtResource("5_olhos_lado")
+centered = false
+offset = Vector2(-32, -37)
+hframes = 8
+
+[node name="Pes" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_pes")
+
+[node name="LuzOlho" type="PointLight2D" parent="."]
+position = Vector2(0, -14)
+color = Color(1, 0.3, 0.15, 1)
+energy = 0.5
+range_item_cull_mask = 3
+texture = ExtResource("8_luz")
+texture_scale = 0.7
+
+[node name="Garra" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+
+[node name="Alcance" type="CollisionShape2D" parent="Garra"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_garra")
+
+[node name="Passos" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_passo")
+volume_db = -4.0
+max_distance = 300.0
+attenuation = 1.4
+
+[node name="Zumbido" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_zumbido")
+volume_db = -18.0
+pitch_scale = 1.4
+autoplay = true
+max_distance = 160.0
+
+[node name="Alerta" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_alerta")
+pitch_scale = 1.25
+max_distance = 700.0
