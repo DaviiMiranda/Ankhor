@@ -1,7 +1,8 @@
 [gd_resource type="Theme" format=3]
 
-[ext_resource type="FontFile" uid="uid://bo32srv2rokin" path="res://assets/fontes/tiny5.ttf" id="1_tiny5"]
+[ext_resource type="FontFile" path="res://assets/fontes/ark_pixel_10.ttf" id="1_fonte"]
 
 [resource]
-default_font = ExtResource("1_tiny5")
-default_font_size = 8
+default_font = ExtResource("1_fonte")
+default_font_size = 10
+Label/constants/line_spacing = 0
