@@ -57,6 +57,7 @@ func _unhandled_input(evento: InputEvent) -> void:
 		var alvo := Interagivel.mais_perto(get_tree(), global_position)
 		if alvo:
 			alvo.interagir()
+			get_viewport().set_input_as_handled()
 	for i in Inventario.ESPACOS_GADGET:
 		if evento.is_action_pressed("gadget_%d" % (i + 1)):
 			usar_gadget(i)

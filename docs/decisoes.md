@@ -13,6 +13,15 @@ Formato:
 
 ---
 
+## 2026-09-29 — Leitura de documentos, Caderno do Gabriel e rádio do Valdir
+**Decisão:**
+- Os documentos dos antecessores abrem numa tela de leitura que **pausa o jogo**, com um papel diferente para cada época.
+- O que for útil vira uma anotação no **Caderno do Gabriel**, aberto com a tecla **N**.
+- O **rádio do Valdir** é um item comum. Com ele no inventário, gatilhos no mapa tocam transmissões, com legenda e chiado, **sem pausar o jogo**.
+- Na Biblioteca entraram o acampamento e o diário do Baltazar, o robô desmontado, os riscos de estrelas na árvore, o terminal com o bilhete da Clarice e duas transmissões do Valdir.
+**Por quê:** pedido do Davi (itens 1 a 3 do que faltava implementar dos antecessores).
+**Afeta:** `project.godot` (autoloads `Caderno` e `Radio`, ação `caderno`), `cenas/salas/biblioteca.tscn`, `cenas/salas/modelo_sala.tscn`, HUD, inventário, menu. Detalhes em `docs/mecanicas/registros_e_caderno.md`.
+
 ## 2026-09-29 — Revelação central aprovada, Clarice viva e o final
 **Decisão:**
 - A **revelação central** está aprovada. Gabriel é o paradoxo da Âncora: ela nasce do caderno dele, esquecido na Biblioteca em 2026. A fenda não puxa por acaso, e sim quem esteve no chão da Biblioteca. Os sonhos são ciclos que falharam. A premissa "a fenda puxa pessoas aleatórias" passa a ser o que o jogador acredita até a revelação.

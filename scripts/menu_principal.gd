@@ -41,6 +41,8 @@ func _process(delta: float) -> void:
 func _ao_apertar_novo_jogo() -> void:
 	novo_jogo_pedido.emit()
 	Inventario.limpar()
+	Caderno.limpar()
+	Radio.limpar()
 	if cena_novo_jogo:
 		get_tree().change_scene_to_packed(cena_novo_jogo)
 	else:

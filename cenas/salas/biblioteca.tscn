@@ -28,6 +28,23 @@
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="i_item"]
 [ext_resource type="Resource" path="res://dados/itens/pote_fungos.tres" id="i_pote"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fungo.tscn" id="i_luz_fungo"]
+[ext_resource type="PackedScene" path="res://cenas/interface/tela_documento.tscn" id="i_tela_documento"]
+[ext_resource type="PackedScene" path="res://cenas/interface/tela_caderno.tscn" id="i_tela_caderno"]
+[ext_resource type="PackedScene" path="res://cenas/interface/legenda_radio.tscn" id="i_legenda_radio"]
+[ext_resource type="PackedScene" path="res://cenas/itens/documento_no_mundo.tscn" id="r_documento"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="r_gatilho"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/acampamento_baltazar.tscn" id="r_acampamento"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/robo_desmontado.tscn" id="r_robo"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/terminal.tscn" id="r_terminal"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/riscos_estrelas.png" id="r_riscos"]
+[ext_resource type="Resource" path="res://dados/documentos/diario_baltazar.tres" id="r_diario"]
+[ext_resource type="Resource" path="res://dados/documentos/bilhete_clarice.tres" id="r_bilhete"]
+[ext_resource type="Resource" path="res://dados/itens/radio.tres" id="r_radio"]
+[ext_resource type="Resource" path="res://dados/transmissoes/valdir_01.tres" id="r_valdir_01"]
+[ext_resource type="Resource" path="res://dados/transmissoes/valdir_02.tres" id="r_valdir_02"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acervo"]
+size = Vector2(270, 110)
 
 [sub_resource type="ShaderMaterial" id="Raios_grande"]
 shader = ExtResource("3_raios")
@@ -111,6 +128,12 @@ position = Vector2(152, 142)
 [node name="Arvore" parent="Objetos" instance=ExtResource("o_arvore")]
 position = Vector2(238, 140)
 
+[node name="RiscosEstrelas" type="Sprite2D" parent="Objetos/Arvore"]
+position = Vector2(-1, -36)
+texture = ExtResource("r_riscos")
+centered = false
+offset = Vector2(-9, -29)
+
 [node name="Entulho1" parent="Objetos" instance=ExtResource("o_entulho")]
 position = Vector2(318, 126)
 
@@ -158,6 +181,44 @@ item = ExtResource("i_pote")
 position = Vector2(0, -4)
 scale = Vector2(1.2, 1.2)
 energy = 0.7
+
+[node name="AcampamentoBaltazar" parent="Objetos" instance=ExtResource("r_acampamento")]
+position = Vector2(262, 148)
+
+[node name="DiarioBaltazar" parent="Objetos" instance=ExtResource("r_documento")]
+position = Vector2(262, 148)
+texto_acao = "Ler o diário"
+documento = ExtResource("r_diario")
+
+[node name="RoboDesmontado" parent="Objetos" instance=ExtResource("r_robo")]
+position = Vector2(280, 172)
+
+[node name="Radio" parent="Objetos" instance=ExtResource("i_item")]
+position = Vector2(628, 162)
+item = ExtResource("r_radio")
+
+[node name="GatilhoValdir1" parent="Objetos" instance=ExtResource("r_gatilho")]
+position = Vector2(628, 162)
+transmissao = ExtResource("r_valdir_01")
+
+[node name="Terminal" parent="Objetos" instance=ExtResource("r_terminal")]
+position = Vector2(470, 236)
+
+[node name="BilheteClarice" parent="Objetos" instance=ExtResource("r_documento")]
+position = Vector2(470, 236)
+texto_acao = "Ler o bilhete"
+altura_aviso = 48.0
+documento = ExtResource("r_bilhete")
+
+[node name="FungoTerminal" parent="Objetos" instance=ExtResource("o_fungo")]
+position = Vector2(492, 240)
+
+[node name="GatilhoValdir2" parent="Objetos" instance=ExtResource("r_gatilho")]
+position = Vector2(548, 360)
+transmissao = ExtResource("r_valdir_02")
+
+[node name="Area" parent="Objetos/GatilhoValdir2" index="0"]
+shape = SubResource("RectangleShape2D_acervo")
 
 [node name="MesaLeituraSul" parent="Objetos" instance=ExtResource("o_mesa_leitura")]
 position = Vector2(170, 232)
@@ -524,6 +585,12 @@ color = Color(0, 0, 0, 1)
 [node name="Hud" parent="." instance=ExtResource("i_hud")]
 
 [node name="TelaInventario" parent="." instance=ExtResource("i_inventario")]
+
+[node name="TelaDocumento" parent="." instance=ExtResource("i_tela_documento")]
+
+[node name="TelaCaderno" parent="." instance=ExtResource("i_tela_caderno")]
+
+[node name="LegendaRadio" parent="." instance=ExtResource("i_legenda_radio")]
 
 [node name="Guias" type="Node2D" parent="."]
 script = ExtResource("6_guias")

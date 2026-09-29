@@ -36,6 +36,8 @@ func _ready() -> void:
 
 func _unhandled_input(evento: InputEvent) -> void:
 	if evento.is_action_pressed("inventario") or (aberto and evento.is_action_pressed("ui_cancel")):
+		if not aberto and get_tree().paused:
+			return
 		_abrir(not aberto)
 		get_viewport().set_input_as_handled()
 		return

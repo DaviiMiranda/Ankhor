@@ -19,6 +19,7 @@ func _ready() -> void:
 		caixa_gadgets.add_child(espaco)
 		_espacos.append(espaco)
 	Inventario.item_pego.connect(_ao_pegar_item)
+	Caderno.anotado.connect(_ao_anotar)
 	mensagem.modulate.a = 0.0
 	aviso.hide()
 
@@ -63,6 +64,14 @@ func _ao_pegar_item(item: Item) -> void:
 	if espaco != -1:
 		texto += "   [%d] usar" % (espaco + 1)
 	texto += "   [Tab] inventário"
+	_mostrar_mensagem(texto)
+
+
+func _ao_anotar(titulo: String) -> void:
+	_mostrar_mensagem("Anotado no caderno: %s   [N] abrir" % titulo)
+
+
+func _mostrar_mensagem(texto: String) -> void:
 	mensagem.text = texto
 	if _tween_mensagem:
 		_tween_mensagem.kill()

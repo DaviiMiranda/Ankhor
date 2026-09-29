@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://scripts/salas/guias_sala.gd" id="5_guias"]
 [ext_resource type="PackedScene" path="res://cenas/interface/hud.tscn" id="i_hud"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_inventario.tscn" id="i_inventario"]
+[ext_resource type="PackedScene" path="res://cenas/interface/tela_documento.tscn" id="i_tela_documento"]
+[ext_resource type="PackedScene" path="res://cenas/interface/tela_caderno.tscn" id="i_tela_caderno"]
+[ext_resource type="PackedScene" path="res://cenas/interface/legenda_radio.tscn" id="i_legenda_radio"]
 
 [sub_resource type="ShaderMaterial" id="Vinheta"]
 shader = ExtResource("4_vinheta")
@@ -62,6 +65,12 @@ color = Color(0, 0, 0, 1)
 [node name="Hud" parent="." instance=ExtResource("i_hud")]
 
 [node name="TelaInventario" parent="." instance=ExtResource("i_inventario")]
+
+[node name="TelaDocumento" parent="." instance=ExtResource("i_tela_documento")]
+
+[node name="TelaCaderno" parent="." instance=ExtResource("i_tela_caderno")]
+
+[node name="LegendaRadio" parent="." instance=ExtResource("i_legenda_radio")]
 
 [node name="Guias" type="Node2D" parent="."]
 script = ExtResource("5_guias")

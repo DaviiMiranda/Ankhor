@@ -39,6 +39,9 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `efeitos/gabriel/gabriel_passo_ceramica_01.wav` … `_06.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 6 passos de tênis em cerâmica antiga com areia: baque do calcanhar, sola, grãos e um pouco do eco do salão. Tocados pela cena `cenas/sistemas/passos.tscn` (dentro do Gabriel), sorteando a variação |
 | `efeitos/interface/inventario_abrir.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 0,55 s: zíper da mochila (acelera e freia), tecido e a aba caindo. Toca ao abrir o inventário |
 | `efeitos/interface/inventario_fechar.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 0,45 s: a aba empurrada, o zíper mais rápido e o "tec" do cursor no fim. Toca ao fechar o inventário |
+| `efeitos/objetos/radio_chiado.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 2 s em loop sem emenda: estática de rádio portátil, com o sinal indo e voltando. Toca por baixo das falas do Valdir (`cenas/interface/legenda_radio.tscn`) |
+| `efeitos/objetos/radio_clique.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 0,3 s: o clique do botão de falar e o chiado do canal abrindo. Toca no começo e no fim de cada transmissão |
+| `efeitos/interface/papel_folhear.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 0,35 s: uma folha virando. Toca ao abrir, folhear e fechar documentos e o caderno |
 
 Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py` ou `gerar_trilha_gameplay.py` (precisa de numpy e ffmpeg). Os efeitos saem de `gerar_efeitos_gabriel.py` (só numpy).
 

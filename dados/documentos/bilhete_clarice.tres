@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "bilhete_clarice"
+titulo = "Bilhete colado no terminal"
+autor = "Clarice, 1994"
+papel = "caderno_clarice"
+paginas = PackedStringArray("Se alguém ler isso: meu nome é Clarice, sou de 1994, Processamento de Dados. Tava rodando um programa no terminal da Biblioteca de madrugada e PUF, vim parar aqui. Isso é totalmente surreal.
+
+Descobri umas coisas. Os robôs não andam à toa: fazem sempre o mesmo caminho, que nem um programa em loop. Dá pra decorar.", "Os terminais ainda pedem senha. Guardei as que achei nos meus disquetes.
+
+Hoje à noite vou tentar entrar no sistema. Se der errado, foi mal. Foi legal conversar com alguém, mesmo que seja com um papel.
+
+Não confie nas luzes.
+— Clarice", "PS: você não é o primeiro a ler isso.")
+anotacao = "Aluna de 1994. Descobriu que os robôs fazem sempre o mesmo caminho, como um programa em loop: dá para decorar a rota.
+
+Guardou senhas dos terminais em disquetes. Ia tentar entrar no sistema... e parece que não voltou.
+
+Escreveu: não confie nas luzes."
