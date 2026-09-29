@@ -63,7 +63,7 @@ docs/
 │
 ├── historia/                      # Estrutura narrativa e narrativa ambiental
 │   ├── README.md                  # Funcionamento das camadas narrativas (presente vs sonhos)
-│   ├── revelacao_central.md       # Revelação central (Gabriel como paradoxo da Âncora) e os dois finais
+│   ├── revelacao_central.md       # Revelação central (Gabriel como paradoxo da Âncora) e o final
 │   └── template_documento.md      # Modelo padronizado para documentos, bilhetes e relíquias
 │
 └── roteiro/                       # Roteirização cinematográfica e cutscenes

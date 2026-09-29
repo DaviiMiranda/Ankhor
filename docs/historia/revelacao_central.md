@@ -50,27 +50,15 @@ Ao longo do jogo, Gabriel acha **bilhetes assinados só com "G."**, escritos em 
 
 ---
 
-## 5. Os finais
+## 5. O final — "A mesma madrugada"
 
-Fechar a fenda devolve cada pessoa ao seu tempo. O que o jogador descobriu decide se Gabriel consegue fazer mais que isso, como o GDD prevê ("o que o jogador descobriu muda as opções disponíveis no final").
-
-**Condição para o final feliz:** ter a **pesquisa completa do professor** (todas as partes espalhadas pelo campus) e ter **atendido todas as ligações da Clarice**. Tecnicamente, é uma consulta ao dicionário de flags do mundo (GDD, "Estruturas de dados"). Sem isso, o jogo vai para o final triste.
-
-### 5.1 Final feliz — "A mesma madrugada"
+Por enquanto o jogo tem **um só final**, o feliz. Fechar a fenda devolveria cada pessoa ao seu tempo. Mas a **pesquisa do professor**, reunida ao longo do jogo, mostra a Gabriel como fazer mais que isso.
 
 - Com a pesquisa do professor, Gabriel entende como recalibrar a Âncora para mandar **duas pessoas para o mesmo tempo**.
 - Na última ligação, ele oferece à Clarice uma escolha: voltar para 1994 ou vir com ele para 2026. Ela escolhe 2026.
 - **Cena final:** madrugada de 2026, na Biblioteca. Os dois acordam na mesma mesa, lembrando de tudo. É a primeira vez que se veem, depois de tantas conversas. Ela pega o celular dele, olha a tela: *"Isso é totalmente surreal."*
 - Gabriel arranca do caderno a página das equações e entrega a ela. Clarice rasga. **A Âncora nunca vai existir**, e o loop acaba.
 - Último plano: os dois saem da Biblioteca ao amanhecer. Ela perdeu 32 anos do mundo, e vai procurar a família. Ele vai junto.
-
-### 5.2 Final triste — "Se alguém ler isso"
-
-- Sem a pesquisa completa, a Âncora só consegue devolver **cada um ao próprio tempo**.
-- **A última ligação:** Clarice sabe o que vai acontecer, porque já viu esse final em outros ciclos. Gabriel vai esquecer tudo; ela vai lembrar. Ela se despede como quem já se despediu antes, e desliga primeiro.
-- Clarice volta para 1994 lembrando de tudo, e decide **nunca procurar o Gabriel**: se os dois se encontrarem, ele pode voltar a escrever o caderno, e o loop recomeça. Ficar longe é o jeito dela de salvá-lo.
-- **Cena final:** madrugada de 2026, na Biblioteca. Gabriel acorda sem lembrar de nada. No acervo, ele acha uma **fita cassete** deixada ali em 1994, com a etiqueta *"Para G. — madrugada de [data] de 2026"*. Na fita, a voz dela pede para ele não dormir na Biblioteca de novo, e termina com *"Se alguém ler isso... não confie nas luzes."*
-- Ele não reconhece a voz, mas chora sem saber por quê. Fecha o caderno, apaga a luz e vai embora. Os dois nunca mais se veem, e é isso que quebra o loop.
 
 ---
 

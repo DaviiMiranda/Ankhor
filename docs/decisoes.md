@@ -13,15 +13,13 @@ Formato:
 
 ---
 
-## 2026-09-29 — Revelação central aprovada, Clarice viva e dois finais
+## 2026-09-29 — Revelação central aprovada, Clarice viva e o final
 **Decisão:**
 - A **revelação central** está aprovada. Gabriel é o paradoxo da Âncora: ela nasce do caderno dele, esquecido na Biblioteca em 2026. A fenda não puxa por acaso, e sim quem esteve no chão da Biblioteca. Os sonhos são ciclos que falharam. A premissa "a fenda puxa pessoas aleatórias" passa a ser o que o jogador acredita até a revelação.
 - **Clarice está viva.** O jogador acha que ela morreu, mas ela fala com Gabriel **por ligação**, pelos telefones velhos do campus, e é a única que lembra dos loops.
-- **Dois finais:**
-  - **Feliz:** os dois ficam juntos em 2026. Exige a pesquisa completa do professor e todas as ligações da Clarice atendidas.
-  - **Triste:** cada um volta ao seu tempo, ele esquece, e ela escolhe nunca procurá-lo para quebrar o loop.
+- **Um só final, por enquanto: o feliz.** Com a pesquisa do professor, Gabriel recalibra a Âncora, e os dois ficam juntos em 2026. Chegou a ser escrito um final triste (cada um volta ao seu tempo e os dois nunca mais se veem), que saiu por decisão do Davi. O texto dele está no histórico do PR #33, se o grupo quiser de volta.
 
-**Por quê:** decisão do Davi. Dá uma relação central e emocional à história, e os finais usam a regra do GDD de que o que o jogador descobriu muda o final.
+**Por quê:** decisão do Davi. Dá uma relação central e emocional à história, e fecha o loop com os dois juntos.
 **Afeta:** `docs/historia/revelacao_central.md`, `docs/personagens/antecessores.md`, `docs/historia/README.md`, `docs/gdd.md`, `docs/fases/biblioteca.md`. **Em aberto:** onde a Clarice está escondida; onde estão as partes da pesquisa do professor.
 
 ## 2026-09-29 — Personagens secundários: os antecessores

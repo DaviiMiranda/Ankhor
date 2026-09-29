@@ -21,7 +21,7 @@ Este documento define como a narrativa de **Ankhor** é estruturada e como as in
   7. **Zane**, jovem com implantes cibernéticos de 2123
   - Todos foram puxados no mesmo lugar: o chão onde hoje fica a Biblioteca.
   - Ninguém conseguiu fechar a fenda, mas essas pessoas deixaram **bilhetes**, diários, disquetes e áudios pelo campus explicando os acontecimentos. Fichas em [`../personagens/antecessores.md`](../personagens/antecessores.md).
-- **Revelação central (aprovada):** Gabriel é o paradoxo da Âncora, e os sonhos são ciclos que falharam. O jogo tem dois finais, feliz e triste, decididos pelo que o jogador descobriu. Ver [`revelacao_central.md`](revelacao_central.md).
+- **Revelação central (aprovada):** Gabriel é o paradoxo da Âncora, e os sonhos são ciclos que falharam. No final, Gabriel e Clarice ficam juntos em 2026. Ver [`revelacao_central.md`](revelacao_central.md).
 
 ---
 

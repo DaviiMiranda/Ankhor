@@ -60,8 +60,8 @@ Clarice é a "aluna de 1994" e Valdir é o "segurança de 2008" já decididos em
 - **A que lembra:** Clarice é a **única que lembra dos loops**. Ela grava tudo no sistema da Âncora, a única coisa que o reinício não apaga. Para Gabriel, ela é uma desconhecida sarcástica que ajuda com senhas. Para ela, é a vigésima vez que o conhece: sabe a piada que ele vai fazer, a música de que ele gosta e como ele morreu em cada ciclo. Aos poucos ela deixa escapar demais: *"Você sempre pergunta isso."*
 - **Item:** disquetes e anotações com as primeiras **senhas dos terminais**.
 - **Voz:** gírias dos anos 90 ("Isso é totalmente surreal", "Se alguém ler isso, não confie nas luzes").
-- **Função mecânica:** guia por voz ao longo do jogo; senhas e explicação das rotinas de patrulha (ponte para os conteúdos de computação). Atender todas as ligações dela é uma das condições do final feliz.
-- **Finais:** os dois finais do jogo são o fim da relação dela com Gabriel: juntos em 2026 ou separados para sempre. Ver [`../historia/revelacao_central.md`](../historia/revelacao_central.md), seção 5.
+- **Função mecânica:** guia por voz ao longo do jogo; senhas e explicação das rotinas de patrulha (ponte para os conteúdos de computação).
+- **Final:** os dois ficam juntos em 2026. Ver [`../historia/revelacao_central.md`](../historia/revelacao_central.md), seção 5.
 
 ### 2.4 Seu Valdir (2008)
 
