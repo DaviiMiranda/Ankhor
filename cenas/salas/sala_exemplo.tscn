@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="modelo"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_desabada.tscn" id="parede_desabada"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_estante.tscn" id="parede_estante"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_fungos.tscn" id="parede_fungos"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_arandela.tscn" id="parede_arandela"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_janela.tscn" id="parede_janela"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lisa.tscn" id="parede_lisa"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_placa.tscn" id="parede_placa"]
@@ -21,12 +21,12 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_caida.tscn" id="o_estante_caida"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_quebrada.tscn" id="o_estante_quebrada"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_vazia.tscn" id="o_estante_vazia"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/fungo.tscn" id="o_fungo"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="o_lampada"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/livros.tscn" id="o_livros"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/mesa_leitura.tscn" id="o_mesa_leitura"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_sol.tscn" id="luz_sol"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="luz_fria"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fungo.tscn" id="luz_fungo"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="luz_lampada"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/efeitos/raios_de_sol.tscn" id="raios_de_sol"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/efeitos/poeira.tscn" id="poeira"]
 
@@ -61,7 +61,7 @@ position = Vector2(560, 0)
 [node name="Parede09" parent="Paredes" instance=ExtResource("parede_estante")]
 position = Vector2(640, 0)
 
-[node name="Parede10" parent="Paredes" instance=ExtResource("parede_fungos")]
+[node name="Parede10" parent="Paredes" instance=ExtResource("parede_arandela")]
 position = Vector2(720, 0)
 
 [node name="Parede11" parent="Paredes" instance=ExtResource("parede_rachada")]
@@ -128,14 +128,13 @@ position = Vector2(700, 134)
 [node name="EstanteCaida" parent="Objetos" instance=ExtResource("o_estante_caida")]
 position = Vector2(790, 174)
 
-[node name="Fungo1" parent="Objetos" instance=ExtResource("o_fungo")]
+[node name="Lampada1" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(836, 166)
 
-[node name="Fungo2" parent="Objetos" instance=ExtResource("o_fungo")]
+[node name="Lampada2" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(872, 140)
-espelhado = true
 
-[node name="Fungo3" parent="Objetos" instance=ExtResource("o_fungo")]
+[node name="Lampada3" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(910, 126)
 
 [node name="Raios" parent="Efeitos" instance=ExtResource("raios_de_sol")]
@@ -157,12 +156,5 @@ energy = 0.7
 [node name="Janela" parent="Luzes" instance=ExtResource("luz_fria")]
 position = Vector2(40, 50)
 
-[node name="FungoParede1" parent="Luzes" instance=ExtResource("luz_fungo")]
-position = Vector2(736, 96)
-scale = Vector2(1.6, 1.6)
-energy = 0.6
-
-[node name="FungoParede2" parent="Luzes" instance=ExtResource("luz_fungo")]
-position = Vector2(772, 72)
-scale = Vector2(1.4, 1.4)
-energy = 0.5
+[node name="Arandela" parent="Luzes" instance=ExtResource("luz_lampada")]
+position = Vector2(760, 58)
