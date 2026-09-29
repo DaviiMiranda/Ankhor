@@ -54,6 +54,7 @@ docs/
 │   ├── README.md                  # Arquitetura de personagens no Godot (Jogador vs Robôs)
 │   ├── gabriel.md                 # Funcionamento mecânico do jogador (estados, estamina, inventário)
 │   ├── robos.md                   # Funcionamento dos robôs de IA (sensores, FSM e patrulhas)
+│   ├── antecessores.md            # Pessoas puxadas antes de Gabriel (Baltazar, Agostinho, Clarice, Valdir, Zane)
 │   └── template_personagem.md     # Modelo padronizado para novas fichas de personagens
 │
 ├── dialogos/                      # Sistema de conversação e falas
@@ -62,6 +63,7 @@ docs/
 │
 ├── historia/                      # Estrutura narrativa e narrativa ambiental
 │   ├── README.md                  # Funcionamento das camadas narrativas (presente vs sonhos)
+│   ├── revelacao_central.md       # Revelação central (Gabriel como paradoxo da Âncora) e o final
 │   └── template_documento.md      # Modelo padronizado para documentos, bilhetes e relíquias
 │
 └── roteiro/                       # Roteirização cinematográfica e cutscenes

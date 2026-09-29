@@ -20,8 +20,8 @@ O sonho não é apenas uma cutscene passiva; é uma fase jogável de investigaç
 - **Ausência de Inimigos:** Não há perigo de morte, estamina esgotada ou perseguição nos sonhos. O jogador pode explorar com calma e atenção aos detalhes.
 - **Objetivos Chave no Sonho:**
   1. **Aprender a Grade Horária:** Consultar quadros de aviso e calendários acadêmicos para saber onde os professores estarão alocados a cada horário do dia seguinte.
-  2. **Recuperar Códigos e Senhas:** Encontrar bilhetes legíveis, anotações de Rafa e senhas de cofres/portas que mil anos depois estão ilegíveis nas ruínas.
-  3. **Interações Humanas:** Conversar com Rafa, outros alunos e a equipe do NAMI, compreendendo os sentimentos e as circunstâncias que levaram todos a tomarem o estimulante.
+  2. **Recuperar Códigos e Senhas:** Encontrar bilhetes legíveis e senhas de cofres/portas que mil anos depois estão ilegíveis nas ruínas.
+  3. **Interações Humanas:** Conversar com os **antecessores** (as pessoas puxadas antes de Gabriel) no passado deles, ou assistir a um **eco temporal**: os minutos antes de cada um ser puxado pela fenda. Fichas em [`../personagens/antecessores.md`](../personagens/antecessores.md).
 
 ---
 

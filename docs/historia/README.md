@@ -11,12 +11,17 @@ Este documento define como a narrativa de **Ankhor** é estruturada e como as in
 - **A Fenda Temporal:** A fenda encosta em momentos aleatórios do passado e puxa quem estiver por perto. Numa madrugada de 2026, puxou Gabriel da Biblioteca.
 - **A Ameaça:** A fenda está em expansão contínua. Se não for fechada, vai engolir todo o passado do campus, incluindo a época e o tempo original de Gabriel.
 - **Os Inimigos:** O campus milenar é patrulhado por **robôs**.
-- **Os que Vieram Antes:** Gabriel descobre que não foi o primeiro a ser puxado para 3026. Antes dele, a fenda puxou:
-  1. Uma aluna de 1994
-  2. Um segurança de 2008
-  3. Um professor de 2019
-  4. Alguém de 2041 *(a definir)*
-  - Ninguém conseguiu fechar a fenda, mas essas pessoas deixaram **bilhetes** pelo campus explicando os acontecimentos (textos a serem definidos/escritos).
+- **Os que Vieram Antes:** Gabriel descobre que não foi o primeiro a ser puxado para 3026. A fenda também puxou:
+  1. **Mestre Baltazar**, naturalista e astrônomo de ~1750
+  2. **Inspetor Agostinho**, policial de 1978
+  3. **Clarice**, aluna de 1994 (viva; fala com Gabriel por ligação)
+  4. **Seu Valdir**, segurança de 2008 (fala com Gabriel pelo rádio)
+  5. **Um professor de 2019**, cuja pesquisa virou a cadeira de Gabriel *(nome a definir)*
+  6. Alguém de 2041 *(a definir)*
+  7. **Zane**, jovem com implantes cibernéticos de 2123
+  - Todos foram puxados no mesmo lugar: o chão onde hoje fica a Biblioteca.
+  - Ninguém conseguiu fechar a fenda, mas essas pessoas deixaram **bilhetes**, diários, disquetes e áudios pelo campus explicando os acontecimentos. Fichas em [`../personagens/antecessores.md`](../personagens/antecessores.md).
+- **Revelação central (aprovada):** Gabriel é o paradoxo da Âncora, e os sonhos são ciclos que falharam. No final, Gabriel e Clarice ficam juntos em 2026. Ver [`revelacao_central.md`](revelacao_central.md).
 
 ---
 
