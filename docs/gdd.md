@@ -126,7 +126,7 @@ E, nos sonhos, o mesmo campus **na última semana antes de tudo**: cheio, ilumin
 
 **Personagens:**
 - **Gabriel** — o protagonista. Estudante universitário puxado de uma madrugada de 2026 para 3026 pela fenda da Âncora. Precisa entender o que aconteceu e fechar a fenda antes que ela consuma seu próprio tempo.
-- **Os antecessores** — pessoas puxadas antes de Gabriel, que deixaram pistas pelo campus: Mestre Baltazar (~1750), Inspetor Agostinho (1978), Clarice (1994), Seu Valdir (2008, ainda vivo em 3026) e Zane (2123). O professor de 2019 e a pessoa de 2041 ainda estão a definir. Fichas em [`personagens/antecessores.md`](personagens/antecessores.md).
+- **Os antecessores** — pessoas puxadas antes de Gabriel, que deixaram pistas pelo campus: Mestre Baltazar (~1750), Inspetor Agostinho (1978), Clarice (1994), Seu Valdir (2008, fala com Gabriel pelo rádio), um professor de 2019 cuja pesquisa virou a cadeira de Gabriel, e Zane (2123). A pessoa de 2041 ainda está a definir. Fichas em [`personagens/antecessores.md`](personagens/antecessores.md).
 - *(Revelação central em avaliação: [`historia/revelacao_central.md`](historia/revelacao_central.md))*
 
 ---

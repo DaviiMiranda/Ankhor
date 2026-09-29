@@ -14,9 +14,17 @@ Formato:
 ---
 
 ## 2026-09-29 — Personagens secundários: os antecessores
-**Decisão:** entram na documentação as fichas das pessoas puxadas antes de Gabriel: **Mestre Baltazar** (~1750, esqueleto e diário com o ponto fraco dos sensores ópticos), **Inspetor Agostinho** (1978, mapa antigo com passagens secretas), **Clarice** (1994, a aluna já decidida, com disquetes e senhas), **Seu Valdir** (2008, o segurança já decidido, vivo numa sala segura, dá dicas de patrulha) e **Zane** (2123, áudios que apontam para um usuário de 2026). A revelação central que veio junto (Gabriel como paradoxo da Âncora, sonhos como loops) fica registrada como **proposta, ainda não aprovada**.
-**Por quê:** proposta de personagens recebida pelo grupo; dá rosto aos bilhetes e liga cada pista a uma mecânica.
-**Afeta:** `docs/personagens/antecessores.md` (novo), `docs/historia/revelacao_central.md` (novo), `docs/historia/README.md`, `docs/personagens/README.md`, `docs/gdd.md`, `docs/mecanicas/sono_e_sonhos.md`. **Em aberto:** se o professor de 2019 e a pessoa de 2041 continuam; como terminais e rádio funcionam se "nada elétrico funciona"; a revelação central.
+**Decisão:** entram na documentação as fichas das pessoas puxadas antes de Gabriel:
+- **Mestre Baltazar** (~1750): some sem deixar corpo. Na Biblioteca fica o acampamento dele entre as raízes da árvore, com a luneta e o diário que mostra o ponto fraco dos sensores ópticos.
+- **Inspetor Agostinho** (1978): deixa um mapa antigo com passagens secretas.
+- **Clarice** (1994, a aluna já decidida): deixa disquetes e senhas.
+- **Seu Valdir** (2008, o segurança já decidido): fala com Gabriel pelo rádio e dá dicas de patrulha. No fim se descobre que ele morreu há décadas e o rádio só repete as gravações dele.
+- **O professor** (2019): a pesquisa dele virou a cadeira de Gabriel, e em 3026 ele apaga o nome do criador da Âncora.
+- **Zane** (2123): deixa áudios que apontam para um usuário de 2026.
+
+Todos foram puxados **no mesmo lugar**, o chão onde hoje fica a Biblioteca. Cada época tem um visual próprio de bilhete, e a Biblioteca só usa Baltazar, Clarice e Valdir. A revelação central que veio junto (Gabriel como paradoxo da Âncora, sonhos como loops, bilhetes de "G." dos ciclos anteriores) fica registrada como **proposta, ainda não aprovada**.
+**Por quê:** proposta de personagens recebida pelo grupo, com os ajustes pedidos pelo Davi. Dá rosto aos bilhetes e liga cada pista a uma mecânica.
+**Afeta:** `docs/personagens/antecessores.md` (novo), `docs/historia/revelacao_central.md` (novo), `docs/historia/README.md`, `docs/personagens/README.md`, `docs/gdd.md`, `docs/mecanicas/sono_e_sonhos.md`, `docs/fases/biblioteca.md`. **Em aberto:** se a pessoa de 2041 continua; como terminais e rádio funcionam se "nada elétrico funciona"; a revelação central.
 
 ## 2026-09-27 — Scripts GDScript sem comentários
 **Decisão:** os scripts `.gd` não têm nenhum comentário (nem `#` nem `##`). O código se explica pelos nomes, em português. A explicação de algoritmos e da matemática fica em `docs/` (ex.: `docs/computacao/`). Geradores em Python (`assets/modelagem/`) e shaders continuam comentados. O guia de montar salas e as imagens de catálogo do kit (`docs/imagens/`) saíram; o catálogo do kit agora só é gerado com `CATALOGO=1`.

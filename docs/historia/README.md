@@ -15,10 +15,11 @@ Este documento define como a narrativa de **Ankhor** é estruturada e como as in
   1. **Mestre Baltazar**, naturalista e astrônomo de ~1750
   2. **Inspetor Agostinho**, policial de 1978
   3. **Clarice**, aluna de 1994
-  4. **Seu Valdir**, segurança de 2008 (ainda vivo em 3026)
-  5. Um professor de 2019 *(a definir)*
+  4. **Seu Valdir**, segurança de 2008 (fala com Gabriel pelo rádio)
+  5. **Um professor de 2019**, cuja pesquisa virou a cadeira de Gabriel *(nome a definir)*
   6. Alguém de 2041 *(a definir)*
   7. **Zane**, jovem com implantes cibernéticos de 2123
+  - Todos foram puxados no mesmo lugar: o chão onde hoje fica a Biblioteca.
   - Ninguém conseguiu fechar a fenda, mas essas pessoas deixaram **bilhetes**, diários, disquetes e áudios pelo campus explicando os acontecimentos. Fichas em [`../personagens/antecessores.md`](../personagens/antecessores.md).
 - **Revelação central (proposta, não aprovada):** [`revelacao_central.md`](revelacao_central.md).
 
