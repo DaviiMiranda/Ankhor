@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b77fvu7mg1vc"
-path="res://.godot/imported/fungo.png-6cbb8afd3afe157b8dd0be50f974dbbf.ctex"
+uid="uid://pl7n58poik20"
+path="res://.godot/imported/pilha_chao.png-c071601549b1fd6965e2f08d35119388.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/cenario/objetos/fungo.png"
-dest_files=["res://.godot/imported/fungo.png-6cbb8afd3afe157b8dd0be50f974dbbf.ctex"]
+source_file="res://assets/sprites/itens/pilha_chao.png"
+dest_files=["res://.godot/imported/pilha_chao.png-c071601549b1fd6965e2f08d35119388.ctex"]
 
 [params]
 

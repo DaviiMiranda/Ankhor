@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqnpfq25rlj2v"
-path="res://.godot/imported/pote_fungos_chao.png-88b23f93c3f042ea97fa4c71ce79217a.ctex"
+uid="uid://7svanh2rfr5"
+path="res://.godot/imported/lampada.png-5d8b457018d0ca049f77ab984e278386.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/itens/pote_fungos_chao.png"
-dest_files=["res://.godot/imported/pote_fungos_chao.png-88b23f93c3f042ea97fa4c71ce79217a.ctex"]
+source_file="res://assets/sprites/cenario/objetos/lampada.png"
+dest_files=["res://.godot/imported/lampada.png-5d8b457018d0ca049f77ab984e278386.ctex"]
 
 [params]
 

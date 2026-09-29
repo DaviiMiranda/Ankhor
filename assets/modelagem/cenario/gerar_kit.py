@@ -224,15 +224,16 @@ def parede_desabada():
     return img
 
 
-def parede_fungos():
-    """Canto úmido e escuro: musgo perto do chão e tufos de fungos."""
+def parede_arandela():
+    """Canto úmido e escuro: musgo perto do chão e uma luminária de
+    emergência de dois faróis presa na parede (ponha uma PointLight2D
+    quente em cima dela, em x = 40, y = 58 da peça)."""
     img = parede_base()
-    rachadura(img, 40, 15)
+    rachadura(img, 12, 15)
     parede = img.ret(0, 0, img.w, Y_CHAO)
     musgo = parede & (img.Y > 70) & (ruido_ciclico(img.w, img.h, 8, 4, 16) > 0.6)
     img.pintar(musgo, "verde", 0.15 + 0.2 * img.fino)
-    for (cx, cy) in ((14, 98), (24, 94), (52, 72), (66, 99)):
-        bib.colar_fungos(img, cx, cy, cx + cy)
+    bib.colar_arandela(img, 40, 62)
     return img
 
 
@@ -253,7 +254,7 @@ PAREDES = {
     "parede_porta": parede_porta,
     "parede_buraco": parede_buraco,
     "parede_desabada": parede_desabada,
-    "parede_fungos": parede_fungos,
+    "parede_arandela": parede_arandela,
     "pilar": pilar,
 }
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7u7jm7p7gumk"
-path="res://.godot/imported/parede_fungos.png-40580c7d589d82abe76b0ab177956244.ctex"
+uid="uid://bswkf861fweuw"
+path="res://.godot/imported/pilha.png-35755fce5f0cb3187d8cddaef5df57e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/cenario/paredes/parede_fungos.png"
-dest_files=["res://.godot/imported/parede_fungos.png-40580c7d589d82abe76b0ab177956244.ctex"]
+source_file="res://assets/sprites/itens/pilha.png"
+dest_files=["res://.godot/imported/pilha.png-35755fce5f0cb3187d8cddaef5df57e6.ctex"]
 
 [params]
 

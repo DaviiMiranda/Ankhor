@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqi4mmxk5lc8c"
-path="res://.godot/imported/pote_fungos.png-9b2e7ec802d8732798b08f0065a97541.ctex"
+uid="uid://bnrgep0nnaskp"
+path="res://.godot/imported/lanterna.png-a5e965aa1eff2e39ae88593f6d11d764.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/itens/pote_fungos.png"
-dest_files=["res://.godot/imported/pote_fungos.png-9b2e7ec802d8732798b08f0065a97541.ctex"]
+source_file="res://assets/sprites/itens/lanterna.png"
+dest_files=["res://.godot/imported/lanterna.png-a5e965aa1eff2e39ae88593f6d11d764.ctex"]
 
 [params]
 

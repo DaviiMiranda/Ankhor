@@ -39,9 +39,10 @@
 #   tom para outro é feita com um xadrez de pixels. É o visual 16 bits.
 # - Contorno escuro de 1 px nos objetos, para eles se destacarem do fundo.
 # - Luz: a arte já vem com uma luz "pintada" suave (sol quente pelos buracos
-#   do teto à esquerda, escuro frio à direita). O resto (sol forte, brilho
-#   dos fungos, a escuridão geral) é feito no Godot com CanvasModulate e
-#   PointLight2D, que também iluminam o Gabriel quando ele passa.
+#   do teto à esquerda, escuro frio à direita). O resto (sol forte, as
+#   lâmpadas de emergência, a escuridão geral) é feito no Godot com
+#   CanvasModulate e PointLight2D, que também iluminam o Gabriel quando ele
+#   passa.
 #
 # ---------------------------------------------------------------------------
 # COMO O DESENHO É FEITO
@@ -109,9 +110,8 @@ OBJETOS = [
     ("carrinho", 706, 150, False),
     ("estante_quebrada", 800, 134, False),
     ("livros", 878, 164, True),
-    ("fungo", 758, 168, False),
-    ("fungo", 846, 140, True),
-    ("fungo", 912, 124, False),
+    ("lampada", 758, 168, False),
+    ("lampada", 912, 124, False),
     # Parte sul (a frente da sala, abaixo da primeira tela).
     ("mesa_leitura", 170, 232, False),
     ("cadeira", 116, 246, False),
@@ -125,9 +125,7 @@ OBJETOS = [
     ("estante_caida", 744, 226, True),
     ("cabine", 860, 272, True),
     ("entulho", 72, 288, True),
-    ("fungo", 800, 262, False),
-    ("fungo", 884, 212, True),
-    ("fungo", 934, 288, False),
+    ("lampada", 800, 262, False),
     # Fundo da parte sul (y de 300 a 416): a área mais escura da sala.
     # À esquerda, um canto desabado.
     ("estante_caida", 150, 334, False),
@@ -151,11 +149,11 @@ OBJETOS = [
     ("cadeira", 842, 362, True),
     ("carrinho", 900, 408, False),
     ("livros", 700, 408, False),
-    # Fungos: no escuro, são a única luz.
-    ("fungo", 120, 410, False),
-    ("fungo", 372, 326, True),
-    ("fungo", 660, 372, True),
-    ("fungo", 920, 330, False),
+    # Lâmpadas de emergência: no escuro, são a única luz.
+    ("lampada", 120, 410, False),
+    ("lampada", 372, 326, True),
+    ("lampada", 660, 372, True),
+    ("lampada", 920, 330, False),
 ]
 
 # ---------------------------------------------------------------------------
@@ -198,9 +196,9 @@ RAMPAS = {
     "mata_perto": hexa("#2c4240", "#34504a", "#3f5f53", "#4d6f5b"),
     # sol (cutscene: #eacd92)
     "sol": hexa("#a2875a", "#c9a86a", "#eacd92", "#f6e7bd"),
-    # fungos bioluminescentes: ciano frio
-    "fungo": hexa("#0b2326", "#124248", "#1b6d70", "#2aa3a0", "#63dcc9",
-                  "#bdfbea"),
+    # lâmpada acesa: do âmbar da borda ao miolo quase branco
+    "lampada": hexa("#3a2610", "#6e4a1e", "#b07a34", "#e6b25e", "#f8dc9a",
+                    "#fff4d8"),
     # metal enferrujado (carrinho, vergalhões)
     "ferrugem": hexa("#170e0a", "#2a1810", "#422516", "#5d3620", "#7a4a2a",
                      "#94643c"),
@@ -582,10 +580,11 @@ def desenhar_fundo():
         folhas = dilatar(cipo) & (fino > 0.72) & parede
         img.pintar(folhas, "verde", 0.55 + 0.3 * fino)
 
-    # 12. Fungos na parede do lado escuro: tufos pequenos, perto do chão e
-    #     das rachaduras (onde a umidade fica).
-    for (cx, cy) in ((752, 98), (764, 94), (870, 72), (926, 98), (934, 104), (60, 99)):
-        colar_fungos(img, cx, cy, cx + cy)
+    # 12. Luminárias de emergência na parede do lado escuro (as de dois
+    #     faróis, que todo prédio tem). No Godot, uma PointLight2D quente em
+    #     cima de cada uma (nó Luzes/Arandela* da Biblioteca).
+    for (cx, cy) in ((758, 92), (870, 70), (930, 98), (60, 96)):
+        colar_arandela(img, cx, cy)
 
     # Tudo que está abaixo de Y_CHAO fica para a camada do chão.
     img.apagar(img.Y >= Y_CHAO)
@@ -718,7 +717,7 @@ def desenhar_chao():
     valor = valor + 0.1 * manchas + 0.05 * fino
     # Escurece no canto com a parede e na parte sul, que fica longe dos
     # buracos do teto: de leve a partir de y = 240 e mais forte no fundo
-    # (de y = 320 para baixo, onde só os fungos iluminam).
+    # (de y = 320 para baixo, onde só as lâmpadas iluminam).
     valor = valor * luz - 0.2 * np.clip((122 - Y) / 10, 0, 1) \
         - 0.08 * np.clip((Y - 240) / 60, 0, 1) - 0.07 * np.clip((Y - 320) / 80, 0, 1)
     img.pintar(chao, "piso", valor)
@@ -786,14 +785,10 @@ def desenhar_chao():
         rampa = "areia" if rng.random() < 0.6 else "ferrugem"
         img.pintar(img.ret(x, y, x + 2, y + 1), rampa, 0.5 + 0.3 * rng.random())
 
-    # 8. Musgo e fungos no chão do lado escuro e no fundo da parte sul
-    #    (úmido e sem sol, de y = 330 para baixo).
+    # 8. Musgo no chão do lado escuro e no fundo da parte sul (úmido e sem
+    #    sol, de y = 330 para baixo).
     musgo = chao & ((X > 740) | (Y > 330)) & (ruido(img.w, img.h, 7, 4, 64) > 0.68)
     img.pintar(musgo, "verde", 0.15 + 0.2 * fino)
-    for (cx, cy) in ((786, 150), (884, 130), (934, 162), (822, 174),
-                     (700, 250), (910, 240),
-                     (140, 404), (380, 332), (664, 380), (918, 340)):
-        colar_fungos(img, cx, cy, cx)
 
     # 9. Sombras de contato: embaixo de cada objeto, uma elipse escura.
     #    É o que "cola" o objeto no chão (sem ela, parece flutuar).
@@ -814,7 +809,7 @@ def desenhar_chao():
 LARGURA_SOMBRA = {
     "cabine": 76, "cadeira": 18, "arvore": 60, "entulho": 40, "estante_caida": 92,
     "estante_vazia": 70, "livros": 26, "mesa_leitura": 90, "carrinho": 38,
-    "estante_quebrada": 70, "fungo": 0,
+    "estante_quebrada": 70, "lampada": 10,
 }
 
 
@@ -893,26 +888,25 @@ def estante(larg=66, alt=80, prof=8, semente=0, quebrada=False):
         img.apagar(img.poligono(pts))
         # Tábua solta pendurada na diagonal.
         img.pintar(img.linha(x0 + 34, y0 + 26, x0 + 58, y0 + 44, 1.1), "madeira", 0.5)
-        # Fungos crescendo na madeira úmida.
-        for (cx, cy) in ((x0 + 12, y0 + 60), (x0 + 40, y0 + 70), (x0 + 22, y0 + 34),
-                         (x0 + 50, y0 + 58)):
-            colar_fungos(img, cx, cy, semente + cx)
     musgo_por_cima(img, 0.55, semente + 5)
     img.contornar()
     return img, x0 + larg // 2, y0 + alt
 
 
-def colar_fungos(img, cx, cy, semente):
-    """Tufo de cogumelos pequenos brilhantes: chapéu claro, borda escura."""
-    rng = np.random.default_rng(semente)
-    for _ in range(3):
-        x = cx + rng.integers(-4, 5)
-        y = cy + rng.integers(-2, 3)
-        r = rng.integers(1, 3)
-        img.pintar(img.ret(x, y, x + 1, y + 2), "fungo", 0.45)
-        chapeu = img.elipse(x + 0.5, y, r + 0.6, r * 0.7 + 0.3)
-        img.pintar(chapeu, "fungo", 0.75)
-        img.cor(img.ret(x, y - 1, x + 1, y), RAMPAS["fungo"][5])
+def colar_arandela(img, cx, cy):
+    """Luminária de emergência de parede, a de dois faróis redondos em cima
+    de uma caixa (a bateria). Caixa de metal, faróis com a lâmpada acesa
+    (miolo claro) e um fio descendo pela parede. (cx, cy) é o meio da caixa."""
+    caixa = img.ret(cx - 5, cy - 2, cx + 5, cy + 3)
+    img.pintar(caixa, "metal", 0.5 + 0.2 * (img.Y == cy - 2))
+    img.cor(img.ret(cx - 3, cy + 1, cx - 1, cy + 2), RAMPAS["lampada"][2])   # LED de carga
+    for lado in (-1, 1):
+        fx = cx + 3 * lado
+        farol = img.elipse(fx + 0.5, cy - 4, 2.2, 2.0)
+        img.pintar(farol, "metal", 0.35)
+        img.pintar(img.elipse(fx + 0.5, cy - 4, 1.4, 1.3), "lampada", 0.85)
+        img.cor(img.ret(fx, cy - 5, fx + 1, cy - 4), RAMPAS["lampada"][5])
+    img.pintar(img.linha(cx + 4, cy + 3, cx + 6, cy + 16, 0.5), "metal", 0.15)
 
 
 def estante_caida():
@@ -1165,17 +1159,21 @@ def entulho():
     return img, 23, 24
 
 
-def fungo():
-    """Tufo de fungos bioluminescentes no chão. O brilho de verdade vem de
-    uma PointLight2D fria no Godot; aqui só o desenho."""
-    img = Imagem(16, 12)
-    for (x, y, r, a) in ((4, 8, 2, 5), (9, 6, 3, 7), (12, 9, 1.5, 3)):
-        img.pintar(img.ret(x, y, x + 1, 11), "fungo", 0.35)
-        chapeu = img.elipse(x + 0.5, y, r + 0.5, r * 0.6 + 0.4)
-        img.pintar(chapeu, "fungo", 0.7)
-        img.cor(img.ret(x, y - 1, x + 1, y), RAMPAS["fungo"][5])
-    img.contornar(RAMPAS["fungo"][0])
-    return img, 8, 11
+def lampada():
+    """Lampião de emergência a pilha, deixado no chão: base de plástico
+    escuro, a cúpula de vidro com a lâmpada acesa (miolo claro, borda
+    âmbar) e a alça de arame em cima. O brilho de verdade vem de uma
+    PointLight2D quente no Godot (cenas/cenario/luzes/luz_lampada.tscn)."""
+    img = Imagem(11, 16)
+    X, Y = img.X, img.Y
+    img.pintar(img.ret(1, 11, 10, 15), "metal", 0.25 + 0.2 * (Y == 11))        # base
+    img.pintar(img.ret(2, 4, 9, 11), "lampada", 0.55 + 0.35 * (1 - np.abs(X - 5) / 4))
+    img.pintar(img.ret(4, 6, 7, 9), "lampada", 1.0)                           # a lâmpada
+    img.pintar(img.ret(1, 3, 10, 4), "metal", 0.4)                            # tampa
+    alca = img.caminho([(2, 3), (3, 0.5), (8, 0.5), (9, 3)], 0.5)
+    img.pintar(alca, "metal", 0.3)
+    img.contornar()
+    return img, 5, 14
 
 
 # ---------------------------------------------------------------------------
@@ -1251,7 +1249,7 @@ FUNCOES_OBJETOS = {
     "livros": livros,
     "mesa_leitura": mesa_leitura,
     "carrinho": carrinho,
-    "fungo": fungo,
+    "lampada": lampada,
 }
 
 
