@@ -1,7 +1,7 @@
-# História — A revelação central (proposta)
+# História — A revelação central
 
-> **Status:** Proposta, ainda **não aprovada** pelo grupo.  
-> Enquanto não entrar em [`../decisoes.md`](../decisoes.md), vale a premissa oficial: a fenda puxa pessoas de momentos aleatórios.
+> **Status:** Aprovada em 2026-09-29 (ver [`../decisoes.md`](../decisoes.md)).  
+> A premissa oficial ("a fenda puxa pessoas de momentos aleatórios") continua sendo **o que o jogador acredita** até a revelação, no fim do jogo.
 
 ---
 
@@ -36,7 +36,8 @@ A Âncora foi criada em 3026 por cientistas do futuro, deu errado e virou um "as
 - Os sonhos de Gabriel não são só memórias: são **ciclos anteriores que falharam**.
 - Toda vez que Gabriel morre ou dorme, a Âncora reinicia um micro-loop. Isso casa com a mecânica de **dormir é salvar** ([`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md)).
 - Os bilhetes dos antecessores foram deixados por pessoas que **tentaram salvar Gabriel em ciclos anteriores**, ou que eram versões alteradas do próprio processo.
-- As gravações do Valdir no rádio também estão em loop. Ver [`../personagens/antecessores.md`](../personagens/antecessores.md).
+- As gravações do Valdir no rádio também estão em loop.
+- **Clarice é a única que lembra dos loops.** Ela grava tudo no sistema da Âncora, a única coisa que o reinício não apaga, e relê os registros a cada ciclo. Gabriel esquece; ela não. Ver [`../personagens/antecessores.md`](../personagens/antecessores.md).
 
 ## 4. Como preparar a revelação: os bilhetes de "G."
 
@@ -49,9 +50,32 @@ Ao longo do jogo, Gabriel acha **bilhetes assinados só com "G."**, escritos em 
 
 ---
 
-## 5. Pontos a resolver antes de aprovar
+## 5. Os finais
 
-- **Conflito com a premissa oficial** ("a fenda encosta em momentos aleatórios"). A revelação precisa ser uma virada no fim, e a premissa oficial continua sendo o que o jogador acredita até lá.
+Fechar a fenda devolve cada pessoa ao seu tempo. O que o jogador descobriu decide se Gabriel consegue fazer mais que isso, como o GDD prevê ("o que o jogador descobriu muda as opções disponíveis no final").
+
+**Condição para o final feliz:** ter a **pesquisa completa do professor** (todas as partes espalhadas pelo campus) e ter **atendido todas as ligações da Clarice**. Tecnicamente, é uma consulta ao dicionário de flags do mundo (GDD, "Estruturas de dados"). Sem isso, o jogo vai para o final triste.
+
+### 5.1 Final feliz — "A mesma madrugada"
+
+- Com a pesquisa do professor, Gabriel entende como recalibrar a Âncora para mandar **duas pessoas para o mesmo tempo**.
+- Na última ligação, ele oferece à Clarice uma escolha: voltar para 1994 ou vir com ele para 2026. Ela escolhe 2026.
+- **Cena final:** madrugada de 2026, na Biblioteca. Os dois acordam na mesma mesa, lembrando de tudo. É a primeira vez que se veem, depois de tantas conversas. Ela pega o celular dele, olha a tela: *"Isso é totalmente surreal."*
+- Gabriel arranca do caderno a página das equações e entrega a ela. Clarice rasga. **A Âncora nunca vai existir**, e o loop acaba.
+- Último plano: os dois saem da Biblioteca ao amanhecer. Ela perdeu 32 anos do mundo, e vai procurar a família. Ele vai junto.
+
+### 5.2 Final triste — "Se alguém ler isso"
+
+- Sem a pesquisa completa, a Âncora só consegue devolver **cada um ao próprio tempo**.
+- **A última ligação:** Clarice sabe o que vai acontecer, porque já viu esse final em outros ciclos. Gabriel vai esquecer tudo; ela vai lembrar. Ela se despede como quem já se despediu antes, e desliga primeiro.
+- Clarice volta para 1994 lembrando de tudo, e decide **nunca procurar o Gabriel**: se os dois se encontrarem, ele pode voltar a escrever o caderno, e o loop recomeça. Ficar longe é o jeito dela de salvá-lo.
+- **Cena final:** madrugada de 2026, na Biblioteca. Gabriel acorda sem lembrar de nada. No acervo, ele acha uma **fita cassete** deixada ali em 1994, com a etiqueta *"Para G. — madrugada de [data] de 2026"*. Na fita, a voz dela pede para ele não dormir na Biblioteca de novo, e termina com *"Se alguém ler isso... não confie nas luzes."*
+- Ele não reconhece a voz, mas chora sem saber por quê. Fecha o caderno, apaga a luz e vai embora. Os dois nunca mais se veem, e é isso que quebra o loop.
+
+---
+
+## 6. Em aberto
+
 - **Por que o professor apaga o nome:** para proteger Gabriel ou para quebrar o loop.
 - **Quantos ciclos já aconteceram**, e se algum detalhe muda entre eles (ex.: um bilhete de "G." que só aparece depois que o jogador morre pela primeira vez).
-- **Como o final muda** conforme o que o jogador descobriu (o GDD prevê finais diferentes).
+- **Onde estão as partes da pesquisa do professor** e quantas são (depende das fases).

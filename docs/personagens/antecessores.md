@@ -18,7 +18,7 @@ Todos foram puxados **no mesmo lugar**: o chão onde hoje fica a Biblioteca (ou 
 |---|---|---|---|---|
 | ~1750 | **Mestre Baltazar** | Naturalista e astrônomo português | Diário e objetos pessoais | Desaparecido |
 | 1978 | **Inspetor Agostinho** | Policial investigando um sumiço na obra do campus | Bilhetes, mapa desenhado à mão; NPC nos sonhos | Morto (envelheceu em 3026) |
-| 1994 | **Clarice** | Aluna de processamento de dados | Bilhetes e disquetes | Morta |
+| 1994 | **Clarice** | Aluna de processamento de dados | Bilhetes, disquetes e **ligações** | **Viva** (o jogador acha que morreu) |
 | 2008 | **Seu Valdir** | Segurança noturno da Unifor | Voz no rádio | Morto há décadas; o rádio repete as gravações dele |
 | 2019 | **O professor** *(nome a definir)* | Professor e pesquisador da Unifor | A definir | A definir |
 | 2026 | **Gabriel** | Estudante (protagonista) | — | — |
@@ -50,13 +50,18 @@ Clarice é a "aluna de 1994" e Valdir é o "segurança de 2008" já decididos em
 
 ### 2.3 Clarice (1994)
 
-- **Tipo:** Registro (bilhetes e disquetes).
-- **História:** Aluna prodígio de processamento de dados. Foi puxada numa madrugada na Biblioteca, tentando rodar um código em disquete num dos terminais de lá.
+- **Tipo:** **NPC vivo**, só por voz (ligações), + bilhetes e disquetes.
+- **História:** Aluna prodígio de processamento de dados. Foi puxada numa madrugada na Biblioteca, tentando rodar um código em disquete num dos terminais de lá. Chegou a 3026 poucos meses antes de Gabriel.
 - **Papel:** foi a primeira a perceber que a ruína tinha **padrões lógicos**: as rotas dos robôs formam um grafo e as patrulhas seguem uma rotina.
-- **Destino:** morreu tentando invadir o terminal da Biblioteca.
+- **O que o jogador acredita:** que ela morreu tentando invadir o terminal da Biblioteca. O bilhete que Gabriel acha lá parece uma despedida.
+- **A verdade:** o bilhete é de um **ciclo anterior**. Ela conseguiu entrar no sistema da Âncora e vive escondida perto do núcleo, num lugar aonde Gabriel não consegue chegar. Usa a rede da Âncora para **ligar para os telefones velhos do campus**.
+- **As ligações:** um telefone toca numa sala (o balcão da Biblioteca, uma sala segura, uma cabine) e Gabriel atende com `E`. As conversas são só por voz: os dois nunca se veem até o fim.
+  - *Ideia de mecânica:* o toque do telefone é um **som no grafo** (BFS). Se Gabriel demora a atender, os robôs ouvem.
+- **A que lembra:** Clarice é a **única que lembra dos loops**. Ela grava tudo no sistema da Âncora, a única coisa que o reinício não apaga. Para Gabriel, ela é uma desconhecida sarcástica que ajuda com senhas. Para ela, é a vigésima vez que o conhece: sabe a piada que ele vai fazer, a música de que ele gosta e como ele morreu em cada ciclo. Aos poucos ela deixa escapar demais: *"Você sempre pergunta isso."*
 - **Item:** disquetes e anotações com as primeiras **senhas dos terminais**.
 - **Voz:** gírias dos anos 90 ("Isso é totalmente surreal", "Se alguém ler isso, não confie nas luzes").
-- **Função mecânica:** senhas e a primeira explicação das rotinas de patrulha (ponte para os conteúdos de computação).
+- **Função mecânica:** guia por voz ao longo do jogo; senhas e explicação das rotinas de patrulha (ponte para os conteúdos de computação). Atender todas as ligações dela é uma das condições do final feliz.
+- **Finais:** os dois finais do jogo são o fim da relação dela com Gabriel: juntos em 2026 ou separados para sempre. Ver [`../historia/revelacao_central.md`](../historia/revelacao_central.md), seção 5.
 
 ### 2.4 Seu Valdir (2008)
 
@@ -91,7 +96,7 @@ Cada época tem um suporte próprio, para o jogador reconhecer o autor antes de 
 |---|---|---|
 | Baltazar | Diário de pergaminho escrito à pena | Papel amarelado, tinta marrom, desenhos a traço |
 | Agostinho | Relatório policial datilografado | Papel timbrado, carimbo, tinta preta falhada |
-| Clarice | Folha de caderno com adesivo + disquete | Pautas azuis, adesivo colorido, disquete com etiqueta escrita à mão |
+| Clarice | Folha de caderno com adesivo + disquete; telefone | Pautas azuis, adesivo colorido, disquete com etiqueta escrita à mão; na ligação, só a voz e o chiado da linha |
 | Valdir | Livro de ocorrências do vigia + rádio | Tabela com data e hora; o rádio com chiado na tela |
 | Professor | A definir | A definir |
 | Zane | Áudio com interface holográfica | Tela ciano com forma de onda e falhas de sinal |
@@ -104,13 +109,14 @@ Cada época tem um suporte próprio, para o jogador reconhecer o autor antes de 
 - **Bilhetes, diários, disquetes e áudios** seguem o modelo de [`../historia/template_documento.md`](../historia/template_documento.md).
 - **Sonhos:** ao dormir numa sala segura, Gabriel conversa com um antecessor no passado ou assiste a um **eco temporal**: os minutos antes daquela pessoa ser puxada (ver [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md)).
 - **Caderno do Gabriel:** toda pista útil (sensor óptico, atalho no grafo, senha, rotina de patrulha) vai para o caderno, e é de lá que o jogador tira a solução dos puzzles no presente.
-- **Na Biblioteca (primeira fase)** só entram três: o nicho e o diário de Baltazar, um bilhete da Clarice e a primeira chamada do Valdir pelo rádio. Os outros ficam para as próximas fases (ver [`../fases/biblioteca.md`](../fases/biblioteca.md)).
+- **Na Biblioteca (primeira fase)** só entram três: o nicho e o diário de Baltazar, o bilhete de despedida da Clarice e a primeira chamada do Valdir pelo rádio. Os outros ficam para as próximas fases (ver [`../fases/biblioteca.md`](../fases/biblioteca.md)).
 
 ---
 
 ## 5. Em aberto
 
 - **Pessoa de 2041:** decidida em 2026-09-26, mas ainda sem ficha. Falta decidir se continua ou se Zane toma o lugar dela.
-- **Terminais e eletricidade:** a senha de Clarice e o rádio de Valdir pedem algo elétrico funcionando, e o GDD diz que "nada elétrico funciona depois de mil anos". Como em 3026 o campus era um centro de pesquisa ativo (e os robôs funcionam), dá para dizer que só os sistemas da Âncora ainda têm energia.
+- **Terminais e eletricidade:** as senhas e as ligações de Clarice e o rádio de Valdir pedem algo elétrico funcionando, e o GDD diz que "nada elétrico funciona depois de mil anos". Como em 3026 o campus era um centro de pesquisa ativo (e os robôs funcionam), dá para dizer que só os sistemas da Âncora ainda têm energia, e que é a Clarice quem leva essa energia até os telefones.
+- **Onde a Clarice está escondida**, e se Gabriel chega perto dela antes do final.
 - **Destino de Zane:** vivo, morto ou preso no colapso circular.
 - **Qual antecessor aparece em qual fase** depois da Biblioteca.
