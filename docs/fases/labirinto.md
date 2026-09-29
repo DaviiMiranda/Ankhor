@@ -70,6 +70,7 @@ A IA (máquina de estados, cone por produto escalar, BFS do som, A\*, Markov) es
 
 - `CanvasModulate` quase preto (0,13): sem luz, só se vê a silhueta das paredes.
 - A lanterna do Gabriel, os 8 lampiões, o farol vermelho da Sentinela, os olhos dos robôs (desenhados **sem luz**, sempre acesos) e a placa verde da saída.
+- **De onde sai a luz:** o feixe da lanterna sai da mão do Gabriel e o farol da Sentinela sai da testa (as posições da testa de cada vista estão no Inspetor do robô, grupo *Testa*). A **sombra**, porém, é calculada a partir de um ponto no chão, e só a textura da luz é deslocada até a mão ou a testa (`offset` da `PointLight2D`). Sem isso, um robô encostado numa parede teria a testa "dentro" da sombra da parede e o farol apagaria.
 - **Sombras:** cada fileira de parede tem um `LightOccluder2D`; a lanterna e o farol projetam sombra. As paredes em si ficam numa camada de luz separada (`light_mask = 2`), acesa por um segundo feixe sem sombra, para o bloco atingido pela luz aparecer.
 
 ---

@@ -11,7 +11,7 @@ O campus em 3026 é quase todo escuro. O pouco que ainda tem energia são os **s
 ## 2. A lanterna
 
 - **O que é:** uma lanterna de mão comum, a pilha. É um gadget: fica num dos 3 espaços e liga/desliga com a tecla do espaço (`1`, `2` ou `3`).
-- **O feixe:** um cone de luz que aponta para onde o Gabriel está andando (a última direção do movimento). Em volta dele fica um brilho fraco, que ilumina o próprio Gabriel.
+- **O feixe:** um cone de luz que sai da **mão** do Gabriel e aponta para onde ele está andando (a última direção do movimento). Em volta da mão fica um brilho fraco, que ilumina o próprio Gabriel.
 - **O dilema (ver vs. ser visto):**
   - **Ligada:** o jogador enxerga corredores, pilhas e bilhetes. Mas **os robôs enxergam o Gabriel de mais longe**: o alcance da visão deles é multiplicado (Sentinela ×1,7, Rastreador ×1,3).
   - **Desligada:** o Gabriel some no escuro; o jogador anda quase às cegas, guiado pelas luminárias e pelo brilho vermelho dos olhos dos robôs.

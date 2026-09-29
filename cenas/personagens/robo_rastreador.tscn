@@ -43,6 +43,9 @@ olhos_frente = ExtResource("6_olhos_frente")
 olhos_costas = ExtResource("7_olhos_costas")
 px_por_quadro = 3.0
 px_por_passo = 10.0
+testa_lado = Vector2(23, -15)
+testa_frente = Vector2(0, -18)
+testa_costas = Vector2(0, -19)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_lado")

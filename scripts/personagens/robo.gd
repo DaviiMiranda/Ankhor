@@ -12,6 +12,7 @@ const ALCANCE_SOM_CORRENDO := 14
 const ALCANCE_SOM_ANDANDO := 5
 const INTERVALO_NOVO_CAMINHO := 0.35
 const DISTANCIA_CHEGOU := 4.0
+const ORIGEM_DA_SOMBRA := Vector2(0, -4)
 
 @export var nome_tipo: String = "Robô"
 
@@ -49,6 +50,11 @@ const DISTANCIA_CHEGOU := 4.0
 @export var px_por_quadro: float = 4.0
 @export var px_por_passo: float = 16.0
 
+@export_group("Testa")
+@export var testa_lado := Vector2(19, -54)
+@export var testa_frente := Vector2(0, -55)
+@export var testa_costas := Vector2(0, -53)
+
 var estado: Estado = Estado.PATRULHA
 var grade: GradeLabirinto
 var direcao_olhar := Vector2.RIGHT
@@ -72,6 +78,7 @@ var _sorteio := RandomNumberGenerator.new()
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var olhos: Sprite2D = $Olhos
 @onready var farol: PointLight2D = get_node_or_null("Farol")
+@onready var luz_olho: PointLight2D = get_node_or_null("LuzOlho")
 @onready var garra: Area2D = $Garra
 @onready var som_passo: AudioStreamPlayer2D = $Passos
 @onready var som_alerta: AudioStreamPlayer2D = $Alerta
@@ -316,8 +323,19 @@ func _animar(delta: float) -> void:
 			som_passo.pitch_scale = _sorteio.randf_range(0.9, 1.1)
 			som_passo.play()
 	_mostrar_quadro()
+	_luzes_na_testa()
+
+
+func _luzes_na_testa() -> void:
+	var testa: Vector2 = {"lado": testa_lado, "frente": testa_frente, "costas": testa_costas}[_vista]
+	if _vista == "lado" and sprite.flip_h:
+		testa.x = -testa.x
+	if luz_olho:
+		luz_olho.position = testa
 	if farol:
+		farol.position = ORIGEM_DA_SOMBRA
 		farol.rotation = direcao_olhar.angle()
+		farol.offset = (testa - farol.position).rotated(-farol.rotation)
 
 
 func _mostrar_quadro() -> void:

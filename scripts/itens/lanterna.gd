@@ -5,6 +5,9 @@ extends Node2D
 @export var energia_nas_paredes: float = 1.0
 @export var energia_halo: float = 0.45
 @export var carga_fraca: float = 0.15
+@export var distancia_da_mao: float = 6.0
+@export var altura_da_mao: float = 2.0
+@export var altura_da_sombra: float = 20.0
 
 var item: Item
 var _estado: Dictionary
@@ -49,7 +52,12 @@ func _process(delta: float) -> void:
 func _apontar() -> void:
 	var dono := get_parent().get_parent() as Gabriel
 	if dono:
+		var mao := Vector2(dono.direcao_olhar.x * distancia_da_mao, altura_da_mao)
+		feixe_paredes.position = mao
+		halo.position = mao
+		feixe.position = Vector2(0, altura_da_sombra)
 		feixe.rotation = dono.direcao_olhar.angle()
+		feixe.offset = (mao - feixe.position).rotated(-feixe.rotation)
 		feixe_paredes.rotation = feixe.rotation
 
 
