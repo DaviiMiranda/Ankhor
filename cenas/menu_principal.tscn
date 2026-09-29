@@ -8,6 +8,14 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/menu/menu_frente.png" id="6_frente"]
 [ext_resource type="AudioStream" path="res://assets/audio/musica/menu/menu_trilha.ogg" id="7_trilha"]
 [ext_resource type="PackedScene" path="res://cenas/cutscenes/seg_acordar.tscn" id="8_novo_jogo"]
+[ext_resource type="Script" path="res://scripts/sistemas/fase.gd" id="f_script"]
+[ext_resource type="Resource" path="res://dados/fases/01_biblioteca.tres" id="f_1"]
+[ext_resource type="Resource" path="res://dados/fases/02_labirinto.tres" id="f_2"]
+[ext_resource type="Resource" path="res://dados/fases/03_blocos_de_aula.tres" id="f_3"]
+[ext_resource type="Resource" path="res://dados/fases/04_convivencia.tres" id="f_4"]
+[ext_resource type="Resource" path="res://dados/fases/05_espaco_cultural.tres" id="f_5"]
+[ext_resource type="Resource" path="res://dados/fases/06_nami.tres" id="f_6"]
+[ext_resource type="Resource" path="res://dados/fases/07_reitoria.tres" id="f_7"]
 
 [sub_resource type="Gradient" id="Gradient_luz"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -47,6 +55,7 @@ script = ExtResource("1_menu")
 energia_luz = 0.4
 oscilacao_luz = 0.1
 cena_novo_jogo = ExtResource("8_novo_jogo")
+fases = Array[ExtResource("f_script")]([ExtResource("f_1"), ExtResource("f_2"), ExtResource("f_3"), ExtResource("f_4"), ExtResource("f_5"), ExtResource("f_6"), ExtResource("f_7")])
 
 [node name="Fundo" type="Node2D" parent="."]
 script = ExtResource("2_camada")
@@ -103,6 +112,10 @@ text = "Novo jogo"
 layout_mode = 2
 text = "Continuar"
 
+[node name="BotaoFases" type="Button" parent="Mesa/Menu"]
+layout_mode = 2
+text = "Fases"
+
 [node name="BotaoOpcoes" type="Button" parent="Mesa/Menu"]
 layout_mode = 2
 text = "Opções"
@@ -110,6 +123,20 @@ text = "Opções"
 [node name="BotaoSair" type="Button" parent="Mesa/Menu"]
 layout_mode = 2
 text = "Sair"
+
+[node name="Fases" type="VBoxContainer" parent="Mesa"]
+offset_left = 94.0
+offset_top = 26.0
+offset_right = 226.0
+offset_bottom = 124.0
+theme = SubResource("Theme_tela")
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Titulo" type="Label" parent="Mesa/Fases"]
+layout_mode = 2
+text = "FASES"
+horizontal_alignment = 1
 
 [node name="EfeitoCRT" type="ColorRect" parent="Mesa"]
 material = SubResource("ShaderMaterial_crt")
