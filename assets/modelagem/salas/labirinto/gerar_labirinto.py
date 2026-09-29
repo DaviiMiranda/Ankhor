@@ -54,8 +54,8 @@
 #   C  checkpoint      P  pilha          L  lâmpada               V  Sentinela   R  Rastreador
 # Todos os marcadores ficam na fileira de CIMA da salinha: a de baixo fica
 # atrás do topo da parede de baixo (ver "Por que corredores de 2 blocos").
-# Os checkpoints ficam a 40% e 75% do caminho mais curto do início à saída
-# (calculado por BFS no grafo lógico). Os robôs nascem longe do início; as
+# Os checkpoints (se houver: ver CHECKPOINTS) ficam em frações do caminho
+# mais curto do início à saída (calculado por BFS no grafo lógico). Os robôs nascem longe do início; as
 # pilhas ficam em becos sem saída; as lâmpadas, em cruzamentos.
 
 import importlib.util
@@ -83,6 +83,10 @@ BLOCO = 32
 ALTURA_PAREDE = 40
 SEMENTE = 3026
 FRACAO_CICLOS = 0.18
+# Onde pôr checkpoints, em fração do caminho mais curto até a saída (ex.:
+# (0.40, 0.75)). Vazio por enquanto: a fase ainda é pequena e morrer
+# recomeça do início.
+CHECKPOINTS = ()
 
 VERDE = bib.hexa("#0c2014", "#14432a", "#1f7a46", "#3fbf6e", "#9cf2b4", "#e4ffe9")
 VERMELHO = bib.hexa("#1e0a0a", "#4a1212", "#7e1c1a", "#b7302a")
@@ -181,7 +185,7 @@ def montar_mapa(rng):
     grade[0][3 * fim[0] + 1] = "D"
     grade[0][3 * fim[0] + 2] = "D"
     marcar(fim, "S")
-    for fracao in (0.40, 0.75):
+    for fracao in CHECKPOINTS:
         marcar(caminho[int(len(caminho) * fracao)], "C", 2, 1)
 
     longe = sorted(dist, key=lambda c: -dist[c])
