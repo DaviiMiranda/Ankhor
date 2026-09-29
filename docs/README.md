@@ -36,6 +36,7 @@ docs/
 │   ├── movimentacao_e_terreno.md  # Andar, correr, estamina, ruído e tipos de superfícies
 │   ├── furtividade_e_esconderijos.md # Esconderijos, microgames de tensão e distrações
 │   ├── iluminacao_e_fungos.md     # Pote de fungos, dilema luz/perigo e cápsulas de clarão
+│   ├── registros_e_caderno.md     # Documentos dos antecessores, rádio do Valdir e o Caderno do Gabriel
 │   └── sono_e_sonhos.md           # Salas seguras, mecânica de save e investigação no passado
 │
 ├── computacao/                    # Requisitos da disciplina de Computação Gráfica / CC

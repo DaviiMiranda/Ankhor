@@ -34,4 +34,5 @@ graph TD
 - **[`furtividade_e_esconderijos.md`](furtividade_e_esconderijos.md):** Tipos de esconderijos (armários, cabines, raízes), microgames de tensão (respiração, imobilidade) e distrações.
 - **[`iluminacao_e_fungos.md`](iluminacao_e_fungos.md):** Gestão de iluminação com pote de fungos, decaimento biológico e cápsulas de clarão atordoadoras.
 - **[`itens_e_inventario.md`](itens_e_inventario.md):** Pegar, guardar, equipar e usar itens: inventário em grade (matriz), espaços de gadget e o pote de fungos.
+- **[`registros_e_caderno.md`](registros_e_caderno.md):** Ler os documentos dos antecessores, as transmissões de rádio do Valdir e o Caderno do Gabriel (tecla N).
 - **[`sono_e_sonhos.md`](sono_e_sonhos.md):** Arquitetura do sistema de save game e jogabilidade investigativa nos sonhos.
