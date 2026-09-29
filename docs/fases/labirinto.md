@@ -8,7 +8,7 @@
 
 ## 1. Visão geral
 
-Um labirinto de corredores de concreto no escuro. O Gabriel começa no canto de baixo à esquerda, com uma lanterna no chão ao lado, e precisa chegar à **porta de SAÍDA** (placa verde) no alto à direita, fugindo de três robôs.
+Um labirinto de corredores de concreto no escuro. O Gabriel começa no canto de baixo à esquerda, com uma lanterna no chão ao lado, e precisa chegar à **porta de SAÍDA** (placa verde) no alto à direita, fugindo de três robôs. Não há checkpoint: a fase é curta e morrer recomeça do início.
 
 - **Cena:** `cenas/salas/labirinto.tscn` · **Script:** `scripts/salas/labirinto.gd` (herda de `Sala`)
 - **Mapa:** `dados/labirinto/mapa_labirinto.tres` (texto, uma letra por bloco)
@@ -34,7 +34,7 @@ Legenda do mapa:
 | `.` | chão |
 | `G` | onde o Gabriel começa |
 | `T` | a lanterna (só aparece se ele ainda não tem) |
-| `C` | checkpoint (2: a 40% e a 75% do caminho mais curto até a saída) |
+| `C` | checkpoint (nenhum por enquanto; para pôr, preencha `CHECKPOINTS` no gerador com frações do caminho mais curto, ex.: `(0.40, 0.75)`) |
 | `P` | pilha (3, em becos sem saída) |
 | `L` | lampião de emergência (8, em cruzamentos) |
 | `V` | Sentinela · `R` Rastreador (nascem longe do início) |

@@ -13,6 +13,11 @@ Formato:
 
 ---
 
+## 2026-09-29 — Fonte Ark Pixel e labirinto sem checkpoints
+**Decisão:** a fonte do jogo passa a ser a **Ark Pixel 10** (OFL), nos tamanhos 10 e 20, no lugar da Tiny5, que era pequena demais para ler. As telas com texto foram ajustadas: os papéis dos bilhetes cresceram para 248 × 156 px com 8 linhas por página, a legenda do rádio ficou mais alta e a lista de Fases do menu passou a rolar. Os textos do diário, do bilhete e das anotações foram encurtados um pouco para caber. O **labirinto não tem mais checkpoints**: a fase é pequena, e morrer recomeça do início. O sistema de checkpoint continua pronto para fases maiores.
+**Por quê:** pedido do Davi (a Tiny5 estava ruim de ler; a Ark Pixel foi a mais legível na comparação com Micro 5, Bytesized, Press Start 2P, Kenney Mini, Kenney Pixel e Fusion Pixel).
+**Afeta:** `cenas/interface/tema_jogo.tres`, `assets/fontes/`, `CLAUDE.md`, todas as telas com texto, `gerar_interface.py` (papéis), `dados/documentos/`, `gerar_labirinto.py` e `dados/labirinto/mapa_labirinto.tres`.
+
 ## 2026-09-29 — Fim dos fungos: lanterna a pilha e luzes de emergência
 **Decisão:** saem os fungos bioluminescentes (pote de fungos, colônias, fungos pintados no cenário). A luz passa a ser elétrica: o Gabriel usa uma **lanterna a pilha** (feixe em cone, bateria de 4 min, recarregada com **pilhas** achadas no mapa) e o cenário tem **luminárias de emergência** de parede e **lampiões** no chão, que tremem e piscam. As cápsulas de clarão continuam previstas, como flash descartável.
 **Por quê:** pedido do Davi.

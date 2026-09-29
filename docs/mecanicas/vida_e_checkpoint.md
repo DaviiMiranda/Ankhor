@@ -5,11 +5,12 @@
 - O Gabriel tem **3 corações** (canto de cima à esquerda da tela).
 - **Um toque de robô tira 1 coração.** A tela pisca vermelho, toca a pancada e o Gabriel é empurrado para longe do robô.
 - Depois de levar dano, ele fica **1,5 s invulnerável** (o sprite pisca): dá tempo de fugir. O robô que atacou também para por ~1,3 s antes de voltar a perseguir.
-- **Zerou:** o jogo pausa, aparece *VOCÊ FOI PEGO* e, em 3 s, o jogo volta ao **último checkpoint** com a vida cheia.
+- **Zerou:** o jogo pausa, aparece *VOCÊ FOI PEGO* e, em 3 s, o jogo volta ao **último checkpoint** com a vida cheia (ou ao começo da fase, se não houver checkpoint).
 
 ## 2. Checkpoint
 
-- No labirinto, os checkpoints são **postos de emergência**: um poste com uma caixa de luz. Apagado, a luz é vermelha e fraca.
+- Os checkpoints são **postos de emergência**: um poste com uma caixa de luz. Apagado, a luz é vermelha e fraca.
+- **Por enquanto nenhuma fase tem checkpoint** (o labirinto ainda é pequeno): morrer recomeça a fase. O sistema está pronto para quando as fases crescerem.
 - Passar pelo posto **salva o checkpoint**: a luz fica verde, toca o som de relé com dois bipes, o HUD mostra *Checkpoint salvo* e **os corações voltam a 3**.
 - Só um checkpoint fica ativo por vez (o último por onde o Gabriel passou).
 - **Ao morrer**, a fase é recarregada inteira (robôs voltam ao lugar de origem) e o Gabriel aparece no último posto.
