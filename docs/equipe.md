@@ -10,7 +10,7 @@ Quatro pessoas, quatro papéis. Duas cuidam do **código** e duas são **roteiri
 |---|---|---|---|
 | 1 | **Programador de sistemas e artista** | Sistemas de computação, IA dos inimigos e produção de toda a arte | **Davi Miranda** |
 | 2 | **Programador de jogabilidade** | Tudo que o jogador controla e vê na interface | [preencher] |
-| 3 | **Roteirista e diretor de arte** | Personagens, mundo e a história contada pela imagem: decide *o que* a arte mostra | [preencher] |
+| 3 | **Roteirista e diretor de arte** | Personagens, mundo e a história contada pela imagem: decide *o que* a arte mostra | **Emanuel Melo** |
 | 4 | **Roteirista e designer de fases** | Trama, mistério, textos, e a história contada pelo espaço e pelo som | [preencher] |
 
 **Líder do projeto e revisor principal (code owner):** Davi Miranda, junto com o papel 1. Os PRs do Davi são revisados por outro integrante.
