@@ -7,6 +7,7 @@ signal passo_dado(correndo: bool, agachado: bool)
 @export var fator_profundidade: float = 0.65
 @export var multiplicador_correr: float = 1.8
 @export var multiplicador_agachar: float = 0.5
+@export var forca_empurrao: float = 170.0
 
 @export_group("Sprites")
 @export var sprite_lado: Texture2D
@@ -37,6 +38,8 @@ var agachado := false
 var correndo := false
 
 var vista := "lado"
+var direcao_olhar := Vector2.RIGHT
+var _empurrao := Vector2.ZERO
 var _distancia := 0.0
 var _tempo_parado := 0.0
 var _passos := 0
@@ -49,6 +52,7 @@ func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("jogador")
 	Inventario.mudou.connect(_atualizar_gadgets)
+	Vida.dano_recebido.connect(_ao_receber_dano)
 	_atualizar_gadgets()
 
 
@@ -104,18 +108,30 @@ func _physics_process(delta: float) -> void:
 		velocidade *= multiplicador_correr
 		correndo = true
 
-	velocity = Vector2(direcao.x, direcao.y * fator_profundidade) * velocidade
+	velocity = Vector2(direcao.x, direcao.y * fator_profundidade) * velocidade + _empurrao
+	_empurrao = _empurrao.move_toward(Vector2.ZERO, forca_empurrao * 4.0 * delta)
 	move_and_slide()
 
 	_virar(direcao)
 	_animar(get_real_velocity().length() * delta, delta)
 
 	sprite.scale.y = 0.75 if agachado else 1.0
+	_piscar()
+
+
+func _ao_receber_dano(origem: Vector2) -> void:
+	_empurrao = (global_position - origem).normalized() * forca_empurrao
+
+
+func _piscar() -> void:
+	var apagado := Vida.esta_invulneravel() and int(Time.get_ticks_msec() / 90.0) % 2 == 0
+	sprite.modulate.a = 0.3 if apagado else 1.0
 
 
 func _virar(direcao: Vector2) -> void:
 	if direcao == Vector2.ZERO:
 		return
+	direcao_olhar = direcao.normalized()
 	if direcao.x == 0.0:
 		vista = "frente" if direcao.y > 0.0 else "costas"
 	elif direcao.y > 0.0:

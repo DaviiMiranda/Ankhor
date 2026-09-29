@@ -2,6 +2,7 @@ extends Node
 
 signal mudou
 signal item_pego(item: Item)
+signal aviso(texto: String)
 
 const LINHAS := 3
 const COLUNAS := 4

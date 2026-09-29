@@ -20,6 +20,8 @@ Inventario="*res://scripts/sistemas/inventario.gd"
 Tela="*res://scripts/sistemas/tela.gd"
 Caderno="*res://scripts/sistemas/caderno.gd"
 Radio="*res://scripts/sistemas/radio.gd"
+Vida="*res://scripts/sistemas/vida.gd"
+Checkpoints="*res://scripts/sistemas/checkpoints.gd"
 
 [display]
 
