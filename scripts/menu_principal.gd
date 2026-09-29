@@ -13,6 +13,8 @@ signal opcoes_pedidas
 @onready var luz: PointLight2D = $Mesa/Luz
 @onready var menu: VBoxContainer = $Mesa/Menu
 @onready var lista_fases: VBoxContainer = $Mesa/Fases
+@onready var rolagem_fases: ScrollContainer = $Mesa/Fases/Rolagem
+@onready var botoes_fases: VBoxContainer = $Mesa/Fases/Rolagem/Lista
 @onready var botao_fases: Button = $Mesa/Menu/BotaoFases
 @onready var botao_novo_jogo: Button = $Mesa/Menu/BotaoNovoJogo
 @onready var botao_continuar: Button = $Mesa/Menu/BotaoContinuar
@@ -38,7 +40,7 @@ func _ready() -> void:
 	_montar_lista_fases()
 	lista_fases.hide()
 	_ligar_sons(menu)
-	_ligar_sons(lista_fases)
+	_ligar_sons(botoes_fases)
 	botao_novo_jogo.grab_focus()
 	_ruido.frequency = 0.05
 	set_deferred("_tocar_ao_passar", true)
@@ -64,11 +66,11 @@ func _montar_lista_fases() -> void:
 		botao.text = fase.nome
 		botao.disabled = not fase.pronta()
 		botao.pressed.connect(_jogar_fase.bind(fase))
-		lista_fases.add_child(botao)
+		botoes_fases.add_child(botao)
 	var voltar := Button.new()
 	voltar.text = "Voltar"
 	voltar.pressed.connect(_mostrar_fases.bind(false))
-	lista_fases.add_child(voltar)
+	botoes_fases.add_child(voltar)
 
 
 func _mostrar_fases(mostrar: bool) -> void:
@@ -78,10 +80,11 @@ func _mostrar_fases(mostrar: bool) -> void:
 	if not mostrar:
 		botao_fases.grab_focus()
 	else:
-		for filho in lista_fases.get_children():
+		for filho in botoes_fases.get_children():
 			if filho is Button and not filho.disabled:
 				filho.grab_focus()
 				break
+		rolagem_fases.set_deferred("scroll_vertical", 0)
 	set_deferred("_tocar_ao_passar", true)
 
 

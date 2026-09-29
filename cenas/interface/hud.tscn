@@ -11,7 +11,8 @@ content_margin_bottom = 1.0
 bg_color = Color(0, 0, 0, 0.55)
 
 [sub_resource type="LabelSettings" id="LabelSettings_aviso"]
-font_size = 8
+font_size = 10
+line_spacing = 0.0
 font_color = Color(0.95, 0.88, 0.7, 1)
 
 [node name="Hud" type="CanvasLayer"]
@@ -36,7 +37,7 @@ label_settings = SubResource("LabelSettings_aviso")
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 6.0
-offset_bottom = 17.0
+offset_bottom = 20.0
 grow_horizontal = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_fundo")
 label_settings = SubResource("LabelSettings_aviso")

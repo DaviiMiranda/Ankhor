@@ -14,15 +14,17 @@
 #   assets/sprites/interface/espaco_selecionado.png  o mesmo, com a borda acesa
 #   assets/sprites/interface/painel.png            24 x 24 px: fundo das janelas, em
 #                                                  "9 fatias" (NinePatchRect no Godot)
-#   assets/sprites/interface/papel_<estilo>.png    200 x 156 px: a folha onde se lê um
+#   assets/sprites/interface/papel_<estilo>.png    248 x 156 px: a folha onde se lê um
 #                                                  documento (tela de leitura e caderno)
 #
 # Os papéis não são "9 fatias": cada um é desenhado já no tamanho em que
 # aparece, porque as pautas e o quadriculado precisam cair exatamente
-# embaixo das linhas de texto. A fonte Tiny5 no tamanho 8 tem 9 px de
-# altura e o Godot põe 3 px entre as linhas: uma linha de texto a cada
-# 12 px. O texto começa em y = TOPO_TEXTO, então a pauta da linha i fica em
-# TOPO_TEXTO + 10 + 12 * i (1 px abaixo das letras que descem, como g e p).
+# embaixo das linhas de texto. A fonte Ark Pixel no tamanho 10 tem 14 px de
+# altura (11 acima da linha de base, com espaço para os acentos, e 3 abaixo)
+# e o tema do jogo não põe espaço extra entre as linhas: uma linha de texto
+# a cada 14 px. O texto começa em y = TOPO_TEXTO, então a pauta da linha i
+# fica em TOPO_TEXTO + 13 + 14 * i (na última fileira das letras que
+# descem, como g e p).
 # Se mudar essas medidas aqui, mude também em cenas/interface/tela_documento.tscn.
 #
 # Este script IMPORTA as funções do gerar_biblioteca.py (paleta, pintar com
@@ -177,12 +179,12 @@ ICONES = {
 # Papéis (tela de leitura de documentos e caderno do Gabriel)
 # ---------------------------------------------------------------------------
 
-LARGURA_PAPEL = 200
+LARGURA_PAPEL = 248
 ALTURA_PAPEL = 156
-TOPO_TITULO = 8         # onde começa o título (1 linha)
-TOPO_TEXTO = 24         # onde começa o texto
-PASSO_LINHA = 12        # 9 px de letra + 3 px de espaço entre linhas
-LINHAS_TEXTO = 9        # linhas por página (o resto vai para a próxima)
+TOPO_TITULO = 6         # onde começa o título (1 linha)
+TOPO_TEXTO = 22         # onde começa o texto
+PASSO_LINHA = 14        # altura da linha da fonte Ark Pixel 10
+LINHAS_TEXTO = 8        # linhas por página
 MARGEM_TEXTO = 14       # x onde começa o texto
 
 # Os papéis são as únicas coisas CLARAS do jogo: precisam ser lidos. Por
@@ -199,7 +201,7 @@ TINTA_MARROM = bib.hexa("#3a2210")[0]
 def pautas():
     """Os y das pautas: uma embaixo do título e uma embaixo de cada linha
     de texto."""
-    return [TOPO_TITULO + 10] + [TOPO_TEXTO + 10 + PASSO_LINHA * i for i in range(LINHAS_TEXTO)]
+    return [TOPO_TITULO + 13] + [TOPO_TEXTO + 13 + PASSO_LINHA * i for i in range(LINHAS_TEXTO)]
 
 
 def borda_rasgada(img, forca, semente):
@@ -249,11 +251,11 @@ def papel_pergaminho():
     img.contornar(PERGAMINHO[0])
     # Esboço do robô (tinta marrom, traço de 1 px).
     tinta = np.zeros(folha.shape, dtype=bool)
-    cabeca = img.elipse(26, 142, 9, 7) & ~img.elipse(26, 142, 8, 6)
-    olho = img.elipse(29, 141, 3, 3) & ~img.elipse(29, 141, 2, 2)
-    tinta |= cabeca | olho | img.ret(29, 141, 30, 142)
-    tinta |= img.linha(32, 140, 62, 128) | img.linha(32, 142, 62, 150)
-    tinta |= img.linha(19, 148, 17, 152) | img.linha(33, 148, 35, 152)
+    cabeca = img.elipse(26, 145, 9, 7) & ~img.elipse(26, 145, 8, 6)
+    olho = img.elipse(29, 144, 3, 3) & ~img.elipse(29, 144, 2, 2)
+    tinta |= cabeca | olho | img.ret(29, 144, 30, 145)
+    tinta |= img.linha(32, 143, 62, 137) | img.linha(32, 145, 62, 153)
+    tinta |= img.linha(19, 151, 17, 154) | img.linha(33, 151, 35, 154)
     img.cor(tinta & folha, TINTA_MARROM)
     return img
 
@@ -276,14 +278,15 @@ def papel_caderno_clarice():
     for cy in (30, 78, 126):
         img.apagar(img.elipse(5, cy, 2.5, 2.5))
     # Fita adesiva no alto, meio transparente (tom mais claro e amarelado).
-    fita = img.poligono([(84, 0), (118, 0), (117, 7), (85, 8)])
+    meio = LARGURA_PAPEL // 2
+    fita = img.poligono([(meio - 17, 0), (meio + 17, 0), (meio + 16, 7), (meio - 16, 8)])
     img.pintar(fita, bib.hexa("#d8d0a8", "#e6dfbd", "#f0ead0"), 0.5 + 0.3 * fino)
     # Adesivo de estrela no canto de cima (cor forte: é de 1994).
     estrela = []
     for i in range(10):
         ang = np.pi / 2 + i * np.pi / 5
         r = 7 if i % 2 == 0 else 3
-        estrela.append((184 + r * np.cos(ang), 12 - r * np.sin(ang)))
+        estrela.append((LARGURA_PAPEL - 16 + r * np.cos(ang), 12 - r * np.sin(ang)))
     adesivo = img.poligono(estrela)
     img.pintar(adesivo, bib.hexa("#7a2a55", "#b0417a", "#d9669c", "#f19bc0"), 0.55 + 0.3 * (Y < 11))
     img.contornar(PAPEL_CLARO[0])

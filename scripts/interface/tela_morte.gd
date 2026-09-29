@@ -17,6 +17,9 @@ func _ready() -> void:
 func _ao_morrer() -> void:
 	visible = true
 	get_tree().paused = true
+	var sala := get_tree().current_scene
+	var tem_checkpoint := sala != null and Checkpoints.tem_checkpoint_em(sala.scene_file_path)
+	subtitulo.text = "Voltando ao último checkpoint..." if tem_checkpoint else "Recomeçando a fase..."
 	som.play()
 	fundo.color = Color(0.5, 0.0, 0.0, 0.0)
 	titulo.modulate.a = 0.0

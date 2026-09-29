@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const LINHAS_POR_PAGINA := 9
+const LINHAS_POR_PAGINA := 8
 const PAPEIS := {
 	"pergaminho": {
 		"textura": preload("res://assets/sprites/interface/papel_pergaminho.png"),

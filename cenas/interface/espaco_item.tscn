@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/interface/espaco.png" id="2_moldura"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_numero"]
-font_size = 8
+font_size = 10
+line_spacing = 0.0
 font_color = Color(0.95, 0.88, 0.7, 1)
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(1, 1)
