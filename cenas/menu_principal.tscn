@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/menu/menu_frente.png" id="6_frente"]
 [ext_resource type="AudioStream" path="res://assets/audio/musica/menu/menu_trilha.ogg" id="7_trilha"]
 [ext_resource type="PackedScene" path="res://cenas/cutscenes/seg_acordar.tscn" id="8_novo_jogo"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/menu_passar.wav" id="9_passar"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/menu_clique.wav" id="10_clique"]
 [ext_resource type="Script" path="res://scripts/sistemas/fase.gd" id="f_script"]
 [ext_resource type="Resource" path="res://dados/fases/01_biblioteca.tres" id="f_1"]
 [ext_resource type="Resource" path="res://dados/fases/02_labirinto.tres" id="f_2"]
@@ -167,3 +169,11 @@ centered = false
 stream = ExtResource("7_trilha")
 volume_db = -6.0
 autoplay = true
+
+[node name="SomPassar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_passar")
+volume_db = -4.0
+
+[node name="SomClique" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_clique")
+volume_db = -4.0

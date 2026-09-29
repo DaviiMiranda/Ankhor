@@ -8,6 +8,7 @@ signal opcoes_pedidas
 @export var fases: Array[Fase] = []
 @export var energia_luz: float = 0.9
 @export var oscilacao_luz: float = 0.15
+@export var espera_clique: float = 0.18
 
 @onready var luz: PointLight2D = $Mesa/Luz
 @onready var menu: VBoxContainer = $Mesa/Menu
@@ -18,9 +19,12 @@ signal opcoes_pedidas
 @onready var botao_opcoes: Button = $Mesa/Menu/BotaoOpcoes
 @onready var botao_sair: Button = $Mesa/Menu/BotaoSair
 @onready var musica: AudioStreamPlayer = $Musica
+@onready var som_passar: AudioStreamPlayer = $SomPassar
+@onready var som_clique: AudioStreamPlayer = $SomClique
 
 var _ruido := FastNoiseLite.new()
 var _tempo := 0.0
+var _tocar_ao_passar := false
 
 
 func _ready() -> void:
@@ -33,8 +37,11 @@ func _ready() -> void:
 	botao_continuar.disabled = true
 	_montar_lista_fases()
 	lista_fases.hide()
+	_ligar_sons(menu)
+	_ligar_sons(lista_fases)
 	botao_novo_jogo.grab_focus()
 	_ruido.frequency = 0.05
+	set_deferred("_tocar_ao_passar", true)
 
 	if musica.stream:
 		musica.stream.set("loop", true)
@@ -67,13 +74,37 @@ func _montar_lista_fases() -> void:
 func _mostrar_fases(mostrar: bool) -> void:
 	menu.visible = not mostrar
 	lista_fases.visible = mostrar
+	_tocar_ao_passar = false
 	if not mostrar:
 		botao_fases.grab_focus()
-		return
-	for filho in lista_fases.get_children():
-		if filho is Button and not filho.disabled:
-			filho.grab_focus()
-			return
+	else:
+		for filho in lista_fases.get_children():
+			if filho is Button and not filho.disabled:
+				filho.grab_focus()
+				break
+	set_deferred("_tocar_ao_passar", true)
+
+
+func _ligar_sons(lista: Control) -> void:
+	for filho in lista.get_children():
+		if filho is Button:
+			filho.mouse_entered.connect(_ao_passar_mouse.bind(filho))
+			filho.focus_entered.connect(_ao_focar)
+			filho.pressed.connect(som_clique.play)
+
+
+func _ao_passar_mouse(botao: Button) -> void:
+	if not botao.disabled and not botao.has_focus():
+		botao.grab_focus()
+
+
+func _ao_focar() -> void:
+	if _tocar_ao_passar:
+		som_passar.play()
+
+
+func _esperar_clique() -> void:
+	await get_tree().create_timer(espera_clique).timeout
 
 
 func _comecar_do_zero() -> void:
@@ -86,12 +117,14 @@ func _comecar_do_zero() -> void:
 
 func _jogar_fase(fase: Fase) -> void:
 	_comecar_do_zero()
+	await _esperar_clique()
 	get_tree().change_scene_to_file(fase.cena)
 
 
 func _ao_apertar_novo_jogo() -> void:
 	novo_jogo_pedido.emit()
 	_comecar_do_zero()
+	await _esperar_clique()
 	if cena_novo_jogo:
 		get_tree().change_scene_to_packed(cena_novo_jogo)
 	else:
@@ -108,4 +141,5 @@ func _ao_apertar_opcoes() -> void:
 
 
 func _ao_apertar_sair() -> void:
+	await _esperar_clique()
 	get_tree().quit()
