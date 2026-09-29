@@ -1,0 +1,40 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/saida_fase.gd" id="1_saida"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_area"]
+size = Vector2(56, 24)
+
+[node name="SaidaFase" type="Area2D"]
+script = ExtResource("1_saida")
+
+[node name="Area" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_area")
+
+[node name="Tela" type="CanvasLayer" parent="."]
+layer = 11
+visible = false
+
+[node name="Fundo" type="ColorRect" parent="Tela"]
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Titulo" type="Label" parent="Tela"]
+offset_top = 72.0
+offset_right = 320.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0.55, 1, 0.65, 1)
+theme_override_font_sizes/font_size = 16
+text = "VOCÊ ESCAPOU"
+horizontal_alignment = 1
+
+[node name="Subtitulo" type="Label" parent="Tela/Titulo"]
+layout_mode = 0
+offset_top = 22.0
+offset_right = 320.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0.7, 0.72, 0.7, 1)
+text = "Voltando ao menu..."
+horizontal_alignment = 1
