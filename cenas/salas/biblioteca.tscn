@@ -30,7 +30,6 @@
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="i_pilha"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_morte.tscn" id="i_tela_morte"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_documento.tscn" id="i_tela_documento"]
-[ext_resource type="PackedScene" path="res://cenas/interface/tela_caderno.tscn" id="i_tela_caderno"]
 [ext_resource type="PackedScene" path="res://cenas/interface/legenda_radio.tscn" id="i_legenda_radio"]
 [ext_resource type="PackedScene" path="res://cenas/itens/documento_no_mundo.tscn" id="r_documento"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="r_gatilho"]
@@ -512,8 +511,6 @@ color = Color(0, 0, 0, 1)
 [node name="TelaInventario" parent="." instance=ExtResource("i_inventario")]
 
 [node name="TelaDocumento" parent="." instance=ExtResource("i_tela_documento")]
-
-[node name="TelaCaderno" parent="." instance=ExtResource("i_tela_caderno")]
 
 [node name="LegendaRadio" parent="." instance=ExtResource("i_legenda_radio")]
 

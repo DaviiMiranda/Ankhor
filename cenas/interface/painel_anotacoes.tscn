@@ -1,0 +1,78 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interface/painel_anotacoes.gd" id="1_painel"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/papel_folhear.wav" id="2_papel"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 8
+line_spacing = 0.0
+font_color = Color(0.64, 0.9, 0.85, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_texto"]
+font_size = 8
+line_spacing = 0.0
+font_color = Color(0.82, 0.8, 0.72, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pagina"]
+font_size = 8
+line_spacing = 0.0
+font_color = Color(0.55, 0.56, 0.52, 1)
+
+[node name="PainelAnotacoes" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 304.0
+offset_bottom = 164.0
+mouse_filter = 2
+script = ExtResource("1_painel")
+
+[node name="Lista" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 22.0
+offset_right = 94.0
+offset_bottom = 134.0
+theme_override_constants/separation = 0
+
+[node name="Divisoria" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 23.0
+offset_right = 99.0
+offset_bottom = 140.0
+mouse_filter = 2
+color = Color(0.3, 0.31, 0.3, 1)
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 22.0
+offset_right = 266.0
+offset_bottom = 36.0
+label_settings = SubResource("LabelSettings_titulo")
+text_overrun_behavior = 3
+
+[node name="NumeroPagina" type="Label" parent="."]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 22.0
+offset_right = 294.0
+offset_bottom = 36.0
+label_settings = SubResource("LabelSettings_pagina")
+horizontal_alignment = 2
+
+[node name="Texto" type="Label" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 38.0
+offset_right = 294.0
+offset_bottom = 136.0
+label_settings = SubResource("LabelSettings_texto")
+autowrap_mode = 3
+max_lines_visible = 7
+
+[node name="SomPapel" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_papel")
+volume_db = -6.0

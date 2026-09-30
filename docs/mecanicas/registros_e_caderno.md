@@ -17,7 +17,7 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../personagen
 | `caderno_clarice` | Clarice (1994): folha de fichário, pautas azuis, estrela | azul de caneta |
 | `caderno_gabriel` | O caderno do Gabriel e, no futuro, os bilhetes de "G." | grafite |
 
-- Ao fechar, a **anotação** do documento entra no caderno (uma vez só) e o HUD avisa: *"Anotado no caderno: Baltazar, 1750   [N] abrir"*.
+- Ao fechar, a **anotação** do documento entra no caderno (uma vez só) e o HUD avisa: *"Nova anotação: Baltazar, 1750   [N] ver"*.
 
 ### Ouvir o rádio
 - O rádio portátil do Valdir é um item comum (fica no inventário, não é gadget).
@@ -25,9 +25,11 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../personagen
 - A transmissão **não pausa o jogo**: a fala aparece embaixo, letra por letra, com o chiado do rádio por baixo. Se duas forem pedidas juntas, a segunda espera a primeira acabar.
 - No fim, a anotação da transmissão entra no caderno.
 
-### Caderno
-- `N` abre e fecha o caderno (pausa o jogo). Abre na anotação mais recente, e as setas folheiam.
-- Uma anotação por página: o título é quem deixou a pista, e o texto é o resumo do Gabriel, em tópicos quando for dica de jogo.
+### Caderno (aba Anotações do inventário)
+- As anotações ficam no **inventário**, na aba **ANOTAÇÕES**. `N` abre o inventário direto nela (e fecha, se ela já estiver aberta); `Q` troca entre Itens e Anotações. O jogo pausa enquanto está aberto.
+- À esquerda, a **lista** das anotações, na ordem em que foram achadas. Ao abrir com `N`, a mais recente já vem escolhida. As não lidas têm um ponto na frente (`• Valdir, 2008`), e a aba também mostra o ponto enquanto houver alguma não lida.
+- À direita, o **texto** da anotação escolhida: o título é quem deixou a pista, e o texto é o resumo do Gabriel, em tópicos quando for dica de jogo. Cabem 7 linhas; se passar disso, o texto vira páginas e o canto mostra `1/2`.
+- Setas **cima/baixo** escolhem a anotação; **esquerda/direita** viram a página. Dá para clicar na lista com o mouse.
 
 ---
 
@@ -58,15 +60,15 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../personagen
 | Documento no mapa (`E` para ler) | `cenas/itens/documento_no_mundo.tscn` |
 | Gatilho de transmissão | `cenas/sistemas/gatilho_transmissao.tscn` |
 | Tela de leitura | `cenas/interface/tela_documento.tscn` |
-| Tela do caderno | `cenas/interface/tela_caderno.tscn` |
+| Aba Anotações (dentro da tela do inventário) | `cenas/interface/painel_anotacoes.tscn` |
 | Legenda do rádio | `cenas/interface/legenda_radio.tscn` |
 | Papéis e ícone do rádio (gerados) | `assets/modelagem/interface/gerar_interface.py` |
 | Acampamento, robô, riscos e terminal (gerados) | `assets/modelagem/cenario/gerar_antecessores.py` |
 | Chiado, clique do rádio e folhear (gerados) | `assets/modelagem/audio/gerar_efeitos_registros.py` |
 
-As três telas já estão no `modelo_sala.tscn`: toda sala nova herda.
+A tela de leitura, a legenda e o inventário (com a aba Anotações) já estão no `modelo_sala.tscn`: toda sala nova herda.
 
-**Sinais:** quem está no mapa não conhece as telas. O documento chama `Caderno.ler(documento)`, que emite `leitura_pedida`, e a tela de leitura escuta. O gatilho chama `Radio.transmitir(transmissao)`, que emite `transmissao_pedida`, e a legenda escuta. Quando uma anotação entra, `Caderno` emite `anotado`, e o HUD mostra a mensagem.
+**Sinais:** quem está no mapa não conhece as telas. O documento chama `Caderno.ler(documento)`, que emite `leitura_pedida`, e a tela de leitura escuta. O gatilho chama `Radio.transmitir(transmissao)`, que emite `transmissao_pedida`, e a legenda escuta. Quando uma anotação entra, `Caderno` emite `anotado`, e o HUD mostra a mensagem. Quando ela é lida na aba, `Caderno.marcar_lida` emite `mudou`, e a aba apaga o ponto.
 
 ---
 

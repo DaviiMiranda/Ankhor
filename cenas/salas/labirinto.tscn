@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" path="res://cenas/interface/hud.tscn" id="17_hud"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_inventario.tscn" id="18_inventario"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_documento.tscn" id="19_documento"]
-[ext_resource type="PackedScene" path="res://cenas/interface/tela_caderno.tscn" id="20_caderno"]
 [ext_resource type="PackedScene" path="res://cenas/interface/legenda_radio.tscn" id="21_legenda"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_morte.tscn" id="22_morte"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_labirinto.tscn" id="23_musica"]
@@ -89,8 +88,6 @@ color = Color(0, 0, 0, 1)
 [node name="TelaInventario" parent="." instance=ExtResource("18_inventario")]
 
 [node name="TelaDocumento" parent="." instance=ExtResource("19_documento")]
-
-[node name="TelaCaderno" parent="." instance=ExtResource("20_caderno")]
 
 [node name="LegendaRadio" parent="." instance=ExtResource("21_legenda")]
 
