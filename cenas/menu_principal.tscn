@@ -39,7 +39,7 @@ shader = ExtResource("3_crt")
 bg_color = Color(0.35, 0.6, 1, 0.25)
 
 [sub_resource type="Theme" id="Theme_tela"]
-default_font_size = 10
+default_font_size = 8
 Label/constants/line_spacing = 0
 Button/colors/font_color = Color(0.55, 0.75, 1, 1)
 Button/colors/font_disabled_color = Color(0.25, 0.32, 0.42, 1)
@@ -99,7 +99,7 @@ theme_override_constants/separation = 0
 
 [node name="Titulo" type="Label" parent="Mesa/Menu"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "ANKHOR"
 horizontal_alignment = 1
 

@@ -11,7 +11,7 @@ content_margin_bottom = 1.0
 bg_color = Color(0, 0, 0, 0.55)
 
 [sub_resource type="LabelSettings" id="LabelSettings_aviso"]
-font_size = 10
+font_size = 8
 line_spacing = 0.0
 font_color = Color(0.95, 0.88, 0.7, 1)
 
