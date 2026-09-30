@@ -6,5 +6,6 @@ Uma pasta por personagem. Cada pasta tem a ficha `visual.md` e os sprites daquel
 |---|---|
 | `gabriel/` | Gabriel |
 | `vigia/` | O Vigia |
+| `clarice/` | Clarice (1994), no bunker: sentada na estação de trabalho, retratos da caixa de diálogo |
 
 Quem cada personagem é está em `docs/gdd.md` (item 3) e em `docs/roteiro/`. Mudança de aparência que mexe na história passa pelo roteiro e vai para `docs/decisoes.md`.
