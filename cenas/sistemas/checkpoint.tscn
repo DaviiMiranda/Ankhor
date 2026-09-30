@@ -35,3 +35,4 @@ texture_scale = 1.4
 [node name="Som" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_som")
 volume_db = -2.0
+bus = &"Efeitos"

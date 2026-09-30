@@ -38,6 +38,36 @@ shader = ExtResource("3_crt")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_destaque"]
 bg_color = Color(0.35, 0.6, 1, 0.25)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_barra_fundo"]
+content_margin_left = 1.0
+content_margin_top = 0.0
+content_margin_right = 1.0
+content_margin_bottom = 0.0
+bg_color = Color(0.05, 0.12, 0.2, 0.5)
+border_width_left = 1
+border_color = Color(0.18, 0.3, 0.45, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_barra_alca"]
+bg_color = Color(0.45, 0.68, 0.95, 0.8)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_barra_alca_destaque"]
+bg_color = Color(0.8, 0.92, 1, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_barra_alca_pressionada"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
 [sub_resource type="Theme" id="Theme_tela"]
 default_font_size = 8
 Label/constants/line_spacing = 0
@@ -52,6 +82,11 @@ Button/styles/hover = SubResource("StyleBoxFlat_destaque")
 Button/styles/normal = SubResource("StyleBoxEmpty_botao")
 Button/styles/pressed = SubResource("StyleBoxFlat_destaque")
 Label/colors/font_color = Color(0.7, 0.85, 1, 1)
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_barra_alca")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_barra_alca_destaque")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_barra_alca_pressionada")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_barra_fundo")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_barra_fundo")
 
 [node name="MenuPrincipal" type="Node2D"]
 script = ExtResource("1_menu")
@@ -146,12 +181,132 @@ layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 3
+vertical_scroll_mode = 2
 
 [node name="Lista" type="VBoxContainer" parent="Mesa/Fases/Rolagem"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
+
+[node name="Opcoes" type="VBoxContainer" parent="Mesa"]
+visible = false
+offset_left = 94.0
+offset_top = 26.0
+offset_right = 226.0
+offset_bottom = 124.0
+theme = SubResource("Theme_tela")
+theme_override_constants/separation = 0
+
+[node name="Titulo" type="Label" parent="Mesa/Opcoes"]
+layout_mode = 2
+text = "OPÇÕES"
+horizontal_alignment = 1
+
+[node name="Rolagem" type="ScrollContainer" parent="Mesa/Opcoes"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Lista" type="VBoxContainer" parent="Mesa/Opcoes/Rolagem"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="BotaoTelaCheia" type="Button" parent="Mesa/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Tela cheia: Sim"
+
+[node name="BotaoEfeitoCrt" type="Button" parent="Mesa/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Efeito CRT: Sim"
+
+[node name="BotaoVolumeMaster" type="Button" parent="Mesa/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Volume geral: 100%"
+
+[node name="BotaoVolumeMusica" type="Button" parent="Mesa/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Música: 100%"
+
+[node name="BotaoVolumeSfx" type="Button" parent="Mesa/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Efeitos: 100%"
+
+[node name="BotaoControles" type="Button" parent="Mesa/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Ver controles"
+
+[node name="BotaoVoltarOpcoes" type="Button" parent="Mesa/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Voltar"
+
+[node name="Controles" type="VBoxContainer" parent="Mesa"]
+visible = false
+offset_left = 94.0
+offset_top = 26.0
+offset_right = 226.0
+offset_bottom = 124.0
+theme = SubResource("Theme_tela")
+theme_override_constants/separation = 0
+
+[node name="Titulo" type="Label" parent="Mesa/Controles"]
+layout_mode = 2
+text = "CONTROLES"
+horizontal_alignment = 1
+
+[node name="Rolagem" type="ScrollContainer" parent="Mesa/Controles"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Lista" type="VBoxContainer" parent="Mesa/Controles/Rolagem"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ControleMover" type="Label" parent="Mesa/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Mover: W A S D / Setas"
+
+[node name="ControleCorrer" type="Label" parent="Mesa/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Correr: Shift"
+
+[node name="ControleAgachar" type="Label" parent="Mesa/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Agachar: Ctrl / C"
+
+[node name="ControleInteragir" type="Label" parent="Mesa/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Interagir: E"
+
+[node name="ControleInventario" type="Label" parent="Mesa/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Inventário: Tab / I"
+
+[node name="ControleCaderno" type="Label" parent="Mesa/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Anotações: N"
+
+[node name="ControleTrocarAba" type="Label" parent="Mesa/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Trocar aba no inventário: Q"
+
+[node name="ControleGadgets" type="Label" parent="Mesa/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Gadgets: 1, 2, 3"
+
+[node name="ControleTela" type="Label" parent="Mesa/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Tela cheia: F11"
+
+[node name="BotaoVoltarControles" type="Button" parent="Mesa/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Voltar"
 
 [node name="EfeitoCRT" type="ColorRect" parent="Mesa"]
 material = SubResource("ShaderMaterial_crt")
@@ -182,11 +337,14 @@ centered = false
 stream = ExtResource("7_trilha")
 volume_db = -6.0
 autoplay = true
+bus = &"Musica"
 
 [node name="SomPassar" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_passar")
 volume_db = -4.0
+bus = &"Efeitos"
 
 [node name="SomClique" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_clique")
 volume_db = -4.0
+bus = &"Efeitos"

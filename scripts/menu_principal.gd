@@ -24,6 +24,23 @@ signal opcoes_pedidas
 @onready var som_passar: AudioStreamPlayer = $SomPassar
 @onready var som_clique: AudioStreamPlayer = $SomClique
 
+@onready var painel_opcoes: VBoxContainer = $Mesa/Opcoes
+@onready var rolagem_opcoes: ScrollContainer = $Mesa/Opcoes/Rolagem
+@onready var botoes_opcoes: VBoxContainer = $Mesa/Opcoes/Rolagem/Lista
+@onready var botao_tela_cheia: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoTelaCheia
+@onready var botao_efeito_crt: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoEfeitoCrt
+@onready var botao_volume_master: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoVolumeMaster
+@onready var botao_volume_musica: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoVolumeMusica
+@onready var botao_volume_sfx: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoVolumeSfx
+@onready var botao_controles: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoControles
+@onready var botao_voltar_opcoes: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoVoltarOpcoes
+
+@onready var painel_controles: VBoxContainer = $Mesa/Controles
+@onready var rolagem_controles: ScrollContainer = $Mesa/Controles/Rolagem
+@onready var botoes_controles: VBoxContainer = $Mesa/Controles/Rolagem/Lista
+@onready var botao_voltar_controles: Button = $Mesa/Controles/Rolagem/Lista/BotaoVoltarControles
+@onready var efeito_crt_rect: ColorRect = $Mesa/EfeitoCRT
+
 var _ruido := FastNoiseLite.new()
 var _tempo := 0.0
 var _tocar_ao_passar := false
@@ -36,11 +53,39 @@ func _ready() -> void:
 	botao_opcoes.pressed.connect(_ao_apertar_opcoes)
 	botao_sair.pressed.connect(_ao_apertar_sair)
 
+	botao_voltar_opcoes.pressed.connect(_mostrar_opcoes.bind(false))
+	botao_controles.pressed.connect(_mostrar_controles.bind(true))
+	botao_voltar_controles.pressed.connect(_mostrar_controles.bind(false))
+
+	botao_tela_cheia.pressed.connect(_ao_alternar_tela_cheia)
+	botao_efeito_crt.pressed.connect(_ao_alternar_efeito_crt)
+
+	botao_volume_master.pressed.connect(_ao_clicar_volume.bind("master"))
+	botao_volume_musica.pressed.connect(_ao_clicar_volume.bind("musica"))
+	botao_volume_sfx.pressed.connect(_ao_clicar_volume.bind("efeitos"))
+
+	botao_volume_master.gui_input.connect(_ao_input_volume.bind("master"))
+	botao_volume_musica.gui_input.connect(_ao_input_volume.bind("musica"))
+	botao_volume_sfx.gui_input.connect(_ao_input_volume.bind("efeitos"))
+
 	botao_continuar.disabled = true
 	_montar_lista_fases()
 	lista_fases.hide()
+	painel_opcoes.hide()
+	painel_controles.hide()
+
 	_ligar_sons(menu)
 	_ligar_sons(botoes_fases)
+	_ligar_sons(botoes_opcoes)
+	_ligar_sons(botoes_controles)
+
+	Tela.modo_alterado.connect(func(_tc: bool) -> void: _atualizar_textos_opcoes())
+	Configuracoes.mudou.connect(_ao_mudar_configuracoes)
+	_ao_mudar_configuracoes()
+
+	for rolagem in [rolagem_fases, rolagem_opcoes, rolagem_controles]:
+		rolagem.get_v_scroll_bar().custom_minimum_size.x = 4.0
+
 	botao_novo_jogo.grab_focus()
 	_ruido.frequency = 0.05
 	set_deferred("_tocar_ao_passar", true)
@@ -55,7 +100,15 @@ func _process(delta: float) -> void:
 
 
 func _unhandled_input(evento: InputEvent) -> void:
-	if lista_fases.visible and evento.is_action_pressed("ui_cancel"):
+	if not evento.is_action_pressed("ui_cancel"):
+		return
+	if painel_controles.visible:
+		_mostrar_controles(false)
+		get_viewport().set_input_as_handled()
+	elif painel_opcoes.visible:
+		_mostrar_opcoes(false)
+		get_viewport().set_input_as_handled()
+	elif lista_fases.visible:
 		_mostrar_fases(false)
 		get_viewport().set_input_as_handled()
 
@@ -86,6 +139,83 @@ func _mostrar_fases(mostrar: bool) -> void:
 				break
 		rolagem_fases.set_deferred("scroll_vertical", 0)
 	set_deferred("_tocar_ao_passar", true)
+
+
+func _mostrar_opcoes(mostrar: bool) -> void:
+	menu.visible = not mostrar
+	painel_opcoes.visible = mostrar
+	_tocar_ao_passar = false
+	if not mostrar:
+		botao_opcoes.grab_focus()
+	else:
+		_atualizar_textos_opcoes()
+		botao_tela_cheia.grab_focus()
+		rolagem_opcoes.set_deferred("scroll_vertical", 0)
+	set_deferred("_tocar_ao_passar", true)
+
+
+func _mostrar_controles(mostrar: bool) -> void:
+	painel_opcoes.visible = not mostrar
+	painel_controles.visible = mostrar
+	_tocar_ao_passar = false
+	if not mostrar:
+		botao_controles.grab_focus()
+	else:
+		botao_voltar_controles.grab_focus()
+		rolagem_controles.set_deferred("scroll_vertical", 0)
+	set_deferred("_tocar_ao_passar", true)
+
+
+func _ao_mudar_configuracoes() -> void:
+	efeito_crt_rect.visible = Configuracoes.efeito_crt
+	_atualizar_textos_opcoes()
+
+
+func _ao_alternar_tela_cheia() -> void:
+	Tela.alternar()
+	_atualizar_textos_opcoes()
+
+
+func _ao_alternar_efeito_crt() -> void:
+	Configuracoes.efeito_crt = not Configuracoes.efeito_crt
+
+
+func _ao_clicar_volume(tipo: String) -> void:
+	var prop := "volume_" + tipo
+	var atual: float = Configuracoes.get(prop)
+	var novo: float = fposmod(roundf(atual * 4.0) + 1.0, 5.0) / 4.0
+	Configuracoes.set(prop, novo)
+
+
+func _ao_input_volume(evento: InputEvent, tipo: String) -> void:
+	if not evento.is_pressed() or evento.is_echo():
+		return
+	var passo := 0.0
+	if evento.is_action_pressed("ui_left") or evento.is_action_pressed("mover_esquerda"):
+		passo = -0.1
+	elif evento.is_action_pressed("ui_right") or evento.is_action_pressed("mover_direita"):
+		passo = 0.1
+	if passo != 0.0:
+		var prop := "volume_" + tipo
+		var atual: float = Configuracoes.get(prop)
+		var novo := clampf(snappedf(atual + passo, 0.05), 0.0, 1.0)
+		Configuracoes.set(prop, novo)
+		som_passar.play()
+		get_viewport().set_input_as_handled()
+
+
+func _texto_volume(rotulo: String, valor: float) -> String:
+	if valor <= 0.001:
+		return "%s: Mudo" % rotulo
+	return "%s: %d%%" % [rotulo, roundi(valor * 100.0)]
+
+
+func _atualizar_textos_opcoes() -> void:
+	botao_tela_cheia.text = "Tela cheia: %s" % ("Sim" if Tela.eh_tela_cheia() else "Não")
+	botao_efeito_crt.text = "Efeito CRT: %s" % ("Sim" if Configuracoes.efeito_crt else "Não")
+	botao_volume_master.text = _texto_volume("Volume geral", Configuracoes.volume_master)
+	botao_volume_musica.text = _texto_volume("Música", Configuracoes.volume_musica)
+	botao_volume_sfx.text = _texto_volume("Efeitos", Configuracoes.volume_efeitos)
 
 
 func _ligar_sons(lista: Control) -> void:
@@ -140,7 +270,7 @@ func _ao_apertar_continuar() -> void:
 
 func _ao_apertar_opcoes() -> void:
 	opcoes_pedidas.emit()
-	print("Menu: tela de opções ainda não existe.")
+	_mostrar_opcoes(true)
 
 
 func _ao_apertar_sair() -> void:

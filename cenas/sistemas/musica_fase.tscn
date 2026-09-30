@@ -6,4 +6,5 @@
 [node name="MusicaFase" type="AudioStreamPlayer"]
 stream = ExtResource("2_trilha")
 volume_db = -60.0
+bus = &"Musica"
 script = ExtResource("1_musica")
