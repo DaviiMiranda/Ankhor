@@ -52,9 +52,12 @@ visible_characters_behavior = 1
 [node name="Chiado" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_chiado")
 volume_db = -22.0
+bus = &"Efeitos"
 
 [node name="Clique" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_clique")
 volume_db = -10.0
+bus = &"Efeitos"
 
 [node name="Voz" type="AudioStreamPlayer" parent="."]
+bus = &"Efeitos"

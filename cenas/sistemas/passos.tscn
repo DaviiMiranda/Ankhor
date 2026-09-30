@@ -22,5 +22,6 @@ stream_5/stream = ExtResource("7_p06")
 [node name="Passos" type="AudioStreamPlayer2D"]
 stream = SubResource("AudioStreamRandomizer_passos")
 volume_db = -10.0
+bus = &"Efeitos"
 max_polyphony = 3
 script = ExtResource("1_passos")

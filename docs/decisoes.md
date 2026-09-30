@@ -13,6 +13,11 @@ Formato:
 
 ---
 
+## 2026-09-30 — Tela de Opções no menu e canais de áudio
+**Decisão:** o botão **Opções** do menu abre uma tela com tela cheia, efeito CRT, **volume geral**, **música** e **efeitos**, e um atalho para a lista de **Controles**. As escolhas ficam salvas em `user://configuracoes.cfg` pelo autoload `Configuracoes`. O áudio passa a ter dois canais (*buses*) além do Master: **Musica** (trilhas do menu, das fases e do labirinto) e **Efeitos** (todo o resto). Todo som novo precisa escolher um dos dois no Inspetor (`Bus`), senão ignora o volume da tela de Opções.
+**Por quê:** pedido do Davi, para o jogador ajustar som e vídeo sem sair do jogo.
+**Afeta:** `cenas/menu_principal.tscn`, `scripts/menu_principal.gd`, `scripts/sistemas/configuracoes.gd` (novo), `scripts/sistemas/tela.gd`, `default_bus_layout.tres` (novo), `project.godot` (autoload) e todas as cenas com `AudioStreamPlayer`.
+
 ## 2026-09-30 — Destaque nos coletáveis e anotações dentro do inventário
 **Decisão:** todo item coletável no cenário (itens no chão e pilhas) ganha um **destaque**: uma luz fraca que pulsa em volta e um brilho de pixel que pisca em cima do desenho, visível no escuro. O **Caderno do Gabriel** deixa de ser uma tela separada e vira a aba **ANOTAÇÕES** do inventário, com um cabeçalho de abas **ITENS | ANOTAÇÕES**. `Tab`/`I` abrem em Itens, `N` abre em Anotações e `Q` troca de aba. As anotações ficam numa lista, com um ponto nas não lidas, e o texto da escolhida aparece ao lado, em páginas de 7 linhas.
 **Por quê:** pedido do Davi: os itens sumiam no escuro, e ter itens e anotações numa tela só, organizada por abas, deixa tudo mais fácil de achar.
