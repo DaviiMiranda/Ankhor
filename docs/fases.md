@@ -4,6 +4,7 @@ Tudo que é específico de cada fase e área do **Ankhor** fica documentado na p
 
 > [!NOTE]
 > - **Primeira Fase (Confirmada):** [`fases/biblioteca.md`](fases/biblioteca.md).
+> - **Bloco de salas** (em desenvolvimento): [`fases/bloco_de_salas.md`](fases/bloco_de_salas.md). Dois corredores e 12 salas de aula.
 > - Para entender o funcionamento do design de fases, consulte [`fases/README.md`](fases/README.md).
 > - Para criar uma nova fase/área documentada, utilize o modelo [`fases/template_fase.md`](fases/template_fase.md).
 > - **Sala de teste:** `cenas/salas/sala_teste.tscn`, uma sala vazia com os itens e gadgets prontos (lanterna, rádio, pilhas, cápsulas de clarão, pedras e notebook) para testar mecânicas novas. Aparece como **Teste**, em primeiro, no menu Fases só quando o jogo roda pelo editor do Godot; no jogo exportado ela some. Gadget novo entra nela primeiro. A porta no fim da sala leva à **área dos robôs** (`cenas/salas/labirinto_teste.tscn`), um labirinto pequeno com um Sentinela e um Rastreador, montado pelo mapa `dados/labirinto/mapa_teste.tres` (mesmas letras do labirinto: `V` Sentinela, `R` Rastreador, `P` pilha, `C` checkpoint, `L` lâmpada). Na área dos robôs há uma segunda porta, **trancada**, para testar o hack do notebook; ela também volta para a sala de teste.

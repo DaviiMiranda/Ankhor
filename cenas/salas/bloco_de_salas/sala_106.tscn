@@ -1,0 +1,114 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="r3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_rachada.tscn" id="r4"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_desabada.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lousa.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_janela.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_mato.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_areia.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/arvore.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira_caida.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_sol.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/efeitos/raios_de_sol.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/efeitos/poeira.tscn" id="r19"]
+
+[sub_resource type="StyleBoxFlat" id="Placa"]
+bg_color = Color(0.12, 0.13, 0.14, 1)
+
+[node name="Sala106" instance=ExtResource("r1")]
+id = "sala_106"
+largura = 480
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(80, 0)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(240, 0)
+
+[node name="Parede05" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(320, 0)
+
+[node name="Parede06" parent="Paredes" instance=ExtResource("r7")]
+position = Vector2(400, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r8")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("r8")]
+position = Vector2(464, 0)
+
+[node name="Chao1" parent="Chao" instance=ExtResource("r9")]
+position = Vector2(0, 0)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(128, 0)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(256, 0)
+
+[node name="Chao4" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(384, 0)
+
+[node name="Arvore1" parent="Objetos" instance=ExtResource("r12")]
+position = Vector2(240, 140)
+
+[node name="Entulho1" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(160, 128)
+espelhado = true
+
+[node name="Entulho2" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(320, 132)
+
+[node name="Entulho3" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(290, 172)
+espelhado = true
+
+[node name="CarteiraCaida1" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(190, 164)
+
+[node name="CarteiraCaida2" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(380, 150)
+espelhado = true
+
+[node name="Carteira1" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(400, 136)
+
+[node name="Carteira2" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(420, 166)
+espelhado = true
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r16")]
+position = Vector2(240, 118)
+
+[node name="Luz2" parent="Luzes" instance=ExtResource("r16")]
+position = Vector2(250, 150)
+energy = 0.6
+
+[node name="Luz3" parent="Luzes" instance=ExtResource("r17")]
+position = Vector2(440, 50)
+
+[node name="RaiosDeSol1" parent="Efeitos" instance=ExtResource("r18")]
+position = Vector2(120, 0)
+
+[node name="Poeira2" parent="Efeitos" instance=ExtResource("r19")]
+position = Vector2(250, 100)
+
+[node name="Porta_sala_106" parent="." instance=ExtResource("r2")]
+position = Vector2(41, 124)
+id = "sala_106"
+cena_destino = "res://cenas/salas/bloco_de_salas/corredor_terreo.tscn"
+porta_destino = "bloco_106"

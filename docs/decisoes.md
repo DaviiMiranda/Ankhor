@@ -13,6 +13,11 @@ Formato:
 
 ---
 
+## 2026-09-30 — Nova fase: Bloco de salas
+**Decisão:** começou a fase **Bloco de salas** (os "Blocos de aula" do GDD): um bloco de dois andares, cada andar um corredor com **6 salas de aula** (101 a 106 no térreo, 201 a 206 no 1º andar), ligados por uma escada. O térreo está meio enterrado na areia e escuro; o 1º andar tem o teto aberto, sol e mato. Cada sala tem uma ideia própria para não ficar repetitivo (sala comum, invadida pela duna, barricada, laboratório, sala escura com robô desmontado, árvore, auditório, sala dos professores, chão que cedeu, sala "intacta demais", depósito). As lousas têm os tracinhos contados do GDD. Entra no menu Fases no lugar de "Blocos de aula".
+**Por quê:** pedido do Davi.
+**Afeta:** `cenas/salas/bloco_de_salas/` (14 cenas novas), kit de cenário (`gerar_kit.py`: lousa, quadro de avisos, escadas, carteiras), `dados/fases/03_blocos_de_aula.tres`, `docs/fases/bloco_de_salas.md`. **Em aberto:** objetivo e história, robôs, ligação com a porta de saída da Biblioteca.
+
 ## 2026-09-30 — Gadgets em teste: cápsula de clarão, pedra e notebook
 **Decisão:** os três gadgets sugeridos foram implementados **só na sala de teste**, para o grupo jogar e decidir: cápsula de clarão (paralisa os robôs perto, no máximo 2), pedra (barulho que atrai robôs, no máximo 5) e notebook (hackeia porta trancada ou robô por trás, gasta bateria, deixa o Gabriel parado e visível). Robôs ganharam o estado `ATORDOADO`. Ainda **em aberto:** em que fase cada um aparece (sugestão: clarão e pedra cedo, notebook na fase 3 ou 4), se o notebook usa as mesmas pilhas da lanterna e se cada gadget vem de uma das pessoas que vieram antes do Gabriel.
 **Por quê:** pedido do Davi, para testar as ideias antes de colocar numa fase.

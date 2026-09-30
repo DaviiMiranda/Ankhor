@@ -1,0 +1,285 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lisa.tscn" id="r3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="r4"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_desabada.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_buraco.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_mural.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_rachada.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_janela.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_arandela.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_escada_desce.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_mato.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/arvore.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira_caida.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_caida.tscn" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/livros.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_sol.tscn" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r23"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/efeitos/raios_de_sol.tscn" id="r25"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/efeitos/poeira.tscn" id="r26"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r27"]
+
+[sub_resource type="StyleBoxFlat" id="Placa"]
+bg_color = Color(0.12, 0.13, 0.14, 1)
+
+[node name="CorredorPrimeiroAndar" instance=ExtResource("r1")]
+id = "corredor_primeiro_andar"
+largura = 1280
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(80, 0)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(240, 0)
+
+[node name="Parede05" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(320, 0)
+
+[node name="Parede06" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(400, 0)
+
+[node name="Parede07" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(480, 0)
+
+[node name="Parede08" parent="Paredes" instance=ExtResource("r7")]
+position = Vector2(560, 0)
+
+[node name="Parede09" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(640, 0)
+
+[node name="Parede10" parent="Paredes" instance=ExtResource("r8")]
+position = Vector2(720, 0)
+
+[node name="Parede11" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(800, 0)
+
+[node name="Parede12" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(880, 0)
+
+[node name="Parede13" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(960, 0)
+
+[node name="Parede14" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(1040, 0)
+
+[node name="Parede15" parent="Paredes" instance=ExtResource("r11")]
+position = Vector2(1120, 0)
+
+[node name="Parede16" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(1200, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(1264, 0)
+
+[node name="Placa201" type="Label" parent="Paredes"]
+offset_left = 110.0
+offset_top = 30.0
+offset_right = 132.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "201"
+horizontal_alignment = 1
+
+[node name="Placa202" type="Label" parent="Paredes"]
+offset_left = 270.0
+offset_top = 30.0
+offset_right = 292.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "202"
+horizontal_alignment = 1
+
+[node name="Placa203" type="Label" parent="Paredes"]
+offset_left = 430.0
+offset_top = 30.0
+offset_right = 452.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "203"
+horizontal_alignment = 1
+
+[node name="Placa204" type="Label" parent="Paredes"]
+offset_left = 670.0
+offset_top = 30.0
+offset_right = 692.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "204"
+horizontal_alignment = 1
+
+[node name="Placa205" type="Label" parent="Paredes"]
+offset_left = 830.0
+offset_top = 30.0
+offset_right = 852.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "205"
+horizontal_alignment = 1
+
+[node name="Placa206" type="Label" parent="Paredes"]
+offset_left = 990.0
+offset_top = 30.0
+offset_right = 1012.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "206"
+horizontal_alignment = 1
+
+[node name="Chao1" parent="Chao" instance=ExtResource("r13")]
+position = Vector2(0, 0)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("r13")]
+position = Vector2(128, 0)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(256, 0)
+
+[node name="Chao4" parent="Chao" instance=ExtResource("r13")]
+position = Vector2(384, 0)
+
+[node name="Chao5" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(512, 0)
+
+[node name="Chao6" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(640, 0)
+
+[node name="Chao7" parent="Chao" instance=ExtResource("r13")]
+position = Vector2(768, 0)
+
+[node name="Chao8" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(896, 0)
+
+[node name="Chao9" parent="Chao" instance=ExtResource("r13")]
+position = Vector2(1024, 0)
+
+[node name="Chao10" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(1152, 0)
+
+[node name="Entulho1" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(210, 130)
+
+[node name="Entulho2" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(360, 150)
+espelhado = true
+
+[node name="Arvore1" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(520, 140)
+
+[node name="CarteiraCaida1" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(640, 160)
+
+[node name="Carteira1" parent="Objetos" instance=ExtResource("r18")]
+position = Vector2(680, 146)
+
+[node name="EstanteCaida1" parent="Objetos" instance=ExtResource("r19")]
+position = Vector2(780, 172)
+
+[node name="Lampada1" parent="Objetos" instance=ExtResource("r20")]
+position = Vector2(900, 150)
+
+[node name="CarteiraCaida2" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(990, 134)
+espelhado = true
+
+[node name="Livros1" parent="Objetos" instance=ExtResource("r21")]
+position = Vector2(1060, 168)
+espelhado = true
+
+[node name="Entulho3" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(1230, 132)
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r22")]
+position = Vector2(200, 118)
+
+[node name="Luz2" parent="Luzes" instance=ExtResource("r22")]
+position = Vector2(360, 118)
+
+[node name="Luz3" parent="Luzes" instance=ExtResource("r22")]
+position = Vector2(520, 120)
+energy = 1.0
+
+[node name="Luz4" parent="Luzes" instance=ExtResource("r23")]
+position = Vector2(920, 50)
+
+[node name="Luz5" parent="Luzes" instance=ExtResource("r24")]
+position = Vector2(1080, 58)
+
+[node name="Luz6" parent="Luzes" instance=ExtResource("r24")]
+position = Vector2(900, 142)
+
+[node name="RaiosDeSol1" parent="Efeitos" instance=ExtResource("r25")]
+position = Vector2(120, 0)
+
+[node name="RaiosDeSol2" parent="Efeitos" instance=ExtResource("r25")]
+position = Vector2(420, 0)
+
+[node name="Poeira3" parent="Efeitos" instance=ExtResource("r26")]
+position = Vector2(300, 90)
+
+[node name="Porta_bloco_201" parent="." instance=ExtResource("r2")]
+position = Vector2(121, 124)
+id = "bloco_201"
+cena_destino = "res://cenas/salas/bloco_de_salas/sala_201.tscn"
+porta_destino = "sala_201"
+
+[node name="Porta_bloco_202" parent="." instance=ExtResource("r2")]
+position = Vector2(281, 124)
+id = "bloco_202"
+cena_destino = "res://cenas/salas/bloco_de_salas/sala_202.tscn"
+porta_destino = "sala_202"
+
+[node name="Porta_bloco_203" parent="." instance=ExtResource("r2")]
+position = Vector2(441, 124)
+id = "bloco_203"
+cena_destino = "res://cenas/salas/bloco_de_salas/sala_203.tscn"
+porta_destino = "sala_203"
+
+[node name="Porta_bloco_204" parent="." instance=ExtResource("r2")]
+position = Vector2(681, 124)
+id = "bloco_204"
+cena_destino = "res://cenas/salas/bloco_de_salas/sala_204.tscn"
+porta_destino = "sala_204"
+
+[node name="Porta_bloco_205" parent="." instance=ExtResource("r2")]
+position = Vector2(841, 124)
+id = "bloco_205"
+cena_destino = "res://cenas/salas/bloco_de_salas/sala_205.tscn"
+porta_destino = "sala_205"
+
+[node name="Porta_bloco_206" parent="." instance=ExtResource("r2")]
+position = Vector2(1001, 124)
+id = "bloco_206"
+cena_destino = "res://cenas/salas/bloco_de_salas/sala_206.tscn"
+porta_destino = "sala_206"
+
+[node name="Porta_escada_2" parent="." instance=ExtResource("r2")]
+position = Vector2(1160, 124)
+id = "escada_2"
+cena_destino = "res://cenas/salas/bloco_de_salas/corredor_terreo.tscn"
+porta_destino = "escada_1"
+
+[node name="MusicaFase" parent="." instance=ExtResource("r27")]
