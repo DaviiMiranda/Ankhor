@@ -13,6 +13,11 @@ Formato:
 
 ---
 
+## 2026-09-30 — Biblioteca mais larga: ala leste
+**Decisão:** a Biblioteca cresceu para a direita, de 960 para **1440 px** (4,5 telas de largura; a altura continua 420). A parte nova, depois da coluna onde a sala terminava, é a **ala leste** (sala de periódicos): terceiro buraco no teto com uma árvore nova, mesas, cabines e um segundo acervo no fundo sul. A porta de saída para os Blocos de aula foi para o fim da ala leste.
+**Por quê:** pedido do Davi: a Biblioteca precisa ser maior, e desta vez na horizontal.
+**Afeta:** `gerar_biblioteca.py` (medidas, parede, chão, primeiro plano, buracos), as 4 imagens em `assets/sprites/salas/biblioteca/`, `cenas/salas/biblioteca.tscn` (tamanho, limites, câmera, objetos, luzes, raios de sol) e `docs/fases/biblioteca.md`.
+
 ## 2026-09-30 — Tela de Opções no menu e canais de áudio
 **Decisão:** o botão **Opções** do menu abre uma tela com tela cheia, efeito CRT, **volume geral**, **música** e **efeitos**, e um atalho para a lista de **Controles**. As escolhas ficam salvas em `user://configuracoes.cfg` pelo autoload `Configuracoes`. O áudio passa a ter dois canais (*buses*) além do Master: **Musica** (trilhas do menu, das fases e do labirinto) e **Efeitos** (todo o resto). Todo som novo precisa escolher um dos dois no Inspetor (`Bus`), senão ignora o volume da tela de Opções.
 **Por quê:** pedido do Davi, para o jogador ajustar som e vídeo sem sair do jogo.
