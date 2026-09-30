@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" format=3]
+
+[ext_resource type="FontFile" path="res://assets/fontes/galmuri_7.ttf" id="1_galmuri"]
+
+[resource]
+base_font = ExtResource("1_galmuri")
+spacing_top = 3
+spacing_bottom = 2
