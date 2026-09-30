@@ -44,7 +44,7 @@ Os dois primeiros tipos foram modelados no Blender (`assets/modelagem/personagen
 |---|---|---|
 | Visual | 2,1 m, magra, curvada para a frente, braços que quase arrastam no chão, garras de 3 dedos, cabeça-globo com **um olho** (a lente é o sensor óptico) | Quadrúpede de 0,8 m, corpo de placas e cabos, espinhos nas costas, **três olhos** e **antenas parabólicas** no lugar das orelhas |
 | Sentido forte | Visão: cone de 60°, 170 px; farol vermelho mostra para onde olha | Audição ×1,8; visão curta e larga (80 px, 100°) |
-| Velocidade | lenta (patrulha 22, perseguição 44 px/s) | rápida (30 / 62 px/s) |
+| Velocidade | lenta (patrulha 18, perseguição 36 px/s) | rápida (24 / 50 px/s) |
 | Som | pisada pesada de metal, zumbido, guincho | garras correndo no concreto, zumbido mais agudo, guincho |
 | Cena | `cenas/personagens/robo_sentinela.tscn` | `cenas/personagens/robo_rastreador.tscn` |
 

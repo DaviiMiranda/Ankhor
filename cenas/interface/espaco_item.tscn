@@ -44,6 +44,16 @@ offset_bottom = 18.0
 mouse_filter = 2
 color = Color(0.39, 0.86, 0.79, 1)
 
+[node name="Quantidade" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 19.0
+offset_bottom = 22.0
+label_settings = SubResource("LabelSettings_numero")
+horizontal_alignment = 2
+
 [node name="Numero" type="Label" parent="."]
 layout_mode = 0
 offset_left = 2.0

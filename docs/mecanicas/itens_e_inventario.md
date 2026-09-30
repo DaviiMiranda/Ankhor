@@ -37,7 +37,8 @@ Os três estão na sala de teste (menu Fases → Teste, só pelo editor) e ainda
 | **Pedra** (`pedra`) | Tecla do espaço | Joga uma pedra ~110 px para onde o Gabriel olha (para antes de uma parede). Onde cai, faz barulho: os robôs que ouvem vão investigar | No máximo **5**. Não serve numa perseguição |
 | **Notebook** (`notebook`) | Tecla do espaço, parado perto do alvo (44 px) | Hackeia em 2,5 s: **porta trancada** abre; **robô** fica desligado 8 s. Uma barra em cima do Gabriel mostra o progresso | Gasta 25% da bateria (4 hacks). Durante o hack o Gabriel não se mexe e a tela acesa conta como lanterna para o Sentinela. Levar dano interrompe. Robô **só por trás** |
 
-- **Itens que empilham:** um item com `maximo_unidades` maior que 0 ocupa um espaço só; pegar outro soma 1 até o máximo (cheio, fica no chão com o aviso "no máximo N"). A barrinha do espaço de gadget mostra quantas unidades sobram.
+- **Itens que empilham:** um item com `maximo_unidades` maior que 0 ocupa um espaço só; pegar outro soma 1 até o máximo (cheio, fica no chão com o aviso "no máximo N"). A barrinha do espaço mostra quantas unidades sobram e o número no canto de baixo à direita mostra a quantidade.
+- **Acabou:** quando um gadget chega a zero (unidades, ou bateria da lanterna e do notebook), o ícone fica escuro e aparece um **0 vermelho** no canto do espaço, no HUD e no inventário.
 - **Conteúdo de computação:** o barulho da pedra é a mesma **BFS** do som dos passos (`Robo.ouvir_barulho`); o "só por trás" do notebook é **produto escalar** entre a direção do olhar do robô e a direção até o Gabriel (negativo = atrás). Detalhes em [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md).
 - **Paralisado** é o estado `ATORDOADO` da máquina de estados do robô: não anda, não vê, não ouve, não ataca.
 

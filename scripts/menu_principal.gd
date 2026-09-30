@@ -118,7 +118,7 @@ func _unhandled_input(evento: InputEvent) -> void:
 func _montar_lista_fases() -> void:
 	var lista := fases.duplicate()
 	if OS.has_feature("editor"):
-		lista.append(FASE_TESTE)
+		lista.push_front(FASE_TESTE)
 	for fase in lista:
 		var botao := Button.new()
 		botao.text = fase.nome
