@@ -90,7 +90,7 @@ Clarice é a "aluna de 1994" e Valdir é o "segurança de 2008" já decididos em
 
 ## 3. Aparência dos registros
 
-Cada época tem um suporte próprio, para o jogador reconhecer o autor antes de ler. A fonte do jogo (**Ark Pixel**) só funciona nos tamanhos 10 e 20, então a diferença vem do **papel, da cor e da moldura**, nunca de outra fonte.
+Cada época tem um suporte próprio, para o jogador reconhecer o autor antes de ler. A fonte do jogo (**Galmuri7**) só funciona nos tamanhos 8 e 16, então a diferença vem do **papel, da cor e da moldura**, nunca de outra fonte.
 
 | Personagem | Suporte | Visual |
 |---|---|---|
