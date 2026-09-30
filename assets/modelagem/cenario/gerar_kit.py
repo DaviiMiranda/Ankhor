@@ -13,6 +13,7 @@
 #                        na Biblioteca; os outros objetos saem de lá
 #   chao/<peça>.png      128 x 68 px: um pedaço do chão (a faixa onde se anda)
 #   ceu/ceu.png          320 x 180 px: céu e mata lá fora, repete sem emenda
+#   ceu/ceu_noite.png    o mesmo recorte de mata, à noite: azul-escuro e estrelas
 # Com CATALOGO=1 ele também monta folhas de catálogo, com o nome de cada peça
 # (kit_paredes.png, kit_chao.png, kit_objetos.png), nesta pasta. Com
 # CATALOGO=<pasta>, salva nela. O catálogo NÃO vai para o jogo e não deve ser
@@ -523,6 +524,37 @@ def ceu():
     return img
 
 
+
+NOITE = bib.hexa("#05070d", "#080b15", "#0c1120", "#111a2e", "#18243d", "#223150")
+MATA_NOITE = bib.hexa("#020304", "#04060a", "#070b10", "#0b1117")
+ESTRELA = bib.hexa("#8f9bb8", "#c9d2e8", "#f1f4ff")
+
+
+def ceu_noite():
+    """O céu do ceu(), à noite, para salas escuras (o Bloco de salas). O
+    degradê vai do quase preto lá em cima ao azul-marinho no horizonte, com
+    estrelas sorteadas (poucas, de 1 px, três brilhos) e as mesmas matas,
+    agora em silhueta. Usa rampas próprias: as do cenário são de dia."""
+    img = Imagem(320, ALTURA)
+    x, Y = img.X, img.Y
+    onda = lambda k: 2 * np.pi * k * x / img.w
+    todo = img.ret(0, 0, img.w, img.h)
+    v = 0.1 + 0.8 * (Y / 110) + 0.1 * ruido_ciclico(img.w, img.h, 40, 12, 1)
+    idx = np.clip(np.floor(v * len(NOITE) + img.limiar), 0, len(NOITE) - 1).astype(int)
+    img.px[todo] = np.array(NOITE)[idx][todo]
+    rng = np.random.default_rng(3026)
+    for _ in range(70):
+        ex, ey = int(rng.integers(0, img.w)), int(rng.integers(0, 70))
+        img.px[ey, ex] = ESTRELA[int(rng.integers(0, 3)) if rng.random() < 0.3 else 0]
+    topo_longe = 62 + 6 * np.sin(onda(3)) + 4 * np.sin(onda(7) + 1) + 3 * np.sin(onda(16))
+    img.px[(Y >= topo_longe)] = MATA_NOITE[2]
+    topo_perto = 78 + 8 * np.sin(onda(2) + 2) + 5 * np.sin(onda(6)) + 3 * np.sin(onda(22) + 3)
+    perto = Y >= topo_perto
+    img.px[perto] = MATA_NOITE[0]
+    img.px[perto & (ruido_ciclico(img.w, img.h, 4, 4, 5) > 0.7)] = MATA_NOITE[1]
+    return img
+
+
 # ---------------------------------------------------------------------------
 # Catálogo (folhas com o nome de cada peça, para o guia)
 # ---------------------------------------------------------------------------
@@ -596,6 +628,7 @@ def main():
         chaos[nome] = img
     img_ceu = ceu()
     img_ceu.salvar("ceu.png", os.path.join(PASTA_KIT, "ceu"))
+    ceu_noite().salvar("ceu_noite.png", os.path.join(PASTA_KIT, "ceu"))
     for nome, f in OBJETOS_KIT.items():
         img, px, py = f()
         img.salvar(f"{nome}.png", os.path.join(PASTA_KIT, "objetos"))

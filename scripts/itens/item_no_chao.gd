@@ -17,7 +17,7 @@ func _ready() -> void:
 	super()
 	if item:
 		texto_acao = "Pegar " + item.nome.to_lower()
-	if Inventario.pegos.has(_id_unico()):
+	if Inventario.pegos.has(_id_unico()) or _ja_tem_item_unico():
 		queue_free()
 
 
@@ -25,6 +25,10 @@ func interagir() -> void:
 	if Inventario.adicionar(item):
 		Inventario.pegos[_id_unico()] = true
 		queue_free()
+
+
+func _ja_tem_item_unico() -> bool:
+	return item != null and item.maximo_unidades == 0 and Inventario.tem(item.id)
 
 
 func _id_unico() -> String:

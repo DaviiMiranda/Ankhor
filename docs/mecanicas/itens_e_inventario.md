@@ -19,6 +19,7 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 - **Destaque no cenário:** todo item que dá para pegar (itens no chão e pilhas) tem uma **luz fraca que pulsa** em volta e, de tempos em tempos, um **brilho de pixel** que pisca em cima do desenho, visível até no escuro. Assim o jogador sabe o que é coletável sem precisar de seta ou contorno.
 - **Gadgets:** **3 espaços**, um para cada ferramenta equipável prevista em [`docs/personagens/gabriel.md`](../personagens/gabriel.md): lanterna, cápsulas de clarão e objetos de arremesso. Equipar não tira o item da grade; o espaço de gadget é um atalho para ele.
 - Ao pegar um gadget com um espaço livre, ele já é equipado.
+- **Item único já pego não aparece de novo:** um item que não empilha (lanterna, rádio, notebook) só aparece no chão se o Gabriel ainda não tiver um. Assim a mesma lanterna pode estar no começo de várias fases sem duplicar.
 - Na tela, os espaços de gadget ficam no canto de baixo à esquerda, com o número da tecla. A borda acende enquanto o gadget está em uso (pote destampado), e a barrinha embaixo mostra a carga.
 
 ### Lanterna
