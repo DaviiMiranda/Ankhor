@@ -171,11 +171,14 @@ label_settings = SubResource("LabelSettings_dica")
 [node name="SomAbrir" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_som_abrir")
 volume_db = -8.0
+bus = &"Efeitos"
 
 [node name="SomFechar" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_som_fechar")
 volume_db = -8.0
+bus = &"Efeitos"
 
 [node name="SomAba" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_som_aba")
 volume_db = -8.0
+bus = &"Efeitos"

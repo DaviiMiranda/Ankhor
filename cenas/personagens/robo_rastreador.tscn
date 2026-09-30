@@ -85,6 +85,7 @@ stream = ExtResource("9_passo")
 volume_db = -4.0
 max_distance = 300.0
 attenuation = 1.4
+bus = &"Efeitos"
 
 [node name="Zumbido" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_zumbido")
@@ -92,8 +93,10 @@ volume_db = -18.0
 pitch_scale = 1.4
 autoplay = true
 max_distance = 160.0
+bus = &"Efeitos"
 
 [node name="Alerta" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_alerta")
 pitch_scale = 1.25
 max_distance = 700.0
+bus = &"Efeitos"

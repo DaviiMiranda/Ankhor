@@ -31,6 +31,7 @@ func interagir() -> void:
 func _tocar_som() -> void:
 	var som := AudioStreamPlayer.new()
 	som.stream = SOM_TROCA
+	som.bus = &"Efeitos"
 	som.finished.connect(som.queue_free)
 	get_tree().current_scene.add_child(som)
 	som.play()

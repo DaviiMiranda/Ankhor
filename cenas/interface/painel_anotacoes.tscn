@@ -76,3 +76,4 @@ max_lines_visible = 7
 [node name="SomPapel" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_papel")
 volume_db = -6.0
+bus = &"Efeitos"
