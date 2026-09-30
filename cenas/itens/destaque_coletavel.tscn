@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/destaque_coletavel.gd" id="1_destaque"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/luzes/luz.png" id="2_luz"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sem_sombra"]
+light_mode = 1
+
+[node name="DestaqueColetavel" type="Node2D"]
+z_index = 1
+material = SubResource("CanvasItemMaterial_sem_sombra")
+script = ExtResource("1_destaque")
+
+[node name="Luz" type="PointLight2D" parent="."]
+position = Vector2(0, -3)
+color = Color(1, 0.92, 0.72, 1)
+energy = 0.6
+texture = ExtResource("2_luz")
+texture_scale = 0.5

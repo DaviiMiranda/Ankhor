@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/itens/item_no_chao.gd" id="1_item"]
+[ext_resource type="PackedScene" path="res://cenas/itens/destaque_coletavel.tscn" id="2_destaque"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_alcance"]
 radius = 16.0
@@ -11,6 +12,8 @@ altura_aviso = 14.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 centered = false
+
+[node name="DestaqueColetavel" parent="." instance=ExtResource("2_destaque")]
 
 [node name="Alcance" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
