@@ -13,6 +13,11 @@ Formato:
 
 ---
 
+## 2026-09-30 — Destaque nos coletáveis e anotações dentro do inventário
+**Decisão:** todo item coletável no cenário (itens no chão e pilhas) ganha um **destaque**: uma luz fraca que pulsa em volta e um brilho de pixel que pisca em cima do desenho, visível no escuro. O **Caderno do Gabriel** deixa de ser uma tela separada e vira a aba **ANOTAÇÕES** do inventário, com um cabeçalho de abas **ITENS | ANOTAÇÕES**. `Tab`/`I` abrem em Itens, `N` abre em Anotações e `Q` troca de aba. As anotações ficam numa lista, com um ponto nas não lidas, e o texto da escolhida aparece ao lado, em páginas de 7 linhas.
+**Por quê:** pedido do Davi: os itens sumiam no escuro, e ter itens e anotações numa tela só, organizada por abas, deixa tudo mais fácil de achar.
+**Afeta:** `cenas/itens/` (novo `destaque_coletavel.tscn`), `cenas/interface/tela_inventario.tscn`, `cenas/interface/painel_anotacoes.tscn` (novo), `tela_caderno.tscn` (removida), as salas que tinham a tela do caderno, `project.godot` (ação `trocar_aba`), `docs/mecanicas/`.
+
 ## 2026-09-30 — Fonte Galmuri7 no tamanho 8
 **Decisão:** a fonte do jogo passa a ser a **Galmuri7** (OFL), nos tamanhos 8 e 16, no lugar da Ark Pixel 10. Todo texto que era 10 vira 8, e todo título que era 20 vira 16. A altura da linha continua 14 px, então nenhuma caixa de texto mudou de tamanho.
 **Por quê:** pedido do Davi. O texto em 10 estava grande, mas a Ark Pixel é desenhada para 10 px, e no tamanho 8 as letras deformavam e ficavam ruins de ler. A Galmuri7 é desenhada para 8 px: ocupa quase o mesmo espaço (uma frase de teste mede 164 px, contra 152 da Ark em 8 e 186 da Ark em 10), fica nítida e tem todos os acentos do português. A Fusion Pixel 8px também foi testada, mas perde o acento das maiúsculas (Ã, É, Ç).
