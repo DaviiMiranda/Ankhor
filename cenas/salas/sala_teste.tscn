@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="modelo"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lisa.tscn" id="parede_lisa"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="parede_porta"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="porta"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="pilar"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="chao_lajotas"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="i_item"]
@@ -28,7 +30,7 @@ position = Vector2(240, 0)
 [node name="Parede05" parent="Paredes" instance=ExtResource("parede_lisa")]
 position = Vector2(320, 0)
 
-[node name="Parede06" parent="Paredes" instance=ExtResource("parede_lisa")]
+[node name="Parede06" parent="Paredes" instance=ExtResource("parede_porta")]
 position = Vector2(400, 0)
 
 [node name="PilarEsquerda" parent="Paredes" instance=ExtResource("pilar")]
@@ -62,3 +64,9 @@ position = Vector2(260, 150)
 
 [node name="Pilha2" parent="Objetos" instance=ExtResource("i_pilha")]
 position = Vector2(320, 150)
+
+[node name="PortaRobos" parent="." instance=ExtResource("porta")]
+position = Vector2(440, 124)
+id = "sala_teste"
+cena_destino = "res://cenas/salas/labirinto_teste.tscn"
+porta_destino = "labirinto_teste"
