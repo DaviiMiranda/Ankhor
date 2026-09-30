@@ -23,6 +23,7 @@ Radio="*res://scripts/sistemas/radio.gd"
 Vida="*res://scripts/sistemas/vida.gd"
 Checkpoints="*res://scripts/sistemas/checkpoints.gd"
 Configuracoes="*res://scripts/sistemas/configuracoes.gd"
+Dialogos="*res://scripts/sistemas/dialogos.gd"
 
 [display]
 

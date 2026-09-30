@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_documento.tscn" id="i_tela_documento"]
 [ext_resource type="PackedScene" path="res://cenas/interface/legenda_radio.tscn" id="i_legenda_radio"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_morte.tscn" id="i_tela_morte"]
+[ext_resource type="PackedScene" path="res://cenas/interface/caixa_dialogo.tscn" id="i_caixa_dialogo"]
 
 [sub_resource type="ShaderMaterial" id="Vinheta"]
 shader = ExtResource("4_vinheta")
@@ -71,6 +72,8 @@ color = Color(0, 0, 0, 1)
 [node name="LegendaRadio" parent="." instance=ExtResource("i_legenda_radio")]
 
 [node name="TelaMorte" parent="." instance=ExtResource("i_tela_morte")]
+
+[node name="CaixaDialogo" parent="." instance=ExtResource("i_caixa_dialogo")]
 
 [node name="Guias" type="Node2D" parent="."]
 script = ExtResource("5_guias")
