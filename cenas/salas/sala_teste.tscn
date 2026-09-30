@@ -1,0 +1,64 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="modelo"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lisa.tscn" id="parede_lisa"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="pilar"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="chao_lajotas"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="i_item"]
+[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="i_pilha"]
+[ext_resource type="Resource" path="res://dados/itens/lanterna.tres" id="i_lanterna"]
+[ext_resource type="Resource" path="res://dados/itens/radio.tres" id="i_radio"]
+
+[node name="SalaTeste" instance=ExtResource("modelo")]
+id = "sala_teste"
+largura = 480
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("parede_lisa")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("parede_lisa")]
+position = Vector2(80, 0)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("parede_lisa")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("parede_lisa")]
+position = Vector2(240, 0)
+
+[node name="Parede05" parent="Paredes" instance=ExtResource("parede_lisa")]
+position = Vector2(320, 0)
+
+[node name="Parede06" parent="Paredes" instance=ExtResource("parede_lisa")]
+position = Vector2(400, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("pilar")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("pilar")]
+position = Vector2(464, 0)
+
+[node name="Chao1" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(0, 0)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(128, 0)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(256, 0)
+
+[node name="Chao4" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(384, 0)
+
+[node name="Lanterna" parent="Objetos" instance=ExtResource("i_item")]
+position = Vector2(110, 150)
+item = ExtResource("i_lanterna")
+
+[node name="Radio" parent="Objetos" instance=ExtResource("i_item")]
+position = Vector2(170, 150)
+item = ExtResource("i_radio")
+
+[node name="Pilha1" parent="Objetos" instance=ExtResource("i_pilha")]
+position = Vector2(260, 150)
+
+[node name="Pilha2" parent="Objetos" instance=ExtResource("i_pilha")]
+position = Vector2(320, 150)

@@ -4,6 +4,8 @@ signal novo_jogo_pedido
 signal continuar_pedido
 signal opcoes_pedidas
 
+const FASE_TESTE := preload("res://dados/fases/teste.tres")
+
 @export var cena_novo_jogo: PackedScene
 @export var fases: Array[Fase] = []
 @export var energia_luz: float = 0.9
@@ -114,7 +116,10 @@ func _unhandled_input(evento: InputEvent) -> void:
 
 
 func _montar_lista_fases() -> void:
-	for fase in fases:
+	var lista := fases.duplicate()
+	if OS.has_feature("editor"):
+		lista.append(FASE_TESTE)
+	for fase in lista:
 		var botao := Button.new()
 		botao.text = fase.nome
 		botao.disabled = not fase.pronta()
