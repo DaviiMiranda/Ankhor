@@ -34,6 +34,7 @@ alcance_visao = 170.0
 angulo_visao = 60.0
 fator_lanterna = 1.7
 fator_audicao = 0.5
+fator_clarao = 1.5
 segundos_memoria = 1.5
 andar_lado = ExtResource("2_lado")
 andar_frente = ExtResource("3_frente")

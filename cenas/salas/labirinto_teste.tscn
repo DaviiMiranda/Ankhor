@@ -13,3 +13,10 @@ position = Vector2(64, 38)
 id = "labirinto_teste"
 cena_destino = "res://cenas/salas/sala_teste.tscn"
 porta_destino = "sala_teste"
+
+[node name="PortaTrancada" parent="." instance=ExtResource("3_porta")]
+position = Vector2(544, 38)
+id = "labirinto_teste_trancada"
+cena_destino = "res://cenas/salas/sala_teste.tscn"
+porta_destino = "sala_teste"
+trancada = true

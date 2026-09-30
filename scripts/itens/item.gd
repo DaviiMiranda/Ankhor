@@ -10,3 +10,4 @@ extends Resource
 @export_group("Gadget")
 @export var equipavel: bool = false
 @export var cena_gadget: PackedScene
+@export var maximo_unidades: int = 0
