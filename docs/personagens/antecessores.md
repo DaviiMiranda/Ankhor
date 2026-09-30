@@ -62,6 +62,8 @@ Clarice é a "aluna de 1994" e Valdir é o "segurança de 2008" já decididos em
 - **Voz:** gírias dos anos 90 ("Isso é totalmente surreal", "Se alguém ler isso, não confie nas luzes").
 - **Função mecânica:** guia por voz ao longo do jogo; senhas e explicação das rotinas de patrulha (ponte para os conteúdos de computação).
 - **Final:** os dois ficam juntos em 2026. Ver [`../historia/revelacao_central.md`](../historia/revelacao_central.md), seção 5.
+- **No bunker (fase Bunker, 2026-09-30):** Gabriel **encontra a Clarice em pessoa** na central de dados do bunker embaixo do núcleo da Âncora: o esconderijo dela. Ela fica sentada na estação de trabalho (três monitores de tubo, o telefone bege das ligações), vira a cadeira quando ele chega e conversa. Ver [`../fases/bunker.md`](../fases/bunker.md) e os diálogos em `dados/dialogos/clarice_*.json`. **Isso muda a ideia de "só por voz até o fim"**: ver `docs/decisoes.md`.
+- **Visual:** jaqueta corta-vento em blocos de cor (verde-azulado, roxo e branco), cabelo cacheado preso no alto com xuxinha magenta, óculos grandes, fone de walkman laranja no pescoço. Ficha completa: [`../../assets/sprites/personagens/clarice/visual.md`](../../assets/sprites/personagens/clarice/visual.md).
 
 ### 2.4 Seu Valdir (2008)
 
@@ -117,6 +119,6 @@ Cada época tem um suporte próprio, para o jogador reconhecer o autor antes de 
 
 - **Pessoa de 2041:** decidida em 2026-09-26, mas ainda sem ficha. Falta decidir se continua ou se Zane toma o lugar dela.
 - **Terminais e eletricidade:** as senhas e as ligações de Clarice e o rádio de Valdir pedem algo elétrico funcionando, e o GDD diz que "nada elétrico funciona depois de mil anos". Como em 3026 o campus era um centro de pesquisa ativo (e os robôs funcionam), dá para dizer que só os sistemas da Âncora ainda têm energia, e que é a Clarice quem leva essa energia até os telefones.
-- **Onde a Clarice está escondida**, e se Gabriel chega perto dela antes do final.
+- ~~**Onde a Clarice está escondida**~~: no bunker embaixo do núcleo da Âncora (fase Bunker). **Continua em aberto** em que ponto da história o Gabriel chega lá, e o que fazer com a cena final da revelação central ("é a primeira vez que se veem"), que não vale mais se o bunker vier antes do fim.
 - **Destino de Zane:** vivo, morto ou preso no colapso circular.
 - **Qual antecessor aparece em qual fase** depois da Biblioteca.

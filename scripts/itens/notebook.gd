@@ -59,7 +59,7 @@ func _procurar_alvo() -> Node2D:
 	for no in get_tree().get_nodes_in_group("portas"):
 		var porta := no as Porta
 		var d := dono.global_position.distance_to(porta.global_position)
-		if d < menor and porta.trancada:
+		if d < menor and porta.trancada and not porta.bloqueada:
 			menor = d
 			melhor = porta
 	return melhor
