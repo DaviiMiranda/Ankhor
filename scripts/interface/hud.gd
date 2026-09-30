@@ -104,7 +104,7 @@ func _ao_marcar_checkpoint(_id: String) -> void:
 
 
 func _ao_anotar(titulo: String) -> void:
-	_mostrar_mensagem("Anotado no caderno: %s   [N] abrir" % titulo)
+	_mostrar_mensagem("Nova anotação: %s   [N] ver" % titulo)
 
 
 func _mostrar_mensagem(texto: String) -> void:

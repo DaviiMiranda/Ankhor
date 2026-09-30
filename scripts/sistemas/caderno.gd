@@ -23,7 +23,7 @@ func ler(documento: Documento) -> void:
 func anotar(id: String, titulo: String, texto: String) -> void:
 	if texto.is_empty() or tem_anotacao(id):
 		return
-	anotacoes.append({"id": id, "titulo": titulo, "texto": texto})
+	anotacoes.append({"id": id, "titulo": titulo, "texto": texto, "lida": false})
 	anotado.emit(titulo)
 	mudou.emit()
 
@@ -31,5 +31,19 @@ func anotar(id: String, titulo: String, texto: String) -> void:
 func tem_anotacao(id: String) -> bool:
 	for anotacao in anotacoes:
 		if anotacao["id"] == id:
+			return true
+	return false
+
+
+func marcar_lida(indice: int) -> void:
+	if indice < 0 or indice >= anotacoes.size() or anotacoes[indice]["lida"]:
+		return
+	anotacoes[indice]["lida"] = true
+	mudou.emit()
+
+
+func tem_nao_lidas() -> bool:
+	for anotacao in anotacoes:
+		if not anotacao["lida"]:
 			return true
 	return false
