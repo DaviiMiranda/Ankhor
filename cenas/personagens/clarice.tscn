@@ -22,7 +22,8 @@ script = ExtResource("1_clarice")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_sprite")
 centered = false
-offset = Vector2(-40, -60)
+scale = Vector2(0.5, 0.5)
+offset = Vector2(-80, -120)
 hframes = 8
 
 [node name="Mesa" type="StaticBody2D" parent="."]

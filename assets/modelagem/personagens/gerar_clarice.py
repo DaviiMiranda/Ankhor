@@ -7,13 +7,14 @@
 #   blender -b --factory-startup --python assets/modelagem/personagens/gerar_clarice.py
 #
 # O que sai (em assets/sprites/personagens/clarice/):
-#   clarice_digitando.png    8 quadros de 80 x 64, lado a lado: sentada de
+#   clarice_digitando.png    8 quadros de 160 x 128 (resolução dobrada: o Godot
+#                            mostra com escala 0,5), lado a lado: sentada de
 #                            costas para a câmera, digitando nos terminais
 #   clarice_virando.png      5 quadros: a cadeira girando até ela olhar para
 #                            a esquerda (de onde o Gabriel chega)
 #   clarice_olhando.png      6 quadros: virada para o Gabriel, respirando
 #   clarice_retrato_normal.png, clarice_retrato_sorrindo.png, clarice_retrato_seria.png
-#                            40 x 40: rosto e ombros, para a caixa de diálogo
+#                            80 x 80: rosto e ombros, para a caixa de diálogo
 #   clarice_referencia.png   em pé (frente, 3/4, lado, costas), sentada
 #                            (digitando e virada) e os retratos
 #   assets/modelagem/personagens/clarice.blend   o modelo, para abrir e mexer
@@ -60,13 +61,14 @@ import bpy  # noqa: E402
 
 PASTA_SAIDA = os.path.join(c.PASTA_SPRITES, "clarice")
 ARQUIVO_BLEND = os.path.join(c.PASTA_SCRIPT, "clarice.blend")
-MAX_CORES = 46
+MAX_CORES = 56
+RESOLUCAO = 2
 DETALHE = 3
-QUADRO_MESA = (80, 64)
-PE_MESA_PX = 4
+QUADRO_MESA = (80 * RESOLUCAO, 64 * RESOLUCAO)
+PE_MESA_PX = 4 * RESOLUCAO
 INCLINACAO = 22            # graus: câmera olhando um pouco para baixo
-QUADRO_RETRATO = (40, 40)
-PX_POR_M_RETRATO = 88      # o rosto ocupa quase o retrato inteiro
+QUADRO_RETRATO = (40 * RESOLUCAO, 40 * RESOLUCAO)
+PX_POR_M_RETRATO = 88 * RESOLUCAO      # o rosto ocupa quase o retrato inteiro
 ALTURA_RETRATO_M = 1.5    # altura (em pé) que fica no meio do retrato
 QUADROS_DIGITANDO = 8
 QUADROS_OLHANDO = 6
@@ -489,7 +491,7 @@ def main():
     for q in range(QUADROS_DIGITANDO):
         pose_digitando(360 * q / QUADROS_DIGITANDO)
         girar("Cadeira", z=180)
-        digitando.append(render(cam, cena, materiais, 0, QUADRO_MESA, c.PX_POR_M_JOGO, PE_MESA_PX, enquadrar_inclinado))
+        digitando.append(render(cam, cena, materiais, 0, QUADRO_MESA, c.PX_POR_M_JOGO * RESOLUCAO, PE_MESA_PX, enquadrar_inclinado))
     print("[clarice] digitando pronto")
     virando = []
     for i, giro in enumerate(GIROS_VIRANDO):
@@ -497,13 +499,13 @@ def main():
         pose_digitando(0)
         _misturar_com_relaxada(mistura)
         girar("Cadeira", z=giro + (GIRO_OLHANDO - GIROS_VIRANDO[-1]) * mistura)
-        virando.append(render(cam, cena, materiais, 0, QUADRO_MESA, c.PX_POR_M_JOGO, PE_MESA_PX, enquadrar_inclinado))
+        virando.append(render(cam, cena, materiais, 0, QUADRO_MESA, c.PX_POR_M_JOGO * RESOLUCAO, PE_MESA_PX, enquadrar_inclinado))
     print("[clarice] virando pronto")
     olhando = []
     for q in range(QUADROS_OLHANDO):
         pose_relaxada(360 * q / QUADROS_OLHANDO)
         girar("Cadeira", z=GIRO_OLHANDO)
-        olhando.append(render(cam, cena, materiais, 0, QUADRO_MESA, c.PX_POR_M_JOGO, PE_MESA_PX, enquadrar_inclinado))
+        olhando.append(render(cam, cena, materiais, 0, QUADRO_MESA, c.PX_POR_M_JOGO * RESOLUCAO, PE_MESA_PX, enquadrar_inclinado))
     print("[clarice] olhando pronto")
 
     # 3. Uma paleta só para tudo, e os arquivos.

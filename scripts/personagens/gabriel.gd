@@ -46,6 +46,7 @@ var _distancia := 0.0
 var _tempo_parado := 0.0
 var _passos := 0
 var _mascara_colisao := 0
+var _escala_sprite := Vector2.ONE
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var no_gadgets: Node2D = $Gadgets
@@ -54,6 +55,7 @@ var _mascara_colisao := 0
 func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("jogador")
+	_escala_sprite = sprite.scale
 	Inventario.mudou.connect(_atualizar_gadgets)
 	Vida.dano_recebido.connect(_ao_receber_dano)
 	_atualizar_gadgets()
@@ -122,7 +124,7 @@ func _physics_process(delta: float) -> void:
 	_virar(direcao)
 	_animar(get_real_velocity().length() * delta, delta)
 
-	sprite.scale.y = 0.75 if agachado else 1.0
+	sprite.scale.y = _escala_sprite.y * (0.75 if agachado else 1.0)
 	_piscar()
 
 

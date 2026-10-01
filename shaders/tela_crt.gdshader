@@ -12,7 +12,9 @@ uniform float forca_cintilacao : hint_range(0.0, 0.3) = 0.04;
 
 void fragment() {
 	// Linhas: um pixel sim, um pixel não, fica mais escuro.
-	float linha = mod(floor(FRAGCOORD.y), 2.0) * forca_linhas;
+	// Uma linha a cada pixel DO JOGO (180 na altura), qualquer que seja o
+	// tamanho da janela: FRAGCOORD.y * SCREEN_PIXEL_SIZE.y vai de 0 a 1.
+	float linha = mod(floor(FRAGCOORD.y * SCREEN_PIXEL_SIZE.y * 180.0), 2.0) * forca_linhas;
 
 	// Vinheta: quanto mais longe do centro (UV = 0.5, 0.5), mais escuro.
 	vec2 do_centro = UV - vec2(0.5);
