@@ -13,6 +13,11 @@ Formato:
 
 ---
 
+## 2026-09-30 — Gadgets em teste: cápsula de clarão, pedra e notebook
+**Decisão:** os três gadgets sugeridos foram implementados **só na sala de teste**, para o grupo jogar e decidir: cápsula de clarão (paralisa os robôs perto, no máximo 2), pedra (barulho que atrai robôs, no máximo 5) e notebook (hackeia porta trancada ou robô por trás, gasta bateria, deixa o Gabriel parado e visível). Robôs ganharam o estado `ATORDOADO`. Ainda **em aberto:** em que fase cada um aparece (sugestão: clarão e pedra cedo, notebook na fase 3 ou 4), se o notebook usa as mesmas pilhas da lanterna e se cada gadget vem de uma das pessoas que vieram antes do Gabriel.
+**Por quê:** pedido do Davi, para testar as ideias antes de colocar numa fase.
+**Afeta:** `scripts/personagens/robo.gd`, `scripts/sistemas/inventario.gd` (itens que empilham), `scripts/itens/item.gd`, gadgets em `cenas/itens/` e `dados/itens/`, `scripts/sistemas/porta.gd` (porta trancada e som), sala de teste. Detalhes em `docs/mecanicas/itens_e_inventario.md`.
+
 ## 2026-09-30 — Aviso de pegar item mostra só a tecla
 **Decisão:** perto de um item no chão ou de uma pilha, o aviso mostra só `[E]`, sem "Pegar lanterna" ou "Trocar a pilha". O nome aparece na mensagem depois de pegar e a descrição fica no inventário. Documentos continuam com `[E] Ler...`.
 **Por quê:** pedido do Davi. O texto entregava o que era o item antes de o jogador chegar nele; só a tecla deixa a tela mais limpa, como nos jogos de terror de referência.

@@ -5,7 +5,7 @@ signal jogador_detectado(robo: Robo)
 signal jogador_perdido(robo: Robo)
 signal estado_mudou(robo: Robo, novo_estado: Estado)
 
-enum Estado { PATRULHA, INVESTIGANDO, PERSEGUINDO, PROCURANDO, ATACOU }
+enum Estado { PATRULHA, INVESTIGANDO, PERSEGUINDO, PROCURANDO, ATACOU, ATORDOADO }
 
 const CAMADA_PAREDES := 8
 const ALCANCE_SOM_CORRENDO := 14
@@ -32,6 +32,9 @@ const ORIGEM_DA_SOMBRA := Vector2(0, -4)
 
 @export_group("Audição")
 @export var fator_audicao: float = 1.0
+
+@export_group("Gadgets")
+@export var fator_clarao: float = 1.0
 
 @export_group("Memória")
 @export var segundos_memoria: float = 1.5
@@ -72,6 +75,7 @@ var _tempo_parado := 0.0
 var _tempo_desde_chegada := 0.0
 var _distancia := 0.0
 var _passos := 0
+var _segundos_atordoado := 0.0
 var _vista := "lado"
 var _sorteio := RandomNumberGenerator.new()
 
@@ -93,6 +97,7 @@ func configurar(nova_grade: GradeLabirinto, semente: int) -> void:
 
 func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	add_to_group("robos")
 	_gabriel = get_tree().get_first_node_in_group("jogador") as Gabriel
 	if _gabriel:
 		_gabriel.passo_dado.connect(_ao_ouvir_passo)
@@ -110,7 +115,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _decidir(delta: float) -> void:
-	var vendo := _ve_o_jogador()
+	var vendo := estado != Estado.ATORDOADO and _ve_o_jogador()
 	match estado:
 		Estado.PATRULHA, Estado.INVESTIGANDO, Estado.PROCURANDO:
 			if vendo:
@@ -133,6 +138,10 @@ func _decidir(delta: float) -> void:
 					_perseguir()
 				else:
 					_procurar()
+		Estado.ATORDOADO:
+			if _tempo_no_estado > _segundos_atordoado:
+				_ultima_vista = global_position
+				_procurar()
 
 
 func _mudar_estado(novo: Estado) -> void:
@@ -147,6 +156,36 @@ func _patrulhar() -> void:
 	_salinha_anterior = _salinha
 	_salinha = proxima
 	_ir_para(grade.centro_salinha(proxima))
+
+
+func atordoar(segundos: float) -> void:
+	if grade == null:
+		return
+	if estado == Estado.PERSEGUINDO or estado == Estado.ATACOU:
+		jogador_perdido.emit(self)
+	_segundos_atordoado = segundos
+	_caminho.clear()
+	velocity = Vector2.ZERO
+	_mudar_estado(Estado.ATORDOADO)
+
+
+func pode_ser_hackeado_de(ponto: Vector2) -> bool:
+	if estado == Estado.ATORDOADO:
+		return true
+	if estado == Estado.PERSEGUINDO or estado == Estado.ATACOU:
+		return false
+	return direcao_olhar.dot(global_position.direction_to(ponto)) < 0.0
+
+
+func ouvir_barulho(origem: Vector2, alcance_base: int) -> void:
+	if grade == null or estado in [Estado.PERSEGUINDO, Estado.ATACOU, Estado.ATORDOADO]:
+		return
+	var alcance := int(alcance_base * fator_audicao)
+	if alcance <= 0:
+		return
+	var ondas := grade.distancias(grade.livre_mais_perto(grade.celula(origem)), alcance)
+	if ondas.has(grade.celula(global_position)):
+		_investigar(origem)
 
 
 func _investigar(onde: Vector2) -> void:
@@ -203,7 +242,7 @@ func _velocidade() -> float:
 			return velocidade_perseguicao
 		Estado.INVESTIGANDO, Estado.PROCURANDO:
 			return velocidade_investigando
-		Estado.ATACOU:
+		Estado.ATACOU, Estado.ATORDOADO:
 			return 0.0
 	return velocidade_patrulha
 
@@ -217,7 +256,7 @@ func _andar(delta: float) -> void:
 			if _ve_o_jogador():
 				velocity = _para_o_gabriel() * _velocidade()
 				_virar_para(velocity.normalized(), delta)
-		elif estado != Estado.ATACOU:
+		elif estado != Estado.ATACOU and estado != Estado.ATORDOADO:
 			_tempo_desde_chegada += delta
 			_olhar_em_volta(delta)
 			_ao_chegar()
@@ -282,22 +321,17 @@ func _linha_livre(ate: Vector2) -> bool:
 
 
 func _lanterna_acesa() -> bool:
-	return Inventario.estado_de("lanterna").get("aceso", false)
+	return Inventario.estado_de("lanterna").get("aceso", false) or Inventario.estado_de("notebook").get("aceso", false)
 
 
 func _ao_ouvir_passo(correndo: bool, agachado: bool) -> void:
-	if grade == null or agachado or estado == Estado.PERSEGUINDO or estado == Estado.ATACOU:
+	if agachado:
 		return
-	var alcance := int((ALCANCE_SOM_CORRENDO if correndo else ALCANCE_SOM_ANDANDO) * fator_audicao)
-	if alcance <= 0:
-		return
-	var ondas := grade.distancias(grade.celula(_gabriel.global_position), alcance)
-	if ondas.has(grade.celula(global_position)):
-		_investigar(_gabriel.global_position)
+	ouvir_barulho(_gabriel.global_position, ALCANCE_SOM_CORRENDO if correndo else ALCANCE_SOM_ANDANDO)
 
 
 func _tentar_atacar() -> void:
-	if estado == Estado.ATACOU or _gabriel == null or not garra.overlaps_body(_gabriel):
+	if estado == Estado.ATACOU or estado == Estado.ATORDOADO or _gabriel == null or not garra.overlaps_body(_gabriel):
 		return
 	if Vida.receber_dano(1, global_position):
 		if estado != Estado.PERSEGUINDO:
@@ -324,6 +358,16 @@ func _animar(delta: float) -> void:
 			som_passo.play()
 	_mostrar_quadro()
 	_luzes_na_testa()
+	_apagar_se_atordoado()
+
+
+func _apagar_se_atordoado() -> void:
+	var ligado := estado != Estado.ATORDOADO
+	olhos.visible = ligado
+	if farol:
+		farol.visible = ligado
+	if luz_olho:
+		luz_olho.visible = ligado
 
 
 func _luzes_na_testa() -> void:

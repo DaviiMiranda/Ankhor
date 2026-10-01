@@ -35,6 +35,8 @@ signal passo_dado(correndo: bool, agachado: bool)
 @export var segundos_por_quadro_parado: float = 0.3
 
 var agachado := false
+var jogador_controla := true
+var direcao_automatica := Vector2.ZERO
 var correndo := false
 
 var vista := "lado"
@@ -43,6 +45,7 @@ var _empurrao := Vector2.ZERO
 var _distancia := 0.0
 var _tempo_parado := 0.0
 var _passos := 0
+var _mascara_colisao := 0
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var no_gadgets: Node2D = $Gadgets
@@ -57,6 +60,8 @@ func _ready() -> void:
 
 
 func _unhandled_input(evento: InputEvent) -> void:
+	if not jogador_controla:
+		return
 	if evento.is_action_pressed("interagir"):
 		var alvo := Interagivel.mais_perto(get_tree(), global_position)
 		if alvo:
@@ -97,14 +102,16 @@ func _atualizar_gadgets() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var direcao := Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
+	var direcao := direcao_automatica
+	if jogador_controla:
+		direcao = Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
 
-	agachado = Input.is_action_pressed("agachar")
+	agachado = jogador_controla and Input.is_action_pressed("agachar")
 	correndo = false
 	var velocidade := velocidade_andar
 	if agachado:
 		velocidade *= multiplicador_agachar
-	elif Input.is_action_pressed("correr") and direcao != Vector2.ZERO:
+	elif jogador_controla and Input.is_action_pressed("correr") and direcao != Vector2.ZERO:
 		velocidade *= multiplicador_correr
 		correndo = true
 
@@ -117,6 +124,20 @@ func _physics_process(delta: float) -> void:
 
 	sprite.scale.y = 0.75 if agachado else 1.0
 	_piscar()
+
+
+func andar_sozinho(direcao: Vector2) -> void:
+	if jogador_controla:
+		_mascara_colisao = collision_mask
+	jogador_controla = false
+	direcao_automatica = direcao
+	collision_mask = 0
+
+
+func devolver_controle() -> void:
+	jogador_controla = true
+	direcao_automatica = Vector2.ZERO
+	collision_mask = _mascara_colisao
 
 
 func _ao_receber_dano(origem: Vector2) -> void:

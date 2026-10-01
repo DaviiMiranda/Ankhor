@@ -164,6 +164,71 @@ def radio_chao():
     return img
 
 
+def clarao():
+    """Cápsula de clarão: um cilindro curto de metal com a lente de vidro
+    na ponta (a "cara" do flash) e o anel de ferrugem do gatilho."""
+    img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
+    X = img.X
+    img.pintar(img.ret(4, 5, 13, 11), "metal", 0.25 + 0.3 * (1 - (X - 4) / 9))
+    img.pintar(img.ret(7, 5, 8, 11), "ferrugem", 0.6)
+    img.pintar(img.elipse(12.5, 8, 2.5, 3.5), "ceu", 0.85)
+    img.pintar(img.ret(5, 6, 7, 7), "metal", 0.8)
+    img.contornar(CONTORNO)
+    return img
+
+
+def clarao_chao():
+    """A cápsula no chão: 5 px de corpo e a lente clara na ponta."""
+    img = Imagem(7, 4)
+    img.pintar(img.ret(0, 0, 5, 3), "metal", 0.35)
+    img.pintar(img.ret(5, 0, 7, 3), "ceu", 0.85)
+    img.contornar(CONTORNO)
+    return img
+
+
+def pedra():
+    """Um pedaço de concreto quebrado, do tamanho da mão: polígono
+    irregular, mais claro em cima (a luz vem de cima)."""
+    img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
+    Y = img.Y
+    corpo = img.poligono([(4, 8), (7, 4), (11, 5), (13, 9), (11, 13), (5, 12)])
+    img.pintar(corpo, "concreto", 0.75 - 0.4 * (Y - 4) / 9 + 0.1 * ruido(img.w, img.h, 2, 2, 7))
+    img.contornar(CONTORNO)
+    return img
+
+
+def pedra_chao():
+    """Três pedrinhas juntas no chão (cada monte vale uma pedra no inventário)."""
+    img = Imagem(9, 4)
+    for x0 in (0, 3, 6):
+        img.pintar(img.ret(x0, 1, x0 + 3, 4), "concreto", 0.7)
+    img.contornar(CONTORNO)
+    return img
+
+
+def notebook():
+    """Notebook aberto de lado: a tampa com a tela azulada acesa e a base
+    com o teclado (pontos escuros alternados)."""
+    img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
+    X, Y = img.X, img.Y
+    img.pintar(img.ret(2, 2, 14, 10), "metal", 0.2)
+    img.pintar(img.ret(3, 3, 13, 9), "ceu", 0.35 + 0.3 * (Y - 3) / 6)
+    img.pintar(img.ret(4, 4, 9, 5), "verde", 0.9)
+    img.pintar(img.ret(1, 11, 15, 14), "metal", 0.35)
+    img.pintar(img.ret(2, 12, 14, 13) & ((X + Y) % 2 == 0), "metal", 0.05)
+    img.contornar(CONTORNO)
+    return img
+
+
+def notebook_chao():
+    """O notebook fechado no chão: uma placa fina com o LED aceso."""
+    img = Imagem(9, 3)
+    img.pintar(img.ret(0, 0, 9, 3), "metal", 0.3)
+    img.pintar(img.ret(7, 1, 8, 2), "verde", 0.95)
+    img.contornar(CONTORNO)
+    return img
+
+
 # Nome do arquivo -> função que desenha. Um item novo entra aqui.
 ICONES = {
     "lanterna": lanterna,
@@ -172,6 +237,12 @@ ICONES = {
     "pilha_chao": pilha_chao,
     "radio": radio,
     "radio_chao": radio_chao,
+    "clarao": clarao,
+    "clarao_chao": clarao_chao,
+    "pedra": pedra,
+    "pedra_chao": pedra_chao,
+    "notebook": notebook,
+    "notebook_chao": notebook_chao,
 }
 
 

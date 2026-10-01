@@ -49,6 +49,8 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `efeitos/gabriel/gabriel_dano.wav`, `efeitos/interface/morte.wav`, `efeitos/interface/checkpoint.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | Pancada ao levar dano; tela de morte; posto de checkpoint acendendo |
 | `efeitos/objetos/lanterna_clique.wav`, `pilha_troca.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | Botão da lanterna; troca de pilha |
 | `efeitos/interface/menu_passar.wav`, `menu_clique.wav` | `assets/modelagem/audio/gerar_efeitos_menu.py` | Bipe de computador velho ao passar por uma opção do menu; clique do mouse com bipe de confirmação ao escolher |
+| `efeitos/objetos/porta_abrir.wav` | `assets/modelagem/audio/gerar_efeitos_gadgets.py` | 1,4 s: trinco, dobradiça rangendo e a porta batendo. Toca ao atravessar uma porta (`cenas/sistemas/porta.tscn`) |
+| `efeitos/objetos/clarao_disparo.wav`, `pedra_impacto.wav`, `notebook_hack.wav` | `assets/modelagem/audio/gerar_efeitos_gadgets.py` | Estalo do flash com o capacitor recarregando; pedra batendo e quicando; 2,5 s de bipes de dados com o "ok" no fim |
 | `efeitos/interface/papel_folhear.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 0,35 s: uma folha virando. Toca ao abrir, folhear e fechar documentos e o caderno |
 
 Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py` ou `gerar_trilha_gameplay.py` (precisa de numpy e ffmpeg). Os efeitos saem de `gerar_efeitos_gabriel.py` (só numpy).

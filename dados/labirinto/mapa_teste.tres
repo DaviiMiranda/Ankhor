@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MapaLabirinto" format=3]
+
+[ext_resource type="Script" path="res://scripts/labirinto/mapa_labirinto.gd" id="1_mapa"]
+
+[resource]
+script = ExtResource("1_mapa")
+tamanho_bloco = 32
+blocos_por_salinha = 3
+linhas = PackedStringArray("#DD#############DD#", "#G................#", "#C................#", "#..#..#..#..#..#..#", "#.........L.......#", "#.....P......R....#", "#..#..#..#..#..#..#", "#.......V.........#", "#...L.........P...#", "#..#..#..#..#..#..#", "#.................#", "#.........P.......#", "###################")
