@@ -18,6 +18,7 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 - **Cabeçalho com abas:** no alto da janela ficam **ITENS** e **ANOTAÇÕES**. A aba aberta fica clara e sublinhada. Quando há anotação não lida, a aba mostra um ponto (`ANOTAÇÕES •`). A aba Anotações está explicada em [`registros_e_caderno.md`](registros_e_caderno.md).
 - **Destaque no cenário:** todo item que dá para pegar (itens no chão e pilhas) tem uma **luz fraca que pulsa** em volta e, de tempos em tempos, um **brilho de pixel** que pisca em cima do desenho, visível até no escuro. Assim o jogador sabe o que é coletável sem precisar de seta ou contorno.
 - **Gadgets:** **3 espaços**, um para cada ferramenta equipável prevista em [`docs/personagens/gabriel.md`](../personagens/gabriel.md): lanterna, cápsulas de clarão e objetos de arremesso. Equipar não tira o item da grade; o espaço de gadget é um atalho para ele.
+- **Aviso de `E`:** perto de um item ou de uma pilha, aparece só a tecla `[E]` em cima dele, sem texto. O nome do item aparece depois de pegar ("Você pegou: ...") e a descrição fica no inventário. Documentos continuam com o verbo (`[E] Ler o bilhete`), porque ler é uma ação diferente de pegar. Quem decide o texto é o `texto_acao` do `Interagivel`: vazio mostra só a tecla.
 - Ao pegar um gadget com um espaço livre, ele já é equipado.
 - **Item único já pego não aparece de novo:** um item que não empilha (lanterna, rádio, notebook) só aparece no chão se o Gabriel ainda não tiver um. Assim a mesma lanterna pode estar no começo de várias fases sem duplicar.
 - Na tela, os espaços de gadget ficam no canto de baixo à esquerda, com o número da tecla. A borda acende enquanto o gadget está em uso (pote destampado), e a barrinha embaixo mostra a carga.
@@ -25,7 +26,7 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 ### Lanterna
 
 - Fica no chão, perto de onde o Gabriel acorda na Biblioteca (e perto do início do labirinto). Pegar com `E` já equipa no espaço 1.
-- Liga e desliga com a tecla do espaço. A bateria dura 4 minutos acesa; troca-se com **pilhas** achadas no mapa (`E` perto da pilha: "Trocar a pilha").
+- Liga e desliga com a tecla do espaço. A bateria dura 4 minutos acesa; troca-se com **pilhas** achadas no mapa (`E` perto da pilha).
 - Regras completas em [`iluminacao_e_lanterna.md`](iluminacao_e_lanterna.md).
 
 ### Gadgets em teste (sala de teste)

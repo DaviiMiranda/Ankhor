@@ -5,6 +5,7 @@ Toda decisão de design, história ou técnica que muda o jogo entra aqui, **a m
 Formato:
 
 ```
+
 ## AAAA-MM-DD — título curto
 **Decisão:** o que ficou decidido.
 **Por quê:** o motivo, em uma ou duas frases.
@@ -18,10 +19,20 @@ Formato:
 **Por quê:** pedido do Davi.
 **Afeta:** `cenas/salas/bloco_de_salas/` (14 cenas novas), kit de cenário (`gerar_kit.py`: lousa, quadro de avisos, escadas, carteiras), `dados/fases/03_blocos_de_aula.tres`, `docs/fases/bloco_de_salas.md`. **Em aberto:** objetivo e história, robôs, ligação com a porta de saída da Biblioteca.
 
+## 2026-09-30 — Biblioteca mais larga: ala leste
+**Decisão:** a Biblioteca cresceu para a direita, de 960 para **1440 px** (4,5 telas de largura; a altura continua 420). A parte nova, depois da coluna onde a sala terminava, é a **ala leste** (sala de periódicos): terceiro buraco no teto com uma árvore nova, mesas, cabines e um segundo acervo no fundo sul. A porta de saída para os Blocos de aula foi para o fim da ala leste.
+**Por quê:** pedido do Davi: a Biblioteca precisa ser maior, e desta vez na horizontal.
+**Afeta:** `gerar_biblioteca.py` (medidas, parede, chão, primeiro plano, buracos), as 4 imagens em `assets/sprites/salas/biblioteca/`, `cenas/salas/biblioteca.tscn` (tamanho, limites, câmera, objetos, luzes, raios de sol) e `docs/fases/biblioteca.md`.
+
 ## 2026-09-30 — Gadgets em teste: cápsula de clarão, pedra e notebook
 **Decisão:** os três gadgets sugeridos foram implementados **só na sala de teste**, para o grupo jogar e decidir: cápsula de clarão (paralisa os robôs perto, no máximo 2), pedra (barulho que atrai robôs, no máximo 5) e notebook (hackeia porta trancada ou robô por trás, gasta bateria, deixa o Gabriel parado e visível). Robôs ganharam o estado `ATORDOADO`. Ainda **em aberto:** em que fase cada um aparece (sugestão: clarão e pedra cedo, notebook na fase 3 ou 4), se o notebook usa as mesmas pilhas da lanterna e se cada gadget vem de uma das pessoas que vieram antes do Gabriel.
 **Por quê:** pedido do Davi, para testar as ideias antes de colocar numa fase.
 **Afeta:** `scripts/personagens/robo.gd`, `scripts/sistemas/inventario.gd` (itens que empilham), `scripts/itens/item.gd`, gadgets em `cenas/itens/` e `dados/itens/`, `scripts/sistemas/porta.gd` (porta trancada e som), sala de teste. Detalhes em `docs/mecanicas/itens_e_inventario.md`.
+
+## 2026-09-30 — Aviso de pegar item mostra só a tecla
+**Decisão:** perto de um item no chão ou de uma pilha, o aviso mostra só `[E]`, sem "Pegar lanterna" ou "Trocar a pilha". O nome aparece na mensagem depois de pegar e a descrição fica no inventário. Documentos continuam com `[E] Ler...`.
+**Por quê:** pedido do Davi. O texto entregava o que era o item antes de o jogador chegar nele; só a tecla deixa a tela mais limpa, como nos jogos de terror de referência.
+**Afeta:** `scripts/interface/hud.gd`, `scripts/itens/item_no_chao.gd`, `scripts/itens/pilha_no_chao.gd`, `docs/mecanicas/itens_e_inventario.md`.
 
 ## 2026-09-30 — Tela de Opções no menu e canais de áudio
 **Decisão:** o botão **Opções** do menu abre uma tela com tela cheia, efeito CRT, **volume geral**, **música** e **efeitos**, e um atalho para a lista de **Controles**. As escolhas ficam salvas em `user://configuracoes.cfg` pelo autoload `Configuracoes`. O áudio passa a ter dois canais (*buses*) além do Master: **Musica** (trilhas do menu, das fases e do labirinto) e **Efeitos** (todo o resto). Todo som novo precisa escolher um dos dois no Inspetor (`Bus`), senão ignora o volume da tela de Opções.
