@@ -13,6 +13,11 @@ Formato:
 
 ---
 
+## 2026-09-30 — Salas fundas e personagens com mais detalhe
+**Decisão:** (1) as **salas** do Bloco de salas e do Bunker passam a ser **fundas, mais altas que largas** (400 × 480 a 640 × 720), em vez de faixas compridas que pareciam corredor. A parede do fundo guarda as peças que contam a sala, e o chão desce para a câmera com o conteúdo organizado como a sala seria de verdade (fileiras de carteiras, de beliches, de macas, corredores de servidores e de estantes). Os **corredores continuam compridos**. Para isso o kit ganhou as peças de **chão de fundo** (repetem para baixo) e a **parede lateral**. (2) **Gabriel e Clarice** com mais polígonos: `DETALHE = 3` (cones e esferas com o triplo de gomos, quinas arredondadas) e sombreamento suave nas curvas, mais detalhes pequenos (cordões do capuz, cadarço, zíper e fivelas da mochila, sobrancelhas; na Clarice, mais cachos, zíper, bolsos e um botton).
+**Por quê:** pedido do Davi: mais definição nos personagens, e as salas pareciam corredores.
+**Afeta:** `comum.py` (`DETALHE`, `SUAVE`, `achatar_sombra`; os robôs e o Vigia ficam como estavam até alguém rodar os scripts deles com outro valor), `gerar_gabriel.py` e `gerar_clarice.py` e todos os sprites dos dois, `gerar_kit.py` e `gerar_bunker.py` (peças de fundo e laterais), as 12 salas de aula e as 7 salas do bunker.
+
 ## 2026-09-30 — Nova fase: Bunker, e a Clarice em pessoa
 **Decisão:** começou a fase **Bunker**: o bunker de pesquisa embaixo do núcleo da Âncora, com dois setores (A e B, ligados por escada), 9 salas abertas (entrada, dois corredores, dormitório, refeitório, enfermaria, central de dados, gerador e depósito) e **seis portas lacradas** para fazer depois (escotilha da superfície, elevador, arsenal, laboratório, arquivo e a comporta do núcleo). A **Clarice aparece em pessoa** na central de dados, sentada na estação de trabalho dela, fixa ali, e **conversa** com o Gabriel. Entrou junto o **sistema de diálogos** (JSON em `dados/dialogos/`, caixa com retrato, texto letra por letra e escolhas) e o design completo dela, modelado no Blender.
 **Por quê:** pedido do Davi.
