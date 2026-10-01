@@ -13,8 +13,9 @@
 - **Implementação no Godot:**
   - Cena: `cenas/salas/biblioteca.tscn`
   - Script: `scripts/salas/biblioteca.gd`
-  - Formato: Sala em vista lateral 2.5D ampliada (420 px de altura com parte sul, profundidade y-sort de 122 a 416).
-  - Itens iniciais: lanterna perto do ponto de despertar do Gabriel; duas pilhas no lado escuro; oito lampiões de emergência e quatro luminárias de parede.
+  - Formato: Sala em vista lateral 2.5D ampliada: 1440 × 420 px (4,5 telas de largura; parte sul com profundidade y-sort de 122 a 416).
+  - **Ala leste** (x de 960 a 1440, depois da coluna do meio): a sala de periódicos. Um terceiro buraco no teto com uma árvore nova embaixo, mesas de leitura, cabines e, no fundo sul, um segundo acervo com corredores para se esconder. A **porta de saída** (para os Blocos de aula) fica no fim dela.
+  - Itens iniciais: lanterna perto do ponto de despertar do Gabriel; três pilhas (duas no lado escuro do salão, uma no acervo leste); doze lampiões de emergência e seis luminárias de parede.
 
 ---
 

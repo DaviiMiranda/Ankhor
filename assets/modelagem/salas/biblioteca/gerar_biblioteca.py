@@ -80,19 +80,21 @@ PREVIA = os.environ.get("PREVIA", "")
 # cenas/salas/biblioteca.tscn: se mudar aqui, mude lá.
 # ---------------------------------------------------------------------------
 
-LARGURA_SALA = 960        # 3 telas de 320
+LARGURA_SALA = 1440       # 4 telas e meia de 320 (a ala leste vai de 960 a 1440)
 ALTURA_TELA = 180         # altura de uma tela do jogo
 ALTURA_SALA = 420         # a parte sul (a frente do chão) passa da tela:
                           # a câmera também anda na vertical (2 telas e 1/3)
 Y_CHAO = 112              # linha onde a parede encontra o chão
 PARALAXE_CEU = 0.5        # o céu anda na metade da velocidade da câmera
 # O céu precisa cobrir a tela quando a câmera está no fim da sala:
-# 320 + (960 - 320) * 0,5 = 640 px.
+# 320 + (1440 - 320) * 0,5 = 880 px.
 LARGURA_CEU = int(320 + (LARGURA_SALA - 320) * PARALAXE_CEU)
 
 # Buracos no teto: (x inicial, x final, até que altura a parede caiu).
 BURACO_GRANDE = (150, 338, 58)   # em cima da árvore
 BURACO_PEQUENO = (606, 672, 26)  # em cima do carrinho de livros
+BURACO_LESTE = (1120, 1220, 40)  # na ala leste, em cima da árvore nova
+BURACOS = (BURACO_GRANDE, BURACO_PEQUENO, BURACO_LESTE)
 
 # Onde cada objeto fica na sala: (nome do sprite, x do pé, y do pé, espelhado).
 # "Pé" = ponto do objeto que encosta no chão, na frente. É por esse y que o
@@ -154,6 +156,36 @@ OBJETOS = [
     ("lampada", 372, 326, True),
     ("lampada", 660, 372, True),
     ("lampada", 920, 330, False),
+    # Ala leste (x de 960 a 1440): a sala de periódicos. Uma árvore nova
+    # cresceu embaixo do terceiro buraco do teto; o resto é mesa, cabine e
+    # estante, e no fundo sul um segundo acervo, mais baixo e mais fechado.
+    ("estante_vazia", 1010, 134, False),
+    ("mesa_leitura", 1070, 162, False),
+    ("cadeira", 1024, 170, False),
+    ("cadeira", 1116, 150, True),
+    ("arvore", 1176, 142, True),
+    ("entulho", 1230, 126, False),
+    ("cabine", 1310, 130, True),
+    ("livros", 1262, 172, False),
+    ("lampada", 1356, 168, False),
+    ("estante_caida", 1004, 238, True),
+    ("carrinho", 1096, 262, False),
+    ("livros", 1150, 222, True),
+    ("mesa_leitura", 1300, 236, True),
+    ("cadeira", 1250, 246, False),
+    ("cadeira", 1352, 226, True),
+    ("entulho", 1404, 280, True),
+    ("lampada", 1206, 274, False),
+    ("estante_quebrada", 1016, 340, False),
+    ("estante_vazia", 1112, 340, True),
+    ("estante_vazia", 1060, 398, False),
+    ("estante_quebrada", 1160, 398, True),
+    ("livros", 1106, 372, False),
+    ("cabine", 1300, 360, False),
+    ("entulho", 1392, 404, False),
+    ("carrinho", 1236, 410, True),
+    ("lampada", 990, 410, True),
+    ("lampada", 1380, 334, False),
 ]
 
 # ---------------------------------------------------------------------------
@@ -411,7 +443,7 @@ def luz_pintada(X, Y):
     o ponto está no sol. Longe dos buracos, a sala escurece para a direita."""
     luz = 0.55 - 0.25 * np.clip((X - 600) / 300, 0, 1)
     x_teto = X - 0.5 * Y
-    for (xa, xb, _), forca in ((BURACO_GRANDE, 0.55), (BURACO_PEQUENO, 0.35)):
+    for (xa, xb, _), forca in ((BURACO_GRANDE, 0.55), (BURACO_PEQUENO, 0.35), (BURACO_LESTE, 0.45)):
         # 1 no meio do buraco, caindo suave até 0 a 30 px da borda.
         dentro = np.clip(np.minimum(x_teto - xa, xb - x_teto) / 30 + 0.6, 0, 1)
         luz = luz + forca * dentro
@@ -513,7 +545,7 @@ def desenhar_fundo():
 
     # 4. Rachaduras: "passeios aleatórios" que descem do teto.
     rng = np.random.default_rng(13)
-    for x_ini in (40, 128, 372, 470, 560, 700, 770, 880):
+    for x_ini in (40, 128, 372, 470, 560, 700, 770, 880, 990, 1060, 1270, 1350, 1400):
         x, y = float(x_ini), 15.0
         pontos = [(x, y)]
         for _ in range(rng.integers(6, 11)):
@@ -527,7 +559,7 @@ def desenhar_fundo():
         img.pintar(brilho, "concreto", v + 0.15, achatar=False)
 
     # 5. Estantes embutidas na parede, vazias.
-    for (xa, xb) in ((350, 400), (476, 610), (720, 790), (820, 880)):
+    for (xa, xb) in ((350, 400), (476, 610), (720, 790), (820, 880), (980, 1090), (1250, 1330)):
         desenhar_estante_parede(img, xa, xb, 30, 100, luz)
 
     # 6. Janelas altas à esquerda (vidro quebrado, a mata aparece atrás).
@@ -538,18 +570,21 @@ def desenhar_fundo():
     #    chama a Bibliotecária).
     desenhar_placa(img, 642, 42, "SILENCIO")
 
-    # 8. Porta de saída no fim da sala (para os Blocos de aula, no futuro).
-    desenhar_porta(img, 900, 942, 46)
+    # 8. Porta de saída no fim da sala (para os Blocos de aula), agora no
+    #    fim da ala leste. Antes da ala, a janela da sala de periódicos.
+    desenhar_porta(img, 1380, 1422, 46)
+    desenhar_janela(img, 1344, 24, 28, 30)
 
-    # 9. Pilares nas pontas.
-    for (xa, xb) in ((0, 18), (942, 960)):
+    # 9. Pilares: nas pontas e um no meio, onde a sala terminava antes (a
+    #    coluna que separa o salão da ala leste).
+    for (xa, xb) in ((0, 18), (942, 960), (1422, 1440)):
         pilar = img.ret(xa, 0, xb, Y_CHAO)
         lado = (X - xa) / (xb - xa)
         img.pintar(pilar, "concreto", 0.12 + 0.2 * (1 - abs(lado - 0.35)) + 0.05 * fino)
 
     # 10. Buracos do teto: onde a laje e a parede caíram, apagamos os pixels
     #     (fica transparente e o céu aparece atrás).
-    for i, (xa, xb, fundo) in enumerate((BURACO_GRANDE, BURACO_PEQUENO)):
+    for i, (xa, xb, fundo) in enumerate(BURACOS):
         buraco = img.poligono(contorno_buraco(xa, xb, fundo, 20 + i))
         borda = dilatar(buraco, 2) & ~buraco
         # Borda quebrada do concreto: a de cima, que recebe sol, fica clara.
@@ -571,7 +606,7 @@ def desenhar_fundo():
 
     # 11. Cipós descendo da borda dos buracos pela parede.
     rng = np.random.default_rng(50)
-    for x0 in list(range(154, 336, 17)) + list(range(610, 672, 15)):
+    for x0 in list(range(154, 336, 17)) + list(range(610, 672, 15)) + list(range(1124, 1218, 16)):
         x0 += rng.integers(-3, 4)
         comp = rng.integers(20, 70)
         pontos = [(x0 + 1.5 * np.sin(k * 0.8), 8 + k * comp / 8) for k in range(9)]
@@ -583,7 +618,7 @@ def desenhar_fundo():
     # 12. Luminárias de emergência na parede do lado escuro (as de dois
     #     faróis, que todo prédio tem). No Godot, uma PointLight2D quente em
     #     cima de cada uma (nó Luzes/Arandela* da Biblioteca).
-    for (cx, cy) in ((758, 92), (870, 70), (930, 98), (60, 96)):
+    for (cx, cy) in ((758, 92), (870, 70), (930, 98), (60, 96), (1000, 94), (1300, 92)):
         colar_arandela(img, cx, cy)
 
     # Tudo que está abaixo de Y_CHAO fica para a camada do chão.
@@ -726,7 +761,9 @@ def desenhar_chao():
     # 2. Tapete podre embaixo da área das mesas de leitura.
     tapete = img.poligono([(500, 132), (660, 132), (668, 172), (492, 172)]) \
         | img.poligono([(96, 206), (246, 206), (256, 258), (86, 258)]) \
-        | img.poligono([(716, 344), (866, 344), (878, 402), (704, 402)])   # parte sul
+        | img.poligono([(716, 344), (866, 344), (878, 402), (704, 402)]) \
+        | img.poligono([(1016, 140), (1136, 140), (1144, 178), (1008, 178)]) \
+        | img.poligono([(1236, 214), (1376, 214), (1386, 262), (1226, 262)])   # ala leste
     buracos = ruido(img.w, img.h, 6, 4, 63) > 0.66
     img.pintar(tapete & ~buracos, "tapete", (0.45 + 0.25 * manchas + 0.1 * fino) * luz)
     img.pintar(tapete & ~buracos & ((X + Y) % 6 == 0), "tapete", 0.25 * luz, achatar=False)
@@ -734,7 +771,7 @@ def desenhar_chao():
     # 3. Lajotas faltando: terra aparecendo. Quantidade proporcional ao
     #    tamanho do chão (60 para os 188 px da sala de 300 de altura).
     for _ in range(60 * (ALTURA_SALA - Y_CHAO) // 188):
-        x = rng.integers(20, 940)
+        x = rng.integers(20, LARGURA_SALA - 20)
         y = rng.integers(118, ALTURA_SALA - 4)
         buraco = img.elipse(x, y, rng.uniform(4, 10), rng.uniform(2, 4)) & chao
         img.pintar(buraco, "areia", (0.2 + 0.15 * fino) * luz)
@@ -745,7 +782,8 @@ def desenhar_chao():
     #    anda para a direita enquanto desce).
     for (cx, cy, rx, ry) in ((250, 128, 90, 12), (300, 150, 60, 9), (660, 130, 40, 7),
                              (190, 160, 40, 6), (370, 238, 80, 12), (430, 272, 50, 8),
-                             (770, 250, 34, 6)):
+                             (770, 250, 34, 6), (1190, 132, 60, 9), (1236, 176, 40, 7),
+                             (1280, 270, 50, 8)):
         monte = img.elipse(cx, cy, rx, ry) & (manchas + 0.3 * fino > 0.45) & chao
         img.pintar(monte, "areia", (0.45 + 0.35 * fino) * luz)
 
@@ -766,7 +804,8 @@ def desenhar_chao():
     # 6. Mato nas partes com sol: tufos de 1 px de largura e 2 a 5 de altura.
     x_teto = X - 0.5 * Y
     no_sol = ((x_teto > BURACO_GRANDE[0] - 10) & (x_teto < BURACO_GRANDE[1] + 10)) | \
-             ((x_teto > BURACO_PEQUENO[0]) & (x_teto < BURACO_PEQUENO[1]))
+             ((x_teto > BURACO_PEQUENO[0]) & (x_teto < BURACO_PEQUENO[1])) | \
+             ((x_teto > BURACO_LESTE[0]) & (x_teto < BURACO_LESTE[1]))
     # Quantidade proporcional ao tamanho do chão (420 para os 68 px da tela).
     for _ in range(420 * (ALTURA_SALA - Y_CHAO) // 68):
         x = int(rng.integers(0, img.w))
@@ -1189,17 +1228,18 @@ def desenhar_frente():
     #    recebe o sol de frente: folhas claras em cima, escuras embaixo.
     folhas = ruido(img.w, img.h, 5, 4, 141) * 0.6 + ruido(img.w, img.h, 2, 2, 142) * 0.4
     copa = (img.elipse(222, -4, 70, 22) | img.elipse(300, -8, 40, 18)
-            | img.elipse(180, -2, 30, 16)) & (folhas > 0.42 + 0.02 * Y / 4)
+            | img.elipse(180, -2, 30, 16)
+            | img.elipse(1170, -6, 44, 16) | img.elipse(1204, -8, 24, 12)) & (folhas > 0.42 + 0.02 * Y / 4)
     img.pintar(copa, "verde", 0.95 - Y / 26 + 0.25 * fino)
     # 2. Laje escura por cima de tudo, fora dos buracos (silhueta).
-    for (xa, xb) in ((0, 146), (344, 602), (676, 960)):
+    for (xa, xb) in ((0, 146), (344, 602), (676, 1116), (1224, 1440)):
         # Borda de baixo irregular: ruído em x decide até onde a laje desce.
         borda = 3 + 6 * ruido(img.w, 1, 5, 1, 144)[0][None, :] ** 2
         laje = img.ret(xa, 0, xb, 12) & (Y < borda)
         img.cor(laje, SOMBRA)
     # 3. Cipós pendurados (silhuetas verde-escuras).
     rng = np.random.default_rng(143)
-    for x0 in (22, 70, 132, 176, 318, 360, 420, 598, 690, 742, 830, 905, 948):
+    for x0 in (22, 70, 132, 176, 318, 360, 420, 598, 690, 742, 830, 905, 948, 1030, 1110, 1236, 1290, 1368, 1430):
         comp = int(rng.integers(14, 46))
         pontos = [(x0 + 2 * np.sin(k * 0.9 + x0), k * comp / 8) for k in range(9)]
         cipo = img.caminho(pontos, 0.7)
@@ -1208,7 +1248,8 @@ def desenhar_frente():
         img.pintar(folha, "verde", 0.12)
     # 4. Entulho e mato no primeiro plano, na beira de baixo da sala, só em
     #    alguns pontos (não pode esconder o Gabriel).
-    for (cx, larg, alt) in ((30, 60, 9), (300, 44, 6), (520, 30, 5), (840, 70, 9)):
+    for (cx, larg, alt) in ((30, 60, 9), (300, 44, 6), (520, 30, 5), (840, 70, 9),
+                            (1150, 50, 7), (1400, 60, 8)):
         topo = ALTURA_SALA - alt * (1 - ((X - cx) / (larg / 2)) ** 2) - 2 * fino
         monte = (np.abs(X - cx) < larg / 2) & (Y >= topo)
         img.pintar(monte, "verde", 0.05 + 0.08 * fino)
