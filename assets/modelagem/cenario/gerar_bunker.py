@@ -11,6 +11,10 @@
 #   paredes/<peça>.png   80 x 112 px: um pedaço da parede do fundo (encaixa lado a lado)
 #   paredes/pilar_bunker.png  16 x 112 px: a viga de aço das pontas
 #   chao/<peça>.png      128 x 68 px: um pedaço do chão
+#   chao/<peça>_fundo.png  128 x 64 px: o chão da parte sul das salas fundas
+#                        (encaixa embaixo da peça normal e embaixo de si mesma;
+#                        a conta está no gerar_kit.py, "Chão do fundo")
+#   paredes/bunker_lateral.png  16 x 64 px: a parede do lado da sala funda
 #   objetos/<objeto>.png objetos que o Gabriel contorna (y-sort); o "pé" de
 #                        cada um sai no terminal, como no gerar_biblioteca.py
 # Com CATALOGO=1 monta folhas com o nome de cada peça (bunker_paredes.png,
@@ -600,6 +604,75 @@ def chao_bunker_faixa():
     return img
 
 
+def fundo_base(semente=0):
+    """Concreto do fundo, com juntas a cada 32 px: y local 8 continua a
+    junta da peça normal, e 64 = 2 x 32 faz a peça repetir para baixo."""
+    img = Imagem(128, kit.ALTURA_FUNDO)
+    X, Y = img.X, img.Y
+    fino = kit.ruido_ciclico_2d(img.w, img.h, 2, 2, 240)
+    manchas = kit.ruido_ciclico_2d(img.w, img.h, 32, 16, 241 + semente)
+    oleo = kit.ruido_ciclico_2d(img.w, img.h, 16, 8, 242 + semente) > 0.82
+    valor = (0.42 + 0.14 * manchas + 0.05 * fino - 0.12 * oleo) * LUZ
+    tudo = img.ret(0, 0, img.w, img.h)
+    img.pintar(tudo, "piso", valor)
+    juntas = ((Y % 32) == 8) | (X % 64 == 0)
+    img.pintar(tudo & juntas, "piso", valor - 0.2, achatar=False)
+    img.chao, img.fino, img.manchas = tudo, fino, manchas
+    return img
+
+
+def chao_bunker_fundo():
+    return fundo_base()
+
+
+def chao_bunker_grade_fundo():
+    """Grade metálica em fileiras de 16 px (as mesmas do chão de lajotas)."""
+    img = fundo_base(1)
+    X, Y = img.X, img.Y
+    img.pintar(img.chao, "aco", 0.36 + 0.06 * img.manchas)
+    for ya, yb, _ in kit.FAIXAS_FUNDO:
+        faixa = (Y >= ya) & (Y < yb)
+        meio = ya + 8 if ya else yb - 8
+        furo = faixa & ((np.abs((X % 10) - 5) + np.abs(Y - meio) * 1.2) < 4)
+        img.pintar(furo, "aco", 0.06)
+        if ya:
+            img.pintar(faixa & (Y == ya), "aco", 0.6)
+    return img
+
+
+def chao_bunker_agua_fundo():
+    img = fundo_base(2)
+    X, Y = img.X, img.Y
+    poca = kit.ruido_ciclico_2d(img.w, img.h, 32, 16, 250) + 0.2 * img.fino > 0.66
+    img.pintar(dilatar(poca) & ~poca, "piso", 0.25)
+    img.pintar(poca, "vidro", 0.25 + 0.15 * img.manchas)
+    reflexo = poca & ((Y % 5) == 0) & (kit.ruido_ciclico_2d(img.w, img.h, 8, 2, 251) > 0.6)
+    img.pintar(reflexo, "vidro", 0.9, achatar=False)
+    return img
+
+
+def bunker_lateral():
+    """A parede do lado, vista de cima: o topo da viga de aço com o filete
+    amarelo e a face escura virada para a sala. Para o lado esquerdo; o
+    direito é a mesma peça espelhada."""
+    img = Imagem(16, kit.ALTURA_FUNDO)
+    X, Y = img.X, img.Y
+    fino = kit.ruido_ciclico_2d(img.w, img.h, 2, 2, 260)
+    img.pintar(img.ret(0, 0, 9, img.h), "concreto", 0.4 + 0.06 * fino)
+    img.pintar(img.ret(7, 0, 9, img.h), "amarelo", 0.45)
+    img.pintar(img.ret(9, 0, 13, img.h), "tinta", 0.25 + 0.05 * fino)
+    img.pintar(img.ret(9, 0, 13, img.h) & (Y % 32 == 16), "aco", 0.6)
+    img.cor(img.ret(13, 0, 16, img.h) & ((X + Y) % 2 == 0), SOMBRA)
+    img.cor(img.ret(13, 0, 14, img.h), SOMBRA)
+    return img
+
+
+CHAOS_FUNDO = {
+    "chao_bunker_fundo": chao_bunker_fundo,
+    "chao_bunker_grade_fundo": chao_bunker_grade_fundo,
+    "chao_bunker_agua_fundo": chao_bunker_agua_fundo,
+}
+
 CHAOS = {
     "chao_bunker": chao_bunker,
     "chao_bunker_grade": chao_bunker_grade,
@@ -870,6 +943,9 @@ def main():
         img.h = img.px.shape[0]
         img.salvar(f"{nome}.png", os.path.join(PASTA_BUNKER, "chao"))
         chaos[nome] = img
+    for nome, f in CHAOS_FUNDO.items():
+        f().salvar(f"{nome}.png", os.path.join(PASTA_BUNKER, "chao"))
+    bunker_lateral().salvar("bunker_lateral.png", os.path.join(PASTA_BUNKER, "paredes"))
     objetos = {}
     for nome, (f, pegada) in OBJETOS.items():
         img, px, py = f()

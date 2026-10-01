@@ -28,18 +28,20 @@ Todos em `assets/sprites/personagens/clarice/`, gerados por `assets/modelagem/pe
 
 | Arquivo | Tamanho | O que é |
 |---|---|---|
-| `clarice_digitando.png` | 8 quadros de 80 × 64 | de costas para a câmera, digitando (as mãos e a cabeça acompanham o texto) |
-| `clarice_virando.png` | 5 quadros de 80 × 64 | a cadeira girando até ela olhar para a esquerda |
-| `clarice_olhando.png` | 6 quadros de 80 × 64 | virada para o Gabriel, respirando |
-| `clarice_retrato_normal.png` | 40 × 40 | retrato da caixa de diálogo |
-| `clarice_retrato_sorrindo.png` | 40 × 40 | boca mais larga com os cantos para cima, sobrancelhas erguidas (o sorrisinho de quem já sabe o que você vai dizer) |
-| `clarice_retrato_seria.png` | 40 × 40 | boca curta, sobrancelhas baixas e inclinadas |
+| `clarice_digitando.png` | 8 quadros de 160 × 128 | de costas para a câmera, digitando (as mãos e a cabeça acompanham o texto) |
+| `clarice_virando.png` | 5 quadros de 160 × 128 | a cadeira girando até ela olhar para a esquerda |
+| `clarice_olhando.png` | 6 quadros de 160 × 128 | virada para o Gabriel, respirando |
+| `clarice_retrato_normal.png` | 80 × 80 | retrato da caixa de diálogo (mostrado em 40 × 40) |
+| `clarice_retrato_sorrindo.png` | 80 × 80 | boca mais larga com os cantos para cima, sobrancelhas erguidas (o sorrisinho de quem já sabe o que você vai dizer) |
+| `clarice_retrato_seria.png` | 80 × 80 | boca curta, sobrancelhas baixas e inclinadas |
 | `clarice_referencia.png` | — | em pé (frente, 3/4, lado, costas), sentada e os retratos |
 
-- **Escala:** a mesma de todos os personagens (1,75 m do Gabriel = 48 px). Ela tem 1,62 m.
+- **Escala:** a mesma de todos os personagens (1,75 m do Gabriel = 48 px na tela). Ela tem 1,62 m.
+- **Resolução dobrada:** os sprites saem com o dobro de pixels (`RESOLUCAO = 2` no script) e a cena usa escala 0,5. Na tela ela ocupa o mesmo espaço, com o dobro de detalhe (óculos, rosto, texto nos monitores).
 - **Câmera da estação:** inclinada 22° para baixo, para aparecer o tampo da mesa e o teclado, como os objetos 2.5D do cenário.
-- **O pé do sprite** (o ponto do nó no Godot) é o chão na frente da cadeira: `offset = Vector2(-40, -60)`.
-- **Paleta:** 43 cores para tudo (sprites e retratos). O brilho do cabelo foi trocado por um castanho claro quente, porque o brilho padrão (puxado para o branco frio) deixava o cabelo cinza.
+- **O pé do sprite** (o ponto do nó no Godot) é o chão na frente da cadeira: `scale = Vector2(0.5, 0.5)` e `offset = Vector2(-80, -120)`.
+- **Detalhe:** o corpo dela usa `DETALHE = 3` e sombreamento suave (ver `comum.py`): cones e esferas com três vezes mais gomos, quinas arredondadas, mais cachos no cabelo, o zíper aberto da jaqueta, bolsos, cadarço e um botton de carinha amarela no peito. O rosto fica chapado (com luz suave, a parte de baixo escurecia e parecia barba). A estação de trabalho fica no detalhe normal: monitor de tubo é caixa.
+- **Paleta:** 53 cores para tudo (sprites e retratos). O brilho do cabelo foi trocado por um castanho claro quente, porque o brilho padrão (puxado para o branco frio) deixava o cabelo cinza.
 
 ## No jogo
 

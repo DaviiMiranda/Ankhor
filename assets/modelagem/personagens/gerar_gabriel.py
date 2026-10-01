@@ -15,6 +15,9 @@
 #                                                                 lado a lado, um arquivo por vista
 #   assets/sprites/personagens/gabriel/gabriel_parado_<vista>.png  parado respirando: 8 quadros
 #   assets/sprites/personagens/gabriel/gabriel_referencia.png  frente, 3/4, lado e costas, 128 px
+#   assets/sprites/personagens/gabriel/gabriel_retrato_<expressão>.png  80 x 80: rosto e ombros
+#                                                                 para a caixa de diálogo (normal,
+#                                                                 surpreso, preocupado)
 #   assets/modelagem/personagens/gabriel.blend                 o modelo, para abrir e mexer
 #
 # Quem é (docs/gdd.md, item 3): aluno comum, cansado, que só queria passar
@@ -27,10 +30,13 @@
 # verdes (mato), bege (areia), cinza (concreto) e o escuro frio dos subsolos; um
 # tom quente e contrário a eles faz o jogador achar o Gabriel na tela.
 #
-# Modelagem: só primitivas (caixas, cones de 6 lados, esferas facetadas).
-# Com 1 px ≈ 3,6 cm no sprite de jogo, detalhe menor que isso some, então
-# o que importa é a SILHUETA: cabelo arrepiado, capuz nas costas e a
-# mochila, que deixa o perfil do Gabriel inconfundível.
+# Modelagem: só primitivas (caixas, cones, esferas), agora com DETALHE 3 e
+# sombreamento suave (ver comum.py): cones de 18 a 24 lados, quinas
+# arredondadas e a luz deslizando pelas curvas. A silhueta continua sendo o
+# que importa (cabelo arrepiado, capuz nas costas, a mochila), mas com mais
+# gomos ela fica redonda, e os detalhes pequenos (cordões do capuz, cadarço,
+# zíper e fivelas da mochila, sobrancelhas) aparecem na folha de referência
+# e dão um pixel a mais de leitura no sprite de jogo.
 
 import math
 import os
@@ -44,7 +50,16 @@ import bpy  # noqa: E402
 
 PASTA_SAIDA = os.path.join(c.PASTA_SPRITES, "gabriel")
 ARQUIVO_BLEND = os.path.join(c.PASTA_SCRIPT, "gabriel.blend")
-MAX_CORES = 32   # tamanho máximo da paleta do Gabriel
+MAX_CORES = 40   # tamanho máximo da paleta do Gabriel
+# Resolução dobrada (docs/decisoes.md): os sprites de jogo saem com o dobro
+# de pixels (96 x 112, 2 x 27,4 px por metro) e o Godot mostra com escala
+# 0,5. O jogo desenha na resolução da janela (stretch "canvas_items"), então
+# o Gabriel ocupa o mesmo espaço na tela, mas com o dobro de detalhe.
+RESOLUCAO = 2
+QUADRO = (c.QUADRO_JOGO[0] * RESOLUCAO, c.QUADRO_JOGO[1] * RESOLUCAO)
+PX_POR_M = c.PX_POR_M_JOGO * RESOLUCAO
+PE = c.PE_JOGO_PX * RESOLUCAO
+DETALHE = 3      # gomos x3 e quinas arredondadas (comum.DETALHE)
 # Vistas dos sprites de jogo: (nome, giro do modelo em graus).
 # 3/4 de costas (145°) é o espelho do 3/4 de frente (35°) em relação ao lado
 # (90°): 90 - 55 e 90 + 55. É a vista da diagonal para o fundo.
@@ -69,6 +84,9 @@ def criar_materiais():
         # Detalhes de 1 px: cor chapada (modo 'plano'), sem sombreamento.
         "olho": m.novo("olho", "#1c1822", "plano"),
         "olheira": m.novo("olheira", "#8c5a48", "plano"),   # noite sem dormir
+        "cordao": m.novo("cordao", "#d8d1c3"),
+        "boca": m.novo("boca", "#5e3029", "plano"),
+        "fivela": m.novo("fivela", "#2a2f2a"),
     }
 
 
@@ -81,6 +99,8 @@ def perna(nome, lado, mt, quadril, giro_coxa, giro_joelho):
     # Tênis: cabedal claro + sola escura, com a ponta para a frente (-Y).
     tornozelo = c.pivo(f"{nome}Tornozelo", (0, 0, -0.37), joelho, (-giro_coxa - giro_joelho, 0, 0))
     c.caixa(f"{nome}Tenis", (0.115, 0.26, 0.075), (0, -0.045, -0.05), mt["tenis"], tornozelo, bisel=0.02)
+    c.caixa(f"{nome}Cadarco", (0.07, 0.1, 0.012), (0, -0.07, -0.012), mt["sola"], tornozelo, (-12, 0, 0))
+    c.cone(f"{nome}Bainha", 0.06, 0.06, 0.035, (0, 0, -0.35), mt["jeans"], joelho, lados=6)
     c.caixa(f"{nome}Sola", (0.12, 0.275, 0.028), (0, -0.045, -0.086), mt["sola"], tornozelo)
 
 
@@ -111,13 +131,20 @@ def montar(mt):
     # Capuz caído nas costas: faz um "calombo" atrás do pescoço.
     c.caixa("Capuz", (0.28, 0.12, 0.13), (0, 0.10, 0.55), mt["moletom_escuro"], tronco, (-25, 0, 0), bisel=0.035)
     c.cone("Pescoco", 0.05, 0.05, 0.10, (0, 0, 0.58), mt["pele"], tronco, lados=6)
+    # Cordões do capuz, pendurados na gola, um de cada lado do zíper.
+    for lado in (-1, 1):
+        c.caixa(f"Cordao{lado}", (0.012, 0.012, 0.16), (0.035 * lado, -0.13, 0.45), mt["cordao"], tronco, (0, 4 * lado, 0))
+        c.caixa(f"Ponteira{lado}", (0.016, 0.016, 0.02), (0.037 * lado, -0.132, 0.37), mt["fivela"], tronco)
 
     # Mochila nas costas (alças por cima dos ombros).
     c.caixa("Mochila", (0.31, 0.16, 0.40), (0, 0.205, 0.30), mt["mochila"], tronco, (-4, 0, 0), bisel=0.04)
     c.caixa("MochilaBolso", (0.25, 0.06, 0.17), (0, 0.29, 0.18), mt["mochila_escura"], tronco, bisel=0.02)
+    c.caixa("MochilaZiper", (0.2, 0.012, 0.012), (0, 0.322, 0.25), mt["fivela"], tronco)
+    c.caixa("MochilaAlca", (0.08, 0.03, 0.035), (0, 0.25, 0.52), mt["mochila_escura"], tronco, bisel=0.01)
     for lado in (-1, 1):
         c.caixa(f"Alca{lado}Cima", (0.05, 0.26, 0.03), (0.11 * lado, 0.0, 0.535), mt["mochila_escura"], tronco)
         c.caixa(f"Alca{lado}Frente", (0.05, 0.025, 0.30), (0.11 * lado, -0.13, 0.38), mt["mochila_escura"], tronco)
+        c.caixa(f"Fivela{lado}", (0.055, 0.03, 0.03), (0.11 * lado, -0.14, 0.24), mt["fivela"], tronco)
 
     braco("BracoDir", -1, mt, tronco, 7, -2, -8)
     braco("BracoEsq", +1, mt, tronco, 7, 4, -12)
@@ -130,6 +157,11 @@ def montar(mt):
         c.caixa(f"Orelha{lado}", (0.03, 0.05, 0.06), (0.105 * lado, 0.01, 0.12), mt["pele"], pescoco)
         c.caixa(f"Olho{lado}", (0.035, 0.01, 0.03), (0.048 * lado, -0.112, 0.135), mt["olho"], pescoco)
         c.caixa(f"Olheira{lado}", (0.04, 0.01, 0.014), (0.048 * lado, -0.111, 0.112), mt["olheira"], pescoco)
+        c.caixa(f"Sobrancelha{lado}", (0.045, 0.012, 0.013), (0.048 * lado, -0.112, 0.168), mt["cabelo"], pescoco, (0, 6 * lado, 0))
+    # Boca: só aparece nos retratos (no sprite de 48 px ela seria um risco
+    # escuro no queixo). A aberta é a do "surpreso".
+    c.caixa("Boca", (0.045, 0.01, 0.012), (0, -0.114, 0.052), mt["boca"], pescoco)
+    c.caixa("BocaAberta", (0.024, 0.01, 0.026), (0, -0.114, 0.05), mt["boca"], pescoco)
     # Cabelo: uma "tampa", a nuca e tufos arrepiados (de quem deitou a
     # cabeça em cima do livro).
     c.caixa("CabeloTopo", (0.225, 0.245, 0.075), (0, 0.005, 0.235), mt["cabelo"], pescoco, bisel=0.025)
@@ -236,11 +268,69 @@ def pose_parado(parado, fase):
     bpy.data.objects["Cabeca"].rotation_euler = (rot[0] + math.radians(pende), rot[1], rot[2])
 
 
+# ---------------------------------------------------------------------------
+# Retratos (caixa de diálogo)
+# ---------------------------------------------------------------------------
+#
+# Mesmo enquadramento dos retratos da Clarice: 80 x 80 px (mostrados em 40 x 40 na caixa), câmera reta na
+# altura do rosto, 88 px por metro (o rosto ocupa quase o retrato inteiro),
+# virado 24 graus para a direita (para o texto da caixa). Três expressões,
+# feitas com a boca e as sobrancelhas, porque num retrato de 40 px 1 pixel
+# já muda o rosto:
+#   normal      boca reta, sobrancelhas no lugar (o cansaço de sempre);
+#   surpreso    boca aberta, sobrancelhas lá em cima;
+#   preocupado  boca reta, sobrancelhas levantadas no meio (inclinadas).
+
+QUADRO_RETRATO = (80, 80)
+PX_POR_M_RETRATO = 176
+EXPRESSOES = ("normal", "surpreso", "preocupado")
+
+
+def expressao(qual):
+    bpy.data.objects["Boca"].hide_render = qual == "surpreso"
+    bpy.data.objects["BocaAberta"].hide_render = qual != "surpreso"
+    for lado in (-1, 1):
+        sob = bpy.data.objects[f"Sobrancelha{lado}"]
+        sob.location.z = {"normal": 0.168, "surpreso": 0.18, "preocupado": 0.173}[qual]
+        sob.rotation_euler = (0, math.radians({"normal": 6, "surpreso": 0, "preocupado": -16}[qual] * lado), 0)
+
+
+def renderizar_retratos(cam, raiz, materiais):
+    altura_rosto = bpy.data.objects["Rosto"].matrix_world.translation.z
+
+    def enquadrar_retrato(cam, largura_px, altura_px, px_por_m, pe_px):
+        cena = bpy.context.scene
+        cena.render.resolution_x = largura_px
+        cena.render.resolution_y = altura_px
+        cam.data.ortho_scale = largura_px / px_por_m
+        cam.location = (0.0, -20.0, altura_rosto - 0.02)
+
+    original = c.enquadrar
+    c.enquadrar = enquadrar_retrato
+    retratos = {}
+    try:
+        for qual in EXPRESSOES:
+            expressao(qual)
+            img, ind, _ = c.renderizar_vista(cam, raiz, materiais, 24, QUADRO_RETRATO, PX_POR_M_RETRATO, 0)
+            retratos[qual] = c.contorno(img, ind, materiais)
+    finally:
+        c.enquadrar = original
+    expressao("normal")
+    bpy.data.objects["Boca"].hide_render = True
+    bpy.data.objects["BocaAberta"].hide_render = True
+    return retratos
+
+
 def main():
+    c.DETALHE = DETALHE
+    c.SUAVE = True
     c.cena_vazia()
     materiais, mt = criar_materiais()
     c.usar_colecao("Gabriel")
     raiz = montar(mt)
+    c.achatar_sombra("Rosto")
+    bpy.data.objects["Boca"].hide_render = True
+    bpy.data.objects["BocaAberta"].hide_render = True
     cam = c.criar_camera()
     c.criar_luzes()
     os.makedirs(PASTA_SAIDA, exist_ok=True)
@@ -251,9 +341,9 @@ def main():
     # costas. Para a esquerda, o Godot espelha o sprite.
     jogo = {}
     for nome, angulo in VISTAS_JOGO:
-        img, ind, _ = c.renderizar_vista(cam, raiz, materiais, angulo, c.QUADRO_JOGO, c.PX_POR_M_JOGO, c.PE_JOGO_PX)
+        img, ind, _ = c.renderizar_vista(cam, raiz, materiais, angulo, QUADRO, PX_POR_M, PE)
         linhas = img[..., 3].any(axis=1).nonzero()[0]
-        print(f"[gabriel] {nome}: altura do corpo no sprite: {linhas[-1] - linhas[0] + 1} px")
+        print(f"[gabriel] {nome}: altura do corpo no sprite: {linhas[-1] - linhas[0] + 1} px (resolução {RESOLUCAO}x)")
         jogo[nome] = c.contorno(img, ind, materiais)
     sprite = jogo["lado"]
 
@@ -263,7 +353,7 @@ def main():
     for q in range(QUADROS_ANDAR):
         pose_andar(parado, 360 * q / QUADROS_ANDAR)
         for nome, angulo in VISTAS_JOGO:
-            img, ind, _ = c.renderizar_vista(cam, raiz, materiais, angulo, c.QUADRO_JOGO, c.PX_POR_M_JOGO, c.PE_JOGO_PX)
+            img, ind, _ = c.renderizar_vista(cam, raiz, materiais, angulo, QUADRO, PX_POR_M, PE)
             andar[nome].append(c.contorno(img, ind, materiais))
         print(f"[gabriel] andar: quadro {q + 1}/{QUADROS_ANDAR}")
     restaurar_pose(parado)
@@ -273,7 +363,7 @@ def main():
     for q in range(QUADROS_PARADO):
         pose_parado(parado, 360 * q / QUADROS_PARADO)
         for nome, angulo in VISTAS_JOGO:
-            img, ind, _ = c.renderizar_vista(cam, raiz, materiais, angulo, c.QUADRO_JOGO, c.PX_POR_M_JOGO, c.PE_JOGO_PX)
+            img, ind, _ = c.renderizar_vista(cam, raiz, materiais, angulo, QUADRO, PX_POR_M, PE)
             respirar[nome].append(c.contorno(img, ind, materiais))
         print(f"[gabriel] parado: quadro {q + 1}/{QUADROS_PARADO}")
     restaurar_pose(parado)
@@ -298,7 +388,10 @@ def main():
     for nome, quadros in respirar.items():
         tira = np.concatenate(c.aplicar_paleta(quadros, paleta), axis=1)
         c.salvar_png(tira, os.path.join(PASTA_SAIDA, f"gabriel_parado_{nome}.png"))
-    c.salvar_png(c.montar_folha([vistas]), os.path.join(PASTA_SAIDA, "gabriel_referencia.png"))
+    retratos = renderizar_retratos(cam, raiz, materiais)
+    for (qual, img) in zip(retratos, c.aplicar_paleta(list(retratos.values()), paleta)):
+        c.salvar_png(img, os.path.join(PASTA_SAIDA, f"gabriel_retrato_{qual}.png"))
+    c.salvar_png(c.montar_folha([vistas, list(retratos.values())]), os.path.join(PASTA_SAIDA, "gabriel_referencia.png"))
     print("[gabriel] paleta:", " ".join(c.rgb_para_hex(np.array(cor) / 255) for cor in paleta))
 
     c.salvar_blend(ARQUIVO_BLEND, raiz)

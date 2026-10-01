@@ -7,26 +7,25 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_janela.tscn" id="r5"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lousa.tscn" id="r6"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lisa.tscn" id="r7"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_mural.tscn" id="r8"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_rachada.tscn" id="r9"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_arandela.tscn" id="r10"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="r11"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_arandela.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas_fundo.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral.tscn" id="r12"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira.tscn" id="r13"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira_caida.tscn" id="r14"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/mesa_leitura.tscn" id="r15"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="r16"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_vazia.tscn" id="r17"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/livros.tscn" id="r18"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r19"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r17"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
 
 [node name="Sala101" instance=ExtResource("r1")]
 id = "sala_101"
-largura = 960
+largura = 480
+altura = 560
+chao_frente = 556
 
 [node name="Sprite2D" parent="Ceu"]
 self_modulate = Color(1, 1, 1, 1)
@@ -47,56 +46,147 @@ position = Vector2(240, 0)
 [node name="Parede05" parent="Paredes" instance=ExtResource("r5")]
 position = Vector2(320, 0)
 
-[node name="Parede06" parent="Paredes" instance=ExtResource("r7")]
+[node name="Parede06" parent="Paredes" instance=ExtResource("r8")]
 position = Vector2(400, 0)
 
-[node name="Parede07" parent="Paredes" instance=ExtResource("r8")]
-position = Vector2(480, 0)
-
-[node name="Parede08" parent="Paredes" instance=ExtResource("r7")]
-position = Vector2(560, 0)
-
-[node name="Parede09" parent="Paredes" instance=ExtResource("r5")]
-position = Vector2(640, 0)
-
-[node name="Parede10" parent="Paredes" instance=ExtResource("r6")]
-position = Vector2(720, 0)
-
-[node name="Parede11" parent="Paredes" instance=ExtResource("r9")]
-position = Vector2(800, 0)
-
-[node name="Parede12" parent="Paredes" instance=ExtResource("r10")]
-position = Vector2(880, 0)
-
-[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r11")]
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r9")]
 position = Vector2(0, 0)
 
-[node name="PilarDireita" parent="Paredes" instance=ExtResource("r11")]
-position = Vector2(944, 0)
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(464, 0)
 
-[node name="Chao1" parent="Chao" instance=ExtResource("r12")]
+[node name="Chao1" parent="Chao" instance=ExtResource("r10")]
 position = Vector2(0, 0)
 
-[node name="Chao2" parent="Chao" instance=ExtResource("r12")]
+[node name="Chao2" parent="Chao" instance=ExtResource("r10")]
 position = Vector2(128, 0)
 
-[node name="Chao3" parent="Chao" instance=ExtResource("r12")]
+[node name="Chao3" parent="Chao" instance=ExtResource("r10")]
 position = Vector2(256, 0)
 
-[node name="Chao4" parent="Chao" instance=ExtResource("r12")]
+[node name="Chao4" parent="Chao" instance=ExtResource("r10")]
 position = Vector2(384, 0)
 
-[node name="Chao5" parent="Chao" instance=ExtResource("r12")]
-position = Vector2(512, 0)
+[node name="Fundo1_1" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 180)
 
-[node name="Chao6" parent="Chao" instance=ExtResource("r12")]
-position = Vector2(640, 0)
+[node name="Fundo1_2" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 244)
 
-[node name="Chao7" parent="Chao" instance=ExtResource("r12")]
-position = Vector2(768, 0)
+[node name="Fundo1_3" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 308)
 
-[node name="Chao8" parent="Chao" instance=ExtResource("r12")]
-position = Vector2(896, 0)
+[node name="Fundo1_4" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 372)
+
+[node name="Fundo1_5" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 436)
+
+[node name="Fundo1_6" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 500)
+
+[node name="Fundo2_1" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(128, 180)
+
+[node name="Fundo2_2" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(128, 244)
+
+[node name="Fundo2_3" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(128, 308)
+
+[node name="Fundo2_4" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(128, 372)
+
+[node name="Fundo2_5" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(128, 436)
+
+[node name="Fundo2_6" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(128, 500)
+
+[node name="Fundo3_1" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(256, 180)
+
+[node name="Fundo3_2" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(256, 244)
+
+[node name="Fundo3_3" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(256, 308)
+
+[node name="Fundo3_4" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(256, 372)
+
+[node name="Fundo3_5" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(256, 436)
+
+[node name="Fundo3_6" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(256, 500)
+
+[node name="Fundo4_1" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(384, 180)
+
+[node name="Fundo4_2" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(384, 244)
+
+[node name="Fundo4_3" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(384, 308)
+
+[node name="Fundo4_4" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(384, 372)
+
+[node name="Fundo4_5" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(384, 436)
+
+[node name="Fundo4_6" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(384, 500)
+
+[node name="LateralEsq1" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 112)
+
+[node name="LateralDir1" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(464, 112)
+flip_h = true
+
+[node name="LateralEsq2" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 176)
+
+[node name="LateralDir2" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(464, 176)
+flip_h = true
+
+[node name="LateralEsq3" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 240)
+
+[node name="LateralDir3" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(464, 240)
+flip_h = true
+
+[node name="LateralEsq4" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 304)
+
+[node name="LateralDir4" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(464, 304)
+flip_h = true
+
+[node name="LateralEsq5" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 368)
+
+[node name="LateralDir5" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(464, 368)
+flip_h = true
+
+[node name="LateralEsq6" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 432)
+
+[node name="LateralDir6" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(464, 432)
+flip_h = true
+
+[node name="LateralEsq7" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 496)
+
+[node name="LateralDir7" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(464, 496)
+flip_h = true
 
 [node name="Carteira1" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(170, 134)
@@ -144,72 +234,200 @@ position = Vector2(322, 174)
 position = Vector2(366, 174)
 
 [node name="Carteira14" parent="Objetos" instance=ExtResource("r13")]
-position = Vector2(640, 134)
+position = Vector2(71, 216)
 
 [node name="Carteira15" parent="Objetos" instance=ExtResource("r13")]
-position = Vector2(684, 134)
+position = Vector2(122, 213)
 
 [node name="Carteira16" parent="Objetos" instance=ExtResource("r13")]
-position = Vector2(728, 134)
-
-[node name="CarteiraCaida3" parent="Objetos" instance=ExtResource("r14")]
-position = Vector2(772, 134)
+position = Vector2(167, 213)
 
 [node name="Carteira17" parent="Objetos" instance=ExtResource("r13")]
-position = Vector2(650, 154)
-
-[node name="CarteiraCaida4" parent="Objetos" instance=ExtResource("r14")]
-position = Vector2(694, 154)
+position = Vector2(210, 213)
 
 [node name="Carteira18" parent="Objetos" instance=ExtResource("r13")]
-position = Vector2(738, 154)
+position = Vector2(260, 214)
 
 [node name="Carteira19" parent="Objetos" instance=ExtResource("r13")]
-position = Vector2(782, 154)
+position = Vector2(301, 215)
 
 [node name="Carteira20" parent="Objetos" instance=ExtResource("r13")]
-position = Vector2(660, 174)
+position = Vector2(393, 212)
 
 [node name="Carteira21" parent="Objetos" instance=ExtResource("r13")]
-position = Vector2(704, 174)
-
-[node name="CarteiraCaida5" parent="Objetos" instance=ExtResource("r14")]
-position = Vector2(748, 174)
+position = Vector2(73, 254)
 
 [node name="Carteira22" parent="Objetos" instance=ExtResource("r13")]
-position = Vector2(792, 174)
+position = Vector2(120, 252)
 
-[node name="MesaLeitura1" parent="Objetos" instance=ExtResource("r15")]
-position = Vector2(480, 140)
+[node name="Carteira23" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(160, 255)
+
+[node name="CarteiraCaida3" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(257, 254)
+
+[node name="Carteira24" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(298, 255)
+
+[node name="Carteira25" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(395, 256)
+
+[node name="Carteira26" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(76, 294)
+
+[node name="Carteira27" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(122, 292)
+
+[node name="Carteira28" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(214, 295)
+
+[node name="Carteira29" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(259, 293)
+
+[node name="Carteira30" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(301, 296)
+
+[node name="Carteira31" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(346, 292)
+
+[node name="CarteiraCaida4" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(395, 295)
+
+[node name="CarteiraCaida5" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(73, 335)
 espelhado = true
 
-[node name="Lampada1" parent="Objetos" instance=ExtResource("r16")]
-position = Vector2(560, 168)
+[node name="Carteira32" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(115, 334)
 
-[node name="EstanteVazia1" parent="Objetos" instance=ExtResource("r17")]
-position = Vector2(900, 130)
+[node name="CarteiraCaida6" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(163, 335)
 
-[node name="Livros1" parent="Objetos" instance=ExtResource("r18")]
-position = Vector2(860, 170)
+[node name="CarteiraCaida7" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(211, 333)
+
+[node name="Carteira33" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(252, 332)
+
+[node name="CarteiraCaida8" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(305, 336)
 espelhado = true
 
-[node name="Lua1" parent="Luzes" instance=ExtResource("r19")]
+[node name="Carteira34" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(351, 333)
+
+[node name="Carteira35" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(395, 332)
+
+[node name="Carteira36" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(73, 375)
+
+[node name="Carteira37" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(161, 373)
+
+[node name="Carteira38" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(211, 372)
+
+[node name="Carteira39" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(255, 374)
+
+[node name="Carteira40" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(301, 373)
+
+[node name="Carteira41" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(348, 374)
+
+[node name="Carteira42" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(396, 373)
+
+[node name="CarteiraCaida9" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(68, 413)
+
+[node name="Carteira43" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(121, 415)
+
+[node name="Carteira44" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(163, 412)
+
+[node name="Carteira45" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(206, 412)
+
+[node name="Carteira46" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(256, 416)
+
+[node name="Carteira47" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(298, 412)
+
+[node name="Carteira48" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(345, 412)
+
+[node name="Carteira49" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(395, 416)
+
+[node name="Carteira50" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(74, 452)
+
+[node name="CarteiraCaida10" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(117, 456)
+espelhado = true
+
+[node name="Carteira51" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(162, 453)
+
+[node name="Carteira52" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(209, 455)
+
+[node name="Carteira53" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(260, 456)
+
+[node name="Carteira54" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(306, 452)
+
+[node name="Carteira55" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(346, 456)
+
+[node name="Carteira56" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(391, 452)
+
+[node name="Carteira57" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(69, 494)
+
+[node name="Carteira58" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(114, 492)
+
+[node name="Carteira59" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(161, 494)
+
+[node name="Carteira60" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(212, 496)
+
+[node name="Carteira61" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(257, 492)
+
+[node name="Carteira62" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(301, 495)
+
+[node name="Carteira63" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(346, 495)
+
+[node name="Carteira64" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(394, 492)
+
+[node name="Lampada1" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(440, 520)
+
+[node name="Lua1" parent="Luzes" instance=ExtResource("r16")]
 position = Vector2(120, 50)
 color = Color(0.5, 0.6, 0.95, 1)
 energy = 0.54
 
-[node name="Lua2" parent="Luzes" instance=ExtResource("r19")]
+[node name="Lua2" parent="Luzes" instance=ExtResource("r16")]
 position = Vector2(360, 50)
 color = Color(0.5, 0.6, 0.95, 1)
 energy = 0.54
 
-[node name="Lua3" parent="Luzes" instance=ExtResource("r19")]
-position = Vector2(680, 50)
-color = Color(0.5, 0.6, 0.95, 1)
-energy = 0.54
-
-[node name="Lampiao4" parent="Luzes" instance=ExtResource("r20")]
-position = Vector2(560, 160)
+[node name="Lampiao3" parent="Luzes" instance=ExtResource("r17")]
+position = Vector2(440, 512)
 
 [node name="Escuridao" parent="."]
 color = Color(0.23, 0.25, 0.38, 1)

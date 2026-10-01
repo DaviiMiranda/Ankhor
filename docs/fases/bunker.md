@@ -40,15 +40,15 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`) com o som da porta b
 
 | Cena (`cenas/salas/bunker/`) | Largura | O que tem | Itens |
 |---|---|---|---|
-| `entrada` | 960 | Escada da superfície, descontaminação (chuveiros e faixas de perigo), armários, posto de guarda (mesa, cadeira, lampião), planta de evacuação, elevador lacrado e a porta para o setor A | — |
-| `corredor_a` | 2560 | O corredor principal: portas com placas, janela para a sala dos servidores, canos, quadros elétricos, pichações da Clarice e a escada para o setor B | — |
-| `corredor_b` | 2240 | Nível de baixo: água no chão, luz vermelha, infiltração nas paredes, três portas lacradas e a **comporta do núcleo** | — |
-| `dormitorio` | 960 | Seis beliches, armários, caixas | 1 pilha |
-| `refeitorio` | 960 | Mesas compridas de aço, prateleiras de latas, planta do bunker | 1 cápsula de clarão |
-| `enfermaria` | 800 | Macas, suportes de soro, biombos, armários de remédios | 1 pilha |
-| `central_dados` | 1120 | **A sala da Clarice:** racks de servidores, janela para os servidores, a parede do grafo, a estação dela (três monitores de tubo) e o canto onde ela dorme (colchão, cobertor roxo, latas, lampião) | — |
-| `gerador` | 960 | Dois geradores a diesel ligados, tambores de combustível, quadros elétricos | — |
-| `deposito` | 800 | Estantes, caixotes, tambores | 1 pilha, 1 cápsula de clarão, 2 pedras |
+| `entrada` | 480 × 560 | Escada da superfície, descontaminação (chuveiros e faixas de perigo), armários, posto de guarda (mesa, cadeira, lampião), planta de evacuação, elevador lacrado e a porta para o setor A | — |
+| `corredor_a` | 2560 × 180 | O corredor principal: portas com placas, janela para a sala dos servidores, canos, quadros elétricos, pichações da Clarice e a escada para o setor B | — |
+| `corredor_b` | 2240 × 180 | Nível de baixo: água no chão, luz vermelha, infiltração nas paredes, três portas lacradas e a **comporta do núcleo** | — |
+| `dormitorio` | 480 × 560 | Fileiras de beliches (três por fileira), armários, caixas | 1 pilha |
+| `refeitorio` | 480 × 560 | Fileiras de mesas compridas de aço, prateleiras de latas, planta do bunker | 1 cápsula de clarão |
+| `enfermaria` | 400 × 480 | Duas fileiras de macas com biombos entre elas, suportes de soro, armários de remédios | 1 pilha |
+| `central_dados` | 560 × 640 | **A sala da Clarice:** corredores de racks de servidores, janela para os servidores, a parede do grafo, a estação dela (três monitores de tubo) e o canto onde ela dorme (colchão, cobertor roxo, latas, lampião) | — |
+| `gerador` | 480 × 560 | Dois geradores a diesel ligados, tambores de combustível, quadros elétricos | — |
+| `deposito` | 400 × 480 | Corredores de estantes, caixotes, tambores | 1 pilha, 1 cápsula de clarão, 2 pedras |
 
 ### Salas lacradas (para fazer depois)
 
@@ -90,5 +90,6 @@ A própria Clarice explica no diálogo que o setor B está lacrado pelo sistema 
 
 - **Paredes (80 × 112):** `bunker_lisa`, `bunker_rachada` (infiltração), `bunker_canos`, `bunker_luminaria` (tubo fluorescente: ponha uma `luz_tubo` em x + 40, y 34), `bunker_emergencia` (giroflex: `luz_emergencia` em x + 40, y 30), `bunker_porta` (aberta), `bunker_porta_fechada`, `bunker_porta_lacrada`, `bunker_comporta`, `bunker_armarios`, `bunker_painel`, `bunker_mapa`, `bunker_grafo`, `bunker_vidro`, `bunker_prateleiras`, `bunker_remedios`, `bunker_descontaminacao`, `bunker_escada_sobe`, `bunker_escada_desce`, e o `pilar_bunker` (16 px) para as pontas.
 - **Chão (128 × 68):** `chao_bunker`, `chao_bunker_grade`, `chao_bunker_agua`, `chao_bunker_faixa`.
+- **Salas fundas:** as salas (não os corredores) são mais altas que largas. Abaixo da peça de chão normal vão as peças de fundo (128 × 64, repetem para baixo): `chao_bunker_fundo`, `chao_bunker_grade_fundo`, `chao_bunker_agua_fundo`; nos lados, `bunker_lateral` (16 × 64; a da direita com `flip_h`). No `Sala`, `altura` e `chao_frente` (= altura - 4).
 - **Objetos:** `beliche`, `mesa_refeitorio`, `maca`, `suporte_soro`, `biombo`, `gerador`, `tambor`, `tambor_verde`, `caixas`, `rack_servidor`, `colchao`, `estante_metal`, `latas`, `mesa_metal`.
 - **Placas das portas:** são `Label` dentro de `Paredes` (fundo de aço escuro, letra amarela), em cima da plaquinha que as peças de porta já trazem. As pichações da Clarice também são `Label`, em vermelho.

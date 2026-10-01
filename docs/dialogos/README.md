@@ -7,10 +7,10 @@ Conversas com personagens (hoje, a Clarice no bunker). Cada conversa é um arqui
 ## 1. No jogo
 
 - Perto de um personagem aparece `[E] Conversar`. Ao apertar, o **jogo pausa** (robôs, luzes e música param) e a caixa de diálogo abre **no alto da tela**, para não cobrir os personagens, que ficam no chão, na metade de baixo.
-- A caixa mostra o **retrato** de quem fala (40 × 40), o **nome** na cor da pessoa (Clarice em verde-azulado, Gabriel em vermelho) e o texto aparecendo **letra por letra**, com um bipe a cada duas letras. O tom do bipe muda com quem fala (a Clarice mais aguda). Depois de ponto, vírgula, `?` e `!`, a escrita dá uma pausa curta, como quem respira.
+- A caixa mostra o **retrato** de quem fala (ocupa 40 × 40 na tela; a imagem tem 80 × 80, para o rosto sair com o dobro de detalhe), o **nome** na cor da pessoa (Clarice em verde-azulado, Gabriel em vermelho) e o texto aparecendo **letra por letra**, com um bipe a cada duas letras. O tom do bipe muda com quem fala (a Clarice mais aguda). Depois de ponto, vírgula, `?` e `!`, a escrita dá uma pausa curta, como quem respira.
 - `E` (ou `Enter`) mostra a fala inteira de uma vez; se ela já está inteira, passa para a próxima. Quando a fala terminou, pisca um `E` no canto.
 - Nas **escolhas**, `W`/`S` (ou as setas) movem o cursor `>` e `E` escolhe.
-- Fala do Gabriel não tem retrato: o texto usa a largura toda.
+- Fala sem `retrato` (um narrador, um bilhete lido em voz alta) usa a largura toda da caixa.
 - No fim, o jogo despausa. Se a conversa tiver `anotacao`, ela entra no **Caderno do Gabriel** (aba Anotações), como os bilhetes.
 
 ---
@@ -43,7 +43,7 @@ Cada **trecho** é um nó; cada **escolha** e cada `vai_para` é uma aresta que 
 ## 3. Como pôr uma conversa num personagem novo
 
 1. Escreva o JSON em `dados/dialogos/` seguindo o [`template_dialogo.md`](template_dialogo.md).
-2. Retratos: PNG de 40 × 40 em `assets/sprites/personagens/<pasta>/`. No JSON, o campo `retrato` é o caminho a partir de `assets/sprites/personagens/`, sem o `.png` (ex.: `clarice/clarice_retrato_sorrindo`).
+2. Retratos: PNG de 80 × 80 em `assets/sprites/personagens/<pasta>/` (a caixa mostra em 40 × 40). No JSON, o campo `retrato` é o caminho a partir de `assets/sprites/personagens/`, sem o `.png` (ex.: `clarice/clarice_retrato_sorrindo`).
 3. Na cena do personagem, adicione uma `Area2D` com o script `conversa_npc.gd` e uma `CollisionShape2D` (o alcance). No Inspetor: `texto_acao = Conversar`, `primeira_conversa` e, se quiser, `conversa_de_novo`.
 4. Nome com cor própria e tom de bipe: `CORES_NOMES` e `TOM_VOZ` no começo de `scripts/interface/caixa_dialogo.gd`.
 
