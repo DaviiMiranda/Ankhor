@@ -27,10 +27,13 @@
 # verdes (mato), bege (areia), cinza (concreto) e o escuro frio dos subsolos; um
 # tom quente e contrário a eles faz o jogador achar o Gabriel na tela.
 #
-# Modelagem: só primitivas (caixas, cones de 6 lados, esferas facetadas).
-# Com 1 px ≈ 3,6 cm no sprite de jogo, detalhe menor que isso some, então
-# o que importa é a SILHUETA: cabelo arrepiado, capuz nas costas e a
-# mochila, que deixa o perfil do Gabriel inconfundível.
+# Modelagem: só primitivas (caixas, cones, esferas), agora com DETALHE 3 e
+# sombreamento suave (ver comum.py): cones de 18 a 24 lados, quinas
+# arredondadas e a luz deslizando pelas curvas. A silhueta continua sendo o
+# que importa (cabelo arrepiado, capuz nas costas, a mochila), mas com mais
+# gomos ela fica redonda, e os detalhes pequenos (cordões do capuz, cadarço,
+# zíper e fivelas da mochila, sobrancelhas) aparecem na folha de referência
+# e dão um pixel a mais de leitura no sprite de jogo.
 
 import math
 import os
@@ -44,7 +47,8 @@ import bpy  # noqa: E402
 
 PASTA_SAIDA = os.path.join(c.PASTA_SPRITES, "gabriel")
 ARQUIVO_BLEND = os.path.join(c.PASTA_SCRIPT, "gabriel.blend")
-MAX_CORES = 32   # tamanho máximo da paleta do Gabriel
+MAX_CORES = 34   # tamanho máximo da paleta do Gabriel
+DETALHE = 3      # gomos x3 e quinas arredondadas (comum.DETALHE)
 # Vistas dos sprites de jogo: (nome, giro do modelo em graus).
 # 3/4 de costas (145°) é o espelho do 3/4 de frente (35°) em relação ao lado
 # (90°): 90 - 55 e 90 + 55. É a vista da diagonal para o fundo.
@@ -69,6 +73,8 @@ def criar_materiais():
         # Detalhes de 1 px: cor chapada (modo 'plano'), sem sombreamento.
         "olho": m.novo("olho", "#1c1822", "plano"),
         "olheira": m.novo("olheira", "#8c5a48", "plano"),   # noite sem dormir
+        "cordao": m.novo("cordao", "#d8d1c3"),
+        "fivela": m.novo("fivela", "#2a2f2a"),
     }
 
 
@@ -81,6 +87,8 @@ def perna(nome, lado, mt, quadril, giro_coxa, giro_joelho):
     # Tênis: cabedal claro + sola escura, com a ponta para a frente (-Y).
     tornozelo = c.pivo(f"{nome}Tornozelo", (0, 0, -0.37), joelho, (-giro_coxa - giro_joelho, 0, 0))
     c.caixa(f"{nome}Tenis", (0.115, 0.26, 0.075), (0, -0.045, -0.05), mt["tenis"], tornozelo, bisel=0.02)
+    c.caixa(f"{nome}Cadarco", (0.07, 0.1, 0.012), (0, -0.07, -0.012), mt["sola"], tornozelo, (-12, 0, 0))
+    c.cone(f"{nome}Bainha", 0.06, 0.06, 0.035, (0, 0, -0.35), mt["jeans"], joelho, lados=6)
     c.caixa(f"{nome}Sola", (0.12, 0.275, 0.028), (0, -0.045, -0.086), mt["sola"], tornozelo)
 
 
@@ -111,13 +119,20 @@ def montar(mt):
     # Capuz caído nas costas: faz um "calombo" atrás do pescoço.
     c.caixa("Capuz", (0.28, 0.12, 0.13), (0, 0.10, 0.55), mt["moletom_escuro"], tronco, (-25, 0, 0), bisel=0.035)
     c.cone("Pescoco", 0.05, 0.05, 0.10, (0, 0, 0.58), mt["pele"], tronco, lados=6)
+    # Cordões do capuz, pendurados na gola, um de cada lado do zíper.
+    for lado in (-1, 1):
+        c.caixa(f"Cordao{lado}", (0.012, 0.012, 0.16), (0.035 * lado, -0.13, 0.45), mt["cordao"], tronco, (0, 4 * lado, 0))
+        c.caixa(f"Ponteira{lado}", (0.016, 0.016, 0.02), (0.037 * lado, -0.132, 0.37), mt["fivela"], tronco)
 
     # Mochila nas costas (alças por cima dos ombros).
     c.caixa("Mochila", (0.31, 0.16, 0.40), (0, 0.205, 0.30), mt["mochila"], tronco, (-4, 0, 0), bisel=0.04)
     c.caixa("MochilaBolso", (0.25, 0.06, 0.17), (0, 0.29, 0.18), mt["mochila_escura"], tronco, bisel=0.02)
+    c.caixa("MochilaZiper", (0.2, 0.012, 0.012), (0, 0.322, 0.25), mt["fivela"], tronco)
+    c.caixa("MochilaAlca", (0.08, 0.03, 0.035), (0, 0.25, 0.52), mt["mochila_escura"], tronco, bisel=0.01)
     for lado in (-1, 1):
         c.caixa(f"Alca{lado}Cima", (0.05, 0.26, 0.03), (0.11 * lado, 0.0, 0.535), mt["mochila_escura"], tronco)
         c.caixa(f"Alca{lado}Frente", (0.05, 0.025, 0.30), (0.11 * lado, -0.13, 0.38), mt["mochila_escura"], tronco)
+        c.caixa(f"Fivela{lado}", (0.055, 0.03, 0.03), (0.11 * lado, -0.14, 0.24), mt["fivela"], tronco)
 
     braco("BracoDir", -1, mt, tronco, 7, -2, -8)
     braco("BracoEsq", +1, mt, tronco, 7, 4, -12)
@@ -130,6 +145,7 @@ def montar(mt):
         c.caixa(f"Orelha{lado}", (0.03, 0.05, 0.06), (0.105 * lado, 0.01, 0.12), mt["pele"], pescoco)
         c.caixa(f"Olho{lado}", (0.035, 0.01, 0.03), (0.048 * lado, -0.112, 0.135), mt["olho"], pescoco)
         c.caixa(f"Olheira{lado}", (0.04, 0.01, 0.014), (0.048 * lado, -0.111, 0.112), mt["olheira"], pescoco)
+        c.caixa(f"Sobrancelha{lado}", (0.045, 0.012, 0.013), (0.048 * lado, -0.112, 0.168), mt["cabelo"], pescoco, (0, 6 * lado, 0))
     # Cabelo: uma "tampa", a nuca e tufos arrepiados (de quem deitou a
     # cabeça em cima do livro).
     c.caixa("CabeloTopo", (0.225, 0.245, 0.075), (0, 0.005, 0.235), mt["cabelo"], pescoco, bisel=0.025)
@@ -237,10 +253,13 @@ def pose_parado(parado, fase):
 
 
 def main():
+    c.DETALHE = DETALHE
+    c.SUAVE = True
     c.cena_vazia()
     materiais, mt = criar_materiais()
     c.usar_colecao("Gabriel")
     raiz = montar(mt)
+    c.achatar_sombra("Rosto")
     cam = c.criar_camera()
     c.criar_luzes()
     os.makedirs(PASTA_SAIDA, exist_ok=True)

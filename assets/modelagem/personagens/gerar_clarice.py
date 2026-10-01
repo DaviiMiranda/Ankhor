@@ -41,8 +41,11 @@
 # como os objetos do cenário 2.5D. Os outros personagens usam a câmera
 # reta; a diferença de escala na altura é cos(22°) = 0,93, quase nada.
 #
-# Modelagem: só primitivas (caixas, cones, esferas facetadas), como o
-# Gabriel e os robôs. Ver comum.py para o render em dois passes (luz e ID)
+# Modelagem: só primitivas (caixas, cones, esferas). A Clarice usa DETALHE 3
+# e sombreamento suave, como o Gabriel (ver comum.py): cabelo com mais
+# cachos redondos, quinas arredondadas. A estação de trabalho fica no
+# detalhe normal de propósito: monitor de tubo, gabinete e mesa são caixas
+# de verdade, e arredondar deixaria tudo com cara de plástico mole. Ver comum.py para o render em dois passes (luz e ID)
 # e a paleta fixa.
 
 import math
@@ -57,7 +60,8 @@ import bpy  # noqa: E402
 
 PASTA_SAIDA = os.path.join(c.PASTA_SPRITES, "clarice")
 ARQUIVO_BLEND = os.path.join(c.PASTA_SCRIPT, "clarice.blend")
-MAX_CORES = 44
+MAX_CORES = 46
+DETALHE = 3
 QUADRO_MESA = (80, 64)
 PE_MESA_PX = 4
 INCLINACAO = 22            # graus: câmera olhando um pouco para baixo
@@ -142,6 +146,7 @@ def perna(nome, lado, mt, quadril):
     c.caixa(f"{nome}Tenis", (0.10, 0.24, 0.07), (0, -0.04, -0.045), mt["tenis"], tornozelo, bisel=0.02)
     c.caixa(f"{nome}Biqueira", (0.10, 0.05, 0.05), (0, -0.14, -0.055), mt["sola"], tornozelo, bisel=0.01)
     c.caixa(f"{nome}Sola", (0.105, 0.25, 0.025), (0, -0.04, -0.082), mt["sola"], tornozelo)
+    c.caixa(f"{nome}Cadarco", (0.06, 0.09, 0.012), (0, -0.07, -0.014), mt["sola"], tornozelo, (-12, 0, 0))
 
 
 def braco(nome, lado, mt, tronco):
@@ -181,9 +186,15 @@ def cabeca(mt, tronco):
         c.esfera(f"Volume{lado}", 0.075, (0.1 * lado, 0.03, 0.15), mt["cabelo"], pescoco, escala=(0.8, 1.1, 1.2), seg=6, aneis=4)
         c.esfera(f"VolumeNuca{lado}", 0.07, (0.06 * lado, 0.09, 0.08), mt["cabelo"], pescoco, seg=6, aneis=4)
     c.cone("Xuxinha", 0.05, 0.05, 0.035, (0, 0.11, 0.25), mt["xuxinha"], pescoco, (-60, 0, 0), lados=8)
-    for i, (x, y, z, r) in enumerate([(0, 0.17, 0.3, 0.075), (-0.05, 0.2, 0.25, 0.06), (0.05, 0.2, 0.26, 0.06),
-                                      (0, 0.23, 0.2, 0.055), (0.02, 0.15, 0.34, 0.05)]):
+    cachos = [(0, 0.17, 0.3, 0.075), (-0.05, 0.2, 0.25, 0.06), (0.05, 0.2, 0.26, 0.06),
+              (0, 0.23, 0.2, 0.055), (0.02, 0.15, 0.34, 0.05), (-0.06, 0.14, 0.31, 0.045),
+              (0.07, 0.15, 0.3, 0.045), (-0.03, 0.25, 0.17, 0.045), (0.04, 0.24, 0.15, 0.04),
+              (0, 0.2, 0.36, 0.04)]
+    for i, (x, y, z, r) in enumerate(cachos):
         c.esfera(f"Cacho{i}", r, (x, y, z), mt["cabelo"], pescoco, seg=6, aneis=4)
+    # Cachinhos soltos na frente das orelhas e na nuca.
+    for lado in (-1, 1):
+        c.esfera(f"Solto{lado}", 0.03, (0.105 * lado, -0.03, 0.07), mt["cabelo"], pescoco, escala=(0.7, 0.8, 1.4), seg=6, aneis=4)
     return pescoco
 
 
@@ -202,6 +213,12 @@ def montar_clarice(mt, pai):
     c.cone("FaixaBranca", 0.214, 0.214, 0.035, (0, 0, 0.295), mt["jaqueta_branco"], tronco, lados=8, achatar=0.63)
     c.cone("Barra", 0.215, 0.215, 0.05, (0, 0, 0.0), mt["jaqueta_roxo"], tronco, lados=8, achatar=0.63)
     c.caixa("Camiseta", (0.06, 0.02, 0.14), (0, -0.126, 0.42), mt["camiseta"], tronco)
+    # Zíper aberto (as duas carreiras de dentes, claras) e os bolsos.
+    for lado in (-1, 1):
+        c.caixa(f"Ziper{lado}", (0.01, 0.012, 0.36), (0.036 * lado, -0.128, 0.26), mt["jaqueta_branco"], tronco)
+        c.caixa(f"Bolso{lado}", (0.07, 0.012, 0.012), (0.12 * lado, -0.124, 0.12), mt["jaqueta_roxo"], tronco, (0, 0, 0))
+    # Um botton de carinha amarela no peito (o mesmo amarelo dos adesivos).
+    c.cone("Botton", 0.022, 0.022, 0.01, (-0.1, -0.131, 0.26), mt["adesivo_amarelo"], tronco, (90, 0, 0), lados=8)
     c.caixa("Gola", (0.3, 0.14, 0.06), (0, 0.0, 0.5), mt["jaqueta_branco"], tronco, bisel=0.02)
     c.cone("Pescoco", 0.045, 0.045, 0.1, (0, 0, 0.54), mt["pele"], tronco, lados=6)
     # Fone de walkman caído no pescoço: o arco por trás e as espumas laranja
@@ -438,7 +455,10 @@ def main():
     estacao = montar_estacao(mt)
     estacao.parent = cena
     cadeira = montar_cadeira(mt, cena)
+    c.DETALHE = DETALHE
+    c.SUAVE = True
     clarice = montar_clarice(mt, None)
+    c.achatar_sombra("Rosto")
     cam = c.criar_camera()
     c.criar_luzes()
     os.makedirs(PASTA_SAIDA, exist_ok=True)

@@ -183,6 +183,22 @@ class Materiais:
 
 COLECAO_ATUAL = None
 
+# Nível de detalhe das primitivas. Cada script de personagem pode mudar
+# antes de montar o modelo (os robôs e o Vigia ficam no padrão):
+#   DETALHE  multiplica os gomos de cones e esferas (um cone de 6 lados vira
+#            6·DETALHE lados) e dá DETALHE segmentos ao bisel das caixas: com
+#            1 a quina é chanfrada; com 2 ou mais ela fica arredondada.
+#   SUAVE    sombreamento suave nas curvas: a normal de cada ponto é a média
+#            das faces em volta, então a luz desliza pela superfície em vez
+#            de mudar de face em face. Quinas com mais de ANGULO_QUINA graus
+#            continuam marcadas (senão a caixa viraria um sabonete).
+# Com mais gomos e luz suave, a silhueta fica mais redonda e os degraus de
+# luz (sombra funda, sombra, luz, brilho) viram faixas que seguem a forma,
+# em vez de um mosaico de facetas: é isso que dá mais definição ao sprite.
+DETALHE = 1
+SUAVE = False
+ANGULO_QUINA = 50
+
 
 def usar_colecao(nome):
     """Cria uma coleção e passa a pôr nela tudo o que for criado."""
@@ -213,6 +229,9 @@ def _objeto(nome, bm, mat):
     malha = bpy.data.meshes.new(nome)
     bm.to_mesh(malha)
     bm.free()
+    if SUAVE:
+        malha.shade_smooth()
+        malha.set_sharp_from_angle(angle=math.radians(ANGULO_QUINA))
     obj = bpy.data.objects.new(nome, malha)
     obj.data.materials.append(mat)
     return obj
@@ -222,8 +241,10 @@ def _bisel(obj, largura):
     if largura > 0:
         mod = obj.modifiers.new("Bisel", 'BEVEL')
         mod.width = largura
-        mod.segments = 1               # 1 segmento = quina chanfrada, bem low poly
+        mod.segments = DETALHE         # 1 segmento = quina chanfrada; 2 ou mais = arredondada
         mod.limit_method = 'NONE'
+        if SUAVE:
+            mod.harden_normals = True  # faces retas continuam retas perto da quina redonda
 
 
 def caixa(nome, tam, pos, mat, pai=None, rot=(0, 0, 0), bisel=0.0, desloc=(0, 0, 0)):
@@ -244,7 +265,7 @@ def cone(nome, raio_baixo, raio_cima, altura, pos, mat, pai=None, rot=(0, 0, 0),
     achatar < 1 deixa a seção oval (mais fina na profundidade Y)."""
     bm = bmesh.new()
     m = Matrix.Translation(desloc) @ Matrix.Diagonal((1, achatar, 1, 1))
-    bmesh.ops.create_cone(bm, cap_ends=True, cap_tris=False, segments=lados,
+    bmesh.ops.create_cone(bm, cap_ends=True, cap_tris=False, segments=lados * DETALHE,
                           radius1=raio_baixo, radius2=raio_cima, depth=altura, matrix=m)
     obj = _objeto(nome, bm, mat)
     return _ligar(obj, pai, pos, rot)
@@ -259,10 +280,22 @@ def membro(nome, raio_cima, raio_baixo, comprimento, mat, pai, lados=6, achatar=
 def esfera(nome, raio, pos, mat, pai=None, rot=(0, 0, 0), escala=(1, 1, 1), seg=8, aneis=5):
     """Esfera low poly (poucos gomos: fica facetada, como o resto)."""
     bm = bmesh.new()
-    bmesh.ops.create_uvsphere(bm, u_segments=seg, v_segments=aneis, radius=raio,
+    bmesh.ops.create_uvsphere(bm, u_segments=seg * DETALHE, v_segments=aneis * DETALHE, radius=raio,
                               matrix=Matrix.Diagonal((*escala, 1)))
     obj = _objeto(nome, bm, mat)
     return _ligar(obj, pai, pos, rot)
+
+
+def achatar_sombra(nome):
+    """Volta uma peça para o sombreamento facetado com quina só chanfrada.
+    Serve para o rosto: com a luz suave, a parte de baixo arredondada da
+    caixa escurece aos poucos e parece barba. Chapado, o rosto fica limpo."""
+    obj = bpy.data.objects[nome]
+    obj.data.shade_flat()
+    bisel = obj.modifiers.get("Bisel")
+    if bisel:
+        bisel.segments = 1
+        bisel.harden_normals = False
 
 
 def pedra(nome, raio, pos, mat, pai=None, rot=(0, 0, 0)):

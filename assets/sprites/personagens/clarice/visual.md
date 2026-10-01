@@ -39,7 +39,8 @@ Todos em `assets/sprites/personagens/clarice/`, gerados por `assets/modelagem/pe
 - **Escala:** a mesma de todos os personagens (1,75 m do Gabriel = 48 px). Ela tem 1,62 m.
 - **Câmera da estação:** inclinada 22° para baixo, para aparecer o tampo da mesa e o teclado, como os objetos 2.5D do cenário.
 - **O pé do sprite** (o ponto do nó no Godot) é o chão na frente da cadeira: `offset = Vector2(-40, -60)`.
-- **Paleta:** 43 cores para tudo (sprites e retratos). O brilho do cabelo foi trocado por um castanho claro quente, porque o brilho padrão (puxado para o branco frio) deixava o cabelo cinza.
+- **Detalhe:** o corpo dela usa `DETALHE = 3` e sombreamento suave (ver `comum.py`): cones e esferas com três vezes mais gomos, quinas arredondadas, mais cachos no cabelo, o zíper aberto da jaqueta, bolsos, cadarço e um botton de carinha amarela no peito. O rosto fica chapado (com luz suave, a parte de baixo escurecia e parecia barba). A estação de trabalho fica no detalhe normal: monitor de tubo é caixa.
+- **Paleta:** 45 cores para tudo (sprites e retratos). O brilho do cabelo foi trocado por um castanho claro quente, porque o brilho padrão (puxado para o branco frio) deixava o cabelo cinza.
 
 ## No jogo
 
