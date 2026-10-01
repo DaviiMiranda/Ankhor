@@ -14,6 +14,11 @@
 #   chao/<peça>.png      128 x 68 px: um pedaço do chão (a faixa onde se anda)
 #   ceu/ceu.png          320 x 180 px: céu e mata lá fora, repete sem emenda
 #   ceu/ceu_noite.png    o mesmo recorte de mata, à noite: azul-escuro e estrelas
+#   chao/<peça>_fundo.png  128 x 64 px: o chão da parte SUL das salas fundas (de
+#                        y = 180 para baixo). Encaixa nos dois sentidos: embaixo
+#                        da peça normal e embaixo de outra peça de fundo
+#   paredes/parede_lateral.png  16 x 64 px: a parede do lado da sala funda,
+#                        vista de cima; repete para baixo
 # Com CATALOGO=1 ele também monta folhas de catálogo, com o nome de cada peça
 # (kit_paredes.png, kit_chao.png, kit_objetos.png), nesta pasta. Com
 # CATALOGO=<pasta>, salva nela. O catálogo NÃO vai para o jogo e não deve ser
@@ -499,6 +504,140 @@ CHAOS = {
     "chao_tapete": chao_tapete,
 }
 
+
+# ---------------------------------------------------------------------------
+# Chão do fundo (salas fundas: a parte sul, abaixo de y = 180)
+# ---------------------------------------------------------------------------
+#
+# Nas salas mais fundas que uma tela, o chão continua para baixo (para a
+# câmera). Na perspectiva da Biblioteca as fileiras de lajota param de
+# crescer em 16 px na parte sul, então a peça de fundo tem fileiras de
+# 16 px. Duas contas para encaixar sem emenda:
+#   - EMBAIXO DA PEÇA NORMAL: a peça normal termina em y = 180 no meio da
+#     fileira que começa em 175 (a de número 9, deslocada 16 px). A peça de
+#     fundo começa com o resto dessa fileira (8 px, deslocada 16, com os
+#     mesmos tons sorteados) e a primeira junta fica em y local 8 = 188;
+#   - EMBAIXO DE OUTRA PEÇA DE FUNDO: 64 = 4 fileiras de 16, e a última
+#     (y local 56) continua na primeira da peça de baixo. As fileiras
+#     alternam o deslocamento (16, 0, 16, 0...), e 4 é par: a de baixo
+#     começa igual à de cima. O ruído também dá a volta na vertical.
+
+ALTURA_FUNDO = 64
+FAIXAS_FUNDO = ((0, 8, 16), (8, 24, 0), (24, 40, 16), (40, 56, 0), (56, 64, 16))
+
+
+def ruido_ciclico_2d(largura, altura, escala_x, escala_y, semente):
+    """O ruido_ciclico, dando a volta também na vertical (a última linha da
+    grade é a primeira): a peça repete para baixo sem emenda."""
+    assert largura % escala_x == 0 and altura % escala_y == 0
+    rng = np.random.default_rng(semente)
+    gw, gh = largura // escala_x, altura // escala_y
+    grade = rng.random((gh, gw))
+    xs = np.arange(largura) / escala_x
+    ys = np.arange(altura) / escala_y
+    x0, y0 = np.floor(xs).astype(int), np.floor(ys).astype(int)
+    fx, fy = xs - x0, ys - y0
+    fx, fy = fx * fx * (3 - 2 * fx), fy * fy * (3 - 2 * fy)
+    x1, y1 = (x0 + 1) % gw, (y0 + 1) % gh
+    x0, y0 = x0 % gw, y0 % gh
+    a, b = grade[y0][:, x0], grade[y0][:, x1]
+    c2, d = grade[y1][:, x0], grade[y1][:, x1]
+    fx, fy = fx[None, :], fy[:, None]
+    return (a * (1 - fx) + b * fx) * (1 - fy) + (c2 * (1 - fx) + d * fx) * fy
+
+
+def chao_fundo_base(semente=0):
+    img = Imagem(LARGURA_CHAO, ALTURA_FUNDO)
+    X, Y = img.X, img.Y
+    fino = ruido_ciclico_2d(img.w, img.h, 2, 2, 60)
+    manchas = ruido_ciclico_2d(img.w, img.h, 32, 16, 61 + semente)
+    valor = np.zeros((img.h, img.w))
+    junta = np.zeros((img.h, img.w), dtype=bool)
+    for ya, yb, desloc in FAIXAS_FUNDO:
+        faixa = (Y >= ya) & (Y < yb)
+        coluna = ((X + desloc) // 32) % 4
+        # Fileiras deslocadas usam os tons da fileira 9 da peça normal (a que
+        # continua aqui); as outras, tons próprios.
+        sorteio = np.random.default_rng(109 if desloc else 400 + ya).random(4)
+        valor[faixa] = (0.35 + 0.18 * sorteio[coluna])[faixa]
+        junta |= faixa & (((Y == ya) & (ya > 0)) | ((X + desloc) % 32 == 0))
+    valor = (valor + 0.1 * manchas + 0.05 * fino) * LUZ
+    tudo = img.ret(0, 0, img.w, img.h)
+    img.pintar(tudo, "piso", valor)
+    img.pintar(tudo & junta, "piso", valor - 0.22, achatar=False)
+    img.chao, img.fino, img.manchas = tudo, fino, manchas
+    return img
+
+
+def chao_lajotas_fundo():
+    img = chao_fundo_base()
+    rng = np.random.default_rng(170)
+    for _ in range(2):
+        x, y = rng.integers(14, img.w - 14), rng.integers(8, img.h - 8)
+        img.pintar(img.elipse(x, y, rng.uniform(4, 9), rng.uniform(2, 4)), "areia", (0.2 + 0.15 * img.fino) * LUZ)
+    for _ in range(14):
+        x, y = int(rng.integers(1, img.w - 2)), int(rng.integers(0, img.h))
+        img.pintar(img.ret(x, y, x + 2, y + 1), "areia" if rng.random() < 0.6 else "ferrugem", 0.5 + 0.3 * rng.random())
+    return img
+
+
+def chao_areia_fundo():
+    img = chao_fundo_base(1)
+    monte = ruido_ciclico_2d(img.w, img.h, 32, 16, 171) + 0.3 * img.fino > 0.62
+    img.pintar(monte, "areia", (0.45 + 0.35 * img.fino) * LUZ)
+    return img
+
+
+def chao_mato_fundo():
+    img = chao_fundo_base(2)
+    rng = np.random.default_rng(172)
+    musgo = ruido_ciclico_2d(img.w, img.h, 8, 4, 75) > 0.6
+    img.pintar(musgo, "verde", 0.2 + 0.25 * img.fino)
+    for _ in range(60):
+        x = int(rng.integers(1, img.w - 1))
+        y = int(rng.integers(6, img.h))
+        altura = int(rng.integers(2, 6))
+        img.pintar(img.ret(x, y - altura, x + 1, y + 1), "verde", 0.4 + 0.45 * rng.random())
+        img.pintar(img.ret(x, y - altura, x + 1, y - altura + 1), "verde", 0.85)
+    return img
+
+
+def chao_tapete_fundo():
+    """Tapete que cobre a peça inteira: várias juntas formam um carpete."""
+    img = chao_fundo_base(3)
+    X, Y = img.X, img.Y
+    buracos = ruido_ciclico_2d(img.w, img.h, 8, 4, 63) > 0.66
+    tudo = img.ret(0, 0, img.w, img.h)
+    img.pintar(tudo & ~buracos, "tapete", (0.45 + 0.25 * img.manchas + 0.1 * img.fino) * LUZ)
+    img.pintar(tudo & ~buracos & ((X + Y) % 6 == 0), "tapete", 0.25 * LUZ, achatar=False)
+    return img
+
+
+CHAOS_FUNDO = {
+    "chao_lajotas_fundo": chao_lajotas_fundo,
+    "chao_areia_fundo": chao_areia_fundo,
+    "chao_mato_fundo": chao_mato_fundo,
+    "chao_tapete_fundo": chao_tapete_fundo,
+}
+
+
+def parede_lateral():
+    """A parede do lado da sala funda, vista de cima: o topo do muro (claro,
+    de onde vem a luz) e a face virada para dentro da sala, mais escura, com
+    a sombra que ela joga no chão. Desenhada para o lado ESQUERDO; o da
+    direita é a mesma peça espelhada (flip_h no Godot)."""
+    img = Imagem(LARGURA_PILAR, ALTURA_FUNDO)
+    X = img.X
+    fino = ruido_ciclico_2d(img.w, img.h, 2, 2, 17)
+    manchas = ruido_ciclico_2d(img.w, img.h, 8, 16, 18)
+    img.pintar(img.ret(0, 0, 9, img.h), "concreto", 0.5 + 0.1 * manchas + 0.05 * fino)
+    img.pintar(img.ret(9, 0, 13, img.h), "concreto", 0.22 + 0.06 * fino)
+    img.pintar(img.ret(8, 0, 9, img.h), "concreto", 0.65)
+    img.cor(img.ret(13, 0, 16, img.h) & ((X + img.Y) % 2 == 0), SOMBRA)
+    img.cor(img.ret(13, 0, 14, img.h), SOMBRA)
+    return img
+
+
 # ---------------------------------------------------------------------------
 # Céu (repete na horizontal a cada 320 px)
 # ---------------------------------------------------------------------------
@@ -626,6 +765,9 @@ def main():
         img.h = img.px.shape[0]
         img.salvar(f"{nome}.png", os.path.join(PASTA_KIT, "chao"))
         chaos[nome] = img
+    for nome, f in CHAOS_FUNDO.items():
+        f().salvar(f"{nome}.png", os.path.join(PASTA_KIT, "chao"))
+    parede_lateral().salvar("parede_lateral.png", os.path.join(PASTA_KIT, "paredes"))
     img_ceu = ceu()
     img_ceu.salvar("ceu.png", os.path.join(PASTA_KIT, "ceu"))
     ceu_noite().salvar("ceu_noite.png", os.path.join(PASTA_KIT, "ceu"))
