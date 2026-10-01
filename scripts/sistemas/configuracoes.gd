@@ -3,6 +3,7 @@ extends Node
 signal mudou
 
 const CAMINHO_CONFIG := "user://configuracoes.cfg"
+const ROTULOS_VOLUME := {"master": "Volume geral", "musica": "Música", "efeitos": "Efeitos"}
 
 var volume_master: float = 1.0:
 	set(valor):
@@ -57,6 +58,25 @@ func salvar() -> void:
 	config.set_value("audio", "efeitos", volume_efeitos)
 	config.set_value("video", "crt", efeito_crt)
 	config.save(CAMINHO_CONFIG)
+
+
+func ciclar_volume(tipo: String) -> void:
+	var prop := "volume_" + tipo
+	var atual: float = get(prop)
+	set(prop, fposmod(roundf(atual * 4.0) + 1.0, 5.0) / 4.0)
+
+
+func ajustar_volume(tipo: String, passo: float) -> void:
+	var prop := "volume_" + tipo
+	var atual: float = get(prop)
+	set(prop, clampf(snappedf(atual + passo, 0.05), 0.0, 1.0))
+
+
+func texto_volume(tipo: String) -> String:
+	var valor: float = get("volume_" + tipo)
+	if valor <= 0.001:
+		return "%s: Mudo" % ROTULOS_VOLUME[tipo]
+	return "%s: %d%%" % [ROTULOS_VOLUME[tipo], roundi(valor * 100.0)]
 
 
 func _aplicar_volume(bus_nome: String, linear: float) -> void:

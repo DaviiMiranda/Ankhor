@@ -194,10 +194,7 @@ func _ao_alternar_efeito_crt() -> void:
 
 
 func _ao_clicar_volume(tipo: String) -> void:
-	var prop := "volume_" + tipo
-	var atual: float = Configuracoes.get(prop)
-	var novo: float = fposmod(roundf(atual * 4.0) + 1.0, 5.0) / 4.0
-	Configuracoes.set(prop, novo)
+	Configuracoes.ciclar_volume(tipo)
 
 
 func _ao_input_volume(evento: InputEvent, tipo: String) -> void:
@@ -209,26 +206,17 @@ func _ao_input_volume(evento: InputEvent, tipo: String) -> void:
 	elif evento.is_action_pressed("ui_right") or evento.is_action_pressed("mover_direita"):
 		passo = 0.1
 	if passo != 0.0:
-		var prop := "volume_" + tipo
-		var atual: float = Configuracoes.get(prop)
-		var novo := clampf(snappedf(atual + passo, 0.05), 0.0, 1.0)
-		Configuracoes.set(prop, novo)
+		Configuracoes.ajustar_volume(tipo, passo)
 		som_passar.play()
 		get_viewport().set_input_as_handled()
-
-
-func _texto_volume(rotulo: String, valor: float) -> String:
-	if valor <= 0.001:
-		return "%s: Mudo" % rotulo
-	return "%s: %d%%" % [rotulo, roundi(valor * 100.0)]
 
 
 func _atualizar_textos_opcoes() -> void:
 	botao_tela_cheia.text = "Tela cheia: %s" % ("Sim" if Tela.eh_tela_cheia() else "Não")
 	botao_efeito_crt.text = "Efeito CRT: %s" % ("Sim" if Configuracoes.efeito_crt else "Não")
-	botao_volume_master.text = _texto_volume("Volume geral", Configuracoes.volume_master)
-	botao_volume_musica.text = _texto_volume("Música", Configuracoes.volume_musica)
-	botao_volume_sfx.text = _texto_volume("Efeitos", Configuracoes.volume_efeitos)
+	botao_volume_master.text = Configuracoes.texto_volume("master")
+	botao_volume_musica.text = Configuracoes.texto_volume("musica")
+	botao_volume_sfx.text = Configuracoes.texto_volume("efeitos")
 
 
 func _ligar_sons(lista: Control) -> void:
