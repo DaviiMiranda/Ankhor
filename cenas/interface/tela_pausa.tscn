@@ -1,0 +1,151 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interface/tela_pausa.gd" id="1_pausa"]
+[ext_resource type="Texture2D" path="res://assets/sprites/interface/painel.png" id="2_painel"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/menu_passar.wav" id="3_passar"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/menu_clique.wav" id="4_clique"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_botao"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_destaque"]
+bg_color = Color(0.95, 0.88, 0.7, 0.12)
+
+[sub_resource type="Theme" id="Theme_pausa"]
+default_font_size = 8
+Button/colors/font_color = Color(0.68, 0.64, 0.54, 1)
+Button/colors/font_focus_color = Color(1, 0.94, 0.76, 1)
+Button/colors/font_hover_color = Color(1, 0.94, 0.76, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_botao")
+Button/styles/hover = SubResource("StyleBoxFlat_destaque")
+Button/styles/normal = SubResource("StyleBoxEmpty_botao")
+Button/styles/pressed = SubResource("StyleBoxFlat_destaque")
+Label/colors/font_color = Color(0.95, 0.88, 0.7, 1)
+Label/constants/line_spacing = 0
+
+[node name="TelaPausa" type="CanvasLayer"]
+layer = 20
+script = ExtResource("1_pausa")
+
+[node name="Fundo" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="Janela" type="NinePatchRect" parent="."]
+offset_left = 72.0
+offset_top = 22.0
+offset_right = 248.0
+offset_bottom = 158.0
+theme = SubResource("Theme_pausa")
+texture = ExtResource("2_painel")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Titulo" type="Label" parent="Janela"]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 176.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 16
+text = "PAUSADO"
+horizontal_alignment = 1
+
+[node name="Menu" type="VBoxContainer" parent="Janela"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 34.0
+offset_right = 164.0
+offset_bottom = 120.0
+alignment = 1
+theme_override_constants/separation = 0
+
+[node name="BotaoContinuar" type="Button" parent="Janela/Menu"]
+layout_mode = 2
+text = "Continuar"
+
+[node name="BotaoOpcoes" type="Button" parent="Janela/Menu"]
+layout_mode = 2
+text = "Opções"
+
+[node name="BotaoMenu" type="Button" parent="Janela/Menu"]
+layout_mode = 2
+text = "Voltar ao menu principal"
+
+[node name="BotaoSair" type="Button" parent="Janela/Menu"]
+layout_mode = 2
+text = "Sair do jogo"
+
+[node name="Opcoes" type="VBoxContainer" parent="Janela"]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 34.0
+offset_right = 164.0
+offset_bottom = 120.0
+alignment = 1
+theme_override_constants/separation = 0
+
+[node name="BotaoTelaCheia" type="Button" parent="Janela/Opcoes"]
+layout_mode = 2
+text = "Tela cheia: Não"
+
+[node name="BotaoVolumeMaster" type="Button" parent="Janela/Opcoes"]
+layout_mode = 2
+text = "Volume geral: 100%"
+
+[node name="BotaoVolumeMusica" type="Button" parent="Janela/Opcoes"]
+layout_mode = 2
+text = "Música: 100%"
+
+[node name="BotaoVolumeEfeitos" type="Button" parent="Janela/Opcoes"]
+layout_mode = 2
+text = "Efeitos: 100%"
+
+[node name="BotaoVoltar" type="Button" parent="Janela/Opcoes"]
+layout_mode = 2
+text = "Voltar"
+
+[node name="Confirmar" type="VBoxContainer" parent="Janela"]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 32.0
+offset_right = 164.0
+offset_bottom = 122.0
+alignment = 1
+theme_override_constants/separation = 0
+
+[node name="Pergunta" type="Label" parent="Janela/Confirmar"]
+custom_minimum_size = Vector2(152, 0)
+layout_mode = 2
+text = "Voltar ao menu principal? O jogo ainda não salva: o que você fez nesta fase se perde."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BotaoSim" type="Button" parent="Janela/Confirmar"]
+layout_mode = 2
+text = "Sim, voltar ao menu"
+
+[node name="BotaoCancelar" type="Button" parent="Janela/Confirmar"]
+layout_mode = 2
+text = "Cancelar"
+
+[node name="Dica" type="Label" parent="Janela"]
+layout_mode = 0
+offset_top = 120.0
+offset_right = 176.0
+offset_bottom = 134.0
+theme_override_colors/font_color = Color(0.55, 0.52, 0.45, 1)
+text = "Esc: voltar"
+horizontal_alignment = 1
+
+[node name="SomPassar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_passar")
+bus = &"Efeitos"
+
+[node name="SomClique" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_clique")
+bus = &"Efeitos"

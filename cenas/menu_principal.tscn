@@ -305,6 +305,10 @@ text = "Gadgets: 1, 2, 3"
 layout_mode = 2
 text = "Tela cheia: F11"
 
+[node name="ControlePausa" type="Label" parent="Mesa/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Pausar: Esc / P"
+
 [node name="BotaoVoltarControles" type="Button" parent="Mesa/Controles/Rolagem/Lista"]
 layout_mode = 2
 text = "Voltar"
