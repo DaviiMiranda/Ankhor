@@ -4,6 +4,9 @@ signal novo_jogo_pedido
 signal continuar_pedido
 signal opcoes_pedidas
 
+const FASE_TESTE := preload("res://dados/fases/teste.tres")
+const COR_TESTE := Color(1.0, 0.85, 0.2)
+
 @export var cena_novo_jogo: PackedScene
 @export var fases: Array[Fase] = []
 @export var energia_luz: float = 0.9
@@ -114,16 +117,26 @@ func _unhandled_input(evento: InputEvent) -> void:
 
 
 func _montar_lista_fases() -> void:
-	for fase in fases:
+	var lista := fases.duplicate()
+	if OS.has_feature("editor"):
+		lista.push_front(FASE_TESTE)
+	for fase in lista:
 		var botao := Button.new()
 		botao.text = fase.nome
 		botao.disabled = not fase.pronta()
 		botao.pressed.connect(_jogar_fase.bind(fase))
+		if fase == FASE_TESTE:
+			_pintar(botao, COR_TESTE)
 		botoes_fases.add_child(botao)
 	var voltar := Button.new()
 	voltar.text = "Voltar"
 	voltar.pressed.connect(_mostrar_fases.bind(false))
 	botoes_fases.add_child(voltar)
+
+
+func _pintar(botao: Button, cor: Color) -> void:
+	for estilo in ["font_color", "font_hover_color", "font_focus_color", "font_pressed_color", "font_hover_pressed_color"]:
+		botao.add_theme_color_override(estilo, cor)
 
 
 func _mostrar_fases(mostrar: bool) -> void:

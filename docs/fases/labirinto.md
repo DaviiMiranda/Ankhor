@@ -57,7 +57,7 @@ Na vista do jogo (lateral com profundidade), a parede tem 40 px de altura e cobr
 | Quantos | 2 | 1 |
 | Aparência | 2,1 m, curvada, braços longos, um olho-farol vermelho | quadrúpede baixo, três olhos, antenas parabólicas |
 | Sentido forte | **Visão**: cone de 60° até 170 px (×1,7 com a lanterna acesa); o farol mostra para onde ela olha | **Audição**: ouve passos pelos corredores (×1,8); visão curta (80 px) e larga (100°) |
-| Velocidade (patrulha / perseguição) | 22 / 44 px/s | 30 / 62 px/s |
+| Velocidade (patrulha / perseguição) | 18 / 36 px/s | 24 / 50 px/s |
 | Como escapar | apagar a lanterna, agachar (alcance ×0,6) e sair do cone | andar agachado (não faz barulho) e não correr perto dele |
 
 O Gabriel anda a 45 px/s e corre a 81 px/s: consegue fugir correndo, mas correr faz barulho e o Rastreador escuta de longe.

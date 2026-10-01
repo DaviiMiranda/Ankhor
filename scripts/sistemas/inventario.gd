@@ -32,10 +32,14 @@ func limpar() -> void:
 
 
 func adicionar(item: Item) -> bool:
+	if item.maximo_unidades > 0 and tem(item.id):
+		return _somar_unidade(item)
 	for linha in LINHAS:
 		for coluna in COLUNAS:
 			if grade[linha][coluna] == null:
 				grade[linha][coluna] = item
+				if item.maximo_unidades > 0:
+					definir_unidades(item, 1)
 				if item.equipavel and espaco_do_gadget(item) == -1:
 					var livre := gadgets.find(null)
 					if livre != -1:
@@ -81,3 +85,24 @@ func estado_de(id: String) -> Dictionary:
 	if not estado.has(id):
 		estado[id] = {}
 	return estado[id]
+
+
+func unidades(id: String) -> int:
+	return estado_de(id).get("unidades", 0)
+
+
+func definir_unidades(item: Item, quantas: int) -> void:
+	var estado_item := estado_de(item.id)
+	estado_item["unidades"] = quantas
+	estado_item["carga"] = float(quantas) / item.maximo_unidades
+
+
+func _somar_unidade(item: Item) -> bool:
+	var atual := unidades(item.id)
+	if atual >= item.maximo_unidades:
+		aviso.emit("%s: no máximo %d" % [item.nome, item.maximo_unidades])
+		return false
+	definir_unidades(item, atual + 1)
+	item_pego.emit(item)
+	mudou.emit()
+	return true

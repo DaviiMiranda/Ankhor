@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/notebook.gd" id="1_notebook"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="2_luz"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/notebook_hack.wav" id="3_som"]
+
+[node name="Notebook" type="Node2D"]
+script = ExtResource("1_notebook")
+
+[node name="Tela" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, -12)
+color = Color(0.45, 0.8, 1, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("2_luz")
+texture_scale = 0.8
+
+[node name="Som" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_som")
+volume_db = -4.0
+bus = &"Efeitos"

@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/labirinto.tscn" id="1_labirinto"]
+[ext_resource type="Resource" path="res://dados/labirinto/mapa_teste.tres" id="2_mapa"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="3_porta"]
+
+[node name="LabirintoTeste" instance=ExtResource("1_labirinto")]
+mapa = ExtResource("2_mapa")
+id = "labirinto_teste"
+
+[node name="PortaSala" parent="." instance=ExtResource("3_porta")]
+position = Vector2(64, 38)
+id = "labirinto_teste"
+cena_destino = "res://cenas/salas/sala_teste.tscn"
+porta_destino = "sala_teste"
+
+[node name="PortaTrancada" parent="." instance=ExtResource("3_porta")]
+position = Vector2(544, 38)
+id = "labirinto_teste_trancada"
+cena_destino = "res://cenas/salas/sala_teste.tscn"
+porta_destino = "sala_teste"
+trancada = true
