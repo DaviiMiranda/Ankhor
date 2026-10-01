@@ -3,7 +3,7 @@
 Este documento define como as fases e áreas do **Ankhor** funcionam em termos de arquitetura, fluxo de jogo e design de níveis (*level design*).
 
 > [!IMPORTANT]
-> **Primeira Fase Definida:** A primeira fase do jogo é a **Biblioteca** ([`biblioteca.md`](biblioteca.md)). O **Labirinto** ([`labirinto.md`](labirinto.md)) é jogável pelo menu Fases; a posição dele na história está a definir. As fases seguintes serão definidas em conjunto com a equipe. Este módulo fornece a **estrutura conceitual e o template padronizado** para documentação de cada área.
+> **Primeira Fase Definida:** A primeira fase do jogo é a **Biblioteca** ([`biblioteca.md`](biblioteca.md)). O **Labirinto** ([`labirinto.md`](labirinto.md)) é jogável pelo menu Fases; a posição dele na história está a definir. O **Bloco de salas** ([`bloco_de_salas.md`](bloco_de_salas.md)) tem cenário e portas prontos, sem história ainda. As fases seguintes serão definidas em conjunto com a equipe. Este módulo fornece a **estrutura conceitual e o template padronizado** para documentação de cada área.
 
 ---
 

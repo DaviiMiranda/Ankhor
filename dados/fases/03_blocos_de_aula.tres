@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_fase")
-nome = "Blocos de aula"
-cena = ""
+nome = "Bloco de salas"
+cena = "res://cenas/salas/bloco_de_salas/corredor_terreo.tscn"

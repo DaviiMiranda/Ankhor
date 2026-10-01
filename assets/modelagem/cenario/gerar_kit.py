@@ -9,8 +9,11 @@
 # O que sai (em assets/sprites/cenario/):
 #   paredes/<peça>.png   80 x 112 px: um pedaço da parede do fundo
 #   paredes/pilar.png    16 x 112 px: acabamento para as pontas da sala
+#   objetos/<objeto>.png objetos de sala de aula (carteira), que não existem
+#                        na Biblioteca; os outros objetos saem de lá
 #   chao/<peça>.png      128 x 68 px: um pedaço do chão (a faixa onde se anda)
 #   ceu/ceu.png          320 x 180 px: céu e mata lá fora, repete sem emenda
+#   ceu/ceu_noite.png    o mesmo recorte de mata, à noite: azul-escuro e estrelas
 # Com CATALOGO=1 ele também monta folhas de catálogo, com o nome de cada peça
 # (kit_paredes.png, kit_chao.png, kit_objetos.png), nesta pasta. Com
 # CATALOGO=<pasta>, salva nela. O catálogo NÃO vai para o jogo e não deve ser
@@ -237,6 +240,88 @@ def parede_arandela():
     return img
 
 
+def parede_lousa():
+    """Quadro-negro de sala de aula, ainda preso na parede: moldura de
+    madeira, a lousa verde-escura manchada, restos de giz de uma conta pela
+    metade e, embaixo, os TRACINHOS contados em grupos de cinco (quatro em
+    pé e um cortando) de quem ficou preso aqui (docs/gdd.md, Blocos de
+    aula). Um pedaço da lousa caiu e o concreto aparece."""
+    img = parede_base()
+    xa, xb, ya, yb = 6, 74, 28, 68
+    img.pintar(img.ret(xa - 2, ya - 2, xb + 2, yb + 2), "madeira", 0.3 + 0.1 * img.fino)
+    lousa = img.ret(xa, ya, xb, yb)
+    manchas = ruido_ciclico(img.w, img.h, 10, 6, 70)
+    img.pintar(lousa, "verde", 0.1 + 0.12 * manchas + 0.04 * img.fino)
+    rng = np.random.default_rng(71)
+    for _ in range(6):
+        x0, y0 = rng.uniform(xa + 4, xb - 18), rng.uniform(ya + 4, ya + 22)
+        pontos = [(x0 + k * 2.5, y0 + rng.uniform(-1.2, 1.2)) for k in range(int(rng.integers(3, 6)))]
+        img.pintar(img.caminho(pontos, 0.45) & lousa, "ceu", 0.7, achatar=False)
+    for g in range(5):
+        gx, gy = xa + 6 + g * 12, yb - 12
+        for k in range(4):
+            img.pintar(img.ret(gx + 2 * k, gy, gx + 2 * k + 1, gy + 7), "ceu", 0.85)
+        img.pintar(img.linha(gx - 1, gy + 5, gx + 8, gy + 1, 0.45), "ceu", 0.85)
+    img.pintar(img.ret(xa, yb + 2, xb, yb + 4), "metal", 0.35)
+    caco = img.poligono([(xb - 14, ya), (xb, ya), (xb, ya + 12), (xb - 6, ya + 8)])
+    img.pintar(caco, "concreto", img.v, achatar=False)
+    return img
+
+
+def parede_mural():
+    """Quadro de avisos de cortiça (ferrugem, na paleta) com folhas presas
+    por tachinhas: horários, avisos, provas. O papel é de mil anos atrás:
+    quase marrom, com as linhas de texto apagadas."""
+    img = parede_base()
+    xa, xb, ya, yb = 12, 68, 32, 72
+    img.pintar(img.ret(xa - 2, ya - 2, xb + 2, yb + 2), "madeira", 0.25)
+    img.pintar(img.ret(xa, ya, xb, yb), "ferrugem", 0.4 + 0.15 * ruido_ciclico(img.w, img.h, 4, 3, 72) + 0.05 * img.fino)
+    rng = np.random.default_rng(73)
+    for _ in range(7):
+        w, h = int(rng.integers(8, 14)), int(rng.integers(9, 15))
+        x0, y0 = int(rng.integers(xa + 1, xb - w)), int(rng.integers(ya + 1, yb - h))
+        img.pintar(img.ret(x0, y0, x0 + w, y0 + h), "papel", 0.5 + 0.3 * rng.random() + 0.1 * img.fino)
+        for ly in range(y0 + 2, y0 + h - 2, 2):
+            img.pintar(img.ret(x0 + 2, ly, x0 + w - 2 - int(rng.integers(0, 4)), ly + 1), "papel", 0.15)
+        img.pintar(img.ret(x0 + w // 2, y0, x0 + w // 2 + 1, y0 + 1), "ferrugem", 0.85)
+    return img
+
+
+def escada(sobe):
+    """Vão de escada: o batente de concreto e, dentro, os degraus vistos de
+    lado (um "perfil" em serra). Cada coluna do vão pertence ao degrau
+    passo = distância até a borda // 5, e o topo do degrau sobe 7 px por
+    passo. Subindo para a direita é a escada do térreo; para a esquerda, a
+    do primeiro andar (a mesma escada vista de cima, descendo)."""
+    img = parede_base()
+    X, Y = img.X, img.Y
+    xa, xb, ya = 14, 66, 30
+    img.pintar(img.ret(xa - 3, ya - 3, xb + 3, Y_CHAO), "concreto", 0.3 + 0.05 * img.fino)
+    vao = img.ret(xa, ya, xb, Y_CHAO)
+    img.pintar(vao, "concreto", 0.03 + 0.03 * (Y - ya) / (Y_CHAO - ya))
+    passo = ((X - xa) // 5) if sobe else ((xb - 1 - X) // 5)
+    topo = Y_CHAO - 1 - 7 * (passo + 1)
+    massa = vao & (Y >= topo)
+    img.pintar(massa, "concreto", 0.2 + 0.05 * img.fino - 0.08 * (Y - topo) / 40)
+    img.pintar(vao & (Y >= topo) & (Y < topo + 2), "concreto", 0.5)
+    borda = ((X - xa) % 5 == 0) if sobe else ((xb - 1 - X) % 5 == 0)
+    img.pintar(vao & borda & (Y >= topo), "concreto", 0.08)
+    if sobe:
+        corrimao = img.linha(xa + 1, Y_CHAO - 20, xb - 1, Y_CHAO - 20 - 7 * (xb - xa) / 5, 0.6)
+    else:
+        corrimao = img.linha(xb - 1, Y_CHAO - 20, xa + 1, Y_CHAO - 20 - 7 * (xb - xa) / 5, 0.6)
+    img.pintar(corrimao & vao, "metal", 0.45)
+    return img
+
+
+def parede_escada_sobe():
+    return escada(True)
+
+
+def parede_escada_desce():
+    return escada(False)
+
+
 def pilar():
     img = Imagem(LARGURA_PILAR, Y_CHAO)
     fino = ruido_ciclico(img.w, img.h, 2, 2, 17)
@@ -255,7 +340,58 @@ PAREDES = {
     "parede_buraco": parede_buraco,
     "parede_desabada": parede_desabada,
     "parede_arandela": parede_arandela,
+    "parede_lousa": parede_lousa,
+    "parede_mural": parede_mural,
+    "parede_escada_sobe": parede_escada_sobe,
+    "parede_escada_desce": parede_escada_desce,
     "pilar": pilar,
+}
+
+
+# ---------------------------------------------------------------------------
+# Objetos de sala de aula (os outros objetos saem do gerar_biblioteca.py)
+# Cada função devolve (imagem, x_do_pe, y_do_pe), como lá.
+# ---------------------------------------------------------------------------
+
+
+def carteira():
+    """Cadeira universitária de sala de aula, vista de lado: estrutura de
+    metal, assento e encosto de compensado e a prancheta presa no braço,
+    onde se escreve."""
+    img = Imagem(24, 30)
+    for xa in (5, 16):
+        img.pintar(img.ret(xa, 19, xa + 2, 29), "metal", 0.35)
+    img.pintar(img.ret(5, 26, 18, 27), "metal", 0.28)
+    bib.madeira(img, img.ret(3, 16, 19, 20), 0.5, 150)
+    img.pintar(img.ret(3, 16, 19, 17), "madeira", 0.7)
+    bib.madeira(img, img.ret(3, 3, 7, 17), 0.42, 151)
+    img.pintar(img.ret(3, 3, 7, 4), "madeira", 0.65)
+    img.pintar(img.ret(17, 11, 19, 16), "metal", 0.4)
+    bib.madeira(img, img.ret(13, 9, 23, 12), 0.55, 152)
+    img.pintar(img.ret(13, 9, 23, 10), "madeira", 0.75)
+    bib.musgo_por_cima(img, 0.2, 153)
+    img.contornar()
+    return img, 11, 29
+
+
+def carteira_caida():
+    """A mesma carteira tombada de lado no chão: o encosto deitado, o
+    assento em pé e as pernas de metal apontando para a direita."""
+    img = Imagem(30, 16)
+    bib.madeira(img, img.ret(2, 11, 16, 15), 0.45, 154)
+    bib.madeira(img, img.ret(13, 3, 17, 15), 0.5, 155)
+    img.pintar(img.ret(13, 3, 14, 15), "madeira", 0.68)
+    for ya in (4, 11):
+        img.pintar(img.ret(17, ya, 28, ya + 2), "metal", 0.35)
+    bib.madeira(img, img.ret(5, 2, 8, 11), 0.55, 156)
+    bib.musgo_por_cima(img, 0.25, 157)
+    img.contornar()
+    return img, 15, 15
+
+
+OBJETOS_KIT = {
+    "carteira": carteira,
+    "carteira_caida": carteira_caida,
 }
 
 # ---------------------------------------------------------------------------
@@ -388,6 +524,37 @@ def ceu():
     return img
 
 
+
+NOITE = bib.hexa("#05070d", "#080b15", "#0c1120", "#111a2e", "#18243d", "#223150")
+MATA_NOITE = bib.hexa("#020304", "#04060a", "#070b10", "#0b1117")
+ESTRELA = bib.hexa("#8f9bb8", "#c9d2e8", "#f1f4ff")
+
+
+def ceu_noite():
+    """O céu do ceu(), à noite, para salas escuras (o Bloco de salas). O
+    degradê vai do quase preto lá em cima ao azul-marinho no horizonte, com
+    estrelas sorteadas (poucas, de 1 px, três brilhos) e as mesmas matas,
+    agora em silhueta. Usa rampas próprias: as do cenário são de dia."""
+    img = Imagem(320, ALTURA)
+    x, Y = img.X, img.Y
+    onda = lambda k: 2 * np.pi * k * x / img.w
+    todo = img.ret(0, 0, img.w, img.h)
+    v = 0.1 + 0.8 * (Y / 110) + 0.1 * ruido_ciclico(img.w, img.h, 40, 12, 1)
+    idx = np.clip(np.floor(v * len(NOITE) + img.limiar), 0, len(NOITE) - 1).astype(int)
+    img.px[todo] = np.array(NOITE)[idx][todo]
+    rng = np.random.default_rng(3026)
+    for _ in range(70):
+        ex, ey = int(rng.integers(0, img.w)), int(rng.integers(0, 70))
+        img.px[ey, ex] = ESTRELA[int(rng.integers(0, 3)) if rng.random() < 0.3 else 0]
+    topo_longe = 62 + 6 * np.sin(onda(3)) + 4 * np.sin(onda(7) + 1) + 3 * np.sin(onda(16))
+    img.px[(Y >= topo_longe)] = MATA_NOITE[2]
+    topo_perto = 78 + 8 * np.sin(onda(2) + 2) + 5 * np.sin(onda(6)) + 3 * np.sin(onda(22) + 3)
+    perto = Y >= topo_perto
+    img.px[perto] = MATA_NOITE[0]
+    img.px[perto & (ruido_ciclico(img.w, img.h, 4, 4, 5) > 0.7)] = MATA_NOITE[1]
+    return img
+
+
 # ---------------------------------------------------------------------------
 # Catálogo (folhas com o nome de cada peça, para o guia)
 # ---------------------------------------------------------------------------
@@ -461,12 +628,17 @@ def main():
         chaos[nome] = img
     img_ceu = ceu()
     img_ceu.salvar("ceu.png", os.path.join(PASTA_KIT, "ceu"))
+    ceu_noite().salvar("ceu_noite.png", os.path.join(PASTA_KIT, "ceu"))
+    for nome, f in OBJETOS_KIT.items():
+        img, px, py = f()
+        img.salvar(f"{nome}.png", os.path.join(PASTA_KIT, "objetos"))
+        print(f"    {nome}: pé em ({px}, {py}) -> offset = Vector2({-px}, {-py})")
 
     # Catálogo (só com CATALOGO=1): uma folha com o nome de cada peça.
     if not CATALOGO:
         return
     pasta = PASTA_SCRIPT if CATALOGO == "1" else CATALOGO
-    objetos = [(nome, f()[0]) for nome, f in bib.FUNCOES_OBJETOS.items()]
+    objetos = [(nome, f()[0]) for nome, f in list(bib.FUNCOES_OBJETOS.items()) + list(OBJETOS_KIT.items())]
     os.makedirs(pasta, exist_ok=True)
     for nome, pecas, colunas, com_ceu in (("kit_paredes", list(paredes.items()), 5, True),
                                           ("kit_chao", list(chaos.items()), 4, False),

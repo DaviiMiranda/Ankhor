@@ -5,6 +5,7 @@ Toda decisão de design, história ou técnica que muda o jogo entra aqui, **a m
 Formato:
 
 ```
+
 ## AAAA-MM-DD — título curto
 **Decisão:** o que ficou decidido.
 **Por quê:** o motivo, em uma ou duas frases.
@@ -12,6 +13,11 @@ Formato:
 ```
 
 ---
+
+## 2026-09-30 — Nova fase: Bloco de salas
+**Decisão:** começou a fase **Bloco de salas** (os "Blocos de aula" do GDD): um bloco de dois andares, cada andar um corredor com **6 salas de aula** (101 a 106 no térreo, 201 a 206 no 1º andar), ligados por uma escada. O térreo está meio enterrado na areia e escuro; o 1º andar tem o teto aberto, sol e mato. Cada sala tem uma ideia própria para não ficar repetitivo (sala comum, invadida pela duna, barricada, laboratório, sala escura com robô desmontado, árvore, auditório, sala dos professores, chão que cedeu, sala "intacta demais", depósito). As lousas têm os tracinhos contados do GDD. Entra no menu Fases no lugar de "Blocos de aula". **É noite:** céu escuro com estrelas, luar pelas janelas e buracos e poucos lampiões; corredores de 2560 px e salas de 800 a 1280 px. Uma lanterna fica no começo do corredor (item único que o Gabriel já tem não aparece de novo no chão).
+**Por quê:** pedido do Davi.
+**Afeta:** `cenas/salas/bloco_de_salas/` (14 cenas novas), kit de cenário (`gerar_kit.py`: lousa, quadro de avisos, escadas, carteiras), `dados/fases/03_blocos_de_aula.tres`, `docs/fases/bloco_de_salas.md`. **Em aberto:** objetivo e história, robôs, ligação com a porta de saída da Biblioteca.
 
 ## 2026-09-30 — Biblioteca mais larga: ala leste
 **Decisão:** a Biblioteca cresceu para a direita, de 960 para **1440 px** (4,5 telas de largura; a altura continua 420). A parte nova, depois da coluna onde a sala terminava, é a **ala leste** (sala de periódicos): terceiro buraco no teto com uma árvore nova, mesas, cabines e um segundo acervo no fundo sul. A porta de saída para os Blocos de aula foi para o fim da ala leste.
