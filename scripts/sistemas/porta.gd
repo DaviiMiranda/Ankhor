@@ -2,6 +2,7 @@ class_name Porta
 extends Interagivel
 
 const SOM_ABRIR := preload("res://assets/audio/efeitos/objetos/porta_abrir.wav")
+const SOM_EMPERRADA := preload("res://assets/audio/efeitos/objetos/porta_emperrada.wav")
 
 static var _chegada := ""
 static var _destrancadas := {}
@@ -12,6 +13,9 @@ static var _destrancadas := {}
 @export var direcao_entrar := Vector2.UP
 @export var segundos_andando: float = 0.8
 @export var trancada := false
+@export var bloqueada := false
+@export var aviso_bloqueada: String = "A porta não abre."
+@export var som_abrir: AudioStream = SOM_ABRIR
 
 var _atravessando := false
 
@@ -27,10 +31,14 @@ func _ready() -> void:
 
 
 func pode_interagir() -> bool:
-	return not _atravessando and not cena_destino.is_empty()
+	return not _atravessando and (bloqueada or not cena_destino.is_empty())
 
 
 func interagir() -> void:
+	if bloqueada:
+		Inventario.aviso.emit(aviso_bloqueada)
+		_tocar(SOM_EMPERRADA)
+		return
 	if trancada:
 		Inventario.aviso.emit("Trancada. Talvez dê para hackear")
 		return
@@ -38,7 +46,7 @@ func interagir() -> void:
 	if gabriel == null:
 		return
 	_atravessando = true
-	_tocar_som()
+	_tocar(som_abrir)
 	gabriel.andar_sozinho(direcao_entrar)
 	var animacao := create_tween().set_parallel()
 	animacao.tween_property(gabriel, "modulate", Color(0, 0, 0, 0), segundos_andando)
@@ -55,9 +63,9 @@ func destrancar() -> void:
 	Inventario.aviso.emit("Porta destrancada")
 
 
-func _tocar_som() -> void:
+func _tocar(stream: AudioStream) -> void:
 	var som := AudioStreamPlayer.new()
-	som.stream = SOM_ABRIR
+	som.stream = stream
 	som.bus = &"Efeitos"
 	som.finished.connect(som.queue_free)
 	get_tree().root.add_child(som)

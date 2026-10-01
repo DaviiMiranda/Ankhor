@@ -1,0 +1,33 @@
+{
+	"id": "clarice_de_novo",
+	"inicio": "abertura",
+	"trechos": {
+		"abertura": {
+			"falas": [
+				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_normal", "texto": "Fala. Tô no meio de uma coisa aqui."}
+			],
+			"escolhas": [
+				{"texto": "Alguma novidade do setor B?", "vai_para": "setor_b"},
+				{"texto": "O que você está fazendo?", "vai_para": "fazendo"},
+				{"texto": "Nada, só passando.", "vai_para": "tchau"}
+			]
+		},
+		"setor_b": {
+			"falas": [
+				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_seria", "texto": "Ainda não. A senha tem doze caracteres e o sistema me expulsa a cada três tentativas."},
+				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_normal", "texto": "Volta mais tarde. Ou traz um disquete com senha, se achar algum por aí."}
+			]
+		},
+		"fazendo": {
+			"falas": [
+				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_normal", "texto": "Tentando fazer os robôs me contarem por onde vão passar amanhã. Eles repetem tudo, sabia?"},
+				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_sorrindo", "texto": "Igualzinho a certas pessoas que eu conheço."}
+			]
+		},
+		"tchau": {
+			"falas": [
+				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_sorrindo", "texto": "Falou. Cuidado lá em cima. E não fica parado debaixo de lâmpada."}
+			]
+		}
+	}
+}

@@ -51,6 +51,10 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `efeitos/interface/menu_passar.wav`, `menu_clique.wav` | `assets/modelagem/audio/gerar_efeitos_menu.py` | Bipe de computador velho ao passar por uma opção do menu; clique do mouse com bipe de confirmação ao escolher |
 | `efeitos/objetos/porta_abrir.wav` | `assets/modelagem/audio/gerar_efeitos_gadgets.py` | 1,4 s: trinco, dobradiça rangendo e a porta batendo. Toca ao atravessar uma porta (`cenas/sistemas/porta.tscn`) |
 | `efeitos/objetos/clarao_disparo.wav`, `pedra_impacto.wav`, `notebook_hack.wav` | `assets/modelagem/audio/gerar_efeitos_gadgets.py` | Estalo do flash com o capacitor recarregando; pedra batendo e quicando; 2,5 s de bipes de dados com o "ok" no fim |
+| `ambiente/bunker/bunker_zumbido.wav`, `bunker_goteiras.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | Loops do bunker: transformador de 60 Hz com a ventilação (em toda sala do bunker; mais grave e alto no gerador) e pingos d'água no setor B |
+| `efeitos/objetos/porta_blindada.wav`, `porta_emperrada.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | Porta de aço de correr (trava, pistão, batida) e a maçaneta de uma porta lacrada |
+| `efeitos/objetos/teclado.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | 3 s em loop: a Clarice digitando |
+| `efeitos/interface/dialogo_bip.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | O bipe das letras na caixa de diálogo (o tom muda com quem fala) |
 | `efeitos/interface/papel_folhear.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 0,35 s: uma folha virando. Toca ao abrir, folhear e fechar documentos e o caderno |
 
 Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py` ou `gerar_trilha_gameplay.py` (precisa de numpy e ffmpeg). Os efeitos saem de `gerar_efeitos_gabriel.py` (só numpy).

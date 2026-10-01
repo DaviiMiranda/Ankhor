@@ -1,0 +1,366 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_lisa.tscn" id="r2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_emergencia.tscn" id="r3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_escada_sobe.tscn" id="r4"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_canos.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_rachada.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_luminaria.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_porta.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_painel.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_porta_lacrada.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_comporta.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/pilar_bunker.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker_agua.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker_grade.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker_faixa.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/tambor.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/caixas.tscn" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/latas.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/tambor_verde.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r23"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r24"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_blindada.wav" id="r25"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r26"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_goteiras.wav" id="r27"]
+
+[sub_resource type="StyleBoxFlat" id="Placa"]
+bg_color = Color(0.09, 0.1, 0.12, 1)
+border_width_bottom = 1
+border_color = Color(0.3, 0.33, 0.38, 1)
+
+[node name="CorredorB" instance=ExtResource("r1")]
+id = "bunker_corredor_b"
+largura = 2240
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("r2")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(80, 0)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(240, 0)
+
+[node name="Parede05" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(320, 0)
+
+[node name="Parede06" parent="Paredes" instance=ExtResource("r7")]
+position = Vector2(400, 0)
+
+[node name="Parede07" parent="Paredes" instance=ExtResource("r8")]
+position = Vector2(480, 0)
+
+[node name="Parede08" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(560, 0)
+
+[node name="Parede09" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(640, 0)
+
+[node name="Parede10" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(720, 0)
+
+[node name="Parede11" parent="Paredes" instance=ExtResource("r8")]
+position = Vector2(800, 0)
+
+[node name="Parede12" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(880, 0)
+
+[node name="Parede13" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(960, 0)
+
+[node name="Parede14" parent="Paredes" instance=ExtResource("r2")]
+position = Vector2(1040, 0)
+
+[node name="Parede15" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(1120, 0)
+
+[node name="Parede16" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(1200, 0)
+
+[node name="Parede17" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(1280, 0)
+
+[node name="Parede18" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(1360, 0)
+
+[node name="Parede19" parent="Paredes" instance=ExtResource("r2")]
+position = Vector2(1440, 0)
+
+[node name="Parede20" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(1520, 0)
+
+[node name="Parede21" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(1600, 0)
+
+[node name="Parede22" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(1680, 0)
+
+[node name="Parede23" parent="Paredes" instance=ExtResource("r7")]
+position = Vector2(1760, 0)
+
+[node name="Parede24" parent="Paredes" instance=ExtResource("r2")]
+position = Vector2(1840, 0)
+
+[node name="Parede25" parent="Paredes" instance=ExtResource("r11")]
+position = Vector2(1920, 0)
+
+[node name="Parede26" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(2000, 0)
+
+[node name="Parede27" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(2080, 0)
+
+[node name="Parede28" parent="Paredes" instance=ExtResource("r2")]
+position = Vector2(2160, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(2224, 0)
+
+[node name="PlacaSetorA" type="Label" parent="Paredes"]
+offset_left = 168.0
+offset_top = 26.0
+offset_right = 232.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.86, 0.74, 0.34, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "SETOR A"
+horizontal_alignment = 1
+
+[node name="PlacaGerador" type="Label" parent="Paredes"]
+offset_left = 489.0
+offset_top = 26.0
+offset_right = 553.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.86, 0.74, 0.34, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "GERADOR"
+horizontal_alignment = 1
+
+[node name="PlacaDeposito" type="Label" parent="Paredes"]
+offset_left = 809.0
+offset_top = 26.0
+offset_right = 873.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.86, 0.74, 0.34, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "DEPÓSITO"
+horizontal_alignment = 1
+
+[node name="PlacaLaboratorio" type="Label" parent="Paredes"]
+offset_left = 1129.0
+offset_top = 26.0
+offset_right = 1193.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.86, 0.74, 0.34, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "LABORATÓRIO"
+horizontal_alignment = 1
+
+[node name="PlacaArquivo" type="Label" parent="Paredes"]
+offset_left = 1529.0
+offset_top = 26.0
+offset_right = 1593.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.86, 0.74, 0.34, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "ARQUIVO"
+horizontal_alignment = 1
+
+[node name="PlacaNucleo" type="Label" parent="Paredes"]
+offset_left = 1928.0
+offset_top = 26.0
+offset_right = 1992.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.86, 0.74, 0.34, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "NÚCLEO"
+horizontal_alignment = 1
+
+[node name="Grafite1" type="Label" parent="Paredes"]
+offset_left = 1500.0
+offset_top = 62.0
+offset_right = 1576.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0.72, 0.13, 0.1, 1)
+text = "NÃO ABRE. JÁ TENTEI.  C."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Chao1" parent="Chao" instance=ExtResource("r13")]
+position = Vector2(0, 0)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(128, 0)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("r13")]
+position = Vector2(256, 0)
+
+[node name="Chao4" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(384, 0)
+
+[node name="Chao5" parent="Chao" instance=ExtResource("r15")]
+position = Vector2(512, 0)
+
+[node name="Chao6" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(640, 0)
+
+[node name="Chao7" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(768, 0)
+
+[node name="Chao8" parent="Chao" instance=ExtResource("r13")]
+position = Vector2(896, 0)
+
+[node name="Chao9" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(1024, 0)
+
+[node name="Chao10" parent="Chao" instance=ExtResource("r15")]
+position = Vector2(1152, 0)
+
+[node name="Chao11" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(1280, 0)
+
+[node name="Chao12" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(1408, 0)
+
+[node name="Chao13" parent="Chao" instance=ExtResource("r13")]
+position = Vector2(1536, 0)
+
+[node name="Chao14" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(1664, 0)
+
+[node name="Chao15" parent="Chao" instance=ExtResource("r16")]
+position = Vector2(1792, 0)
+
+[node name="Chao16" parent="Chao" instance=ExtResource("r16")]
+position = Vector2(1920, 0)
+
+[node name="Chao17" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(2048, 0)
+
+[node name="Chao18" parent="Chao" instance=ExtResource("r13")]
+position = Vector2(2176, 0)
+
+[node name="Tambor1" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(320, 168)
+
+[node name="Tambor2" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(342, 174)
+espelhado = true
+
+[node name="Entulho1" parent="Objetos" instance=ExtResource("r18")]
+position = Vector2(380, 130)
+
+[node name="Caixas1" parent="Objetos" instance=ExtResource("r19")]
+position = Vector2(700, 134)
+
+[node name="Latas1" parent="Objetos" instance=ExtResource("r20")]
+position = Vector2(760, 172)
+
+[node name="Entulho2" parent="Objetos" instance=ExtResource("r18")]
+position = Vector2(1250, 160)
+espelhado = true
+
+[node name="TamborVerde1" parent="Objetos" instance=ExtResource("r21")]
+position = Vector2(1300, 134)
+
+[node name="Caixas2" parent="Objetos" instance=ExtResource("r19")]
+position = Vector2(1480, 172)
+espelhado = true
+
+[node name="Entulho3" parent="Objetos" instance=ExtResource("r18")]
+position = Vector2(1720, 130)
+
+[node name="Tambor3" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(1770, 168)
+
+[node name="TamborVerde2" parent="Objetos" instance=ExtResource("r21")]
+position = Vector2(2150, 170)
+espelhado = true
+
+[node name="Caixas3" parent="Objetos" instance=ExtResource("r19")]
+position = Vector2(2180, 134)
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r22")]
+position = Vector2(120, 30)
+
+[node name="Luz2" parent="Luzes" instance=ExtResource("r22")]
+position = Vector2(920, 30)
+
+[node name="Luz3" parent="Luzes" instance=ExtResource("r22")]
+position = Vector2(1400, 30)
+
+[node name="Luz4" parent="Luzes" instance=ExtResource("r22")]
+position = Vector2(2040, 30)
+
+[node name="Luz5" parent="Luzes" instance=ExtResource("r23")]
+position = Vector2(440, 34)
+energy = 0.6
+
+[node name="Luz6" parent="Luzes" instance=ExtResource("r23")]
+position = Vector2(1800, 34)
+energy = 0.35
+
+[node name="Escuridao" parent="."]
+color = Color(0.19, 0.19, 0.25, 1)
+
+[node name="Porta_corredor_b_escada" parent="." instance=ExtResource("r24")]
+position = Vector2(200, 124)
+id = "corredor_b_escada"
+cena_destino = "res://cenas/salas/bunker/corredor_a.tscn"
+porta_destino = "corredor_a_escada"
+som_abrir = ExtResource("r25")
+
+[node name="Porta_corredor_b_gerador" parent="." instance=ExtResource("r24")]
+position = Vector2(521, 124)
+id = "corredor_b_gerador"
+cena_destino = "res://cenas/salas/bunker/gerador.tscn"
+porta_destino = "gerador"
+som_abrir = ExtResource("r25")
+
+[node name="Porta_corredor_b_deposito" parent="." instance=ExtResource("r24")]
+position = Vector2(841, 124)
+id = "corredor_b_deposito"
+cena_destino = "res://cenas/salas/bunker/deposito.tscn"
+porta_destino = "deposito"
+som_abrir = ExtResource("r25")
+
+[node name="Porta_laboratorio" parent="." instance=ExtResource("r24")]
+position = Vector2(1161, 124)
+id = "laboratorio"
+bloqueada = true
+aviso_bloqueada = "Lacrada pelo sistema. A Clarice está tentando abrir."
+
+[node name="Porta_arquivo" parent="." instance=ExtResource("r24")]
+position = Vector2(1561, 124)
+id = "arquivo"
+bloqueada = true
+aviso_bloqueada = "Lacrada pelo sistema. A Clarice está tentando abrir."
+
+[node name="Porta_nucleo" parent="." instance=ExtResource("r24")]
+position = Vector2(1960, 124)
+id = "nucleo"
+bloqueada = true
+aviso_bloqueada = "A comporta do núcleo não se mexe. Nem um milímetro."
+
+[node name="Zumbido" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("r26")
+volume_db = -10.0
+autoplay = true
+bus = &"Efeitos"
+
+[node name="Goteiras" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("r27")
+volume_db = -8.0
+autoplay = true
+bus = &"Efeitos"

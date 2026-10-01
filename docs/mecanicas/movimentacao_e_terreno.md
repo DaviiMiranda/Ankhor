@@ -53,6 +53,8 @@ O som gerado pelos passos varia conforme o piso sobre o qual Gabriel se move:
 | `porta_destino` | O `id` da porta, na outra cena, por onde o Gabriel vai sair |
 | `direcao_entrar` | Para onde ele anda ao entrar (`(0, -1)` = para o fundo). Ao sair, anda para o lado oposto |
 | `trancada` | Trancada, o `E` só mostra o aviso "Trancada". Abre com o notebook (e continua aberta até fechar o jogo) |
+| `bloqueada` | Porta que ainda não leva a lugar nenhum (sala para fazer depois). O `E` mostra `aviso_bloqueada` e toca a maçaneta emperrada; o notebook não abre |
+| `som_abrir` | O som ao atravessar. Padrão: `porta_abrir.wav`; o bunker usa `porta_blindada.wav` |
 
 Ao atravessar toca `porta_abrir.wav` (trinco, dobradiça rangendo, porta batendo). O som toca fora da cena, então continua durante a troca.
 

@@ -5,7 +5,6 @@ Toda decisão de design, história ou técnica que muda o jogo entra aqui, **a m
 Formato:
 
 ```
-
 ## AAAA-MM-DD — título curto
 **Decisão:** o que ficou decidido.
 **Por quê:** o motivo, em uma ou duas frases.
@@ -13,6 +12,12 @@ Formato:
 ```
 
 ---
+
+## 2026-09-30 — Nova fase: Bunker, e a Clarice em pessoa
+**Decisão:** começou a fase **Bunker**: o bunker de pesquisa embaixo do núcleo da Âncora, com dois setores (A e B, ligados por escada), 9 salas abertas (entrada, dois corredores, dormitório, refeitório, enfermaria, central de dados, gerador e depósito) e **seis portas lacradas** para fazer depois (escotilha da superfície, elevador, arsenal, laboratório, arquivo e a comporta do núcleo). A **Clarice aparece em pessoa** na central de dados, sentada na estação de trabalho dela, fixa ali, e **conversa** com o Gabriel. Entrou junto o **sistema de diálogos** (JSON em `dados/dialogos/`, caixa com retrato, texto letra por letra e escolhas) e o design completo dela, modelado no Blender.
+**Por quê:** pedido do Davi.
+**Muda o que estava decidido:** a ficha da Clarice dizia que ela era **só voz** (ligações) e que os dois **só se viam no final** ("é a primeira vez que se veem", na cena final da revelação central). O bunker resolve o "em aberto" de **onde ela está escondida**, mas o grupo precisa decidir: (a) o bunker fica perto do fim e a cena final muda, ou (b) as ligações continuam e o bunker é o primeiro encontro, com a cena final reescrita. Os diálogos de exemplo funcionam nos dois casos.
+**Afeta:** `cenas/salas/bunker/` (9 cenas), kit do bunker (`gerar_bunker.py`, `cenas/cenario/bunker/`), luzes `luz_tubo` e `luz_emergencia`, `cenas/personagens/clarice.tscn`, `gerar_clarice.py`, sistema de diálogos (`scripts/sistemas/dialogos.gd`, autoload `Dialogos`, `cenas/interface/caixa_dialogo.tscn` no `modelo_sala.tscn`, `conversa_npc.gd`), `scripts/sistemas/porta.gd` (portas bloqueadas e som próprio), `dados/fases/08_bunker.tres` e o menu Fases, `gerar_efeitos_bunker.py`, docs (`fases/bunker.md`, `dialogos/`, `antecessores.md`).
 
 ## 2026-09-30 — Nova fase: Bloco de salas
 **Decisão:** começou a fase **Bloco de salas** (os "Blocos de aula" do GDD): um bloco de dois andares, cada andar um corredor com **6 salas de aula** (101 a 106 no térreo, 201 a 206 no 1º andar), ligados por uma escada. O térreo está meio enterrado na areia e escuro; o 1º andar tem o teto aberto, sol e mato. Cada sala tem uma ideia própria para não ficar repetitivo (sala comum, invadida pela duna, barricada, laboratório, sala escura com robô desmontado, árvore, auditório, sala dos professores, chão que cedeu, sala "intacta demais", depósito). As lousas têm os tracinhos contados do GDD. Entra no menu Fases no lugar de "Blocos de aula". **É noite:** céu escuro com estrelas, luar pelas janelas e buracos e poucos lampiões; corredores de 2560 px e salas de 800 a 1280 px. Uma lanterna fica no começo do corredor (item único que o Gabriel já tem não aparece de novo no chão).

@@ -1,0 +1,155 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_porta.tscn" id="r2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_lisa.tscn" id="r3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_prateleiras.tscn" id="r4"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_luminaria.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_mapa.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_canos.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_painel.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/pilar_bunker.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/mesa_refeitorio.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/latas.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/tambor.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/caixas.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r16"]
+[ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r19"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_blindada.wav" id="r20"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r21"]
+
+[sub_resource type="StyleBoxFlat" id="Placa"]
+bg_color = Color(0.09, 0.1, 0.12, 1)
+border_width_bottom = 1
+border_color = Color(0.3, 0.33, 0.38, 1)
+
+[node name="Refeitorio" instance=ExtResource("r1")]
+id = "bunker_refeitorio"
+largura = 960
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("r2")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(80, 0)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(240, 0)
+
+[node name="Parede05" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(320, 0)
+
+[node name="Parede06" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(400, 0)
+
+[node name="Parede07" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(480, 0)
+
+[node name="Parede08" parent="Paredes" instance=ExtResource("r7")]
+position = Vector2(560, 0)
+
+[node name="Parede09" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(640, 0)
+
+[node name="Parede10" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(720, 0)
+
+[node name="Parede11" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(800, 0)
+
+[node name="Parede12" parent="Paredes" instance=ExtResource("r8")]
+position = Vector2(880, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(944, 0)
+
+[node name="Chao1" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(0, 0)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(128, 0)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(256, 0)
+
+[node name="Chao4" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(384, 0)
+
+[node name="Chao5" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(512, 0)
+
+[node name="Chao6" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(640, 0)
+
+[node name="Chao7" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(768, 0)
+
+[node name="Chao8" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(896, 0)
+
+[node name="MesaRefeitorio1" parent="Objetos" instance=ExtResource("r11")]
+position = Vector2(300, 140)
+
+[node name="MesaRefeitorio2" parent="Objetos" instance=ExtResource("r11")]
+position = Vector2(520, 140)
+espelhado = true
+
+[node name="MesaRefeitorio3" parent="Objetos" instance=ExtResource("r11")]
+position = Vector2(400, 170)
+
+[node name="MesaRefeitorio4" parent="Objetos" instance=ExtResource("r11")]
+position = Vector2(640, 170)
+espelhado = true
+
+[node name="Latas1" parent="Objetos" instance=ExtResource("r12")]
+position = Vector2(780, 136)
+
+[node name="Latas2" parent="Objetos" instance=ExtResource("r12")]
+position = Vector2(800, 144)
+espelhado = true
+
+[node name="Tambor1" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(860, 134)
+
+[node name="Caixas1" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(900, 170)
+espelhado = true
+
+[node name="Cadeira1" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(160, 164)
+
+[node name="Clarao1" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(820, 172)
+item = ExtResource("r17")
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r18")]
+position = Vector2(360, 34)
+
+[node name="Luz2" parent="Luzes" instance=ExtResource("r18")]
+position = Vector2(680, 34)
+
+[node name="Escuridao" parent="."]
+color = Color(0.25, 0.26, 0.32, 1)
+
+[node name="Porta_refeitorio" parent="." instance=ExtResource("r19")]
+position = Vector2(41, 124)
+id = "refeitorio"
+cena_destino = "res://cenas/salas/bunker/corredor_a.tscn"
+porta_destino = "corredor_refeitorio"
+som_abrir = ExtResource("r20")
+
+[node name="Zumbido" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("r21")
+volume_db = -10.0
+autoplay = true
+bus = &"Efeitos"

@@ -1,0 +1,82 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interface/caixa_dialogo.gd" id="1_caixa"]
+[ext_resource type="Texture2D" path="res://assets/sprites/interface/painel.png" id="2_painel"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/dialogo_bip.wav" id="3_bip"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dica"]
+font_size = 8
+font_color = Color(0.95, 0.88, 0.7, 1)
+
+[node name="CaixaDialogo" type="CanvasLayer"]
+layer = 9
+script = ExtResource("1_caixa")
+
+[node name="Janela" type="NinePatchRect" parent="."]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 316.0
+offset_bottom = 68.0
+mouse_filter = 2
+texture = ExtResource("2_painel")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MolduraRetrato" type="ColorRect" parent="Janela"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 11.0
+offset_right = 48.0
+offset_bottom = 53.0
+mouse_filter = 2
+color = Color(0.07, 0.07, 0.09, 1)
+
+[node name="Retrato" type="TextureRect" parent="Janela/MolduraRetrato"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 41.0
+offset_bottom = 41.0
+mouse_filter = 2
+
+[node name="Nome" type="Label" parent="Janela"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 3.0
+offset_right = 252.0
+offset_bottom = 17.0
+
+[node name="Texto" type="Label" parent="Janela"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 17.0
+offset_right = 304.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(0.9, 0.88, 0.82, 1)
+autowrap_mode = 3
+max_lines_visible = 3
+
+[node name="Escolhas" type="VBoxContainer" parent="Janela"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 17.0
+offset_right = 304.0
+offset_bottom = 61.0
+theme_override_constants/separation = 0
+
+[node name="Dica" type="Label" parent="Janela"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 46.0
+offset_right = 306.0
+offset_bottom = 60.0
+text = "E"
+label_settings = SubResource("LabelSettings_dica")
+horizontal_alignment = 2
+
+[node name="Bip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bip")
+volume_db = -6.0
+bus = &"Efeitos"
