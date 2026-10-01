@@ -67,7 +67,7 @@ func _atualizar_aviso() -> void:
 	aviso.visible = alvo != null
 	if alvo == null:
 		return
-	aviso.text = "[E] " + alvo.texto_acao
+	aviso.text = ("[E] " + alvo.texto_acao).strip_edges()
 	aviso.reset_size()
 	var na_tela := alvo.get_global_transform_with_canvas().origin
 	var pos := na_tela + Vector2(-aviso.size.x / 2.0, -alvo.altura_aviso - aviso.size.y)

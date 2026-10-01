@@ -6,7 +6,7 @@ const SOM_TROCA := preload("res://assets/audio/efeitos/objetos/pilha_troca.wav")
 
 
 func _ready() -> void:
-	texto_acao = "Trocar a pilha"
+	texto_acao = ""
 	if Engine.is_editor_hint():
 		return
 	super()

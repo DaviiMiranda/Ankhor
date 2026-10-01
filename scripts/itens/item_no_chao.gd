@@ -15,8 +15,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	super()
-	if item:
-		texto_acao = "Pegar " + item.nome.to_lower()
+	texto_acao = ""
 	if Inventario.pegos.has(_id_unico()):
 		queue_free()
 
