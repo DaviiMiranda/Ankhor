@@ -9,9 +9,9 @@
 		"abertura": {
 			"falas": [
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_seria", "texto": "Não encosta em nada. Tô compilando, e se esse troço travar eu perco a noite inteira."},
-				{"quem": "Gabriel", "texto": "Você... é a Clarice? Do bilhete da Biblioteca?"},
+				{"quem": "Gabriel", "retrato": "gabriel/gabriel_retrato_surpreso", "texto": "Você... é a Clarice? Do bilhete da Biblioteca?"},
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_sorrindo", "texto": "Parecia despedida, né? Relaxa. Tô vivinha da silva. Meio pálida de tanto monitor, mas viva."},
-				{"quem": "Gabriel", "texto": "Como você sabe que eu li o bilhete?"},
+				{"quem": "Gabriel", "retrato": "gabriel/gabriel_retrato_preocupado", "texto": "Como você sabe que eu li o bilhete?"},
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_normal", "texto": "Você sempre lê. E sempre chega aqui com essa cara de quem viu assombração."}
 			],
 			"escolhas": [
@@ -23,7 +23,7 @@
 		"sempre": {
 			"falas": [
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_seria", "texto": "Esquece. Força de expressão."},
-				{"quem": "Gabriel", "texto": "Você falou \"sempre\" duas vezes."},
+				{"quem": "Gabriel", "retrato": "gabriel/gabriel_retrato_preocupado", "texto": "Você falou \"sempre\" duas vezes."},
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_sorrindo", "texto": "E você sempre repara. Próxima pergunta."}
 			],
 			"vai_para": "mais_alguma"
@@ -32,7 +32,7 @@
 			"falas": [
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_normal", "texto": "Bunker de pesquisa, embaixo do núcleo da Âncora. Os robôs não descem aqui. Acho que nem sabem que existe."},
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_normal", "texto": "A energia vem direto da Âncora. É o único lugar do campus onde a luz é de confiança."},
-				{"quem": "Gabriel", "texto": "E as portas trancadas lá no corredor?"},
+				{"quem": "Gabriel", "retrato": "gabriel/gabriel_retrato_normal", "texto": "E as portas trancadas lá no corredor?"},
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_seria", "texto": "Setor B: laboratório, arquivo e o acesso ao núcleo. Lacrados pelo sistema. Tô quebrando a senha, um disquete por vez."}
 			],
 			"vai_para": "mais_alguma"
@@ -41,7 +41,7 @@
 			"falas": [
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_normal", "texto": "Enlatado de mil anos, água do reservatório e muita teimosia. O depósito ainda tem coisa, se você procurar."},
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_sorrindo", "texto": "E eu mapeei os robôs. Rota de patrulha é um grafo: ponto, ligação, ponto. É só não estar no ponto errado."},
-				{"quem": "Gabriel", "texto": "Você fez tudo isso sozinha?"},
+				{"quem": "Gabriel", "retrato": "gabriel/gabriel_retrato_surpreso", "texto": "Você fez tudo isso sozinha?"},
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_sorrindo", "texto": "Processamento de dados, meu filho. Me dá um problema que eu resolvo. Isso aqui é só um problema grande."}
 			],
 			"vai_para": "mais_alguma"
@@ -61,7 +61,7 @@
 			"falas": [
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_normal", "texto": "Vai lá. Mas escuta: se um telefone tocar pelo campus, atende. Sou eu."},
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_seria", "texto": "E se alguma luz piscar do jeito errado... você sabe."},
-				{"quem": "Gabriel", "texto": "Não confiar nas luzes."},
+				{"quem": "Gabriel", "retrato": "gabriel/gabriel_retrato_normal", "texto": "Não confiar nas luzes."},
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_sorrindo", "texto": "Olha só. Aprendeu mais rápido dessa vez."}
 			]
 		}

@@ -10,7 +10,7 @@ Conversas com personagens (hoje, a Clarice no bunker). Cada conversa é um arqui
 - A caixa mostra o **retrato** de quem fala (40 × 40), o **nome** na cor da pessoa (Clarice em verde-azulado, Gabriel em vermelho) e o texto aparecendo **letra por letra**, com um bipe a cada duas letras. O tom do bipe muda com quem fala (a Clarice mais aguda). Depois de ponto, vírgula, `?` e `!`, a escrita dá uma pausa curta, como quem respira.
 - `E` (ou `Enter`) mostra a fala inteira de uma vez; se ela já está inteira, passa para a próxima. Quando a fala terminou, pisca um `E` no canto.
 - Nas **escolhas**, `W`/`S` (ou as setas) movem o cursor `>` e `E` escolhe.
-- Fala do Gabriel não tem retrato: o texto usa a largura toda.
+- Fala sem `retrato` (um narrador, um bilhete lido em voz alta) usa a largura toda da caixa.
 - No fim, o jogo despausa. Se a conversa tiver `anotacao`, ela entra no **Caderno do Gabriel** (aba Anotações), como os bilhetes.
 
 ---

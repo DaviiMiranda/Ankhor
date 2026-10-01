@@ -15,6 +15,9 @@
 #                                                                 lado a lado, um arquivo por vista
 #   assets/sprites/personagens/gabriel/gabriel_parado_<vista>.png  parado respirando: 8 quadros
 #   assets/sprites/personagens/gabriel/gabriel_referencia.png  frente, 3/4, lado e costas, 128 px
+#   assets/sprites/personagens/gabriel/gabriel_retrato_<expressão>.png  40 x 40: rosto e ombros
+#                                                                 para a caixa de diálogo (normal,
+#                                                                 surpreso, preocupado)
 #   assets/modelagem/personagens/gabriel.blend                 o modelo, para abrir e mexer
 #
 # Quem é (docs/gdd.md, item 3): aluno comum, cansado, que só queria passar
@@ -74,6 +77,7 @@ def criar_materiais():
         "olho": m.novo("olho", "#1c1822", "plano"),
         "olheira": m.novo("olheira", "#8c5a48", "plano"),   # noite sem dormir
         "cordao": m.novo("cordao", "#d8d1c3"),
+        "boca": m.novo("boca", "#5e3029", "plano"),
         "fivela": m.novo("fivela", "#2a2f2a"),
     }
 
@@ -146,6 +150,10 @@ def montar(mt):
         c.caixa(f"Olho{lado}", (0.035, 0.01, 0.03), (0.048 * lado, -0.112, 0.135), mt["olho"], pescoco)
         c.caixa(f"Olheira{lado}", (0.04, 0.01, 0.014), (0.048 * lado, -0.111, 0.112), mt["olheira"], pescoco)
         c.caixa(f"Sobrancelha{lado}", (0.045, 0.012, 0.013), (0.048 * lado, -0.112, 0.168), mt["cabelo"], pescoco, (0, 6 * lado, 0))
+    # Boca: só aparece nos retratos (no sprite de 48 px ela seria um risco
+    # escuro no queixo). A aberta é a do "surpreso".
+    c.caixa("Boca", (0.045, 0.01, 0.012), (0, -0.114, 0.052), mt["boca"], pescoco)
+    c.caixa("BocaAberta", (0.024, 0.01, 0.026), (0, -0.114, 0.05), mt["boca"], pescoco)
     # Cabelo: uma "tampa", a nuca e tufos arrepiados (de quem deitou a
     # cabeça em cima do livro).
     c.caixa("CabeloTopo", (0.225, 0.245, 0.075), (0, 0.005, 0.235), mt["cabelo"], pescoco, bisel=0.025)
@@ -252,6 +260,59 @@ def pose_parado(parado, fase):
     bpy.data.objects["Cabeca"].rotation_euler = (rot[0] + math.radians(pende), rot[1], rot[2])
 
 
+# ---------------------------------------------------------------------------
+# Retratos (caixa de diálogo)
+# ---------------------------------------------------------------------------
+#
+# Mesmo enquadramento dos retratos da Clarice: 40 x 40 px, câmera reta na
+# altura do rosto, 88 px por metro (o rosto ocupa quase o retrato inteiro),
+# virado 24 graus para a direita (para o texto da caixa). Três expressões,
+# feitas com a boca e as sobrancelhas, porque num retrato de 40 px 1 pixel
+# já muda o rosto:
+#   normal      boca reta, sobrancelhas no lugar (o cansaço de sempre);
+#   surpreso    boca aberta, sobrancelhas lá em cima;
+#   preocupado  boca reta, sobrancelhas levantadas no meio (inclinadas).
+
+QUADRO_RETRATO = (40, 40)
+PX_POR_M_RETRATO = 88
+EXPRESSOES = ("normal", "surpreso", "preocupado")
+
+
+def expressao(qual):
+    bpy.data.objects["Boca"].hide_render = qual == "surpreso"
+    bpy.data.objects["BocaAberta"].hide_render = qual != "surpreso"
+    for lado in (-1, 1):
+        sob = bpy.data.objects[f"Sobrancelha{lado}"]
+        sob.location.z = {"normal": 0.168, "surpreso": 0.18, "preocupado": 0.173}[qual]
+        sob.rotation_euler = (0, math.radians({"normal": 6, "surpreso": 0, "preocupado": -16}[qual] * lado), 0)
+
+
+def renderizar_retratos(cam, raiz, materiais):
+    altura_rosto = bpy.data.objects["Rosto"].matrix_world.translation.z
+
+    def enquadrar_retrato(cam, largura_px, altura_px, px_por_m, pe_px):
+        cena = bpy.context.scene
+        cena.render.resolution_x = largura_px
+        cena.render.resolution_y = altura_px
+        cam.data.ortho_scale = largura_px / px_por_m
+        cam.location = (0.0, -20.0, altura_rosto - 0.02)
+
+    original = c.enquadrar
+    c.enquadrar = enquadrar_retrato
+    retratos = {}
+    try:
+        for qual in EXPRESSOES:
+            expressao(qual)
+            img, ind, _ = c.renderizar_vista(cam, raiz, materiais, 24, QUADRO_RETRATO, PX_POR_M_RETRATO, 0)
+            retratos[qual] = c.contorno(img, ind, materiais)
+    finally:
+        c.enquadrar = original
+    expressao("normal")
+    bpy.data.objects["Boca"].hide_render = True
+    bpy.data.objects["BocaAberta"].hide_render = True
+    return retratos
+
+
 def main():
     c.DETALHE = DETALHE
     c.SUAVE = True
@@ -260,6 +321,8 @@ def main():
     c.usar_colecao("Gabriel")
     raiz = montar(mt)
     c.achatar_sombra("Rosto")
+    bpy.data.objects["Boca"].hide_render = True
+    bpy.data.objects["BocaAberta"].hide_render = True
     cam = c.criar_camera()
     c.criar_luzes()
     os.makedirs(PASTA_SAIDA, exist_ok=True)
@@ -317,7 +380,10 @@ def main():
     for nome, quadros in respirar.items():
         tira = np.concatenate(c.aplicar_paleta(quadros, paleta), axis=1)
         c.salvar_png(tira, os.path.join(PASTA_SAIDA, f"gabriel_parado_{nome}.png"))
-    c.salvar_png(c.montar_folha([vistas]), os.path.join(PASTA_SAIDA, "gabriel_referencia.png"))
+    retratos = renderizar_retratos(cam, raiz, materiais)
+    for (qual, img) in zip(retratos, c.aplicar_paleta(list(retratos.values()), paleta)):
+        c.salvar_png(img, os.path.join(PASTA_SAIDA, f"gabriel_retrato_{qual}.png"))
+    c.salvar_png(c.montar_folha([vistas, list(retratos.values())]), os.path.join(PASTA_SAIDA, "gabriel_referencia.png"))
     print("[gabriel] paleta:", " ".join(c.rgb_para_hex(np.array(cor) / 255) for cor in paleta))
 
     c.salvar_blend(ARQUIVO_BLEND, raiz)

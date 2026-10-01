@@ -18,7 +18,7 @@ Todo diálogo é um arquivo **JSON** em `dados/dialogos/<nome>.json` (nome em `s
 		"abertura": {
 			"falas": [
 				{"quem": "Clarice", "retrato": "clarice/clarice_retrato_normal", "texto": "Uma fala."},
-				{"quem": "Gabriel", "texto": "Outra fala. Gabriel não tem retrato."}
+				{"quem": "Gabriel", "retrato": "gabriel/gabriel_retrato_surpreso", "texto": "Outra fala."}
 			],
 			"escolhas": [
 				{"texto": "Primeira opção", "vai_para": "ramo_a"},
@@ -65,6 +65,6 @@ A tela tem 320 × 180 e a caixa mostra **3 linhas** de ~50 letras (com retrato) 
 - [ ] O arquivo é JSON válido (vírgulas, chaves, aspas)? Abra num site de validar JSON se tiver dúvida.
 - [ ] Todo `vai_para` aponta para um trecho que existe?
 - [ ] Existe pelo menos um caminho que chega a um trecho que encerra (para não prender o jogador)?
-- [ ] Os retratos existem em `assets/sprites/personagens/`?
+- [ ] Os retratos existem em `assets/sprites/personagens/`? Hoje: `clarice/clarice_retrato_{normal,sorrindo,seria}` e `gabriel/gabriel_retrato_{normal,surpreso,preocupado}`.
 - [ ] Cada fala cabe em 3 linhas?
 - [ ] A fala combina com a ficha do personagem ([`../personagens/`](../personagens/)) e com [`../decisoes.md`](../decisoes.md)? Na dúvida, peça para o agente `roteirista` revisar.
