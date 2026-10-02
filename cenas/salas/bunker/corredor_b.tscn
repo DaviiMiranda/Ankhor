@@ -27,6 +27,7 @@
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_blindada.wav" id="r25"]
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r26"]
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_goteiras.wav" id="r27"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_bunker.tscn" id="m_musica"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -364,3 +365,5 @@ stream = ExtResource("r27")
 volume_db = -8.0
 autoplay = true
 bus = &"Efeitos"
+
+[node name="MusicaBunker" parent="." instance=ExtResource("m_musica")]

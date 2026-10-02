@@ -56,14 +56,14 @@ def ruido(n):
 
 def bunker_zumbido():
     """Zumbido de transformador (60 Hz com harmônicas ímpares, que é o som
-    da rede elétrica) por baixo de uma ventilação: ruído grave filtrado,
-    com uma pulsação lenta de 0,5 Hz (a hélice do duto)."""
+    da rede elétrica) por baixo de um sopro de duto grave e CONSTANTE.
+    Antes o sopro ia até 900 Hz e subia e descia a cada 2 s: soava como
+    ondas do mar. Agora fica abaixo de 250 Hz e não pulsa: é ar parado."""
     t = tempo(4.0)
     n = len(t)
     s = sum(a * np.sin(2 * np.pi * f * t) for f, a in ((60, 1.0), (180, 0.35), (300, 0.15), (420, 0.06)))
     s = s * 0.25
-    vento = filtrar(ruido(n), corte_baixo=80, corte_alto=900)
-    s += vento * (0.6 + 0.25 * np.sin(2 * np.pi * 0.5 * t))
+    s += filtrar(ruido(n), corte_baixo=50, corte_alto=250) * 0.35
     return normalizar(s, -16.0)
 
 
