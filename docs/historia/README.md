@@ -2,6 +2,8 @@
 
 Este documento define como a narrativa de **Ankhor** é estruturada e como as informações são entregues ao jogador.
 
+> A história completa, do começo ao fim, está em [`enredo_principal.md`](enredo_principal.md).
+
 ---
 
 ## 1. Premissa Narrativa Canônica
