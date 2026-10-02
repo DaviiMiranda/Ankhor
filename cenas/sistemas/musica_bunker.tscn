@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/musica_fase.gd" id="1_musica"]
+[ext_resource type="AudioStream" path="res://assets/audio/musica/bunker/bunker_trilha.ogg" id="2_trilha"]
+
+[node name="MusicaBunker" type="AudioStreamPlayer"]
+stream = ExtResource("2_trilha")
+volume_db = -60.0
+bus = &"Musica"
+script = ExtResource("1_musica")
+volume_final_db = -15.0
