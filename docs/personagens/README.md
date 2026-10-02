@@ -10,7 +10,7 @@ Conforme as regras do projeto, cada personagem e inimigo é uma **cena isolada**
 
 1. **O Jogador (Gabriel):**
    - Controlado pelo usuário através de inputs (`CharacterBody2D`).
-   - Possui máquina de estados de locomoção (Parado, Andando, Correndo, Agachado, Escondido, Exausto).
+   - Possui máquina de estados de locomoção (Parado, Andando, Correndo, Escondido, Exausto).
    - Detalhes mecânicos em [`gabriel.md`](gabriel.md).
 
 2. **Os Robôs (Inimigos de IA):**

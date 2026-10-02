@@ -28,7 +28,7 @@ Os robôs inimigos são categorizados pelo seu sentido ou padrão de comportamen
 
 | Tipo de Robô | Sensor Dominante | Comportamento Principal | Ponto Fraco / Resposta do Jogador |
 |---|---|---|---|
-| **Sensor Acústico** | Audição apurada | Detecta passos correndo e ruídos de impacto a múltiplas salas de distância | Mover-se agachado; distrair com arremesso de pedras |
+| **Sensor Acústico** | Audição apurada | Detecta passos correndo e ruídos de impacto a múltiplas salas de distância | Andar sem correr; distrair com arremesso de pedras |
 | **Patrulha Programada** | Rotina de circuito | Percorre salas e corredores em horários e rotas fixas pelo grafo | Mapear os horários de patrulha para planejar rotas seguras |
 | **Sentinela Fotossensível** | Varredura óptica de luz | Patrulha áreas abertas e detecta lanternas acesas a longa distância | Apagar a lanterna ao cruzar seu campo visual |
 | **Unidades de Enxame** | Proximidade em grupo | Movem-se em conjunto, bloqueando passagens e corredores estreitos | Uso de cápsula de clarão para dispersar temporariamente o grupo |

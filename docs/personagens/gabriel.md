@@ -22,7 +22,6 @@ O script do jogador opera sob uma máquina de estados finita:
 | **PARADO** | 0 px/s | Nula | Regeneração rápida | Em repouso. |
 | **ANDANDO** | Padrão (100%) | Baixo (mesma sala) | Nulo | Movimento padrão de exploração. |
 | **CORRENDO** | Rápido (180%) | **Alto** (propaga no grafo) | Alto (~4s contínuos) | Fuga rápida; alerta robôs próximos. |
-| **AGACHADO** | Lento (50%) | **Silencioso** | Nulo | Permite passar por vãos e não faz barulho. |
 | **ESCONDIDO** | 0 px/s | Condicionado ao microgame | Nulo | Dentro de armário ou cabine. |
 | **EXAUSTO** | Lento (40%) | Respiração ofegante | Nulo (bloqueio temporário) | Ocorre quando a estamina se esgota totalmente. |
 
