@@ -12,6 +12,7 @@ A narrativa e os roteiros do jogo estão distribuídos nos seguintes módulos in
   - Padrão de implementação e estrutura técnica de cutscenes no Godot: [`cutscenes/README.md`](cutscenes/README.md)
   - Cutscene de Abertura: [`cutscenes/seg_acordar.md`](cutscenes/seg_acordar.md)
 - 📖 **Estrutura Narrativa:** [`../historia/`](../historia/)
+  - **Enredo Principal** (a história inteira em um só lugar): [`../historia/enredo_principal.md`](../historia/enredo_principal.md)
   - Funcionamento da entrega narrativa e narrativa ambiental: [`../historia/README.md`](../historia/README.md)
   - Modelo para novos documentos e relíquias: [`../historia/template_documento.md`](../historia/template_documento.md)
 - 👥 **Personagens:** [`../personagens/`](../personagens/)

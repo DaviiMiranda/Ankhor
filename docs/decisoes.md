@@ -18,6 +18,11 @@ Formato:
 **Por quê:** pedido do Davi: o som do bunker parecia mar (era a ventilação, um ruído largo pulsando a cada 2 s) e não combinava; pediu algo mais obscuro.
 **Afeta:** `assets/modelagem/audio/gerar_trilha_bunker.py` e `assets/audio/musica/bunker/bunker_trilha.ogg` (novos), `cenas/sistemas/musica_bunker.tscn` (nova, usa `musica_fase.gd`), as 9 salas de `cenas/salas/bunker/`, `gerar_efeitos_bunker.py` e `bunker_zumbido.wav`, `assets/audio/README.md`, `docs/fases/bunker.md`.
 
+## 2026-10-02 — Sem agachar
+**Decisão:** o Gabriel não agacha mais. Saíram a ação `agachar` (`Ctrl` / `C`), a velocidade de 50%, o achatamento do sprite, a redução do alcance de visão dos robôs (×0,6) e o passo silencioso. Para não ser ouvido, o jogador agora anda em vez de correr; para não ser visto, apaga a lanterna e sai do cone.
+**Por quê:** pedido do Davi.
+**Afeta:** `project.godot` (ação `agachar`), `scripts/personagens/gabriel.gd` (o sinal `passo_dado` agora só leva `correndo`), `scripts/personagens/robo.gd`, `scripts/sistemas/passos.gd`, `cenas/menu_principal.tscn` (lista de controles), `docs/computacao/ia_e_perseguicao.md`, `docs/fases/labirinto.md`, `docs/mecanicas/movimentacao_e_terreno.md` (pisos alagados pedem andar devagar; as frestas que pediam agachar saíram), `docs/personagens/`, `docs/sugestao-melhoramento-futuro.md`.
+
 ## 2026-10-01 — Tela de pausa
 **Decisão:** `Esc` (ou `P`, ou Start no controle) pausa o jogo em qualquer sala e abre a tela **PAUSADO**: Continuar, Opções (tela cheia e os três volumes, os mesmos do menu), **Voltar ao menu principal** (pede confirmação, porque o jogo ainda não salva e o progresso da fase se perde; o cursor começa em "Cancelar") e Sair do jogo. `Esc` dentro da pausa volta um passo. A pausa não abre por cima do inventário, de um documento, do diálogo ou da tela de morte (o `Esc` desses continua fechando eles), nem no menu e nas cutscenes. O jogo também pausa sozinho quando a janela perde o foco.
 **Por quê:** pedido do Davi: poder voltar ao menu principal durante o jogo.

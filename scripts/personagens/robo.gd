@@ -27,7 +27,6 @@ const ORIGEM_DA_SOMBRA := Vector2(0, -4)
 @export var alcance_visao: float = 140.0
 @export var angulo_visao: float = 70.0
 @export var fator_lanterna: float = 1.6
-@export var fator_agachado: float = 0.6
 @export var alcance_sentir: float = 20.0
 
 @export_group("Audição")
@@ -305,8 +304,6 @@ func _ve_o_jogador() -> bool:
 	var alcance := alcance_visao
 	if _lanterna_acesa():
 		alcance *= fator_lanterna
-	if _gabriel.agachado:
-		alcance *= fator_agachado
 	if distancia > alcance:
 		return false
 	if direcao_olhar.dot(para / distancia) < cos(deg_to_rad(angulo_visao / 2.0)):
@@ -324,9 +321,7 @@ func _lanterna_acesa() -> bool:
 	return Inventario.estado_de("lanterna").get("aceso", false) or Inventario.estado_de("notebook").get("aceso", false)
 
 
-func _ao_ouvir_passo(correndo: bool, agachado: bool) -> void:
-	if agachado:
-		return
+func _ao_ouvir_passo(correndo: bool) -> void:
 	ouvir_barulho(_gabriel.global_position, ALCANCE_SOM_CORRENDO if correndo else ALCANCE_SOM_ANDANDO)
 
 

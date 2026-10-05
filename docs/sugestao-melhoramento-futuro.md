@@ -6,10 +6,6 @@ Registro de melhorias secundárias, polimento visual, sonoro e ajustes de qualid
 
 ## Animação e Visual
 
-- [ ] **Animação dedicada de agachar:**
-  - Criar sprites/tiras de animação do Gabriel agachado (nas vistas necessárias).
-  - Substituir o ajuste provisório de achatamento vertical (`scale.y = 0.75`) por quadros próprios de postura abaixada.
-
 - [ ] **Animação de abrir a mochila (Inventário):**
   - Adicionar animação do Gabriel parando e abrindo a mochila ao acionar a tela de inventário (`Tab` / `I`).
   - Transição visual suave conectando a postura de exploração à abertura da interface.

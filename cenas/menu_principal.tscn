@@ -277,10 +277,6 @@ text = "Mover: W A S D / Setas"
 layout_mode = 2
 text = "Correr: Shift"
 
-[node name="ControleAgachar" type="Label" parent="Mesa/Controles/Rolagem/Lista"]
-layout_mode = 2
-text = "Agachar: Ctrl / C"
-
 [node name="ControleInteragir" type="Label" parent="Mesa/Controles/Rolagem/Lista"]
 layout_mode = 2
 text = "Interagir: E"
