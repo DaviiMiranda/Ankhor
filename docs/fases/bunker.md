@@ -10,7 +10,7 @@
 
 - **O que é:** um bunker do centro de pesquisa, construído para proteger a equipe da Âncora. Fechado e seco, ainda de pé depois de mil anos, mas gasto: concreto aparente em cima e tinta verde-oliva descascando embaixo, eletrocalhas com cabos pendurados, portas de aço de correr, faixas de perigo amarelas e pretas.
 - **Luz:** só o que a Âncora ainda alimenta. Tubos fluorescentes frios que piscam e luzes de emergência vermelhas. O setor B (lá embaixo) está quase todo no vermelho e alagado.
-- **Som:** o zumbido do transformador e da ventilação em todo o bunker, goteiras no setor B e o motor do gerador.
+- **Som:** a trilha do bunker (grave e opressiva, em Dó frígio, com a fita da Clarice ao longe) em todas as salas, por baixo do zumbido do transformador e do ar parado do duto, goteiras no setor B e o motor do gerador.
 - **Quem vive aqui:** a **Clarice** (1994). Os robôs não descem ao bunker (ou não sabem que ele existe), por isso aqui não há perseguição: é o lugar mais seguro do jogo até agora.
 - **Clarice pelas paredes:** "NÃO CONFIE NAS LUZES" pichado no corredor, a seta "→ DADOS C." apontando para a sala dela, "NÃO ABRE. JÁ TENTEI. C." perto das portas lacradas, e o grafo das rotas dos robôs na parede da central.
 
@@ -85,6 +85,7 @@ A própria Clarice explica no diálogo que o setor B está lacrado pelo sistema 
 | Clarice | `cenas/personagens/clarice.tscn` (visual em `assets/sprites/personagens/clarice/visual.md`) |
 | Diálogos da Clarice | `dados/dialogos/clarice_primeiro_encontro.json`, `clarice_de_novo.json` |
 | Sons | `assets/modelagem/audio/gerar_efeitos_bunker.py` |
+| Música | `assets/modelagem/audio/gerar_trilha_bunker.py`, tocada por `cenas/sistemas/musica_bunker.tscn` |
 
 ### Peças do kit do bunker
 

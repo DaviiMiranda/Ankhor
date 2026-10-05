@@ -9,6 +9,7 @@ audio/
 ├── musica/              trilhas que tocam em loop
 │   ├── menu/            menu principal
 │   ├── gameplay/        exploração da Biblioteca (mistério, tocada de fundo)
+│   ├── bunker/          o bunker da Clarice (peso, enterrado)
 │   ├── sonho/           o campus na última semana antes de tudo
 │   ├── perseguicao/     quando um robô sai da patrulha e persegue
 │   └── final/           o final no portão
@@ -36,6 +37,7 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 |---|---|---|
 | `musica/menu/menu_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_menu.py` | 64 s em loop, ré menor, 60 BPM: pad escuro, drone grave, relógio e uma caixinha de música (canção de ninar) na segunda metade |
 | `musica/gameplay/gameplay_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_gameplay.py` | 70 s em loop, 48 BPM em 7/4, Mi menor sem resolução: pad escuro, pulso grave, sino de vidro com eco, gongo da Âncora, tom de Shepard descendo (a fenda) e goteiras. Toca pela cena `cenas/sistemas/musica_fase.tscn` |
+| `musica/bunker/bunker_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_bunker.py` | 64 s em loop, sem andamento marcado, Dó frígio (Dó m, Ré♭/Dó, Sol♭, Dó m♭9): Dó grave com batimento, cordas graves, aço gemendo, baque distante lá em cima, a fita da Clarice (piano elétrico gasto) e um fio agudo dissonante. Toca pela cena `cenas/sistemas/musica_bunker.tscn` em todas as salas do bunker |
 | `efeitos/gabriel/gabriel_passo_ceramica_01.wav` … `_06.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 6 passos de tênis em cerâmica antiga com areia: baque do calcanhar, sola, grãos e um pouco do eco do salão. Tocados pela cena `cenas/sistemas/passos.tscn` (dentro do Gabriel), sorteando a variação |
 | `efeitos/interface/inventario_abrir.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 0,55 s: zíper da mochila (acelera e freia), tecido e a aba caindo. Toca ao abrir o inventário |
 | `efeitos/interface/inventario_fechar.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 0,45 s: a aba empurrada, o zíper mais rápido e o "tec" do cursor no fim. Toca ao fechar o inventário |
@@ -51,13 +53,13 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `efeitos/interface/menu_passar.wav`, `menu_clique.wav` | `assets/modelagem/audio/gerar_efeitos_menu.py` | Bipe de computador velho ao passar por uma opção do menu; clique do mouse com bipe de confirmação ao escolher |
 | `efeitos/objetos/porta_abrir.wav` | `assets/modelagem/audio/gerar_efeitos_gadgets.py` | 1,4 s: trinco, dobradiça rangendo e a porta batendo. Toca ao atravessar uma porta (`cenas/sistemas/porta.tscn`) |
 | `efeitos/objetos/clarao_disparo.wav`, `pedra_impacto.wav`, `notebook_hack.wav` | `assets/modelagem/audio/gerar_efeitos_gadgets.py` | Estalo do flash com o capacitor recarregando; pedra batendo e quicando; 2,5 s de bipes de dados com o "ok" no fim |
-| `ambiente/bunker/bunker_zumbido.wav`, `bunker_goteiras.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | Loops do bunker: transformador de 60 Hz com a ventilação (em toda sala do bunker; mais grave e alto no gerador) e pingos d'água no setor B |
+| `ambiente/bunker/bunker_zumbido.wav`, `bunker_goteiras.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | Loops do bunker: transformador de 60 Hz com o ar parado do duto, grave e constante (em toda sala do bunker; mais grave e alto no gerador) e pingos d'água no setor B |
 | `efeitos/objetos/porta_blindada.wav`, `porta_emperrada.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | Porta de aço de correr (trava, pistão, batida) e a maçaneta de uma porta lacrada |
 | `efeitos/objetos/teclado.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | 3 s em loop: a Clarice digitando |
 | `efeitos/interface/dialogo_bip.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | O bipe das letras na caixa de diálogo (o tom muda com quem fala) |
 | `efeitos/interface/papel_folhear.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 0,35 s: uma folha virando. Toca ao abrir, folhear e fechar documentos e o caderno |
 
-Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py` ou `gerar_trilha_gameplay.py` (precisa de numpy e ffmpeg). Os efeitos saem de `gerar_efeitos_gabriel.py` (só numpy).
+Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py` , `gerar_trilha_gameplay.py` ou `gerar_trilha_bunker.py` (precisa de numpy e ffmpeg). Os efeitos saem de `gerar_efeitos_gabriel.py` (só numpy).
 
 ## Nomes de arquivo
 

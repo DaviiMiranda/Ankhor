@@ -13,6 +13,11 @@ Formato:
 
 ---
 
+## 2026-10-02 — Trilha própria do Bunker
+**Decisão:** o Bunker ganha uma trilha própria, mais escura que a da Biblioteca: Dó frígio, sem andamento, com o Dó grave "respirando", cordas graves, aço gemendo, um baque distante lá em cima e, na segunda metade, a fita da Clarice (quatro notas de piano elétrico gasto). Toca em todas as salas do bunker. O zumbido do bunker perdeu a ventilação que subia e descia: ficou só o transformador e um sopro grave constante.
+**Por quê:** pedido do Davi: o som do bunker parecia mar (era a ventilação, um ruído largo pulsando a cada 2 s) e não combinava; pediu algo mais obscuro.
+**Afeta:** `assets/modelagem/audio/gerar_trilha_bunker.py` e `assets/audio/musica/bunker/bunker_trilha.ogg` (novos), `cenas/sistemas/musica_bunker.tscn` (nova, usa `musica_fase.gd`), as 9 salas de `cenas/salas/bunker/`, `gerar_efeitos_bunker.py` e `bunker_zumbido.wav`, `assets/audio/README.md`, `docs/fases/bunker.md`.
+
 ## 2026-10-02 — Sem agachar
 **Decisão:** o Gabriel não agacha mais. Saíram a ação `agachar` (`Ctrl` / `C`), a velocidade de 50%, o achatamento do sprite, a redução do alcance de visão dos robôs (×0,6) e o passo silencioso. Para não ser ouvido, o jogador agora anda em vez de correr; para não ser visto, apaga a lanterna e sai do cone.
 **Por quê:** pedido do Davi.
