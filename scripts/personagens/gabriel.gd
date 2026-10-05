@@ -1,12 +1,11 @@
 class_name Gabriel
 extends CharacterBody2D
 
-signal passo_dado(correndo: bool, agachado: bool)
+signal passo_dado(correndo: bool)
 
 @export var velocidade_andar: float = 45.0
 @export var fator_profundidade: float = 0.65
 @export var multiplicador_correr: float = 1.8
-@export var multiplicador_agachar: float = 0.5
 @export var forca_empurrao: float = 170.0
 
 @export_group("Sprites")
@@ -34,7 +33,6 @@ signal passo_dado(correndo: bool, agachado: bool)
 @export var quadros_parado: int = 8
 @export var segundos_por_quadro_parado: float = 0.3
 
-var agachado := false
 var jogador_controla := true
 var direcao_automatica := Vector2.ZERO
 var correndo := false
@@ -46,7 +44,6 @@ var _distancia := 0.0
 var _tempo_parado := 0.0
 var _passos := 0
 var _mascara_colisao := 0
-var _escala_sprite := Vector2.ONE
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var no_gadgets: Node2D = $Gadgets
@@ -55,7 +52,6 @@ var _escala_sprite := Vector2.ONE
 func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("jogador")
-	_escala_sprite = sprite.scale
 	Inventario.mudou.connect(_atualizar_gadgets)
 	Vida.dano_recebido.connect(_ao_receber_dano)
 	_atualizar_gadgets()
@@ -108,12 +104,9 @@ func _physics_process(delta: float) -> void:
 	if jogador_controla:
 		direcao = Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
 
-	agachado = jogador_controla and Input.is_action_pressed("agachar")
 	correndo = false
 	var velocidade := velocidade_andar
-	if agachado:
-		velocidade *= multiplicador_agachar
-	elif jogador_controla and Input.is_action_pressed("correr") and direcao != Vector2.ZERO:
+	if jogador_controla and Input.is_action_pressed("correr") and direcao != Vector2.ZERO:
 		velocidade *= multiplicador_correr
 		correndo = true
 
@@ -124,7 +117,6 @@ func _physics_process(delta: float) -> void:
 	_virar(direcao)
 	_animar(get_real_velocity().length() * delta, delta)
 
-	sprite.scale.y = _escala_sprite.y * (0.75 if agachado else 1.0)
 	_piscar()
 
 
@@ -199,7 +191,7 @@ func _contar_passos() -> void:
 	var passos := int((_distancia + px_por_passo / 2.0) / px_por_passo)
 	if passos > _passos:
 		_passos = passos
-		passo_dado.emit(correndo, agachado)
+		passo_dado.emit(correndo)
 
 
 func _mostrar(tira: Texture2D, quadros: int, quadro: int) -> void:

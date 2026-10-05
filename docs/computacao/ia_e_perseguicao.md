@@ -76,16 +76,16 @@ Arquivos: `scripts/labirinto/grade_labirinto.gd` (grafo, A\*, BFS, Markov) e `sc
 ### 5.2 Visão: produto escalar + raio
 O robô olha numa direção $\vec{d}$ (vetor unitário). Seja $\vec{v}$ o vetor do robô até o Gabriel e $|\vec{v}|$ a distância. O Gabriel é visto se:
 
-1. $|\vec{v}| \le \text{alcance}$, onde $\text{alcance} = \text{alcance\_visão} \times (1{,}7 \text{ se a lanterna está acesa}) \times (0{,}6 \text{ se agachado})$;
+1. $|\vec{v}| \le \text{alcance}$, onde $\text{alcance} = \text{alcance\_visão} \times (1{,}7 \text{ se a lanterna está acesa})$;
 2. está dentro do **cone**: $\vec{d} \cdot \dfrac{\vec{v}}{|\vec{v}|} \ge \cos\left(\dfrac{\theta}{2}\right)$, com $\theta$ = abertura do cone (Sentinela 60°, Rastreador 100°). O produto escalar de dois vetores unitários é o cosseno do ângulo entre eles, então basta comparar com o cosseno da metade da abertura: nada de arco-cosseno;
 3. a **linha de visão está livre**: um raio (*ray casting*) do robô até o Gabriel, testando só a camada de colisão das paredes, não pode bater em nada.
 
 Colado no robô (menos de 20 px), ele sente o Gabriel mesmo sem ver.
 
 ### 5.3 Audição: BFS pelos corredores
-Cada passo do Gabriel emite o sinal `passo_dado(correndo, agachado)`. Cada robô faz uma **busca em largura** a partir da célula do Gabriel, com profundidade máxima:
+Cada passo do Gabriel emite o sinal `passo_dado(correndo)`. Cada robô faz uma **busca em largura** a partir da célula do Gabriel, com profundidade máxima:
 
-$$\text{limite} = \begin{cases} 14 \times f & \text{correndo} \\ 5 \times f & \text{andando} \\ 0 & \text{agachado} \end{cases}$$
+$$\text{limite} = \begin{cases} 14 \times f & \text{correndo} \\ 5 \times f & \text{andando} \end{cases}$$
 
 com $f$ = fator de audição do robô (Sentinela 0,5; Rastreador 1,8). Se a célula do robô é alcançada, ele ouviu e vai **investigar** o lugar.
 
