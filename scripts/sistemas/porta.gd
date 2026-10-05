@@ -14,6 +14,8 @@ static var _destrancadas := {}
 @export var segundos_andando: float = 0.8
 @export var trancada := false
 @export var bloqueada := false
+@export var dificuldade_hack := Hackeamento.Dificuldade.MEDIO
+@export var minigame_hack := Hackeamento.Tipo.ALEATORIO
 @export var aviso_bloqueada: String = "A porta não abre."
 @export var som_abrir: AudioStream = SOM_ABRIR
 
