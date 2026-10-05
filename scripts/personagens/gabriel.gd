@@ -3,9 +3,11 @@ extends CharacterBody2D
 
 signal passo_dado(correndo: bool)
 
-@export var velocidade_andar: float = 45.0
+@export var velocidade_andar: float = 60.0
 @export var fator_profundidade: float = 0.65
 @export var multiplicador_correr: float = 1.8
+@export var aceleracao: float = 400.0
+@export var desaceleracao: float = 550.0
 @export var forca_empurrao: float = 170.0
 
 @export_group("Sprites")
@@ -40,6 +42,7 @@ var correndo := false
 var vista := "lado"
 var direcao_olhar := Vector2.RIGHT
 var _empurrao := Vector2.ZERO
+var _velocidade_propria := Vector2.ZERO
 var _distancia := 0.0
 var _tempo_parado := 0.0
 var _passos := 0
@@ -110,7 +113,10 @@ func _physics_process(delta: float) -> void:
 		velocidade *= multiplicador_correr
 		correndo = true
 
-	velocity = Vector2(direcao.x, direcao.y * fator_profundidade) * velocidade + _empurrao
+	var alvo := Vector2(direcao.x, direcao.y * fator_profundidade) * velocidade
+	var taxa := aceleracao if direcao != Vector2.ZERO else desaceleracao
+	_velocidade_propria = _velocidade_propria.move_toward(alvo, taxa * delta)
+	velocity = _velocidade_propria + _empurrao
 	_empurrao = _empurrao.move_toward(Vector2.ZERO, forca_empurrao * 4.0 * delta)
 	move_and_slide()
 
