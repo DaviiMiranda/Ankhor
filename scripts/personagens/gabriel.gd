@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 signal passo_dado(correndo: bool)
 
-@export var velocidade_andar: float = 45.0
+@export var velocidade_andar: float = 60.0
 @export var fator_profundidade: float = 0.65
 @export var multiplicador_correr: float = 1.8
 @export var forca_empurrao: float = 170.0
