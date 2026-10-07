@@ -44,7 +44,7 @@ shader = ExtResource("3_crt")
 shader_parameter/forca_linhas = 0.18
 shader_parameter/forca_vinheta = 0.6
 shader_parameter/raio_cantos = 0.07
-shader_parameter/proporcao = 1.3762
+shader_parameter/proporcao = 1.38
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_botao"]
 
@@ -326,8 +326,8 @@ text = "Voltar"
 material = SubResource("ShaderMaterial_crt")
 offset_left = 91.0
 offset_top = 30.0
-offset_right = 230.0
-offset_bottom = 131.0
+offset_right = 229.0
+offset_bottom = 130.0
 mouse_filter = 2
 
 [node name="Luz" type="PointLight2D" parent="Monitor"]
