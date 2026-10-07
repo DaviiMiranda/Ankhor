@@ -13,6 +13,19 @@ Formato:
 
 ---
 
+## 2026-10-06 — Nova linha da história: a fenda é um acaso
+**Decisão:**
+- **Saem** os loops, os bilhetes de "G.", a Clarice como "a única que lembra" e a revelação de que Gabriel é o paradoxo da Âncora. Também foi descartada a ideia de a fenda ser um teste.
+- **A fenda é um acaso.** A Âncora é **só uma máquina**: abandonada, falhou em 3026 e abriu uma fenda no chão da Biblioteca que pulsa e puxa, a cada poucos dias, quem estiver no ponto em alguma época. Os personagens precisam descobrir o que aconteceu e como voltar, e cada um traz uma parte para consertar a Âncora.
+- **3026:** a humanidade abandonou a Terra e uma **IA** dominou. A IA não tem rosto. Para ela, humanos são invasores, e por isso os robôs atacam. Ser pego dá game over e volta ao checkpoint.
+- **Personagens:** todos com **cerca de 20 anos**, todos com ligação com a região da Unifor, todos **vivos**, puxados com dias de diferença. Gabriel encontra cada um ao longo do jogo. Cada um tem um esconderijo, e um lugar como o bunker pode abrigar 2 ou 3. O personagem de **2041 foi cortado**. O professor de 2019 vira um aluno de iniciação científica (nome em aberto). Agostinho vira recruta da polícia, e Valdir, um segurança jovem.
+- **Família Magalhães:** Gabriel se chama **Gabriel Magalhães**, e o **Baltazar** é antepassado dele. Gabriel descobre isso jogando, por um **anel desgastado** da avó que está no inventário desde o começo, igual ao do Baltazar. Gabriel conta para o Baltazar.
+- **Clarice:** a relação dela com Gabriel vai sendo desenvolvida ao longo do jogo. O final dos dois está em aberto.
+- **Pendentes:** o objetivo da IA; quem criou a Âncora (talvez um descendente de Gabriel); Gabriel falhando na tela enquanto o Baltazar estiver fora de 1750; prazo da fenda; como cada um volta; se alguém escolhe ficar; se algum personagem atrapalha; o nome do pesquisador.
+
+**Por quê:** decisão do Davi: uma história mais simples e humana, com personagens vivos para interagir ao longo do jogo.
+**Afeta:** `docs/historia/enredo_principal.md` (reescrito, com as pendências no fim). Ainda descrevem a versão antiga e precisam ser revistos: `docs/historia/revelacao_central.md`, `docs/personagens/antecessores.md`, `docs/mecanicas/sono_e_sonhos.md`, `docs/gdd.md`, `CLAUDE.md` (premissa) e as falas de loop em `dados/dialogos/clarice_primeiro_encontro.json`.
+
 ## 2026-10-06 — Menu principal mais claro, com a luminária acesa
 **Decisão:** a cena do menu continua sendo a cabine de estudo da Biblioteca à noite, mas fica mais clara e legível: a **luminária de mesa está acesa** (luz quente no canto direito da mesa), tem uma caneca de café, uma pilha de livros maior à esquerda e a estante aparece melhor, com papéis largados nas prateleiras. O monitor está gasto: rachaduras na moldura, LED verde de ligado aceso, e teclas amareladas, afundadas ou faltando. A tela do monitor ganhou fundo com um leve clarão no centro, título com brilho, barra de seleção na largura toda da tela e, no efeito CRT, cantos arredondados e uma faixa clara que desce devagar. As bordas da cena escurecem com a mesma vinheta pixelada das salas, e a luz da luminária na mesa oscila de leve e de vez em quando falha por um instante, como lâmpada velha: na falha, a mesa fica mais escura que o normal. O cenário não se mexe mais com o mouse (a paralaxe saiu, e `scripts/camada_paralaxe.gd` foi apagado). O retângulo da tela não mudou (x 90–230, y 24–126).
 **Por quê:** pedido do Davi, a partir de uma imagem de referência; o menu antigo era escuro demais e quase não se via a cena.
