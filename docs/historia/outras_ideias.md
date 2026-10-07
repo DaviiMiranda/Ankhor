@@ -26,7 +26,7 @@
 | 9 | Ela escolhe 2026 | 12.1 O final de Gabriel e Clarice | — |
 | 10 | A Âncora é a bateria da IA | 12.2 O objetivo da IA (e parte da 12.6) | — |
 | 11 | A IA era a zeladora | 12.2 Por que a humanidade abandonou a Terra | — |
-| 12 | O segredo do pesquisador | 12.3 O Henrique e o Carlos (o que ele esconde) | — |
+| 12 | O segredo do pesquisador | 12.7 O que o Henrique esconde | — |
 | 14 | Clarice primeiro | 12.3 Ordem de chegada | — |
 | 16 | As câmeras | 12.3 Como o Rafael parece ver Gabriel | — |
 | 17 | A noite em que cada um caiu | 12.4 O que os sonhos mostram | — |
@@ -99,7 +99,7 @@ A humanidade partiu depois de um colapso e deixou a IA para cuidar da Terra até
 
 ---
 
-## Resolve 12.3 — O Henrique e o Carlos (o que ele esconde)
+## Resolve 12.7 — O que o Henrique esconde
 
 ### Ideia 12 — O segredo do pesquisador
 
