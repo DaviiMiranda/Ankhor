@@ -15,6 +15,11 @@
 #   clarice_olhando.png      6 quadros: virada para o Gabriel, respirando
 #   clarice_retrato_normal.png, clarice_retrato_sorrindo.png, clarice_retrato_seria.png
 #                            80 x 80: rosto e ombros, para a caixa de diálogo
+#   clarice_<vista>.png      em pé, as mesmas vistas do Gabriel, 96 x 112:
+#                            lado, frente, tres_quartos, costas e
+#                            tres_quartos_costas
+#   clarice_andar_<vista>.png    caminhada: 12 quadros de 96 x 112 lado a lado
+#   clarice_parado_<vista>.png   parada respirando: 8 quadros
 #   clarice_referencia.png   em pé (frente, 3/4, lado, costas), sentada
 #                            (digitando e virada) e os retratos
 #   assets/modelagem/personagens/clarice.blend   o modelo, para abrir e mexer
@@ -471,6 +476,16 @@ def main():
             obj.hide_render = True
     pose_em_pe()
     expressao("normal")
+    # Sprites de jogo em pé, com as mesmas vistas, animações e tamanhos do
+    # Gabriel (comum.py, item 7), para quando ela andar pelo campus.
+    jogo = c.renderizar_vistas_jogo(cam, clarice, materiais, "clarice")
+    parado = c.guardar_pose()
+    andar = c.renderizar_ciclo(cam, clarice, materiais, lambda fase: c.pose_andar(parado, fase),
+                               c.QUADROS_ANDAR, "clarice andar")
+    c.restaurar_pose(parado)
+    respirar = c.renderizar_ciclo(cam, clarice, materiais, lambda fase: c.pose_parado(parado, fase),
+                                  c.QUADROS_PARADO, "clarice parado")
+    c.restaurar_pose(parado)
     em_pe = []
     for angulo in (0, 35, 90, 180):
         em_pe.append(render(cam, clarice, materiais, angulo, c.QUADRO_REF, c.PX_POR_M_REF, c.PE_REF_PX, c.enquadrar))
@@ -519,6 +534,9 @@ def main():
         c.salvar_png(np.concatenate(quadros, axis=1), os.path.join(PASTA_SAIDA, f"clarice_{nome}.png"))
     for nome, img in retratos.items():
         c.salvar_png(img, os.path.join(PASTA_SAIDA, f"clarice_retrato_{nome}.png"))
+    # Os sprites em pé só usam a paleta já calculada: as cores dos sprites
+    # sentados e dos retratos não mudam.
+    c.salvar_sprites_jogo(PASTA_SAIDA, "clarice", paleta, jogo, andar, respirar)
     folha = c.montar_folha([em_pe, [digitando[0], virando[2], olhando[0]], list(retratos.values())])
     c.salvar_png(folha, os.path.join(PASTA_SAIDA, "clarice_referencia.png"))
     print("[clarice] paleta:", " ".join(c.rgb_para_hex(np.array(cor) / 255) for cor in paleta))
