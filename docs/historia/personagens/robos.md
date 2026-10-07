@@ -1,6 +1,6 @@
 # Os robôs (inimigos)
 
-> **Lei do projeto:** o que os robôs são na história está no [Enredo Principal](../enredo_principal.md), seções 2.1 e 2.3. Esta ficha descreve como funcionam no jogo.
+> **Lei do projeto:** esta ficha faz parte do [Enredo Principal](../enredo_principal.md) (que fala dos robôs nas seções 2.1 e 2.3) e descreve como eles funcionam no jogo.
 
 ## 0. Na história
 

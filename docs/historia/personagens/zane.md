@@ -1,39 +1,56 @@
-# Zane (2123)
+# Zane (2123), o último a chegar
 
 > **Status:** Em definição.
-> **Lei do projeto:** história, personalidade e arco estão no [Enredo Principal](../enredo_principal.md), seção 4.3 ("Zane"). Esta ficha guarda só o que a produção precisa.
+> **Lei do projeto:** esta ficha faz parte do [Enredo Principal](../enredo_principal.md) e tem a mesma autoridade: quem o Zane é vale como está escrito aqui. A história em volta dele (o acidente, a ordem dos acontecimentos, as pendências) está no Enredo.
 
 ---
 
-## 1. Resumo
+## 1. Quem é
 
 - **Época de origem:** 2123, quando a Unifor já era um polo de IA.
-- **Em uma frase:** filho de um mundo já cheio de máquinas, que sabe tudo de tecnologia e nada de sobreviver.
-- **Quem é:** jovem com implantes cibernéticos, com cerca de 20 anos, que morava no que sobrou do bairro. **O último a chegar** a 3026, depois de Gabriel.
+- **Quem é:** jovem com implantes cibernéticos, com cerca de 20 anos, que morava no que sobrou do bairro.
+- **História:** é quem mais entende a tecnologia da Âncora, mas é o mais novo em 3026: chega **depois de Gabriel**, num novo pulso da fenda durante o jogo, e é Gabriel quem o recebe e explica as regras.
 
-## 2. No jogo
+## 2. Personalidade
 
-- **Onde aparece:** pendente. A chegada dele acontece **durante o jogo**, num novo pulso da fenda, e é Gabriel quem o recebe e explica as regras.
+- **Essência:** filho de um mundo já cheio de máquinas, que sabe tudo de tecnologia e nada de sobreviver.
+- **Traços:** confiante, direto, irreverente, elétrico, e mais assustado do que admite.
+- **Como fala:** rápido, com gírias de um futuro que ninguém reconhece. Interrompe os outros.
+- **O que quer:** voltar. Mais tarde, entender o que a IA virou, porque na época dele a IA ainda estava começando.
+- **O que teme:** a IA. Ele sabe melhor que ninguém do que as máquinas são capazes.
+- **Defeito:** confia demais na tecnologia: acha que toda máquina tem conserto, até a IA. É a contradição dele: tem medo da IA e, ao mesmo tempo, acha que consegue domá-la.
+- **Arco:** a chegada dele mostra ao jogador o quanto Gabriel mudou: o novato da primeira fase virou o veterano que explica tudo.
+
+## 3. Relações
+
+| Com | Dinâmica |
+|---|---|
+| [Gabriel](gabriel.md) | Gabriel deixa de ser o novato e vira o veterano |
+| [Baltazar](baltazar.md) | Os dois extremos do tempo: fé contra tecnologia, e ainda assim os dois mais curiosos do grupo |
+
+## 4. No jogo
+
+- **Onde aparece:** pendente.
 - **Esconderijo:** pendente.
-- **Como chega ao jogador:** em pessoa. Como é o mais novo em 3026, chega sem saber nada: a cena mostra o quanto Gabriel mudou desde a primeira fase.
+- **Como chega ao jogador:** em pessoa. Como é o mais novo em 3026, chega sem saber nada.
 - **Função na jogabilidade:** pendente. Por entender de tecnologia, é um candidato natural a trazer o **notebook** (gadget de hackear portas e robôs), mas isso não está decidido.
 - **Parte para consertar a Âncora:** a tecnologia mais próxima da Âncora.
 
-## 3. Registros
+## 5. Registros
 
-- **Suporte:** áudio com interface holográfica: tela ciano com forma de onda e falhas de sinal.
-- **Registros já escritos:** nenhum.
+- **Suporte:** áudio com interface holográfica: tela ciano com forma de onda e falhas de sinal. Ainda não existe no jogo.
+- **Já escritos:** nenhum.
 
-## 4. Direção de arte
+## 6. Direção de arte
 
 - **O que a aparência precisa comunicar:** um rapaz de 20 anos de 2123, com implantes visíveis, roupa de um futuro que ninguém reconhece, confiante e elétrico. Tem que destoar de todos os outros: é o único que veio de depois de Gabriel.
 - **Visual definido:** ainda não.
 
-## 5. Arquivos
+## 7. Arquivos
 
 Nenhum ainda.
 
-## 6. Pendências
+## 8. Pendências
 
 - O que fazia no ponto quando foi puxado, em que fase chega e se o jogador vê o pulso acontecer (Enredo Principal, seção 12.3).
 - Se escolhe não voltar (seção 12.1).

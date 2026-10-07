@@ -16,6 +16,15 @@ Formato:
 
 ---
 
+## 2026-10-07 — A Âncora fica no Bloco J, e cada personagem tem a sua ficha completa
+**Decisão:**
+- A **Âncora** está no **Bloco J**, o bloco de tecnologia da Unifor. A fenda continua se abrindo no chão da Biblioteca.
+- A descrição dos personagens (história, personalidade e relações) **saiu do Enredo Principal** e foi para as fichas em `docs/historia/personagens/`, **uma por personagem**. As fichas fazem parte do Enredo Principal e têm a mesma autoridade. O Enredo, na seção 4, ficou só com as regras do grupo, a lista de fichas e a IA.
+- A pasta `personagens/` tem **só as fichas** (mais a dos robôs). O índice dela saiu, e o modelo de ficha foi para `docs/historia/template_personagem.md`.
+
+**Por quê:** pedido do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 1, 2.2, 3, 4 e 7.2), as fichas de `docs/historia/personagens/`, `docs/historia/template_personagem.md`, `CLAUDE.md`, `docs/README.md`, `docs/gdd.md`, `docs/historia/README.md`, `docs/historia/roteiro/README.md`, `docs/historia/template_documento.md`, `docs/dialogos/template_dialogo.md`, os agentes `roteirista` e `artista`, `clarice/visual.md` e `gerar_clarice.py`.
+
 ## 2026-10-07 — Personagens e roteiro dentro de `docs/historia/`, uma ficha por personagem
 **Decisão:**
 - As pastas `docs/personagens/` e `docs/roteiro/` passam a ficar dentro de `docs/historia/`, junto do Enredo Principal.

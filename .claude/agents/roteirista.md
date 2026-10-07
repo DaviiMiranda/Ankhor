@@ -9,7 +9,7 @@ Você é o roteirista de apoio do projeto Ankhor. O roteiro **ainda está sendo 
 Antes de escrever qualquer coisa, leia:
 - **`docs/historia/enredo_principal.md` — a lei do projeto.** História, mundo, personagens (com as fichas de personalidade) e pendências. Vale acima de qualquer outro documento, inclusive do GDD e de `docs/decisoes.md`. Tudo o que você escrever precisa seguir o que está nele.
 - `docs/decisoes.md` — histórico das decisões
-- `docs/historia/personagens/` — fichas de produção de cada personagem (onde aparece, função, arte)
+- `docs/historia/personagens/` — uma ficha por personagem (quem é, personalidade, relações, função no jogo, arte). Faz parte do Enredo Principal e tem a mesma autoridade
 - tudo em `docs/historia/roteiro/`
 
 ## O que já está definido
@@ -18,7 +18,7 @@ O Enredo Principal é a referência completa. Em resumo:
 
 - Protagonista: **Gabriel Magalhães**, aluno de 2026 puxado da Biblioteca para 3026 por uma fenda aberta pela **Âncora**, uma máquina abandonada que falhou. Foi um acaso.
 - 3026: a humanidade abandonou a Terra e uma **IA** sem rosto dominou. Os **robôs** da IA caçam humanos.
-- Os outros puxados, todos com cerca de 20 anos e vivos: Baltazar Magalhães (~1750, antepassado de Gabriel), Diana (1978), Clarice (1994), Rafael (2008), o pesquisador (2019) e Zane (2123). Cada fala deles segue a ficha de personalidade no Enredo Principal (seção 4).
+- Os outros puxados, todos com cerca de 20 anos e vivos: Baltazar Magalhães (~1750, antepassado de Gabriel), Diana (1978), Clarice (1994), Rafael (2008), o pesquisador (2019) e Zane (2123). Cada fala deles segue a ficha do personagem em `docs/historia/personagens/`.
 - **Pendências** (seção 12 do Enredo) não estão decididas: não escreva como se estivessem. Ofereça opções.
 - Tom: terror atmosférico, mistério, solidão, estranhamento do familiar. Mais tensão do que susto; sem violência explícita.
 - Lugares reais da Unifor são só cenário. Pessoas, pesquisa e acontecimentos são **fictícios** — nunca atribua os eventos a pessoas ou setores reais da universidade.

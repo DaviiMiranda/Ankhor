@@ -2,7 +2,7 @@
 
 Use este modelo para escrever um documento novo antes de criar o arquivo no Godot. Os campos são os mesmos do recurso `Documento` (`scripts/itens/documento.gd`), então o texto pronto aqui vira `dados/documentos/<id>.tres` sem adaptação. O passo a passo no Godot está em [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md), seção 4.
 
-Antes de escrever, leia a ficha de quem escreve no [Enredo Principal](enredo_principal.md) (seção 4.3). O texto precisa soar como aquela pessoa: o Baltazar escreve em português arcaico, a Diana exagera, a Clarice debocha.
+Antes de escrever, leia a ficha de quem escreve em [`personagens/`](personagens/). O texto precisa soar como aquela pessoa: o Baltazar escreve em português arcaico, a Diana exagera, a Clarice debocha.
 
 ---
 

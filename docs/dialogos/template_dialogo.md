@@ -67,4 +67,4 @@ A tela tem 320 × 180 e a caixa mostra **3 linhas** de ~50 letras (com retrato) 
 - [ ] Existe pelo menos um caminho que chega a um trecho que encerra (para não prender o jogador)?
 - [ ] Os retratos existem em `assets/sprites/personagens/`? Hoje: `clarice/clarice_retrato_{normal,sorrindo,seria}` e `gabriel/gabriel_retrato_{normal,surpreso,preocupado}`.
 - [ ] Cada fala cabe em 3 linhas?
-- [ ] A fala combina com a personalidade do personagem no [Enredo Principal](../historia/enredo_principal.md) (seção 4), que é a lei do projeto? Na dúvida, peça para o agente `roteirista` revisar.
+- [ ] A fala combina com a ficha do personagem em [`../historia/personagens/`](../historia/personagens/), que faz parte do Enredo Principal (a lei do projeto)? Na dúvida, peça para o agente `roteirista` revisar.
