@@ -34,7 +34,7 @@ Todos em `assets/sprites/personagens/zane/`, gerados por `assets/modelagem/perso
 
 ## No jogo
 
-Ainda não tem cena: onde ele aparece, o esconderijo e a função dele na jogabilidade estão pendentes na ficha.
+`cenas/personagens/zane.tscn`: o Zane parado, respirando, com os pés sólidos (o Gabriel não atravessa). O script é o `scripts/personagens/personagem_parado.gd`, que escolhe a vista (`vista`) e se ele olha para a esquerda (`olhando_para_esquerda`). Por enquanto ele só aparece na sala de teste (`cenas/salas/sala_teste.tscn`). Onde ele aparece na história e a função dele na jogabilidade estão pendentes na ficha.
 
 ## Para mudar
 

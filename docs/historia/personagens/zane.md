@@ -52,7 +52,7 @@
 
 - **Sprites:** `assets/sprites/personagens/zane/`
 - **Gerador:** `assets/modelagem/personagens/gerar_zane.py`
-- **Cena:** nenhuma ainda.
+- **Cena:** `cenas/personagens/zane.tscn` (parado, por enquanto só na sala de teste).
 
 ## 8. Pendências
 
