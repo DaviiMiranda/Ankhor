@@ -113,7 +113,7 @@ E, nos sonhos, o mesmo campus **na última semana antes de tudo**: cheio, ilumin
 
 - **O mundo:** em 3026 a humanidade abandonou a Terra e uma IA sem rosto dominou. Os robôs da IA veem humanos como invasores e caçam.
 - **A Âncora e a fenda:** a Âncora é só uma máquina, abandonada no centro de pesquisa da Unifor. Ela falhou e abriu uma fenda no chão da Biblioteca, que pulsa e, por acaso, puxa quem estiver ali em alguma época.
-- **Os personagens:** jovens de cerca de 20 anos, todos vivos, puxados com dias de diferença: Baltazar Magalhães (~1750, antepassado de Gabriel), Diana (1978), Clarice (1994), Rafael (2008), um pesquisador de 2019, **Gabriel Magalhães** (2026, o protagonista, penúltimo a chegar) e Zane (2123, o último).
+- **Os personagens:** jovens de cerca de 20 anos, todos vivos, puxados com dias de diferença: Baltazar Magalhães (~1750, antepassado de Gabriel), Diana (1978), Clarice (1994), Rafael (2008), Henrique (pesquisador, 2019), **Gabriel Magalhães** (2026, o protagonista, penúltimo a chegar) e Zane (2123, o último).
 - **O objetivo:** encontrar os outros, descobrir o que aconteceu e consertar a Âncora para que todos voltem às suas épocas.
 - **A primeira fase** é a **Biblioteca**.
 

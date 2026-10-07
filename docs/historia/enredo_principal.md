@@ -65,7 +65,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 | Diana (1978) | Investigação: descobre onde fica o núcleo e as passagens até lá |
 | Clarice (1994) | Código: faz os terminais da Âncora funcionarem |
 | Rafael (2008) | Conhece o campus e as rondas, e sabe o que cada chave abre |
-| O pesquisador (2019) | A teoria por trás das equações |
+| Henrique, o pesquisador (2019) | A teoria por trás das equações |
 | Zane (2123) | A tecnologia mais próxima da Âncora |
 | Gabriel (2026) | O caderno, com as equações da cadeira |
 
@@ -90,7 +90,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 | 1978 | [Diana](personagens/diana.md) |
 | 1994 | [Clarice](personagens/clarice.md) |
 | 2008 | [Rafael](personagens/rafael.md) |
-| 2019 | [O pesquisador](personagens/pesquisador.md) |
+| 2019 | [Henrique, o pesquisador](personagens/pesquisador.md) |
 | 2026 | [Gabriel Magalhães](personagens/gabriel.md) (protagonista) |
 | 2123 | [Zane](personagens/zane.md) |
 | 3026 | [Os robôs](personagens/robos.md) (inimigos) |
@@ -118,7 +118,7 @@ Antagonista sem rosto e sem voz. Aparece só pelos robôs e pelos sistemas que c
 
 | Esconderijo | Quem fica |
 |---|---|
-| **Bunker**, embaixo do núcleo da Âncora. O maior e mais seguro: os robôs não descem lá | Clarice e o pesquisador. Depois, o Zane, quando Gabriel o traz |
+| **Bunker**, embaixo do núcleo da Âncora. O maior e mais seguro: os robôs não descem lá | Clarice e o Henrique. Depois, o Zane, quando Gabriel o traz |
 | **Posto de guarda**, a sala de manutenção que o Rafael transformou | Rafael |
 | **Biblioteca**, num esconderijo dentro dela | Baltazar |
 | **Bloco de salas**, numa das salas de aula | Diana |
@@ -137,7 +137,7 @@ Antagonista sem rosto e sem voz. Aparece só pelos robôs e pelos sistemas que c
 | 1978 | Diana | Vigiava a obra depois do sumiço do material |
 | 1994 | Clarice | Rodava um programa num terminal da Biblioteca, de madrugada |
 | 2008 | Rafael | Fazia a ronda noturna na Biblioteca |
-| 2019 | O pesquisador | Estudava à noite na Biblioteca |
+| 2019 | Henrique | Estudava à noite na Biblioteca |
 | 2026 | Gabriel | Dormiu na Biblioteca com o caderno aberto |
 | 2123 | Zane | *A definir* |
 
@@ -259,10 +259,10 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 ### 12.3 Personagens
 
 - **Gabriel falhando na tela:** enquanto o Baltazar estiver fora de 1750, o sprite de Gabriel pisca ou se desfaz, como a foto em *De Volta para o Futuro*. Seria um shader (bom para a apresentação de Computação Gráfica).
-- **Algum personagem atrapalha?** Alguém que desconfia de Gabriel, quer usar a Âncora só para si ou esconde alguma coisa. Sem isso, o único conflito vem dos robôs. O pesquisador, que guarda segredos, é o candidato natural.
-- **Nome do pesquisador de 2019**, e como ele aparece no jogo.
+- **Algum personagem atrapalha?** Alguém que desconfia de Gabriel, quer usar a Âncora só para si ou esconde alguma coisa. Sem isso, o único conflito vem dos robôs. O Henrique, que guarda segredos, é o candidato natural.
+- **Como o Henrique (o pesquisador de 2019) aparece no jogo.**
 - **Zane:** o que fazia no ponto quando foi puxado, e em que fase do jogo ele chega (e se o jogador vê o pulso acontecer).
-- **Ordem de chegada dos outros cinco** (Baltazar, Diana, Clarice, Rafael e o pesquisador), que chegaram antes de Gabriel. Não precisa seguir a ordem dos anos.
+- **Ordem de chegada dos outros cinco** (Baltazar, Diana, Clarice, Rafael e Henrique), que chegaram antes de Gabriel. Não precisa seguir a ordem dos anos.
 - **Qual sala de aula** do Bloco de salas é o esconderijo da Diana.
 - **Onde fica, dentro da Biblioteca, o esconderijo do Baltazar**, e como ele combina com o acampamento vazio que Gabriel acha no começo do jogo e com a última página do diário ("Hei de seguir a luz até onde ella nasce").
 - **Como o Rafael parece ver Gabriel** pelo rádio ("Ele falou como se estivesse me vendo").

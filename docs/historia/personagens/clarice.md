@@ -31,7 +31,7 @@
 ## 4. No jogo
 
 - **Onde aparece:** na Biblioteca, pelo bilhete no terminal. No **Bunker**, em pessoa, sentada na estação de trabalho da central de dados.
-- **Esconderijo:** o **bunker** embaixo do núcleo da Âncora. Divide com o pesquisador e, depois, com o Zane.
+- **Esconderijo:** o **bunker** embaixo do núcleo da Âncora. Divide com o Henrique (o pesquisador) e, depois, com o Zane.
 - **Como chega ao jogador:** bilhete, disquetes, **ligações** para os telefones velhos do campus e conversa em pessoa.
 - **Função na jogabilidade:** senhas dos terminais e explicação das rotinas de patrulha (as rotas dos robôs formam um grafo). É a ponte para os conteúdos de computação. Quebra a senha do setor B do bunker "um disquete por vez".
 - **Ideia de mecânica (não implementada):** o toque do telefone é um som no grafo (BFS). Se Gabriel demora a atender, os robôs ouvem.

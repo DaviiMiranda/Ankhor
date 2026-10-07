@@ -31,7 +31,7 @@
 ## 4. No jogo
 
 - **Onde aparece:** pendente.
-- **Esconderijo:** o **bunker**, quando Gabriel o traz, junto da Clarice e do pesquisador.
+- **Esconderijo:** o **bunker**, quando Gabriel o traz, junto da Clarice e do Henrique.
 - **Como chega ao jogador:** em pessoa. Como é o mais novo em 3026, chega sem saber nada.
 - **Função na jogabilidade:** pendente. Por entender de tecnologia, é um candidato natural a trazer o **notebook** (gadget de hackear portas e robôs), mas isso não está decidido.
 - **Parte para consertar a Âncora:** a tecnologia mais próxima da Âncora.
