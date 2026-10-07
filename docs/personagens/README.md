@@ -22,10 +22,10 @@ Conforme as regras do projeto, cada personagem e inimigo é uma **cena isolada**
 3. **NPCs dos Sonhos (Interações Passivas):**
    - Cenas leves focadas em interação de diálogo e passagem de informações investigativas.
 
-4. **Os Antecessores (pessoas puxadas antes de Gabriel):**
-   - Baltazar (~1750), Agostinho (1978), Clarice (1994), Valdir (2008), o professor (2019) e Zane (2123).
-   - Aparecem como bilhetes, diários, áudios, NPCs de sonho e, no caso de Valdir, uma voz no rádio.
-   - Fichas em [`antecessores.md`](antecessores.md).
+4. **Os outros personagens puxados pela fenda:**
+   - Baltazar Magalhães (~1750), Pedro (1978), Clarice (1994), Rafael (2008), o pesquisador (2019) e Zane (2123), além de Gabriel (2026).
+   - Todos vivos. Gabriel os encontra ao longo do jogo; Rafael também fala pelo rádio, e Clarice pelos telefones.
+   - Fichas de personalidade na seção 4 do [Enredo Principal](../historia/enredo_principal.md), que é a lei do projeto. [`antecessores.md`](antecessores.md) ainda tem a versão antiga e não vale mais.
 
 ---
 

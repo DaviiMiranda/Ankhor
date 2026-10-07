@@ -2,6 +2,9 @@
 
 Toda decisão de design, história ou técnica que muda o jogo entra aqui, **a mais recente no topo**. Se algo contradiz o GDD, vale o que está aqui.
 
+> [!IMPORTANT]
+> Para **história, mundo e personagens**, a lei do projeto é o [Enredo Principal](historia/enredo_principal.md), que vale acima deste registro. Toda decisão de história entra **no mesmo PR** aqui (o histórico de quando e por que mudou) e no Enredo Principal (como a história está agora). Entradas antigas abaixo podem citar nomes e ideias que não valem mais.
+
 Formato:
 
 ```
@@ -12,6 +15,17 @@ Formato:
 ```
 
 ---
+
+## 2026-10-06 — Enredo Principal vira a lei do projeto, personalidades, Pedro e Rafael
+**Decisão:**
+- O **Enredo Principal** (`docs/historia/enredo_principal.md`) passa a ser a **lei do projeto** para história, mundo e personagens, acima de qualquer outro documento, inclusive deste registro. Em caso de dúvida em qualquer parte do jogo, vale o que ele diz. Mudanças de história entram no mesmo PR nele e aqui.
+- **Agostinho passa a se chamar Pedro**, e **Valdir passa a se chamar Rafael** ("Seu Rafael").
+- **Zane é mulher.**
+- **Ordem de chegada:** a Zane é a última a chegar e Gabriel é o penúltimo. A fenda pulsa durante o jogo, e Gabriel recebe a Zane. A ordem dos outros cinco está pendente.
+- Cada personagem ganhou uma **ficha de personalidade** (essência, traços, como fala, o que quer, o que teme, defeito e arco) e o grupo ganhou um quadro de relações entre eles.
+
+**Por quê:** decisão do Davi: um documento único e profissional para consultar em caso de dúvida, e nomes e personalidades definidos antes de escrever falas e desenhar os personagens.
+**Afeta:** `docs/historia/enredo_principal.md`, `CLAUDE.md`, `docs/README.md`, `docs/gdd.md`, `docs/historia/README.md`, `docs/personagens/README.md`, os agentes `roteirista`, `artista` e `sistemas`. As transmissões do rádio viraram `dados/transmissoes/rafael_01.tres` e `rafael_02.tres` (com "Aqui é o Seu Rafael"), e os gatilhos em `cenas/salas/biblioteca.tscn` viraram `GatilhoRafael1` e `GatilhoRafael2`. Comentários dos geradores de áudio e interface, `assets/audio/README.md`, `docs/fases/biblioteca.md` e `docs/mecanicas/` também. `revelacao_central.md` e `antecessores.md` continuam com a versão antiga, marcados como fora de uso.
 
 ## 2026-10-06 — Nova linha da história: a fenda é um acaso
 **Decisão:**

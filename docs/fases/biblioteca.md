@@ -40,8 +40,8 @@ Só três antecessores aparecem na Biblioteca (fichas em [`../personagens/antece
 - **Acampamento de Baltazar:** um nicho entre as raízes da árvore no meio do salão, com a luneta de latão rachada, um toco de vela e o **diário** embrulhado em pano. Mapas de estrelas riscados na casca e um robô desmontado peça por peça. Sem corpo: o que aconteceu com ele fica em aberto. O diário ensina o ponto fraco dos sensores ópticos.
 - **Bilhete da Clarice:** perto de um terminal, com gírias dos anos 90 e o aviso "não confie nas luzes". Parece uma despedida, e o jogador acha que ela morreu.
 - **Gancho (opcional):** no fim da fase, o telefone do balcão toca pela primeira vez. É a Clarice.
-- **Primeira chamada do Valdir:** Gabriel acha um rádio portátil, e a voz do Valdir dá a primeira dica de patrulha.
-- **Segunda chamada do Valdir:** ao entrar no acervo com o rádio, ele fala como se estivesse vendo o Gabriel.
+- **Primeira chamada do Rafael:** Gabriel acha um rádio portátil, e a voz do Rafael dá a primeira dica de patrulha.
+- **Segunda chamada do Rafael:** ao entrar no acervo com o rádio, ele fala como se estivesse vendo o Gabriel.
 - **Implementado.** Posições, gatilhos e como funciona em [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md). O gancho do telefone ainda não.
 
 ---
