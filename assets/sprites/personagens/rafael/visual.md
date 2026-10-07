@@ -35,7 +35,7 @@ Todos em `assets/sprites/personagens/rafael/`, gerados por `assets/modelagem/per
 
 ## No jogo
 
-Ainda não tem cena: por enquanto ele só fala pelo rádio. Onde fica o posto de guarda e em que fase o Gabriel o encontra estão pendentes na ficha. Para pôr numa sala, dá para fazer como a `cenas/personagens/zane.tscn` (script `personagem_parado.gd`).
+`cenas/personagens/rafael.tscn`: parado, respirando, com os pés sólidos (o Gabriel não atravessa). O script é o `scripts/personagens/personagem_parado.gd`, que escolhe a vista (`vista`) e se ele olha para a esquerda (`olhando_para_esquerda`). Por enquanto só aparece na sala de teste (`cenas/salas/sala_teste.tscn`). Na história, por enquanto ele só fala pelo rádio; onde fica o posto de guarda e em que fase o Gabriel o encontra estão pendentes na ficha.
 
 ## Para mudar
 

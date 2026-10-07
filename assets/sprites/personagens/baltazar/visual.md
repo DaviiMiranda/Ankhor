@@ -35,7 +35,7 @@ Todos em `assets/sprites/personagens/baltazar/`, gerados por `assets/modelagem/p
 
 ## No jogo
 
-Ainda não tem cena. Em que fase o Gabriel o encontra e onde fica o esconderijo dele estão pendentes na ficha. Para pôr numa sala, dá para fazer como a `cenas/personagens/zane.tscn` (script `personagem_parado.gd`).
+`cenas/personagens/baltazar.tscn`: parado, respirando, com os pés sólidos (o Gabriel não atravessa). O script é o `scripts/personagens/personagem_parado.gd`, que escolhe a vista (`vista`) e se ele olha para a esquerda (`olhando_para_esquerda`). Por enquanto só aparece na sala de teste (`cenas/salas/sala_teste.tscn`). Em que fase o Gabriel o encontra e onde fica o esconderijo dele estão pendentes na ficha.
 
 ## Para mudar
 

@@ -15,6 +15,8 @@
 [ext_resource type="Resource" path="res://dados/itens/notebook.tres" id="i_notebook"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/clarice_em_pe.tscn" id="p_clarice"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/zane.tscn" id="p_zane"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/baltazar.tscn" id="p_baltazar"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/rafael.tscn" id="p_rafael"]
 
 [node name="SalaTeste" instance=ExtResource("modelo")]
 id = "sala_teste"
@@ -105,6 +107,16 @@ olhando_para_esquerda = true
 
 [node name="Zane" parent="Objetos" instance=ExtResource("p_zane")]
 position = Vector2(146, 134)
+vista = "tres_quartos"
+olhando_para_esquerda = true
+
+[node name="Baltazar" parent="Objetos" instance=ExtResource("p_baltazar")]
+position = Vector2(188, 134)
+vista = "tres_quartos"
+olhando_para_esquerda = true
+
+[node name="Rafael" parent="Objetos" instance=ExtResource("p_rafael")]
+position = Vector2(230, 134)
 vista = "tres_quartos"
 olhando_para_esquerda = true
 
