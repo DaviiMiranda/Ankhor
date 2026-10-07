@@ -20,7 +20,7 @@ Formato:
 **Decisão:**
 - O **Enredo Principal** (`docs/historia/enredo_principal.md`) passa a ser a **lei do projeto** para história, mundo e personagens, acima de qualquer outro documento, inclusive deste registro. Em caso de dúvida em qualquer parte do jogo, vale o que ele diz. Mudanças de história entram no mesmo PR nele e aqui.
 - **O policial de 1978 (Agostinho) vira mulher e se chama Diana**: recruta da polícia, dramática, ansiosa e impulsiva. **Valdir passa a se chamar Rafael** ("Seu Rafael").
-- **Zane é homem.**
+- **Zane é homem**, e o defeito dele é confiar demais na tecnologia (a impulsividade ficou só com a Diana).
 - **Gabriel é irônico**, de ironia seca, e é isso que combina com o sarcasmo da Clarice: os dois se provocam no mesmo tom.
 - **Ordem de chegada:** o Zane é o último a chegar e Gabriel é o penúltimo. A fenda pulsa durante o jogo, e Gabriel recebe o Zane. A ordem dos outros cinco está pendente.
 - Cada personagem ganhou uma **ficha de personalidade** (essência, traços, como fala, o que quer, o que teme, defeito e arco) e o grupo ganhou um quadro de relações entre eles.

@@ -174,11 +174,11 @@ Cada ficha tem a mesma estrutura: **história**, **essência** (uma frase), **tr
 **História.** Veio de uma época em que a Unifor já era um polo de IA. É quem mais entende a tecnologia da Âncora, mas é o mais novo em 3026: chega depois de Gabriel, e é Gabriel quem o recebe e explica as regras.
 
 - **Essência:** filho de um mundo já cheio de máquinas, que sabe tudo de tecnologia e nada de sobreviver.
-- **Traços:** impulsivo, direto, irreverente, elétrico, e mais assustado do que admite.
+- **Traços:** confiante, direto, irreverente, elétrico, e mais assustado do que admite.
 - **Como fala:** rápido, com gírias de um futuro que ninguém reconhece. Interrompe os outros.
 - **O que quer:** voltar. Mais tarde, entender o que a IA virou, porque na época dele a IA ainda estava começando.
 - **O que teme:** a IA. Ele sabe melhor que ninguém do que as máquinas são capazes.
-- **Defeito:** imprudente. Age antes de pensar.
+- **Defeito:** confia demais na tecnologia: acha que toda máquina tem conserto, até a IA. É a contradição dele: tem medo da IA e, ao mesmo tempo, acha que consegue domá-la.
 - **Arco:** a chegada dele mostra ao jogador o quanto Gabriel mudou: o novato da primeira fase virou o veterano que explica tudo.
 
 ### 4.4 Como eles se relacionam
