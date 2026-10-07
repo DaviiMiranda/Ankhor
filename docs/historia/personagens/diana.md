@@ -30,8 +30,8 @@
 
 ## 4. No jogo
 
-- **Onde aparece:** pendente.
-- **Esconderijo:** pendente.
+- **Onde aparece:** no **Bloco de salas**, onde fica o esconderijo dela.
+- **Esconderijo:** numa das **salas de aula** do Bloco de salas (qual sala, pendente).
 - **Como chega ao jogador:** em pessoa e por registros.
 - **Função na jogabilidade:** o **mapa à mão** dela revela **arestas escondidas no grafo do campus** (atalhos e passagens secretas). Ver [`../../computacao/grafos_e_navegacao.md`](../../computacao/grafos_e_navegacao.md).
 - **Parte para consertar a Âncora:** investigação: descobre onde fica o núcleo e as passagens até lá.
@@ -52,4 +52,4 @@ Nenhum ainda.
 
 ## 8. Pendências
 
-- Em que fase Gabriel a encontra e onde fica o esconderijo dela (Enredo Principal, seção 12.3).
+- Qual sala de aula do Bloco de salas é o esconderijo dela (Enredo Principal, seção 12.3).

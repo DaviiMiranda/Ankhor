@@ -16,22 +16,22 @@
 - **Essência:** um homem de fé com olhos de cientista, preso entre o milagre e a explicação.
 - **Traços:** cerimonioso, educado, corajoso por curiosidade, devoto, encantado com tudo.
 - **Como fala:** português arcaico e formal. Trata todos por "Vossa Mercê" e solta latim quando está aflito.
-- **O que quer:** entender o que vê. Para ele, observar o céu é uma forma de rezar.
+- **O que quer:** entender o que vê. Para ele, observar o céu é uma forma de rezar. Por isso, em 3026, **quer ficar**: tudo ali é um milagre a estudar.
 - **O que teme:** que aquilo seja castigo divino pelos pecados dele.
 - **Defeito:** teimoso. Explica tudo pela religião antes de aceitar outra explicação.
-- **Arco:** do "Juízo Final" à compreensão. Ao saber que Gabriel é descendente dele, fica protetor e orgulhoso, com um humor terno ("meu neto de mil anos").
+- **Arco:** do "Juízo Final" à compreensão. Ao saber que Gabriel é descendente dele, fica protetor e orgulhoso, com um humor terno ("meu neto de mil anos"). No fim, quer ficar em 3026, mas **precisa voltar**, ou a família de Gabriel não existe. Gabriel tem que convencer o próprio antepassado a ir embora.
 
 ## 3. Relações
 
 | Com | Dinâmica |
 |---|---|
-| [Gabriel](gabriel.md) | Família descoberta |
+| [Gabriel](gabriel.md) | Família descoberta. No fim, é Gabriel quem o convence a voltar para 1750 |
 | [Zane](zane.md) | Os dois extremos do tempo: fé contra tecnologia, e ainda assim os dois mais curiosos do grupo |
 
 ## 4. No jogo
 
 - **Onde aparece:** na Biblioteca, só o acampamento que ele deixou. Em pessoa, numa fase mais à frente (pendente).
-- **Esconderijo:** pendente.
+- **Esconderijo:** na **Biblioteca**, num esconderijo dentro dela (o ponto exato está pendente).
 - **Como chega ao jogador:** primeiro pelo **diário** e pelo acampamento; depois em pessoa.
 - **Função na jogabilidade:** o diário ensina o **ponto fraco do sensor óptico**: os robôs de um olho só não veem quem passa pelas costas ou pelo lado, e luz forte no olho os cega por alguns segundos. Liga com a cápsula de clarão.
 - **O anel:** o mesmo anel que Gabriel tem gasto no inventário aparece novo no dedo do Baltazar. A comparação no inventário é como o jogador descobre o parentesco.
@@ -56,6 +56,6 @@
 
 ## 8. Pendências
 
-- Em que fase Gabriel o encontra e onde fica o esconderijo dele (Enredo Principal, seção 12.3).
+- Em que fase Gabriel o encontra e onde fica, dentro da Biblioteca, o esconderijo dele (Enredo Principal, seção 12.3).
 - Gabriel falhando na tela enquanto o Baltazar estiver fora de 1750 (seção 12.3).
 - O item do anel no inventário ainda não existe.
