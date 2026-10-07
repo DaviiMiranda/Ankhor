@@ -1,7 +1,6 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/menu_principal.gd" id="1_menu"]
-[ext_resource type="Script" path="res://scripts/camada_paralaxe.gd" id="2_camada"]
 [ext_resource type="Shader" path="res://shaders/tela_crt.gdshader" id="3_crt"]
 [ext_resource type="Texture2D" path="res://assets/sprites/menu/menu_fundo.png" id="4_fundo"]
 [ext_resource type="Texture2D" path="res://assets/sprites/menu/menu_mesa.png" id="5_mesa"]
@@ -19,6 +18,7 @@
 [ext_resource type="Resource" path="res://dados/fases/06_nami.tres" id="f_6"]
 [ext_resource type="Resource" path="res://dados/fases/07_reitoria.tres" id="f_7"]
 [ext_resource type="Resource" path="res://dados/fases/08_bunker.tres" id="f_8"]
+[ext_resource type="Shader" uid="uid://dkfsu5mqayu3p" path="res://shaders/vinheta.gdshader" id="11_vinheta"]
 
 [sub_resource type="Gradient" id="Gradient_luz"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -31,13 +31,38 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
+[sub_resource type="Gradient" id="Gradient_tela"]
+colors = PackedColorArray(0.09, 0.15, 0.2, 1, 0.03, 0.05, 0.08, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tela"]
+gradient = SubResource("Gradient_tela")
+width = 140
+height = 102
+fill = 1
+fill_from = Vector2(0.5, 0.45)
+fill_to = Vector2(1.1, 1.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vinheta"]
+shader = ExtResource("11_vinheta")
+shader_parameter/cor = Color(0.01, 0.01, 0.03, 1)
+shader_parameter/inicio = 0.75
+shader_parameter/fim = 1.4
+shader_parameter/forca = 0.92
+shader_parameter/niveis = 5.0
+shader_parameter/tamanho = Vector2(320, 180)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_crt"]
 shader = ExtResource("3_crt")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_botao"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_destaque"]
-bg_color = Color(0.35, 0.6, 1, 0.25)
+bg_color = Color(0.24, 0.38, 0.6, 0.85)
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.42, 0.58, 0.82, 0.9)
+expand_margin_left = 4.0
+expand_margin_right = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_barra_fundo"]
 content_margin_left = 1.0
@@ -72,17 +97,18 @@ corner_radius_bottom_left = 1
 [sub_resource type="Theme" id="Theme_tela"]
 default_font_size = 8
 Label/constants/line_spacing = 0
-Button/colors/font_color = Color(0.55, 0.75, 1, 1)
-Button/colors/font_disabled_color = Color(0.25, 0.32, 0.42, 1)
-Button/colors/font_focus_color = Color(0.85, 0.95, 1, 1)
-Button/colors/font_hover_color = Color(0.85, 0.95, 1, 1)
+Button/colors/font_color = Color(0.72, 0.82, 0.92, 1)
+Button/colors/font_disabled_color = Color(0.3, 0.36, 0.42, 1)
+Button/colors/font_focus_color = Color(0.95, 0.98, 1, 1)
+Button/colors/font_hover_color = Color(0.95, 0.98, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/styles/disabled = SubResource("StyleBoxEmpty_botao")
-Button/styles/focus = SubResource("StyleBoxEmpty_botao")
-Button/styles/hover = SubResource("StyleBoxFlat_destaque")
+Button/styles/focus = SubResource("StyleBoxFlat_destaque")
+Button/styles/hover = SubResource("StyleBoxEmpty_botao")
 Button/styles/normal = SubResource("StyleBoxEmpty_botao")
 Button/styles/pressed = SubResource("StyleBoxFlat_destaque")
-Label/colors/font_color = Color(0.7, 0.85, 1, 1)
+Label/colors/font_color = Color(0.78, 0.9, 1, 1)
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_barra_alca")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_barra_alca_destaque")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_barra_alca_pressionada")
@@ -97,8 +123,6 @@ cena_novo_jogo = ExtResource("8_novo_jogo")
 fases = Array[ExtResource("f_script")]([ExtResource("f_1"), ExtResource("f_2"), ExtResource("f_3"), ExtResource("f_4"), ExtResource("f_5"), ExtResource("f_6"), ExtResource("f_7"), ExtResource("f_8")])
 
 [node name="Fundo" type="Node2D" parent="."]
-script = ExtResource("2_camada")
-deslocamento_maximo = 2.0
 
 [node name="Cenario" type="Sprite2D" parent="Fundo"]
 light_mask = 2
@@ -107,22 +131,20 @@ texture = ExtResource("4_fundo")
 centered = false
 
 [node name="Mesa" type="Node2D" parent="."]
-script = ExtResource("2_camada")
-deslocamento_maximo = 5.0
 
 [node name="Cenario" type="Sprite2D" parent="Mesa"]
-light_mask = 2
+light_mask = 6
 position = Vector2(-10, -10)
 texture = ExtResource("5_mesa")
 centered = false
 
-[node name="Tela" type="ColorRect" parent="Mesa"]
+[node name="Tela" type="TextureRect" parent="Mesa"]
 offset_left = 90.0
 offset_top = 24.0
 offset_right = 230.0
 offset_bottom = 126.0
 mouse_filter = 2
-color = Color(0.03, 0.08, 0.13, 1)
+texture = SubResource("GradientTexture2D_tela")
 
 [node name="Menu" type="VBoxContainer" parent="Mesa"]
 offset_left = 94.0
@@ -135,12 +157,17 @@ theme_override_constants/separation = 0
 
 [node name="Titulo" type="Label" parent="Mesa/Menu"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.86, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.45, 0.75, 1, 0.35)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
 theme_override_font_sizes/font_size = 16
 text = "ANKHOR"
 horizontal_alignment = 1
 
 [node name="Espaco" type="Control" parent="Mesa/Menu"]
-custom_minimum_size = Vector2(0, 2)
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 mouse_filter = 2
 
@@ -325,14 +352,36 @@ range_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_luz")
 texture_scale = 2.4
 
+[node name="Luminaria" type="PointLight2D" parent="Mesa"]
+position = Vector2(268, 140)
+color = Color(1, 0.68, 0.35, 1)
+energy = 0.6
+range_item_cull_mask = 4
+texture = SubResource("GradientTexture2D_luz")
+texture_scale = 0.9
+
+[node name="LuminariaApagada" type="PointLight2D" parent="Mesa"]
+position = Vector2(268, 140)
+color = Color(1, 0.75, 0.5, 1)
+energy = 0.0
+blend_mode = 1
+range_item_cull_mask = 4
+texture = SubResource("GradientTexture2D_luz")
+texture_scale = 0.9
+
 [node name="Frente" type="Node2D" parent="."]
-script = ExtResource("2_camada")
-deslocamento_maximo = 10.0
 
 [node name="Cenario" type="Sprite2D" parent="Frente"]
+light_mask = 4
 position = Vector2(-10, -10)
 texture = ExtResource("6_frente")
 centered = false
+
+[node name="Vinheta" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_vinheta")
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
 
 [node name="Musica" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_trilha")

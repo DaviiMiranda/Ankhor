@@ -13,6 +13,11 @@ Formato:
 
 ---
 
+## 2026-10-06 — Menu principal mais claro, com a luminária acesa
+**Decisão:** a cena do menu continua sendo a cabine de estudo da Biblioteca à noite, mas fica mais clara e legível: a **luminária de mesa está acesa** (luz quente no canto direito da mesa), tem uma caneca de café, uma pilha de livros maior à esquerda e a estante aparece melhor, com papéis largados nas prateleiras. O monitor está gasto: rachaduras na moldura, LED verde de ligado aceso, e teclas amareladas, afundadas ou faltando. A tela do monitor ganhou fundo com um leve clarão no centro, título com brilho, barra de seleção na largura toda da tela e, no efeito CRT, cantos arredondados e uma faixa clara que desce devagar. As bordas da cena escurecem com a mesma vinheta pixelada das salas, e a luz da luminária na mesa oscila de leve e de vez em quando falha por um instante, como lâmpada velha: na falha, a mesa fica mais escura que o normal. O cenário não se mexe mais com o mouse (a paralaxe saiu, e `scripts/camada_paralaxe.gd` foi apagado). O retângulo da tela não mudou (x 90–230, y 24–126).
+**Por quê:** pedido do Davi, a partir de uma imagem de referência; o menu antigo era escuro demais e quase não se via a cena.
+**Afeta:** `assets/modelagem/menu/gerar_menu.py` (e os PNGs de `assets/sprites/menu/`), `cenas/menu_principal.tscn`, `scripts/menu_principal.gd`, `shaders/tela_crt.gdshader`.
+
 ## 2026-10-02 — Trilha própria do Bunker
 **Decisão:** o Bunker ganha uma trilha própria, mais escura que a da Biblioteca: Dó frígio, sem andamento, com o Dó grave "respirando", cordas graves, aço gemendo, um baque distante lá em cima e, na segunda metade, a fita da Clarice (quatro notas de piano elétrico gasto). Toca em todas as salas do bunker. O zumbido do bunker perdeu a ventilação que subia e descia: ficou só o transformador e um sopro grave constante.
 **Por quê:** pedido do Davi: o som do bunker parecia mar (era a ventilação, um ruído largo pulsando a cada 2 s) e não combinava; pediu algo mais obscuro.
