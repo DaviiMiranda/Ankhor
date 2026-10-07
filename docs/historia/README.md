@@ -12,7 +12,7 @@ A premissa, o mundo, os personagens e as pendências estão no **[Enredo Princip
 
 - **3026:** a humanidade abandonou a Terra e uma IA dominou. Os robôs da IA caçam humanos.
 - **A Âncora** é só uma máquina. Abandonada, falhou e abriu uma fenda no chão da Biblioteca que, por acaso, puxou jovens de épocas diferentes, com dias de diferença.
-- **Os personagens:** Baltazar Magalhães (~1750), Pedro (1978), Clarice (1994), Rafael (2008), o pesquisador (2019), Gabriel Magalhães (2026) e Zane (2123). Todos com cerca de 20 anos e vivos.
+- **Os personagens:** Baltazar Magalhães (~1750), Diana (1978), Clarice (1994), Rafael (2008), o pesquisador (2019), Gabriel Magalhães (2026) e Zane (2123). Todos com cerca de 20 anos e vivos.
 - **O objetivo:** encontrar os outros, descobrir o que aconteceu e consertar a Âncora para todos voltarem.
 
 > [!WARNING]

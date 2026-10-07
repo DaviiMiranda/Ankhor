@@ -16,12 +16,13 @@ Formato:
 
 ---
 
-## 2026-10-06 — Enredo Principal vira a lei do projeto, personalidades, Pedro e Rafael
+## 2026-10-06 — Enredo Principal vira a lei do projeto, personalidades, Diana e Rafael
 **Decisão:**
 - O **Enredo Principal** (`docs/historia/enredo_principal.md`) passa a ser a **lei do projeto** para história, mundo e personagens, acima de qualquer outro documento, inclusive deste registro. Em caso de dúvida em qualquer parte do jogo, vale o que ele diz. Mudanças de história entram no mesmo PR nele e aqui.
-- **Agostinho passa a se chamar Pedro**, e **Valdir passa a se chamar Rafael** ("Seu Rafael").
-- **Zane é mulher.**
-- **Ordem de chegada:** a Zane é a última a chegar e Gabriel é o penúltimo. A fenda pulsa durante o jogo, e Gabriel recebe a Zane. A ordem dos outros cinco está pendente.
+- **O policial de 1978 (Agostinho) vira mulher e se chama Diana**: recruta da polícia, dramática, ansiosa e impulsiva. **Valdir passa a se chamar Rafael** ("Seu Rafael").
+- **Zane é homem.**
+- **Gabriel é irônico**, de ironia seca, e é isso que combina com o sarcasmo da Clarice: os dois se provocam no mesmo tom.
+- **Ordem de chegada:** o Zane é o último a chegar e Gabriel é o penúltimo. A fenda pulsa durante o jogo, e Gabriel recebe o Zane. A ordem dos outros cinco está pendente.
 - Cada personagem ganhou uma **ficha de personalidade** (essência, traços, como fala, o que quer, o que teme, defeito e arco) e o grupo ganhou um quadro de relações entre eles.
 
 **Por quê:** decisão do Davi: um documento único e profissional para consultar em caso de dúvida, e nomes e personalidades definidos antes de escrever falas e desenhar os personagens.

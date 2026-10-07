@@ -63,7 +63,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 | Quem | O que traz |
 |---|---|
 | Baltazar (1750) | As estrelas: o céu é o único relógio que não muda, e é por ele que se acerta a data de volta de cada um |
-| Pedro (1978) | Investigação: descobre onde fica o núcleo e as passagens até lá |
+| Diana (1978) | Investigação: descobre onde fica o núcleo e as passagens até lá |
 | Clarice (1994) | Código: faz os terminais da Âncora funcionarem |
 | Rafael (2008) | Conhece o campus e as rondas, e sabe o que cada chave abre |
 | O pesquisador (2019) | A teoria por trás das equações |
@@ -79,19 +79,19 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 - Todos têm **cerca de 20 anos**.
 - Todos têm alguma **ligação com a região da Unifor**, além de terem sido puxados no chão da Biblioteca.
 - Chegaram a 3026 **com dias de diferença**. Estão todos **vivos**, cada um sobrevivendo do seu jeito num lugar do campus, e Gabriel **encontra cada um ao longo do jogo**.
-- **Ordem de chegada:** a **Zane é a última** a chegar, e **Gabriel é o penúltimo**. Os outros cinco chegaram antes dele, em ordem ainda pendente. Como a Zane chega depois de Gabriel, **a fenda pulsa durante o jogo**: a chegada dela acontece enquanto Gabriel já está em 3026, e é ele quem a recebe.
+- **Ordem de chegada:** o **Zane é o último** a chegar, e **Gabriel é o penúltimo**. Os outros cinco chegaram antes dele, em ordem ainda pendente. Como o Zane chega depois de Gabriel, **a fenda pulsa durante o jogo**: a chegada dele acontece enquanto Gabriel já está em 3026, e é Gabriel quem o recebe.
 
 ### 4.2 Quadro geral
 
 | Ano de origem | Personagem | Quem é | Ligação com a região |
 |---|---|---|---|
 | ~1750 | **Baltazar Magalhães** | Filho de colonos portugueses, curioso, com uma luneta herdada do pai. **Antepassado de Gabriel** | A família tem um sítio na mata onde hoje fica o campus |
-| 1978 | **Pedro** | Recruta da polícia, mandado vigiar a obra do campus à noite | Cresceu no bairro em volta. Viu o mato virar universidade |
+| 1978 | **Diana** | Recruta da polícia, mandada vigiar a obra do campus à noite | Cresceu no bairro em volta. Viu o mato virar universidade |
 | 1994 | **Clarice** | Aluna de processamento de dados | Estuda na Unifor e mora perto |
 | 2008 | **Rafael** | Segurança noturno no primeiro emprego. Insiste em ser chamado de "Seu Rafael" para parecer mais velho | Mora no bairro e conhece o campus de cor |
 | 2019 | **O pesquisador** | Aluno de iniciação científica. Sumiu, e o orientador transformou o projeto dele na cadeira que Gabriel cursa | Aluno da Unifor |
 | 2026 | **Gabriel Magalhães** | Estudante (protagonista). O penúltimo a chegar | Aluno da Unifor. A família vive na região há séculos, mas ele não sabe |
-| 2123 | **Zane** | Jovem com implantes cibernéticos. **A última a chegar** | Morava no que sobrou do bairro, numa época em que a Unifor era um polo de IA |
+| 2123 | **Zane** | Jovem com implantes cibernéticos. **O último a chegar** | Morava no que sobrou do bairro, numa época em que a Unifor era um polo de IA |
 
 ### 4.3 Fichas
 
@@ -102,8 +102,8 @@ Cada ficha tem a mesma estrutura: **história**, **essência** (uma frase), **tr
 **História.** Estudante da Unifor. Dormiu na Biblioteca de madrugada, com o caderno de equações da cadeira aberto na mesa. Acorda em 3026, na cabine de estudo onde pegou no sono, sem saber o que aconteceu. Não é um herói: precisa entender o campus, evitar os robôs e achar os outros. Na mochila carrega um **anel desgastado** que a avó deu para ele (seção 5). Funcionamento em [`../personagens/gabriel.md`](../personagens/gabriel.md).
 
 - **Essência:** um estudante comum que prefere observar a agir, até não ter mais escolha.
-- **Traços:** observador, reservado, ironia leve, curioso. Mais ouvinte que falante, o que ajuda o jogador a se colocar no lugar dele.
-- **Como fala:** frases curtas, informal e atual. Faz piada quando está nervoso.
+- **Traços:** observador, reservado, curioso e **irônico**. A ironia seca é o jeito dele de lidar com o absurdo. Mais ouvinte que falante, o que ajuda o jogador a se colocar no lugar dele.
+- **Como fala:** frases curtas, informal e atual, com ironia seca e sem rir da própria piada. Comenta o absurdo como se fosse normal ("Ótimo. Mil anos de atraso pra aula."). É essa ironia que faz ele se dar bem com a Clarice: os dois se provocam no mesmo tom.
 - **O que quer:** voltar para casa. Depois, que todos voltem.
 - **O que teme:** não fazer diferença, ser só mais um.
 - **Defeito:** foge de conflito e adia decisões.
@@ -121,17 +121,17 @@ Cada ficha tem a mesma estrutura: **história**, **essência** (uma frase), **tr
 - **Defeito:** teimoso. Explica tudo pela religião antes de aceitar outra explicação.
 - **Arco:** do "Juízo Final" à compreensão. Ao saber que Gabriel é descendente dele, fica protetor e orgulhoso, com um humor terno ("meu neto de mil anos").
 
-#### Pedro (1978)
+#### Diana (1978)
 
-**História.** Recruta da polícia mandado vigiar a obra do campus porque um lote de material de construção sumiu. O material não foi roubado: a fenda engoliu o lote num pulso anterior, e Pedro foi puxado no seguinte. Chama os robôs de "autômatos". Faz um **mapa à mão** com passagens que não aparecem nos mapas de 3026.
+**História.** Recruta da polícia mandada vigiar a obra do campus porque um lote de material de construção sumiu. Em vez de esperar o colega da ronda, entrou sozinha no matagal à noite atrás de uma luz. O material não foi roubado: a fenda engoliu o lote num pulso anterior, e Diana foi puxada no seguinte. Chama os robôs de "autômatos". De tanto correr para todo lado, faz um **mapa à mão** com passagens que não aparecem nos mapas de 3026.
 
-- **Essência:** um rapaz que entrou na polícia por estabilidade e aprendeu a obedecer antes de pensar.
-- **Traços:** disciplinado, desconfiado, de poucas palavras, com um senso de justiça que ele mesmo não sabe onde guardar.
-- **Como fala:** seco e formal ("Positivo", "Afirmativo"). Interroga em vez de conversar.
-- **O que quer:** cumprir a missão e voltar para a família, que depende do salário dele.
-- **O que teme:** errar e ser punido. Para ele, errar sempre teve consequência.
-- **Defeito:** autoritário e lento para confiar. É quem mais trava com a Clarice.
-- **Arco:** de seguir ordens a decidir por conta própria. Em 3026 não há a quem obedecer.
+- **Essência:** uma recruta que entrou na polícia para provar que podia, e vive cada minuto como se fosse o último.
+- **Traços:** dramática, ansiosa, impulsiva, intensa. Sente tudo em dobro e é corajosa no susto.
+- **Como fala:** rápido e exagerado, cheio de exclamações ("Pronto, é o fim!", "Eu sabia que isso ia acontecer!"). Mistura o jargão da polícia ("Positivo!") com drama de novela.
+- **O que quer:** voltar e provar à família, e ao quartel, que não foi um erro ela vestir a farda.
+- **O que teme:** falhar na frente de todo mundo.
+- **Defeito:** age antes de pensar e transforma cada problema numa tragédia.
+- **Arco:** aprender a controlar o medo: de quem entra em pânico e sai correndo a quem respira e decide.
 
 #### Clarice (1994)
 
@@ -169,27 +169,27 @@ Cada ficha tem a mesma estrutura: **história**, **essência** (uma frase), **tr
 - **Defeito:** guarda segredos.
 - **Arco:** assumir a responsabilidade, seja ela real ou só imaginada.
 
-#### Zane (2123), a última a chegar
+#### Zane (2123), o último a chegar
 
-**História.** Veio de uma época em que a Unifor já era um polo de IA. É quem mais entende a tecnologia da Âncora, mas é a mais nova em 3026: chega depois de Gabriel, e é ele quem a recebe e explica as regras.
+**História.** Veio de uma época em que a Unifor já era um polo de IA. É quem mais entende a tecnologia da Âncora, mas é o mais novo em 3026: chega depois de Gabriel, e é Gabriel quem o recebe e explica as regras.
 
-- **Essência:** filha de um mundo já cheio de máquinas, que sabe tudo de tecnologia e nada de sobreviver.
-- **Traços:** impulsiva, direta, irreverente, elétrica, e mais assustada do que admite.
-- **Como fala:** rápida, com gírias de um futuro que ninguém reconhece. Interrompe os outros.
-- **O que quer:** voltar. Mais tarde, entender o que a IA virou, porque na época dela a IA ainda estava começando.
-- **O que teme:** a IA. Ela sabe melhor que ninguém do que as máquinas são capazes.
+- **Essência:** filho de um mundo já cheio de máquinas, que sabe tudo de tecnologia e nada de sobreviver.
+- **Traços:** impulsivo, direto, irreverente, elétrico, e mais assustado do que admite.
+- **Como fala:** rápido, com gírias de um futuro que ninguém reconhece. Interrompe os outros.
+- **O que quer:** voltar. Mais tarde, entender o que a IA virou, porque na época dele a IA ainda estava começando.
+- **O que teme:** a IA. Ele sabe melhor que ninguém do que as máquinas são capazes.
 - **Defeito:** imprudente. Age antes de pensar.
-- **Arco:** a chegada dela mostra ao jogador o quanto Gabriel mudou: o novato da primeira fase virou o veterano que explica tudo.
+- **Arco:** a chegada dele mostra ao jogador o quanto Gabriel mudou: o novato da primeira fase virou o veterano que explica tudo.
 
 ### 4.4 Como eles se relacionam
 
 | Par | Dinâmica |
 |---|---|
-| Pedro × Clarice | Autoridade contra rebeldia: brigam o tempo todo e, aos poucos, passam a se respeitar |
+| Diana × Clarice | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Brigam o tempo todo e acabam amigas |
 | Baltazar × Zane | Os dois extremos do tempo: fé contra tecnologia, e ainda assim os dois mais curiosos do grupo |
-| Pedro × Rafael | Dois de farda em épocas diferentes: se entendem sem precisar falar |
+| Diana × Rafael | Dois de farda em épocas diferentes. Ele é calmo e brincalhão, e é o único que consegue acalmá-la |
 | Gabriel × Baltazar | Família descoberta |
-| Gabriel × Clarice | A relação que cresce ao longo do jogo |
+| Gabriel × Clarice | Duelo de ironias: os dois se provocam o tempo todo no mesmo tom, e é assim que a relação cresce ao longo do jogo |
 | Gabriel × Zane | Gabriel deixa de ser o novato e vira o veterano |
 
 ### 4.5 A IA
@@ -224,7 +224,7 @@ Antagonista sem rosto e sem voz. Aparece só pelos robôs e pelos sistemas que c
 | Ano | Quem | O que fazia ali |
 |---|---|---|
 | ~1750 | Baltazar | Viu uma luz estranha pela luneta, no sítio da família, e foi investigar |
-| 1978 | Pedro | Vigiava a obra depois do sumiço do material |
+| 1978 | Diana | Vigiava a obra depois do sumiço do material |
 | 1994 | Clarice | Rodava um programa num terminal da Biblioteca, de madrugada |
 | 2008 | Rafael | Fazia a ronda noturna na Biblioteca |
 | 2019 | O pesquisador | Estudava à noite na Biblioteca |
@@ -237,7 +237,7 @@ Antagonista sem rosto e sem voz. Aparece só pelos robôs e pelos sistemas que c
 2. **3026:** a Âncora falha, e a fenda se abre no chão da Biblioteca.
 3. **Os pulsos:** com dias de diferença, a fenda puxa uma pessoa de cada época. Cada uma acorda sozinha, foge dos robôs e acha um canto para sobreviver. Cinco chegam antes de Gabriel.
 4. **O jogo:** Gabriel, o penúltimo, acorda na Biblioteca, encontra os outros um a um, descobre o que aconteceu e tenta consertar a Âncora para todos voltarem.
-5. **Durante o jogo:** um novo pulso traz a **Zane**, a última. Gabriel a recebe.
+5. **Durante o jogo:** um novo pulso traz o **Zane**, o último. Gabriel o recebe.
 
 ---
 
@@ -343,15 +343,15 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 
 - **O objetivo da IA:** o que ela quer, se sabe da Âncora e se reage quando os humanos tentam consertá-la.
 - **Quando e por que a humanidade abandonou a Terra**, e como a IA dominou.
-- **Quem criou a Âncora e por quê.** Ideia em aberto: o criador seria um **descendente de Gabriel**, e o caderno teria passado de geração em geração na família até virar a base da máquina (Gabriel acharia o próprio caderno, com mil anos, numa vitrine do centro de pesquisa). A fala da Zane sobre "um nome de usuário de 2026" depende disso.
+- **Quem criou a Âncora e por quê.** Ideia em aberto: o criador seria um **descendente de Gabriel**, e o caderno teria passado de geração em geração na família até virar a base da máquina (Gabriel acharia o próprio caderno, com mil anos, numa vitrine do centro de pesquisa). A fala do Zane sobre "um nome de usuário de 2026" depende disso.
 
 ### 12.3 Personagens
 
 - **Gabriel falhando na tela:** enquanto o Baltazar estiver fora de 1750, o sprite de Gabriel pisca ou se desfaz, como a foto em *De Volta para o Futuro*. Seria um shader (bom para a apresentação de Computação Gráfica).
 - **Algum personagem atrapalha?** Alguém que desconfia de Gabriel, quer usar a Âncora só para si ou esconde alguma coisa. Sem isso, o único conflito vem dos robôs. O pesquisador, que guarda segredos, é o candidato natural.
 - **Nome do pesquisador de 2019**, e como ele aparece no jogo.
-- **Zane:** o que fazia no ponto quando foi puxada, e em que fase do jogo ela chega (e se o jogador vê o pulso acontecer).
-- **Ordem de chegada dos outros cinco** (Baltazar, Pedro, Clarice, Rafael e o pesquisador), que chegaram antes de Gabriel. Não precisa seguir a ordem dos anos.
+- **Zane:** o que fazia no ponto quando foi puxado, e em que fase do jogo ele chega (e se o jogador vê o pulso acontecer).
+- **Ordem de chegada dos outros cinco** (Baltazar, Diana, Clarice, Rafael e o pesquisador), que chegaram antes de Gabriel. Não precisa seguir a ordem dos anos.
 - **Quem fica em qual esconderijo**, e quem divide o bunker com a Clarice.
 - **Como o Rafael parece ver Gabriel** pelo rádio ("Ele falou como se estivesse me vendo").
 

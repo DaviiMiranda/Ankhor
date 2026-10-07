@@ -23,7 +23,7 @@ Conforme as regras do projeto, cada personagem e inimigo é uma **cena isolada**
    - Cenas leves focadas em interação de diálogo e passagem de informações investigativas.
 
 4. **Os outros personagens puxados pela fenda:**
-   - Baltazar Magalhães (~1750), Pedro (1978), Clarice (1994), Rafael (2008), o pesquisador (2019) e Zane (2123), além de Gabriel (2026).
+   - Baltazar Magalhães (~1750), Diana (1978), Clarice (1994), Rafael (2008), o pesquisador (2019) e Zane (2123), além de Gabriel (2026).
    - Todos vivos. Gabriel os encontra ao longo do jogo; Rafael também fala pelo rádio, e Clarice pelos telefones.
    - Fichas de personalidade na seção 4 do [Enredo Principal](../historia/enredo_principal.md), que é a lei do projeto. [`antecessores.md`](antecessores.md) ainda tem a versão antiga e não vale mais.
 
