@@ -52,5 +52,5 @@ Nenhum ainda.
 
 ## 8. Pendências
 
-- Se trabalha para o Carlos ou foi enganado por ele, o que exatamente esconde, e como e quando o grupo descobre (Enredo Principal, seção 12.3).
+- Se trabalha para o Carlos ou foi enganado por ele, o que exatamente esconde, e como e quando o grupo descobre (Enredo Principal, seção 12.7).
 - Como aparece no jogo e onde fica.

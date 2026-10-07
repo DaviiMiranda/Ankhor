@@ -190,7 +190,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 
 ### A virada — A mentira do Henrique
 
-- O **Henrique** engana o grupo: esconde a ligação que tem com o **Carlos**. Ou trabalha para ele, ou foi enganado por ele (pendente, seção 12.3).
+- O **Henrique** engana o grupo: esconde a ligação que tem com o **Carlos**. Ou trabalha para ele, ou foi enganado por ele (pendente, seção 12.7).
 - Em algum momento, o grupo **descobre a mentira**.
 - É aí que todos **vão atrás do Carlos**, no D-Tec.
 
@@ -273,7 +273,6 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 ### 12.3 Personagens
 
 - **Gabriel falhando na tela:** enquanto o Baltazar estiver fora de 1750, o sprite de Gabriel pisca ou se desfaz, como a foto em *De Volta para o Futuro*. Seria um shader (bom para a apresentação de Computação Gráfica).
-- **O Henrique e o Carlos:** se o Henrique trabalha para o Carlos por vontade própria ou foi enganado por ele; o que exatamente ele esconde do grupo; e como e quando o grupo descobre a mentira.
 - **Henrique:** como ele aparece no jogo.
 - **Zane:** o que fazia no ponto quando foi puxado, e em que fase do jogo ele chega (e se o jogador vê o pulso acontecer).
 - **Ordem de chegada dos outros cinco** (Baltazar, Diana, Clarice, Rafael e Henrique), que chegaram antes de Gabriel. Não precisa seguir a ordem dos anos.
@@ -299,3 +298,11 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 
 - **Energia:** quais sistemas são da Âncora e quais são do Carlos. Hoje: luzes de emergência, bunker, terminais e telefones são da Âncora; os robôs obedecem ao Carlos.
 - **Gadgets e personagens:** em que fase cada gadget aparece e se cada um vem de um personagem.
+
+### 12.7 A mentira do Henrique
+
+As perguntas que faltam responder sobre "A virada" (seção 8):
+
+1. **O Henrique trabalha para o Carlos por vontade própria, ou foi enganado por ele?**
+2. **O que exatamente o Henrique esconde do grupo?** (A ideia 12 de [`outras_ideias.md`](outras_ideias.md) é uma opção.)
+3. **Como e quando o grupo descobre a mentira?**
