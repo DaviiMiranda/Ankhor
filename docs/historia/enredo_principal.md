@@ -121,7 +121,7 @@ Antagonista sem rosto e sem voz. Aparece só pelos robôs e pelos sistemas que c
 | **Bunker**, embaixo do núcleo da Âncora. O maior e mais seguro: os robôs não descem lá | Clarice e o pesquisador. Depois, o Zane, quando Gabriel o traz |
 | **Posto de guarda**, a sala de manutenção que o Rafael transformou | Rafael |
 | **Biblioteca**, num esconderijo dentro dela | Baltazar |
-| *Pendente* | Diana |
+| **Bloco de salas**, numa das salas de aula | Diana |
 
 - Os esconderijos funcionam como pontos de encontro: Gabriel volta a eles para conversar e acompanhar o que cada um descobriu.
 
@@ -171,7 +171,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 ### Ato 2 — Encontrar os outros (Bloco de salas, Labirinto e demais áreas)
 
 - Cada fase leva a **um personagem** e ao esconderijo dele. Gabriel precisa chegar lá, ganhar a confiança da pessoa e receber a parte dela para consertar a Âncora (seção 3.1).
-- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. Hoje só tem cenário e portas.
+- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Diana**, numa das salas. Hoje só tem cenário e portas.
 - **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): subsolo escuro do centro de pesquisa da Âncora, com três robôs. Jogável, mas sem lugar na história ainda.
 - As áreas seguintes do GDD (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) ainda não foram redefinidas para a premissa atual.
 - **Rádio e telefone:** Rafael fala pelo rádio e Clarice liga pelos telefones velhos.
@@ -263,7 +263,7 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 - **Nome do pesquisador de 2019**, e como ele aparece no jogo.
 - **Zane:** o que fazia no ponto quando foi puxado, e em que fase do jogo ele chega (e se o jogador vê o pulso acontecer).
 - **Ordem de chegada dos outros cinco** (Baltazar, Diana, Clarice, Rafael e o pesquisador), que chegaram antes de Gabriel. Não precisa seguir a ordem dos anos.
-- **Esconderijo da Diana.**
+- **Qual sala de aula** do Bloco de salas é o esconderijo da Diana.
 - **Onde fica, dentro da Biblioteca, o esconderijo do Baltazar**, e como ele combina com o acampamento vazio que Gabriel acha no começo do jogo e com a última página do diário ("Hei de seguir a luz até onde ella nasce").
 - **Como o Rafael parece ver Gabriel** pelo rádio ("Ele falou como se estivesse me vendo").
 
