@@ -35,7 +35,7 @@
 
 ## 4. Registros dos antecessores
 
-Só três antecessores aparecem na Biblioteca (fichas em [`../personagens/antecessores.md`](../personagens/antecessores.md)):
+Só três antecessores aparecem na Biblioteca (fichas em [`../historia/personagens/`](../historia/personagens/)):
 
 - **Acampamento de Baltazar:** um nicho entre as raízes da árvore no meio do salão, com a luneta de latão rachada, um toco de vela e o **diário** embrulhado em pano. Mapas de estrelas riscados na casca e um robô desmontado peça por peça. Sem corpo: o que aconteceu com ele fica em aberto. O diário ensina o ponto fraco dos sensores ópticos.
 - **Bilhete da Clarice:** perto de um terminal, com gírias dos anos 90 e o aviso "não confie nas luzes". Parece uma despedida, e o jogador acha que ela morreu.

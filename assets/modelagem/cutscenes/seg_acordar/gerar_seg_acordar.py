@@ -1,6 +1,6 @@
 # gerar_seg_acordar.py — monta no Blender, por código, a cabine de estudo da
 # Biblioteca MIL ANOS DEPOIS e renderiza as camadas e os quadros do Gabriel
-# para a cutscene "seg_acordar" (docs/roteiro/cutscenes/seg_acordar.md).
+# para a cutscene "seg_acordar" (docs/historia/roteiro/cutscenes/seg_acordar.md).
 #
 # Como rodar (sem abrir a janela do Blender):
 #

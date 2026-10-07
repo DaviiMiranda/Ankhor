@@ -7,7 +7,7 @@
 > **Como mudar:** só por decisão do grupo. Toda mudança de história entra **no mesmo PR** neste documento e em [`../decisoes.md`](../decisoes.md) (que guarda o histórico de quando e por que mudou). Tudo o que ainda não foi decidido fica na **seção 12 ("Pendências")**, no fim, e não no meio da narrativa: o que está fora das pendências está decidido.
 
 > [!WARNING]
-> [`revelacao_central.md`](revelacao_central.md) e [`../personagens/antecessores.md`](../personagens/antecessores.md) ainda descrevem a versão antiga (loops, bilhetes de "G.", personagens mortos, nomes antigos como Agostinho e Valdir). Não use esses dois arquivos como referência até serem reescritos.
+> [`revelacao_central.md`](revelacao_central.md) ainda descreve a versão antiga (loops, bilhetes de "G.", personagens mortos, nomes antigos como Agostinho e Valdir). Não use esse arquivo como referência.
 
 ---
 
@@ -37,7 +37,7 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 - Os inimigos são **robôs da IA** que patrulham o campus por **rotinas programadas**. Repetem o mesmo caminho há séculos: dá para decorar.
 - Fora da rotina, quando ouvem ou veem um humano, saem do protocolo e caçam.
 - São agressivos: se pegam Gabriel, é **game over** e o jogo volta ao último checkpoint (ver [`../mecanicas/vida_e_checkpoint.md`](../mecanicas/vida_e_checkpoint.md)).
-- Cada tipo tem um sentido dominante (som, visão, luz). Os dois já implementados são a **Sentinela** (visão) e o **Rastreador** (audição). Ver [`../personagens/robos.md`](../personagens/robos.md).
+- Cada tipo tem um sentido dominante (som, visão, luz). Os dois já implementados são a **Sentinela** (visão) e o **Rastreador** (audição). Ver [`personagens/robos.md`](personagens/robos.md).
 - Gabriel não é um combatente: **fugir e se esconder é a regra**, defender-se é a exceção.
 
 ---
@@ -95,11 +95,11 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 
 ### 4.3 Fichas
 
-Cada ficha tem a mesma estrutura: **história**, **essência** (uma frase), **traços**, **como fala**, **o que quer**, **o que teme**, **defeito** e **arco** (como muda ao longo do jogo). Falas, documentos, retratos, animações e sons de um personagem seguem a ficha dele.
+Cada ficha tem a mesma estrutura: **história**, **essência** (uma frase), **traços**, **como fala**, **o que quer**, **o que teme**, **defeito** e **arco** (como muda ao longo do jogo). Falas, documentos, retratos, animações e sons de um personagem seguem a ficha dele. O que a produção precisa além disso (onde cada um aparece, função no jogo, direção de arte e arquivos) fica nas fichas de [`personagens/`](personagens/), que seguem este documento.
 
 #### Gabriel Magalhães (2026), o protagonista
 
-**História.** Estudante da Unifor. Dormiu na Biblioteca de madrugada, com o caderno de equações da cadeira aberto na mesa. Acorda em 3026, na cabine de estudo onde pegou no sono, sem saber o que aconteceu. Não é um herói: precisa entender o campus, evitar os robôs e achar os outros. Na mochila carrega um **anel desgastado** que a avó deu para ele (seção 5). Funcionamento em [`../personagens/gabriel.md`](../personagens/gabriel.md).
+**História.** Estudante da Unifor. Dormiu na Biblioteca de madrugada, com o caderno de equações da cadeira aberto na mesa. Acorda em 3026, na cabine de estudo onde pegou no sono, sem saber o que aconteceu. Não é um herói: precisa entender o campus, evitar os robôs e achar os outros. Na mochila carrega um **anel desgastado** que a avó deu para ele (seção 5). Funcionamento em [`personagens/gabriel.md`](personagens/gabriel.md).
 
 - **Essência:** um estudante comum que prefere observar a agir, até não ter mais escolha.
 - **Traços:** observador, reservado, curioso e **irônico**. A ironia seca é o jeito dele de lidar com o absurdo. Mais ouvinte que falante, o que ajuda o jogador a se colocar no lugar dele.
@@ -306,7 +306,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 | **Rádio** | Rafael ao vivo, sem pausar o jogo | [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md) |
 | **Ligações e diálogos** | Clarice por telefone; todos em pessoa nos esconderijos, com retratos e escolhas | [`../dialogos/README.md`](../dialogos/README.md) |
 | **Sonhos** | O sono continua como mecânica; o que os sonhos mostram está pendente | [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md) |
-| **Cutscenes** | A abertura (`seg_acordar`) e as que o grupo decidir | [`../roteiro/cutscenes/`](../roteiro/cutscenes/) |
+| **Cutscenes** | A abertura (`seg_acordar`) e as que o grupo decidir | [`roteiro/cutscenes/`](roteiro/cutscenes/) |
 
 ---
 
@@ -359,7 +359,6 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 
 - `dados/dialogos/clarice_primeiro_encontro.json`: as falas "Você sempre lê", "E sempre chega aqui com essa cara de quem viu assombração" e "E você sempre repara" vinham dos loops e precisam ser reescritas.
 - [`revelacao_central.md`](revelacao_central.md): substituída por este documento. Decidir se é apagada ou guardada como histórico.
-- [`../personagens/antecessores.md`](../personagens/antecessores.md): fichas com idades, mortes e loops antigos.
 - [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md): **o que os sonhos mostram** agora que não há loops (memória, o passado do campus, outra coisa).
 
 ### 12.5 Estrutura e fases

@@ -67,7 +67,7 @@ Formato: `onde_o_que_variacao.ext`, em `snake_case`, português, sem acento.
 
 - Com variações, numere com dois dígitos: `gabriel_passo_areia_01.wav`, `gabriel_passo_areia_02.wav`.
 - Em `ambiente/`, diga se é presente ou sonho: `biblioteca_presente.ogg`, `biblioteca_sonho.ogg`.
-- Em `efeitos/robos/`, comece pelo tipo do robô (`docs/personagens/robos.md`): `sentinela_passos_01.wav`, `enxame_motor_01.wav`.
+- Em `efeitos/robos/`, comece pelo tipo do robô (`docs/historia/personagens/robos.md`): `sentinela_passos_01.wav`, `enxame_motor_01.wav`.
 - Em `vozes/`, comece pelo personagem: `pesquisadora_murmurio_01.ogg`.
 
 ## Formato

@@ -351,7 +351,7 @@ def bunker_grafo():
     das rotas dos robôs desenhado a pincel atômico (nós são bolinhas, as
     arestas são as linhas entre eles), barbante vermelho ligando uma folha
     à outra e post-its rosa e amarelo. É a descoberta dela
-    (docs/personagens/antecessores.md): as patrulhas formam um grafo."""
+    (docs/historia/personagens/clarice.md): as patrulhas formam um grafo."""
     img = parede_base(12)
     X, Y = img.X, img.Y
     folhas = ((6, 26, 34, 52), (38, 22, 70, 50), (10, 56, 40, 84), (44, 54, 74, 86))

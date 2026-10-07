@@ -19,11 +19,12 @@
 #                            (digitando e virada) e os retratos
 #   assets/modelagem/personagens/clarice.blend   o modelo, para abrir e mexer
 #
-# Quem é (docs/personagens/antecessores.md, 2.3): aluna prodígio de
-# processamento de dados, puxada de uma madrugada de 1994 na Biblioteca.
-# Está em 3026 há alguns meses, escondida no bunker perto do núcleo da
-# Âncora, e foi a primeira a ver que as rotas dos robôs formam um grafo.
-# Sarcástica, rápida, gíria dos anos 90. É a única que lembra dos loops.
+# Quem é (docs/historia/enredo_principal.md, seção 4.3, e
+# docs/historia/personagens/clarice.md): aluna de processamento de dados,
+# puxada de uma madrugada de 1994 na Biblioteca. Está em 3026 há alguns
+# dias, escondida no bunker perto do núcleo da Âncora, e foi a primeira a
+# ver que as rotas dos robôs formam um grafo. Sarcástica, rápida, gíria
+# dos anos 90.
 #
 # O visual conta isso:
 #   - anos 90 de verdade: jaqueta corta-vento em blocos de cor (verde-

@@ -1,6 +1,14 @@
-# Personagens — Funcionamento dos Robôs (Inimigos de IA)
+# Os robôs (inimigos)
 
-Este documento descreve como a inteligência artificial e os tipos mecânicos de robôs que patrulham o campus em 3026 funcionam no sistema do jogo.
+> **Lei do projeto:** o que os robôs são na história está no [Enredo Principal](../enredo_principal.md), seções 2.1 e 2.3. Esta ficha descreve como funcionam no jogo.
+
+## 0. Na história
+
+- Os robôs pertencem à **IA** que dominou a Terra depois que a humanidade foi embora. Não têm nada a ver com a Âncora.
+- Para a IA, humanos são **invasores**. Por isso os robôs caçam qualquer pessoa que encontram.
+- Patrulham o campus por **rotinas programadas** e repetem o mesmo caminho há séculos: dá para decorar.
+- Se pegam Gabriel, é game over e o jogo volta ao último checkpoint.
+- Não falam. A IA não tem rosto nem voz e aparece só por eles.
 
 ---
 
@@ -52,4 +60,4 @@ Os dois usam o mesmo script (`scripts/personagens/robo.gd`); o que muda são os 
 
 Sprites: `assets/sprites/personagens/robos/<robo>_andar_<lado|frente|costas>.png` (8 quadros) e `..._olhos.png`. Folha de referência: `robos_referencia.png`.
 
-IA (máquina de estados, cone de visão, BFS, A\*, Markov): [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md), seção 5.
+IA (máquina de estados, cone de visão, BFS, A\*, Markov): [`../../computacao/ia_e_perseguicao.md`](../../computacao/ia_e_perseguicao.md), seção 5.

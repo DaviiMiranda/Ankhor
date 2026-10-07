@@ -37,7 +37,7 @@ A Âncora foi criada em 3026 por cientistas do futuro, deu errado e virou um "as
 - Toda vez que Gabriel morre ou dorme, a Âncora reinicia um micro-loop. Isso casa com a mecânica de **dormir é salvar** ([`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md)).
 - Os bilhetes dos antecessores foram deixados por pessoas que **tentaram salvar Gabriel em ciclos anteriores**, ou que eram versões alteradas do próprio processo.
 - As gravações do Valdir no rádio também estão em loop.
-- **Clarice é a única que lembra dos loops.** Ela grava tudo no sistema da Âncora, a única coisa que o reinício não apaga, e relê os registros a cada ciclo. Gabriel esquece; ela não. Ver [`../personagens/antecessores.md`](../personagens/antecessores.md).
+- **Clarice é a única que lembra dos loops.** Ela grava tudo no sistema da Âncora, a única coisa que o reinício não apaga, e relê os registros a cada ciclo. Gabriel esquece; ela não. Ver [`personagens/clarice.md`](personagens/clarice.md).
 
 ## 4. Como preparar a revelação: os bilhetes de "G."
 

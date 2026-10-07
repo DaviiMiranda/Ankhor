@@ -1,6 +1,6 @@
 # Mecânicas — Registros dos antecessores e Caderno do Gabriel
 
-Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../personagens/antecessores.md`](../personagens/antecessores.md)) contam a história por **registros**: documentos para ler (diários, bilhetes) e **transmissões de rádio**. Tudo o que for útil vai para o **Caderno do Gabriel**.
+Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../historia/personagens/`](../historia/personagens/)) contam a história por **registros**: documentos para ler (diários, bilhetes) e **transmissões de rádio**. Tudo o que for útil vai para o **Caderno do Gabriel**.
 
 ---
 
@@ -9,13 +9,13 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../personagen
 ### Ler um documento
 - Perto de um documento, aparece o aviso `[E] Ler...`. Apertar `E` abre a folha na tela e **pausa o jogo**.
 - `E` vira a página; na última página, fecha. As setas folheiam para os dois lados. `Esc` fecha a qualquer momento.
-- Cada época tem o seu papel (ver a tabela de aparência em `antecessores.md`):
+- Cada época tem o seu papel (ver a seção "Registros" de cada ficha em [`../historia/personagens/`](../historia/personagens/)):
 
 | Papel | Quem usa | Tinta |
 |---|---|---|
 | `pergaminho` | Baltazar (1750). Tem o esboço do robô no canto | marrom |
 | `caderno_clarice` | Clarice (1994): folha de fichário, pautas azuis, estrela | azul de caneta |
-| `caderno_gabriel` | O caderno do Gabriel e, no futuro, os bilhetes de "G." | grafite |
+| `caderno_gabriel` | O caderno do Gabriel | grafite |
 
 - Ao fechar, a **anotação** do documento entra no caderno (uma vez só) e o HUD avisa: *"Nova anotação: Baltazar, 1750   [N] ver"*.
 

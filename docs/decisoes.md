@@ -16,6 +16,15 @@ Formato:
 
 ---
 
+## 2026-10-07 — Personagens e roteiro dentro de `docs/historia/`, uma ficha por personagem
+**Decisão:**
+- As pastas `docs/personagens/` e `docs/roteiro/` passam a ficar dentro de `docs/historia/`, junto do Enredo Principal.
+- `antecessores.md` (versão antiga, com loops e personagens mortos) foi apagado. No lugar, **uma ficha por personagem**: `gabriel.md`, `baltazar.md`, `diana.md`, `clarice.md`, `rafael.md`, `pesquisador.md` e `zane.md`, além de `robos.md`.
+- As fichas **não repetem a personalidade**, que fica só no Enredo Principal (a lei do projeto). Guardam o que a produção precisa: onde o personagem aparece, como chega ao jogador, função no jogo, parte para consertar a Âncora, suporte dos registros, direção de arte, arquivos e pendências. O `template_personagem.md` segue esse formato.
+
+**Por quê:** pedido do Davi: deixar as fichas de personagem congruentes com o Enredo Principal e perto dele.
+**Afeta:** `docs/historia/personagens/` e `docs/historia/roteiro/` (movidos), todos os links para as pastas antigas (docs, agentes, `CLAUDE.md`, `CONTRIBUTING.md`, `README.md`, comentários dos geradores em `assets/modelagem/`), `assets/sprites/personagens/clarice/visual.md` (dias no bunker, sem loops) e `docs/mecanicas/registros_e_caderno.md` (sem os bilhetes de "G.").
+
 ## 2026-10-06 — Enredo Principal vira a lei do projeto, personalidades, Diana e Rafael
 **Decisão:**
 - O **Enredo Principal** (`docs/historia/enredo_principal.md`) passa a ser a **lei do projeto** para história, mundo e personagens, acima de qualquer outro documento, inclusive deste registro. Em caso de dúvida em qualquer parte do jogo, vale o que ele diz. Mudanças de história entram no mesmo PR nele e aqui.

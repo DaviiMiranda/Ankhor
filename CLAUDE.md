@@ -29,7 +29,7 @@ dados/          recursos de dados (.tres), ex.: dados/itens/ — um arquivo por 
 shaders/        shaders (.gdshader)
 assets/         sprites, tiles, audio, fontes
 docs/           gdd.md, equipe.md, decisoes.md
-docs/roteiro/   história, personagens, diálogos
+docs/historia/  enredo_principal.md (a lei do projeto), personagens/, roteiro/
 .claude/agents/ agentes especializados deste projeto
 ```
 

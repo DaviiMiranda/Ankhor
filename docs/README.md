@@ -54,25 +54,29 @@ docs/
 │   ├── labirinto.md               # Labirinto escuro com robôs (jogável pelo menu Fases)
 │   └── template_fase.md           # Modelo padronizado para documentação de novas fases/áreas
 │
-├── personagens/                   # Fichas técnicas e mecânica de personagens
-│   ├── README.md                  # Arquitetura de personagens no Godot (Jogador vs Robôs)
-│   ├── gabriel.md                 # Funcionamento mecânico do jogador (estados, estamina, inventário)
-│   ├── robos.md                   # Funcionamento dos robôs de IA (sensores, FSM e patrulhas)
-│   ├── antecessores.md            # Versão antiga dos personagens (não vale mais; ver o Enredo Principal)
-│   └── template_personagem.md     # Modelo padronizado para novas fichas de personagens
-│
 ├── dialogos/                      # Sistema de conversação e falas
 │   ├── README.md                  # Arquitetura técnica desacoplada via sinais no Godot 4.7
 │   └── template_dialogo.md        # Modelo estrutural (JSON / GDScript) para criação de diálogos
 │
-├── historia/                      # Estrutura narrativa e narrativa ambiental
-│   ├── README.md                  # Funcionamento das camadas narrativas (presente vs sonhos)
-│   ├── revelacao_central.md       # Revelação central (Gabriel como paradoxo da Âncora) e o final
-│   └── template_documento.md      # Modelo padronizado para documentos, bilhetes e relíquias
-│
-└── roteiro/                       # Roteirização cinematográfica e cutscenes
-    ├── README.md                  # Diretrizes gerais de roteiro
-    └── cutscenes/                 # Estrutura técnica e documentação de cutscenes
-        ├── README.md              # Padrão de implementação de cutscenes no Godot
-        └── seg_acordar.md         # Cutscene inicial do despertar de Gabriel
+└── historia/                      # História, personagens e roteiro
+    ├── enredo_principal.md        # A LEI DO PROJETO: história, mundo, personagens e pendências
+    ├── README.md                  # Funcionamento das camadas narrativas (presente vs sonhos)
+    ├── revelacao_central.md       # Versão antiga da história (loops); não vale mais
+    ├── template_documento.md      # Modelo padronizado para documentos, bilhetes e relíquias
+    ├── personagens/               # Fichas de produção de cada personagem
+    │   ├── README.md              # Quem é quem e como os personagens funcionam no Godot
+    │   ├── gabriel.md             # O protagonista: estados, estamina, inventário
+    │   ├── baltazar.md            # ~1750, antepassado de Gabriel
+    │   ├── diana.md               # 1978, recruta da polícia
+    │   ├── clarice.md             # 1994, aluna de processamento de dados
+    │   ├── rafael.md              # 2008, segurança noturno
+    │   ├── pesquisador.md         # 2019, aluno de iniciação científica
+    │   ├── zane.md                # 2123, o último a chegar
+    │   ├── robos.md               # Os inimigos da IA: sensores, FSM e patrulhas
+    │   └── template_personagem.md # Modelo para novas fichas
+    └── roteiro/                   # Roteirização cinematográfica e cutscenes
+        ├── README.md              # Diretrizes gerais de roteiro
+        └── cutscenes/             # Estrutura técnica e documentação de cutscenes
+            ├── README.md          # Padrão de implementação de cutscenes no Godot
+            └── seg_acordar.md     # Cutscene inicial do despertar de Gabriel
 ```

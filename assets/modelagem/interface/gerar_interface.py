@@ -306,7 +306,7 @@ def papel_pergaminho():
     """O diário do Baltazar (1750): pergaminho amarelado, bordas comidas e
     escuras, manchas de umidade. No canto de baixo, o esboço a pena que ele
     fez do robô: a cabeça, o olho de vidro e duas linhas saindo do olho, o
-    "cone" do que o robô enxerga (docs/personagens/robos.md: a visão dos
+    "cone" do que o robô enxerga (docs/historia/personagens/robos.md: a visão dos
     robôs é um cone, calculado por produto escalar)."""
     img = Imagem(LARGURA_PAPEL, ALTURA_PAPEL)
     X, Y = img.X, img.Y
