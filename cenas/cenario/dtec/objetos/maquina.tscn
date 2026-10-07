@@ -1,0 +1,37 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/cenario/objeto_cenario.gd" id="1_objeto"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/dtec/objetos/maquina.png" id="2_sprite"]
+
+[sub_resource type="Gradient" id="Gradient_faisca"]
+colors = PackedColorArray(0.85, 1, 1, 1, 0.3, 0.9, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="Pegada"]
+size = Vector2(150, 22)
+
+[node name="Maquina" type="StaticBody2D"]
+script = ExtResource("1_objeto")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_sprite")
+centered = false
+offset = Vector2(-88, -154)
+
+[node name="Pegada" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11.0)
+shape = SubResource("Pegada")
+
+[node name="Faiscas" type="CPUParticles2D" parent="."]
+position = Vector2(0, -88)
+amount = 28
+lifetime = 1.8
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector2(0, -1)
+spread = 70.0
+gravity = Vector2(0, -6)
+initial_velocity_min = 4.0
+initial_velocity_max = 14.0
+scale_amount_min = 1.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_faisca")
