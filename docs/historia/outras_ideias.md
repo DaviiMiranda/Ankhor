@@ -5,9 +5,35 @@
 >
 > **Regras:**
 > - Cada ideia tem um **número** (para aprovar, basta dizer "aprovo a ideia 3") e diz **qual pendência do Enredo Principal (seção 12) ela resolve**.
-> - Os números não mudam: ideia nova recebe o próximo número livre, e ideia aprovada ou descartada sai do documento sem renumerar as outras.
+> - Os números não mudam: ideia nova recebe o próximo número livre (e entra também no índice), e ideia aprovada ou descartada sai do documento e do índice sem renumerar as outras.
 > - Ideias que resolvem pendências podem ser adicionadas aqui. Ideias de outro tipo só entram quando o Davi pedir.
 > - Este documento **nunca** altera o Enredo Principal. O Enredo só muda quando o Davi pedir.
+
+---
+
+## Índice das ideias
+
+| Nº | Ideia | Resolve |
+|---|---|---|
+| 1 | Um por pulso | 12.1 Como cada um volta |
+| 2 | Pegar o pulso certo | 12.1 Como cada um volta |
+| 3 | Fechar a fenda de uma vez | 12.1 Como cada um volta |
+| 4 | A IA no caminho | 12.1 Como cada um volta (e parte da 12.2) |
+| 5 | Os pulsos como relógio | 12.1 Quanto tempo Gabriel tem |
+| 6 | O Zane fica | 12.1 Alguém escolhe não voltar? |
+| 7 | O Baltazar não pode ficar | 12.1 Alguém escolhe não voltar? |
+| 8 | Ela esperou 32 anos | 12.1 O final de Gabriel e Clarice |
+| 9 | Ela escolhe 2026 | 12.1 O final de Gabriel e Clarice |
+| 10 | A Âncora é a bateria da IA | 12.2 O objetivo da IA (e parte da 12.6) |
+| 11 | A IA era a zeladora | 12.2 Por que a humanidade abandonou a Terra |
+| 12 | O segredo do pesquisador | 12.3 Algum personagem atrapalha? |
+| 13 | Lucas, Mateus ou Henrique | 12.3 Nome do pesquisador |
+| 14 | Clarice primeiro | 12.3 Ordem de chegada |
+| 15 | Esconderijos por afinidade | 12.3 Quem fica em qual esconderijo |
+| 16 | As câmeras | 12.3 Como o Rafael parece ver Gabriel |
+| 17 | A noite em que cada um caiu | 12.4 O que os sonhos mostram |
+| 18 | A escala de turnos da IA | 12.5 De onde vem a grade dos robôs |
+| 19 | Cada gadget vem de alguém | 12.6 Gadgets e personagens |
 
 ---
 
