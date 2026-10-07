@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/dtec/chao/chao_dtec_elevado_fundo.png" id="1_peca"]
+
+[node name="ChaoDtecElevadoFundo" type="Sprite2D"]
+texture = ExtResource("1_peca")
+centered = false
