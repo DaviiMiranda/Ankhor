@@ -17,21 +17,23 @@
 #   carlos_referencia.png          frente, 3/4, lado e costas, e os retratos
 #   assets/modelagem/personagens/carlos.blend   o modelo
 #
-# Quem é: a ideia 23 de docs/historia/outras_ideias.md, AINDA NÃO APROVADA.
-# Cientista que já vivia em 3026 e criou a Âncora. Quando a humanidade foi
-# embora, ele ficou, obcecado por uma época antiga (a ideia sugere os anos
-# 60), para fugir para ela. Este modelo é o visual dele caso a ideia entre;
-# se a ideia mudar, o visual muda junto.
+# Quem é (docs/historia/personagens/carlos.md): o antagonista. Cientista
+# que já vivia em 3026 e criou a Âncora. Quando o pouco que sobrou da
+# humanidade foi embora da Terra, ele ficou, obcecado pelos anos 80, para
+# fugir para lá. Controla os robôs.
 #
-# O visual conta isso (o "cientista maluco" pedido pelo Davi):
+# O visual conta isso (o "cientista maluco" pedido pelo Davi; a idade e a
+# aparência estavam pendentes no Enredo, seção 12.2):
 #   - mais velho que todo o grupo (que tem uns 20 anos): cabelo grisalho
 #     arrepiado dos lados, careca no alto, sobrancelhas grossas, magro e
 #     pálido de quem vive trancado no laboratório;
 #   - o cientista: jaleco comprido até o joelho, sujo e manchado, com
 #     canetas no bolso, luvas de borracha pretas;
-#   - a obsessão pela época antiga, por baixo do jaleco: colete de tricô,
-#     camisa clara, gravata fina mostarda, calça de tergal marrom e sapato
-#     social, como um professor dos anos 60, e óculos de aro grosso;
+#   - a obsessão pelos anos 80, por baixo do jaleco: camiseta estampada
+#     em cores fortes (magenta, turquesa e amarelo), jeans lavado claro,
+#     tênis branco de cano alto com a faixa vermelha, relógio-calculadora
+#     digital no pulso e óculos grandes de aro grosso. Roupa de um tempo
+#     que ele nunca viveu, num corpo de 3026;
 #   - o lado de 3026: uma lupa articulada com lente VERMELHA presa nos
 #     óculos, sobre o olho direito, e um controle com luz vermelha no cinto.
 #     É o mesmo vermelho dos olhos dos robôs: na ideia, ele controla parte
@@ -73,11 +75,15 @@ def criar_materiais():
         "cabelo": m.novo("cabelo", "#bdb9b2"),
         "jaleco": m.novo("jaleco", "#d6d4cc"),
         "mancha": m.novo("mancha", "#a59c86"),
-        "camisa": m.novo("camisa", "#b9c7cf"),
-        "gravata": m.novo("gravata", "#c08a2c"),
-        "trico": m.novo("trico", "#6b5a3a"),
-        "calca": m.novo("calca", "#5a4838"),
-        "sapato": m.novo("sapato", "#3a2a20"),
+        "camiseta": m.novo("camiseta", "#c23b8a"),
+        "estampa_turquesa": m.novo("estampa_turquesa", "#2fb5b0", "plano"),
+        "estampa_amarela": m.novo("estampa_amarela", "#e8c53a", "plano"),
+        "calca": m.novo("calca", "#7d93b5"),            # jeans lavado (stone wash)
+        "tenis": m.novo("tenis", "#e6e3da"),
+        "faixa_tenis": m.novo("faixa_tenis", "#c2453a", "plano"),
+        "sola": m.novo("sola", "#a39d90"),
+        "relogio": m.novo("relogio", "#2a2a2e"),
+        "visor": m.novo("visor", "#9fbf8a", "plano"),
         "luva": m.novo("luva", "#25252b"),
         "metal": m.novo("metal", "#7d848d", aspereza=0.5),
         "caneta_azul": m.novo("caneta_azul", "#3d5fa8", "plano"),
@@ -99,24 +105,29 @@ def criar_materiais():
 
 
 def perna(nome, lado, mt, quadril, giro_coxa, giro_joelho):
-    """Calça de tergal marrom e sapato social."""
+    """Jeans lavado e tênis branco de cano alto, com a faixa vermelha."""
     junta = c.pivo(f"{nome}Quadril", (0.09 * lado, 0.0, 0.0), quadril, (giro_coxa, 0, 0))
     c.membro(f"{nome}Coxa", 0.078, 0.064, 0.42, mt["calca"], junta)
     joelho = c.pivo(f"{nome}Joelho", (0, 0, -0.42), junta, (giro_joelho, 0, 0))
     c.membro(f"{nome}Canela", 0.064, 0.058, 0.38, mt["calca"], joelho)
     tornozelo = c.pivo(f"{nome}Tornozelo", (0, 0, -0.38), joelho, (-giro_coxa - giro_joelho, 0, 0))
-    c.caixa(f"{nome}Sapato", (0.095, 0.26, 0.07), (0, -0.045, -0.055), mt["sapato"], tornozelo, bisel=0.022)
-    c.caixa(f"{nome}Sola", (0.1, 0.27, 0.02), (0, -0.045, -0.09), mt["sapato"], tornozelo)
+    c.caixa(f"{nome}Tenis", (0.11, 0.26, 0.12), (0, -0.04, -0.035), mt["tenis"], tornozelo, bisel=0.025)
+    c.caixa(f"{nome}FaixaTenis", (0.114, 0.12, 0.02), (0, -0.03, -0.04), mt["faixa_tenis"], tornozelo, (-20, 0, 0))
+    c.caixa(f"{nome}Sola", (0.115, 0.27, 0.025), (0, -0.045, -0.088), mt["sola"], tornozelo)
 
 
-def braco(nome, lado, mt, tronco, giro_ombro, giro_cotovelo):
-    """Manga comprida do jaleco e a luva de borracha preta."""
+def braco(nome, lado, mt, tronco, giro_ombro, giro_cotovelo, relogio=False):
+    """Manga comprida do jaleco e a luva de borracha preta. No braço
+    esquerdo, o relógio-calculadora digital por cima da luva."""
     ombro = c.pivo(f"{nome}Ombro", (0.22 * lado, 0.0, 0.47), tronco, (giro_ombro, 4 * lado, 0))
     c.membro(f"{nome}Braco", 0.068, 0.06, 0.31, mt["jaleco"], ombro)
     cotovelo = c.pivo(f"{nome}Cotovelo", (0, 0, -0.31), ombro, (giro_cotovelo, 0, 0))
     c.membro(f"{nome}Antebraco", 0.06, 0.056, 0.24, mt["jaleco"], cotovelo)
     c.cone(f"{nome}Luva", 0.045, 0.05, 0.06, (0, 0, -0.24), mt["luva"], cotovelo, lados=6)
     c.caixa(f"{nome}Mao", (0.058, 0.085, 0.1), (0, 0, -0.3), mt["luva"], cotovelo, bisel=0.02)
+    if relogio:
+        c.cone(f"{nome}Relogio", 0.054, 0.054, 0.035, (0, 0, -0.245), mt["relogio"], cotovelo, lados=6)
+        c.caixa(f"{nome}RelogioVisor", (0.03, 0.01, 0.02), (0, -0.054, -0.245), mt["visor"], cotovelo)
 
 
 def cabeca(mt, tronco):
@@ -127,7 +138,7 @@ def cabeca(mt, tronco):
     for lado in (-1, 1):
         c.caixa(f"Orelha{lado}", (0.03, 0.05, 0.065), (0.098 * lado, 0.01, 0.12), mt["pele"], pescoco)
         c.caixa(f"Olho{lado}", (0.028, 0.006, 0.024), (0.045 * lado, -0.116, 0.135), mt["olho"], pescoco)
-        # Óculos de aro grosso (anos 60): lente clara com o aro inteiro em volta.
+        # Óculos grandes de aro grosso (anos 80): lente clara com o aro inteiro em volta.
         c.caixa(f"Lente{lado}", (0.06, 0.006, 0.046), (0.047 * lado, -0.112, 0.135), mt["lente"], pescoco)
         c.caixa(f"AroCima{lado}", (0.068, 0.012, 0.016), (0.047 * lado, -0.115, 0.162), mt["oculos"], pescoco)
         c.caixa(f"AroBaixo{lado}", (0.062, 0.012, 0.01), (0.047 * lado, -0.115, 0.109), mt["oculos"], pescoco)
@@ -169,16 +180,17 @@ def montar(mt):
     # Curvado para a frente.
     tronco = c.pivo("Tronco", (0, 0, 0), quadril, (11, 0, 0))
     c.caixa("Bacia", (0.29, 0.15, 0.15), (0, 0, 0.0), mt["calca"], tronco, bisel=0.03)
-    # Jaleco comprido até perto do joelho, aberto na frente: aparecem o
-    # colete de tricô, a camisa, a gravata fina e a calça.
+    # Jaleco comprido até perto do joelho, aberto na frente: aparecem a
+    # camiseta estampada dos anos 80 e o jeans.
     c.cone("Jaleco", 0.24, 0.215, 0.86, (0, 0, 0.13), mt["jaleco"], tronco, lados=8, achatar=0.6)
     c.caixa("GolaJaleco", (0.3, 0.15, 0.05), (0, 0.01, 0.53), mt["jaleco"], tronco, bisel=0.015)
     for lado in (-1, 1):
         c.caixa(f"Lapela{lado}", (0.04, 0.02, 0.3), (0.07 * lado, -0.136, 0.4), mt["jaleco"], tronco, (0, 10 * lado, 0))
         c.caixa(f"BolsoBaixo{lado}", (0.1, 0.015, 0.08), (0.14 * lado, -0.135, -0.05), mt["jaleco"], tronco)
-    c.caixa("Colete", (0.13, 0.02, 0.32), (0, -0.132, 0.3), mt["trico"], tronco)
-    c.caixa("Camisa", (0.06, 0.02, 0.08), (0, -0.137, 0.49), mt["camisa"], tronco)
-    c.caixa("Gravata", (0.026, 0.012, 0.3), (0, -0.145, 0.36), mt["gravata"], tronco)
+    c.caixa("Camiseta", (0.13, 0.02, 0.42), (0, -0.132, 0.31), mt["camiseta"], tronco)
+    c.caixa("EstampaFaixa", (0.13, 0.024, 0.03), (0, -0.134, 0.4), mt["estampa_turquesa"], tronco)
+    c.caixa("EstampaTriangulo", (0.045, 0.026, 0.045), (0, -0.135, 0.3), mt["estampa_amarela"], tronco, (0, 45, 0))
+    c.caixa("EstampaRisco", (0.08, 0.026, 0.016), (0.0, -0.135, 0.22), mt["estampa_turquesa"], tronco, (0, -20, 0))
     c.caixa("AberturaCalca", (0.12, 0.02, 0.3), (0, -0.138, -0.13), mt["calca"], tronco)
     # Manchas no jaleco e as canetas no bolso do peito.
     c.caixa("Mancha0", (0.07, 0.012, 0.05), (0.15, -0.128, 0.1), mt["mancha"], tronco, (0, 20, 0))
@@ -192,7 +204,7 @@ def montar(mt):
     c.caixa("Controle", (0.05, 0.08, 0.1), (-0.235, -0.02, 0.02), mt["metal"], tronco, bisel=0.01)
     c.caixa("ControleLuz", (0.01, 0.025, 0.02), (-0.262, -0.03, 0.045), mt["luz_vermelha"], tronco)
     braco("BracoDir", -1, mt, tronco, -10, -18)
-    braco("BracoEsq", +1, mt, tronco, -8, -22)
+    braco("BracoEsq", +1, mt, tronco, -8, -22, relogio=True)
     cabeca(mt, tronco)
     return raiz
 
