@@ -16,6 +16,15 @@ Formato:
 
 ---
 
+## 2026-10-07 — Ideias 6, 7 e 15 aprovadas: o Zane fica, o Baltazar volta e os esconderijos
+**Decisão:**
+- **Ideia 6:** no fim, **o Zane escolhe ficar em 3026** para tentar domar a IA por dentro, em vez de voltar para 2123.
+- **Ideia 7:** **o Baltazar quer ficar em 3026, mas precisa voltar**, ou a família de Gabriel não existe. Gabriel tem que convencê-lo.
+- **Ideia 15, com ajustes do Davi:** o **bunker** fica com a Clarice e o pesquisador (e depois o Zane); o **posto de guarda** fica com o Rafael; o **Baltazar** tem um esconderijo **dentro da Biblioteca** (no lugar do terraço da ideia original). O esconderijo da Diana continua pendente.
+
+**Por quê:** aprovação do Davi das ideias 6, 7 e 15 de `docs/historia/outras_ideias.md`.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 5, 6, Ato 4 e pendências 12.1 e 12.3), as fichas de Baltazar, Zane, Gabriel, Clarice, pesquisador e Rafael, e `docs/historia/outras_ideias.md` (as três ideias saíram).
+
 ## 2026-10-07 — A Âncora fica no Bloco J, e cada personagem tem a sua ficha completa
 **Decisão:**
 - A **Âncora** está no **Bloco J**, o bloco de tecnologia da Unifor. A fenda continua se abrindo no chão da Biblioteca.

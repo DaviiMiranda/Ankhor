@@ -30,7 +30,7 @@
 ## 4. No jogo
 
 - **Onde aparece:** pelo rádio desde a Biblioteca. Em pessoa, no posto de guarda (fase pendente).
-- **Esconderijo:** o "posto de guarda", uma sala de manutenção. Pode servir de **sala segura**.
+- **Esconderijo:** o "posto de guarda", uma sala de manutenção, onde fica sozinho. Pode servir de **sala segura**.
 - **Como chega ao jogador:** **rádio ao vivo** (o rádio portátil é um item comum do inventário) e, depois, em pessoa.
 - **Função na jogabilidade:** dicas sobre as **rotinas de patrulha dos robôs** ("Antes de virar, ele dá um bipe. Ouviu o bipe, se esconde."). As dicas continuam valendo porque os robôs repetem a mesma rotina há séculos. As transmissões tocam sem pausar o jogo. Ver [`../../mecanicas/registros_e_caderno.md`](../../mecanicas/registros_e_caderno.md).
 - **Parte para consertar a Âncora:** conhece o campus e as rondas, e sabe o que cada chave abre.

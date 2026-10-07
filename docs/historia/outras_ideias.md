@@ -20,8 +20,6 @@
 | 3 | Fechar a fenda de uma vez | 12.1 Como cada um volta |
 | 4 | A IA no caminho | 12.1 Como cada um volta (e parte da 12.2) |
 | 5 | Os pulsos como relógio | 12.1 Quanto tempo Gabriel tem |
-| 6 | O Zane fica | 12.1 Alguém escolhe não voltar? |
-| 7 | O Baltazar não pode ficar | 12.1 Alguém escolhe não voltar? |
 | 8 | Ela esperou 32 anos | 12.1 O final de Gabriel e Clarice |
 | 9 | Ela escolhe 2026 | 12.1 O final de Gabriel e Clarice |
 | 10 | A Âncora é a bateria da IA | 12.2 O objetivo da IA (e parte da 12.6) |
@@ -29,7 +27,6 @@
 | 12 | O segredo do pesquisador | 12.3 Algum personagem atrapalha? |
 | 13 | Lucas, Mateus ou Henrique | 12.3 Nome do pesquisador |
 | 14 | Clarice primeiro | 12.3 Ordem de chegada |
-| 15 | Esconderijos por afinidade | 12.3 Quem fica em qual esconderijo |
 | 16 | As câmeras | 12.3 Como o Rafael parece ver Gabriel |
 | 17 | A noite em que cada um caiu | 12.4 O que os sonhos mostram |
 | 18 | A escala de turnos da IA | 12.5 De onde vem a grade dos robôs |
@@ -70,18 +67,6 @@ Combina com qualquer uma das ideias 1, 2 e 3. Em algum momento a IA percebe o qu
 ### Ideia 5 — Os pulsos como relógio
 
 Sem cronômetro na tela. A cada pulso (por exemplo, uma vez por fase), o campus treme, uma luz branca atravessa as janelas e alguma coisa muda: um corredor desaba, uma sala nova se abre, os robôs trocam de rota. O jogador sente o tempo passar pelo mundo, e não por um número. É também o pulso que traz o Zane.
-
----
-
-## Resolve 12.1 — Alguém escolhe não voltar?
-
-### Ideia 6 — O Zane fica
-
-Voltar para 2123 é voltar para o mundo que vai virar o da IA. Fiel ao defeito dele (acha que toda máquina tem conserto), o Zane decide ficar em 3026 para tentar "domar" a IA por dentro. Dá um final agridoce sem tirar o final feliz dos outros.
-
-### Ideia 7 — O Baltazar não pode ficar
-
-O contrário de uma escolha: o Baltazar até quer ficar (para ele, 3026 é um milagre a estudar), mas **precisa** voltar, ou a família de Gabriel não existe. Gabriel tem que convencer o próprio antepassado a ir embora.
 
 ---
 
@@ -134,16 +119,6 @@ O pesquisador descobre que a Âncora consertada só consegue mandar de volta **u
 ### Ideia 14 — Clarice primeiro
 
 A ficha da Clarice já diz que ela "ficou dias sozinha antes de qualquer um aparecer", então ela é a primeira. Uma ordem possível depois dela: **Clarice → Baltazar → Rafael → Diana → pesquisador → Gabriel → Zane**. O pesquisador chegando pouco antes de Gabriel deixa pouco tempo para os outros desconfiarem dele.
-
----
-
-## Resolve 12.3 — Quem fica em qual esconderijo
-
-### Ideia 15 — Por afinidade
-
-- **Bunker:** Clarice e o pesquisador (os dois da teoria e do código). Depois, o Zane, quando Gabriel o traz.
-- **Posto de guarda:** Rafael e Diana (os dois de farda; ele é o único que a acalma).
-- **Um terraço ou o alto de um prédio:** Baltazar, sozinho, perto do céu e das estrelas.
 
 ---
 

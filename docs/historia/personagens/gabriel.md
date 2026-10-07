@@ -25,7 +25,7 @@
 
 | Com | Dinâmica |
 |---|---|
-| [Baltazar](baltazar.md) | Família descoberta. Gabriel conta ao Baltazar que é descendente dele |
+| [Baltazar](baltazar.md) | Família descoberta. Gabriel conta ao Baltazar que é descendente dele e, no fim, precisa convencê-lo a voltar para 1750 |
 | [Clarice](clarice.md) | Duelo de ironias: os dois se provocam o tempo todo no mesmo tom, e é assim que a relação cresce ao longo do jogo |
 | [Zane](zane.md) | Gabriel deixa de ser o novato e vira o veterano que explica tudo |
 

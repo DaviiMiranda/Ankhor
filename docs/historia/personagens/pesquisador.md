@@ -28,7 +28,7 @@ Ainda não definidas.
 ## 4. No jogo
 
 - **Onde aparece:** pendente.
-- **Esconderijo:** pendente.
+- **Esconderijo:** o **bunker**, com a Clarice. Depois, o Zane chega também.
 - **Como chega ao jogador:** pendente (em pessoa, registros ou os dois).
 - **Função na jogabilidade:** pendente.
 - **Parte para consertar a Âncora:** a teoria por trás das equações.
