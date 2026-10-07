@@ -1,6 +1,6 @@
 # Zane (2123), o último a chegar
 
-> **Status:** Em definição.
+> **Status:** Em desenvolvimento. Visual e sprites prontos; ainda sem cena no jogo.
 > **Lei do projeto:** esta ficha faz parte do [Enredo Principal](../enredo_principal.md) e tem a mesma autoridade: quem o Zane é vale como está escrito aqui. A história em volta dele (o acidente, a ordem dos acontecimentos, as pendências) está no Enredo.
 
 ---
