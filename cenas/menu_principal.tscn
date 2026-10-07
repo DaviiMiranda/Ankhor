@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://dados/fases/06_nami.tres" id="f_6"]
 [ext_resource type="Resource" path="res://dados/fases/07_reitoria.tres" id="f_7"]
 [ext_resource type="Resource" path="res://dados/fases/08_bunker.tres" id="f_8"]
+[ext_resource type="Shader" uid="uid://dkfsu5mqayu3p" path="res://shaders/vinheta.gdshader" id="11_vinheta"]
 
 [sub_resource type="Gradient" id="Gradient_luz"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -41,6 +42,15 @@ height = 102
 fill = 1
 fill_from = Vector2(0.5, 0.45)
 fill_to = Vector2(1.1, 1.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vinheta"]
+shader = ExtResource("11_vinheta")
+shader_parameter/cor = Color(0.01, 0.01, 0.03, 1)
+shader_parameter/inicio = 0.75
+shader_parameter/fim = 1.4
+shader_parameter/forca = 0.92
+shader_parameter/niveis = 5.0
+shader_parameter/tamanho = Vector2(320, 180)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_crt"]
 shader = ExtResource("3_crt")
@@ -128,7 +138,7 @@ script = ExtResource("2_camada")
 deslocamento_maximo = 5.0
 
 [node name="Cenario" type="Sprite2D" parent="Mesa"]
-light_mask = 2
+light_mask = 6
 position = Vector2(-10, -10)
 texture = ExtResource("5_mesa")
 centered = false
@@ -347,14 +357,29 @@ range_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_luz")
 texture_scale = 2.4
 
+[node name="Luminaria" type="PointLight2D" parent="Mesa"]
+position = Vector2(268, 140)
+color = Color(1, 0.68, 0.35, 1)
+energy = 0.3
+range_item_cull_mask = 4
+texture = SubResource("GradientTexture2D_luz")
+texture_scale = 0.9
+
 [node name="Frente" type="Node2D" parent="."]
 script = ExtResource("2_camada")
 deslocamento_maximo = 10.0
 
 [node name="Cenario" type="Sprite2D" parent="Frente"]
+light_mask = 4
 position = Vector2(-10, -10)
 texture = ExtResource("6_frente")
 centered = false
+
+[node name="Vinheta" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_vinheta")
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
 
 [node name="Musica" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_trilha")

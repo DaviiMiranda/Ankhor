@@ -12,8 +12,13 @@ const COR_TESTE := Color(1.0, 0.85, 0.2)
 @export var energia_luz: float = 0.9
 @export var oscilacao_luz: float = 0.15
 @export var espera_clique: float = 0.18
+@export var energia_luminaria: float = 0.3
+@export var oscilacao_luminaria: float = 0.06
+@export var piscadas_por_segundo: float = 0.35
+@export var queda_na_piscada: float = 0.15
 
 @onready var luz: PointLight2D = $Mesa/Luz
+@onready var luminaria: PointLight2D = $Mesa/Luminaria
 @onready var menu: VBoxContainer = $Mesa/Menu
 @onready var lista_fases: VBoxContainer = $Mesa/Fases
 @onready var rolagem_fases: ScrollContainer = $Mesa/Fases/Rolagem
@@ -47,6 +52,7 @@ const COR_TESTE := Color(1.0, 0.85, 0.2)
 var _ruido := FastNoiseLite.new()
 var _tempo := 0.0
 var _tocar_ao_passar := false
+var _piscada_restante := 0.0
 
 
 func _ready() -> void:
@@ -100,6 +106,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_tempo += delta
 	luz.energy = energia_luz + _ruido.get_noise_1d(_tempo * 60.0) * oscilacao_luz
+	_atualizar_luminaria(delta)
+
+
+func _atualizar_luminaria(delta: float) -> void:
+	_piscada_restante -= delta
+	if _piscada_restante <= 0.0 and randf() < piscadas_por_segundo * delta:
+		_piscada_restante = randf_range(0.04, 0.14)
+	var energia := energia_luminaria + _ruido.get_noise_1d(_tempo * 90.0 + 500.0) * oscilacao_luminaria
+	if _piscada_restante > 0.0:
+		energia *= queda_na_piscada
+	luminaria.energy = energia
 
 
 func _unhandled_input(evento: InputEvent) -> void:
