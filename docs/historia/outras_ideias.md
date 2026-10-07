@@ -6,6 +6,7 @@
 > **Regras:**
 > - Cada ideia tem um **número** (para aprovar, basta dizer "aprovo a ideia 3") e diz **qual pendência do Enredo Principal (seção 12) ela resolve**.
 > - Os números não mudam: ideia nova recebe o próximo número livre (e entra também no índice), e ideia aprovada ou descartada sai do documento e do índice sem renumerar as outras.
+> - Ideias de **alto impacto** mudam muito a lore: contradizem decisões já tomadas e mexem em vários documentos ao mesmo tempo. Aparecem marcadas no índice e no título, e cada uma lista o que mudaria se fosse aprovada.
 > - Ideias que resolvem pendências podem ser adicionadas aqui. Ideias de outro tipo só entram quando o Davi pedir.
 > - Este documento **nunca** altera o Enredo Principal. O Enredo só muda quando o Davi pedir.
 
@@ -13,27 +14,27 @@
 
 ## Índice das ideias
 
-| Nº | Ideia | Resolve |
-|---|---|---|
-| 1 | Um por pulso | 12.1 Como cada um volta |
-| 2 | Pegar o pulso certo | 12.1 Como cada um volta |
-| 3 | Fechar a fenda de uma vez | 12.1 Como cada um volta |
-| 4 | A IA no caminho | 12.1 Como cada um volta (e parte da 12.2) |
-| 5 | Os pulsos como relógio | 12.1 Quanto tempo Gabriel tem |
-| 8 | Ela esperou 32 anos | 12.1 O final de Gabriel e Clarice |
-| 9 | Ela escolhe 2026 | 12.1 O final de Gabriel e Clarice |
-| 10 | A Âncora é a bateria da IA | 12.2 O objetivo da IA (e parte da 12.6) |
-| 11 | A IA era a zeladora | 12.2 Por que a humanidade abandonou a Terra |
-| 12 | O segredo do pesquisador | 12.3 Algum personagem atrapalha? |
-| 13 | Lucas, Mateus ou Henrique | 12.3 Nome do pesquisador |
-| 14 | Clarice primeiro | 12.3 Ordem de chegada |
-| 16 | As câmeras | 12.3 Como o Rafael parece ver Gabriel |
-| 17 | A noite em que cada um caiu | 12.4 O que os sonhos mostram |
-| 18 | A escala de turnos da IA | 12.5 De onde vem a grade dos robôs |
-| 19 | Cada gadget vem de alguém | 12.6 Gadgets e personagens |
-| 20 | O pesquisador mentiu | 12.3 Algum personagem atrapalha? (e a ordem de chegada) |
-| 21 | O cientista que queria voltar | 12.2 Quem criou a Âncora e por quê |
-| 22 | O drone | Ideia nova pedida pelo Davi: revelação no fim do jogo (toca em 12.1 e 12.2) |
+| Nº | Ideia | Resolve | Impacto |
+|---|---|---|---|
+| 1 | Um por pulso | 12.1 Como cada um volta | — |
+| 2 | Pegar o pulso certo | 12.1 Como cada um volta | — |
+| 3 | Fechar a fenda de uma vez | 12.1 Como cada um volta | — |
+| 4 | A IA no caminho | 12.1 Como cada um volta (e parte da 12.2) | — |
+| 5 | Os pulsos como relógio | 12.1 Quanto tempo Gabriel tem | — |
+| 8 | Ela esperou 32 anos | 12.1 O final de Gabriel e Clarice | — |
+| 9 | Ela escolhe 2026 | 12.1 O final de Gabriel e Clarice | — |
+| 10 | A Âncora é a bateria da IA | 12.2 O objetivo da IA (e parte da 12.6) | — |
+| 11 | A IA era a zeladora | 12.2 Por que a humanidade abandonou a Terra | — |
+| 12 | O segredo do pesquisador | 12.3 Algum personagem atrapalha? | — |
+| 13 | Lucas, Mateus ou Henrique | 12.3 Nome do pesquisador | — |
+| 14 | Clarice primeiro | 12.3 Ordem de chegada | — |
+| 16 | As câmeras | 12.3 Como o Rafael parece ver Gabriel | — |
+| 17 | A noite em que cada um caiu | 12.4 O que os sonhos mostram | — |
+| 18 | A escala de turnos da IA | 12.5 De onde vem a grade dos robôs | — |
+| 19 | Cada gadget vem de alguém | 12.6 Gadgets e personagens | — |
+| 20 | O pesquisador mentiu | 12.3 Algum personagem atrapalha? (e a ordem de chegada) | **Alto** |
+| 21 | O cientista que queria voltar | 12.2 Quem criou a Âncora e por quê | **Alto** |
+| 22 | O drone | Ideia nova pedida pelo Davi: revelação no fim do jogo (toca em 12.1 e 12.2) | **Alto** |
 
 ---
 
@@ -105,7 +106,9 @@ A humanidade partiu depois de um colapso e deixou a IA para cuidar da Terra até
 
 > Pendência: "Quem criou a Âncora e por quê." (O Enredo cita, em aberto, a ideia de um descendente de Gabriel.)
 
-### Ideia 21 — O cientista que queria voltar
+### Ideia 21 — O cientista que queria voltar (alto impacto)
+
+> **Alto impacto:** muda muito a lore. Antes de aprovar, veja o que ela altera no fim desta ideia.
 
 *Ideia do Davi.*
 
@@ -126,7 +129,9 @@ A Âncora foi criada por um **cientista de 3026**, um dos humanos que **não for
 
 O pesquisador descobre que a Âncora consertada só consegue mandar de volta **um número limitado de pessoas** e esconde isso do grupo, porque planeja ir primeiro. Quando a verdade aparece, o grupo precisa decidir quem fica. Combina com o defeito dele (guarda segredos) e com o medo de ter causado tudo.
 
-### Ideia 20 — O pesquisador mentiu
+### Ideia 20 — O pesquisador mentiu (alto impacto)
+
+> **Alto impacto:** muda muito a lore. Antes de aprovar, veja o que ela altera no fim desta ideia.
 
 *Ideia do Davi, com ajustes sugeridos.*
 
@@ -207,7 +212,9 @@ A IA monta os turnos de patrulha para que **dois robôs nunca ocupem o mesmo cor
 
 > Não resolve uma pendência: é uma ideia nova, registrada a pedido do Davi. Toca em 12.1 (quanto tempo Gabriel tem) e 12.2 (a IA e a humanidade).
 
-### Ideia 22 — O drone
+### Ideia 22 — O drone (alto impacto)
+
+> **Alto impacto:** muda muito a lore. Antes de aprovar, veja o que ela altera no fim desta ideia.
 
 *Ideia do Davi.*
 
@@ -218,3 +225,8 @@ Perto do fim do jogo, um **drone desce do céu e pousa no meio da Unifor**. Foi 
 - **Ela vira o prazo final.** O aviso transforma "consertar a Âncora" em urgência: a fenda deixa de ser só o caminho de casa e vira **a única saída da Terra**. Isso pode responder à pendência "Quanto tempo Gabriel tem".
 - **O drone não sabe dos viajantes do tempo.** A mensagem é para os humanos que ficaram (ideia 21). Quem a recebe é o grupo de Gabriel, que não deveria estar ali.
 - **A IA reage ao drone.** Para a IA, o drone também é um invasor. Os robôs indo atrás dele pode ser o que abre caminho para o grupo chegar ao Bloco J.
+
+**O que muda se for aprovada:**
+- No Enredo: o mundo de 3026 (seção 2.1) ganha os humanos que partiram ainda em contato com a Terra e uma **ameaça de fora**; o Ato 4 e o final ganham um novo motivo para a volta (sair da Terra, e não só voltar para casa).
+- Combina com a ideia 21 (os humanos que ficaram) e pode responder às pendências "Quanto tempo Gabriel tem" e "O objetivo da IA".
+- Na produção: uma cena nova perto do fim, com o drone (sprite, animação de pouso e a mensagem).
