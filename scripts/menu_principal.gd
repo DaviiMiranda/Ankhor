@@ -12,7 +12,9 @@ const COR_TESTE := Color(1.0, 0.85, 0.2)
 @export var energia_luz: float = 0.9
 @export var oscilacao_luz: float = 0.15
 @export var espera_clique: float = 0.18
+
 @onready var luz: PointLight2D = $Monitor/Luz
+@onready var video: VideoStreamPlayer = $Video
 @onready var menu: VBoxContainer = $Monitor/Menu
 @onready var lista_fases: VBoxContainer = $Monitor/Fases
 @onready var rolagem_fases: ScrollContainer = $Monitor/Fases/Rolagem
@@ -94,6 +96,8 @@ func _ready() -> void:
 
 	if musica.stream:
 		musica.stream.set("loop", true)
+
+	video.finished.connect(video.play)
 
 
 func _process(delta: float) -> void:

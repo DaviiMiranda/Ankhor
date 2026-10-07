@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-07 — Fundo do menu principal animado (vídeo em loop)
+**Decisão:** o fundo do menu passa a ser um **vídeo em loop de 9 s** (feito a partir do vídeo de referência enviado pelo Davi): papéis voando da estante, vapor saindo do café, relógio andando, LED do monitor piscando. O menu interativo continua desenhado pelo Godot no vidro do monitor, como antes. O vídeo é preparado por `assets/modelagem/menu/preparar_menu.py`, que apaga o menu pintado na tela (cola por cima uma placa parada do vidro limpo), emenda o fim no começo com 1 s de mistura para o loop não dar pulo, tira o áudio (o menu tem a trilha própria) e converte para Ogg Theora (`.ogv`), o único formato de vídeo que o Godot toca sem plugin. Atrás do vídeo fica o primeiro quadro parado (`menu_cena.png`), para não piscar preto na abertura.
+**Por quê:** pedido do Davi: usar o vídeo que anima o fundo do menu.
+**Afeta:** `assets/video/menu/menu_fundo.ogv` (novo), `assets/sprites/menu/menu_cena.png` (agora é o primeiro quadro do vídeo), `assets/modelagem/menu/preparar_menu.py` e `menu_referencia.mp4` (a referência em imagem saiu), `cenas/menu_principal.tscn` (nó `Video`), `scripts/menu_principal.gd`.
+
 ## 2026-10-07 — A Âncora fica no Bloco J, e cada personagem tem a sua ficha completa
 **Decisão:**
 - A **Âncora** está no **Bloco J**, o bloco de tecnologia da Unifor. A fenda continua se abrindo no chão da Biblioteca.
