@@ -130,6 +130,8 @@ A Âncora foi criada por um **cientista de 3026**, um dos humanos que **não for
 
 *Ideia do Davi, desenvolvida na conversa.*
 
+**Visual:** já existe um modelo do Carlos, feito antes da aprovação: [`assets/sprites/personagens/carlos/visual.md`](../../assets/sprites/personagens/carlos/visual.md). Se a ideia mudar, o visual muda junto.
+
 **Quem é:** **Carlos**, um cientista que já vivia em 3026. Está **vivo**, de corpo e tudo. Foi ele quem **criou a Âncora**. O laboratório dele fica no **Bloco M** (no D-Tec); a Âncora continua no Bloco J.
 
 **O mundo dele:** em 3026, a sociedade estava muito ruim e o planeta também. Por isso, a humanidade, ou o pouco que sobrou dela, decidiu ir embora para outro planeta.
