@@ -1,5 +1,5 @@
 # gerar_menu.py — monta no Blender, por código, a cena 3D do menu principal
-# e renderiza cada camada de paralaxe como um PNG de pixel art.
+# e renderiza cada camada (fundo, mesa, frente) como um PNG de pixel art.
 #
 # Como rodar (não precisa abrir o Blender; ele roda "sem janela"):
 #
@@ -52,9 +52,11 @@ ARQUIVO_BLEND = os.path.join(PASTA_SCRIPT, "menu.blend")
 # Tamanho da imagem
 # ---------------------------------------------------------------------------
 
-# O jogo tem 320×180. As camadas se mexem até 10 px para cada lado
-# (paralaxe), então renderizamos com 10 px de sobra em cada borda:
-# 340×200. No Godot o Sprite2D fica em (-10, -10).
+# O jogo tem 320×180. Renderizamos com 10 px de sobra em cada borda
+# (340×200); no Godot o Sprite2D fica em (-10, -10) e a sobra fica fora
+# da tela. A sobra era para a paralaxe com o mouse, que saiu do menu; ela
+# continua aqui para as camadas poderem voltar a se mexer sem renderizar
+# de novo.
 MARGEM = 10
 LARGURA = 320 + 2 * MARGEM
 ALTURA = 180 + 2 * MARGEM
@@ -72,8 +74,7 @@ TELA_Y0, TELA_Y1 = 24 + MARGEM, 126 + MARGEM
 # Por que perspectiva e não ortográfica? A câmera é o ponto de vista de
 # quem está sentado na cabine. Com perspectiva, o que está longe (a
 # estante) fica menor e cabe mais dela no quadro, e o que está perto
-# (cadeira, caneca) fica grande: isso já é a sensação 2.5D que a
-# paralaxe reforça. Numa ortográfica a estante do fundo teria o mesmo
+# (cadeira, caneca) fica grande: isso já dá a sensação 2.5D. Numa ortográfica a estante do fundo teria o mesmo
 # tamanho da mesa e quase não apareceria atrás do monitor.
 #
 # Por que olhar RETO (sem inclinar para baixo)? Um plano paralelo ao
