@@ -4,11 +4,11 @@
 
 ## 0. Na história
 
-- Os robôs pertencem à **IA** que dominou a Terra depois que a humanidade foi embora. Não têm nada a ver com a Âncora.
-- Para a IA, humanos são **invasores**. Por isso os robôs caçam qualquer pessoa que encontram.
+- Os robôs são controlados pelo **Carlos**, o antagonista (ficha em [`carlos.md`](carlos.md)). Se existe também uma IA, e qual a relação dela com o Carlos, está pendente (Enredo Principal, seção 12.2).
+- Caçam qualquer pessoa que encontram. Por que caçam (para capturar e levar ao Bloco M, ou para eliminar) está pendente.
 - Patrulham o campus por **rotinas programadas** e repetem o mesmo caminho há séculos: dá para decorar.
 - Se pegam Gabriel, é game over e o jogo volta ao último checkpoint.
-- Não falam. A IA não tem rosto nem voz e aparece só por eles.
+- Não falam.
 
 ---
 

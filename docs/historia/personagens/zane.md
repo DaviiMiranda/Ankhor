@@ -57,4 +57,4 @@
 ## 8. Pendências
 
 - O que fazia no ponto quando foi puxado, em que fase chega e se o jogador vê o pulso acontecer (Enredo Principal, seção 12.3).
-- A fala sobre "um nome de usuário de 2026", que depende de quem criou a Âncora (seção 12.2).
+- O arco dele (medo da IA, ficar para domá-la) depende de a IA continuar existindo (seção 12.2).
