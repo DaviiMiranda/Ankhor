@@ -16,6 +16,15 @@ Formato:
 
 ---
 
+## 2026-10-07 — Visual do Zane, e Clarice e Zane com os sprites do Gabriel
+**Decisão:**
+- **Visual do Zane:** braço direito de prótese de metal com linhas de luz ciano, olho direito de implante, placa na têmpora e porta na nuca; jaqueta técnica curta **amarelo-ácido** com painéis grafite, zíper na diagonal e gola alta, com a manga do braço de metal cortada no ombro; camiseta preta comprida, calça larga com tiras, botas de sola branca grossa com friso de luz; cabelo raspado dos lados com o topo descolorido num topete. Postura confiante: peito aberto, queixo erguido, passo largo. **Cor de identificação: amarelo-ácido** (Gabriel vermelho, Clarice verde-azulado). O ciano dos implantes é o mesmo da interface holográfica dos áudios dele.
+- **Clarice e Zane têm o mesmo conjunto de sprites do Gabriel**, nos mesmos tamanhos: cinco vistas em pé (lado, frente, 3/4, costas, 3/4 de costas) em 96 × 112, a caminhada (12 quadros) e a respiração (8 quadros) em cada vista, e três retratos de 80 × 80. A Clarice continua com os sprites sentados na estação do bunker.
+- A caminhada, a respiração e o retrato passaram para o `comum.py`, usados pelos três. Os sprites do Gabriel e os sprites antigos da Clarice saíram idênticos.
+
+**Por quê:** pedido do Davi: os dois personagens com todas as dimensões do Gabriel. O visual do Zane segue a direção de arte da ficha dele (implantes visíveis, roupa de um futuro que ninguém reconhece, destoar de todos).
+**Afeta:** `assets/modelagem/personagens/` (`comum.py`, `gerar_gabriel.py`, `gerar_clarice.py`, `gerar_zane.py` novo), `assets/sprites/personagens/clarice/` e `zane/` (novo), `docs/historia/personagens/zane.md` (direção de arte e arquivos). Ainda não há cena do Zane nem da Clarice andando no Godot.
+
 ## 2026-10-07 — A Âncora fica no Bloco J, e cada personagem tem a sua ficha completa
 **Decisão:**
 - A **Âncora** está no **Bloco J**, o bloco de tecnologia da Unifor. A fenda continua se abrindo no chão da Biblioteca.

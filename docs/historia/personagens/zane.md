@@ -44,11 +44,15 @@
 ## 6. Direção de arte
 
 - **O que a aparência precisa comunicar:** um rapaz de 20 anos de 2123, com implantes visíveis, roupa de um futuro que ninguém reconhece, confiante e elétrico. Tem que destoar de todos os outros: é o único que veio de depois de Gabriel.
-- **Visual definido:** ainda não.
+- **Visual definido:** [`assets/sprites/personagens/zane/visual.md`](../../../assets/sprites/personagens/zane/visual.md). Braço direito de prótese com linhas de luz ciano, olho de implante, placa na têmpora e porta na nuca; jaqueta técnica curta amarelo-ácido com gola alta; cabelo raspado dos lados com o topo descolorido.
+- **Cor de identificação:** amarelo-ácido (Gabriel vermelho, Clarice verde-azulado).
+- Sprites em resolução dobrada, com o mesmo conjunto do Gabriel (ver `CLAUDE.md`).
 
 ## 7. Arquivos
 
-Nenhum ainda.
+- **Sprites:** `assets/sprites/personagens/zane/`
+- **Gerador:** `assets/modelagem/personagens/gerar_zane.py`
+- **Cena:** nenhuma ainda.
 
 ## 8. Pendências
 
