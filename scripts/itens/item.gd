@@ -6,6 +6,7 @@ extends Resource
 @export_multiline var descricao: String = ""
 @export var icone: Texture2D
 @export var sprite_chao: Texture2D
+@export var brilho_no_chao: float = 1.0
 
 @export_group("Gadget")
 @export var equipavel: bool = false

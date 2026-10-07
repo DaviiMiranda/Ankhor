@@ -108,14 +108,21 @@ Antagonista sem rosto e sem voz. Aparece só pelos robôs e pelos sistemas que c
 - **A descoberta acontece jogando**, não numa explicação: no meio do jogo, Gabriel vê o mesmo anel com o Baltazar (novo no dedo dele, gasto no de Gabriel). O jogador compara os dois e entende sozinho.
 - **Gabriel conta para o Baltazar** que é descendente dele.
 - Com isso, mandar todos de volta deixa de ser só ajudar os outros: se o Baltazar não voltar para 1750, a família de Gabriel pode nunca existir.
+- **O Baltazar quer ficar, mas não pode.** Para ele, 3026 é um milagre a estudar, e ele quer ficar. Só que precisa voltar, ou a família de Gabriel não existe. Gabriel tem que convencer o próprio antepassado a ir embora.
 
 ---
 
 ## 6. Os esconderijos
 
-- Cada personagem tem um **lugar próprio** no campus, como a Clarice no bunker.
-- Um lugar pode abrigar **2 ou 3 personagens**. O **bunker** é o maior deles: os robôs não descem lá, e é o lugar mais seguro do jogo.
-- Rafael tem o "posto de guarda" numa sala de manutenção.
+- Cada personagem tem um **lugar próprio** no campus. Um lugar pode abrigar **2 ou 3 personagens**.
+
+| Esconderijo | Quem fica |
+|---|---|
+| **Bunker**, embaixo do núcleo da Âncora. O maior e mais seguro: os robôs não descem lá | Clarice e o pesquisador. Depois, o Zane, quando Gabriel o traz |
+| **Posto de guarda**, a sala de manutenção que o Rafael transformou | Rafael |
+| **Biblioteca**, num esconderijo dentro dela | Baltazar |
+| **Bloco de salas**, numa das salas de aula | Diana |
+
 - Os esconderijos funcionam como pontos de encontro: Gabriel volta a eles para conversar e acompanhar o que cada um descobriu.
 
 ---
@@ -164,7 +171,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 ### Ato 2 — Encontrar os outros (Bloco de salas, Labirinto e demais áreas)
 
 - Cada fase leva a **um personagem** e ao esconderijo dele. Gabriel precisa chegar lá, ganhar a confiança da pessoa e receber a parte dela para consertar a Âncora (seção 3.1).
-- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. Hoje só tem cenário e portas.
+- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Diana**, numa das salas. Hoje só tem cenário e portas.
 - **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): subsolo escuro do centro de pesquisa da Âncora, com três robôs. Jogável, mas sem lugar na história ainda.
 - As áreas seguintes do GDD (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) ainda não foram redefinidas para a premissa atual.
 - **Rádio e telefone:** Rafael fala pelo rádio e Clarice liga pelos telefones velhos.
@@ -183,6 +190,8 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 
 - A reta final passa pela **comporta do núcleo**, no setor B do bunker.
 - Com as partes de todos reunidas, Gabriel e os outros tentam consertar a Âncora e mandar cada um para a sua noite.
+- **O Zane escolhe ficar.** Voltar para 2123 é voltar para o mundo que vai virar o da IA. Fiel ao defeito dele (acha que toda máquina tem conserto), ele decide ficar em 3026 para tentar domar a IA por dentro. Um final agridoce que não tira o final dos outros.
+- **O Baltazar volta para 1750**, mesmo querendo ficar: Gabriel precisa convencê-lo (seção 5).
 - Como isso acontece e como o jogo termina está nas pendências (seção 12).
 
 ---
@@ -239,7 +248,6 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 
 - **Quanto tempo Gabriel tem:** se a fenda crescendo vira um prazo que o jogador sente (dias contados, pulsos que estremecem o campus) ou fica só na história.
 - **Como cada um volta:** todos de uma vez no final, ou um por um, conforme a Âncora vai sendo consertada.
-- **Alguém escolhe não voltar?** (Zane, que vem de um futuro pior; Clarice, dependendo da relação com Gabriel.)
 - **O final** de Gabriel e Clarice. O final antigo ("A mesma madrugada": os dois acordam juntos em 2026, e ela rasga a página das equações) foi escrito para a versão com loops e precisa ser revisto.
 
 ### 12.2 A IA e a Âncora
@@ -255,7 +263,8 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 - **Nome do pesquisador de 2019**, e como ele aparece no jogo.
 - **Zane:** o que fazia no ponto quando foi puxado, e em que fase do jogo ele chega (e se o jogador vê o pulso acontecer).
 - **Ordem de chegada dos outros cinco** (Baltazar, Diana, Clarice, Rafael e o pesquisador), que chegaram antes de Gabriel. Não precisa seguir a ordem dos anos.
-- **Quem fica em qual esconderijo**, e quem divide o bunker com a Clarice.
+- **Qual sala de aula** do Bloco de salas é o esconderijo da Diana.
+- **Onde fica, dentro da Biblioteca, o esconderijo do Baltazar**, e como ele combina com o acampamento vazio que Gabriel acha no começo do jogo e com a última página do diário ("Hei de seguir a luz até onde ella nasce").
 - **Como o Rafael parece ver Gabriel** pelo rádio ("Ele falou como se estivesse me vendo").
 
 ### 12.4 Textos já escritos que citam a versão antiga
