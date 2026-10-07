@@ -1,57 +1,170 @@
 # Fase 1 — Biblioteca
 
-> **Status:** Primeira fase confirmada / Em desenvolvimento  
-> **Área:** Biblioteca da Unifor  
-> **Ponto de Partida:** Gabriel acorda nesta fase após ser puxado de uma madrugada de 2026 para o ano de 3026 pela fenda temporal da Âncora.
+> **Status:** Primeira fase confirmada. Planejamento aprovado em 2026-10-07; implementação em andamento.
+> **Área:** Biblioteca da Unifor
+> **Ponto de partida:** Gabriel acorda nesta fase depois de ser puxado de uma madrugada de 2026 para 3026 pela fenda da Âncora.
+> **História:** o que a Biblioteca conta segue o [Enredo Principal](../historia/enredo_principal.md) (Ato 1), que é a lei do projeto.
 
 ---
 
-## 1. Visão Geral da Área
+## 1. Visão geral
 
-- **Nome do Local:** Biblioteca Central da Unifor (Ano 3026).
-- **Ambientação Visual:** O campus mil anos no futuro como centro de física do tempo arruinado pela explosão da Âncora. Vegetação, poeira e feixes de luz natural.
-- **Implementação no Godot:**
-  - Cena: `cenas/salas/biblioteca.tscn`
-  - Script: `scripts/salas/biblioteca.gd`
-  - Formato: Sala em vista lateral 2.5D ampliada: 1440 × 420 px (4,5 telas de largura; parte sul com profundidade y-sort de 122 a 416).
-  - **Ala leste** (x de 960 a 1440, depois da coluna do meio): a sala de periódicos. Um terceiro buraco no teto com uma árvore nova embaixo, mesas de leitura, cabines e, no fundo sul, um segundo acervo com corredores para se esconder. A **porta de saída** (para os Blocos de aula) fica no fim dela.
-  - Itens iniciais: lanterna perto do ponto de despertar do Gabriel; três pilhas (duas no lado escuro do salão, uma no acervo leste); doze lampiões de emergência e seis luminárias de parede.
+- **Nome do local:** Biblioteca Central da Unifor, no ano de 3026.
+- **Ambientação:** o campus mil anos depois, em ruínas. Vegetação dentro do prédio, poeira, feixes de luz natural pelos buracos do teto, estantes caídas e vazias, uma árvore no meio do salão.
+- **Ideia da fase:** uma fase no estilo *Resident Evil*. Várias salas ligadas entre si, portas trancadas e um caminho que obriga o jogador a ir e voltar: buscar uma coisa numa sala para abrir outra. O jogador aprende aqui todas as regras do jogo (silêncio, luz, esconderijos, bateria, robôs) e descobre que **não está sozinho**.
 
----
+### 1.1 Estado atual × planejado
 
-## 2. Topologia e Salas
+| | Hoje (no Godot) | Planejado (este documento) |
+|---|---|---|
+| **Formato** | Uma cena só, `cenas/salas/biblioteca.tscn`, de 1440 × 420 px (salão, acervo sul e ala leste com a saída) | **Várias salas ligadas por portas** (seção 2) |
+| **Robôs** | Nenhum | Sentinela no salão e Rastreador no acervo sul (seção 4) |
+| **Registros** | Diário do Baltazar, bilhete da Clarice e duas transmissões do Rafael, já funcionando | Os mesmos, em salas novas (seção 6) |
+| **Itens** | Lanterna e três pilhas | Também a chave da manutenção e uma cápsula de clarão (seção 3.3) |
 
-- **Ponto de Início:** O local da cabine/salão da Biblioteca onde Gabriel desperta em 3026.
-- **Salas e Conexões:** *(A definir com a equipe o mapeamento dos nós vizinhos e saídas da Biblioteca)*
-
----
-
-## 3. Objetivos e Progressão
-
-- **Objetivo Principal:** Explorar a Biblioteca, recuperar os primeiros itens (como a lanterna), encontrar bilhetes deixados pelas pessoas de outras épocas, evitar os robôs de patrulha e encontrar a saída/acesso para as próximas áreas.
-- **Passos e Puzzles:** *(A definir com a equipe)*
+Detalhes da cena atual: script `scripts/salas/biblioteca.gd`; parte sul com profundidade y-sort de 122 a 416; a **ala leste** (x de 960 a 1440) é a sala de periódicos, com um terceiro buraco no teto, mesas, cabines e um segundo acervo; doze lampiões de emergência e seis luminárias de parede.
 
 ---
 
-## 4. Registros dos antecessores
+## 2. Salas e conexões
 
-Só três antecessores aparecem na Biblioteca (fichas em [`../historia/personagens/`](../historia/personagens/)):
+### 2.1 Mapa
 
-- **Acampamento de Baltazar:** um nicho entre as raízes da árvore no meio do salão, com a luneta de latão rachada, um toco de vela e o **diário** embrulhado em pano. Mapas de estrelas riscados na casca e um robô desmontado peça por peça. Sem corpo: o que aconteceu com ele fica em aberto. O diário ensina o ponto fraco dos sensores ópticos.
-- **Bilhete da Clarice:** perto de um terminal, com gírias dos anos 90 e o aviso "não confie nas luzes". Parece uma despedida, e o jogador acha que ela morreu.
-- **Gancho (opcional):** no fim da fase, o telefone do balcão toca pela primeira vez. É a Clarice.
-- **Primeira chamada do Rafael:** Gabriel acha um rádio portátil, e a voz do Rafael dá a primeira dica de patrulha.
-- **Segunda chamada do Rafael:** ao entrar no acervo com o rádio, ele fala como se estivesse vendo o Gabriel.
-- **Implementado.** Posições, gatilhos e como funciona em [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md). O gancho do telefone ainda não.
+```
+ [1 CABINE]──[2 SALÃO PRINCIPAL]════[GRADE]════[7 ALA LESTE]──► saída (Bloco de salas)
+                │      │      │                      │
+       [3 BALCÃO]  [4 ACERVO SUL]  [corredor de serviço]  [acervo leste]
+                │                        │
+     [8 SALA DE TERMINAIS]       [5 MANUTENÇÃO] (sala segura)
+
+     [9 OBRAS RARAS] (porta barrada por dentro: não abre nesta fase)
+```
+
+O **salão principal (2)** é o centro da fase: quase todo caminho passa por ele. Por isso ele é a sala mais vigiada, e o jogador atravessa o salão várias vezes, cada vez de um jeito diferente.
+
+### 2.2 As salas
+
+| Nº | Sala | O que tem | Conexões | Esconderijos | Ameaça |
+|---|---|---|---|---|---|
+| 1 | **Cabine de estudo** | Onde Gabriel acorda. A **lanterna** | 2 | A própria cabine | Nenhuma (tutorial) |
+| 2 | **Salão principal** | A árvore, o **acampamento do Baltazar** e o **diário**. Mesas e estantes caídas | 1, 3, 4, 9, corredor de serviço, grade da ala leste | Atrás das estantes caídas, entre as raízes | **Sentinela** |
+| 3 | **Balcão de atendimento** | Catraca, **telefone**, o **rádio** na base de carregamento da segurança e o **quadro de chaves** com um gancho vazio | 2, 8 | Atrás do balcão | Nenhuma |
+| 4 | **Acervo sul** | Corredores de estantes, uma **pilha** e a **chave da manutenção** num carrinho de devolução de livros | 2 | Os corredores entre as estantes | **Rastreador** |
+| 5 | **Sala de manutenção** | O **quadro de energia**, uma **cápsula de clarão** e uma **pilha**. Fechada e escura: é a **sala segura** | Corredor de serviço | Não precisa: robôs não entram | Nenhuma |
+| 7 | **Ala leste** (periódicos) | Mesas, cabines, o acervo leste (uma **pilha**) e a **porta de saída** | 2 (pela grade), saída | Corredores do acervo leste | Robôs com rota nova (passo 6) |
+| 8 | **Sala de terminais** | O **terminal** com o **bilhete da Clarice** e um **disquete** dela | 3 | Debaixo das mesas | Nenhuma |
+| 9 | **Obras raras** | Porta **barrada por dentro**. Às vezes se ouve alguém do outro lado | 2 | — | — |
+
+A sala 6 (mezanino) saiu do planejamento.
 
 ---
 
-## 5. Inimigos e Ameaças
+## 3. Objetivos e progressão
 
-- *(A definir com a equipe quais modelos de robôs patrulham a Biblioteca)*
+**Objetivo:** sair da Biblioteca pela porta da ala leste, rumo ao Bloco de salas.
+
+**O obstáculo:** entre o salão e a ala leste há uma **grade de segurança** de aço, descida e sem energia. Para abri-la, o jogador precisa de **energia** e de um **código**. E a porta de saída, no fim da ala leste, só abre por fora, pelo sistema.
+
+### 3.1 Passo a passo
+
+1. **Acordar (sala 1).** Gabriel acorda na cabine (cutscene `seg_acordar`) e pega a **lanterna**.
+   - *O que o jogador aprende:* andar, pegar itens, ligar a lanterna.
+2. **O salão (sala 2).** O lado escuro do salão pede lanterna, e a **Sentinela** patrulha ali. No acampamento entre as raízes, o **diário do Baltazar** ensina o ponto cego dos robôs de um olho só (não veem quem passa pelas costas ou pelo lado) e que luz forte no olho os cega por um instante.
+   - *O que o jogador aprende:* luz acesa faz o robô enxergar de longe; passar pelas costas; esconder-se.
+3. **O balcão (sala 3).** Gabriel pega o **rádio**, e o Rafael dá a primeira dica ("Antes de virar, ele dá um bipe. Ouviu o bipe, se esconde."). No **quadro de chaves**, falta a chave da manutenção. A etiqueta do gancho diz "Devolvida ao acervo".
+   - *O que o jogador aprende:* os robôs têm rotina e avisos; existe alguém do outro lado do rádio.
+4. **O acervo sul (sala 4).** Gabriel procura a **chave da manutenção** num carrinho de devolução de livros, enquanto o **Rastreador**, que escuta, patrulha os corredores. Nos corredores, o rádio dá a segunda fala do Rafael ("Tá no acervo? Boa. No meio das estantes ninguém te vê. Só não corre, viu?").
+   - *O que o jogador aprende:* **andar em vez de correr**; o barulho atrai robôs de longe.
+5. **A manutenção (sala 5).** A chave abre a porta do corredor de serviço. No **quadro de energia**, Gabriel religa os **disjuntores na ordem certa**, anotada num papel colado do lado de dentro da porta. Aqui também estão uma **cápsula de clarão** e uma pilha. Esta sala é a **sala segura** (seção 5).
+   - **Quando a energia volta, três coisas mudam:**
+     - a **grade da ala leste** ganha energia, mas pede um **código** no painel;
+     - o **terminal** da sala de terminais liga;
+     - as **luzes de emergência** acendem pelo salão. É o "não confie nas luzes" da Clarice: as luzes ajudam a ver, mas também deixam os robôs verem você.
+6. **Os terminais (sala 8).** Com o terminal ligado, além do **bilhete da Clarice**, o **disquete** dela mostra o **código da grade**. No bilhete, ela conta que guardava senhas nos disquetes: a pista estava ali desde o começo.
+7. **A volta pelo salão (sala 2).** Com as luzes acesas, a **rota da Sentinela muda**, e o salão que o jogador já conhecia fica diferente e mais perigoso. Gabriel atravessa até a grade, digita o código e a **grade sobe**.
+   - *O que o jogador aprende:* um lugar conhecido pode mudar; voltar faz parte do jogo.
+8. **O telefone.** Na ala leste (sala 7), a porta de saída está **trancada eletronicamente**. Nesse momento, o **telefone do balcão toca**. Gabriel precisa atravessar o salão de novo para atender. É a **Clarice**, na primeira ligação do jogo. Ela destranca a porta de saída pelo sistema.
+9. **Saída.** Gabriel volta à ala leste e sai para o **Bloco de salas**.
+
+### 3.2 Grafo de dependências
+
+Cada passo depende do anterior. Para abrir a saída, o jogador precisa, nesta ordem:
+
+```
+lanterna → rádio → chave da manutenção → energia → terminal ligado → código da grade → grade aberta → telefone → porta de saída
+```
+
+Para a apresentação da disciplina: as salas são **vértices** e as portas são **arestas** de um grafo, e cada cadeado é uma condição numa aresta. A ordem de solução da fase é uma **ordenação topológica** desse grafo de dependências. Ver [`../computacao/grafos_e_navegacao.md`](../computacao/grafos_e_navegacao.md).
+
+### 3.3 Itens
+
+| Item | Onde | Para quê |
+|---|---|---|
+| Lanterna | Sala 1 | Ver no escuro (e ser visto) |
+| Rádio | Sala 3 | Ouvir as dicas do Rafael |
+| Chave da manutenção | Sala 4 | Abrir o corredor de serviço |
+| Cápsula de clarão | Sala 5 | Primeira defesa: atordoar um robô |
+| Pilhas (4) | Salão (2, no lado escuro), sala 4, sala 5, ala leste | Recarregar a lanterna |
+| Código da grade | Sala 8 (disquete) | Abrir a grade da ala leste |
 
 ---
 
-## 6. Sala Segura e Sonho
+## 4. Robôs e ameaças
 
-- *(A definir com a equipe a localização da sala segura e a interação correspondente)*
+| Robô | Onde | Sentido forte | O que o jogador aprende |
+|---|---|---|---|
+| **Sentinela** | Salão principal (2) | Visão: cone de 60°, enxerga mais longe com a lanterna acesa | Apagar a lanterna, passar pelas costas, esconder-se. Dá um **bipe antes de virar** (dica do Rafael) |
+| **Rastreador** | Acervo sul (4) | Audição: ouve passos de longe | Andar em vez de correr; usar a pedra para distrair |
+
+- **Antes da energia:** a Sentinela faz uma ronda curta no lado iluminado pelo sol.
+- **Depois da energia:** as luzes de emergência acendem, e a Sentinela passa a cobrir também o caminho entre o corredor de serviço e a grade. A volta pelo salão (passos 7 e 8) fica mais difícil que a ida.
+- **Salas sem robôs:** cabine, balcão, terminais e manutenção. São respiros entre as partes tensas.
+- Ser pego dá game over e volta ao último checkpoint.
+
+Os dois robôs já existem no jogo, no Labirinto. Ver [`../historia/personagens/robos.md`](../historia/personagens/robos.md).
+
+---
+
+## 5. Sala segura e sonho
+
+- **Sala segura:** a **sala de manutenção (5)**. Fechada, escura e com porta: os robôs não entram. Gabriel pode dormir e salvar aqui.
+- **Por que aqui:** fica no meio da fase, logo depois da primeira parte difícil (acervo sul) e antes da volta pelo salão iluminado.
+- **O sonho:** o que os sonhos mostram está pendente no Enredo Principal (seção 12.4).
+
+---
+
+## 6. Registros dos outros personagens
+
+| Registro | Onde (planejado) | Hoje (no Godot) |
+|---|---|---|
+| **Acampamento e diário do Baltazar** | Salão (2), entre as raízes da árvore | Implementado, no salão |
+| **Rádio e 1ª transmissão do Rafael** | Balcão (3) | Implementado, no salão |
+| **2ª transmissão do Rafael** | Acervo sul (4) | Implementado, no acervo |
+| **Bilhete da Clarice** | Sala de terminais (8), no terminal | Implementado, num terminal no salão |
+| **Disquete da Clarice com o código** | Sala de terminais (8) | Não existe |
+| **Primeira ligação da Clarice** | Balcão (3), passo 8 | Não existe |
+
+Posições, gatilhos e como os registros funcionam: [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md).
+
+O Baltazar **não aparece** nesta fase: só o acampamento que ele deixou (Enredo Principal, Ato 1).
+
+---
+
+## 7. A sala de obras raras
+
+A porta da sala 9 fica **barrada por dentro** durante toda a fase, e às vezes se ouve alguém do outro lado. Ela só abre quando Gabriel voltar à Biblioteca, mais adiante no jogo. É o gancho para o jogador querer voltar, como as portas que só se abrem mais tarde em *Resident Evil*.
+
+**Sugestão, não decisão:** o Enredo diz que o esconderijo do Baltazar fica dentro da Biblioteca, mas o lugar exato está pendente (seção 12.3). A sala de obras raras é uma boa candidata.
+
+---
+
+## 8. O que falta construir
+
+1. **Dividir a Biblioteca em salas**, uma cena por sala, como no Bloco de salas. Versão menor, se faltar tempo: o salão continua uma cena só, e as salas 3, 5, 8 e 9 viram cenas pequenas ligadas por portas.
+2. **Chave como item**, que destranca uma porta específica. Hoje `scripts/sistemas/porta.gd` já tem os estados `trancada` e `bloqueada`.
+3. **Quadro de energia** com os disjuntores e o papel com a ordem.
+4. **Painel de código** da grade e a **grade** de aço que sobe.
+5. **Luzes de emergência que acendem** quando a energia volta, e a **rota nova da Sentinela**.
+6. **Telefone que toca** e a primeira ligação da Clarice (as ligações vão reaproveitar a legenda do rádio).
+7. **Disquete da Clarice** com o código.
+8. **Colocar a Sentinela e o Rastreador** nas salas 2 e 4.

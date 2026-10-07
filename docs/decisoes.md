@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-07 — Planejamento da Biblioteca no estilo Resident Evil
+**Decisão:** a Biblioteca passa a ser planejada como uma fase de **salas ligadas por portas trancadas**, no estilo *Resident Evil*: cabine, salão principal (o centro), balcão, acervo sul, sala de manutenção (sala segura), sala de terminais, ala leste e uma sala de obras raras que só abre mais tarde. Para sair, o jogador busca a chave da manutenção no acervo, religa a energia, lê o código da grade no disquete da Clarice, abre a grade da ala leste e atende a primeira ligação da Clarice, que destranca a porta de saída. A Sentinela fica no salão e o Rastreador no acervo; com a energia, as luzes acendem e a rota da Sentinela muda. O mezanino, cogitado, foi descartado.
+**Por quê:** pedido do Davi: uma fase com mais caminhos e cadeados, em vez de um salão só.
+**Afeta:** `docs/fases/biblioteca.md` (reescrito). Para implementar: dividir `cenas/salas/biblioteca.tscn` em salas, chave como item, quadro de energia, painel de código e grade, luzes que acendem, telefone, disquete da Clarice e os dois robôs.
+
 ## 2026-10-07 — O Carlos é o antagonista (ideia 23), o pesquisador é o Henrique
 **Decisão:**
 - **Ideia 23 aprovada, com partes ainda em aberto.** O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora. Na época dele, a sociedade e o planeta estavam muito ruins, e o pouco que sobrou da humanidade foi para outro planeta. Ele ficou, por um objetivo egoísta: é obcecado pelos **anos 80** e quer usar a Âncora para ir viver lá. A Âncora é imprecisa: cada tentativa dele abre a fenda no chão da Biblioteca e puxa gente por acaso. Ele controla os robôs. A **Âncora** e o laboratório dele ficam no **D-Tec**, a parte de tecnologia da Unifor, no **Bloco M**. O **Bloco J foi descartado**.
