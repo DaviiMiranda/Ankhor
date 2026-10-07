@@ -13,6 +13,8 @@
 [ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="i_clarao"]
 [ext_resource type="Resource" path="res://dados/itens/pedra.tres" id="i_pedra"]
 [ext_resource type="Resource" path="res://dados/itens/notebook.tres" id="i_notebook"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/clarice_em_pe.tscn" id="p_clarice"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/zane.tscn" id="p_zane"]
 
 [node name="SalaTeste" instance=ExtResource("modelo")]
 id = "sala_teste"
@@ -95,6 +97,16 @@ item = ExtResource("i_pedra")
 [node name="Notebook" parent="Objetos" instance=ExtResource("i_item")]
 position = Vector2(370, 150)
 item = ExtResource("i_notebook")
+
+[node name="Clarice" parent="Objetos" instance=ExtResource("p_clarice")]
+position = Vector2(104, 134)
+vista = "tres_quartos"
+olhando_para_esquerda = true
+
+[node name="Zane" parent="Objetos" instance=ExtResource("p_zane")]
+position = Vector2(146, 134)
+vista = "tres_quartos"
+olhando_para_esquerda = true
 
 [node name="PortaRobos" parent="." instance=ExtResource("porta")]
 position = Vector2(440, 124)

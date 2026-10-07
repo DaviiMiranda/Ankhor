@@ -1,0 +1,30 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/personagens/personagem_parado.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dscjff5nf5mai" path="res://assets/sprites/personagens/zane/zane_parado_lado.png" id="2_parado_lado"]
+[ext_resource type="Texture2D" uid="uid://b8tb56r3urrba" path="res://assets/sprites/personagens/zane/zane_parado_frente.png" id="3_parado_frente"]
+[ext_resource type="Texture2D" uid="uid://b1dw6lmvn23de" path="res://assets/sprites/personagens/zane/zane_parado_tres_quartos.png" id="4_parado_tres_quartos"]
+[ext_resource type="Texture2D" uid="uid://ctu8aigmhbgp2" path="res://assets/sprites/personagens/zane/zane_parado_costas.png" id="5_parado_costas"]
+[ext_resource type="Texture2D" uid="uid://crjdfpw76pxkg" path="res://assets/sprites/personagens/zane/zane_parado_tres_quartos_costas.png" id="6_parado_tres_quartos_costas"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pes"]
+size = Vector2(12, 4)
+
+[node name="Zane" type="StaticBody2D"]
+script = ExtResource("1_script")
+parado_lado = ExtResource("2_parado_lado")
+parado_frente = ExtResource("3_parado_frente")
+parado_tres_quartos = ExtResource("4_parado_tres_quartos")
+parado_costas = ExtResource("5_parado_costas")
+parado_tres_quartos_costas = ExtResource("6_parado_tres_quartos_costas")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_parado_frente")
+centered = false
+scale = Vector2(0.5, 0.5)
+offset = Vector2(-46, -108)
+hframes = 8
+
+[node name="Pes" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_pes")

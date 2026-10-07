@@ -41,7 +41,7 @@ Todos em `assets/sprites/personagens/clarice/`, gerados por `assets/modelagem/pe
 
 - **Escala:** a mesma de todos os personagens (1,75 m do Gabriel = 48 px na tela). Ela tem 1,62 m.
 - **Resolução dobrada:** os sprites saem com o dobro de pixels (`RESOLUCAO = 2` no script) e a cena usa escala 0,5. Na tela ela ocupa o mesmo espaço, com o dobro de detalhe (óculos, rosto, texto nos monitores).
-- **Em pé:** os sprites têm o mesmo conjunto e os mesmos tamanhos do Gabriel (`comum.py`, item 7), para quando ela andar pelo campus. Usam a paleta já calculada, então as cores dos sprites sentados não mudam. Ainda não há cena com ela andando.
+- **Em pé:** os sprites têm o mesmo conjunto e os mesmos tamanhos do Gabriel (`comum.py`, item 7), para quando ela andar pelo campus. Usam a paleta já calculada, então as cores dos sprites sentados não mudam. A cena `cenas/personagens/clarice_em_pe.tscn` mostra a Clarice parada, respirando (script `personagem_parado.gd`), e por enquanto só está na sala de teste.
 - **Câmera da estação:** inclinada 22° para baixo, para aparecer o tampo da mesa e o teclado, como os objetos 2.5D do cenário.
 - **O pé do sprite** (o ponto do nó no Godot) é o chão na frente da cadeira: `scale = Vector2(0.5, 0.5)` e `offset = Vector2(-80, -120)`.
 - **Detalhe:** o corpo dela usa `DETALHE = 3` e sombreamento suave (ver `comum.py`): cones e esferas com três vezes mais gomos, quinas arredondadas, mais cachos no cabelo, o zíper aberto da jaqueta, bolsos, cadarço e um botton de carinha amarela no peito. O rosto fica chapado (com luz suave, a parte de baixo escurecia e parecia barba). A estação de trabalho fica no detalhe normal: monitor de tubo é caixa.
