@@ -8,9 +8,10 @@ Bem-vindo ao repositório de documentação do **Ankhor**, jogo de terror atmosf
 
 Para manter a consistência entre o código, o design e o roteiro, adotamos a seguinte regra de precedência:
 
-1. **[`docs/decisoes.md`](decisoes.md)** — **Autoridade máxima**. Toda decisão recente de design, história ou técnica registrada aqui sobrepõe qualquer outro documento.
-2. **Documentos Específicos de Módulos** — Estruturações técnicas e mecânicas detalhadas em suas respectivas pastas.
-3. **[`docs/gdd.md`](gdd.md)** — Sumário executivo e visão geral unificada (Game Design Document).
+1. **[`docs/historia/enredo_principal.md`](historia/enredo_principal.md)** — **Lei do projeto para história, mundo e personagens.** Vale acima de qualquer outro documento, inclusive do registro de decisões. Em caso de dúvida em qualquer parte do jogo, consulte-o primeiro. O que ele ainda não decidiu está na seção "Pendências", no fim dele.
+2. **[`docs/decisoes.md`](decisoes.md)** — Autoridade máxima para design, mecânicas e técnica, e histórico de todas as mudanças (inclusive as de história, que entram no mesmo PR aqui e no Enredo Principal).
+3. **Documentos Específicos de Módulos** — Estruturações técnicas e mecânicas detalhadas em suas respectivas pastas.
+4. **[`docs/gdd.md`](gdd.md)** — Sumário executivo e visão geral unificada (Game Design Document).
 
 ---
 
@@ -37,7 +38,7 @@ docs/
 │   ├── furtividade_e_esconderijos.md # Esconderijos, microgames de tensão e distrações
 │   ├── iluminacao_e_lanterna.md   # Lanterna a pilha, dilema luz/perigo, luzes de emergência
 │   ├── vida_e_checkpoint.md       # 3 corações, dano, tela de morte e checkpoints
-│   ├── registros_e_caderno.md     # Documentos dos antecessores, rádio do Valdir e o Caderno do Gabriel
+│   ├── registros_e_caderno.md     # Documentos dos antecessores, rádio do Rafael e o Caderno do Gabriel
 │   └── sono_e_sonhos.md           # Salas seguras, mecânica de save e investigação no passado
 │
 ├── computacao/                    # Requisitos da disciplina de Computação Gráfica / CC
@@ -57,7 +58,7 @@ docs/
 │   ├── README.md                  # Arquitetura de personagens no Godot (Jogador vs Robôs)
 │   ├── gabriel.md                 # Funcionamento mecânico do jogador (estados, estamina, inventário)
 │   ├── robos.md                   # Funcionamento dos robôs de IA (sensores, FSM e patrulhas)
-│   ├── antecessores.md            # Pessoas puxadas antes de Gabriel (Baltazar, Agostinho, Clarice, Valdir, Zane)
+│   ├── antecessores.md            # Versão antiga dos personagens (não vale mais; ver o Enredo Principal)
 │   └── template_personagem.md     # Modelo padronizado para novas fichas de personagens
 │
 ├── dialogos/                      # Sistema de conversação e falas

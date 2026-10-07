@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_transmissao")
-id = "valdir_02"
-falante = "VALDIR (rádio)"
+id = "rafael_02"
+falante = "RAFAEL (rádio)"
 falas = PackedStringArray("Chhh... Tá no acervo? Boa. No meio das estantes ninguém te vê.", "Só não corre, viu? Esses bichos escutam passo de longe. Câmbio.")
-titulo_anotacao = "Valdir, 2008"
-anotacao = "Valdir de novo: entre as estantes do acervo ninguém vê. Não correr: os robôs escutam os passos de longe.
+titulo_anotacao = "Rafael, 2008"
+anotacao = "Rafael de novo: entre as estantes do acervo ninguém vê. Não correr: os robôs escutam os passos de longe.
 
 Ele falou como se estivesse me vendo."

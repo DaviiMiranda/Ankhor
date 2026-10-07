@@ -40,8 +40,8 @@
 [ext_resource type="Resource" path="res://dados/documentos/diario_baltazar.tres" id="r_diario"]
 [ext_resource type="Resource" path="res://dados/documentos/bilhete_clarice.tres" id="r_bilhete"]
 [ext_resource type="Resource" path="res://dados/itens/radio.tres" id="r_radio"]
-[ext_resource type="Resource" path="res://dados/transmissoes/valdir_01.tres" id="r_valdir_01"]
-[ext_resource type="Resource" path="res://dados/transmissoes/valdir_02.tres" id="r_valdir_02"]
+[ext_resource type="Resource" path="res://dados/transmissoes/rafael_01.tres" id="r_rafael_01"]
+[ext_resource type="Resource" path="res://dados/transmissoes/rafael_02.tres" id="r_rafael_02"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_acervo"]
 size = Vector2(270, 110)
@@ -203,9 +203,9 @@ position = Vector2(280, 172)
 position = Vector2(628, 162)
 item = ExtResource("r_radio")
 
-[node name="GatilhoValdir1" parent="Objetos" instance=ExtResource("r_gatilho")]
+[node name="GatilhoRafael1" parent="Objetos" instance=ExtResource("r_gatilho")]
 position = Vector2(628, 162)
-transmissao = ExtResource("r_valdir_01")
+transmissao = ExtResource("r_rafael_01")
 
 [node name="Terminal" parent="Objetos" instance=ExtResource("r_terminal")]
 position = Vector2(470, 236)
@@ -219,11 +219,11 @@ documento = ExtResource("r_bilhete")
 [node name="Lampada3" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(492, 240)
 
-[node name="GatilhoValdir2" parent="Objetos" instance=ExtResource("r_gatilho")]
+[node name="GatilhoRafael2" parent="Objetos" instance=ExtResource("r_gatilho")]
 position = Vector2(548, 360)
-transmissao = ExtResource("r_valdir_02")
+transmissao = ExtResource("r_rafael_02")
 
-[node name="Area" parent="Objetos/GatilhoValdir2" index="0"]
+[node name="Area" parent="Objetos/GatilhoRafael2" index="0"]
 shape = SubResource("RectangleShape2D_acervo")
 
 [node name="MesaLeituraSul" parent="Objetos" instance=ExtResource("o_mesa_leitura")]

@@ -20,14 +20,14 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../personagen
 - Ao fechar, a **anotação** do documento entra no caderno (uma vez só) e o HUD avisa: *"Nova anotação: Baltazar, 1750   [N] ver"*.
 
 ### Ouvir o rádio
-- O rádio portátil do Valdir é um item comum (fica no inventário, não é gadget).
+- O rádio portátil do Rafael é um item comum (fica no inventário, não é gadget).
 - Com o rádio no inventário, **gatilhos** espalhados pela sala tocam transmissões quando o Gabriel entra neles. Cada transmissão toca **uma vez só**.
 - A transmissão **não pausa o jogo**: a fala aparece embaixo, letra por letra, com o chiado do rádio por baixo. Se duas forem pedidas juntas, a segunda espera a primeira acabar.
 - No fim, a anotação da transmissão entra no caderno.
 
 ### Caderno (aba Anotações do inventário)
 - As anotações ficam no **inventário**, na aba **ANOTAÇÕES**. `N` abre o inventário direto nela (e fecha, se ela já estiver aberta); `Q` troca entre Itens e Anotações. O jogo pausa enquanto está aberto.
-- À esquerda, a **lista** das anotações, na ordem em que foram achadas. Ao abrir com `N`, a mais recente já vem escolhida. As não lidas têm um ponto na frente (`• Valdir, 2008`), e a aba também mostra o ponto enquanto houver alguma não lida.
+- À esquerda, a **lista** das anotações, na ordem em que foram achadas. Ao abrir com `N`, a mais recente já vem escolhida. As não lidas têm um ponto na frente (`• Rafael, 2008`), e a aba também mostra o ponto enquanto houver alguma não lida.
 - À direita, o **texto** da anotação escolhida: o título é quem deixou a pista, e o texto é o resumo do Gabriel, em tópicos quando for dica de jogo. Cabem 7 linhas; se passar disso, o texto vira páginas e o canto mostra `1/2`.
 - Setas **cima/baixo** escolhem a anotação; **esquerda/direita** viram a página. Dá para clicar na lista com o mouse.
 
@@ -41,10 +41,10 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../personagen
 | Riscos de estrelas na árvore | filho de `Arvore`, no tronco | só cenário |
 | Robô desmontado | (280, 172) | só cenário |
 | Rádio portátil | (628, 162), ao lado da mesa de leitura | `E` para pegar |
-| Transmissão `valdir_01` (`GatilhoValdir1`) | círculo de 40 px em volta do rádio | toca ao pegar o rádio |
+| Transmissão `rafael_01` (`GatilhoRafael1`) | círculo de 40 px em volta do rádio | toca ao pegar o rádio |
 | Terminal + bilhete da Clarice (`BilheteClarice`) | (470, 236), na parte sul | `E` perto |
 | Lampião do terminal | (492, 240) | ilumina o terminal |
-| Transmissão `valdir_02` (`GatilhoValdir2`) | retângulo 270 × 110 no acervo, centro (548, 360) | toca ao entrar no acervo com o rádio |
+| Transmissão `rafael_02` (`GatilhoRafael2`) | retângulo 270 × 110 no acervo, centro (548, 360) | toca ao entrar no acervo com o rádio |
 
 ---
 
@@ -85,7 +85,7 @@ A tela de leitura, a legenda e o inventário (com a aba Anotações) já estão 
 ## 5. Como criar uma transmissão nova
 
 1. Botão direito em `dados/transmissoes/` → *Novo* → *Recurso...* → `Transmissao`.
-2. `falante` aparece em cima da fala (ex.: `VALDIR (rádio)`). Em `falas`, uma entrada por fala, com no máximo **2 linhas** (~85 caracteres).
+2. `falante` aparece em cima da fala (ex.: `RAFAEL (rádio)`). Em `falas`, uma entrada por fala, com no máximo **2 linhas** (~85 caracteres).
 3. `vozes` é opcional: um áudio por fala, na mesma ordem. Com voz gravada, a fala espera o áudio acabar. As gravações vão em `assets/audio/vozes/`.
 4. No mapa: arraste `cenas/sistemas/gatilho_transmissao.tscn` para `Objetos`, escolha a `transmissao` e ajuste a forma da área (`Area`). O gatilho só toca com o item `item_necessario` (padrão: `radio`) no inventário.
 
@@ -96,5 +96,5 @@ A tela de leitura, a legenda e o inventário (com a aba Anotações) já estão 
 - O caderno não guarda o texto completo dos documentos, só a anotação. Reler exige voltar ao lugar.
 - Salvar caderno e transmissões ao dormir (depende do sistema de save).
 - As ligações da Clarice pelos telefones (vão reaproveitar a legenda do rádio).
-- As falas do Valdir ainda não têm voz gravada.
+- As falas do Rafael ainda não têm voz gravada.
 - O sistema de diálogos completo (escolhas, retratos) de [`../dialogos/README.md`](../dialogos/README.md): a legenda do rádio é só a parte de falas em sequência.

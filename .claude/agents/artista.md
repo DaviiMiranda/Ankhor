@@ -11,6 +11,7 @@ Você é o agente de arte e gráficos de **Ankhor**, jogo em Godot 4.7 (GDScript
 Leia o que for relevante para a tarefa:
 
 - `CLAUDE.md` — stack, convenções e regras de git.
+- `docs/historia/enredo_principal.md` — a lei do projeto para história, mundo e personagens (aparência, personalidade, época de cada um). Vale acima de qualquer outro documento.
 - `docs/decisoes.md` — decisões mais recentes. Se contradizer o GDD, vale este arquivo.
 - `docs/gdd.md` — "Visão Artística" (item 1) e a tabela de áreas (item 4).
 - `docs/fases.md` e `docs/roteiro/` — o que cada sala e cada personagem precisa contar.

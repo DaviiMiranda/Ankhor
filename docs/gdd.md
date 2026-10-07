@@ -1,7 +1,7 @@
 # GDD — respostas dos itens 1 a 4
 
 > **Título do Jogo:** Ankhor  
-> **Hierarquia:** Para decisões recentes, consulte [`decisoes.md`](decisoes.md). Para a documentação técnica aprofundada, consulte o índice mestre em [`README.md`](README.md).
+> **Hierarquia:** Para **história, mundo e personagens**, a lei do projeto é o [Enredo Principal](historia/enredo_principal.md): se este GDD contradizer o Enredo, vale o Enredo. Para decisões recentes de design e técnica, consulte [`decisoes.md`](decisoes.md). Para a documentação técnica aprofundada, consulte o índice mestre em [`README.md`](README.md).
 
 > [!TIP]
 > **Documentação Modular Detalhada:**
@@ -25,7 +25,7 @@
 
 **Público-alvo:** adolescentes e adultos, a partir de 14 anos. Terror de tensão, sem violência explícita. Pensado primeiro para quem conhece a Unifor: alunos e ex-alunos reconhecem cada prédio, mesmo em ruínas.
 
-**Resumo do Conceito:** Gabriel acorda mil anos no futuro, no ano de 3026. Ele descobre que a Unifor tornou-se um centro de pesquisa em física do tempo e que a explosão de um aparelho chamado **Âncora** rasgou o tempo dentro do campus. Essa fenda temporal encosta em momentos aleatórios do passado e puxa quem estiver por perto — numa madrugada de 2026, puxou Gabriel da Biblioteca. A fenda está em expansão contínua e, caso não seja fechada, engolirá o passado do campus e a própria época de Gabriel. Ele descobre que não foi o primeiro: antes vieram uma aluna de 1994, um segurança de 2008, um professor de 2019 e alguém de 2041, e nenhum deles conseguiu. A primeira fase do jogo é a Biblioteca.
+**Resumo do Conceito:** Gabriel Magalhães, estudante de 2026, pega no sono na Biblioteca da Unifor e acorda mil anos no futuro, no ano de 3026. A humanidade abandonou a Terra e uma IA dominou o planeta. No antigo centro de pesquisa da Unifor, uma máquina abandonada, a **Âncora**, falhou e abriu uma fenda no tempo no chão da Biblioteca, que por acaso puxou, com dias de diferença, jovens de épocas diferentes. Gabriel precisa encontrá-los, fugir dos robôs da IA, descobrir o que aconteceu e achar um jeito de todos voltarem. A primeira fase do jogo é a Biblioteca. A história completa está no [Enredo Principal](historia/enredo_principal.md).
 
 O que torna o jogo diferente:
 - **Estranhamento do familiar:** o jogador reconhece a catraca, o bebedouro, o quadro, a Biblioteca. O mundo em volta não reconhece mais nada disso.
@@ -109,25 +109,13 @@ E, nos sonhos, o mesmo campus **na última semana antes de tudo**: cheio, ilumin
 
 ### História e Personagens
 
-**O começo.** Gabriel, um estudante universitário, acorda no ano de 3026 (mil anos no futuro) na Biblioteca da Unifor. Ele descobre que o campus se transformou em um centro de pesquisa em física do tempo e que a explosão de um aparelho experimental chamado **Âncora** rasgou o tempo dentro do campus.
+> A história, o mundo e os personagens estão no **[Enredo Principal](historia/enredo_principal.md)**, que é a lei do projeto. Aqui fica só o resumo.
 
-**A Fenda Temporal e o Colapso:**
-- A fenda encosta em momentos aleatórios do passado e puxa quem estiver por perto — numa madrugada de 2026, puxou Gabriel da Biblioteca.
-- A fenda está em expansão contínua: caso não seja fechada, engolirá todo o passado do campus, incluindo a época original de Gabriel.
-- **Os que vieram antes:** Gabriel descobre que não foi o primeiro. Antes dele, a fenda puxou pessoas de diferentes épocas:
-  1. Uma aluna de 1994
-  2. Um segurança de 2008
-  3. Um professor de 2019
-  4. Alguém de 2041
-  - Ninguém conseguiu fechar a fenda ou reverter o processo.
-
-**Fases:**
-- A primeira fase do jogo é a **Biblioteca**.
-
-**Personagens:**
-- **Gabriel** — o protagonista. Estudante universitário puxado de uma madrugada de 2026 para 3026 pela fenda da Âncora. Precisa entender o que aconteceu e fechar a fenda antes que ela consuma seu próprio tempo.
-- **Os antecessores** — pessoas puxadas antes de Gabriel, que deixaram pistas pelo campus: Mestre Baltazar (~1750), Inspetor Agostinho (1978), Clarice (1994, viva, fala com Gabriel por ligação), Seu Valdir (2008, fala com Gabriel pelo rádio), um professor de 2019 cuja pesquisa virou a cadeira de Gabriel, e Zane (2123). A pessoa de 2041 ainda está a definir. Fichas em [`personagens/antecessores.md`](personagens/antecessores.md).
-- **A revelação central** (aprovada): Gabriel é o paradoxo da Âncora, e os sonhos são ciclos anteriores que falharam. No final, Gabriel e Clarice ficam juntos em 2026. Ver [`historia/revelacao_central.md`](historia/revelacao_central.md).
+- **O mundo:** em 3026 a humanidade abandonou a Terra e uma IA sem rosto dominou. Os robôs da IA veem humanos como invasores e caçam.
+- **A Âncora e a fenda:** a Âncora é só uma máquina, abandonada no centro de pesquisa da Unifor. Ela falhou e abriu uma fenda no chão da Biblioteca, que pulsa e, por acaso, puxa quem estiver ali em alguma época.
+- **Os personagens:** jovens de cerca de 20 anos, todos vivos, puxados com dias de diferença: Baltazar Magalhães (~1750, antepassado de Gabriel), Diana (1978), Clarice (1994), Rafael (2008), um pesquisador de 2019, **Gabriel Magalhães** (2026, o protagonista, penúltimo a chegar) e Zane (2123, o último).
+- **O objetivo:** encontrar os outros, descobrir o que aconteceu e consertar a Âncora para que todos voltem às suas épocas.
+- **A primeira fase** é a **Biblioteca**.
 
 ---
 
