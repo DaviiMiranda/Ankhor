@@ -1,13 +1,14 @@
-# O pesquisador (2019)
+# Henrique (2019), o pesquisador
 
-> **Status:** Em definição. O nome está pendente.
-> **Lei do projeto:** esta ficha faz parte do [Enredo Principal](../enredo_principal.md) e tem a mesma autoridade: quem o pesquisador é vale como está escrito aqui. A história em volta dele (o acidente, a ordem dos acontecimentos, as pendências) está no Enredo.
+> **Status:** Em definição. Visual e sprites prontos; ainda sem lugar na história do jogo.
+> **Lei do projeto:** esta ficha faz parte do [Enredo Principal](../enredo_principal.md) e tem a mesma autoridade: quem o Henrique é vale como está escrito aqui. A história em volta dele (o acidente, a ordem dos acontecimentos, as pendências) está no Enredo.
 
 ---
 
 ## 1. Quem é
 
 - **Época de origem:** 2019.
+- **Nome:** Henrique.
 - **Quem é:** aluno de iniciação científica da Unifor, com cerca de 20 anos.
 - **História:** estudava à noite na Biblioteca e sumiu. O orientador transformou o projeto dele na cadeira que Gabriel cursa, e as equações do caderno de Gabriel continuam esse trabalho sem Gabriel saber de quem eram.
 
@@ -41,14 +42,16 @@ Ainda não definidas.
 ## 6. Direção de arte
 
 - **O que a aparência precisa comunicar:** um aluno de 2019 de 20 anos, introvertido e cansado, que fala pouco e anota muito.
-- **Visual definido:** ainda não.
+- **Visual definido:** [`assets/sprites/personagens/henrique/visual.md`](../../../assets/sprites/personagens/henrique/visual.md). Camisa de flanela xadrez aberta sobre camiseta cinza, jeans preto, tênis de lona, óculos redondos de aro fino, cabelo bagunçado na testa, o caderno sempre na mão e um lápis atrás da orelha.
+- **Cor de identificação:** laranja-queimado.
+- Sprites em resolução dobrada, com o mesmo conjunto do Gabriel (ver `CLAUDE.md`).
 
 ## 7. Arquivos
 
-Nenhum ainda.
+- **Sprites:** `assets/sprites/personagens/henrique/`, gerados por `assets/modelagem/personagens/gerar_henrique.py`.
+- **Cena:** `cenas/personagens/henrique.tscn` (parado, por enquanto só na sala de teste).
 
 ## 8. Pendências
 
-- O nome (Enredo Principal, seção 12.3).
 - Se é o personagem que atrapalha: ele guarda segredos e é o candidato natural (seção 12.3).
 - Como aparece no jogo e onde fica.
