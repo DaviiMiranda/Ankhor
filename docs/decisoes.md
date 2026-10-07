@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-07 — Menu principal com a arte nova (imagem única)
+**Decisão:** o menu principal troca a cena renderizada no Blender (três camadas) por **uma imagem só**, a partir da imagem de referência enviada pelo Davi: estante com livros e papéis, relógio, monitor CRT bege com o bilhete, luminária apagada, teclado, pilha de livros e caneca de café. O texto que vinha pintado na tela do monitor foi apagado por `assets/modelagem/menu/preparar_menu.py`, e o Godot desenha o menu por cima, nas mesmas posições e cores da imagem: título "ANKHOR" em 16 com brilho, itens em 8 a cada 14 px, barra azul de seleção de ponta a ponta do vidro. As telas de Fases, Opções e Controles usam o mesmo vidro. A luminária da imagem está apagada, então a piscada da luminária saiu; ficaram a tremulação do brilho da tela, o efeito CRT (mais leve, porque a imagem já tem linhas) e a vinheta escura nas bordas.
+**Por quê:** pedido do Davi: trocar completamente a tela de menu pela imagem de referência.
+**Afeta:** `assets/sprites/menu/menu_cena.png` (novo; saíram `menu_fundo`, `menu_mesa` e `menu_frente`), `assets/modelagem/menu/preparar_menu.py` e `menu_referencia.webp` (novos), `cenas/menu_principal.tscn` (o nó `Mesa` virou `Monitor`), `scripts/menu_principal.gd`. O `gerar_menu.py` fica, porque a cutscene `seg_acordar` reaproveita a cabine.
+
 ## 2026-10-06 — Enredo Principal vira a lei do projeto, personalidades, Diana e Rafael
 **Decisão:**
 - O **Enredo Principal** (`docs/historia/enredo_principal.md`) passa a ser a **lei do projeto** para história, mundo e personagens, acima de qualquer outro documento, inclusive deste registro. Em caso de dúvida em qualquer parte do jogo, vale o que ele diz. Mudanças de história entram no mesmo PR nele e aqui.
