@@ -18,9 +18,10 @@ Formato:
 
 ## 2026-10-07 — O Carlos é o antagonista (ideia 23), o pesquisador é o Henrique
 **Decisão:**
-- **Ideia 23 aprovada, com partes ainda em aberto.** O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora. Na época dele, a sociedade e o planeta estavam muito ruins, e o pouco que sobrou da humanidade foi para outro planeta. Ele ficou, por um objetivo egoísta: é obcecado pelos **anos 80** e quer usar a Âncora para ir viver lá. A Âncora é imprecisa: cada tentativa dele abre a fenda no chão da Biblioteca e puxa gente por acaso. Ele controla os robôs. O laboratório dele fica no **Bloco M**, no **D-Tec**, a parte de tecnologia da Unifor; a Âncora continua no Bloco J.
+- **Ideia 23 aprovada, com partes ainda em aberto.** O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora. Na época dele, a sociedade e o planeta estavam muito ruins, e o pouco que sobrou da humanidade foi para outro planeta. Ele ficou, por um objetivo egoísta: é obcecado pelos **anos 80** e quer usar a Âncora para ir viver lá. A Âncora é imprecisa: cada tentativa dele abre a fenda no chão da Biblioteca e puxa gente por acaso. Ele controla os robôs. A **Âncora** e o laboratório dele ficam no **D-Tec**, a parte de tecnologia da Unifor, no **Bloco M**. O **Bloco J foi descartado**.
 - Em aberto, nas pendências do Enredo (12.2): como ele consegue o conhecimento (consciências roubadas, super IA ou as duas), se a IA continua existindo, por que os robôs caçam, e o resto da ficha dele.
 - **Ideia 13 aprovada:** o pesquisador de 2019 se chama **Henrique**. A ficha virou `henrique.md`.
+- **O Henrique engana o grupo**: esconde a ligação que tem com o Carlos (trabalha para ele ou foi enganado por ele, pendente). Quando o grupo descobre a mentira, todos vão atrás do Carlos. Isso resolve a pendência "Algum personagem atrapalha?" e entra no Enredo como "A virada", antes do Ato 4.
 - **Ideias 20, 21 e 22 descartadas** (o pesquisador mentiu, o cientista que morreu, o drone).
 
 **Por quê:** decisão do Davi.

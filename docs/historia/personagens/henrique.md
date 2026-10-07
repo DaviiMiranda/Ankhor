@@ -9,7 +9,7 @@
 
 - **Época de origem:** 2019.
 - **Quem é:** aluno de iniciação científica da Unifor, com cerca de 20 anos.
-- **História:** estudava à noite na Biblioteca e sumiu. O orientador transformou o projeto dele na cadeira que Gabriel cursa, e as equações do caderno de Gabriel continuam esse trabalho sem Gabriel saber de quem eram.
+- **História:** estudava à noite na Biblioteca e sumiu. O orientador transformou o projeto dele na cadeira que Gabriel cursa, e as equações do caderno de Gabriel continuam esse trabalho sem Gabriel saber de quem eram. Em 3026, **engana o grupo**: esconde a ligação que tem com o **Carlos**. Se trabalha para ele ou foi enganado por ele está pendente. Quando o grupo descobre a mentira, todos vão atrás do Carlos.
 
 ## 2. Personalidade
 
@@ -18,12 +18,15 @@
 - **Como fala:** pausado e técnico. Se corrige no meio da frase.
 - **O que quer:** entender a Âncora para provar a si mesmo que não é culpado.
 - **O que teme:** que a pesquisa dele tenha levado à Âncora.
-- **Defeito:** guarda segredos.
-- **Arco:** assumir a responsabilidade, seja ela real ou só imaginada.
+- **Defeito:** guarda segredos, e mente para o grupo.
+- **Arco:** da mentira à verdade: quando o grupo descobre que ele enganou todo mundo, ele precisa assumir a responsabilidade.
 
 ## 3. Relações
 
-Ainda não definidas.
+| Com | Dinâmica |
+|---|---|
+| [Carlos](carlos.md) | Trabalha para ele ou foi enganado por ele (pendente) |
+| O grupo | Engana todos, e a mentira é descoberta. Divide o bunker com a [Clarice](clarice.md) |
 
 ## 4. No jogo
 
@@ -49,5 +52,5 @@ Nenhum ainda.
 
 ## 8. Pendências
 
-- Se é o personagem que atrapalha: ele guarda segredos e é o candidato natural (seção 12.3).
+- Se trabalha para o Carlos ou foi enganado por ele, o que exatamente esconde, e como e quando o grupo descobre (Enredo Principal, seção 12.3).
 - Como aparece no jogo e onde fica.

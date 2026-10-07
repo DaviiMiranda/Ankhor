@@ -10,7 +10,7 @@
 
 ## 1. A história em um parágrafo
 
-Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Biblioteca da Unifor e acorda no ano de **3026**, no mesmo lugar, agora uma ruína tomada pela natureza. A sociedade e o planeta ficaram tão ruins que o pouco que sobrou da humanidade foi embora para outro planeta. Um homem ficou: **Carlos**, um cientista obcecado pelos **anos 80**, que construiu uma máquina no **Bloco J**, a **Âncora**, para ir viver naquela época. A Âncora é imprecisa: a cada tentativa do Carlos, abre uma **fenda** no tempo no chão da Biblioteca e puxa quem estiver naquele ponto, em alguma época. Para quem cai, **é um acaso**: o Carlos não escolhe ninguém. Gabriel não é o único: outros jovens de épocas diferentes caíram ali com dias de diferença, e cada um está tentando sobreviver num canto do campus. Os robôs, controlados pelo Carlos, caçam qualquer humano que aparecer. Gabriel precisa encontrar os outros, descobrir o que aconteceu e achar um jeito de todos voltarem para suas épocas. No caminho descobre que um deles é seu antepassado, e que por trás de tudo existe alguém.
+Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Biblioteca da Unifor e acorda no ano de **3026**, no mesmo lugar, agora uma ruína tomada pela natureza. A sociedade e o planeta ficaram tão ruins que o pouco que sobrou da humanidade foi embora para outro planeta. Um homem ficou: **Carlos**, um cientista obcecado pelos **anos 80**, que construiu uma máquina no **D-Tec**, a parte de tecnologia da Unifor, no Bloco M: a **Âncora**, para ir viver naquela época. A Âncora é imprecisa: a cada tentativa do Carlos, abre uma **fenda** no tempo no chão da Biblioteca e puxa quem estiver naquele ponto, em alguma época. Para quem cai, **é um acaso**: o Carlos não escolhe ninguém. Gabriel não é o único: outros jovens de épocas diferentes caíram ali com dias de diferença, e cada um está tentando sobreviver num canto do campus. Os robôs, controlados pelo Carlos, caçam qualquer humano que aparecer. Gabriel precisa encontrar os outros, descobrir o que aconteceu e achar um jeito de todos voltarem para suas épocas. No caminho descobre que um deles é seu antepassado, que outro mente para o grupo, e que por trás de tudo existe alguém.
 
 ---
 
@@ -25,8 +25,7 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 ### 2.2 O campus em 3026
 
 - A **Unifor, em Fortaleza**, mil anos depois. Em algum momento virou um centro de pesquisa em física do tempo.
-- A **Âncora** está no **Bloco J**, o bloco de tecnologia.
-- O laboratório do **Carlos** fica no **Bloco M**, no **D-Tec**, a parte de tecnologia da Unifor.
+- A **Âncora** e o laboratório do **Carlos** ficam no **D-Tec**, a parte de tecnologia da Unifor, no **Bloco M**.
 - Concreto rachado e desabado, árvores dentro das salas, dunas sobre os corredores, mato onde era estacionamento. Não há cidade em volta, só vegetação. Resistem as coisas duras: concreto, metal, vidro, pedra.
 - Objetos do cotidiano de hoje (catraca, bebedouro, quadro de horários, a cantina) viraram relíquias. O choque do jogo é perceber **quanto tempo passou**.
 - Quase nada elétrico funciona. Funcionam os sistemas da Âncora (luzes de emergência, bunker, terminais, telefones) e os robôs.
@@ -46,7 +45,7 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 | | |
 |---|---|
 | **O que é a Âncora** | **Só uma máquina.** Um aparelho experimental de física do tempo. Não pensa, não quer nada, não escolhe ninguém |
-| **Onde está a Âncora** | No **Bloco J**, o bloco de tecnologia da Unifor |
+| **Onde está a Âncora** | No **D-Tec**, a parte de tecnologia da Unifor, no Bloco M, junto do laboratório do Carlos |
 | **Quem criou** | O **Carlos** (seção 4.3), para ir viver nos anos 80 |
 | **O que aconteceu** | O Carlos tenta usar a Âncora para ir para os anos 80, mas a máquina é **imprecisa**: não acerta a época nem escolhe quem puxa. Cada tentativa abre uma fenda no tempo |
 | **Onde a fenda se abre** | Sempre no mesmo ponto: o chão onde hoje fica a Biblioteca (ou onde ela ainda viria a ser construída) |
@@ -100,7 +99,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 
 ### 4.3 O Carlos, o antagonista
 
-O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na Terra quando a humanidade partiu e controla os robôs. Quem ele é está na [ficha dele](personagens/carlos.md). Muita coisa sobre ele ainda está pendente (seção 12.2).
+O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na Terra quando a humanidade partiu e controla os robôs. Quem ele é está na [ficha dele](personagens/carlos.md). O **Henrique** engana o grupo por causa dele (seção 8, "A virada"). Muita coisa sobre o Carlos ainda está pendente (seção 12.2).
 
 ---
 
@@ -146,7 +145,7 @@ O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na T
 
 ### 7.2 Ordem dos acontecimentos
 
-1. **Antes do jogo:** a sociedade e o planeta ficam muito ruins, e o pouco que sobrou da humanidade vai embora para outro planeta. O Carlos fica e constrói a Âncora no Bloco J.
+1. **Antes do jogo:** a sociedade e o planeta ficam muito ruins, e o pouco que sobrou da humanidade vai embora para outro planeta. O Carlos fica e constrói a Âncora no D-Tec.
 2. **3026:** o Carlos começa a tentar ir para os anos 80. A cada tentativa, a fenda se abre no chão da Biblioteca.
 3. **Os pulsos:** com dias de diferença, a fenda puxa uma pessoa de cada época. Cada uma acorda sozinha, foge dos robôs e acha um canto para sobreviver. Cinco chegam antes de Gabriel.
 4. **O jogo:** Gabriel, o penúltimo, acorda na Biblioteca, encontra os outros um a um, descobre o que aconteceu e tenta consertar a Âncora para todos voltarem.
@@ -188,6 +187,12 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 - **Gabriel encontra Clarice em pessoa** na central de dados. Aqui podem morar 2 ou 3 personagens.
 - O **setor B** (laboratório, arquivo e a comporta do núcleo) está lacrado pelo sistema. Clarice quebra a senha "um disquete por vez".
 - Seis portas lacradas são os ganchos para as próximas fases: escotilha da superfície, elevador, arsenal, laboratório, arquivo e a comporta do núcleo.
+
+### A virada — A mentira do Henrique
+
+- O **Henrique** engana o grupo: esconde a ligação que tem com o **Carlos**. Ou trabalha para ele, ou foi enganado por ele (pendente, seção 12.3).
+- Em algum momento, o grupo **descobre a mentira**.
+- É aí que todos **vão atrás do Carlos**, no D-Tec.
 
 ### Ato 4 — Consertar a Âncora e voltar (Núcleo)
 
@@ -235,7 +240,7 @@ Para qualquer texto do jogo ou da documentação:
 | **Âncora** (a máquina) | "Ankhor" para a máquina. Ankhor é o nome do jogo |
 | **Fenda** (temporal) | "portal" |
 | **Carlos** (o antagonista) | — |
-| **D-Tec** (a parte de tecnologia da Unifor, no Bloco M) | — |
+| **D-Tec** (a parte de tecnologia da Unifor, no Bloco M, onde ficam a Âncora e o laboratório do Carlos) | — |
 | **IA** (se continuar existindo: seção 12.2) | um nome próprio, enquanto o grupo não decidir |
 | **Robôs** (os inimigos) | "Insones", "Bibliotecária", "Calouros", "Vigia" (premissa antiga) |
 | **Lanterna a pilha** e **luzes de emergência** | "fungos", "pote de fungos" |
@@ -264,12 +269,11 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 - **O Carlos:** idade, aparência, como fala, o que teme, defeito e arco; e **quando o jogador descobre** que ele existe.
 - **Quando a humanidade foi embora**, e como a Unifor virou um centro de pesquisa em física do tempo.
 - **Por que a fenda se abre sempre na Biblioteca.**
-- **Bloco J e D-Tec:** a Âncora está no Bloco J, descrito como "o bloco de tecnologia", e o D-Tec, a parte de tecnologia da Unifor, fica no Bloco M. Confirmar se os dois fazem parte da área de tecnologia, ou se algo deve mudar de lugar.
 
 ### 12.3 Personagens
 
 - **Gabriel falhando na tela:** enquanto o Baltazar estiver fora de 1750, o sprite de Gabriel pisca ou se desfaz, como a foto em *De Volta para o Futuro*. Seria um shader (bom para a apresentação de Computação Gráfica).
-- **Algum personagem atrapalha?** Alguém que desconfia de Gabriel, quer usar a Âncora só para si ou esconde alguma coisa. Sem isso, o único conflito vem dos robôs. O Henrique, que guarda segredos, é o candidato natural.
+- **O Henrique e o Carlos:** se o Henrique trabalha para o Carlos por vontade própria ou foi enganado por ele; o que exatamente ele esconde do grupo; e como e quando o grupo descobre a mentira.
 - **Henrique:** como ele aparece no jogo.
 - **Zane:** o que fazia no ponto quando foi puxado, e em que fase do jogo ele chega (e se o jogador vê o pulso acontecer).
 - **Ordem de chegada dos outros cinco** (Baltazar, Diana, Clarice, Rafael e Henrique), que chegaram antes de Gabriel. Não precisa seguir a ordem dos anos.
@@ -287,7 +291,7 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 - **Ordem das fases** depois da Biblioteca: onde entram o Labirinto, o Bunker e o Bloco de salas, e qual personagem aparece em cada uma.
 - **Objetivo, robôs e história do Bloco de salas.**
 - **O que destrava o setor B do bunker** (senhas nos disquetes, religar o gerador) e se os robôs entram lá.
-- **O Bloco M** como fase: se é a última, e como o grupo enfrenta o Carlos sem lutar (Gabriel não é combatente).
+- **O D-Tec (Bloco M)** como fase: se é a última, e como o grupo enfrenta o Carlos sem lutar (Gabriel não é combatente).
 - **Redesenho das áreas do GDD** (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) para a premissa da fenda.
 - **De onde vem a grade horária dos robôs.** Antes vinha da coloração de grafos da semana de provas; hoje a patrulha é programada (pelo Carlos ou pela IA: seção 12.2).
 

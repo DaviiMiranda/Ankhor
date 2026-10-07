@@ -26,7 +26,7 @@
 | 9 | Ela escolhe 2026 | 12.1 O final de Gabriel e Clarice | — |
 | 10 | A Âncora é a bateria da IA | 12.2 O objetivo da IA (e parte da 12.6) | — |
 | 11 | A IA era a zeladora | 12.2 Por que a humanidade abandonou a Terra | — |
-| 12 | O segredo do pesquisador | 12.3 Algum personagem atrapalha? | — |
+| 12 | O segredo do pesquisador | 12.3 O Henrique e o Carlos (o que ele esconde) | — |
 | 14 | Clarice primeiro | 12.3 Ordem de chegada | — |
 | 16 | As câmeras | 12.3 Como o Rafael parece ver Gabriel | — |
 | 17 | A noite em que cada um caiu | 12.4 O que os sonhos mostram | — |
@@ -43,7 +43,7 @@
 
 ### Ideia 1 — Um por pulso
 
-Com a Âncora consertada no Bloco J, eles conseguem mirar a fenda numa época. Cada pulso leva **uma pessoa** de volta, na noite certa, acertada pelas estrelas do Baltazar. Isso rende despedidas ao longo do fim do jogo. A ordem pode ser a inversa da chegada.
+Com a Âncora consertada no D-Tec, eles conseguem mirar a fenda numa época. Cada pulso leva **uma pessoa** de volta, na noite certa, acertada pelas estrelas do Baltazar. Isso rende despedidas ao longo do fim do jogo. A ordem pode ser a inversa da chegada.
 
 ### Ideia 2 — Pegar o pulso certo
 
@@ -51,13 +51,13 @@ Sem consertar a máquina inteira, a Clarice aprende a **prever os pulsos**. Cada
 
 ### Ideia 3 — Fechar a fenda de uma vez
 
-Quando a fenda se fecha, devolve a cada um o tempo de onde veio, mas **só leva quem estiver no ponto**. O final vira uma fase de escolta: Gabriel liga a Âncora no Bloco J enquanto os outros atravessam o campus até a Biblioteca, com os robôs atacando.
+Quando a fenda se fecha, devolve a cada um o tempo de onde veio, mas **só leva quem estiver no ponto**. O final vira uma fase de escolta: Gabriel liga a Âncora no D-Tec enquanto os outros atravessam o campus até a Biblioteca, com os robôs atacando.
 
 ### Ideia 4 — A IA no caminho
 
-Combina com qualquer uma das ideias 1, 2 e 3. Em algum momento a IA percebe o que estão fazendo e **defende o Bloco J**. Isso também resolve parte da pendência 12.2 (objetivo da IA), sem dar rosto nem fala a ela.
+Combina com qualquer uma das ideias 1, 2 e 3. Em algum momento a IA percebe o que estão fazendo e **defende o D-Tec**. Isso também resolve parte da pendência 12.2 (objetivo da IA), sem dar rosto nem fala a ela.
 
-**Recomendação:** juntar a **1** com a **3**. O conserto acontece no Bloco J, a volta acontece pela Biblioteca e a fase final é levar todo mundo até o ponto. Isso amarra os dois lugares que o Enredo já tem e dá um clímax jogável.
+**Recomendação:** juntar a **1** com a **3**. O conserto acontece no D-Tec, a volta acontece pela Biblioteca e a fase final é levar todo mundo até o ponto. Isso amarra os dois lugares que o Enredo já tem e dá um clímax jogável.
 
 ---
 
@@ -99,11 +99,13 @@ A humanidade partiu depois de um colapso e deixou a IA para cuidar da Terra até
 
 ---
 
-## Resolve 12.3 — Algum personagem atrapalha?
+## Resolve 12.3 — O Henrique e o Carlos (o que ele esconde)
 
 ### Ideia 12 — O segredo do pesquisador
 
 O pesquisador descobre que a Âncora consertada só consegue mandar de volta **um número limitado de pessoas** e esconde isso do grupo, porque planeja ir primeiro. Quando a verdade aparece, o grupo precisa decidir quem fica. Combina com o defeito dele (guarda segredos) e com o medo de ter causado tudo.
+
+*Atualização (2026-10-07):* já está decidido que o Henrique engana o grupo por causa do Carlos. Esta ideia pode virar o conteúdo da mentira dele.
 
 ---
 
