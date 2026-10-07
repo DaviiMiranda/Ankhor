@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-07 — Fase DTEC (laboratório), solta
+**Decisão:** nova fase **DTEC**, o departamento de tecnologia: recepção, dois corredores e 8 salas (eletrônica, informática, servidores, química, robótica, controle e o Lab Central). No **meio do mapa**, o Lab Central tem uma **máquina grande e brilhante** (anel em pé com núcleo ciano que pulsa). Duas salas são **trancadas** e abrem com o hack do notebook (Servidores e Robótica); cinco portas ficam **lacradas** para depois. A fase é **solta**: não se chega a ela pelos mapas atuais, aparece só no menu Fases e **não tem lugar na história**. A máquina não tem nome nem papel (não é a Âncora). Sem robôs por enquanto.
+**Por quê:** pedido do Davi: um mapa de laboratório grande e detalhado, com salas trancadas e uma máquina no centro.
+**Afeta:** `cenas/salas/dtec/` e `cenas/cenario/dtec/` (novos), `assets/modelagem/cenario/gerar_dtec.py` e `assets/modelagem/salas/dtec/montar_dtec.py` (novos), `cenas/cenario/luzes/luz_maquina.tscn` e `scripts/cenario/luz_pulsante.gd` (novos), `dados/fases/09_dtec.tres` e `cenas/menu_principal.tscn` (menu Fases), `docs/fases/dtec.md`.
+
 ## 2026-10-07 — Visual do Baltazar e do Rafael, com os sprites do Gabriel
 **Decisão:**
 - **Baltazar:** tricórnio de feltro, cabelo comprido preso com fita, casaca **vinho** aberta até a coxa (gasta, com remendo) e canhões largos, colete marrom com botões de latão, camisa de linho, calções, meias e sapato de fivela; a **luneta** de latão numa bandoleira de couro e o **anel** de ouro na mão direita. **Cor de identificação: vinho**, o tom do pau-brasil, um eco escuro do vermelho do Gabriel (a mesma família). Postura cerimoniosa e curiosa, passo curto.
