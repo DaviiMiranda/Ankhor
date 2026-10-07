@@ -12,48 +12,40 @@ const COR_TESTE := Color(1.0, 0.85, 0.2)
 @export var energia_luz: float = 0.9
 @export var oscilacao_luz: float = 0.15
 @export var espera_clique: float = 0.18
-@export var energia_luminaria: float = 0.6
-@export var oscilacao_luminaria: float = 0.12
-@export var piscadas_por_segundo: float = 0.6
-@export var escuridao_na_piscada: float = 0.5
-
-@onready var luz: PointLight2D = $Mesa/Luz
-@onready var luminaria: PointLight2D = $Mesa/Luminaria
-@onready var luminaria_apagada: PointLight2D = $Mesa/LuminariaApagada
-@onready var menu: VBoxContainer = $Mesa/Menu
-@onready var lista_fases: VBoxContainer = $Mesa/Fases
-@onready var rolagem_fases: ScrollContainer = $Mesa/Fases/Rolagem
-@onready var botoes_fases: VBoxContainer = $Mesa/Fases/Rolagem/Lista
-@onready var botao_fases: Button = $Mesa/Menu/BotaoFases
-@onready var botao_novo_jogo: Button = $Mesa/Menu/BotaoNovoJogo
-@onready var botao_continuar: Button = $Mesa/Menu/BotaoContinuar
-@onready var botao_opcoes: Button = $Mesa/Menu/BotaoOpcoes
-@onready var botao_sair: Button = $Mesa/Menu/BotaoSair
+@onready var luz: PointLight2D = $Monitor/Luz
+@onready var menu: VBoxContainer = $Monitor/Menu
+@onready var lista_fases: VBoxContainer = $Monitor/Fases
+@onready var rolagem_fases: ScrollContainer = $Monitor/Fases/Rolagem
+@onready var botoes_fases: VBoxContainer = $Monitor/Fases/Rolagem/Lista
+@onready var botao_fases: Button = $Monitor/Menu/BotaoFases
+@onready var botao_novo_jogo: Button = $Monitor/Menu/BotaoNovoJogo
+@onready var botao_continuar: Button = $Monitor/Menu/BotaoContinuar
+@onready var botao_opcoes: Button = $Monitor/Menu/BotaoOpcoes
+@onready var botao_sair: Button = $Monitor/Menu/BotaoSair
 @onready var musica: AudioStreamPlayer = $Musica
 @onready var som_passar: AudioStreamPlayer = $SomPassar
 @onready var som_clique: AudioStreamPlayer = $SomClique
 
-@onready var painel_opcoes: VBoxContainer = $Mesa/Opcoes
-@onready var rolagem_opcoes: ScrollContainer = $Mesa/Opcoes/Rolagem
-@onready var botoes_opcoes: VBoxContainer = $Mesa/Opcoes/Rolagem/Lista
-@onready var botao_tela_cheia: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoTelaCheia
-@onready var botao_efeito_crt: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoEfeitoCrt
-@onready var botao_volume_master: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoVolumeMaster
-@onready var botao_volume_musica: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoVolumeMusica
-@onready var botao_volume_sfx: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoVolumeSfx
-@onready var botao_controles: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoControles
-@onready var botao_voltar_opcoes: Button = $Mesa/Opcoes/Rolagem/Lista/BotaoVoltarOpcoes
+@onready var painel_opcoes: VBoxContainer = $Monitor/Opcoes
+@onready var rolagem_opcoes: ScrollContainer = $Monitor/Opcoes/Rolagem
+@onready var botoes_opcoes: VBoxContainer = $Monitor/Opcoes/Rolagem/Lista
+@onready var botao_tela_cheia: Button = $Monitor/Opcoes/Rolagem/Lista/BotaoTelaCheia
+@onready var botao_efeito_crt: Button = $Monitor/Opcoes/Rolagem/Lista/BotaoEfeitoCrt
+@onready var botao_volume_master: Button = $Monitor/Opcoes/Rolagem/Lista/BotaoVolumeMaster
+@onready var botao_volume_musica: Button = $Monitor/Opcoes/Rolagem/Lista/BotaoVolumeMusica
+@onready var botao_volume_sfx: Button = $Monitor/Opcoes/Rolagem/Lista/BotaoVolumeSfx
+@onready var botao_controles: Button = $Monitor/Opcoes/Rolagem/Lista/BotaoControles
+@onready var botao_voltar_opcoes: Button = $Monitor/Opcoes/Rolagem/Lista/BotaoVoltarOpcoes
 
-@onready var painel_controles: VBoxContainer = $Mesa/Controles
-@onready var rolagem_controles: ScrollContainer = $Mesa/Controles/Rolagem
-@onready var botoes_controles: VBoxContainer = $Mesa/Controles/Rolagem/Lista
-@onready var botao_voltar_controles: Button = $Mesa/Controles/Rolagem/Lista/BotaoVoltarControles
-@onready var efeito_crt_rect: ColorRect = $Mesa/EfeitoCRT
+@onready var painel_controles: VBoxContainer = $Monitor/Controles
+@onready var rolagem_controles: ScrollContainer = $Monitor/Controles/Rolagem
+@onready var botoes_controles: VBoxContainer = $Monitor/Controles/Rolagem/Lista
+@onready var botao_voltar_controles: Button = $Monitor/Controles/Rolagem/Lista/BotaoVoltarControles
+@onready var efeito_crt_rect: ColorRect = $Monitor/EfeitoCRT
 
 var _ruido := FastNoiseLite.new()
 var _tempo := 0.0
 var _tocar_ao_passar := false
-var _piscada_restante := 0.0
 
 
 func _ready() -> void:
@@ -107,17 +99,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_tempo += delta
 	luz.energy = energia_luz + _ruido.get_noise_1d(_tempo * 60.0) * oscilacao_luz
-	_atualizar_luminaria(delta)
-
-
-func _atualizar_luminaria(delta: float) -> void:
-	_piscada_restante -= delta
-	if _piscada_restante <= 0.0 and randf() < piscadas_por_segundo * delta:
-		_piscada_restante = randf_range(0.06, 0.2)
-	var piscando := _piscada_restante > 0.0
-	var energia := energia_luminaria + _ruido.get_noise_1d(_tempo * 90.0 + 500.0) * oscilacao_luminaria
-	luminaria.energy = 0.0 if piscando else energia
-	luminaria_apagada.energy = escuridao_na_piscada if piscando else 0.0
 
 
 func _unhandled_input(evento: InputEvent) -> void:

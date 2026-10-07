@@ -11,6 +11,12 @@
 #   assets/sprites/menu/menu_frente.png  caneca e cadeira (primeiro plano, silhueta)
 #   assets/modelagem/menu/menu.blend     a cena montada, para quem quiser abrir e mexer
 #
+# ATENÇÃO: desde 2026-10-07 o menu principal NÃO usa mais estes PNGs. Ele
+# usa uma imagem só, assets/sprites/menu/menu_cena.png, feita por
+# assets/modelagem/menu/preparar_menu.py. Este script continua no projeto
+# porque a cutscene seg_acordar (gerar_seg_acordar.py) reaproveita a cabine
+# montada aqui.
+#
 # A cena: a cabine de estudo da Biblioteca à noite, na véspera das provas.
 # As luzes estão apagadas; sobram o brilho azulado da tela do monitor e a
 # luminária de mesa, acesa, que pinta de quente o canto direito da mesa.
