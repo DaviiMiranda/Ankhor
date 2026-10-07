@@ -1,7 +1,7 @@
-# O pesquisador (2019)
+# Henrique (2019), o pesquisador
 
-> **Status:** Em definição. O nome está pendente.
-> **Lei do projeto:** esta ficha faz parte do [Enredo Principal](../enredo_principal.md) e tem a mesma autoridade: quem o pesquisador é vale como está escrito aqui. A história em volta dele (o acidente, a ordem dos acontecimentos, as pendências) está no Enredo.
+> **Status:** Em definição.
+> **Lei do projeto:** esta ficha faz parte do [Enredo Principal](../enredo_principal.md) e tem a mesma autoridade: quem o Henrique é vale como está escrito aqui. A história em volta dele (o acidente, a ordem dos acontecimentos, as pendências) está no Enredo.
 
 ---
 
@@ -49,6 +49,5 @@ Nenhum ainda.
 
 ## 8. Pendências
 
-- O nome (Enredo Principal, seção 12.3).
 - Se é o personagem que atrapalha: ele guarda segredos e é o candidato natural (seção 12.3).
 - Como aparece no jogo e onde fica.

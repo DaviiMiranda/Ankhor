@@ -16,6 +16,16 @@ Formato:
 
 ---
 
+## 2026-10-07 — O Carlos é o antagonista (ideia 23), o pesquisador é o Henrique
+**Decisão:**
+- **Ideia 23 aprovada, com partes ainda em aberto.** O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora. Na época dele, a sociedade e o planeta estavam muito ruins, e o pouco que sobrou da humanidade foi para outro planeta. Ele ficou, por um objetivo egoísta: é obcecado pelos **anos 80** e quer usar a Âncora para ir viver lá. A Âncora é imprecisa: cada tentativa dele abre a fenda no chão da Biblioteca e puxa gente por acaso. Ele controla os robôs. O laboratório dele fica no **Bloco M**, no **D-Tec**, a parte de tecnologia da Unifor; a Âncora continua no Bloco J.
+- Em aberto, nas pendências do Enredo (12.2): como ele consegue o conhecimento (consciências roubadas, super IA ou as duas), se a IA continua existindo, por que os robôs caçam, e o resto da ficha dele.
+- **Ideia 13 aprovada:** o pesquisador de 2019 se chama **Henrique**. A ficha virou `henrique.md`.
+- **Ideias 20, 21 e 22 descartadas** (o pesquisador mentiu, o cientista que morreu, o drone).
+
+**Por quê:** decisão do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 1, 2, 3, 4, 6, 7, 8, 11 e 12), a ficha nova `docs/historia/personagens/carlos.md`, `pesquisador.md` → `henrique.md`, as fichas de Clarice, Zane, Gabriel e robôs, `docs/historia/outras_ideias.md`, `docs/historia/template_documento.md`, `docs/README.md`, `docs/gdd.md`, `CLAUDE.md` e o agente `roteirista`.
+
 ## 2026-10-07 — Visual do Baltazar e do Rafael, com os sprites do Gabriel
 **Decisão:**
 - **Baltazar:** tricórnio de feltro, cabelo comprido preso com fita, casaca **vinho** aberta até a coxa (gasta, com remendo) e canhões largos, colete marrom com botões de latão, camisa de linho, calções, meias e sapato de fivela; a **luneta** de latão numa bandoleira de couro e o **anel** de ouro na mão direita. **Cor de identificação: vinho**, o tom do pau-brasil, um eco escuro do vermelho do Gabriel (a mesma família). Postura cerimoniosa e curiosa, passo curto.
