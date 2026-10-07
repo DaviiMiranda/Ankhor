@@ -3,6 +3,7 @@ extends Node2D
 
 const TAMANHOS_BRILHO := [0, 1, 2, 1, 0]
 
+@export var intensidade: float = 1.0
 @export var periodo_pulso: float = 2.4
 @export var energia_minima: float = 0.4
 @export var energia_maxima: float = 1.0
@@ -11,6 +12,7 @@ const TAMANHOS_BRILHO := [0, 1, 2, 1, 0]
 @export var duracao_quadro_brilho: float = 0.07
 @export var cor_brilho: Color = Color(1, 0.96, 0.8, 1)
 
+var _escala_base := 1.0
 var _tempo := 0.0
 var _espera := 0.0
 var _quadro := -1
@@ -23,6 +25,7 @@ var _area_desenhada := Rect2()
 
 
 func _ready() -> void:
+	_escala_base = luz.texture_scale.x
 	_tempo = randf() * periodo_pulso
 	_espera = randf_range(0.3, espera_brilho_maxima)
 
@@ -35,7 +38,8 @@ func _process(delta: float) -> void:
 
 func _pulsar_luz() -> void:
 	var onda := (1.0 - cos(_tempo * TAU / periodo_pulso)) / 2.0
-	luz.energy = lerpf(energia_minima, energia_maxima, onda)
+	luz.energy = lerpf(energia_minima, energia_maxima, onda) * intensidade
+	luz.texture_scale = Vector2.ONE * _escala_base * sqrt(intensidade)
 	luz.position = _area_do_desenho().get_center()
 
 
@@ -52,7 +56,7 @@ func _avancar_brilho(delta: float) -> void:
 	_quadro += 1
 	if _quadro >= TAMANHOS_BRILHO.size():
 		_quadro = -1
-		_espera = randf_range(espera_brilho_minima, espera_brilho_maxima)
+		_espera = randf_range(espera_brilho_minima, espera_brilho_maxima) / intensidade
 	queue_redraw()
 
 
