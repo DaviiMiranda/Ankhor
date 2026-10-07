@@ -25,7 +25,7 @@ var _area_desenhada := Rect2()
 
 
 func _ready() -> void:
-	_escala_base = luz.texture_scale.x
+	_escala_base = luz.texture_scale
 	_tempo = randf() * periodo_pulso
 	_espera = randf_range(0.3, espera_brilho_maxima)
 
@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 func _pulsar_luz() -> void:
 	var onda := (1.0 - cos(_tempo * TAU / periodo_pulso)) / 2.0
 	luz.energy = lerpf(energia_minima, energia_maxima, onda) * intensidade
-	luz.texture_scale = Vector2.ONE * _escala_base * sqrt(intensidade)
+	luz.texture_scale = _escala_base * sqrt(intensidade)
 	luz.position = _area_do_desenho().get_center()
 
 
