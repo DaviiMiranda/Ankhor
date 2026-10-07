@@ -12,7 +12,8 @@
 #   assets/modelagem/menu/menu.blend     a cena montada, para quem quiser abrir e mexer
 #
 # A cena: a cabine de estudo da Biblioteca à noite, na véspera das provas.
-# Tudo apagado; a única luz é o brilho azulado e frio da tela do monitor.
+# As luzes estão apagadas; sobram o brilho azulado da tela do monitor e a
+# luminária de mesa, acesa, que pinta de quente o canto direito da mesa.
 #
 # Ideia geral do script:
 #   1. Posicionar a câmera de forma que a TELA do monitor caia exatamente
@@ -200,6 +201,15 @@ def cilindro(nome, raio, altura, mat, col, lados=16, raio_topo=None):
     return objeto_de_bmesh(nome, bm, mat, col)
 
 
+def barra(nome, a, b, espessura, mat, col):
+    """Haste de seção quadrada indo do ponto a ao ponto b."""
+    direcao = b - a
+    obj = caixa(nome, -espessura, espessura, -espessura, espessura, 0, direcao.length, mat, col)
+    obj.rotation_euler = direcao.to_track_quat('Z', 'Y').to_euler()
+    obj.location = a
+    return obj
+
+
 def chanfro(obj, largura=0.3, segmentos=2):
     """Bisel nas quinas: pega um pouco de luz na borda e ajuda a ler a forma."""
     mod = obj.modifiers.new("Bisel", 'BEVEL')
@@ -252,6 +262,9 @@ def estante(nome, ex0, ex1, parede_y, m_madeira, m_livros, col):
     objeto_de_bmesh(nome + "Livros", bm, m_livros, col)
 
 
+LAMPADA = [None]
+
+
 def montar_cena():
     random.seed(7)  # mesma "aleatoriedade" toda vez: os livros não mudam de uma rodada para outra
 
@@ -262,12 +275,13 @@ def montar_cena():
     m_bege = material("plastico_bege", "#b8ae98", 0.45)
     m_bege_escuro = material("plastico_bege_escuro", "#8a8272", 0.5)
     m_vidro = material("vidro_tela", "#05080c", 0.15, "#1a3a66", 0.6)
-    m_tecla = material("tecla", "#c4bba6", 0.5)
+    m_tecla = material("tecla", "#a8a090", 0.5)
     m_papel = material("papel", "#e6e2d6", 0.8)
     m_caderno = material("caderno", "#2f4f6f", 0.6)
     m_caderno2 = material("caderno_vermelho", "#6f2f2f", 0.6)
     m_metal = material("metal_escuro", "#2a2c30", 0.35)
     m_caneca = material("caneca", "#d8d4cc", 0.3)
+    m_cafe = material("cafe", "#2a1a10", 0.2)
     m_cadeira = material("cadeira", "#1c1d22", 0.7)
     m_relogio = material("relogio", "#d0ccc0", 0.5)
     m_preto = material("preto", "#0a0a0a", 0.6)
@@ -365,41 +379,51 @@ def montar_cena():
         p.location = (x, y, 0.02 * i)
         p.rotation_euler = (0, 0, math.radians(ang))
     c1 = caixa("Caderno", -3.2, 3.2, -4.2, 4.2, 0, 0.7, m_caderno, mesa)
-    c1.location = (-12.5, -1.5, 0)
+    c1.location = (-15.5, -2.0, 0)
     c1.rotation_euler = (0, 0, math.radians(-6))
     c2 = caixa("CadernoVermelho", -3.0, 3.0, -4.0, 4.0, 0, 0.6, m_caderno2, mesa)
-    c2.location = (-12.0, -1.2, 0.7)
+    c2.location = (-15.0, -1.6, 0.7)
     c2.rotation_euler = (0, 0, math.radians(9))
-    livro = caixa("LivroMesa", -3.5, 3.5, -4.8, 4.8, 0, 1.6, m_livros[2], mesa)
-    livro.location = (-12.7, -1.4, 1.3)
+    livro = caixa("LivroMesa", -4.0, 4.0, -5.2, 5.2, 0, 1.8, m_livros[2], mesa)
+    livro.location = (-15.5, -2.0, 1.3)
+    livro2 = caixa("LivroMesa2", -3.8, 3.8, -5.0, 5.0, 0, 1.6, m_caderno, mesa)
+    livro2.location = (-15.3, -2.0, 3.1)
+    livro2.rotation_euler = (0, 0, math.radians(-4))
     livro.rotation_euler = (0, 0, math.radians(2))
     # Um lápis largado.
     lapis = caixa("Lapis", -3.0, 3.0, -0.12, 0.12, 0, 0.24, m_livros[6], mesa)
     lapis.location = (-11.0, -3.0, 0.1)
     lapis.rotation_euler = (0, 0, math.radians(30))
 
-    # Luminária de mesa APAGADA, à direita do monitor.
-    lx, ly = 13.0, 9.0
-    base = cilindro("LuminariaBase", 2.2, 0.6, m_metal, mesa, lados=16)
-    base.location = (lx, ly, 0)
-    haste1 = caixa("LuminariaHaste1", -0.25, 0.25, -0.25, 0.25, 0, 10.0, m_metal, mesa)
-    haste1.location = (lx, ly, 0.5)
-    haste1.rotation_euler = (math.radians(-12), 0, math.radians(0))
-    haste2 = caixa("LuminariaHaste2", -0.25, 0.25, -0.25, 0.25, 0, 7.0, m_metal, mesa)
-    haste2.location = (lx, ly - 2.0, 10.2)
-    haste2.rotation_euler = (math.radians(-110), 0, math.radians(-25))
-    cupula = cilindro("LuminariaCupula", 2.6, 3.5, m_metal, mesa, lados=16, raio_topo=0.8)
-    cupula.location = (lx - 2.6, ly - 8.0, 9.0)
-    cupula.rotation_euler = (math.radians(200), math.radians(20), 0)
+    # Luminária de mesa ACESA, à direita do monitor: base, haste dobrada e
+    # cúpula virada para baixo, para a mesa. A luz quente sai da cúpula.
+    base_lum = Vector((17.0, 8.0, 0.0))
+    cotovelo = Vector((18.5, 7.0, 13.5))
+    cabeca = Vector((13.0, 3.0, 10.5))
+    base = cilindro("LuminariaBase", 3.0, 0.9, m_metal, mesa, lados=20)
+    base.location = base_lum
+    barra("LuminariaHaste1", base_lum, cotovelo, 0.3, m_metal, mesa)
+    barra("LuminariaHaste2", cotovelo, cabeca, 0.3, m_metal, mesa)
+    # A cúpula é um cone cujo eixo aponta da cabeça para a mesa (para baixo
+    # e para a esquerda). O cone nasce com o eixo em +Z; giramos o +Z para
+    # a direção oposta à luz, porque a boca larga é a base (z = 0).
+    eixo = Vector((-0.45, -0.25, -1.0)).normalized()
+    cupula = cilindro("LuminariaCupula", 3.2, 4.0, m_metal, mesa, lados=20, raio_topo=1.0)
+    cupula.rotation_euler = (-eixo).to_track_quat('Z', 'Y').to_euler()
+    cupula.location = cabeca + eixo * 3.2
+    # A luz fica logo depois da boca da cúpula: a boca é tampada (o cone
+    # é fechado) e, dentro dela, a luz não sairia.
+    LAMPADA[0] = cabeca + eixo * 3.6
 
     # ---------------- FRENTE ----------------
     # Caneca na ponta direita da mesa (esfriou há horas).
-    caneca = cilindro("Caneca", 1.3, 3.4, m_caneca, frente, lados=20)
-    caneca.location = (11.0, -2.0, 0)
-    # Alça: um toro (rosquinha) em pé, meio enfiado na lateral da caneca.
-    bpy.ops.mesh.primitive_torus_add(major_radius=0.85, minor_radius=0.22,
+    caneca = cilindro("Caneca", 1.4, 3.6, m_caneca, frente, lados=24)
+    caneca.location = (12.5, -0.5, 0)
+    cafe = cilindro("Cafe", 1.15, 0.2, m_cafe, frente, lados=24)
+    cafe.location = (12.5, -0.5, 3.45)
+    bpy.ops.mesh.primitive_torus_add(major_radius=0.85, minor_radius=0.24,
                                      major_segments=16, minor_segments=6,
-                                     location=(11.0 + 1.25, -2.0, 1.8),
+                                     location=(12.5 + 1.4, -0.5, 1.9),
                                      rotation=(math.radians(90), 0, 0))
     alca = bpy.context.active_object
     alca.name = "CanecaAlca"
@@ -429,7 +453,7 @@ def criar_luzes():
     dados.size = TELA_LARG
     dados.size_y = TELA_ALT
     dados.color = cor_tela
-    dados.energy = 900.0
+    dados.energy = 1400.0
     luz = bpy.data.objects.new("LuzTela", dados)
     # Luz de área aponta para o -Z local. Girando 90° em X ela aponta para -Y.
     luz.rotation_euler = (math.radians(-90), 0, 0)
@@ -443,7 +467,7 @@ def criar_luzes():
     dados2.shape = 'DISK'
     dados2.size = 40.0
     dados2.color = (0.35, 0.5, 0.85)
-    dados2.energy = 30000.0
+    dados2.energy = 90000.0
     reb = bpy.data.objects.new("LuzRebatida", dados2)
     reb.location = (0, 0, 55.0)
     reb.rotation_euler = (math.radians(35), 0, 0)  # do alto, virada para o fundo (+Y)
@@ -455,18 +479,29 @@ def criar_luzes():
     dados3.shape = 'DISK'
     dados3.size = 30.0
     dados3.color = (0.4, 0.55, 0.9)
-    dados3.energy = 1500.0
+    dados3.energy = 3500.0
     reb2 = bpy.data.objects.new("LuzRebatidaFrente", dados3)
     reb2.location = (0, -30.0, 30.0)
     reb2.rotation_euler = (math.radians(60), 0, 0)  # vinda de trás da câmera, do alto
     bpy.context.scene.collection.objects.link(reb2)
+
+    # Luminária: foco quente apontado para a mesa, à direita do teclado.
+    dados4 = bpy.data.lights.new("LuzLuminaria", 'SPOT')
+    dados4.color = (1.0, 0.72, 0.4)
+    dados4.energy = 16000.0
+    dados4.spot_size = math.radians(60)
+    dados4.spot_blend = 0.5
+    lum = bpy.data.objects.new("LuzLuminaria", dados4)
+    lum.location = LAMPADA[0]
+    lum.rotation_euler = Vector((-0.45, -0.25, -1.0)).to_track_quat('-Z', 'Y').to_euler()
+    bpy.context.scene.collection.objects.link(lum)
 
     # Mundo quase preto, levemente azul: só para as silhuetas não sumirem.
     mundo = bpy.data.worlds.new("Noite")
     mundo.use_nodes = True
     fundo = mundo.node_tree.nodes.get("Background")
     fundo.inputs["Color"].default_value = (*hex_para_linear("#0c1220"), 1)
-    fundo.inputs["Strength"].default_value = 0.6
+    fundo.inputs["Strength"].default_value = 1.3
     bpy.context.scene.world = mundo
 
 
@@ -481,10 +516,15 @@ def configurar_render():
     # A imagem é minúscula (340×200), então muitas amostras custam pouco
     # e evitam ruído, que viraria "sujeira" depois da redução de paleta.
     cena.cycles.device = 'CPU'
-    cena.cycles.samples = 1024
+    cena.cycles.samples = 2048
     cena.cycles.use_denoising = False       # o denoiser borra; pixel art não pode borrar
     cena.cycles.use_adaptive_sampling = False
     cena.cycles.max_bounces = 4
+    # A luz quente da luminária, rebatendo no metal e no plástico, gera
+    # pontinhos de ruído que a redução de paleta transforma em "chuvisco".
+    # Limitar o brilho da luz indireta e borrar só os reflexos tira isso.
+    cena.cycles.sample_clamp_indirect = 1.0
+    cena.cycles.blur_glossy = 1.0
     # Filtro de pixel quase zero = sem antialiasing: cada pixel é "um
     # ponto" da cena, com borda dura, como pixel art.
     cena.cycles.filter_width = 0.01
@@ -524,6 +564,10 @@ PALETA = [
     "#1f2126", "#2c2f35", "#3c3e44", "#555961", "#737985", "#959ba6",              # bege/cinza do CRT sob luz fria
     "#2a1519", "#1a2622", "#3a3040",                         # lombadas
     "#6e6a4a", "#9a9468",                                    # bilhete amarelo sob luz azul
+    "#5a4030", "#7a5a40", "#9a7650", "#c8a070", "#e8c890",   # madeira e luz quente da luminária
+    "#3a2418", "#dce4f0", "#e8ecf4",                         # café, caneca e papel claro
+    "#8a96b0", "#aab8d0", "#d8e4f4",                         # azuis claros (bordas e papéis)
+    "#2e2a28", "#433c36", "#5e564c", "#7a7064", "#9a8e7c", "#b8aa94",  # cinza e bege sob as duas luzes (fria e quente)
 ]
 
 

@@ -31,13 +31,29 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
+[sub_resource type="Gradient" id="Gradient_tela"]
+colors = PackedColorArray(0.09, 0.15, 0.2, 1, 0.03, 0.05, 0.08, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tela"]
+gradient = SubResource("Gradient_tela")
+width = 140
+height = 102
+fill = 1
+fill_from = Vector2(0.5, 0.45)
+fill_to = Vector2(1.1, 1.1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_crt"]
 shader = ExtResource("3_crt")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_botao"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_destaque"]
-bg_color = Color(0.35, 0.6, 1, 0.25)
+bg_color = Color(0.24, 0.38, 0.6, 0.85)
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.42, 0.58, 0.82, 0.9)
+expand_margin_left = 4.0
+expand_margin_right = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_barra_fundo"]
 content_margin_left = 1.0
@@ -72,17 +88,18 @@ corner_radius_bottom_left = 1
 [sub_resource type="Theme" id="Theme_tela"]
 default_font_size = 8
 Label/constants/line_spacing = 0
-Button/colors/font_color = Color(0.55, 0.75, 1, 1)
-Button/colors/font_disabled_color = Color(0.25, 0.32, 0.42, 1)
-Button/colors/font_focus_color = Color(0.85, 0.95, 1, 1)
-Button/colors/font_hover_color = Color(0.85, 0.95, 1, 1)
+Button/colors/font_color = Color(0.72, 0.82, 0.92, 1)
+Button/colors/font_disabled_color = Color(0.3, 0.36, 0.42, 1)
+Button/colors/font_focus_color = Color(0.95, 0.98, 1, 1)
+Button/colors/font_hover_color = Color(0.95, 0.98, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/styles/disabled = SubResource("StyleBoxEmpty_botao")
-Button/styles/focus = SubResource("StyleBoxEmpty_botao")
-Button/styles/hover = SubResource("StyleBoxFlat_destaque")
+Button/styles/focus = SubResource("StyleBoxFlat_destaque")
+Button/styles/hover = SubResource("StyleBoxEmpty_botao")
 Button/styles/normal = SubResource("StyleBoxEmpty_botao")
 Button/styles/pressed = SubResource("StyleBoxFlat_destaque")
-Label/colors/font_color = Color(0.7, 0.85, 1, 1)
+Label/colors/font_color = Color(0.78, 0.9, 1, 1)
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_barra_alca")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_barra_alca_destaque")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_barra_alca_pressionada")
@@ -116,13 +133,13 @@ position = Vector2(-10, -10)
 texture = ExtResource("5_mesa")
 centered = false
 
-[node name="Tela" type="ColorRect" parent="Mesa"]
+[node name="Tela" type="TextureRect" parent="Mesa"]
 offset_left = 90.0
 offset_top = 24.0
 offset_right = 230.0
 offset_bottom = 126.0
 mouse_filter = 2
-color = Color(0.03, 0.08, 0.13, 1)
+texture = SubResource("GradientTexture2D_tela")
 
 [node name="Menu" type="VBoxContainer" parent="Mesa"]
 offset_left = 94.0
@@ -135,12 +152,17 @@ theme_override_constants/separation = 0
 
 [node name="Titulo" type="Label" parent="Mesa/Menu"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.86, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.45, 0.75, 1, 0.35)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
 theme_override_font_sizes/font_size = 16
 text = "ANKHOR"
 horizontal_alignment = 1
 
 [node name="Espaco" type="Control" parent="Mesa/Menu"]
-custom_minimum_size = Vector2(0, 2)
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 mouse_filter = 2
 
