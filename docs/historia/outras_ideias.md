@@ -35,6 +35,7 @@
 | 20 | O pesquisador mentiu | 12.3 Algum personagem atrapalha? (e a ordem de chegada) | **Alto** |
 | 21 | O cientista que queria voltar | 12.2 Quem criou a Âncora e por quê | **Alto** |
 | 22 | O drone | Ideia nova pedida pelo Davi: revelação no fim do jogo (toca em 12.1 e 12.2) | **Alto** |
+| 23 | Carlos, o antagonista | 12.2 Quem criou a Âncora e por quê (e 12.2 Por que a humanidade abandonou a Terra) | **Alto** |
 
 ---
 
@@ -122,6 +123,48 @@ A Âncora foi criada por um **cientista de 3026**, um dos humanos que **não for
 - A ideia em aberto do **descendente de Gabriel** pode caber aqui: o cientista seria um Magalhães. Fica a critério do grupo.
 
 ---
+
+### Ideia 23 — Carlos, o antagonista (alto impacto)
+
+> **Alto impacto:** muda muito a lore. Antes de aprovar, veja o que ela altera no fim desta ideia.
+
+*Ideia do Davi, desenvolvida na conversa.*
+
+**Quem é:** **Carlos**, um cientista que já vivia em 3026. Está **vivo**, de corpo e tudo. Foi ele quem **criou a Âncora**. O laboratório dele fica no **Bloco M** (no D-Tec); a Âncora continua no Bloco J.
+
+**O mundo dele:** em 3026, a sociedade estava muito ruim e o planeta também. Por isso, a humanidade, ou o pouco que sobrou dela, decidiu ir embora para outro planeta.
+
+**A motivação:** o Carlos é **obcecado por uma época antiga específica** (por exemplo, os anos 60). Enquanto todos partiam, ele **ficou**, com um objetivo egoísta: usar a Âncora para ir viver naquela época. Não quer salvar ninguém: quer fugir para o passado que idealiza.
+
+**O problema dele:** sozinho, ele não sabe o bastante para fazer a Âncora funcionar direito. Ela é imprecisa: abre a fenda no lugar certo, mas não escolhe quem puxa nem acerta a época.
+
+**Como ele resolve (a decidir):**
+1. **Roubar consciências.** Ele mira a fenda na Biblioteca de madrugada para pescar gente que estuda. Os robôs capturam os puxados e os levam ao Bloco M, onde ele tira deles o que sabem.
+2. **Fazer uma super IA**, que calcula o que ele não consegue.
+3. **As duas juntas (sugestão):** a super IA é feita das consciências roubadas. Cada mente capturada deixa a IA mais esperta e a Âncora mais precisa.
+
+**Por que a opção 3 funciona bem:**
+- **O acaso continua.** A Âncora é imprecisa, então a fenda pega quem estiver lá: um segurança, uma recruta, um rapaz com uma luneta. Ele queria gênios e recebeu gente comum. Só a Clarice e o pesquisador são o tipo que ele procura, e isso os coloca em mais perigo.
+- **A ameaça cresce com sentido.** Cada mente roubada deixa a Âncora mais forte, e por isso a fenda cresce.
+- **Os robôs ganham uma função:** capturam em vez de matar. Para o jogador, ser pego continua sendo game over.
+
+**Sugestões para desenvolver:**
+- **O laboratório como cenário de terror.** O Bloco M tem uma sala que reproduz perfeitamente a época que ele idealiza: discos, pôsteres, móveis, música de outro século tocando num prédio em ruínas do futuro. É o tipo de contraste que *Five Nights at Freddy's* usa bem: o nostálgico virando assustador.
+- **A época escolhida.** Os anos 60 funcionam. Uma alternativa que amarra com o jogo: o **fim dos anos 70**, quando o campus estava sendo construído. É a época da **Diana**, e ele a trataria de um jeito diferente dos outros, porque ela veio do mundo que ele quer.
+- **Espelho do pesquisador (ideia 20).** Os dois trouxeram gente para 3026 por causa da própria solidão ou do próprio desejo, mas o pesquisador escolhe parar e o Carlos não. Variação forte: o pesquisador mentiu porque **o Carlos o obrigou** a ajudar.
+- **O drone (ideia 22).** O aviso de que outra civilização está chegando deixa o Carlos desesperado para fugir de vez, e acelera tudo no fim do jogo.
+- **Confronto sem luta.** Gabriel não é combatente: o fim pode ser desligar a super IA no Bloco M (o que solta as consciências e tira do Carlos o controle dos robôs), com cada personagem do grupo fazendo a sua parte.
+
+**Ainda em aberto nesta ideia:**
+- Roubar consciências, super IA, ou as duas.
+- A **IA que domina a Terra** (Enredo, seção 2.1) continua existindo? Ou sai da história, ou continua e o Carlos tomou o controle de parte dos robôs.
+- Qual é a época da obsessão dele.
+- Se "D-Tec" é o nome do centro de pesquisa inteiro ou só do prédio do Bloco M.
+
+**O que muda se for aprovada:**
+- No Enredo: a Âncora deixa de ser "só uma máquina abandonada" e passa a ter dono; a fenda vira uma pescaria imprecisa; o motivo da partida da humanidade (seção 2.1) ganha forma; a IA muda ou sai; entra um antagonista com nome; o Bloco M entra como lugar (provável última fase).
+- Aqui: a **ideia 21** (o cientista que morreu) sai, porque o Carlos a substitui; as **ideias 10 e 11** (a Âncora como bateria da IA, a IA zeladora) ficam redundantes ou precisam de ajuste; a **20** e a **22** combinam com esta.
+- Na produção: uma ficha nova em `personagens/` e pelo menos uma fase nova (o Bloco M).
 
 ## Resolve 12.3 — Algum personagem atrapalha?
 
