@@ -60,9 +60,8 @@ docs/
 │
 └── historia/                      # História, personagens e roteiro
     ├── enredo_principal.md        # A LEI DO PROJETO: história, mundo, personagens e pendências
-    ├── README.md                  # Funcionamento das camadas narrativas (presente vs sonhos)
-    ├── revelacao_central.md       # Versão antiga da história (loops); não vale mais
-    ├── template_documento.md      # Modelo padronizado para documentos, bilhetes e relíquias
+    ├── README.md                  # Índice da pasta: comece pelo Enredo Principal
+    ├── template_documento.md      # Modelo para escrever bilhetes, diários e relatórios
     ├── personagens/               # Fichas de produção de cada personagem
     │   ├── README.md              # Quem é quem e como os personagens funcionam no Godot
     │   ├── gabriel.md             # O protagonista: estados, estamina, inventário

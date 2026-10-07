@@ -12,8 +12,6 @@ Antes de escrever qualquer coisa, leia:
 - `docs/historia/personagens/` — fichas de produção de cada personagem (onde aparece, função, arte)
 - tudo em `docs/historia/roteiro/`
 
-Não use `docs/historia/revelacao_central.md`: descreve uma versão antiga da história.
-
 ## O que já está definido
 
 O Enredo Principal é a referência completa. Em resumo:

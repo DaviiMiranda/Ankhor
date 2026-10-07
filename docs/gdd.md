@@ -8,7 +8,7 @@
 > - 🎯 **[Visão Geral e Pilares](visao_geral/conceito.md)** | **[Estilo Artístico 2.5D](visao_geral/estilo_artistico.md)**
 > - ⚙️ **[Mecânicas e Core Loop](mecanicas/README.md)** | **[Furtividade](mecanicas/furtividade_e_esconderijos.md)** | **[Iluminação](mecanicas/iluminacao_e_lanterna.md)** | **[Vida e Checkpoint](mecanicas/vida_e_checkpoint.md)** | **[Sono e Sonhos](mecanicas/sono_e_sonhos.md)**
 > - 💻 **[Conceitos de Computação](computacao/README.md)** (Grafos, Coloração, BFS, A*, Markov, Shaders)
-> - 📜 **[Enredo Principal](historia/enredo_principal.md)** | **[Estrutura Narrativa](historia/README.md)** | **[Template de Documentos](historia/template_documento.md)**
+> - 📜 **[Enredo Principal](historia/enredo_principal.md)** | **[Índice da História](historia/README.md)** | **[Modelo de Documento](historia/template_documento.md)**
 > - 👥 **[Personagens](historia/personagens/README.md)** ([Gabriel](historia/personagens/gabriel.md), [Robôs](historia/personagens/robos.md), [Template](historia/personagens/template_personagem.md))
 > - 🗺️ **[Design de Fases](fases/README.md)** | **[Template de Fase](fases/template_fase.md)**
 > - 💬 **[Sistema de Diálogos](dialogos/README.md)** | **[Template de Diálogo](dialogos/template_dialogo.md)**
