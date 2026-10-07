@@ -266,7 +266,7 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 - **Como o Carlos consegue o conhecimento** que falta para a Âncora funcionar: roubando a consciência dos puxados, construindo uma super IA, ou as duas (a super IA feita das consciências roubadas).
 - **A IA continua existindo?** Pode ser a super IA do Carlos, outra coisa que ele controla, ou sair da história. O arco do Zane (medo da IA, ficar para domá-la) depende disso.
 - **Por que os robôs caçam os humanos:** para capturar e levar ao Bloco M, ou para eliminar quem atrapalha.
-- **O Carlos:** idade, aparência, como fala, o que teme, defeito e arco; e **quando o jogador descobre** que ele existe.
+- **O Carlos:** idade exata, como fala, o que teme, defeito e arco; e **quando o jogador descobre** que ele existe.
 - **Quando a humanidade foi embora**, e como a Unifor virou um centro de pesquisa em física do tempo.
 - **Por que a fenda se abre sempre na Biblioteca.**
 

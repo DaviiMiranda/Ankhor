@@ -18,7 +18,7 @@
 #   henrique_referencia.png          frente, 3/4, lado e costas, e os retratos
 #   assets/modelagem/personagens/henrique.blend   o modelo
 #
-# Quem é (docs/historia/personagens/pesquisador.md): aluno de iniciação
+# Quem é (docs/historia/personagens/henrique.md): aluno de iniciação
 # científica da Unifor em 2019, uns 20 anos. Estudava à noite na Biblioteca
 # e sumiu. Gênio quieto, introvertido, perfeccionista e ansioso, que fala
 # pouco e anota muito.

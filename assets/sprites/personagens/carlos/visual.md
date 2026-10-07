@@ -1,9 +1,6 @@
 # Carlos — visual
 
-> [!WARNING]
-> O Carlos é a **ideia 23** de [`docs/historia/outras_ideias.md`](../../../../docs/historia/outras_ideias.md), **ainda não aprovada**. Ele não tem ficha em `docs/historia/personagens/` e não faz parte do Enredo Principal. Este é o visual dele caso a ideia entre; se a ideia mudar, o visual muda junto.
-
-Cientista que já vivia em 3026 e criou a Âncora. Quando a humanidade foi embora, ele ficou, obcecado por uma época antiga (a ideia sugere os anos 60), para fugir para ela.
+O antagonista: cientista de 3026 que criou a Âncora, ficou na Terra quando o pouco que sobrou da humanidade foi embora e controla os robôs. É obcecado pelos **anos 80** e quer fugir para lá. Quem ele é está na ficha [`docs/historia/personagens/carlos.md`](../../../../docs/historia/personagens/carlos.md), que faz parte do Enredo Principal (a lei do projeto).
 
 ![Folha de referência](carlos_referencia.png)
 
@@ -11,9 +8,9 @@ Cientista que já vivia em 3026 e criou a Âncora. Quando a humanidade foi embor
 
 O "cientista maluco":
 
-- **Mais velho que o grupo** (que tem uns 20 anos): cabelo grisalho **arrepiado em mechas** dos lados e atrás, **careca** no alto, sobrancelhas grossas, magro e pálido de quem vive trancado no laboratório.
+- **Mais velho que o grupo** (a idade exata continua pendente) (que tem uns 20 anos): cabelo grisalho **arrepiado em mechas** dos lados e atrás, **careca** no alto, sobrancelhas grossas, magro e pálido de quem vive trancado no laboratório.
 - **O cientista:** **jaleco** comprido até perto do joelho, sujo e manchado, canetas no bolso do peito, **luvas de borracha** pretas.
-- **A obsessão pela época antiga**, por baixo do jaleco: colete de tricô, camisa clara, **gravata fina** mostarda, calça de tergal marrom, sapato social e **óculos de aro grosso**, como um professor dos anos 60.
+- **A obsessão pelos anos 80**, por baixo do jaleco: **camiseta estampada** em cores fortes (magenta, turquesa e amarelo), **jeans lavado** claro, **tênis branco de cano alto** com a faixa vermelha, **relógio-calculadora** digital no pulso e **óculos grandes** de aro grosso. A roupa de um tempo que ele nunca viveu, num corpo de 3026.
 - **O lado de 3026:** uma **lupa articulada com lente vermelha** presa nos óculos, sobre o olho direito, e um **controle com luz vermelha** no cinto. É o mesmo vermelho dos olhos dos robôs: na ideia, ele controla parte deles.
 - **Cor de identificação: o branco sujo do jaleco**, com o ponto vermelho. Ninguém mais no jogo usa branco.
 - **Postura:** curvado para a frente, a cabeça esticada, os braços um pouco para a frente. Passo curto (o jaleco atrapalha) e respiração agitada.
@@ -36,11 +33,11 @@ Todos em `assets/sprites/personagens/carlos/`, gerados por `assets/modelagem/per
 - **Escala:** a mesma de todos os personagens (1,75 m do Gabriel = 48 px na tela). Ele tem 1,80 m de corpo, mas curvado.
 - **Resolução dobrada:** como o Gabriel, a cena usa `scale = Vector2(0.5, 0.5)` e `offset = Vector2(-46, -108)`.
 - **Caminhada e respiração:** as do `comum.py`, com o passo curto e a cabeça balançando mais (`PASSO` e `RESPIRAR` no script).
-- **Paleta:** 47 cores para tudo.
+- **Paleta:** 44 cores para tudo.
 
 ## No jogo
 
-`cenas/personagens/carlos.tscn`: parado, respirando, com os pés sólidos (o Gabriel não atravessa). O script é o `scripts/personagens/personagem_parado.gd`, que escolhe a vista (`vista`) e se ele olha para a esquerda (`olhando_para_esquerda`). Por enquanto só aparece na sala de teste (`cenas/salas/sala_teste.tscn`). O papel dele na história depende da aprovação da ideia 23.
+`cenas/personagens/carlos.tscn`: parado, respirando, com os pés sólidos (o Gabriel não atravessa). O script é o `scripts/personagens/personagem_parado.gd`, que escolhe a vista (`vista`) e se ele olha para a esquerda (`olhando_para_esquerda`). Por enquanto só aparece na sala de teste (`cenas/salas/sala_teste.tscn`). Onde ele aparece na história e como chega ao jogador estão pendentes na ficha.
 
 ## Para mudar
 

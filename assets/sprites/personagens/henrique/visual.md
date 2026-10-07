@@ -1,6 +1,6 @@
 # Henrique — visual
 
-Henrique, o pesquisador: aluno de iniciação científica da Unifor em 2019, com uns 20 anos. Quem ele é está na ficha [`docs/historia/personagens/pesquisador.md`](../../../../docs/historia/personagens/pesquisador.md), que faz parte do Enredo Principal (a lei do projeto).
+Henrique, o pesquisador: aluno de iniciação científica da Unifor em 2019, com uns 20 anos. Quem ele é está na ficha [`docs/historia/personagens/henrique.md`](../../../../docs/historia/personagens/henrique.md), que faz parte do Enredo Principal (a lei do projeto).
 
 ![Folha de referência](henrique_referencia.png)
 
