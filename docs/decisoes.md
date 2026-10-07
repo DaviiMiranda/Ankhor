@@ -16,6 +16,16 @@ Formato:
 
 ---
 
+## 2026-10-07 — O pesquisador se chama Henrique; visual do Henrique e do Carlos
+**Decisão:**
+- **O pesquisador de 2019 se chama Henrique.** Sai da lista de pendências do Enredo Principal (seção 12.3).
+- **Visual do Henrique:** camisa de flanela xadrez laranja-queimado aberta sobre camiseta cinza, jeans preto, tênis de lona, óculos redondos de aro fino, cabelo bagunçado na testa, o caderno sempre na mão e um lápis atrás da orelha. Postura fechada, cabeça baixa, passo curto. **Cor de identificação: laranja-queimado.**
+- **Visual do Carlos** (o cientista de 3026 da **ideia 23**, que **continua não aprovada**): o "cientista maluco", mais velho que o grupo, careca no alto e cabelo grisalho arrepiado, jaleco sujo até o joelho, luvas pretas, e por baixo a roupa da época que ele idealiza (colete de tricô, gravata fina, óculos de aro grosso); uma lupa com lente vermelha nos óculos e um controle com luz vermelha no cinto, o vermelho dos olhos dos robôs. **Cor de identificação: o branco do jaleco.** O modelo não aprova a ideia: o Carlos continua sem ficha e fora do Enredo.
+- Os dois têm o mesmo conjunto de sprites do Gabriel e estão na sala de teste, ao lado dos outros.
+
+**Por quê:** pedido do Davi: o nome do pesquisador e os modelos do "cientista maluco que é o Carlos" e do Henrique.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 3, 4, 5 e 12.3), `docs/historia/personagens/pesquisador.md`, `clarice.md`, `zane.md`, `docs/historia/outras_ideias.md` (ideia 23, nota do visual), `docs/gdd.md`, `docs/README.md`, `docs/historia/template_documento.md`, o agente `roteirista`, `assets/modelagem/personagens/` (`gerar_henrique.py`, `gerar_carlos.py`), `assets/sprites/personagens/henrique/` e `carlos/`, `cenas/personagens/henrique.tscn` e `carlos.tscn`, `cenas/salas/sala_teste.tscn`, `CLAUDE.md`.
+
 ## 2026-10-07 — Visual do Baltazar e do Rafael, com os sprites do Gabriel
 **Decisão:**
 - **Baltazar:** tricórnio de feltro, cabelo comprido preso com fita, casaca **vinho** aberta até a coxa (gasta, com remendo) e canhões largos, colete marrom com botões de latão, camisa de linho, calções, meias e sapato de fivela; a **luneta** de latão numa bandoleira de couro e o **anel** de ouro na mão direita. **Cor de identificação: vinho**, o tom do pau-brasil, um eco escuro do vermelho do Gabriel (a mesma família). Postura cerimoniosa e curiosa, passo curto.
