@@ -222,9 +222,46 @@ def chanfro(obj, largura=0.3, segmentos=2):
 # A cena
 # ---------------------------------------------------------------------------
 
-def estante(nome, ex0, ex1, parede_y, m_madeira, m_livros, col):
+def folha(bm, cx, cy, z, larg, prof, angulo, angulo_x=0.0):
+    """Folha de papel (caixa finíssima) centrada em (cx, cy), com a face de
+    baixo em z, girada "angulo" graus em torno do eixo vertical e
+    "angulo_x" graus em torno do eixo x (para ficar pendurada)."""
+    res = bmesh.ops.create_cube(bm, size=1.0, matrix=Matrix.Translation((0, 0, 0.03)) @ Matrix.Diagonal((larg, prof, 0.06, 1)))
+    giro = Matrix.Rotation(math.radians(angulo), 4, 'Z') @ Matrix.Rotation(math.radians(angulo_x), 4, 'X')
+    bmesh.ops.transform(bm, matrix=Matrix.Translation((cx, cy, z)) @ giro, verts=res["verts"])
+
+
+def bola_de_papel(bm, cx, cy, z, raio):
+    """Papel amassado: uma icosfera de poucas faces com os vértices
+    empurrados para dentro e para fora ao acaso."""
+    res = bmesh.ops.create_icosphere(bm, subdivisions=1, radius=raio,
+                                     matrix=Matrix.Translation((cx, cy, z + raio * 0.8)))
+    for v in res["verts"]:
+        v.co += Vector([random.uniform(-0.3, 0.3) * raio for _ in range(3)])
+
+
+def papeis_no_buraco(bm, x0, x1, base, ey0):
+    """Enche um buraco da prateleira com papéis largados: uma pilha de folhas
+    saindo para fora da prateleira, uma folha pendurada na beirada ou uma
+    bola de papel amassado."""
+    cx = (x0 + x1) / 2
+    larg = x1 - x0 - 0.3
+    sorteio = random.random()
+    if sorteio < 0.45:
+        for i in range(random.randint(2, 4)):
+            folha(bm, cx + random.uniform(-0.3, 0.3), ey0 + 2.2, base + 0.07 * i,
+                  larg, 6.0, random.uniform(-12, 12))
+    elif sorteio < 0.75:
+        folha(bm, cx, ey0 + 2.0, base, larg, 4.0, random.uniform(-6, 6))
+        # A parte que escorrega pela frente da prateleira, quase na vertical.
+        folha(bm, cx, ey0 - 0.1, base - 0.1, larg, 4.5, random.uniform(-4, 4), random.uniform(75, 85))
+    else:
+        bola_de_papel(bm, cx, ey0 + 3.0, base, random.uniform(1.0, 1.4))
+
+
+def estante(nome, ex0, ex1, parede_y, m_madeira, m_livros, m_papel, col):
     """Estante de 2 m encostada na parede, de x = ex0 a x = ex1, cheia de
-    livros de largura, altura e cor sorteadas."""
+    livros de largura, altura e cor sorteadas, com papéis largados nos buracos."""
     ey0, ey1 = parede_y - 12, parede_y
     ez0, ez1 = -30.0, 50.0
     bm = bmesh.new()
@@ -237,14 +274,18 @@ def estante(nome, ex0, ex1, parede_y, m_madeira, m_livros, col):
     objeto_de_bmesh(nome, bm, m_madeira, col)
 
     # Alguns livros tombados e algumas prateleiras com buracos
-    # (a Biblioteca já está meio vazia).
+    # (a Biblioteca já está meio vazia). Nos buracos, papéis largados.
     bm = bmesh.new()
+    bm_papeis = bmesh.new()
     for z in prateleiras[:-1]:
         x = ex0 + 1.4
         base = z + 1.0
         while x < ex1 - 2.5:
-            if random.random() < 0.12:        # buraco na prateleira
-                x += random.uniform(1.5, 4.0)
+            if random.random() < 0.14:        # buraco na prateleira
+                vao = random.uniform(3.5, 6.0)
+                if x + vao < ex1 - 1.3:
+                    papeis_no_buraco(bm_papeis, x, x + vao, base, ey0)
+                x += vao
                 continue
             larg = random.uniform(0.9, 2.0)
             alt = random.uniform(8.0, 12.0)
@@ -260,6 +301,7 @@ def estante(nome, ex0, ex1, parede_y, m_madeira, m_livros, col):
                         random.randrange(len(m_livros)))
                 x += larg + 0.1
     objeto_de_bmesh(nome + "Livros", bm, m_livros, col)
+    objeto_de_bmesh(nome + "Papeis", bm_papeis, m_papel, col)
 
 
 LAMPADA = [None]
@@ -276,6 +318,9 @@ def montar_cena():
     m_bege_escuro = material("plastico_bege_escuro", "#8a8272", 0.5)
     m_vidro = material("vidro_tela", "#05080c", 0.15, "#1a3a66", 0.6)
     m_tecla = material("tecla", "#a8a090", 0.5)
+    m_tecla_gasta = material("tecla_gasta", "#8c8068", 0.6)    # amarelada e encardida de tanto uso
+    m_led = material("led", "#40ff70", 0.3, "#40ff70", 4.0)
+    m_rachadura = material("rachadura", "#141416", 0.9)
     m_papel = material("papel", "#e6e2d6", 0.8)
     m_caderno = material("caderno", "#2f4f6f", 0.6)
     m_caderno2 = material("caderno_vermelho", "#6f2f2f", 0.6)
@@ -300,8 +345,8 @@ def montar_cena():
     caixa("Chao", -120, 120, -40, PAREDE_Y, -31, -30, m_madeira_escura, fundo)
 
     # Duas estantes encostadas na parede, uma de cada lado do monitor.
-    estante("EstanteEsquerda", -46.0, -12.0, PAREDE_Y, m_madeira_escura, m_livros, fundo)
-    estante("EstanteDireita", 50.0, 84.0, PAREDE_Y, m_madeira_escura, m_livros, fundo)
+    estante("EstanteEsquerda", -46.0, -12.0, PAREDE_Y, m_madeira_escura, m_livros, m_papel, fundo)
+    estante("EstanteDireita", 50.0, 84.0, PAREDE_Y, m_madeira_escura, m_livros, m_papel, fundo)
 
     # Relógio de parede, parado perto da meia-noite.
     RX, RZ = 46.0, 11.0
@@ -352,6 +397,24 @@ def montar_cena():
     caixa("MonitorPe", -5, 5, 1.0, 11.0, 0, 0.5, m_bege_escuro, mesa)
     # Botão de ligar e LED (apagado — só a tela está viva).
     caixa("MonitorBotao", tx1 - 1.8, tx1 - 0.8, -0.2, 0.1, 0.9, 1.5, m_bege_escuro, mesa)
+    # LED de ligado, aceso, ao lado do botão: o único ponto verde da cena.
+    caixa("MonitorLed", tx1 - 2.5, tx1 - 2.25, -0.12, 0.1, 1.1, 1.3, m_led, mesa)
+    # Rachaduras no plástico da moldura: linhas finas em zigue-zague, um
+    # pouquinho à frente da face (y < 0), sem entrar no retângulo da tela.
+    # Cada lista é uma rachadura, ponto a ponto, em (x, z).
+    rachaduras = [
+        [(tx0 - 1.2, TELA_Z1 + 1.3), (tx0 - 0.7, TELA_Z1 + 0.9), (tx0 - 0.85, TELA_Z1 + 0.5), (tx0 - 0.3, TELA_Z1 + 0.2)],
+        [(tx0 - 0.85, TELA_Z1 + 0.5), (tx0 - 1.15, TELA_Z1 + 0.1)],
+        [(tx1 - 2.0, TELA_Z1 + 1.4), (tx1 - 2.6, TELA_Z1 + 1.0), (tx1 - 2.3, TELA_Z1 + 0.6), (tx1 - 2.9, TELA_Z1 + 0.25)],
+        [(tx1 + 1.2, 9.2), (tx1 + 0.7, 8.6), (tx1 + 0.9, 8.0), (tx1 + 0.35, 7.4), (tx1 + 0.55, 6.9)],
+        [(tx1 + 0.7, 8.6), (tx1 + 1.15, 8.2)],
+        [(tx0 - 1.2, 3.6), (tx0 - 0.6, 3.1), (tx0 - 0.8, 2.6)],
+    ]
+    for i, pontos in enumerate(rachaduras):
+        for j in range(len(pontos) - 1):
+            a = Vector((pontos[j][0], -0.06, pontos[j][1]))
+            b = Vector((pontos[j + 1][0], -0.06, pontos[j + 1][1]))
+            barra(f"Rachadura{i}_{j}", a, b, 0.05, m_rachadura, mesa)
     # Vidro da tela, um pouco para dentro da moldura.
     caixa("MonitorVidro", tx0, tx1, 0.3, 0.5, TELA_Z0, TELA_Z1, m_vidro, mesa)
 
@@ -368,10 +431,15 @@ def montar_cena():
                 continue  # espaço da barra de espaço
             x = kx0 + 0.3 + i * passo_x
             y = ky0 + 0.3 + j * passo_y
-            cubo_em(bm, x + 0.06, x + passo_x - 0.06, y + 0.06, y + passo_y - 0.06, 0.6, 0.95, 1)
+            sorteio = random.random()
+            if sorteio < 0.03:
+                continue  # tecla que soltou e sumiu: aparece o buraco
+            gasta = sorteio < 0.18
+            topo = 0.85 if gasta else 0.95  # as mais usadas afundaram um pouco
+            cubo_em(bm, x + 0.06, x + passo_x - 0.06, y + 0.06, y + passo_y - 0.06, 0.6, topo, 2 if gasta else 1)
     cubo_em(bm, kx0 + 0.3 + 4 * passo_x, kx0 + 0.3 + 11 * passo_x - 0.06,
             ky0 + 0.36, ky0 + 0.3 + passo_y - 0.06, 0.6, 0.95, 1)  # barra de espaço
-    objeto_de_bmesh("Teclado", bm, [m_bege_escuro, m_tecla], mesa)
+    objeto_de_bmesh("Teclado", bm, [m_bege_escuro, m_tecla, m_tecla_gasta], mesa)
 
     # Papéis soltos e cadernos: a véspera da prova.
     for i, (x, y, ang) in enumerate([(-15.0, -4.0, 12), (-11.5, -6.5, -8), (12.5, -1.0, 25)]):
@@ -568,6 +636,7 @@ PALETA = [
     "#3a2418", "#dce4f0", "#e8ecf4",                         # café, caneca e papel claro
     "#8a96b0", "#aab8d0", "#d8e4f4",                         # azuis claros (bordas e papéis)
     "#2e2a28", "#433c36", "#5e564c", "#7a7064", "#9a8e7c", "#b8aa94",  # cinza e bege sob as duas luzes (fria e quente)
+    "#2a7a3a", "#5ad06a", "#b0ffb8",                         # LED verde do monitor
 ]
 
 
