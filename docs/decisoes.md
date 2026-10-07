@@ -16,6 +16,25 @@ Formato:
 
 ---
 
+## 2026-10-07 — A Âncora fica no Bloco J, e cada personagem tem a sua ficha completa
+**Decisão:**
+- A **Âncora** está no **Bloco J**, o bloco de tecnologia da Unifor. A fenda continua se abrindo no chão da Biblioteca.
+- A descrição dos personagens (história, personalidade e relações) **saiu do Enredo Principal** e foi para as fichas em `docs/historia/personagens/`, **uma por personagem**. As fichas fazem parte do Enredo Principal e têm a mesma autoridade. O Enredo, na seção 4, ficou só com as regras do grupo, a lista de fichas e a IA.
+- A pasta `personagens/` tem **só as fichas** (mais a dos robôs). O índice dela saiu, e o modelo de ficha foi para `docs/historia/template_personagem.md`.
+
+**Por quê:** pedido do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 1, 2.2, 3, 4 e 7.2), as fichas de `docs/historia/personagens/`, `docs/historia/template_personagem.md`, `CLAUDE.md`, `docs/README.md`, `docs/gdd.md`, `docs/historia/README.md`, `docs/historia/roteiro/README.md`, `docs/historia/template_documento.md`, `docs/dialogos/template_dialogo.md`, os agentes `roteirista` e `artista`, `clarice/visual.md` e `gerar_clarice.py`.
+
+## 2026-10-07 — Personagens e roteiro dentro de `docs/historia/`, uma ficha por personagem
+**Decisão:**
+- As pastas `docs/personagens/` e `docs/roteiro/` passam a ficar dentro de `docs/historia/`, junto do Enredo Principal.
+- `antecessores.md` (versão antiga, com loops e personagens mortos) foi apagado. No lugar, **uma ficha por personagem**: `gabriel.md`, `baltazar.md`, `diana.md`, `clarice.md`, `rafael.md`, `pesquisador.md` e `zane.md`, além de `robos.md`.
+- As fichas **não repetem a personalidade**, que fica só no Enredo Principal (a lei do projeto). Guardam o que a produção precisa: onde o personagem aparece, como chega ao jogador, função no jogo, parte para consertar a Âncora, suporte dos registros, direção de arte, arquivos e pendências. O `template_personagem.md` segue esse formato.
+- `revelacao_central.md` (a história antiga, com loops) foi **apagado**; o texto continua no histórico do git. O `docs/historia/README.md` virou um índice curto que manda começar pelo Enredo Principal, sem repetir nada dele. O `template_documento.md` foi refeito com os campos reais do recurso `Documento` (`id`, `titulo`, `autor`, `papel`, `paginas`, `anotacao`), o papel de cada época e os limites de texto.
+
+**Por quê:** pedido do Davi: deixar as fichas de personagem congruentes com o Enredo Principal e perto dele.
+**Afeta:** `docs/historia/personagens/` e `docs/historia/roteiro/` (movidos), todos os links para as pastas antigas (docs, agentes, `CLAUDE.md`, `CONTRIBUTING.md`, `README.md`, comentários dos geradores em `assets/modelagem/`), `assets/sprites/personagens/clarice/visual.md` (dias no bunker, sem loops), `docs/mecanicas/registros_e_caderno.md` (sem os bilhetes de "G."), `docs/historia/README.md`, `docs/historia/template_documento.md` e `docs/historia/revelacao_central.md` (apagado).
+
 ## 2026-10-07 — Menu principal com a arte nova (imagem única)
 **Decisão:** o menu principal troca a cena renderizada no Blender (três camadas) por **uma imagem só**, a partir da imagem de referência enviada pelo Davi: estante com livros e papéis, relógio, monitor CRT bege com o bilhete, luminária apagada, teclado, pilha de livros e caneca de café. O texto que vinha pintado na tela do monitor foi apagado por `assets/modelagem/menu/preparar_menu.py`, e o Godot desenha o menu por cima, nas mesmas posições e cores da imagem: título "ANKHOR" em 16 com brilho, itens em 8 a cada 14 px, barra azul de seleção de ponta a ponta do vidro. As telas de Fases, Opções e Controles usam o mesmo vidro. A luminária da imagem está apagada, então a piscada da luminária saiu; ficaram a tremulação do brilho da tela, o efeito CRT (mais leve, porque a imagem já tem linhas) e a vinheta escura nas bordas.
 **Por quê:** pedido do Davi: trocar completamente a tela de menu pela imagem de referência.

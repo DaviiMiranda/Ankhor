@@ -8,7 +8,7 @@ Bem-vindo ao repositório de documentação do **Ankhor**, jogo de terror atmosf
 
 Para manter a consistência entre o código, o design e o roteiro, adotamos a seguinte regra de precedência:
 
-1. **[`docs/historia/enredo_principal.md`](historia/enredo_principal.md)** — **Lei do projeto para história, mundo e personagens.** Vale acima de qualquer outro documento, inclusive do registro de decisões. Em caso de dúvida em qualquer parte do jogo, consulte-o primeiro. O que ele ainda não decidiu está na seção "Pendências", no fim dele.
+1. **[`docs/historia/enredo_principal.md`](historia/enredo_principal.md)** — **Lei do projeto para história, mundo e personagens**, junto com as fichas de [`docs/historia/personagens/`](historia/personagens/) (uma por personagem). Vale acima de qualquer outro documento, inclusive do registro de decisões. Em caso de dúvida em qualquer parte do jogo, consulte-o primeiro. O que ele ainda não decidiu está na seção "Pendências", no fim dele.
 2. **[`docs/decisoes.md`](decisoes.md)** — Autoridade máxima para design, mecânicas e técnica, e histórico de todas as mudanças (inclusive as de história, que entram no mesmo PR aqui e no Enredo Principal).
 3. **Documentos Específicos de Módulos** — Estruturações técnicas e mecânicas detalhadas em suas respectivas pastas.
 4. **[`docs/gdd.md`](gdd.md)** — Sumário executivo e visão geral unificada (Game Design Document).
@@ -54,25 +54,28 @@ docs/
 │   ├── labirinto.md               # Labirinto escuro com robôs (jogável pelo menu Fases)
 │   └── template_fase.md           # Modelo padronizado para documentação de novas fases/áreas
 │
-├── personagens/                   # Fichas técnicas e mecânica de personagens
-│   ├── README.md                  # Arquitetura de personagens no Godot (Jogador vs Robôs)
-│   ├── gabriel.md                 # Funcionamento mecânico do jogador (estados, estamina, inventário)
-│   ├── robos.md                   # Funcionamento dos robôs de IA (sensores, FSM e patrulhas)
-│   ├── antecessores.md            # Versão antiga dos personagens (não vale mais; ver o Enredo Principal)
-│   └── template_personagem.md     # Modelo padronizado para novas fichas de personagens
-│
 ├── dialogos/                      # Sistema de conversação e falas
 │   ├── README.md                  # Arquitetura técnica desacoplada via sinais no Godot 4.7
 │   └── template_dialogo.md        # Modelo estrutural (JSON / GDScript) para criação de diálogos
 │
-├── historia/                      # Estrutura narrativa e narrativa ambiental
-│   ├── README.md                  # Funcionamento das camadas narrativas (presente vs sonhos)
-│   ├── revelacao_central.md       # Revelação central (Gabriel como paradoxo da Âncora) e o final
-│   └── template_documento.md      # Modelo padronizado para documentos, bilhetes e relíquias
-│
-└── roteiro/                       # Roteirização cinematográfica e cutscenes
-    ├── README.md                  # Diretrizes gerais de roteiro
-    └── cutscenes/                 # Estrutura técnica e documentação de cutscenes
-        ├── README.md              # Padrão de implementação de cutscenes no Godot
-        └── seg_acordar.md         # Cutscene inicial do despertar de Gabriel
+└── historia/                      # História, personagens e roteiro
+    ├── enredo_principal.md        # A LEI DO PROJETO: história, mundo, personagens e pendências
+    ├── README.md                  # Índice da pasta: comece pelo Enredo Principal
+    ├── template_documento.md      # Modelo para escrever bilhetes, diários e relatórios
+    ├── template_personagem.md     # Modelo de ficha para um personagem novo
+    ├── outras_ideias.md           # Ideias ainda não decididas (não é lei)
+    ├── personagens/               # Uma ficha por personagem (parte do Enredo Principal)
+    │   ├── gabriel.md             # O protagonista: estados, estamina, inventário
+    │   ├── baltazar.md            # ~1750, antepassado de Gabriel
+    │   ├── diana.md               # 1978, recruta da polícia
+    │   ├── clarice.md             # 1994, aluna de processamento de dados
+    │   ├── rafael.md              # 2008, segurança noturno
+    │   ├── pesquisador.md         # 2019, aluno de iniciação científica
+    │   ├── zane.md                # 2123, o último a chegar
+    │   └── robos.md               # Os inimigos da IA: sensores, FSM e patrulhas
+    └── roteiro/                   # Roteirização cinematográfica e cutscenes
+        ├── README.md              # Diretrizes gerais de roteiro
+        └── cutscenes/             # Estrutura técnica e documentação de cutscenes
+            ├── README.md          # Padrão de implementação de cutscenes no Godot
+            └── seg_acordar.md     # Cutscene inicial do despertar de Gabriel
 ```

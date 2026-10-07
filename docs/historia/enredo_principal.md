@@ -1,19 +1,16 @@
 # Enredo Principal
 
 > [!IMPORTANT]
-> **Este documento é a lei do projeto.** Tudo o que diz respeito à história, ao mundo e aos personagens de **Ankhor** vale como está escrito aqui, **acima de qualquer outro documento**: GDD, fichas, fases, diálogos, arte, textos em `dados/` e o próprio `decisoes.md`. Em caso de dúvida em qualquer parte do jogo (o que uma fase conta, como um personagem fala, o que um objeto significa), consulte este documento. Se outra parte do projeto contradisser o que está aqui, **a outra parte está errada** e deve ser corrigida.
+> **Este documento é a lei do projeto**, junto com as fichas de [`personagens/`](personagens/) (uma por personagem), que fazem parte dele. Tudo o que diz respeito à história, ao mundo e aos personagens de **Ankhor** vale como está escrito aqui e nas fichas, **acima de qualquer outro documento**: GDD, fases, diálogos, arte, textos em `dados/` e o próprio `decisoes.md`. Em caso de dúvida em qualquer parte do jogo (o que uma fase conta, como um personagem fala, o que um objeto significa), consulte este documento e a ficha do personagem. Se outra parte do projeto contradisser o que está aqui, **a outra parte está errada** e deve ser corrigida.
 
 > **Status:** reescrito em 2026-10-06, quando a história mudou de rumo: saíram os loops e a revelação de "Gabriel é o paradoxo", e a fenda passou a ser **um acaso**.
 > **Como mudar:** só por decisão do grupo. Toda mudança de história entra **no mesmo PR** neste documento e em [`../decisoes.md`](../decisoes.md) (que guarda o histórico de quando e por que mudou). Tudo o que ainda não foi decidido fica na **seção 12 ("Pendências")**, no fim, e não no meio da narrativa: o que está fora das pendências está decidido.
-
-> [!WARNING]
-> [`revelacao_central.md`](revelacao_central.md) e [`../personagens/antecessores.md`](../personagens/antecessores.md) ainda descrevem a versão antiga (loops, bilhetes de "G.", personagens mortos, nomes antigos como Agostinho e Valdir). Não use esses dois arquivos como referência até serem reescritos.
 
 ---
 
 ## 1. A história em um parágrafo
 
-Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Biblioteca da Unifor e acorda no ano de **3026**, no mesmo lugar, agora uma ruína tomada pela natureza. A humanidade abandonou a Terra há muito tempo, e uma **IA** ficou com o planeta. No antigo centro de pesquisa da Unifor, uma máquina abandonada, a **Âncora**, falhou e abriu uma **fenda** no tempo bem no chão da Biblioteca. A fenda pulsa e, a cada poucos dias, puxa quem estiver naquele ponto em alguma época. Não há plano nem escolhido: **foi um acaso**. Gabriel não é o único: outros jovens de épocas diferentes caíram ali com dias de diferença, e cada um está tentando sobreviver num canto do campus. Os robôs da IA caçam qualquer humano que aparecer. Gabriel precisa encontrar os outros, descobrir o que aconteceu e achar um jeito de todos voltarem para suas épocas. No caminho descobre que um deles é seu antepassado.
+Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Biblioteca da Unifor e acorda no ano de **3026**, no mesmo lugar, agora uma ruína tomada pela natureza. A humanidade abandonou a Terra há muito tempo, e uma **IA** ficou com o planeta. No **Bloco J**, o antigo bloco de tecnologia da Unifor, uma máquina abandonada, a **Âncora**, falhou e abriu uma **fenda** no tempo bem no chão da Biblioteca. A fenda pulsa e, a cada poucos dias, puxa quem estiver naquele ponto em alguma época. Não há plano nem escolhido: **foi um acaso**. Gabriel não é o único: outros jovens de épocas diferentes caíram ali com dias de diferença, e cada um está tentando sobreviver num canto do campus. Os robôs da IA caçam qualquer humano que aparecer. Gabriel precisa encontrar os outros, descobrir o que aconteceu e achar um jeito de todos voltarem para suas épocas. No caminho descobre que um deles é seu antepassado.
 
 ---
 
@@ -27,7 +24,8 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 
 ### 2.2 O campus em 3026
 
-- A **Unifor, em Fortaleza**, mil anos depois. Em algum momento virou um centro de pesquisa em física do tempo, onde a Âncora foi construída.
+- A **Unifor, em Fortaleza**, mil anos depois. Em algum momento virou um centro de pesquisa em física do tempo.
+- A **Âncora** está no **Bloco J**, o bloco de tecnologia.
 - Concreto rachado e desabado, árvores dentro das salas, dunas sobre os corredores, mato onde era estacionamento. Não há cidade em volta, só vegetação. Resistem as coisas duras: concreto, metal, vidro, pedra.
 - Objetos do cotidiano de hoje (catraca, bebedouro, quadro de horários, a cantina) viraram relíquias. O choque do jogo é perceber **quanto tempo passou**.
 - Quase nada elétrico funciona. Funcionam os sistemas da Âncora (luzes de emergência, bunker, terminais, telefones) e os robôs da IA.
@@ -37,7 +35,7 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 - Os inimigos são **robôs da IA** que patrulham o campus por **rotinas programadas**. Repetem o mesmo caminho há séculos: dá para decorar.
 - Fora da rotina, quando ouvem ou veem um humano, saem do protocolo e caçam.
 - São agressivos: se pegam Gabriel, é **game over** e o jogo volta ao último checkpoint (ver [`../mecanicas/vida_e_checkpoint.md`](../mecanicas/vida_e_checkpoint.md)).
-- Cada tipo tem um sentido dominante (som, visão, luz). Os dois já implementados são a **Sentinela** (visão) e o **Rastreador** (audição). Ver [`../personagens/robos.md`](../personagens/robos.md).
+- Cada tipo tem um sentido dominante (som, visão, luz). Os dois já implementados são a **Sentinela** (visão) e o **Rastreador** (audição). Ver [`personagens/robos.md`](personagens/robos.md).
 - Gabriel não é um combatente: **fugir e se esconder é a regra**, defender-se é a exceção.
 
 ---
@@ -46,9 +44,10 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 
 | | |
 |---|---|
-| **O que é a Âncora** | **Só uma máquina.** Um aparelho experimental de física do tempo, construído no centro de pesquisa da Unifor. Não pensa, não quer nada, não escolhe ninguém |
+| **O que é a Âncora** | **Só uma máquina.** Um aparelho experimental de física do tempo. Não pensa, não quer nada, não escolhe ninguém |
+| **Onde está a Âncora** | No **Bloco J**, o bloco de tecnologia da Unifor |
 | **O que aconteceu** | Abandonada por séculos, a Âncora falhou em 3026 e abriu uma fenda no tempo |
-| **Onde** | Sempre no mesmo ponto: o chão onde hoje fica a Biblioteca (ou onde ela ainda viria a ser construída) |
+| **Onde a fenda se abre** | Sempre no mesmo ponto: o chão onde hoje fica a Biblioteca (ou onde ela ainda viria a ser construída) |
 | **Como a fenda age** | **Pulsa.** A cada poucos dias encosta numa época diferente e puxa quem estiver no ponto naquela noite. A cada pulso fica maior |
 | **Por que essas pessoas** | **Acaso.** Estavam no lugar errado na noite errada |
 | **A ameaça** | Enquanto a fenda estiver aberta, gente nova continua caindo, e ela continua crescendo |
@@ -74,6 +73,8 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 
 ## 4. Os personagens
 
+**Quem cada personagem é** (história, personalidade, como fala, o que quer, o que teme, defeito, arco e relações) está na ficha dele, em [`personagens/`](personagens/). Cada ficha faz parte deste documento e tem a mesma autoridade. Falas, documentos, retratos, animações e sons de um personagem seguem a ficha dele.
+
 ### 4.1 Regras para todos
 
 - Todos têm **cerca de 20 anos**.
@@ -81,120 +82,22 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 - Chegaram a 3026 **com dias de diferença**. Estão todos **vivos**, cada um sobrevivendo do seu jeito num lugar do campus, e Gabriel **encontra cada um ao longo do jogo**.
 - **Ordem de chegada:** o **Zane é o último** a chegar, e **Gabriel é o penúltimo**. Os outros cinco chegaram antes dele, em ordem ainda pendente. Como o Zane chega depois de Gabriel, **a fenda pulsa durante o jogo**: a chegada dele acontece enquanto Gabriel já está em 3026, e é Gabriel quem o recebe.
 
-### 4.2 Quadro geral
+### 4.2 Fichas
 
-| Ano de origem | Personagem | Quem é | Ligação com a região |
-|---|---|---|---|
-| ~1750 | **Baltazar Magalhães** | Filho de colonos portugueses, curioso, com uma luneta herdada do pai. **Antepassado de Gabriel** | A família tem um sítio na mata onde hoje fica o campus |
-| 1978 | **Diana** | Recruta da polícia, mandada vigiar a obra do campus à noite | Cresceu no bairro em volta. Viu o mato virar universidade |
-| 1994 | **Clarice** | Aluna de processamento de dados | Estuda na Unifor e mora perto |
-| 2008 | **Rafael** | Segurança noturno no primeiro emprego. Insiste em ser chamado de "Seu Rafael" para parecer mais velho | Mora no bairro e conhece o campus de cor |
-| 2019 | **O pesquisador** | Aluno de iniciação científica. Sumiu, e o orientador transformou o projeto dele na cadeira que Gabriel cursa | Aluno da Unifor |
-| 2026 | **Gabriel Magalhães** | Estudante (protagonista). O penúltimo a chegar | Aluno da Unifor. A família vive na região há séculos, mas ele não sabe |
-| 2123 | **Zane** | Jovem com implantes cibernéticos. **O último a chegar** | Morava no que sobrou do bairro, numa época em que a Unifor era um polo de IA |
-
-### 4.3 Fichas
-
-Cada ficha tem a mesma estrutura: **história**, **essência** (uma frase), **traços**, **como fala**, **o que quer**, **o que teme**, **defeito** e **arco** (como muda ao longo do jogo). Falas, documentos, retratos, animações e sons de um personagem seguem a ficha dele.
-
-#### Gabriel Magalhães (2026), o protagonista
-
-**História.** Estudante da Unifor. Dormiu na Biblioteca de madrugada, com o caderno de equações da cadeira aberto na mesa. Acorda em 3026, na cabine de estudo onde pegou no sono, sem saber o que aconteceu. Não é um herói: precisa entender o campus, evitar os robôs e achar os outros. Na mochila carrega um **anel desgastado** que a avó deu para ele (seção 5). Funcionamento em [`../personagens/gabriel.md`](../personagens/gabriel.md).
-
-- **Essência:** um estudante comum que prefere observar a agir, até não ter mais escolha.
-- **Traços:** observador, reservado, curioso e **irônico**. A ironia seca é o jeito dele de lidar com o absurdo. Mais ouvinte que falante, o que ajuda o jogador a se colocar no lugar dele.
-- **Como fala:** frases curtas, informal e atual, com ironia seca e sem rir da própria piada. Comenta o absurdo como se fosse normal ("Ótimo. Mil anos de atraso pra aula."). É essa ironia que faz ele se dar bem com a Clarice: os dois se provocam no mesmo tom.
-- **O que quer:** voltar para casa. Depois, que todos voltem.
-- **O que teme:** não fazer diferença, ser só mais um.
-- **Defeito:** foge de conflito e adia decisões.
-- **Arco:** de quem só sobrevive a quem une o grupo. Descobrir que é Magalhães, ligado àquele chão há séculos, faz ele sentir que tem um lugar na história.
-
-#### Baltazar Magalhães (~1750), o antepassado
-
-**História.** Viu pela luneta uma luz estranha sobre a mata, no sítio da família, foi investigar e foi puxado. Acha que tudo aquilo é o Juízo Final ("o Tormento de Leviatã"). Na Biblioteca, Gabriel acha o **acampamento** que ele deixou entre as raízes da árvore: luneta rachada, vela, diário e um robô desmontado peça por peça. O diário mostra o **ponto fraco dos sensores ópticos** dos robôs. Ele seguiu em frente ("Hei de seguir a luz até onde ella nasce"), e Gabriel o encontra mais tarde.
-
-- **Essência:** um homem de fé com olhos de cientista, preso entre o milagre e a explicação.
-- **Traços:** cerimonioso, educado, corajoso por curiosidade, devoto, encantado com tudo.
-- **Como fala:** português arcaico e formal. Trata todos por "Vossa Mercê" e solta latim quando está aflito.
-- **O que quer:** entender o que vê. Para ele, observar o céu é uma forma de rezar.
-- **O que teme:** que aquilo seja castigo divino pelos pecados dele.
-- **Defeito:** teimoso. Explica tudo pela religião antes de aceitar outra explicação.
-- **Arco:** do "Juízo Final" à compreensão. Ao saber que Gabriel é descendente dele, fica protetor e orgulhoso, com um humor terno ("meu neto de mil anos").
-
-#### Diana (1978)
-
-**História.** Recruta da polícia mandada vigiar a obra do campus porque um lote de material de construção sumiu. Em vez de esperar o colega da ronda, entrou sozinha no matagal à noite atrás de uma luz. O material não foi roubado: a fenda engoliu o lote num pulso anterior, e Diana foi puxada no seguinte. Chama os robôs de "autômatos". De tanto correr para todo lado, faz um **mapa à mão** com passagens que não aparecem nos mapas de 3026.
-
-- **Essência:** uma recruta que entrou na polícia para provar que podia, e vive cada minuto como se fosse o último.
-- **Traços:** dramática, ansiosa, impulsiva, intensa. Sente tudo em dobro e é corajosa no susto.
-- **Como fala:** rápido e exagerado, cheio de exclamações ("Pronto, é o fim!", "Eu sabia que isso ia acontecer!"). Mistura o jargão da polícia ("Positivo!") com drama de novela.
-- **O que quer:** voltar e provar à família, e ao quartel, que não foi um erro ela vestir a farda.
-- **O que teme:** falhar na frente de todo mundo.
-- **Defeito:** age antes de pensar e transforma cada problema numa tragédia.
-- **Arco:** aprender a controlar o medo: de quem entra em pânico e sai correndo a quem respira e decide.
-
-#### Clarice (1994)
-
-**História.** Rodava um programa num terminal da Biblioteca de madrugada e foi puxada. Foi a primeira a notar que as rotas dos robôs formam um **grafo**. Deixou um bilhete no terminal que parece despedida ("Hoje à noite vou tentar entrar no sistema. Se der errado, foi mal."), e o jogador acha que ela morreu. Está viva, escondida no **bunker** embaixo do núcleo da Âncora, quebrando a senha do setor B "um disquete por vez". Liga para os telefones velhos do campus. A **relação dela com Gabriel vai sendo desenvolvida ao longo do jogo**.
-
-- **Essência:** uma mente brilhante que usa o sarcasmo como armadura.
-- **Traços:** rápida, independente, prática, engraçada, competitiva.
-- **Como fala:** gírias dos anos 90 ("Isso é totalmente surreal", "meu filho", "Não confie nas luzes"), tom de deboche. Explica tudo como um problema de lógica.
-- **O que quer:** resolver o problema grande, que é sair dali, e provar que consegue sozinha.
-- **O que teme:** ser esquecida. Ficou dias sozinha antes de qualquer um aparecer.
-- **Defeito:** não pede ajuda e quer controlar tudo.
-- **Arco:** de quem resolve tudo sozinha a quem confia no grupo. A relação com Gabriel cresce nesse caminho.
-
-#### Rafael (2008)
-
-**História.** Fazia a ronda da Biblioteca e foi puxado com o rádio e a lanterna. Recusa-se a aceitar que está em 3026 ("isso aqui não é 3026 coisa nenhuma, é reforma") e transformou uma sala de manutenção no seu "posto de guarda". **Fala ao vivo** com Gabriel pelo rádio e dá dicas de patrulha.
-
-- **Essência:** o otimista teimoso que prefere acreditar que é reforma a encarar o fim do mundo.
-- **Traços:** caloroso, brincalhão, protetor. Conhece todo mundo do bairro e todo canto do campus.
-- **Como fala:** jeito cearense ("rapaz", "macho"), rádio cheio de "câmbio". Faz questão de ser chamado de "Seu Rafael" para parecer mais velho.
-- **O que quer:** proteger quem estiver na área dele. Continua fazendo a ronda.
-- **O que teme:** que tudo seja real e ele nunca mais veja a mãe.
-- **Defeito:** nega a realidade.
-- **Arco:** aceitar onde está. O momento em que ele admite "não é reforma" deve ser o mais triste do jogo.
-
-#### O pesquisador (2019)
-
-**História.** Aluno de iniciação científica que estudava à noite na Biblioteca e sumiu. O orientador transformou o projeto dele na cadeira que Gabriel cursa, e as equações do caderno de Gabriel continuam esse trabalho sem Gabriel saber de quem eram. O nome está pendente.
-
-- **Essência:** um gênio quieto que desconfia ter causado tudo.
-- **Traços:** introvertido, perfeccionista, ansioso, gentil. Brilhante em teoria e sem jeito com gente.
-- **Como fala:** pausado e técnico. Se corrige no meio da frase.
-- **O que quer:** entender a Âncora para provar a si mesmo que não é culpado.
-- **O que teme:** que a pesquisa dele tenha levado à Âncora.
-- **Defeito:** guarda segredos.
-- **Arco:** assumir a responsabilidade, seja ela real ou só imaginada.
-
-#### Zane (2123), o último a chegar
-
-**História.** Veio de uma época em que a Unifor já era um polo de IA. É quem mais entende a tecnologia da Âncora, mas é o mais novo em 3026: chega depois de Gabriel, e é Gabriel quem o recebe e explica as regras.
-
-- **Essência:** filho de um mundo já cheio de máquinas, que sabe tudo de tecnologia e nada de sobreviver.
-- **Traços:** confiante, direto, irreverente, elétrico, e mais assustado do que admite.
-- **Como fala:** rápido, com gírias de um futuro que ninguém reconhece. Interrompe os outros.
-- **O que quer:** voltar. Mais tarde, entender o que a IA virou, porque na época dele a IA ainda estava começando.
-- **O que teme:** a IA. Ele sabe melhor que ninguém do que as máquinas são capazes.
-- **Defeito:** confia demais na tecnologia: acha que toda máquina tem conserto, até a IA. É a contradição dele: tem medo da IA e, ao mesmo tempo, acha que consegue domá-la.
-- **Arco:** a chegada dele mostra ao jogador o quanto Gabriel mudou: o novato da primeira fase virou o veterano que explica tudo.
-
-### 4.4 Como eles se relacionam
-
-| Par | Dinâmica |
+| Época | Personagem |
 |---|---|
-| Diana × Clarice | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Brigam o tempo todo e acabam amigas |
-| Baltazar × Zane | Os dois extremos do tempo: fé contra tecnologia, e ainda assim os dois mais curiosos do grupo |
-| Diana × Rafael | Dois de farda em épocas diferentes. Ele é calmo e brincalhão, e é o único que consegue acalmá-la |
-| Gabriel × Baltazar | Família descoberta |
-| Gabriel × Clarice | Duelo de ironias: os dois se provocam o tempo todo no mesmo tom, e é assim que a relação cresce ao longo do jogo |
-| Gabriel × Zane | Gabriel deixa de ser o novato e vira o veterano |
+| ~1750 | [Baltazar Magalhães](personagens/baltazar.md) |
+| 1978 | [Diana](personagens/diana.md) |
+| 1994 | [Clarice](personagens/clarice.md) |
+| 2008 | [Rafael](personagens/rafael.md) |
+| 2019 | [O pesquisador](personagens/pesquisador.md) |
+| 2026 | [Gabriel Magalhães](personagens/gabriel.md) (protagonista) |
+| 2123 | [Zane](personagens/zane.md) |
+| 3026 | [Os robôs](personagens/robos.md) (inimigos) |
 
-### 4.5 A IA
+### 4.3 A IA
 
-Antagonista sem rosto e sem voz. Aparece só pelos robôs e pelos sistemas que controla.
+Antagonista sem rosto e sem voz. Aparece só pelos robôs e pelos sistemas que controla. Não tem ficha.
 
 ---
 
@@ -233,7 +136,7 @@ Antagonista sem rosto e sem voz. Aparece só pelos robôs e pelos sistemas que c
 
 ### 7.2 Ordem dos acontecimentos
 
-1. **Antes de 3026:** a humanidade abandona a Terra, e a IA domina. A Âncora fica abandonada no centro de pesquisa da Unifor.
+1. **Antes de 3026:** a humanidade abandona a Terra, e a IA domina. A Âncora fica abandonada no Bloco J.
 2. **3026:** a Âncora falha, e a fenda se abre no chão da Biblioteca.
 3. **Os pulsos:** com dias de diferença, a fenda puxa uma pessoa de cada época. Cada uma acorda sozinha, foge dos robôs e acha um canto para sobreviver. Cinco chegam antes de Gabriel.
 4. **O jogo:** Gabriel, o penúltimo, acorda na Biblioteca, encontra os outros um a um, descobre o que aconteceu e tenta consertar a Âncora para todos voltarem.
@@ -300,13 +203,13 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 
 | Camada | O que é | Onde está |
 |---|---|---|
-| **Narrativa ambiental** | Marcas no cenário, relíquias de épocas diferentes, os tracinhos nas lousas, os riscos de estrelas na árvore | [`README.md`](README.md) |
-| **Documentos** | Diários, bilhetes, disquetes. Cada época tem um papel próprio. As pistas úteis viram anotações no **Caderno do Gabriel** | [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md) |
+| **Narrativa ambiental** | Marcas no cenário, relíquias de épocas diferentes, os tracinhos nas lousas, os riscos de estrelas na árvore | [`../fases/`](../fases/) |
+| **Documentos** | Diários, bilhetes, disquetes. Cada época tem um papel próprio. As pistas úteis viram anotações no **Caderno do Gabriel** | [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md) e o modelo [`template_documento.md`](template_documento.md) |
 | **Inventário** | O anel da avó, e a comparação com o anel do Baltazar | [`../mecanicas/itens_e_inventario.md`](../mecanicas/itens_e_inventario.md) |
 | **Rádio** | Rafael ao vivo, sem pausar o jogo | [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md) |
 | **Ligações e diálogos** | Clarice por telefone; todos em pessoa nos esconderijos, com retratos e escolhas | [`../dialogos/README.md`](../dialogos/README.md) |
 | **Sonhos** | O sono continua como mecânica; o que os sonhos mostram está pendente | [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md) |
-| **Cutscenes** | A abertura (`seg_acordar`) e as que o grupo decidir | [`../roteiro/cutscenes/`](../roteiro/cutscenes/) |
+| **Cutscenes** | A abertura (`seg_acordar`) e as que o grupo decidir | [`roteiro/cutscenes/`](roteiro/cutscenes/) |
 
 ---
 
@@ -358,8 +261,6 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 ### 12.4 Textos já escritos que citam a versão antiga
 
 - `dados/dialogos/clarice_primeiro_encontro.json`: as falas "Você sempre lê", "E sempre chega aqui com essa cara de quem viu assombração" e "E você sempre repara" vinham dos loops e precisam ser reescritas.
-- [`revelacao_central.md`](revelacao_central.md): substituída por este documento. Decidir se é apagada ou guardada como histórico.
-- [`../personagens/antecessores.md`](../personagens/antecessores.md): fichas com idades, mortes e loops antigos.
 - [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md): **o que os sonhos mostram** agora que não há loops (memória, o passado do campus, outra coisa).
 
 ### 12.5 Estrutura e fases

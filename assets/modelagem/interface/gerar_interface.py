@@ -306,7 +306,7 @@ def papel_pergaminho():
     """O diário do Baltazar (1750): pergaminho amarelado, bordas comidas e
     escuras, manchas de umidade. No canto de baixo, o esboço a pena que ele
     fez do robô: a cabeça, o olho de vidro e duas linhas saindo do olho, o
-    "cone" do que o robô enxerga (docs/personagens/robos.md: a visão dos
+    "cone" do que o robô enxerga (docs/historia/personagens/robos.md: a visão dos
     robôs é um cone, calculado por produto escalar)."""
     img = Imagem(LARGURA_PAPEL, ALTURA_PAPEL)
     X, Y = img.X, img.Y
@@ -367,8 +367,7 @@ def papel_caderno_clarice():
 def papel_caderno_gabriel():
     """O caderno do Gabriel (2026): folha quadriculada de caderno de
     faculdade, com a espiral em cima. O quadriculado é bem fraco, para não
-    brigar com o texto. Os bilhetes de "G." dos ciclos anteriores usam
-    esta mesma folha (docs/historia/revelacao_central.md)."""
+    brigar com o texto."""
     img = Imagem(LARGURA_PAPEL, ALTURA_PAPEL)
     X, Y = img.X, img.Y
     folha = img.ret(0, 3, img.w, img.h)

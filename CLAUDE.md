@@ -8,7 +8,7 @@ Este arquivo dá contexto a qualquer sessão do Claude que trabalhe neste reposi
 
 - **Premissa:** Em 3026 a humanidade abandonou a Terra e uma **IA** dominou o planeta. No antigo centro de pesquisa da Unifor, uma máquina abandonada, a **Âncora**, falhou e abriu uma **fenda** no tempo no chão da Biblioteca. Por acaso, a fenda puxou, com dias de diferença, jovens de épocas diferentes que estavam naquele ponto. Um deles é **Gabriel Magalhães**, estudante de 2026. Ele precisa encontrar os outros, descobrir o que aconteceu e achar um jeito de todos voltarem. Os inimigos são **robôs** da IA, que caçam humanos. A primeira fase é a Biblioteca.
 - **Estilo:** pixel art em vista lateral 2.5D, inspirado em *Five Nights at Freddy's: Into the Pit*. Terror atmosférico, fuga e esconderijo, defesa limitada.
-- **A lei do projeto para história, mundo e personagens é [`docs/historia/enredo_principal.md`](docs/historia/enredo_principal.md).** Vale acima de qualquer outro documento (GDD, fichas, fases, `decisoes.md`). Em caso de dúvida em qualquer parte do jogo (uma fala, um bilhete, uma sala, um sprite), consulte o Enredo Principal. Se algo o contradiz, o erro está no outro lugar. O que ele ainda não decidiu está na seção "Pendências", no fim dele: não invente resposta para uma pendência, pergunte ao usuário.
+- **A lei do projeto para história, mundo e personagens é [`docs/historia/enredo_principal.md`](docs/historia/enredo_principal.md), junto com as fichas de [`docs/historia/personagens/`](docs/historia/personagens/)** (uma por personagem, com a mesma autoridade). Vale acima de qualquer outro documento (GDD, fichas, fases, `decisoes.md`). Em caso de dúvida em qualquer parte do jogo (uma fala, um bilhete, uma sala, um sprite), consulte o Enredo Principal. Se algo o contradiz, o erro está no outro lugar. O que ele ainda não decidiu está na seção "Pendências", no fim dele: não invente resposta para uma pendência, pergunte ao usuário.
 - **Para o resto (mecânicas, técnica, arte),** a fonte da verdade é `docs/decisoes.md` + `docs/gdd.md`. Se os dois se contradizem, vale o registro de decisões (é o mais recente).
 
 **Requisito obrigatório da disciplina:** o jogo precisa usar conteúdos de computação — grafos, estruturas de dados avançadas, matemática. Planejado: campus como grafo, BFS para propagação de som, A\* para perseguição, cadeia de Markov no movimento dos inimigos, coloração de grafos em rotinas de patrulha, máquina de estados, campo de visão por produto escalar. Detalhes em `docs/gdd.md`, item 2.4.
@@ -29,7 +29,7 @@ dados/          recursos de dados (.tres), ex.: dados/itens/ — um arquivo por 
 shaders/        shaders (.gdshader)
 assets/         sprites, tiles, audio, fontes
 docs/           gdd.md, equipe.md, decisoes.md
-docs/roteiro/   história, personagens, diálogos
+docs/historia/  enredo_principal.md (a lei do projeto), personagens/, roteiro/
 .claude/agents/ agentes especializados deste projeto
 ```
 

@@ -128,7 +128,7 @@ Git não consegue mesclar binário. Se duas pessoas editarem o mesmo PNG, uma da
 | `assets/audio/` | música e efeitos |
 | `assets/fontes/` | fontes de texto |
 | `docs/` | GDD, divisão de tarefas, registro de decisões |
-| `docs/roteiro/` | história, personagens, diálogos |
+| `docs/historia/` | Enredo Principal (a lei do projeto), fichas de personagens (`personagens/`) e roteiro (`roteiro/`) |
 
 ### Nomes de arquivo
 

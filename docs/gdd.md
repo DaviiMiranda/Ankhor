@@ -8,8 +8,8 @@
 > - 🎯 **[Visão Geral e Pilares](visao_geral/conceito.md)** | **[Estilo Artístico 2.5D](visao_geral/estilo_artistico.md)**
 > - ⚙️ **[Mecânicas e Core Loop](mecanicas/README.md)** | **[Furtividade](mecanicas/furtividade_e_esconderijos.md)** | **[Iluminação](mecanicas/iluminacao_e_lanterna.md)** | **[Vida e Checkpoint](mecanicas/vida_e_checkpoint.md)** | **[Sono e Sonhos](mecanicas/sono_e_sonhos.md)**
 > - 💻 **[Conceitos de Computação](computacao/README.md)** (Grafos, Coloração, BFS, A*, Markov, Shaders)
-> - 📜 **[Enredo Principal](historia/enredo_principal.md)** | **[Estrutura Narrativa](historia/README.md)** | **[Template de Documentos](historia/template_documento.md)**
-> - 👥 **[Personagens e IA](personagens/README.md)** ([Gabriel](personagens/gabriel.md), [Robôs](personagens/robos.md), [Template](personagens/template_personagem.md))
+> - 📜 **[Enredo Principal](historia/enredo_principal.md)** | **[Índice da História](historia/README.md)** | **[Modelo de Documento](historia/template_documento.md)**
+> - 👥 **[Personagens](historia/personagens/)** ([Gabriel](historia/personagens/gabriel.md), [Robôs](historia/personagens/robos.md), [Modelo de ficha](historia/template_personagem.md))
 > - 🗺️ **[Design de Fases](fases/README.md)** | **[Template de Fase](fases/template_fase.md)**
 > - 💬 **[Sistema de Diálogos](dialogos/README.md)** | **[Template de Diálogo](dialogos/template_dialogo.md)**
 
@@ -89,11 +89,11 @@ Os conteúdos de computação estão **dentro das mecânicas**, não só no cód
 | Conteúdo | Onde aparece no jogo |
 |---|---|
 | **Grafos** | O campus é um grafo: cada sala é um nó, cada porta, corredor, escada ou buraco no teto é uma aresta com peso (distância e barulho). Desabamentos removem arestas; passagens abertas pelo jogador criam novas. |
-| **Coloração de grafos** | ⚠️ _A definir com a nova premissa:_ antes, a grade horária da semana de provas era gerada por coloração de grafos: aulas que dividem professor ou sala não podem ter o mesmo horário. Essa grade definia onde cada Insone estava a cada hora. Com os robôs em patrulha programada (`docs/personagens/robos.md`), falta decidir de onde vem a grade. |
+| **Coloração de grafos** | ⚠️ _A definir com a nova premissa:_ antes, a grade horária da semana de provas era gerada por coloração de grafos: aulas que dividem professor ou sala não podem ter o mesmo horário. Essa grade definia onde cada Insone estava a cada hora. Com os robôs em patrulha programada (`docs/historia/personagens/robos.md`), falta decidir de onde vem a grade. |
 | **Busca em largura (BFS)** | O som se propaga pelo grafo e enfraquece a cada sala. Um passo correndo é ouvido a duas salas; uma estante caindo, a cinco. |
 | **A\* (caminho mínimo)** | Quando um robô ouve ou vê o jogador, sai da rotina e o persegue pelo menor caminho no grafo. |
 | **Cadeia de Markov** | Fora da rotina, cada robô escolhe a próxima sala por probabilidade, com chances que crescem a cada dia. É o modelo de movimento dos perseguidores do FNAF, formalizado. |
-| **Máquina de estados** | Cada robô alterna entre *rotina*, *investigando*, *perseguindo*, *atordoado* e *retornando* (`docs/personagens/robos.md`). |
+| **Máquina de estados** | Cada robô alterna entre *rotina*, *investigando*, *perseguindo*, *atordoado* e *retornando* (`docs/historia/personagens/robos.md`). |
 | **Estruturas de dados** | Inventário em grade (matriz), fila de eventos da rotina de cada robô, dicionário de flags do mundo (passagens abertas, pistas encontradas, sonhos vistos). |
 | **Matemática / geometria** | Campo de visão dos robôs por produto escalar e linha de visão por *ray casting*; luz da lanterna em cone (a mesma conta do produto escalar) e decaindo com a bateria. |
 
@@ -146,7 +146,7 @@ As áreas externas entre prédios são as mais expostas: abertas, com dunas e ma
 
 ### Desafios e Obstáculos
 
-- **Os robôs**, cada tipo com seu sensor dominante (som, visão, luz) e padrão de patrulha (`docs/personagens/robos.md`).
+- **Os robôs**, cada tipo com seu sensor dominante (som, visão, luz) e padrão de patrulha (`docs/historia/personagens/robos.md`).
 - **Barulho:** correr, pisar em entulho e derrubar coisas se ouve pelo grafo.
 - **Escuridão:** a lanterna ajuda a ver e ajuda a ser visto; a bateria acaba.
 - **Recursos escassos:** pilhas e cápsulas de clarão nunca sobram.

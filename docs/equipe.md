@@ -86,7 +86,7 @@ Quatro pessoas, quatro papéis. Duas cuidam do **código** e duas são **roteiri
 - Aprovar se a arte pronta conta o que a história precisa.
 - Iluminação e atmosfera dentro do Godot: posicionar luzes, cores e efeitos de cada sala, e a diferença visual entre presente e sonho. É trabalho de ajuste no editor, não de desenho.
 
-**Entrega típica:** ficha de personagem ou cenário em `docs/roteiro/`, ou uma sala com iluminação e atmosfera prontas.
+**Entrega típica:** ficha de personagem em `docs/historia/personagens/` ou cenário em `docs/historia/roteiro/`, ou uma sala com iluminação e atmosfera prontas.
 
 **Trabalha junto com:**
 - **O outro roteirista**, em tudo que é história.
@@ -103,7 +103,7 @@ Quatro pessoas, quatro papéis. Duas cuidam do **código** e duas são **roteiri
 - A trama e o mistério: o que aconteceu, quais são as pistas, em que momento cada verdade é revelada.
 - Estrutura do jogo: o que acontece em cada dia e em cada área.
 - Textos do jogo: diálogos, documentos encontrados, descrições de itens, final.
-- **Guardião do cânone:** manter `docs/roteiro/` e `docs/decisoes.md` coerentes. Quando dois textos se contradizem, é quem aponta.
+- **Guardião do cânone:** manter `docs/historia/` (com o Enredo Principal, a lei do projeto) e `docs/decisoes.md` coerentes. Quando dois textos se contradizem, é quem aponta.
 
 **Como designer de fases:**
 - Montar as salas e áreas no Godot com a arte pronta.

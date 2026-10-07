@@ -62,7 +62,7 @@ Na vista do jogo (lateral com profundidade), a parede tem 40 px de altura e cobr
 
 O Gabriel anda a 45 px/s e corre a 81 px/s: consegue fugir correndo, mas correr faz barulho e o Rastreador escuta de longe.
 
-A IA (máquina de estados, cone por produto escalar, BFS do som, A\*, Markov) está em [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md) e [`../personagens/robos.md`](../personagens/robos.md).
+A IA (máquina de estados, cone por produto escalar, BFS do som, A\*, Markov) está em [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md) e [`../historia/personagens/robos.md`](../historia/personagens/robos.md).
 
 ---
 

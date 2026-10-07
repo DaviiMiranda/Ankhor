@@ -1,13 +1,13 @@
 # Clarice — visual
 
-Aluna de processamento de dados puxada de uma madrugada de 1994 (ficha em [`docs/personagens/antecessores.md`](../../../../docs/personagens/antecessores.md), 2.3). Está em 3026 há alguns meses, escondida no bunker embaixo do núcleo da Âncora. É a única que lembra dos loops.
+Aluna de processamento de dados puxada de uma madrugada de 1994. Está em 3026 há alguns dias, escondida no bunker embaixo do núcleo da Âncora. Quem ela é está na ficha [`docs/historia/personagens/clarice.md`](../../../../docs/historia/personagens/clarice.md), que faz parte do Enredo Principal (a lei do projeto).
 
 ![Folha de referência](clarice_referencia.png)
 
 ## Quem ela é, no visual
 
 - **Anos 90 de verdade.** Jaqueta **corta-vento em blocos de cor** (verde-azulado, faixa roxa e faixa branca no peito, barra roxa), cabelo **cacheado e volumoso preso no alto com uma xuxinha magenta**, **óculos grandes**, **fone de walkman de espuma laranja** caído no pescoço, o **walkman** no cós da calça com o fio subindo, tênis branco de lona e calça preta.
-- **Meses no bunker.** Mangas arregaçadas até o cotovelo, relógio digital no pulso, e a estação de trabalho montada com o que ela achou.
+- **Dias no bunker.** Mangas arregaçadas até o cotovelo, relógio digital no pulso, e a estação de trabalho montada com o que ela achou.
 - **Cor de identificação: verde-azulado**, o oposto do vermelho do Gabriel. Lado a lado, cada um se destaca do outro.
 - **Postura:** sentada o tempo todo (ela fica fixa na central de dados). Digitando, inclinada para os monitores; conversando, gira a cadeira e se encosta, meio de lado: não para tudo por causa do Gabriel.
 

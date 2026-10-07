@@ -11,7 +11,7 @@ O mesmo nome é usado em todas as pastas da cutscene (ficha, cena, falas, sprite
 
 | Parte | Pasta | Quem cuida |
 |---|---|---|
-| Ficha (o que acontece) | `docs/roteiro/cutscenes/<nome>.md` | roteiro |
+| Ficha (o que acontece) | `docs/historia/roteiro/cutscenes/<nome>.md` | roteiro |
 | Falas | `dialogos/<nome>.json` | roteiro |
 | Cena do Godot | `cenas/cutscenes/<nome>.tscn` | arte e jogabilidade |
 | Imagens | `assets/sprites/cutscenes/<nome>/` | arte |
