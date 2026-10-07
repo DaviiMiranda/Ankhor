@@ -55,7 +55,8 @@
 - **Acampamento:** `assets/modelagem/cenario/gerar_antecessores.py`, nó `AcampamentoBaltazar` em `cenas/salas/biblioteca.tscn`.
 - **Diário:** `dados/documentos/diario_baltazar.tres`, nó `DiarioBaltazar` na Biblioteca.
 - **Sprites:** `assets/sprites/personagens/baltazar/`, gerados por `assets/modelagem/personagens/gerar_baltazar.py`.
-- **Cena e diálogos:** ainda não existem.
+- **Cena:** `cenas/personagens/baltazar.tscn` (parado, por enquanto só na sala de teste).
+- **Diálogos:** ainda não existem.
 
 ## 8. Pendências
 
