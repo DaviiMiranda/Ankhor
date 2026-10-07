@@ -57,11 +57,8 @@ import sys
 sys.dont_write_bytecode = True
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import comum as c  # noqa: E402
-import numpy as np  # noqa: E402
 import bpy  # noqa: E402
 
-PASTA_SAIDA = os.path.join(c.PASTA_SPRITES, "zane")
-ARQUIVO_BLEND = os.path.join(c.PASTA_SCRIPT, "zane.blend")
 MAX_CORES = 48
 DETALHE = 3
 
@@ -259,16 +256,6 @@ def esconder_boca():
         bpy.data.objects[nome].hide_render = True
 
 
-def renderizar_retratos(cam, raiz, materiais):
-    retratos = {}
-    for qual in EXPRESSOES:
-        expressao(qual)
-        retratos[qual] = c.renderizar_retrato(cam, raiz, materiais)
-    expressao("normal")
-    esconder_boca()
-    return retratos
-
-
 def main():
     c.DETALHE = DETALHE
     c.SUAVE = True
@@ -277,43 +264,8 @@ def main():
     c.usar_colecao("Zane")
     raiz = montar(mt)
     c.achatar_sombra("Rosto")
-    expressao("normal")
-    esconder_boca()
-    cam = c.criar_camera()
-    c.criar_luzes()
-    os.makedirs(PASTA_SAIDA, exist_ok=True)
-
-    # Sprites de jogo: as cinco vistas, a caminhada e a respiração.
-    jogo = c.renderizar_vistas_jogo(cam, raiz, materiais, "zane")
-    parado = c.guardar_pose()
-    andar = c.renderizar_ciclo(cam, raiz, materiais, lambda fase: c.pose_andar(parado, fase, **PASSO),
-                               c.QUADROS_ANDAR, "zane andar")
-    c.restaurar_pose(parado)
-    respirar = c.renderizar_ciclo(cam, raiz, materiais, lambda fase: c.pose_parado(parado, fase, **RESPIRAR),
-                                  c.QUADROS_PARADO, "zane parado")
-    c.restaurar_pose(parado)
-
-    # Folha de referência: frente, 3/4, lado e costas, em 128 px.
-    vistas = []
-    for angulo in (0, 35, 90, 180):
-        img, ind, _ = c.renderizar_vista(cam, raiz, materiais, angulo, c.QUADRO_REF, c.PX_POR_M_REF, c.PE_REF_PX)
-        vistas.append(c.contorno(img, ind, materiais))
-    retratos = renderizar_retratos(cam, raiz, materiais)
-
-    # Uma paleta só para tudo do Zane, calculada com o sprite de lado, a
-    # referência e os retratos; as animações só usam essa paleta.
-    todas = [jogo["lado"]] + vistas + list(retratos.values())
-    convertidas, paleta = c.unificar_paleta(todas, materiais, MAX_CORES)
-    vistas = convertidas[1:5]
-    retratos = dict(zip(retratos.keys(), convertidas[5:]))
-    c.salvar_sprites_jogo(PASTA_SAIDA, "zane", paleta, jogo, andar, respirar)
-    for qual, img in retratos.items():
-        c.salvar_png(img, os.path.join(PASTA_SAIDA, f"zane_retrato_{qual}.png"))
-    c.salvar_png(c.montar_folha([vistas, list(retratos.values())]), os.path.join(PASTA_SAIDA, "zane_referencia.png"))
-    print("[zane] paleta:", " ".join(c.rgb_para_hex(np.array(cor) / 255) for cor in paleta))
-
-    c.salvar_blend(ARQUIVO_BLEND, raiz)
-    print("[zane] pronto")
+    c.gerar_em_pe("zane", raiz, materiais, MAX_CORES, EXPRESSOES, expressao, esconder_boca,
+                  passo=PASSO, respirar=RESPIRAR)
 
 
 main()

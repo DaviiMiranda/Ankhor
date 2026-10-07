@@ -46,13 +46,16 @@
 ## 6. Direção de arte
 
 - **O que a aparência precisa comunicar:** um rapaz de 20 anos do século XVIII, de família de sítio, sem nada de nobre. Roupa simples de colono, gasta pelos dias em 3026. A luneta sempre por perto. O **anel** visível na mão.
-- **Visual definido:** ainda não.
+- **Visual definido:** [`assets/sprites/personagens/baltazar/visual.md`](../../../assets/sprites/personagens/baltazar/visual.md). Tricórnio, cabelo preso com fita, casaca vinho gasta e remendada, colete, calções, meias e sapato de fivela; a luneta de latão numa bandoleira de couro e o anel de ouro na mão direita.
+- **Cor de identificação:** vinho (pau-brasil), um eco escuro do vermelho do Gabriel.
+- Sprites em resolução dobrada, com o mesmo conjunto do Gabriel (ver `CLAUDE.md`).
 
 ## 7. Arquivos
 
 - **Acampamento:** `assets/modelagem/cenario/gerar_antecessores.py`, nó `AcampamentoBaltazar` em `cenas/salas/biblioteca.tscn`.
 - **Diário:** `dados/documentos/diario_baltazar.tres`, nó `DiarioBaltazar` na Biblioteca.
-- **Cena, sprites e diálogos:** ainda não existem.
+- **Sprites:** `assets/sprites/personagens/baltazar/`, gerados por `assets/modelagem/personagens/gerar_baltazar.py`.
+- **Cena e diálogos:** ainda não existem.
 
 ## 8. Pendências
 

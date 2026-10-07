@@ -804,3 +804,60 @@ def salvar_sprites_jogo(pasta, nome, paleta, jogo, andar, parado):
         for vista, quadros in ciclo.items():
             tira = np.concatenate(aplicar_paleta(quadros, paleta), axis=1)
             salvar_png(tira, os.path.join(pasta, f"{nome}_{prefixo}_{vista}.png"))
+
+
+def gerar_em_pe(nome, raiz, materiais, max_cores, expressoes, expressao, esconder_boca,
+                passo=None, respirar=None):
+    """O roteiro inteiro de um personagem em pé, depois de montado (com o
+    "Rosto" já achatado): renderiza as vistas de jogo, a caminhada, a
+    respiração, a folha de referência e os retratos, junta tudo numa paleta
+    só e grava os PNGs em assets/sprites/personagens/<nome>/ e o modelo em
+    <nome>.blend.
+
+    expressoes é a lista de nomes dos retratos (a primeira é a de sempre);
+    expressao(qual) arma o rosto e esconder_boca() tira a boca dos sprites
+    de jogo (no sprite de 48 px ela vira um risco no queixo). passo e
+    respirar são as amplitudes próprias do personagem para pose_andar e
+    pose_parado."""
+    pasta = os.path.join(PASTA_SPRITES, nome)
+    expressao(expressoes[0])
+    esconder_boca()
+    cam = criar_camera()
+    criar_luzes()
+    os.makedirs(pasta, exist_ok=True)
+
+    # Sprites de jogo: as cinco vistas, a caminhada e a respiração.
+    jogo = renderizar_vistas_jogo(cam, raiz, materiais, nome)
+    parado = guardar_pose()
+    andar = renderizar_ciclo(cam, raiz, materiais, lambda fase: pose_andar(parado, fase, **(passo or {})),
+                             QUADROS_ANDAR, f"{nome} andar")
+    restaurar_pose(parado)
+    respiracao = renderizar_ciclo(cam, raiz, materiais, lambda fase: pose_parado(parado, fase, **(respirar or {})),
+                                  QUADROS_PARADO, f"{nome} parado")
+    restaurar_pose(parado)
+
+    # Folha de referência: frente, 3/4, lado e costas, em 128 px.
+    vistas = []
+    for angulo in (0, 35, 90, 180):
+        img, ind, _ = renderizar_vista(cam, raiz, materiais, angulo, QUADRO_REF, PX_POR_M_REF, PE_REF_PX)
+        vistas.append(contorno(img, ind, materiais))
+    retratos = {}
+    for qual in expressoes:
+        expressao(qual)
+        retratos[qual] = renderizar_retrato(cam, raiz, materiais)
+    expressao(expressoes[0])
+    esconder_boca()
+
+    # Uma paleta só para tudo, calculada com o sprite de lado, a referência
+    # e os retratos; as animações só usam essa paleta.
+    todas = [jogo["lado"]] + vistas + list(retratos.values())
+    convertidas, paleta = unificar_paleta(todas, materiais, max_cores)
+    vistas = convertidas[1:5]
+    retratos = dict(zip(retratos.keys(), convertidas[5:]))
+    salvar_sprites_jogo(pasta, nome, paleta, jogo, andar, respiracao)
+    for qual, img in retratos.items():
+        salvar_png(img, os.path.join(pasta, f"{nome}_retrato_{qual}.png"))
+    salvar_png(montar_folha([vistas, list(retratos.values())]), os.path.join(pasta, f"{nome}_referencia.png"))
+    print(f"[{nome}] paleta:", " ".join(rgb_para_hex(np.array(cor) / 255) for cor in paleta))
+    salvar_blend(os.path.join(PASTA_SCRIPT, f"{nome}.blend"), raiz)
+    print(f"[{nome}] pronto")

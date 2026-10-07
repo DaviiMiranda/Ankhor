@@ -16,6 +16,16 @@ Formato:
 
 ---
 
+## 2026-10-07 — Visual do Baltazar e do Rafael, com os sprites do Gabriel
+**Decisão:**
+- **Baltazar:** tricórnio de feltro, cabelo comprido preso com fita, casaca **vinho** aberta até a coxa (gasta, com remendo) e canhões largos, colete marrom com botões de latão, camisa de linho, calções, meias e sapato de fivela; a **luneta** de latão numa bandoleira de couro e o **anel** de ouro na mão direita. **Cor de identificação: vinho**, o tom do pau-brasil, um eco escuro do vermelho do Gabriel (a mesma família). Postura cerimoniosa e curiosa, passo curto.
+- **Rafael:** uniforme de vigilante de 2008 **grande para ele**: camisa de manga curta **azul-celeste** com dragonas e bolsos azul-marinho, emblema amarelo na manga e no boné, crachá, calça azul-marinho e coturno; bigodinho ralo para parecer mais velho; **rádio HT** e lanterna antiga no cinto. **Cor de identificação: azul-celeste.** Peito estufado, passo de ronda.
+- Os dois têm o **mesmo conjunto de sprites do Gabriel**: cinco vistas em 96 × 112, caminhada (12 quadros) e respiração (8 quadros) em cada vista, e três retratos de 80 × 80 (Baltazar: normal, encantado, aflito; Rafael: normal, rindo, triste).
+- O roteiro de um personagem em pé (renderizar, juntar a paleta e gravar) virou `comum.gerar_em_pe`. O Zane passou a usar e saiu idêntico.
+
+**Por quê:** pedido do Davi. O visual segue a direção de arte das fichas: o Baltazar "rapaz do século XVIII, de sítio, roupa gasta, luneta e anel visíveis"; o Rafael "uniforme de 2008 um pouco largo, tentando parecer mais velho, rádio e lanterna no cinto".
+**Afeta:** `assets/modelagem/personagens/` (`comum.py`, `gerar_zane.py`, `gerar_baltazar.py` e `gerar_rafael.py` novos), `assets/sprites/personagens/baltazar/` e `rafael/` (novos), as fichas `baltazar.md` e `rafael.md` (direção de arte e arquivos), `CLAUDE.md`. Ainda não há cena de nenhum dos dois.
+
 ## 2026-10-07 — Visual do Zane, e Clarice e Zane com os sprites do Gabriel
 **Decisão:**
 - **Visual do Zane:** braço direito de prótese de metal com linhas de luz ciano, olho direito de implante, placa na têmpora e porta na nuca; jaqueta técnica curta **amarelo-ácido** com painéis grafite, zíper na diagonal e gola alta, com a manga do braço de metal cortada no ombro; camiseta preta comprida, calça larga com tiras, botas de sola branca grossa com friso de luz; cabelo raspado dos lados com o topo descolorido num topete. Postura confiante: peito aberto, queixo erguido, passo largo. **Cor de identificação: amarelo-ácido** (Gabriel vermelho, Clarice verde-azulado). O ciano dos implantes é o mesmo da interface holográfica dos áudios dele.
