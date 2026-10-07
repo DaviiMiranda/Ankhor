@@ -70,9 +70,10 @@ docs/
     │   ├── diana.md               # 1978, recruta da polícia
     │   ├── clarice.md             # 1994, aluna de processamento de dados
     │   ├── rafael.md              # 2008, segurança noturno
-    │   ├── pesquisador.md         # 2019, aluno de iniciação científica
+    │   ├── henrique.md            # 2019, o pesquisador
+    │   ├── carlos.md              # 3026, o antagonista
     │   ├── zane.md                # 2123, o último a chegar
-    │   └── robos.md               # Os inimigos da IA: sensores, FSM e patrulhas
+    │   └── robos.md               # Os robôs inimigos: sensores, FSM e patrulhas
     └── roteiro/                   # Roteirização cinematográfica e cutscenes
         ├── README.md              # Diretrizes gerais de roteiro
         └── cutscenes/             # Estrutura técnica e documentação de cutscenes

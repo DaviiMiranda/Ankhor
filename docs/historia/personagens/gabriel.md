@@ -31,7 +31,7 @@
 
 ## 4. No jogo
 
-- **Papel:** fugir dos robôs da IA, encontrar os outros que caíram na fenda, descobrir o que aconteceu e consertar a Âncora para que todos voltem às suas épocas.
+- **Papel:** fugir dos robôs, encontrar os outros que caíram na fenda, descobrir o que aconteceu e consertar a Âncora para que todos voltem às suas épocas.
 - **Parte para consertar a Âncora:** o **caderno**, com as equações da cadeira.
 
 ### 4.1 Estados de movimentação (máquina de estados do jogador)

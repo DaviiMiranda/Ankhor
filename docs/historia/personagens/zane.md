@@ -31,7 +31,7 @@
 ## 4. No jogo
 
 - **Onde aparece:** pendente.
-- **Esconderijo:** o **bunker**, quando Gabriel o traz, junto da Clarice e do pesquisador.
+- **Esconderijo:** o **bunker**, quando Gabriel o traz, junto da Clarice e do Henrique.
 - **Como chega ao jogador:** em pessoa. Como é o mais novo em 3026, chega sem saber nada.
 - **Função na jogabilidade:** pendente. Por entender de tecnologia, é um candidato natural a trazer o **notebook** (gadget de hackear portas e robôs), mas isso não está decidido.
 - **Parte para consertar a Âncora:** a tecnologia mais próxima da Âncora.
@@ -57,4 +57,4 @@
 ## 8. Pendências
 
 - O que fazia no ponto quando foi puxado, em que fase chega e se o jogador vê o pulso acontecer (Enredo Principal, seção 12.3).
-- A fala sobre "um nome de usuário de 2026", que depende de quem criou a Âncora (seção 12.2).
+- O arco dele (medo da IA, ficar para domá-la) depende de a IA continuar existindo (seção 12.2).
