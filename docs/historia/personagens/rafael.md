@@ -43,13 +43,16 @@
 ## 6. Direção de arte
 
 - **O que a aparência precisa comunicar:** um rapaz de 20 anos de uniforme de segurança de 2008, um pouco largo nele, tentando parecer mais velho. Rádio HT e lanterna antiga sempre no cinto.
-- **Visual definido:** o rádio portátil está em `assets/modelagem/interface/gerar_interface.py`. O personagem, ainda não.
+- **Visual definido:** [`assets/sprites/personagens/rafael/visual.md`](../../../assets/sprites/personagens/rafael/visual.md). Camisa azul-celeste de manga curta, larga demais, com dragonas e bolsos azul-marinho, emblema amarelo, boné, bigodinho ralo, rádio HT e lanterna no cinto. O rádio do inventário está em `assets/modelagem/interface/gerar_interface.py`.
+- **Cor de identificação:** azul-celeste.
+- Sprites em resolução dobrada, com o mesmo conjunto do Gabriel (ver `CLAUDE.md`).
 
 ## 7. Arquivos
 
 - **Transmissões:** `dados/transmissoes/rafael_*.tres`, gatilhos `GatilhoRafael1` e `GatilhoRafael2` em `cenas/salas/biblioteca.tscn`.
 - **Som do rádio:** `assets/audio/efeitos/objetos/radio_chiado.wav` (gerado por `assets/modelagem/audio/gerar_efeitos_registros.py`).
-- **Cena, sprites e diálogos em pessoa:** ainda não existem.
+- **Sprites:** `assets/sprites/personagens/rafael/`, gerados por `assets/modelagem/personagens/gerar_rafael.py`.
+- **Cena e diálogos em pessoa:** ainda não existem.
 
 ## 8. Pendências
 
