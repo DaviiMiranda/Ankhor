@@ -13,17 +13,24 @@
 #   andar_costas.webp   oito poses andando de costas
 #   andar_lado.webp     quatro poses andando para a direita (em cima) e
 #                       quatro para a esquerda (embaixo)
+#   andar_diagonal.webp em cima, de novo as quatro poses de lado (não são
+#                       usadas: não são 3/4); embaixo, 3/4 de costas
+#                       andando para a esquerda (a primeira é a pose de
+#                       perfil da folha de lado e fica de fora)
 #
 # Saída (assets/sprites/personagens/clarice/), nos mesmos nomes e tamanhos
 # que o gerar_clarice.py usava, para as cenas do Godot não mudarem:
-#   clarice_<vista>.png           96 x 112, parada, vistas frente, costas e lado
+#   clarice_<vista>.png           96 x 112, parada, vistas frente, costas, lado
+#                                 e tres_quartos_costas
 #   clarice_andar_<vista>.png     caminhada, 12 quadros de 96 x 112 lado a lado
 #   clarice_parado_<vista>.png    respiração, 8 quadros de 96 x 112
 #   clarice_retrato_<nome>.png    80 x 80, para a caixa de diálogo
 #   clarice_referencia.png        folha com o que sai daqui, para conferir
 #
-# As vistas de 3/4 ainda não têm referência: continuam saindo do
-# gerar_clarice.py (Blender), e este script não mexe nelas.
+# O 3/4 de frente ainda não tem referência: continua saindo do
+# gerar_clarice.py (Blender), e este script não mexe nele. O 3/4 de costas
+# vem virado para a esquerda e é espelhado (no jogo, todos os sprites olham
+# para a direita e o Godot espelha para a esquerda).
 #
 # De lado o jogo só usa a Clarice andando para a direita: para a esquerda,
 # o Godot espelha o sprite (flip_h). Então só entram as quatro poses de
@@ -44,6 +51,11 @@
 #      dela, de lado pela ponta do rosto) e o pé vai para a linha do chão;
 #   4. a cabeça da pose parada é colada em todos os quadros da mesma vista
 #      (o coque e o rabo de cavalo mudavam de forma de uma pose para outra).
+#
+# Quadros intermediários (de lado e no 3/4 de costas): só há quatro poses
+# desenhadas de lado e três no 3/4 de costas. Entre uma pose de passo aberto
+# e a pose de passagem (pernas juntas) entram dois quadros gerados, com as
+# pernas fechando aos poucos (função pernas_fechando).
 
 import os
 import sys
@@ -77,30 +89,45 @@ ALTURA_PX = 95
 FOLHA_LINHAS = ((0, 383), (383, 765))
 FOLHA_COLUNAS = ((0, 256), (256, 512), (512, 768), (768, 1024))
 
-# Arquivo de cada vista e quantas fileiras dele entram (de lado, só a de
-# cima, a que anda para a direita).
+# Arquivo de cada vista, as células (fileira, coluna) que entram, na ordem
+# do ciclo, e se a pose é espelhada. De lado, só a fileira de cima (a que
+# anda para a direita): as de baixo são outro desenho, e misturá-las mudaria
+# o cabelo e o walkman de um quadro para o outro.
+TODAS = [(f, c) for f in range(2) for c in range(4)]
 FOLHAS = {
-    "frente": ("andar_frente.webp", 2),
-    "costas": ("andar_costas.webp", 2),
-    "lado": ("andar_lado.webp", 1),
+    "frente": ("andar_frente.webp", TODAS, False),
+    "costas": ("andar_costas.webp", TODAS, False),
+    "lado": ("andar_lado.webp", [(0, 0), (0, 1), (0, 2), (0, 3)], False),
+    "tres_quartos_costas": ("andar_diagonal.webp", [(1, 1), (1, 2), (1, 3)], True),
 }
+# Vistas alinhadas pela ponta do rosto (as outras, pelo meio da cabeça).
+DE_LADO = ("lado", "tres_quartos_costas")
 # Vistas que dividem o mesmo tamanho de cabeça, tronco e pernas.
-GRUPOS = (("frente", "costas"), ("lado",))
+GRUPOS = (("frente", "costas"), ("lado",), ("tres_quartos_costas",))
 
-# A ordem das poses na folha (da esquerda para a direita, de cima para
-# baixo) é a ordem do ciclo. De frente e de costas, doze quadros com oito
-# poses: as poses pares (pé no chão) ficam dois quadros, as ímpares
-# (passando) um, como no "contato segurado" das caminhadas desenhadas à
-# mão. De lado, quatro poses de três quadros cada.
-POSE_DO_QUADRO = {
+# O ciclo de 12 quadros de cada vista. Um número é a pose desenhada (na
+# ordem de FOLHAS); um par (pose, k) é um quadro gerado a partir da pose de
+# passo aberto, com as pernas fechadas até a fração k da abertura.
+# De frente e de costas, oito poses desenhadas: as de pé no chão ficam dois
+# quadros ("contato segurado", como nas caminhadas desenhadas à mão).
+# De lado: passo (0), passagem (1), o outro passo (2), passagem (3). As
+# pernas fecham do passo até a passagem e abrem da passagem até o passo
+# seguinte.
+# No 3/4 de costas: passo (0), o outro passo (1) e uma só passagem (2), que
+# vale para os dois lados.
+ABRE, FECHA = 0.65, 0.3
+CICLO = {
     "frente": [0, 0, 1, 2, 2, 3, 4, 4, 5, 6, 6, 7],
     "costas": [0, 0, 1, 2, 2, 3, 4, 4, 5, 6, 6, 7],
-    "lado": [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3],
+    "lado": [0, (0, ABRE), (0, FECHA), 1, (2, FECHA), (2, ABRE),
+             2, (2, ABRE), (2, FECHA), 3, (0, FECHA), (0, ABRE)],
+    "tres_quartos_costas": [0, (0, ABRE), (0, FECHA), 2, (1, FECHA), (1, ABRE),
+                            1, (1, ABRE), (1, FECHA), 2, (0, FECHA), (0, ABRE)],
 }
 
 # Pose usada como "parada" (a de pernas mais juntas, escolhida olhando a
 # folha) em cada folha.
-POSE_PARADA = {"frente": 3, "costas": 3, "lado": 3}
+POSE_PARADA = {"frente": 3, "costas": 3, "lado": 3, "tres_quartos_costas": 2}
 
 RETRATOS = {
     "normal": 0,
@@ -144,8 +171,10 @@ def faixa_do_peito(rgb, mascara):
     return topo, (xs.min() + xs.max() + 1) / 2
 
 
-def recortar_pose(nome, caixa):
+def recortar_pose(nome, caixa, espelhar=False):
     rgb = abrir_rgb(nome, caixa)
+    if espelhar:
+        rgb = rgb[:, ::-1].copy()
     m = base.mascara_figura(rgb)
     topo, centro = faixa_do_peito(rgb, m)
     m = so_a_figura(m, (centro, topo + 2))
@@ -156,19 +185,35 @@ def recortar_pose(nome, caixa):
 # 2. Caminhadas
 # ---------------------------------------------------------------------------
 
-def bainha(rgb, m, centro):
-    # A última linha com roxo no meio do corpo (a barra da jaqueta). Só o
-    # meio: as munhequeiras, também roxas, ficam dos lados.
+def jeans(rgb, m):
+    # O azul-marinho da calça: mais azul que verde, verde e vermelho quase
+    # iguais (o verde-azulado escuro da jaqueta tem bem mais verde) e escuro.
+    r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
+    lum = 0.299 * r + 0.587 * g + 0.114 * b
+    return m & (b > g + 8) & (np.abs(g - r) < 20) & (lum > 38) & (lum < 100)
+
+
+def bainha(rgb, m, centro, peito, de_lado):
+    # Onde a jaqueta acaba e começam as pernas.
+    # De frente e de costas: a última linha com roxo no meio do corpo (a
+    # barra da jaqueta). Só o meio: as munhequeiras, também roxas, ficam dos
+    # lados.
+    # De lado e no 3/4 a barra roxa quase não aparece no meio do corpo, e
+    # essa conta pegava a faixa do peito ou uma munhequeira. Ali vale a linha
+    # de cima da calça: a primeira, bem abaixo do peito, com bastante jeans.
+    if de_lado:
+        cont = jeans(rgb, m).sum(axis=1)
+        return next(y for y in range(peito + 40, m.shape[0]) if cont[y] >= 15) - 1
     c = int(centro)
     linhas = np.where(roxo(rgb, m)[:, c - 15:c + 15].sum(axis=1) >= 10)[0]
     return int(linhas.max())
 
 
-def marcos(rgb, m):
+def marcos(rgb, m, de_lado):
     # Onde começa cada trecho do corpo, de cima para baixo: alto do cabelo,
     # faixa do peito, barra da jaqueta e sola do pé.
     peito, centro = faixa_do_peito(rgb, m)
-    return [0, peito, bainha(rgb, m, centro), m.shape[0] - 1], centro
+    return [0, peito, bainha(rgb, m, centro, peito, de_lado), m.shape[0] - 1], centro
 
 
 def esticar_trechos(rgb, m, de, para):
@@ -194,7 +239,7 @@ def coluna_da_cabeca(mm, peito, de_lado):
 def reduzir_pose(rgb, m, padrao, escala, de_lado):
     # Cada trecho do corpo vai para o tamanho padrão (a média das poses) e
     # a pose inteira é reduzida pela mesma escala, igual para todas.
-    de, _ = marcos(rgb, m)
+    de, _ = marcos(rgb, m, de_lado)
     rgb, m = esticar_trechos(rgb, m, de, padrao)
     largura = max(1, round(m.shape[1] * escala))
     altura = max(1, round(m.shape[0] * escala))
@@ -223,9 +268,10 @@ def no_quadro(spr, centro):
     return quadro
 
 
-def recortar_folha(nome, fileiras):
-    return [recortar_pose(nome, (x0, y0, x1, y1))
-            for y0, y1 in FOLHA_LINHAS[:fileiras] for x0, x1 in FOLHA_COLUNAS]
+def recortar_folha(nome, celulas, espelhar):
+    caixas = [(FOLHA_COLUNAS[c][0], FOLHA_LINHAS[f][0], FOLHA_COLUNAS[c][1], FOLHA_LINHAS[f][1])
+              for f, c in celulas]
+    return [recortar_pose(nome, caixa, espelhar) for caixa in caixas]
 
 
 def reduzir_folhas():
@@ -237,18 +283,150 @@ def reduzir_folhas():
     escala = None
     reduzidas = {}
     for grupo in GRUPOS:
-        padrao = np.mean([marcos(rgb, m)[0] for vista in grupo for rgb, m in folhas[vista]],
-                         axis=0)
+        padrao = np.mean([marcos(rgb, m, vista in DE_LADO)[0]
+                          for vista in grupo for rgb, m in folhas[vista]], axis=0)
         if escala is None:
             escala = (ALTURA_PX - 1) / padrao[-1]
         for vista in grupo:
-            reduzidas[vista] = alinhar([reduzir_pose(rgb, m, padrao, escala, vista == "lado")
+            reduzidas[vista] = alinhar([reduzir_pose(rgb, m, padrao, escala, vista in DE_LADO)
                                         for rgb, m in folhas[vista]])
     return reduzidas
 
 
 # ---------------------------------------------------------------------------
-# 3. Respiração
+# 3. Quadros intermediários
+# ---------------------------------------------------------------------------
+# Do passo aberto à passagem, cada perna gira no quadril até ficar quase em
+# pé. Na pose de passo aberto as duas pernas estão separadas abaixo da
+# virilha (um "V" de cabeça para baixo): ali cada uma é uma peça (os pixels
+# ligados entre si). Entre o quadril (logo abaixo das mãos) e a virilha as
+# duas ainda são um bloco só, que é dividido por uma reta do meio do quadril
+# até o ponto onde as pernas se separam. Cada perna inteira gira em volta do
+# quadril, com o mesmo giro de pixel art do Gabriel (base.girar,
+# RotSprite), até o ângulo dela ficar k vezes o que era:
+#   ângulo da perna = ângulo do quadril até o tornozelo, medido da vertical
+#   giro            = (k - 1) * ângulo da perna
+# O tênis não gira (ficaria inclinado): ele anda junto com o tornozelo. A
+# perna de trás é desenhada primeiro, a da frente por cima, com uma linha de
+# contorno onde as duas se encostam. Por baixo de tudo vai a metade de cima
+# do bloco do quadril, na posição original: girada, a perna se descola um
+# pixel do quadril em alguns pontos, e esse remendo tapa o buraco sem
+# aparecer no resto. Com as pernas mais em pé, o pé desce:
+# o quadro inteiro sobe até o pé voltar à linha do chão, e é esse o sobe e
+# desce da caminhada (o corpo fica mais alto na passagem).
+# O tronco, os braços e a cabeça continuam os da pose desenhada.
+
+ALTURA_TENIS = 7
+
+
+def eh_de_cima(paleta):
+    # Cores que não são da calça nem do contorno: pele, jaqueta (verde-
+    # azulado, roxo) e o branco do punho. Servem para achar onde acabam as
+    # mãos: dali para baixo só há pernas.
+    r, g, b = (paleta[:, i].astype(int) for i in range(3))
+    lum = base.luminancia(paleta)
+    return (r > b + 15) | (g > r + 40) | ((b > g + 40) & (r > g + 15)) | (lum > 150)
+
+
+def trechos(linha):
+    # Os pedaços contínuos de pixels de uma linha: [(início, fim), ...].
+    cheio = np.concatenate([[False], linha >= 0, [False]])
+    bordas = np.flatnonzero(cheio[1:] != cheio[:-1])
+    return list(zip(bordas[::2], bordas[1::2]))
+
+
+def virilha(spr, de_cima):
+    # A primeira linha, abaixo das mãos, de onde para baixo as pernas são
+    # dois pedaços separados até o tênis.
+    cima = (spr >= 0) & de_cima[np.maximum(spr, 0)]
+    topo = max(y for y in range(55, LINHA_PE - 10) if cima[y].any()) + 1
+    for y in range(LINHA_PE - ALTURA_TENIS, topo - 1, -1):
+        if len(trechos(spr[y])) < 2:
+            return y + 1, topo
+    return topo, topo
+
+
+def pecas(mascara):
+    # Grupos de pixels ligados entre si (em cima, embaixo e dos lados), do
+    # maior para o menor, achados por inundação a partir de cada pixel.
+    restante = mascara.copy()
+    grupos = []
+    while restante.any():
+        y, x = np.argwhere(restante)[0]
+        img = Image.fromarray(restante.astype(np.uint8) * 255).copy()
+        ImageDraw.floodfill(img, (int(x), int(y)), 128, thresh=0)
+        grupo = np.asarray(img) == 128
+        grupos.append(grupo)
+        restante &= ~grupo
+    return sorted(grupos, key=lambda g: -g.sum())
+
+
+def dividir_pernas(spr, linha, topo):
+    # As duas pernas inteiras, do quadril ao tênis: abaixo da virilha, as
+    # duas peças; entre o quadril e a virilha, cada lado da reta que vai do
+    # meio do quadril até o vão entre as pernas.
+    ys, xs = np.mgrid[0:QUADRO[1], 0:QUADRO[0]]
+    abaixo = pecas((spr >= 0) & (ys >= linha))[:2]
+    if len(abaixo) < 2:
+        return None
+    cols = np.where(spr[topo] >= 0)[0]
+    quadril = ((cols.min() + cols.max() + 1) / 2, float(topo))
+    a, b = trechos(spr[linha])[:2]
+    vao = (a[1] + b[0]) / 2
+    reta = quadril[0] + (vao - quadril[0]) * (ys - topo) / max(1, linha - topo)
+    bloco = (spr >= 0) & (ys >= topo) & (ys < linha)
+    pernas = []
+    for peca in abaixo:
+        lado_direito = xs[peca].mean() > vao
+        metade = bloco & ((xs >= reta) if lado_direito else (xs < reta))
+        pernas.append(peca | metade)
+    return pernas, quadril
+
+
+def pernas_fechando(spr, k, de_cima, paleta, contorno):
+    linha, topo = virilha(spr, de_cima)
+    divididas = dividir_pernas(spr, linha, topo)
+    if divididas is None:
+        return spr
+    pernas, quadril = divididas
+    ys = np.arange(QUADRO[1])[:, None]
+    corpo = np.where(pernas[0] | pernas[1], -1, spr)
+    remendo = base.so(spr, (pernas[0] | pernas[1]) & (ys < (topo + linha) // 2 + 1))
+    novas = []
+    for perna in pernas:
+        fundo = np.where(perna.any(axis=1))[0].max()
+        tenis = perna & (ys > fundo - ALTURA_TENIS)
+        canela = perna & ~tenis
+        yt = np.where(canela.any(axis=1))[0].max()
+        xt = np.where(canela[yt])[0]
+        tornozelo = ((xt.min() + xt.max() + 1) / 2, float(yt))
+        giro = (k - 1) * base.angulo(quadril, tornozelo)
+        girada = base.girar(base.so(spr, canela), giro, quadril)
+        novo = base.ponto_girado(tornozelo, giro, quadril, quadril)
+        pe = base.mover(base.so(spr, tenis), int(round(novo[0] - tornozelo[0])),
+                        int(round(novo[1] - tornozelo[1])))
+        novas.append((tornozelo[0], base.compor(girada, pe)))
+    novas.sort(key=lambda t: t[0])
+    tras, frente = novas[0][1], novas[1][1]
+    frente = base.separar_contorno(frente, tras, contorno, paleta)
+    return base.assentar(base.compor(remendo, tras, corpo, frente))
+
+
+def montar_ciclo(quadros, ciclo, paleta, contorno):
+    de_cima = eh_de_cima(paleta)
+    saida = []
+    for passo in ciclo:
+        if isinstance(passo, tuple):
+            pose, k = passo
+            q = pernas_fechando(quadros[pose], k, de_cima, paleta, contorno)
+            saida.append(base.contorno_final(base.limpar_migalhas(q), paleta, contorno))
+        else:
+            saida.append(quadros[passo])
+    return saida
+
+
+# ---------------------------------------------------------------------------
+# 4. Respiração
 # ---------------------------------------------------------------------------
 # A mesma conta do Gabriel (pixelar_gabriel.py, quadro_parado): o peito sobe
 # até 2 pixels e a cabeça vai junto, 60° atrasada; as pernas não mexem. As
@@ -289,7 +467,7 @@ def quadro_parado(spr, fase, queixo, bainha):
 
 
 # ---------------------------------------------------------------------------
-# 4. Retratos da caixa de diálogo
+# 5. Retratos da caixa de diálogo
 # ---------------------------------------------------------------------------
 # A folha de expressões tem cinco rostos lado a lado, cada um numa faixa de
 # 1/5 da largura, com o nome escrito no canto. Cada rosto é recortado,
@@ -321,7 +499,7 @@ def retratos():
 
 
 # ---------------------------------------------------------------------------
-# 5. Tudo junto
+# 6. Tudo junto
 # ---------------------------------------------------------------------------
 
 def salvar(rgba, nome):
@@ -329,7 +507,7 @@ def salvar(rgba, nome):
 
 
 def folha_referencia(vistas, andar, retratos_rgba, paleta):
-    # Para conferir: as vistas paradas, as duas caminhadas e os retratos.
+    # Para conferir: as vistas paradas, as caminhadas e os retratos.
     margem = 8
     largura = margem + QUADROS_ANDAR * QUADRO[0] + margem
     linha_retratos = margem + (len(andar) + 1) * (QUADRO[1] + margem)
@@ -366,7 +544,7 @@ def main():
         quadros = [base.contorno_final(mesma_cabeca(q, parada, queixo), paleta, contorno)
                    for q in quadros]
         vistas[vista] = parada
-        andar[vista] = [quadros[p] for p in POSE_DO_QUADRO[vista]]
+        andar[vista] = montar_ciclo(quadros, CICLO[vista], paleta, contorno)
 
     fases_parado = [360 * q / QUADROS_PARADO for q in range(QUADROS_PARADO)]
     for vista, spr in vistas.items():
