@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/toque_distante.gd" id="1_toque"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/telefone_toque.wav" id="2_toque"]
+
+[node name="ToqueDistante" type="AudioStreamPlayer"]
+stream = ExtResource("2_toque")
+volume_db = -20.0
+bus = &"Efeitos"
+script = ExtResource("1_toque")

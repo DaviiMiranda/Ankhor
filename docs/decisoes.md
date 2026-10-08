@@ -16,6 +16,16 @@ Formato:
 
 ---
 
+## 2026-10-08 — A Biblioteca implementada em várias salas
+**Decisão:** o planejamento da Biblioteca (`docs/fases/biblioteca.md`) entrou no jogo. A cena única virou oito salas em `cenas/salas/biblioteca/`, e o jogo começa na cabine. Entraram: o autoload `Progresso` (as marcas da fase), portas com chave e com marca, a chave da manutenção, o quadro de energia (ordem 3, 1, 4, 2), as luzes de emergência que acendem e revelam o Gabriel para os robôs, o terminal com o disquete da Clarice (código 0394), o painel e a grade da ala leste, o telefone com a primeira ligação da Clarice, a porta barrada das obras raras e os robôs (Sentinela no salão, Rastreador no acervo) com rota fixa, rota nova depois da energia e bipe antes de virar.
+**Por quê:** pedido do Davi: implementar tudo o que o planejamento descreve.
+**Afeta:** `project.godot` (autoload `Progresso`), `scripts/sistemas/porta.gd`, `scripts/personagens/robo.gd`, `scripts/salas/sala.gd` (os limites automáticos também barram robôs), `scripts/itens/notebook.gd`, `scripts/menu_principal.gd`, `cenas/cutscenes/seg_acordar.tscn` e `dados/fases/01_biblioteca.tres` (começam na cabine). Os textos da ligação e do disquete são rascunho para o roteiro revisar.
+
+## 2026-10-07 — Planejamento da Biblioteca no estilo Resident Evil
+**Decisão:** a Biblioteca passa a ser planejada como uma fase de **salas ligadas por portas trancadas**, no estilo *Resident Evil*: cabine, salão principal (o centro), balcão, acervo sul, sala de manutenção (sala segura), sala de terminais, ala leste e uma sala de obras raras que só abre mais tarde. Para sair, o jogador busca a chave da manutenção no acervo, religa a energia, lê o código da grade no disquete da Clarice, abre a grade da ala leste e atende a primeira ligação da Clarice, que destranca a porta de saída. A Sentinela fica no salão e o Rastreador no acervo; com a energia, as luzes acendem e a rota da Sentinela muda. O mezanino, cogitado, foi descartado.
+**Por quê:** pedido do Davi: uma fase com mais caminhos e cadeados, em vez de um salão só.
+**Afeta:** `docs/fases/biblioteca.md` (reescrito). Para implementar: dividir `cenas/salas/biblioteca.tscn` em salas, chave como item, quadro de energia, painel de código e grade, luzes que acendem, telefone, disquete da Clarice e os dois robôs.
+
 ## 2026-10-07 — Visual do Henrique e do Carlos
 **Decisão:**
 - **Henrique:** camisa de flanela xadrez laranja-queimado aberta sobre camiseta cinza, jeans preto, tênis de lona, óculos redondos de aro fino, cabelo bagunçado na testa, o caderno sempre na mão e um lápis atrás da orelha. Postura fechada, cabeça baixa, passo curto. **Cor de identificação: laranja-queimado.**

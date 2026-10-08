@@ -47,6 +47,7 @@ func _ready() -> void:
 func _criar_limites() -> void:
 	var corpo := StaticBody2D.new()
 	corpo.name = "LimitesAutomaticos"
+	corpo.collision_layer = 1 | 8
 	var grossura := 40.0
 	var larg := float(largura)
 	var paredes := [
