@@ -5,6 +5,7 @@ extends Resource
 @export var nome: String = ""
 @export_multiline var descricao: String = ""
 @export var icone: Texture2D
+@export var imagem_detalhe: Texture2D
 @export var sprite_chao: Texture2D
 @export var brilho_no_chao: float = 1.0
 

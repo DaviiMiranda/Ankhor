@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/itens/notebook.png" id="2_icone"]
 [ext_resource type="Texture2D" path="res://assets/sprites/itens/notebook_chao.png" id="3_chao"]
 [ext_resource type="PackedScene" path="res://cenas/itens/notebook.tscn" id="4_gadget"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/notebook_detalhe.png" id="5_detalhe"]
 
 [resource]
 script = ExtResource("1_item")
@@ -12,6 +13,7 @@ nome = "Notebook"
 brilho_no_chao = 2.0
 descricao = "Notebook de pesquisa, ainda com bateria. Parado perto de uma porta trancada ou de um robô (só por trás), invade o sistema: abre a porta ou desliga o robô. A tela acesa chama atenção."
 icone = ExtResource("2_icone")
+imagem_detalhe = ExtResource("5_detalhe")
 sprite_chao = ExtResource("3_chao")
 equipavel = true
 cena_gadget = ExtResource("4_gadget")

@@ -7,12 +7,14 @@ const COR_ABA_ATIVA := Color(0.95, 0.88, 0.7, 1)
 const COR_ABA_INATIVA := Color(0.55, 0.56, 0.52, 1)
 const MARCA_NOVA := " •"
 const DICAS := {
-	Aba.ITENS: "Q: anotações   Setas: escolher   1-3: equipar   Tab: fechar",
+	Aba.ITENS: "Q: anotações  Setas: mover  E: examinar  1-3: equipar  Tab: fechar",
 	Aba.ANOTACOES: "Q: itens   Setas: escolher e folhear   Tab: fechar",
 }
+const DICA_EXAME := "E: voltar   Q: anotações   Tab: fechar"
 
 var aberto := false
 var _aba := Aba.ITENS
+var _examinando := false
 var _cursor := Vector2i(0, 0)
 var _espacos_grade: Array[EspacoItem] = []
 var _espacos_gadget: Array[EspacoItem] = []
@@ -22,6 +24,7 @@ var _espacos_gadget: Array[EspacoItem] = []
 @onready var marcador: ColorRect = $Janela/Marcador
 @onready var painel_itens: Control = $Janela/Itens
 @onready var painel_anotacoes: PainelAnotacoes = $Janela/Anotacoes
+@onready var painel_exame: PainelExame = $Janela/Exame
 @onready var dica: Label = $Janela/Dica
 @onready var grade: GridContainer = $Janela/Itens/Grade
 @onready var caixa_gadgets: HBoxContainer = $Janela/Itens/Gadgets
@@ -68,7 +71,10 @@ func _unhandled_input(evento: InputEvent) -> void:
 	if not aberto:
 		return
 	if evento.is_action_pressed("ui_cancel"):
-		_abrir(false)
+		if _examinando:
+			_examinar(false)
+		else:
+			_abrir(false)
 	elif evento.is_action_pressed("trocar_aba"):
 		_mostrar_aba(Aba.ANOTACOES if _aba == Aba.ITENS else Aba.ITENS)
 		som_aba.play()
@@ -100,6 +106,11 @@ func _alternar(aba: Aba) -> void:
 
 
 func _tratar_itens(evento: InputEvent) -> void:
+	if evento.is_action_pressed("interagir"):
+		_examinar(not _examinando)
+		return
+	if _examinando:
+		return
 	var passo := Vector2i.ZERO
 	if evento.is_action_pressed("mover_esquerda") or evento.is_action_pressed("ui_left"):
 		passo = Vector2i.LEFT
@@ -132,10 +143,22 @@ func _abrir(abrir: bool) -> void:
 
 func _mostrar_aba(aba: Aba) -> void:
 	_aba = aba
+	_examinando = false
 	painel_itens.visible = aba == Aba.ITENS
 	painel_anotacoes.visible = aba == Aba.ANOTACOES
+	painel_exame.visible = false
 	dica.text = DICAS[aba]
 	_atualizar_abas()
+
+
+func _examinar(ligar: bool) -> void:
+	var item := Inventario.item_em(_cursor.y, _cursor.x)
+	_examinando = ligar and item != null
+	painel_itens.visible = not _examinando
+	painel_exame.visible = _examinando
+	dica.text = DICA_EXAME if _examinando else DICAS[Aba.ITENS]
+	if _examinando:
+		painel_exame.mostrar(item)
 
 
 func _atualizar_abas() -> void:

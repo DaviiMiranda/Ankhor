@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/inventario_fechar.wav" id="4_som_fechar"]
 [ext_resource type="PackedScene" path="res://cenas/interface/painel_anotacoes.tscn" id="5_anotacoes"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/papel_folhear.wav" id="6_som_aba"]
+[ext_resource type="PackedScene" path="res://cenas/interface/painel_exame.tscn" id="7_exame"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
 font_size = 8
@@ -160,11 +161,14 @@ label_settings = SubResource("LabelSettings_situacao")
 [node name="Anotacoes" parent="Janela" instance=ExtResource("5_anotacoes")]
 visible = false
 
+[node name="Exame" parent="Janela" instance=ExtResource("7_exame")]
+visible = false
+
 [node name="Dica" type="Label" parent="Janela"]
 layout_mode = 0
-offset_left = 10.0
+offset_left = 8.0
 offset_top = 146.0
-offset_right = 294.0
+offset_right = 298.0
 offset_bottom = 160.0
 label_settings = SubResource("LabelSettings_dica")
 
