@@ -65,6 +65,7 @@ docs/
     ├── template_personagem.md     # Modelo de ficha para um personagem novo
     ├── outras_ideias.md           # Ideias ainda não decididas (não é lei)
     ├── personagens/               # Uma ficha por personagem (parte do Enredo Principal)
+    │   ├── resumo.md              # Resumo de todos os personagens, para consulta rápida
     │   ├── gabriel.md             # O protagonista: estados, estamina, inventário
     │   ├── baltazar.md            # ~1750, antepassado de Gabriel
     │   ├── diana.md               # 1978, recruta da polícia
