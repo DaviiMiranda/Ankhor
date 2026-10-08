@@ -45,6 +45,7 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `efeitos/objetos/radio_clique.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 0,3 s: o clique do botão de falar e o chiado do canal abrindo. Toca no começo e no fim de cada transmissão |
 | `musica/perseguicao/labirinto_tensao.ogg` | `assets/modelagem/audio/gerar_trilha_labirinto.py` | 38,4 s em loop, 100 BPM, Ré frígio: drone, coração, metal arrastado, máquinas ao longe, cordas agudas. Camada que toca sempre no labirinto |
 | `musica/perseguicao/labirinto_perseguicao.ogg` | `assets/modelagem/audio/gerar_trilha_labirinto.py` | Mesma duração e andamento: tambores, baixo em ostinato, golpes de metal, Shepard subindo, alarme. Sobe quando um robô vê o Gabriel (`cenas/sistemas/musica_labirinto.tscn`) |
+| `musica/perseguicao/perseguicao_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_perseguicao.py` | 32 s em loop, 120 BPM, Ré frígio: bumbo industrial/taiko com distorção, baixo ostinato agressivo em semicolcheias, bigorna FM nas batidas 2 e 4, chimbal de esteiras mecânicas, sirene/sweep de alarme dos robôs, tom de Shepard ascendente infinito e stabs cortantes. Toca adaptativamente via `cenas/sistemas/musica_perseguicao.tscn` quando qualquer robô detecta o Gabriel |
 | `efeitos/robos/sentinela_passo.wav`, `rastreador_passo.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | Pisada pesada de metal; garras correndo no concreto |
 | `efeitos/robos/robo_zumbido.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | 2 s em loop: o motor do robô ligado (60 Hz, engrenagem, ventoinha) |
 | `efeitos/robos/robo_alerta.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | O guincho de quando o robô vê o Gabriel |
@@ -59,7 +60,7 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `efeitos/interface/dialogo_bip.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | O bipe das letras na caixa de diálogo (o tom muda com quem fala) |
 | `efeitos/interface/papel_folhear.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 0,35 s: uma folha virando. Toca ao abrir, folhear e fechar documentos e o caderno |
 
-Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py` , `gerar_trilha_gameplay.py` ou `gerar_trilha_bunker.py` (precisa de numpy e ffmpeg). Os efeitos saem de `gerar_efeitos_gabriel.py` (só numpy).
+Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py`, `gerar_trilha_gameplay.py`, `gerar_trilha_bunker.py`, `gerar_trilha_labirinto.py` ou `gerar_trilha_perseguicao.py` (precisa de numpy e ffmpeg). Os efeitos saem de `gerar_efeitos_gabriel.py` (só numpy).
 
 ## Nomes de arquivo
 

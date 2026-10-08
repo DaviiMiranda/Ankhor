@@ -5,6 +5,8 @@ extends Node
 @export var folga_obstaculos: float = 4.0
 @export var semente: int = 7
 
+const CENA_MUSICA_PERSEGUICAO = preload("res://cenas/sistemas/musica_perseguicao.tscn")
+
 var grade: GradeLabirinto
 
 
@@ -16,6 +18,9 @@ func _configurar() -> void:
 	var sala := get_parent() as Sala
 	if sala == null:
 		return
+	if sala.get_node_or_null("MusicaPerseguicao") == null and sala.get_node_or_null("MusicaLabirinto") == null:
+		var mus := CENA_MUSICA_PERSEGUICAO.instantiate()
+		sala.add_child(mus)
 	grade = GradeLabirinto.new(_mapa_da_sala(sala))
 	var numero := 0
 	for no in get_tree().get_nodes_in_group("robos"):
