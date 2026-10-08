@@ -19,14 +19,16 @@ Formato:
 ## 2026-10-07 — Gabriel em pixel art desenhada (a partir de referências)
 **Decisão:**
 - Os sprites do Gabriel deixam de sair do modelo 3D do Blender e passam a sair de **artes de referência em pixel art** (frente, lado e cinco expressões), guardadas em `assets/modelagem/personagens/gabriel_referencia/`. O script `pixelar_gabriel.py` (só Python, Pillow e NumPy) recorta, reduz para 99 px de altura, fecha a paleta em 40 cores e refaz o contorno.
-- O que a referência não tem sai das vistas que ela tem: as **costas** são a frente espelhada com cabelo no lugar do rosto, o capuz caído nas costas e os bolsos de trás da calça; o **3/4** e o **3/4 de costas** giram o tronco como um cilindro (largura da frente, profundidade do lado) e viram o rosto; a **caminhada de lado** é um boneco recortado (braço, coxa, canela e pé girando nas juntas); a caminhada de frente, de costas e de 3/4 levanta o pé e balança o corpo; a respiração sobe o peito e a cabeça.
+- O que a referência não tem sai das vistas que ela tem: as **costas** são a frente espelhada com cabelo no lugar do rosto, o capuz caído nas costas e os bolsos de trás da calça; a **caminhada de lado** é um boneco recortado (braço, coxa, canela e pé girando nas juntas); a respiração sobe o peito e a cabeça.
+- **Diagonal (3/4 e 3/4 de costas):** saem de uma referência própria do Gabriel dando um passo (`andar_diagonal.webp`), recortada no mesmo boneco da vista de lado. O 3/4 parado é esse boneco com os membros retos. Na referência o braço que vai à frente é o do mesmo lado da perna que avança; no jogo, cada braço balança ao contrário da sua perna. O cabelo da pose de frente saiu loiro e foi repintado com o castanho dele, e os dois pés usam o tênis que aponta para a frente.
+- **Braços sempre mexendo:** em todas as caminhadas os braços balançam ao contrário das pernas. De frente e de costas, isso aparece como a mão subindo (6 px quando o braço vem para a frente, 3 px quando vai para trás).
 - Mesmos nomes, tamanhos e quantidade de quadros de antes (96 × 112, 12 quadros andando, 8 respirando): a cena `gabriel.tscn` não muda.
 - **Sem mochila**, como na referência: moletom vermelho de capuz, calça jeans e tênis cinza.
 - **Retratos:** cinco em vez de três: `normal`, `preocupado` e `surpreso` (os nomes que os diálogos já usam) e os novos `bravo` e `envergonhado`.
 - O `gerar_gabriel.py` e o `gabriel.blend` ficam como modelo 3D, mas **não devem ser rodados** para gerar os sprites do jogo: sobrescreveriam os novos.
 
 **Por quê:** pedido do Davi, para o Gabriel chegar no nível de qualidade das referências.
-**Afeta:** `assets/sprites/personagens/gabriel/` (todos os sprites e retratos, dois retratos novos), `assets/modelagem/personagens/pixelar_gabriel.py` e `gabriel_referencia/` (novos), `gerar_gabriel.py` (aviso no cabeçalho), `assets/sprites/personagens/gabriel/visual.md`. Os outros personagens continuam com os sprites do Blender, e ficam com um visual diferente do Gabriel até ganharem referências também.
+**Afeta:** `assets/sprites/personagens/gabriel/` (todos os sprites e retratos, dois retratos novos), `assets/modelagem/personagens/pixelar_gabriel.py` e `gabriel_referencia/` (novos, com `andar_diagonal.webp`), `gerar_gabriel.py` (aviso no cabeçalho), `assets/sprites/personagens/gabriel/visual.md`. Os outros personagens continuam com os sprites do Blender, e ficam com um visual diferente do Gabriel até ganharem referências também.
 
 ## 2026-10-07 — O Carlos é o antagonista (ideia 23), o pesquisador é o Henrique
 **Decisão:**
