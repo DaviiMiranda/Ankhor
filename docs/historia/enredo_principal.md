@@ -265,6 +265,7 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 
 - **Como o Carlos consegue o conhecimento** que falta para a Âncora funcionar: roubando a consciência dos puxados, construindo uma super IA, ou as duas (a super IA feita das consciências roubadas).
 - **A IA continua existindo?** Pode ser a super IA do Carlos, outra coisa que ele controla, ou sair da história. O arco do Zane (medo da IA, ficar para domá-la) depende disso.
+- **O Carlos domina as IAs, e elas o ajudam?** Proposta do Davi: em vez de uma IA só, várias IAs, todas sob o controle do Carlos e trabalhando para ele. Falta decidir quantas são, o que cada uma faz (os robôs, a Âncora, os sistemas do D-Tec) e como ele as domina.
 - **Por que os robôs caçam os humanos:** para capturar e levar ao Bloco M, ou para eliminar quem atrapalha.
 - **O Carlos:** idade, aparência, como fala, o que teme, defeito e arco; e **quando o jogador descobre** que ele existe.
 - **Quando a humanidade foi embora**, e como a Unifor virou um centro de pesquisa em física do tempo.
@@ -291,6 +292,7 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 - **Objetivo, robôs e história do Bloco de salas.**
 - **O que destrava o setor B do bunker** (senhas nos disquetes, religar o gerador) e se os robôs entram lá.
 - **O D-Tec (Bloco M)** como fase: se é a última, e como o grupo enfrenta o Carlos sem lutar (Gabriel não é combatente).
+- **Cenários mais futuristas.** Pedido do Davi: os cenários precisam mostrar mais a tecnologia de 3026 (telas, máquinas, a estrutura do centro de pesquisa e do D-Tec), misturada às ruínas e à vegetação. Falta decidir quanto do campus tem esse visual futurista e onde ele aparece mais.
 - **Redesenho das áreas do GDD** (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) para a premissa da fenda.
 - **De onde vem a grade horária dos robôs.** Antes vinha da coloração de grafos da semana de provas; hoje a patrulha é programada (pelo Carlos ou pela IA: seção 12.2).
 
