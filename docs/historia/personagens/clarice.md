@@ -9,7 +9,7 @@
 
 - **Época de origem:** 1994.
 - **Quem é:** aluna de processamento de dados da Unifor, com cerca de 20 anos, que mora perto do campus.
-- **História:** rodava um programa num terminal da Biblioteca de madrugada e foi puxada. Foi a primeira a notar que as rotas dos robôs formam um **grafo**. Deixou um bilhete no terminal que parece despedida ("Hoje à noite vou tentar entrar no sistema. Se der errado, foi mal."), e o jogador acha que ela morreu. Está viva, escondida no **bunker** embaixo do núcleo da Âncora, quebrando a senha do setor B "um disquete por vez". Liga para os telefones velhos do campus. A **relação dela com Gabriel vai sendo desenvolvida ao longo do jogo**.
+- **História:** rodava um programa num terminal da Biblioteca de madrugada e foi puxada. Foi a primeira a notar que as rotas dos robôs formam um **grafo**. Deixou um bilhete e disquetes com senhas num terminal da Biblioteca ("Hoje à noite vou tentar entrar no sistema. Se der errado, foi mal."). Chegou a 3026 **depois do Zane e antes de Gabriel**. Fala com o grupo pela frequência de rádio que o Zane mantém. Onde ela fica está pendente. A **relação dela com Gabriel vai sendo desenvolvida ao longo do jogo**.
 
 ## 2. Personalidade
 
@@ -17,7 +17,7 @@
 - **Traços:** rápida, independente, prática, engraçada, competitiva.
 - **Como fala:** gírias dos anos 90 ("Isso é totalmente surreal", "meu filho", "Não confie nas luzes"), tom de deboche. Explica tudo como um problema de lógica.
 - **O que quer:** resolver o problema grande, que é sair dali, e provar que consegue sozinha.
-- **O que teme:** ser esquecida. Ficou dias sozinha antes de qualquer um aparecer.
+- **O que teme:** ser esquecida. Ficou dias sozinha antes de achar os outros.
 - **Defeito:** não pede ajuda e quer controlar tudo.
 - **Arco:** de quem resolve tudo sozinha a quem confia no grupo. A relação com Gabriel cresce nesse caminho.
 
@@ -26,22 +26,21 @@
 | Com | Dinâmica |
 |---|---|
 | [Gabriel](gabriel.md) | Duelo de ironias: os dois se provocam o tempo todo no mesmo tom, e é assim que a relação cresce ao longo do jogo |
-| [Diana](diana.md) | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Vivem juntas no bunker, brigam o tempo todo e acabam amigas |
+| [Diana](diana.md) | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Brigam o tempo todo e acabam amigas |
 
 ## 4. No jogo
 
-- **Onde aparece:** na Biblioteca, pelo bilhete no terminal. No **Bunker**, em pessoa, sentada na estação de trabalho da central de dados.
-- **Esconderijo:** o **bunker** embaixo do núcleo da Âncora. Divide com a Diana e, depois, com o Zane.
-- **Como chega ao jogador:** bilhete, disquetes, **ligações** para os telefones velhos do campus e conversa em pessoa.
-- **A frequência do grupo:** foi ela quem montou a **frequência de rádio** que o grupo usa para se falar, e deixou um rádio sintonizado nela no balcão da Biblioteca, onde quem cai na fenda acorda.
-- **Função na jogabilidade:** senhas dos terminais e explicação das rotinas de patrulha (as rotas dos robôs formam um grafo). É a ponte para os conteúdos de computação. Quebra a senha do setor B do bunker "um disquete por vez".
+- **Onde aparece:** na Biblioteca, pelo bilhete e pelo disquete no terminal. Em pessoa: pendente.
+- **Esconderijo:** pendente.
+- **Como chega ao jogador:** bilhete, disquetes, a frequência de rádio do grupo e conversa em pessoa.
+- **Função na jogabilidade:** senhas dos terminais (o disquete com o código da grade da Biblioteca) e explicação das rotinas de patrulha (as rotas dos robôs formam um grafo). É a ponte para os conteúdos de computação.
 - **Ideia de mecânica (não implementada):** o toque do telefone é um som no grafo (BFS). Se Gabriel demora a atender, os robôs ouvem.
 - **Parte para consertar a Âncora:** código: faz os terminais da Âncora funcionarem.
 
 ## 5. Registros
 
 - **Suporte:** folha de fichário com pautas azuis e adesivos coloridos (`papel = caderno_clarice`), disquete com etiqueta escrita à mão. Na ligação, só a voz e o chiado da linha.
-- **Já escritos:** `dados/documentos/bilhete_clarice.tres`, `dados/dialogos/clarice_primeiro_encontro.json`, `dados/dialogos/clarice_de_novo.json`.
+- **Já escritos:** `dados/documentos/bilhete_clarice.tres` e o disquete `dados/itens/disquete_clarice.tres`. As conversas `dados/dialogos/clarice_primeiro_encontro.json` e `clarice_de_novo.json` foram escritas para ela no computador do bunker e precisam ser refeitas para o Zane.
 
 ## 6. Direção de arte
 
@@ -51,12 +50,12 @@
 
 ## 7. Arquivos
 
-- **Cena:** `cenas/personagens/clarice.tscn`
+- **Cena:** `cenas/personagens/clarice.tscn` (ela sentada na estação de trabalho do bunker, que agora é do Zane) e `clarice_em_pe.tscn`
 - **Sprites:** `assets/sprites/personagens/clarice/`
 - **Gerador:** `assets/modelagem/personagens/gerar_clarice.py`
 - **Diálogos:** `dados/dialogos/clarice_*.json`
 
 ## 8. Pendências
 
-- Três falas de `clarice_primeiro_encontro.json` ainda são da versão com loops ("Você sempre lê", "E sempre chega aqui com essa cara de quem viu assombração", "E você sempre repara") e precisam ser reescritas (Enredo Principal, seção 12.4).
+- Onde ela fica e onde Gabriel a encontra em pessoa (Enredo Principal, seção 12.3).
 - O final dela com Gabriel (seção 12.1).

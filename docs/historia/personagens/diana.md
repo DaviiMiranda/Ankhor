@@ -25,13 +25,14 @@
 
 | Com | Dinâmica |
 |---|---|
-| [Clarice](clarice.md) | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Vivem juntas no bunker, brigam o tempo todo e acabam amigas |
+| [Clarice](clarice.md) | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Brigam o tempo todo e acabam amigas |
+| [Zane](zane.md) | Dividem o bunker |
 | [Rafael](rafael.md) | Dois de farda em épocas diferentes. Ele é calmo e brincalhão, e é o único que consegue acalmá-la (pelo rádio, ou quando se encontram) |
 
 ## 4. No jogo
 
-- **Onde aparece:** no **bunker**, junto da Clarice.
-- **Esconderijo:** o **bunker**, com a Clarice. Depois, o Zane chega também.
+- **Onde aparece:** no **bunker**, junto do Zane.
+- **Esconderijo:** o **bunker**, com o Zane.
 - **Como chega ao jogador:** em pessoa, no bunker, e pela frequência de rádio do grupo.
 - **Função na jogabilidade:** o **mapa à mão** dela revela **arestas escondidas no grafo do campus** (atalhos e passagens secretas). Ver [`../../computacao/grafos_e_navegacao.md`](../../computacao/grafos_e_navegacao.md).
 - **Parte para consertar a Âncora:** investigação: descobre onde fica o núcleo e as passagens até lá.

@@ -85,7 +85,7 @@ A sala 6 (mezanino) saiu do planejamento.
    - *O que o jogador aprende:* andar, pegar itens, ligar a lanterna.
 2. **O salão (sala 2).** O lado escuro do salão pede lanterna, e a **Sentinela** patrulha ali. No acampamento entre as raízes, o **diário do Baltazar** ensina o ponto cego dos robôs de um olho só (não veem quem passa pelas costas ou pelo lado) e que luz forte no olho os cega por um instante.
    - *O que o jogador aprende:* luz acesa faz o robô enxergar de longe; passar pelas costas; esconder-se.
-3. **O balcão (sala 3).** Gabriel pega o **rádio**, sintonizado na frequência que a Clarice montou, e a voz do **Henrique** dá a primeira dica ("Antes de virar, ele dá um bipe. Ouviu o bipe, se esconde."). No **quadro de chaves**, falta a chave da manutenção. A etiqueta do gancho diz "Devolvida ao acervo".
+3. **O balcão (sala 3).** Gabriel pega o **rádio**, sintonizado na frequência do grupo, e a voz do **Henrique** dá a primeira dica ("Antes de virar, ele dá um bipe. Ouviu o bipe, se esconde."). No **quadro de chaves**, falta a chave da manutenção. A etiqueta do gancho diz "Devolvida ao acervo".
    - *O que o jogador aprende:* os robôs têm rotina e avisos; existe alguém do outro lado do rádio.
 4. **O acervo sul (sala 4).** Gabriel procura a **chave da manutenção** num carrinho de devolução de livros, enquanto o **Rastreador**, que escuta, patrulha os corredores. Nos corredores, o rádio dá a segunda fala do Henrique ("Tá no acervo? Boa. No meio das estantes ninguém te vê. Só não corre, viu?").
    - *O que o jogador aprende:* **andar em vez de correr**; o barulho atrai robôs de longe.
@@ -97,7 +97,7 @@ A sala 6 (mezanino) saiu do planejamento.
 6. **Os terminais (sala 8).** Com o terminal ligado, além do **bilhete da Clarice**, o **disquete** dela mostra o **código da grade**. No bilhete, ela conta que guardava senhas nos disquetes: a pista estava ali desde o começo.
 7. **A volta pelo salão (sala 2).** Com as luzes acesas, a **rota da Sentinela muda**, e o salão que o jogador já conhecia fica diferente e mais perigoso. Gabriel atravessa até a grade, digita o código e a **grade sobe**.
    - *O que o jogador aprende:* um lugar conhecido pode mudar; voltar faz parte do jogo.
-8. **O telefone.** Na ala leste (sala 7), a porta de saída está **trancada eletronicamente**. Nesse momento, o **telefone do balcão toca**. Gabriel precisa atravessar o salão de novo para atender. É a **Clarice**, na primeira ligação do jogo. Ela destranca a porta de saída pelo sistema.
+8. **O telefone.** Na ala leste (sala 7), a porta de saída está **trancada eletronicamente**. Nesse momento, o **telefone do balcão toca**. Gabriel precisa atravessar o salão de novo para atender. É o **Zane**, na primeira ligação do jogo. Do computador do bunker, ele destranca a porta de saída pelo sistema.
 9. **Saída.** Gabriel volta à ala leste e sai para o **Bloco de salas**.
 
 ### 3.2 Grafo de dependências
@@ -156,7 +156,7 @@ Os dois robôs já existem no jogo, no Labirinto. Ver [`../historia/personagens/
 | **2ª transmissão do Henrique** | Acervo sul (4) | Implementado, no acervo |
 | **Bilhete da Clarice** | Sala de terminais (8), no terminal | Implementado, num terminal no salão |
 | **Disquete da Clarice com o código** | Sala de terminais (8) | Não existe |
-| **Primeira ligação da Clarice** | Balcão (3), passo 8 | Não existe |
+| **Primeira ligação, do Zane** | Balcão (3), passo 8 | Não existe |
 
 Posições, gatilhos e como os registros funcionam: [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md).
 
@@ -185,7 +185,7 @@ Tudo o que esta seção listava para construir já está no jogo. Como cada peç
 | **Luzes que acendem** | `scripts/sistemas/visivel_com_marca.gd` | Um nó que aparece (piscando) quando a marca chega. No salão, as luzes de emergência também **revelam o Gabriel**: perto delas, os robôs enxergam mais longe, como com a lanterna acesa |
 | **Terminal e disquete** | `cenas/sistemas/terminal_com_energia.tscn` e `dados/itens/disquete_clarice.tres`, na sala de terminais | Com energia e com o disquete, o terminal mostra `SENHAS.TXT`, com o código |
 | **Painel de código e grade** | `cenas/sistemas/painel_codigo.tscn` e `grade_seguranca.tscn`, no salão | Com energia, o painel aceita o código (0394) e marca `grade_aberta`; a grade sobe e a porta para a ala leste abre |
-| **Telefone** | `cenas/sistemas/telefone.tscn`, no balcão | Tentar a porta de saída marca `saida_tentada` e o telefone toca (e se ouve de longe no salão e na ala leste, `toque_distante.tscn`). Atender toca a ligação `clarice_01` na legenda do rádio e marca `saida_destrancada` |
+| **Telefone** | `cenas/sistemas/telefone.tscn`, no balcão | Tentar a porta de saída marca `saida_tentada` e o telefone toca (e se ouve de longe no salão e na ala leste, `toque_distante.tscn`). Atender toca a ligação `zane_01` na legenda do rádio e marca `saida_destrancada` |
 | **Obras raras** | porta barrada no salão e `som_do_outro_lado.tscn` | De vez em quando, batidas do outro lado |
 | **Robôs** | Sentinela no salão, Rastreador no acervo | Patrulham uma **rota fixa** (pontos `Marker2D` na sala). A Sentinela troca para a rota nova quando a energia volta e dá um **bipe** antes de virar. O nó `RobosDaSala` monta o mapa do chão da sala (células de 16 px, livres onde não há estante), que o A* e a audição por BFS usam |
 
@@ -193,4 +193,4 @@ Tudo o que esta seção listava para construir já está no jogo. Como cada peç
 
 Sons e arte novos (placeholders): `assets/modelagem/audio/gerar_efeitos_biblioteca.py` e `assets/modelagem/cenario/gerar_objetos_biblioteca.py`.
 
-**Pendente:** o texto da ligação da Clarice (`dados/transmissoes/clarice_01.tres`) e o do disquete são rascunho e precisam da revisão do roteiro. A tabela da seção 2.2 fala em "robôs com rota nova" na ala leste; por enquanto ela não tem robô.
+**Pendente:** o texto da ligação do Zane (`dados/transmissoes/zane_01.tres`) e o do disquete são rascunho e precisam da revisão do roteiro. A tabela da seção 2.2 fala em "robôs com rota nova" na ala leste; por enquanto ela não tem robô.

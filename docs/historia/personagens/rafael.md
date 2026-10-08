@@ -9,7 +9,7 @@
 
 - **Época de origem:** 2008.
 - **Quem é:** segurança noturno da Unifor no primeiro emprego, com cerca de 20 anos. Mora no bairro e conhece o campus de cor.
-- **História:** fazia a ronda da Biblioteca e foi puxado com o rádio e a lanterna. Recusa-se a aceitar que está em 3026 ("isso aqui não é 3026 coisa nenhuma, é reforma") e transformou uma **sala de aula do Bloco de salas** no seu "posto de guarda", de onde continua fazendo a ronda. Fala com o grupo pela frequência de rádio da Clarice.
+- **História:** fazia a ronda da Biblioteca e foi puxado com o rádio e a lanterna. Recusa-se a aceitar que está em 3026 ("isso aqui não é 3026 coisa nenhuma, é reforma") e transformou uma **sala de aula do Bloco de salas** no seu "posto de guarda", de onde continua fazendo a ronda. Fala com o grupo pela frequência de rádio que o Zane mantém.
 
 ## 2. Personalidade
 

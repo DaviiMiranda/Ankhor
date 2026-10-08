@@ -20,7 +20,7 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../historia/p
 - Ao fechar, a **anotação** do documento entra no caderno (uma vez só) e o HUD avisa: *"Nova anotação: Baltazar, 1750   [N] ver"*.
 
 ### Ouvir o rádio
-- O rádio portátil (sintonizado na frequência que a Clarice montou; a voz é a do Henrique) é um item comum (fica no inventário, não é gadget).
+- O rádio portátil (sintonizado na frequência do grupo, que o Zane mantém; a voz é a do Henrique) é um item comum (fica no inventário, não é gadget).
 - Com o rádio no inventário, **gatilhos** espalhados pela sala tocam transmissões quando o Gabriel entra neles. Cada transmissão toca **uma vez só**.
 - A transmissão **não pausa o jogo**: a fala aparece embaixo, letra por letra, com o chiado do rádio por baixo. Se duas forem pedidas juntas, a segunda espera a primeira acabar.
 - No fim, a anotação da transmissão entra no caderno.
@@ -48,7 +48,7 @@ Cada registro está numa sala da Biblioteca (`cenas/salas/biblioteca/`, ver [`..
 | Disquete da Clarice (`SENHAS.TXT`) | Terminais | o disquete em (252, 238); o terminal em (320, 230) | `E` no terminal, com energia e com o disquete |
 | Transmissão `henrique_02` (`GatilhoHenrique2`) | Acervo (`acervo.tscn`) | retângulo 480 × 240, centro (290, 300) | toca ao entrar entre as estantes com o rádio |
 | Aviso dos disjuntores | Manutenção (`manutencao.tscn`) | (84, 134), na porta | `E` perto |
-| Ligação `clarice_01` | Balcão | o telefone, em (196, 172) | `E` quando ele toca |
+| Ligação `zane_01` | Balcão | o telefone, em (196, 172) | `E` quando ele toca |
 
 ---|---|---|
 | Acampamento do Baltazar + diário (`DiarioBaltazar`) | (262, 148), entre as raízes da árvore | `E` perto |

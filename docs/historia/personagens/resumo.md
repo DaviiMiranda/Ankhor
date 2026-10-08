@@ -8,13 +8,13 @@
 
 | Personagem | Época | Quem é | Em uma frase | Cor |
 |---|---|---|---|---|
-| [Gabriel Magalhães](gabriel.md) | 2026 | Estudante da Unifor. **O protagonista**, penúltimo a chegar | Um estudante comum que prefere observar a agir, até não ter mais escolha | Vermelho |
+| [Gabriel Magalhães](gabriel.md) | 2026 | Estudante da Unifor. **O protagonista**, o último a chegar | Um estudante comum que prefere observar a agir, até não ter mais escolha | Vermelho |
 | [Baltazar Magalhães](baltazar.md) | ~1750 | Filho de colonos portugueses, com uma luneta. **Antepassado de Gabriel** | Um homem de fé com olhos de cientista, preso entre o milagre e a explicação | Vinho |
 | [Diana](diana.md) | 1978 | Recruta da polícia, criada no bairro | Uma recruta que entrou na polícia para provar que podia, e vive cada minuto como se fosse o último | — |
 | [Clarice](clarice.md) | 1994 | Aluna de processamento de dados | Uma mente brilhante que usa o sarcasmo como armadura | Verde-azulado |
 | [Rafael](rafael.md) | 2008 | Segurança noturno no primeiro emprego ("Seu Rafael") | O otimista teimoso que prefere acreditar que é reforma a encarar o fim do mundo | Azul-celeste |
 | [Henrique](henrique.md) | 2019 | Aluno de iniciação científica, **o pesquisador** | Um gênio quieto que desconfia ter causado tudo. **Mente para o grupo** | Laranja-queimado |
-| [Zane](zane.md) | 2123 | Jovem com implantes cibernéticos, **o último a chegar** | Filho de um mundo cheio de máquinas, que sabe tudo de tecnologia e nada de sobreviver | Amarelo-ácido |
+| [Zane](zane.md) | 2123 | Jovem com implantes cibernéticos. **Faz as comunicações** do computador do bunker | Filho de um mundo cheio de máquinas, que sabe tudo de tecnologia e nada de sobreviver | Amarelo-ácido |
 | [Carlos](carlos.md) | 3026 | Cientista que criou a Âncora. **O antagonista** | Um homem que, quando o mundo acabou, preferiu fugir para um passado que nunca viveu | Branco do jaleco |
 | [Os robôs](robos.md) | 3026 | Os inimigos, controlados pelo Carlos | — | — |
 
@@ -36,7 +36,7 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 
 **Henrique (2019).** Introvertido, perfeccionista, ansioso e gentil. Fala pausado e técnico, e se corrige no meio da frase. Do posto de monitoramento, é **a voz do rádio** que guia Gabriel desde a primeira fase, mas fala pouco e fica distante. **Engana o grupo**: esconde a ligação que tem com o Carlos. **Arco:** da mentira à verdade, quando o grupo descobre.
 
-**Zane (2123).** Confiante, direto, irreverente e elétrico, com gírias de um futuro que ninguém reconhece. Tem medo da IA, mas confia demais na tecnologia. **Arco:** a chegada dele mostra o quanto Gabriel mudou; no fim, **escolhe ficar em 3026** para tentar domar a IA.
+**Zane (2123).** Confiante, direto, irreverente e elétrico, com gírias de um futuro que ninguém reconhece. Tem medo da IA, mas confia demais na tecnologia. Do computador do bunker, **faz a comunicação de todos**. **Arco:** no fim, **escolhe ficar em 3026** para tentar domar a IA.
 
 ---
 
@@ -54,11 +54,11 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 |---|---|---|
 | Gabriel | — | O caderno, com as equações da cadeira |
 | Baltazar | Escondido numa sala da Biblioteca, com medo e isolado | As estrelas, que acertam a data de volta de cada um |
-| Diana | Bunker, com a Clarice | Investigação: onde fica o núcleo e as passagens até lá |
-| Clarice | Bunker, com a Diana. Montou a frequência de rádio do grupo | Código: faz os terminais da Âncora funcionarem |
+| Diana | Bunker, com o Zane | Investigação: onde fica o núcleo e as passagens até lá |
+| Clarice | Pendente | Código: faz os terminais da Âncora funcionarem |
 | Rafael | Uma sala de aula do Bloco de salas, que virou o "posto de guarda" dele | Conhece o campus e as rondas, e o que cada chave abre |
 | Henrique | Posto de monitoramento, sozinho: guia o grupo pelo rádio, vendo pelas câmeras | A teoria por trás das equações |
-| Zane | Bunker, quando Gabriel o traz |
+| Zane | Bunker, no computador da central de dados: faz a comunicação de todos |
 | Carlos | Laboratório do D-Tec, de onde nunca sai | A tecnologia mais próxima da Âncora |
 
 ---
@@ -69,8 +69,8 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 |---|---|
 | Gabriel × Baltazar | Família descoberta. No fim, Gabriel convence o Baltazar a voltar para 1750 |
 | Gabriel × Clarice | Duelo de ironias. A relação cresce ao longo do jogo |
-| Gabriel × Zane | Gabriel deixa de ser o novato e vira o veterano |
-| Diana × Clarice | O drama contra o deboche. Vivem juntas no bunker, brigam o tempo todo e acabam amigas |
+| Gabriel × Zane | A voz do telefone que abre a saída da Biblioteca e mantém todos em contato |
+| Diana × Clarice | O drama contra o deboche. Brigam o tempo todo e acabam amigas |
 | Diana × Rafael | Dois de farda em épocas diferentes. Ele é o único que a acalma |
 | Baltazar × Zane | Os dois extremos do tempo: fé contra tecnologia, e os dois mais curiosos do grupo |
 | Henrique × Carlos | O Henrique trabalha para ele ou foi enganado por ele (pendente) |
@@ -84,5 +84,6 @@ As pendências de cada personagem estão no fim da ficha dele e no [Enredo Princ
 - **Diana:** ainda sem visual definido.
 - **Henrique:** se trabalha para o Carlos ou foi enganado, o que esconde e como o grupo descobre (seção 12.7).
 - **Carlos:** como consegue o conhecimento, a relação com as IAs, e o resto da ficha (seção 12.2).
-- **Zane:** o que fazia quando foi puxado e em que fase chega.
-- **Ordem de chegada** dos cinco primeiros.
+- **Zane:** o que fazia quando foi puxado.
+- **Clarice:** onde ela fica.
+- **Ordem de chegada** de Baltazar, Diana, Rafael e Henrique (o Zane chega antes da Clarice, e todos antes de Gabriel).

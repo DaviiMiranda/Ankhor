@@ -9,7 +9,7 @@
 
 - **Época de origem:** 2026.
 - **Quem é:** estudante da Unifor, com cerca de 20 anos. A família Magalhães vive na região há séculos, mas ele não sabe.
-- **História:** dormiu na Biblioteca de madrugada, com o caderno de equações da cadeira aberto na mesa. Acorda em 3026, na cabine de estudo onde pegou no sono, sem saber o que aconteceu. Não é um herói: precisa entender o campus, evitar os robôs e achar os outros. Na mochila carrega um **anel desgastado** que a avó deu para ele. É o **penúltimo** a chegar a 3026.
+- **História:** dormiu na Biblioteca de madrugada, com o caderno de equações da cadeira aberto na mesa. Acorda em 3026, na cabine de estudo onde pegou no sono, sem saber o que aconteceu. Não é um herói: precisa entender o campus, evitar os robôs e achar os outros. Na mochila carrega um **anel desgastado** que a avó deu para ele. É o **último** a chegar a 3026.
 
 ## 2. Personalidade
 
@@ -27,7 +27,7 @@
 |---|---|
 | [Baltazar](baltazar.md) | Família descoberta. Gabriel conta ao Baltazar que é descendente dele e, no fim, precisa convencê-lo a voltar para 1750 |
 | [Clarice](clarice.md) | Duelo de ironias: os dois se provocam o tempo todo no mesmo tom, e é assim que a relação cresce ao longo do jogo |
-| [Zane](zane.md) | Gabriel deixa de ser o novato e vira o veterano que explica tudo |
+| [Zane](zane.md) | A voz do telefone que abre a saída da Biblioteca. Do computador do bunker, mantém Gabriel em contato com todos |
 
 ## 4. No jogo
 

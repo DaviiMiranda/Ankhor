@@ -73,7 +73,7 @@ docs/
     │   ├── rafael.md              # 2008, segurança noturno
     │   ├── henrique.md            # 2019, o pesquisador
     │   ├── carlos.md              # 3026, o antagonista
-    │   ├── zane.md                # 2123, o último a chegar
+    │   ├── zane.md                # 2123, faz as comunicações do bunker
     │   └── robos.md               # Os robôs inimigos: sensores, FSM e patrulhas
     └── roteiro/                   # Roteirização cinematográfica e cutscenes
         ├── README.md              # Diretrizes gerais de roteiro

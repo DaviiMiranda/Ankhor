@@ -9,7 +9,7 @@
 
 - **Época de origem:** 2019.
 - **Quem é:** aluno de iniciação científica da Unifor, com cerca de 20 anos.
-- **História:** estudava à noite na Biblioteca e sumiu. O orientador transformou o projeto dele na cadeira que Gabriel cursa, e as equações do caderno de Gabriel continuam esse trabalho sem Gabriel saber de quem eram. Em 3026, fica **sozinho num posto de monitoramento**, de onde vê o campus pelas câmeras e guia o grupo pelo rádio, na frequência que a Clarice montou. É a voz que dá as dicas de patrulha a Gabriel desde a Biblioteca. Fala pouco e fica distante dos outros. E **engana o grupo**: esconde a ligação que tem com o **Carlos**. Se trabalha para ele ou foi enganado por ele está pendente. Quando o grupo descobre a mentira, todos vão atrás do Carlos.
+- **História:** estudava à noite na Biblioteca e sumiu. O orientador transformou o projeto dele na cadeira que Gabriel cursa, e as equações do caderno de Gabriel continuam esse trabalho sem Gabriel saber de quem eram. Em 3026, fica **sozinho num posto de monitoramento**, de onde vê o campus pelas câmeras e guia o grupo pelo rádio, na frequência que o Zane mantém. É a voz que dá as dicas de patrulha a Gabriel desde a Biblioteca. Fala pouco e fica distante dos outros. E **engana o grupo**: esconde a ligação que tem com o **Carlos**. Se trabalha para ele ou foi enganado por ele está pendente. Quando o grupo descobre a mentira, todos vão atrás do Carlos.
 
 ## 2. Personalidade
 
@@ -40,7 +40,7 @@
 ## 5. Registros
 
 - **Suporte:** pendente. Uma sugestão que combina com ele: folhas de rascunho cheias de contas riscadas e corrigidas, na letra miúda de quem se corrige no meio da frase.
-- **Já escritos:** `dados/transmissoes/henrique_01.tres` (Biblioteca, balcão) e `henrique_02.tres` (Biblioteca, acervo). No rádio, fala pausado e técnico, se corrigindo, e não diz de quem é a frequência.
+- **Já escritos:** `dados/transmissoes/henrique_01.tres` (Biblioteca, balcão) e `henrique_02.tres` (Biblioteca, acervo). No rádio, fala pausado e técnico, se corrigindo.
 
 ## 6. Direção de arte
 
