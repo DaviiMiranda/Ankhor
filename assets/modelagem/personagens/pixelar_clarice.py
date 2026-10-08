@@ -11,30 +11,37 @@
 #   expressoes.png      cinco rostos: neutro, raiva, triste, vergonha e feliz
 #   andar_frente.webp   oito poses andando de frente (duas fileiras de quatro)
 #   andar_costas.webp   oito poses andando de costas
+#   andar_lado.webp     quatro poses andando para a direita (em cima) e
+#                       quatro para a esquerda (embaixo)
 #
 # Saída (assets/sprites/personagens/clarice/), nos mesmos nomes e tamanhos
 # que o gerar_clarice.py usava, para as cenas do Godot não mudarem:
-#   clarice_frente.png, clarice_costas.png    96 x 112, parada
-#   clarice_andar_frente.png, clarice_andar_costas.png
-#                                 caminhada, 12 quadros de 96 x 112 lado a lado
-#   clarice_parado_frente.png, clarice_parado_costas.png
-#                                 respiração, 8 quadros de 96 x 112
+#   clarice_<vista>.png           96 x 112, parada, vistas frente, costas e lado
+#   clarice_andar_<vista>.png     caminhada, 12 quadros de 96 x 112 lado a lado
+#   clarice_parado_<vista>.png    respiração, 8 quadros de 96 x 112
 #   clarice_retrato_<nome>.png    80 x 80, para a caixa de diálogo
 #   clarice_referencia.png        folha com o que sai daqui, para conferir
 #
-# As vistas de lado e de 3/4 ainda não têm referência: continuam saindo do
+# As vistas de 3/4 ainda não têm referência: continuam saindo do
 # gerar_clarice.py (Blender), e este script não mexe nelas.
 #
-# Consistência entre as poses: a jaqueta tem a mesma largura nas dezesseis
-# poses, mas a cabeça, o tronco e as pernas não saíram do mesmo tamanho
-# (na fileira de baixo a cabeça é ~4% maior, o tronco ~5% menor e as pernas
-# ~8% maiores). Então:
+# De lado o jogo só usa a Clarice andando para a direita: para a esquerda,
+# o Godot espelha o sprite (flip_h). Então só entram as quatro poses de
+# cima da folha de lado; as de baixo (para a esquerda) são outro desenho, e
+# misturá-las mudaria o cabelo e o walkman de um quadro para o outro.
+#
+# Consistência entre as poses: a jaqueta tem a mesma largura nas poses de
+# frente e de costas, mas a cabeça, o tronco e as pernas não saíram do
+# mesmo tamanho (na fileira de baixo a cabeça é ~4% maior, o tronco ~5%
+# menor e as pernas ~8% maiores). Então:
 #   1. cada pose é cortada em três trechos (do alto do cabelo à faixa roxa
 #      do peito, da faixa à barra da jaqueta, da barra ao pé), e cada trecho
-#      é esticado para a média das dezesseis poses; depois todas são
-#      reduzidas pela mesma escala;
-#   2. todas (de frente e de costas) usam a mesma paleta de 40 cores;
-#   3. o corpo é centrado pela faixa do peito e o pé vai para a linha do chão;
+#      é esticado para a média das poses (frente e costas juntas; de lado,
+#      as quatro poses de lado); depois todas são reduzidas pela mesma
+#      escala;
+#   2. todas as vistas usam a mesma paleta de 40 cores;
+#   3. as poses são alinhadas pela cabeça (de frente e de costas pelo meio
+#      dela, de lado pela ponta do rosto) e o pé vai para a linha do chão;
 #   4. a cabeça da pose parada é colada em todos os quadros da mesma vista
 #      (o coque e o rabo de cavalo mudavam de forma de uma pose para outra).
 
@@ -70,15 +77,30 @@ ALTURA_PX = 95
 FOLHA_LINHAS = ((0, 383), (383, 765))
 FOLHA_COLUNAS = ((0, 256), (256, 512), (512, 768), (768, 1024))
 
-# Ordem das poses na folha (da esquerda para a direita, de cima para baixo)
-# é a ordem do ciclo. Doze quadros com oito poses: as poses pares (pé
-# no chão) ficam dois quadros, as ímpares (passando) um, como no
-# "contato segurado" das caminhadas desenhadas à mão.
-POSE_DO_QUADRO = [0, 0, 1, 2, 2, 3, 4, 4, 5, 6, 6, 7]
+# Arquivo de cada vista e quantas fileiras dele entram (de lado, só a de
+# cima, a que anda para a direita).
+FOLHAS = {
+    "frente": ("andar_frente.webp", 2),
+    "costas": ("andar_costas.webp", 2),
+    "lado": ("andar_lado.webp", 1),
+}
+# Vistas que dividem o mesmo tamanho de cabeça, tronco e pernas.
+GRUPOS = (("frente", "costas"), ("lado",))
+
+# A ordem das poses na folha (da esquerda para a direita, de cima para
+# baixo) é a ordem do ciclo. De frente e de costas, doze quadros com oito
+# poses: as poses pares (pé no chão) ficam dois quadros, as ímpares
+# (passando) um, como no "contato segurado" das caminhadas desenhadas à
+# mão. De lado, quatro poses de três quadros cada.
+POSE_DO_QUADRO = {
+    "frente": [0, 0, 1, 2, 2, 3, 4, 4, 5, 6, 6, 7],
+    "costas": [0, 0, 1, 2, 2, 3, 4, 4, 5, 6, 6, 7],
+    "lado": [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3],
+}
 
 # Pose usada como "parada" (a de pernas mais juntas, escolhida olhando a
 # folha) em cada folha.
-POSE_PARADA = {"frente": 3, "costas": 3}
+POSE_PARADA = {"frente": 3, "costas": 3, "lado": 3}
 
 RETRATOS = {
     "normal": 0,
@@ -131,7 +153,7 @@ def recortar_pose(nome, caixa):
 
 
 # ---------------------------------------------------------------------------
-# 2. Caminhada de frente e de costas
+# 2. Caminhadas
 # ---------------------------------------------------------------------------
 
 def bainha(rgb, m, centro):
@@ -158,19 +180,40 @@ def esticar_trechos(rgb, m, de, para):
     return rgb[origem], m[origem]
 
 
-def reduzir_pose(rgb, m, padrao, escala):
+def coluna_da_cabeca(mm, peito, de_lado):
+    # A coluna que alinha as poses: a cabeça quase não sai do lugar quando
+    # ela anda (os braços e as pernas, sim). Vale a faixa do rosto, entre
+    # 45% e 80% da altura do cabelo ao peito (acima fica o coque, abaixo o
+    # pescoço e a gola). De frente e de costas é o meio dessa faixa; de lado,
+    # a ponta do rosto (o rabo de cavalo balança atrás).
+    faixa = mm[int(0.45 * peito):int(0.8 * peito)]
+    xs = np.where(faixa.any(axis=0))[0]
+    return xs.max() + 1 if de_lado else (xs.min() + xs.max() + 1) / 2
+
+
+def reduzir_pose(rgb, m, padrao, escala, de_lado):
     # Cada trecho do corpo vai para o tamanho padrão (a média das poses) e
     # a pose inteira é reduzida pela mesma escala, igual para todas.
-    de, centro = marcos(rgb, m)
+    de, _ = marcos(rgb, m)
     rgb, m = esticar_trechos(rgb, m, de, padrao)
     largura = max(1, round(m.shape[1] * escala))
     altura = max(1, round(m.shape[0] * escala))
     cor, mm = base.reduzir(rgb, m, largura, altura)
-    return cor, mm, centro * largura / m.shape[1]
+    xs = np.where(mm.any(axis=0))[0]
+    meio = (xs.min() + xs.max() + 1) / 2
+    return cor, mm, coluna_da_cabeca(mm, padrao[1] * escala, de_lado), meio
+
+
+def alinhar(poses):
+    # A cabeça de todas as poses vai para a mesma coluna. Qual coluna: a que
+    # deixa o corpo, em média, centrado em CENTRO_X (de lado, a ponta do
+    # rosto fica à frente do meio do corpo).
+    desvio = np.mean([cabeca - meio for _, _, cabeca, meio in poses])
+    return [(cor, mm, cabeca - desvio) for cor, mm, cabeca, _ in poses]
 
 
 def no_quadro(spr, centro):
-    # Centra pela faixa do peito e põe o pé mais baixo no chão.
+    # Põe o "centro" da pose na coluna CENTRO_X e o pé mais baixo no chão.
     quadro = base.vazio()
     ys, xs = np.where(spr >= 0)
     x0 = int(round(CENTRO_X + 0.5 - centro))
@@ -180,20 +223,28 @@ def no_quadro(spr, centro):
     return quadro
 
 
-def recortar_folha(nome):
+def recortar_folha(nome, fileiras):
     return [recortar_pose(nome, (x0, y0, x1, y1))
-            for y0, y1 in FOLHA_LINHAS for x0, x1 in FOLHA_COLUNAS]
+            for y0, y1 in FOLHA_LINHAS[:fileiras] for x0, x1 in FOLHA_COLUNAS]
 
 
-def reduzir_folhas(folhas):
-    # O tamanho padrão de cada trecho é a média de todas as poses, de frente
-    # e de costas: assim as duas caminhadas têm a mesma cabeça, o mesmo
-    # tronco e as mesmas pernas.
-    todos = [marcos(rgb, m)[0] for poses in folhas.values() for rgb, m in poses]
-    padrao = np.mean(todos, axis=0)
-    escala = (ALTURA_PX - 1) / padrao[-1]
-    return {nome: [reduzir_pose(rgb, m, padrao, escala) for rgb, m in poses]
-            for nome, poses in folhas.items()}
+def reduzir_folhas():
+    # O tamanho padrão de cada trecho é a média das poses do grupo (frente
+    # e costas juntas): assim as duas caminhadas têm a mesma cabeça, o mesmo
+    # tronco e as mesmas pernas. A escala é a mesma para todas as vistas (as
+    # folhas foram desenhadas no mesmo tamanho) e sai do primeiro grupo.
+    folhas = {vista: recortar_folha(*FOLHAS[vista]) for vista in FOLHAS}
+    escala = None
+    reduzidas = {}
+    for grupo in GRUPOS:
+        padrao = np.mean([marcos(rgb, m)[0] for vista in grupo for rgb, m in folhas[vista]],
+                         axis=0)
+        if escala is None:
+            escala = (ALTURA_PX - 1) / padrao[-1]
+        for vista in grupo:
+            reduzidas[vista] = alinhar([reduzir_pose(rgb, m, padrao, escala, vista == "lado")
+                                        for rgb, m in folhas[vista]])
+    return reduzidas
 
 
 # ---------------------------------------------------------------------------
@@ -281,7 +332,8 @@ def folha_referencia(vistas, andar, retratos_rgba, paleta):
     # Para conferir: as vistas paradas, as duas caminhadas e os retratos.
     margem = 8
     largura = margem + QUADROS_ANDAR * QUADRO[0] + margem
-    altura = margem + 3 * (QUADRO[1] + margem) + TAM_RETRATO + margem
+    linha_retratos = margem + (len(andar) + 1) * (QUADRO[1] + margem)
+    altura = linha_retratos + TAM_RETRATO + margem
     folha = Image.new("RGBA", (largura, altura), (0, 0, 0, 0))
     for i, spr in enumerate(vistas.values()):
         folha.alpha_composite(Image.fromarray(base.para_rgba(spr, paleta)),
@@ -292,14 +344,13 @@ def folha_referencia(vistas, andar, retratos_rgba, paleta):
                                   (margem + i * QUADRO[0], margem + (j + 1) * (QUADRO[1] + margem)))
     for i, rgba in enumerate(retratos_rgba.values()):
         folha.alpha_composite(Image.fromarray(rgba),
-                              (margem + i * (TAM_RETRATO + margem), margem + 3 * (QUADRO[1] + margem)))
+                              (margem + i * (TAM_RETRATO + margem), linha_retratos))
     return folha
 
 
 def main():
     os.makedirs(PASTA_SAIDA, exist_ok=True)
-    folhas = reduzir_folhas({"frente": recortar_folha("andar_frente.webp"),
-                             "costas": recortar_folha("andar_costas.webp")})
+    folhas = reduzir_folhas()
     paleta = base.paleta_de([(cor, m) for poses in folhas.values() for cor, m, _ in poses],
                             MAX_CORES)
     contorno = base.tabela_escura(paleta, 0.42)
@@ -315,7 +366,7 @@ def main():
         quadros = [base.contorno_final(mesma_cabeca(q, parada, queixo), paleta, contorno)
                    for q in quadros]
         vistas[vista] = parada
-        andar[vista] = [quadros[p] for p in POSE_DO_QUADRO]
+        andar[vista] = [quadros[p] for p in POSE_DO_QUADRO[vista]]
 
     fases_parado = [360 * q / QUADROS_PARADO for q in range(QUADROS_PARADO)]
     for vista, spr in vistas.items():

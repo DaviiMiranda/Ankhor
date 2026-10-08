@@ -2,8 +2,8 @@
 # estação de trabalho dela no bunker, e renderiza os sprites, os retratos
 # da caixa de diálogo e a folha de referência.
 #
-# ATENÇÃO: desde 2026-10-08 os retratos e as vistas de frente e de costas
-# (parada, andando e respirando) saem do pixelar_clarice.py (pixel art feita
+# ATENÇÃO: desde 2026-10-08 os retratos e as vistas de frente, de costas e
+# de lado (parada, andando e respirando) saem do pixelar_clarice.py (pixel art feita
 # a partir das referências em clarice_referencia/). Rodar este script
 # sobrescreve esses sprites. Ver docs/decisoes.md.
 #
