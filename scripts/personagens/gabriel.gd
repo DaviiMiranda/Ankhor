@@ -2,10 +2,13 @@ class_name Gabriel
 extends CharacterBody2D
 
 signal passo_dado(correndo: bool)
+signal fadiga_mudou(estamina: float, maxima: float)
+signal exaustao_mudou(esta_exausto: bool)
 
 @export var velocidade_andar: float = 60.0
 @export var fator_profundidade: float = 0.65
 @export var multiplicador_correr: float = 1.8
+@export var multiplicador_exaustao: float = 0.4
 @export var aceleracao: float = 400.0
 @export var desaceleracao: float = 550.0
 @export var forca_empurrao: float = 170.0
@@ -50,6 +53,7 @@ var _mascara_colisao := 0
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var no_gadgets: Node2D = $Gadgets
+@onready var fadiga: Fadiga = $Fadiga
 
 
 func _ready() -> void:
@@ -57,6 +61,10 @@ func _ready() -> void:
 	add_to_group("jogador")
 	Inventario.mudou.connect(_atualizar_gadgets)
 	Vida.dano_recebido.connect(_ao_receber_dano)
+	if fadiga:
+		fadiga.mudou.connect(_ao_mudar_fadiga)
+		fadiga.exaustao_iniciada.connect(_ao_iniciar_exaustao)
+		fadiga.exaustao_terminada.connect(_ao_terminar_exaustao)
 	_atualizar_gadgets()
 
 
@@ -109,9 +117,17 @@ func _physics_process(delta: float) -> void:
 
 	correndo = false
 	var velocidade := velocidade_andar
-	if jogador_controla and Input.is_action_pressed("correr") and direcao != Vector2.ZERO:
+	var pode_correr := fadiga.pode_correr() if fadiga else true
+	if jogador_controla and Input.is_action_pressed("correr") and direcao != Vector2.ZERO and pode_correr:
 		velocidade *= multiplicador_correr
 		correndo = true
+		if fadiga:
+			fadiga.consumir(delta)
+	elif fadiga:
+		fadiga.regenerar(delta, direcao == Vector2.ZERO)
+
+	if fadiga and fadiga.esta_exausto():
+		velocidade *= multiplicador_exaustao
 
 	var alvo := Vector2(direcao.x, direcao.y * fator_profundidade) * velocidade
 	var taxa := aceleracao if direcao != Vector2.ZERO else desaceleracao
@@ -142,6 +158,18 @@ func devolver_controle() -> void:
 
 func _ao_receber_dano(origem: Vector2) -> void:
 	_empurrao = (global_position - origem).normalized() * forca_empurrao
+
+
+func _ao_mudar_fadiga(atual: float, maxima: float) -> void:
+	fadiga_mudou.emit(atual, maxima)
+
+
+func _ao_iniciar_exaustao() -> void:
+	exaustao_mudou.emit(true)
+
+
+func _ao_terminar_exaustao() -> void:
+	exaustao_mudou.emit(false)
 
 
 func _piscar() -> void:
