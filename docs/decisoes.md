@@ -16,6 +16,29 @@ Formato:
 
 ---
 
+## 2026-10-08 — Sala de teste: escolher o personagem
+**Decisão:** na **sala de teste** (e só nela), a tecla **C** troca o personagem que o jogador controla, em ciclo: Gabriel, Clarice, Zane, Baltazar, Rafael, Henrique e Carlos. O HUD mostra o nome ("Personagem: Clarice   [C] trocar"). A troca só muda os sprites: velocidade, corrida, itens e o resto do jogador continuam os do Gabriel. Começa no Gabriel. Ao sair da sala de teste, o jogador volta a ser o Gabriel.
+**Por quê:** pedido do Davi, para testar a caminhada e as animações de qualquer personagem.
+**Afeta:** `scripts/salas/escolha_personagem.gd` (novo), `cenas/salas/sala_teste.tscn` (nó `EscolhaPersonagem`; saiu a troca fixa para os sprites da Clarice).
+
+## 2026-10-08 — Clarice em pixel art desenhada: retratos, frente, costas, lado e 3/4 de costas
+**Decisão:**
+- Os **retratos** e as vistas **de frente, de costas, de lado e de 3/4 de costas** da Clarice (parada, andando e respirando) passam a sair de artes de referência em pixel art, como o Gabriel: `assets/modelagem/personagens/clarice_referencia/` (`expressoes.png`, `andar_frente.webp`, `andar_costas.webp`, `andar_lado.webp`, `andar_diagonal.webp`) e o script `pixelar_clarice.py`, que usa as ferramentas do `pixelar_gabriel.py`.
+- **Cinco retratos:** `normal` (neutro), `seria` (raiva), `triste`, `envergonhada` (vergonha) e `sorrindo` (feliz). `normal`, `seria` e `sorrindo` mantêm os nomes que os diálogos já usam.
+- **Caminhada de frente e de costas:** só as quatro poses da fileira de baixo de cada referência (pé esquerdo à frente, passagem, pé direito à frente, passagem), três quadros cada, nos 12 quadros de sempre. Na fileira de cima o pé direito fica à frente nas quatro poses: tocadas em sequência, metade da caminhada ficava parada. A fileira de cima só dá a pose parada.
+- **Caminhada de lado: boneco recortado.** Nas poses desenhadas os dois passos são o mesmo desenho (a mesma perna à frente, os braços no mesmo lugar), e ela parecia andar com uma perna só; a fileira para a esquerda tem o mesmo problema e o tronco mais virado para a câmera. A caminhada de lado é um boneco, como a do Gabriel, com as peças da pose DIR 1 (tronco, braço do lado da câmera e perna da frente; o outro braço e a outra perna são cópias mais escuras): coxa 22° · sen φ, joelho até 30° só na perna que vem no ar, braços 20° ao contrário das pernas. Os 12 quadros são todos diferentes. Para a esquerda o Godot espelha o sprite.
+- **3/4 de costas:** as três poses de 3/4 de costas de `andar_diagonal.webp`, espelhadas (vêm andando para a esquerda). A passagem é a mesma nos dois passos.
+- **Mais quadros no 3/4 de costas:** entre cada passo aberto e a passagem entram dois quadros gerados, com as pernas girando no quadril até 65% e 30% da abertura (o tênis acompanha sem girar, e o corpo sobe e desce).
+- **Barra da jaqueta de lado:** de lado e no 3/4 o fim da jaqueta é medido pelo começo do jeans (a barra roxa quase não aparece no meio do corpo, e a conta de frente pegava a faixa do peito ou uma munhequeira).
+- **Consistência entre as poses:** a jaqueta tem a mesma largura nas dezesseis poses, mas cabeça, tronco e pernas variavam de tamanho (até ~8%). Cada trecho do corpo é esticado para a média, todas as vistas usam a mesma paleta de 40 cores, as poses são alinhadas pela cabeça (de lado, pela ponta do rosto) e a cabeça da pose parada vai para todos os quadros da mesma vista.
+- **Altura:** 95 px do alto do coque ao pé, pé na linha 106 e centro na coluna 47 (como o Gabriel); a cena `clarice_em_pe.tscn` não muda.
+- **Visual das referências:** muda alguns detalhes do visual antigo: jeans escuro (era calça preta), tênis cinza-claro (era branco de lona), munhequeiras roxas, argolas douradas, mangas compridas (eram arregaçadas) e sem o fone laranja à vista.
+- O **3/4 de frente** e a **estação de trabalho** continuam saindo do `gerar_clarice.py` (Blender), com o visual antigo, até ganharem referência. A fileira "FR" de `andar_diagonal.webp` é a mesma imagem da vista de lado (de perfil), por isso não foi usada.
+- **Sala de teste:** o jogador pode virar qualquer personagem, só na `sala_teste.tscn` (ver a entrada "Sala de teste: escolher o personagem").
+
+**Por quê:** pedido do Davi, para a Clarice chegar no nível de qualidade das referências e combinar com o Gabriel novo.
+**Afeta:** `assets/sprites/personagens/clarice/` (retratos, `clarice_frente`, `clarice_costas`, as vistas `frente`, `costas`, `lado` e `tres_quartos_costas` (parada, andando e respirando), `clarice_referencia`; dois retratos novos), `assets/modelagem/personagens/pixelar_clarice.py` e `clarice_referencia/` (novos), `gerar_clarice.py` (aviso no cabeçalho), `assets/sprites/personagens/clarice/visual.md`, `cenas/salas/sala_teste.tscn`. A ficha `docs/historia/personagens/clarice.md` ainda cita o fone de walkman laranja.
+
 ## 2026-10-08 — Resumo dos personagens
 **Decisão:** a pasta `docs/historia/personagens/` ganha o `resumo.md`, com todos os personagens numa página (quem é, época, frase de essência, cor, esconderijo, parte para consertar a Âncora, relações e principais pendências). É a exceção à regra de "só as fichas" nessa pasta (entrada de 2026-10-07). O resumo não é lei: se ele e uma ficha discordarem, vale a ficha.
 **Por quê:** pedido do Davi.

@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" path="res://cenas/personagens/rafael.tscn" id="p_rafael"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/henrique.tscn" id="p_henrique"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/carlos.tscn" id="p_carlos"]
+[ext_resource type="Script" path="res://scripts/salas/escolha_personagem.gd" id="s_escolha"]
 
 [node name="SalaTeste" instance=ExtResource("modelo")]
 id = "sala_teste"
@@ -137,3 +138,6 @@ position = Vector2(440, 124)
 id = "sala_teste"
 cena_destino = "res://cenas/salas/labirinto_teste.tscn"
 porta_destino = "labirinto_teste"
+
+[node name="EscolhaPersonagem" type="Node" parent="."]
+script = ExtResource("s_escolha")
