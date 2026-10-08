@@ -13,9 +13,14 @@ Gabriel possui dois estados primários de movimentação em vista lateral 2.5D. 
 
 ## 2. Dinâmica de Estamina
 
-- Gabriel é um estudante comum: sua estamina se esgota rapidamente durante a corrida.
-- Quando a barra de estamina zera, Gabriel entra em estado de **Exaustão**: não pode correr por 3 segundos e emite suspiros ofegantes audíveis, aumentando o risco de detecção.
-- A estamina se regenera gradualmente enquanto ele estiver parado ou andando.
+- Gabriel é um estudante comum: sua estamina se esgota rapidamente durante a corrida (~4 segundos contínuos).
+- Quando a barra de estamina zera, Gabriel entra em estado de **Exaustão**: não pode correr por 3 segundos, move-se com 40% da velocidade de caminhada e emite suspiros ofegantes audíveis via sinal `ofegante` e efeito sonoro, aumentando o risco de detecção por robôs.
+- A estamina se regenera gradualmente: em repouso (parado), recupera-se em ~4 segundos; andando, recupera-se em ~8 segundos.
+- **Implementação técnica:**
+  - Cena modular: `cenas/sistemas/fadiga.tscn` instanciada em `cenas/personagens/gabriel.tscn`.
+  - Script: `scripts/sistemas/fadiga.gd` (`class_name Fadiga`).
+  - Sinais: `mudou(atual, maxima)`, `exaustao_iniciada`, `exaustao_terminada`, `ofegante`.
+  - Interface: o HUD monitora o jogador pelo grupo `jogador` e exibe uma barra discreta abaixo da vida, surgindo ao consumir estamina e esmaecendo suavemente quando cheia. Em exaustão, a barra muda para a cor de alerta.
 
 ---
 
