@@ -17,6 +17,21 @@
 [ext_resource type="PackedScene" path="res://cenas/personagens/zane.tscn" id="p_zane"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/baltazar.tscn" id="p_baltazar"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/rafael.tscn" id="p_rafael"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_lado.png" id="c_lado"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_frente.png" id="c_frente"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_tres_quartos.png" id="c_tres_quartos"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_costas.png" id="c_costas"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_tres_quartos_costas.png" id="c_tres_quartos_costas"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_andar_lado.png" id="c_andar_lado"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_andar_frente.png" id="c_andar_frente"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_andar_tres_quartos.png" id="c_andar_tres_quartos"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_andar_costas.png" id="c_andar_costas"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_andar_tres_quartos_costas.png" id="c_andar_tres_quartos_costas"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_parado_lado.png" id="c_parado_lado"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_parado_frente.png" id="c_parado_frente"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_parado_tres_quartos.png" id="c_parado_tres_quartos"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_parado_costas.png" id="c_parado_costas"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/clarice/clarice_parado_tres_quartos_costas.png" id="c_parado_tres_quartos_costas"]
 
 [node name="SalaTeste" instance=ExtResource("modelo")]
 id = "sala_teste"
@@ -57,6 +72,26 @@ position = Vector2(256, 0)
 
 [node name="Chao4" parent="Chao" instance=ExtResource("chao_lajotas")]
 position = Vector2(384, 0)
+
+[node name="Gabriel" parent="Objetos" index="0"]
+sprite_lado = ExtResource("c_lado")
+sprite_frente = ExtResource("c_frente")
+sprite_tres_quartos = ExtResource("c_tres_quartos")
+sprite_costas = ExtResource("c_costas")
+sprite_tres_quartos_costas = ExtResource("c_tres_quartos_costas")
+andar_lado = ExtResource("c_andar_lado")
+andar_frente = ExtResource("c_andar_frente")
+andar_tres_quartos = ExtResource("c_andar_tres_quartos")
+andar_costas = ExtResource("c_andar_costas")
+andar_tres_quartos_costas = ExtResource("c_andar_tres_quartos_costas")
+parado_lado = ExtResource("c_parado_lado")
+parado_frente = ExtResource("c_parado_frente")
+parado_tres_quartos = ExtResource("c_parado_tres_quartos")
+parado_costas = ExtResource("c_parado_costas")
+parado_tres_quartos_costas = ExtResource("c_parado_tres_quartos_costas")
+
+[node name="Sprite2D" parent="Objetos/Gabriel" index="0"]
+texture = ExtResource("c_lado")
 
 [node name="Lanterna" parent="Objetos" instance=ExtResource("i_item")]
 position = Vector2(110, 150)
