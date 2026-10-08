@@ -82,7 +82,7 @@ def abrir_rgb(nome, caixa):
     return np.asarray(img).astype(np.float32)
 
 
-def mascara_figura(rgb, tolerancia=22):
+def mascara_figura(rgb, tolerancia=22, bolsao_minimo=None):
     # O fundo é um cinza quase liso. Fundo é o que tem a cor dele E está
     # ligado à borda da imagem (inundação a partir de um canto). Assim os
     # cordões do capuz, que são cinza claro mas ficam dentro da figura, não
@@ -100,6 +100,36 @@ def mascara_figura(rgb, tolerancia=22):
     figura = np.asarray(img)[1:-1, 1:-1] != 128
     # A inundação passa pela moldura em volta da imagem; a figura que
     # encosta na borda de baixo continua inteira.
+    if bolsao_minimo:
+        figura = tirar_bolsoes(figura, parece_fundo & figura, bolsao_minimo)
+    return figura
+
+
+def tirar_bolsoes(figura, fundo_dentro, minimo):
+    # Fundo preso dentro da figura (entre a perna e a mão, entre as duas
+    # pernas que se encostam) não é alcançado pela inundação. Cada grupo de
+    # pixels com cor de fundo, ligados entre si, é medido por uma busca em
+    # largura; os grandes (minimo pixels ou mais) viram fundo. Os pequenos
+    # ficam: podem ser um reflexo ou o branco do olho.
+    figura = figura.copy()
+    visto = np.zeros_like(fundo_dentro)
+    h, w = fundo_dentro.shape
+    for y0, x0 in zip(*np.where(fundo_dentro)):
+        if visto[y0, x0]:
+            continue
+        grupo = [(y0, x0)]
+        visto[y0, x0] = True
+        i = 0
+        while i < len(grupo):
+            y, x = grupo[i]
+            i += 1
+            for yy, xx in ((y + 1, x), (y - 1, x), (y, x + 1), (y, x - 1)):
+                if 0 <= yy < h and 0 <= xx < w and fundo_dentro[yy, xx] and not visto[yy, xx]:
+                    visto[yy, xx] = True
+                    grupo.append((yy, xx))
+        if len(grupo) >= minimo:
+            ys, xs = zip(*grupo)
+            figura[list(ys), list(xs)] = False
     return figura
 
 
@@ -1068,7 +1098,7 @@ def ciclo_desenhado(cfg, paleta, moldes, contorno):
     poses = []
     for x0, x1 in cfg["colunas"]:
         rgb = abrir_rgb(cfg["arquivo"], (x0, 0, x1, 572))
-        rgb, m = aparar(rgb, mascara_figura(rgb))
+        rgb, m = aparar(rgb, mascara_figura(rgb, bolsao_minimo=40))
         if cfg["cabeca"]:
             queixo, escala, escala_x = cfg["cabeca"]
             rgb, m = encolher_cabeca(rgb, m, queixo, escala, escala_x / cfg["largura"])
