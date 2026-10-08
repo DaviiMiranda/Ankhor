@@ -31,7 +31,7 @@ func _buscar_musica_ambiente() -> void:
 	var sala := get_parent()
 	if sala:
 		for filho in sala.get_children():
-			if filho is AudioStreamPlayer and filho != self and filho.bus == &"Musica":
+			if filho is AudioStreamPlayer and filho != self and filho.bus == &"Musica" and filho.stream != null:
 				_musica_ambiente = filho
 				if "volume_final_db" in filho:
 					_volume_ambiente_original = filho.volume_final_db
