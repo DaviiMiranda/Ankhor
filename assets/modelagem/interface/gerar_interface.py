@@ -8,6 +8,9 @@
 #
 # O que sai:
 #   assets/sprites/itens/<item>.png                16 x 16 px: ícone do item (inventário)
+#                                                  (menos os itens com arte de referência,
+#                                                  como o notebook: o ícone deles sai do
+#                                                  assets/modelagem/itens/pixelar_itens.py)
 #   assets/sprites/itens/<item>_chao.png           o item caído no chão, na escala do
 #                                                  cenário (1 px ≈ 3,6 cm: uma lanterna tem ~6 px)
 #   assets/sprites/interface/espaco.png            20 x 20 px: um espaço vazio da grade
@@ -206,20 +209,6 @@ def pedra_chao():
     return img
 
 
-def notebook():
-    """Notebook aberto de lado: a tampa com a tela azulada acesa e a base
-    com o teclado (pontos escuros alternados)."""
-    img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
-    X, Y = img.X, img.Y
-    img.pintar(img.ret(2, 2, 14, 10), "metal", 0.2)
-    img.pintar(img.ret(3, 3, 13, 9), "ceu", 0.35 + 0.3 * (Y - 3) / 6)
-    img.pintar(img.ret(4, 4, 9, 5), "verde", 0.9)
-    img.pintar(img.ret(1, 11, 15, 14), "metal", 0.35)
-    img.pintar(img.ret(2, 12, 14, 13) & ((X + Y) % 2 == 0), "metal", 0.05)
-    img.contornar(CONTORNO)
-    return img
-
-
 def notebook_chao():
     """O notebook fechado no chão: uma placa fina com o LED aceso."""
     img = Imagem(9, 3)
@@ -241,7 +230,6 @@ ICONES = {
     "clarao_chao": clarao_chao,
     "pedra": pedra,
     "pedra_chao": pedra_chao,
-    "notebook": notebook,
     "notebook_chao": notebook_chao,
 }
 
