@@ -24,20 +24,35 @@ Renderizada junto com ela, no mesmo sprite:
 
 ## Sprites
 
-Todos em `assets/sprites/personagens/clarice/`, gerados por `assets/modelagem/personagens/gerar_clarice.py` (Blender, sem abrir a janela):
+Todos em `assets/sprites/personagens/clarice/`. Os **retratos** e as vistas **de frente e de costas** (parada, andando e respirando) são pixel art feita a partir das referências em `assets/modelagem/personagens/clarice_referencia/`, pelo `pixelar_clarice.py` (só Python, Pillow e NumPy):
+
+```bash
+python assets/modelagem/personagens/pixelar_clarice.py
+```
+
+O resto (a estação de trabalho e as vistas de lado e de 3/4) ainda sai de `assets/modelagem/personagens/gerar_clarice.py` (Blender, sem abrir a janela). Rodar o `gerar_clarice.py` sobrescreve os sprites novos: rode o `pixelar_clarice.py` logo depois.
 
 | Arquivo | Tamanho | O que é |
 |---|---|---|
 | `clarice_digitando.png` | 8 quadros de 160 × 128 | de costas para a câmera, digitando (as mãos e a cabeça acompanham o texto) |
 | `clarice_virando.png` | 5 quadros de 160 × 128 | a cadeira girando até ela olhar para a esquerda |
 | `clarice_olhando.png` | 6 quadros de 160 × 128 | virada para o Gabriel, respirando |
-| `clarice_retrato_normal.png` | 80 × 80 | retrato da caixa de diálogo (mostrado em 40 × 40) |
-| `clarice_retrato_sorrindo.png` | 80 × 80 | boca mais larga com os cantos para cima, sobrancelhas erguidas (o sorrisinho de quem já sabe o que você vai dizer) |
-| `clarice_retrato_seria.png` | 80 × 80 | boca curta, sobrancelhas baixas e inclinadas |
+| `clarice_retrato_<nome>.png` | 80 × 80 | retratos da caixa de diálogo (mostrados em 40 × 40): `normal`, `seria` (a referência "raiva": dentes cerrados), `triste`, `envergonhada` (corada, mão no queixo) e `sorrindo` (a referência "feliz") |
 | `clarice_<vista>.png` | 96 × 112 | em pé, parada, nas vistas do Gabriel: `lado`, `frente`, `tres_quartos`, `costas`, `tres_quartos_costas` |
-| `clarice_andar_<vista>.png` | 12 quadros de 96 × 112 | caminhada, um arquivo por vista |
+| `clarice_andar_<vista>.png` | 12 quadros de 96 × 112 | caminhada, um arquivo por vista. De frente e de costas: as oito poses desenhadas, com as poses de pé no chão segurando dois quadros (0, 0, 1, 2, 2, 3, 4, 4, 5, 6, 6, 7) |
 | `clarice_parado_<vista>.png` | 8 quadros de 96 × 112 | em pé respirando, um arquivo por vista |
-| `clarice_referencia.png` | — | em pé (frente, 3/4, lado, costas), sentada e os retratos |
+| `clarice_referencia.png` | — | o que sai do `pixelar_clarice.py`: frente e costas paradas, as duas caminhadas e os cinco retratos |
+
+### Frente, costas e retratos (pixel art)
+
+- **Referências:** `expressoes.png` (neutro, raiva, triste, vergonha, feliz), `andar_frente.webp` e `andar_costas.webp` (oito poses cada).
+- **Visual das referências:** jaqueta verde-azulada com a faixa roxa e a faixa branca no peito e a barra roxa, gola branca com camiseta preta por baixo, munhequeiras roxas, walkman cinza no quadril direito, argolas douradas, óculos redondos, coque cacheado com a xuxinha magenta, jeans escuro e tênis cinza-claro.
+- **Altura:** 95 px do alto do coque ao pé (1,62 m do couro cabeludo ao pé, na escala do Gabriel, e o coque por cima); o pé fica na linha 106 e o centro do corpo na coluna 47, como no Gabriel.
+- **Consistência entre as poses:** a jaqueta tem a mesma largura nas dezesseis poses, mas cabeça, tronco e pernas variavam de tamanho. Cada trecho (cabelo até a faixa do peito, faixa até a barra, barra até o pé) é esticado para a média das dezesseis poses, todas usam a mesma paleta de 40 cores e a **cabeça da pose parada vai para todos os quadros** da mesma vista (o coque e o rabo de cavalo mudavam de forma de uma pose para outra).
+- **Retratos:** paleta própria de 48 cores, igual nos cinco.
+- **Ainda não tem:** referência de lado e de 3/4. Essas vistas continuam com o modelo do Blender e ficam com o visual antigo até ganharem referência.
+
+### Estação e vistas de lado e de 3/4 (Blender)
 
 - **Escala:** a mesma de todos os personagens (1,75 m do Gabriel = 48 px na tela). Ela tem 1,62 m.
 - **Resolução dobrada:** os sprites saem com o dobro de pixels (`RESOLUCAO = 2` no script) e a cena usa escala 0,5. Na tela ela ocupa o mesmo espaço, com o dobro de detalhe (óculos, rosto, texto nos monitores).
@@ -65,4 +80,4 @@ Edite `gerar_clarice.py` (cores no começo, poses em `pose_digitando` e `pose_re
 blender -b --factory-startup --python assets/modelagem/personagens/gerar_clarice.py
 ```
 
-Leva uns 2 minutos (os sprites em pé são a maior parte) e sobrescreve todos os PNGs e o `clarice.blend`.
+Leva uns 2 minutos (os sprites em pé são a maior parte) e sobrescreve todos os PNGs e o `clarice.blend`, inclusive os da pixel art: depois, rode `python assets/modelagem/personagens/pixelar_clarice.py`.
