@@ -42,6 +42,20 @@
 [ext_resource type="Resource" path="res://dados/itens/radio.tres" id="r_radio"]
 [ext_resource type="Resource" path="res://dados/transmissoes/rafael_01.tres" id="r_rafael_01"]
 [ext_resource type="Resource" path="res://dados/transmissoes/rafael_02.tres" id="r_rafael_02"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="n1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/tabuas_porta.png" id="n2"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/grade_seguranca.tscn" id="n3"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="n4"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/painel_codigo.tscn" id="n5"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="n6"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="n7"]
+[ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="n8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="n9"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/som_do_outro_lado.tscn" id="n10"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/toque_distante.tscn" id="n11"]
+
+[sub_resource type="StyleBoxFlat" id="Placa"]
+bg_color = Color(0.12, 0.13, 0.14, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_acervo"]
 size = Vector2(270, 110)
@@ -86,15 +100,15 @@ shader = ExtResource("4_vinheta")
 light_mode = 1
 
 [sub_resource type="RectangleShape2D" id="Limite_h"]
-size = Vector2(1480, 40)
+size = Vector2(1000, 40)
 
 [sub_resource type="RectangleShape2D" id="Limite_v"]
 size = Vector2(40, 460)
 
-[node name="Biblioteca" type="Node2D"]
+[node name="Salao" type="Node2D"]
 script = ExtResource("1_sala")
-id = "biblioteca"
-largura = 1440
+id = "biblioteca_salao"
+largura = 960
 altura = 420
 chao_fundo = 122
 chao_frente = 416
@@ -111,10 +125,102 @@ centered = false
 [node name="Fundo" type="Sprite2D" parent="."]
 texture = ExtResource("t_fundo")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 960, 180)
 
 [node name="Chao" type="Sprite2D" parent="."]
 texture = ExtResource("t_chao")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 960, 420)
+
+[node name="PortasNaParede" type="Node2D" parent="."]
+
+[node name="ParedeCabine" parent="PortasNaParede" instance=ExtResource("n1")]
+position = Vector2(0, 0)
+
+[node name="PlacaCabine" type="Label" parent="PortasNaParede"]
+offset_left = 13.0
+offset_top = 30.0
+offset_right = 69.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "CABINES"
+horizontal_alignment = 1
+
+[node name="ParedeBalcao" parent="PortasNaParede" instance=ExtResource("n1")]
+position = Vector2(160, 0)
+
+[node name="PlacaBalcao" type="Label" parent="PortasNaParede"]
+offset_left = 177.0
+offset_top = 30.0
+offset_right = 225.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "BALCÃO"
+horizontal_alignment = 1
+
+[node name="ParedeObrasRaras" parent="PortasNaParede" instance=ExtResource("n1")]
+position = Vector2(380, 0)
+
+[node name="PlacaObrasRaras" type="Label" parent="PortasNaParede"]
+offset_left = 377.0
+offset_top = 30.0
+offset_right = 465.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "OBRAS RARAS"
+horizontal_alignment = 1
+
+[node name="ParedeServico" parent="PortasNaParede" instance=ExtResource("n1")]
+position = Vector2(560, 0)
+
+[node name="PlacaServico" type="Label" parent="PortasNaParede"]
+offset_left = 573.0
+offset_top = 30.0
+offset_right = 629.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "SERVIÇO"
+horizontal_alignment = 1
+
+[node name="ParedeAcervo" parent="PortasNaParede" instance=ExtResource("n1")]
+position = Vector2(700, 0)
+
+[node name="PlacaAcervo" type="Label" parent="PortasNaParede"]
+offset_left = 717.0
+offset_top = 30.0
+offset_right = 765.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "ACERVO"
+horizontal_alignment = 1
+
+[node name="ParedeGrade" parent="PortasNaParede" instance=ExtResource("n1")]
+position = Vector2(872, 0)
+
+[node name="PlacaGrade" type="Label" parent="PortasNaParede"]
+offset_left = 877.0
+offset_top = 30.0
+offset_right = 949.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "ALA LESTE"
+horizontal_alignment = 1
+
+[node name="TabuasObrasRaras" type="Sprite2D" parent="PortasNaParede"]
+position = Vector2(400, 46)
+texture = ExtResource("n2")
+centered = false
+
+[node name="Grade" parent="PortasNaParede" instance=ExtResource("n3")]
+position = Vector2(892, 46)
 
 [node name="Objetos" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -126,13 +232,10 @@ position = Vector2(124, 150)
 position = Vector2(0, -30)
 limit_left = 0
 limit_top = 0
-limit_right = 1440
+limit_right = 960
 limit_bottom = 300
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
-
-[node name="Cabine" parent="Objetos" instance=ExtResource("o_cabine")]
-position = Vector2(96, 128)
 
 [node name="Cadeira" parent="Objetos" instance=ExtResource("o_cadeira")]
 position = Vector2(152, 142)
@@ -151,9 +254,11 @@ position = Vector2(318, 126)
 
 [node name="EstanteCaida" parent="Objetos" instance=ExtResource("o_estante_caida")]
 position = Vector2(362, 174)
+collision_layer = 9
 
 [node name="EstanteVazia" parent="Objetos" instance=ExtResource("o_estante_vazia")]
 position = Vector2(440, 134)
+collision_layer = 9
 
 [node name="Livros1" parent="Objetos" instance=ExtResource("o_livros")]
 position = Vector2(494, 170)
@@ -170,6 +275,7 @@ position = Vector2(706, 150)
 
 [node name="EstanteQuebrada" parent="Objetos" instance=ExtResource("o_estante_quebrada")]
 position = Vector2(800, 134)
+collision_layer = 9
 
 [node name="Livros2" parent="Objetos" instance=ExtResource("o_livros")]
 position = Vector2(878, 164)
@@ -184,10 +290,6 @@ position = Vector2(846, 140)
 [node name="Lampada2" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(912, 124)
 
-[node name="Lanterna" parent="Objetos" instance=ExtResource("i_item")]
-position = Vector2(192, 160)
-item = ExtResource("i_lanterna")
-
 [node name="AcampamentoBaltazar" parent="Objetos" instance=ExtResource("r_acampamento")]
 position = Vector2(262, 148)
 
@@ -198,33 +300,6 @@ documento = ExtResource("r_diario")
 
 [node name="RoboDesmontado" parent="Objetos" instance=ExtResource("r_robo")]
 position = Vector2(280, 172)
-
-[node name="Radio" parent="Objetos" instance=ExtResource("i_item")]
-position = Vector2(628, 162)
-item = ExtResource("r_radio")
-
-[node name="GatilhoRafael1" parent="Objetos" instance=ExtResource("r_gatilho")]
-position = Vector2(628, 162)
-transmissao = ExtResource("r_rafael_01")
-
-[node name="Terminal" parent="Objetos" instance=ExtResource("r_terminal")]
-position = Vector2(470, 236)
-
-[node name="BilheteClarice" parent="Objetos" instance=ExtResource("r_documento")]
-position = Vector2(470, 236)
-texto_acao = "Ler o bilhete"
-altura_aviso = 48.0
-documento = ExtResource("r_bilhete")
-
-[node name="Lampada3" parent="Objetos" instance=ExtResource("o_lampada")]
-position = Vector2(492, 240)
-
-[node name="GatilhoRafael2" parent="Objetos" instance=ExtResource("r_gatilho")]
-position = Vector2(548, 360)
-transmissao = ExtResource("r_rafael_02")
-
-[node name="Area" parent="Objetos/GatilhoRafael2" index="0"]
-shape = SubResource("RectangleShape2D_acervo")
 
 [node name="MesaLeituraSul" parent="Objetos" instance=ExtResource("o_mesa_leitura")]
 position = Vector2(170, 232)
@@ -244,10 +319,12 @@ position = Vector2(340, 264)
 
 [node name="EstanteVaziaSul" parent="Objetos" instance=ExtResource("o_estante_vazia")]
 position = Vector2(560, 208)
+collision_layer = 9
 
 [node name="EstanteQuebradaSul" parent="Objetos" instance=ExtResource("o_estante_quebrada")]
 position = Vector2(640, 246)
 espelhado = true
+collision_layer = 9
 
 [node name="CarrinhoSul" parent="Objetos" instance=ExtResource("o_carrinho")]
 position = Vector2(520, 282)
@@ -260,6 +337,7 @@ espelhado = true
 [node name="EstanteCaidaSul" parent="Objetos" instance=ExtResource("o_estante_caida")]
 position = Vector2(744, 226)
 espelhado = true
+collision_layer = 9
 
 [node name="CabineSul" parent="Objetos" instance=ExtResource("o_cabine")]
 position = Vector2(860, 272)
@@ -272,11 +350,9 @@ espelhado = true
 [node name="Lampada4" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(800, 262)
 
-[node name="Pilha2" parent="Objetos" instance=ExtResource("i_pilha")]
-position = Vector2(884, 212)
-
 [node name="EstanteCaidaFundoSul" parent="Objetos" instance=ExtResource("o_estante_caida")]
 position = Vector2(150, 334)
+collision_layer = 9
 
 [node name="Entulho5" parent="Objetos" instance=ExtResource("o_entulho")]
 position = Vector2(86, 372)
@@ -293,10 +369,12 @@ position = Vector2(300, 404)
 
 [node name="EstanteAcervo1" parent="Objetos" instance=ExtResource("o_estante_vazia")]
 position = Vector2(424, 336)
+collision_layer = 9
 
 [node name="EstanteAcervo2" parent="Objetos" instance=ExtResource("o_estante_quebrada")]
 position = Vector2(648, 336)
 espelhado = true
+collision_layer = 9
 
 [node name="Livros6" parent="Objetos" instance=ExtResource("o_livros")]
 position = Vector2(536, 366)
@@ -304,9 +382,11 @@ espelhado = true
 
 [node name="EstanteAcervo3" parent="Objetos" instance=ExtResource("o_estante_quebrada")]
 position = Vector2(488, 394)
+collision_layer = 9
 
 [node name="EstanteAcervo4" parent="Objetos" instance=ExtResource("o_estante_vazia")]
 position = Vector2(584, 394)
+collision_layer = 9
 
 [node name="MesaLeituraFundoSul" parent="Objetos" instance=ExtResource("o_mesa_leitura")]
 position = Vector2(790, 376)
@@ -336,102 +416,6 @@ position = Vector2(660, 372)
 [node name="Lampada8" parent="Objetos" instance=ExtResource("o_lampada")]
 position = Vector2(920, 330)
 
-[node name="EstanteVaziaLeste" parent="Objetos" instance=ExtResource("o_estante_vazia")]
-position = Vector2(1010, 134)
-
-[node name="MesaLeituraLeste" parent="Objetos" instance=ExtResource("o_mesa_leitura")]
-position = Vector2(1070, 162)
-
-[node name="CadeiraLeste1" parent="Objetos" instance=ExtResource("o_cadeira")]
-position = Vector2(1024, 170)
-
-[node name="CadeiraLeste2" parent="Objetos" instance=ExtResource("o_cadeira")]
-position = Vector2(1116, 150)
-espelhado = true
-
-[node name="ArvoreLeste" parent="Objetos" instance=ExtResource("o_arvore")]
-position = Vector2(1176, 142)
-espelhado = true
-
-[node name="EntulhoLeste1" parent="Objetos" instance=ExtResource("o_entulho")]
-position = Vector2(1230, 126)
-
-[node name="CabineLeste" parent="Objetos" instance=ExtResource("o_cabine")]
-position = Vector2(1310, 130)
-espelhado = true
-
-[node name="LivrosLeste1" parent="Objetos" instance=ExtResource("o_livros")]
-position = Vector2(1262, 172)
-
-[node name="LampadaLeste1" parent="Objetos" instance=ExtResource("o_lampada")]
-position = Vector2(1356, 168)
-
-[node name="EstanteCaidaLeste" parent="Objetos" instance=ExtResource("o_estante_caida")]
-position = Vector2(1004, 238)
-espelhado = true
-
-[node name="CarrinhoLeste" parent="Objetos" instance=ExtResource("o_carrinho")]
-position = Vector2(1096, 262)
-
-[node name="LivrosLeste2" parent="Objetos" instance=ExtResource("o_livros")]
-position = Vector2(1150, 222)
-espelhado = true
-
-[node name="MesaLeituraLesteSul" parent="Objetos" instance=ExtResource("o_mesa_leitura")]
-position = Vector2(1300, 236)
-espelhado = true
-
-[node name="CadeiraLesteSul1" parent="Objetos" instance=ExtResource("o_cadeira")]
-position = Vector2(1250, 246)
-
-[node name="CadeiraLesteSul2" parent="Objetos" instance=ExtResource("o_cadeira")]
-position = Vector2(1352, 226)
-espelhado = true
-
-[node name="EntulhoLeste2" parent="Objetos" instance=ExtResource("o_entulho")]
-position = Vector2(1404, 280)
-espelhado = true
-
-[node name="LampadaLeste2" parent="Objetos" instance=ExtResource("o_lampada")]
-position = Vector2(1206, 274)
-
-[node name="EstanteAcervoLeste1" parent="Objetos" instance=ExtResource("o_estante_quebrada")]
-position = Vector2(1016, 340)
-
-[node name="EstanteAcervoLeste2" parent="Objetos" instance=ExtResource("o_estante_vazia")]
-position = Vector2(1112, 340)
-espelhado = true
-
-[node name="EstanteAcervoLeste3" parent="Objetos" instance=ExtResource("o_estante_vazia")]
-position = Vector2(1060, 398)
-
-[node name="EstanteAcervoLeste4" parent="Objetos" instance=ExtResource("o_estante_quebrada")]
-position = Vector2(1160, 398)
-espelhado = true
-
-[node name="LivrosLeste3" parent="Objetos" instance=ExtResource("o_livros")]
-position = Vector2(1106, 372)
-
-[node name="CabineLesteFundoSul" parent="Objetos" instance=ExtResource("o_cabine")]
-position = Vector2(1300, 360)
-
-[node name="EntulhoLeste3" parent="Objetos" instance=ExtResource("o_entulho")]
-position = Vector2(1392, 404)
-
-[node name="CarrinhoLesteFundoSul" parent="Objetos" instance=ExtResource("o_carrinho")]
-position = Vector2(1236, 410)
-espelhado = true
-
-[node name="LampadaLeste3" parent="Objetos" instance=ExtResource("o_lampada")]
-position = Vector2(990, 410)
-espelhado = true
-
-[node name="LampadaLeste4" parent="Objetos" instance=ExtResource("o_lampada")]
-position = Vector2(1380, 334)
-
-[node name="Pilha3" parent="Objetos" instance=ExtResource("i_pilha")]
-position = Vector2(1200, 364)
-
 [node name="RaiosGrande" type="ColorRect" parent="."]
 material = SubResource("Raios_grande")
 offset_left = 130.0
@@ -443,13 +427,6 @@ mouse_filter = 2
 material = SubResource("Raios_pequeno")
 offset_left = 590.0
 offset_right = 850.0
-offset_bottom = 300.0
-mouse_filter = 2
-
-[node name="RaiosLeste" type="ColorRect" parent="."]
-material = SubResource("Raios_leste")
-offset_left = 1100.0
-offset_right = 1400.0
 offset_bottom = 300.0
 mouse_filter = 2
 
@@ -481,32 +458,21 @@ initial_velocity_max = 4.0
 color = Color(1, 0.92, 0.7, 0.7)
 emission_rect_extents = Vector2(40, 60)
 
-[node name="PoeiraLeste" type="CPUParticles2D" parent="."]
-position = Vector2(1200, 120)
-amount = 36
-lifetime = 9.0
-preprocess = 9.0
-emission_shape = 3
-direction = Vector2(0.4, 1)
-spread = 70.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 1.0
-initial_velocity_max = 4.0
-color = Color(1, 0.92, 0.7, 0.7)
-emission_rect_extents = Vector2(60, 90)
-
 [node name="Frente" type="Sprite2D" parent="."]
 texture = ExtResource("t_frente")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 960, 420)
 
 [node name="Limites" type="StaticBody2D" parent="."]
+collision_layer = 9
 
 [node name="Fundo" type="CollisionShape2D" parent="Limites"]
-position = Vector2(720, 98)
+position = Vector2(480, 98)
 shape = SubResource("Limite_h")
 
 [node name="Frente" type="CollisionShape2D" parent="Limites"]
-position = Vector2(720, 436)
+position = Vector2(480, 436)
 shape = SubResource("Limite_h")
 
 [node name="Esquerda" type="CollisionShape2D" parent="Limites"]
@@ -514,7 +480,7 @@ position = Vector2(0, 210)
 shape = SubResource("Limite_v")
 
 [node name="Direita" type="CollisionShape2D" parent="Limites"]
-position = Vector2(1440, 210)
+position = Vector2(960, 210)
 shape = SubResource("Limite_v")
 
 [node name="Luzes" type="Node2D" parent="."]
@@ -614,64 +580,6 @@ color = Color(0.55, 0.65, 0.85, 1)
 energy = 0.15
 texture = ExtResource("t_luz")
 
-[node name="SolLeste" type="PointLight2D" parent="Luzes"]
-position = Vector2(1210, 124)
-scale = Vector2(2.8, 3.0)
-color = Color(1, 0.84, 0.6, 1)
-energy = 1.0
-texture = ExtResource("t_luz")
-
-[node name="SolLesteChao" type="PointLight2D" parent="Luzes"]
-position = Vector2(1236, 160)
-scale = Vector2(2.2, 1.0)
-color = Color(1, 0.84, 0.6, 1)
-energy = 0.6
-texture = ExtResource("t_luz")
-
-[node name="SolLesteSul" type="PointLight2D" parent="Luzes"]
-position = Vector2(1290, 260)
-scale = Vector2(2.0, 1.2)
-color = Color(1, 0.84, 0.6, 1)
-energy = 0.45
-texture = ExtResource("t_luz")
-
-[node name="RebatidaLeste" type="PointLight2D" parent="Luzes"]
-position = Vector2(1200, 110)
-scale = Vector2(5, 3)
-color = Color(0.55, 0.65, 0.85, 1)
-energy = 0.25
-texture = ExtResource("t_luz")
-
-[node name="RebatidaLesteSul" type="PointLight2D" parent="Luzes"]
-position = Vector2(1180, 330)
-scale = Vector2(5, 2.4)
-color = Color(0.55, 0.65, 0.85, 1)
-energy = 0.15
-texture = ExtResource("t_luz")
-
-[node name="Arandela5" type="PointLight2D" parent="Luzes"]
-position = Vector2(1000, 94)
-scale = Vector2(2.2, 2.2)
-color = Color(1, 0.78, 0.5, 1)
-energy = 0.8
-texture = ExtResource("t_luz")
-script = ExtResource("5_tremula")
-
-[node name="Arandela6" type="PointLight2D" parent="Luzes"]
-position = Vector2(1300, 92)
-scale = Vector2(2.2, 2.2)
-color = Color(1, 0.78, 0.5, 1)
-energy = 0.8
-texture = ExtResource("t_luz")
-script = ExtResource("5_tremula")
-
-[node name="JanelaLeste" type="PointLight2D" parent="Luzes"]
-position = Vector2(1358, 50)
-scale = Vector2(1.6, 1.4)
-color = Color(0.6, 0.75, 0.9, 1)
-energy = 0.3
-texture = ExtResource("t_luz")
-
 [node name="Escuridao" type="CanvasModulate" parent="."]
 color = Color(0.52, 0.54, 0.64, 1)
 
@@ -707,3 +615,110 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("6_guias")
 
 [node name="MusicaFase" parent="." instance=ExtResource("m_musica")]
+[node name="PortaCabine" parent="." instance=ExtResource("n4")]
+position = Vector2(41, 124)
+id = "bib_salao_cabine"
+cena_destino = "res://cenas/salas/biblioteca/cabine.tscn"
+porta_destino = "bib_cabine"
+
+[node name="PortaBalcao" parent="." instance=ExtResource("n4")]
+position = Vector2(201, 124)
+id = "bib_salao_balcao"
+cena_destino = "res://cenas/salas/biblioteca/balcao.tscn"
+porta_destino = "bib_balcao"
+
+[node name="PortaObrasRaras" parent="." instance=ExtResource("n4")]
+position = Vector2(421, 124)
+id = "bib_salao_obras"
+bloqueada = true
+aviso_bloqueada = "Barrada por dentro. Do outro lado, alguém se mexe."
+
+[node name="PortaServico" parent="." instance=ExtResource("n4")]
+position = Vector2(601, 124)
+id = "bib_salao_servico"
+cena_destino = "res://cenas/salas/biblioteca/corredor_servico.tscn"
+porta_destino = "bib_servico"
+trancada = true
+chave = "chave_manutencao"
+aviso_trancada = "Trancada. Na placa: SERVIÇO - SOMENTE FUNCIONÁRIOS."
+
+[node name="PortaAcervo" parent="." instance=ExtResource("n4")]
+position = Vector2(741, 124)
+id = "bib_salao_acervo"
+cena_destino = "res://cenas/salas/biblioteca/acervo.tscn"
+porta_destino = "bib_acervo"
+
+[node name="PortaGrade" parent="." instance=ExtResource("n4")]
+position = Vector2(913, 124)
+id = "bib_salao_grade"
+cena_destino = "res://cenas/salas/biblioteca/ala_leste.tscn"
+porta_destino = "bib_ala_leste_grade"
+liberada_por = "grade_aberta"
+aviso_bloqueada = "Uma grade de aço fechou a passagem para a ala leste. Ao lado, um painel com teclado."
+
+[node name="PainelGrade" parent="Objetos" instance=ExtResource("n5")]
+position = Vector2(882, 132)
+
+[node name="Sentinela" parent="Objetos" instance=ExtResource("n6")]
+position = Vector2(500, 190)
+rota = NodePath("../../RotaSentinela")
+rota_com_marca = NodePath("../../RotaSentinelaComLuz")
+bipa_antes_de_virar = true
+
+[node name="RotaSentinela" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(180, 190)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(500, 190)
+
+[node name="Ponto3" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(500, 252)
+
+[node name="Ponto4" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(180, 252)
+
+[node name="RotaSentinelaComLuz" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinelaComLuz"]
+position = Vector2(180, 190)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinelaComLuz"]
+position = Vector2(600, 172)
+
+[node name="Ponto3" type="Marker2D" parent="RotaSentinelaComLuz"]
+position = Vector2(900, 172)
+
+[node name="Ponto4" type="Marker2D" parent="RotaSentinelaComLuz"]
+position = Vector2(590, 262)
+
+[node name="Ponto5" type="Marker2D" parent="RotaSentinelaComLuz"]
+position = Vector2(180, 252)
+
+[node name="RobosDaSala" type="Node" parent="."]
+script = ExtResource("n7")
+
+[node name="LuzesEmergencia" type="Node2D" parent="."]
+script = ExtResource("n8")
+revela_quem_passa = true
+
+[node name="Emergencia1" parent="LuzesEmergencia" instance=ExtResource("n9")]
+position = Vector2(300, 176)
+
+[node name="Emergencia2" parent="LuzesEmergencia" instance=ExtResource("n9")]
+position = Vector2(600, 150)
+
+[node name="Emergencia3" parent="LuzesEmergencia" instance=ExtResource("n9")]
+position = Vector2(860, 150)
+
+[node name="Emergencia4" parent="LuzesEmergencia" instance=ExtResource("n9")]
+position = Vector2(450, 300)
+
+[node name="Emergencia5" parent="LuzesEmergencia" instance=ExtResource("n9")]
+position = Vector2(760, 300)
+
+[node name="SomObrasRaras" parent="." instance=ExtResource("n10")]
+position = Vector2(421, 124)
+
+[node name="ToqueDistante" parent="." instance=ExtResource("n11")]

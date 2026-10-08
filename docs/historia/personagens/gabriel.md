@@ -25,13 +25,13 @@
 
 | Com | Dinâmica |
 |---|---|
-| [Baltazar](baltazar.md) | Família descoberta. Gabriel conta ao Baltazar que é descendente dele |
+| [Baltazar](baltazar.md) | Família descoberta. Gabriel conta ao Baltazar que é descendente dele e, no fim, precisa convencê-lo a voltar para 1750 |
 | [Clarice](clarice.md) | Duelo de ironias: os dois se provocam o tempo todo no mesmo tom, e é assim que a relação cresce ao longo do jogo |
 | [Zane](zane.md) | Gabriel deixa de ser o novato e vira o veterano que explica tudo |
 
 ## 4. No jogo
 
-- **Papel:** fugir dos robôs da IA, encontrar os outros que caíram na fenda, descobrir o que aconteceu e consertar a Âncora para que todos voltem às suas épocas.
+- **Papel:** fugir dos robôs, encontrar os outros que caíram na fenda, descobrir o que aconteceu e consertar a Âncora para que todos voltem às suas épocas.
 - **Parte para consertar a Âncora:** o **caderno**, com as equações da cadeira.
 
 ### 4.1 Estados de movimentação (máquina de estados do jogador)

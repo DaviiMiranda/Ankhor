@@ -351,6 +351,7 @@ func _comecar_do_zero() -> void:
 	Radio.limpar()
 	Vida.limpar()
 	Checkpoints.limpar()
+	Progresso.limpar()
 
 
 func _jogar_fase(fase: Fase) -> void:
