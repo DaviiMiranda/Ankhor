@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "henrique_01"
+falante = "HENRIQUE (rádio)"
+falas = PackedStringArray("Chhh... Isso... isso aqui pega? Alguém na escuta?", "Eu sou o Henrique. Essa frequência é segura. Montaram pra gente se falar.", "Eu vejo o salão pelas câmeras. Quer dizer, uma parte. As que ainda funcionam.", "Tem um robô de um olho só fazendo a ronda. Antes de virar, ele dá um bipe.", "Ouviu o bipe, se esconde. Atrás das estantes ele não enxerga. Enxerga pouco.", "Eu... não falo muito. Mas vou estar ouvindo.")
+titulo_anotacao = "Henrique, 2019"
+anotacao = "Uma voz no rádio: Henrique. Vê o campus pelas câmeras e fala pouco.
+- O robô de um olho só dá um bipe antes de virar.
+- Ouviu o bipe: se esconder atrás das estantes."

@@ -26,13 +26,14 @@
 | Com | Dinâmica |
 |---|---|
 | [Gabriel](gabriel.md) | Duelo de ironias: os dois se provocam o tempo todo no mesmo tom, e é assim que a relação cresce ao longo do jogo |
-| [Diana](diana.md) | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Brigam o tempo todo e acabam amigas |
+| [Diana](diana.md) | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Vivem juntas no bunker, brigam o tempo todo e acabam amigas |
 
 ## 4. No jogo
 
 - **Onde aparece:** na Biblioteca, pelo bilhete no terminal. No **Bunker**, em pessoa, sentada na estação de trabalho da central de dados.
-- **Esconderijo:** o **bunker** embaixo do núcleo da Âncora. Divide com o Henrique e, depois, com o Zane.
+- **Esconderijo:** o **bunker** embaixo do núcleo da Âncora. Divide com a Diana e, depois, com o Zane.
 - **Como chega ao jogador:** bilhete, disquetes, **ligações** para os telefones velhos do campus e conversa em pessoa.
+- **A frequência do grupo:** foi ela quem montou a **frequência de rádio** que o grupo usa para se falar, e deixou um rádio sintonizado nela no balcão da Biblioteca, onde quem cai na fenda acorda.
 - **Função na jogabilidade:** senhas dos terminais e explicação das rotinas de patrulha (as rotas dos robôs formam um grafo). É a ponte para os conteúdos de computação. Quebra a senha do setor B do bunker "um disquete por vez".
 - **Ideia de mecânica (não implementada):** o toque do telefone é um som no grafo (BFS). Se Gabriel demora a atender, os robôs ouvem.
 - **Parte para consertar a Âncora:** código: faz os terminais da Âncora funcionarem.

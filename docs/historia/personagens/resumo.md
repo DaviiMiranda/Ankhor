@@ -32,9 +32,9 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 
 **Clarice (1994).** Rápida, independente e debochada, com gírias dos anos 90 ("Isso é totalmente surreal", "Não confie nas luzes"). Explica tudo como um problema de lógica. Não pede ajuda. Tem medo de ser esquecida. **Arco:** de quem resolve tudo sozinha a quem confia no grupo.
 
-**Rafael (2008).** Caloroso, brincalhão e protetor. Fala com jeito cearense ("rapaz", "macho") e cheio de "câmbio". Jura que tudo é reforma. Tem medo de nunca mais ver a mãe. **Arco:** aceitar onde está; o momento em que ele admite "não é reforma" deve ser o mais triste do jogo.
+**Rafael (2008).** Caloroso, brincalhão e protetor. Fala com jeito cearense ("rapaz", "macho") e cheio de "câmbio". Jura que tudo é reforma e continua fazendo a ronda no Bloco de salas. Tem medo de nunca mais ver a mãe. **Arco:** aceitar onde está; o momento em que ele admite "não é reforma" deve ser o mais triste do jogo.
 
-**Henrique (2019).** Introvertido, perfeccionista, ansioso e gentil. Fala pausado e técnico, e se corrige no meio da frase. **Engana o grupo**: esconde a ligação que tem com o Carlos. **Arco:** da mentira à verdade, quando o grupo descobre.
+**Henrique (2019).** Introvertido, perfeccionista, ansioso e gentil. Fala pausado e técnico, e se corrige no meio da frase. Do posto de monitoramento, é **a voz do rádio** que guia Gabriel desde a primeira fase, mas fala pouco e fica distante. **Engana o grupo**: esconde a ligação que tem com o Carlos. **Arco:** da mentira à verdade, quando o grupo descobre.
 
 **Zane (2123).** Confiante, direto, irreverente e elétrico, com gírias de um futuro que ninguém reconhece. Tem medo da IA, mas confia demais na tecnologia. **Arco:** a chegada dele mostra o quanto Gabriel mudou; no fim, **escolhe ficar em 3026** para tentar domar a IA.
 
@@ -53,12 +53,13 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 | Personagem | Esconderijo | Parte para consertar a Âncora |
 |---|---|---|
 | Gabriel | — | O caderno, com as equações da cadeira |
-| Baltazar | Na Biblioteca (ponto exato pendente) | As estrelas, que acertam a data de volta de cada um |
-| Diana | Numa sala de aula do Bloco de salas | Investigação: onde fica o núcleo e as passagens até lá |
-| Clarice | Bunker | Código: faz os terminais da Âncora funcionarem |
-| Rafael | Posto de guarda, sozinho | Conhece o campus e as rondas, e o que cada chave abre |
-| Henrique | Bunker | A teoria por trás das equações |
-| Zane | Bunker, quando Gabriel o traz | A tecnologia mais próxima da Âncora |
+| Baltazar | Escondido numa sala da Biblioteca, com medo e isolado | As estrelas, que acertam a data de volta de cada um |
+| Diana | Bunker, com a Clarice | Investigação: onde fica o núcleo e as passagens até lá |
+| Clarice | Bunker, com a Diana. Montou a frequência de rádio do grupo | Código: faz os terminais da Âncora funcionarem |
+| Rafael | Uma sala de aula do Bloco de salas, que virou o "posto de guarda" dele | Conhece o campus e as rondas, e o que cada chave abre |
+| Henrique | Posto de monitoramento, sozinho: guia o grupo pelo rádio, vendo pelas câmeras | A teoria por trás das equações |
+| Zane | Bunker, quando Gabriel o traz |
+| Carlos | Laboratório do D-Tec, de onde nunca sai | A tecnologia mais próxima da Âncora |
 
 ---
 
@@ -69,7 +70,7 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 | Gabriel × Baltazar | Família descoberta. No fim, Gabriel convence o Baltazar a voltar para 1750 |
 | Gabriel × Clarice | Duelo de ironias. A relação cresce ao longo do jogo |
 | Gabriel × Zane | Gabriel deixa de ser o novato e vira o veterano |
-| Diana × Clarice | O drama contra o deboche. Brigam o tempo todo e acabam amigas |
+| Diana × Clarice | O drama contra o deboche. Vivem juntas no bunker, brigam o tempo todo e acabam amigas |
 | Diana × Rafael | Dois de farda em épocas diferentes. Ele é o único que a acalma |
 | Baltazar × Zane | Os dois extremos do tempo: fé contra tecnologia, e os dois mais curiosos do grupo |
 | Henrique × Carlos | O Henrique trabalha para ele ou foi enganado por ele (pendente) |

@@ -9,7 +9,7 @@
 
 - **Época de origem:** 2008.
 - **Quem é:** segurança noturno da Unifor no primeiro emprego, com cerca de 20 anos. Mora no bairro e conhece o campus de cor.
-- **História:** fazia a ronda da Biblioteca e foi puxado com o rádio e a lanterna. Recusa-se a aceitar que está em 3026 ("isso aqui não é 3026 coisa nenhuma, é reforma") e transformou uma sala de manutenção no seu "posto de guarda". **Fala ao vivo** com Gabriel pelo rádio e dá dicas de patrulha.
+- **História:** fazia a ronda da Biblioteca e foi puxado com o rádio e a lanterna. Recusa-se a aceitar que está em 3026 ("isso aqui não é 3026 coisa nenhuma, é reforma") e transformou uma **sala de aula do Bloco de salas** no seu "posto de guarda", de onde continua fazendo a ronda. Fala com o grupo pela frequência de rádio da Clarice.
 
 ## 2. Personalidade
 
@@ -25,20 +25,20 @@
 
 | Com | Dinâmica |
 |---|---|
-| [Diana](diana.md) | Dois de farda em épocas diferentes. Ele é calmo e brincalhão, e é o único que consegue acalmá-la |
+| [Diana](diana.md) | Dois de farda em épocas diferentes. Ele é calmo e brincalhão, e é o único que consegue acalmá-la (pelo rádio, ou quando se encontram) |
 
 ## 4. No jogo
 
-- **Onde aparece:** pelo rádio desde a Biblioteca. Em pessoa, no posto de guarda (fase pendente).
-- **Esconderijo:** o "posto de guarda", uma sala de manutenção, onde fica sozinho. Pode servir de **sala segura**.
-- **Como chega ao jogador:** **rádio ao vivo** (o rádio portátil é um item comum do inventário) e, depois, em pessoa.
-- **Função na jogabilidade:** dicas sobre as **rotinas de patrulha dos robôs** ("Antes de virar, ele dá um bipe. Ouviu o bipe, se esconde."). As dicas continuam valendo porque os robôs repetem a mesma rotina há séculos. As transmissões tocam sem pausar o jogo. Ver [`../../mecanicas/registros_e_caderno.md`](../../mecanicas/registros_e_caderno.md).
+- **Onde aparece:** em pessoa, no **Bloco de salas**.
+- **Esconderijo:** o "posto de guarda", uma sala de aula do Bloco de salas (qual, pendente), onde fica sozinho. Pode servir de **sala segura**.
+- **Como chega ao jogador:** em pessoa, e pela frequência de rádio do grupo.
+- **Função na jogabilidade:** conhece o campus e as rondas dos robôs de cor, e sabe o que cada chave abre.
 - **Parte para consertar a Âncora:** conhece o campus e as rondas, e sabe o que cada chave abre.
 
 ## 5. Registros
 
 - **Suporte:** livro de ocorrências do vigia (tabela com data e hora) e o rádio, com chiado na tela. O papel ainda não foi desenhado no jogo.
-- **Já escritos:** `dados/transmissoes/rafael_01.tres` e `rafael_02.tres`.
+- **Já escritos:** nenhum. As duas transmissões do rádio que eram dele passaram a ser do Henrique.
 
 ## 6. Direção de arte
 
@@ -49,14 +49,10 @@
 
 ## 7. Arquivos
 
-- **Transmissões:** `dados/transmissoes/rafael_*.tres`, gatilhos `GatilhoRafael1` (em `cenas/salas/biblioteca/balcao.tscn`) e `GatilhoRafael2` (em `acervo.tscn`).
-- **Som do rádio:** `assets/audio/efeitos/objetos/radio_chiado.wav` (gerado por `assets/modelagem/audio/gerar_efeitos_registros.py`).
 - **Sprites:** `assets/sprites/personagens/rafael/`, gerados por `assets/modelagem/personagens/gerar_rafael.py`.
 - **Cena:** `cenas/personagens/rafael.tscn` (parado, por enquanto só na sala de teste).
 - **Diálogos em pessoa:** ainda não existem.
 
 ## 8. Pendências
 
-- Como o Rafael parece ver Gabriel pelo rádio ("Ele falou como se estivesse me vendo") (Enredo Principal, seção 12.3).
-- Onde fica o posto de guarda e em que fase Gabriel o encontra.
-- As falas do rádio ainda não têm voz gravada.
+- Qual sala de aula do Bloco de salas é o posto de guarda dele (Enredo Principal, seção 12.3).

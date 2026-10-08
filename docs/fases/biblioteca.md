@@ -33,7 +33,7 @@ A sala 9 (obras raras) não tem cena: a porta fica barrada nesta fase.
 ---|---|---|
 | **Formato** | Uma cena só, `cenas/salas/biblioteca.tscn`, de 1440 × 420 px (salão, acervo sul e ala leste com a saída) | **Várias salas ligadas por portas** (seção 2) |
 | **Robôs** | Nenhum | Sentinela no salão e Rastreador no acervo sul (seção 4) |
-| **Registros** | Diário do Baltazar, bilhete da Clarice e duas transmissões do Rafael, já funcionando | Os mesmos, em salas novas (seção 6) |
+| **Registros** | Diário do Baltazar, bilhete da Clarice e duas transmissões do rádio (a voz do Henrique), já funcionando | Os mesmos, em salas novas (seção 6) |
 | **Itens** | Lanterna e três pilhas | Também a chave da manutenção e uma cápsula de clarão (seção 3.3) |
 
 Detalhes da cena atual: script `scripts/salas/biblioteca.gd`; parte sul com profundidade y-sort de 122 a 416; a **ala leste** (x de 960 a 1440) é a sala de periódicos, com um terceiro buraco no teto, mesas, cabines e um segundo acervo; doze lampiões de emergência e seis luminárias de parede.
@@ -85,9 +85,9 @@ A sala 6 (mezanino) saiu do planejamento.
    - *O que o jogador aprende:* andar, pegar itens, ligar a lanterna.
 2. **O salão (sala 2).** O lado escuro do salão pede lanterna, e a **Sentinela** patrulha ali. No acampamento entre as raízes, o **diário do Baltazar** ensina o ponto cego dos robôs de um olho só (não veem quem passa pelas costas ou pelo lado) e que luz forte no olho os cega por um instante.
    - *O que o jogador aprende:* luz acesa faz o robô enxergar de longe; passar pelas costas; esconder-se.
-3. **O balcão (sala 3).** Gabriel pega o **rádio**, e o Rafael dá a primeira dica ("Antes de virar, ele dá um bipe. Ouviu o bipe, se esconde."). No **quadro de chaves**, falta a chave da manutenção. A etiqueta do gancho diz "Devolvida ao acervo".
+3. **O balcão (sala 3).** Gabriel pega o **rádio**, sintonizado na frequência que a Clarice montou, e a voz do **Henrique** dá a primeira dica ("Antes de virar, ele dá um bipe. Ouviu o bipe, se esconde."). No **quadro de chaves**, falta a chave da manutenção. A etiqueta do gancho diz "Devolvida ao acervo".
    - *O que o jogador aprende:* os robôs têm rotina e avisos; existe alguém do outro lado do rádio.
-4. **O acervo sul (sala 4).** Gabriel procura a **chave da manutenção** num carrinho de devolução de livros, enquanto o **Rastreador**, que escuta, patrulha os corredores. Nos corredores, o rádio dá a segunda fala do Rafael ("Tá no acervo? Boa. No meio das estantes ninguém te vê. Só não corre, viu?").
+4. **O acervo sul (sala 4).** Gabriel procura a **chave da manutenção** num carrinho de devolução de livros, enquanto o **Rastreador**, que escuta, patrulha os corredores. Nos corredores, o rádio dá a segunda fala do Henrique ("Tá no acervo? Boa. No meio das estantes ninguém te vê. Só não corre, viu?").
    - *O que o jogador aprende:* **andar em vez de correr**; o barulho atrai robôs de longe.
 5. **A manutenção (sala 5).** A chave abre a porta do corredor de serviço. No **quadro de energia**, Gabriel religa os **disjuntores na ordem certa**, anotada num papel colado do lado de dentro da porta. Aqui também estão uma **cápsula de clarão** e uma pilha. Esta sala é a **sala segura** (seção 5).
    - **Quando a energia volta, três coisas mudam:**
@@ -115,7 +115,7 @@ Para a apresentação da disciplina: as salas são **vértices** e as portas sã
 | Item | Onde | Para quê |
 |---|---|---|
 | Lanterna | Sala 1 | Ver no escuro (e ser visto) |
-| Rádio | Sala 3 | Ouvir as dicas do Rafael |
+| Rádio | Sala 3 | Ouvir as dicas do Henrique |
 | Chave da manutenção | Sala 4 | Abrir o corredor de serviço |
 | Cápsula de clarão | Sala 5 | Primeira defesa: atordoar um robô |
 | Pilhas (4) | Salão (2, no lado escuro), sala 4, sala 5, ala leste | Recarregar a lanterna |
@@ -152,8 +152,8 @@ Os dois robôs já existem no jogo, no Labirinto. Ver [`../historia/personagens/
 | Registro | Onde (planejado) | Hoje (no Godot) |
 |---|---|---|
 | **Acampamento e diário do Baltazar** | Salão (2), entre as raízes da árvore | Implementado, no salão |
-| **Rádio e 1ª transmissão do Rafael** | Balcão (3) | Implementado, no salão |
-| **2ª transmissão do Rafael** | Acervo sul (4) | Implementado, no acervo |
+| **Rádio e 1ª transmissão do Henrique** | Balcão (3) | Implementado, no salão |
+| **2ª transmissão do Henrique** | Acervo sul (4) | Implementado, no acervo |
 | **Bilhete da Clarice** | Sala de terminais (8), no terminal | Implementado, num terminal no salão |
 | **Disquete da Clarice com o código** | Sala de terminais (8) | Não existe |
 | **Primeira ligação da Clarice** | Balcão (3), passo 8 | Não existe |

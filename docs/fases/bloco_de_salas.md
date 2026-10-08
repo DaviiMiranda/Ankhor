@@ -40,7 +40,7 @@ Para não ficar repetitivo, cada sala tem uma **ideia** (acima), paredes e chão
 
 ## 3. Objetivos e Progressão
 
-- **Personagem:** o esconderijo da **Diana** fica numa das salas de aula deste bloco (qual sala, a definir). Ver [`../historia/personagens/diana.md`](../historia/personagens/diana.md).
+- **Personagem:** o **Rafael** transformou uma das salas de aula deste bloco no "posto de guarda" dele (qual sala, a definir) e continua fazendo a ronda por aqui. Ver [`../historia/personagens/rafael.md`](../historia/personagens/rafael.md).
 - **A definir com a equipe:** o que o Gabriel procura aqui, onde entram os robôs e como o bloco se liga à Biblioteca (a porta de saída da Biblioteca fica no fim da ala leste, esperando por esta fase).
 
 ---
