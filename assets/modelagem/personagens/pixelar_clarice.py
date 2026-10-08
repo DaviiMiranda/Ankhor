@@ -52,8 +52,17 @@
 #   4. a cabeça da pose parada é colada em todos os quadros da mesma vista
 #      (o coque e o rabo de cavalo mudavam de forma de uma pose para outra).
 #
-# Quadros intermediários (de lado e no 3/4 de costas): só há quatro poses
-# desenhadas de lado e três no 3/4 de costas. Entre uma pose de passo aberto
+# Caminhada de frente e de costas: só a fileira de baixo de cada folha é
+# um ciclo de verdade (pé esquerdo à frente, passagem, pé direito à frente,
+# passagem). Na fileira de cima o pé direito fica à frente nas quatro poses
+# e as pernas quase não mexem; ela só serve para a pose parada.
+#
+# Caminhada de lado: nas poses desenhadas os dois passos são o mesmo desenho
+# (a mesma perna à frente, os braços no mesmo lugar), e a caminhada parecia
+# pular com uma perna só. Então ela é um boneco recortado, como a do Gabriel
+# (seção 4): as peças saem da pose de passo aberto e giram nas juntas.
+#
+# 3/4 de costas: só há três poses desenhadas. Entre uma pose de passo aberto
 # e a pose de passagem (pernas juntas) entram dois quadros gerados, com as
 # pernas fechando aos poucos (função pernas_fechando).
 
@@ -108,26 +117,45 @@ GRUPOS = (("frente", "costas"), ("lado",), ("tres_quartos_costas",))
 # O ciclo de 12 quadros de cada vista. Um número é a pose desenhada (na
 # ordem de FOLHAS); um par (pose, k) é um quadro gerado a partir da pose de
 # passo aberto, com as pernas fechadas até a fração k da abertura.
-# De frente e de costas, oito poses desenhadas: as de pé no chão ficam dois
-# quadros ("contato segurado", como nas caminhadas desenhadas à mão).
-# De lado: passo (0), passagem (1), o outro passo (2), passagem (3). As
-# pernas fecham do passo até a passagem e abrem da passagem até o passo
-# seguinte.
+# De frente e de costas: as quatro poses da fileira de baixo (4 a 7), três
+# quadros cada, como a frente e as costas do Gabriel.
 # No 3/4 de costas: passo (0), o outro passo (1) e uma só passagem (2), que
 # vale para os dois lados.
+# De lado o ciclo sai do boneco (BONECO_LADO), não daqui.
 ABRE, FECHA = 0.65, 0.3
 CICLO = {
-    "frente": [0, 0, 1, 2, 2, 3, 4, 4, 5, 6, 6, 7],
-    "costas": [0, 0, 1, 2, 2, 3, 4, 4, 5, 6, 6, 7],
-    "lado": [0, (0, ABRE), (0, FECHA), 1, (2, FECHA), (2, ABRE),
-             2, (2, ABRE), (2, FECHA), 3, (0, FECHA), (0, ABRE)],
+    "frente": [4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7],
+    "costas": [4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7],
     "tres_quartos_costas": [0, (0, ABRE), (0, FECHA), 2, (1, FECHA), (1, ABRE),
                             1, (1, ABRE), (1, FECHA), 2, (0, FECHA), (0, ABRE)],
 }
 
 # Pose usada como "parada" (a de pernas mais juntas, escolhida olhando a
-# folha) em cada folha.
-POSE_PARADA = {"frente": 3, "costas": 3, "lado": 3, "tres_quartos_costas": 2}
+# folha) em cada folha. De lado a parada é o boneco com os membros retos.
+POSE_PARADA = {"frente": 2, "costas": 3, "lado": 0, "tres_quartos_costas": 2}
+
+# O boneco de lado sai da pose de passo aberto (DIR 1, a pose 0 da folha de
+# lado), em coordenadas do quadro de 96 x 112:
+#   braco_perto  o braço do lado da câmera, que nessa pose vai para trás e
+#                é desenhado por cima do tronco (da jaqueta até a mão)
+#   braco_longe  o antebraço do outro lado, que aparece na frente do corpo
+#   ombro        onde o braço gira
+#   costas_x     do braço de perto, só o que fica à direita desta coluna (e
+#                acima da barra da jaqueta) estava cobrindo o tronco; esse
+#                buraco é preenchido com as cores de volta
+# A perna é a da frente dessa pose (inteira e reta). O outro braço e a outra
+# perna são cópias mais escuras das mesmas peças, desenhadas atrás do corpo.
+BONECO_LADO = {
+    "pose": 0,
+    "braco_perto": [(40, 45), (46, 45), (46, 52), (45, 61), (40, 63), (39, 69), (38, 76),
+                    (28, 76), (29, 66), (32, 58), (34, 51)],
+    "braco_longe": [(57, 56), (61, 56), (67, 62), (72, 66), (71, 75), (61, 75), (57, 64)],
+    "ombro": (43.0, 48.0),
+    "costas_x": 42,
+}
+# Amplitudes da caminhada de lado, em graus, como no pixelar_gabriel.py
+# (COXA, JOELHO, BRACO): a coxa da pose desenhada está a ~20° da vertical.
+COXA, JOELHO, BRACO = 22.0, 30.0, 20.0
 
 RETRATOS = {
     "normal": 0,
@@ -412,6 +440,101 @@ def pernas_fechando(spr, k, de_cima, paleta, contorno):
     return base.assentar(base.compor(remendo, tras, corpo, frente))
 
 
+# ---------------------------------------------------------------------------
+# 4. Boneco de lado
+# ---------------------------------------------------------------------------
+# Como a caminhada de lado do Gabriel: o braço gira no ombro, a coxa no
+# quadril e a canela no joelho, e o tênis vai junto com o tornozelo. Um
+# ciclo são dois passos; a fase φ vai de 0 a 360° em 12 quadros:
+#   coxa   = COXA · sen φ              a perna balança (positivo = frente);
+#                                      a outra perna usa φ + 180°
+#   joelho = JOELHO · máx(0, cos φ)^1,5  dobra só enquanto a perna vem para a
+#                                      frente no ar
+#   braço  = −BRACO · sen φ            ao contrário da perna do mesmo lado
+# As peças vêm desenhadas num ângulo (a perna a ~20° para a frente, o braço
+# ~20° para trás); cada uma gira a diferença entre o ângulo que precisa ter
+# e o ângulo em que foi desenhada. Depois de montar o quadro, o boneco desce
+# até o pé mais baixo encostar no chão: é o sobe e desce da caminhada.
+
+class BonecoLado:
+    def __init__(self, pose, paleta, contorno):
+        cfg = BONECO_LADO
+        ys, xs = np.mgrid[0:QUADRO[1], 0:QUADRO[0]]
+        cheio = pose >= 0
+        perto = base.mascara_poligono(cfg["braco_perto"]) & cheio
+        longe = base.mascara_poligono(cfg["braco_longe"]) & cheio
+        self.braco = base.so(pose, perto)
+        self.ombro = cfg["ombro"]
+        sem_bracos = np.where(perto | longe, -1, pose)
+        _, bainha = linhas_do_corpo(pose, paleta)
+        buraco = perto & (xs >= cfg["costas_x"]) & (ys <= bainha)
+        sem_bracos = base.preencher(np.where(buraco, 0, sem_bracos), buraco, paleta)
+        de_cima = eh_de_cima(paleta)
+        linha, topo = virilha(sem_bracos, de_cima)
+        pernas, self.quadril = dividir_pernas(sem_bracos, linha, topo)
+        self.corpo = np.where(pernas[0] | pernas[1], -1, sem_bracos)
+        frente = max(pernas, key=lambda m: np.where(m)[1].mean())
+        self.pecas_perna(base.so(sem_bracos, frente))
+        yb, xb = np.where(self.braco >= 0)
+        mao = yb >= yb.max() - 6
+        self.ang_braco = base.angulo(self.ombro, (xb[mao].mean(), yb[mao].mean()))
+        self.paleta = paleta
+        self.contorno = contorno
+        self.sombra = base.tabela_escura(paleta, 0.72)
+
+    def pecas_perna(self, perna):
+        # Coxa, canela e tênis, com o joelho no meio do caminho entre o
+        # quadril e o tornozelo.
+        ys = np.arange(QUADRO[1])[:, None]
+        linhas = np.where((perna >= 0).any(axis=1))[0]
+        fundo = linhas.max()
+        tenis = (perna >= 0) & (ys > fundo - ALTURA_TENIS)
+        yt = fundo - ALTURA_TENIS
+        xt = np.where(perna[yt] >= 0)[0]
+        self.tornozelo = ((xt.min() + xt.max() + 1) / 2, float(yt))
+        yj = int(round((self.quadril[1] + yt) / 2))
+        xj = np.where(perna[yj] >= 0)[0]
+        self.joelho = ((xj.min() + xj.max() + 1) / 2, float(yj))
+        self.coxa = np.where(ys <= yj + 1, perna, -1)
+        self.canela = np.where((ys >= yj - 1) & ~tenis, perna, -1)
+        self.tenis = np.where(tenis, perna, -1)
+        self.ang_perna = base.angulo(self.quadril, self.tornozelo)
+
+    def perna(self, coxa, joelho):
+        a1 = coxa - self.ang_perna
+        a2 = a1 - joelho
+        j = base.ponto_girado(self.joelho, a1, self.quadril, self.quadril)
+        t = base.ponto_girado(self.tornozelo, a2, self.joelho, j)
+        return base.compor(base.girar(self.coxa, a1, self.quadril),
+                           base.girar(self.canela, a2, self.joelho, j),
+                           base.mover(self.tenis, int(round(t[0] - self.tornozelo[0])),
+                                      int(round(t[1] - self.tornozelo[1]))))
+
+    def braco_em(self, graus):
+        return base.girar(self.braco, graus - self.ang_braco, self.ombro)
+
+    def quadro(self, fase, andando=True):
+        pernas, bracos = [], []
+        for desloc in (0, 180):
+            phi = np.radians(fase + desloc)
+            if andando:
+                pernas.append(self.perna(COXA * np.sin(phi),
+                                         JOELHO * max(0.0, np.cos(phi)) ** 1.5))
+                bracos.append(self.braco_em(-BRACO * np.sin(phi)))
+            else:
+                pernas.append(self.perna(0.0, 0.0))
+                bracos.append(self.braco_em(0.0))
+        perna_perto, perna_longe = pernas
+        braco_perto, braco_longe = bracos
+        fundo = base.compor(base.escurecer(braco_longe, self.sombra),
+                            base.escurecer(perna_longe, self.sombra))
+        perna_perto = base.separar_contorno(perna_perto, fundo, self.contorno, self.paleta)
+        meio = base.compor(fundo, perna_perto, self.corpo)
+        braco_perto = base.separar_contorno(braco_perto, meio, self.contorno, self.paleta)
+        q = base.limpar_migalhas(base.compor(meio, braco_perto))
+        return base.contorno_final(base.assentar(q), self.paleta, self.contorno)
+
+
 def montar_ciclo(quadros, ciclo, paleta, contorno):
     de_cima = eh_de_cima(paleta)
     saida = []
@@ -426,7 +549,7 @@ def montar_ciclo(quadros, ciclo, paleta, contorno):
 
 
 # ---------------------------------------------------------------------------
-# 4. Respiração
+# 5. Respiração
 # ---------------------------------------------------------------------------
 # A mesma conta do Gabriel (pixelar_gabriel.py, quadro_parado): o peito sobe
 # até 2 pixels e a cabeça vai junto, 60° atrasada; as pernas não mexem. As
@@ -467,7 +590,7 @@ def quadro_parado(spr, fase, queixo, bainha):
 
 
 # ---------------------------------------------------------------------------
-# 5. Retratos da caixa de diálogo
+# 6. Retratos da caixa de diálogo
 # ---------------------------------------------------------------------------
 # A folha de expressões tem cinco rostos lado a lado, cada um numa faixa de
 # 1/5 da largura, com o nome escrito no canto. Cada rosto é recortado,
@@ -499,7 +622,7 @@ def retratos():
 
 
 # ---------------------------------------------------------------------------
-# 6. Tudo junto
+# 7. Tudo junto
 # ---------------------------------------------------------------------------
 
 def salvar(rgba, nome):
@@ -543,8 +666,13 @@ def main():
         queixo, _ = linhas_do_corpo(parada, paleta)
         quadros = [base.contorno_final(mesma_cabeca(q, parada, queixo), paleta, contorno)
                    for q in quadros]
-        vistas[vista] = parada
-        andar[vista] = montar_ciclo(quadros, CICLO[vista], paleta, contorno)
+        if vista == "lado":
+            boneco = BonecoLado(quadros[BONECO_LADO["pose"]], paleta, contorno)
+            vistas[vista] = boneco.quadro(0, andando=False)
+            andar[vista] = [boneco.quadro(360 * q / QUADROS_ANDAR) for q in range(QUADROS_ANDAR)]
+        else:
+            vistas[vista] = parada
+            andar[vista] = montar_ciclo(quadros, CICLO[vista], paleta, contorno)
 
     fases_parado = [360 * q / QUADROS_PARADO for q in range(QUADROS_PARADO)]
     for vista, spr in vistas.items():
