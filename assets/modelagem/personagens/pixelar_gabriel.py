@@ -7,7 +7,7 @@
 #   python assets/modelagem/personagens/pixelar_gabriel.py
 #
 # Entrada (assets/modelagem/personagens/gabriel_referencia/):
-#   frente.png       o Gabriel de frente, em alta resolução
+#   parado.png       o Gabriel parado, de frente e de costas
 #   vistas.webp      de lado (para a direita), de frente e de lado (para a esquerda)
 #   expressoes.webp  cinco rostos: normal, bravo, preocupado, surpreso e envergonhado
 #   andar_diagonal.webp  um passo de 3/4 de frente e um de 3/4 de costas (duas vezes cada)
@@ -28,9 +28,9 @@
 # da imagem, sem grade exata, com cores misturadas nas bordas). Para virar
 # sprite precisa: (1) recortar do fundo, (2) reduzir para a altura do
 # jogo, (3) fechar a paleta (poucas cores, iguais em todos os sprites, como
-# em pixel art feita à mão) e (4) refazer o contorno de 1 pixel. As costas
-# (que não existem na referência) e as animações saem das vistas que
-# existem, pelos métodos explicados em cada função.
+# em pixel art feita à mão) e (4) refazer o contorno de 1 pixel. As
+# animações saem das vistas e das poses desenhadas, pelos métodos
+# explicados em cada função.
 
 import os
 
@@ -56,7 +56,10 @@ MAX_CORES = 40          # paleta dos sprites (todas as vistas e animações)
 MAX_CORES_RETRATO = 48  # paleta dos retratos (o rosto grande pede mais tons)
 
 # Recortes das referências (x0, y0, x1, y1), em pixels da imagem original.
-RECORTE_FRENTE = (0, 0, 419, 1024)
+# parado.png tem os títulos "DE FRENTE / DE COSTAS" em cima: o recorte
+# começa abaixo deles.
+RECORTE_FRENTE = (0, 140, 215, 780)
+RECORTE_COSTAS = (215, 140, 419, 780)
 RECORTE_LADO = (40, 0, 260, 572)
 # Na referência de lado a cabeça saiu maior que na de frente (do cabelo ao
 # queixo, 21 px contra 18). Ela é encolhida para 85%, presa no pescoço,
@@ -82,7 +85,7 @@ def abrir_rgb(nome, caixa):
     return np.asarray(img).astype(np.float32)
 
 
-def mascara_figura(rgb, tolerancia=22):
+def mascara_figura(rgb, tolerancia=22, bolsao_minimo=None):
     # O fundo é um cinza quase liso. Fundo é o que tem a cor dele E está
     # ligado à borda da imagem (inundação a partir de um canto). Assim os
     # cordões do capuz, que são cinza claro mas ficam dentro da figura, não
@@ -100,6 +103,36 @@ def mascara_figura(rgb, tolerancia=22):
     figura = np.asarray(img)[1:-1, 1:-1] != 128
     # A inundação passa pela moldura em volta da imagem; a figura que
     # encosta na borda de baixo continua inteira.
+    if bolsao_minimo:
+        figura = tirar_bolsoes(figura, parece_fundo & figura, bolsao_minimo)
+    return figura
+
+
+def tirar_bolsoes(figura, fundo_dentro, minimo):
+    # Fundo preso dentro da figura (entre a perna e a mão, entre as duas
+    # pernas que se encostam) não é alcançado pela inundação. Cada grupo de
+    # pixels com cor de fundo, ligados entre si, é medido por uma busca em
+    # largura; os grandes (minimo pixels ou mais) viram fundo. Os pequenos
+    # ficam: podem ser um reflexo ou o branco do olho.
+    figura = figura.copy()
+    visto = np.zeros_like(fundo_dentro)
+    h, w = fundo_dentro.shape
+    for y0, x0 in zip(*np.where(fundo_dentro)):
+        if visto[y0, x0]:
+            continue
+        grupo = [(y0, x0)]
+        visto[y0, x0] = True
+        i = 0
+        while i < len(grupo):
+            y, x = grupo[i]
+            i += 1
+            for yy, xx in ((y + 1, x), (y - 1, x), (y, x + 1), (y, x - 1)):
+                if 0 <= yy < h and 0 <= xx < w and fundo_dentro[yy, xx] and not visto[yy, xx]:
+                    visto[yy, xx] = True
+                    grupo.append((yy, xx))
+        if len(grupo) >= minimo:
+            ys, xs = zip(*grupo)
+            figura[list(ys), list(xs)] = False
     return figura
 
 
@@ -340,21 +373,12 @@ def mover(spr, dx, dy):
     return out
 
 
-def espelhar(spr):
-    # Espelha em volta da coluna do centro (CENTRO_X continua no meio).
-    out = vazio()
-    ys, xs = np.where(spr >= 0)
-    xs2 = 2 * CENTRO_X - xs
-    ok = (xs2 >= 0) & (xs2 < spr.shape[1])
-    out[ys[ok], xs2[ok]] = spr[ys[ok], xs[ok]]
-    return out
-
-
-def preencher(spr, buraco, paleta, evitar_escuras=True):
+def preencher(spr, buraco, paleta, evitar_escuras=True, permitidas=None):
     # Tapa um buraco com as cores de volta: cada pixel do buraco vira a cor
     # mais comum entre os vizinhos já pintados, de fora para dentro. Serve
     # para apagar o braço do tronco (quando ele balança, aparece o moletom
-    # que estava atrás) e a mão da calça.
+    # que estava atrás) e a mão da calça. permitidas, se vier, é a lista
+    # das cores que podem entrar (só os azuis, na calça).
     spr = spr.copy()
     lum = luminancia(paleta)
     falta = buraco.copy()
@@ -365,6 +389,8 @@ def preencher(spr, buraco, paleta, evitar_escuras=True):
             viz = [spr[y + dy, x + dx] for dy in (-1, 0, 1) for dx in (-1, 0, 1)
                    if (dy or dx) and 0 <= y + dy < spr.shape[0] and 0 <= x + dx < spr.shape[1]
                    and not falta[y + dy, x + dx] and spr[y + dy, x + dx] >= 0]
+            if permitidas is not None:
+                viz = [v for v in viz if v in permitidas]
             if evitar_escuras:
                 claras = [v for v in viz if lum[v] > 45]
                 viz = claras or viz
@@ -526,127 +552,16 @@ def remapear_linhas(spr, pontos, x0=0, x1=None):
 
 
 # ---------------------------------------------------------------------------
-# 6. As costas
+# Linhas do corpo no quadro (iguais em todas as vistas)
 # ---------------------------------------------------------------------------
-# Linhas do corpo no quadro (iguais em todas as vistas):
 LINHA_QUEIXO = 28     # até aqui é cabeça
 LINHA_BAINHA = 63     # última linha do moletom
-LINHA_VIRILHA = 73    # daqui para baixo as pernas são separadas
 LINHA_JOELHO = 85
 LINHA_TORNOZELO = 99  # daqui para baixo é o tênis
 
 
-def capuz_das_costas(paleta):
-    # O capuz caído nas costas: uma gota arredondada que sai da gola e
-    # desce até o meio das costas, com contorno vinho, o vermelho do
-    # moletom por dentro, uma costura no meio e a sombra que ele faz embaixo.
-    base = perto(paleta, (230, 30, 36))
-    meio = perto(paleta, (200, 25, 40))
-    borda = perto(paleta, (106, 13, 42))
-    sombra = perto(paleta, (147, 17, 43))
-    luz = perto(paleta, (240, 32, 36))
-    topo, fundo, meia_larg = 26, 42, 8.5
-    capuz = vazio()
-    for y in range(topo, fundo + 2):
-        v = (y - topo) / (fundo - topo)
-        w = meia_larg * np.sqrt(max(0.0, 1 - max(0.0, v - 0.2) ** 2 / 0.8 ** 2))
-        for x in range(int(CENTRO_X - w), int(CENTRO_X + w) + 1):
-            capuz[y, x] = base
-    dentro = capuz >= 0
-    pad = np.pad(dentro, 1)
-    em_volta = ~(pad[:-2, 1:-1] & pad[2:, 1:-1] & pad[1:-1, :-2] & pad[1:-1, 2:])
-    capuz[dentro & em_volta] = borda
-    for y in range(topo + 2, fundo - 2):
-        if capuz[y, CENTRO_X] == base:
-            capuz[y, CENTRO_X] = meio
-    for y in range(topo + 2, fundo - 1):
-        for x in range(CENTRO_X + 3, CENTRO_X + 9):
-            if capuz[y, x] == base:
-                capuz[y, x] = meio
-    for y in range(topo + 1, topo + 6):
-        for x in range(CENTRO_X - 6, CENTRO_X - 2):
-            if capuz[y, x] == base:
-                capuz[y, x] = luz
-    sombra_spr = vazio()
-    for x in range(QUADRO[0]):
-        col = np.where(dentro[:, x])[0]
-        if len(col):
-            sombra_spr[col.max() + 1:col.max() + 3, x] = sombra
-    return capuz, sombra_spr
-
-
-def criar_costas(F, paleta):
-    # As costas não estão na referência. Partem da frente espelhada (o lado
-    # direito dele passa para o outro lado da tela) e trocam o que só existe
-    # na frente: o rosto vira cabelo e nuca, os cordões e o bolso somem, o
-    # capuz aparece caído nas costas e a calça ganha os bolsos de trás.
-    B = espelhar(F)
-    ys, xs = np.mgrid[0:QUADRO[1], 0:QUADRO[0]]
-    cab_escuro = perto(paleta, (54, 27, 39))
-    cab_medio = perto(paleta, (77, 40, 42))
-    cab_claro = perto(paleta, (101, 54, 44))
-    cab_brilho = perto(paleta, (131, 74, 53))
-    nuca = perto(paleta, (182, 113, 100))
-    nuca_sombra = perto(paleta, (132, 95, 95))
-    # Cabeça: o rosto vira cabelo. As mechas saem do redemoinho (no alto
-    # da cabeça) e descem abrindo em leque: um pixel é risco escuro entre
-    # mechas quando o ângulo dele, visto do redemoinho, cai perto de uma
-    # das linhas do leque. Em cima fica o brilho; embaixo, o cabelo escurece
-    # e afina até a nuca, e abaixo dela aparece o pescoço.
-    redemoinho = (CENTRO_X + 1, 9)
-    for y in range(11, LINHA_QUEIXO + 1):
-        linha = np.where(F[y] >= 0)[0]
-        if not len(linha):
-            continue
-        for x in range(linha.min() + 1, linha.max()):
-            dx, dy = x - redemoinho[0], y - redemoinho[1]
-            if y <= 21 or (y == 22 and abs(dx) <= 4):
-                ang = np.degrees(np.arctan2(dx, dy + 2))
-                risco = abs(((ang + 90) / 26) % 1 - 0.5) > 0.38
-                dist = np.hypot(dx, dy)
-                if risco and dist > 3:
-                    cor = cab_escuro
-                elif y <= 13 and dx < 2:
-                    cor = cab_brilho
-                elif y <= 16:
-                    cor = cab_claro
-                elif y <= 19:
-                    cor = cab_medio
-                else:
-                    cor = cab_escuro if abs(dx) > 2 else cab_medio
-                B[y, x] = cor
-            elif abs(x - CENTRO_X) <= 3:
-                B[y, x] = nuca_sombra if y <= 23 else nuca
-            elif y <= 24:
-                B[y, x] = -1
-    # Tronco: sem cordões nem bolso, só o vermelho do moletom.
-    base = perto(paleta, (230, 30, 36))
-    meio = perto(paleta, (208, 27, 39))
-    for y in range(LINHA_QUEIXO + 2, 57):
-        for x in range(CENTRO_X - 6, CENTRO_X + 7):
-            if B[y, x] >= 0:
-                B[y, x] = meio if abs(x - CENTRO_X) == 6 else base
-    capuz, sombra = capuz_das_costas(paleta)
-    B = np.where((sombra >= 0) & (B >= 0) & (capuz < 0) & (ys < 57), sombra, B)
-    B = np.where(capuz >= 0, capuz, B)
-    # Calça: costura do meio e os dois bolsos de trás.
-    costura = perto(paleta, (10, 50, 104))
-    for y in range(LINHA_BAINHA, LINHA_VIRILHA):
-        if B[y, CENTRO_X] >= 0 and eh_azul(paleta, B[y:y + 1, CENTRO_X:CENTRO_X + 1])[0, 0]:
-            B[y, CENTRO_X] = costura
-    for x0 in (CENTRO_X - 8, CENTRO_X + 2):
-        for x in range(x0, x0 + 7):
-            B[LINHA_BAINHA + 3, x] = costura
-        for y in range(LINHA_BAINHA + 3, LINHA_BAINHA + 8):
-            B[y, x0] = costura
-            B[y, x0 + 6] = costura
-        for x in range(x0, x0 + 7):
-            B[LINHA_BAINHA + 8 + (1 if x0 + 2 <= x <= x0 + 4 else 0), x] = costura
-    return B
-
-
 # ---------------------------------------------------------------------------
-# 7. Vista de lado em camadas (boneco recortado)
+# 6. Vista de lado em camadas (boneco recortado)
 # ---------------------------------------------------------------------------
 # Para andar de lado, o sprite parado é recortado em peças que giram nas
 # juntas, como um boneco de papel com tachinhas: o braço gira no ombro, a
@@ -691,7 +606,9 @@ def camadas_lado(L, paleta):
     corpo = preencher(corpo, bainha, paleta, evitar_escuras=False)
     pernas = so(L, perna)
     buraco_perna = braco & (ys > LINHA_BAINHA)
-    pernas = preencher(np.where(buraco_perna, 0, pernas), buraco_perna, paleta)
+    lum = luminancia(paleta)
+    azuis = {i for i, c in enumerate(paleta.astype(int)) if c[2] > c[0] + 40 and lum[i] > 75}
+    pernas = preencher(np.where(buraco_perna, 0, pernas), buraco_perna, paleta, permitidas=azuis)
     # A calça continua por baixo da bainha até o quadril: quando a coxa
     # gira, não abre um buraco entre o moletom e a perna.
     for y in range(LINHA_BAINHA - 6, LINHA_BAINHA + 1):
@@ -715,7 +632,7 @@ def pecas_da_perna(pernas):
 
 
 # ---------------------------------------------------------------------------
-# 8. Vistas de 3/4 (boneco recortado a partir da pose de passo)
+# 7. Vistas de 3/4 (boneco recortado a partir da pose de passo)
 # ---------------------------------------------------------------------------
 # A referência andar_diagonal.webp tem o Gabriel dando um passo de 3/4 de
 # frente e de 3/4 de costas. De cada pose saem o corpo (cabeça e tronco) e
@@ -778,12 +695,15 @@ def angulo(de, ate):
     return float(np.degrees(np.arctan2(ate[0] - de[0], ate[1] - de[1])))
 
 
-def pose_de_referencia(caixa, queixo, paleta):
+def pose_de_referencia(caixa, queixo, paleta, moldes):
+    # A calça da pose é repintada com os tons do Gabriel parado (função
+    # repintar), como na caminhada de frente e de costas.
     rgb = abrir_rgb("andar_diagonal.webp", caixa)
     rgb, m = aparar(rgb, mascara_figura(rgb))
     rgb, m = encolher_cabeca(rgb, m, queixo, ESCALA_CABECA_3Q)
     cor, mm = reduzir(rgb, m, round(m.shape[1] * ESCALA_POSE), round(m.shape[0] * ESCALA_POSE))
-    return no_quadro(contornar(indexar(cor, mm, paleta), paleta))
+    spr = repintar(indexar(cor, mm, paleta), cor, material(cor, mm, "calca"), moldes["calca"], paleta)
+    return no_quadro(contornar(spr, paleta))
 
 
 def pintar_cabelo(spr, poligono, paleta):
@@ -808,8 +728,8 @@ def pintar_cabelo(spr, poligono, paleta):
 
 
 class Boneco3q:
-    def __init__(self, cfg, paleta, pecas_lado):
-        P = pintar_cabelo(pose_de_referencia(cfg["caixa"], cfg["queixo"], paleta),
+    def __init__(self, cfg, paleta, pecas_lado, moldes):
+        P = pintar_cabelo(pose_de_referencia(cfg["caixa"], cfg["queixo"], paleta, moldes),
                           cfg["cabelo"], paleta)
         self.sentido = cfg["sentido"]
         self.pecas = pecas_lado
@@ -874,7 +794,7 @@ class Boneco3q:
 
 
 # ---------------------------------------------------------------------------
-# 9. Animações
+# 8. Animações
 # ---------------------------------------------------------------------------
 # Caminhada: um ciclo são DOIS passos, e a fase φ vai de 0 a 360 graus
 # (12 quadros, 30° cada). É a mesma conta do comum.py, que os outros
@@ -1068,7 +988,7 @@ def ciclo_desenhado(cfg, paleta, moldes, contorno):
     poses = []
     for x0, x1 in cfg["colunas"]:
         rgb = abrir_rgb(cfg["arquivo"], (x0, 0, x1, 572))
-        rgb, m = aparar(rgb, mascara_figura(rgb))
+        rgb, m = aparar(rgb, mascara_figura(rgb, bolsao_minimo=40))
         if cfg["cabeca"]:
             queixo, escala, escala_x = cfg["cabeca"]
             rgb, m = encolher_cabeca(rgb, m, queixo, escala, escala_x / cfg["largura"])
@@ -1131,10 +1051,11 @@ def folha_referencia(vistas, retratos_rgba, paleta):
 
 def main():
     os.makedirs(PASTA_SAIDA, exist_ok=True)
-    frente = figura_reduzida("frente.png", RECORTE_FRENTE)
+    frente = figura_reduzida("parado.png", RECORTE_FRENTE)
+    costas = figura_reduzida("parado.png", RECORTE_COSTAS)
     lado = figura_reduzida("vistas.webp", RECORTE_LADO,
                            cabeca=(QUEIXO_LADO, ESCALA_CABECA_LADO))
-    paleta = paleta_de([frente, lado], MAX_CORES)
+    paleta = paleta_de([frente, costas, lado], MAX_CORES)
     contorno = tabela_escura(paleta, 0.42)
     sombra = tabela_escura(paleta, 0.72)
 
@@ -1142,18 +1063,18 @@ def main():
     F = no_quadro(contornar(F_solto, paleta))
     moldes = moldes_do_parado(frente[0], frente[1], F_solto, paleta)
     L = no_quadro(contornar(indexar(*lado, paleta), paleta))
-    B = criar_costas(F, paleta)
+    B = no_quadro(contornar(indexar(*costas, paleta), paleta))
 
     c_lado = camadas_lado(L, paleta)
     pecas = pecas_da_perna(c_lado["pernas"])
-    boneco_3q = Boneco3q(POSES_3Q["tres_quartos"], paleta, pecas)
-    boneco_3qc = Boneco3q(POSES_3Q["tres_quartos_costas"], paleta, pecas)
+    boneco_3q = Boneco3q(POSES_3Q["tres_quartos"], paleta, pecas, moldes)
+    boneco_3qc = Boneco3q(POSES_3Q["tres_quartos_costas"], paleta, pecas, moldes)
 
     vistas = {
         "lado": L,
         "frente": F,
         "tres_quartos": boneco_3q.quadro(0, paleta, sombra, contorno, andando=False),
-        "costas": contorno_final(B, paleta, contorno),
+        "costas": B,
         "tres_quartos_costas": boneco_3qc.quadro(0, paleta, sombra, contorno, andando=False),
     }
     fases_andar = [360 * q / QUADROS_ANDAR for q in range(QUADROS_ANDAR)]

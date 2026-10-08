@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-08 — Sala de teste: escolher o personagem
+**Decisão:** na **sala de teste** (e só nela), a tecla **C** troca o personagem que o jogador controla, em ciclo: Gabriel, Clarice, Zane, Baltazar, Rafael, Henrique e Carlos. O HUD mostra o nome ("Personagem: Clarice   [C] trocar"). A troca só muda os sprites: velocidade, corrida, itens e o resto do jogador continuam os do Gabriel. Começa no Gabriel. Ao sair da sala de teste, o jogador volta a ser o Gabriel.
+**Por quê:** pedido do Davi, para testar a caminhada e as animações de qualquer personagem.
+**Afeta:** `scripts/salas/escolha_personagem.gd` (novo), `cenas/salas/sala_teste.tscn` (nó `EscolhaPersonagem`; saiu a troca fixa para os sprites da Clarice).
+
 ## 2026-10-08 — Clarice em pixel art desenhada: retratos, frente, costas, lado e 3/4 de costas
 **Decisão:**
 - Os **retratos** e as vistas **de frente, de costas, de lado e de 3/4 de costas** da Clarice (parada, andando e respirando) passam a sair de artes de referência em pixel art, como o Gabriel: `assets/modelagem/personagens/clarice_referencia/` (`expressoes.png`, `andar_frente.webp`, `andar_costas.webp`, `andar_lado.webp`, `andar_diagonal.webp`) e o script `pixelar_clarice.py`, que usa as ferramentas do `pixelar_gabriel.py`.
@@ -29,15 +34,26 @@ Formato:
 - **Altura:** 95 px do alto do coque ao pé, pé na linha 106 e centro na coluna 47 (como o Gabriel); a cena `clarice_em_pe.tscn` não muda.
 - **Visual das referências:** muda alguns detalhes do visual antigo: jeans escuro (era calça preta), tênis cinza-claro (era branco de lona), munhequeiras roxas, argolas douradas, mangas compridas (eram arregaçadas) e sem o fone laranja à vista.
 - O **3/4 de frente** e a **estação de trabalho** continuam saindo do `gerar_clarice.py` (Blender), com o visual antigo, até ganharem referência. A fileira "FR" de `andar_diagonal.webp` é a mesma imagem da vista de lado (de perfil), por isso não foi usada.
-- **Sala de teste:** o jogador usa os sprites da Clarice (só na `sala_teste.tscn`), para testar a caminhada.
+- **Sala de teste:** o jogador pode virar qualquer personagem, só na `sala_teste.tscn` (ver a entrada "Sala de teste: escolher o personagem").
 
 **Por quê:** pedido do Davi, para a Clarice chegar no nível de qualidade das referências e combinar com o Gabriel novo.
 **Afeta:** `assets/sprites/personagens/clarice/` (retratos, `clarice_frente`, `clarice_costas`, as vistas `frente`, `costas`, `lado` e `tres_quartos_costas` (parada, andando e respirando), `clarice_referencia`; dois retratos novos), `assets/modelagem/personagens/pixelar_clarice.py` e `clarice_referencia/` (novos), `gerar_clarice.py` (aviso no cabeçalho), `assets/sprites/personagens/clarice/visual.md`, `cenas/salas/sala_teste.tscn`. A ficha `docs/historia/personagens/clarice.md` ainda cita o fone de walkman laranja.
 
+## 2026-10-08 — Resumo dos personagens
+**Decisão:** a pasta `docs/historia/personagens/` ganha o `resumo.md`, com todos os personagens numa página (quem é, época, frase de essência, cor, esconderijo, parte para consertar a Âncora, relações e principais pendências). É a exceção à regra de "só as fichas" nessa pasta (entrada de 2026-10-07). O resumo não é lei: se ele e uma ficha discordarem, vale a ficha.
+**Por quê:** pedido do Davi.
+**Afeta:** `docs/historia/personagens/resumo.md` (novo), `docs/README.md`, `docs/historia/README.md`. Quem mudar uma ficha deve conferir se o resumo continua certo.
+
+## 2026-10-08 — A Biblioteca implementada em várias salas
+**Decisão:** o planejamento da Biblioteca (`docs/fases/biblioteca.md`) entrou no jogo. A cena única virou oito salas em `cenas/salas/biblioteca/`, e o jogo começa na cabine. Entraram: o autoload `Progresso` (as marcas da fase), portas com chave e com marca, a chave da manutenção, o quadro de energia (ordem 3, 1, 4, 2), as luzes de emergência que acendem e revelam o Gabriel para os robôs, o terminal com o disquete da Clarice (código 0394), o painel e a grade da ala leste, o telefone com a primeira ligação da Clarice, a porta barrada das obras raras e os robôs (Sentinela no salão, Rastreador no acervo) com rota fixa, rota nova depois da energia e bipe antes de virar.
+**Por quê:** pedido do Davi: implementar tudo o que o planejamento descreve.
+**Afeta:** `project.godot` (autoload `Progresso`), `scripts/sistemas/porta.gd`, `scripts/personagens/robo.gd`, `scripts/salas/sala.gd` (os limites automáticos também barram robôs), `scripts/itens/notebook.gd`, `scripts/menu_principal.gd`, `cenas/cutscenes/seg_acordar.tscn` e `dados/fases/01_biblioteca.tres` (começam na cabine). Os textos da ligação e do disquete são rascunho para o roteiro revisar.
+
 ## 2026-10-07 — Gabriel em pixel art desenhada (a partir de referências)
 **Decisão:**
-- Os sprites do Gabriel deixam de sair do modelo 3D do Blender e passam a sair de **artes de referência em pixel art** (frente, lado e cinco expressões), guardadas em `assets/modelagem/personagens/gabriel_referencia/`. O script `pixelar_gabriel.py` (só Python, Pillow e NumPy) recorta, reduz para 99 px de altura, fecha a paleta em 40 cores e refaz o contorno.
-- O que a referência não tem sai das vistas que ela tem: as **costas** são a frente espelhada com cabelo no lugar do rosto, o capuz caído nas costas e os bolsos de trás da calça; a **caminhada de lado** é um boneco recortado (braço, coxa, canela e pé girando nas juntas); a respiração sobe o peito e a cabeça.
+- Os sprites do Gabriel deixam de sair do modelo 3D do Blender e passam a sair de **artes de referência em pixel art** (parado de frente e de costas, de lado e cinco expressões), guardadas em `assets/modelagem/personagens/gabriel_referencia/`. O script `pixelar_gabriel.py` (só Python, Pillow e NumPy) recorta, reduz para 99 px de altura, fecha a paleta em 40 cores e refaz o contorno.
+- **Parado de frente e de costas:** saem de uma referência própria (`parado.png`). Os tons de cabelo e de calça do Gabriel parado de frente são o molde para repintar as outras poses.
+- O que a referência não tem sai das vistas que ela tem: a **caminhada de lado** é um boneco recortado (braço, coxa, canela e pé girando nas juntas); a respiração sobe o peito e a cabeça.
 - **Diagonal (3/4 e 3/4 de costas):** a cabeça, o tronco e os braços saem de uma referência própria do Gabriel dando um passo (`andar_diagonal.webp`); os braços giram no ombro. As **pernas são as mesmas peças da vista de lado** (coxa, canela e tênis), presas nos dois quadris da pose, com 60% do balanço de lado e o pé da frente 3 px mais baixo na tela (mais alto no 3/4 de costas): as pernas da pose vinham dobradas e, giradas, ficavam tortas e se cruzavam. A cabeça da pose também saiu grande e é encolhida para 87%, como a de lado. O 3/4 parado é esse boneco com os membros retos. Na referência o braço que vai à frente é o do mesmo lado da perna que avança; no jogo, cada braço balança ao contrário da sua perna. O cabelo da pose de frente saiu loiro e foi repintado com o castanho dele.
 - **Cabeça de lado:** na referência de lado a cabeça saiu maior que na de frente (21 px do cabelo ao queixo, contra 18). O script encolhe a cabeça do perfil para 85%, presa no pescoço, e o corpo cresce um pouco para a altura total continuar 99 px.
 - **Braços sempre mexendo:** em todas as caminhadas os braços balançam ao contrário das pernas.
@@ -49,6 +65,20 @@ Formato:
 
 **Por quê:** pedido do Davi, para o Gabriel chegar no nível de qualidade das referências.
 **Afeta:** `assets/sprites/personagens/gabriel/` (todos os sprites e retratos, dois retratos novos), `assets/modelagem/personagens/pixelar_gabriel.py` e `gabriel_referencia/` (novos, com `andar_diagonal.webp`), `gerar_gabriel.py` (aviso no cabeçalho), `assets/sprites/personagens/gabriel/visual.md`. Os outros personagens continuam com os sprites do Blender, e ficam com um visual diferente do Gabriel até ganharem referências também.
+
+## 2026-10-07 — Planejamento da Biblioteca no estilo Resident Evil
+**Decisão:** a Biblioteca passa a ser planejada como uma fase de **salas ligadas por portas trancadas**, no estilo *Resident Evil*: cabine, salão principal (o centro), balcão, acervo sul, sala de manutenção (sala segura), sala de terminais, ala leste e uma sala de obras raras que só abre mais tarde. Para sair, o jogador busca a chave da manutenção no acervo, religa a energia, lê o código da grade no disquete da Clarice, abre a grade da ala leste e atende a primeira ligação da Clarice, que destranca a porta de saída. A Sentinela fica no salão e o Rastreador no acervo; com a energia, as luzes acendem e a rota da Sentinela muda. O mezanino, cogitado, foi descartado.
+**Por quê:** pedido do Davi: uma fase com mais caminhos e cadeados, em vez de um salão só.
+**Afeta:** `docs/fases/biblioteca.md` (reescrito). Para implementar: dividir `cenas/salas/biblioteca.tscn` em salas, chave como item, quadro de energia, painel de código e grade, luzes que acendem, telefone, disquete da Clarice e os dois robôs.
+
+## 2026-10-07 — Visual do Henrique e do Carlos
+**Decisão:**
+- **Henrique:** camisa de flanela xadrez laranja-queimado aberta sobre camiseta cinza, jeans preto, tênis de lona, óculos redondos de aro fino, cabelo bagunçado na testa, o caderno sempre na mão e um lápis atrás da orelha. Postura fechada, cabeça baixa, passo curto. **Cor de identificação: laranja-queimado.**
+- **Carlos**, o "cientista maluco": **mais velho que o grupo** (a idade exata continua pendente), careca no alto e cabelo grisalho arrepiado, jaleco sujo até o joelho e luvas pretas; por baixo, a roupa dos **anos 80** que ele idealiza (camiseta estampada colorida, jeans lavado, tênis branco de cano alto, relógio-calculadora, óculos grandes). Uma lupa com lente vermelha nos óculos e um controle com luz vermelha no cinto, o mesmo vermelho dos olhos dos robôs que ele controla. Postura curvada, cabeça esticada. **Cor de identificação: o branco do jaleco.** A aparência sai das pendências do Enredo (12.2); a idade exata fica.
+- Os dois têm o mesmo conjunto de sprites do Gabriel (cinco vistas em 96 × 112, caminhada, respiração e três retratos) e estão na sala de teste, ao lado dos outros.
+
+**Por quê:** pedido do Davi: os modelos do Henrique e do "cientista maluco que é o Carlos".
+**Afeta:** `docs/historia/personagens/henrique.md` e `carlos.md` (direção de arte e arquivos), `docs/historia/enredo_principal.md` (pendência 12.2), `assets/modelagem/personagens/` (`gerar_henrique.py`, `gerar_carlos.py`), `assets/sprites/personagens/henrique/` e `carlos/`, `cenas/personagens/henrique.tscn` e `carlos.tscn`, `cenas/salas/sala_teste.tscn`, `CLAUDE.md`.
 
 ## 2026-10-07 — O Carlos é o antagonista (ideia 23), o pesquisador é o Henrique
 **Decisão:**

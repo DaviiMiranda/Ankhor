@@ -33,7 +33,7 @@ Retratos de 80 × 80, mostrados em 40 × 40 na caixa de diálogo.
 ## Animações
 | Arquivo | Quadros | Como é feita |
 |---|---|---|
-| `gabriel_<vista>.png` | 1 | lado e frente vêm da referência; as costas são montadas a partir da frente; os dois 3/4 são o boneco da pose de passo (cabeça, tronco e braços da pose, pernas da vista de lado) com os membros retos |
+| `gabriel_<vista>.png` | 1 | lado, frente e costas vêm das referências; os dois 3/4 são o boneco da pose de passo (cabeça, tronco e braços da pose, pernas da vista de lado) com os membros retos |
 | `gabriel_andar_<vista>.png` | 12 | de lado e nos dois 3/4: braços, coxas, canelas e pés giram nas juntas (boneco recortado); de frente e de costas: quatro poses desenhadas, cada uma em 3 quadros, com o cabelo e a calça repintados nos tons do Gabriel parado. Em todas os braços balançam ao contrário das pernas |
 | `gabriel_parado_<vista>.png` | 8 | respiração: o peito sobe 2 px e a cabeça vai junto, atrasada |
 | `gabriel_retrato_<nome>.png` | 1 | `normal`, `preocupado`, `surpreso`, `bravo`, `envergonhado` |
@@ -41,7 +41,7 @@ Retratos de 80 × 80, mostrados em 40 × 40 na caixa de diálogo.
 Vistas: `lado`, `frente`, `tres_quartos`, `costas`, `tres_quartos_costas`.
 
 ## Referências
-`assets/modelagem/personagens/gabriel_referencia/`: `frente.png` (de frente, em alta
-resolução), `vistas.webp` (lado, frente e lado), `expressoes.webp` (as cinco expressões) e
-`andar_diagonal.webp` (um passo de 3/4 de frente e um de 3/4 de costas), `andar_frente.webp` e
+`assets/modelagem/personagens/gabriel_referencia/`: `parado.png` (parado de frente e de
+costas), `vistas.webp` (lado, frente e lado; só o lado é usado), `expressoes.webp` (as cinco
+expressões), `andar_diagonal.webp` (um passo de 3/4 de frente e um de 3/4 de costas), `andar_frente.webp` e
 `andar_costas.webp` (quatro poses andando, de frente e de costas).

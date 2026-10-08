@@ -44,11 +44,14 @@
 ## 6. Direção de arte
 
 - **O que a aparência precisa comunicar:** um aluno de 2019 de 20 anos, introvertido e cansado, que fala pouco e anota muito.
-- **Visual definido:** ainda não.
+- **Visual definido:** [`assets/sprites/personagens/henrique/visual.md`](../../../assets/sprites/personagens/henrique/visual.md). Camisa de flanela xadrez aberta sobre camiseta cinza, jeans preto, tênis de lona, óculos redondos de aro fino, cabelo bagunçado na testa, o caderno sempre na mão e um lápis atrás da orelha.
+- **Cor de identificação:** laranja-queimado.
+- Sprites em resolução dobrada, com o mesmo conjunto do Gabriel (ver `CLAUDE.md`).
 
 ## 7. Arquivos
 
-Nenhum ainda.
+- **Sprites:** `assets/sprites/personagens/henrique/`, gerados por `assets/modelagem/personagens/gerar_henrique.py`.
+- **Cena:** `cenas/personagens/henrique.tscn` (parado, por enquanto só na sala de teste).
 
 ## 8. Pendências
 

@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/som_do_outro_lado.gd" id="1_som"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/batidas_porta.wav" id="2_batidas"]
+
+[node name="SomDoOutroLado" type="AudioStreamPlayer2D"]
+stream = ExtResource("2_batidas")
+volume_db = -4.0
+max_distance = 320.0
+bus = &"Efeitos"
+script = ExtResource("1_som")
