@@ -26,3 +26,12 @@ Registro de melhorias secundárias, polimento visual, sonoro e ajustes de qualid
 
 - [ ] **Indicadores de contexto:**
   - Transições e pequenos efeitos visuais (fade/escala) ao selecionar itens na grade do inventário.
+
+## Conteúdo extra
+
+- [ ] **Easter eggs colecionáveis que dão conquistas:**
+  - Objetos escondidos pelo campus, fora do caminho principal, que o jogador pode achar e guardar. Cada um (ou cada conjunto) **desbloqueia uma conquista**.
+  - **Nunca são obrigatórios:** não abrem portas nem ajudam a avançar. São recompensa para quem explora.
+  - **Sugestões de objetos** (precisam seguir o [Enredo Principal](historia/enredo_principal.md)): relíquias de cada época dos personagens, como uma moeda colonial (Baltazar), um disquete com adesivo (Clarice), um crachá da Unifor de 2026 (Gabriel) e um chip de 2123 (Zane); e fitas cassete e pôsteres dos anos 80, a obsessão do Carlos, espalhados perto do D-Tec.
+  - **Onde aparecem:** numa tela de conquistas no menu principal (já existe uma branch `feat/menu-conquistas` com trabalho no menu) e, ao achar o objeto, um aviso curto no HUD, como o das anotações.
+  - **Depende de:** sistema de save, para as conquistas continuarem desbloqueadas entre uma partida e outra.
