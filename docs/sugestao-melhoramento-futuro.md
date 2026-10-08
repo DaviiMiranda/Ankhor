@@ -27,6 +27,13 @@ Registro de melhorias secundárias, polimento visual, sonoro e ajustes de qualid
 - [ ] **Indicadores de contexto:**
   - Transições e pequenos efeitos visuais (fade/escala) ao selecionar itens na grade do inventário.
 
+- [ ] **Tela especial ao pegar um item pela primeira vez (como em *Resident Evil*):**
+  - Na **primeira vez** que o jogador pega um tipo de item, o jogo pausa e abre uma tela só para ele: o item **grande, no centro**, com o **nome** e uma **descrição** curta. Um botão (`E`) fecha e volta ao jogo.
+  - Nas vezes seguintes, o mesmo item aparece só com o aviso de hoje ("Você pegou: ...").
+  - **Hoje:** ao pegar, aparece só a mensagem no HUD, e a descrição fica no inventário (ver [`mecanicas/itens_e_inventario.md`](mecanicas/itens_e_inventario.md)). A tela nova reaproveita o `nome` e a `descricao` que cada item já tem em `dados/itens/`.
+  - **Toque de computação gráfica:** o item pode **girar devagar** na tela, com os quadros renderizados do modelo 3D pelo mesmo pipeline do Blender dos personagens. Bom exemplo para a apresentação da disciplina.
+  - **Depende de:** uma imagem grande de cada item, além do ícone do inventário, e de guardar quais itens o jogador já viu (no save).
+
 ## Conteúdo extra
 
 - [ ] **Easter eggs colecionáveis que dão conquistas:**
