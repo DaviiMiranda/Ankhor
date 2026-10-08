@@ -39,11 +39,14 @@ Pendente.
 ## 6. Direção de arte
 
 - **O que a aparência precisa comunicar:** um homem de 3026 obcecado pelos anos 80. O contraste entre o futuro em ruínas e a nostalgia dele é o que assusta.
-- **Visual definido:** ainda não.
+- **Visual definido:** [`assets/sprites/personagens/carlos/visual.md`](../../../assets/sprites/personagens/carlos/visual.md). O "cientista maluco": mais velho que o grupo, careca no alto e cabelo grisalho arrepiado, jaleco sujo até o joelho e luvas pretas; por baixo, a roupa dos anos 80 (camiseta estampada colorida, jeans lavado, tênis branco de cano alto, relógio-calculadora, óculos grandes). Uma lupa com lente vermelha nos óculos e um controle com luz vermelha no cinto: o vermelho dos olhos dos robôs.
+- **Cor de identificação:** o branco do jaleco, com o ponto vermelho.
+- Sprites em resolução dobrada, com o mesmo conjunto do Gabriel (ver `CLAUDE.md`).
 
 ## 7. Arquivos
 
-Nenhum ainda.
+- **Sprites:** `assets/sprites/personagens/carlos/`, gerados por `assets/modelagem/personagens/gerar_carlos.py`.
+- **Cena:** `cenas/personagens/carlos.tscn` (parado, por enquanto só na sala de teste).
 
 ## 8. Pendências
 
@@ -51,4 +54,4 @@ Todas no Enredo Principal, seção 12.2:
 - Como ele consegue o conhecimento que falta para a Âncora funcionar (roubar consciências, construir uma super IA, ou as duas).
 - A relação dele com a IA.
 - Por que os robôs caçam os humanos (capturar ou eliminar).
-- Idade, aparência, como fala, o que teme, defeito e arco; e quando o jogador descobre que ele existe.
+- Idade exata, como fala, o que teme, defeito e arco; e quando o jogador descobre que ele existe.

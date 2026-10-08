@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_fase")
 nome = "Biblioteca"
-cena = "res://cenas/salas/biblioteca.tscn"
+cena = "res://cenas/salas/biblioteca/cabine.tscn"

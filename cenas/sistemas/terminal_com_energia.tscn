@@ -1,0 +1,17 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/terminal_com_energia.gd" id="1_terminal"]
+[ext_resource type="Resource" path="res://dados/documentos/disquete_clarice.tres" id="2_documento"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_alcance"]
+radius = 18.0
+
+[node name="TerminalComEnergia" type="Area2D"]
+script = ExtResource("1_terminal")
+texto_acao = "Usar o terminal"
+altura_aviso = 50.0
+documento = ExtResource("2_documento")
+
+[node name="Alcance" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_alcance")

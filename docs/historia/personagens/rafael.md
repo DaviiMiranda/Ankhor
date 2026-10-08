@@ -49,7 +49,7 @@
 
 ## 7. Arquivos
 
-- **Transmissões:** `dados/transmissoes/rafael_*.tres`, gatilhos `GatilhoRafael1` e `GatilhoRafael2` em `cenas/salas/biblioteca.tscn`.
+- **Transmissões:** `dados/transmissoes/rafael_*.tres`, gatilhos `GatilhoRafael1` (em `cenas/salas/biblioteca/balcao.tscn`) e `GatilhoRafael2` (em `acervo.tscn`).
 - **Som do rádio:** `assets/audio/efeitos/objetos/radio_chiado.wav` (gerado por `assets/modelagem/audio/gerar_efeitos_registros.py`).
 - **Sprites:** `assets/sprites/personagens/rafael/`, gerados por `assets/modelagem/personagens/gerar_rafael.py`.
 - **Cena:** `cenas/personagens/rafael.tscn` (parado, por enquanto só na sala de teste).

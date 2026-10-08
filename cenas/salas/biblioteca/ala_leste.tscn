@@ -1,0 +1,295 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/biblioteca/biblioteca_ceu.png" id="r2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/biblioteca/biblioteca_fundo.png" id="r3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/biblioteca/biblioteca_chao.png" id="r4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/biblioteca/biblioteca_frente.png" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/grade_seguranca.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_vazia.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/mesa_leitura.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/arvore.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cabine.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/livros.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_caida.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carrinho.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_quebrada.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r19"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/luzes/luz.png" id="r20"]
+[ext_resource type="Script" path="res://scripts/salas/luz_tremula.gd" id="r21"]
+[ext_resource type="Shader" path="res://shaders/raios_de_sol.gdshader" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r23"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/toque_distante.tscn" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r25"]
+
+[sub_resource type="StyleBoxFlat" id="Placa"]
+bg_color = Color(0.12, 0.13, 0.14, 1)
+
+[sub_resource type="ShaderMaterial" id="Raios_leste"]
+shader = ExtResource("r22")
+shader_parameter/cor = Color(1, 0.88, 0.62, 1)
+shader_parameter/forca = 1.2
+shader_parameter/direcao = Vector2(0.5, 1)
+shader_parameter/origem = Vector2(70, -6)
+shader_parameter/largura = 120.0
+shader_parameter/comprimento = 260.0
+shader_parameter/degraus = 4.0
+shader_parameter/tamanho = Vector2(300, 300)
+
+[node name="AlaLeste" instance=ExtResource("r1")]
+id = "biblioteca_ala_leste"
+largura = 480
+altura = 420
+chao_fundo = 122
+chao_frente = 416
+
+[node name="Sprite2D" parent="Ceu"]
+self_modulate = Color(1.9, 1.85, 1.6, 1)
+texture = ExtResource("r2")
+
+[node name="Fundo" type="Sprite2D" parent="Paredes"]
+texture = ExtResource("r3")
+centered = false
+region_enabled = true
+region_rect = Rect2(960, 0, 480, 180)
+
+[node name="ChaoPintado" type="Sprite2D" parent="Chao"]
+texture = ExtResource("r4")
+centered = false
+region_enabled = true
+region_rect = Rect2(960, 0, 480, 420)
+
+[node name="FrentePintada" type="Sprite2D" parent="Frente"]
+texture = ExtResource("r5")
+centered = false
+region_enabled = true
+region_rect = Rect2(960, 0, 480, 420)
+
+[node name="ParedeGrade" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(8, 0)
+
+[node name="Grade" parent="Paredes" instance=ExtResource("r7")]
+position = Vector2(28, 46)
+
+[node name="PlacaSalao" type="Label" parent="Paredes"]
+offset_left = 25.0
+offset_top = 30.0
+offset_right = 73.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "SALÃO"
+horizontal_alignment = 1
+
+[node name="PlacaSaida" type="Label" parent="Paredes"]
+offset_left = 415.0
+offset_top = 30.0
+offset_right = 463.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "SAÍDA"
+horizontal_alignment = 1
+
+[node name="EstanteVaziaLeste" parent="Objetos" instance=ExtResource("r8")]
+position = Vector2(50, 134)
+
+[node name="MesaLeituraLeste" parent="Objetos" instance=ExtResource("r9")]
+position = Vector2(110, 162)
+
+[node name="CadeiraLeste1" parent="Objetos" instance=ExtResource("r10")]
+position = Vector2(64, 170)
+
+[node name="CadeiraLeste2" parent="Objetos" instance=ExtResource("r10")]
+position = Vector2(156, 150)
+espelhado = true
+
+[node name="ArvoreLeste" parent="Objetos" instance=ExtResource("r11")]
+position = Vector2(216, 142)
+espelhado = true
+
+[node name="EntulhoLeste1" parent="Objetos" instance=ExtResource("r12")]
+position = Vector2(270, 126)
+
+[node name="CabineLeste" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(350, 130)
+espelhado = true
+
+[node name="LivrosLeste1" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(302, 172)
+
+[node name="LampadaLeste1" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(396, 168)
+
+[node name="EstanteCaidaLeste" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(44, 238)
+espelhado = true
+
+[node name="CarrinhoLeste" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(136, 262)
+
+[node name="LivrosLeste2" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(190, 222)
+espelhado = true
+
+[node name="MesaLeituraLesteSul" parent="Objetos" instance=ExtResource("r9")]
+position = Vector2(340, 236)
+espelhado = true
+
+[node name="CadeiraLesteSul1" parent="Objetos" instance=ExtResource("r10")]
+position = Vector2(290, 246)
+
+[node name="CadeiraLesteSul2" parent="Objetos" instance=ExtResource("r10")]
+position = Vector2(392, 226)
+espelhado = true
+
+[node name="EntulhoLeste2" parent="Objetos" instance=ExtResource("r12")]
+position = Vector2(444, 280)
+espelhado = true
+
+[node name="LampadaLeste2" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(246, 274)
+
+[node name="EstanteAcervoLeste1" parent="Objetos" instance=ExtResource("r18")]
+position = Vector2(56, 340)
+
+[node name="EstanteAcervoLeste2" parent="Objetos" instance=ExtResource("r8")]
+position = Vector2(152, 340)
+espelhado = true
+
+[node name="EstanteAcervoLeste3" parent="Objetos" instance=ExtResource("r8")]
+position = Vector2(100, 398)
+
+[node name="EstanteAcervoLeste4" parent="Objetos" instance=ExtResource("r18")]
+position = Vector2(200, 398)
+espelhado = true
+
+[node name="LivrosLeste3" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(146, 372)
+
+[node name="CabineLesteFundoSul" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(340, 360)
+
+[node name="EntulhoLeste3" parent="Objetos" instance=ExtResource("r12")]
+position = Vector2(432, 404)
+
+[node name="CarrinhoLesteFundoSul" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(276, 410)
+espelhado = true
+
+[node name="LampadaLeste3" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(30, 410)
+espelhado = true
+
+[node name="LampadaLeste4" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(420, 334)
+
+[node name="Pilha3" parent="Objetos" instance=ExtResource("r19")]
+position = Vector2(240, 364)
+
+[node name="SolLeste" type="PointLight2D" parent="Luzes"]
+position = Vector2(250, 124)
+scale = Vector2(2.8, 3.0)
+color = Color(1, 0.84, 0.6, 1)
+energy = 1.0
+texture = ExtResource("r20")
+
+[node name="SolLesteChao" type="PointLight2D" parent="Luzes"]
+position = Vector2(276, 160)
+scale = Vector2(2.2, 1.0)
+color = Color(1, 0.84, 0.6, 1)
+energy = 0.6
+texture = ExtResource("r20")
+
+[node name="SolLesteSul" type="PointLight2D" parent="Luzes"]
+position = Vector2(330, 260)
+scale = Vector2(2.0, 1.2)
+color = Color(1, 0.84, 0.6, 1)
+energy = 0.45
+texture = ExtResource("r20")
+
+[node name="RebatidaLeste" type="PointLight2D" parent="Luzes"]
+position = Vector2(240, 110)
+scale = Vector2(5, 3)
+color = Color(0.55, 0.65, 0.85, 1)
+energy = 0.25
+texture = ExtResource("r20")
+
+[node name="RebatidaLesteSul" type="PointLight2D" parent="Luzes"]
+position = Vector2(220, 330)
+scale = Vector2(5, 2.4)
+color = Color(0.55, 0.65, 0.85, 1)
+energy = 0.15
+texture = ExtResource("r20")
+
+[node name="Arandela5" type="PointLight2D" parent="Luzes"]
+position = Vector2(40, 94)
+scale = Vector2(2.2, 2.2)
+color = Color(1, 0.78, 0.5, 1)
+energy = 0.8
+texture = ExtResource("r20")
+script = ExtResource("r21")
+
+[node name="Arandela6" type="PointLight2D" parent="Luzes"]
+position = Vector2(340, 92)
+scale = Vector2(2.2, 2.2)
+color = Color(1, 0.78, 0.5, 1)
+energy = 0.8
+texture = ExtResource("r20")
+script = ExtResource("r21")
+
+[node name="JanelaLeste" type="PointLight2D" parent="Luzes"]
+position = Vector2(398, 50)
+scale = Vector2(1.6, 1.4)
+color = Color(0.6, 0.75, 0.9, 1)
+energy = 0.3
+texture = ExtResource("r20")
+
+[node name="RaiosLeste" type="ColorRect" parent="."]
+material = SubResource("Raios_leste")
+offset_left = 140.0
+offset_right = 440.0
+offset_bottom = 300.0
+mouse_filter = 2
+
+[node name="PoeiraLeste" type="CPUParticles2D" parent="Efeitos"]
+position = Vector2(240, 120)
+amount = 36
+lifetime = 9.0
+preprocess = 9.0
+emission_shape = 3
+direction = Vector2(0.4, 1)
+spread = 70.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+color = Color(1, 0.92, 0.7, 0.7)
+emission_rect_extents = Vector2(60, 90)
+
+[node name="PortaGrade" parent="." instance=ExtResource("r23")]
+position = Vector2(49, 124)
+id = "bib_ala_leste_grade"
+cena_destino = "res://cenas/salas/biblioteca/salao.tscn"
+porta_destino = "bib_salao_grade"
+
+[node name="PortaSaida" parent="." instance=ExtResource("r23")]
+position = Vector2(439, 124)
+id = "bib_ala_leste_saida"
+cena_destino = "res://cenas/salas/bloco_de_salas/corredor_terreo.tscn"
+porta_destino = ""
+liberada_por = "saida_destrancada"
+marca_ao_tentar = "saida_tentada"
+aviso_bloqueada = "Trancada eletronicamente. Deste lado não há painel: só abre pelo sistema."
+
+[node name="ToqueDistante" parent="." instance=ExtResource("r24")]
+
+[node name="Escuridao" parent="."]
+color = Color(0.52, 0.54, 0.64, 1)
+
+[node name="MusicaFase" parent="." instance=ExtResource("r25")]
+
+[editable path="Ceu"]
