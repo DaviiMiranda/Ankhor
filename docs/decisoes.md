@@ -16,18 +16,19 @@ Formato:
 
 ---
 
-## 2026-10-08 — Clarice em pixel art desenhada: retratos, frente e costas
+## 2026-10-08 — Clarice em pixel art desenhada: retratos, frente, costas e lado
 **Decisão:**
-- Os **retratos** e as vistas **de frente e de costas** da Clarice (parada, andando e respirando) passam a sair de artes de referência em pixel art, como o Gabriel: `assets/modelagem/personagens/clarice_referencia/` (`expressoes.png`, `andar_frente.webp`, `andar_costas.webp`) e o script `pixelar_clarice.py`, que usa as ferramentas do `pixelar_gabriel.py`.
+- Os **retratos** e as vistas **de frente, de costas e de lado** da Clarice (parada, andando e respirando) passam a sair de artes de referência em pixel art, como o Gabriel: `assets/modelagem/personagens/clarice_referencia/` (`expressoes.png`, `andar_frente.webp`, `andar_costas.webp`, `andar_lado.webp`) e o script `pixelar_clarice.py`, que usa as ferramentas do `pixelar_gabriel.py`.
 - **Cinco retratos:** `normal` (neutro), `seria` (raiva), `triste`, `envergonhada` (vergonha) e `sorrindo` (feliz). `normal`, `seria` e `sorrindo` mantêm os nomes que os diálogos já usam.
 - **Caminhada de frente e de costas:** as oito poses de cada referência, nos 12 quadros de sempre (o jogo usa o mesmo número de quadros em todas as vistas): as poses de pé no chão ficam dois quadros, as outras um.
-- **Consistência entre as poses:** a jaqueta tem a mesma largura nas dezesseis poses, mas cabeça, tronco e pernas variavam de tamanho (até ~8%). Cada trecho do corpo é esticado para a média, todas usam a mesma paleta de 40 cores, o corpo é centrado pela faixa do peito e a cabeça da pose parada vai para todos os quadros da mesma vista.
+- **Caminhada de lado:** as quatro poses andando para a direita, três quadros cada. Para a esquerda o Godot espelha o sprite, como em todos os personagens; as quatro poses para a esquerda da referência são outro desenho (o cabelo e o walkman mudam) e ficam de fora.
+- **Consistência entre as poses:** a jaqueta tem a mesma largura nas dezesseis poses, mas cabeça, tronco e pernas variavam de tamanho (até ~8%). Cada trecho do corpo é esticado para a média, todas as vistas usam a mesma paleta de 40 cores, as poses são alinhadas pela cabeça (de lado, pela ponta do rosto) e a cabeça da pose parada vai para todos os quadros da mesma vista.
 - **Altura:** 95 px do alto do coque ao pé, pé na linha 106 e centro na coluna 47 (como o Gabriel); a cena `clarice_em_pe.tscn` não muda.
 - **Visual das referências:** muda alguns detalhes do visual antigo: jeans escuro (era calça preta), tênis cinza-claro (era branco de lona), munhequeiras roxas, argolas douradas, mangas compridas (eram arregaçadas) e sem o fone laranja à vista.
-- As vistas de **lado e de 3/4** e a **estação de trabalho** continuam saindo do `gerar_clarice.py` (Blender), com o visual antigo, até ganharem referência.
+- As vistas de **3/4** e a **estação de trabalho** continuam saindo do `gerar_clarice.py` (Blender), com o visual antigo, até ganharem referência.
 
 **Por quê:** pedido do Davi, para a Clarice chegar no nível de qualidade das referências e combinar com o Gabriel novo.
-**Afeta:** `assets/sprites/personagens/clarice/` (retratos, `clarice_frente`, `clarice_costas`, `clarice_andar_frente`, `clarice_andar_costas`, `clarice_parado_frente`, `clarice_parado_costas`, `clarice_referencia`; dois retratos novos), `assets/modelagem/personagens/pixelar_clarice.py` e `clarice_referencia/` (novos), `gerar_clarice.py` (aviso no cabeçalho), `assets/sprites/personagens/clarice/visual.md`. A ficha `docs/historia/personagens/clarice.md` ainda cita o fone de walkman laranja.
+**Afeta:** `assets/sprites/personagens/clarice/` (retratos, `clarice_frente`, `clarice_costas`, as vistas `frente`, `costas` e `lado` (parada, andando e respirando), `clarice_referencia`; dois retratos novos), `assets/modelagem/personagens/pixelar_clarice.py` e `clarice_referencia/` (novos), `gerar_clarice.py` (aviso no cabeçalho), `assets/sprites/personagens/clarice/visual.md`. A ficha `docs/historia/personagens/clarice.md` ainda cita o fone de walkman laranja.
 
 ## 2026-10-07 — Gabriel em pixel art desenhada (a partir de referências)
 **Decisão:**
