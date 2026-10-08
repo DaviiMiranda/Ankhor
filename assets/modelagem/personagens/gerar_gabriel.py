@@ -1,6 +1,11 @@
 # gerar_gabriel.py — modela o Gabriel no Blender, por código, e renderiza
 # os sprites de jogo (frente, 3/4, lado e costas) e a folha de referência.
 #
+# ATENÇÃO: desde 2026-10-07 os sprites do Gabriel que o jogo usa saem do
+# pixelar_gabriel.py (pixel art feita a partir das referências em
+# gabriel_referencia/). Este script fica como o modelo 3D do Gabriel; rodar
+# ele sobrescreve os sprites novos. Ver docs/decisoes.md.
+#
 # Como rodar (sem abrir a janela do Blender):
 #
 #   blender -b --factory-startup --python assets/modelagem/personagens/gerar_gabriel.py
