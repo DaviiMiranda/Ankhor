@@ -56,6 +56,12 @@ MAX_CORES_RETRATO = 48  # paleta dos retratos (o rosto grande pede mais tons)
 # Recortes das referências (x0, y0, x1, y1), em pixels da imagem original.
 RECORTE_FRENTE = (0, 0, 419, 1024)
 RECORTE_LADO = (40, 0, 260, 572)
+# Na referência de lado a cabeça saiu maior que na de frente (do cabelo ao
+# queixo, 21 px contra 18). Ela é encolhida para 85%, presa no pescoço,
+# antes de reduzir o desenho; o corpo cresce um pouco para a altura total
+# continuar 99 px, igual às outras vistas.
+ESCALA_CABECA_LADO = 0.85
+QUEIXO_LADO = 21 / 99   # onde a cabeça acaba, em fração da altura da figura
 RETRATOS = {
     "normal": (20, 14, 240, 251),
     "bravo": (276, 14, 496, 251),
@@ -132,9 +138,37 @@ def reduzir(rgb, mascara, largura, altura):
     return cor, alfa > 0.5
 
 
-def figura_reduzida(nome, caixa, altura=ALTURA_PX):
+def encolher_cabeca(rgb, mascara, fracao_queixo, escala):
+    # Corta a figura na altura do queixo, encolhe a parte de cima e cola de
+    # volta com o meio do pescoço no mesmo lugar.
+    corte = int(round(mascara.shape[0] * fracao_queixo))
+    cab_rgb, cab_m = rgb[:corte], mascara[:corte]
+    xs = np.where(cab_m[-3:].any(axis=0))[0]
+    pescoco = (xs.min() + xs.max() + 1) / 2
+    cab_rgb = espalhar_cor(cab_rgb, cab_m)
+    w = max(1, round(cab_m.shape[1] * escala))
+    h = max(1, round(corte * escala))
+    nova_cor = np.dstack([np.asarray(Image.fromarray(cab_rgb[..., c]).resize((w, h), Image.LANCZOS))
+                          for c in range(3)])
+    nova_m = np.asarray(Image.fromarray(cab_m.astype(np.float32)).resize((w, h), Image.BOX)) > 0.5
+    x0 = int(round(pescoco - pescoco * escala))
+    corpo_rgb, corpo_m = rgb[corte:], mascara[corte:]
+    largura = max(corpo_m.shape[1], x0 + w)
+    out_rgb = np.zeros((h + corpo_m.shape[0], largura, 3), np.float32)
+    out_m = np.zeros((h + corpo_m.shape[0], largura), bool)
+    out_rgb[h:, :corpo_m.shape[1]] = corpo_rgb
+    out_m[h:, :corpo_m.shape[1]] = corpo_m
+    regiao = (slice(0, h), slice(x0, x0 + w))
+    out_rgb[regiao] = np.where(nova_m[..., None], nova_cor, out_rgb[regiao])
+    out_m[regiao] |= nova_m
+    return aparar(out_rgb, out_m)
+
+
+def figura_reduzida(nome, caixa, altura=ALTURA_PX, cabeca=None):
     rgb = abrir_rgb(nome, caixa)
     rgb, m = aparar(rgb, mascara_figura(rgb))
+    if cabeca is not None:
+        rgb, m = encolher_cabeca(rgb, m, *cabeca)
     largura = max(1, round(m.shape[1] * altura / m.shape[0]))
     return reduzir(rgb, m, largura, altura)
 
@@ -1067,7 +1101,8 @@ def folha_referencia(vistas, retratos_rgba, paleta):
 def main():
     os.makedirs(PASTA_SAIDA, exist_ok=True)
     frente = figura_reduzida("frente.png", RECORTE_FRENTE)
-    lado = figura_reduzida("vistas.webp", RECORTE_LADO)
+    lado = figura_reduzida("vistas.webp", RECORTE_LADO,
+                           cabeca=(QUEIXO_LADO, ESCALA_CABECA_LADO))
     paleta = paleta_de([frente, lado], MAX_CORES)
     contorno = tabela_escura(paleta, 0.42)
     sombra = tabela_escura(paleta, 0.72)
