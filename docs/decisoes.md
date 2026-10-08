@@ -16,6 +16,26 @@ Formato:
 
 ---
 
+## 2026-10-08 — O Zane no computador do bunker, e a nova ordem de chegada
+**Decisão:**
+- O **Zane** troca de lugar com a **Clarice**: fica no **computador da central de dados do bunker** e faz a **comunicação de todos** (mantém a frequência de rádio do grupo e liga pelos telefones velhos). Divide o bunker com a Diana. Onde a Clarice fica passa a ser pendente.
+- **Ordem de chegada:** o Zane chega antes da Clarice, e **Gabriel é o último**. O Zane deixa de ser o último a chegar, e a cena de Gabriel recebendo o Zane sai.
+- Sai a ideia de que o jogador acha que a Clarice morreu: o bilhete dela não é mais uma "despedida".
+- No jogo: a ligação do fim da Biblioteca passou a ser do Zane (`clarice_01.tres` → `zane_01.tres`, em `cenas/sistemas/telefone.tscn`), e a anotação do bilhete da Clarice não diz mais que "parece que não voltou". A arte da estação de trabalho e as conversas do bunker continuam da Clarice e precisam ser refeitas para o Zane.
+
+**Por quê:** decisão do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 4.1, 6, 6.1, 7.2, 8, 10, 12.3 e 12.4), as fichas de Zane, Clarice, Diana, Henrique, Rafael e Gabriel, `resumo.md`, `docs/fases/biblioteca.md` e `bunker.md`, `docs/mecanicas/registros_e_caderno.md`, `docs/gdd.md`, `docs/README.md`, `outras_ideias.md` (ideia 14), `dados/transmissoes/zane_01.tres`, `dados/documentos/bilhete_clarice.tres`, `cenas/sistemas/telefone.tscn`, os `visual.md` do Zane e do Rafael e um comentário de `gerar_rafael.py`.
+
+## 2026-10-08 — Onde cada personagem fica, e a frequência de rádio do grupo
+**Decisão:**
+- **Esconderijos:** **bunker** com a Clarice e a Diana (depois o Zane); o **Baltazar** escondido numa sala da Biblioteca, com medo; o **Rafael** numa sala de aula do Bloco de salas, que virou o "posto de guarda" dele; o **Henrique** sozinho num **posto de monitoramento**, com as câmeras do campus; o **Carlos** sempre no laboratório do D-Tec.
+- **Comunicação:** a **Clarice** montou uma **frequência de rádio** para o grupo e deixou um rádio sintonizado nela no balcão da Biblioteca. O **Henrique** é a **voz do rádio**: vê o campus pelas câmeras, dá as dicas de patrulha e guia Gabriel desde a primeira fase, mas fala pouco e fica distante. O **Baltazar** teve dificuldade com o rádio, se isolou e não está na frequência.
+- No jogo, as duas transmissões da Biblioteca passaram do Rafael para o Henrique (`rafael_0X.tres` → `henrique_0X.tres`, gatilhos `GatilhoHenrique1` e `GatilhoHenrique2`), com as falas reescritas no jeito dele. (Na entrada seguinte, quem mantém a frequência passou a ser o Zane.)
+- Resolve a pendência de como a voz do rádio "parece ver" Gabriel: pelas câmeras.
+
+**Por quê:** decisão do Davi. A voz que ajuda Gabriel desde o começo ser justamente a de quem mente deixa "A virada" mais forte.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 6, 6.1, 8, 10 e 12.3), as fichas de Rafael, Henrique, Diana, Clarice, Baltazar, Zane e Carlos, `resumo.md`, `docs/fases/biblioteca.md`, `docs/mecanicas/registros_e_caderno.md` e `README.md`, `dados/transmissoes/henrique_01.tres` e `henrique_02.tres`, `cenas/salas/biblioteca/salao.tscn`, `balcao.tscn` e `acervo.tscn`, comentários de `gerar_efeitos_registros.py` e `gerar_interface.py`, `assets/sprites/personagens/rafael/visual.md`.
+
 ## 2026-10-08 — Resumo dos personagens
 **Decisão:** a pasta `docs/historia/personagens/` ganha o `resumo.md`, com todos os personagens numa página (quem é, época, frase de essência, cor, esconderijo, parte para consertar a Âncora, relações e principais pendências). É a exceção à regra de "só as fichas" nessa pasta (entrada de 2026-10-07). O resumo não é lei: se ele e uma ficha discordarem, vale a ficha.
 **Por quê:** pedido do Davi.

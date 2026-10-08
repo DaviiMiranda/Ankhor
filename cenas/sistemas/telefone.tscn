@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/sistemas/telefone.gd" id="1_telefone"]
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/telefone.png" id="2_sprite"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/telefone_toque.wav" id="3_toque"]
-[ext_resource type="Resource" path="res://dados/transmissoes/clarice_01.tres" id="4_ligacao"]
+[ext_resource type="Resource" path="res://dados/transmissoes/zane_01.tres" id="4_ligacao"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_alcance"]
 radius = 20.0

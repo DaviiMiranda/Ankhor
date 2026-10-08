@@ -115,6 +115,8 @@ O pesquisador descobre que a Âncora consertada só consegue mandar de volta **u
 
 A ficha da Clarice já diz que ela "ficou dias sozinha antes de qualquer um aparecer", então ela é a primeira. Uma ordem possível depois dela: **Clarice → Baltazar → Rafael → Diana → pesquisador → Gabriel → Zane**. O pesquisador chegando pouco antes de Gabriel deixa pouco tempo para os outros desconfiarem dele.
 
+*Atualização (2026-10-08):* esta ideia contradiz o que foi decidido depois: o Zane chega antes da Clarice, e Gabriel é o último.
+
 ---
 
 ## Resolve 12.3 — Como o Rafael parece ver Gabriel

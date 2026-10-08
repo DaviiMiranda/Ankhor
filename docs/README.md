@@ -38,7 +38,7 @@ docs/
 │   ├── furtividade_e_esconderijos.md # Esconderijos, microgames de tensão e distrações
 │   ├── iluminacao_e_lanterna.md   # Lanterna a pilha, dilema luz/perigo, luzes de emergência
 │   ├── vida_e_checkpoint.md       # 3 corações, dano, tela de morte e checkpoints
-│   ├── registros_e_caderno.md     # Documentos dos antecessores, rádio do Rafael e o Caderno do Gabriel
+│   ├── registros_e_caderno.md     # Documentos dos antecessores, rádio e o Caderno do Gabriel
 │   └── sono_e_sonhos.md           # Salas seguras, mecânica de save e investigação no passado
 │
 ├── computacao/                    # Requisitos da disciplina de Computação Gráfica / CC
@@ -73,7 +73,7 @@ docs/
     │   ├── rafael.md              # 2008, segurança noturno
     │   ├── henrique.md            # 2019, o pesquisador
     │   ├── carlos.md              # 3026, o antagonista
-    │   ├── zane.md                # 2123, o último a chegar
+    │   ├── zane.md                # 2123, faz as comunicações do bunker
     │   └── robos.md               # Os robôs inimigos: sensores, FSM e patrulhas
     └── roteiro/                   # Roteirização cinematográfica e cutscenes
         ├── README.md              # Diretrizes gerais de roteiro

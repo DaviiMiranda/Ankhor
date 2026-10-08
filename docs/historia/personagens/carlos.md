@@ -10,7 +10,7 @@
 - **Época:** 3026. Não foi puxado pela fenda: ele já vivia nessa época.
 - **Quem é:** um cientista, vivo, que **criou a Âncora**. É um dos poucos humanos que ficaram na Terra.
 - **História:** na época dele, a sociedade e o planeta estavam muito ruins, e o pouco que sobrou da humanidade decidiu ir embora para outro planeta. O Carlos **ficou**, por um objetivo egoísta: é obcecado pelos **anos 80** e quer usar a Âncora para ir viver lá. A máquina é imprecisa: a cada tentativa dele, abre uma fenda no chão da Biblioteca e puxa gente de outras épocas, sem escolher quem. Ele controla os **robôs**.
-- **Onde fica:** o laboratório dele e a Âncora ficam no **D-Tec**, a parte de tecnologia da Unifor, no **Bloco M**.
+- **Onde fica:** o laboratório dele e a Âncora ficam no **D-Tec**, a parte de tecnologia da Unifor, no **Bloco M**. Ele **nunca sai do laboratório**.
 
 ## 2. Personalidade
 

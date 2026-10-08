@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "zane_01"
+falante = "ZANE (telefone)"
+falas = PackedStringArray("Alô? Alô! Finalmente. Sabe quantas vezes eu chamei esse balcão? Perdi a conta.", "Não desliga. O sistema acusou a grade da ala leste subindo. Foi você, né?", "Achou o disquete da Clarice? Ela guarda senha em tudo. Pré-histórico, mas funciona.", "A porta do fim da ala leste é eletrônica. Segura aí... Pronto. Destranquei.", "Eu sou o Zane. Agora sai da Biblioteca. E não fica embaixo das luzes, sério. Fui!")
+titulo_anotacao = "Zane, 2123"
+anotacao = "Um tal de Zane ligou para o telefone do balcão. Fala de algum computador e destrancou pelo sistema a porta de saída da ala leste.
+Disse para não ficar embaixo das luzes."
