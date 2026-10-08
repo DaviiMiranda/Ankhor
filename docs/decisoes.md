@@ -165,6 +165,11 @@ Formato:
 **Por quê:** pedido do Davi: poder voltar ao menu principal durante o jogo.
 **Afeta:** `cenas/interface/tela_pausa.tscn` e `scripts/interface/tela_pausa.gd` (autoload `Pausa`), `project.godot` (autoload e ação `pausar`), `scripts/sistemas/configuracoes.gd` (as contas de volume saíram do menu e agora servem ao menu e à pausa), `scripts/menu_principal.gd`, `cenas/menu_principal.tscn` (lista de controles).
 
+## 2026-10-05 — Hackeamento de portas vira minigame
+**Decisão:** o notebook, ao hackear uma **porta trancada**, abre um minigame em tela cheia (o jogo pausa): **Sequência** (memorizar e repetir setas) ou **Sincronia** (parar o cursor na zona verde). Cada porta define a dificuldade (fácil, médio, difícil) e o minigame (ou sorteia). Robôs continuam com o hack por tempo, até o grupo decidir se também ganham minigame.
+**Por quê:** dar ao hack um momento de tensão e habilidade, em vez de só esperar uma barra.
+**Afeta:** `scripts/itens/notebook.gd`, `scripts/sistemas/porta.gd`, `scripts/sistemas/hackeamento.gd`, `scripts/interface/tela_hackeamento.gd` e `scripts/interface/hackeamento/`, `sala_teste.tscn` (seis portas de teste). Detalhes em `docs/mecanicas/hackeamento.md`.
+
 ## 2026-09-30 — Gabriel e Clarice em resolução dobrada
 **Decisão:** o projeto passa a usar o stretch **`canvas_items`** (antes `viewport`): a lógica, as câmeras e a interface continuam em 320×180, mas a imagem é desenhada na resolução da janela. Com isso, **Gabriel e Clarice ganham sprites com o dobro de pixels** (Gabriel 96 × 112 por quadro, a estação da Clarice 160 × 128, retratos 80 × 80), mostrados com escala 0,5: no mesmo tamanho na tela, com o dobro de detalhe (rosto, óculos, texto nos monitores). O cenário, os objetos, os robôs e a interface continuam em 1×. **Efeito colateral:** as luzes (PointLight2D) também são calculadas na resolução da janela e ficaram mais suaves. O efeito CRT do menu foi ajustado para continuar com uma linha por pixel do jogo.
 **Por quê:** pedido do Davi. Com 48 px de altura, polígono a mais quase não aparecia (testado: mais gomos e luz suave só mudavam a folha de referência). Uma imagem comparando as duas resoluções na mesma cena decidiu.
