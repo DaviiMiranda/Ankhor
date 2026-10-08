@@ -16,6 +16,18 @@ Formato:
 
 ---
 
+## 2026-10-07 — Gabriel em pixel art desenhada (a partir de referências)
+**Decisão:**
+- Os sprites do Gabriel deixam de sair do modelo 3D do Blender e passam a sair de **artes de referência em pixel art** (frente, lado e cinco expressões), guardadas em `assets/modelagem/personagens/gabriel_referencia/`. O script `pixelar_gabriel.py` (só Python, Pillow e NumPy) recorta, reduz para 99 px de altura, fecha a paleta em 40 cores e refaz o contorno.
+- O que a referência não tem sai das vistas que ela tem: as **costas** são a frente espelhada com cabelo no lugar do rosto, o capuz caído nas costas e os bolsos de trás da calça; o **3/4** e o **3/4 de costas** giram o tronco como um cilindro (largura da frente, profundidade do lado) e viram o rosto; a **caminhada de lado** é um boneco recortado (braço, coxa, canela e pé girando nas juntas); a caminhada de frente, de costas e de 3/4 levanta o pé e balança o corpo; a respiração sobe o peito e a cabeça.
+- Mesmos nomes, tamanhos e quantidade de quadros de antes (96 × 112, 12 quadros andando, 8 respirando): a cena `gabriel.tscn` não muda.
+- **Sem mochila**, como na referência: moletom vermelho de capuz, calça jeans e tênis cinza.
+- **Retratos:** cinco em vez de três: `normal`, `preocupado` e `surpreso` (os nomes que os diálogos já usam) e os novos `bravo` e `envergonhado`.
+- O `gerar_gabriel.py` e o `gabriel.blend` ficam como modelo 3D, mas **não devem ser rodados** para gerar os sprites do jogo: sobrescreveriam os novos.
+
+**Por quê:** pedido do Davi, para o Gabriel chegar no nível de qualidade das referências.
+**Afeta:** `assets/sprites/personagens/gabriel/` (todos os sprites e retratos, dois retratos novos), `assets/modelagem/personagens/pixelar_gabriel.py` e `gabriel_referencia/` (novos), `gerar_gabriel.py` (aviso no cabeçalho), `assets/sprites/personagens/gabriel/visual.md`. Os outros personagens continuam com os sprites do Blender, e ficam com um visual diferente do Gabriel até ganharem referências também.
+
 ## 2026-10-07 — O Carlos é o antagonista (ideia 23), o pesquisador é o Henrique
 **Decisão:**
 - **Ideia 23 aprovada, com partes ainda em aberto.** O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora. Na época dele, a sociedade e o planeta estavam muito ruins, e o pouco que sobrou da humanidade foi para outro planeta. Ele ficou, por um objetivo egoísta: é obcecado pelos **anos 80** e quer usar a Âncora para ir viver lá. A Âncora é imprecisa: cada tentativa dele abre a fenda no chão da Biblioteca e puxa gente por acaso. Ele controla os robôs. A **Âncora** e o laboratório dele ficam no **D-Tec**, a parte de tecnologia da Unifor, no **Bloco M**. O **Bloco J foi descartado**.
