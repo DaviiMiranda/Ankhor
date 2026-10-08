@@ -19,22 +19,41 @@ O mesmo nome é usado em todas as pastas da cutscene (ficha, cena, falas, sprite
 
 Toda cena de cutscene usa o script `scripts/cutscenes/cutscene.gd`: ela toca a animação `principal` do seu `AnimationPlayer`, pode ser pulada com Esc e, ao terminar, avisa o jogo pelo sinal `cutscene_terminou` e troca para a `proxima_cena`.
 
-## Ficha
+## Ficha e Organização
 
-```
+Cada cutscene possui um documento dedicado nesta pasta seguindo a estrutura:
+
+```markdown
 # nome_da_cutscene
 
-- Quando:
-- Onde:
-- Personagens:
-- O que acontece:
-- Falas:
-- O que o jogador descobre:
-- Status: ideia / aprovada / feita
+- **Quando:** momento exato no fluxo do jogo em que é disparada.
+- **Onde:** localização no espaço/tempo.
+- **Personagens:** quem participa ou aparece.
+- **Formato visual:** ilustrações estáticas com paralaxe / animação in-engine / plano fixo.
+- **Objetivo dramático:** o que a cena transmite e constrói para o jogador.
+- **Status:** ideia / aprovada / em produção / pronta.
+
+---
+
+## Roteiro Ilustração por Ilustração (quando aplicável)
+
+Para cada cena/take ilustrado em pixel art (320×180):
+- **Arquivo proposto:** caminho em `assets/sprites/cutscenes/<nome>/`.
+- **Enquadramento:** composição, foco, planos (fechado, médio, aberto).
+- **Paleta e iluminação:** atmosfera visual, tons e iluminação.
+- **Áudio / SFX:** efeitos sonoros pontuais e trilha de fundo.
+- **Texto:** narração, pensamento ou falas na caixa de diálogo.
+- **Transição:** como passa para a cena seguinte (fade, corte, dissolve).
+
+---
+
+## Especificações Técnicas para Produção
+Resoluções, camadas de paralaxe e conexão no Godot (`scripts/cutscenes/cutscene.gd`).
 ```
 
 ## Lista
 
-| Cutscene | Status |
-|---|---|
-| [`seg_acordar`](seg_acordar.md) | aprovada (cena provisória, sem falas) |
+| Cutscene | Descrição | Status |
+|---|---|---|
+| [`seg_prologo`](seg_prologo.md) | Prólogo em ilustrações: rotina de Gabriel em 2026, ida à faculdade, aula e o adormecer na cabine da Biblioteca | aprovada (roteiro fechado) |
+| [`seg_acordar`](seg_acordar.md) | O despertar imediato de Gabriel dentro da cabine da Biblioteca nas ruínas de 3026 | aprovada (cena provisória no Godot) |
