@@ -16,6 +16,17 @@ Formato:
 
 ---
 
+## 2026-10-08 — Itens com visual detalhado e tela de examinar, começando pelo notebook
+**Decisão:**
+- Os itens passam a ganhar **visuais detalhados a partir de artes de referência**, como o Gabriel. O primeiro é o **notebook**: um notebook robusto, cinza, com cantoneiras claras nos cantos, alça na frente e a tela azul acesa com uma barra de progresso ciano (`assets/modelagem/itens/referencias/notebook.webp`).
+- O script `assets/modelagem/itens/pixelar_itens.py` (só Python, Pillow e NumPy, usando as funções do `pixelar_gabriel.py`) recorta o item pela silhueta marcada à mão, reduz, fecha a paleta em 40 cores e refaz o contorno. Gera o **ícone em 32 × 32** e a **imagem de examinar** (`notebook_detalhe.png`, 252 × 232), as duas em **resolução dobrada**. O item no chão continua o desenho do `gerar_interface.py` (fica no cenário, em 1×), que não gera mais o ícone do notebook.
+- **Tela de examinar:** no inventário, `E` abre o item escolhido grande à esquerda, com nome e descrição à direita; `E` ou `Esc` volta para a grade. O `Item` ganhou o campo `imagem_detalhe`; item sem ela mostra o ícone ampliado.
+- O espaço da grade mostra o ícone sempre em 16 × 16 na tela, então ícones de 16 e de 32 convivem.
+- A dica do inventário passou a ser "Q: anotações  Setas: mover  E: examinar  1-3: equipar  Tab: fechar", para caber numa linha.
+
+**Por quê:** pedido do Davi: ter os visuais detalhados dos itens, começando pelo computador.
+**Afeta:** `scripts/itens/item.gd`, `dados/itens/notebook.tres`, `cenas/interface/espaco_item.tscn`, `cenas/interface/tela_inventario.tscn` e `scripts/interface/tela_inventario.gd`, `cenas/interface/painel_exame.tscn` e `scripts/interface/painel_exame.gd` (novos), `assets/sprites/itens/notebook*.png`, `assets/modelagem/itens/` (novo), `assets/modelagem/interface/gerar_interface.py`, `docs/mecanicas/itens_e_inventario.md`. Os outros itens ganham o mesmo tratamento quando tiverem referência.
+
 ## 2026-10-08 — A Biblioteca implementada em várias salas
 **Decisão:** o planejamento da Biblioteca (`docs/fases/biblioteca.md`) entrou no jogo. A cena única virou oito salas em `cenas/salas/biblioteca/`, e o jogo começa na cabine. Entraram: o autoload `Progresso` (as marcas da fase), portas com chave e com marca, a chave da manutenção, o quadro de energia (ordem 3, 1, 4, 2), as luzes de emergência que acendem e revelam o Gabriel para os robôs, o terminal com o disquete da Clarice (código 0394), o painel e a grade da ala leste, o telefone com a primeira ligação da Clarice, a porta barrada das obras raras e os robôs (Sentinela no salão, Rastreador no acervo) com rota fixa, rota nova depois da energia e bipe antes de virar.
 **Por quê:** pedido do Davi: implementar tudo o que o planejamento descreve.

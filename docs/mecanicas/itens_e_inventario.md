@@ -8,7 +8,7 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 
 | Tecla | O que faz |
 |---|---|
-| `E` | Interage com o que está mais perto: pega um item do chão, troca a pilha da lanterna |
+| `E` | Interage com o que está mais perto: pega um item do chão, troca a pilha da lanterna. Com o inventário aberto, **examina** o item escolhido (e `E` de novo ou `Esc` volta para a grade) |
 | `Tab` ou `I` | Abre e fecha o inventário na aba **Itens** (o jogo pausa enquanto ele está aberto) |
 | `N` | Abre o inventário direto na aba **Anotações** |
 | `Q` | Com o inventário aberto, troca entre as abas **Itens** e **Anotações** (também dá para clicar na aba) |
@@ -17,6 +17,8 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 - **Inventário:** uma grade de **3 linhas × 4 colunas**. Todo item pego entra no primeiro espaço livre.
 - **Cabeçalho com abas:** no alto da janela ficam **ITENS** e **ANOTAÇÕES**. A aba aberta fica clara e sublinhada. Quando há anotação não lida, a aba mostra um ponto (`ANOTAÇÕES •`). A aba Anotações está explicada em [`registros_e_caderno.md`](registros_e_caderno.md).
 - **Destaque no cenário:** todo item que dá para pegar (itens no chão e pilhas) tem uma **luz fraca que pulsa** em volta e, de tempos em tempos, um **brilho de pixel** que pisca em cima do desenho, visível até no escuro. Assim o jogador sabe o que é coletável sem precisar de seta ou contorno.
+- **Examinar:** com o inventário aberto, `E` mostra o item escolhido em tamanho grande, à esquerda, com o nome e a descrição à direita, como o "examinar" de *Resident Evil*. A imagem é a `imagem_detalhe` do item, em resolução dobrada (mostrada com escala 0,5). Item que ainda não tem essa imagem mostra o ícone ampliado.
+- **Ícones em resolução dobrada:** o espaço da grade mostra o ícone sempre em 16 × 16 na tela. Um ícone de 32 × 32 aparece no mesmo tamanho, com o dobro de detalhe (como os personagens). Os ícones desenhados por código continuam em 16 × 16.
 - **Gadgets:** **3 espaços**, um para cada ferramenta equipável prevista em [`docs/historia/personagens/gabriel.md`](../historia/personagens/gabriel.md): lanterna, cápsulas de clarão e objetos de arremesso. Equipar não tira o item da grade; o espaço de gadget é um atalho para ele.
 - **Aviso de `E`:** perto de um item ou de uma pilha, aparece só a tecla `[E]` em cima dele, sem texto. O nome do item aparece depois de pegar ("Você pegou: ...") e a descrição fica no inventário. Documentos continuam com o verbo (`[E] Ler o bilhete`), porque ler é uma ação diferente de pegar. Quem decide o texto é o `texto_acao` do `Interagivel`: vazio mostra só a tecla.
 - Ao pegar um gadget com um espaço livre, ele já é equipado.
@@ -79,7 +81,9 @@ grade = [ [pote, null, null, null],     linha 0
 | HUD (espaços de gadget, aviso "[E]", mensagem) | `cenas/interface/hud.tscn` |
 | Tela do inventário (abas Itens e Anotações) | `cenas/interface/tela_inventario.tscn` |
 | Aba Anotações | `cenas/interface/painel_anotacoes.tscn` |
+| Tela de examinar | `cenas/interface/painel_exame.tscn` |
 | Ícones e peças da interface (gerados por script) | `assets/modelagem/interface/gerar_interface.py` |
+| Ícone e imagem de examinar dos itens com arte de referência (notebook) | `assets/modelagem/itens/pixelar_itens.py`, referências em `assets/modelagem/itens/referencias/` |
 
 O HUD e a tela do inventário já estão no `modelo_sala.tscn`: toda sala nova herda os dois.
 
@@ -88,7 +92,8 @@ O HUD e a tela do inventário já estão no `modelo_sala.tscn`: toda sala nova h
 ## 4. Como criar um item novo
 
 1. **Desenho:** escreva a função do ícone (16 × 16) e, se quiser, a do item no chão em `gerar_interface.py`, adicione no dicionário `ICONES` e rode `python assets/modelagem/interface/gerar_interface.py`. Abra o Godot para gerar os `.import`.
-2. **Dados:** no Godot, botão direito em `dados/itens/` → *Novo* → *Recurso...* → `Item`. Preencha `id`, `nome`, `descricao`, `icone` e `sprite_chao`.
+   **Com uma arte de referência** (como o notebook): ponha a imagem em `assets/modelagem/itens/referencias/`, marque o polígono da silhueta e acrescente o item em `ITENS` no `pixelar_itens.py` (o cabeçalho explica). Ele gera o ícone de 32 × 32 e a imagem de examinar. O item no chão continua no `gerar_interface.py`; tire o ícone de lá para um não sobrescrever o outro.
+2. **Dados:** no Godot, botão direito em `dados/itens/` → *Novo* → *Recurso...* → `Item`. Preencha `id`, `nome`, `descricao`, `icone`, `sprite_chao` e, se tiver, `imagem_detalhe`.
 3. **Se for gadget:** marque `equipavel` e crie a cena do efeito (como `cenas/itens/lanterna.tscn`), com um script que tenha a função `usar()`. Coloque essa cena em `cena_gadget`. Guarde o que precisa sobreviver à troca de sala em `Inventario.estado_de(id)`, não no script.
 4. **No mapa:** arraste `cenas/itens/item_no_chao.tscn` para o nó `Objetos` da sala (a origem é o pé) e escolha o item no Inspetor. O destaque já vem junto e se ajusta ao tamanho do desenho.
 
