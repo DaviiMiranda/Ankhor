@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-08 — Cutscene de prólogo e organização de cutscenes
+**Decisão:** criado o documento de roteiro e storyboard para a cutscene inicial de prólogo (`docs/historia/roteiro/cutscenes/seg_prologo.md`), composta por 9 ilustrações sequenciais em pixel art retratando o dia a dia de Gabriel em 2026 (acordando, o anel da avó, trajeto até a Unifor, aula de cálculo com o caderno de equações e o adormecer na cabine da Biblioteca de madrugada, antes do pulso temporal). A pasta de cutscenes foi organizada com uma ficha detalhada por cena e especificações técnicas de produção.
+**Por quê:** dar contexto narrativo ao jogador antes do despertar nas ruínas e estabelecer o contraste dramático entre a normalidade de 2026 e o colapso de 3026.
+**Afeta:** `docs/historia/roteiro/cutscenes/seg_prologo.md` (novo), `docs/historia/roteiro/cutscenes/README.md`, `docs/historia/enredo_principal.md` (Ato 1).
+
 ## 2026-10-08 — Resumo dos personagens
 **Decisão:** a pasta `docs/historia/personagens/` ganha o `resumo.md`, com todos os personagens numa página (quem é, época, frase de essência, cor, esconderijo, parte para consertar a Âncora, relações e principais pendências). É a exceção à regra de "só as fichas" nessa pasta (entrada de 2026-10-07). O resumo não é lei: se ele e uma ficha discordarem, vale a ficha.
 **Por quê:** pedido do Davi.

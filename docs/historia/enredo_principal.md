@@ -161,7 +161,9 @@ O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na T
 
 **Fase confirmada como primeira.** [`../fases/biblioteca.md`](../fases/biblioteca.md).
 
-- **Cutscene de abertura** (`seg_acordar`, aprovada): Gabriel acorda na cabine de estudo. Luz do sol por um teto que não existe mais, uma árvore no meio do salão, estantes caídas e vazias.
+- **Cutscenes de abertura:**
+  - **Prólogo ilustrado** (`seg_prologo`, aprovada): ilustrações sequenciais em pixel art retratando a rotina comum de Gabriel em 2026 (acordar, anel da avó, trajeto na Washington Soares, campus vivo da Unifor, aula de cálculo com o caderno de equações, até cair no sono de madrugada na cabine da Biblioteca antes da fenda se abrir).
+  - **O despertar** (`seg_acordar`, aprovada): Gabriel desperta na cabine de estudo, mil anos depois. Luz do sol por um teto que não existe mais, uma árvore no meio do salão, estantes caídas e vazias.
 - Gabriel acha a **lanterna** perto de onde acorda, e **pilhas** pelo salão. O **anel da avó** já está no inventário.
 - **Acampamento de Baltazar** entre as raízes da árvore. Ele não está lá.
 - **Terminal com o bilhete da Clarice**, que parece uma despedida.
