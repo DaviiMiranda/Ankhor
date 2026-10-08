@@ -200,4 +200,7 @@ def main():
     salvar_primeiro_quadro()
 
 
-main()
+# Só roda quando chamado direto; preparar_conquistas.py importa as funções
+# daqui (preencher_harmonico) sem gerar o vídeo de novo.
+if __name__ == "__main__":
+    main()

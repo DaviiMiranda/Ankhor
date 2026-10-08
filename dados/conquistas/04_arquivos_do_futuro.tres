@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Conquista" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/conquista.gd" id="1_conquista"]
+
+[resource]
+script = ExtResource("1_conquista")
+id = "arquivos_do_futuro"
+nome = "Arquivos do futuro"
+descricao = "Pegar o notebook."
+gatilho = 1
+alvo = "notebook"

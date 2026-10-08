@@ -17,6 +17,10 @@
 [ext_resource type="Resource" path="res://dados/fases/06_nami.tres" id="f_6"]
 [ext_resource type="Resource" path="res://dados/fases/07_reitoria.tres" id="f_7"]
 [ext_resource type="Resource" path="res://dados/fases/08_bunker.tres" id="f_8"]
+[ext_resource type="VideoStreamTheora" path="res://assets/video/menu/menu_transicao.ogv" id="13_ida"]
+[ext_resource type="VideoStreamTheora" path="res://assets/video/menu/menu_transicao_volta.ogv" id="14_volta"]
+[ext_resource type="PackedScene" path="res://cenas/interface/caderno_conquistas.tscn" id="15_caderno"]
+[ext_resource type="FontFile" path="res://assets/fontes/galmuri_7.ttf" id="16_galmuri"]
 
 [sub_resource type="Gradient" id="Gradient_luz"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -35,6 +39,11 @@ shader_parameter/forca_linhas = 0.18
 shader_parameter/forca_vinheta = 0.6
 shader_parameter/raio_cantos = 0.07
 shader_parameter/proporcao = 1.38
+
+[sub_resource type="FontVariation" id="FontVariation_menu"]
+base_font = ExtResource("16_galmuri")
+spacing_top = 2
+spacing_bottom = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_botao"]
 
@@ -124,6 +133,27 @@ autoplay = true
 expand = true
 loop = true
 
+[node name="Transicao" type="VideoStreamPlayer" parent="."]
+visible = false
+texture_filter = 2
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+stream = ExtResource("13_ida")
+expand = true
+
+[node name="TransicaoVolta" type="VideoStreamPlayer" parent="."]
+visible = false
+texture_filter = 2
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+stream = ExtResource("14_volta")
+expand = true
+
+[node name="CadernoConquistas" parent="." instance=ExtResource("15_caderno")]
+visible = false
+
 [node name="Monitor" type="Node2D" parent="."]
 
 [node name="Menu" type="VBoxContainer" parent="Monitor"]
@@ -149,22 +179,32 @@ vertical_alignment = 1
 
 [node name="BotaoNovoJogo" type="Button" parent="Monitor/Menu"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_menu")
 text = "Novo jogo"
 
 [node name="BotaoContinuar" type="Button" parent="Monitor/Menu"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_menu")
 text = "Continuar"
 
 [node name="BotaoFases" type="Button" parent="Monitor/Menu"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_menu")
 text = "Fases"
+
+[node name="BotaoConquistas" type="Button" parent="Monitor/Menu"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_menu")
+text = "Conquistas"
 
 [node name="BotaoOpcoes" type="Button" parent="Monitor/Menu"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_menu")
 text = "Opções"
 
 [node name="BotaoSair" type="Button" parent="Monitor/Menu"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_menu")
 text = "Sair"
 
 [node name="Fases" type="VBoxContainer" parent="Monitor"]

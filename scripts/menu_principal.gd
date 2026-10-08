@@ -12,9 +12,14 @@ const COR_TESTE := Color(1.0, 0.85, 0.2)
 @export var energia_luz: float = 0.9
 @export var oscilacao_luz: float = 0.15
 @export var espera_clique: float = 0.18
+@export var tempo_esmaecer: float = 0.35
 
 @onready var luz: PointLight2D = $Monitor/Luz
 @onready var video: VideoStreamPlayer = $Video
+@onready var transicao: VideoStreamPlayer = $Transicao
+@onready var transicao_volta: VideoStreamPlayer = $TransicaoVolta
+@onready var caderno: CadernoConquistas = $CadernoConquistas
+@onready var monitor: Node2D = $Monitor
 @onready var menu: VBoxContainer = $Monitor/Menu
 @onready var lista_fases: VBoxContainer = $Monitor/Fases
 @onready var rolagem_fases: ScrollContainer = $Monitor/Fases/Rolagem
@@ -22,6 +27,7 @@ const COR_TESTE := Color(1.0, 0.85, 0.2)
 @onready var botao_fases: Button = $Monitor/Menu/BotaoFases
 @onready var botao_novo_jogo: Button = $Monitor/Menu/BotaoNovoJogo
 @onready var botao_continuar: Button = $Monitor/Menu/BotaoContinuar
+@onready var botao_conquistas: Button = $Monitor/Menu/BotaoConquistas
 @onready var botao_opcoes: Button = $Monitor/Menu/BotaoOpcoes
 @onready var botao_sair: Button = $Monitor/Menu/BotaoSair
 @onready var musica: AudioStreamPlayer = $Musica
@@ -48,12 +54,14 @@ const COR_TESTE := Color(1.0, 0.85, 0.2)
 var _ruido := FastNoiseLite.new()
 var _tempo := 0.0
 var _tocar_ao_passar := false
+var _em_transicao := false
 
 
 func _ready() -> void:
 	botao_novo_jogo.pressed.connect(_ao_apertar_novo_jogo)
 	botao_fases.pressed.connect(_mostrar_fases.bind(true))
 	botao_continuar.pressed.connect(_ao_apertar_continuar)
+	botao_conquistas.pressed.connect(_abrir_conquistas)
 	botao_opcoes.pressed.connect(_ao_apertar_opcoes)
 	botao_sair.pressed.connect(_ao_apertar_sair)
 
@@ -82,6 +90,7 @@ func _ready() -> void:
 	_ligar_sons(botoes_fases)
 	_ligar_sons(botoes_opcoes)
 	_ligar_sons(botoes_controles)
+	_ligar_sons(caderno.grade)
 
 	Tela.modo_alterado.connect(func(_tc: bool) -> void: _atualizar_textos_opcoes())
 	Configuracoes.mudou.connect(_ao_mudar_configuracoes)
@@ -98,6 +107,9 @@ func _ready() -> void:
 		musica.stream.set("loop", true)
 
 	video.finished.connect(video.play)
+	transicao.finished.connect(_ao_terminar_ida)
+	transicao_volta.finished.connect(_ao_terminar_volta)
+	caderno.fechar_pedido.connect(_fechar_conquistas)
 
 
 func _process(delta: float) -> void:
@@ -106,9 +118,17 @@ func _process(delta: float) -> void:
 
 
 func _unhandled_input(evento: InputEvent) -> void:
+	if _em_transicao:
+		if _eh_pedido_de_pular(evento):
+			_pular_transicao()
+			get_viewport().set_input_as_handled()
+		return
 	if not evento.is_action_pressed("ui_cancel"):
 		return
-	if painel_controles.visible:
+	if caderno.visible:
+		_fechar_conquistas()
+		get_viewport().set_input_as_handled()
+	elif painel_controles.visible:
 		_mostrar_controles(false)
 		get_viewport().set_input_as_handled()
 	elif painel_opcoes.visible:
@@ -117,6 +137,87 @@ func _unhandled_input(evento: InputEvent) -> void:
 	elif lista_fases.visible:
 		_mostrar_fases(false)
 		get_viewport().set_input_as_handled()
+
+
+func _eh_pedido_de_pular(evento: InputEvent) -> bool:
+	if evento.is_action_pressed("ui_accept") or evento.is_action_pressed("ui_cancel"):
+		return true
+	return evento is InputEventMouseButton and evento.pressed and evento.button_index == MOUSE_BUTTON_LEFT
+
+
+func _abrir_conquistas() -> void:
+	_comecar_transicao()
+	transicao.modulate.a = 0.0
+	transicao.show()
+	transicao.play()
+	var animacao := create_tween().set_parallel()
+	animacao.tween_property(monitor, "modulate:a", 0.0, tempo_esmaecer)
+	animacao.tween_property(transicao, "modulate:a", 1.0, tempo_esmaecer)
+
+
+func _ao_terminar_ida() -> void:
+	if not _em_transicao:
+		return
+	caderno.show()
+	caderno.abrir()
+	transicao.stop()
+	transicao.hide()
+	monitor.hide()
+	video.hide()
+	video.paused = true
+	_terminar_transicao()
+
+
+func _fechar_conquistas() -> void:
+	if _em_transicao:
+		return
+	_comecar_transicao()
+	video.paused = false
+	video.show()
+	monitor.modulate.a = 0.0
+	monitor.show()
+	transicao_volta.modulate.a = 1.0
+	transicao_volta.show()
+	transicao_volta.play()
+	caderno.hide()
+
+
+func _ao_terminar_volta() -> void:
+	if not _em_transicao:
+		return
+	transicao_volta.paused = true
+	_terminar_transicao()
+	botao_conquistas.grab_focus()
+	var animacao := create_tween().set_parallel()
+	animacao.tween_property(transicao_volta, "modulate:a", 0.0, tempo_esmaecer)
+	animacao.tween_property(monitor, "modulate:a", 1.0, tempo_esmaecer)
+	animacao.chain().tween_callback(_esconder_volta)
+
+
+func _esconder_volta() -> void:
+	transicao_volta.hide()
+	transicao_volta.stop()
+	transicao_volta.paused = false
+
+
+func _pular_transicao() -> void:
+	if transicao.visible:
+		_ao_terminar_ida()
+	else:
+		_ao_terminar_volta()
+
+
+func _comecar_transicao() -> void:
+	_em_transicao = true
+	_tocar_ao_passar = false
+	get_viewport().gui_release_focus()
+	get_viewport().gui_disable_input = true
+
+
+func _terminar_transicao() -> void:
+	_em_transicao = false
+	get_viewport().gui_disable_input = false
+	set_deferred("_tocar_ao_passar", true)
 
 
 func _montar_lista_fases() -> void:
