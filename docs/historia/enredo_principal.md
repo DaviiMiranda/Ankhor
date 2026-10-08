@@ -273,6 +273,10 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 
 ### 12.3 Personagens
 
+- **Diminuir o grupo para 5 ou 6 puxados.** Pedido do Davi. **Ficam:** Gabriel, Clarice, Zane e Baltazar. Falta decidir quem sai entre **Diana**, **Rafael** e **Henrique** (o Carlos, antagonista, não entra na conta). Opções levantadas:
+  1. **Sai a Diana** (6 no grupo). A mais barata: ela não tem nada pronto no jogo. O mapa das passagens passa para o Rafael, e o Bloco de salas fica sem esconderijo de personagem.
+  2. **Saem a Diana e o Rafael** (5 no grupo), e **o Henrique vira a voz do rádio**: quem ajuda Gabriel desde a primeira fase é justamente quem mente para o grupo. Resolve a pendência de como a voz do rádio parece ver Gabriel (pelas câmeras ou robôs do Carlos). Custa reescrever as duas falas do rádio e abrir mão da arte do Rafael.
+  3. **Saem a Diana e o Henrique** (5 no grupo). A história perde "A virada" (seção 8) e o traidor ligado ao Carlos.
 - **Gabriel falhando na tela:** enquanto o Baltazar estiver fora de 1750, o sprite de Gabriel pisca ou se desfaz, como a foto em *De Volta para o Futuro*. Seria um shader (bom para a apresentação de Computação Gráfica).
 - **Henrique:** como ele aparece no jogo.
 - **Zane:** o que fazia no ponto quando foi puxado, e em que fase do jogo ele chega (e se o jogador vê o pulso acontecer).
