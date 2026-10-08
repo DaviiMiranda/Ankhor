@@ -10,6 +10,7 @@
 #   frente.png       o Gabriel de frente, em alta resolução
 #   vistas.webp      de lado (para a direita), de frente e de lado (para a esquerda)
 #   expressoes.webp  cinco rostos: normal, bravo, preocupado, surpreso e envergonhado
+#   andar_diagonal.webp  um passo de 3/4 de frente e um de 3/4 de costas (duas vezes cada)
 #
 # Saída (assets/sprites/personagens/gabriel/), nos mesmos nomes e tamanhos
 # que o gerar_gabriel.py usava, para a cena do Godot não mudar:
@@ -25,9 +26,9 @@
 # da imagem, sem grade exata, com cores misturadas nas bordas). Para virar
 # sprite precisa: (1) recortar do fundo, (2) reduzir para a altura do
 # jogo, (3) fechar a paleta (poucas cores, iguais em todos os sprites, como
-# em pixel art feita à mão) e (4) refazer o contorno de 1 pixel. As vistas
-# que não existem na referência (costas e 3/4) e as animações saem das
-# vistas que existem, pelos métodos explicados em cada função.
+# em pixel art feita à mão) e (4) refazer o contorno de 1 pixel. As costas
+# (que não existem na referência) e as animações saem das vistas que
+# existem, pelos métodos explicados em cada função.
 
 import os
 
@@ -362,6 +363,34 @@ def contorno_final(spr, paleta, tabela):
     return out
 
 
+def limpar_migalhas(spr, minimo=8):
+    # Tira os pedacinhos soltos (menos de "minimo" pixels ligados entre si)
+    # que sobram quando uma peça gira e deixa para trás um canto do desenho
+    # antigo. Cada grupo de pixels vizinhos (em cima, embaixo e dos lados) é
+    # achado por uma busca em largura a partir de um pixel ainda não visto.
+    cheio = spr >= 0
+    visto = np.zeros_like(cheio)
+    out = spr.copy()
+    h, w = spr.shape
+    for y0, x0 in zip(*np.where(cheio)):
+        if visto[y0, x0]:
+            continue
+        grupo = [(y0, x0)]
+        visto[y0, x0] = True
+        i = 0
+        while i < len(grupo):
+            y, x = grupo[i]
+            i += 1
+            for yy, xx in ((y + 1, x), (y - 1, x), (y, x + 1), (y, x - 1)):
+                if 0 <= yy < h and 0 <= xx < w and cheio[yy, xx] and not visto[yy, xx]:
+                    visto[yy, xx] = True
+                    grupo.append((yy, xx))
+        if len(grupo) < minimo:
+            for y, x in grupo:
+                out[y, x] = -1
+    return out
+
+
 def separar_contorno(spr, sobre, tabela, paleta):
     # Linha escura onde uma camada da frente encosta numa camada de trás
     # (a perna da frente sobre a de trás): sem ela, as duas viram um borrão.
@@ -457,7 +486,7 @@ def remapear_linhas(spr, pontos, x0=0, x1=None):
 # ---------------------------------------------------------------------------
 # 6. Vista de frente em camadas, e as costas
 # ---------------------------------------------------------------------------
-# Linhas do corpo no quadro (iguais na frente, nas costas e no 3/4):
+# Linhas do corpo no quadro (iguais na frente e nas costas):
 LINHA_QUEIXO = 28     # até aqui é cabeça
 LINHA_BAINHA = 63     # última linha do moletom
 LINHA_VIRILHA = 73    # daqui para baixo as pernas são separadas
@@ -476,21 +505,34 @@ def camadas_frente(F, paleta):
     pernas = so(F, perna)
     # O pedaço de calça que a mão tapava: preenchido, para quando a mão sair.
     atras_mao = (mao_e >= 0) | (mao_d >= 0)
-    contorno_calca = atras_mao & (xs > CENTRO_X - 10) & (xs < CENTRO_X + 11)
+    # Só dentro da largura da calça em cada linha (a mão também passa de
+    # fora dela, e ali tem de ficar vazio).
+    dentro_calca = np.zeros_like(atras_mao)
+    for y in range(QUADRO[1]):
+        cols = np.where(perna[y])[0]
+        if len(cols):
+            dentro_calca[y, cols.min():cols.max() + 1] = True
+    contorno_calca = atras_mao & dentro_calca
     pernas = preencher(np.where(contorno_calca, 0, pernas), contorno_calca, paleta) \
         if contorno_calca.any() else pernas
     corpo = so(F, ~perna & ~atras_mao)
+    # Os braços são as faixas dos lados do moletom, do ombro para baixo,
+    # cada um junto com a sua mão.
+    zona_braco = (ys >= LINHA_QUEIXO + 4) & (ys <= LINHA_BAINHA + 1)
+    braco_e = so(corpo, zona_braco & (xs <= CENTRO_X - 9))
+    braco_d = so(corpo, zona_braco & (xs >= CENTRO_X + 10))
+    corpo = so(corpo, (braco_e < 0) & (braco_d < 0))
     return {
         "corpo": corpo,
         "perna_e": so(pernas, xs <= CENTRO_X),
         "perna_d": so(pernas, xs > CENTRO_X),
-        "mao_e": mao_e,
-        "mao_d": mao_d,
+        "braco_e": compor(braco_e, mao_e),
+        "braco_d": compor(braco_d, mao_d),
     }
 
 
-def montar_frente(c):
-    return compor(c["perna_e"], c["perna_d"], c["corpo"], c["mao_e"], c["mao_d"])
+def montar(c):
+    return compor(c["perna_e"], c["perna_d"], c["corpo"], c["braco_e"], c["braco_d"])
 
 
 def capuz_das_costas(paleta):
@@ -603,160 +645,7 @@ def criar_costas(F, paleta):
 
 
 # ---------------------------------------------------------------------------
-# 7. Vistas de 3/4 (giro de cilindro)
-# ---------------------------------------------------------------------------
-# A referência só tem frente e lado. Para o 3/4, cada linha do corpo vira a
-# fatia de um cilindro de seção elíptica: a meia-largura a vem da frente e a
-# meia-profundidade b vem do lado. Um ponto da fatia, no ângulo t (t = 0 é
-# o meio da frente, t = -90° é o lado direito dele), fica em
-#     X = a·sen t   (para o lado da tela)      Z = b·cos t   (para a câmera)
-# Girando o corpo de θ (35° no 3/4), o ponto vai para
-#     X' = X·cos θ + Z·sen θ = R·sen(t + α),   R = √((a cos θ)² + (b sen θ)²),
-#                                              α = atan2(b sen θ, a cos θ)
-# Então, para cada coluna X' da saída, t = asen(X'/R) − α, e a cor vem:
-#   da frente, na coluna a·sen t, se o ponto está na metade da frente;
-#   do lado,   na coluna b·cos t, se está no lado direito dele (t < −90°).
-# Para as costas (θ = 145°) é igual, com a textura das costas no lugar da
-# frente (lá a coluna é −a·sen t, porque a imagem das costas é espelhada).
-# Pernas e mãos não são cilindros: são camadas que só mudam de lugar (o
-# centro de cada uma passa pela mesma conta, na linha do quadril).
-
-def extensao(spr):
-    h = spr.shape[0]
-    meia, centro, ok = np.zeros(h), np.zeros(h), np.zeros(h, bool)
-    for y in range(h):
-        xs = np.where(spr[y] >= 0)[0]
-        if len(xs):
-            meia[y] = (xs.max() - xs.min() + 1) / 2
-            centro[y] = (xs.max() + xs.min() + 1) / 2
-            ok[y] = True
-    return meia, centro, ok
-
-
-def suavizar(v, ok, raio=2):
-    out = v.copy()
-    for y in range(len(v)):
-        if ok[y]:
-            viz = [k for k in range(y - raio, y + raio + 1) if 0 <= k < len(v) and ok[k]]
-            out[y] = np.mean(v[viz])
-    return out
-
-
-class Cilindro:
-    def __init__(self, textura, lado, graus, de_costas):
-        self.th = np.radians(graus)
-        self.de_costas = de_costas
-        self.a, self.cf, self.okf = extensao(textura)
-        self.b, self.cs, self.oks = extensao(lado)
-        self.a = suavizar(self.a, self.okf)
-        self.b = suavizar(self.b, self.oks)
-        self.ref_f = CENTRO_X + 0.5
-        self.ref_s = np.median(self.cs[LINHA_JOELHO:LINHA_TORNOZELO])
-        # Sinal da coluna da textura: na frente X = a·sen t; nas costas a
-        # imagem está espelhada, X = −a·sen t.
-        self.sinal = -1 if de_costas else 1
-
-    def linha(self, y):
-        A = self.a[y] if self.okf[y] else self.b[y]
-        B = self.b[y] if self.oks[y] else self.a[y]
-        Cf = self.cf[y] if self.okf[y] else self.ref_f
-        Cs = self.cs[y] if self.oks[y] else self.ref_s
-        R = np.hypot(A * np.cos(self.th), B * np.sin(self.th))
-        al = np.arctan2(B * np.sin(self.th), A * np.cos(self.th))
-        centro = CENTRO_X + 0.5 + (Cf - self.ref_f) * self.sinal * np.cos(self.th) \
-            + (Cs - self.ref_s) * np.sin(self.th)
-        return A, B, Cf, Cs, R, al, centro
-
-    def x_saida(self, y, x_textura):
-        A, B, Cf, Cs, R, al, centro = self.linha(y)
-        s = np.clip(self.sinal * (x_textura + 0.5 - Cf) / max(A, 1), -1, 1)
-        t = np.arcsin(s)
-        return centro + R * np.sin(t + al), -A * np.sin(t) * np.sin(self.th) + B * np.cos(t) * np.cos(self.th)
-
-    def girar_linhas(self, textura, lado, y0, y1):
-        out = vazio()
-        for y in range(y0, y1):
-            if not (self.okf[y] or self.oks[y]):
-                continue
-            A, B, Cf, Cs, R, al, centro = self.linha(y)
-            for x in range(QUADRO[0]):
-                u = (x + 0.5 - centro) / max(R, 1e-3)
-                if abs(u) >= 1:
-                    continue
-                t = np.arcsin(u) - al
-                if self.de_costas:
-                    usa_textura = np.cos(t) < 0 or not self.oks[y]
-                else:
-                    usa_textura = t > -np.pi / 2 or not self.oks[y]
-                if usa_textura and self.okf[y]:
-                    xi = int(np.floor(Cf + self.sinal * (A - 1.2) * np.sin(t)))
-                    fonte = textura
-                elif self.oks[y]:
-                    xi = int(np.floor(Cs + (B - 1.2) * np.cos(t)))
-                    fonte = lado
-                else:
-                    continue
-                if 0 <= xi < QUADRO[0]:
-                    out[y, x] = fonte[y, xi]
-        # A amostra fica 1 pixel para dentro (sem o contorno da textura,
-        # que viraria uma linha suja no meio do corpo); o contorno é
-        # refeito depois, na borda nova.
-        return out
-
-
-def virar_cabeca(spr, desloc):
-    # A cabeça não passa pelo cilindro (no perfil, a profundidade dela
-    # inclui o nariz e o cabelo de trás, e o rosto sairia espremido). Ela
-    # mantém a silhueta da frente, e só o miolo anda: o meio do rosto vai
-    # desloc pixels para o lado em que ele olha, o lado de lá encolhe e o
-    # de cá estica (aparece mais orelha e cabelo). É o que o olho lê como
-    # "virou a cabeça".
-    out = vazio()
-    c = CENTRO_X + 0.5
-    for y in range(LINHA_QUEIXO + 1):
-        xs = np.where(spr[y] >= 0)[0]
-        if not len(xs):
-            continue
-        esq, dir_ = xs.min(), xs.max() + 1.0
-        meio = c + desloc
-        for x in range(xs.min(), xs.max() + 1):
-            xc = x + 0.5
-            if xc < meio:
-                src = esq + (xc - esq) * (c - esq) / (meio - esq)
-            else:
-                src = c + (xc - meio) * (dir_ - c) / (dir_ - meio)
-            out[y, x] = spr[y, min(max(int(np.floor(src)), xs.min()), xs.max())]
-    return out
-
-
-def vista_girada(camadas, lado, graus, de_costas):
-    textura = camadas["corpo"]
-    cil = Cilindro(textura, lado, graus, de_costas)
-    corpo = cil.girar_linhas(textura, lado, LINHA_QUEIXO + 1, LINHA_BAINHA + 1)
-    cabeca = virar_cabeca(textura, -2 if de_costas else 2)
-    corpo = compor(corpo, mover(cabeca, 1, 0))
-    novas = {"corpo": corpo}
-    profundidade = {}
-    for nome in ("perna_e", "perna_d", "mao_e", "mao_d"):
-        spr = camadas[nome]
-        ys, xs = np.where(spr >= 0)
-        y_ref = LINHA_BAINHA - 2
-        x_novo, z = cil.x_saida(y_ref, xs.mean())
-        novas[nome] = mover(spr, int(round(x_novo - 0.5 - xs.mean())), 0)
-        profundidade[nome] = z
-    novas["ordem_pernas"] = sorted(("perna_e", "perna_d"), key=lambda n: profundidade[n])
-    novas["ordem_maos"] = sorted(("mao_e", "mao_d"), key=lambda n: profundidade[n])
-    return novas
-
-
-def montar(c):
-    ordem_p = c.get("ordem_pernas", ("perna_e", "perna_d"))
-    ordem_m = c.get("ordem_maos", ("mao_e", "mao_d"))
-    return compor(c[ordem_p[0]], c[ordem_p[1]], c["corpo"], c[ordem_m[0]], c[ordem_m[1]])
-
-
-# ---------------------------------------------------------------------------
-# 8. Vista de lado em camadas (boneco recortado)
+# 7. Vista de lado em camadas (boneco recortado)
 # ---------------------------------------------------------------------------
 # Para andar de lado, o sprite parado é recortado em peças que giram nas
 # juntas, como um boneco de papel com tachinhas: o braço gira no ombro, a
@@ -825,6 +714,201 @@ def pecas_da_perna(pernas):
 
 
 # ---------------------------------------------------------------------------
+# 8. Vistas de 3/4 (boneco recortado a partir da pose de passo)
+# ---------------------------------------------------------------------------
+# A referência andar_diagonal.webp tem o Gabriel dando um passo de 3/4 de
+# frente e de 3/4 de costas. Cada pose vira um boneco como o de lado: o
+# corpo, os dois braços (giram no ombro) e as duas pernas (coxa, canela e
+# pé). Como a pose já vem com os membros num ângulo, cada peça gira a
+# diferença entre o ângulo que a fase pede e o ângulo que ela tem no
+# desenho (medido do ombro até a mão, do quadril até o joelho, do joelho
+# até o tornozelo). Com todos os ângulos em zero, sai o 3/4 parado.
+#
+# "perto" é o lado do corpo virado para a câmera (desenhado na frente do
+# corpo); "longe", o outro (desenhado atrás). Na referência o braço que
+# vai à frente é o do mesmo lado da perna que vai à frente; no boneco cada
+# braço balança ao contrário da perna do seu lado, como numa caminhada.
+
+COXA_3Q, JOELHO_3Q, BRACO_3Q = 14.0, 40.0, 12.0
+ESCALA_POSE = 55 / 306   # do alto do cabelo à bainha: 306 px na referência, 55 no sprite
+
+POSES_3Q = {
+    "tres_quartos": {
+        "caixa": (30, 0, 256, 572),
+        "pe_modelo": "longe",
+        "cabelo": [(35, 7), (58, 7), (58, 14), (44, 15), (43, 22), (34, 22)],
+        "braco_perto": [(28, 36), (38, 33), (38, 46), (37, 58), (35, 64), (38, 74), (27, 74),
+                        (27, 50)],
+        "braco_longe": [(53, 34), (58, 36), (62, 50), (64, 57), (71, 58), (71, 71), (59, 71),
+                        (57, 62), (54, 50)],
+        "ombro_perto": (34.5, 37.0), "ombro_longe": (56.0, 38.0),
+        "perto": {"quadril": (42.0, 70.0), "joelho": (39.0, 86.0), "tornozelo": (37.0, 94.0),
+                  "ponta": (31.0, 98.0)},
+        "longe": {"quadril": (49.0, 70.0), "joelho": (51.0, 87.0), "tornozelo": (52.0, 99.0),
+                  "ponta": (62.0, 104.0)},
+    },
+    "tres_quartos_costas": {
+        "caixa": (540, 0, 775, 572),
+        "pe_modelo": "perto",
+        "cabelo": None,
+        "braco_longe": [(28, 36), (37, 34), (38, 46), (37, 58), (35, 64), (38, 72), (27, 72),
+                        (27, 50)],
+        "braco_perto": [(53, 33), (58, 35), (61, 48), (63, 60), (67, 61), (67, 72), (55, 72),
+                        (56, 62), (53, 48)],
+        "ombro_longe": (34.5, 37.0), "ombro_perto": (56.0, 37.0),
+        "perto": {"quadril": (50.0, 70.0), "joelho": (52.0, 84.0), "tornozelo": (54.0, 96.0),
+                  "ponta": (65.0, 99.0)},
+        "longe": {"quadril": (43.0, 70.0), "joelho": (41.0, 83.0), "tornozelo": (36.0, 96.0),
+                  "ponta": (29.0, 104.0)},
+    },
+}
+
+
+def angulo(de, ate):
+    # Graus a partir da vertical; positivo = a ponta vai para a direita
+    # (para a frente, nos dois 3/4).
+    return float(np.degrees(np.arctan2(ate[0] - de[0], ate[1] - de[1])))
+
+
+def pose_de_referencia(caixa, paleta):
+    rgb = abrir_rgb("andar_diagonal.webp", caixa)
+    rgb, m = aparar(rgb, mascara_figura(rgb))
+    cor, mm = reduzir(rgb, m, round(m.shape[1] * ESCALA_POSE), round(m.shape[0] * ESCALA_POSE))
+    return no_quadro(contornar(indexar(cor, mm, paleta), paleta))
+
+
+def pintar_cabelo(spr, poligono, paleta):
+    # Na pose de 3/4 de frente o cabelo saiu loiro (a referência variou).
+    # Os pixels da área do cabelo voltam para os quatro castanhos do
+    # Gabriel pela claridade: o quarto mais escuro vira o castanho mais
+    # escuro, e assim por diante. O contorno (bem escuro) fica como está.
+    if poligono is None:
+        return spr
+    rampa = np.array([perto(paleta, c) for c in
+                      ((54, 27, 39), (77, 40, 42), (101, 54, 44), (131, 74, 53))])
+    lum = luminancia(paleta)
+    area = mascara_poligono(poligono) & (spr >= 0)
+    area &= lum[np.maximum(spr, 0)] > 45
+    if not area.any():
+        return spr
+    valores = lum[spr[area]]
+    cortes = np.quantile(valores, [0.25, 0.55, 0.85])
+    out = spr.copy()
+    out[area] = rampa[np.searchsorted(cortes, valores)]
+    return out
+
+
+def distancia_esqueleto(junta):
+    # Distância de cada pixel do quadro até a linha quadril-joelho-
+    # tornozelo-ponta do pé (a menor distância até um dos três segmentos).
+    ys, xs = np.mgrid[0:QUADRO[1], 0:QUADRO[0]]
+    px, py = xs + 0.5, ys + 0.5
+    pontos = [junta[k] for k in ("quadril", "joelho", "tornozelo", "ponta")]
+    melhor = np.full(px.shape, np.inf)
+    for (ax, ay), (bx, by) in zip(pontos, pontos[1:]):
+        vx, vy = bx - ax, by - ay
+        t = np.clip(((px - ax) * vx + (py - ay) * vy) / (vx * vx + vy * vy), 0, 1)
+        melhor = np.minimum(melhor, np.hypot(px - ax - t * vx, py - ay - t * vy))
+    return melhor
+
+
+class Boneco3q:
+    def __init__(self, cfg, paleta):
+        P = pintar_cabelo(pose_de_referencia(cfg["caixa"], paleta), cfg["cabelo"], paleta)
+        ys, _ = np.mgrid[0:QUADRO[1], 0:QUADRO[0]]
+        azul = eh_azul(paleta, P)
+        cor = paleta[np.maximum(P, 0)].astype(int)
+        pele = (P >= 0) & (cor[..., 0] > 140) & (cor[..., 1] > 80) & (cor[..., 0] > cor[..., 2] + 30)
+        pad = np.pad(pele, 1)
+        perto_pele = pele.copy()
+        for dy in (0, 1, 2):
+            for dx in (0, 1, 2):
+                perto_pele |= pad[dy:dy + pele.shape[0], dx:dx + pele.shape[1]]
+        self.bracos = {}
+        ocupado = np.zeros(P.shape, bool)
+        for lado in ("perto", "longe"):
+            m = mascara_poligono(cfg["braco_" + lado]) & (P >= 0) & ~azul &                 ((ys <= LINHA_BAINHA) | perto_pele)
+            self.bracos[lado] = so(P, m)
+            ocupado |= m
+        # Cada pixel da calça e do tênis vai para a perna cujo esqueleto
+        # (quadril, joelho, tornozelo, ponta do pé) passa mais perto dele.
+        # O que fica longe das duas (a borda de baixo do moletom) é corpo.
+        candidato = (P >= 0) & ~ocupado & ((ys > LINHA_BAINHA) | ((ys >= LINHA_BAINHA - 2) & azul))
+        dist = {lado: distancia_esqueleto(cfg[lado]) for lado in ("perto", "longe")}
+        mais_perto = dist["perto"] <= dist["longe"]
+        alcance = np.minimum(dist["perto"], dist["longe"]) <= 7.5
+        pernas = candidato & alcance
+        self.pernas = {"perto": so(P, pernas & mais_perto), "longe": so(P, pernas & ~mais_perto)}
+        # O assento da calça, logo abaixo da bainha, fica parado atrás das
+        # pernas: quando elas se cruzam, não abre buraco entre as coxas.
+        self.assento = so(P, pernas & (ys <= LINHA_BAINHA + 6))
+        # A calça continua por baixo da bainha: quando a coxa gira, não
+        # abre fresta entre o moletom e a perna.
+        for lado, perna in self.pernas.items():
+            linhas = np.where((perna >= 0).any(axis=1))[0]
+            topo = linhas.min() + 2
+            for y in range(LINHA_BAINHA - 8, topo):
+                perna[y] = np.where(perna[y] >= 0, perna[y], perna[topo])
+        # Restos da mão e do punho que não entraram no braço ficariam
+        # boiando quando o braço balança: o corpo acaba na bainha e não
+        # guarda nada da área dos braços.
+        area_bracos = mascara_poligono(cfg["braco_perto"]) | mascara_poligono(cfg["braco_longe"])
+        self.corpo = so(P, ~ocupado & ~pernas & ~area_bracos & (ys <= LINHA_BAINHA + 1))
+        self.ombro = {lado: cfg["ombro_" + lado] for lado in ("perto", "longe")}
+        self.juntas = {lado: cfg[lado] for lado in ("perto", "longe")}
+        # Na referência, o tênis do pé de trás aponta para trás. Os dois
+        # pés usam o tênis do outro, que aponta para onde ele anda.
+        self.pe_modelo = cfg["pe_modelo"]
+        self.calca = azul
+        self.ang_braco = {}
+        for lado, b in self.bracos.items():
+            yb, xb = np.where(b >= 0)
+            mao = yb >= yb.max() - 6
+            self.ang_braco[lado] = angulo(self.ombro[lado], (xb[mao].mean(), yb[mao].mean()))
+
+    def perna(self, lado, coxa, canela):
+        j = self.juntas[lado]
+        spr = self.pernas[lado]
+        ys = np.arange(QUADRO[1])[:, None]
+        q, k, t = j["quadril"], j["joelho"], j["tornozelo"]
+        coxa_spr = np.where(ys <= k[1] + 1, spr, -1)
+        faixa = (ys >= k[1] - 1) & (ys <= t[1])
+        if lado != self.pe_modelo:
+            # O começo do tênis antigo fica de fora: na canela, só calça.
+            faixa = faixa & (self.calca | (ys < t[1] - 5))
+        canela_spr = np.where(faixa, spr, -1)
+        modelo = self.juntas[self.pe_modelo]["tornozelo"]
+        pe_spr = np.where(ys >= modelo[1], self.pernas[self.pe_modelo], -1)
+        d1 = coxa - angulo(q, k)
+        d2 = canela - angulo(k, t)
+        k2 = ponto_girado(k, d1, q, q)
+        t2 = ponto_girado(t, d2, k, k2)
+        return compor(girar(coxa_spr, d1, q),
+                      girar(canela_spr, d2, k, k2),
+                      mover(pe_spr, int(round(t2[0] - modelo[0])), int(round(t2[1] - modelo[1]))))
+
+    def quadro(self, fase, paleta, sombra, contorno, andando=True):
+        partes = {}
+        for lado, desloc in (("perto", 0), ("longe", 180)):
+            p_ = np.radians(fase + desloc)
+            if andando:
+                coxa = COXA_3Q * np.sin(p_)
+                canela = coxa - JOELHO_3Q * max(0.0, np.cos(p_)) ** 1.5
+                braco = -BRACO_3Q * np.sin(p_)
+            else:
+                coxa = canela = braco = 0.0
+            partes["perna_" + lado] = self.perna(lado, coxa, canela)
+            partes["braco_" + lado] = girar(self.bracos[lado], braco - self.ang_braco[lado],
+                                            self.ombro[lado])
+        longe = compor(partes["braco_longe"], escurecer(partes["perna_longe"], sombra))
+        perna_perto = separar_contorno(partes["perna_perto"], longe, contorno, paleta)
+        meio = compor(self.assento, longe, perna_perto, self.corpo)
+        braco_perto = separar_contorno(partes["braco_perto"], meio, contorno, paleta)
+        quadro = limpar_migalhas(compor(meio, braco_perto))
+        return contorno_final(assentar(quadro), paleta, contorno)
+
+
+# ---------------------------------------------------------------------------
 # 9. Animações
 # ---------------------------------------------------------------------------
 # Caminhada: um ciclo são DOIS passos, e a fase φ vai de 0 a 360 graus
@@ -842,6 +926,8 @@ COXA, JOELHO, BRACO = 22.0, 55.0, 16.0
 LEVANTA_PE = 5      # quanto o pé sobe na vista de frente, em pixels
 DESCE_CORPO = 2     # quanto o corpo desce com as pernas abertas
 BALANCO = 1         # quanto o corpo balança para os lados, de frente
+SOBE_MAO_FRENTE = 6  # quanto a mão sobe com o braço à frente, vista de frente
+SOBE_MAO_TRAS = 3
 
 
 def assentar(spr):
@@ -875,32 +961,19 @@ def quadro_andar_lado(c, pecas, fase, paleta, escura, contorno):
     perto_ = separar_contorno(perto_, fundo, contorno, paleta)
     meio = compor(fundo, perto_, c["corpo"])
     braco_perto = separar_contorno(braco_perto, meio, contorno, paleta)
-    quadro = compor(meio, braco_perto)
+    quadro = limpar_migalhas(compor(meio, braco_perto))
     return contorno_final(assentar(quadro), paleta, contorno)
 
 
-def inclinar(perna, desloc):
-    # A perna anda para o lado a partir da virilha: nada no quadril (que
-    # fica preso ao corpo), o deslocamento inteiro do joelho para baixo.
-    out = vazio()
-    for y in range(QUADRO[1]):
-        k = np.clip((y - (LINHA_VIRILHA - 6)) / (LINHA_JOELHO - LINHA_VIRILHA + 6), 0, 1)
-        dx = int(round(desloc * k))
-        linha = perna[y]
-        if dx > 0:
-            out[y, dx:] = linha[:-dx]
-        elif dx < 0:
-            out[y, :dx] = linha[-dx:]
-        else:
-            out[y] = linha
-    return out
-
-
-def quadro_andar_frente(c, fase, paleta, contorno, passo_lateral=0):
-    # De frente (e de costas, e de 3/4) a perna não gira: a que vem para a
-    # frente no ar encolhe (o pé sobe LEVANTA_PE pixels, dobrando o
-    # joelho), e o corpo desce e balança para o lado do pé que está no chão.
-    # No 3/4 a perna também anda passo_lateral pixels para o lado.
+def quadro_andar_frente(c, fase, paleta, contorno):
+    # De frente (e de costas) a perna não gira: a que vem para a frente no
+    # ar encolhe (o pé sobe LEVANTA_PE pixels, dobrando o joelho), e o corpo
+    # desce e balança para o lado do pé que está no chão. O braço balança
+    # para a frente e para trás, ao contrário da perna do mesmo lado; visto
+    # de frente, isso aparece como a mão subindo: SOBE_MAO_FRENTE pixels
+    # quando o braço vem para a frente (para a câmera, nas costas para
+    # longe), SOBE_MAO_TRAS quando vai para trás. O ombro fica no lugar e a
+    # manga encolhe entre o ombro e a mão.
     phi = np.radians(fase)
     desce = int(round(DESCE_CORPO * np.sin(phi) ** 2))
     balanca = int(round(BALANCO * np.sin(phi)))
@@ -908,16 +981,22 @@ def quadro_andar_frente(c, fase, paleta, contorno, passo_lateral=0):
     for nome, desloc in (("perna_e", 0), ("perna_d", 180)):
         p_ = np.radians(fase + desloc)
         sobe = int(round(LEVANTA_PE * max(0.0, np.cos(p_)) ** 1.5))
-        perna = remapear_linhas(c[nome], [
+        novas[nome] = remapear_linhas(c[nome], [
             (LINHA_BAINHA - 8, LINHA_BAINHA - 8 + desce),
             (LINHA_JOELHO - 4, LINHA_JOELHO - 4 + desce),
             (LINHA_TORNOZELO, LINHA_TORNOZELO - sobe),
             (QUADRO[1] - 1, QUADRO[1] - 1 - sobe)])
-        novas[nome] = inclinar(perna, passo_lateral * np.sin(p_))
-    for nome in ("corpo", "mao_e", "mao_d"):
-        novas[nome] = mover(c[nome], balanca, desce)
-    quadro = montar(novas)
-    return contorno_final(quadro, paleta, contorno)
+    for nome, sinal in (("braco_e", -1), ("braco_d", 1)):
+        balanco_braco = sinal * np.sin(phi)
+        sobe = int(round(SOBE_MAO_FRENTE * max(0.0, balanco_braco)
+                         + SOBE_MAO_TRAS * max(0.0, -balanco_braco)))
+        ombro = LINHA_QUEIXO + 4
+        fundo = LINHA_VIRILHA + 1
+        braco = remapear_linhas(c[nome], [(0, 0), (ombro, ombro), (fundo, fundo - sobe),
+                                          (QUADRO[1] - 1, QUADRO[1] - 1 - sobe)])
+        novas[nome] = mover(braco, balanca, desce)
+    novas["corpo"] = mover(c["corpo"], balanca, desce)
+    return contorno_final(montar(novas), paleta, contorno)
 
 
 # Parado: o peito sobe até 2 pixels ao puxar o ar e a cabeça vai junto,
@@ -999,25 +1078,25 @@ def main():
 
     c_frente = camadas_frente(F, paleta)
     c_costas = camadas_frente(B, paleta)
-    c_3q = vista_girada(c_frente, L, 35, False)
-    c_3qc = vista_girada(c_costas, L, 145, True)
+    boneco_3q = Boneco3q(POSES_3Q["tres_quartos"], paleta)
+    boneco_3qc = Boneco3q(POSES_3Q["tres_quartos_costas"], paleta)
     c_lado = camadas_lado(L, paleta)
     pecas = pecas_da_perna(c_lado["pernas"])
 
     vistas = {
         "lado": L,
         "frente": F,
-        "tres_quartos": contorno_final(montar(c_3q), paleta, contorno),
+        "tres_quartos": boneco_3q.quadro(0, paleta, sombra, contorno, andando=False),
         "costas": contorno_final(B, paleta, contorno),
-        "tres_quartos_costas": contorno_final(montar(c_3qc), paleta, contorno),
+        "tres_quartos_costas": boneco_3qc.quadro(0, paleta, sombra, contorno, andando=False),
     }
     fases_andar = [360 * q / QUADROS_ANDAR for q in range(QUADROS_ANDAR)]
     andar = {
         "lado": [quadro_andar_lado(c_lado, pecas, f, paleta, sombra, contorno) for f in fases_andar],
         "frente": [quadro_andar_frente(c_frente, f, paleta, contorno) for f in fases_andar],
-        "tres_quartos": [quadro_andar_frente(c_3q, f, paleta, contorno, 2) for f in fases_andar],
+        "tres_quartos": [boneco_3q.quadro(f, paleta, sombra, contorno) for f in fases_andar],
         "costas": [quadro_andar_frente(c_costas, f, paleta, contorno) for f in fases_andar],
-        "tres_quartos_costas": [quadro_andar_frente(c_3qc, f, paleta, contorno, 2)
+        "tres_quartos_costas": [boneco_3qc.quadro(f, paleta, sombra, contorno)
                                 for f in fases_andar],
     }
     fases_parado = [360 * q / QUADROS_PARADO for q in range(QUADROS_PARADO)]
