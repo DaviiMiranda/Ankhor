@@ -17,6 +17,8 @@
 #      sombreamento em faixas da pixel art feita à mão. Assim a pele nunca
 #      vira marrom da calça numa sombra, e a paleta é fixa e pequena.
 #   6. Contorno seletivo de 1 px, folha de referência e gravação do PNG.
+#   7. Personagem em pé: caminhada, respiração e retrato, com as mesmas
+#      vistas e tamanhos para todos (Gabriel, Clarice, Zane).
 #
 # Mesmas técnicas do menu (assets/modelagem/menu/gerar_menu.py): Cycles na
 # CPU sem janela, filtro de pixel mínimo (sem antialiasing), sem denoise,
@@ -624,3 +626,238 @@ def salvar_blend(caminho, raiz, angulo=35):
     raiz.rotation_euler = (0, 0, math.radians(angulo))
     bpy.context.preferences.filepaths.save_version = 0
     bpy.ops.wm.save_as_mainfile(filepath=caminho)
+
+
+# ---------------------------------------------------------------------------
+# 7. Personagem em pé: caminhada, respiração e retrato
+# ---------------------------------------------------------------------------
+#
+# Gabriel, Clarice e Zane têm o mesmo conjunto de sprites de jogo, com o
+# mesmo tamanho: cinco vistas, a caminhada e a respiração em cada uma, e os
+# retratos da caixa de diálogo. Para isso, o esqueleto dos três tem as
+# mesmas juntas, com os mesmos nomes: Quadril, Tronco, Cabeca e, de cada
+# lado (Dir/Esq), PernaXQuadril, PernaXJoelho, PernaXTornozelo, BracoXOmbro
+# e BracoXCotovelo.
+
+# Resolução dobrada (docs/decisoes.md): os sprites de jogo saem com o dobro
+# de pixels (96 x 112, 2 x 27,4 px por metro) e o Godot mostra com escala
+# 0,5. O jogo desenha na resolução da janela (stretch "canvas_items"), então
+# o personagem ocupa o mesmo espaço na tela, mas com o dobro de detalhe.
+RESOLUCAO_2X = 2
+QUADRO_JOGO_2X = (QUADRO_JOGO[0] * RESOLUCAO_2X, QUADRO_JOGO[1] * RESOLUCAO_2X)
+PX_POR_M_JOGO_2X = PX_POR_M_JOGO * RESOLUCAO_2X
+PE_JOGO_2X = PE_JOGO_PX * RESOLUCAO_2X
+
+# Vistas dos sprites de jogo: (nome, giro do modelo em graus). 0 = de
+# frente, 90 = de lado olhando para a direita, 180 = de costas; para a
+# esquerda, o Godot espelha o sprite. 3/4 de costas (145°) é o espelho do
+# 3/4 de frente (35°) em relação ao lado (90°): 90 - 55 e 90 + 55.
+VISTAS_JOGO = (("lado", 90), ("frente", 0), ("tres_quartos", 35), ("costas", 180),
+               ("tres_quartos_costas", 145))
+QUADROS_ANDAR = 12   # quadros do ciclo de caminhada (dois passos)
+QUADROS_PARADO = 8   # quadros do ciclo de respiração
+
+# Retrato da caixa de diálogo: 80 x 80 px (mostrado em 40 x 40), câmera
+# reta na altura do rosto, 176 px por metro (o rosto ocupa quase o retrato
+# inteiro), virado 24 graus para a direita (para o texto da caixa).
+QUADRO_RETRATO = (80, 80)
+PX_POR_M_RETRATO = 176
+GIRO_RETRATO = 24
+
+
+def guardar_pose():
+    """Guarda a rotação e a posição de todas as juntas, para voltar à pose
+    parada depois de renderizar uma animação."""
+    return {o.name: (tuple(o.rotation_euler), tuple(o.location))
+            for o in bpy.data.objects if o.type == 'EMPTY'}
+
+
+def restaurar_pose(pose):
+    for nome, (rot, pos) in pose.items():
+        obj = bpy.data.objects[nome]
+        obj.rotation_euler = rot
+        obj.location = pos
+
+
+# Caminhada
+# ---------
+# Um ciclo de caminhada são DOIS passos: a perna direita vai à frente, depois
+# a esquerda. Chamamos de fase (φ) o ponto do ciclo, de 0 a 360 graus, e
+# cada junta segue uma onda seno dessa fase:
+#
+#   coxa   = -coxa · sen(φ)              a perna balança para a frente e
+#                                        para trás (ângulo negativo = frente);
+#                                        a outra perna usa φ + 180°, o oposto
+#   joelho = dobra só enquanto a perna vem para a frente no ar, que é
+#            quando cos(φ) > 0 (a coxa está indo para a frente)
+#   ombro  = o braço balança ao contrário da perna do mesmo lado
+#   quadril desce um pouco quando as pernas estão abertas (sen² φ = 1):
+#            é o "sobe e desce" que dá peso ao andar
+#
+# Com 12 quadros, cada quadro avança 30° na fase. Os valores padrão são os
+# do Gabriel; cada personagem pode passar os seus (o jeito de andar dele).
+
+def pose_andar(parado, fase, coxa=22, joelho=55, braco=16, descida=0.037):
+    """Coloca o personagem na pose da caminhada para a fase dada (em graus).
+    Os ângulos somam por cima da pose parada (a postura de cada um).
+    coxa, joelho e braco são as amplitudes em graus; descida é quanto o
+    quadril desce, em metros (0,037 m = 1 px no sprite de 48 px)."""
+    def girar(nome, graus_x):
+        rot, _ = parado[nome]
+        bpy.data.objects[nome].rotation_euler = (rot[0] + math.radians(graus_x), rot[1], rot[2])
+
+    for perna, desloc in (("PernaDir", 0), ("PernaEsq", 180)):
+        phi = math.radians(fase + desloc)
+        giro_coxa = -coxa * math.sin(phi)
+        giro_joelho = joelho * max(0.0, math.cos(phi)) ** 1.5
+        girar(f"{perna}Quadril", giro_coxa)
+        girar(f"{perna}Joelho", giro_joelho)
+        # O tornozelo desfaz o giro da coxa e do joelho: o pé fica reto.
+        girar(f"{perna}Tornozelo", -giro_coxa - giro_joelho)
+    for lado, desloc in (("BracoDir", 0), ("BracoEsq", 180)):
+        phi = math.radians(fase + desloc)
+        girar(f"{lado}Ombro", braco * math.sin(phi))
+        girar(f"{lado}Cotovelo", -10 * max(0.0, -math.sin(phi)))
+    _, pos = parado["Quadril"]
+    subida = descida * math.sin(math.radians(fase)) ** 2
+    bpy.data.objects["Quadril"].location = (pos[0], pos[1], pos[2] - subida)
+
+
+# Parado (respirando)
+# -------------------
+# Num sprite de 48 px, o menor movimento visível é 1 pixel, então a
+# respiração é o tronco inteiro (com a cabeça e os braços) subindo 1 px ao
+# puxar o ar, com as pernas paradas no chão. A cabeça pende um pouco e
+# volta, atrasada em relação ao peito.
+#
+#   subida = SUBIDA · (1 - cos φ) / 2     vai de 0 (fase 0) a 1 px (180°)
+#
+# Na fase 0 a subida é zero: o primeiro quadro é igual ao sprite parado.
+
+def pose_parado(parado, fase, subida=0.037, balanco_cabeca=3):
+    """Pose da respiração para a fase dada (em graus)."""
+    phi = math.radians(fase)
+    _, pos = parado["Tronco"]
+    sobe = subida * (1 - math.cos(phi)) / 2
+    bpy.data.objects["Tronco"].location = (pos[0], pos[1], pos[2] + sobe)
+    rot, _ = parado["Cabeca"]
+    # Atrasada 60° em relação ao peito: primeiro o peito sobe, depois a
+    # cabeça acompanha. É esse atraso que faz parecer um corpo, não um bloco.
+    pende = balanco_cabeca * (1 - math.cos(phi - math.radians(60))) / 2
+    bpy.data.objects["Cabeca"].rotation_euler = (rot[0] + math.radians(pende), rot[1], rot[2])
+
+
+def renderizar_vistas_jogo(cam, raiz, materiais, rotulo=""):
+    """As cinco vistas de jogo na pose atual: {nome: imagem com contorno}."""
+    saida = {}
+    for nome, angulo in VISTAS_JOGO:
+        img, ind, _ = renderizar_vista(cam, raiz, materiais, angulo, QUADRO_JOGO_2X, PX_POR_M_JOGO_2X, PE_JOGO_2X)
+        if rotulo:
+            linhas = img[..., 3].any(axis=1).nonzero()[0]
+            print(f"[{rotulo}] {nome}: altura do corpo no sprite: {linhas[-1] - linhas[0] + 1} px (resolução {RESOLUCAO_2X}x)")
+        saida[nome] = contorno(img, ind, materiais)
+    return saida
+
+
+def renderizar_ciclo(cam, raiz, materiais, pose, quadros, rotulo):
+    """Uma animação em todas as vistas: chama pose(fase) para cada quadro
+    (fase de 0 a 360 graus) e devolve {vista: [quadros]}."""
+    saida = {nome: [] for nome, _ in VISTAS_JOGO}
+    for q in range(quadros):
+        pose(360 * q / quadros)
+        for nome, img in renderizar_vistas_jogo(cam, raiz, materiais).items():
+            saida[nome].append(img)
+        print(f"[{rotulo}] quadro {q + 1}/{quadros}")
+    return saida
+
+
+def renderizar_retrato(cam, raiz, materiais):
+    """Rosto e ombros na pose e na expressão atuais, com a câmera na altura
+    do objeto "Rosto"."""
+    altura_rosto = bpy.data.objects["Rosto"].matrix_world.translation.z
+
+    def enquadrar_retrato(cam, largura_px, altura_px, px_por_m, pe_px):
+        cena = bpy.context.scene
+        cena.render.resolution_x = largura_px
+        cena.render.resolution_y = altura_px
+        cam.data.ortho_scale = largura_px / px_por_m
+        cam.location = (0.0, -20.0, altura_rosto - 0.02)
+
+    global enquadrar
+    original = enquadrar
+    enquadrar = enquadrar_retrato
+    try:
+        img, ind, _ = renderizar_vista(cam, raiz, materiais, GIRO_RETRATO, QUADRO_RETRATO, PX_POR_M_RETRATO, 0)
+    finally:
+        enquadrar = original
+    return contorno(img, ind, materiais)
+
+
+def salvar_sprites_jogo(pasta, nome, paleta, jogo, andar, parado):
+    """Grava as vistas, as tiras de caminhada e as de respiração, já na
+    paleta do personagem: <nome>_<vista>.png, <nome>_andar_<vista>.png e
+    <nome>_parado_<vista>.png."""
+    vistas = [n for n, _ in VISTAS_JOGO]
+    for vista, img in zip(vistas, aplicar_paleta([jogo[v] for v in vistas], paleta)):
+        salvar_png(img, os.path.join(pasta, f"{nome}_{vista}.png"))
+    for prefixo, ciclo in (("andar", andar), ("parado", parado)):
+        for vista, quadros in ciclo.items():
+            tira = np.concatenate(aplicar_paleta(quadros, paleta), axis=1)
+            salvar_png(tira, os.path.join(pasta, f"{nome}_{prefixo}_{vista}.png"))
+
+
+def gerar_em_pe(nome, raiz, materiais, max_cores, expressoes, expressao, esconder_boca,
+                passo=None, respirar=None):
+    """O roteiro inteiro de um personagem em pé, depois de montado (com o
+    "Rosto" já achatado): renderiza as vistas de jogo, a caminhada, a
+    respiração, a folha de referência e os retratos, junta tudo numa paleta
+    só e grava os PNGs em assets/sprites/personagens/<nome>/ e o modelo em
+    <nome>.blend.
+
+    expressoes é a lista de nomes dos retratos (a primeira é a de sempre);
+    expressao(qual) arma o rosto e esconder_boca() tira a boca dos sprites
+    de jogo (no sprite de 48 px ela vira um risco no queixo). passo e
+    respirar são as amplitudes próprias do personagem para pose_andar e
+    pose_parado."""
+    pasta = os.path.join(PASTA_SPRITES, nome)
+    expressao(expressoes[0])
+    esconder_boca()
+    cam = criar_camera()
+    criar_luzes()
+    os.makedirs(pasta, exist_ok=True)
+
+    # Sprites de jogo: as cinco vistas, a caminhada e a respiração.
+    jogo = renderizar_vistas_jogo(cam, raiz, materiais, nome)
+    parado = guardar_pose()
+    andar = renderizar_ciclo(cam, raiz, materiais, lambda fase: pose_andar(parado, fase, **(passo or {})),
+                             QUADROS_ANDAR, f"{nome} andar")
+    restaurar_pose(parado)
+    respiracao = renderizar_ciclo(cam, raiz, materiais, lambda fase: pose_parado(parado, fase, **(respirar or {})),
+                                  QUADROS_PARADO, f"{nome} parado")
+    restaurar_pose(parado)
+
+    # Folha de referência: frente, 3/4, lado e costas, em 128 px.
+    vistas = []
+    for angulo in (0, 35, 90, 180):
+        img, ind, _ = renderizar_vista(cam, raiz, materiais, angulo, QUADRO_REF, PX_POR_M_REF, PE_REF_PX)
+        vistas.append(contorno(img, ind, materiais))
+    retratos = {}
+    for qual in expressoes:
+        expressao(qual)
+        retratos[qual] = renderizar_retrato(cam, raiz, materiais)
+    expressao(expressoes[0])
+    esconder_boca()
+
+    # Uma paleta só para tudo, calculada com o sprite de lado, a referência
+    # e os retratos; as animações só usam essa paleta.
+    todas = [jogo["lado"]] + vistas + list(retratos.values())
+    convertidas, paleta = unificar_paleta(todas, materiais, max_cores)
+    vistas = convertidas[1:5]
+    retratos = dict(zip(retratos.keys(), convertidas[5:]))
+    salvar_sprites_jogo(pasta, nome, paleta, jogo, andar, respiracao)
+    for qual, img in retratos.items():
+        salvar_png(img, os.path.join(pasta, f"{nome}_retrato_{qual}.png"))
+    salvar_png(montar_folha([vistas, list(retratos.values())]), os.path.join(pasta, f"{nome}_referencia.png"))
+    print(f"[{nome}] paleta:", " ".join(rgb_para_hex(np.array(cor) / 255) for cor in paleta))
+    salvar_blend(os.path.join(PASTA_SCRIPT, f"{nome}.blend"), raiz)
+    print(f"[{nome}] pronto")

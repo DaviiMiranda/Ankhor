@@ -24,7 +24,7 @@
 # ID já diz qual material está em cada pixel (comum.renderizar_vista
 # devolve esse índice), então basta copiar os pixels do material "olho".
 #
-# Os dois tipos (docs/personagens/robos.md):
+# Os dois tipos (docs/historia/personagens/robos.md):
 #
 #   SENTINELA — 2,1 m, alta, magra e curvada para a frente, braços longos
 #   que quase arrastam no chão, garras de três dedos. A cabeça é um globo

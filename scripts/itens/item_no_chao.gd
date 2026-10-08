@@ -16,6 +16,8 @@ func _ready() -> void:
 		return
 	super()
 	texto_acao = ""
+	if item:
+		$DestaqueColetavel.intensidade = item.brilho_no_chao
 	if Inventario.pegos.has(_id_unico()) or _ja_tem_item_unico():
 		queue_free()
 

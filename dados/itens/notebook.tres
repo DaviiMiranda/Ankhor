@@ -9,6 +9,7 @@
 script = ExtResource("1_item")
 id = "notebook"
 nome = "Notebook"
+brilho_no_chao = 2.0
 descricao = "Notebook de pesquisa, ainda com bateria. Parado perto de uma porta trancada ou de um robô (só por trás), invade o sistema: abre a porta ou desliga o robô. A tela acesa chama atenção."
 icone = ExtResource("2_icone")
 sprite_chao = ExtResource("3_chao")

@@ -1,15 +1,15 @@
 # GDD — respostas dos itens 1 a 4
 
 > **Título do Jogo:** Ankhor  
-> **Hierarquia:** Para decisões recentes, consulte [`decisoes.md`](decisoes.md). Para a documentação técnica aprofundada, consulte o índice mestre em [`README.md`](README.md).
+> **Hierarquia:** Para **história, mundo e personagens**, a lei do projeto é o [Enredo Principal](historia/enredo_principal.md): se este GDD contradizer o Enredo, vale o Enredo. Para decisões recentes de design e técnica, consulte [`decisoes.md`](decisoes.md). Para a documentação técnica aprofundada, consulte o índice mestre em [`README.md`](README.md).
 
 > [!TIP]
 > **Documentação Modular Detalhada:**
 > - 🎯 **[Visão Geral e Pilares](visao_geral/conceito.md)** | **[Estilo Artístico 2.5D](visao_geral/estilo_artistico.md)**
 > - ⚙️ **[Mecânicas e Core Loop](mecanicas/README.md)** | **[Furtividade](mecanicas/furtividade_e_esconderijos.md)** | **[Iluminação](mecanicas/iluminacao_e_lanterna.md)** | **[Vida e Checkpoint](mecanicas/vida_e_checkpoint.md)** | **[Sono e Sonhos](mecanicas/sono_e_sonhos.md)**
 > - 💻 **[Conceitos de Computação](computacao/README.md)** (Grafos, Coloração, BFS, A*, Markov, Shaders)
-> - 📜 **[Enredo Principal](historia/enredo_principal.md)** | **[Estrutura Narrativa](historia/README.md)** | **[Template de Documentos](historia/template_documento.md)**
-> - 👥 **[Personagens e IA](personagens/README.md)** ([Gabriel](personagens/gabriel.md), [Robôs](personagens/robos.md), [Template](personagens/template_personagem.md))
+> - 📜 **[Enredo Principal](historia/enredo_principal.md)** | **[Índice da História](historia/README.md)** | **[Modelo de Documento](historia/template_documento.md)**
+> - 👥 **[Personagens](historia/personagens/)** ([Gabriel](historia/personagens/gabriel.md), [Robôs](historia/personagens/robos.md), [Modelo de ficha](historia/template_personagem.md))
 > - 🗺️ **[Design de Fases](fases/README.md)** | **[Template de Fase](fases/template_fase.md)**
 > - 💬 **[Sistema de Diálogos](dialogos/README.md)** | **[Template de Diálogo](dialogos/template_dialogo.md)**
 
@@ -25,7 +25,7 @@
 
 **Público-alvo:** adolescentes e adultos, a partir de 14 anos. Terror de tensão, sem violência explícita. Pensado primeiro para quem conhece a Unifor: alunos e ex-alunos reconhecem cada prédio, mesmo em ruínas.
 
-**Resumo do Conceito:** Gabriel acorda mil anos no futuro, no ano de 3026. Ele descobre que a Unifor tornou-se um centro de pesquisa em física do tempo e que a explosão de um aparelho chamado **Âncora** rasgou o tempo dentro do campus. Essa fenda temporal encosta em momentos aleatórios do passado e puxa quem estiver por perto — numa madrugada de 2026, puxou Gabriel da Biblioteca. A fenda está em expansão contínua e, caso não seja fechada, engolirá o passado do campus e a própria época de Gabriel. Ele descobre que não foi o primeiro: antes vieram uma aluna de 1994, um segurança de 2008, um professor de 2019 e alguém de 2041, e nenhum deles conseguiu. A primeira fase do jogo é a Biblioteca.
+**Resumo do Conceito:** Gabriel Magalhães, estudante de 2026, pega no sono na Biblioteca da Unifor e acorda mil anos no futuro, no ano de 3026. A humanidade abandonou a Terra e uma IA dominou o planeta. No antigo centro de pesquisa da Unifor, uma máquina abandonada, a **Âncora**, falhou e abriu uma fenda no tempo no chão da Biblioteca, que por acaso puxou, com dias de diferença, jovens de épocas diferentes. Gabriel precisa encontrá-los, fugir dos robôs da IA, descobrir o que aconteceu e achar um jeito de todos voltarem. A primeira fase do jogo é a Biblioteca. A história completa está no [Enredo Principal](historia/enredo_principal.md).
 
 O que torna o jogo diferente:
 - **Estranhamento do familiar:** o jogador reconhece a catraca, o bebedouro, o quadro, a Biblioteca. O mundo em volta não reconhece mais nada disso.
@@ -89,11 +89,11 @@ Os conteúdos de computação estão **dentro das mecânicas**, não só no cód
 | Conteúdo | Onde aparece no jogo |
 |---|---|
 | **Grafos** | O campus é um grafo: cada sala é um nó, cada porta, corredor, escada ou buraco no teto é uma aresta com peso (distância e barulho). Desabamentos removem arestas; passagens abertas pelo jogador criam novas. |
-| **Coloração de grafos** | ⚠️ _A definir com a nova premissa:_ antes, a grade horária da semana de provas era gerada por coloração de grafos: aulas que dividem professor ou sala não podem ter o mesmo horário. Essa grade definia onde cada Insone estava a cada hora. Com os robôs em patrulha programada (`docs/personagens/robos.md`), falta decidir de onde vem a grade. |
+| **Coloração de grafos** | ⚠️ _A definir com a nova premissa:_ antes, a grade horária da semana de provas era gerada por coloração de grafos: aulas que dividem professor ou sala não podem ter o mesmo horário. Essa grade definia onde cada Insone estava a cada hora. Com os robôs em patrulha programada (`docs/historia/personagens/robos.md`), falta decidir de onde vem a grade. |
 | **Busca em largura (BFS)** | O som se propaga pelo grafo e enfraquece a cada sala. Um passo correndo é ouvido a duas salas; uma estante caindo, a cinco. |
 | **A\* (caminho mínimo)** | Quando um robô ouve ou vê o jogador, sai da rotina e o persegue pelo menor caminho no grafo. |
 | **Cadeia de Markov** | Fora da rotina, cada robô escolhe a próxima sala por probabilidade, com chances que crescem a cada dia. É o modelo de movimento dos perseguidores do FNAF, formalizado. |
-| **Máquina de estados** | Cada robô alterna entre *rotina*, *investigando*, *perseguindo*, *atordoado* e *retornando* (`docs/personagens/robos.md`). |
+| **Máquina de estados** | Cada robô alterna entre *rotina*, *investigando*, *perseguindo*, *atordoado* e *retornando* (`docs/historia/personagens/robos.md`). |
 | **Estruturas de dados** | Inventário em grade (matriz), fila de eventos da rotina de cada robô, dicionário de flags do mundo (passagens abertas, pistas encontradas, sonhos vistos). |
 | **Matemática / geometria** | Campo de visão dos robôs por produto escalar e linha de visão por *ray casting*; luz da lanterna em cone (a mesma conta do produto escalar) e decaindo com a bateria. |
 
@@ -109,25 +109,13 @@ E, nos sonhos, o mesmo campus **na última semana antes de tudo**: cheio, ilumin
 
 ### História e Personagens
 
-**O começo.** Gabriel, um estudante universitário, acorda no ano de 3026 (mil anos no futuro) na Biblioteca da Unifor. Ele descobre que o campus se transformou em um centro de pesquisa em física do tempo e que a explosão de um aparelho experimental chamado **Âncora** rasgou o tempo dentro do campus.
+> A história, o mundo e os personagens estão no **[Enredo Principal](historia/enredo_principal.md)**, que é a lei do projeto. Aqui fica só o resumo.
 
-**A Fenda Temporal e o Colapso:**
-- A fenda encosta em momentos aleatórios do passado e puxa quem estiver por perto — numa madrugada de 2026, puxou Gabriel da Biblioteca.
-- A fenda está em expansão contínua: caso não seja fechada, engolirá todo o passado do campus, incluindo a época original de Gabriel.
-- **Os que vieram antes:** Gabriel descobre que não foi o primeiro. Antes dele, a fenda puxou pessoas de diferentes épocas:
-  1. Uma aluna de 1994
-  2. Um segurança de 2008
-  3. Um professor de 2019
-  4. Alguém de 2041
-  - Ninguém conseguiu fechar a fenda ou reverter o processo.
-
-**Fases:**
-- A primeira fase do jogo é a **Biblioteca**.
-
-**Personagens:**
-- **Gabriel** — o protagonista. Estudante universitário puxado de uma madrugada de 2026 para 3026 pela fenda da Âncora. Precisa entender o que aconteceu e fechar a fenda antes que ela consuma seu próprio tempo.
-- **Os antecessores** — pessoas puxadas antes de Gabriel, que deixaram pistas pelo campus: Mestre Baltazar (~1750), Inspetor Agostinho (1978), Clarice (1994, viva, fala com Gabriel por ligação), Seu Valdir (2008, fala com Gabriel pelo rádio), um professor de 2019 cuja pesquisa virou a cadeira de Gabriel, e Zane (2123). A pessoa de 2041 ainda está a definir. Fichas em [`personagens/antecessores.md`](personagens/antecessores.md).
-- **A revelação central** (aprovada): Gabriel é o paradoxo da Âncora, e os sonhos são ciclos anteriores que falharam. No final, Gabriel e Clarice ficam juntos em 2026. Ver [`historia/revelacao_central.md`](historia/revelacao_central.md).
+- **O mundo:** em 3026 o pouco que sobrou da humanidade foi para outro planeta. Ficou o **Carlos**, cientista obcecado pelos anos 80, que criou a Âncora e controla os robôs, que caçam humanos.
+- **A Âncora e a fenda:** a Âncora é só uma máquina, abandonada no centro de pesquisa da Unifor. Ela falhou e abriu uma fenda no chão da Biblioteca, que pulsa e, por acaso, puxa quem estiver ali em alguma época.
+- **Os personagens:** jovens de cerca de 20 anos, todos vivos, puxados com dias de diferença: Baltazar Magalhães (~1750, antepassado de Gabriel), Diana (1978), Clarice (1994), Rafael (2008), Henrique (2019, o pesquisador), **Gabriel Magalhães** (2026, o protagonista, penúltimo a chegar) e Zane (2123, o último). O antagonista é o Carlos (3026).
+- **O objetivo:** encontrar os outros, descobrir o que aconteceu e consertar a Âncora para que todos voltem às suas épocas.
+- **A primeira fase** é a **Biblioteca**.
 
 ---
 
@@ -158,7 +146,7 @@ As áreas externas entre prédios são as mais expostas: abertas, com dunas e ma
 
 ### Desafios e Obstáculos
 
-- **Os robôs**, cada tipo com seu sensor dominante (som, visão, luz) e padrão de patrulha (`docs/personagens/robos.md`).
+- **Os robôs**, cada tipo com seu sensor dominante (som, visão, luz) e padrão de patrulha (`docs/historia/personagens/robos.md`).
 - **Barulho:** correr, pisar em entulho e derrubar coisas se ouve pelo grafo.
 - **Escuridão:** a lanterna ajuda a ver e ajuda a ser visto; a bateria acaba.
 - **Recursos escassos:** pilhas e cápsulas de clarão nunca sobram.

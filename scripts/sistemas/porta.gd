@@ -13,9 +13,13 @@ static var _destrancadas := {}
 @export var direcao_entrar := Vector2.UP
 @export var segundos_andando: float = 0.8
 @export var trancada := false
+@export var chave: String = ""
+@export var aviso_trancada: String = "Trancada. Talvez dê para hackear"
 @export var bloqueada := false
 @export var dificuldade_hack := Hackeamento.Dificuldade.MEDIO
 @export var minigame_hack := Hackeamento.Tipo.ALEATORIO
+@export var liberada_por: String = ""
+@export var marca_ao_tentar: String = ""
 @export var aviso_bloqueada: String = "A porta não abre."
 @export var som_abrir: AudioStream = SOM_ABRIR
 
@@ -33,16 +37,23 @@ func _ready() -> void:
 
 
 func pode_interagir() -> bool:
-	return not _atravessando and (bloqueada or not cena_destino.is_empty())
+	return not _atravessando and (esta_bloqueada() or not cena_destino.is_empty())
+
+
+func esta_bloqueada() -> bool:
+	return bloqueada or (not liberada_por.is_empty() and not Progresso.tem(liberada_por))
 
 
 func interagir() -> void:
-	if bloqueada:
+	if esta_bloqueada():
 		Inventario.aviso.emit(aviso_bloqueada)
 		_tocar(SOM_EMPERRADA)
+		Progresso.marcar(marca_ao_tentar)
 		return
+	if trancada and not chave.is_empty() and Inventario.tem(chave):
+		destrancar()
 	if trancada:
-		Inventario.aviso.emit("Trancada. Talvez dê para hackear")
+		Inventario.aviso.emit(aviso_trancada)
 		return
 	var gabriel := _gabriel()
 	if gabriel == null:

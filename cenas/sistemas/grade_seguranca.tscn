@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/grade_seguranca.gd" id="1_grade"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/grade_aco.png" id="2_grade"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_blindada.wav" id="3_som"]
+
+[node name="GradeSeguranca" type="Node2D"]
+script = ExtResource("1_grade")
+
+[node name="Grade" type="Sprite2D" parent="."]
+texture = ExtResource("2_grade")
+centered = false
+
+[node name="Som" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(20, 33)
+stream = ExtResource("3_som")
+max_distance = 500.0
+bus = &"Efeitos"

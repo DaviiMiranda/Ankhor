@@ -1,36 +1,42 @@
 # Enredo Principal
 
-> **Status:** Documento mestre da história de **Ankhor**.
-> **Fontes:** [`../decisoes.md`](../decisoes.md) (vale sempre o mais recente), [`../gdd.md`](../gdd.md), [`README.md`](README.md), [`revelacao_central.md`](revelacao_central.md), [`../personagens/`](../personagens/), [`../fases/`](../fases/), [`../roteiro/`](../roteiro/) e os textos já escritos em `dados/`.
-> **Regra:** este documento junta a história já decidida em um lugar só. Ele não cria decisões. O que o grupo ainda não decidiu fica na seção 11 ("Em aberto"), e não no meio da narrativa. Se uma decisão nova mudar a história, ela entra primeiro em `decisoes.md` e depois aqui.
+> [!IMPORTANT]
+> **Este documento é a lei do projeto**, junto com as fichas de [`personagens/`](personagens/) (uma por personagem), que fazem parte dele. Tudo o que diz respeito à história, ao mundo e aos personagens de **Ankhor** vale como está escrito aqui e nas fichas, **acima de qualquer outro documento**: GDD, fases, diálogos, arte, textos em `dados/` e o próprio `decisoes.md`. Em caso de dúvida em qualquer parte do jogo (o que uma fase conta, como um personagem fala, o que um objeto significa), consulte este documento e a ficha do personagem. Se outra parte do projeto contradisser o que está aqui, **a outra parte está errada** e deve ser corrigida.
+
+> **Status:** reescrito em 2026-10-06, quando a história mudou de rumo: saíram os loops e a revelação de "Gabriel é o paradoxo", e a fenda passou a ser **um acaso** para quem cai nela. Em 2026-10-07 entrou o antagonista, o **Carlos**.
+> **Como mudar:** só por decisão do grupo. Toda mudança de história entra **no mesmo PR** neste documento e em [`../decisoes.md`](../decisoes.md) (que guarda o histórico de quando e por que mudou). Tudo o que ainda não foi decidido fica na **seção 12 ("Pendências")**, no fim, e não no meio da narrativa: o que está fora das pendências está decidido.
 
 ---
 
 ## 1. A história em um parágrafo
 
-Numa madrugada de 2026, o estudante **Gabriel** pega no sono na Biblioteca da Unifor, com o caderno de equações aberto na mesa. Ele acorda no ano de **3026**, no mesmo lugar, que agora é uma ruína tomada pela natureza. A Unifor virou um centro de pesquisa em física do tempo, e a explosão de um aparelho chamado **Âncora** rasgou o tempo dentro do campus. A **fenda** que nasceu dali puxa pessoas de épocas diferentes e continua crescendo: se não for fechada, vai engolir todo o passado do campus, inclusive a época de Gabriel. Robôs patrulham as ruínas. Ele não é o primeiro a ser puxado, e quem veio antes deixou bilhetes, diários, disquetes e gravações. Para fechar a fenda, Gabriel precisa descobrir o que a Âncora realmente é, e a verdade é que ela nasceu do caderno dele.
+Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Biblioteca da Unifor e acorda no ano de **3026**, no mesmo lugar, agora uma ruína tomada pela natureza. A sociedade e o planeta ficaram tão ruins que o pouco que sobrou da humanidade foi embora para outro planeta. Um homem ficou: **Carlos**, um cientista obcecado pelos **anos 80**, que construiu uma máquina no **D-Tec**, a parte de tecnologia da Unifor, no Bloco M: a **Âncora**, para ir viver naquela época. A Âncora é imprecisa: a cada tentativa do Carlos, abre uma **fenda** no tempo no chão da Biblioteca e puxa quem estiver naquele ponto, em alguma época. Para quem cai, **é um acaso**: o Carlos não escolhe ninguém. Gabriel não é o único: outros jovens de épocas diferentes caíram ali com dias de diferença, e cada um está tentando sobreviver num canto do campus. Os robôs, controlados pelo Carlos, caçam qualquer humano que aparecer. Gabriel precisa encontrar os outros, descobrir o que aconteceu e achar um jeito de todos voltarem para suas épocas. No caminho descobre que um deles é seu antepassado, que outro mente para o grupo, e que por trás de tudo existe alguém.
 
 ---
 
 ## 2. O mundo
 
-### 2.1 O campus em 3026
+### 2.1 A Terra em 3026
 
-- A **Unifor, em Fortaleza**, mil anos depois. É um centro de pesquisa em física do tempo que foi arruinado pela explosão da Âncora.
+- **A Terra ficou muito ruim**: a sociedade e o planeta. Por isso, o pouco que sobrou da humanidade **foi embora para outro planeta**. Quase não restam humanos na Terra.
+- **O Carlos ficou**, para usar a Âncora e ir viver nos anos 80 (seção 4.3).
+- **A IA:** versões anteriores desta história diziam que uma IA dominou a Terra. Se ela continua existindo, e qual a relação dela com o Carlos, está pendente (seção 12.2).
+
+### 2.2 O campus em 3026
+
+- A **Unifor, em Fortaleza**, mil anos depois. Em algum momento virou um centro de pesquisa em física do tempo.
+- A **Âncora** e o laboratório do **Carlos** ficam no **D-Tec**, a parte de tecnologia da Unifor, no **Bloco M**.
 - Concreto rachado e desabado, árvores dentro das salas, dunas sobre os corredores, mato onde era estacionamento. Não há cidade em volta, só vegetação. Resistem as coisas duras: concreto, metal, vidro, pedra.
 - Objetos do cotidiano de hoje (catraca, bebedouro, quadro de horários, a cantina) viraram relíquias. O choque do jogo é perceber **quanto tempo passou**.
-- Quase nada elétrico funciona. Só o que a Âncora ainda alimenta: as luzes de emergência do centro de pesquisa, o bunker e os robôs.
+- Quase nada elétrico funciona. Funcionam os sistemas da Âncora (luzes de emergência, bunker, terminais, telefones) e os robôs.
 
-### 2.2 Os robôs
+### 2.3 Os robôs
 
-- Os inimigos são **robôs** que patrulham o campus por **rotinas programadas**. Repetem o mesmo caminho há séculos, e por isso as dicas dos antecessores continuam valendo.
-- Fora da rotina, quando ouvem ou veem Gabriel, saem do protocolo e caçam.
-- Cada tipo tem um sentido dominante (som, visão, luz). Os dois já implementados são a **Sentinela** (visão) e o **Rastreador** (audição). Ver [`../personagens/robos.md`](../personagens/robos.md).
+- Os inimigos são **robôs** controlados pelo **Carlos**, que patrulham o campus por **rotinas programadas**. Repetem o mesmo caminho há séculos: dá para decorar.
+- Fora da rotina, quando ouvem ou veem um humano, saem do protocolo e caçam. Por que caçam (para capturar ou para eliminar) está pendente (seção 12.2).
+- São agressivos: se pegam Gabriel, é **game over** e o jogo volta ao último checkpoint (ver [`../mecanicas/vida_e_checkpoint.md`](../mecanicas/vida_e_checkpoint.md)).
+- Cada tipo tem um sentido dominante (som, visão, luz). Os dois já implementados são a **Sentinela** (visão) e o **Rastreador** (audição). Ver [`personagens/robos.md`](personagens/robos.md).
 - Gabriel não é um combatente: **fugir e se esconder é a regra**, defender-se é a exceção.
-
-### 2.3 O passado nos sonhos
-
-Ao dormir numa sala segura, Gabriel sonha com o mesmo campus **na última semana antes de tudo**: cheio, iluminado, barulhento e normal. Nos sonhos não há perigo. Há conversas, detalhes e senhas que servem no presente. Ver [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md).
 
 ---
 
@@ -38,192 +44,175 @@ Ao dormir numa sala segura, Gabriel sonha com o mesmo campus **na última semana
 
 | | |
 |---|---|
-| **O que é a Âncora** | Aparelho experimental do centro de pesquisa em física do tempo da Unifor de 3026. |
-| **O que aconteceu** | A Âncora explodiu e rasgou o tempo dentro do campus. |
-| **A fenda** | Encosta em momentos do passado e puxa quem estiver por perto. Está em **expansão contínua**. |
-| **A ameaça** | Se não for fechada, engole o passado do campus e a época original de Gabriel (2026). |
-| **Onde puxa** | Sempre no mesmo ponto: o chão onde hoje fica a Biblioteca (ou onde ela ainda viria a ser construída). |
-| **Nome** | O aparelho se chama **Âncora**. **Ankhor** é o nome do jogo. Os dois não se confundem. |
+| **O que é a Âncora** | **Só uma máquina.** Um aparelho experimental de física do tempo. Não pensa, não quer nada, não escolhe ninguém |
+| **Onde está a Âncora** | No **D-Tec**, a parte de tecnologia da Unifor, no Bloco M, junto do laboratório do Carlos |
+| **Quem criou** | O **Carlos** (seção 4.3), para ir viver nos anos 80 |
+| **O que aconteceu** | O Carlos tenta usar a Âncora para ir para os anos 80, mas a máquina é **imprecisa**: não acerta a época nem escolhe quem puxa. Cada tentativa abre uma fenda no tempo |
+| **Onde a fenda se abre** | Sempre no mesmo ponto: o chão onde hoje fica a Biblioteca (ou onde ela ainda viria a ser construída) |
+| **Como a fenda age** | **Pulsa.** A cada tentativa do Carlos, a cada poucos dias, encosta numa época diferente e puxa quem estiver no ponto naquela noite. A cada pulso fica maior |
+| **Por que essas pessoas** | **Acaso.** O Carlos não escolhe quem a fenda puxa: estavam no lugar errado na noite errada |
+| **A ameaça** | Enquanto o Carlos continuar tentando, gente nova continua caindo, e a fenda continua crescendo |
+| **Nome** | O aparelho se chama **Âncora**. **Ankhor** é o nome do jogo. Os dois não se confundem |
 
-### O que o jogador acredita, e o que é verdade
+Os personagens não sabem nada disso no começo. Descobrir o que é a Âncora, quem está por trás dela e como consertá-la é o que move a história.
 
-- **O que o jogador acredita (até a revelação):** a Âncora foi criada por cientistas do futuro, deu errado e virou um "aspirador do tempo" sem controle, que puxa pessoas aleatórias do passado do campus.
-- **A verdade:** a fenda **não puxa por acaso**. O elo entre os puxados é o **lugar**. E a Âncora nasceu do **caderno de Gabriel** (seção 7).
+### 3.1 Como voltar: cada um traz uma parte
+
+Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncora, e ninguém sabe fazer isso sozinho. Cada personagem que Gabriel encontra contribui com uma parte. Isso dá a estrutura do jogo: **em cada fase, achar alguém, ganhar a confiança da pessoa e receber a parte dela.**
+
+| Quem | O que traz |
+|---|---|
+| Baltazar (1750) | As estrelas: o céu é o único relógio que não muda, e é por ele que se acerta a data de volta de cada um |
+| Diana (1978) | Investigação: descobre onde fica o núcleo e as passagens até lá |
+| Clarice (1994) | Código: faz os terminais da Âncora funcionarem |
+| Rafael (2008) | Conhece o campus e as rondas, e sabe o que cada chave abre |
+| Henrique (2019) | A teoria por trás das equações |
+| Zane (2123) | A tecnologia mais próxima da Âncora |
+| Gabriel (2026) | O caderno, com as equações da cadeira |
 
 ---
 
 ## 4. Os personagens
 
-### 4.1 Gabriel (protagonista)
+**Quem cada personagem é** (história, personalidade, como fala, o que quer, o que teme, defeito, arco e relações) está na ficha dele, em [`personagens/`](personagens/). Cada ficha faz parte deste documento e tem a mesma autoridade. Falas, documentos, retratos, animações e sons de um personagem seguem a ficha dele.
 
-Estudante universitário, de 2026. Dormiu na Biblioteca de madrugada com o caderno de anotações da cadeira aberto. Acorda em 3026, na cabine de estudo onde pegou no sono, sem saber o que aconteceu. Não é um herói: precisa entender o campus, evitar os robôs e fechar a fenda antes que ela consuma o tempo dele. Funcionamento em [`../personagens/gabriel.md`](../personagens/gabriel.md).
+### 4.1 Regras para todos
 
-### 4.2 Os antecessores
+- Todos os puxados pela fenda têm **cerca de 20 anos**.
+- Todos têm alguma **ligação com a região da Unifor**, além de terem sido puxados no chão da Biblioteca.
+- Chegaram a 3026 **com dias de diferença**. Estão todos **vivos**, cada um sobrevivendo do seu jeito num lugar do campus, e Gabriel **encontra cada um ao longo do jogo**.
+- **Ordem de chegada:** o **Zane é o último** a chegar, e **Gabriel é o penúltimo**. Os outros cinco chegaram antes dele, em ordem ainda pendente. Como o Zane chega depois de Gabriel, **a fenda pulsa durante o jogo**: a chegada dele acontece enquanto Gabriel já está em 3026, e é Gabriel quem o recebe.
 
-Quem a fenda puxou antes dele, em ordem de chegada. Todos foram puxados no mesmo ponto. **Nenhum conseguiu fechar a fenda.** Fichas completas em [`../personagens/antecessores.md`](../personagens/antecessores.md).
+### 4.2 Fichas
 
-| Ano de origem | Personagem | Quem era | Como chega ao jogador | Situação em 3026 |
-|---|---|---|---|---|
-| ~1750 | **Mestre Baltazar** | Naturalista e astrônomo português | Diário e acampamento na Biblioteca. Não fala | Desaparecido, sem corpo |
-| 1978 | **Inspetor Agostinho** | Policial investigando um sumiço de material na obra do campus | Bilhetes, mapa à mão, NPC nos sonhos | Morto (envelheceu em 3026) |
-| 1994 | **Clarice** | Aluna de processamento de dados | Bilhete, disquetes, **ligações** e, no bunker, em pessoa | **Viva** |
-| 2008 | **Seu Valdir** | Segurança noturno da Unifor | Voz no rádio | Morto há décadas. O rádio repete as gravações dele |
-| 2019 | **O professor** *(nome a definir)* | Professor e pesquisador da Unifor | A definir | A definir |
-| 2026 | **Gabriel** | Estudante | — | — |
-| 2041 | *Alguém* | *A definir* | — | — |
-| 2123 | **Zane** | Jovem com implantes cibernéticos | Áudios e NPC nos sonhos | A definir |
+| Época | Personagem |
+|---|---|
+| ~1750 | [Baltazar Magalhães](personagens/baltazar.md) |
+| 1978 | [Diana](personagens/diana.md) |
+| 1994 | [Clarice](personagens/clarice.md) |
+| 2008 | [Rafael](personagens/rafael.md) |
+| 2019 | [Henrique](personagens/henrique.md), o pesquisador |
+| 2026 | [Gabriel Magalhães](personagens/gabriel.md) (protagonista) |
+| 2123 | [Zane](personagens/zane.md) |
+| 3026 | [Carlos](personagens/carlos.md) (antagonista) |
+| 3026 | [Os robôs](personagens/robos.md) (inimigos) |
 
-**Resumo de cada um:**
+### 4.3 O Carlos, o antagonista
 
-- **Baltazar** viu pela luneta uma luz estranha sobre a mata, foi investigar e foi puxado. Acha que a Âncora é o "Tormento de Leviatã", um Juízo Final. O diário dele mostra o **ponto fraco dos sensores ópticos** dos robôs.
-- **Agostinho** seguiu a pista do material que sumiu da obra. O material não foi roubado: foi **a primeira coisa que a fenda engoliu**. O mapa dele mostra **passagens que não existem nos mapas de 3026**.
-- **Clarice** rodava um código em disquete num terminal da Biblioteca quando foi puxada. Foi a primeira a notar que as rotas dos robôs formam um grafo. Entrou no sistema da Âncora e vive escondida perto do núcleo. É a **única que lembra dos loops**. Fala com Gabriel por telefone e gírias dos anos 90 ("Isso é totalmente surreal", "Não confie nas luzes").
-- **Valdir** fazia a ronda da Biblioteca. Recusa-se a aceitar que está em 3026 ("isso aqui não é 3026, rapaz, é reforma") e transformou uma sala de manutenção no seu "posto de guarda". Dá dicas de patrulha pelo rádio.
-- **O professor** sumiu em 2019 numa noite de estudo na Biblioteca. A pesquisa dele, que ficou pela metade, virou a base da **cadeira que Gabriel cursa**. Em 3026 entende a verdade e **apaga o nome do criador** dos arquivos.
-- **Zane** veio de uma época em que a Âncora estava só na teoria. Foi até o ponto para impedir o criador da Âncora e foi puxado. Perdeu a sanidade ao perceber o colapso circular do tempo. Só achou **um nome de usuário de 2026**.
-
-### 4.3 Os "G."
-
-Bilhetes assinados só com **"G."**, em folhas arrancadas de um caderno igual ao de Gabriel. São dos ciclos anteriores que falharam: é o próprio Gabriel avisando a si mesmo (seção 7.3).
-
-### 4.4 Os robôs
-
-Antagonistas sem voz. Ver seção 2.2.
+O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na Terra quando a humanidade partiu e controla os robôs. Quem ele é está na [ficha dele](personagens/carlos.md). O **Henrique** engana o grupo por causa dele (seção 8, "A virada"). Muita coisa sobre o Carlos ainda está pendente (seção 12.2).
 
 ---
 
-## 5. Linha do tempo
+## 5. A família Magalhães
 
-### 5.1 Quem esteve no ponto
+- **Baltazar é antepassado de Gabriel**, umas dez gerações antes dele. O sobrenome **Magalhães** liga a família pelos séculos.
+- **O objeto:** Gabriel começa o jogo com um **anel desgastado** no inventário, que a avó deu para ele. O jogador vê o item desde o começo sem dar importância.
+- **A descoberta acontece jogando**, não numa explicação: no meio do jogo, Gabriel vê o mesmo anel com o Baltazar (novo no dedo dele, gasto no de Gabriel). O jogador compara os dois e entende sozinho.
+- **Gabriel conta para o Baltazar** que é descendente dele.
+- Com isso, mandar todos de volta deixa de ser só ajudar os outros: se o Baltazar não voltar para 1750, a família de Gabriel pode nunca existir.
+- **O Baltazar quer ficar, mas não pode.** Para ele, 3026 é um milagre a estudar, e ele quer ficar. Só que precisa voltar, ou a família de Gabriel não existe. Gabriel tem que convencer o próprio antepassado a ir embora.
+
+---
+
+## 6. Os esconderijos
+
+- Cada personagem tem um **lugar próprio** no campus. Um lugar pode abrigar **2 ou 3 personagens**.
+
+| Esconderijo | Quem fica |
+|---|---|
+| **Bunker**, embaixo do núcleo da Âncora. O maior e mais seguro: os robôs não descem lá | Clarice e Henrique. Depois, o Zane, quando Gabriel o traz |
+| **Posto de guarda**, a sala de manutenção que o Rafael transformou | Rafael |
+| **Biblioteca**, num esconderijo dentro dela | Baltazar |
+| **Bloco de salas**, numa das salas de aula | Diana |
+
+- Os esconderijos funcionam como pontos de encontro: Gabriel volta a eles para conversar e acompanhar o que cada um descobriu.
+
+---
+
+## 7. Linha do tempo
+
+### 7.1 Quem esteve no ponto
 
 | Ano | Quem | O que fazia ali |
 |---|---|---|
-| ~1750 | Baltazar | Viu uma luz estranha pela luneta e foi investigar |
-| 1978 | Agostinho | Seguia a pista do material que sumiu da obra |
-| 1994 | Clarice | Rodava um código em disquete num terminal, de madrugada |
-| 2008 | Valdir | Fazia a ronda noturna na Biblioteca |
-| 2019 | O professor | Estudava à noite na Biblioteca, na pesquisa que virou a cadeira de Gabriel |
+| ~1750 | Baltazar | Viu uma luz estranha pela luneta, no sítio da família, e foi investigar |
+| 1978 | Diana | Vigiava a obra depois do sumiço do material |
+| 1994 | Clarice | Rodava um programa num terminal da Biblioteca, de madrugada |
+| 2008 | Rafael | Fazia a ronda noturna na Biblioteca |
+| 2019 | Henrique | Estudava à noite na Biblioteca |
 | 2026 | Gabriel | Dormiu na Biblioteca com o caderno aberto |
-| 2041 | *A definir* | *A definir* |
-| 2123 | Zane | Foi impedir o criador da Âncora |
+| 2123 | Zane | *A definir* |
 
-### 5.2 Ordem dos acontecimentos
+### 7.2 Ordem dos acontecimentos
 
-1. **Antes de tudo:** o professor de 2019 e a cadeira que continua a pesquisa dele.
-2. **2026:** Gabriel esquece o caderno aberto na Biblioteca. É o "ponto cego" da linha do tempo, onde a primeira anomalia começou. O caderno tem as equações da cadeira, que continuam a pesquisa do professor.
-3. **Até 3026:** o caderno vira a base da pesquisa que leva à **Âncora**. A Unifor se torna um centro de física do tempo.
-4. **3026:** a Âncora explode. A fenda se estende **para trás no tempo** pelo mesmo ponto e puxa quem estava ali nas noites em que ela encostou: Baltazar, Agostinho, Clarice, Valdir, o professor, Gabriel e Zane.
-5. **Em 3026, depois das chegadas:** o professor descobre a verdade e apaga o nome do criador. Clarice entra no sistema da Âncora. Valdir morre. Agostinho envelhece e morre.
-6. **O jogo:** Gabriel acorda e tenta fechar a fenda, ciclo após ciclo (seção 7.2).
+1. **Antes do jogo:** a sociedade e o planeta ficam muito ruins, e o pouco que sobrou da humanidade vai embora para outro planeta. O Carlos fica e constrói a Âncora no D-Tec.
+2. **3026:** o Carlos começa a tentar ir para os anos 80. A cada tentativa, a fenda se abre no chão da Biblioteca.
+3. **Os pulsos:** com dias de diferença, a fenda puxa uma pessoa de cada época. Cada uma acorda sozinha, foge dos robôs e acha um canto para sobreviver. Cinco chegam antes de Gabriel.
+4. **O jogo:** Gabriel, o penúltimo, acorda na Biblioteca, encontra os outros um a um, descobre o que aconteceu e tenta consertar a Âncora para todos voltarem.
+5. **Durante o jogo:** uma nova tentativa do Carlos traz o **Zane**, o último. Gabriel o recebe.
 
 ---
 
-## 6. Estrutura da história
+## 8. Estrutura da história
 
-> A ordem das fases depois da Biblioteca **não está decidida** (seção 11). O que está confirmado é o que cada fase já conta. Esta estrutura segue a lógica da história, não uma ordem de jogo travada.
+> A ordem das fases depois da Biblioteca **não está decidida** (seção 12). Esta estrutura segue a lógica da história, não uma ordem de jogo travada.
 
 ### Ato 1 — Acordar (Biblioteca)
 
 **Fase confirmada como primeira.** [`../fases/biblioteca.md`](../fases/biblioteca.md).
 
-- **Cutscene de abertura** (`seg_acordar`, aprovada): Gabriel acorda na cabine de estudo. Luz do sol por um teto que não existe mais, uma árvore no meio do salão, estantes caídas e vazias. As falas ainda estão a definir.
-- Gabriel acha a **lanterna** perto de onde acorda, e **pilhas** pelo salão.
-- **Acampamento de Baltazar** entre as raízes da árvore: luneta rachada, vela, diário embrulhado em pano e um robô desmontado peça por peça. Sem corpo.
-- **Terminal com o bilhete da Clarice**, que parece uma despedida. O jogador acha que ela morreu.
-- **Rádio portátil.** O Valdir transmite a primeira dica de patrulha e, no acervo, fala como se estivesse vendo Gabriel.
-- Gancho opcional: no fim da fase, o telefone do balcão toca. É a Clarice (ainda não implementado).
+- **Cutscene de abertura** (`seg_acordar`, aprovada): Gabriel acorda na cabine de estudo. Luz do sol por um teto que não existe mais, uma árvore no meio do salão, estantes caídas e vazias.
+- Gabriel acha a **lanterna** perto de onde acorda, e **pilhas** pelo salão. O **anel da avó** já está no inventário.
+- **Acampamento de Baltazar** entre as raízes da árvore. Ele não está lá.
+- **Terminal com o bilhete da Clarice**, que parece uma despedida.
+- **Rádio portátil:** o Rafael transmite a primeira dica de patrulha.
 - **Saída:** a porta no fim da ala leste leva ao Bloco de salas.
 
-O jogador aprende aqui as regras do jogo: silêncio, esconderijos, bateria e a existência de outras pessoas puxadas antes dele.
+O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e que **não está sozinho**: outras pessoas caíram ali antes dele.
 
-### Ato 2 — Investigar (Bloco de salas e demais áreas)
+### Ato 2 — Encontrar os outros (Bloco de salas, Labirinto e demais áreas)
 
-- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, **noite**, térreo enterrado na areia e primeiro andar com o teto aberto. As lousas têm os **tracinhos contados** que indicam séculos. Hoje só tem cenário e portas: objetivo, antecessor e robôs estão em aberto.
-- **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): subsolo escuro do centro de pesquisa da Âncora, com três robôs e uma porta de saída. É jogável, mas a posição na história está em aberto.
+- Cada fase leva a **um personagem** e ao esconderijo dele. Gabriel precisa chegar lá, ganhar a confiança da pessoa e receber a parte dela para consertar a Âncora (seção 3.1).
+- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Diana**, numa das salas. Hoje só tem cenário e portas.
+- **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): subsolo escuro do centro de pesquisa da Âncora, com três robôs. Jogável, mas sem lugar na história ainda.
 - As áreas seguintes do GDD (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) ainda não foram redefinidas para a premissa atual.
-- **Sonhos:** a cada sala segura, Gabriel dorme e revisita o campus cheio. Ele aprende senhas, lê os quadros de aviso originais e conversa com antecessores no passado deles.
-- **Chamadas e rádio:** Clarice liga pelos telefones velhos do campus e Valdir fala pelo rádio.
-- **Bilhetes de "G."** aparecem espalhados e vão ficando mais estranhos (seção 7.3).
-- Os outros antecessores (Agostinho, o professor, Zane) deixam seus registros nas próximas fases.
+- **Rádio e telefone:** Rafael fala pelo rádio e Clarice liga pelos telefones velhos.
+- **O anel:** em algum ponto deste ato, Gabriel encontra o Baltazar e descobre o parentesco.
 
 ### Ato 3 — O esconderijo (Bunker)
 
 **Fase em desenvolvimento.** [`../fases/bunker.md`](../fases/bunker.md).
 
-- O bunker de pesquisa embaixo do núcleo da Âncora ("ÂNCORA-03"), com dois setores. Os robôs não descem aqui: é o lugar mais seguro do jogo.
-- **Gabriel encontra Clarice em pessoa**, na central de dados. Ela já fala com ele como quem o conhece ("Você sempre lê. E sempre chega aqui com essa cara de quem viu assombração").
+- O bunker de pesquisa embaixo do núcleo da Âncora ("ÂNCORA-03"), com dois setores. Os robôs não descem aqui.
+- **Gabriel encontra Clarice em pessoa** na central de dados. Aqui podem morar 2 ou 3 personagens.
 - O **setor B** (laboratório, arquivo e a comporta do núcleo) está lacrado pelo sistema. Clarice quebra a senha "um disquete por vez".
 - Seis portas lacradas são os ganchos para as próximas fases: escotilha da superfície, elevador, arsenal, laboratório, arquivo e a comporta do núcleo.
-- Quando o Gabriel chega aqui na história **não está decidido** (seção 11).
 
-### Ato 4 — A verdade e o fim (Núcleo da Âncora)
+### A virada — A mentira do Henrique
 
-- A reta final passa pela **comporta do núcleo**, no setor B do bunker. Hoje é só uma porta lacrada.
-- Gabriel reúne a **pesquisa do professor** e descobre que é o paradoxo da Âncora (seção 7).
-- Ele compara um bilhete de "G." com uma página do caderno dele.
-- Decide o final (seção 8).
+- O **Henrique** engana o grupo: esconde a ligação que tem com o **Carlos**. Ou trabalha para ele, ou foi enganado por ele (pendente, seção 12.7).
+- Em algum momento, o grupo **descobre a mentira**.
+- É aí que todos **vão atrás do Carlos**, no D-Tec.
 
----
+### Ato 4 — Consertar a Âncora e voltar (Núcleo)
 
-## 7. A revelação central
-
-Aprovada em 2026-09-29 ([`revelacao_central.md`](revelacao_central.md)). Aqui só o resumo.
-
-### 7.1 Gabriel é o paradoxo
-
-- Em 3026, os cientistas acharam um "ponto cego" na linha do tempo, onde a primeira anomalia começou: um **caderno esquecido na Biblioteca em 2026**.
-- O caderno é de Gabriel, com as equações da cadeira que ele cursava. Essas equações continuam a pesquisa do professor de 2019.
-- A Âncora nasceu desse caderno. Ela tenta **estabilizar a própria existência** e, para isso, reúne quem esteve no ponto, principalmente quem a criou.
-- A fenda **não puxa por acaso**: o elo entre os puxados é o lugar, o chão da Biblioteca.
-- O professor apaga o nome do criador dos arquivos, e por isso Zane só acha **um nome de usuário de 2026**.
-
-### 7.2 Os loops
-
-- Os sonhos de Gabriel não são só memórias: são **ciclos anteriores que falharam**.
-- Toda vez que Gabriel morre ou dorme, a Âncora reinicia um micro-loop. Isso casa com a mecânica **dormir é salvar**.
-- Os bilhetes dos antecessores foram deixados por pessoas que **tentaram salvar Gabriel em ciclos anteriores**, ou por versões alteradas do próprio processo.
-- As gravações do Valdir no rádio também estão em loop.
-- **Clarice é a única que lembra.** Ela grava tudo no sistema da Âncora, a única coisa que o reinício não apaga, e relê os registros a cada ciclo. Gabriel esquece, ela não. Para ela, é a vigésima vez que o conhece, e por isso deixa escapar coisas como "Você sempre pergunta isso".
-
-### 7.3 Como a revelação é preparada: os bilhetes de "G."
-
-| Momento | O que os bilhetes de "G." fazem |
-|---|---|
-| **No começo** | São curtos e práticos ("não durma na sala 3", "o robô do corredor ouve a lanterna"). O jogador acha que "G." é outro antecessor. |
-| **No meio** | Sabem coisas que só o jogador viu, e a letra começa a parecer familiar. Alguns citam falas de sonhos que Gabriel ainda não teve. |
-| **Na revelação** | Gabriel compara um bilhete de "G." com uma página do próprio caderno: é a mesma letra, e a folha que falta no caderno é a do bilhete. |
-
-Mecanicamente, os bilhetes de "G." usam o mesmo visual das páginas do Caderno do Gabriel no inventário, para o jogador ver a pista desde o início sem perceber.
-
-### 7.4 Pistas já plantadas
-
-- Bilhete da Clarice na Biblioteca: *"PS: você não é o primeiro a ler isso."*
-- Clarice no bunker: *"Você sempre lê"*, *"Você sempre pergunta isso"*, *"Aprendeu mais rápido dessa vez."*
-- Valdir no rádio: *"Toda noite é a mesma coisa. Toda noite."*
-- Zane: *"Só sobrou um nome de usuário antigo de 2026."*
-
----
-
-## 8. O final: "A mesma madrugada"
-
-Por enquanto o jogo tem **um só final, o feliz** (decisão do Davi, 2026-09-29). Um final triste chegou a ser escrito (cada um volta ao seu tempo e os dois nunca mais se veem), mas foi retirado. O texto dele está no histórico do PR #33.
-
-1. Fechar a fenda devolveria cada pessoa ao seu tempo. Mas a **pesquisa do professor**, reunida ao longo do jogo, mostra a Gabriel como fazer mais que isso.
-2. Gabriel entende como **recalibrar a Âncora** para mandar duas pessoas para o mesmo tempo.
-3. Na última ligação, ele oferece à Clarice uma escolha: voltar para 1994 ou ir com ele para 2026. Ela escolhe 2026.
-4. **Cena final:** madrugada de 2026, na Biblioteca. Os dois acordam na mesma mesa, lembrando de tudo. Clarice pega o celular dele, olha a tela: *"Isso é totalmente surreal."*
-5. Gabriel arranca do caderno a página das equações e entrega a ela. Clarice rasga. **A Âncora nunca vai existir**, e o loop acaba.
-6. Último plano: os dois saem da Biblioteca ao amanhecer. Ela perdeu 32 anos do mundo e vai procurar a família. Ele vai junto.
+- A reta final passa pela **comporta do núcleo**, no setor B do bunker.
+- Com as partes de todos reunidas, Gabriel e os outros tentam consertar a Âncora e mandar cada um para a sua noite.
+- **O Zane escolhe ficar.** Voltar para 2123 é voltar para o mundo que vai virar o da IA. Fiel ao defeito dele (acha que toda máquina tem conserto), ele decide ficar em 3026 para tentar domar a IA por dentro. Um final agridoce que não tira o final dos outros. (Depende de a IA continuar existindo: seção 12.2.)
+- **O Baltazar volta para 1750**, mesmo querendo ficar: Gabriel precisa convencê-lo (seção 5).
+- **O Carlos:** como o grupo o enfrenta, sem lutar, está pendente (seção 12.5).
+- Como isso acontece e como o jogo termina está nas pendências (seção 12).
 
 ---
 
 ## 9. Temas e tom
 
 - **Estranhamento do familiar:** o jogador reconhece a catraca, o bebedouro, a Biblioteca. O mundo em volta não reconhece mais nada disso.
+- **Gente de épocas diferentes:** jovens da mesma idade e do mesmo lugar, separados por séculos, tentando se entender (gírias, costumes, tecnologia).
+- **Família e origem:** Gabriel descobre que a família dele sempre esteve naquele chão.
 - **Tempo como relógio mortal:** os robôs seguem rotinas, e quem aprende a rotina sobrevive.
-- **Dormir é salvar e é lembrar:** o sono é a única ponte para o passado.
 - **Vulnerabilidade:** Gabriel é um estudante, não um soldado.
-- **Solidão e ciclo:** um terror silencioso, de tensão e mistério, mais do que de susto. O maior choque é perceber quanto tempo passou, e depois perceber que ele já passou por isso antes.
+- Terror silencioso, de tensão e mistério, mais do que de susto. O maior choque é perceber **quanto tempo passou**.
 - **Público:** 14+, sem violência explícita. Os lugares da Unifor são só cenário; pessoas, pesquisa e acontecimentos são fictícios.
 
 ---
@@ -232,61 +221,90 @@ Por enquanto o jogo tem **um só final, o feliz** (decisão do Davi, 2026-09-29)
 
 | Camada | O que é | Onde está |
 |---|---|---|
-| **Narrativa ambiental** | Marcas no cenário, relíquias de épocas diferentes, os tracinhos nas lousas, os riscos de estrelas na árvore | [`README.md`](README.md) |
-| **Documentos** | Diários, bilhetes, disquetes. Cada época tem um papel próprio. As pistas úteis viram anotações no **Caderno do Gabriel** | [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md) |
-| **Rádio** | Transmissões do Valdir, sem pausar o jogo | idem |
-| **Ligações e diálogos** | Clarice por telefone e, no bunker, em pessoa, com retratos e escolhas | [`../dialogos/README.md`](../dialogos/README.md) |
-| **Sonhos** | Investigação no passado, sem perigo | [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md) |
-| **Cutscenes** | A abertura (`seg_acordar`) e as que o grupo decidir | [`../roteiro/cutscenes/`](../roteiro/cutscenes/) |
+| **Narrativa ambiental** | Marcas no cenário, relíquias de épocas diferentes, os tracinhos nas lousas, os riscos de estrelas na árvore | [`../fases/`](../fases/) |
+| **Documentos** | Diários, bilhetes, disquetes. Cada época tem um papel próprio. As pistas úteis viram anotações no **Caderno do Gabriel** | [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md) e o modelo [`template_documento.md`](template_documento.md) |
+| **Inventário** | O anel da avó, e a comparação com o anel do Baltazar | [`../mecanicas/itens_e_inventario.md`](../mecanicas/itens_e_inventario.md) |
+| **Rádio** | Rafael ao vivo, sem pausar o jogo | [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md) |
+| **Ligações e diálogos** | Clarice por telefone; todos em pessoa nos esconderijos, com retratos e escolhas | [`../dialogos/README.md`](../dialogos/README.md) |
+| **Sonhos** | O sono continua como mecânica; o que os sonhos mostram está pendente | [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md) |
+| **Cutscenes** | A abertura (`seg_acordar`) e as que o grupo decidir | [`roteiro/cutscenes/`](roteiro/cutscenes/) |
 
 ---
 
-## 11. Em aberto
-
-Estas são as decisões que o grupo ainda precisa tomar. Nenhuma está resolvida neste documento. Quando uma for decidida, vai para `decisoes.md` e sai desta lista.
-
-### 11.1 Contradições entre documentos
-
-- **Clarice: só voz ou também em pessoa?** A ficha dela e a revelação central dizem que os dois **só se veem no final** ("é a primeira vez que se veem"). Mas a fase Bunker (2026-09-30) já tem a Clarice **em pessoa**, conversando com Gabriel. O grupo precisa escolher: **(a)** o bunker fica perto do fim e a cena final muda; ou **(b)** as ligações continuam e o bunker é o primeiro encontro, com a cena final reescrita.
-- **O que Gabriel sabe ao chegar ao bunker.** Se ele já conhece Clarice de ligações ou só do bilhete.
-
-### 11.2 Vazios na história
-
-- **Pessoa de 2041:** continua ou Zane toma o lugar dela?
-- **O professor de 2019:** nome, voz, destino, e como aparece no jogo (bilhetes, sonho ou os dois).
-- **Por que o professor apaga o nome:** proteger Gabriel ou quebrar o loop.
-- **Destino de Zane:** vivo, morto ou preso no colapso circular.
-- **Quantos ciclos já aconteceram** e se algum detalhe muda entre eles (ex.: um bilhete de "G." que só aparece depois da primeira morte).
-- **Por que as gravações do Valdir parecem responder a Gabriel:** coincidência ou o próprio loop.
-- **Onde estão as partes da pesquisa do professor** e quantas são.
-- **Falas da cutscene `seg_acordar`** e "o que o jogador descobre" nela.
-
-### 11.3 Estrutura e fases
-
-- **Ordem das fases** depois da Biblioteca: onde entram o Labirinto, o Bunker e o Bloco de salas, e qual antecessor aparece em cada uma.
-- **Objetivo, robôs e história do Bloco de salas.**
-- **O que destrava o setor B do bunker** (senhas nos disquetes, religar o gerador) e se os robôs entram lá.
-- **Redesenho das áreas do GDD** (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) para a premissa da fenda. A tabela de ambientes e a estrutura de "cinco dias" do GDD são da premissa antiga (Insones e semana de provas).
-- **De onde vem a grade horária dos robôs.** Antes ela vinha da coloração de grafos da semana de provas. Hoje a patrulha dos robôs é programada, e os sonhos que ensinam "a grade" precisam ser reescritos para a premissa atual.
-
-### 11.4 Mecânicas que dependem da história
-
-- **Energia:** o GDD diz que "nada elétrico funciona", mas rádio, telefones e terminais funcionam. A saída proposta é que **só os sistemas da Âncora têm energia**, e Clarice leva essa energia até os telefones. Falta oficializar.
-- **Gadgets e antecessores:** em que fase cada gadget aparece e se cada um vem de um antecessor.
-
----
-
-## 12. Vocabulário oficial
+## 11. Vocabulário oficial
 
 Para qualquer texto do jogo ou da documentação:
 
 | Use | Não use |
 |---|---|
-| **Âncora** (o aparelho) | "Ankhor" para o aparelho. Ankhor é o nome do jogo |
+| **Âncora** (a máquina) | "Ankhor" para a máquina. Ankhor é o nome do jogo |
 | **Fenda** (temporal) | "portal" |
+| **Carlos** (o antagonista) | — |
+| **D-Tec** (a parte de tecnologia da Unifor, no Bloco M, onde ficam a Âncora e o laboratório do Carlos) | — |
+| **IA** (se continuar existindo: seção 12.2) | um nome próprio, enquanto o grupo não decidir |
 | **Robôs** (os inimigos) | "Insones", "Bibliotecária", "Calouros", "Vigia" (premissa antiga) |
-| **Lanterna a pilha** e **luzes de emergência** | "fungos", "pote de fungos" (removidos em 2026-09-29) |
-| **Antecessores** (quem veio antes) | "viajantes" ou "vítimas" como termo oficial |
+| **Lanterna a pilha** e **luzes de emergência** | "fungos", "pote de fungos" |
+| **Antecessores** (quem caiu antes de Gabriel) | "viajantes" ou "vítimas" como termo oficial |
 | **Cápsula de clarão** | "granada" |
 | **Caderno do Gabriel** | "diário" para o caderno dele (o diário é o do Baltazar) |
 | **Bunker** (embaixo do núcleo da Âncora) | — |
+
+---
+
+## 12. Pendências
+
+Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decisoes.md` e sai desta lista.
+
+### 12.1 A volta e o fim
+
+- **Quanto tempo Gabriel tem:** se a fenda crescendo vira um prazo que o jogador sente (dias contados, pulsos que estremecem o campus) ou fica só na história.
+- **Como cada um volta:** todos de uma vez no final, ou um por um, conforme a Âncora vai sendo consertada.
+- **O final** de Gabriel e Clarice. O final antigo ("A mesma madrugada": os dois acordam juntos em 2026, e ela rasga a página das equações) foi escrito para a versão com loops e precisa ser revisto.
+
+### 12.2 O Carlos, a Âncora e a IA
+
+- **Como o Carlos consegue o conhecimento** que falta para a Âncora funcionar: roubando a consciência dos puxados, construindo uma super IA, ou as duas (a super IA feita das consciências roubadas).
+- **A IA continua existindo?** Pode ser a super IA do Carlos, outra coisa que ele controla, ou sair da história. O arco do Zane (medo da IA, ficar para domá-la) depende disso.
+- **O Carlos domina as IAs, e elas o ajudam?** Proposta do Davi: em vez de uma IA só, várias IAs, todas sob o controle do Carlos e trabalhando para ele. Falta decidir quantas são, o que cada uma faz (os robôs, a Âncora, os sistemas do D-Tec) e como ele as domina.
+- **Por que os robôs caçam os humanos:** para capturar e levar ao Bloco M, ou para eliminar quem atrapalha.
+- **O Carlos:** idade exata, como fala, o que teme, defeito e arco; e **quando o jogador descobre** que ele existe.
+- **Quando a humanidade foi embora**, e como a Unifor virou um centro de pesquisa em física do tempo.
+- **Por que a fenda se abre sempre na Biblioteca.**
+
+### 12.3 Personagens
+
+- **Gabriel falhando na tela:** enquanto o Baltazar estiver fora de 1750, o sprite de Gabriel pisca ou se desfaz, como a foto em *De Volta para o Futuro*. Seria um shader (bom para a apresentação de Computação Gráfica).
+- **Henrique:** como ele aparece no jogo.
+- **Zane:** o que fazia no ponto quando foi puxado, e em que fase do jogo ele chega (e se o jogador vê o pulso acontecer).
+- **Ordem de chegada dos outros cinco** (Baltazar, Diana, Clarice, Rafael e Henrique), que chegaram antes de Gabriel. Não precisa seguir a ordem dos anos.
+- **Qual sala de aula** do Bloco de salas é o esconderijo da Diana.
+- **Onde fica, dentro da Biblioteca, o esconderijo do Baltazar**, e como ele combina com o acampamento vazio que Gabriel acha no começo do jogo e com a última página do diário ("Hei de seguir a luz até onde ella nasce").
+- **Como o Rafael parece ver Gabriel** pelo rádio ("Ele falou como se estivesse me vendo").
+
+### 12.4 Textos já escritos que citam a versão antiga
+
+- `dados/dialogos/clarice_primeiro_encontro.json`: as falas "Você sempre lê", "E sempre chega aqui com essa cara de quem viu assombração" e "E você sempre repara" vinham dos loops e precisam ser reescritas.
+- [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md): **o que os sonhos mostram** agora que não há loops (memória, o passado do campus, outra coisa).
+
+### 12.5 Estrutura e fases
+
+- **Ordem das fases** depois da Biblioteca: onde entram o Labirinto, o Bunker e o Bloco de salas, e qual personagem aparece em cada uma.
+- **Objetivo, robôs e história do Bloco de salas.**
+- **O que destrava o setor B do bunker** (senhas nos disquetes, religar o gerador) e se os robôs entram lá.
+- **O D-Tec (Bloco M)** como fase: se é a última, e como o grupo enfrenta o Carlos sem lutar (Gabriel não é combatente).
+- **Cenários mais futuristas.** Pedido do Davi: os cenários precisam mostrar mais a tecnologia de 3026 (telas, máquinas, a estrutura do centro de pesquisa e do D-Tec), misturada às ruínas e à vegetação. Falta decidir quanto do campus tem esse visual futurista e onde ele aparece mais.
+- **Redesenho das áreas do GDD** (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) para a premissa da fenda.
+- **De onde vem a grade horária dos robôs.** Antes vinha da coloração de grafos da semana de provas; hoje a patrulha é programada (pelo Carlos ou pela IA: seção 12.2).
+
+### 12.6 Mecânicas que dependem da história
+
+- **Energia:** quais sistemas são da Âncora e quais são do Carlos. Hoje: luzes de emergência, bunker, terminais e telefones são da Âncora; os robôs obedecem ao Carlos.
+- **Gadgets e personagens:** em que fase cada gadget aparece e se cada um vem de um personagem.
+
+### 12.7 A mentira do Henrique
+
+As perguntas que faltam responder sobre "A virada" (seção 8):
+
+1. **O Henrique trabalha para o Carlos por vontade própria, ou foi enganado por ele?**
+2. **O que exatamente o Henrique esconde do grupo?** (A ideia 12 de [`outras_ideias.md`](outras_ideias.md) é uma opção.)
+3. **Como e quando o grupo descobre a mentira?**

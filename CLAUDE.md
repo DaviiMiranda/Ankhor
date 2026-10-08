@@ -6,16 +6,17 @@ Este arquivo dá contexto a qualquer sessão do Claude que trabalhe neste reposi
 
 **Ankhor** é o jogo do trabalho de Computação Gráfica (Semestre 6) de um grupo de 4 alunos da Unifor.
 
-- **Premissa:** Em 3026 (mil anos no futuro), a Unifor é um centro de pesquisa em física do tempo. A explosão de um aparelho chamado **Âncora** rasgou o tempo dentro do campus. A fenda puxa pessoas do passado — puxou Gabriel da Biblioteca numa madrugada de 2026. A fenda cresce e, se não for fechada, vai engolir o passado do campus e a época de Gabriel. Antes dele vieram uma aluna de 1994, um segurança de 2008, um professor de 2019 e alguém de 2041, que deixaram bilhetes pelo campus. Os inimigos que patrulham o local são **robôs**. A primeira fase é a Biblioteca.
+- **Premissa:** Em 3026 o pouco que sobrou da humanidade foi embora da Terra. Ficou o **Carlos**, um cientista obcecado pelos anos 80, que construiu a **Âncora** para ir viver lá. A máquina é imprecisa: a cada tentativa, abre uma **fenda** no tempo no chão da Biblioteca e puxa, por acaso, jovens de épocas diferentes que estavam naquele ponto. Um deles é **Gabriel Magalhães**, estudante de 2026. Ele precisa encontrar os outros, descobrir o que aconteceu e achar um jeito de todos voltarem. Os inimigos são **robôs** controlados pelo Carlos. A primeira fase é a Biblioteca.
 - **Estilo:** pixel art em vista lateral 2.5D, inspirado em *Five Nights at Freddy's: Into the Pit*. Terror atmosférico, fuga e esconderijo, defesa limitada.
-- **O roteiro e parte das mecânicas ainda estão sendo definidos** ao longo do projeto. A fonte da verdade é `docs/gdd.md` + `docs/decisoes.md`. Se algo aqui contradizer `docs/decisoes.md`, vale o registro de decisões (é o mais recente).
+- **A lei do projeto para história, mundo e personagens é [`docs/historia/enredo_principal.md`](docs/historia/enredo_principal.md), junto com as fichas de [`docs/historia/personagens/`](docs/historia/personagens/)** (uma por personagem, com a mesma autoridade). Vale acima de qualquer outro documento (GDD, fichas, fases, `decisoes.md`). Em caso de dúvida em qualquer parte do jogo (uma fala, um bilhete, uma sala, um sprite), consulte o Enredo Principal. Se algo o contradiz, o erro está no outro lugar. O que ele ainda não decidiu está na seção "Pendências", no fim dele: não invente resposta para uma pendência, pergunte ao usuário.
+- **Para o resto (mecânicas, técnica, arte),** a fonte da verdade é `docs/decisoes.md` + `docs/gdd.md`. Se os dois se contradizem, vale o registro de decisões (é o mais recente).
 
 **Requisito obrigatório da disciplina:** o jogo precisa usar conteúdos de computação — grafos, estruturas de dados avançadas, matemática. Planejado: campus como grafo, BFS para propagação de som, A\* para perseguição, cadeia de Markov no movimento dos inimigos, coloração de grafos em rotinas de patrulha, máquina de estados, campo de visão por produto escalar. Detalhes em `docs/gdd.md`, item 2.4.
 
 ## Stack
 
 - **Godot 4.7.x**, **GDScript**, 2D.
-- Resolução base 320×180, escala inteira, filtro de textura *Nearest* (pixel art). O stretch é `canvas_items`: a lógica e a interface ficam em 320×180, mas a imagem é desenhada na resolução da janela. Por isso **Gabriel e Clarice têm sprites em resolução dobrada** (96 px de altura, mostrados com escala 0,5): no mesmo tamanho na tela, com o dobro de detalhe. O cenário continua em 1× (ver `docs/decisoes.md`).
+- Resolução base 320×180, escala inteira, filtro de textura *Nearest* (pixel art). O stretch é `canvas_items`: a lógica e a interface ficam em 320×180, mas a imagem é desenhada na resolução da janela. Por isso **os personagens humanos (Gabriel, Clarice, Zane, Baltazar, Rafael, Henrique, Carlos) têm sprites em resolução dobrada** (96 px de altura, mostrados com escala 0,5): no mesmo tamanho na tela, com o dobro de detalhe. O cenário continua em 1× (ver `docs/decisoes.md`).
 - Fonte: **Galmuri7** (pixelada), padrão do jogo pelo tema `cenas/interface/tema_jogo.tres`. Só nos tamanhos **8** ou **16**: em outros tamanhos a letra deforma. Uma linha de texto tem 14 px de altura. Detalhes em `assets/fontes/creditos.md`.
 - Sem assets pagos. Placeholders gerados no próprio Godot até a arte ficar pronta.
 
@@ -28,7 +29,7 @@ dados/          recursos de dados (.tres), ex.: dados/itens/ — um arquivo por 
 shaders/        shaders (.gdshader)
 assets/         sprites, tiles, audio, fontes
 docs/           gdd.md, equipe.md, decisoes.md
-docs/roteiro/   história, personagens, diálogos
+docs/historia/  enredo_principal.md (a lei do projeto), personagens/, roteiro/
 .claude/agents/ agentes especializados deste projeto
 ```
 
@@ -82,8 +83,8 @@ A mesma regra vale para agentes do projeto: passe para eles o caminho da pasta s
 
 - O grupo nunca trabalhou com git em equipe. Quando um comando git for necessário, **explique o que ele faz** antes de sugerir.
 - Prefira **o menor passo que funciona**. Escopo de trabalho de faculdade: uma sala perfeita vale mais que cinco pela metade.
-- Mecânicas e história ainda mudam. Antes de implementar algo grande baseado no GDD, confira `docs/decisoes.md`.
-- Se uma mudança de design ou de história for decidida numa conversa, sugira registrá-la em `docs/decisoes.md`.
+- Mecânicas e história ainda mudam. Antes de implementar algo grande baseado no GDD, confira `docs/decisoes.md`, e, se tocar em história ou personagens, o Enredo Principal.
+- Se uma mudança de design for decidida numa conversa, sugira registrá-la em `docs/decisoes.md`. Se for de **história**, ela entra **no mesmo PR** no Enredo Principal e em `docs/decisoes.md`.
 
 ## Agentes do projeto
 

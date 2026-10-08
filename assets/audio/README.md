@@ -41,7 +41,7 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `efeitos/gabriel/gabriel_passo_ceramica_01.wav` … `_06.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 6 passos de tênis em cerâmica antiga com areia: baque do calcanhar, sola, grãos e um pouco do eco do salão. Tocados pela cena `cenas/sistemas/passos.tscn` (dentro do Gabriel), sorteando a variação |
 | `efeitos/interface/inventario_abrir.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 0,55 s: zíper da mochila (acelera e freia), tecido e a aba caindo. Toca ao abrir o inventário |
 | `efeitos/interface/inventario_fechar.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 0,45 s: a aba empurrada, o zíper mais rápido e o "tec" do cursor no fim. Toca ao fechar o inventário |
-| `efeitos/objetos/radio_chiado.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 2 s em loop sem emenda: estática de rádio portátil, com o sinal indo e voltando. Toca por baixo das falas do Valdir (`cenas/interface/legenda_radio.tscn`) |
+| `efeitos/objetos/radio_chiado.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 2 s em loop sem emenda: estática de rádio portátil, com o sinal indo e voltando. Toca por baixo das falas do Rafael (`cenas/interface/legenda_radio.tscn`) |
 | `efeitos/objetos/radio_clique.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 0,3 s: o clique do botão de falar e o chiado do canal abrindo. Toca no começo e no fim de cada transmissão |
 | `musica/perseguicao/labirinto_tensao.ogg` | `assets/modelagem/audio/gerar_trilha_labirinto.py` | 38,4 s em loop, 100 BPM, Ré frígio: drone, coração, metal arrastado, máquinas ao longe, cordas agudas. Camada que toca sempre no labirinto |
 | `musica/perseguicao/labirinto_perseguicao.ogg` | `assets/modelagem/audio/gerar_trilha_labirinto.py` | Mesma duração e andamento: tambores, baixo em ostinato, golpes de metal, Shepard subindo, alarme. Sobe quando um robô vê o Gabriel (`cenas/sistemas/musica_labirinto.tscn`) |
@@ -67,7 +67,7 @@ Formato: `onde_o_que_variacao.ext`, em `snake_case`, português, sem acento.
 
 - Com variações, numere com dois dígitos: `gabriel_passo_areia_01.wav`, `gabriel_passo_areia_02.wav`.
 - Em `ambiente/`, diga se é presente ou sonho: `biblioteca_presente.ogg`, `biblioteca_sonho.ogg`.
-- Em `efeitos/robos/`, comece pelo tipo do robô (`docs/personagens/robos.md`): `sentinela_passos_01.wav`, `enxame_motor_01.wav`.
+- Em `efeitos/robos/`, comece pelo tipo do robô (`docs/historia/personagens/robos.md`): `sentinela_passos_01.wav`, `enxame_motor_01.wav`.
 - Em `vozes/`, comece pelo personagem: `pesquisadora_murmurio_01.ogg`.
 
 ## Formato

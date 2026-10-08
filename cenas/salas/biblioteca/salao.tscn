@@ -1,0 +1,724 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://cbk4hsrp0m71x" path="res://scripts/salas/sala.gd" id="1_sala"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/gabriel.tscn" id="2_gabriel"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="m_musica"]
+[ext_resource type="Shader" uid="uid://cb8ygb308rjtx" path="res://shaders/raios_de_sol.gdshader" id="3_raios"]
+[ext_resource type="Shader" uid="uid://dkfsu5mqayu3p" path="res://shaders/vinheta.gdshader" id="4_vinheta"]
+[ext_resource type="Script" path="res://scripts/salas/luz_tremula.gd" id="5_tremula"]
+[ext_resource type="Texture2D" uid="uid://c0edn1sdwkasp" path="res://assets/sprites/salas/biblioteca/biblioteca_ceu.png" id="t_ceu"]
+[ext_resource type="Texture2D" uid="uid://dglxwc7al2aj7" path="res://assets/sprites/salas/biblioteca/biblioteca_fundo.png" id="t_fundo"]
+[ext_resource type="Texture2D" uid="uid://c1igp2y6yy0jq" path="res://assets/sprites/salas/biblioteca/biblioteca_chao.png" id="t_chao"]
+[ext_resource type="Texture2D" uid="uid://op72as7kmv8i" path="res://assets/sprites/salas/biblioteca/biblioteca_frente.png" id="t_frente"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="t_luz"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/arvore.tscn" id="o_arvore"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cabine.tscn" id="o_cabine"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira.tscn" id="o_cadeira"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carrinho.tscn" id="o_carrinho"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="o_entulho"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_caida.tscn" id="o_estante_caida"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_quebrada.tscn" id="o_estante_quebrada"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_vazia.tscn" id="o_estante_vazia"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="o_lampada"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/livros.tscn" id="o_livros"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/mesa_leitura.tscn" id="o_mesa_leitura"]
+[ext_resource type="Script" path="res://scripts/salas/guias_sala.gd" id="6_guias"]
+[ext_resource type="PackedScene" path="res://cenas/interface/hud.tscn" id="i_hud"]
+[ext_resource type="PackedScene" path="res://cenas/interface/tela_inventario.tscn" id="i_inventario"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="i_item"]
+[ext_resource type="Resource" path="res://dados/itens/lanterna.tres" id="i_lanterna"]
+[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="i_pilha"]
+[ext_resource type="PackedScene" path="res://cenas/interface/tela_morte.tscn" id="i_tela_morte"]
+[ext_resource type="PackedScene" path="res://cenas/interface/tela_documento.tscn" id="i_tela_documento"]
+[ext_resource type="PackedScene" path="res://cenas/interface/legenda_radio.tscn" id="i_legenda_radio"]
+[ext_resource type="PackedScene" path="res://cenas/itens/documento_no_mundo.tscn" id="r_documento"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="r_gatilho"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/acampamento_baltazar.tscn" id="r_acampamento"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/robo_desmontado.tscn" id="r_robo"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/terminal.tscn" id="r_terminal"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/riscos_estrelas.png" id="r_riscos"]
+[ext_resource type="Resource" path="res://dados/documentos/diario_baltazar.tres" id="r_diario"]
+[ext_resource type="Resource" path="res://dados/documentos/bilhete_clarice.tres" id="r_bilhete"]
+[ext_resource type="Resource" path="res://dados/itens/radio.tres" id="r_radio"]
+[ext_resource type="Resource" path="res://dados/transmissoes/rafael_01.tres" id="r_rafael_01"]
+[ext_resource type="Resource" path="res://dados/transmissoes/rafael_02.tres" id="r_rafael_02"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="n1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/tabuas_porta.png" id="n2"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/grade_seguranca.tscn" id="n3"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="n4"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/painel_codigo.tscn" id="n5"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="n6"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="n7"]
+[ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="n8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="n9"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/som_do_outro_lado.tscn" id="n10"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/toque_distante.tscn" id="n11"]
+
+[sub_resource type="StyleBoxFlat" id="Placa"]
+bg_color = Color(0.12, 0.13, 0.14, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acervo"]
+size = Vector2(270, 110)
+
+[sub_resource type="ShaderMaterial" id="Raios_grande"]
+shader = ExtResource("3_raios")
+shader_parameter/cor = Color(1, 0.88, 0.62, 1)
+shader_parameter/forca = 1.4
+shader_parameter/direcao = Vector2(0.5, 1)
+shader_parameter/origem = Vector2(114, -8)
+shader_parameter/largura = 230.0
+shader_parameter/comprimento = 290.0
+shader_parameter/degraus = 4.0
+shader_parameter/tamanho = Vector2(430, 300)
+
+[sub_resource type="ShaderMaterial" id="Raios_pequeno"]
+shader = ExtResource("3_raios")
+shader_parameter/cor = Color(1, 0.88, 0.62, 1)
+shader_parameter/forca = 1.1
+shader_parameter/direcao = Vector2(0.5, 1)
+shader_parameter/origem = Vector2(49, -4)
+shader_parameter/largura = 90.0
+shader_parameter/comprimento = 240.0
+shader_parameter/degraus = 4.0
+shader_parameter/tamanho = Vector2(260, 300)
+
+[sub_resource type="ShaderMaterial" id="Raios_leste"]
+shader = ExtResource("3_raios")
+shader_parameter/cor = Color(1, 0.88, 0.62, 1)
+shader_parameter/forca = 1.2
+shader_parameter/direcao = Vector2(0.5, 1)
+shader_parameter/origem = Vector2(70, -6)
+shader_parameter/largura = 120.0
+shader_parameter/comprimento = 260.0
+shader_parameter/degraus = 4.0
+shader_parameter/tamanho = Vector2(300, 300)
+
+[sub_resource type="ShaderMaterial" id="Vinheta"]
+shader = ExtResource("4_vinheta")
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id="Limite_h"]
+size = Vector2(1000, 40)
+
+[sub_resource type="RectangleShape2D" id="Limite_v"]
+size = Vector2(40, 460)
+
+[node name="Salao" type="Node2D"]
+script = ExtResource("1_sala")
+id = "biblioteca_salao"
+largura = 960
+altura = 420
+chao_fundo = 122
+chao_frente = 416
+criar_limites = false
+
+[node name="Ceu" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ceu"]
+self_modulate = Color(1.9, 1.85, 1.6, 1)
+texture = ExtResource("t_ceu")
+centered = false
+
+[node name="Fundo" type="Sprite2D" parent="."]
+texture = ExtResource("t_fundo")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 960, 180)
+
+[node name="Chao" type="Sprite2D" parent="."]
+texture = ExtResource("t_chao")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 960, 420)
+
+[node name="PortasNaParede" type="Node2D" parent="."]
+
+[node name="ParedeCabine" parent="PortasNaParede" instance=ExtResource("n1")]
+position = Vector2(0, 0)
+
+[node name="PlacaCabine" type="Label" parent="PortasNaParede"]
+offset_left = 13.0
+offset_top = 30.0
+offset_right = 69.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "CABINES"
+horizontal_alignment = 1
+
+[node name="ParedeBalcao" parent="PortasNaParede" instance=ExtResource("n1")]
+position = Vector2(160, 0)
+
+[node name="PlacaBalcao" type="Label" parent="PortasNaParede"]
+offset_left = 177.0
+offset_top = 30.0
+offset_right = 225.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "BALCÃO"
+horizontal_alignment = 1
+
+[node name="ParedeObrasRaras" parent="PortasNaParede" instance=ExtResource("n1")]
+position = Vector2(380, 0)
+
+[node name="PlacaObrasRaras" type="Label" parent="PortasNaParede"]
+offset_left = 377.0
+offset_top = 30.0
+offset_right = 465.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "OBRAS RARAS"
+horizontal_alignment = 1
+
+[node name="ParedeServico" parent="PortasNaParede" instance=ExtResource("n1")]
+position = Vector2(560, 0)
+
+[node name="PlacaServico" type="Label" parent="PortasNaParede"]
+offset_left = 573.0
+offset_top = 30.0
+offset_right = 629.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "SERVIÇO"
+horizontal_alignment = 1
+
+[node name="ParedeAcervo" parent="PortasNaParede" instance=ExtResource("n1")]
+position = Vector2(700, 0)
+
+[node name="PlacaAcervo" type="Label" parent="PortasNaParede"]
+offset_left = 717.0
+offset_top = 30.0
+offset_right = 765.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "ACERVO"
+horizontal_alignment = 1
+
+[node name="ParedeGrade" parent="PortasNaParede" instance=ExtResource("n1")]
+position = Vector2(872, 0)
+
+[node name="PlacaGrade" type="Label" parent="PortasNaParede"]
+offset_left = 877.0
+offset_top = 30.0
+offset_right = 949.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "ALA LESTE"
+horizontal_alignment = 1
+
+[node name="TabuasObrasRaras" type="Sprite2D" parent="PortasNaParede"]
+position = Vector2(400, 46)
+texture = ExtResource("n2")
+centered = false
+
+[node name="Grade" parent="PortasNaParede" instance=ExtResource("n3")]
+position = Vector2(892, 46)
+
+[node name="Objetos" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Gabriel" parent="Objetos" instance=ExtResource("2_gabriel")]
+position = Vector2(124, 150)
+
+[node name="Camera2D" type="Camera2D" parent="Objetos/Gabriel"]
+position = Vector2(0, -30)
+limit_left = 0
+limit_top = 0
+limit_right = 960
+limit_bottom = 300
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="Cadeira" parent="Objetos" instance=ExtResource("o_cadeira")]
+position = Vector2(152, 142)
+
+[node name="Arvore" parent="Objetos" instance=ExtResource("o_arvore")]
+position = Vector2(238, 140)
+
+[node name="RiscosEstrelas" type="Sprite2D" parent="Objetos/Arvore"]
+position = Vector2(-1, -36)
+texture = ExtResource("r_riscos")
+centered = false
+offset = Vector2(-9, -29)
+
+[node name="Entulho1" parent="Objetos" instance=ExtResource("o_entulho")]
+position = Vector2(318, 126)
+
+[node name="EstanteCaida" parent="Objetos" instance=ExtResource("o_estante_caida")]
+position = Vector2(362, 174)
+collision_layer = 9
+
+[node name="EstanteVazia" parent="Objetos" instance=ExtResource("o_estante_vazia")]
+position = Vector2(440, 134)
+collision_layer = 9
+
+[node name="Livros1" parent="Objetos" instance=ExtResource("o_livros")]
+position = Vector2(494, 170)
+
+[node name="MesaLeitura" parent="Objetos" instance=ExtResource("o_mesa_leitura")]
+position = Vector2(572, 156)
+
+[node name="Entulho2" parent="Objetos" instance=ExtResource("o_entulho")]
+position = Vector2(652, 124)
+espelhado = true
+
+[node name="Carrinho" parent="Objetos" instance=ExtResource("o_carrinho")]
+position = Vector2(706, 150)
+
+[node name="EstanteQuebrada" parent="Objetos" instance=ExtResource("o_estante_quebrada")]
+position = Vector2(800, 134)
+collision_layer = 9
+
+[node name="Livros2" parent="Objetos" instance=ExtResource("o_livros")]
+position = Vector2(878, 164)
+espelhado = true
+
+[node name="Lampada1" parent="Objetos" instance=ExtResource("o_lampada")]
+position = Vector2(758, 168)
+
+[node name="Pilha1" parent="Objetos" instance=ExtResource("i_pilha")]
+position = Vector2(846, 140)
+
+[node name="Lampada2" parent="Objetos" instance=ExtResource("o_lampada")]
+position = Vector2(912, 124)
+
+[node name="AcampamentoBaltazar" parent="Objetos" instance=ExtResource("r_acampamento")]
+position = Vector2(262, 148)
+
+[node name="DiarioBaltazar" parent="Objetos" instance=ExtResource("r_documento")]
+position = Vector2(262, 148)
+texto_acao = "Ler o diário"
+documento = ExtResource("r_diario")
+
+[node name="RoboDesmontado" parent="Objetos" instance=ExtResource("r_robo")]
+position = Vector2(280, 172)
+
+[node name="MesaLeituraSul" parent="Objetos" instance=ExtResource("o_mesa_leitura")]
+position = Vector2(170, 232)
+
+[node name="CadeiraSul1" parent="Objetos" instance=ExtResource("o_cadeira")]
+position = Vector2(116, 246)
+
+[node name="CadeiraSul2" parent="Objetos" instance=ExtResource("o_cadeira")]
+position = Vector2(228, 214)
+espelhado = true
+
+[node name="Entulho3" parent="Objetos" instance=ExtResource("o_entulho")]
+position = Vector2(404, 212)
+
+[node name="Livros3" parent="Objetos" instance=ExtResource("o_livros")]
+position = Vector2(340, 264)
+
+[node name="EstanteVaziaSul" parent="Objetos" instance=ExtResource("o_estante_vazia")]
+position = Vector2(560, 208)
+collision_layer = 9
+
+[node name="EstanteQuebradaSul" parent="Objetos" instance=ExtResource("o_estante_quebrada")]
+position = Vector2(640, 246)
+espelhado = true
+collision_layer = 9
+
+[node name="CarrinhoSul" parent="Objetos" instance=ExtResource("o_carrinho")]
+position = Vector2(520, 282)
+espelhado = true
+
+[node name="Livros4" parent="Objetos" instance=ExtResource("o_livros")]
+position = Vector2(604, 290)
+espelhado = true
+
+[node name="EstanteCaidaSul" parent="Objetos" instance=ExtResource("o_estante_caida")]
+position = Vector2(744, 226)
+espelhado = true
+collision_layer = 9
+
+[node name="CabineSul" parent="Objetos" instance=ExtResource("o_cabine")]
+position = Vector2(860, 272)
+espelhado = true
+
+[node name="Entulho4" parent="Objetos" instance=ExtResource("o_entulho")]
+position = Vector2(72, 288)
+espelhado = true
+
+[node name="Lampada4" parent="Objetos" instance=ExtResource("o_lampada")]
+position = Vector2(800, 262)
+
+[node name="EstanteCaidaFundoSul" parent="Objetos" instance=ExtResource("o_estante_caida")]
+position = Vector2(150, 334)
+collision_layer = 9
+
+[node name="Entulho5" parent="Objetos" instance=ExtResource("o_entulho")]
+position = Vector2(86, 372)
+espelhado = true
+
+[node name="Livros5" parent="Objetos" instance=ExtResource("o_livros")]
+position = Vector2(190, 392)
+
+[node name="Entulho6" parent="Objetos" instance=ExtResource("o_entulho")]
+position = Vector2(238, 410)
+
+[node name="CabineFundoSul" parent="Objetos" instance=ExtResource("o_cabine")]
+position = Vector2(300, 404)
+
+[node name="EstanteAcervo1" parent="Objetos" instance=ExtResource("o_estante_vazia")]
+position = Vector2(424, 336)
+collision_layer = 9
+
+[node name="EstanteAcervo2" parent="Objetos" instance=ExtResource("o_estante_quebrada")]
+position = Vector2(648, 336)
+espelhado = true
+collision_layer = 9
+
+[node name="Livros6" parent="Objetos" instance=ExtResource("o_livros")]
+position = Vector2(536, 366)
+espelhado = true
+
+[node name="EstanteAcervo3" parent="Objetos" instance=ExtResource("o_estante_quebrada")]
+position = Vector2(488, 394)
+collision_layer = 9
+
+[node name="EstanteAcervo4" parent="Objetos" instance=ExtResource("o_estante_vazia")]
+position = Vector2(584, 394)
+collision_layer = 9
+
+[node name="MesaLeituraFundoSul" parent="Objetos" instance=ExtResource("o_mesa_leitura")]
+position = Vector2(790, 376)
+
+[node name="CadeiraFundoSul1" parent="Objetos" instance=ExtResource("o_cadeira")]
+position = Vector2(738, 388)
+
+[node name="CadeiraFundoSul2" parent="Objetos" instance=ExtResource("o_cadeira")]
+position = Vector2(842, 362)
+espelhado = true
+
+[node name="CarrinhoFundoSul" parent="Objetos" instance=ExtResource("o_carrinho")]
+position = Vector2(900, 408)
+
+[node name="Livros7" parent="Objetos" instance=ExtResource("o_livros")]
+position = Vector2(700, 408)
+
+[node name="Lampada5" parent="Objetos" instance=ExtResource("o_lampada")]
+position = Vector2(120, 410)
+
+[node name="Lampada6" parent="Objetos" instance=ExtResource("o_lampada")]
+position = Vector2(372, 326)
+
+[node name="Lampada7" parent="Objetos" instance=ExtResource("o_lampada")]
+position = Vector2(660, 372)
+
+[node name="Lampada8" parent="Objetos" instance=ExtResource("o_lampada")]
+position = Vector2(920, 330)
+
+[node name="RaiosGrande" type="ColorRect" parent="."]
+material = SubResource("Raios_grande")
+offset_left = 130.0
+offset_right = 560.0
+offset_bottom = 300.0
+mouse_filter = 2
+
+[node name="RaiosPequeno" type="ColorRect" parent="."]
+material = SubResource("Raios_pequeno")
+offset_left = 590.0
+offset_right = 850.0
+offset_bottom = 300.0
+mouse_filter = 2
+
+[node name="Poeira" type="CPUParticles2D" parent="."]
+position = Vector2(330, 140)
+amount = 80
+lifetime = 9.0
+preprocess = 9.0
+emission_shape = 3
+direction = Vector2(0.4, 1)
+spread = 70.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+color = Color(1, 0.92, 0.7, 0.7)
+emission_rect_extents = Vector2(130, 120)
+
+[node name="PoeiraPequena" type="CPUParticles2D" parent="."]
+position = Vector2(690, 100)
+amount = 18
+lifetime = 9.0
+preprocess = 9.0
+emission_shape = 3
+direction = Vector2(0.4, 1)
+spread = 70.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+color = Color(1, 0.92, 0.7, 0.7)
+emission_rect_extents = Vector2(40, 60)
+
+[node name="Frente" type="Sprite2D" parent="."]
+texture = ExtResource("t_frente")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 960, 420)
+
+[node name="Limites" type="StaticBody2D" parent="."]
+collision_layer = 9
+
+[node name="Fundo" type="CollisionShape2D" parent="Limites"]
+position = Vector2(480, 98)
+shape = SubResource("Limite_h")
+
+[node name="Frente" type="CollisionShape2D" parent="Limites"]
+position = Vector2(480, 436)
+shape = SubResource("Limite_h")
+
+[node name="Esquerda" type="CollisionShape2D" parent="Limites"]
+position = Vector2(0, 210)
+shape = SubResource("Limite_v")
+
+[node name="Direita" type="CollisionShape2D" parent="Limites"]
+position = Vector2(960, 210)
+shape = SubResource("Limite_v")
+
+[node name="Luzes" type="Node2D" parent="."]
+
+[node name="SolGrande" type="PointLight2D" parent="Luzes"]
+position = Vector2(300, 120)
+scale = Vector2(4.6, 3.4)
+color = Color(1, 0.84, 0.6, 1)
+energy = 1.3
+texture = ExtResource("t_luz")
+
+[node name="SolChao" type="PointLight2D" parent="Luzes"]
+position = Vector2(310, 150)
+scale = Vector2(3.2, 1.2)
+color = Color(1, 0.84, 0.6, 1)
+energy = 0.7
+texture = ExtResource("t_luz")
+
+[node name="SolPequeno" type="PointLight2D" parent="Luzes"]
+position = Vector2(690, 130)
+scale = Vector2(1.9, 2.4)
+color = Color(1, 0.84, 0.6, 1)
+energy = 0.8
+texture = ExtResource("t_luz")
+
+[node name="Rebatida" type="PointLight2D" parent="Luzes"]
+position = Vector2(520, 110)
+scale = Vector2(5, 3)
+color = Color(0.55, 0.65, 0.85, 1)
+energy = 0.3
+texture = ExtResource("t_luz")
+
+[node name="Janelas" type="PointLight2D" parent="Luzes"]
+position = Vector2(80, 60)
+scale = Vector2(3, 2)
+color = Color(0.6, 0.75, 0.9, 1)
+energy = 0.35
+texture = ExtResource("t_luz")
+
+[node name="Arandela1" type="PointLight2D" parent="Luzes"]
+position = Vector2(758, 92)
+scale = Vector2(2.2, 2.2)
+color = Color(1, 0.78, 0.5, 1)
+energy = 0.8
+texture = ExtResource("t_luz")
+script = ExtResource("5_tremula")
+
+[node name="Arandela2" type="PointLight2D" parent="Luzes"]
+position = Vector2(870, 68)
+scale = Vector2(2.2, 2.2)
+color = Color(1, 0.78, 0.5, 1)
+energy = 0.8
+texture = ExtResource("t_luz")
+script = ExtResource("5_tremula")
+
+[node name="Arandela3" type="PointLight2D" parent="Luzes"]
+position = Vector2(930, 100)
+scale = Vector2(2.2, 2.2)
+color = Color(1, 0.78, 0.5, 1)
+energy = 0.8
+texture = ExtResource("t_luz")
+script = ExtResource("5_tremula")
+
+[node name="Arandela4" type="PointLight2D" parent="Luzes"]
+position = Vector2(60, 92)
+scale = Vector2(2.2, 2.2)
+color = Color(1, 0.78, 0.5, 1)
+energy = 0.8
+texture = ExtResource("t_luz")
+script = ExtResource("5_tremula")
+
+[node name="SolSul" type="PointLight2D" parent="Luzes"]
+position = Vector2(390, 246)
+scale = Vector2(3.6, 1.8)
+color = Color(1, 0.84, 0.6, 1)
+energy = 0.7
+texture = ExtResource("t_luz")
+
+[node name="SolPequenoSul" type="PointLight2D" parent="Luzes"]
+position = Vector2(770, 250)
+scale = Vector2(1.6, 1.2)
+color = Color(1, 0.84, 0.6, 1)
+energy = 0.5
+texture = ExtResource("t_luz")
+
+[node name="RebatidaSul" type="PointLight2D" parent="Luzes"]
+position = Vector2(560, 250)
+scale = Vector2(5, 3)
+color = Color(0.55, 0.65, 0.85, 1)
+energy = 0.25
+texture = ExtResource("t_luz")
+
+[node name="RebatidaFundoSul" type="PointLight2D" parent="Luzes"]
+position = Vector2(520, 370)
+scale = Vector2(6, 2.4)
+color = Color(0.55, 0.65, 0.85, 1)
+energy = 0.15
+texture = ExtResource("t_luz")
+
+[node name="Escuridao" type="CanvasModulate" parent="."]
+color = Color(0.52, 0.54, 0.64, 1)
+
+[node name="Vinheta" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Tela" type="ColorRect" parent="Vinheta"]
+material = SubResource("Vinheta")
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+
+[node name="Transicao" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Escuro" type="ColorRect" parent="Transicao"]
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Hud" parent="." instance=ExtResource("i_hud")]
+
+[node name="TelaInventario" parent="." instance=ExtResource("i_inventario")]
+
+[node name="TelaDocumento" parent="." instance=ExtResource("i_tela_documento")]
+
+[node name="LegendaRadio" parent="." instance=ExtResource("i_legenda_radio")]
+
+[node name="TelaMorte" parent="." instance=ExtResource("i_tela_morte")]
+
+[node name="Guias" type="Node2D" parent="."]
+script = ExtResource("6_guias")
+
+[node name="MusicaFase" parent="." instance=ExtResource("m_musica")]
+[node name="PortaCabine" parent="." instance=ExtResource("n4")]
+position = Vector2(41, 124)
+id = "bib_salao_cabine"
+cena_destino = "res://cenas/salas/biblioteca/cabine.tscn"
+porta_destino = "bib_cabine"
+
+[node name="PortaBalcao" parent="." instance=ExtResource("n4")]
+position = Vector2(201, 124)
+id = "bib_salao_balcao"
+cena_destino = "res://cenas/salas/biblioteca/balcao.tscn"
+porta_destino = "bib_balcao"
+
+[node name="PortaObrasRaras" parent="." instance=ExtResource("n4")]
+position = Vector2(421, 124)
+id = "bib_salao_obras"
+bloqueada = true
+aviso_bloqueada = "Barrada por dentro. Do outro lado, alguém se mexe."
+
+[node name="PortaServico" parent="." instance=ExtResource("n4")]
+position = Vector2(601, 124)
+id = "bib_salao_servico"
+cena_destino = "res://cenas/salas/biblioteca/corredor_servico.tscn"
+porta_destino = "bib_servico"
+trancada = true
+chave = "chave_manutencao"
+aviso_trancada = "Trancada. Na placa: SERVIÇO - SOMENTE FUNCIONÁRIOS."
+
+[node name="PortaAcervo" parent="." instance=ExtResource("n4")]
+position = Vector2(741, 124)
+id = "bib_salao_acervo"
+cena_destino = "res://cenas/salas/biblioteca/acervo.tscn"
+porta_destino = "bib_acervo"
+
+[node name="PortaGrade" parent="." instance=ExtResource("n4")]
+position = Vector2(913, 124)
+id = "bib_salao_grade"
+cena_destino = "res://cenas/salas/biblioteca/ala_leste.tscn"
+porta_destino = "bib_ala_leste_grade"
+liberada_por = "grade_aberta"
+aviso_bloqueada = "Uma grade de aço fechou a passagem para a ala leste. Ao lado, um painel com teclado."
+
+[node name="PainelGrade" parent="Objetos" instance=ExtResource("n5")]
+position = Vector2(882, 132)
+
+[node name="Sentinela" parent="Objetos" instance=ExtResource("n6")]
+position = Vector2(500, 190)
+rota = NodePath("../../RotaSentinela")
+rota_com_marca = NodePath("../../RotaSentinelaComLuz")
+bipa_antes_de_virar = true
+
+[node name="RotaSentinela" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(180, 190)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(500, 190)
+
+[node name="Ponto3" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(500, 252)
+
+[node name="Ponto4" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(180, 252)
+
+[node name="RotaSentinelaComLuz" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinelaComLuz"]
+position = Vector2(180, 190)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinelaComLuz"]
+position = Vector2(600, 172)
+
+[node name="Ponto3" type="Marker2D" parent="RotaSentinelaComLuz"]
+position = Vector2(900, 172)
+
+[node name="Ponto4" type="Marker2D" parent="RotaSentinelaComLuz"]
+position = Vector2(590, 262)
+
+[node name="Ponto5" type="Marker2D" parent="RotaSentinelaComLuz"]
+position = Vector2(180, 252)
+
+[node name="RobosDaSala" type="Node" parent="."]
+script = ExtResource("n7")
+
+[node name="LuzesEmergencia" type="Node2D" parent="."]
+script = ExtResource("n8")
+revela_quem_passa = true
+
+[node name="Emergencia1" parent="LuzesEmergencia" instance=ExtResource("n9")]
+position = Vector2(300, 176)
+
+[node name="Emergencia2" parent="LuzesEmergencia" instance=ExtResource("n9")]
+position = Vector2(600, 150)
+
+[node name="Emergencia3" parent="LuzesEmergencia" instance=ExtResource("n9")]
+position = Vector2(860, 150)
+
+[node name="Emergencia4" parent="LuzesEmergencia" instance=ExtResource("n9")]
+position = Vector2(450, 300)
+
+[node name="Emergencia5" parent="LuzesEmergencia" instance=ExtResource("n9")]
+position = Vector2(760, 300)
+
+[node name="SomObrasRaras" parent="." instance=ExtResource("n10")]
+position = Vector2(421, 124)
+
+[node name="ToqueDistante" parent="." instance=ExtResource("n11")]

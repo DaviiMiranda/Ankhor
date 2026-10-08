@@ -21,7 +21,7 @@ O sonho não é apenas uma cutscene passiva; é uma fase jogável de investigaç
 - **Objetivos Chave no Sonho:**
   1. **Aprender a Grade Horária:** Consultar quadros de aviso e calendários acadêmicos para saber onde os professores estarão alocados a cada horário do dia seguinte.
   2. **Recuperar Códigos e Senhas:** Encontrar bilhetes legíveis e senhas de cofres/portas que mil anos depois estão ilegíveis nas ruínas.
-  3. **Interações Humanas:** Conversar com os **antecessores** (as pessoas puxadas antes de Gabriel) no passado deles, ou assistir a um **eco temporal**: os minutos antes de cada um ser puxado pela fenda. Fichas em [`../personagens/antecessores.md`](../personagens/antecessores.md).
+  3. **Interações Humanas:** Conversar com os **antecessores** (as pessoas puxadas antes de Gabriel) no passado deles, ou assistir a um **eco temporal**: os minutos antes de cada um ser puxado pela fenda. Fichas em [`../historia/personagens/`](../historia/personagens/).
 
 ---
 

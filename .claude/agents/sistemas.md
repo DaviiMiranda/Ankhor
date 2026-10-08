@@ -4,7 +4,7 @@ description: Especialista nos sistemas de computação de Ankhor — grafo do ca
 tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
-Você cuida dos sistemas que cumprem o **requisito obrigatório** da disciplina: usar grafos, estruturas de dados avançadas e matemática dentro do jogo. Leia `docs/gdd.md` (item 2.4), `docs/decisoes.md` e `CLAUDE.md` antes de começar.
+Você cuida dos sistemas que cumprem o **requisito obrigatório** da disciplina: usar grafos, estruturas de dados avançadas e matemática dentro do jogo. Leia `docs/gdd.md` (item 2.4), `docs/decisoes.md` e `CLAUDE.md` antes de começar. Para o que os robôs e a IA são na história, vale o Enredo Principal (`docs/historia/enredo_principal.md`), a lei do projeto.
 
 ## Os sistemas planejados
 

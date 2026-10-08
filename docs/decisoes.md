@@ -2,6 +2,9 @@
 
 Toda decisão de design, história ou técnica que muda o jogo entra aqui, **a mais recente no topo**. Se algo contradiz o GDD, vale o que está aqui.
 
+> [!IMPORTANT]
+> Para **história, mundo e personagens**, a lei do projeto é o [Enredo Principal](historia/enredo_principal.md), que vale acima deste registro. Toda decisão de história entra **no mesmo PR** aqui (o histórico de quando e por que mudou) e no Enredo Principal (como a história está agora). Entradas antigas abaixo podem citar nomes e ideias que não valem mais.
+
 Formato:
 
 ```
@@ -12,6 +15,140 @@ Formato:
 ```
 
 ---
+
+## 2026-10-08 — Resumo dos personagens
+**Decisão:** a pasta `docs/historia/personagens/` ganha o `resumo.md`, com todos os personagens numa página (quem é, época, frase de essência, cor, esconderijo, parte para consertar a Âncora, relações e principais pendências). É a exceção à regra de "só as fichas" nessa pasta (entrada de 2026-10-07). O resumo não é lei: se ele e uma ficha discordarem, vale a ficha.
+**Por quê:** pedido do Davi.
+**Afeta:** `docs/historia/personagens/resumo.md` (novo), `docs/README.md`, `docs/historia/README.md`. Quem mudar uma ficha deve conferir se o resumo continua certo.
+
+## 2026-10-08 — A Biblioteca implementada em várias salas
+**Decisão:** o planejamento da Biblioteca (`docs/fases/biblioteca.md`) entrou no jogo. A cena única virou oito salas em `cenas/salas/biblioteca/`, e o jogo começa na cabine. Entraram: o autoload `Progresso` (as marcas da fase), portas com chave e com marca, a chave da manutenção, o quadro de energia (ordem 3, 1, 4, 2), as luzes de emergência que acendem e revelam o Gabriel para os robôs, o terminal com o disquete da Clarice (código 0394), o painel e a grade da ala leste, o telefone com a primeira ligação da Clarice, a porta barrada das obras raras e os robôs (Sentinela no salão, Rastreador no acervo) com rota fixa, rota nova depois da energia e bipe antes de virar.
+**Por quê:** pedido do Davi: implementar tudo o que o planejamento descreve.
+**Afeta:** `project.godot` (autoload `Progresso`), `scripts/sistemas/porta.gd`, `scripts/personagens/robo.gd`, `scripts/salas/sala.gd` (os limites automáticos também barram robôs), `scripts/itens/notebook.gd`, `scripts/menu_principal.gd`, `cenas/cutscenes/seg_acordar.tscn` e `dados/fases/01_biblioteca.tres` (começam na cabine). Os textos da ligação e do disquete são rascunho para o roteiro revisar.
+
+## 2026-10-07 — Gabriel em pixel art desenhada (a partir de referências)
+**Decisão:**
+- Os sprites do Gabriel deixam de sair do modelo 3D do Blender e passam a sair de **artes de referência em pixel art** (parado de frente e de costas, de lado e cinco expressões), guardadas em `assets/modelagem/personagens/gabriel_referencia/`. O script `pixelar_gabriel.py` (só Python, Pillow e NumPy) recorta, reduz para 99 px de altura, fecha a paleta em 40 cores e refaz o contorno.
+- **Parado de frente e de costas:** saem de uma referência própria (`parado.png`). Os tons de cabelo e de calça do Gabriel parado de frente são o molde para repintar as outras poses.
+- O que a referência não tem sai das vistas que ela tem: a **caminhada de lado** é um boneco recortado (braço, coxa, canela e pé girando nas juntas); a respiração sobe o peito e a cabeça.
+- **Diagonal (3/4 e 3/4 de costas):** a cabeça, o tronco e os braços saem de uma referência própria do Gabriel dando um passo (`andar_diagonal.webp`); os braços giram no ombro. As **pernas são as mesmas peças da vista de lado** (coxa, canela e tênis), presas nos dois quadris da pose, com 60% do balanço de lado e o pé da frente 3 px mais baixo na tela (mais alto no 3/4 de costas): as pernas da pose vinham dobradas e, giradas, ficavam tortas e se cruzavam. A cabeça da pose também saiu grande e é encolhida para 87%, como a de lado. O 3/4 parado é esse boneco com os membros retos. Na referência o braço que vai à frente é o do mesmo lado da perna que avança; no jogo, cada braço balança ao contrário da sua perna. O cabelo da pose de frente saiu loiro e foi repintado com o castanho dele.
+- **Cabeça de lado:** na referência de lado a cabeça saiu maior que na de frente (21 px do cabelo ao queixo, contra 18). O script encolhe a cabeça do perfil para 85%, presa no pescoço, e o corpo cresce um pouco para a altura total continuar 99 px.
+- **Braços sempre mexendo:** em todas as caminhadas os braços balançam ao contrário das pernas.
+- **Andando de frente e de costas:** saem de duas referências com quatro poses cada (`andar_frente.webp` e `andar_costas.webp`): pé no chão, passando, o outro pé no chão, passando. Cada pose dura 3 dos 12 quadros, centrada pelo peito, com o sobe e desce do desenho. Nas poses de frente a cabeça e o peito saíram maiores: o corpo estreita para 92% e a cabeça encolhe (85% na altura, 95% na largura). O cabelo (loiro nas poses de frente) e a calça (acinzentada nas de costas) são repintados com os tons do Gabriel parado, casando claro com claro.
+- Mesmos nomes, tamanhos e quantidade de quadros de antes (96 × 112, 12 quadros andando, 8 respirando): a cena `gabriel.tscn` não muda.
+- **Sem mochila**, como na referência: moletom vermelho de capuz, calça jeans e tênis cinza.
+- **Retratos:** cinco em vez de três: `normal`, `preocupado` e `surpreso` (os nomes que os diálogos já usam) e os novos `bravo` e `envergonhado`.
+- O `gerar_gabriel.py` e o `gabriel.blend` ficam como modelo 3D, mas **não devem ser rodados** para gerar os sprites do jogo: sobrescreveriam os novos.
+
+**Por quê:** pedido do Davi, para o Gabriel chegar no nível de qualidade das referências.
+**Afeta:** `assets/sprites/personagens/gabriel/` (todos os sprites e retratos, dois retratos novos), `assets/modelagem/personagens/pixelar_gabriel.py` e `gabriel_referencia/` (novos, com `andar_diagonal.webp`), `gerar_gabriel.py` (aviso no cabeçalho), `assets/sprites/personagens/gabriel/visual.md`. Os outros personagens continuam com os sprites do Blender, e ficam com um visual diferente do Gabriel até ganharem referências também.
+
+## 2026-10-07 — Planejamento da Biblioteca no estilo Resident Evil
+**Decisão:** a Biblioteca passa a ser planejada como uma fase de **salas ligadas por portas trancadas**, no estilo *Resident Evil*: cabine, salão principal (o centro), balcão, acervo sul, sala de manutenção (sala segura), sala de terminais, ala leste e uma sala de obras raras que só abre mais tarde. Para sair, o jogador busca a chave da manutenção no acervo, religa a energia, lê o código da grade no disquete da Clarice, abre a grade da ala leste e atende a primeira ligação da Clarice, que destranca a porta de saída. A Sentinela fica no salão e o Rastreador no acervo; com a energia, as luzes acendem e a rota da Sentinela muda. O mezanino, cogitado, foi descartado.
+**Por quê:** pedido do Davi: uma fase com mais caminhos e cadeados, em vez de um salão só.
+**Afeta:** `docs/fases/biblioteca.md` (reescrito). Para implementar: dividir `cenas/salas/biblioteca.tscn` em salas, chave como item, quadro de energia, painel de código e grade, luzes que acendem, telefone, disquete da Clarice e os dois robôs.
+
+## 2026-10-07 — Visual do Henrique e do Carlos
+**Decisão:**
+- **Henrique:** camisa de flanela xadrez laranja-queimado aberta sobre camiseta cinza, jeans preto, tênis de lona, óculos redondos de aro fino, cabelo bagunçado na testa, o caderno sempre na mão e um lápis atrás da orelha. Postura fechada, cabeça baixa, passo curto. **Cor de identificação: laranja-queimado.**
+- **Carlos**, o "cientista maluco": **mais velho que o grupo** (a idade exata continua pendente), careca no alto e cabelo grisalho arrepiado, jaleco sujo até o joelho e luvas pretas; por baixo, a roupa dos **anos 80** que ele idealiza (camiseta estampada colorida, jeans lavado, tênis branco de cano alto, relógio-calculadora, óculos grandes). Uma lupa com lente vermelha nos óculos e um controle com luz vermelha no cinto, o mesmo vermelho dos olhos dos robôs que ele controla. Postura curvada, cabeça esticada. **Cor de identificação: o branco do jaleco.** A aparência sai das pendências do Enredo (12.2); a idade exata fica.
+- Os dois têm o mesmo conjunto de sprites do Gabriel (cinco vistas em 96 × 112, caminhada, respiração e três retratos) e estão na sala de teste, ao lado dos outros.
+
+**Por quê:** pedido do Davi: os modelos do Henrique e do "cientista maluco que é o Carlos".
+**Afeta:** `docs/historia/personagens/henrique.md` e `carlos.md` (direção de arte e arquivos), `docs/historia/enredo_principal.md` (pendência 12.2), `assets/modelagem/personagens/` (`gerar_henrique.py`, `gerar_carlos.py`), `assets/sprites/personagens/henrique/` e `carlos/`, `cenas/personagens/henrique.tscn` e `carlos.tscn`, `cenas/salas/sala_teste.tscn`, `CLAUDE.md`.
+
+## 2026-10-07 — O Carlos é o antagonista (ideia 23), o pesquisador é o Henrique
+**Decisão:**
+- **Ideia 23 aprovada, com partes ainda em aberto.** O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora. Na época dele, a sociedade e o planeta estavam muito ruins, e o pouco que sobrou da humanidade foi para outro planeta. Ele ficou, por um objetivo egoísta: é obcecado pelos **anos 80** e quer usar a Âncora para ir viver lá. A Âncora é imprecisa: cada tentativa dele abre a fenda no chão da Biblioteca e puxa gente por acaso. Ele controla os robôs. A **Âncora** e o laboratório dele ficam no **D-Tec**, a parte de tecnologia da Unifor, no **Bloco M**. O **Bloco J foi descartado**.
+- Em aberto, nas pendências do Enredo (12.2): como ele consegue o conhecimento (consciências roubadas, super IA ou as duas), se a IA continua existindo, por que os robôs caçam, e o resto da ficha dele.
+- **Ideia 13 aprovada:** o pesquisador de 2019 se chama **Henrique**. A ficha virou `henrique.md`.
+- **O Henrique engana o grupo**: esconde a ligação que tem com o Carlos (trabalha para ele ou foi enganado por ele, pendente). Quando o grupo descobre a mentira, todos vão atrás do Carlos. Isso resolve a pendência "Algum personagem atrapalha?" e entra no Enredo como "A virada", antes do Ato 4.
+- **Ideias 20, 21 e 22 descartadas** (o pesquisador mentiu, o cientista que morreu, o drone).
+
+**Por quê:** decisão do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 1, 2, 3, 4, 6, 7, 8, 11 e 12), a ficha nova `docs/historia/personagens/carlos.md`, `pesquisador.md` → `henrique.md`, as fichas de Clarice, Zane, Gabriel e robôs, `docs/historia/outras_ideias.md`, `docs/historia/template_documento.md`, `docs/README.md`, `docs/gdd.md`, `CLAUDE.md` e o agente `roteirista`.
+
+## 2026-10-07 — Visual do Baltazar e do Rafael, com os sprites do Gabriel
+**Decisão:**
+- **Baltazar:** tricórnio de feltro, cabelo comprido preso com fita, casaca **vinho** aberta até a coxa (gasta, com remendo) e canhões largos, colete marrom com botões de latão, camisa de linho, calções, meias e sapato de fivela; a **luneta** de latão numa bandoleira de couro e o **anel** de ouro na mão direita. **Cor de identificação: vinho**, o tom do pau-brasil, um eco escuro do vermelho do Gabriel (a mesma família). Postura cerimoniosa e curiosa, passo curto.
+- **Rafael:** uniforme de vigilante de 2008 **grande para ele**: camisa de manga curta **azul-celeste** com dragonas e bolsos azul-marinho, emblema amarelo na manga e no boné, crachá, calça azul-marinho e coturno; bigodinho ralo para parecer mais velho; **rádio HT** e lanterna antiga no cinto. **Cor de identificação: azul-celeste.** Peito estufado, passo de ronda.
+- Os dois têm o **mesmo conjunto de sprites do Gabriel**: cinco vistas em 96 × 112, caminhada (12 quadros) e respiração (8 quadros) em cada vista, e três retratos de 80 × 80 (Baltazar: normal, encantado, aflito; Rafael: normal, rindo, triste).
+- O roteiro de um personagem em pé (renderizar, juntar a paleta e gravar) virou `comum.gerar_em_pe`. O Zane passou a usar e saiu idêntico.
+
+**Por quê:** pedido do Davi. O visual segue a direção de arte das fichas: o Baltazar "rapaz do século XVIII, de sítio, roupa gasta, luneta e anel visíveis"; o Rafael "uniforme de 2008 um pouco largo, tentando parecer mais velho, rádio e lanterna no cinto".
+**Afeta:** `assets/modelagem/personagens/` (`comum.py`, `gerar_zane.py`, `gerar_baltazar.py` e `gerar_rafael.py` novos), `assets/sprites/personagens/baltazar/` e `rafael/` (novos), as fichas `baltazar.md` e `rafael.md` (direção de arte e arquivos), `CLAUDE.md`. Ainda não há cena de nenhum dos dois.
+
+## 2026-10-07 — Visual do Zane, e Clarice e Zane com os sprites do Gabriel
+**Decisão:**
+- **Visual do Zane:** braço direito de prótese de metal com linhas de luz ciano, olho direito de implante, placa na têmpora e porta na nuca; jaqueta técnica curta **amarelo-ácido** com painéis grafite, zíper na diagonal e gola alta, com a manga do braço de metal cortada no ombro; camiseta preta comprida, calça larga com tiras, botas de sola branca grossa com friso de luz; cabelo raspado dos lados com o topo descolorido num topete. Postura confiante: peito aberto, queixo erguido, passo largo. **Cor de identificação: amarelo-ácido** (Gabriel vermelho, Clarice verde-azulado). O ciano dos implantes é o mesmo da interface holográfica dos áudios dele.
+- **Clarice e Zane têm o mesmo conjunto de sprites do Gabriel**, nos mesmos tamanhos: cinco vistas em pé (lado, frente, 3/4, costas, 3/4 de costas) em 96 × 112, a caminhada (12 quadros) e a respiração (8 quadros) em cada vista, e três retratos de 80 × 80. A Clarice continua com os sprites sentados na estação do bunker.
+- A caminhada, a respiração e o retrato passaram para o `comum.py`, usados pelos três. Os sprites do Gabriel e os sprites antigos da Clarice saíram idênticos.
+
+**Por quê:** pedido do Davi: os dois personagens com todas as dimensões do Gabriel. O visual do Zane segue a direção de arte da ficha dele (implantes visíveis, roupa de um futuro que ninguém reconhece, destoar de todos).
+**Afeta:** `assets/modelagem/personagens/` (`comum.py`, `gerar_gabriel.py`, `gerar_clarice.py`, `gerar_zane.py` novo), `assets/sprites/personagens/clarice/` e `zane/` (novo), `docs/historia/personagens/zane.md` (direção de arte e arquivos). Ainda não há cena do Zane nem da Clarice andando no Godot.
+
+## 2026-10-07 — Ideias 6, 7 e 15 aprovadas: o Zane fica, o Baltazar volta e os esconderijos
+**Decisão:**
+- **Ideia 6:** no fim, **o Zane escolhe ficar em 3026** para tentar domar a IA por dentro, em vez de voltar para 2123.
+- **Ideia 7:** **o Baltazar quer ficar em 3026, mas precisa voltar**, ou a família de Gabriel não existe. Gabriel tem que convencê-lo.
+- **Ideia 15, com ajustes do Davi:** o **bunker** fica com a Clarice e o pesquisador (e depois o Zane); o **posto de guarda** fica com o Rafael; o **Baltazar** tem um esconderijo **dentro da Biblioteca** (no lugar do terraço da ideia original); a **Diana** fica numa das **salas de aula do Bloco de salas** (no lugar do posto de guarda da ideia original).
+
+**Por quê:** aprovação do Davi das ideias 6, 7 e 15 de `docs/historia/outras_ideias.md`.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 5, 6, Atos 2 e 4 e pendências 12.1 e 12.3), as fichas de Baltazar, Zane, Gabriel, Clarice, pesquisador, Rafael e Diana, `docs/fases/bloco_de_salas.md`, e `docs/historia/outras_ideias.md` (as três ideias saíram).
+
+## 2026-10-07 — A Âncora fica no Bloco J, e cada personagem tem a sua ficha completa
+**Decisão:**
+- A **Âncora** está no **Bloco J**, o bloco de tecnologia da Unifor. A fenda continua se abrindo no chão da Biblioteca.
+- A descrição dos personagens (história, personalidade e relações) **saiu do Enredo Principal** e foi para as fichas em `docs/historia/personagens/`, **uma por personagem**. As fichas fazem parte do Enredo Principal e têm a mesma autoridade. O Enredo, na seção 4, ficou só com as regras do grupo, a lista de fichas e a IA.
+- A pasta `personagens/` tem **só as fichas** (mais a dos robôs). O índice dela saiu, e o modelo de ficha foi para `docs/historia/template_personagem.md`.
+
+**Por quê:** pedido do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 1, 2.2, 3, 4 e 7.2), as fichas de `docs/historia/personagens/`, `docs/historia/template_personagem.md`, `CLAUDE.md`, `docs/README.md`, `docs/gdd.md`, `docs/historia/README.md`, `docs/historia/roteiro/README.md`, `docs/historia/template_documento.md`, `docs/dialogos/template_dialogo.md`, os agentes `roteirista` e `artista`, `clarice/visual.md` e `gerar_clarice.py`.
+
+## 2026-10-07 — Personagens e roteiro dentro de `docs/historia/`, uma ficha por personagem
+**Decisão:**
+- As pastas `docs/personagens/` e `docs/roteiro/` passam a ficar dentro de `docs/historia/`, junto do Enredo Principal.
+- `antecessores.md` (versão antiga, com loops e personagens mortos) foi apagado. No lugar, **uma ficha por personagem**: `gabriel.md`, `baltazar.md`, `diana.md`, `clarice.md`, `rafael.md`, `pesquisador.md` e `zane.md`, além de `robos.md`.
+- As fichas **não repetem a personalidade**, que fica só no Enredo Principal (a lei do projeto). Guardam o que a produção precisa: onde o personagem aparece, como chega ao jogador, função no jogo, parte para consertar a Âncora, suporte dos registros, direção de arte, arquivos e pendências. O `template_personagem.md` segue esse formato.
+- `revelacao_central.md` (a história antiga, com loops) foi **apagado**; o texto continua no histórico do git. O `docs/historia/README.md` virou um índice curto que manda começar pelo Enredo Principal, sem repetir nada dele. O `template_documento.md` foi refeito com os campos reais do recurso `Documento` (`id`, `titulo`, `autor`, `papel`, `paginas`, `anotacao`), o papel de cada época e os limites de texto.
+
+**Por quê:** pedido do Davi: deixar as fichas de personagem congruentes com o Enredo Principal e perto dele.
+**Afeta:** `docs/historia/personagens/` e `docs/historia/roteiro/` (movidos), todos os links para as pastas antigas (docs, agentes, `CLAUDE.md`, `CONTRIBUTING.md`, `README.md`, comentários dos geradores em `assets/modelagem/`), `assets/sprites/personagens/clarice/visual.md` (dias no bunker, sem loops), `docs/mecanicas/registros_e_caderno.md` (sem os bilhetes de "G."), `docs/historia/README.md`, `docs/historia/template_documento.md` e `docs/historia/revelacao_central.md` (apagado).
+
+## 2026-10-07 — Menu principal com a arte nova (imagem única)
+**Decisão:** o menu principal troca a cena renderizada no Blender (três camadas) por **uma imagem só**, a partir da imagem de referência enviada pelo Davi: estante com livros e papéis, relógio, monitor CRT bege com o bilhete, luminária apagada, teclado, pilha de livros e caneca de café. O texto que vinha pintado na tela do monitor foi apagado por `assets/modelagem/menu/preparar_menu.py`, e o Godot desenha o menu por cima, nas mesmas posições e cores da imagem: título "ANKHOR" em 16 com brilho, itens em 8 a cada 14 px, barra azul de seleção de ponta a ponta do vidro. As telas de Fases, Opções e Controles usam o mesmo vidro. A luminária da imagem está apagada, então a piscada da luminária saiu; ficaram a tremulação do brilho da tela, o efeito CRT (mais leve, porque a imagem já tem linhas) e a vinheta escura nas bordas.
+**Por quê:** pedido do Davi: trocar completamente a tela de menu pela imagem de referência.
+**Afeta:** `assets/sprites/menu/menu_cena.png` (novo; saíram `menu_fundo`, `menu_mesa` e `menu_frente`), `assets/modelagem/menu/preparar_menu.py` e `menu_referencia.webp` (novos), `cenas/menu_principal.tscn` (o nó `Mesa` virou `Monitor`), `scripts/menu_principal.gd`. O `gerar_menu.py` fica, porque a cutscene `seg_acordar` reaproveita a cabine.
+
+## 2026-10-06 — Enredo Principal vira a lei do projeto, personalidades, Diana e Rafael
+**Decisão:**
+- O **Enredo Principal** (`docs/historia/enredo_principal.md`) passa a ser a **lei do projeto** para história, mundo e personagens, acima de qualquer outro documento, inclusive deste registro. Em caso de dúvida em qualquer parte do jogo, vale o que ele diz. Mudanças de história entram no mesmo PR nele e aqui.
+- **O policial de 1978 (Agostinho) vira mulher e se chama Diana**: recruta da polícia, dramática, ansiosa e impulsiva. **Valdir passa a se chamar Rafael** ("Seu Rafael").
+- **Zane é homem**, e o defeito dele é confiar demais na tecnologia (a impulsividade ficou só com a Diana).
+- **Gabriel é irônico**, de ironia seca, e é isso que combina com o sarcasmo da Clarice: os dois se provocam no mesmo tom.
+- **Ordem de chegada:** o Zane é o último a chegar e Gabriel é o penúltimo. A fenda pulsa durante o jogo, e Gabriel recebe o Zane. A ordem dos outros cinco está pendente.
+- Cada personagem ganhou uma **ficha de personalidade** (essência, traços, como fala, o que quer, o que teme, defeito e arco) e o grupo ganhou um quadro de relações entre eles.
+
+**Por quê:** decisão do Davi: um documento único e profissional para consultar em caso de dúvida, e nomes e personalidades definidos antes de escrever falas e desenhar os personagens.
+**Afeta:** `docs/historia/enredo_principal.md`, `CLAUDE.md`, `docs/README.md`, `docs/gdd.md`, `docs/historia/README.md`, `docs/personagens/README.md`, os agentes `roteirista`, `artista` e `sistemas`. As transmissões do rádio viraram `dados/transmissoes/rafael_01.tres` e `rafael_02.tres` (com "Aqui é o Seu Rafael"), e os gatilhos em `cenas/salas/biblioteca.tscn` viraram `GatilhoRafael1` e `GatilhoRafael2`. Comentários dos geradores de áudio e interface, `assets/audio/README.md`, `docs/fases/biblioteca.md` e `docs/mecanicas/` também. `revelacao_central.md` e `antecessores.md` continuam com a versão antiga, marcados como fora de uso.
+
+## 2026-10-06 — Nova linha da história: a fenda é um acaso
+**Decisão:**
+- **Saem** os loops, os bilhetes de "G.", a Clarice como "a única que lembra" e a revelação de que Gabriel é o paradoxo da Âncora. Também foi descartada a ideia de a fenda ser um teste.
+- **A fenda é um acaso.** A Âncora é **só uma máquina**: abandonada, falhou em 3026 e abriu uma fenda no chão da Biblioteca que pulsa e puxa, a cada poucos dias, quem estiver no ponto em alguma época. Os personagens precisam descobrir o que aconteceu e como voltar, e cada um traz uma parte para consertar a Âncora.
+- **3026:** a humanidade abandonou a Terra e uma **IA** dominou. A IA não tem rosto. Para ela, humanos são invasores, e por isso os robôs atacam. Ser pego dá game over e volta ao checkpoint.
+- **Personagens:** todos com **cerca de 20 anos**, todos com ligação com a região da Unifor, todos **vivos**, puxados com dias de diferença. Gabriel encontra cada um ao longo do jogo. Cada um tem um esconderijo, e um lugar como o bunker pode abrigar 2 ou 3. O personagem de **2041 foi cortado**. O professor de 2019 vira um aluno de iniciação científica (nome em aberto). Agostinho vira recruta da polícia, e Valdir, um segurança jovem.
+- **Família Magalhães:** Gabriel se chama **Gabriel Magalhães**, e o **Baltazar** é antepassado dele. Gabriel descobre isso jogando, por um **anel desgastado** da avó que está no inventário desde o começo, igual ao do Baltazar. Gabriel conta para o Baltazar.
+- **Clarice:** a relação dela com Gabriel vai sendo desenvolvida ao longo do jogo. O final dos dois está em aberto.
+- **Pendentes:** o objetivo da IA; quem criou a Âncora (talvez um descendente de Gabriel); Gabriel falhando na tela enquanto o Baltazar estiver fora de 1750; prazo da fenda; como cada um volta; se alguém escolhe ficar; se algum personagem atrapalha; o nome do pesquisador.
+
+**Por quê:** decisão do Davi: uma história mais simples e humana, com personagens vivos para interagir ao longo do jogo.
+**Afeta:** `docs/historia/enredo_principal.md` (reescrito, com as pendências no fim). Ainda descrevem a versão antiga e precisam ser revistos: `docs/historia/revelacao_central.md`, `docs/personagens/antecessores.md`, `docs/mecanicas/sono_e_sonhos.md`, `docs/gdd.md`, `CLAUDE.md` (premissa) e as falas de loop em `dados/dialogos/clarice_primeiro_encontro.json`.
+
+## 2026-10-06 — Menu principal mais claro, com a luminária acesa
+**Decisão:** a cena do menu continua sendo a cabine de estudo da Biblioteca à noite, mas fica mais clara e legível: a **luminária de mesa está acesa** (luz quente no canto direito da mesa), tem uma caneca de café, uma pilha de livros maior à esquerda e a estante aparece melhor, com papéis largados nas prateleiras. O monitor está gasto: rachaduras na moldura, LED verde de ligado aceso, e teclas amareladas, afundadas ou faltando. A tela do monitor ganhou fundo com um leve clarão no centro, título com brilho, barra de seleção na largura toda da tela e, no efeito CRT, cantos arredondados e uma faixa clara que desce devagar. As bordas da cena escurecem com a mesma vinheta pixelada das salas, e a luz da luminária na mesa oscila de leve e de vez em quando falha por um instante, como lâmpada velha: na falha, a mesa fica mais escura que o normal. O cenário não se mexe mais com o mouse (a paralaxe saiu, e `scripts/camada_paralaxe.gd` foi apagado). O retângulo da tela não mudou (x 90–230, y 24–126).
+**Por quê:** pedido do Davi, a partir de uma imagem de referência; o menu antigo era escuro demais e quase não se via a cena.
+**Afeta:** `assets/modelagem/menu/gerar_menu.py` (e os PNGs de `assets/sprites/menu/`), `cenas/menu_principal.tscn`, `scripts/menu_principal.gd`, `shaders/tela_crt.gdshader`.
 
 ## 2026-10-02 — Trilha própria do Bunker
 **Decisão:** o Bunker ganha uma trilha própria, mais escura que a da Biblioteca: Dó frígio, sem andamento, com o Dó grave "respirando", cordas graves, aço gemendo, um baque distante lá em cima e, na segunda metade, a fita da Clarice (quatro notas de piano elétrico gasto). Toca em todas as salas do bunker. O zumbido do bunker perdeu a ventilação que subia e descia: ficou só o transformador e um sopro grave constante.

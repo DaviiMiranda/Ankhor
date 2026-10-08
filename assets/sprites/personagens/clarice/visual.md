@@ -1,15 +1,15 @@
 # Clarice — visual
 
-Aluna de processamento de dados puxada de uma madrugada de 1994 (ficha em [`docs/personagens/antecessores.md`](../../../../docs/personagens/antecessores.md), 2.3). Está em 3026 há alguns meses, escondida no bunker embaixo do núcleo da Âncora. É a única que lembra dos loops.
+Aluna de processamento de dados puxada de uma madrugada de 1994. Está em 3026 há alguns dias, escondida no bunker embaixo do núcleo da Âncora. Quem ela é está na ficha [`docs/historia/personagens/clarice.md`](../../../../docs/historia/personagens/clarice.md), que faz parte do Enredo Principal (a lei do projeto).
 
 ![Folha de referência](clarice_referencia.png)
 
 ## Quem ela é, no visual
 
 - **Anos 90 de verdade.** Jaqueta **corta-vento em blocos de cor** (verde-azulado, faixa roxa e faixa branca no peito, barra roxa), cabelo **cacheado e volumoso preso no alto com uma xuxinha magenta**, **óculos grandes**, **fone de walkman de espuma laranja** caído no pescoço, o **walkman** no cós da calça com o fio subindo, tênis branco de lona e calça preta.
-- **Meses no bunker.** Mangas arregaçadas até o cotovelo, relógio digital no pulso, e a estação de trabalho montada com o que ela achou.
+- **Dias no bunker.** Mangas arregaçadas até o cotovelo, relógio digital no pulso, e a estação de trabalho montada com o que ela achou.
 - **Cor de identificação: verde-azulado**, o oposto do vermelho do Gabriel. Lado a lado, cada um se destaca do outro.
-- **Postura:** sentada o tempo todo (ela fica fixa na central de dados). Digitando, inclinada para os monitores; conversando, gira a cadeira e se encosta, meio de lado: não para tudo por causa do Gabriel.
+- **Postura:** no bunker, sentada o tempo todo (ela fica fixa na central de dados). Digitando, inclinada para os monitores; conversando, gira a cadeira e se encosta, meio de lado: não para tudo por causa do Gabriel.
 
 ## A estação de trabalho
 
@@ -34,10 +34,14 @@ Todos em `assets/sprites/personagens/clarice/`, gerados por `assets/modelagem/pe
 | `clarice_retrato_normal.png` | 80 × 80 | retrato da caixa de diálogo (mostrado em 40 × 40) |
 | `clarice_retrato_sorrindo.png` | 80 × 80 | boca mais larga com os cantos para cima, sobrancelhas erguidas (o sorrisinho de quem já sabe o que você vai dizer) |
 | `clarice_retrato_seria.png` | 80 × 80 | boca curta, sobrancelhas baixas e inclinadas |
+| `clarice_<vista>.png` | 96 × 112 | em pé, parada, nas vistas do Gabriel: `lado`, `frente`, `tres_quartos`, `costas`, `tres_quartos_costas` |
+| `clarice_andar_<vista>.png` | 12 quadros de 96 × 112 | caminhada, um arquivo por vista |
+| `clarice_parado_<vista>.png` | 8 quadros de 96 × 112 | em pé respirando, um arquivo por vista |
 | `clarice_referencia.png` | — | em pé (frente, 3/4, lado, costas), sentada e os retratos |
 
 - **Escala:** a mesma de todos os personagens (1,75 m do Gabriel = 48 px na tela). Ela tem 1,62 m.
 - **Resolução dobrada:** os sprites saem com o dobro de pixels (`RESOLUCAO = 2` no script) e a cena usa escala 0,5. Na tela ela ocupa o mesmo espaço, com o dobro de detalhe (óculos, rosto, texto nos monitores).
+- **Em pé:** os sprites têm o mesmo conjunto e os mesmos tamanhos do Gabriel (`comum.py`, item 7), para quando ela andar pelo campus. Usam a paleta já calculada, então as cores dos sprites sentados não mudam. A cena `cenas/personagens/clarice_em_pe.tscn` mostra a Clarice parada, respirando (script `personagem_parado.gd`), e por enquanto só está na sala de teste.
 - **Câmera da estação:** inclinada 22° para baixo, para aparecer o tampo da mesa e o teclado, como os objetos 2.5D do cenário.
 - **O pé do sprite** (o ponto do nó no Godot) é o chão na frente da cadeira: `scale = Vector2(0.5, 0.5)` e `offset = Vector2(-80, -120)`.
 - **Detalhe:** o corpo dela usa `DETALHE = 3` e sombreamento suave (ver `comum.py`): cones e esferas com três vezes mais gomos, quinas arredondadas, mais cachos no cabelo, o zíper aberto da jaqueta, bolsos, cadarço e um botton de carinha amarela no peito. O rosto fica chapado (com luz suave, a parte de baixo escurecia e parecia barba). A estação de trabalho fica no detalhe normal: monitor de tubo é caixa.
@@ -61,4 +65,4 @@ Edite `gerar_clarice.py` (cores no começo, poses em `pose_digitando` e `pose_re
 blender -b --factory-startup --python assets/modelagem/personagens/gerar_clarice.py
 ```
 
-Leva uns 20 segundos e sobrescreve todos os PNGs e o `clarice.blend`.
+Leva uns 2 minutos (os sprites em pé são a maior parte) e sobrescreve todos os PNGs e o `clarice.blend`.
