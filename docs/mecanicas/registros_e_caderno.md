@@ -35,8 +35,22 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../historia/p
 
 ## 2. Na Biblioteca
 
-| O quê | Posição (x, y) | Como dispara |
-|---|---|---|
+Cada registro está numa sala da Biblioteca (`cenas/salas/biblioteca/`, ver [`../fases/biblioteca.md`](../fases/biblioteca.md)):
+
+| O quê | Sala (cena) | Posição (x, y) | Como dispara |
+|---|---|---|---|
+| Acampamento do Baltazar + diário (`DiarioBaltazar`) | Salão (`salao.tscn`) | (262, 148), entre as raízes da árvore | `E` perto |
+| Riscos de estrelas na árvore | Salão | filho de `Arvore`, no tronco | só cenário |
+| Robô desmontado | Salão | (280, 172) | só cenário |
+| Rádio portátil | Balcão (`balcao.tscn`) | (322, 206), no carrinho da segurança | `E` para pegar |
+| Transmissão `rafael_01` (`GatilhoRafael1`) | Balcão | círculo de 40 px em volta do rádio | toca ao pegar o rádio |
+| Bilhete da Clarice (`BilheteClarice`) | Terminais (`terminais.tscn`) | (284, 228), colado no terminal dela | `E` perto |
+| Disquete da Clarice (`SENHAS.TXT`) | Terminais | o disquete em (252, 238); o terminal em (320, 230) | `E` no terminal, com energia e com o disquete |
+| Transmissão `rafael_02` (`GatilhoRafael2`) | Acervo (`acervo.tscn`) | retângulo 480 × 240, centro (290, 300) | toca ao entrar entre as estantes com o rádio |
+| Aviso dos disjuntores | Manutenção (`manutencao.tscn`) | (84, 134), na porta | `E` perto |
+| Ligação `clarice_01` | Balcão | o telefone, em (196, 172) | `E` quando ele toca |
+
+---|---|---|
 | Acampamento do Baltazar + diário (`DiarioBaltazar`) | (262, 148), entre as raízes da árvore | `E` perto |
 | Riscos de estrelas na árvore | filho de `Arvore`, no tronco | só cenário |
 | Robô desmontado | (280, 172) | só cenário |

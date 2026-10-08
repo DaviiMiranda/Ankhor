@@ -1,6 +1,6 @@
 # Fase 1 — Biblioteca
 
-> **Status:** Primeira fase confirmada. Planejamento aprovado em 2026-10-07; implementação em andamento.
+> **Status:** Primeira fase confirmada. Planejamento aprovado em 2026-10-07 e **implementado** (seção 8).
 > **Área:** Biblioteca da Unifor
 > **Ponto de partida:** Gabriel acorda nesta fase depois de ser puxado de uma madrugada de 2026 para 3026 pela fenda da Âncora.
 > **História:** o que a Biblioteca conta segue o [Enredo Principal](../historia/enredo_principal.md) (Ato 1), que é a lei do projeto.
@@ -13,10 +13,24 @@
 - **Ambientação:** o campus mil anos depois, em ruínas. Vegetação dentro do prédio, poeira, feixes de luz natural pelos buracos do teto, estantes caídas e vazias, uma árvore no meio do salão.
 - **Ideia da fase:** uma fase no estilo *Resident Evil*. Várias salas ligadas entre si, portas trancadas e um caminho que obriga o jogador a ir e voltar: buscar uma coisa numa sala para abrir outra. O jogador aprende aqui todas as regras do jogo (silêncio, luz, esconderijos, bateria, robôs) e descobre que **não está sozinho**.
 
-### 1.1 Estado atual × planejado
+### 1.1 No Godot
 
-| | Hoje (no Godot) | Planejado (este documento) |
+A Biblioteca é uma cena por sala, em `cenas/salas/biblioteca/`. O jogo começa na cabine (`cabine.tscn`), depois da cutscene `seg_acordar`.
+
+| Cena | Sala | Como foi feita |
 |---|---|---|
+| `cabine.tscn` | 1, cabine de estudo | Peças (como o Bloco de salas), 320 × 180 |
+| `salao.tscn` | 2, salão principal | A arte pintada da antiga `biblioteca.tscn`, x de 0 a 960 (o resto virou a ala leste) |
+| `balcao.tscn` | 3, balcão | Peças, 400 × 260 |
+| `acervo.tscn` | 4, acervo sul | Peças, 560 × 420, três fileiras de estantes |
+| `corredor_servico.tscn` | corredor de serviço | Peças, 480 × 180 |
+| `manutencao.tscn` | 5, manutenção (sala segura) | Peças, 400 × 240 |
+| `ala_leste.tscn` | 7, ala leste | A arte pintada, x de 960 a 1440 |
+| `terminais.tscn` | 8, sala de terminais | Peças, 400 × 260 |
+
+A sala 9 (obras raras) não tem cena: a porta fica barrada nesta fase.
+
+---|---|---|
 | **Formato** | Uma cena só, `cenas/salas/biblioteca.tscn`, de 1440 × 420 px (salão, acervo sul e ala leste com a saída) | **Várias salas ligadas por portas** (seção 2) |
 | **Robôs** | Nenhum | Sentinela no salão e Rastreador no acervo sul (seção 4) |
 | **Registros** | Diário do Baltazar, bilhete da Clarice e duas transmissões do Rafael, já funcionando | Os mesmos, em salas novas (seção 6) |
@@ -158,13 +172,25 @@ A porta da sala 9 fica **barrada por dentro** durante toda a fase, e às vezes s
 
 ---
 
-## 8. O que falta construir
+## 8. Como foi implementado
 
-1. **Dividir a Biblioteca em salas**, uma cena por sala, como no Bloco de salas. Versão menor, se faltar tempo: o salão continua uma cena só, e as salas 3, 5, 8 e 9 viram cenas pequenas ligadas por portas.
-2. **Chave como item**, que destranca uma porta específica. Hoje `scripts/sistemas/porta.gd` já tem os estados `trancada` e `bloqueada`.
-3. **Quadro de energia** com os disjuntores e o papel com a ordem.
-4. **Painel de código** da grade e a **grade** de aço que sobe.
-5. **Luzes de emergência que acendem** quando a energia volta, e a **rota nova da Sentinela**.
-6. **Telefone que toca** e a primeira ligação da Clarice (as ligações vão reaproveitar a legenda do rádio).
-7. **Disquete da Clarice** com o código.
-8. **Colocar a Sentinela e o Rastreador** nas salas 2 e 4.
+Tudo o que esta seção listava para construir já está no jogo. Como cada peça funciona:
+
+| O quê | Onde | Como funciona |
+|---|---|---|
+| **Marcas da fase** | autoload `Progresso` (`scripts/sistemas/progresso.gd`) | Guarda o que já aconteceu: `energia`, `codigo_grade`, `grade_aberta`, `saida_tentada`, `saida_destrancada`. Avisa por sinal (`mudou`) quem precisa reagir. Zera no "Novo jogo" |
+| **Portas** | `scripts/sistemas/porta.gd` | Novos campos: `chave` (a porta trancada abre se o Gabriel tem o item), `liberada_por` (fica fechada até a marca existir) e `marca_ao_tentar` (tentar abrir cria uma marca) |
+| **Chave da manutenção** | `dados/itens/chave_manutencao.tres`, no carrinho do acervo | Abre a porta de serviço do salão |
+| **Quadro de energia** | `cenas/sistemas/quadro_energia.tscn`, na manutenção | Tela com quatro disjuntores. Na ordem do aviso da porta (3, 1, 4, 2) marca `energia`; fora dela, todos caem |
+| **Luzes que acendem** | `scripts/sistemas/visivel_com_marca.gd` | Um nó que aparece (piscando) quando a marca chega. No salão, as luzes de emergência também **revelam o Gabriel**: perto delas, os robôs enxergam mais longe, como com a lanterna acesa |
+| **Terminal e disquete** | `cenas/sistemas/terminal_com_energia.tscn` e `dados/itens/disquete_clarice.tres`, na sala de terminais | Com energia e com o disquete, o terminal mostra `SENHAS.TXT`, com o código |
+| **Painel de código e grade** | `cenas/sistemas/painel_codigo.tscn` e `grade_seguranca.tscn`, no salão | Com energia, o painel aceita o código (0394) e marca `grade_aberta`; a grade sobe e a porta para a ala leste abre |
+| **Telefone** | `cenas/sistemas/telefone.tscn`, no balcão | Tentar a porta de saída marca `saida_tentada` e o telefone toca (e se ouve de longe no salão e na ala leste, `toque_distante.tscn`). Atender toca a ligação `clarice_01` na legenda do rádio e marca `saida_destrancada` |
+| **Obras raras** | porta barrada no salão e `som_do_outro_lado.tscn` | De vez em quando, batidas do outro lado |
+| **Robôs** | Sentinela no salão, Rastreador no acervo | Patrulham uma **rota fixa** (pontos `Marker2D` na sala). A Sentinela troca para a rota nova quando a energia volta e dá um **bipe** antes de virar. O nó `RobosDaSala` monta o mapa do chão da sala (células de 16 px, livres onde não há estante), que o A* e a audição por BFS usam |
+
+**Esconderijos:** as estantes das salas com robô estão na camada 4 de colisão (`collision_layer = 9`), a mesma das paredes do labirinto. Elas cortam a visão dos robôs e saem do mapa do chão.
+
+Sons e arte novos (placeholders): `assets/modelagem/audio/gerar_efeitos_biblioteca.py` e `assets/modelagem/cenario/gerar_objetos_biblioteca.py`.
+
+**Pendente:** o texto da ligação da Clarice (`dados/transmissoes/clarice_01.tres`) e o do disquete são rascunho e precisam da revisão do roteiro. A tabela da seção 2.2 fala em "robôs com rota nova" na ala leste; por enquanto ela não tem robô.
