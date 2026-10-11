@@ -56,7 +56,7 @@ As portas existem, com placa e o visual de porta lacrada (fita vermelha e branca
 
 | Porta (`id`) | Onde | Aviso de hoje | Ideia |
 |---|---|---|---|
-| `escada_superficie` | entrada | "A escotilha lá em cima emperrou." | Por onde o Gabriel chega, vindo do Bloco de salas |
+| `escada_superficie` | entrada | "A escotilha lá em cima emperrou." | Por onde o Gabriel chega, por enquanto vindo do Bloco de salas (a fase seguinte ao bloco será o Centro de Convivência) |
 | `elevador` | entrada | "O elevador está sem energia." | Atalho entre os setores depois de religar a energia no gerador |
 | `arsenal` | corredor A | "Arsenal: acesso só com autorização." | Cápsulas de clarão e equipamento |
 | `laboratorio` | corredor B | "Lacrada pelo sistema. O Zane está tentando abrir." | Pesquisa da Âncora; talvez parte da pesquisa do professor |
@@ -70,7 +70,7 @@ O Henrique explica no diálogo que o setor B está lacrado pelo sistema e que o 
 ## 3. Objetivos e Progressão
 
 - **Hoje:** explorar o bunker, achar o Henrique na sala de dados e conversar com ele (a conversa anota "Henrique, na sala de dados" no caderno).
-- **Chegada:** o Gabriel chega ao bunker depois do Bloco de salas, pela porta corta-fogo do 1º andar. A tela de fim do bloco leva direto à `entrada`.
+- **Chegada:** por enquanto, o Gabriel chega ao bunker saindo do Bloco de salas, pela porta corta-fogo do 1º andar: a tela de fim do bloco leva direto à `entrada`. Isso é provisório, porque a fase seguinte ao Bloco de salas será o Centro de Convivência (ainda não feito).
 - **A definir com a equipe:** o que destrava o setor B (senhas nos disquetes? religar o gerador?) e se os robôs entram aqui em algum momento.
 
 ---

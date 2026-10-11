@@ -16,6 +16,26 @@ Formato:
 
 ---
 
+## 2026-10-11 — A fase depois do Bloco de salas é o Centro de Convivência
+**Decisão:** a fase que vem depois do **Bloco de salas** é o **Centro de Convivência**. Ele ainda não foi feito: por enquanto só o nome e a posição estão decididos. A ordem fica **Biblioteca → Bloco de salas → Centro de Convivência**. Isso substitui a entrada anterior de que a saída do Bloco de salas levava ao Bunker: o Bunker continua sendo o Ato 3 da história, mas a posição dele na ordem das fases deixa de estar decidida.
+- **No jogo nada muda por enquanto:** a porta corta-fogo do Bloco de salas continua abrindo a entrada do Bunker, de forma provisória, até o Centro de Convivência existir.
+- **Fica pendente:** o que acontece no Centro de Convivência, quem Gabriel encontra nele e o que ele ensina (Enredo, seções 8 e 12.5). O texto antigo dele no GDD é da premissa anterior (Calouros) e precisa ser refeito.
+
+**Por quê:** decisão do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 8, 12.5), `docs/fases/bloco_de_salas.md`, `bunker.md` e `README.md`, e o documento novo `docs/fases/centro_de_convivencia.md` (só o que está decidido e as perguntas em aberto).
+
+## 2026-10-11 — O começo da história: a Clarice é a voz do rádio, o Henrique chegou primeiro e ajuda por trás
+**Decisão:**
+- **A Clarice é a voz do rádio na Biblioteca.** Ela ajuda Gabriel na primeira fase pelo rádio, com o que o Henrique vê nas câmeras. O Henrique deixa de ser a voz que guia Gabriel: ele ajuda a Clarice e a Diana, e o primeiro contato dele com Gabriel é em pessoa, no bunker.
+- **A Clarice vai para a 103 e acolhe a Diana.** Depois de chegar à Biblioteca, a Clarice foi para o Bloco de salas e ficou na 103. A Diana apareceu por lá depois, e a Clarice a acolheu. Desde então as duas tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio.
+- **O Baltazar** está escondido numa sala da Biblioteca desde que chegou. A última página do diário combina com isso: a luz nasce no chão da Biblioteca.
+- **O Henrique foi o primeiro a chegar.** Ordem fechada, menos o Baltazar: Henrique primeiro, Zane antes da Clarice, Diana depois da Clarice, Gabriel por último.
+- **O Henrique diz que está escondido no bunker, tentando entender tudo, e que, de alguma forma, estamos em 3026.** É ele quem diz o ano ao grupo. Se é verdade o que ele conta do lugar e do ano ficou como pergunta nova da "mentira do Henrique" (Enredo, seção 12.7).
+- No jogo: as transmissões da Biblioteca passaram do Henrique para a Clarice (`henrique_01` e `henrique_02` viraram `clarice_biblioteca_01` e `clarice_biblioteca_02`, com os gatilhos `GatilhoRadio1` e `GatilhoRadio2`), e o aviso de ronda do Bloco de salas passou a ser dela (`henrique_03` virou `clarice_04`). As conversas da Clarice no Bloco e a do Henrique no bunker foram ajustadas.
+
+**Por quê:** história contada pelo Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 4.1, 6, 6.1, 7.2, 8, 10, 12.3 e 12.7), as fichas de Clarice, Henrique, Diana e Baltazar, `resumo.md`, `docs/fases/biblioteca.md` e `bloco_de_salas.md`, `docs/mecanicas/registros_e_caderno.md` e `README.md`, `dados/transmissoes/clarice_*.tres`, `dados/dialogos/clarice_bloco_*.json` e `henrique_primeiro_encontro.json`, e as cenas `balcao.tscn`, `acervo.tscn`, `salao.tscn` e `corredor_primeiro_andar.tscn`.
+
 ## 2026-10-11 — A Diana fica na 103 com a Clarice, e as duas falam com o Henrique
 **Decisão:**
 - A **Clarice** veio da Biblioteca, como todos, e está na **sala 103** do Bloco de salas **desde que chegou**, tentando descobrir o que é este lugar.

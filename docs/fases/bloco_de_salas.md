@@ -60,7 +60,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 - O **corredor** de cada andar é o centro, como o salão da Biblioteca: quase todo caminho passa por ele, e é ali que os robôs patrulham.
 - A **escada** começa fechada por uma grade de aço de enrolar (como a da Biblioteca), presa no chão com um cadeado.
 - O **buraco no chão da 204** dá na **104**, logo embaixo (as duas ficam no mesmo ponto dos corredores). Ele só serve para **descer**, e vira um atalho entre os andares (seção 5.5).
-- A **saída** é a **porta corta-fogo** no fim do corredor do 1º andar, depois da escada. Ela está **acorrentada** e leva à próxima fase, o **Bunker**.
+- A **saída** é a **porta corta-fogo** no fim do corredor do 1º andar, depois da escada. Ela está **acorrentada** e leva à próxima fase, o **Centro de Convivência** ([`centro_de_convivencia.md`](centro_de_convivencia.md)). Como ele ainda não existe, por enquanto a porta abre a entrada do Bunker, de forma provisória.
 
 ### 2.2 As salas no plano
 
@@ -93,19 +93,19 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 
 1. **A chegada (corredor térreo).** O Gabriel sai da Biblioteca no oeste do corredor. O **Rastreador** patrulha o corredor de ponta a ponta. A areia abafa os passos; o entulho perto da 102 faz barulho.
    - *O que o jogador aprende:* o chão muda o barulho dos passos.
-2. **A voz nova (rádio).** Na porta da 103, o rádio chia: é a **Clarice**, a do bilhete da Biblioteca ("Ei, você aí no corredor. Devagar com o entulho, meu filho: o robô que ronda aí escuta até pensamento."). Ela está entrincheirada na 103 e não mexe na barricada com o robô rondando a porta dela (abrir faz um barulho dos infernos). Pede ao Gabriel que tire o robô dali: na 104 tem o teste de alarme, e a sirene fica no fim do corredor; o robô vai correndo ver o que é.
+2. **A voz nova (rádio).** Na porta da 103, o rádio chia: é de novo a **Clarice**, a voz que o guiou na Biblioteca ("Ei, você aí no corredor. Devagar com o entulho, meu filho: o robô que ronda aí escuta até pensamento."). Ela está entrincheirada na 103 e não mexe na barricada com o robô rondando a porta dela (abrir faz um barulho dos infernos). Pede ao Gabriel que tire o robô dali: na 104 tem o teste de alarme, e a sirene fica no fim do corredor; o robô vai correndo ver o que é.
 3. **A distração (sala 104).** Num dos terminais acesos, o Gabriel liga o **teste de alarme**. Quando ele volta ao corredor, a **sirene do fim do corredor está tocando** e o **Rastreador está lá, investigando** (por 20 s ele não ouve mais nada). O caminho até a 103 fica livre, e a barricada da 103 se abre.
    - *O que o jogador aprende:* barulho é ferramenta, não só perigo.
 4. **O posto da Clarice (sala 103).** A Clarice abre uma fresta na barricada. É o primeiro encontro **em pessoa** do jogo. Ela desconfia ("mão onde eu possa ver") e diz que perdeu o **molho de chaves** na areia da 102, quando o robô a ouviu. Sem o molho, ninguém sobe: a grade da escada está no cadeado. "Você traz o molho, eu te digo qual chave abre o quê. Isso não é pedir ajuda, é permuta."
 5. **O molho (sala 102).** O molho está na areia, entre carteiras tombadas e montes de entulho. O Rastreador volta à rotina e passa pela porta da 102. As **pedras** da sala servem para atraí-lo para longe.
-6. **A confiança (sala 103).** O Gabriel devolve o molho. A Clarice confia nele, tira do molho a **chave da fita azul** e entrega: "Toma: a da fita azul é a da grade da escada. Fui eu que botei a fita." Daí em diante ela **guia o Gabriel pelo rádio**, do caderno de rondas dela: diz o que cada porta precisa e avisa por onde os robôs passam. **Esta é a parte da Clarice no bloco** (Enredo, seção 3.1: "mapeou as rondas dos robôs como um grafo e sabe o que cada chave abre"), mostrada pelo que ela fala, sem papel nem item. Ela conta que a saída do bloco é a **porta corta-fogo** lá em cima, acorrentada, e que a chave do **depósito (206)**, onde fica o alicate, está no **claviculário da sala dos professores (203)**, num cadeado de segredo que ela não abriu (são mil combinações, e o robô de cima enxerga longe). Ela também conta que está ali **desde que chegou**, com a **Diana**, tentando descobrir o que é este lugar, e que as duas falam com o **Henrique** pelo rádio (ele vê o campus pelas câmeras). A **103 vira a sala segura** (seção 6).
+6. **A confiança (sala 103).** O Gabriel devolve o molho. A Clarice confia nele, tira do molho a **chave da fita azul** e entrega: "Toma: a da fita azul é a da grade da escada. Fui eu que botei a fita." Daí em diante ela **guia o Gabriel pelo rádio**, do caderno de rondas dela: diz o que cada porta precisa e avisa por onde os robôs passam. **Esta é a parte da Clarice no bloco** (Enredo, seção 3.1: "mapeou as rondas dos robôs como um grafo e sabe o que cada chave abre"), mostrada pelo que ela fala, sem papel nem item. Ela conta que a saída do bloco é a **porta corta-fogo** lá em cima, acorrentada, e que a chave do **depósito (206)**, onde fica o alicate, está no **claviculário da sala dos professores (203)**, num cadeado de segredo que ela não abriu (são mil combinações, e o robô de cima enxerga longe). Ela também conta que está ali **desde que chegou**; que a **Diana** apareceu depois e ela a acolheu; e que as duas tentam descobrir o que aconteceu com a ajuda do **Henrique** pelo rádio (ele vê o campus pelas câmeras e disse que, de alguma forma, estão em 3026). A **103 vira a sala segura** (seção 6).
 7. **Subir (escada).** A **chave da fita azul** abre o cadeado da grade da escada.
 8. **O 1º andar (corredor).** Assim que o Gabriel sobe, a Clarice avisa pelo rádio como o robô de cima anda ("esse não escuta, esse enxerga longe. Ele para debaixo dos buracos do teto. Passa pelo escuro."). A **Sentinela** patrulha sob os buracos do teto. As faixas de luar no chão são onde ela vê de longe; nas sombras e no mato o Gabriel passa.
    - *O que o jogador aprende:* a luz do céu também denuncia, não só a lanterna.
 9. **O cadeado (sala 203).** O claviculário tem um cadeado de **3 números**. No quadro de avisos, um papel: **"Conferir a contagem: 101 · 201 · 205"**. O Gabriel precisa **contar os tracinhos** das lousas dessas três salas. Duas estão no 1º andar; a **101 fica lá embaixo**, e é preciso descer de novo.
    - *O que o jogador aprende:* olhar o cenário com atenção; voltar faz parte.
 10. **O depósito (sala 206).** O claviculário dá a **chave do depósito**. Lá dentro, entre corredores de estantes, um **Rastreador** escuta. No fundo, o **alicate corta-corrente**.
-11. **A virada.** Quando o Gabriel pega o alicate, o rádio do **Henrique** avisa que a máquina de cima "mudou de ronda" (ele vê pelas câmeras). A **Sentinela passa a cobrir o trecho entre a 206 e a escada**, justamente o caminho de volta.
+11. **A virada.** Quando o Gabriel pega o alicate, a **Clarice** avisa pelo rádio, com o que o **Henrique** vê pelas câmeras, que a máquina de cima "mudou de ronda". A **Sentinela passa a cobrir o trecho entre a 206 e a escada**, justamente o caminho de volta.
 12. **O atalho (opcional, salas 204 e 104).** Pelo buraco no chão da 204, o Gabriel pode **descer direto para a 104**, longe da Sentinela e da escada. É mão única: só desce. Serve para voltar rápido ao posto da Clarice e salvar.
 13. **Saída (porta corta-fogo).** No fim do corredor do 1º andar, o Gabriel corta a corrente com o alicate. Antes de sair, o rádio da Clarice se despede ("Então vai. Eu fico: ainda não fechei o mapa das rondas. Qualquer coisa, chama no rádio."). A Clarice **fica** no posto dela.
 
@@ -202,7 +202,7 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 | **Conversa de depois** (claviculário, andar de cima) | 103 | Clarice, em pessoa | `dados/dialogos/clarice_bloco_de_novo.json` |
 | **Como o robô de cima anda** | Topo da escada | Clarice, pelo rádio | `dados/transmissoes/clarice_02.tres` |
 | **Bilhete do quadro de avisos** ("Conferir a contagem - 101 · 201 · 205") | 203 | Em aberto | na cena `sala_203` |
-| **Aviso de ronda nova** | Porta da 206, depois do alicate | Henrique, pelo rádio | `dados/transmissoes/henrique_03.tres` |
+| **Aviso de ronda nova** | Porta da 206, depois do alicate | Clarice, pelo rádio (com o que o Henrique vê) | `dados/transmissoes/clarice_04.tres` |
 | **Despedida** | Porta corta-fogo, ao cortar a corrente | Clarice, pelo rádio | `dados/transmissoes/clarice_03.tres` |
 
 As falas são definitivas e seguem a ficha da Clarice (gírias dos anos 90, deboche, explica tudo como lógica, não pede ajuda; sem as falas de loop da versão antiga).
@@ -229,7 +229,7 @@ A sala "intacta demais" entra no puzzle só como uma das lousas. **Por que ela e
 | Luar que revela | `VisivelComMarca` com `marca` vazia (sempre acesa) e `revela_quem_passa`: quatro faixas de luz no chão do 1º andar |
 | Alicate que muda a ronda | `item_no_chao.gd` com `marca_ao_pegar` (novo) = `alicate`, que é a `marca_da_rota` da Sentinela |
 | Transmissões que esperam uma marca | `gatilho_transmissao.gd` com `marca_necessaria` (novo) |
-| Fim da fase | `cenas/salas/bloco_de_salas/fim_do_bloco.tscn`: a `SaidaFase` com `sair_ao_carregar` (novo), que mostra "Você saiu do bloco" e leva à entrada do Bunker |
+| Fim da fase | `cenas/salas/bloco_de_salas/fim_do_bloco.tscn`: a `SaidaFase` com `sair_ao_carregar` (novo), que mostra "Você saiu do bloco" e leva à entrada do Bunker, provisoriamente, até o Centro de Convivência existir |
 | Itens novos | `dados/itens/molho_de_chaves.tres`, `chave_grade.tres`, `chave_deposito.tres`, `alicate.tres` |
 | Arte nova | `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` (ícones, claviculário, grade, corrente, buraco, sirene) e `gerar_kit.py` (lousas `parede_lousa_0`, `_3`, `_7`, `_8`) |
 | Sons novos | `assets/modelagem/audio/gerar_efeitos_bloco_de_salas.py`: sirene (em loop), queda e corrente cortada |
@@ -238,7 +238,7 @@ A sala "intacta demais" entra no puzzle só como uma das lousas. **Por que ela e
 
 ## 10. Decidido e em aberto
 
-Aprovado pelo Davi em 2026-10-11: o posto é a **103** e quem fica nele é a **Clarice** (o Rafael saiu da história no mesmo dia: ver `docs/decisoes.md`); a saída é a **porta corta-fogo** do 1º andar, que leva ao **Bunker**; não existe livro de ocorrências; o notebook não entra nesta fase.
+Aprovado pelo Davi em 2026-10-11: o posto é a **103** e quem fica nele é a **Clarice** (o Rafael saiu da história no mesmo dia: ver `docs/decisoes.md`); a saída é a **porta corta-fogo** do 1º andar, que leva à próxima fase, o **Centro de Convivência** (por enquanto, ao Bunker); não existe livro de ocorrências; o notebook não entra nesta fase.
 
 Continua em aberto (Enredo, pendências): por que a sala 205 está intacta.
 

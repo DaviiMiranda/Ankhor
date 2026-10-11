@@ -51,6 +51,10 @@ docs/
 ├── fases/                         # Design de fases e áreas
 │   ├── README.md                  # Estrutura e funcionamento do level design no campus
 │   ├── biblioteca.md              # Fase 1 (Confirmada): O despertar na Biblioteca Central
+│   ├── bloco_de_salas.md          # Fase 2: Bloco de salas, jogável (Clarice e Diana na 103)
+│   ├── bunker.md                  # Bunker: Zane e Henrique na sala de dados
+│   ├── centro_de_convivencia.md   # Fase seguinte ao Bloco de salas (ainda não feita)
+│   ├── dtec.md                    # DTEC: laboratório, fase solta
 │   ├── labirinto.md               # Labirinto escuro com robôs (jogável pelo menu Fases)
 │   └── template_fase.md           # Modelo padronizado para documentação de novas fases/áreas
 │
