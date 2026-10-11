@@ -5,7 +5,7 @@
 - **Personagens:** Gabriel Magalhães (protagonista, 2026). Figurantes de apoio: estudantes e professor de 2026 (silhuetas/desfocados).
 - **Formato visual:** sequência de ilustrações narrativas em pixel art (estilo *graphic novel* 2.5D, tela base 320×180), com camadas de paralaxe sutis, efeitos de iluminação e caixas de texto com pensamentos do Gabriel.
 - **Objetivo dramático:** apresentar o cotidiano mundano e cansativo de Gabriel em 2026, estabelecendo o choque do contraste com o futuro arruinado de 3026. Apresenta os três elementos cruciais que o acompanharão durante todo o jogo: o **anel desgastado da avó**, o **caderno de equações** e o **moletom vermelho**.
-- **Status:** aprovada (roteiro fechado, pronta para produção de arte).
+- **Status:** em produção (roteiro fechado e as 8 ilustrações prontas; falta montar a cena no Godot).
 
 ---
 
@@ -101,7 +101,7 @@
 
 ## Especificações Técnicas para Produção
 
-1. **Resolução de Arte:** 320×180 px, escala 1× (proporção padrão do jogo).
+1. **Resolução de Arte:** 320×180 px, escala 1× (proporção padrão do jogo). As ilustrações saem das referências em `assets/modelagem/cutscenes/seg_prologo/referencia/` pelo script `assets/modelagem/cutscenes/seg_prologo/pixelar_seg_prologo.py`, que reduz cada uma para 320×180, fecha a paleta em 48 cores e redesenha o despertador da cena 1 marcando 06:15. Para trocar uma ilustração, substitua a referência e rode o script de novo.
 2. **Camadas por Ilustração (quando aplicável):**
    - Camada 0: Fundo estático (arquitetura/céu).
    - Camada 1: Elementos intermediários / Gabriel.

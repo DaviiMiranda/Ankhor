@@ -55,5 +55,5 @@ Resoluções, camadas de paralaxe e conexão no Godot (`scripts/cutscenes/cutsce
 
 | Cutscene | Descrição | Status |
 |---|---|---|
-| [`seg_prologo`](seg_prologo.md) | Prólogo em ilustrações: rotina de Gabriel em 2026, ida à faculdade, aula e o adormecer na cabine da Biblioteca | aprovada (roteiro fechado) |
+| [`seg_prologo`](seg_prologo.md) | Prólogo em ilustrações: rotina de Gabriel em 2026, ida à faculdade, aula e o adormecer na cabine da Biblioteca | em produção (ilustrações prontas, falta a cena no Godot) |
 | [`seg_acordar`](seg_acordar.md) | O despertar imediato de Gabriel dentro da cabine da Biblioteca nas ruínas de 3026 | aprovada (cena provisória no Godot) |
