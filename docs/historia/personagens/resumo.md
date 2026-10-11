@@ -51,8 +51,8 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 |---|---|---|
 | Gabriel | — | O caderno, com as equações da cadeira |
 | Baltazar | Escondido numa sala da Biblioteca, com medo e isolado | As estrelas, que acertam a data de volta de cada um |
-| Diana | Bunker, com o Zane | Investigação: onde fica o núcleo e as passagens até lá |
-| Clarice | Sala 103 do Bloco de salas, atrás de uma barricada: guia Gabriel pelo rádio | Código: faz os terminais da Âncora funcionarem. Mapeou as rondas e sabe o que cada chave abre |
+| Diana | Sala 103 do Bloco de salas, com a Clarice | Investigação: onde fica o núcleo e as passagens até lá |
+| Clarice | Sala 103 do Bloco de salas, atrás de uma barricada, com a Diana: guia Gabriel pelo rádio e fala com o Henrique | Código: faz os terminais da Âncora funcionarem. Mapeou as rondas e sabe o que cada chave abre |
 | Henrique | Bunker, na sala de dados, com as câmeras: guia o grupo pelo rádio | A teoria por trás das equações |
 | Zane | Bunker, no computador da central de dados: faz a comunicação de todos | A tecnologia mais próxima da Âncora |
 | Carlos | Laboratório do D-Tec, de onde nunca sai | — |

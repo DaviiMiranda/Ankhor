@@ -1,6 +1,6 @@
 # Fase — Bloco de salas
 
-> **Status:** **jogável do começo ao fim** (2026-10-11): objetivos, puzzles, robôs, a Clarice no posto e a saída. As falas são rascunho para o roteiro revisar.
+> **Status:** **jogável do começo ao fim** (2026-10-11): objetivos, puzzles, robôs, a Clarice no posto e a saída.
 > **Área:** um bloco de salas de aula da Unifor, dois andares (no GDD: "Blocos de aula").
 > **Vem de:** a porta de saída da ala leste da Biblioteca ([`biblioteca.md`](biblioteca.md)).
 > **História:** o que o Bloco de salas conta segue o [Enredo Principal](../historia/enredo_principal.md) (Ato 2), que é a lei do projeto. O plano foi aprovado pelo Davi em 2026-10-11 (registro em `docs/decisoes.md`).
@@ -69,7 +69,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 | Corredor térreo | Chegada e eixo do andar de baixo | Areia em parte do chão (passos abafados), entulho perto da 102 (passos barulhentos) | Atrás dos montes de areia e entulho | **Rastreador** (audição) |
 | 101 | Pista do código | Lousa com tracinhos (1º número do cadeado) | Debaixo das carteiras | Nenhuma |
 | 102 | Chave da escada | O **molho de chaves da Clarice**, caído na areia. 3 pedras | Atrás das carteiras tombadas | O Rastreador passa na porta |
-| 103 | **Posto da Clarice** e **sala segura** | A Clarice, o acampamento, 2 pilhas | Não precisa: a barricada protege | Nenhuma |
+| 103 | **Posto da Clarice e da Diana** e **sala segura** | A Clarice (a Diana ainda não tem visual), o acampamento, 2 pilhas | Não precisa: a barricada protege | Nenhuma |
 | 104 | Distração e fim do atalho | Os terminais acesos. Um deles tem o **teste de alarme** do bloco, que dispara a **sirene do fim do corredor** (perto da escada). No teto, o buraco que vem da 204 | Debaixo das mesas | Nenhuma |
 | 105 | Respiro | 2 robôs desmontados, 2 pilhas | Atrás dos robôs desmontados | Nenhuma (os robôs desmontados não ligam) |
 | 106 | Respiro | A árvore e o luar | Atrás da árvore | Nenhuma |
@@ -93,12 +93,12 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 
 1. **A chegada (corredor térreo).** O Gabriel sai da Biblioteca no oeste do corredor. O **Rastreador** patrulha o corredor de ponta a ponta. A areia abafa os passos; o entulho perto da 102 faz barulho.
    - *O que o jogador aprende:* o chão muda o barulho dos passos.
-2. **A voz nova (rádio).** Na porta da 103, o rádio chia: é a **Clarice**, a do bilhete da Biblioteca ("Ei, você aí no corredor. Devagar com o entulho, meu filho: o robô que ronda aí escuta até pensamento."). Ela está entrincheirada na 103 e não mexe na barricada com o robô rondando a porta dela (abrir faz um barulho dos infernos). Pede ao Gabriel que tire o robô dali: na 104 tem o teste de alarme, e a sirene fica no fim do corredor; o robô vai correndo ver o que é. *(Falas são rascunho, para o roteiro: a Clarice explica tudo como lógica, "é reflexo, eu já anotei", e não chama isso de pedido de ajuda.)*
+2. **A voz nova (rádio).** Na porta da 103, o rádio chia: é a **Clarice**, a do bilhete da Biblioteca ("Ei, você aí no corredor. Devagar com o entulho, meu filho: o robô que ronda aí escuta até pensamento."). Ela está entrincheirada na 103 e não mexe na barricada com o robô rondando a porta dela (abrir faz um barulho dos infernos). Pede ao Gabriel que tire o robô dali: na 104 tem o teste de alarme, e a sirene fica no fim do corredor; o robô vai correndo ver o que é.
 3. **A distração (sala 104).** Num dos terminais acesos, o Gabriel liga o **teste de alarme**. Quando ele volta ao corredor, a **sirene do fim do corredor está tocando** e o **Rastreador está lá, investigando** (por 20 s ele não ouve mais nada). O caminho até a 103 fica livre, e a barricada da 103 se abre.
    - *O que o jogador aprende:* barulho é ferramenta, não só perigo.
 4. **O posto da Clarice (sala 103).** A Clarice abre uma fresta na barricada. É o primeiro encontro **em pessoa** do jogo. Ela desconfia ("mão onde eu possa ver") e diz que perdeu o **molho de chaves** na areia da 102, quando o robô a ouviu. Sem o molho, ninguém sobe: a grade da escada está no cadeado. "Você traz o molho, eu te digo qual chave abre o quê. Isso não é pedir ajuda, é permuta."
 5. **O molho (sala 102).** O molho está na areia, entre carteiras tombadas e montes de entulho. O Rastreador volta à rotina e passa pela porta da 102. As **pedras** da sala servem para atraí-lo para longe.
-6. **A confiança (sala 103).** O Gabriel devolve o molho. A Clarice confia nele, tira do molho a **chave da fita azul** e entrega: "Toma: a da fita azul é a da grade da escada. Fui eu que botei a fita." Daí em diante ela **guia o Gabriel pelo rádio**, do caderno de rondas dela: diz o que cada porta precisa e avisa por onde os robôs passam. **Esta é a parte da Clarice no bloco** (Enredo, seção 3.1: "mapeou as rondas dos robôs como um grafo e sabe o que cada chave abre"), mostrada pelo que ela fala, sem papel nem item. Ela conta que a saída do bloco é a **porta corta-fogo** lá em cima, acorrentada, e que a chave do **depósito (206)**, onde fica o alicate, está no **claviculário da sala dos professores (203)**, num cadeado de segredo que ela não abriu (são mil combinações, e o robô de cima enxerga longe). A **103 vira a sala segura** (seção 6).
+6. **A confiança (sala 103).** O Gabriel devolve o molho. A Clarice confia nele, tira do molho a **chave da fita azul** e entrega: "Toma: a da fita azul é a da grade da escada. Fui eu que botei a fita." Daí em diante ela **guia o Gabriel pelo rádio**, do caderno de rondas dela: diz o que cada porta precisa e avisa por onde os robôs passam. **Esta é a parte da Clarice no bloco** (Enredo, seção 3.1: "mapeou as rondas dos robôs como um grafo e sabe o que cada chave abre"), mostrada pelo que ela fala, sem papel nem item. Ela conta que a saída do bloco é a **porta corta-fogo** lá em cima, acorrentada, e que a chave do **depósito (206)**, onde fica o alicate, está no **claviculário da sala dos professores (203)**, num cadeado de segredo que ela não abriu (são mil combinações, e o robô de cima enxerga longe). Ela também conta que está ali **desde que chegou**, com a **Diana**, tentando descobrir o que é este lugar, e que as duas falam com o **Henrique** pelo rádio (ele vê o campus pelas câmeras). A **103 vira a sala segura** (seção 6).
 7. **Subir (escada).** A **chave da fita azul** abre o cadeado da grade da escada.
 8. **O 1º andar (corredor).** Assim que o Gabriel sobe, a Clarice avisa pelo rádio como o robô de cima anda ("esse não escuta, esse enxerga longe. Ele para debaixo dos buracos do teto. Passa pelo escuro."). A **Sentinela** patrulha sob os buracos do teto. As faixas de luar no chão são onde ela vê de longe; nas sombras e no mato o Gabriel passa.
    - *O que o jogador aprende:* a luz do céu também denuncia, não só a lanterna.
@@ -205,7 +205,7 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 | **Aviso de ronda nova** | Porta da 206, depois do alicate | Henrique, pelo rádio | `dados/transmissoes/henrique_03.tres` |
 | **Despedida** | Porta corta-fogo, ao cortar a corrente | Clarice, pelo rádio | `dados/transmissoes/clarice_03.tres` |
 
-Todas as falas são rascunho. O texto final é do roteiro (agente `roteirista`), seguindo a ficha da Clarice (gírias dos anos 90, deboche, explica tudo como lógica, não pede ajuda; sem as falas de loop da versão antiga).
+As falas são definitivas e seguem a ficha da Clarice (gírias dos anos 90, deboche, explica tudo como lógica, não pede ajuda; sem as falas de loop da versão antiga).
 
 ---
 

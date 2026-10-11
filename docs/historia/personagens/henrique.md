@@ -28,6 +28,7 @@
 | [Carlos](carlos.md) | Trabalha para ele ou foi enganado por ele (pendente) |
 | O grupo | Guia todos pelo rádio, mas fala pouco e fica na dele. Engana todos, e a mentira é descoberta |
 | [Zane](zane.md) | Dividem a sala de dados do bunker: o Zane cuida da frequência e das ligações, o Henrique das câmeras |
+| [Clarice](clarice.md) e [Diana](diana.md) | Falam com ele pelo rádio, da 103 do Bloco de salas: passam o que descobrem, e ele confere nas câmeras |
 | [Gabriel](gabriel.md) | É a voz que o guia desde a primeira fase. Quando a mentira aparece, quem ajudou Gabriel o jogo todo era quem escondia a verdade |
 
 ## 4. No jogo
@@ -54,7 +55,7 @@
 
 - **Sprites:** `assets/sprites/personagens/henrique/`, gerados por `assets/modelagem/personagens/gerar_henrique.py`.
 - **Cena:** `cenas/personagens/henrique.tscn` (parado) e `cenas/personagens/henrique_na_estacao.tscn` (de costas, na estação da sala de dados do bunker, olhando as câmeras).
-- **Diálogos em pessoa (rascunho, para o roteiro revisar):** `dados/dialogos/henrique_primeiro_encontro.json` e `henrique_de_novo.json`, no bunker.
+- **Diálogos em pessoa:** `dados/dialogos/henrique_primeiro_encontro.json` e `henrique_de_novo.json`, no bunker.
 - **Transmissões:** `dados/transmissoes/henrique_*.tres`, gatilhos `GatilhoHenrique1` (em `cenas/salas/biblioteca/balcao.tscn`) e `GatilhoHenrique2` (em `acervo.tscn`).
 - **Som do rádio:** `assets/audio/efeitos/objetos/radio_chiado.wav` (gerado por `assets/modelagem/audio/gerar_efeitos_registros.py`).
 

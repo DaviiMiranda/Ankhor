@@ -16,6 +16,16 @@ Formato:
 
 ---
 
+## 2026-10-11 — A Diana fica na 103 com a Clarice, e as duas falam com o Henrique
+**Decisão:**
+- A **Clarice** veio da Biblioteca, como todos, e está na **sala 103** do Bloco de salas **desde que chegou**, tentando descobrir o que é este lugar.
+- A **Diana** fica com ela na 103 (sai do bunker). As duas estão em contato com o **Henrique** pelo rádio, e a Clarice conta isso a Gabriel.
+- No jogo: a conversa da troca do molho (`clarice_bloco_devolve_chave.json`) ganhou as falas sobre a Diana e o Henrique, a conversa de depois (`clarice_bloco_de_novo.json`) ganhou a escolha "O que vocês já descobriram?", e a despedida (`clarice_03.tres`) cita a Diana. A Diana ainda não tem visual, então a cena da 103 mostra só a Clarice.
+- As falas da Clarice no Bloco de salas e as do Henrique no bunker passam a ser **definitivas** (deixam de ser rascunho).
+
+**Por quê:** pedido do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 6, 6.1, 8, 12.3 e 12.4), as fichas de Clarice, Diana, Henrique e Zane, `resumo.md`, `docs/fases/bloco_de_salas.md` (passo 6 e sala 103) e `bunker.md`, os diálogos e a transmissão citados acima.
+
 ## 2026-10-11 — A eletricidade funciona, e o Bloco de salas leva ao Bunker
 **Decisão:**
 - **A eletricidade funciona normalmente** no campus de 3026. Sai do Enredo a regra "quase nada elétrico funciona; só os sistemas da Âncora", e sai junto a pendência sobre quais sistemas são da Âncora e quais do Carlos. Onde algo está apagado numa fase (a grade da Biblioteca antes dos disjuntores), é um circuito desligado ou quebrado.

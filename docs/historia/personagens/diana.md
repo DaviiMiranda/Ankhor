@@ -25,14 +25,14 @@
 
 | Com | Dinâmica |
 |---|---|
-| [Clarice](clarice.md) | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Brigam o tempo todo e acabam amigas |
-| [Zane](zane.md) | Dividem o bunker |
+| [Clarice](clarice.md) | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Dividem a 103 do Bloco de salas e brigam o tempo todo, mas acabam amigas |
+| [Henrique](henrique.md) | Falam pelo rádio: ela e a Clarice passam para ele o que descobrem |
 
 ## 4. No jogo
 
-- **Onde aparece:** no **bunker**, junto do Zane.
-- **Esconderijo:** o **bunker**, com o Zane.
-- **Como chega ao jogador:** em pessoa, no bunker, e pela frequência de rádio do grupo.
+- **Onde aparece:** no **Bloco de salas**, na sala 103, com a Clarice. Veio da Biblioteca e está ali desde que chegou, tentando descobrir o que é este lugar. Por enquanto só é citada pela Clarice: ainda não tem visual nem cena.
+- **Esconderijo:** a **sala 103** do Bloco de salas, com a Clarice.
+- **Como chega ao jogador:** pela Clarice, em pessoa na 103 (quando tiver visual) e pela frequência de rádio do grupo.
 - **Função na jogabilidade:** o **mapa à mão** dela revela **arestas escondidas no grafo do campus** (atalhos e passagens secretas). Ver [`../../computacao/grafos_e_navegacao.md`](../../computacao/grafos_e_navegacao.md).
 - **Parte para consertar a Âncora:** investigação: descobre onde fica o núcleo e as passagens até lá.
 
