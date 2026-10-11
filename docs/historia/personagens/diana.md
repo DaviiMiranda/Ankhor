@@ -27,7 +27,6 @@
 |---|---|
 | [Clarice](clarice.md) | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Brigam o tempo todo e acabam amigas |
 | [Zane](zane.md) | Dividem o bunker |
-| [Rafael](rafael.md) | Dois de farda em épocas diferentes. Ele é calmo e brincalhão, e é o único que consegue acalmá-la (pelo rádio, ou quando se encontram) |
 
 ## 4. No jogo
 

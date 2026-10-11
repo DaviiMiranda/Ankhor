@@ -9,7 +9,7 @@ Henrique, o pesquisador: aluno de iniciação científica da Unifor em 2019, com
 - **2019.** Camisa de **flanela xadrez** aberta por cima de uma camiseta cinza, calça jeans preta e tênis de lona escuro com biqueira e sola brancas.
 - **O aluno que anota tudo.** O **caderno** de capa dura sempre na mão esquerda, com o elástico, e um **lápis atrás da orelha** direita.
 - **Noites em cima das contas.** Óculos redondos de aro fino e o cabelo escuro bagunçado, com a franja caindo na testa.
-- **Cor de identificação: laranja-queimado** da flanela. Gabriel vermelho, Clarice verde-azulado, Zane amarelo-ácido, Baltazar vinho, Rafael azul-celeste, Carlos branco.
+- **Cor de identificação: laranja-queimado** da flanela. Gabriel vermelho, Clarice verde-azulado, Zane amarelo-ácido, Baltazar vinho, Carlos branco.
 - **Postura:** o contrário do Zane. Ombros fechados, cabeça baixa, braços colados ao corpo, passo curto: quem não quer ocupar espaço.
 - O lápis fica do lado **direito** dele, virado para a câmera nas vistas de lado e de 3/4.
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nnus331p5ww0"
-path="res://.godot/imported/molho_rafael_chao.png-d0ca60199439d5ead0dac26895a5cfaf.ctex"
+uid="uid://ceek3pljgrkqi"
+path="res://.godot/imported/molho_de_chaves.png-5279b281d4cb98074975fd568165ef6a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/itens/molho_rafael_chao.png"
-dest_files=["res://.godot/imported/molho_rafael_chao.png-d0ca60199439d5ead0dac26895a5cfaf.ctex"]
+source_file="res://assets/sprites/itens/molho_de_chaves.png"
+dest_files=["res://.godot/imported/molho_de_chaves.png-5279b281d4cb98074975fd568165ef6a.ctex"]
 
 [params]
 

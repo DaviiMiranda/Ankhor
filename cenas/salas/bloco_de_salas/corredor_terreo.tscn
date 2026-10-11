@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" path="res://cenas/personagens/robo_rastreador.tscn" id="b_rastreador"]
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="b_robos"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="b_gatilho"]
-[ext_resource type="Resource" path="res://dados/transmissoes/rafael_01.tres" id="b_rafael_01"]
+[ext_resource type="Resource" path="res://dados/transmissoes/clarice_01.tres" id="b_clarice_01"]
 [ext_resource type="Resource" path="res://dados/itens/radio.tres" id="b_radio"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="b_checkpoint"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/sirene.tscn" id="b_sirene"]
@@ -39,7 +39,7 @@
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
 
-[sub_resource type="CircleShape2D" id="AreaRafael"]
+[sub_resource type="CircleShape2D" id="AreaClarice"]
 radius = 70.0
 
 [node name="CorredorTerreo" instance=ExtResource("r1")]
@@ -440,12 +440,12 @@ id = "bloco_chegada"
 position = Vector2(1700, 152)
 rota = NodePath("../../RotaRastreador")
 
-[node name="GatilhoRafael1" parent="Objetos" instance=ExtResource("b_gatilho")]
+[node name="GatilhoClarice1" parent="Objetos" instance=ExtResource("b_gatilho")]
 position = Vector2(880, 150)
-transmissao = ExtResource("b_rafael_01")
+transmissao = ExtResource("b_clarice_01")
 
-[node name="Area" parent="Objetos/GatilhoRafael1" index="0"]
-shape = SubResource("AreaRafael")
+[node name="Area" parent="Objetos/GatilhoClarice1" index="0"]
+shape = SubResource("AreaClarice")
 
 
 [node name="RotaRastreador" type="Node2D" parent="."]

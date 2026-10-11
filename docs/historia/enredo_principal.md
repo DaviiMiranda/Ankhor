@@ -64,8 +64,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 |---|---|
 | Baltazar (1750) | As estrelas: o céu é o único relógio que não muda, e é por ele que se acerta a data de volta de cada um |
 | Diana (1978) | Investigação: descobre onde fica o núcleo e as passagens até lá |
-| Clarice (1994) | Código: faz os terminais da Âncora funcionarem |
-| Rafael (2008) | Conhece o campus e as rondas, e sabe o que cada chave abre |
+| Clarice (1994) | Código: faz os terminais da Âncora funcionarem. Mapeou as rondas dos robôs como um grafo e sabe o que cada chave abre |
 | Henrique (2019) | A teoria por trás das equações |
 | Zane (2123) | A tecnologia mais próxima da Âncora |
 | Gabriel (2026) | O caderno, com as equações da cadeira |
@@ -81,7 +80,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 - Todos os puxados pela fenda têm **cerca de 20 anos**.
 - Todos têm alguma **ligação com a região da Unifor**, além de terem sido puxados no chão da Biblioteca.
 - Chegaram a 3026 **com dias de diferença**. Estão todos **vivos**, cada um sobrevivendo do seu jeito num lugar do campus, e Gabriel **encontra cada um ao longo do jogo**.
-- **Ordem de chegada:** **Gabriel é o último** a chegar. Antes dele, o **Zane** chegou antes da **Clarice**. A ordem dos outros (Baltazar, Diana, Rafael e Henrique) ainda está pendente.
+- **Ordem de chegada:** **Gabriel é o último** a chegar. Antes dele, o **Zane** chegou antes da **Clarice**. A ordem dos outros (Baltazar, Diana e Henrique) ainda está pendente.
 
 ### 4.2 Fichas
 
@@ -90,7 +89,6 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 | ~1750 | [Baltazar Magalhães](personagens/baltazar.md) |
 | 1978 | [Diana](personagens/diana.md) |
 | 1994 | [Clarice](personagens/clarice.md) |
-| 2008 | [Rafael](personagens/rafael.md) |
 | 2019 | [Henrique](personagens/henrique.md), o pesquisador |
 | 2026 | [Gabriel Magalhães](personagens/gabriel.md) (protagonista) |
 | 2123 | [Zane](personagens/zane.md) |
@@ -120,18 +118,16 @@ O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na T
 
 | Esconderijo | Quem fica |
 |---|---|
-| **Bunker**, embaixo do núcleo da Âncora. O maior e mais seguro: os robôs não descem lá | Zane, no computador da central de dados, e Diana |
-| **Biblioteca**, escondido numa sala, com medo | Baltazar, isolado dos outros |
-| **Bloco de salas**, na sala 103, que ele transformou no seu "posto de guarda" | Rafael |
-| **Posto de monitoramento**, com as câmeras do campus e o rádio | Henrique, sozinho |
+| **Bunker**, embaixo do núcleo da Âncora. O maior e mais seguro: os robôs não descem lá | Zane, no computador da central de dados; Henrique, na mesma sala de dados, com as câmeras do campus e o rádio; e Diana |
+| **Biblioteca**, escondido numa sala que o jogador ainda não consegue abrir, com medo | Baltazar, isolado dos outros |
+| **Bloco de salas**, na sala 103, atrás de uma barricada | Clarice |
 | **D-Tec**, no laboratório | Carlos, que nunca sai de lá |
-| *Pendente* | Clarice |
 
 ### 6.1 Como eles se comunicam
 
 - O **Zane**, do computador do bunker, faz a **comunicação de todos**: mantém a **frequência de rádio** do grupo e deixou um rádio sintonizado nela na **Biblioteca**, no balcão de atendimento, porque é lá que quem cai na fenda acorda. Ele também liga pelos telefones velhos do campus.
-- O **Henrique**, do posto de monitoramento, vê o campus pelas **câmeras** e dá as **dicas de patrulha** pelo rádio. É a voz que guia Gabriel desde a primeira fase. Mas fala pouco e fica distante dos outros.
-- **Clarice, Diana e Rafael** também falam pela frequência.
+- O **Henrique**, da sala de dados do bunker, vê o campus pelas **câmeras** e dá as **dicas de patrulha** pelo rádio. É a voz que guia Gabriel desde a primeira fase. Mas fala pouco e fica na dele, mesmo dividindo a sala com o Zane.
+- **Clarice e Diana** também falam pela frequência. A Clarice, da 103, é quem guia Gabriel pelo rádio no Bloco de salas.
 - O **Baltazar** teve dificuldade com o rádio e com a tecnologia de 3026, ficou com medo e **se isolou**: não está na frequência. Gabriel só fala com ele em pessoa.
 
 - Os esconderijos funcionam como pontos de encontro: Gabriel volta a eles para conversar e acompanhar o que cada um descobriu.
@@ -147,7 +143,6 @@ O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na T
 | ~1750 | Baltazar | Viu uma luz estranha pela luneta, no sítio da família, e foi investigar |
 | 1978 | Diana | Vigiava a obra depois do sumiço do material |
 | 1994 | Clarice | Rodava um programa num terminal da Biblioteca, de madrugada |
-| 2008 | Rafael | Fazia a ronda noturna na Biblioteca |
 | 2019 | Henrique | Estudava à noite na Biblioteca |
 | 2026 | Gabriel | Dormiu na Biblioteca com o caderno aberto |
 | 2123 | Zane | *A definir* |
@@ -185,7 +180,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 ### Ato 2 — Encontrar os outros (Bloco de salas, Labirinto e demais áreas)
 
 - Cada fase leva a **um personagem** e ao esconderijo dele. Gabriel precisa chegar lá, ganhar a confiança da pessoa e receber a parte dela para consertar a Âncora (seção 3.1).
-- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo do **Rafael**, a **sala 103**, atrás de uma barricada. Gabriel ganha a confiança dele devolvendo o molho de chaves que ele perdeu; daí em diante o Rafael o guia pelo rádio (o que cada chave abre, por onde as máquinas passam) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar.
+- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Clarice**, a **sala 103**, atrás de uma barricada. Gabriel ganha a confiança dela devolvendo o molho de chaves que ela perdeu (para ela, é uma permuta, não um pedido de ajuda); daí em diante a Clarice o guia pelo rádio (o que cada chave abre, por onde os robôs passam, que ela mapeou como um grafo) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar.
 - **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): subsolo escuro do centro de pesquisa da Âncora, com três robôs. Jogável, mas sem lugar na história ainda.
 - As áreas seguintes do GDD (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) ainda não foram redefinidas para a premissa atual.
 - **Rádio e telefone:** o Henrique fala pelo rádio, na frequência que o Zane mantém, e o Zane liga pelos telefones velhos.
@@ -196,7 +191,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 **Fase em desenvolvimento.** [`../fases/bunker.md`](../fases/bunker.md).
 
 - O bunker de pesquisa embaixo do núcleo da Âncora ("ÂNCORA-03"), com dois setores. Os robôs não descem aqui.
-- **Gabriel encontra o Zane em pessoa**, no computador da central de dados. A **Diana** também mora aqui.
+- **Gabriel encontra o Zane em pessoa**, no computador da central de dados. O **Henrique** fica na mesma sala de dados, com o acesso às câmeras do campus, e a **Diana** também mora aqui.
 - O **setor B** (laboratório, arquivo e a comporta do núcleo) está lacrado pelo sistema, e o Zane tenta quebrar a senha.
 - Seis portas lacradas são os ganchos para as próximas fases: escotilha da superfície, elevador, arsenal, laboratório, arquivo e a comporta do núcleo.
 
@@ -286,15 +281,15 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 ### 12.3 Personagens
 
 - **Gabriel falhando na tela:** enquanto o Baltazar estiver fora de 1750, o sprite de Gabriel pisca ou se desfaz, como a foto em *De Volta para o Futuro*. Seria um shader (bom para a apresentação de Computação Gráfica).
-- **Henrique:** onde fica o posto de monitoramento, e quando Gabriel o encontra em pessoa.
-- **Clarice:** onde ela fica (o esconderijo dela) e onde Gabriel a encontra em pessoa.
+- **Henrique:** quando Gabriel o encontra em pessoa na sala de dados do bunker, e se o acesso às câmeras vira uma mecânica (ver o campus, avisar de ronda nova).
+- **Clarice:** se ela continua na 103 até o fim ou se junta ao grupo no bunker mais tarde (o final dela com Gabriel está em 12.1). As pichações dela no bunker ("NÃO CONFIE NAS LUZES") sugerem que ela passou por lá antes de ir para o Bloco de salas.
 - **Zane:** o que fazia no ponto quando foi puxado.
-- **Ordem de chegada** de Baltazar, Diana, Rafael e Henrique (já decidido: todos antes de Gabriel, e o Zane antes da Clarice). Não precisa seguir a ordem dos anos.
-- **Onde fica, dentro da Biblioteca, o esconderijo do Baltazar**, e como ele combina com o acampamento vazio que Gabriel acha no começo do jogo e com a última página do diário ("Hei de seguir a luz até onde ella nasce").
+- **Ordem de chegada** de Baltazar, Diana e Henrique (já decidido: todos antes de Gabriel, e o Zane antes da Clarice). Não precisa seguir a ordem dos anos.
+- **Qual sala da Biblioteca** é o esconderijo do Baltazar (uma que o jogador ainda não consegue abrir; a sala de obras raras, barrada por dentro, é a candidata), **quando ela passa a ficar acessível**, e como ele combina com o acampamento vazio que Gabriel acha no começo do jogo e com a última página do diário ("Hei de seguir a luz até onde ella nasce").
 
 ### 12.4 Textos já escritos que citam a versão antiga
 
-- **O bunker:** as conversas `dados/dialogos/clarice_primeiro_encontro.json` e `clarice_de_novo.json` e a arte da estação de trabalho (`gerar_clarice.py`) foram feitas para a Clarice no computador da central de dados. Com o **Zane** no lugar dela, precisam ser refeitas. As falas de loop ("Você sempre lê" e outras) saem junto.
+- **O bunker:** as conversas `dados/dialogos/clarice_primeiro_encontro.json` e `clarice_de_novo.json` e a arte da estação de trabalho (`gerar_clarice.py`) foram feitas para a Clarice no computador da central de dados. A Clarice agora fica no Bloco de salas, e a cena do bunker mostra o **Henrique** na estação, com conversas novas (rascunho: `henrique_primeiro_encontro.json` e `henrique_de_novo.json`). As conversas da Clarice, com as falas de loop ("Você sempre lê" e outras), ficaram sem uso e podem ser apagadas. Falta a cena do **Zane** na mesma sala de dados.
 - [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md): **o que os sonhos mostram** agora que não há loops (memória, o passado do campus, outra coisa).
 
 ### 12.5 Estrutura e fases

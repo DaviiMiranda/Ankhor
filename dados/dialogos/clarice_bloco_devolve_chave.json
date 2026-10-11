@@ -1,0 +1,54 @@
+{
+	"id": "clarice_bloco_devolve_chave",
+	"inicio": "molho",
+	"anotacao": {
+		"titulo": "O que a Clarice sabe",
+		"texto": "Devolvi o molho. A Clarice me deu a chave da fita azul: abre a grade da escada.\n\nA saída do bloco é a porta corta-fogo, no fim do corredor de cima. Está acorrentada. Tem um alicate no depósito (206).\n\nA chave do depósito fica no claviculário da sala dos professores (203), num cadeado de três números. Ela não abriu.\n\nA 103 é segura: os robôs não entram."
+	},
+	"trechos": {
+		"molho": {
+			"falas": [
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Achei. Estava na areia, do jeito que você disse."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_sorrindo",
+					"texto": "Meu molho! Ponto pra você, estudante."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Toma: a da fita azul é a da grade da escada. Fui eu que botei a fita, pra achar no escuro. Etiquetei todas, aliás."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "A saída é a porta corta-fogo, no fim do corredor de cima. Só que alguém passou uma corrente nela."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Tem um alicate de cortar vergalhão no depósito, a 206. A chave do depósito tá no claviculário da sala dos professores, a 203."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_seria",
+					"texto": "O claviculário tem cadeado de segredo, três números. Dava pra ir na força bruta, mas são mil combinações e o robô de lá enxerga longe. Conta ruim."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "E você? Vem comigo?"
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Eu fico no posto. Aqui os robôs não entram, e o meu mapa ainda não fechou. Se precisar descansar, é só vir. E eu fico na escuta do rádio."
+				}
+			]
+		}
+	}
+}

@@ -31,7 +31,7 @@
 #   - óculos redondos de aro fino e o cabelo escuro bagunçado caindo na
 #     testa: noites sem dormir em cima das contas;
 #   - a cor dele é o laranja-queimado da flanela. Gabriel vermelho, Clarice
-#     verde-azulado, Zane amarelo-ácido, Baltazar vinho, Rafael azul-celeste;
+#     verde-azulado, Zane amarelo-ácido, Baltazar vinho;
 #   - postura: o contrário do Zane. Ombros fechados, cabeça baixa, braços
 #     colados ao corpo, passo curto: quem não quer ocupar espaço.
 #

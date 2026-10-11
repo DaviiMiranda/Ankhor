@@ -29,8 +29,8 @@
 [ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="b_sentinela"]
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="b_robos"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="b_gatilho"]
-[ext_resource type="Resource" path="res://dados/transmissoes/rafael_02.tres" id="b_rafael_02"]
-[ext_resource type="Resource" path="res://dados/transmissoes/rafael_03.tres" id="b_rafael_03"]
+[ext_resource type="Resource" path="res://dados/transmissoes/clarice_02.tres" id="b_clarice_02"]
+[ext_resource type="Resource" path="res://dados/transmissoes/clarice_03.tres" id="b_clarice_03"]
 [ext_resource type="Resource" path="res://dados/transmissoes/henrique_03.tres" id="b_henrique_03"]
 [ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="b_visivel"]
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/corrente_porta.png" id="b_corrente"]
@@ -447,18 +447,18 @@ rota_com_marca = NodePath("../../RotaSentinelaVirada")
 marca_da_rota = "alicate"
 bipa_antes_de_virar = true
 
-[node name="GatilhoRafael2" parent="Objetos" instance=ExtResource("b_gatilho")]
+[node name="GatilhoClarice2" parent="Objetos" instance=ExtResource("b_gatilho")]
 position = Vector2(2330, 150)
-transmissao = ExtResource("b_rafael_02")
+transmissao = ExtResource("b_clarice_02")
 
 [node name="GatilhoHenrique3" parent="Objetos" instance=ExtResource("b_gatilho")]
 position = Vector2(2041, 150)
 transmissao = ExtResource("b_henrique_03")
 marca_necessaria = "alicate"
 
-[node name="GatilhoRafael3" parent="Objetos" instance=ExtResource("b_gatilho")]
+[node name="GatilhoClarice3" parent="Objetos" instance=ExtResource("b_gatilho")]
 position = Vector2(2441, 150)
-transmissao = ExtResource("b_rafael_03")
+transmissao = ExtResource("b_clarice_03")
 marca_necessaria = "corrente_cortada"
 
 

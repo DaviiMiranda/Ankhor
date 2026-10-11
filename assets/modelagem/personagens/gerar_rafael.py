@@ -17,7 +17,7 @@
 #   rafael_referencia.png          frente, 3/4, lado e costas, e os retratos
 #   assets/modelagem/personagens/rafael.blend   o modelo
 #
-# Quem é (docs/historia/personagens/rafael.md): segurança noturno da Unifor
+# Quem era (ficha retirada em 2026-10-11, ver docs/decisoes.md): segurança noturno da Unifor
 # em 2008, no primeiro emprego, com uns 20 anos. Puxado na ronda da
 # Biblioteca com o rádio e a lanterna. Caloroso, brincalhão, protetor; quer
 # ser chamado de "Seu Rafael" para parecer mais velho, e jura que 3026 é

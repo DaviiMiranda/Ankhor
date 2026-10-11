@@ -1,26 +1,26 @@
 [gd_scene format=3]
 
-[ext_resource type="PackedScene" path="res://cenas/personagens/rafael.tscn" id="1_rafael"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/clarice_em_pe.tscn" id="1_clarice"]
 [ext_resource type="Script" path="res://scripts/personagens/conversa_com_troca.gd" id="2_conversa"]
 [ext_resource type="Resource" path="res://dados/itens/chave_grade.tres" id="3_chave"]
 
 [sub_resource type="CircleShape2D" id="Alcance"]
 radius = 30.0
 
-[node name="RafaelPosto" type="Node2D"]
+[node name="ClaricePosto" type="Node2D"]
 
-[node name="Rafael" parent="." instance=ExtResource("1_rafael")]
+[node name="Clarice" parent="." instance=ExtResource("1_clarice")]
 vista = "tres_quartos"
 
 [node name="Conversa" type="Area2D" parent="."]
 script = ExtResource("2_conversa")
 texto_acao = "Falar"
 altura_aviso = 58.0
-conversa_pedido = "res://dados/dialogos/rafael_pede_molho.json"
-conversa_pedido_de_novo = "res://dados/dialogos/rafael_pede_molho_de_novo.json"
-conversa_troca = "res://dados/dialogos/rafael_devolve_chave.json"
-conversa_depois = "res://dados/dialogos/rafael_de_novo.json"
-item_pedido = "molho_rafael"
+conversa_pedido = "res://dados/dialogos/clarice_bloco_pede_molho.json"
+conversa_pedido_de_novo = "res://dados/dialogos/clarice_bloco_pede_molho_de_novo.json"
+conversa_troca = "res://dados/dialogos/clarice_bloco_devolve_chave.json"
+conversa_depois = "res://dados/dialogos/clarice_bloco_de_novo.json"
+item_pedido = "molho_de_chaves"
 item_dado = ExtResource("3_chave")
 marca_troca = "molho_devolvido"
 
