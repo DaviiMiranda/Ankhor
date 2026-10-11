@@ -36,7 +36,7 @@ Para manter a consistência de proporção e iluminação sem depender de pacote
    - Criação de modelos geométricos simplificados de personagens e cenários em Blender (`assets/modelagem/personagens/`).
    - Configuração de câmera ortogonal e luzes pontuais consistentes.
 2. **Renderização Automatizada:**
-   - Scripts Python no Blender (`gerar_gabriel.py`, `gerar_vigia.py`, `gerar_seg_acordar.py`) geram projeções das poses e ângulos necessários.
+   - Scripts Python no Blender (`gerar_gabriel.py`, `gerar_vigia.py`) geram projeções das poses e ângulos necessários.
 3. **Pós-processamento em Pixel Art:**
    - Imagens são reduzidas à resolução alvo e tratadas com paletas harmonizadas.
 4. **Integração no Godot:**

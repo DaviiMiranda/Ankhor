@@ -16,6 +16,14 @@ Formato:
 
 ---
 
+## 2026-10-11 — O despertar (seg_acordar) vira vídeo, com a Biblioteca tecnológica de 3026
+**Decisão:**
+- A animação provisória da `seg_acordar`, feita no Blender, foi descartada. A cutscene agora é um **vídeo de 6 s com som** (`assets/video/cutscenes/seg_acordar.ogv`), convertido de `animação_gabriel_acordando.mp4` para Ogg Theora em 1280×720.
+- **História:** no vídeo, a cabine e a biblioteca em volta têm a **tecnologia de 3026** (painéis com luz ciano, holograma sobre o caderno, torres de equipamentos). Saem da descrição desta cena no Enredo a luz do sol pelo teto quebrado, a árvore e as estantes caídas e vazias. A árvore e o acampamento do Baltazar no salão continuam como estavam no Ato 1. A pendência "Cenários mais futuristas" anota que a cabine já aparece assim.
+
+**Por quê:** decisão do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (Ato 1, seção 12.5 e a tabela de cutscenes), `docs/historia/roteiro/cutscenes/seg_acordar.md` e `README.md`, `cenas/cutscenes/seg_acordar.tscn`, `assets/video/cutscenes/seg_acordar.ogv` (novo). Saíram `assets/sprites/cutscenes/seg_acordar/` e `assets/modelagem/cutscenes/seg_acordar/` (`gerar_seg_acordar.py` e o `.blend`); comentários de `gerar_menu.py` e `gerar_biblioteca.py` e a lista de scripts em `docs/visao_geral/estilo_artistico.md` foram ajustados.
+
 ## 2026-10-11 — Legenda própria para cutscenes
 **Decisão:** falas e pensamentos dentro de cutscenes usam a **legenda de cutscene** (`cenas/interface/legenda_cutscene.tscn`), e não a caixa de diálogo das salas: uma faixa escura em degradê no pé da tela, com o texto centralizado, sem retrato, sem nome e sem escolhas. O jogador continua avançando com `E`.
 **Por quê:** a caixa das salas, com moldura e foto de perfil, pesava sobre as ilustrações. Pedido do Davi.

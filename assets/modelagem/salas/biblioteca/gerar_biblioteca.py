@@ -32,8 +32,8 @@
 #   visto um pouco de cima, como um palco. O Gabriel anda para os lados E
 #   para cima/baixo nessa faixa de chão (mais para cima = mais para o fundo).
 # - Paleta limitada e escura (cerca de 60 cores no total, em rampas de 4 a 8
-#   tons por material). As cores base vêm da cutscene seg_acordar, para a
-#   troca cutscene -> sala não destoar.
+#   tons por material). As cores base vieram da antiga versão da cutscene
+#   seg_acordar (feita no Blender até 2026-10-11, hoje um vídeo).
 # - Sombreamento em "degraus" com dithering ordenado (matriz de Bayer): em
 #   vez de degradê liso, cada material tem poucos tons e a passagem de um
 #   tom para outro é feita com um xadrez de pixels. É o visual 16 bits.
