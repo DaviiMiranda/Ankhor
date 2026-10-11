@@ -23,9 +23,11 @@ Toda cena de cutscene usa o script `scripts/cutscenes/cutscene.gd`: ela toca a a
 
 Uma cutscene com texto (como a `seg_prologo`) usa um script próprio que herda de `Cutscene` e tem a função `pensar(caminho_dialogo)`. Na animação `principal`, uma trilha de **chamada de método** chama `pensar` no momento em que o texto deve aparecer, passando o JSON da fala. A partir daí:
 
-1. `pensar` abre o diálogo pelo autoload `Dialogos`, que mostra a caixa de diálogo (`cenas/interface/caixa_dialogo.tscn`, instanciada dentro da cena da cutscene) e **pausa o jogo**.
+1. `pensar` abre o diálogo pelo autoload `Dialogos`, que **pausa o jogo** e mostra o texto na **legenda de cutscene** (`cenas/interface/legenda_cutscene.tscn`, instanciada dentro da cena da cutscene).
 2. O `AnimationPlayer` está em modo `PAUSABLE`, então a animação para junto e espera o jogador ler. O jogador avança com `E` (ou `Enter`).
 3. Quando a fala termina, o `Dialogos` despausa o jogo e a animação continua de onde parou.
+
+A legenda de cutscene é mais discreta que a caixa de diálogo das salas: uma faixa escura em degradê no pé da tela, com o texto centralizado (até 3 linhas) e com sombra, **sem retrato e sem nome**. Ela aparece e some com um fade curto, escreve letra por letra com um bipe mais baixo e pisca um `E` embaixo do texto quando a fala termina. Usa os mesmos JSONs de `dados/dialogos/`, só que sem escolhas: o campo `retrato` é ignorado.
 
 A raiz da cutscene fica em modo `ALWAYS`, para o Esc e o botão "Pular" funcionarem mesmo com uma fala aberta. Ao pular, o script fecha a fala antes de trocar de cena, para o jogo não ficar pausado.
 
@@ -52,7 +54,7 @@ Para cada cena/take ilustrado em pixel art (tela de 320×180; ilustrações em r
 - **Enquadramento:** composição, foco, planos (fechado, médio, aberto).
 - **Paleta e iluminação:** atmosfera visual, tons e iluminação.
 - **Áudio / SFX:** efeitos sonoros pontuais e trilha de fundo.
-- **Texto:** narração, pensamento ou falas na caixa de diálogo.
+- **Texto:** narração, pensamento ou falas na legenda de cutscene.
 - **Transição:** como passa para a cena seguinte (fade, corte, dissolve).
 
 ---

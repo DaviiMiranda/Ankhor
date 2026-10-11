@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-11 — Legenda própria para cutscenes
+**Decisão:** falas e pensamentos dentro de cutscenes usam a **legenda de cutscene** (`cenas/interface/legenda_cutscene.tscn`), e não a caixa de diálogo das salas: uma faixa escura em degradê no pé da tela, com o texto centralizado, sem retrato, sem nome e sem escolhas. O jogador continua avançando com `E`.
+**Por quê:** a caixa das salas, com moldura e foto de perfil, pesava sobre as ilustrações. Pedido do Davi.
+**Afeta:** `cenas/interface/legenda_cutscene.tscn`, `scripts/interface/legenda_cutscene.gd`, `cenas/cutscenes/seg_prologo.tscn`, `docs/historia/roteiro/cutscenes/README.md`, `docs/dialogos/README.md`.
+
 ## 2026-10-11 — Ilustrações de cutscene em resolução dobrada
 **Decisão:** as ilustrações das cutscenes são feitas em **640×360** e mostradas com **escala 0,5**, como os sprites dos personagens humanos (entrada de 2026-09-30). Ocupam a tela de 320×180 do mesmo jeito, mas, como o stretch é `canvas_items`, são desenhadas na resolução da janela, com o dobro de detalhe. A paleta de cada ilustração é fechada em 96 cores.
 **Por quê:** em 320×180 as ilustrações do prólogo perdiam detalhe demais (rostos e roupas viravam borrões). Pedido do Davi.

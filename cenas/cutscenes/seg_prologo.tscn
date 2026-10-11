@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/cutscenes/seg_prologo.gd" id="2_seg_prologo"]
 [ext_resource type="PackedScene" path="res://cenas/cutscenes/seg_acordar.tscn" id="3_seg_acordar"]
-[ext_resource type="PackedScene" path="res://cenas/interface/caixa_dialogo.tscn" id="4_caixa_dialogo"]
+[ext_resource type="PackedScene" path="res://cenas/interface/legenda_cutscene.tscn" id="4_legenda"]
 [ext_resource type="Shader" path="res://shaders/falha_temporal.gdshader" id="5_falha"]
 [ext_resource type="Texture2D" path="res://assets/sprites/cutscenes/seg_prologo/cena_01_alarme.png" id="10_cena_01_alarme"]
 [ext_resource type="Texture2D" path="res://assets/sprites/cutscenes/seg_prologo/cena_02_quarto.png" id="11_cena_02_quarto"]
@@ -230,7 +230,7 @@ offset_bottom = 190.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="CaixaDialogo" parent="." instance=ExtResource("4_caixa_dialogo")]
+[node name="LegendaCutscene" parent="." instance=ExtResource("4_legenda")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
