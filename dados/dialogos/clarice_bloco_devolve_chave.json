@@ -3,7 +3,7 @@
 	"inicio": "molho",
 	"anotacao": {
 		"titulo": "O que a Clarice sabe",
-		"texto": "Devolvi o molho. A Clarice me deu a chave da fita azul: abre a grade da escada.\n\nA saída do bloco é a porta corta-fogo, no fim do corredor de cima. Está acorrentada. Tem um alicate no depósito (206).\n\nA chave do depósito fica no claviculário da sala dos professores (203), num cadeado de três números. Ela não abriu.\n\nA 103 é segura: os robôs não entram.\n\nA Clarice e a Diana estão na 103 desde que chegaram, tentando descobrir o que é este lugar. Elas falam com o Henrique pelo rádio: ele vê o campus pelas câmeras."
+		"texto": "Devolvi o molho. A Clarice me deu a chave da fita azul: abre a grade da escada.\n\nA saída do bloco é a porta corta-fogo, no fim do corredor de cima. Está acorrentada. Tem um alicate no depósito (206).\n\nA chave do depósito fica no claviculário da sala dos professores (203), num cadeado de três números. Ela não abriu.\n\nA 103 é segura: os robôs não entram.\n\nA Clarice chegou primeiro e a Diana apareceu depois. As duas tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio: ele vê o campus pelas câmeras e diz que, de alguma forma, estamos em 3026."
 	},
 	"trechos": {
 		"molho": {
@@ -50,23 +50,28 @@
 				},
 				{
 					"quem": "Clarice",
-					"retrato": "clarice/clarice_retrato_normal",
-					"texto": "Eu e a Diana tamos juntando tudo o que dá pra descobrir deste lugar. Eu fico com as rondas, ela com o mapa."
+					"retrato": "clarice/clarice_retrato_sorrindo",
+					"texto": "A Diana apareceu depois, e eu deixei ficar."
 				},
 				{
 					"quem": "Clarice",
 					"retrato": "clarice/clarice_retrato_normal",
-					"texto": "E a gente fala com o Henrique pelo rádio. Ele vê o campus pelas câmeras."
+					"texto": "Agora a gente junta tudo o que dá pra descobrir do que aconteceu. Eu fico com as rondas, ela com o mapa."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "E o Henrique ajuda a gente pelo rádio. Ele vê o campus pelas câmeras, e foi ele que avisou que, de alguma forma, a gente tá em 3026."
 				},
 				{
 					"quem": "Gabriel",
 					"retrato": "gabriel/gabriel_retrato_surpreso",
-					"texto": "Henrique? A voz do rádio, lá da Biblioteca?"
+					"texto": "Henrique? O das câmeras? Foi ele que te avisou de mim?"
 				},
 				{
 					"quem": "Clarice",
 					"retrato": "clarice/clarice_retrato_sorrindo",
-					"texto": "Esse mesmo. Fala pouco, mas vê tudo. Se ele chamar, escuta."
+					"texto": "Esse mesmo. Fala pouco, mas vê tudo. Foi por ele que eu soube que você tinha acordado na Biblioteca."
 				},
 				{
 					"quem": "Clarice",

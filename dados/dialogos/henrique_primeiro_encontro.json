@@ -3,7 +3,7 @@
 	"inicio": "abertura",
 	"anotacao": {
 		"titulo": "Henrique, na sala de dados",
-		"texto": "O Henrique é a voz do rádio. Fica na sala de dados do bunker e vê o campus pelas câmeras que ainda funcionam.\n\nO setor B está lacrado pelo sistema. O Zane está tentando quebrar a senha.\n\nFala pouco e se corrige no meio da frase. Ficou nervoso quando perguntei da Âncora."
+		"texto": "O Henrique é o das câmeras: a Clarice repassa o que ele vê. Fica escondido na sala de dados do bunker, tentando entender tudo, e diz que, de alguma forma, estamos em 3026.\n\nO setor B está lacrado pelo sistema. O Zane está tentando quebrar a senha.\n\nFala pouco e se corrige no meio da frase. Ficou nervoso quando perguntei da Âncora."
 	},
 	"trechos": {
 		"abertura": {
@@ -16,22 +16,22 @@
 				{
 					"quem": "Gabriel",
 					"retrato": "gabriel/gabriel_retrato_surpreso",
-					"texto": "Você é o do rádio? O que avisava das rondas?"
+					"texto": "Você é o Henrique? O das câmeras? A Clarice me guiou a Biblioteca com o que você via."
 				},
 				{
 					"quem": "Henrique",
 					"retrato": "henrique/henrique_retrato_normal",
-					"texto": "Sou. Henrique. Eu... prefiro o rádio, na verdade. Pessoalmente eu me enrolo. Quer dizer, me enrolo bastante."
+					"texto": "Sou. Eu... prefiro passar tudo pela Clarice, na verdade. Pessoalmente eu me enrolo. Quer dizer, me enrolo bastante."
 				},
 				{
 					"quem": "Gabriel",
 					"retrato": "gabriel/gabriel_retrato_normal",
-					"texto": "Você me guiou a Biblioteca inteira."
+					"texto": "Funcionou. Eu cheguei até aqui."
 				},
 				{
 					"quem": "Henrique",
 					"retrato": "henrique/henrique_retrato_timido",
-					"texto": "Foi... o mínimo. As câmeras mostram tudo. Só precisava de alguém do outro lado para usar o que elas mostram."
+					"texto": "Foi... o mínimo. As câmeras mostram tudo. Eu só precisava de alguém para usar o que elas mostram. A Clarice usou."
 				}
 			],
 			"escolhas": [
@@ -46,6 +46,10 @@
 				{
 					"texto": "Você sabe o que é a Âncora?",
 					"vai_para": "ancora"
+				},
+				{
+					"texto": "Como viemos parar em 3026?",
+					"vai_para": "ano"
 				}
 			]
 		},
@@ -131,6 +135,10 @@
 					"vai_para": "ancora"
 				},
 				{
+					"texto": "Como viemos parar em 3026?",
+					"vai_para": "ano"
+				},
+				{
 					"texto": "Preciso ir.",
 					"vai_para": "despedida"
 				}
@@ -141,7 +149,7 @@
 				{
 					"quem": "Henrique",
 					"retrato": "henrique/henrique_retrato_normal",
-					"texto": "Vai com cuidado. O rádio fica ligado. Se precisar, é só chamar."
+					"texto": "Vai com cuidado. A Clarice e a Diana ficam na escuta, e eu também. Se precisar, é só chamar."
 				},
 				{
 					"quem": "Henrique",
@@ -149,6 +157,26 @@
 					"texto": "E... obrigado por vir até aqui. Quase ninguém vem."
 				}
 			]
+		},
+		"ano": {
+			"falas": [
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_nervoso",
+					"texto": "Eu... não sei. De alguma forma, estamos em 3026. As datas dos sistemas, o estado do prédio, tudo bate."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "De alguma forma?"
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_nervoso",
+					"texto": "Estou tentando entender. Por isso fico aqui embaixo, escondido, olhando tudo. Quando eu entender, eu... aviso."
+				}
+			],
+			"vai_para": "mais_alguma"
 		}
 	}
 }
