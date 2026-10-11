@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-11 — O anel da avó fica no dedo do Gabriel
+**Decisão:** o Gabriel usa o anel da avó **no dedo**, e não na mochila, como já dizia o Enredo Principal ("gasto no [dedo] de Gabriel", seção 5). No prólogo, ele põe o anel no dedo antes de sair de casa. O anel continua aparecendo no inventário desde o começo.
+**Por quê:** decisão do Davi, para acabar com a diferença entre a ficha do Gabriel e o Enredo.
+**Afeta:** `docs/historia/personagens/gabriel.md` (seção 1), `docs/historia/roteiro/cutscenes/seg_prologo.md` (cena 2).
+
 ## 2026-10-08 — Cutscene de prólogo e organização de cutscenes
 **Decisão:** criado o documento de roteiro e storyboard para a cutscene inicial de prólogo (`docs/historia/roteiro/cutscenes/seg_prologo.md`), composta por 8 ilustrações sequenciais em pixel art retratando o dia a dia de Gabriel em 2026 (acordando, o anel da avó, trajeto até a Unifor, aula de cálculo com o caderno de equações e o adormecer na cabine da Biblioteca de madrugada, terminando no pulso da fenda). O despertar em 3026 continua sendo a cutscene `seg_acordar`, que vem logo depois. A pasta de cutscenes foi organizada com uma ficha detalhada por cena e especificações técnicas de produção.
 **Por quê:** dar contexto narrativo ao jogador antes do despertar nas ruínas e estabelecer o contraste dramático entre a normalidade de 2026 e o colapso de 3026.

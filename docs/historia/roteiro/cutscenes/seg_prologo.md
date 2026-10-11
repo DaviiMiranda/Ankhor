@@ -24,7 +24,7 @@
 
 ### Cena 2 — O Quarto e a Partida
 - **Arquivo proposto:** `assets/sprites/cutscenes/seg_prologo/cena_02_quarto.png`
-- **Enquadramento:** plano médio do quarto. Gabriel é visto de costas em frente ao espelho ou à porta do quarto, vestindo seu característico moletom vermelho com capuz sobre a camiseta cinza. Ele guarda o anel da avó no bolso da frente da mochila escura e ajusta a alça nas costas. Pela janela, vê-se o nascer do sol sobre os prédios de Fortaleza.
+- **Enquadramento:** plano médio do quarto. Gabriel é visto de costas em frente ao espelho ou à porta do quarto, vestindo seu característico moletom vermelho com capuz sobre a camiseta cinza. Ele ajusta a alça da mochila escura nas costas e põe o anel da avó no dedo. Pela janela, vê-se o nascer do sol sobre os prédios de Fortaleza.
 - **Paleta e iluminação:** amanhecer acolhedor, tons dourados e laranjas banhando o quarto. O vermelho vivo do moletom se destaca como a cor de identificação do Gabriel.
 - **Áudio / SFX:** zíper metálico da mochila fechando -> passos leves em piso cerâmico -> chave girando na fechadura de madeira.
 - **Texto (pensamento de Gabriel):**

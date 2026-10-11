@@ -9,7 +9,7 @@
 
 - **Época de origem:** 2026.
 - **Quem é:** estudante da Unifor, com cerca de 20 anos. A família Magalhães vive na região há séculos, mas ele não sabe.
-- **História:** dormiu na Biblioteca de madrugada, com o caderno de equações da cadeira aberto na mesa. Acorda em 3026, na cabine de estudo onde pegou no sono, sem saber o que aconteceu. Não é um herói: precisa entender o campus, evitar os robôs e achar os outros. Na mochila carrega um **anel desgastado** que a avó deu para ele. É o **último** a chegar a 3026.
+- **História:** dormiu na Biblioteca de madrugada, com o caderno de equações da cadeira aberto na mesa. Acorda em 3026, na cabine de estudo onde pegou no sono, sem saber o que aconteceu. Não é um herói: precisa entender o campus, evitar os robôs e achar os outros. Usa no dedo um **anel desgastado** que a avó deu para ele. É o **último** a chegar a 3026.
 
 ## 2. Personalidade
 
