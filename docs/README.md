@@ -70,7 +70,6 @@ docs/
     │   ├── baltazar.md            # ~1750, antepassado de Gabriel
     │   ├── diana.md               # 1978, recruta da polícia
     │   ├── clarice.md             # 1994, aluna de processamento de dados
-    │   ├── rafael.md              # 2008, segurança noturno
     │   ├── henrique.md            # 2019, o pesquisador
     │   ├── carlos.md              # 3026, o antagonista
     │   ├── zane.md                # 2123, faz as comunicações do bunker

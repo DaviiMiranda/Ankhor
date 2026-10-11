@@ -9,7 +9,7 @@
 
 - **Época de origem:** 2019.
 - **Quem é:** aluno de iniciação científica da Unifor, com cerca de 20 anos.
-- **História:** estudava à noite na Biblioteca e sumiu. O orientador transformou o projeto dele na cadeira que Gabriel cursa, e as equações do caderno de Gabriel continuam esse trabalho sem Gabriel saber de quem eram. Em 3026, fica **sozinho num posto de monitoramento**, de onde vê o campus pelas câmeras e guia o grupo pelo rádio, na frequência que o Zane mantém. É a voz que dá as dicas de patrulha a Gabriel desde a Biblioteca. Fala pouco e fica distante dos outros. E **engana o grupo**: esconde a ligação que tem com o **Carlos**. Se trabalha para ele ou foi enganado por ele está pendente. Quando o grupo descobre a mentira, todos vão atrás do Carlos.
+- **História:** estudava à noite na Biblioteca e sumiu. O orientador transformou o projeto dele na cadeira que Gabriel cursa, e as equações do caderno de Gabriel continuam esse trabalho sem Gabriel saber de quem eram. Em 3026, fica na **sala de dados do bunker**, junto do Zane, com acesso às **câmeras** do campus: de lá vê tudo e guia o grupo pelo rádio, na frequência que o Zane mantém. É a voz que dá as dicas de patrulha a Gabriel desde a Biblioteca. Fala pouco e fica na dele. E **engana o grupo**: esconde a ligação que tem com o **Carlos**. Se trabalha para ele ou foi enganado por ele está pendente. Quando o grupo descobre a mentira, todos vão atrás do Carlos.
 
 ## 2. Personalidade
 
@@ -26,13 +26,14 @@
 | Com | Dinâmica |
 |---|---|
 | [Carlos](carlos.md) | Trabalha para ele ou foi enganado por ele (pendente) |
-| O grupo | Guia todos pelo rádio, mas fala pouco e fica distante. Engana todos, e a mentira é descoberta |
+| O grupo | Guia todos pelo rádio, mas fala pouco e fica na dele. Engana todos, e a mentira é descoberta |
+| [Zane](zane.md) | Dividem a sala de dados do bunker: o Zane cuida da frequência e das ligações, o Henrique das câmeras |
 | [Gabriel](gabriel.md) | É a voz que o guia desde a primeira fase. Quando a mentira aparece, quem ajudou Gabriel o jogo todo era quem escondia a verdade |
 
 ## 4. No jogo
 
-- **Onde aparece:** pela voz no rádio desde a Biblioteca. Em pessoa, no posto de monitoramento (fase pendente).
-- **Esconderijo:** o **posto de monitoramento**, sozinho, com as câmeras e o rádio (onde fica, pendente).
+- **Onde aparece:** pela voz no rádio desde a Biblioteca. Em pessoa, na sala de dados do bunker.
+- **Esconderijo:** o **bunker**, na **sala de dados** (a central de dados), com o Zane e com acesso às **câmeras** do campus e ao rádio.
 - **Como chega ao jogador:** **rádio ao vivo** (o rádio portátil é um item comum do inventário) e, depois, em pessoa.
 - **Função na jogabilidade:** dicas sobre as **rotinas de patrulha dos robôs**, vendo pelas câmeras ("Antes de virar, ele dá um bipe. Ouviu o bipe, se esconde."). As dicas continuam valendo porque os robôs repetem a mesma rotina há séculos. As transmissões tocam sem pausar o jogo. Ver [`../../mecanicas/registros_e_caderno.md`](../../mecanicas/registros_e_caderno.md).
 - **Parte para consertar a Âncora:** a teoria por trás das equações.
@@ -59,5 +60,5 @@
 ## 8. Pendências
 
 - Se trabalha para o Carlos ou foi enganado por ele, o que exatamente esconde, e como e quando o grupo descobre (Enredo Principal, seção 12.7).
-- Onde fica o posto de monitoramento, e quando Gabriel o encontra em pessoa.
+- Quando Gabriel o encontra em pessoa na sala de dados, e se o acesso às câmeras vira uma mecânica (Enredo Principal, seção 12.3).
 - As falas do rádio ainda não têm voz gravada.

@@ -27,12 +27,13 @@
 |---|---|
 | [Gabriel](gabriel.md) | A voz do telefone que abre a saída da Biblioteca. Do computador do bunker, mantém Gabriel em contato com todo mundo |
 | [Diana](diana.md) | Dividem o bunker |
+| [Henrique](henrique.md) | Dividem a sala de dados: o Zane cuida da frequência e das ligações, o Henrique das câmeras |
 | [Baltazar](baltazar.md) | Os dois extremos do tempo: fé contra tecnologia, e ainda assim os dois mais curiosos do grupo |
 
 ## 4. No jogo
 
 - **Onde aparece:** pelo telefone desde a Biblioteca. Em pessoa, no **bunker**, sentado no computador da central de dados.
-- **Esconderijo:** o **bunker**, com a Diana.
+- **Esconderijo:** o **bunker**, com a Diana e o Henrique (na mesma sala de dados).
 - **Como chega ao jogador:** **telefone** (a primeira ligação é no balcão da Biblioteca), a frequência de rádio do grupo e, no bunker, em pessoa.
 - **Função na jogabilidade:** as **comunicações**: põe Gabriel em contato com os outros, abre portas pelo sistema e tenta quebrar a senha do setor B do bunker. Por entender de tecnologia, é um candidato natural a trazer o **notebook** (gadget de hackear portas e robôs), mas isso não está decidido.
 - **Parte para consertar a Âncora:** a tecnologia mais próxima da Âncora.

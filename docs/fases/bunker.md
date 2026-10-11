@@ -11,7 +11,7 @@
 - **O que é:** um bunker do centro de pesquisa, construído para proteger a equipe da Âncora. Fechado e seco, ainda de pé depois de mil anos, mas gasto: concreto aparente em cima e tinta verde-oliva descascando embaixo, eletrocalhas com cabos pendurados, portas de aço de correr, faixas de perigo amarelas e pretas.
 - **Luz:** só o que a Âncora ainda alimenta. Tubos fluorescentes frios que piscam e luzes de emergência vermelhas. O setor B (lá embaixo) está quase todo no vermelho e alagado.
 - **Som:** a trilha do bunker (grave e opressiva, em Dó frígio, com a fita da Clarice ao longe) em todas as salas, por baixo do zumbido do transformador e do ar parado do duto, goteiras no setor B e o motor do gerador.
-- **Quem vive aqui:** pela decisão de 2026-10-08, o **Zane** (no computador da central de dados) e a **Diana**. A cena ainda mostra a **Clarice** na estação de trabalho, e as conversas ainda são dela: precisam ser refeitas para o Zane (Enredo Principal, seção 12.4). Antes: a **Clarice** (1994). Os robôs não descem ao bunker (ou não sabem que ele existe), por isso aqui não há perseguição: é o lugar mais seguro do jogo até agora.
+- **Quem vive aqui:** pelas decisões de 2026-10-08 e 2026-10-11, o **Zane** (no computador da central de dados), o **Henrique** (na mesma sala de dados, com acesso às câmeras do campus) e a **Diana**. A cena ainda mostra a **Clarice** na estação de trabalho, e as conversas ainda são dela: a Clarice agora fica no Bloco de salas, então a cena e as conversas precisam ser refeitas para o Zane e o Henrique (Enredo Principal, seção 12.4). Os robôs não descem ao bunker (ou não sabem que ele existe), por isso aqui não há perseguição: é o lugar mais seguro do jogo até agora.
 - **Clarice pelas paredes:** "NÃO CONFIE NAS LUZES" pichado no corredor, a seta "→ DADOS C." apontando para a sala dela, "NÃO ABRE. JÁ TENTEI. C." perto das portas lacradas, e o grafo das rotas dos robôs na parede da central.
 
 ---
@@ -46,7 +46,7 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`) com o som da porta b
 | `dormitorio` | 480 × 560 | Fileiras de beliches (três por fileira), armários, caixas | 1 pilha |
 | `refeitorio` | 480 × 560 | Fileiras de mesas compridas de aço, prateleiras de latas, planta do bunker | 1 cápsula de clarão |
 | `enfermaria` | 400 × 480 | Duas fileiras de macas com biombos entre elas, suportes de soro, armários de remédios | 1 pilha |
-| `central_dados` | 560 × 640 | **A sala da Clarice:** corredores de racks de servidores, janela para os servidores, a parede do grafo, a estação dela (três monitores de tubo) e o canto onde ela dorme (colchão, cobertor roxo, latas, lampião) | — |
+| `central_dados` | 560 × 640 | **A sala de dados** (hoje do Zane e do Henrique; a cena ainda é a da Clarice): corredores de racks de servidores, janela para os servidores, a parede do grafo, a estação (três monitores de tubo, que viram as câmeras do Henrique) e o canto onde dormem (colchão, cobertor roxo, latas, lampião) | — |
 | `gerador` | 480 × 560 | Dois geradores a diesel ligados, tambores de combustível, quadros elétricos | — |
 | `deposito` | 400 × 480 | Corredores de estantes, caixotes, tambores | 1 pilha, 1 cápsula de clarão, 2 pedras |
 

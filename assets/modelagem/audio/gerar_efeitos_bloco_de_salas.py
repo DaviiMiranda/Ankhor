@@ -31,7 +31,7 @@ _spec.loader.exec_module(ef)
 
 TAXA = ef.TAXA
 tempo, envelope, filtrar, normalizar, salvar = ef.tempo, ef.envelope, ef.filtrar, ef.normalizar, ef.salvar
-rng = np.random.default_rng(2008)   # sorteios fixos: o ano do Rafael
+rng = np.random.default_rng(2008)   # sorteios fixos
 
 
 def sirene():

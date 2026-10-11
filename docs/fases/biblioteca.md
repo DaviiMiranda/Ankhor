@@ -127,7 +127,7 @@ Para a apresentação da disciplina: as salas são **vértices** e as portas sã
 
 | Robô | Onde | Sentido forte | O que o jogador aprende |
 |---|---|---|---|
-| **Sentinela** | Salão principal (2) | Visão: cone de 60°, enxerga mais longe com a lanterna acesa | Apagar a lanterna, passar pelas costas, esconder-se. Dá um **bipe antes de virar** (dica do Rafael) |
+| **Sentinela** | Salão principal (2) | Visão: cone de 60°, enxerga mais longe com a lanterna acesa | Apagar a lanterna, passar pelas costas, esconder-se. Dá um **bipe antes de virar** (dica do Henrique) |
 | **Rastreador** | Acervo sul (4) | Audição: ouve passos de longe | Andar em vez de correr; usar a pedra para distrair |
 
 - **Antes da energia:** a Sentinela faz uma ronda curta no lado iluminado pelo sol.
