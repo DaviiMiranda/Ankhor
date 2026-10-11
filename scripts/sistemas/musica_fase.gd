@@ -6,8 +6,9 @@ extends AudioStreamPlayer
 
 
 func _ready() -> void:
-	if stream:
-		stream.set("loop", true)
+	if stream == null:
+		return
+	stream.set("loop", true)
 	volume_db = -60.0
 	play()
 	var fade := create_tween()

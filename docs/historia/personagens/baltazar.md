@@ -9,7 +9,7 @@
 
 - **Época de origem:** ~1750, Ceará colonial.
 - **Quem é:** filho de colonos portugueses, com cerca de 20 anos, curioso, com uma luneta herdada do pai. A família tem um sítio na mata onde hoje fica o campus. **Antepassado de Gabriel**, umas dez gerações antes dele.
-- **História:** viu pela luneta uma luz estranha sobre a mata, no sítio da família, foi investigar e foi puxado. Acha que tudo aquilo é o Juízo Final ("o Tormento de Leviatã"). Na Biblioteca, deixou um **acampamento** entre as raízes da árvore: luneta rachada, vela, diário e um robô desmontado peça por peça. Depois seguiu em frente ("Hei de seguir a luz até onde ella nasce"), e Gabriel o encontra mais tarde.
+- **História:** viu pela luneta uma luz estranha sobre a mata, no sítio da família, foi investigar e foi puxado. Acha que tudo aquilo é o Juízo Final ("o Tormento de Leviatã"). Na Biblioteca, deixou um **acampamento** entre as raízes da árvore: luneta rachada, vela, diário e um robô desmontado peça por peça. Depois seguiu em frente ("Hei de seguir a luz até onde ella nasce"), e Gabriel o encontra mais tarde. Em 3026, teve dificuldade com o rádio e com a tecnologia, ficou com **medo** e **se isolou**: vive **escondido numa sala da Biblioteca** e não está na frequência de rádio do grupo.
 
 ## 2. Personalidade
 
@@ -31,7 +31,7 @@
 ## 4. No jogo
 
 - **Onde aparece:** na Biblioteca, só o acampamento que ele deixou. Em pessoa, numa fase mais à frente (pendente).
-- **Esconderijo:** na **Biblioteca**, num esconderijo dentro dela (o ponto exato está pendente).
+- **Esconderijo:** **escondido numa sala da Biblioteca**, com medo e isolado dos outros (qual sala, pendente; a sala de obras raras, barrada por dentro, é uma candidata).
 - **Como chega ao jogador:** primeiro pelo **diário** e pelo acampamento; depois em pessoa.
 - **Função na jogabilidade:** o diário ensina o **ponto fraco do sensor óptico**: os robôs de um olho só não veem quem passa pelas costas ou pelo lado, e luz forte no olho os cega por alguns segundos. Liga com a cápsula de clarão.
 - **O anel:** o mesmo anel que Gabriel tem gasto no inventário aparece novo no dedo do Baltazar. A comparação no inventário é como o jogador descobre o parentesco.
