@@ -26,7 +26,7 @@ static var _destrancadas := {}
 @export var som_abrir: AudioStream = SOM_ABRIR
 
 var _atravessando := false
-var _folha: AnimatedSprite2D
+var _folha: FolhaPorta
 
 
 func _ready() -> void:
@@ -63,7 +63,7 @@ func interagir() -> void:
 	if gabriel == null:
 		return
 	_atravessando = true
-	_tocar(som_abrir)
+	_tocar(_som_de_abrir())
 	_abrir_folha()
 	gabriel.andar_sozinho(direcao_entrar)
 	var animacao := create_tween().set_parallel()
@@ -81,12 +81,18 @@ func destrancar() -> void:
 	Inventario.aviso.emit("Porta destrancada")
 
 
-func _encontrar_folha() -> AnimatedSprite2D:
+func _encontrar_folha() -> FolhaPorta:
 	for candidata in get_tree().get_nodes_in_group("folhas_de_porta"):
 		var centro := (candidata as Node2D).global_position.x + LARGURA_PECA_PAREDE / 2.0
 		if absf(centro - global_position.x) <= TOLERANCIA_FOLHA:
-			return candidata as AnimatedSprite2D
+			return candidata as FolhaPorta
 	return null
+
+
+func _som_de_abrir() -> AudioStream:
+	if _folha and _folha.som_abrir:
+		return _folha.som_abrir
+	return som_abrir
 
 
 func _escala_folha() -> float:
