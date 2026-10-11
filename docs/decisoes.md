@@ -16,6 +16,15 @@ Formato:
 
 ---
 
+## 2026-10-11 — Projeto e Level Design da fase Centro de Convivência
+**Decisão:** elaborado o projeto completo de level design do **Centro de Convivência**, estruturado em 7 salas/setores (`passarela_acesso`, `patio_central`, `cantina`, `deposito_cantina`, `grafica_rapida`, `posto_manutencao` e `rampa_subsolo`).
+- **Ambientação e furtividade em campo aberto:** área semi-aberta sob a noite estrelada com cobertura metálica desabada e feixes de luar. O pátio é vigiado por 2 Sentinelas em rotas estocásticas (Cadeia de Markov). Introduz a furtividade em descampado através de mesas redondas de concreto e raízes que bloqueiam visão, e o cuidado com pisos de cacos de louça/vidro perto da cantina vigiada por um Rastreador.
+- **Progressão e puzzle:** a saída é uma rampa técnica com comporta de aço que dá na entrada do Bunker. Para abri-la, Gabriel precisa infiltrar-se no depósito da cantina para coletar a Célula de Energia e resolver o puzzle de **Coloração de Grafos** no comutador da Gráfica (requisito da disciplina: 4 setores formando grafo com $\chi(G) = 3$ frequências). A energização ativa holofotes giratórios no pátio, dinamizando a volta.
+- **Narrativa e comunicação:** Clarice e Diana guiam pelo rádio a partir da sala 103, repassando o que Henrique monitora pelas câmeras no Bunker. A Sala Segura é o Posto de Manutenção Predial, onde Gabriel pode dormir e ter o sonho que contrasta o meio-dia universitário de 2026 com as ruínas de 3026.
+
+**Por quê:** planejamento formal da terceira fase na sequência Biblioteca → Bloco de salas → Centro de Convivência → Bunker.
+**Afeta:** `docs/fases/centro_de_convivencia.md`, `docs/fases/README.md`, `docs/fases.md`, `docs/README.md` e `docs/historia/enredo_principal.md` (seções 8 e 12.5).
+
 ## 2026-10-11 — A fase depois do Bloco de salas é o Centro de Convivência
 **Decisão:** a fase que vem depois do **Bloco de salas** é o **Centro de Convivência**. Ele ainda não foi feito: por enquanto só o nome e a posição estão decididos. A ordem fica **Biblioteca → Bloco de salas → Centro de Convivência**. Isso substitui a entrada anterior de que a saída do Bloco de salas levava ao Bunker: o Bunker continua sendo o Ato 3 da história, mas a posição dele na ordem das fases deixa de estar decidida.
 - **No jogo nada muda por enquanto:** a porta corta-fogo do Bloco de salas continua abrindo a entrada do Bunker, de forma provisória, até o Centro de Convivência existir.
