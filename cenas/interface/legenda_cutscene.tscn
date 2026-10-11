@@ -1,0 +1,68 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interface/legenda_cutscene.gd" id="1_legenda"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/dialogo_bip.wav" id="2_bip"]
+
+[sub_resource type="Gradient" id="Gradient_faixa"]
+offsets = PackedFloat32Array(0, 0.45, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.55, 0, 0, 0, 0.8)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_faixa"]
+gradient = SubResource("Gradient_faixa")
+width = 4
+height = 84
+fill_to = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dica"]
+font_size = 8
+font_color = Color(0.95, 0.88, 0.7, 0.6)
+
+[node name="LegendaCutscene" type="CanvasLayer"]
+layer = 9
+script = ExtResource("1_legenda")
+
+[node name="Faixa" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 96.0
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+
+[node name="Fundo" type="TextureRect" parent="Faixa"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 84.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_faixa")
+expand_mode = 1
+
+[node name="Texto" type="Label" parent="Faixa"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 26.0
+offset_right = 296.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.93, 0.9, 0.84, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+max_lines_visible = 3
+
+[node name="Dica" type="Label" parent="Faixa"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 68.0
+offset_right = 168.0
+offset_bottom = 82.0
+text = "E"
+label_settings = SubResource("LabelSettings_dica")
+horizontal_alignment = 1
+
+[node name="Bip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_bip")
+volume_db = -10.0
+bus = &"Efeitos"

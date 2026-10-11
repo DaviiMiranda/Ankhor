@@ -16,6 +16,26 @@ Formato:
 
 ---
 
+## 2026-10-11 — Legenda própria para cutscenes
+**Decisão:** falas e pensamentos dentro de cutscenes usam a **legenda de cutscene** (`cenas/interface/legenda_cutscene.tscn`), e não a caixa de diálogo das salas: uma faixa escura em degradê no pé da tela, com o texto centralizado, sem retrato, sem nome e sem escolhas. O jogador continua avançando com `E`.
+**Por quê:** a caixa das salas, com moldura e foto de perfil, pesava sobre as ilustrações. Pedido do Davi.
+**Afeta:** `cenas/interface/legenda_cutscene.tscn`, `scripts/interface/legenda_cutscene.gd`, `cenas/cutscenes/seg_prologo.tscn`, `docs/historia/roteiro/cutscenes/README.md`, `docs/dialogos/README.md`.
+
+## 2026-10-11 — Ilustrações de cutscene em resolução dobrada
+**Decisão:** as ilustrações das cutscenes são feitas em **640×360** e mostradas com **escala 0,5**, como os sprites dos personagens humanos (entrada de 2026-09-30). Ocupam a tela de 320×180 do mesmo jeito, mas, como o stretch é `canvas_items`, são desenhadas na resolução da janela, com o dobro de detalhe. A paleta de cada ilustração é fechada em 96 cores.
+**Por quê:** em 320×180 as ilustrações do prólogo perdiam detalhe demais (rostos e roupas viravam borrões). Pedido do Davi.
+**Afeta:** `assets/sprites/cutscenes/seg_prologo/`, `assets/modelagem/cutscenes/seg_prologo/pixelar_seg_prologo.py`, `cenas/cutscenes/seg_prologo.tscn` (escala 0,5 e o shader de falha com as medidas dobradas), `docs/historia/roteiro/cutscenes/README.md` e `seg_prologo.md`.
+
+## 2026-10-11 — O anel da avó fica no dedo do Gabriel
+**Decisão:** o Gabriel usa o anel da avó **no dedo**, e não na mochila, como já dizia o Enredo Principal ("gasto no [dedo] de Gabriel", seção 5). No prólogo, ele põe o anel no dedo antes de sair de casa. O anel continua aparecendo no inventário desde o começo.
+**Por quê:** decisão do Davi, para acabar com a diferença entre a ficha do Gabriel e o Enredo.
+**Afeta:** `docs/historia/personagens/gabriel.md` (seção 1), `docs/historia/roteiro/cutscenes/seg_prologo.md` (cena 2).
+
+## 2026-10-08 — Cutscene de prólogo e organização de cutscenes
+**Decisão:** criado o documento de roteiro e storyboard para a cutscene inicial de prólogo (`docs/historia/roteiro/cutscenes/seg_prologo.md`), composta por 8 ilustrações sequenciais em pixel art retratando o dia a dia de Gabriel em 2026 (acordando, o anel da avó, trajeto até a Unifor, aula de cálculo com o caderno de equações e o adormecer na cabine da Biblioteca de madrugada, terminando no pulso da fenda). O despertar em 3026 continua sendo a cutscene `seg_acordar`, que vem logo depois. A pasta de cutscenes foi organizada com uma ficha detalhada por cena e especificações técnicas de produção.
+**Por quê:** dar contexto narrativo ao jogador antes do despertar nas ruínas e estabelecer o contraste dramático entre a normalidade de 2026 e o colapso de 3026.
+**Afeta:** `docs/historia/roteiro/cutscenes/seg_prologo.md` (novo), `docs/historia/roteiro/cutscenes/README.md`, `docs/historia/enredo_principal.md` (Ato 1).
+
 ## 2026-10-08 — Sistema de fadiga e estamina do Gabriel
 **Decisão:** implementado o sistema modular de fadiga (`scripts/sistemas/fadiga.gd` e `cenas/sistemas/fadiga.tscn`). Correr consome estamina de forma contínua (~8s de corrida total). Ao zerar a estamina, Gabriel entra em estado de exaustão por 3 segundos, ficando impossibilitado de correr, andando a 40% da velocidade normal e emitindo o sinal `ofegante` com efeito sonoro. A estamina se regenera gradualmente (mais rápido parado do que andando). O HUD exibe uma barra discreta no canto superior que surge apenas durante o consumo e esmaece quando cheia.
 **Por quê:** implementação da dinâmica de estamina e fuga descrita no GDD e nas mecânicas de movimentação.
