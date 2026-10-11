@@ -41,7 +41,7 @@
 ## 5. Registros
 
 - **Suporte:** folha de fichário com pautas azuis e adesivos coloridos (`papel = caderno_clarice`), disquete com etiqueta escrita à mão. Na ligação, só a voz e o chiado da linha.
-- **Já escritos:** `dados/documentos/bilhete_clarice.tres` e o disquete `dados/itens/disquete_clarice.tres`. No Bloco de salas (rascunho, para o roteiro revisar): três transmissões em `dados/transmissoes/clarice_01.tres` a `clarice_03.tres` e quatro conversas em `dados/dialogos/clarice_bloco_*.json`. As conversas `clarice_primeiro_encontro.json` e `clarice_de_novo.json` foram escritas para ela no computador do bunker e não valem mais: ela não está lá (Enredo Principal, seção 12.4).
+- **Já escritos:** `dados/documentos/bilhete_clarice.tres` e o disquete `dados/itens/disquete_clarice.tres`. No Bloco de salas (rascunho, para o roteiro revisar): três transmissões em `dados/transmissoes/clarice_01.tres` a `clarice_03.tres` e quatro conversas em `dados/dialogos/clarice_bloco_*.json`. As conversas `clarice_primeiro_encontro.json` e `clarice_de_novo.json` foram escritas para ela no computador do bunker e ficaram sem uso: ela não está lá, e a cena do bunker agora mostra o Henrique (Enredo Principal, seção 12.4).
 
 ## 6. Direção de arte
 
@@ -51,7 +51,7 @@
 
 ## 7. Arquivos
 
-- **Cena:** `cenas/personagens/clarice_em_pe.tscn` (parada) e `clarice_posto.tscn` (na 103, com a conversa que troca o molho pela chave da grade). `clarice.tscn` é ela sentada na estação de trabalho do bunker, que agora é do Zane e do Henrique.
+- **Cena:** `cenas/personagens/clarice_em_pe.tscn` (parada) e `clarice_posto.tscn` (na 103, com a conversa que troca o molho pela chave da grade). `clarice.tscn` é ela sentada na estação de trabalho do bunker, sem uso desde que o Henrique ocupou a estação.
 - **Sprites:** `assets/sprites/personagens/clarice/`
 - **Gerador:** `assets/modelagem/personagens/gerar_clarice.py`
 - **Diálogos:** `dados/dialogos/clarice_*.json`

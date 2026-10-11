@@ -80,7 +80,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 - Todos os puxados pela fenda têm **cerca de 20 anos**.
 - Todos têm alguma **ligação com a região da Unifor**, além de terem sido puxados no chão da Biblioteca.
 - Chegaram a 3026 **com dias de diferença**. Estão todos **vivos**, cada um sobrevivendo do seu jeito num lugar do campus, e Gabriel **encontra cada um ao longo do jogo**.
-- **Ordem de chegada:** **Gabriel é o último** a chegar. Antes dele, o **Zane** chegou antes da **Clarice**. A ordem dos outros (Baltazar, Diana, Rafael e Henrique) ainda está pendente.
+- **Ordem de chegada:** **Gabriel é o último** a chegar. Antes dele, o **Zane** chegou antes da **Clarice**. A ordem dos outros (Baltazar, Diana e Henrique) ainda está pendente.
 
 ### 4.2 Fichas
 
@@ -289,7 +289,7 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 
 ### 12.4 Textos já escritos que citam a versão antiga
 
-- **O bunker:** as conversas `dados/dialogos/clarice_primeiro_encontro.json` e `clarice_de_novo.json` e a arte da estação de trabalho (`gerar_clarice.py`) foram feitas para a Clarice no computador da central de dados. A Clarice agora fica no Bloco de salas, e a central de dados é do **Zane** (e do **Henrique**, com as câmeras): a cena do bunker precisa mostrar eles no lugar dela, e as conversas precisam ser refeitas. As falas de loop ("Você sempre lê" e outras) saem junto.
+- **O bunker:** as conversas `dados/dialogos/clarice_primeiro_encontro.json` e `clarice_de_novo.json` e a arte da estação de trabalho (`gerar_clarice.py`) foram feitas para a Clarice no computador da central de dados. A Clarice agora fica no Bloco de salas, e a cena do bunker mostra o **Henrique** na estação, com conversas novas (rascunho: `henrique_primeiro_encontro.json` e `henrique_de_novo.json`). As conversas da Clarice, com as falas de loop ("Você sempre lê" e outras), ficaram sem uso e podem ser apagadas. Falta a cena do **Zane** na mesma sala de dados.
 - [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md): **o que os sonhos mostram** agora que não há loops (memória, o passado do campus, outra coisa).
 
 ### 12.5 Estrutura e fases

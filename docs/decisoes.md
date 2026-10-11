@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-11 — O Henrique no lugar da Clarice na sala de dados do bunker
+**Decisão:** na cena do bunker (`central_dados`), o **Henrique** substitui a Clarice na estação de trabalho. Ele aparece em pé, de costas, olhando as câmeras (`henrique_na_estacao.tscn`), e tem conversa própria: `henrique_primeiro_encontro.json` e `henrique_de_novo.json` (rascunho, para o roteiro revisar; no jeito dele: pausado, se corrigindo, fala pouco, e fica nervoso quando o assunto é a Âncora). A estação ganhou um sprite próprio, sem ninguém sentado, com as três telas mostrando câmeras (`estacao_dados.png`). As portas lacradas do setor B passam a dizer "O Zane está tentando abrir". O **Zane** ainda não tem cena no bunker.
+**Por quê:** a Clarice foi para o Bloco de salas (entrada acima) e o Henrique passou para a sala de dados, com acesso às câmeras. O sprite da Clarice tinha a estação desenhada junto, então foi preciso desenhar a estação separada.
+**Afeta:** `cenas/salas/bunker/central_dados.tscn` e `corredor_b.tscn`, `cenas/personagens/henrique_na_estacao.tscn`, `dados/dialogos/henrique_*.json`, `assets/sprites/cenario/objetos/estacao_dados.png` e `assets/modelagem/cenario/gerar_estacao_dados.py`, `docs/fases/bunker.md`, as fichas de Henrique, Clarice e Zane, Enredo Principal (seção 12.4). A cena `clarice.tscn` e as conversas `clarice_primeiro_encontro.json` e `clarice_de_novo.json` ficam sem uso.
+
 ## 2026-10-11 — O Rafael sai da história, e a Clarice ocupa o lugar dele no Bloco de salas
 **Decisão:**
 - **Sai o Rafael.** A ficha dele foi retirada de `personagens/` e o personagem some do Enredo Principal e das fases. O grupo passa a ter **6 puxados** (Gabriel, Baltazar, Diana, Clarice, Henrique e Zane), dentro da meta de 5 ou 6 da pendência de diminuir o elenco.

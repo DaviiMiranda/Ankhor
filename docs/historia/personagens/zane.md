@@ -49,7 +49,7 @@
 - **Visual definido:** [`assets/sprites/personagens/zane/visual.md`](../../../assets/sprites/personagens/zane/visual.md). Braço direito de prótese com linhas de luz ciano, olho de implante, placa na têmpora e porta na nuca; jaqueta técnica curta amarelo-ácido com gola alta; cabelo raspado dos lados com o topo descolorido.
 - **Cor de identificação:** amarelo-ácido (Gabriel vermelho, Clarice verde-azulado).
 - Sprites em resolução dobrada, com o mesmo conjunto do Gabriel (ver `CLAUDE.md`).
-- **Falta:** o Zane **sentado na estação de trabalho do bunker**. Hoje a estação é desenhada junto com a Clarice (`gerar_clarice.py`).
+- **Falta:** o Zane **na sala de dados do bunker**. A estação agora existe sozinha (`assets/sprites/cenario/objetos/estacao_dados.png`) e quem aparece nela é o Henrique; o Zane precisa de um lugar na sala (a mesma estação, uma segunda ou o computador do gerador).
 
 ## 7. Arquivos
 
@@ -61,5 +61,5 @@
 ## 8. Pendências
 
 - O que fazia no ponto quando foi puxado (Enredo Principal, seção 12.3).
-- A arte dele na estação de trabalho e as conversas do bunker, que hoje são da Clarice (seção 12.4).
+- A cena e as conversas dele na sala de dados do bunker, que hoje só mostram o Henrique (seção 12.4).
 - O arco dele (medo da IA, ficar para domá-la) depende de a IA continuar existindo (seção 12.2).

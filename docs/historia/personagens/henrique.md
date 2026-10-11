@@ -41,7 +41,7 @@
 ## 5. Registros
 
 - **Suporte:** pendente. Uma sugestão que combina com ele: folhas de rascunho cheias de contas riscadas e corrigidas, na letra miúda de quem se corrige no meio da frase.
-- **Já escritos:** `dados/transmissoes/henrique_01.tres` (Biblioteca, balcão) e `henrique_02.tres` (Biblioteca, acervo). No rádio, fala pausado e técnico, se corrigindo.
+- **Já escritos:** `dados/transmissoes/henrique_01.tres` (Biblioteca, balcão), `henrique_02.tres` (Biblioteca, acervo) e `henrique_03.tres` (Bloco de salas), mais as duas conversas em pessoa do bunker. No rádio, fala pausado e técnico, se corrigindo.
 
 ## 6. Direção de arte
 
@@ -53,7 +53,8 @@
 ## 7. Arquivos
 
 - **Sprites:** `assets/sprites/personagens/henrique/`, gerados por `assets/modelagem/personagens/gerar_henrique.py`.
-- **Cena:** `cenas/personagens/henrique.tscn` (parado, por enquanto só na sala de teste).
+- **Cena:** `cenas/personagens/henrique.tscn` (parado) e `cenas/personagens/henrique_na_estacao.tscn` (de costas, na estação da sala de dados do bunker, olhando as câmeras).
+- **Diálogos em pessoa (rascunho, para o roteiro revisar):** `dados/dialogos/henrique_primeiro_encontro.json` e `henrique_de_novo.json`, no bunker.
 - **Transmissões:** `dados/transmissoes/henrique_*.tres`, gatilhos `GatilhoHenrique1` (em `cenas/salas/biblioteca/balcao.tscn`) e `GatilhoHenrique2` (em `acervo.tscn`).
 - **Som do rádio:** `assets/audio/efeitos/objetos/radio_chiado.wav` (gerado por `assets/modelagem/audio/gerar_efeitos_registros.py`).
 
