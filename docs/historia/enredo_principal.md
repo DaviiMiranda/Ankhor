@@ -266,7 +266,6 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 
 ### 12.1 A volta e o fim
 
-- **Quanto tempo Gabriel tem:** se a fenda crescendo vira um prazo que o jogador sente (dias contados, pulsos que estremecem o campus) ou fica só na história.
 - **Como cada um volta:** todos de uma vez no final, ou um por um, conforme a Âncora vai sendo consertada.
 - **O final** de Gabriel e Clarice. O final antigo ("A mesma madrugada": os dois acordam juntos em 2026, e ela rasga a página das equações) foi escrito para a versão com loops e precisa ser revisto.
 
