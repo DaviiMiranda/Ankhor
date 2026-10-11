@@ -60,7 +60,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 - O **corredor** de cada andar é o centro, como o salão da Biblioteca: quase todo caminho passa por ele, e é ali que os robôs patrulham.
 - A **escada** começa fechada por uma grade de aço de enrolar (como a da Biblioteca), presa no chão com um cadeado.
 - O **buraco no chão da 204** dá na **104**, logo embaixo (as duas ficam no mesmo ponto dos corredores). Ele só serve para **descer**, e vira um atalho entre os andares (seção 5.5).
-- A **saída** é a **porta corta-fogo** no fim do corredor do 1º andar, depois da escada. Ela está **acorrentada** e leva à próxima fase, o **Centro de Convivência**. Como ele ainda não existe, por enquanto a porta abre a entrada do Bunker, de forma provisória.
+- A **saída** é a **porta corta-fogo** no fim do corredor do 1º andar, depois da escada. Ela está **acorrentada** e leva à próxima fase, o **Centro de Convivência** ([`centro_de_convivencia.md`](centro_de_convivencia.md)). Como ele ainda não existe, por enquanto a porta abre a entrada do Bunker, de forma provisória.
 
 ### 2.2 As salas no plano
 
