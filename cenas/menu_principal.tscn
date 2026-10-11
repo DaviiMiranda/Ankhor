@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://dados/fases/06_nami.tres" id="f_6"]
 [ext_resource type="Resource" path="res://dados/fases/07_reitoria.tres" id="f_7"]
 [ext_resource type="Resource" path="res://dados/fases/08_bunker.tres" id="f_8"]
+[ext_resource type="Resource" path="res://dados/fases/09_dtec.tres" id="f_9"]
 [ext_resource type="Shader" uid="uid://dkfsu5mqayu3p" path="res://shaders/vinheta.gdshader" id="11_vinheta"]
 
 [sub_resource type="Gradient" id="Gradient_luz"]
@@ -113,7 +114,7 @@ script = ExtResource("1_menu")
 energia_luz = 0.12
 oscilacao_luz = 0.06
 cena_novo_jogo = ExtResource("8_novo_jogo")
-fases = Array[ExtResource("f_script")]([ExtResource("f_1"), ExtResource("f_2"), ExtResource("f_3"), ExtResource("f_4"), ExtResource("f_5"), ExtResource("f_6"), ExtResource("f_7"), ExtResource("f_8")])
+fases = Array[ExtResource("f_script")]([ExtResource("f_1"), ExtResource("f_2"), ExtResource("f_3"), ExtResource("f_4"), ExtResource("f_5"), ExtResource("f_6"), ExtResource("f_7"), ExtResource("f_8"), ExtResource("f_9")])
 
 [node name="Cenario" type="Sprite2D" parent="."]
 light_mask = 2

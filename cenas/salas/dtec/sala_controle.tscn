@@ -1,0 +1,284 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_abrir.wav" id="r2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/dtec_porta.tscn" id="r3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/dtec_tela_grande.tscn" id="r4"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/dtec_luminaria.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/dtec_vidro.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/dtec_painel.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/dtec_terminal.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/pilar_dtec.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/chao/chao_dtec.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/chao/chao_dtec_fundo.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/dtec_lateral.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/console.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/cadeira_escritorio.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/mesa_computador.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/planta.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/rack_dtec.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r21"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r22"]
+
+[sub_resource type="StyleBoxFlat" id="Placa"]
+bg_color = Color(0.06, 0.12, 0.2, 1)
+border_width_bottom = 1
+border_color = Color(0.24, 0.4, 0.6, 1)
+
+[node name="SalaControle" instance=ExtResource("r1")]
+id = "dtec_sala_controle"
+largura = 560
+altura = 480
+chao_frente = 476
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(80, 0)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(240, 0)
+
+[node name="Parede05" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(320, 0)
+
+[node name="Parede06" parent="Paredes" instance=ExtResource("r7")]
+position = Vector2(400, 0)
+
+[node name="Parede07" parent="Paredes" instance=ExtResource("r8")]
+position = Vector2(480, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(544, 0)
+
+[node name="PlacaControleCorredor" type="Label" parent="Paredes"]
+offset_left = 6.0
+offset_top = 26.0
+offset_right = 74.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.78, 0.88, 0.98, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "CORREDOR"
+horizontal_alignment = 1
+
+[node name="Chao1" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(0, 0)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(128, 0)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(256, 0)
+
+[node name="Chao4" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(384, 0)
+
+[node name="Chao5" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(512, 0)
+
+[node name="Fundo1_1" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 180)
+
+[node name="Fundo1_2" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 244)
+
+[node name="Fundo1_3" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 308)
+
+[node name="Fundo1_4" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 372)
+
+[node name="Fundo1_5" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 436)
+
+[node name="Fundo2_1" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(128, 180)
+
+[node name="Fundo2_2" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(128, 244)
+
+[node name="Fundo2_3" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(128, 308)
+
+[node name="Fundo2_4" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(128, 372)
+
+[node name="Fundo2_5" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(128, 436)
+
+[node name="Fundo3_1" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(256, 180)
+
+[node name="Fundo3_2" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(256, 244)
+
+[node name="Fundo3_3" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(256, 308)
+
+[node name="Fundo3_4" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(256, 372)
+
+[node name="Fundo3_5" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(256, 436)
+
+[node name="Fundo4_1" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(384, 180)
+
+[node name="Fundo4_2" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(384, 244)
+
+[node name="Fundo4_3" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(384, 308)
+
+[node name="Fundo4_4" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(384, 372)
+
+[node name="Fundo4_5" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(384, 436)
+
+[node name="Fundo5_1" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(512, 180)
+
+[node name="Fundo5_2" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(512, 244)
+
+[node name="Fundo5_3" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(512, 308)
+
+[node name="Fundo5_4" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(512, 372)
+
+[node name="Fundo5_5" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(512, 436)
+
+[node name="LateralEsq1" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 112)
+
+[node name="LateralDir1" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(544, 112)
+flip_h = true
+
+[node name="LateralEsq2" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 176)
+
+[node name="LateralDir2" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(544, 176)
+flip_h = true
+
+[node name="LateralEsq3" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 240)
+
+[node name="LateralDir3" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(544, 240)
+flip_h = true
+
+[node name="LateralEsq4" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 304)
+
+[node name="LateralDir4" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(544, 304)
+flip_h = true
+
+[node name="LateralEsq5" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 368)
+
+[node name="LateralDir5" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(544, 368)
+flip_h = true
+
+[node name="LateralEsq6" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 432)
+
+[node name="LateralDir6" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(544, 432)
+flip_h = true
+
+[node name="Console1" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(160, 220)
+
+[node name="Console2" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(300, 220)
+
+[node name="Console3" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(440, 220)
+espelhado = true
+
+[node name="CadeiraEscritorio1" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(160, 245)
+
+[node name="CadeiraEscritorio2" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(300, 245)
+espelhado = true
+
+[node name="CadeiraEscritorio3" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(440, 245)
+
+[node name="MesaComputador1" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(200, 360)
+
+[node name="MesaComputador2" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(380, 360)
+
+[node name="Planta1" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(520, 440)
+espelhado = true
+
+[node name="RackDtec1" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(40, 300)
+
+[node name="Pilha1" parent="Objetos" instance=ExtResource("r18")]
+position = Vector2(300, 420)
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r19")]
+position = Vector2(280, 34)
+energy = 0.85
+
+[node name="Luz2" parent="Luzes" instance=ExtResource("r19")]
+position = Vector2(140, 250)
+energy = 0.9
+
+[node name="Luz3" parent="Luzes" instance=ExtResource("r19")]
+position = Vector2(420, 250)
+energy = 0.9
+
+[node name="Luz4" parent="Luzes" instance=ExtResource("r20")]
+position = Vector2(160, 60)
+energy = 0.8
+color = Color(0.4, 0.95, 1, 1)
+
+[node name="Luz5" parent="Luzes" instance=ExtResource("r20")]
+position = Vector2(400, 70)
+energy = 0.6
+color = Color(0.4, 0.95, 1, 1)
+
+[node name="Luz6" parent="Luzes" instance=ExtResource("r20")]
+position = Vector2(300, 230)
+energy = 0.6
+color = Color(0.4, 0.95, 1, 1)
+
+[node name="Escuridao" parent="."]
+color = Color(0.33, 0.34, 0.41, 1)
+
+[node name="Porta_controle_corredor" parent="." instance=ExtResource("r21")]
+position = Vector2(41, 124)
+id = "controle_corredor"
+cena_destino = "res://cenas/salas/dtec/corredor_sul.tscn"
+porta_destino = "sul_controle"
+som_abrir = ExtResource("r2")
+
+[node name="Zumbido" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("r22")
+volume_db = -14.0
+pitch_scale = 1.15
+autoplay = true
+bus = &"Efeitos"

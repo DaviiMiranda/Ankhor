@@ -41,7 +41,7 @@
 #
 # O rádio fica do lado direito dele (-X), virado para a câmera nas vistas de
 # lado e de 3/4: o jogador sempre vê o rádio, que é como o Rafael fala com
-# ele.
+# o grupo, na frequência do rádio.
 #
 # Modelagem: só primitivas, DETALHE 3 e sombreamento suave, como o Gabriel
 # (ver comum.py). O esqueleto tem as mesmas juntas do Gabriel, então a

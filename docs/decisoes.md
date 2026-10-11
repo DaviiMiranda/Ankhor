@@ -17,9 +17,34 @@ Formato:
 ---
 
 ## 2026-10-08 — Cutscene de prólogo e organização de cutscenes
-**Decisão:** criado o documento de roteiro e storyboard para a cutscene inicial de prólogo (`docs/historia/roteiro/cutscenes/seg_prologo.md`), composta por 9 ilustrações sequenciais em pixel art retratando o dia a dia de Gabriel em 2026 (acordando, o anel da avó, trajeto até a Unifor, aula de cálculo com o caderno de equações e o adormecer na cabine da Biblioteca de madrugada, antes do pulso temporal). A pasta de cutscenes foi organizada com uma ficha detalhada por cena e especificações técnicas de produção.
+**Decisão:** criado o documento de roteiro e storyboard para a cutscene inicial de prólogo (`docs/historia/roteiro/cutscenes/seg_prologo.md`), composta por 8 ilustrações sequenciais em pixel art retratando o dia a dia de Gabriel em 2026 (acordando, o anel da avó, trajeto até a Unifor, aula de cálculo com o caderno de equações e o adormecer na cabine da Biblioteca de madrugada, terminando no pulso da fenda). O despertar em 3026 continua sendo a cutscene `seg_acordar`, que vem logo depois. A pasta de cutscenes foi organizada com uma ficha detalhada por cena e especificações técnicas de produção.
 **Por quê:** dar contexto narrativo ao jogador antes do despertar nas ruínas e estabelecer o contraste dramático entre a normalidade de 2026 e o colapso de 3026.
 **Afeta:** `docs/historia/roteiro/cutscenes/seg_prologo.md` (novo), `docs/historia/roteiro/cutscenes/README.md`, `docs/historia/enredo_principal.md` (Ato 1).
+
+## 2026-10-08 — Sistema de fadiga e estamina do Gabriel
+**Decisão:** implementado o sistema modular de fadiga (`scripts/sistemas/fadiga.gd` e `cenas/sistemas/fadiga.tscn`). Correr consome estamina de forma contínua (~8s de corrida total). Ao zerar a estamina, Gabriel entra em estado de exaustão por 3 segundos, ficando impossibilitado de correr, andando a 40% da velocidade normal e emitindo o sinal `ofegante` com efeito sonoro. A estamina se regenera gradualmente (mais rápido parado do que andando). O HUD exibe uma barra discreta no canto superior que surge apenas durante o consumo e esmaece quando cheia.
+**Por quê:** implementação da dinâmica de estamina e fuga descrita no GDD e nas mecânicas de movimentação.
+**Afeta:** `scripts/sistemas/fadiga.gd`, `cenas/sistemas/fadiga.tscn`, `scripts/personagens/gabriel.gd`, `cenas/personagens/gabriel.tscn`, `scripts/interface/hud.gd`, `assets/audio/efeitos/gabriel/gabriel_ofegante.wav`.
+
+## 2026-10-08 — O Zane no computador do bunker, e a nova ordem de chegada
+**Decisão:**
+- O **Zane** troca de lugar com a **Clarice**: fica no **computador da central de dados do bunker** e faz a **comunicação de todos** (mantém a frequência de rádio do grupo e liga pelos telefones velhos). Divide o bunker com a Diana. Onde a Clarice fica passa a ser pendente.
+- **Ordem de chegada:** o Zane chega antes da Clarice, e **Gabriel é o último**. O Zane deixa de ser o último a chegar, e a cena de Gabriel recebendo o Zane sai.
+- Sai a ideia de que o jogador acha que a Clarice morreu: o bilhete dela não é mais uma "despedida".
+- No jogo: a ligação do fim da Biblioteca passou a ser do Zane (`clarice_01.tres` → `zane_01.tres`, em `cenas/sistemas/telefone.tscn`), e a anotação do bilhete da Clarice não diz mais que "parece que não voltou". A arte da estação de trabalho e as conversas do bunker continuam da Clarice e precisam ser refeitas para o Zane.
+
+**Por quê:** decisão do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 4.1, 6, 6.1, 7.2, 8, 10, 12.3 e 12.4), as fichas de Zane, Clarice, Diana, Henrique, Rafael e Gabriel, `resumo.md`, `docs/fases/biblioteca.md` e `bunker.md`, `docs/mecanicas/registros_e_caderno.md`, `docs/gdd.md`, `docs/README.md`, `outras_ideias.md` (ideia 14), `dados/transmissoes/zane_01.tres`, `dados/documentos/bilhete_clarice.tres`, `cenas/sistemas/telefone.tscn`, os `visual.md` do Zane e do Rafael e um comentário de `gerar_rafael.py`.
+
+## 2026-10-08 — Onde cada personagem fica, e a frequência de rádio do grupo
+**Decisão:**
+- **Esconderijos:** **bunker** com a Clarice e a Diana (depois o Zane); o **Baltazar** escondido numa sala da Biblioteca, com medo; o **Rafael** numa sala de aula do Bloco de salas, que virou o "posto de guarda" dele; o **Henrique** sozinho num **posto de monitoramento**, com as câmeras do campus; o **Carlos** sempre no laboratório do D-Tec.
+- **Comunicação:** a **Clarice** montou uma **frequência de rádio** para o grupo e deixou um rádio sintonizado nela no balcão da Biblioteca. O **Henrique** é a **voz do rádio**: vê o campus pelas câmeras, dá as dicas de patrulha e guia Gabriel desde a primeira fase, mas fala pouco e fica distante. O **Baltazar** teve dificuldade com o rádio, se isolou e não está na frequência.
+- No jogo, as duas transmissões da Biblioteca passaram do Rafael para o Henrique (`rafael_0X.tres` → `henrique_0X.tres`, gatilhos `GatilhoHenrique1` e `GatilhoHenrique2`), com as falas reescritas no jeito dele. (Na entrada seguinte, quem mantém a frequência passou a ser o Zane.)
+- Resolve a pendência de como a voz do rádio "parece ver" Gabriel: pelas câmeras.
+
+**Por quê:** decisão do Davi. A voz que ajuda Gabriel desde o começo ser justamente a de quem mente deixa "A virada" mais forte.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 6, 6.1, 8, 10 e 12.3), as fichas de Rafael, Henrique, Diana, Clarice, Baltazar, Zane e Carlos, `resumo.md`, `docs/fases/biblioteca.md`, `docs/mecanicas/registros_e_caderno.md` e `README.md`, `dados/transmissoes/henrique_01.tres` e `henrique_02.tres`, `cenas/salas/biblioteca/salao.tscn`, `balcao.tscn` e `acervo.tscn`, comentários de `gerar_efeitos_registros.py` e `gerar_interface.py`, `assets/sprites/personagens/rafael/visual.md`.
 
 ## 2026-10-08 — Resumo dos personagens
 **Decisão:** a pasta `docs/historia/personagens/` ganha o `resumo.md`, com todos os personagens numa página (quem é, época, frase de essência, cor, esconderijo, parte para consertar a Âncora, relações e principais pendências). É a exceção à regra de "só as fichas" nessa pasta (entrada de 2026-10-07). O resumo não é lei: se ele e uma ficha discordarem, vale a ficha.
@@ -30,6 +55,11 @@ Formato:
 **Decisão:** o planejamento da Biblioteca (`docs/fases/biblioteca.md`) entrou no jogo. A cena única virou oito salas em `cenas/salas/biblioteca/`, e o jogo começa na cabine. Entraram: o autoload `Progresso` (as marcas da fase), portas com chave e com marca, a chave da manutenção, o quadro de energia (ordem 3, 1, 4, 2), as luzes de emergência que acendem e revelam o Gabriel para os robôs, o terminal com o disquete da Clarice (código 0394), o painel e a grade da ala leste, o telefone com a primeira ligação da Clarice, a porta barrada das obras raras e os robôs (Sentinela no salão, Rastreador no acervo) com rota fixa, rota nova depois da energia e bipe antes de virar.
 **Por quê:** pedido do Davi: implementar tudo o que o planejamento descreve.
 **Afeta:** `project.godot` (autoload `Progresso`), `scripts/sistemas/porta.gd`, `scripts/personagens/robo.gd`, `scripts/salas/sala.gd` (os limites automáticos também barram robôs), `scripts/itens/notebook.gd`, `scripts/menu_principal.gd`, `cenas/cutscenes/seg_acordar.tscn` e `dados/fases/01_biblioteca.tres` (começam na cabine). Os textos da ligação e do disquete são rascunho para o roteiro revisar.
+
+## 2026-10-07 — Fase DTEC (laboratório), solta
+**Decisão:** nova fase **DTEC**, o departamento de tecnologia: recepção, dois corredores e 8 salas (eletrônica, informática, servidores, química, robótica, controle e o Lab Central). No **meio do mapa**, o Lab Central tem uma **máquina grande e brilhante** (anel em pé com núcleo ciano que pulsa). Duas salas são **trancadas** e abrem com o hack do notebook (Servidores e Robótica); cinco portas ficam **lacradas** para depois. A fase é **solta**: não se chega a ela pelos mapas atuais, aparece só no menu Fases e **não tem lugar na história**. A máquina não tem nome nem papel (não é a Âncora). Sem robôs por enquanto.
+**Por quê:** pedido do Davi: um mapa de laboratório grande e detalhado, com salas trancadas e uma máquina no centro.
+**Afeta:** `cenas/salas/dtec/` e `cenas/cenario/dtec/` (novos), `assets/modelagem/cenario/gerar_dtec.py` e `assets/modelagem/salas/dtec/montar_dtec.py` (novos), `cenas/cenario/luzes/luz_maquina.tscn` e `scripts/cenario/luz_pulsante.gd` (novos), `dados/fases/09_dtec.tres` e `cenas/menu_principal.tscn` (menu Fases), `docs/fases/dtec.md`.
 
 ## 2026-10-07 — Gabriel em pixel art desenhada (a partir de referências)
 **Decisão:**
@@ -169,6 +199,11 @@ Formato:
 **Decisão:** `Esc` (ou `P`, ou Start no controle) pausa o jogo em qualquer sala e abre a tela **PAUSADO**: Continuar, Opções (tela cheia e os três volumes, os mesmos do menu), **Voltar ao menu principal** (pede confirmação, porque o jogo ainda não salva e o progresso da fase se perde; o cursor começa em "Cancelar") e Sair do jogo. `Esc` dentro da pausa volta um passo. A pausa não abre por cima do inventário, de um documento, do diálogo ou da tela de morte (o `Esc` desses continua fechando eles), nem no menu e nas cutscenes. O jogo também pausa sozinho quando a janela perde o foco.
 **Por quê:** pedido do Davi: poder voltar ao menu principal durante o jogo.
 **Afeta:** `cenas/interface/tela_pausa.tscn` e `scripts/interface/tela_pausa.gd` (autoload `Pausa`), `project.godot` (autoload e ação `pausar`), `scripts/sistemas/configuracoes.gd` (as contas de volume saíram do menu e agora servem ao menu e à pausa), `scripts/menu_principal.gd`, `cenas/menu_principal.tscn` (lista de controles).
+
+## 2026-10-05 — Hackeamento de portas vira minigame
+**Decisão:** o notebook, ao hackear uma **porta trancada**, abre um minigame em tela cheia (o jogo pausa): **Sequência** (memorizar e repetir setas) ou **Sincronia** (parar o cursor na zona verde). Cada porta define a dificuldade (fácil, médio, difícil) e o minigame (ou sorteia). Robôs continuam com o hack por tempo, até o grupo decidir se também ganham minigame.
+**Por quê:** dar ao hack um momento de tensão e habilidade, em vez de só esperar uma barra.
+**Afeta:** `scripts/itens/notebook.gd`, `scripts/sistemas/porta.gd`, `scripts/sistemas/hackeamento.gd`, `scripts/interface/tela_hackeamento.gd` e `scripts/interface/hackeamento/`, `sala_teste.tscn` (seis portas de teste). Detalhes em `docs/mecanicas/hackeamento.md`.
 
 ## 2026-09-30 — Gabriel e Clarice em resolução dobrada
 **Decisão:** o projeto passa a usar o stretch **`canvas_items`** (antes `viewport`): a lógica, as câmeras e a interface continuam em 320×180, mas a imagem é desenhada na resolução da janela. Com isso, **Gabriel e Clarice ganham sprites com o dobro de pixels** (Gabriel 96 × 112 por quadro, a estação da Clarice 160 × 128, retratos 80 × 80), mostrados com escala 0,5: no mesmo tamanho na tela, com o dobro de detalhe (rosto, óculos, texto nos monitores). O cenário, os objetos, os robôs e a interface continuam em 1×. **Efeito colateral:** as luzes (PointLight2D) também são calculadas na resolução da janela e ficaram mais suaves. O efeito CRT do menu foi ajustado para continuar com uma linha por pixel do jogo.

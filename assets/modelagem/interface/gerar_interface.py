@@ -124,7 +124,7 @@ def pilha_chao():
 
 
 def radio():
-    """O rádio portátil que o Rafael usava na ronda (um HT de 2008): corpo
+    """O rádio portátil do grupo (um HT da segurança, de 2008): corpo
     de plástico preto, antena de borracha à esquerda, tela pequena de LCD
     esverdeado e a grade do alto-falante embaixo. O botão de falar (PTT)
     fica na lateral, em ferrugem."""
