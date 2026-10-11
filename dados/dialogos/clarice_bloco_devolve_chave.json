@@ -3,7 +3,7 @@
 	"inicio": "molho",
 	"anotacao": {
 		"titulo": "O que a Clarice sabe",
-		"texto": "Devolvi o molho. A Clarice me deu a chave da fita azul: abre a grade da escada.\n\nA saída do bloco é a porta corta-fogo, no fim do corredor de cima. Está acorrentada. Tem um alicate no depósito (206).\n\nA chave do depósito fica no claviculário da sala dos professores (203), num cadeado de três números. Ela não abriu.\n\nA 103 é segura: os robôs não entram."
+		"texto": "Devolvi o molho. A Clarice me deu a chave da fita azul: abre a grade da escada.\n\nA saída do bloco é a porta corta-fogo, no fim do corredor de cima. Está acorrentada. Tem um alicate no depósito (206).\n\nA chave do depósito fica no claviculário da sala dos professores (203), num cadeado de três números. Ela não abriu.\n\nA 103 é segura: os robôs não entram.\n\nA Clarice e a Diana estão na 103 desde que chegaram, tentando descobrir o que é este lugar. Elas falam com o Henrique pelo rádio: ele vê o campus pelas câmeras."
 	},
 	"trechos": {
 		"molho": {
@@ -46,7 +46,32 @@
 				{
 					"quem": "Clarice",
 					"retrato": "clarice/clarice_retrato_normal",
-					"texto": "Eu fico no posto. Aqui os robôs não entram, e o meu mapa ainda não fechou. Se precisar descansar, é só vir. E eu fico na escuta do rádio."
+					"texto": "Eu fico. Tô nesta sala desde que cheguei. Acordei na Biblioteca, igual a você, e vim parar aqui."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Eu e a Diana tamos juntando tudo o que dá pra descobrir deste lugar. Eu fico com as rondas, ela com o mapa."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "E a gente fala com o Henrique pelo rádio. Ele vê o campus pelas câmeras."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_surpreso",
+					"texto": "Henrique? A voz do rádio, lá da Biblioteca?"
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_sorrindo",
+					"texto": "Esse mesmo. Fala pouco, mas vê tudo. Se ele chamar, escuta."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Aqui os robôs não entram. Se precisar descansar, é só vir. E eu fico na escuta do rádio."
 				}
 			]
 		}
