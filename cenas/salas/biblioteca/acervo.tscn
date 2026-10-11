@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/robo_rastreador.tscn" id="r20"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="r21"]
-[ext_resource type="Resource" path="res://dados/transmissoes/rafael_02.tres" id="r22"]
+[ext_resource type="Resource" path="res://dados/transmissoes/henrique_02.tres" id="r22"]
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r23"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r24"]
 
@@ -307,11 +307,11 @@ position = Vector2(300, 160)
 [node name="Ponto7" type="Marker2D" parent="RotaRastreador"]
 position = Vector2(520, 160)
 
-[node name="GatilhoRafael2" parent="Objetos" instance=ExtResource("r21")]
+[node name="GatilhoHenrique2" parent="Objetos" instance=ExtResource("r21")]
 position = Vector2(290, 300)
 transmissao = ExtResource("r22")
 
-[node name="Area" parent="Objetos/GatilhoRafael2" index="0"]
+[node name="Area" parent="Objetos/GatilhoHenrique2" index="0"]
 shape = SubResource("RectangleShape2D_acervo")
 
 [node name="RobosDaSala" type="Node" parent="."]

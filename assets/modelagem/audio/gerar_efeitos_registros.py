@@ -1,5 +1,5 @@
 # gerar_efeitos_registros.py — compõe por código os sons dos REGISTROS dos
-# antecessores: o rádio do Rafael e o papel dos bilhetes e do caderno.
+# antecessores: o rádio do grupo e o papel dos bilhetes e do caderno.
 #
 # Como rodar (Python 3 + numpy):
 #   python assets/modelagem/audio/gerar_efeitos_registros.py

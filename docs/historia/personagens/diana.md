@@ -26,13 +26,14 @@
 | Com | Dinâmica |
 |---|---|
 | [Clarice](clarice.md) | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Brigam o tempo todo e acabam amigas |
-| [Rafael](rafael.md) | Dois de farda em épocas diferentes. Ele é calmo e brincalhão, e é o único que consegue acalmá-la |
+| [Zane](zane.md) | Dividem o bunker |
+| [Rafael](rafael.md) | Dois de farda em épocas diferentes. Ele é calmo e brincalhão, e é o único que consegue acalmá-la (pelo rádio, ou quando se encontram) |
 
 ## 4. No jogo
 
-- **Onde aparece:** no **Bloco de salas**, onde fica o esconderijo dela.
-- **Esconderijo:** numa das **salas de aula** do Bloco de salas (qual sala, pendente).
-- **Como chega ao jogador:** em pessoa e por registros.
+- **Onde aparece:** no **bunker**, junto do Zane.
+- **Esconderijo:** o **bunker**, com o Zane.
+- **Como chega ao jogador:** em pessoa, no bunker, e pela frequência de rádio do grupo.
 - **Função na jogabilidade:** o **mapa à mão** dela revela **arestas escondidas no grafo do campus** (atalhos e passagens secretas). Ver [`../../computacao/grafos_e_navegacao.md`](../../computacao/grafos_e_navegacao.md).
 - **Parte para consertar a Âncora:** investigação: descobre onde fica o núcleo e as passagens até lá.
 
@@ -52,4 +53,4 @@ Nenhum ainda.
 
 ## 8. Pendências
 
-- Qual sala de aula do Bloco de salas é o esconderijo dela (Enredo Principal, seção 12.3).
+Nenhuma específica dela no momento. As pendências gerais estão no Enredo Principal, seção 12.

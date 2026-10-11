@@ -1,6 +1,6 @@
 # Zane — visual
 
-Rapaz de uns 20 anos, de 2123, o último a chegar em 3026. Quem ele é está na ficha [`docs/historia/personagens/zane.md`](../../../../docs/historia/personagens/zane.md), que faz parte do Enredo Principal (a lei do projeto).
+Rapaz de uns 20 anos, de 2123, que cuida das comunicações do grupo no computador do bunker. Quem ele é está na ficha [`docs/historia/personagens/zane.md`](../../../../docs/historia/personagens/zane.md), que faz parte do Enredo Principal (a lei do projeto).
 
 ![Folha de referência](zane_referencia.png)
 
