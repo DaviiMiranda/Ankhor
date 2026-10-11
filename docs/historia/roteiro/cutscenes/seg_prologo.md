@@ -1,6 +1,6 @@
 # seg_prologo — O Prólogo de Gabriel (2026)
 
-- **Quando:** início do jogo, disparado logo após selecionar "Novo jogo" no menu principal.
+- **Quando:** início do jogo, disparado logo após selecionar "Novo jogo" no menu principal. Ao terminar, passa para a cutscene do despertar ([`seg_acordar`](seg_acordar.md)).
 - **Onde:** Fortaleza em 2026 (quarto de Gabriel, trajeto na Av. Washington Soares, pátio da Unifor, sala de aula e cabine de estudo da Biblioteca).
 - **Personagens:** Gabriel Magalhães (protagonista, 2026). Figurantes de apoio: estudantes e professor de 2026 (silhuetas/desfocados).
 - **Formato visual:** sequência de ilustrações narrativas em pixel art (estilo *graphic novel* 2.5D, tela base 320×180), com camadas de paralaxe sutis, efeitos de iluminação e caixas de texto com pensamentos do Gabriel.
@@ -13,7 +13,7 @@
 
 ### Cena 1 — O Alarme (06:15)
 - **Arquivo proposto:** `assets/sprites/cutscenes/seg_prologo/cena_01_alarme.png`
-- **Enquadramento:** plano fechado (close-up) no criado-mudo do quarto de Gabriel. Em primeiro plano, um despertador digital ou celular marcando `06:15` com o visor brilhando. Ao lado, sobre uma pilha desordenada de folhas e apostilas da faculdade, repousa o **anel desgastado da avó** e o crachá de estudante da Unifor ("Gabriel Magalhães — Ciência da Computação / Engenharia"). A mão sonolenta de Gabriel entra no quadro para calar o alarme.
+- **Enquadramento:** plano fechado (close-up) no criado-mudo do quarto de Gabriel. Em primeiro plano, um despertador digital ou celular marcando `06:15` com o visor brilhando. Ao lado, sobre uma pilha desordenada de folhas e apostilas da faculdade, repousa o **anel desgastado da avó** e o crachá de estudante da Unifor com o nome "Gabriel Magalhães". A mão sonolenta de Gabriel entra no quadro para calar o alarme.
 - **Paleta e iluminação:** tons azulados escuros e frios da madrugada, quebrados pela luz amarelada tímida da fresta da persiana e pelo brilho vermelho/verde do visor digital.
 - **Áudio / SFX:** bipe estridente e repetitivo do despertador digital -> som de tapa abafado no botão -> clique seco -> suspiro pesado de cansaço.
 - **Texto (pensamento de Gabriel):**
@@ -24,11 +24,11 @@
 
 ### Cena 2 — O Quarto e a Partida
 - **Arquivo proposto:** `assets/sprites/cutscenes/seg_prologo/cena_02_quarto.png`
-- **Enquadramento:** plano médio do quarto. Gabriel é visto de costas em frente ao espelho ou à porta do quarto, vestindo seu característico moletom vermelho com capuz sobre a camiseta cinza. Ele ajusta a alça da mochila escura nas costas e desliza o anel no dedo indicador da mão direita. Pela janela, vê-se o nascer do sol sobre os prédios de Fortaleza.
+- **Enquadramento:** plano médio do quarto. Gabriel é visto de costas em frente ao espelho ou à porta do quarto, vestindo seu característico moletom vermelho com capuz sobre a camiseta cinza. Ele guarda o anel da avó no bolso da frente da mochila escura e ajusta a alça nas costas. Pela janela, vê-se o nascer do sol sobre os prédios de Fortaleza.
 - **Paleta e iluminação:** amanhecer acolhedor, tons dourados e laranjas banhando o quarto. O vermelho vivo do moletom se destaca como a cor de identificação do Gabriel.
 - **Áudio / SFX:** zíper metálico da mochila fechando -> passos leves em piso cerâmico -> chave girando na fechadura de madeira.
 - **Texto (pensamento de Gabriel):**
-  > *"Minha avó vivia dizendo pra nunca tirar esse anel. Segundo ela, dava sorte. Se não me fizer reprovar na cadeira hoje, já é lucro."*
+  > *"Minha avó jurava que esse anel dava sorte. Se eu não reprovar na cadeira, já é lucro."*
 - **Transição:** corte suave.
 
 ---
@@ -90,22 +90,12 @@
 
 ### Cena 8 — A Ruptura / O Pulso da Fenda
 - **Arquivo proposto:** `assets/sprites/cutscenes/seg_prologo/cena_08_pulso_fenda.png`
-- **Enquadramento:** mesmo ângulo da cabine, mas a imagem sofre uma distorção temporal abrupta (aberração cromática sutil, linhas de interferência estática). Sob a fresta do chão de madeira, surge um brilho violeta e ciano pulsante (a primeira fagulha da Âncora no D-Tec que Carlos acionou em 3026). A luminária pisca loucamente e queima com uma faísca. Folhas soltas do caderno começam a levitar 1 centímetro da mesa como se a gravidade falhasse. O anel no dedo de Gabriel reluz com um reflexo anormal.
+- **Enquadramento:** mesmo ângulo da cabine, mas a imagem sofre uma distorção temporal abrupta (aberração cromática sutil, linhas de interferência estática). Sob a fresta do chão de madeira, surge um brilho violeta e ciano pulsante: a fenda se abrindo no chão da Biblioteca. A luminária pisca loucamente e queima com uma faísca. Folhas soltas do caderno começam a levitar 1 centímetro da mesa como se a gravidade falhasse.
+- **Nota de história (não aparece na tela):** é mais um pulso da fenda, aberto por uma nova tentativa do Carlos com a Âncora, em 3026. Outras pessoas já caíram antes; Gabriel é o último. Para ele, é puro acaso: estava no ponto naquela noite. A cena não mostra nem sugere o Carlos, a Âncora ou o D-Tec.
 - **Paleta e iluminação:** choque entre o amarelo quente de 2026 e o clarão azul/violeta elétrico e antinatural da fenda temporal.
 - **Áudio / SFX:** silêncio quebrado por um estrondo subaquático grave (sub-bass / drone de baixa frequência) -> estalo elétrico estridente da lâmpada estourando -> zumbido agudo oscilante (frequência de máquina instável) -> vácuo repentino e silêncio abrupto.
 - **Texto:** *sem texto. Apenas o impacto visual e sonoro do colapso temporal.*
-- **Transição:** flash branco instantâneo que decai para escuridão total (tela preta por 2 segundos).
-
----
-
-### Cena 9 — O Despertar nas Ruínas (3026)
-- **Arquivo proposto:** `assets/sprites/cutscenes/seg_prologo/cena_09_acordar_ruinas.png`
-- **Enquadramento:** exatamente o mesmo enquadramento da cabine, porém mil anos depois (o choque do contraste). A mesa de madeira está rachada, carcomida e manchada pelo tempo; musgo espesso cresce nas laterais da cabine; raízes secas descem do teto que desabou parcialmente. Pelo buraco do teto entra uma luz solar crua e empoeirada, iluminando partículas de pó e pólen flutuando. Gabriel começa a erguer a cabeça lentamente, piscando com os olhos semicerrados contra a claridade excessiva.
-- **Paleta e iluminação:** tons terrosos, verde-musgo desbotado, cinza de concreto envelhecido e a luz do sol forte, árida e poeirenta de 3026.
-- **Áudio / SFX:** som de vento oco passando por estruturas de concreto quebrado -> estalar seco de madeira podre sob o braço de Gabriel se movendo -> canto estranho e metálico de pássaros ao longe no campus deserto.
-- **Texto (fala sussurrada de Gabriel):**
-  > *"O que... que cheiro de terra é esse?... Cadê a lâmpada?..."*
-- **Transição:** fade out suave que conecta diretamente à cena jogável da cabine (`cenas/salas/biblioteca/cabine.tscn`), onde o jogador assume o controle de Gabriel.
+- **Transição:** flash branco instantâneo que decai para escuridão total (tela preta por 2 segundos). Da tela preta, entra a cutscene do despertar em 3026 ([`seg_acordar`](seg_acordar.md)), que mostra Gabriel acordando na cabine, mil anos depois.
 
 ---
 
@@ -119,5 +109,6 @@
 3. **Fluxo na Engine:**
    - Cena: `cenas/cutscenes/seg_prologo.tscn`.
    - Script: herda de `Cutscene` (`scripts/cutscenes/cutscene.gd`).
-   - Botão pular: permite pular com tecla `Esc` ou botão interativo, direcionando direto para o início da gameplay.
-   - Próxima cena: `cenas/salas/biblioteca/cabine.tscn`.
+   - Botão pular: permite pular com tecla `Esc` ou botão interativo, direcionando para a próxima cena.
+   - Próxima cena: `cenas/cutscenes/seg_acordar.tscn` (que, ao terminar, passa para `cenas/salas/biblioteca/cabine.tscn`).
+   - Menu: o "Novo jogo" passa a abrir `seg_prologo.tscn` em vez de `seg_acordar.tscn`.
