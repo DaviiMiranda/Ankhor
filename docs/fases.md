@@ -4,8 +4,9 @@ Tudo que é específico de cada fase e área do **Ankhor** fica documentado na p
 
 > [!NOTE]
 > - **Primeira Fase (Confirmada):** [`fases/biblioteca.md`](fases/biblioteca.md).
-> - **Bunker** (em desenvolvimento): [`fases/bunker.md`](fases/bunker.md). Dois setores, 9 salas, a Clarice e seis portas lacradas para depois.
-> - **Bloco de salas** (em desenvolvimento): [`fases/bloco_de_salas.md`](fases/bloco_de_salas.md). Dois corredores e 12 salas de aula.
+> - **Bloco de salas** (jogável): [`fases/bloco_de_salas.md`](fases/bloco_de_salas.md). Dois corredores e 12 salas de aula.
+> - **Centro de Convivência** (projeto planejado): [`fases/centro_de_convivencia.md`](fases/centro_de_convivencia.md). Fase entre o Bloco de salas e o Bunker.
+> - **Bunker** (em desenvolvimento): [`fases/bunker.md`](fases/bunker.md). Dois setores, 9 salas, Henrique e Zane na sala de dados e portas lacradas para depois.
 > - **DTEC** (mapa pronto, fase solta): [`fases/dtec.md`](fases/dtec.md). O departamento de tecnologia: dois corredores, 8 salas (2 trancadas para hackear, 5 portas lacradas) e, no meio, o salão de uma máquina grande e brilhante. Sem lugar na história ainda.
 > - Para entender o funcionamento do design de fases, consulte [`fases/README.md`](fases/README.md).
 > - Para criar uma nova fase/área documentada, utilize o modelo [`fases/template_fase.md`](fases/template_fase.md).
