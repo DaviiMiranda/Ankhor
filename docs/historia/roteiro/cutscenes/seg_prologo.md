@@ -5,7 +5,7 @@
 - **Personagens:** Gabriel Magalhães (protagonista, 2026). Figurantes de apoio: estudantes e professor de 2026 (silhuetas/desfocados).
 - **Formato visual:** sequência de ilustrações narrativas em pixel art (estilo *graphic novel* 2.5D, tela base 320×180), com camadas de paralaxe sutis, efeitos de iluminação e caixas de texto com pensamentos do Gabriel.
 - **Objetivo dramático:** apresentar o cotidiano mundano e cansativo de Gabriel em 2026, estabelecendo o choque do contraste com o futuro arruinado de 3026. Apresenta os três elementos cruciais que o acompanharão durante todo o jogo: o **anel desgastado da avó**, o **caderno de equações** e o **moletom vermelho**.
-- **Status:** em produção (roteiro fechado e as 8 ilustrações prontas; falta montar a cena no Godot).
+- **Status:** em produção (roteiro, ilustrações e cena no Godot prontos; faltam os sons).
 
 ---
 
@@ -102,13 +102,17 @@
 ## Especificações Técnicas para Produção
 
 1. **Resolução de Arte:** 320×180 px, escala 1× (proporção padrão do jogo). As ilustrações saem das referências em `assets/modelagem/cutscenes/seg_prologo/referencia/` pelo script `assets/modelagem/cutscenes/seg_prologo/pixelar_seg_prologo.py`, que reduz cada uma para 320×180, fecha a paleta em 48 cores e redesenha o despertador da cena 1 marcando 06:15. Para trocar uma ilustração, substitua a referência e rode o script de novo.
-2. **Camadas por Ilustração (quando aplicável):**
+2. **Camadas por Ilustração (quando aplicável):** hoje cada ilustração é uma imagem só. Se quiserem paralaxe depois, a ilustração precisa ser separada em:
    - Camada 0: Fundo estático (arquitetura/céu).
    - Camada 1: Elementos intermediários / Gabriel.
    - Camada 2: Primeiro plano e partículas (poeira, folhas, reflexos).
 3. **Fluxo na Engine:**
    - Cena: `cenas/cutscenes/seg_prologo.tscn`.
-   - Script: herda de `Cutscene` (`scripts/cutscenes/cutscene.gd`).
-   - Botão pular: permite pular com tecla `Esc` ou botão interativo, direcionando para a próxima cena.
+   - Script: `scripts/cutscenes/seg_prologo.gd`, que herda de `Cutscene` (`scripts/cutscenes/cutscene.gd`) e mostra os pensamentos (ver "Falas e pensamentos no meio da cutscene" no [README](README.md)).
+   - Ilustrações: um `Sprite2D` por cena, empilhados na ordem; as transições são trilhas da animação `principal` (corte = `visible`, dissolve = `modulate`, fades para preto ou branco = cor do `ColorRect` `Cortina`, que cobre a tela).
+   - Pensamentos: um JSON por cena em `dados/dialogos/seg_prologo/`, chamado pela trilha de método no tempo certo. A animação espera o jogador apertar `E`.
+   - Falha temporal da cena 8: shader `shaders/falha_temporal.gdshader` (faixas deslocadas e aberração cromática, presos à grade de pixels), com a força animada de 0 a 1 até o flash branco.
+   - Botão pular: `Esc` ou o botão "Pular", mesmo com um pensamento aberto; vai direto para a próxima cena.
    - Próxima cena: `cenas/cutscenes/seg_acordar.tscn` (que, ao terminar, passa para `cenas/salas/biblioteca/cabine.tscn`).
-   - Menu: o "Novo jogo" passa a abrir `seg_prologo.tscn` em vez de `seg_acordar.tscn`.
+   - Menu: o "Novo jogo" abre `seg_prologo.tscn`.
+   - Duração: cerca de 28 s, mais o tempo que o jogador leva lendo os sete pensamentos.

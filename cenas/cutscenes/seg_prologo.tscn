@@ -1,0 +1,227 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/seg_prologo.gd" id="2_seg_prologo"]
+[ext_resource type="PackedScene" path="res://cenas/cutscenes/seg_acordar.tscn" id="3_seg_acordar"]
+[ext_resource type="PackedScene" path="res://cenas/interface/caixa_dialogo.tscn" id="4_caixa_dialogo"]
+[ext_resource type="Shader" path="res://shaders/falha_temporal.gdshader" id="5_falha"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cutscenes/seg_prologo/cena_01_alarme.png" id="10_cena_01_alarme"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cutscenes/seg_prologo/cena_02_quarto.png" id="11_cena_02_quarto"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cutscenes/seg_prologo/cena_03_trajeto.png" id="12_cena_03_trajeto"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cutscenes/seg_prologo/cena_04_campus_vivo.png" id="13_cena_04_campus_vivo"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cutscenes/seg_prologo/cena_05_sala_aula.png" id="14_cena_05_sala_aula"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cutscenes/seg_prologo/cena_06_biblioteca_externa.png" id="15_cena_06_biblioteca_externa"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cutscenes/seg_prologo/cena_07_cabine_noite.png" id="16_cena_07_cabine_noite"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cutscenes/seg_prologo/cena_08_pulso_fenda.png" id="17_cena_08_pulso_fenda"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_falha"]
+shader = ExtResource("5_falha")
+shader_parameter/forca = 0.0
+
+[sub_resource type="Animation" id="Animation_principal"]
+resource_name = "principal"
+length = 28.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cortina:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.6, 3.2, 4, 4.4, 5.4, 9.4, 10, 10.05, 19.5, 21.5, 22.5, 22.55, 25.5, 25.55, 26.1, 28.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cena2Quarto:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cena4CampusVivo:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cena5SalaAula:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 12.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cena7CabineNoite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 17.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Cena8PulsoFenda:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 22),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Cena3Trajeto:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 7, 7.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Cena6BibliotecaExterna:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 14.1, 15.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Cena8PulsoFenda:material:shader_parameter/forca")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 22.5, 23.5, 24.3, 25, 25.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 0.35, 0.2, 0.6, 0.45, 1]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2.2, 6, 8.4, 11.1, 13.1, 16.3, 18.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": ["res://dados/dialogos/seg_prologo/cena_01_alarme.json"],
+"method": &"pensar"
+}, {
+"args": ["res://dados/dialogos/seg_prologo/cena_02_quarto.json"],
+"method": &"pensar"
+}, {
+"args": ["res://dados/dialogos/seg_prologo/cena_03_trajeto.json"],
+"method": &"pensar"
+}, {
+"args": ["res://dados/dialogos/seg_prologo/cena_04_campus_vivo.json"],
+"method": &"pensar"
+}, {
+"args": ["res://dados/dialogos/seg_prologo/cena_05_sala_aula.json"],
+"method": &"pensar"
+}, {
+"args": ["res://dados/dialogos/seg_prologo/cena_06_biblioteca_externa.json"],
+"method": &"pensar"
+}, {
+"args": ["res://dados/dialogos/seg_prologo/cena_07_cabine_noite.json"],
+"method": &"pensar"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_seg_prologo"]
+_data = {
+&"principal": SubResource("Animation_principal")
+}
+
+[node name="SegPrologo" type="Node2D"]
+script = ExtResource("2_seg_prologo")
+id = "seg_prologo"
+proxima_cena = ExtResource("3_seg_acordar")
+
+[node name="Cena1Alarme" type="Sprite2D" parent="."]
+texture = ExtResource("10_cena_01_alarme")
+centered = false
+
+[node name="Cena2Quarto" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("11_cena_02_quarto")
+centered = false
+
+[node name="Cena3Trajeto" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("12_cena_03_trajeto")
+centered = false
+
+[node name="Cena4CampusVivo" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("13_cena_04_campus_vivo")
+centered = false
+
+[node name="Cena5SalaAula" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("14_cena_05_sala_aula")
+centered = false
+
+[node name="Cena6BibliotecaExterna" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("15_cena_06_biblioteca_externa")
+centered = false
+
+[node name="Cena7CabineNoite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("16_cena_07_cabine_noite")
+centered = false
+
+[node name="Cena8PulsoFenda" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_falha")
+texture = ExtResource("17_cena_08_pulso_fenda")
+centered = false
+
+[node name="Cortina" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 330.0
+offset_bottom = 190.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CaixaDialogo" parent="." instance=ExtResource("4_caixa_dialogo")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_seg_prologo")
+}

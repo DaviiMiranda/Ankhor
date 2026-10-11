@@ -12,12 +12,22 @@ O mesmo nome é usado em todas as pastas da cutscene (ficha, cena, falas, sprite
 | Parte | Pasta | Quem cuida |
 |---|---|---|
 | Ficha (o que acontece) | `docs/historia/roteiro/cutscenes/<nome>.md` | roteiro |
-| Falas | `dialogos/<nome>.json` | roteiro |
+| Falas | `dados/dialogos/<nome>/` (um JSON por momento de fala) | roteiro |
 | Cena do Godot | `cenas/cutscenes/<nome>.tscn` | arte e jogabilidade |
 | Imagens | `assets/sprites/cutscenes/<nome>/` | arte |
 | Modelos do Blender | `assets/modelagem/cutscenes/<nome>/` | arte |
 
 Toda cena de cutscene usa o script `scripts/cutscenes/cutscene.gd`: ela toca a animação `principal` do seu `AnimationPlayer`, pode ser pulada com Esc e, ao terminar, avisa o jogo pelo sinal `cutscene_terminou` e troca para a `proxima_cena`.
+
+### Falas e pensamentos no meio da cutscene
+
+Uma cutscene com texto (como a `seg_prologo`) usa um script próprio que herda de `Cutscene` e tem a função `pensar(caminho_dialogo)`. Na animação `principal`, uma trilha de **chamada de método** chama `pensar` no momento em que o texto deve aparecer, passando o JSON da fala. A partir daí:
+
+1. `pensar` abre o diálogo pelo autoload `Dialogos`, que mostra a caixa de diálogo (`cenas/interface/caixa_dialogo.tscn`, instanciada dentro da cena da cutscene) e **pausa o jogo**.
+2. O `AnimationPlayer` está em modo `PAUSABLE`, então a animação para junto e espera o jogador ler. O jogador avança com `E` (ou `Enter`).
+3. Quando a fala termina, o `Dialogos` despausa o jogo e a animação continua de onde parou.
+
+A raiz da cutscene fica em modo `ALWAYS`, para o Esc e o botão "Pular" funcionarem mesmo com uma fala aberta. Ao pular, o script fecha a fala antes de trocar de cena, para o jogo não ficar pausado.
 
 ## Ficha e Organização
 
@@ -55,5 +65,5 @@ Resoluções, camadas de paralaxe e conexão no Godot (`scripts/cutscenes/cutsce
 
 | Cutscene | Descrição | Status |
 |---|---|---|
-| [`seg_prologo`](seg_prologo.md) | Prólogo em ilustrações: rotina de Gabriel em 2026, ida à faculdade, aula e o adormecer na cabine da Biblioteca | em produção (ilustrações prontas, falta a cena no Godot) |
+| [`seg_prologo`](seg_prologo.md) | Prólogo em ilustrações: rotina de Gabriel em 2026, ida à faculdade, aula e o adormecer na cabine da Biblioteca | em produção (cena montada no Godot; faltam os sons) |
 | [`seg_acordar`](seg_acordar.md) | O despertar imediato de Gabriel dentro da cabine da Biblioteca nas ruínas de 3026 | aprovada (cena provisória no Godot) |

@@ -1,0 +1,15 @@
+{
+	"id": "seg_prologo_cena_05_sala_aula",
+	"inicio": "pensamento",
+	"trechos": {
+		"pensamento": {
+			"falas": [
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "O professor fala como se cada derivada dessas fosse mudar o destino da humanidade. Se me garantir um cinco na média, já considero vitória."
+				}
+			]
+		}
+	}
+}
