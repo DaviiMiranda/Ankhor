@@ -124,8 +124,7 @@ Dá um número ao "com dias de diferença" do Enredo (seções 4.1 e 7.2). É um
 
 **O que já está decidido e a tabela respeita:**
 
-- Gabriel é o último a chegar, e o Zane chegou antes da Clarice (Enredo, seção 4.1).
-- O **Henrique é o primeiro** a chegar (pedido do Davi).
+- O **Henrique é o primeiro** a chegar, o Zane chegou antes da Clarice, a Diana depois da Clarice, e Gabriel é o último (Enredo, seção 4.1).
 - A fenda pulsa "a cada poucos dias" (seção 3), e cada pulso puxa uma pessoa (seção 7.2).
 - O Zane deixou o rádio sintonizado no balcão da Biblioteca (seção 6.1).
 
@@ -146,7 +145,7 @@ Dá um número ao "com dias de diferença" do Enredo (seções 4.1 e 7.2). É um
 - **Falas com número.** O Henrique pode dizer que faz quase um mês; o Zane, que perdeu a conta; a Diana, cinco dias. Quem chegou antes ensina quem chegou depois.
 - **Um motivo para o Henrique ser a voz do rádio.** Quem está lá há mais tempo é quem conhece as rondas dos robôs, e por isso é ele quem guia Gabriel desde a Biblioteca.
 
-**Se for aprovada, entra no Enredo:** uma coluna "Dias em 3026" na tabela 7.1, e o fechamento da ordem de chegada nas seções 4.1 e 12.3 (hoje: "o Zane antes da Clarice, e Gabriel por último"; a tabela acrescenta o Henrique em primeiro e coloca Baltazar e Diana no meio). Cada ficha ganha uma linha.
+**Se for aprovada, entra no Enredo:** uma coluna "Dias em 3026" na tabela 7.1, e o fechamento da ordem de chegada nas seções 4.1 e 12.3 (hoje só falta a posição do Baltazar; a tabela propõe colocá-lo entre o Zane e a Clarice). Cada ficha ganha uma linha.
 
 ---
 
