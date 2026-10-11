@@ -158,7 +158,7 @@ O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na T
 
 ## 8. Estrutura da história
 
-> Já decidido: **Biblioteca → Bloco de salas → Bunker**. Onde entram o Labirinto e as outras áreas **não está decidido** (seção 12). Esta estrutura segue a lógica da história, não uma ordem de jogo travada.
+> Já decidido: **Biblioteca → Bloco de salas → Centro de Convivência**. O Centro de Convivência ainda não foi feito. Onde entram o Bunker (o Ato 3 abaixo), o Labirinto e as outras áreas **não está decidido** (seção 12). Esta estrutura segue a lógica da história, não uma ordem de jogo travada.
 
 ### Ato 1 — Acordar (Biblioteca)
 
@@ -180,9 +180,10 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 ### Ato 2 — Encontrar os outros (Bloco de salas, Labirinto e demais áreas)
 
 - Cada fase leva a **um personagem** e ao esconderijo dele. Gabriel precisa chegar lá, ganhar a confiança da pessoa e receber a parte dela para consertar a Âncora (seção 3.1).
-- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Clarice** e da **Diana**, a **sala 103**, atrás de uma barricada. A Clarice foi para lá depois de chegar à Biblioteca; a Diana apareceu depois e foi acolhida por ela. Desde então as duas tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio, e a Clarice conta isso a Gabriel. Gabriel ganha a confiança dela devolvendo o molho de chaves que ela perdeu (para ela, é uma permuta, não um pedido de ajuda); daí em diante a Clarice o guia pelo rádio (o que cada chave abre, por onde os robôs passam, que ela mapeou como um grafo) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar. A saída, a porta corta-fogo do 1º andar, leva ao **Bunker**.
+- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Clarice** e da **Diana**, a **sala 103**, atrás de uma barricada. A Clarice foi para lá depois de chegar à Biblioteca; a Diana apareceu depois e foi acolhida por ela. Desde então as duas tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio, e a Clarice conta isso a Gabriel. Gabriel ganha a confiança dela devolvendo o molho de chaves que ela perdeu (para ela, é uma permuta, não um pedido de ajuda); daí em diante a Clarice o guia pelo rádio (o que cada chave abre, por onde os robôs passam, que ela mapeou como um grafo) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar. A saída, a porta corta-fogo do 1º andar, leva à próxima fase, o **Centro de Convivência**. Como ele ainda não existe, por enquanto a porta abre a entrada do Bunker, de forma provisória.
 - **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): subsolo escuro do centro de pesquisa da Âncora, com três robôs. Jogável, mas sem lugar na história ainda.
-- As áreas seguintes do GDD (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) ainda não foram redefinidas para a premissa atual.
+- **Centro de Convivência** (ainda não feito): é a fase que vem depois do Bloco de salas. O que acontece nela, quem Gabriel encontra e o que ela ensina ainda não foi definido.
+- As outras áreas do GDD (Espaço Cultural, NAMI, Reitoria) ainda não foram redefinidas para a premissa atual.
 - **Rádio e telefone:** a Clarice fala pelo rádio, na frequência que o Zane mantém, com o que o Henrique vê nas câmeras, e o Zane liga pelos telefones velhos.
 - **O anel:** em algum ponto deste ato, Gabriel encontra o Baltazar e descobre o parentesco.
 
@@ -191,7 +192,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 **Fase em desenvolvimento.** [`../fases/bunker.md`](../fases/bunker.md).
 
 - O bunker de pesquisa embaixo do núcleo da Âncora ("ÂNCORA-03"), com dois setores. Os robôs não descem aqui.
-- **Gabriel chega aqui saindo do Bloco de salas**, pela porta corta-fogo do 1º andar.
+- **De onde Gabriel chega aqui não está decidido.** Por enquanto a porta corta-fogo do Bloco de salas abre a entrada do bunker, mas a fase seguinte ao bloco é o Centro de Convivência (seção 12.5).
 - **Gabriel encontra o Zane em pessoa**, no computador da central de dados. O **Henrique** fica na mesma sala de dados, com o acesso às câmeras do campus.
 - O **setor B** (laboratório, arquivo e a comporta do núcleo) está lacrado pelo sistema, e o Zane tenta quebrar a senha.
 - Seis portas lacradas são os ganchos para as próximas fases: escotilha da superfície, elevador, arsenal, laboratório, arquivo e a comporta do núcleo.
@@ -296,12 +297,12 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 
 ### 12.5 Estrutura e fases
 
-- **Ordem das fases:** onde entram o Labirinto e as outras áreas, e qual personagem aparece em cada uma. Já decidido: Biblioteca → Bloco de salas → Bunker.
+- **Ordem das fases:** onde entram o Bunker, o Labirinto e as outras áreas, e qual personagem aparece em cada uma. Já decidido: Biblioteca → Bloco de salas → Centro de Convivência.
 - **Bloco de salas:** por que a sala 205 está intacta. O objetivo e os robôs foram decididos em 2026-10-11 ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)).
 - **O que destrava o setor B do bunker** (senhas nos disquetes, religar o gerador) e se os robôs entram lá.
 - **O D-Tec (Bloco M)** como fase: se é a última, e como o grupo enfrenta o Carlos sem lutar (Gabriel não é combatente).
 - **Cenários mais futuristas.** Pedido do Davi: os cenários precisam mostrar mais a tecnologia de 3026 (telas, máquinas, a estrutura do centro de pesquisa e do D-Tec), misturada às ruínas e à vegetação. Falta decidir quanto do campus tem esse visual futurista e onde ele aparece mais.
-- **Redesenho das áreas do GDD** (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) para a premissa da fenda.
+- **Redesenho das áreas do GDD** (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) para a premissa da fenda. O Centro de Convivência vem primeiro, por ser a fase seguinte ao Bloco de salas.
 - **De onde vem a grade horária dos robôs.** Antes vinha da coloração de grafos da semana de provas; hoje a patrulha é programada (pelo Carlos ou pela IA: seção 12.2).
 
 ### 12.6 Mecânicas que dependem da história

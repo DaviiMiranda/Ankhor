@@ -60,7 +60,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 - O **corredor** de cada andar é o centro, como o salão da Biblioteca: quase todo caminho passa por ele, e é ali que os robôs patrulham.
 - A **escada** começa fechada por uma grade de aço de enrolar (como a da Biblioteca), presa no chão com um cadeado.
 - O **buraco no chão da 204** dá na **104**, logo embaixo (as duas ficam no mesmo ponto dos corredores). Ele só serve para **descer**, e vira um atalho entre os andares (seção 5.5).
-- A **saída** é a **porta corta-fogo** no fim do corredor do 1º andar, depois da escada. Ela está **acorrentada** e leva à próxima fase, o **Bunker**.
+- A **saída** é a **porta corta-fogo** no fim do corredor do 1º andar, depois da escada. Ela está **acorrentada** e leva à próxima fase, o **Centro de Convivência**. Como ele ainda não existe, por enquanto a porta abre a entrada do Bunker, de forma provisória.
 
 ### 2.2 As salas no plano
 
@@ -229,7 +229,7 @@ A sala "intacta demais" entra no puzzle só como uma das lousas. **Por que ela e
 | Luar que revela | `VisivelComMarca` com `marca` vazia (sempre acesa) e `revela_quem_passa`: quatro faixas de luz no chão do 1º andar |
 | Alicate que muda a ronda | `item_no_chao.gd` com `marca_ao_pegar` (novo) = `alicate`, que é a `marca_da_rota` da Sentinela |
 | Transmissões que esperam uma marca | `gatilho_transmissao.gd` com `marca_necessaria` (novo) |
-| Fim da fase | `cenas/salas/bloco_de_salas/fim_do_bloco.tscn`: a `SaidaFase` com `sair_ao_carregar` (novo), que mostra "Você saiu do bloco" e leva à entrada do Bunker |
+| Fim da fase | `cenas/salas/bloco_de_salas/fim_do_bloco.tscn`: a `SaidaFase` com `sair_ao_carregar` (novo), que mostra "Você saiu do bloco" e leva à entrada do Bunker, provisoriamente, até o Centro de Convivência existir |
 | Itens novos | `dados/itens/molho_de_chaves.tres`, `chave_grade.tres`, `chave_deposito.tres`, `alicate.tres` |
 | Arte nova | `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` (ícones, claviculário, grade, corrente, buraco, sirene) e `gerar_kit.py` (lousas `parede_lousa_0`, `_3`, `_7`, `_8`) |
 | Sons novos | `assets/modelagem/audio/gerar_efeitos_bloco_de_salas.py`: sirene (em loop), queda e corrente cortada |
@@ -238,7 +238,7 @@ A sala "intacta demais" entra no puzzle só como uma das lousas. **Por que ela e
 
 ## 10. Decidido e em aberto
 
-Aprovado pelo Davi em 2026-10-11: o posto é a **103** e quem fica nele é a **Clarice** (o Rafael saiu da história no mesmo dia: ver `docs/decisoes.md`); a saída é a **porta corta-fogo** do 1º andar, que leva ao **Bunker**; não existe livro de ocorrências; o notebook não entra nesta fase.
+Aprovado pelo Davi em 2026-10-11: o posto é a **103** e quem fica nele é a **Clarice** (o Rafael saiu da história no mesmo dia: ver `docs/decisoes.md`); a saída é a **porta corta-fogo** do 1º andar, que leva à próxima fase, o **Centro de Convivência** (por enquanto, ao Bunker); não existe livro de ocorrências; o notebook não entra nesta fase.
 
 Continua em aberto (Enredo, pendências): por que a sala 205 está intacta.
 

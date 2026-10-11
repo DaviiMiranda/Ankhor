@@ -16,6 +16,14 @@ Formato:
 
 ---
 
+## 2026-10-11 — A fase depois do Bloco de salas é o Centro de Convivência
+**Decisão:** a fase que vem depois do **Bloco de salas** é o **Centro de Convivência**. Ele ainda não foi feito: por enquanto só o nome e a posição estão decididos. A ordem fica **Biblioteca → Bloco de salas → Centro de Convivência**. Isso substitui a entrada anterior de que a saída do Bloco de salas levava ao Bunker: o Bunker continua sendo o Ato 3 da história, mas a posição dele na ordem das fases deixa de estar decidida.
+- **No jogo nada muda por enquanto:** a porta corta-fogo do Bloco de salas continua abrindo a entrada do Bunker, de forma provisória, até o Centro de Convivência existir.
+- **Fica pendente:** o que acontece no Centro de Convivência, quem Gabriel encontra nele e o que ele ensina (Enredo, seções 8 e 12.5). O texto antigo dele no GDD é da premissa anterior (Calouros) e precisa ser refeito.
+
+**Por quê:** decisão do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 8, 12.5), `docs/fases/bloco_de_salas.md`, `bunker.md` e `README.md`.
+
 ## 2026-10-11 — O começo da história: a Clarice é a voz do rádio, o Henrique chegou primeiro e ajuda por trás
 **Decisão:**
 - **A Clarice é a voz do rádio na Biblioteca.** Ela ajuda Gabriel na primeira fase pelo rádio, com o que o Henrique vê nas câmeras. O Henrique deixa de ser a voz que guia Gabriel: ele ajuda a Clarice e a Diana, e o primeiro contato dele com Gabriel é em pessoa, no bunker.
