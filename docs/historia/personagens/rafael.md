@@ -1,6 +1,6 @@
 # Rafael (2008)
 
-> **Status:** Em desenvolvimento. Já fala pelo rádio na Biblioteca.
+> **Status:** Em desenvolvimento. Aparece em pessoa no Bloco de salas (sala 103) e fala pelo rádio lá.
 > **Lei do projeto:** esta ficha faz parte do [Enredo Principal](../enredo_principal.md) e tem a mesma autoridade: quem o Rafael é vale como está escrito aqui. A história em volta dele (o acidente, a ordem dos acontecimentos, as pendências) está no Enredo.
 
 ---
@@ -30,15 +30,15 @@
 ## 4. No jogo
 
 - **Onde aparece:** em pessoa, no **Bloco de salas**.
-- **Esconderijo:** o "posto de guarda", uma sala de aula do Bloco de salas (qual, pendente), onde fica sozinho. Pode servir de **sala segura**.
+- **Esconderijo:** o "posto de guarda", a **sala 103** do Bloco de salas, atrás de uma barricada, onde fica sozinho. É a **sala segura** do bloco.
 - **Como chega ao jogador:** em pessoa, e pela frequência de rádio do grupo.
 - **Função na jogabilidade:** conhece o campus e as rondas dos robôs de cor, e sabe o que cada chave abre.
 - **Parte para consertar a Âncora:** conhece o campus e as rondas, e sabe o que cada chave abre.
 
 ## 5. Registros
 
-- **Suporte:** livro de ocorrências do vigia (tabela com data e hora) e o rádio, com chiado na tela. O papel ainda não foi desenhado no jogo.
-- **Já escritos:** nenhum. As duas transmissões do rádio que eram dele passaram a ser do Henrique.
+- **Suporte:** só o rádio, com chiado na tela, e a conversa em pessoa no posto. O Rafael não deixa papéis: o que ele sabe, ele fala.
+- **Já escritos (rascunho, para o roteiro revisar):** três transmissões no Bloco de salas (`dados/transmissoes/rafael_01.tres` a `rafael_03.tres`) e quatro conversas no posto (`dados/dialogos/rafael_*.json`). As duas transmissões da Biblioteca que eram dele passaram a ser do Henrique.
 
 ## 6. Direção de arte
 
@@ -50,9 +50,9 @@
 ## 7. Arquivos
 
 - **Sprites:** `assets/sprites/personagens/rafael/`, gerados por `assets/modelagem/personagens/gerar_rafael.py`.
-- **Cena:** `cenas/personagens/rafael.tscn` (parado, por enquanto só na sala de teste).
-- **Diálogos em pessoa:** ainda não existem.
+- **Cena:** `cenas/personagens/rafael.tscn` (parado). No posto da 103: `cenas/personagens/rafael_posto.tscn`, com a conversa que troca o molho pela chave da grade.
+- **Diálogos em pessoa:** `dados/dialogos/rafael_pede_molho.json`, `rafael_pede_molho_de_novo.json`, `rafael_devolve_chave.json` e `rafael_de_novo.json`.
 
 ## 8. Pendências
 
-- Qual sala de aula do Bloco de salas é o posto de guarda dele (Enredo Principal, seção 12.3).
+- Nenhuma por enquanto. A sala do posto foi decidida: a 103 (2026-10-11).

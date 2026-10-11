@@ -1,9 +1,9 @@
 # Fase — Bloco de salas
 
-> **Status:** cenário e portas jogáveis. **Planejamento de objetivos e puzzles proposto em 2026-10-11, aguardando aprovação do Davi** (seções 3 a 9). Depois de aprovado, é implementado.
+> **Status:** **jogável do começo ao fim** (2026-10-11): objetivos, puzzles, robôs, o Rafael no posto e a saída. As falas são rascunho para o roteiro revisar.
 > **Área:** um bloco de salas de aula da Unifor, dois andares (no GDD: "Blocos de aula").
 > **Vem de:** a porta de saída da ala leste da Biblioteca ([`biblioteca.md`](biblioteca.md)).
-> **História:** o que o Bloco de salas conta segue o [Enredo Principal](../historia/enredo_principal.md) (Ato 2), que é a lei do projeto. O objetivo desta fase era uma pendência do Enredo (seção 12.5); o que está aqui é uma **proposta**.
+> **História:** o que o Bloco de salas conta segue o [Enredo Principal](../historia/enredo_principal.md) (Ato 2), que é a lei do projeto. O plano foi aprovado pelo Davi em 2026-10-11 (registro em `docs/decisoes.md`).
 
 ---
 
@@ -58,7 +58,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 ```
 
 - O **corredor** de cada andar é o centro, como o salão da Biblioteca: quase todo caminho passa por ele, e é ali que os robôs patrulham.
-- A **escada** começa fechada por uma grade sanfonada com cadeado.
+- A **escada** começa fechada por uma grade de aço de enrolar (como a da Biblioteca), presa no chão com um cadeado.
 - O **buraco no chão da 204** dá na **104**, logo embaixo (as duas ficam no mesmo ponto dos corredores). Ele só serve para **descer**, e vira um atalho entre os andares (seção 5.5).
 - A **saída** é a **porta corta-fogo** no fim do corredor do 1º andar, depois da escada. Ela está **acorrentada**. Para onde ela leva depende da ordem das fases, que ainda está pendente (Enredo, seção 12.5).
 
@@ -69,10 +69,10 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 | Corredor térreo | Chegada e eixo do andar de baixo | Areia em parte do chão (passos abafados), entulho perto da 102 (passos barulhentos) | Atrás dos montes de areia e entulho | **Rastreador** (audição) |
 | 101 | Pista do código | Lousa com tracinhos (1º número do cadeado) | Debaixo das carteiras | Nenhuma |
 | 102 | Chave da escada | O **molho de chaves do Rafael**, caído na areia. 3 pedras | Atrás das carteiras tombadas | O Rastreador passa na porta |
-| 103 | **Posto de guarda do Rafael** (proposta) e **sala segura** | O Rafael, o acampamento, 2 pilhas | Não precisa: a barricada protege | Nenhuma |
-| 104 | Distração e fim do atalho | Os terminais acesos. Um deles tem o **teste de alarme** do laboratório. No teto, o buraco que vem da 204 | Debaixo das mesas | Nenhuma (o Rastreador vem quando o alarme toca) |
+| 103 | **Posto de guarda do Rafael** e **sala segura** | O Rafael, o acampamento, 2 pilhas | Não precisa: a barricada protege | Nenhuma |
+| 104 | Distração e fim do atalho | Os terminais acesos. Um deles tem o **teste de alarme** do bloco, que dispara a **sirene do fim do corredor** (perto da escada). No teto, o buraco que vem da 204 | Debaixo das mesas | Nenhuma |
 | 105 | Respiro | 2 robôs desmontados, 2 pilhas | Atrás dos robôs desmontados | Nenhuma (os robôs desmontados não ligam) |
-| 106 | Respiro | A árvore e o luar. 1 pilha a mais (opcional) | Atrás da árvore | Nenhuma |
+| 106 | Respiro | A árvore e o luar | Atrás da árvore | Nenhuma |
 | Corredor 1º andar | Eixo do andar de cima | Luar pelos buracos do teto: faixas de luz e de sombra no chão. Mato (passos abafados) | Na sombra das árvores do corredor | **Sentinela** (visão) |
 | 201 | Pista do código | Duas lousas; a da esquerda tem os tracinhos (2º número) | Entre as fileiras | Nenhuma |
 | 202 | Respiro | As duas árvores. 1 pedra | Atrás das árvores | Nenhuma |
@@ -93,8 +93,8 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 
 1. **A chegada (corredor térreo).** O Gabriel sai da Biblioteca no oeste do corredor. O **Rastreador** patrulha o corredor de ponta a ponta. A areia abafa os passos; o entulho perto da 102 faz barulho.
    - *O que o jogador aprende:* o chão muda o barulho dos passos.
-2. **A voz nova (rádio).** Na porta da 103, o rádio chia: é o **Rafael**, pela primeira vez ("Rapaz, quem tá aí no corredor? Aqui é o Seu Rafael, da segurança. Câmbio."). Ele está entrincheirado na 103 e não mexe na barricada com "a máquina da obra" rondando a porta dele. Pede ao Gabriel que tire o robô dali: "Lá na 104 tem um teste de alarme. Liga aquilo que ela vai atrás. Câmbio." *(Falas são rascunho, para o roteiro: o Rafael chama os robôs de "máquinas da obra" porque acha que é tudo reforma, como diz a ficha dele.)*
-3. **A distração (sala 104).** Num dos terminais acesos, o Gabriel liga o **teste de alarme**. O barulho se espalha pelo bloco. Quando ele volta ao corredor, o **Rastreador está parado na porta da 104, investigando**, e o caminho até a 103 fica livre por alguns segundos.
+2. **A voz nova (rádio).** Na porta da 103, o rádio chia: é o **Rafael**, pela primeira vez ("Rapaz, quem tá aí no corredor? Aqui é o Seu Rafael, da segurança. Câmbio."). Ele está entrincheirado na 103 e não mexe na barricada com "a máquina da obra" rondando a porta dele. Pede ao Gabriel que tire o robô dali: na 104 tem o teste de alarme, e a sirene fica no fim do corredor; a máquina vai correndo ver o que é. *(Falas são rascunho, para o roteiro: o Rafael chama os robôs de "máquinas da obra" porque acha que é tudo reforma, como diz a ficha dele.)*
+3. **A distração (sala 104).** Num dos terminais acesos, o Gabriel liga o **teste de alarme**. Quando ele volta ao corredor, a **sirene do fim do corredor está tocando** e o **Rastreador está lá, investigando** (por 20 s ele não ouve mais nada). O caminho até a 103 fica livre, e a barricada da 103 se abre.
    - *O que o jogador aprende:* barulho é ferramenta, não só perigo.
 4. **O posto do Rafael (sala 103).** O Rafael abre uma fresta na barricada. É o primeiro encontro **em pessoa** do jogo. Ele desconfia ("estudante a essa hora no bloco fechado?") e diz que perdeu o **molho de chaves** na areia da 102, quando a máquina o surpreendeu. Sem o molho, ninguém sobe: a grade da escada está no cadeado. "Traz o meu molho que eu te digo qual chave abre o quê."
 5. **O molho (sala 102).** O molho está na areia, entre carteiras tombadas e montes de entulho. O Rastreador volta à rotina e passa pela porta da 102. As **pedras** da sala servem para atraí-lo para longe.
@@ -119,7 +119,7 @@ saída ← corrente cortada ← alicate (206) ← chave do depósito ← cadeado
 
 O atalho 204 → 104 é **opcional**: fica fora da cadeia principal.
 
-Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são **vértices**, portas são **arestas**, cada cadeado é uma condição numa aresta e a ordem de solução é uma **ordenação topológica** do grafo de dependências. A novidade é a distração da 104: o alarme é um **evento sonoro propagado por BFS** pelo grafo das salas (ver [`../computacao/grafos_e_navegacao.md`](../computacao/grafos_e_navegacao.md)).
+Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são **vértices**, portas são **arestas**, cada cadeado é uma condição numa aresta e a ordem de solução é uma **ordenação topológica** do grafo de dependências. A novidade é a distração da 104: o teste de alarme é um evento sonoro que atravessa as salas (104 → corredor) e chega ao Rastreador, que vai investigar a sirene. Dentro de uma sala, o robô ouve passos e pedras pela **BFS** na grade (ver [`../computacao/grafos_e_navegacao.md`](../computacao/grafos_e_navegacao.md)).
 
 ### 3.3 Itens
 
@@ -127,12 +127,13 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 |---|---|---|
 | Molho de chaves do Rafael | 102, na areia | Devolver ao Rafael (confiança). O molho fica com ele |
 | Chave da fita azul | 103, entregue pelo Rafael | Abrir a grade da escada |
-| Código do claviculário | Tracinhos das lousas da 101, 201 e 205 | Abrir o claviculário (203) |
+| Código do claviculário (**738**) | Tracinhos das lousas da 101 (7), 201 (3) e 205 (8) | Abrir o claviculário (203) |
 | Chave do depósito | Claviculário (203) | Abrir a 206 |
 | Alicate corta-corrente | 206 | Cortar a corrente da porta corta-fogo |
 | Cápsula de clarão | 204 (já está lá) | Defesa |
 | Pedras | 102 (3, já estão lá) e 202 (1) | Distração |
-| Pilhas | 103 (2), 105 (2), 206 (1), 106 (1) | Lanterna |
+| Pilhas | 103 (2), 105 (2), 206 (1) | Lanterna |
+| Rádio | Corredor do térreo, na chegada | Só aparece se o Gabriel ainda não tem (quem começa pelo menu Fases). Sem ele, as transmissões não tocam |
 
 ---
 
@@ -140,8 +141,8 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 
 | Robô | Onde | Sentido forte | Rota |
 |---|---|---|---|
-| **Rastreador** | Corredor do térreo | Audição | Vai e volta pelo corredor inteiro. Depois do alarme (passo 3), fica um tempo parado na porta da 104, investigando, e depois volta à rota |
-| **Sentinela** | Corredor do 1º andar | Visão | Antes do alicate: ronda curta entre a 201 e a 204. Depois do alicate (passo 11): cobre também o trecho entre a 206 e a escada |
+| **Rastreador** | Corredor do térreo | Audição | Vai e volta pelo corredor inteiro. Depois do alarme (passo 3), fica 20 s investigando a sirene, no fim do corredor, sem ouvir mais nada, e depois volta à rota |
+| **Sentinela** | Corredor do 1º andar | Visão | Antes do alicate: ronda entre a 202 e a 204, parando debaixo dos buracos do teto. Depois do alicate (passo 11): ronda entre a 203 e a porta corta-fogo, passando pela 206 e pela escada |
 | **Rastreador** | Depósito (206) | Audição | Circula entre os corredores de estantes |
 
 - **O chão:** na **areia** e no **mato**, os passos quase não fazem barulho. No **entulho**, até andando faz (ver [`../mecanicas/movimentacao_e_terreno.md`](../mecanicas/movimentacao_e_terreno.md)).
@@ -155,9 +156,9 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 
 ### 5.1 A distração (104)
 
-- **Como funciona:** um terminal da 104 tem o **teste de alarme**. Ligar faz um barulho alto que se propaga pelo bloco.
-- **Mecânica:** evento sonoro (BFS). Como cada sala é uma cena, o efeito fica guardado como uma marca (`alarme_104`). Ao voltar ao corredor, o Rastreador começa **parado na porta da 104**, investigando, por um tempo, e depois retoma a rota.
-- **Solução:** ligar o alarme, voltar ao corredor e chegar à 103 antes de o Rastreador terminar de investigar.
+- **Como funciona:** um terminal da 104 (com um LED vermelho piscando) tem o **teste de alarme**. Ligar arma a sirene do fim do corredor e marca `alarme_104`, que libera a barricada da 103.
+- **Mecânica:** cada sala é uma cena, então o efeito é guardado até o Gabriel voltar ao corredor. Ao carregar, a `Sirene` toca por 20 s e chama `distrair()` nos robôs da sala: o Rastreador já está nela (correu para lá enquanto o Gabriel estava na 104) e fica investigando, ignorando outros barulhos. Dá para ligar o teste de novo quantas vezes precisar.
+- **Solução:** ligar o alarme, voltar ao corredor e ir até a 103 enquanto a sirene toca.
 
 ### 5.2 O molho (102 e 103)
 
@@ -166,26 +167,26 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 
 ### 5.3 Os tracinhos (101, 201, 205 → 203)
 
-- **Como funciona:** cada lousa tem um número de tracinhos. O papel no quadro de avisos da 203 diz em que ordem contar.
-- **Mecânica:** o painel de código da Biblioteca (`painel_codigo.tscn`), com 3 números.
-- **Solução:** contar os tracinhos das três lousas e digitar na ordem 101, 201, 205.
-- **Os tracinhos na história (sugestão, não decisão):** podem ser as **noites que o Rafael riscou** em cada sala da ronda, esperando a "reforma" acabar. Combina com a ficha dele (continua fazendo a ronda, nega a realidade). Se o grupo aprovar, o papel do quadro de avisos é dele.
+- **Como funciona:** as lousas da 101, 201 (a da esquerda) e 205 têm poucos tracinhos, fáceis de contar: **7, 3 e 8**. Olhar a lousa também diz a contagem. O bilhete no quadro de avisos da 203 diz a ordem: **101 · 201 · 205**.
+- **Mecânica:** o painel de código da Biblioteca (`painel_codigo.tscn`), sem precisar de energia, com o desenho do claviculário. Ao abrir, ele dá a chave do depósito.
+- **Solução:** digitar **738**.
+- **Os tracinhos na história:** quem riscou e quem deixou o bilhete ficam **em aberto** (pendência do Enredo). As outras lousas do bloco continuam com os 25 tracinhos de antes.
 
 ### 5.4 A corrente (206 → porta corta-fogo)
 
 - **Como funciona:** a porta de saída tem uma corrente com cadeado; o alicate é a "chave".
-- **Mecânica:** porta com `chave` (o alicate é um item como a chave da manutenção).
+- **Mecânica:** porta com `chave` (o alicate é um item como a chave da manutenção). O primeiro uso só corta a corrente (som e aviso, e o rádio do Rafael se despede); o segundo atravessa a porta e termina a fase.
 
 ### 5.5 O atalho (204 → 104)
 
-- **Como funciona:** o buraco no chão da 204 é uma passagem de mão única: o Gabriel desce e cai entre as mesas da 104, logo embaixo. Cair faz barulho (o Rastreador do corredor pode ouvir).
+- **Como funciona:** o buraco no chão da 204 é uma passagem de mão única: o Gabriel desce e cai entre as mesas da 104, logo embaixo, com o som da queda. É uma `Porta` que leva a um ponto de chegada sem volta.
 - **Para que serve:** encurtar a volta ao posto do Rafael (salvar) e fugir da Sentinela depois da virada.
 
 ---
 
 ## 6. Sala segura
 
-- **Sala segura:** o **posto de guarda do Rafael (103)**. A barricada protege, e os robôs não entram. O Gabriel pode dormir e salvar aqui (a ficha do Rafael já sugere: "pode servir de sala segura").
+- **Sala segura:** o **posto de guarda do Rafael (103)**. A barricada protege, e os robôs não entram. Tem um checkpoint ao lado do Rafael. Há outro na chegada do corredor do térreo.
 - **Por que aqui:** fica no meio do térreo, perto da escada e do atalho, e é o lugar para onde o Gabriel volta depois de cada parte difícil.
 - **O sonho:** o que os sonhos mostram está pendente no Enredo (seção 12.4).
 
@@ -193,16 +194,18 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 
 ## 7. Registros
 
-| Registro | Onde | Quem |
-|---|---|---|
-| **1ª transmissão do Rafael** (pede para tirar a máquina da porta) | Corredor térreo, perto da 103 | Rafael, pelo rádio |
-| **Conversa no posto** (pede o molho; depois entrega a chave da grade) | 103 | Rafael, em pessoa (diálogo) |
-| **Como a máquina de cima anda** | Topo da escada, ao chegar no 1º andar | Rafael, pelo rádio |
-| **Papel do quadro de avisos** ("Conferir a contagem: 101 · 201 · 205") | 203 | A definir (sugestão: do Rafael) |
-| **Aviso de ronda nova** | Corredor 1º andar, depois do alicate | Henrique, pelo rádio |
-| **Despedida** | Porta corta-fogo | Rafael, pelo rádio |
+| Registro | Onde | Quem | Arquivo |
+|---|---|---|---|
+| **1ª transmissão do Rafael** (pede para tirar a máquina da porta) | Corredor térreo, perto da 103 | Rafael, pelo rádio | `dados/transmissoes/rafael_01.tres` |
+| **Conversa no posto** (pede o molho) e o lembrete | 103 | Rafael, em pessoa | `dados/dialogos/rafael_pede_molho.json`, `rafael_pede_molho_de_novo.json` |
+| **Troca** (devolve o molho, ganha a chave e as dicas) | 103 | Rafael, em pessoa | `dados/dialogos/rafael_devolve_chave.json` |
+| **Conversa de depois** (claviculário, andar de cima) | 103 | Rafael, em pessoa | `dados/dialogos/rafael_de_novo.json` |
+| **Como a máquina de cima anda** | Topo da escada | Rafael, pelo rádio | `dados/transmissoes/rafael_02.tres` |
+| **Bilhete do quadro de avisos** ("Conferir a contagem - 101 · 201 · 205") | 203 | Em aberto | na cena `sala_203` |
+| **Aviso de ronda nova** | Porta da 206, depois do alicate | Henrique, pelo rádio | `dados/transmissoes/henrique_03.tres` |
+| **Despedida** | Porta corta-fogo, ao cortar a corrente | Rafael, pelo rádio | `dados/transmissoes/rafael_03.tres` |
 
-Todas as falas aqui são rascunho de intenção. O texto final é do roteiro (agente `roteirista`), seguindo a ficha do Rafael (jeito cearense, "câmbio", "Seu Rafael", nega que é 3026).
+Todas as falas são rascunho. O texto final é do roteiro (agente `roteirista`), seguindo a ficha do Rafael (jeito cearense, "câmbio", "Seu Rafael", nega que é 3026).
 
 ---
 
@@ -212,36 +215,36 @@ A sala "intacta demais" entra no puzzle só como uma das lousas. **Por que ela e
 
 ---
 
-## 9. O que precisa ser construído
+## 9. Como foi construído
 
-A maior parte já existe e foi usada na Biblioteca:
-
-| O quê | Já existe? | Como |
-|---|---|---|
-| Portas com chave e com marca | Sim (`porta.gd`: `chave`, `liberada_por`, `marca_ao_tentar`) | Grade da escada, 206, porta corta-fogo |
-| Marcas da fase | Sim (autoload `Progresso`) | Novas: `alarme_104`, `molho_devolvido`, `claviculario_aberto`, `alicate` |
-| Painel de código | Sim (`painel_codigo.tscn`) | Claviculário com 3 números |
-| Robôs com rota e troca de rota por marca | Sim (Sentinela e Rastreador, `RobosDaSala`) | Três robôs (seção 4) |
-| Transmissões de rádio | Sim (`GatilhoTransmissao`, `dados/transmissoes/`) | Rafael e Henrique |
-| Diálogo em pessoa | Sim (`ConversaNpc` + JSON) | Rafael no posto |
-| Itens | Sim (`dados/itens/`) | Novos: molho, chave da fita azul, chave do depósito, alicate |
-| **Alarme da 104** | **Não** | Terminal que, ao ligar, marca `alarme_104`. No corredor, o Rastreador começa investigando a porta da 104 |
-| **Buraco de mão única** | **Não** | Interagível na 204 que leva à 104 (como uma porta sem volta), com um barulho de queda |
-| **Lousas com tracinhos contáveis** | Em parte (`parede_lousa.tscn`) | Variante com um número fixo e legível de tracinhos nas lousas da 101, 201 e 205 |
-| **Luar que revela** | Em parte (as luzes de emergência da Biblioteca já revelam) | Mesmo efeito nas faixas de luar do 1º andar |
-| **Rafael na 103** | Em parte (`rafael.tscn` existe, parado) | Colocar na 103 com a conversa |
+| O quê | Como |
+|---|---|
+| Portas trancadas | `porta.gd`. Campos novos: `aviso_destrancada`, `marca_ao_destrancar`, `atravessa_ao_destrancar` (a grade e a corrente só destrancam no primeiro uso) e `som_destrancar` |
+| Marcas da fase (autoload `Progresso`) | `alarme_104`, `molho_devolvido`, `escada_destrancada`, `claviculario_aberto`, `alicate`, `corrente_cortada` |
+| Alarme da 104 | `cenas/sistemas/terminal_alarme.tscn` e `cenas/sistemas/sirene.tscn` (`terminal_alarme.gd`, `sirene.gd`). O robô ganhou `distrair(onde, segundos)` |
+| Rafael na 103 | `cenas/personagens/rafael_posto.tscn`: o Rafael parado e a `ConversaComTroca` (`conversa_com_troca.gd`), que escolhe a conversa pelo progresso e, no fim da troca, tira o molho e dá a chave (`Inventario.remover`, novo) |
+| Claviculário | `painel_codigo.tscn` com `marca_energia` vazia (sem energia), `texto_visor` e `item_ao_abrir` (campos novos) |
+| Grade da escada | `grade_seguranca.tscn` com a textura `grade_escada.png`, que sobe com a marca `escada_destrancada` |
+| Corrente da porta corta-fogo | `VisivelComMarca` com `some_com_marca` (novo): some quando a corrente é cortada |
+| Luar que revela | `VisivelComMarca` com `marca` vazia (sempre acesa) e `revela_quem_passa`: quatro faixas de luz no chão do 1º andar |
+| Alicate que muda a ronda | `item_no_chao.gd` com `marca_ao_pegar` (novo) = `alicate`, que é a `marca_da_rota` da Sentinela |
+| Transmissões que esperam uma marca | `gatilho_transmissao.gd` com `marca_necessaria` (novo) |
+| Fim da fase | `cenas/salas/bloco_de_salas/fim_do_bloco.tscn`: a `SaidaFase` com `sair_ao_carregar` (novo) |
+| Itens novos | `dados/itens/molho_rafael.tres`, `chave_grade.tres`, `chave_deposito.tres`, `alicate.tres` |
+| Arte nova | `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` (ícones, claviculário, grade, corrente, buraco, sirene) e `gerar_kit.py` (lousas `parede_lousa_0`, `_3`, `_7`, `_8`) |
+| Sons novos | `assets/modelagem/audio/gerar_efeitos_bloco_de_salas.py`: sirene (em loop), queda e corrente cortada |
 
 ---
 
-## 10. Para aprovar
+## 10. Decidido e em aberto
 
-Decisões que dependem do Davi antes de implementar:
+Aprovado pelo Davi em 2026-10-11: o posto do Rafael é a **103**; a saída é a **porta corta-fogo** do 1º andar; não existe livro de ocorrências; o notebook não entra nesta fase.
 
-1. **O posto do Rafael é a sala 103** (a da barricada com acampamento)? O Enredo deixa a sala pendente (seção 12.3).
-2. **A saída é a porta corta-fogo do 1º andar.** Para onde ela leva depende da ordem das fases (pendente).
-3. **Os tracinhos são as noites de ronda do Rafael?** (seção 5.3). Se não, o papel do quadro de avisos fica sem autor.
-4. **Energia:** a 104 tem terminais acesos e o alarme funciona. Isso depende de como fica a regra de eletricidade de 3026 no Enredo (seção 2.2), que precisa ser corrigida.
-5. O **notebook** (hackeamento) **não** entra aqui, porque ele está no D-Tec e a ordem das fases não está decidida.
+Continua em aberto (Enredo, pendências):
+
+1. **Para onde a porta corta-fogo leva**, que depende da ordem das fases. Por enquanto ela termina a fase ("Você saiu do bloco") e volta ao menu.
+2. **Quem riscou os tracinhos** e deixou o bilhete da 203.
+3. **A regra de eletricidade de 3026** (Enredo, seção 2.2): a 104 tem terminais acesos e um alarme que funciona.
 
 ---
 

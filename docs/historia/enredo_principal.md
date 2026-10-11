@@ -122,7 +122,7 @@ O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na T
 |---|---|
 | **Bunker**, embaixo do núcleo da Âncora. O maior e mais seguro: os robôs não descem lá | Zane, no computador da central de dados, e Diana |
 | **Biblioteca**, escondido numa sala, com medo | Baltazar, isolado dos outros |
-| **Bloco de salas**, numa sala de aula que ele transformou no seu "posto de guarda" | Rafael |
+| **Bloco de salas**, na sala 103, que ele transformou no seu "posto de guarda" | Rafael |
 | **Posto de monitoramento**, com as câmeras do campus e o rádio | Henrique, sozinho |
 | **D-Tec**, no laboratório | Carlos, que nunca sai de lá |
 | *Pendente* | Clarice |
@@ -185,7 +185,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 ### Ato 2 — Encontrar os outros (Bloco de salas, Labirinto e demais áreas)
 
 - Cada fase leva a **um personagem** e ao esconderijo dele. Gabriel precisa chegar lá, ganhar a confiança da pessoa e receber a parte dela para consertar a Âncora (seção 3.1).
-- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo do **Rafael**, numa das salas. Hoje só tem cenário e portas.
+- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo do **Rafael**, a **sala 103**, atrás de uma barricada. Gabriel ganha a confiança dele devolvendo o molho de chaves que ele perdeu; daí em diante o Rafael o guia pelo rádio (o que cada chave abre, por onde as máquinas passam) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar.
 - **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): subsolo escuro do centro de pesquisa da Âncora, com três robôs. Jogável, mas sem lugar na história ainda.
 - As áreas seguintes do GDD (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) ainda não foram redefinidas para a premissa atual.
 - **Rádio e telefone:** o Henrique fala pelo rádio, na frequência que o Zane mantém, e o Zane liga pelos telefones velhos.
@@ -290,7 +290,6 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 - **Clarice:** onde ela fica (o esconderijo dela) e onde Gabriel a encontra em pessoa.
 - **Zane:** o que fazia no ponto quando foi puxado.
 - **Ordem de chegada** de Baltazar, Diana, Rafael e Henrique (já decidido: todos antes de Gabriel, e o Zane antes da Clarice). Não precisa seguir a ordem dos anos.
-- **Qual sala de aula** do Bloco de salas é o esconderijo do Rafael.
 - **Onde fica, dentro da Biblioteca, o esconderijo do Baltazar**, e como ele combina com o acampamento vazio que Gabriel acha no começo do jogo e com a última página do diário ("Hei de seguir a luz até onde ella nasce").
 
 ### 12.4 Textos já escritos que citam a versão antiga
@@ -301,7 +300,7 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 ### 12.5 Estrutura e fases
 
 - **Ordem das fases** depois da Biblioteca: onde entram o Labirinto, o Bunker e o Bloco de salas, e qual personagem aparece em cada uma.
-- **Objetivo, robôs e história do Bloco de salas.**
+- **Bloco de salas:** para onde leva a porta corta-fogo do 1º andar (a saída da fase), quem riscou os tracinhos das lousas e deixou o bilhete "Conferir a contagem" na 203, e por que a sala 205 está intacta. O objetivo e os robôs foram decididos em 2026-10-11 ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)).
 - **O que destrava o setor B do bunker** (senhas nos disquetes, religar o gerador) e se os robôs entram lá.
 - **O D-Tec (Bloco M)** como fase: se é a última, e como o grupo enfrenta o Carlos sem lutar (Gabriel não é combatente).
 - **Cenários mais futuristas.** Pedido do Davi: os cenários precisam mostrar mais a tecnologia de 3026 (telas, máquinas, a estrutura do centro de pesquisa e do D-Tec), misturada às ruínas e à vegetação. Falta decidir quanto do campus tem esse visual futurista e onde ele aparece mais.
