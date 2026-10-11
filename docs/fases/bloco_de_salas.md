@@ -60,7 +60,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 - O **corredor** de cada andar é o centro, como o salão da Biblioteca: quase todo caminho passa por ele, e é ali que os robôs patrulham.
 - A **escada** começa fechada por uma grade de aço de enrolar (como a da Biblioteca), presa no chão com um cadeado.
 - O **buraco no chão da 204** dá na **104**, logo embaixo (as duas ficam no mesmo ponto dos corredores). Ele só serve para **descer**, e vira um atalho entre os andares (seção 5.5).
-- A **saída** é a **porta corta-fogo** no fim do corredor do 1º andar, depois da escada. Ela está **acorrentada**. Para onde ela leva depende da ordem das fases, que ainda está pendente (Enredo, seção 12.5).
+- A **saída** é a **porta corta-fogo** no fim do corredor do 1º andar, depois da escada. Ela está **acorrentada** e leva à próxima fase, o **Bunker**.
 
 ### 2.2 As salas no plano
 
@@ -170,7 +170,7 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 - **Como funciona:** as lousas da 101, 201 (a da esquerda) e 205 têm poucos tracinhos, fáceis de contar: **7, 3 e 8**. Olhar a lousa também diz a contagem. O bilhete no quadro de avisos da 203 diz a ordem: **101 · 201 · 205**.
 - **Mecânica:** o painel de código da Biblioteca (`painel_codigo.tscn`), sem precisar de energia, com o desenho do claviculário. Ao abrir, ele dá a chave do depósito.
 - **Solução:** digitar **738**.
-- **Os tracinhos na história:** quem riscou e quem deixou o bilhete ficam **em aberto** (pendência do Enredo). As outras lousas do bloco continuam com os 25 tracinhos de antes.
+- As outras lousas do bloco continuam com os 25 tracinhos de antes.
 
 ### 5.4 A corrente (206 → porta corta-fogo)
 
@@ -229,7 +229,7 @@ A sala "intacta demais" entra no puzzle só como uma das lousas. **Por que ela e
 | Luar que revela | `VisivelComMarca` com `marca` vazia (sempre acesa) e `revela_quem_passa`: quatro faixas de luz no chão do 1º andar |
 | Alicate que muda a ronda | `item_no_chao.gd` com `marca_ao_pegar` (novo) = `alicate`, que é a `marca_da_rota` da Sentinela |
 | Transmissões que esperam uma marca | `gatilho_transmissao.gd` com `marca_necessaria` (novo) |
-| Fim da fase | `cenas/salas/bloco_de_salas/fim_do_bloco.tscn`: a `SaidaFase` com `sair_ao_carregar` (novo) |
+| Fim da fase | `cenas/salas/bloco_de_salas/fim_do_bloco.tscn`: a `SaidaFase` com `sair_ao_carregar` (novo), que mostra "Você saiu do bloco" e leva à entrada do Bunker |
 | Itens novos | `dados/itens/molho_de_chaves.tres`, `chave_grade.tres`, `chave_deposito.tres`, `alicate.tres` |
 | Arte nova | `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` (ícones, claviculário, grade, corrente, buraco, sirene) e `gerar_kit.py` (lousas `parede_lousa_0`, `_3`, `_7`, `_8`) |
 | Sons novos | `assets/modelagem/audio/gerar_efeitos_bloco_de_salas.py`: sirene (em loop), queda e corrente cortada |
@@ -238,13 +238,9 @@ A sala "intacta demais" entra no puzzle só como uma das lousas. **Por que ela e
 
 ## 10. Decidido e em aberto
 
-Aprovado pelo Davi em 2026-10-11: o posto é a **103** e quem fica nele é a **Clarice** (o Rafael saiu da história no mesmo dia: ver `docs/decisoes.md`); a saída é a **porta corta-fogo** do 1º andar; não existe livro de ocorrências; o notebook não entra nesta fase.
+Aprovado pelo Davi em 2026-10-11: o posto é a **103** e quem fica nele é a **Clarice** (o Rafael saiu da história no mesmo dia: ver `docs/decisoes.md`); a saída é a **porta corta-fogo** do 1º andar, que leva ao **Bunker**; não existe livro de ocorrências; o notebook não entra nesta fase.
 
-Continua em aberto (Enredo, pendências):
-
-1. **Para onde a porta corta-fogo leva**, que depende da ordem das fases. Por enquanto ela termina a fase ("Você saiu do bloco") e volta ao menu.
-2. **Quem riscou os tracinhos** e deixou o bilhete da 203.
-3. **A regra de eletricidade de 3026** (Enredo, seção 2.2): a 104 tem terminais acesos e um alarme que funciona.
+Continua em aberto (Enredo, pendências): por que a sala 205 está intacta.
 
 ---
 

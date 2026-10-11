@@ -16,6 +16,15 @@ Formato:
 
 ---
 
+## 2026-10-11 — A eletricidade funciona, e o Bloco de salas leva ao Bunker
+**Decisão:**
+- **A eletricidade funciona normalmente** no campus de 3026. Sai do Enredo a regra "quase nada elétrico funciona; só os sistemas da Âncora", e sai junto a pendência sobre quais sistemas são da Âncora e quais do Carlos. Onde algo está apagado numa fase (a grade da Biblioteca antes dos disjuntores), é um circuito desligado ou quebrado.
+- **A porta corta-fogo do Bloco de salas leva ao Bunker**, a próxima fase. A tela de fim do bloco ("Você saiu do bloco") agora abre a entrada do Bunker em vez de voltar ao menu. A ordem fica Biblioteca → Bloco de salas → Bunker; o Labirinto e as outras áreas continuam sem lugar.
+- **Sai a pendência dos tracinhos:** quem riscou as lousas e deixou o bilhete da 203 não precisa de resposta. O puzzle continua igual (738).
+
+**Por quê:** pedido do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 2.2, 8, 12.5 e 12.6), `docs/gdd.md` (item Iluminar), `docs/fases/bloco_de_salas.md`, `docs/fases/bunker.md`, `cenas/salas/bloco_de_salas/fim_do_bloco.tscn`.
+
 ## 2026-10-11 — O Henrique no lugar da Clarice na sala de dados do bunker
 **Decisão:** na cena do bunker (`central_dados`), o **Henrique** substitui a Clarice na estação de trabalho. Ele aparece em pé, de costas, olhando as câmeras (`henrique_na_estacao.tscn`), e tem conversa própria: `henrique_primeiro_encontro.json` e `henrique_de_novo.json` (rascunho, para o roteiro revisar; no jeito dele: pausado, se corrigindo, fala pouco, e fica nervoso quando o assunto é a Âncora). A estação ganhou um sprite próprio, sem ninguém sentado, com as três telas mostrando câmeras (`estacao_dados.png`). As portas lacradas do setor B passam a dizer "O Zane está tentando abrir". O **Zane** ainda não tem cena no bunker.
 **Por quê:** a Clarice foi para o Bloco de salas (entrada acima) e o Henrique passou para a sala de dados, com acesso às câmeras. O sprite da Clarice tinha a estação desenhada junto, então foi preciso desenhar a estação separada.

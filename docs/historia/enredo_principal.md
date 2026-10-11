@@ -28,7 +28,7 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 - A **Âncora** e o laboratório do **Carlos** ficam no **D-Tec**, a parte de tecnologia da Unifor, no **Bloco M**.
 - Concreto rachado e desabado, árvores dentro das salas, dunas sobre os corredores, mato onde era estacionamento. Não há cidade em volta, só vegetação. Resistem as coisas duras: concreto, metal, vidro, pedra.
 - Objetos do cotidiano de hoje (catraca, bebedouro, quadro de horários, a cantina) viraram relíquias. O choque do jogo é perceber **quanto tempo passou**.
-- Quase nada elétrico funciona. Funcionam os sistemas da Âncora (luzes de emergência, bunker, terminais, telefones) e os robôs.
+- **A eletricidade funciona normalmente.** Onde algo está apagado numa fase (como a grade da Biblioteca antes de religar os disjuntores), é um circuito desligado ou quebrado, não falta de energia.
 
 ### 2.3 Os robôs
 
@@ -158,7 +158,7 @@ O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na T
 
 ## 8. Estrutura da história
 
-> A ordem das fases depois da Biblioteca **não está decidida** (seção 12). Esta estrutura segue a lógica da história, não uma ordem de jogo travada.
+> Já decidido: **Biblioteca → Bloco de salas → Bunker**. Onde entram o Labirinto e as outras áreas **não está decidido** (seção 12). Esta estrutura segue a lógica da história, não uma ordem de jogo travada.
 
 ### Ato 1 — Acordar (Biblioteca)
 
@@ -180,7 +180,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 ### Ato 2 — Encontrar os outros (Bloco de salas, Labirinto e demais áreas)
 
 - Cada fase leva a **um personagem** e ao esconderijo dele. Gabriel precisa chegar lá, ganhar a confiança da pessoa e receber a parte dela para consertar a Âncora (seção 3.1).
-- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Clarice**, a **sala 103**, atrás de uma barricada. Gabriel ganha a confiança dela devolvendo o molho de chaves que ela perdeu (para ela, é uma permuta, não um pedido de ajuda); daí em diante a Clarice o guia pelo rádio (o que cada chave abre, por onde os robôs passam, que ela mapeou como um grafo) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar.
+- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Clarice**, a **sala 103**, atrás de uma barricada. Gabriel ganha a confiança dela devolvendo o molho de chaves que ela perdeu (para ela, é uma permuta, não um pedido de ajuda); daí em diante a Clarice o guia pelo rádio (o que cada chave abre, por onde os robôs passam, que ela mapeou como um grafo) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar. A saída, a porta corta-fogo do 1º andar, leva ao **Bunker**.
 - **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): subsolo escuro do centro de pesquisa da Âncora, com três robôs. Jogável, mas sem lugar na história ainda.
 - As áreas seguintes do GDD (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) ainda não foram redefinidas para a premissa atual.
 - **Rádio e telefone:** o Henrique fala pelo rádio, na frequência que o Zane mantém, e o Zane liga pelos telefones velhos.
@@ -191,6 +191,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 **Fase em desenvolvimento.** [`../fases/bunker.md`](../fases/bunker.md).
 
 - O bunker de pesquisa embaixo do núcleo da Âncora ("ÂNCORA-03"), com dois setores. Os robôs não descem aqui.
+- **Gabriel chega aqui saindo do Bloco de salas**, pela porta corta-fogo do 1º andar.
 - **Gabriel encontra o Zane em pessoa**, no computador da central de dados. O **Henrique** fica na mesma sala de dados, com o acesso às câmeras do campus, e a **Diana** também mora aqui.
 - O **setor B** (laboratório, arquivo e a comporta do núcleo) está lacrado pelo sistema, e o Zane tenta quebrar a senha.
 - Seis portas lacradas são os ganchos para as próximas fases: escotilha da superfície, elevador, arsenal, laboratório, arquivo e a comporta do núcleo.
@@ -294,8 +295,8 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 
 ### 12.5 Estrutura e fases
 
-- **Ordem das fases** depois da Biblioteca: onde entram o Labirinto, o Bunker e o Bloco de salas, e qual personagem aparece em cada uma.
-- **Bloco de salas:** para onde leva a porta corta-fogo do 1º andar (a saída da fase), quem riscou os tracinhos das lousas e deixou o bilhete "Conferir a contagem" na 203, e por que a sala 205 está intacta. O objetivo e os robôs foram decididos em 2026-10-11 ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)).
+- **Ordem das fases:** onde entram o Labirinto e as outras áreas, e qual personagem aparece em cada uma. Já decidido: Biblioteca → Bloco de salas → Bunker.
+- **Bloco de salas:** por que a sala 205 está intacta. O objetivo e os robôs foram decididos em 2026-10-11 ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)).
 - **O que destrava o setor B do bunker** (senhas nos disquetes, religar o gerador) e se os robôs entram lá.
 - **O D-Tec (Bloco M)** como fase: se é a última, e como o grupo enfrenta o Carlos sem lutar (Gabriel não é combatente).
 - **Cenários mais futuristas.** Pedido do Davi: os cenários precisam mostrar mais a tecnologia de 3026 (telas, máquinas, a estrutura do centro de pesquisa e do D-Tec), misturada às ruínas e à vegetação. Falta decidir quanto do campus tem esse visual futurista e onde ele aparece mais.
@@ -304,7 +305,6 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 
 ### 12.6 Mecânicas que dependem da história
 
-- **Energia:** quais sistemas são da Âncora e quais são do Carlos. Hoje: luzes de emergência, bunker, terminais e telefones são da Âncora; os robôs obedecem ao Carlos.
 - **Gadgets e personagens:** em que fase cada gadget aparece e se cada um vem de um personagem.
 
 ### 12.7 A mentira do Henrique
