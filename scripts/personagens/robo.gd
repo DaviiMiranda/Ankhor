@@ -89,6 +89,7 @@ var _sorteio := RandomNumberGenerator.new()
 var _indice_rota := -1
 var _bipou := false
 var _som_bipe: AudioStreamPlayer2D
+var _segundos_distraido := 0.0
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var olhos: Sprite2D = $Olhos
@@ -172,6 +173,7 @@ func _mudar_estado(novo: Estado) -> void:
 func _patrulhar() -> void:
 	_mudar_estado(Estado.PATRULHA)
 	_bipou = false
+	_segundos_distraido = 0.0
 	var pontos := _pontos_da_rota()
 	if not pontos.is_empty():
 		_indice_rota = posmod(_indice_rota + 1, pontos.size())
@@ -203,7 +205,7 @@ func pode_ser_hackeado_de(ponto: Vector2) -> bool:
 
 
 func ouvir_barulho(origem: Vector2, alcance_base: int) -> void:
-	if grade == null or estado in [Estado.PERSEGUINDO, Estado.ATACOU, Estado.ATORDOADO]:
+	if grade == null or _segundos_distraido > 0.0 or estado in [Estado.PERSEGUINDO, Estado.ATACOU, Estado.ATORDOADO]:
 		return
 	var alcance := int(alcance_base * fator_audicao)
 	if alcance <= 0:
@@ -211,6 +213,13 @@ func ouvir_barulho(origem: Vector2, alcance_base: int) -> void:
 	var ondas := grade.distancias(grade.livre_mais_perto(grade.celula(origem)), alcance)
 	if ondas.has(grade.celula(global_position)):
 		_investigar(origem)
+
+
+func distrair(onde: Vector2, segundos: float) -> void:
+	if grade == null or estado in [Estado.PERSEGUINDO, Estado.ATACOU, Estado.ATORDOADO]:
+		return
+	_segundos_distraido = segundos
+	_investigar(onde)
 
 
 func _investigar(onde: Vector2) -> void:
@@ -291,7 +300,7 @@ func _ao_chegar() -> void:
 			if _tempo_desde_chegada > pausa_no_ponto:
 				_patrulhar()
 		Estado.INVESTIGANDO:
-			if _tempo_desde_chegada > segundos_olhando_em_volta:
+			if _tempo_desde_chegada > maxf(segundos_olhando_em_volta, _segundos_distraido):
 				_salinha = grade.salinha(global_position)
 				_patrulhar()
 		Estado.PROCURANDO:

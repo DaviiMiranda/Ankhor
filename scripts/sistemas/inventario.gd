@@ -50,6 +50,19 @@ func adicionar(item: Item) -> bool:
 	return false
 
 
+func remover(id: String) -> void:
+	for linha in LINHAS:
+		for coluna in COLUNAS:
+			var item: Item = grade[linha][coluna]
+			if item != null and item.id == id:
+				grade[linha][coluna] = null
+				var espaco := espaco_do_gadget(item)
+				if espaco != -1:
+					gadgets[espaco] = null
+				mudou.emit()
+				return
+
+
 func item_em(linha: int, coluna: int) -> Item:
 	return grade[linha][coluna]
 
