@@ -21,12 +21,12 @@
 				{
 					"quem": "Gabriel",
 					"retrato": "gabriel/gabriel_retrato_surpreso",
-					"texto": "Você... é de verdade. Uma pessoa."
+					"texto": "Você é a voz do rádio. É... de verdade. Uma pessoa."
 				},
 				{
 					"quem": "Clarice",
 					"retrato": "clarice/clarice_retrato_sorrindo",
-					"texto": "De verdade e de mau humor. Clarice. A do bilhete e do disquete da Biblioteca. Você achou, pelo jeito."
+					"texto": "De verdade e de mau humor. Clarice: a do rádio, do bilhete e do disquete. Você achou, pelo jeito."
 				}
 			],
 			"escolhas": [
@@ -45,7 +45,7 @@
 				{
 					"quem": "Clarice",
 					"retrato": "clarice/clarice_retrato_normal",
-					"texto": "Mil anos, meu filho. Mil. Eu fiz a conta três vezes e ela fecha: isso aqui é 3026."
+					"texto": "Mil anos, meu filho. Mil. O Henrique garante que, de alguma forma, isso aqui é 3026. Eu fiz a conta três vezes: fecha."
 				},
 				{
 					"quem": "Gabriel",
