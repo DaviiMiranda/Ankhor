@@ -20,6 +20,10 @@
 					"vai_para": "cima"
 				},
 				{
+					"texto": "O que vocês já descobriram?",
+					"vai_para": "descobertas"
+				},
+				{
 					"texto": "Até mais, Clarice.",
 					"vai_para": "tchau"
 				}
@@ -63,6 +67,26 @@
 					"texto": "Vai lá. E não confia nas luzes."
 				}
 			]
+		},
+		"descobertas": {
+			"falas": [
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Pouca coisa, e devagar. Eu anoto as rondas: cada robô repete o mesmo ciclo, todo dia."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_sorrindo",
+					"texto": "A Diana desenha o mapa à mão, com as passagens que não estão em mapa nenhum. Exagera nas setas, mas acerta."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "O Henrique olha as câmeras e conta o que vê, e a gente junta com as rondas e com o mapa."
+				}
+			],
+			"vai_para": "posto"
 		}
 	}
 }

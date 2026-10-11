@@ -11,7 +11,7 @@
 - **O que é:** um bunker do centro de pesquisa, construído para proteger a equipe da Âncora. Fechado e seco, ainda de pé depois de mil anos, mas gasto: concreto aparente em cima e tinta verde-oliva descascando embaixo, eletrocalhas com cabos pendurados, portas de aço de correr, faixas de perigo amarelas e pretas.
 - **Luz:** tubos fluorescentes frios que piscam e luzes de emergência vermelhas. O setor B (lá embaixo) está quase todo no vermelho e alagado.
 - **Som:** a trilha do bunker (grave e opressiva, em Dó frígio, com a fita da Clarice ao longe) em todas as salas, por baixo do zumbido do transformador e do ar parado do duto, goteiras no setor B e o motor do gerador.
-- **Quem vive aqui:** pelas decisões de 2026-10-08 e 2026-10-11, o **Zane** (no computador da central de dados), o **Henrique** (na mesma sala de dados, com acesso às câmeras do campus) e a **Diana**. A cena mostra hoje o **Henrique** na estação, de costas, olhando as câmeras (a Clarice agora fica no Bloco de salas). O **Zane** ainda não aparece: falta a cena dele (Enredo Principal, seção 12.4). Os robôs não descem ao bunker (ou não sabem que ele existe), por isso aqui não há perseguição: é o lugar mais seguro do jogo até agora.
+- **Quem vive aqui:** pelas decisões de 2026-10-08 e 2026-10-11, o **Zane** (no computador da central de dados), e o **Henrique** (na mesma sala de dados, com acesso às câmeras do campus). A Diana fica no Bloco de salas, com a Clarice. A cena mostra hoje o **Henrique** na estação, de costas, olhando as câmeras (a Clarice agora fica no Bloco de salas). O **Zane** ainda não aparece: falta a cena dele (Enredo Principal, seção 12.4). Os robôs não descem ao bunker (ou não sabem que ele existe), por isso aqui não há perseguição: é o lugar mais seguro do jogo até agora.
 - **Clarice pelas paredes:** "NÃO CONFIE NAS LUZES" pichado no corredor, a seta "→ DADOS C." apontando para a sala dela, "NÃO ABRE. JÁ TENTEI. C." perto das portas lacradas, e o grafo das rotas dos robôs na parede da central.
 
 ---
@@ -56,7 +56,7 @@ As portas existem, com placa e o visual de porta lacrada (fita vermelha e branca
 
 | Porta (`id`) | Onde | Aviso de hoje | Ideia |
 |---|---|---|---|
-| `escada_superficie` | entrada | "A escotilha lá em cima emperrou." | Por onde o Gabriel chega, vindo do Bloco de salas |
+| `escada_superficie` | entrada | "A escotilha lá em cima emperrou." | Por onde o Gabriel chega, por enquanto vindo do Bloco de salas (a fase seguinte ao bloco será o Centro de Convivência) |
 | `elevador` | entrada | "O elevador está sem energia." | Atalho entre os setores depois de religar a energia no gerador |
 | `arsenal` | corredor A | "Arsenal: acesso só com autorização." | Cápsulas de clarão e equipamento |
 | `laboratorio` | corredor B | "Lacrada pelo sistema. O Zane está tentando abrir." | Pesquisa da Âncora; talvez parte da pesquisa do professor |
@@ -70,7 +70,7 @@ O Henrique explica no diálogo que o setor B está lacrado pelo sistema e que o 
 ## 3. Objetivos e Progressão
 
 - **Hoje:** explorar o bunker, achar o Henrique na sala de dados e conversar com ele (a conversa anota "Henrique, na sala de dados" no caderno).
-- **Chegada:** o Gabriel chega ao bunker depois do Bloco de salas, pela porta corta-fogo do 1º andar. A tela de fim do bloco leva direto à `entrada`.
+- **Chegada:** por enquanto, o Gabriel chega ao bunker saindo do Bloco de salas, pela porta corta-fogo do 1º andar: a tela de fim do bloco leva direto à `entrada`. Isso é provisório, porque a fase seguinte ao Bloco de salas será o Centro de Convivência (ainda não feito).
 - **A definir com a equipe:** o que destrava o setor B (senhas nos disquetes? religar o gerador?) e se os robôs entram aqui em algum momento.
 
 ---
@@ -84,7 +84,7 @@ O Henrique explica no diálogo que o setor B está lacrado pelo sistema e que o 
 | Gerador do kit | `assets/modelagem/cenario/gerar_bunker.py` |
 | Luzes (tubo fluorescente e emergência) | `cenas/cenario/luzes/luz_tubo.tscn`, `luz_emergencia.tscn` |
 | Henrique na estação | `cenas/personagens/henrique_na_estacao.tscn` (a estação em `assets/sprites/cenario/objetos/estacao_dados.png`, gerada por `assets/modelagem/cenario/gerar_estacao_dados.py`) |
-| Diálogos do Henrique | `dados/dialogos/henrique_primeiro_encontro.json`, `henrique_de_novo.json` (rascunho, para o roteiro revisar) |
+| Diálogos do Henrique | `dados/dialogos/henrique_primeiro_encontro.json`, `henrique_de_novo.json` |
 | Clarice, sentada (sem uso) | `cenas/personagens/clarice.tscn` e `clarice_primeiro_encontro.json`, `clarice_de_novo.json`: ficaram da versão em que ela morava aqui |
 | Sons | `assets/modelagem/audio/gerar_efeitos_bunker.py` |
 | Música | `assets/modelagem/audio/gerar_trilha_bunker.py`, tocada por `cenas/sistemas/musica_bunker.tscn` |

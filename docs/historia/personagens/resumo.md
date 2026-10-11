@@ -25,13 +25,13 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 
 **Gabriel Magalhães (2026).** Observador, reservado e de **ironia seca** ("Ótimo. Mil anos de atraso pra aula."). Foge de conflito e adia decisões. Quer voltar para casa, e depois quer que todos voltem. Tem medo de não fazer diferença. **Arco:** de quem só sobrevive a quem une o grupo.
 
-**Baltazar Magalhães (~1750).** Cerimonioso, devoto e encantado com tudo. Fala português arcaico, chama todos de "Vossa Mercê" e solta latim quando está aflito. Acha que 3026 é o Juízo Final. Teimoso. **Arco:** do "Juízo Final" à compreensão. Quando descobre que Gabriel é seu descendente, fica protetor ("meu neto de mil anos"). No fim, quer ficar em 3026, mas **precisa voltar**, ou a família de Gabriel não existe.
+**Baltazar Magalhães (~1750).** Cerimonioso, devoto e encantado com tudo. Fala português arcaico, chama todos de "Vossa Mercê" e solta latim quando está aflito. Acha que 3026 é o Juízo Final. Teimoso. **Arco:** do "Juízo Final" à compreensão. Quando descobre que Gabriel é seu descendente, fica protetor ("meu neto de mil anos"). No fim, quer ficar em 3026, mas **precisa voltar**, ou a família de Gabriel não existe. Está escondido numa sala da Biblioteca desde que chegou.
 
-**Diana (1978).** Dramática, ansiosa, impulsiva e intensa. Fala rápido e com exclamações ("Pronto, é o fim!"), misturando jargão de polícia com drama de novela. Quer provar que não foi um erro vestir a farda. Age antes de pensar. **Arco:** aprender a controlar o medo.
+**Diana (1978).** Dramática, ansiosa, impulsiva e intensa. Fala rápido e com exclamações ("Pronto, é o fim!"), misturando jargão de polícia com drama de novela. Quer provar que não foi um erro vestir a farda. Age antes de pensar. **Arco:** aprender a controlar o medo. Apareceu na 103 depois da Clarice, que a acolheu.
 
-**Clarice (1994).** Rápida, independente e debochada, com gírias dos anos 90 ("Isso é totalmente surreal", "Não confie nas luzes"). Explica tudo como um problema de lógica. Não pede ajuda. Tem medo de ser esquecida. Fica na sala 103 do Bloco de salas, de onde guia Gabriel pelo rádio. **Arco:** de quem resolve tudo sozinha a quem confia no grupo.
+**Clarice (1994).** Rápida, independente e debochada, com gírias dos anos 90 ("Isso é totalmente surreal", "Não confie nas luzes"). Explica tudo como um problema de lógica. Não pede ajuda. Tem medo de ser esquecida. Foi da Biblioteca para o Bloco de salas e ficou na sala 103, onde acolheu a Diana. É a voz do rádio que guia Gabriel desde a Biblioteca, com o que o Henrique vê nas câmeras. **Arco:** de quem resolve tudo sozinha a quem confia no grupo.
 
-**Henrique (2019).** Introvertido, perfeccionista, ansioso e gentil. Fala pausado e técnico, e se corrige no meio da frase. Da sala de dados do bunker, com acesso às câmeras, é **a voz do rádio** que guia Gabriel desde a primeira fase, mas fala pouco e fica na dele. **Engana o grupo**: esconde a ligação que tem com o Carlos. **Arco:** da mentira à verdade, quando o grupo descobre.
+**Henrique (2019).** Introvertido, perfeccionista, ansioso e gentil. Fala pausado e técnico, e se corrige no meio da frase. **Foi o primeiro a chegar.** Diz que está escondido na sala de dados do bunker, tentando entender tudo, e que, de alguma forma, estão em 3026. Com acesso às câmeras, **ajuda a Clarice e a Diana pelo rádio**; fala pouco e fica na dele. **Engana o grupo**: esconde a ligação que tem com o Carlos. **Arco:** da mentira à verdade, quando o grupo descobre.
 
 **Zane (2123).** Confiante, direto, irreverente e elétrico, com gírias de um futuro que ninguém reconhece. Tem medo da IA, mas confia demais na tecnologia. Do computador do bunker, **faz a comunicação de todos**. **Arco:** no fim, **escolhe ficar em 3026** para tentar domar a IA.
 
@@ -51,9 +51,9 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 |---|---|---|
 | Gabriel | — | O caderno, com as equações da cadeira |
 | Baltazar | Escondido numa sala da Biblioteca, com medo e isolado | As estrelas, que acertam a data de volta de cada um |
-| Diana | Bunker, com o Zane | Investigação: onde fica o núcleo e as passagens até lá |
-| Clarice | Sala 103 do Bloco de salas, atrás de uma barricada: guia Gabriel pelo rádio | Código: faz os terminais da Âncora funcionarem. Mapeou as rondas e sabe o que cada chave abre |
-| Henrique | Bunker, na sala de dados, com as câmeras: guia o grupo pelo rádio | A teoria por trás das equações |
+| Diana | Sala 103 do Bloco de salas, com a Clarice | Investigação: onde fica o núcleo e as passagens até lá |
+| Clarice | Sala 103 do Bloco de salas, atrás de uma barricada, com a Diana: guia Gabriel pelo rádio (Biblioteca e Bloco) com o que o Henrique vê | Código: faz os terminais da Âncora funcionarem. Mapeou as rondas e sabe o que cada chave abre |
+| Henrique | Bunker, na sala de dados, com as câmeras: ajuda a Clarice e a Diana pelo rádio | A teoria por trás das equações |
 | Zane | Bunker, no computador da central de dados: faz a comunicação de todos | A tecnologia mais próxima da Âncora |
 | Carlos | Laboratório do D-Tec, de onde nunca sai | — |
 
@@ -66,7 +66,8 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 | Gabriel × Baltazar | Família descoberta. No fim, Gabriel convence o Baltazar a voltar para 1750 |
 | Gabriel × Clarice | Duelo de ironias. A relação cresce ao longo do jogo |
 | Gabriel × Zane | A voz do telefone que abre a saída da Biblioteca e mantém todos em contato |
-| Diana × Clarice | O drama contra o deboche. Brigam o tempo todo e acabam amigas |
+| Diana × Clarice | O drama contra o deboche. A Clarice a acolheu na 103. Brigam o tempo todo e acabam amigas |
+| Clarice × Henrique | Ele vê o campus pelas câmeras e passa o que vê; ela repassa a Gabriel |
 | Baltazar × Zane | Os dois extremos do tempo: fé contra tecnologia, e os dois mais curiosos do grupo |
 | Henrique × Zane | Dividem a sala de dados: o Zane cuida do rádio e do telefone, o Henrique das câmeras |
 | Henrique × Carlos | O Henrique trabalha para ele ou foi enganado por ele (pendente) |
@@ -83,4 +84,4 @@ As pendências de cada personagem estão no fim da ficha dele e no [Enredo Princ
 - **Zane:** o que fazia quando foi puxado.
 - **Clarice:** se continua na 103 até o fim ou se junta ao grupo no bunker.
 - **Baltazar:** qual sala da Biblioteca é o esconderijo dele, e quando ela se abre.
-- **Ordem de chegada** de Baltazar, Diana e Henrique (o Zane chega antes da Clarice, e todos antes de Gabriel).
+- **Ordem de chegada:** só falta a posição do Baltazar (Henrique é o primeiro, o Zane vem antes da Clarice, a Diana depois da Clarice, e Gabriel é o último).

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "clarice_04"
+falante = "CLARICE (rádio)"
+falas = PackedStringArray("Chhh... Estudante. O Henrique viu pela câmera: a máquina do andar de cima mudou a ronda.", "Agora ela vai até a escada. E até a porta do fim do corredor.", "O buraco no chão da 204 dá na 104. Se precisar descer sem passar por ela.")
+titulo_anotacao = "Clarice, 1994"
+anotacao = "Depois que peguei o alicate, o Henrique viu pelas câmeras o robô do 1º andar passar a rondar até a escada e a porta corta-fogo, e a Clarice avisou.
+- O buraco da 204 desce direto para a 104."
