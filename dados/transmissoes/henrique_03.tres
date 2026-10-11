@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "henrique_03"
+falante = "HENRIQUE (rádio)"
+falas = PackedStringArray("Chhh... Gabriel. A máquina do andar de cima mudou a ronda. Eu vi pela câmera.", "Agora ela vai até a escada. E até a porta do fim do corredor.", "O buraco no chão da 204... dá na 104. Se precisar descer sem passar por ela.")
+titulo_anotacao = "Henrique, 2019"
+anotacao = "Depois que peguei o alicate, o robô do 1º andar passou a rondar até a escada e a porta corta-fogo.
+- O buraco da 204 desce direto para a 104."

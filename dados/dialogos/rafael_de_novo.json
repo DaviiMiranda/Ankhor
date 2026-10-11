@@ -1,0 +1,68 @@
+{
+	"id": "rafael_de_novo",
+	"inicio": "posto",
+	"trechos": {
+		"posto": {
+			"falas": [
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_rindo",
+					"texto": "Voltou inteiro? Aí sim."
+				}
+			],
+			"escolhas": [
+				{
+					"texto": "Como abro o claviculário?",
+					"vai_para": "claviculario"
+				},
+				{
+					"texto": "Como é o andar de cima?",
+					"vai_para": "cima"
+				},
+				{
+					"texto": "Até mais, Seu Rafael.",
+					"vai_para": "tchau"
+				}
+			]
+		},
+		"claviculario": {
+			"falas": [
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_triste",
+					"texto": "Sei não, macho. Esse cadeado eu nunca abri."
+				},
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_normal",
+					"texto": "Mas tem um papel no quadro de avisos da 203 que não tava lá antes. Alguém andou contando alguma coisa."
+				}
+			],
+			"vai_para": "posto"
+		},
+		"cima": {
+			"falas": [
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_normal",
+					"texto": "Lá em cima o teto caiu em vários pontos. Onde bate a lua, a máquina de lá te enxerga de longe."
+				},
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_normal",
+					"texto": "Anda pelo escuro e entra nas salas pra despistar."
+				}
+			],
+			"vai_para": "posto"
+		},
+		"tchau": {
+			"falas": [
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_normal",
+					"texto": "Vai na fé. Câmbio."
+				}
+			]
+		}
+	}
+}

@@ -26,9 +26,21 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r24"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/efeitos/poeira.tscn" id="r25"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r26"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="b_sentinela"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="b_robos"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="b_gatilho"]
+[ext_resource type="Resource" path="res://dados/transmissoes/rafael_02.tres" id="b_rafael_02"]
+[ext_resource type="Resource" path="res://dados/transmissoes/rafael_03.tres" id="b_rafael_03"]
+[ext_resource type="Resource" path="res://dados/transmissoes/henrique_03.tres" id="b_henrique_03"]
+[ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="b_visivel"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/corrente_porta.png" id="b_corrente"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/corrente_cortada.wav" id="b_som_corrente"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
+
+[sub_resource type="StyleBoxFlat" id="PlacaSaida"]
+bg_color = Color(0.32, 0.08, 0.07, 1)
 
 [node name="CorredorPrimeiroAndar" instance=ExtResource("r1")]
 id = "corredor_primeiro_andar"
@@ -128,7 +140,7 @@ position = Vector2(2240, 0)
 [node name="Parede30" parent="Paredes" instance=ExtResource("r12")]
 position = Vector2(2320, 0)
 
-[node name="Parede31" parent="Paredes" instance=ExtResource("r10")]
+[node name="Parede31" parent="Paredes" instance=ExtResource("r6")]
 position = Vector2(2400, 0)
 
 [node name="Parede32" parent="Paredes" instance=ExtResource("r4")]
@@ -390,6 +402,9 @@ cena_destino = "res://cenas/salas/bloco_de_salas/sala_205.tscn"
 porta_destino = "sala_205"
 
 [node name="Porta_bloco_206" parent="." instance=ExtResource("r2")]
+trancada = true
+chave = "chave_deposito"
+aviso_trancada = "Trancada. Na porta, uma plaquinha: DEPÓSITO."
 position = Vector2(2041, 124)
 id = "bloco_206"
 cena_destino = "res://cenas/salas/bloco_de_salas/sala_206.tscn"
@@ -402,5 +417,123 @@ cena_destino = "res://cenas/salas/bloco_de_salas/corredor_terreo.tscn"
 porta_destino = "escada_1"
 
 [node name="MusicaFase" parent="." instance=ExtResource("r26")]
+
+
+[node name="Corrente" type="Node2D" parent="Paredes"]
+script = ExtResource("b_visivel")
+marca = "corrente_cortada"
+some_com_marca = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Paredes/Corrente"]
+position = Vector2(2420, 46)
+texture = ExtResource("b_corrente")
+centered = false
+
+[node name="PlacaSaida" type="Label" parent="Paredes"]
+offset_left = 2421.0
+offset_top = 30.0
+offset_right = 2461.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.95, 0.85, 0.75, 1)
+theme_override_styles/normal = SubResource("PlacaSaida")
+text = "SAÍDA"
+horizontal_alignment = 1
+
+
+[node name="Sentinela" parent="Objetos" instance=ExtResource("b_sentinela")]
+position = Vector2(900, 154)
+rota = NodePath("../../RotaSentinela")
+rota_com_marca = NodePath("../../RotaSentinelaVirada")
+marca_da_rota = "alicate"
+bipa_antes_de_virar = true
+
+[node name="GatilhoRafael2" parent="Objetos" instance=ExtResource("b_gatilho")]
+position = Vector2(2330, 150)
+transmissao = ExtResource("b_rafael_02")
+
+[node name="GatilhoHenrique3" parent="Objetos" instance=ExtResource("b_gatilho")]
+position = Vector2(2041, 150)
+transmissao = ExtResource("b_henrique_03")
+marca_necessaria = "alicate"
+
+[node name="GatilhoRafael3" parent="Objetos" instance=ExtResource("b_gatilho")]
+position = Vector2(2441, 150)
+transmissao = ExtResource("b_rafael_03")
+marca_necessaria = "corrente_cortada"
+
+
+[node name="RotaSentinela" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(520, 154)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(1210, 154)
+
+[node name="Ponto3" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(1370, 160)
+
+
+[node name="RotaSentinelaVirada" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinelaVirada"]
+position = Vector2(1210, 154)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinelaVirada"]
+position = Vector2(1900, 154)
+
+[node name="Ponto3" type="Marker2D" parent="RotaSentinelaVirada"]
+position = Vector2(2400, 156)
+
+
+[node name="RobosDaSala" type="Node" parent="."]
+script = ExtResource("b_robos")
+
+[node name="Luar" type="Node2D" parent="."]
+script = ExtResource("b_visivel")
+marca = ""
+revela_quem_passa = true
+piscadas_ao_acender = 0
+
+
+[node name="Faixa1" parent="Luar" instance=ExtResource("r23")]
+position = Vector2(480, 156)
+scale = Vector2(1.6, 1)
+color = Color(0.55, 0.68, 1, 1)
+energy = 0.6
+
+
+[node name="Faixa2" parent="Luar" instance=ExtResource("r23")]
+position = Vector2(1200, 156)
+scale = Vector2(1.6, 1)
+color = Color(0.55, 0.68, 1, 1)
+energy = 0.6
+
+
+[node name="Faixa3" parent="Luar" instance=ExtResource("r23")]
+position = Vector2(1560, 156)
+scale = Vector2(1.6, 1)
+color = Color(0.55, 0.68, 1, 1)
+energy = 0.6
+
+
+[node name="Faixa4" parent="Luar" instance=ExtResource("r23")]
+position = Vector2(2200, 156)
+scale = Vector2(1.6, 1)
+color = Color(0.55, 0.68, 1, 1)
+energy = 0.6
+
+
+[node name="PortaCortaFogo" parent="." instance=ExtResource("r2")]
+position = Vector2(2441, 124)
+id = "bloco_corta_fogo"
+cena_destino = "res://cenas/salas/bloco_de_salas/fim_do_bloco.tscn"
+trancada = true
+chave = "alicate"
+aviso_trancada = "Porta corta-fogo. Uma corrente grossa passa pelas maçanetas, presa com um cadeado."
+aviso_destrancada = "O alicate morde o elo. A corrente cai no chão."
+marca_ao_destrancar = "corrente_cortada"
+atravessa_ao_destrancar = false
+som_destrancar = ExtResource("b_som_corrente")
 
 [editable path="Ceu"]

@@ -1,0 +1,83 @@
+{
+	"id": "rafael_pede_molho",
+	"inicio": "abertura",
+	"anotacao": {
+		"titulo": "Seu Rafael, na 103",
+		"texto": "O Seu Rafael é segurança e acha que o bloco está em reforma. Fez um posto na 103, atrás de uma barricada.\n\nPerdeu o molho de chaves na areia da 102 quando a \"máquina da obra\" apareceu. Sem o molho ninguém sobe: a grade da escada está no cadeado.\n\nSe eu levar o molho, ele diz qual chave abre o quê."
+	},
+	"trechos": {
+		"abertura": {
+			"falas": [
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_normal",
+					"texto": "Opa, opa! Devagar aí. Mão onde eu possa ver."
+				},
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_normal",
+					"texto": "Estudante a essa hora no bloco fechado? Tu entrou como, rapaz?"
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_surpreso",
+					"texto": "Você... é de verdade. Uma pessoa."
+				},
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_rindo",
+					"texto": "De verdade e de farda. Seu Rafael, da segurança. Pode me chamar de Seu Rafael."
+				}
+			],
+			"escolhas": [
+				{
+					"texto": "O que aconteceu com este lugar?",
+					"vai_para": "reforma"
+				},
+				{
+					"texto": "Preciso sair daqui.",
+					"vai_para": "molho"
+				}
+			]
+		},
+		"reforma": {
+			"falas": [
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_normal",
+					"texto": "Reforma, macho. Os homens da obra deixaram tudo assim e largaram essas máquinas rodando."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "Tem árvore crescendo no corredor. E areia até o joelho."
+				},
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_rindo",
+					"texto": "Obra pública. Tu nunca viu uma?"
+				}
+			],
+			"vai_para": "molho"
+		},
+		"molho": {
+			"falas": [
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_triste",
+					"texto": "Pra sair tem que subir. E a grade da escada tá no cadeado."
+				},
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_triste",
+					"texto": "Meu molho de chaves caiu na 102, aqui do lado, quando a máquina me pegou de surpresa. Ficou lá na areia."
+				},
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_normal",
+					"texto": "Traz o meu molho que eu te digo qual chave abre o quê. Eu não saio do posto. Alguém tem que ficar."
+				}
+			]
+		}
+	}
+}

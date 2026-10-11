@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "rafael_01"
+falante = "RAFAEL (rádio)"
+falas = PackedStringArray("Chhh... Rapaz, quem tá aí no corredor? Tô ouvindo passo. Câmbio.", "Aqui é o Seu Rafael, da segurança. Tô na 103, no posto.", "Só que a máquina da obra não sai da frente da minha porta. Com ela aí, eu não mexo na barricada nem a pau.", "Faz o seguinte: na 104, no laboratório, tem o teste de alarme. Liga aquilo.", "A sirene fica lá no fim do corredor. A máquina vai correndo ver o que é. Aí tu vem. Câmbio.")
+titulo_anotacao = "Seu Rafael, 2008"
+anotacao = "Uma voz nova no rádio: Seu Rafael, da segurança. Está na sala 103 e não abre com a \"máquina da obra\" na porta.
+- Na 104 tem o teste de alarme.
+- A sirene fica no fim do corredor: o robô vai até lá."

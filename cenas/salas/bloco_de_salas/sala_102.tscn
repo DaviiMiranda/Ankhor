@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://dados/itens/pedra.tres" id="r17"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/efeitos/poeira.tscn" id="r19"]
+[ext_resource type="Resource" path="res://dados/itens/molho_rafael.tres" id="b_molho"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -324,5 +325,10 @@ position = Vector2(361, 124)
 id = "sala_102"
 cena_destino = "res://cenas/salas/bloco_de_salas/corredor_terreo.tscn"
 porta_destino = "bloco_102"
+
+
+[node name="Molho" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(326, 390)
+item = ExtResource("b_molho")
 
 [editable path="Ceu"]

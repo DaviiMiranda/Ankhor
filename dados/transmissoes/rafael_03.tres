@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "rafael_03"
+falante = "RAFAEL (rádio)"
+falas = PackedStringArray("Chhh... Ouvi o estalo daqui. Cortou a corrente, foi?", "Então vai com Deus, macho. Eu fico. Alguém tem que tomar conta do bloco até a reforma acabar.", "Qualquer coisa, chama no rádio. O Seu Rafael tá na escuta. Câmbio, desligo.")
+titulo_anotacao = "Seu Rafael, 2008"
+anotacao = "O Rafael ficou no posto da 103. Diz que alguém tem que tomar conta do bloco \"até a reforma acabar\"."

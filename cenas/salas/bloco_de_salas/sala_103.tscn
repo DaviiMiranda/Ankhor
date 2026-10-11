@@ -24,6 +24,8 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carrinho.tscn" id="r22"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r23"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/rafael_posto.tscn" id="b_rafael"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="b_checkpoint"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -352,5 +354,13 @@ position = Vector2(41, 124)
 id = "sala_103"
 cena_destino = "res://cenas/salas/bloco_de_salas/corredor_terreo.tscn"
 porta_destino = "bloco_103"
+
+
+[node name="RafaelPosto" parent="Objetos" instance=ExtResource("b_rafael")]
+position = Vector2(250, 392)
+
+[node name="Checkpoint" parent="Objetos" instance=ExtResource("b_checkpoint")]
+position = Vector2(340, 392)
+id = "sala_segura_103"
 
 [editable path="Ceu"]

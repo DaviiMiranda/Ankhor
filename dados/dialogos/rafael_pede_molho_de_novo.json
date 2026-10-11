@@ -1,0 +1,20 @@
+{
+	"id": "rafael_pede_molho_de_novo",
+	"inicio": "lembrete",
+	"trechos": {
+		"lembrete": {
+			"falas": [
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_normal",
+					"texto": "E o molho? Tá na 102, na areia, perto das carteiras viradas."
+				},
+				{
+					"quem": "Rafael",
+					"retrato": "rafael/rafael_retrato_normal",
+					"texto": "Pisa de leve que a máquina escuta. E se ela vier, joga uma pedra longe. Ela vai atrás do barulho."
+				}
+			]
+		}
+	}
+}
