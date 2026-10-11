@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-11 — Ilustrações de cutscene em resolução dobrada
+**Decisão:** as ilustrações das cutscenes são feitas em **640×360** e mostradas com **escala 0,5**, como os sprites dos personagens humanos (entrada de 2026-09-30). Ocupam a tela de 320×180 do mesmo jeito, mas, como o stretch é `canvas_items`, são desenhadas na resolução da janela, com o dobro de detalhe. A paleta de cada ilustração é fechada em 96 cores.
+**Por quê:** em 320×180 as ilustrações do prólogo perdiam detalhe demais (rostos e roupas viravam borrões). Pedido do Davi.
+**Afeta:** `assets/sprites/cutscenes/seg_prologo/`, `assets/modelagem/cutscenes/seg_prologo/pixelar_seg_prologo.py`, `cenas/cutscenes/seg_prologo.tscn` (escala 0,5 e o shader de falha com as medidas dobradas), `docs/historia/roteiro/cutscenes/README.md` e `seg_prologo.md`.
+
 ## 2026-10-11 — O anel da avó fica no dedo do Gabriel
 **Decisão:** o Gabriel usa o anel da avó **no dedo**, e não na mochila, como já dizia o Enredo Principal ("gasto no [dedo] de Gabriel", seção 5). No prólogo, ele põe o anel no dedo antes de sair de casa. O anel continua aparecendo no inventário desde o começo.
 **Por quê:** decisão do Davi, para acabar com a diferença entre a ficha do Gabriel e o Enredo.

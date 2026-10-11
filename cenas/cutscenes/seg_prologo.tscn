@@ -16,6 +16,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_falha"]
 shader = ExtResource("5_falha")
 shader_parameter/forca = 0.0
+shader_parameter/deslocamento_max = 8.0
+shader_parameter/altura_faixa = 10.0
+shader_parameter/separacao_max = 4.0
 
 [sub_resource type="Animation" id="Animation_principal"]
 resource_name = "principal"
@@ -173,42 +176,50 @@ proxima_cena = ExtResource("3_seg_acordar")
 
 [node name="Cena1Alarme" type="Sprite2D" parent="."]
 texture = ExtResource("10_cena_01_alarme")
+scale = Vector2(0.5, 0.5)
 centered = false
 
 [node name="Cena2Quarto" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("11_cena_02_quarto")
+scale = Vector2(0.5, 0.5)
 centered = false
 
 [node name="Cena3Trajeto" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 texture = ExtResource("12_cena_03_trajeto")
+scale = Vector2(0.5, 0.5)
 centered = false
 
 [node name="Cena4CampusVivo" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("13_cena_04_campus_vivo")
+scale = Vector2(0.5, 0.5)
 centered = false
 
 [node name="Cena5SalaAula" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("14_cena_05_sala_aula")
+scale = Vector2(0.5, 0.5)
 centered = false
 
 [node name="Cena6BibliotecaExterna" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 texture = ExtResource("15_cena_06_biblioteca_externa")
+scale = Vector2(0.5, 0.5)
 centered = false
 
 [node name="Cena7CabineNoite" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("16_cena_07_cabine_noite")
+scale = Vector2(0.5, 0.5)
 centered = false
 
 [node name="Cena8PulsoFenda" type="Sprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_falha")
 texture = ExtResource("17_cena_08_pulso_fenda")
+scale = Vector2(0.5, 0.5)
 centered = false
 
 [node name="Cortina" type="ColorRect" parent="."]

@@ -1,5 +1,5 @@
 # pixelar_seg_prologo.py — transforma as ilustrações de referência do prólogo
-# em imagens do jogo (pixel art de 320 x 180, paleta fechada) para a cutscene
+# em imagens do jogo (pixel art de 640 x 360, paleta fechada) para a cutscene
 # "seg_prologo" (docs/historia/roteiro/cutscenes/seg_prologo.md).
 #
 # Como rodar (só precisa de Python 3 com Pillow e NumPy):
@@ -12,13 +12,21 @@
 #   original (1376 x 768) para não pesar no repositório.
 #
 # Saída (assets/sprites/cutscenes/seg_prologo/), com os nomes do roteiro:
-#   cena_01_alarme.png ... cena_08_pulso_fenda.png, 320 x 180 cada
+#   cena_01_alarme.png ... cena_08_pulso_fenda.png, 640 x 360 cada
+#
+# Resolução dobrada: a tela do jogo tem 320 x 180, mas as ilustrações saem
+# com o dobro (640 x 360) e a cena do Godot as mostra com escala 0,5. Como o
+# stretch do projeto é canvas_items, a imagem é desenhada na resolução da
+# janela: ocupa a tela inteira do mesmo jeito, com o dobro de detalhe. É a
+# mesma regra dos sprites dos personagens humanos (CLAUDE.md, docs/decisoes.md).
+# As referências têm cerca de 600 "pixels de desenho" de largura; reduzir
+# para 320 jogava fora metade deles (rostos e roupas viravam borrões).
 #
 # O que o script faz com cada ilustração:
 #   1. Recorta para 16:9 exato. A referência tem 1376 x 768 (proporção
 #      1,79), um pouco mais larga que a tela (1,78); corta-se o excesso
 #      igualmente dos dois lados.
-#   2. Reduz para 320 x 180 com filtro Lanczos. A referência é "pixel art
+#   2. Reduz para 640 x 360 com filtro Lanczos. A referência é "pixel art
 #      falsa" (cada pixel do desenho ocupa vários pixels da imagem, sem grade
 #      exata); a média ponderada do Lanczos junta esses blocos sem criar
 #      serrilhado.
@@ -49,8 +57,9 @@ from pixelar_gabriel import indices_na_paleta, k_medias  # noqa: E402
 PASTA_REFERENCIA = os.path.join(AQUI, "referencia")
 PASTA_SAIDA = os.path.join(RAIZ, "assets", "sprites", "cutscenes", "seg_prologo")
 
-LARGURA, ALTURA = 320, 180
-CORES = 48
+ESCALA = 2
+LARGURA, ALTURA = 320 * ESCALA, 180 * ESCALA
+CORES = 96
 AMOSTRA_PALETA = 40000
 
 CENAS = [
@@ -110,18 +119,24 @@ SEGMENTOS = {
     "5": "afgcd", "6": "afgedc", "7": "abc", "8": "abcdefg", "9": "abcdfg",
 }
 
-# Área do visor que recebe os dígitos novos (em pixels da imagem de
-# 320 x 180), medida sobre a imagem reduzida: cobre os dígitos errados que o
-# gerador desenhou.
-VISOR = (181, 100, 228, 124)
-DIGITO_L, DIGITO_A, TRACO = 8, 18, 2
+# As medidas abaixo estão em pixels da tela (320 x 180) e são multiplicadas
+# por ESCALA, para valerem na imagem de resolução dobrada.
+def na_imagem(*medidas):
+    return tuple(m * ESCALA for m in medidas)
+
+
+# Área do visor que recebe os dígitos novos, medida sobre a imagem reduzida:
+# cobre os dígitos errados que o gerador desenhou.
+VISOR = na_imagem(181, 100, 228, 124)
+DIGITO_L, DIGITO_A, TRACO = na_imagem(8, 18, 2)
+ESPACO = ESCALA * 2
 
 # O reflexo do visor no tampo do criado-mudo: o gerador também desenhou ali
 # os números errados. A área é apagada com a cor do tampo e recebe os
 # dígitos novos de cabeça para baixo, apagados, até a quina da mesa
 # (linha 151), que corta o reflexo.
-REFLEXO = (184, 136, 228, 151)
-REFLEXO_TOPO = 140
+REFLEXO = na_imagem(184, 136, 228, 151)
+REFLEXO_TOPO = 140 * ESCALA
 REFLEXO_FORCA = 0.3
 
 
@@ -147,12 +162,13 @@ def desenhar_digito(img, x, y, digito, cor):
 def escrever(img, x, y, texto, cor):
     for caractere in texto:
         if caractere == ":":
-            img[y + 4:y + 4 + TRACO, x:x + TRACO] = cor
-            img[y + DIGITO_A - 6:y + DIGITO_A - 6 + TRACO, x:x + TRACO] = cor
-            x += TRACO + 2
+            alto, baixo = y + 4 * ESCALA, y + DIGITO_A - 6 * ESCALA
+            img[alto:alto + TRACO, x:x + TRACO] = cor
+            img[baixo:baixo + TRACO, x:x + TRACO] = cor
+            x += TRACO + ESPACO
         else:
             desenhar_digito(img, x, y, caractere, cor)
-            x += DIGITO_L + 2
+            x += DIGITO_L + ESPACO
 
 
 def cor_mais_comum(area):
@@ -169,7 +185,7 @@ def desenhar_relogio(img, paleta, texto="06:15"):
     vermelho = area[np.argmax(area[:, 0] * 2 - area[:, 1] - area[:, 2])]
     img[y0:y1, x0:x1] = fundo
     y_digito = y0 + (y1 - y0 - DIGITO_A) // 2
-    escrever(img, x0 + 2, y_digito, texto, vermelho)
+    escrever(img, x0 + ESPACO, y_digito, texto, vermelho)
     desenhar_reflexo(img, paleta, x0, y_digito, x1, vermelho)
 
 

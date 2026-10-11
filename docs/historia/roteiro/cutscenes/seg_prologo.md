@@ -101,7 +101,7 @@
 
 ## Especificações Técnicas para Produção
 
-1. **Resolução de Arte:** 320×180 px, escala 1× (proporção padrão do jogo). As ilustrações saem das referências em `assets/modelagem/cutscenes/seg_prologo/referencia/` pelo script `assets/modelagem/cutscenes/seg_prologo/pixelar_seg_prologo.py`, que reduz cada uma para 320×180, fecha a paleta em 48 cores e redesenha o despertador da cena 1 marcando 06:15. Para trocar uma ilustração, substitua a referência e rode o script de novo.
+1. **Resolução de Arte:** tela de 320×180, com as ilustrações em **resolução dobrada** (640×360, mostradas com escala 0,5): ocupam a tela inteira do mesmo jeito, com o dobro de detalhe, como os sprites dos personagens humanos. As ilustrações saem das referências em `assets/modelagem/cutscenes/seg_prologo/referencia/` pelo script `assets/modelagem/cutscenes/seg_prologo/pixelar_seg_prologo.py`, que reduz cada uma para 640×360, fecha a paleta em 96 cores e redesenha o despertador da cena 1 marcando 06:15. Para trocar uma ilustração, substitua a referência e rode o script de novo.
 2. **Camadas por Ilustração (quando aplicável):** hoje cada ilustração é uma imagem só. Se quiserem paralaxe depois, a ilustração precisa ser separada em:
    - Camada 0: Fundo estático (arquitetura/céu).
    - Camada 1: Elementos intermediários / Gabriel.
