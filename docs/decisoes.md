@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-11 — Animação de abrir porta, uma por mapa
+**Decisão:** a porta ganha animação de abrir, e cada mapa terá a sua, feita a partir de um vídeo. A da Biblioteca é uma porta de correr de madeira com batente de aço (`cenas/cenario/biblioteca/parede_porta_animada.tscn`). A folha é uma peça de parede animada que a `Porta` encontra sozinha pela posição, então as salas só trocam a peça do vão.
+**Por quê:** pedido do Davi, com os vídeos de cada mapa.
+**Afeta:** `scripts/sistemas/porta.gd`, `cenas/cenario/biblioteca/`, `assets/sprites/cenario/biblioteca/porta/`, `assets/modelagem/cenario/gerar_porta_biblioteca.py`, as 8 salas de `cenas/salas/biblioteca/`, `docs/mecanicas/movimentacao_e_terreno.md`.
+
 ## 2026-10-08 — Sistema de fadiga e estamina do Gabriel
 **Decisão:** implementado o sistema modular de fadiga (`scripts/sistemas/fadiga.gd` e `cenas/sistemas/fadiga.tscn`). Correr consome estamina de forma contínua (~8s de corrida total). Ao zerar a estamina, Gabriel entra em estado de exaustão por 3 segundos, ficando impossibilitado de correr, andando a 40% da velocidade normal e emitindo o sinal `ofegante` com efeito sonoro. A estamina se regenera gradualmente (mais rápido parado do que andando). O HUD exibe uma barra discreta no canto superior que surge apenas durante o consumo e esmaece quando cheia.
 **Por quê:** implementação da dinâmica de estamina e fuga descrita no GDD e nas mecânicas de movimentação.

@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="r2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/parede_porta_animada.tscn" id="r2"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_estante.tscn" id="r3"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_placa.tscn" id="r4"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="r5"]

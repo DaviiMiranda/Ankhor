@@ -3,6 +3,8 @@ extends Interagivel
 
 const SOM_ABRIR := preload("res://assets/audio/efeitos/objetos/porta_abrir.wav")
 const SOM_EMPERRADA := preload("res://assets/audio/efeitos/objetos/porta_emperrada.wav")
+const LARGURA_PECA_PAREDE := 80.0
+const TOLERANCIA_FOLHA := 12.0
 
 static var _chegada := ""
 static var _destrancadas := {}
@@ -24,11 +26,13 @@ static var _destrancadas := {}
 @export var som_abrir: AudioStream = SOM_ABRIR
 
 var _atravessando := false
+var _folha: AnimatedSprite2D
 
 
 func _ready() -> void:
 	super()
 	add_to_group("portas")
+	_folha = _encontrar_folha()
 	if _destrancadas.has(id):
 		trancada = false
 	if not id.is_empty() and _chegada == id:
@@ -60,6 +64,7 @@ func interagir() -> void:
 		return
 	_atravessando = true
 	_tocar(som_abrir)
+	_abrir_folha()
 	gabriel.andar_sozinho(direcao_entrar)
 	var animacao := create_tween().set_parallel()
 	animacao.tween_property(gabriel, "modulate", Color(0, 0, 0, 0), segundos_andando)
@@ -74,6 +79,30 @@ func destrancar() -> void:
 	if not id.is_empty():
 		_destrancadas[id] = true
 	Inventario.aviso.emit("Porta destrancada")
+
+
+func _encontrar_folha() -> AnimatedSprite2D:
+	for candidata in get_tree().get_nodes_in_group("folhas_de_porta"):
+		var centro := (candidata as Node2D).global_position.x + LARGURA_PECA_PAREDE / 2.0
+		if absf(centro - global_position.x) <= TOLERANCIA_FOLHA:
+			return candidata as AnimatedSprite2D
+	return null
+
+
+func _escala_folha() -> float:
+	var quadros := _folha.sprite_frames
+	var duracao := quadros.get_frame_count(&"abrir") / quadros.get_animation_speed(&"abrir")
+	return maxf(duracao / segundos_andando, 0.1)
+
+
+func _abrir_folha() -> void:
+	if _folha:
+		_folha.play(&"abrir", _escala_folha())
+
+
+func _fechar_folha() -> void:
+	if _folha:
+		_folha.play(&"abrir", -_escala_folha(), true)
 
 
 func _tocar(stream: AudioStream) -> void:
@@ -95,6 +124,7 @@ func _sair_pela_porta() -> void:
 	if gabriel == null:
 		return
 	_atravessando = true
+	_fechar_folha()
 	gabriel.global_position = global_position
 	var camera := gabriel.get_node_or_null("Camera2D") as Camera2D
 	if camera:
