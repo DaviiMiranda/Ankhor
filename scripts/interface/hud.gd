@@ -10,6 +10,10 @@ var _espacos: Array[EspacoItem] = []
 var _coracoes: Array[TextureRect] = []
 var _tween_mensagem: Tween
 var _tween_dano: Tween
+var _jogador_conectado: Gabriel = null
+var _barra_estamina_fundo: ColorRect
+var _barra_estamina_preenchimento: ColorRect
+var _tween_estamina: Tween
 
 @onready var caixa_gadgets: HBoxContainer = $Gadgets
 @onready var aviso: Label = $Aviso
@@ -37,6 +41,7 @@ func _ready() -> void:
 	Vida.mudou.connect(_atualizar_coracoes)
 	Vida.dano_recebido.connect(_ao_receber_dano)
 	_atualizar_coracoes(Vida.vida)
+	_configurar_barra_estamina()
 	flash_dano.color.a = 0.0
 	mensagem.modulate.a = 0.0
 	aviso.hide()
@@ -45,6 +50,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	_atualizar_gadgets()
 	_atualizar_aviso()
+	_conectar_jogador()
 
 
 func _atualizar_gadgets() -> void:
@@ -115,3 +121,61 @@ func _mostrar_mensagem(texto: String) -> void:
 	_tween_mensagem = create_tween()
 	_tween_mensagem.tween_interval(duracao_mensagem)
 	_tween_mensagem.tween_property(mensagem, "modulate:a", 0.0, 0.8)
+
+
+func _configurar_barra_estamina() -> void:
+	_barra_estamina_fundo = ColorRect.new()
+	_barra_estamina_fundo.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_barra_estamina_fundo.color = Color(0.0, 0.0, 0.0, 0.65)
+	_barra_estamina_fundo.position = Vector2(4.0, 14.0)
+	_barra_estamina_fundo.size = Vector2(34.0, 4.0)
+	_barra_estamina_fundo.modulate.a = 0.0
+	add_child(_barra_estamina_fundo)
+
+	_barra_estamina_preenchimento = ColorRect.new()
+	_barra_estamina_preenchimento.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_barra_estamina_preenchimento.color = Color(0.9, 0.8, 0.55, 1.0)
+	_barra_estamina_preenchimento.position = Vector2(1.0, 1.0)
+	_barra_estamina_preenchimento.size = Vector2(32.0, 2.0)
+	_barra_estamina_fundo.add_child(_barra_estamina_preenchimento)
+
+
+func _conectar_jogador() -> void:
+	if _jogador_conectado and is_instance_valid(_jogador_conectado):
+		return
+	var jogador := get_tree().get_first_node_in_group("jogador") as Gabriel
+	if jogador:
+		_jogador_conectado = jogador
+		_jogador_conectado.fadiga_mudou.connect(_ao_mudar_estamina)
+		_jogador_conectado.exaustao_mudou.connect(_ao_mudar_exaustao)
+		if _jogador_conectado.fadiga:
+			_ao_mudar_estamina(_jogador_conectado.fadiga.estamina, _jogador_conectado.fadiga.estamina_maxima)
+
+
+func _ao_mudar_estamina(atual: float, maxima: float) -> void:
+	if maxima <= 0.0 or _barra_estamina_preenchimento == null:
+		return
+	var proporcao := clampf(atual / maxima, 0.0, 1.0)
+	_barra_estamina_preenchimento.size.x = roundf(32.0 * proporcao)
+	if proporcao < 0.999:
+		if _tween_estamina:
+			_tween_estamina.kill()
+		_barra_estamina_fundo.modulate.a = 1.0
+	elif _barra_estamina_fundo.modulate.a > 0.0:
+		if _tween_estamina:
+			_tween_estamina.kill()
+		_tween_estamina = create_tween()
+		_tween_estamina.tween_interval(0.6)
+		_tween_estamina.tween_property(_barra_estamina_fundo, "modulate:a", 0.0, 0.4)
+
+
+func _ao_mudar_exaustao(esta_exausto: bool) -> void:
+	if _barra_estamina_preenchimento == null:
+		return
+	if esta_exausto:
+		_barra_estamina_preenchimento.color = Color(0.85, 0.25, 0.2, 1.0)
+		if _tween_estamina:
+			_tween_estamina.kill()
+		_barra_estamina_fundo.modulate.a = 1.0
+	else:
+		_barra_estamina_preenchimento.color = Color(0.9, 0.8, 0.55, 1.0)

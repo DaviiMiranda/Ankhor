@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-08 — Sistema de fadiga e estamina do Gabriel
+**Decisão:** implementado o sistema modular de fadiga (`scripts/sistemas/fadiga.gd` e `cenas/sistemas/fadiga.tscn`). Correr consome estamina de forma contínua (~8s de corrida total). Ao zerar a estamina, Gabriel entra em estado de exaustão por 3 segundos, ficando impossibilitado de correr, andando a 40% da velocidade normal e emitindo o sinal `ofegante` com efeito sonoro. A estamina se regenera gradualmente (mais rápido parado do que andando). O HUD exibe uma barra discreta no canto superior que surge apenas durante o consumo e esmaece quando cheia.
+**Por quê:** implementação da dinâmica de estamina e fuga descrita no GDD e nas mecânicas de movimentação.
+**Afeta:** `scripts/sistemas/fadiga.gd`, `cenas/sistemas/fadiga.tscn`, `scripts/personagens/gabriel.gd`, `cenas/personagens/gabriel.tscn`, `scripts/interface/hud.gd`, `assets/audio/efeitos/gabriel/gabriel_ofegante.wav`.
+
 ## 2026-10-08 — O Zane no computador do bunker, e a nova ordem de chegada
 **Decisão:**
 - O **Zane** troca de lugar com a **Clarice**: fica no **computador da central de dados do bunker** e faz a **comunicação de todos** (mantém a frequência de rádio do grupo e liga pelos telefones velhos). Divide o bunker com a Diana. Onde a Clarice fica passa a ser pendente.
