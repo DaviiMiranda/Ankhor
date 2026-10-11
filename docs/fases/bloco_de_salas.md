@@ -98,9 +98,9 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
    - *O que o jogador aprende:* barulho é ferramenta, não só perigo.
 4. **O posto do Rafael (sala 103).** O Rafael abre uma fresta na barricada. É o primeiro encontro **em pessoa** do jogo. Ele desconfia ("estudante a essa hora no bloco fechado?") e diz que perdeu o **molho de chaves** na areia da 102, quando a máquina o surpreendeu. Sem o molho, ninguém sobe: a grade da escada está no cadeado. "Traz o meu molho que eu te digo qual chave abre o quê."
 5. **O molho (sala 102).** O molho está na areia, entre carteiras tombadas e montes de entulho. O Rastreador volta à rotina e passa pela porta da 102. As **pedras** da sala servem para atraí-lo para longe.
-6. **A confiança (sala 103).** O Gabriel devolve o molho. O Rafael confia nele e entrega o **livro de ocorrências**: a ronda dele, com a rota dos robôs e a lista do que cada chave abre. **Esta é a parte do Rafael** (Enredo, seção 3.1: "conhece o campus e as rondas, e sabe o que cada chave abre"). Ele conta que a saída do bloco é a **porta corta-fogo** lá em cima, acorrentada, e que a chave do **depósito (206)**, onde fica o alicate, está no **claviculário da sala dos professores (203)**, num cadeado de segredo que ele nunca conseguiu abrir. A **103 vira a sala segura** (seção 6).
-7. **Subir (escada).** Com o molho, a **chave da fita azul** (o livro diz qual é) abre o cadeado da grade da escada.
-8. **O 1º andar (corredor).** A **Sentinela** patrulha sob os buracos do teto. As faixas de luar no chão são onde ela vê de longe; nas sombras e no mato o Gabriel passa.
+6. **A confiança (sala 103).** O Gabriel devolve o molho. O Rafael confia nele, tira do molho a **chave da fita azul** e entrega: "Essa aqui é a da grade da escada." Daí em diante ele **guia o Gabriel pelo rádio**, de cabeça: diz o que cada porta precisa e avisa por onde as máquinas passam. **Esta é a parte do Rafael** (Enredo, seção 3.1: "conhece o campus e as rondas, e sabe o que cada chave abre"), mostrada pelo que ele fala, sem papel nem item. Ele conta que a saída do bloco é a **porta corta-fogo** lá em cima, acorrentada, e que a chave do **depósito (206)**, onde fica o alicate, está no **claviculário da sala dos professores (203)**, num cadeado de segredo que ele nunca conseguiu abrir. A **103 vira a sala segura** (seção 6).
+7. **Subir (escada).** A **chave da fita azul** abre o cadeado da grade da escada.
+8. **O 1º andar (corredor).** Assim que o Gabriel sobe, o Rafael avisa pelo rádio como a máquina de cima anda ("ela para debaixo dos buracos do teto, macho. Passa pelo escuro. Câmbio."). A **Sentinela** patrulha sob os buracos do teto. As faixas de luar no chão são onde ela vê de longe; nas sombras e no mato o Gabriel passa.
    - *O que o jogador aprende:* a luz do céu também denuncia, não só a lanterna.
 9. **O cadeado (sala 203).** O claviculário tem um cadeado de **3 números**. No quadro de avisos, um papel: **"Conferir a contagem: 101 · 201 · 205"**. O Gabriel precisa **contar os tracinhos** das lousas dessas três salas. Duas estão no 1º andar; a **101 fica lá embaixo**, e é preciso descer de novo.
    - *O que o jogador aprende:* olhar o cenário com atenção; voltar faz parte.
@@ -112,8 +112,8 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 ### 3.2 Grafo de dependências
 
 ```
-rádio do Rafael → alarme da 104 → posto do Rafael → molho (102) → livro de ocorrências → grade da escada
-                                                                                              ↓
+rádio do Rafael → alarme da 104 → posto do Rafael → molho (102) → chave da fita azul → grade da escada
+                                                                                            ↓
 saída ← corrente cortada ← alicate (206) ← chave do depósito ← cadeado do claviculário ← tracinhos (101, 201, 205)
 ```
 
@@ -125,8 +125,8 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 
 | Item | Onde | Para quê |
 |---|---|---|
-| Molho de chaves do Rafael | 102, na areia | Devolver ao Rafael (confiança). Depois fica com o Gabriel: a chave da fita azul abre a grade da escada |
-| Livro de ocorrências do Rafael | 103, entregue pelo Rafael | **A parte do Rafael.** Registro com a rota dos robôs e a lista do que cada chave abre |
+| Molho de chaves do Rafael | 102, na areia | Devolver ao Rafael (confiança). O molho fica com ele |
+| Chave da fita azul | 103, entregue pelo Rafael | Abrir a grade da escada |
 | Código do claviculário | Tracinhos das lousas da 101, 201 e 205 | Abrir o claviculário (203) |
 | Chave do depósito | Claviculário (203) | Abrir a 206 |
 | Alicate corta-corrente | 206 | Cortar a corrente da porta corta-fogo |
@@ -159,10 +159,10 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 - **Mecânica:** evento sonoro (BFS). Como cada sala é uma cena, o efeito fica guardado como uma marca (`alarme_104`). Ao voltar ao corredor, o Rastreador começa **parado na porta da 104**, investigando, por um tempo, e depois retoma a rota.
 - **Solução:** ligar o alarme, voltar ao corredor e chegar à 103 antes de o Rastreador terminar de investigar.
 
-### 5.2 O molho e o livro (102 e 103)
+### 5.2 O molho (102 e 103)
 
 - **Como funciona:** busca de item numa sala por onde o robô passa, e troca de itens com um personagem.
-- **Solução:** achar o molho, distrair o Rastreador com pedras se precisar, devolver o molho ao Rafael. O livro de ocorrências mostra qual chave do molho abre a grade.
+- **Solução:** achar o molho, distrair o Rastreador com pedras se precisar, devolver o molho ao Rafael, que entrega a chave da grade.
 
 ### 5.3 Os tracinhos (101, 201, 205 → 203)
 
@@ -196,8 +196,8 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 | Registro | Onde | Quem |
 |---|---|---|
 | **1ª transmissão do Rafael** (pede para tirar a máquina da porta) | Corredor térreo, perto da 103 | Rafael, pelo rádio |
-| **Conversa no posto** (pede o molho; depois entrega o livro) | 103 | Rafael, em pessoa (diálogo) |
-| **Livro de ocorrências** | 103 | Rafael. Suporte já definido na ficha: tabela com data e hora |
+| **Conversa no posto** (pede o molho; depois entrega a chave da grade) | 103 | Rafael, em pessoa (diálogo) |
+| **Como a máquina de cima anda** | Topo da escada, ao chegar no 1º andar | Rafael, pelo rádio |
 | **Papel do quadro de avisos** ("Conferir a contagem: 101 · 201 · 205") | 203 | A definir (sugestão: do Rafael) |
 | **Aviso de ronda nova** | Corredor 1º andar, depois do alicate | Henrique, pelo rádio |
 | **Despedida** | Porta corta-fogo | Rafael, pelo rádio |
@@ -224,7 +224,7 @@ A maior parte já existe e foi usada na Biblioteca:
 | Robôs com rota e troca de rota por marca | Sim (Sentinela e Rastreador, `RobosDaSala`) | Três robôs (seção 4) |
 | Transmissões de rádio | Sim (`GatilhoTransmissao`, `dados/transmissoes/`) | Rafael e Henrique |
 | Diálogo em pessoa | Sim (`ConversaNpc` + JSON) | Rafael no posto |
-| Itens | Sim (`dados/itens/`) | Novos: molho, livro, chave do depósito, alicate |
+| Itens | Sim (`dados/itens/`) | Novos: molho, chave da fita azul, chave do depósito, alicate |
 | **Alarme da 104** | **Não** | Terminal que, ao ligar, marca `alarme_104`. No corredor, o Rastreador começa investigando a porta da 104 |
 | **Buraco de mão única** | **Não** | Interagível na 204 que leva à 104 (como uma porta sem volta), com um barulho de queda |
 | **Lousas com tracinhos contáveis** | Em parte (`parede_lousa.tscn`) | Variante com um número fixo e legível de tracinhos nas lousas da 101, 201 e 205 |
