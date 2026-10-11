@@ -16,10 +16,87 @@ Formato:
 
 ---
 
+## 2026-10-08 — Sistema de fadiga e estamina do Gabriel
+**Decisão:** implementado o sistema modular de fadiga (`scripts/sistemas/fadiga.gd` e `cenas/sistemas/fadiga.tscn`). Correr consome estamina de forma contínua (~8s de corrida total). Ao zerar a estamina, Gabriel entra em estado de exaustão por 3 segundos, ficando impossibilitado de correr, andando a 40% da velocidade normal e emitindo o sinal `ofegante` com efeito sonoro. A estamina se regenera gradualmente (mais rápido parado do que andando). O HUD exibe uma barra discreta no canto superior que surge apenas durante o consumo e esmaece quando cheia.
+**Por quê:** implementação da dinâmica de estamina e fuga descrita no GDD e nas mecânicas de movimentação.
+**Afeta:** `scripts/sistemas/fadiga.gd`, `cenas/sistemas/fadiga.tscn`, `scripts/personagens/gabriel.gd`, `cenas/personagens/gabriel.tscn`, `scripts/interface/hud.gd`, `assets/audio/efeitos/gabriel/gabriel_ofegante.wav`.
+
+## 2026-10-08 — O Zane no computador do bunker, e a nova ordem de chegada
+**Decisão:**
+- O **Zane** troca de lugar com a **Clarice**: fica no **computador da central de dados do bunker** e faz a **comunicação de todos** (mantém a frequência de rádio do grupo e liga pelos telefones velhos). Divide o bunker com a Diana. Onde a Clarice fica passa a ser pendente.
+- **Ordem de chegada:** o Zane chega antes da Clarice, e **Gabriel é o último**. O Zane deixa de ser o último a chegar, e a cena de Gabriel recebendo o Zane sai.
+- Sai a ideia de que o jogador acha que a Clarice morreu: o bilhete dela não é mais uma "despedida".
+- No jogo: a ligação do fim da Biblioteca passou a ser do Zane (`clarice_01.tres` → `zane_01.tres`, em `cenas/sistemas/telefone.tscn`), e a anotação do bilhete da Clarice não diz mais que "parece que não voltou". A arte da estação de trabalho e as conversas do bunker continuam da Clarice e precisam ser refeitas para o Zane.
+
+**Por quê:** decisão do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 4.1, 6, 6.1, 7.2, 8, 10, 12.3 e 12.4), as fichas de Zane, Clarice, Diana, Henrique, Rafael e Gabriel, `resumo.md`, `docs/fases/biblioteca.md` e `bunker.md`, `docs/mecanicas/registros_e_caderno.md`, `docs/gdd.md`, `docs/README.md`, `outras_ideias.md` (ideia 14), `dados/transmissoes/zane_01.tres`, `dados/documentos/bilhete_clarice.tres`, `cenas/sistemas/telefone.tscn`, os `visual.md` do Zane e do Rafael e um comentário de `gerar_rafael.py`.
+
+## 2026-10-08 — Onde cada personagem fica, e a frequência de rádio do grupo
+**Decisão:**
+- **Esconderijos:** **bunker** com a Clarice e a Diana (depois o Zane); o **Baltazar** escondido numa sala da Biblioteca, com medo; o **Rafael** numa sala de aula do Bloco de salas, que virou o "posto de guarda" dele; o **Henrique** sozinho num **posto de monitoramento**, com as câmeras do campus; o **Carlos** sempre no laboratório do D-Tec.
+- **Comunicação:** a **Clarice** montou uma **frequência de rádio** para o grupo e deixou um rádio sintonizado nela no balcão da Biblioteca. O **Henrique** é a **voz do rádio**: vê o campus pelas câmeras, dá as dicas de patrulha e guia Gabriel desde a primeira fase, mas fala pouco e fica distante. O **Baltazar** teve dificuldade com o rádio, se isolou e não está na frequência.
+- No jogo, as duas transmissões da Biblioteca passaram do Rafael para o Henrique (`rafael_0X.tres` → `henrique_0X.tres`, gatilhos `GatilhoHenrique1` e `GatilhoHenrique2`), com as falas reescritas no jeito dele. (Na entrada seguinte, quem mantém a frequência passou a ser o Zane.)
+- Resolve a pendência de como a voz do rádio "parece ver" Gabriel: pelas câmeras.
+
+**Por quê:** decisão do Davi. A voz que ajuda Gabriel desde o começo ser justamente a de quem mente deixa "A virada" mais forte.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 6, 6.1, 8, 10 e 12.3), as fichas de Rafael, Henrique, Diana, Clarice, Baltazar, Zane e Carlos, `resumo.md`, `docs/fases/biblioteca.md`, `docs/mecanicas/registros_e_caderno.md` e `README.md`, `dados/transmissoes/henrique_01.tres` e `henrique_02.tres`, `cenas/salas/biblioteca/salao.tscn`, `balcao.tscn` e `acervo.tscn`, comentários de `gerar_efeitos_registros.py` e `gerar_interface.py`, `assets/sprites/personagens/rafael/visual.md`.
+
+## 2026-10-08 — Resumo dos personagens
+**Decisão:** a pasta `docs/historia/personagens/` ganha o `resumo.md`, com todos os personagens numa página (quem é, época, frase de essência, cor, esconderijo, parte para consertar a Âncora, relações e principais pendências). É a exceção à regra de "só as fichas" nessa pasta (entrada de 2026-10-07). O resumo não é lei: se ele e uma ficha discordarem, vale a ficha.
+**Por quê:** pedido do Davi.
+**Afeta:** `docs/historia/personagens/resumo.md` (novo), `docs/README.md`, `docs/historia/README.md`. Quem mudar uma ficha deve conferir se o resumo continua certo.
+
+## 2026-10-08 — A Biblioteca implementada em várias salas
+**Decisão:** o planejamento da Biblioteca (`docs/fases/biblioteca.md`) entrou no jogo. A cena única virou oito salas em `cenas/salas/biblioteca/`, e o jogo começa na cabine. Entraram: o autoload `Progresso` (as marcas da fase), portas com chave e com marca, a chave da manutenção, o quadro de energia (ordem 3, 1, 4, 2), as luzes de emergência que acendem e revelam o Gabriel para os robôs, o terminal com o disquete da Clarice (código 0394), o painel e a grade da ala leste, o telefone com a primeira ligação da Clarice, a porta barrada das obras raras e os robôs (Sentinela no salão, Rastreador no acervo) com rota fixa, rota nova depois da energia e bipe antes de virar.
+**Por quê:** pedido do Davi: implementar tudo o que o planejamento descreve.
+**Afeta:** `project.godot` (autoload `Progresso`), `scripts/sistemas/porta.gd`, `scripts/personagens/robo.gd`, `scripts/salas/sala.gd` (os limites automáticos também barram robôs), `scripts/itens/notebook.gd`, `scripts/menu_principal.gd`, `cenas/cutscenes/seg_acordar.tscn` e `dados/fases/01_biblioteca.tres` (começam na cabine). Os textos da ligação e do disquete são rascunho para o roteiro revisar.
+
 ## 2026-10-07 — Fase DTEC (laboratório), solta
 **Decisão:** nova fase **DTEC**, o departamento de tecnologia: recepção, dois corredores e 8 salas (eletrônica, informática, servidores, química, robótica, controle e o Lab Central). No **meio do mapa**, o Lab Central tem uma **máquina grande e brilhante** (anel em pé com núcleo ciano que pulsa). Duas salas são **trancadas** e abrem com o hack do notebook (Servidores e Robótica); cinco portas ficam **lacradas** para depois. A fase é **solta**: não se chega a ela pelos mapas atuais, aparece só no menu Fases e **não tem lugar na história**. A máquina não tem nome nem papel (não é a Âncora). Sem robôs por enquanto.
 **Por quê:** pedido do Davi: um mapa de laboratório grande e detalhado, com salas trancadas e uma máquina no centro.
 **Afeta:** `cenas/salas/dtec/` e `cenas/cenario/dtec/` (novos), `assets/modelagem/cenario/gerar_dtec.py` e `assets/modelagem/salas/dtec/montar_dtec.py` (novos), `cenas/cenario/luzes/luz_maquina.tscn` e `scripts/cenario/luz_pulsante.gd` (novos), `dados/fases/09_dtec.tres` e `cenas/menu_principal.tscn` (menu Fases), `docs/fases/dtec.md`.
+
+## 2026-10-07 — Gabriel em pixel art desenhada (a partir de referências)
+**Decisão:**
+- Os sprites do Gabriel deixam de sair do modelo 3D do Blender e passam a sair de **artes de referência em pixel art** (parado de frente e de costas, de lado e cinco expressões), guardadas em `assets/modelagem/personagens/gabriel_referencia/`. O script `pixelar_gabriel.py` (só Python, Pillow e NumPy) recorta, reduz para 99 px de altura, fecha a paleta em 40 cores e refaz o contorno.
+- **Parado de frente e de costas:** saem de uma referência própria (`parado.png`). Os tons de cabelo e de calça do Gabriel parado de frente são o molde para repintar as outras poses.
+- O que a referência não tem sai das vistas que ela tem: a **caminhada de lado** é um boneco recortado (braço, coxa, canela e pé girando nas juntas); a respiração sobe o peito e a cabeça.
+- **Diagonal (3/4 e 3/4 de costas):** a cabeça, o tronco e os braços saem de uma referência própria do Gabriel dando um passo (`andar_diagonal.webp`); os braços giram no ombro. As **pernas são as mesmas peças da vista de lado** (coxa, canela e tênis), presas nos dois quadris da pose, com 60% do balanço de lado e o pé da frente 3 px mais baixo na tela (mais alto no 3/4 de costas): as pernas da pose vinham dobradas e, giradas, ficavam tortas e se cruzavam. A cabeça da pose também saiu grande e é encolhida para 87%, como a de lado. O 3/4 parado é esse boneco com os membros retos. Na referência o braço que vai à frente é o do mesmo lado da perna que avança; no jogo, cada braço balança ao contrário da sua perna. O cabelo da pose de frente saiu loiro e foi repintado com o castanho dele.
+- **Cabeça de lado:** na referência de lado a cabeça saiu maior que na de frente (21 px do cabelo ao queixo, contra 18). O script encolhe a cabeça do perfil para 85%, presa no pescoço, e o corpo cresce um pouco para a altura total continuar 99 px.
+- **Braços sempre mexendo:** em todas as caminhadas os braços balançam ao contrário das pernas.
+- **Andando de frente e de costas:** saem de duas referências com quatro poses cada (`andar_frente.webp` e `andar_costas.webp`): pé no chão, passando, o outro pé no chão, passando. Cada pose dura 3 dos 12 quadros, centrada pelo peito, com o sobe e desce do desenho. Nas poses de frente a cabeça e o peito saíram maiores: o corpo estreita para 92% e a cabeça encolhe (85% na altura, 95% na largura). O cabelo (loiro nas poses de frente) e a calça (acinzentada nas de costas) são repintados com os tons do Gabriel parado, casando claro com claro.
+- Mesmos nomes, tamanhos e quantidade de quadros de antes (96 × 112, 12 quadros andando, 8 respirando): a cena `gabriel.tscn` não muda.
+- **Sem mochila**, como na referência: moletom vermelho de capuz, calça jeans e tênis cinza.
+- **Retratos:** cinco em vez de três: `normal`, `preocupado` e `surpreso` (os nomes que os diálogos já usam) e os novos `bravo` e `envergonhado`.
+- O `gerar_gabriel.py` e o `gabriel.blend` ficam como modelo 3D, mas **não devem ser rodados** para gerar os sprites do jogo: sobrescreveriam os novos.
+
+**Por quê:** pedido do Davi, para o Gabriel chegar no nível de qualidade das referências.
+**Afeta:** `assets/sprites/personagens/gabriel/` (todos os sprites e retratos, dois retratos novos), `assets/modelagem/personagens/pixelar_gabriel.py` e `gabriel_referencia/` (novos, com `andar_diagonal.webp`), `gerar_gabriel.py` (aviso no cabeçalho), `assets/sprites/personagens/gabriel/visual.md`. Os outros personagens continuam com os sprites do Blender, e ficam com um visual diferente do Gabriel até ganharem referências também.
+
+## 2026-10-07 — Planejamento da Biblioteca no estilo Resident Evil
+**Decisão:** a Biblioteca passa a ser planejada como uma fase de **salas ligadas por portas trancadas**, no estilo *Resident Evil*: cabine, salão principal (o centro), balcão, acervo sul, sala de manutenção (sala segura), sala de terminais, ala leste e uma sala de obras raras que só abre mais tarde. Para sair, o jogador busca a chave da manutenção no acervo, religa a energia, lê o código da grade no disquete da Clarice, abre a grade da ala leste e atende a primeira ligação da Clarice, que destranca a porta de saída. A Sentinela fica no salão e o Rastreador no acervo; com a energia, as luzes acendem e a rota da Sentinela muda. O mezanino, cogitado, foi descartado.
+**Por quê:** pedido do Davi: uma fase com mais caminhos e cadeados, em vez de um salão só.
+**Afeta:** `docs/fases/biblioteca.md` (reescrito). Para implementar: dividir `cenas/salas/biblioteca.tscn` em salas, chave como item, quadro de energia, painel de código e grade, luzes que acendem, telefone, disquete da Clarice e os dois robôs.
+
+## 2026-10-07 — Visual do Henrique e do Carlos
+**Decisão:**
+- **Henrique:** camisa de flanela xadrez laranja-queimado aberta sobre camiseta cinza, jeans preto, tênis de lona, óculos redondos de aro fino, cabelo bagunçado na testa, o caderno sempre na mão e um lápis atrás da orelha. Postura fechada, cabeça baixa, passo curto. **Cor de identificação: laranja-queimado.**
+- **Carlos**, o "cientista maluco": **mais velho que o grupo** (a idade exata continua pendente), careca no alto e cabelo grisalho arrepiado, jaleco sujo até o joelho e luvas pretas; por baixo, a roupa dos **anos 80** que ele idealiza (camiseta estampada colorida, jeans lavado, tênis branco de cano alto, relógio-calculadora, óculos grandes). Uma lupa com lente vermelha nos óculos e um controle com luz vermelha no cinto, o mesmo vermelho dos olhos dos robôs que ele controla. Postura curvada, cabeça esticada. **Cor de identificação: o branco do jaleco.** A aparência sai das pendências do Enredo (12.2); a idade exata fica.
+- Os dois têm o mesmo conjunto de sprites do Gabriel (cinco vistas em 96 × 112, caminhada, respiração e três retratos) e estão na sala de teste, ao lado dos outros.
+
+**Por quê:** pedido do Davi: os modelos do Henrique e do "cientista maluco que é o Carlos".
+**Afeta:** `docs/historia/personagens/henrique.md` e `carlos.md` (direção de arte e arquivos), `docs/historia/enredo_principal.md` (pendência 12.2), `assets/modelagem/personagens/` (`gerar_henrique.py`, `gerar_carlos.py`), `assets/sprites/personagens/henrique/` e `carlos/`, `cenas/personagens/henrique.tscn` e `carlos.tscn`, `cenas/salas/sala_teste.tscn`, `CLAUDE.md`.
+
+## 2026-10-07 — O Carlos é o antagonista (ideia 23), o pesquisador é o Henrique
+**Decisão:**
+- **Ideia 23 aprovada, com partes ainda em aberto.** O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora. Na época dele, a sociedade e o planeta estavam muito ruins, e o pouco que sobrou da humanidade foi para outro planeta. Ele ficou, por um objetivo egoísta: é obcecado pelos **anos 80** e quer usar a Âncora para ir viver lá. A Âncora é imprecisa: cada tentativa dele abre a fenda no chão da Biblioteca e puxa gente por acaso. Ele controla os robôs. A **Âncora** e o laboratório dele ficam no **D-Tec**, a parte de tecnologia da Unifor, no **Bloco M**. O **Bloco J foi descartado**.
+- Em aberto, nas pendências do Enredo (12.2): como ele consegue o conhecimento (consciências roubadas, super IA ou as duas), se a IA continua existindo, por que os robôs caçam, e o resto da ficha dele.
+- **Ideia 13 aprovada:** o pesquisador de 2019 se chama **Henrique**. A ficha virou `henrique.md`.
+- **O Henrique engana o grupo**: esconde a ligação que tem com o Carlos (trabalha para ele ou foi enganado por ele, pendente). Quando o grupo descobre a mentira, todos vão atrás do Carlos. Isso resolve a pendência "Algum personagem atrapalha?" e entra no Enredo como "A virada", antes do Ato 4.
+- **Ideias 20, 21 e 22 descartadas** (o pesquisador mentiu, o cientista que morreu, o drone).
+
+**Por quê:** decisão do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 1, 2, 3, 4, 6, 7, 8, 11 e 12), a ficha nova `docs/historia/personagens/carlos.md`, `pesquisador.md` → `henrique.md`, as fichas de Clarice, Zane, Gabriel e robôs, `docs/historia/outras_ideias.md`, `docs/historia/template_documento.md`, `docs/README.md`, `docs/gdd.md`, `CLAUDE.md` e o agente `roteirista`.
 
 ## 2026-10-07 — Visual do Baltazar e do Rafael, com os sprites do Gabriel
 **Decisão:**

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/item.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/disquete_clarice.png" id="2_icone"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/disquete_clarice_chao.png" id="3_chao"]
+
+[resource]
+script = ExtResource("1_item")
+id = "disquete_clarice"
+nome = "Disquete da Clarice"
+descricao = "Disquete azul. Na etiqueta, com letra redonda e caneta rosa: SENHAS - NÃO MEXER. Precisa de um terminal ligado."
+icone = ExtResource("2_icone")
+sprite_chao = ExtResource("3_chao")

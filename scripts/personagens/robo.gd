@@ -13,6 +13,8 @@ const ALCANCE_SOM_ANDANDO := 5
 const INTERVALO_NOVO_CAMINHO := 0.35
 const DISTANCIA_CHEGOU := 4.0
 const ORIGEM_DA_SOMBRA := Vector2(0, -4)
+const RAIO_LUZ_QUE_REVELA := 56.0
+const SOM_BIPE := preload("res://assets/audio/efeitos/robos/robo_bipe.wav")
 
 @export var nome_tipo: String = "Robô"
 
@@ -34,6 +36,13 @@ const ORIGEM_DA_SOMBRA := Vector2(0, -4)
 
 @export_group("Gadgets")
 @export var fator_clarao: float = 1.0
+
+@export_group("Rota")
+@export var rota: NodePath
+@export var rota_com_marca: NodePath
+@export var marca_da_rota: String = "energia"
+@export var pausa_no_ponto: float = 1.4
+@export var bipa_antes_de_virar := false
 
 @export_group("Memória")
 @export var segundos_memoria: float = 1.5
@@ -77,6 +86,9 @@ var _passos := 0
 var _segundos_atordoado := 0.0
 var _vista := "lado"
 var _sorteio := RandomNumberGenerator.new()
+var _indice_rota := -1
+var _bipou := false
+var _som_bipe: AudioStreamPlayer2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var olhos: Sprite2D = $Olhos
@@ -91,6 +103,8 @@ func configurar(nova_grade: GradeLabirinto, semente: int) -> void:
 	grade = nova_grade
 	_sorteio.seed = semente
 	_salinha = grade.salinha(global_position)
+	_indice_rota = _indice_do_ponto_mais_perto() - 1
+	Progresso.mudou.connect(_ao_mudar_progresso)
 	_patrulhar()
 
 
@@ -100,6 +114,12 @@ func _ready() -> void:
 	_gabriel = get_tree().get_first_node_in_group("jogador") as Gabriel
 	if _gabriel:
 		_gabriel.passo_dado.connect(_ao_ouvir_passo)
+	if bipa_antes_de_virar:
+		_som_bipe = AudioStreamPlayer2D.new()
+		_som_bipe.stream = SOM_BIPE
+		_som_bipe.bus = &"Efeitos"
+		_som_bipe.max_distance = 360.0
+		add_child(_som_bipe)
 	_mostrar_quadro()
 
 
@@ -151,6 +171,12 @@ func _mudar_estado(novo: Estado) -> void:
 
 func _patrulhar() -> void:
 	_mudar_estado(Estado.PATRULHA)
+	_bipou = false
+	var pontos := _pontos_da_rota()
+	if not pontos.is_empty():
+		_indice_rota = posmod(_indice_rota + 1, pontos.size())
+		_ir_para(pontos[_indice_rota])
+		return
 	var proxima := grade.proxima_salinha(_salinha, _salinha_anterior, _sorteio)
 	_salinha_anterior = _salinha
 	_salinha = proxima
@@ -212,6 +238,37 @@ func _desistir() -> void:
 	jogador_perdido.emit(self)
 	_salinha = grade.salinha(global_position)
 	_salinha_anterior = Vector2i(-1, -1)
+	_indice_rota = _indice_do_ponto_mais_perto() - 1
+	_patrulhar()
+
+
+func _pontos_da_rota() -> PackedVector2Array:
+	var caminho := rota
+	if not rota_com_marca.is_empty() and Progresso.tem(marca_da_rota):
+		caminho = rota_com_marca
+	var pontos := PackedVector2Array()
+	var no := get_node_or_null(caminho) if not caminho.is_empty() else null
+	if no == null:
+		return pontos
+	for filho in no.get_children():
+		if filho is Node2D:
+			pontos.append(filho.global_position)
+	return pontos
+
+
+func _indice_do_ponto_mais_perto() -> int:
+	var pontos := _pontos_da_rota()
+	var melhor := 0
+	for i in pontos.size():
+		if global_position.distance_squared_to(pontos[i]) < global_position.distance_squared_to(pontos[melhor]):
+			melhor = i
+	return melhor
+
+
+func _ao_mudar_progresso(marca: String) -> void:
+	if marca != marca_da_rota or rota_com_marca.is_empty() or estado != Estado.PATRULHA:
+		return
+	_indice_rota = _indice_do_ponto_mais_perto() - 1
 	_patrulhar()
 
 
@@ -224,7 +281,14 @@ func _ir_para(alvo: Vector2) -> void:
 func _ao_chegar() -> void:
 	match estado:
 		Estado.PATRULHA:
-			if _tempo_desde_chegada > 0.4:
+			if _pontos_da_rota().is_empty():
+				if _tempo_desde_chegada > 0.4:
+					_patrulhar()
+				return
+			if _som_bipe and not _bipou and _tempo_desde_chegada > pausa_no_ponto - 0.6:
+				_bipou = true
+				_som_bipe.play()
+			if _tempo_desde_chegada > pausa_no_ponto:
 				_patrulhar()
 		Estado.INVESTIGANDO:
 			if _tempo_desde_chegada > segundos_olhando_em_volta:
@@ -302,7 +366,7 @@ func _ve_o_jogador() -> bool:
 	if distancia <= alcance_sentir:
 		return true
 	var alcance := alcance_visao
-	if _lanterna_acesa():
+	if _lanterna_acesa() or _jogador_iluminado():
 		alcance *= fator_lanterna
 	if distancia > alcance:
 		return false
@@ -319,6 +383,14 @@ func _linha_livre(ate: Vector2) -> bool:
 
 func _lanterna_acesa() -> bool:
 	return Inventario.estado_de("lanterna").get("aceso", false) or Inventario.estado_de("notebook").get("aceso", false)
+
+
+func _jogador_iluminado() -> bool:
+	for luz in get_tree().get_nodes_in_group(VisivelComMarca.GRUPO_LUZ_QUE_REVELA):
+		var no := luz as Node2D
+		if no and no.is_visible_in_tree() and no.global_position.distance_to(_gabriel.global_position) < RAIO_LUZ_QUE_REVELA:
+			return true
+	return false
 
 
 func _ao_ouvir_passo(correndo: bool) -> void:

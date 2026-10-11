@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "disquete_clarice"
+titulo = "SENHAS.TXT (disquete da Clarice)"
+autor = "Clarice, 1994"
+papel = "caderno_clarice"
+paginas = PackedStringArray("Se você não é a Clarice, larga isso.
+Mentira. Pode ler, eu deixei pra isso.
+
+GRADE DA ALA LESTE: 0394
+
+O painel da grade só acende com energia.
+Óbvio, né.", "A porta do fim da ala leste não tem painel. Só abre pelo sistema, e eu tô trabalhando nisso.
+
+Se a luz voltar, cuidado. No claro eles enxergam melhor.
+
+- C.")
+anotacao = "Disquete da Clarice: o código da grade da ala leste é 0394.
+
+A porta do fim da ala leste só abre pelo sistema.
+No claro, os robôs enxergam melhor."

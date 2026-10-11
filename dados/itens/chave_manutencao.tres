@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/item.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/chave_manutencao.png" id="2_icone"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/chave_manutencao_chao.png" id="3_chao"]
+
+[resource]
+script = ExtResource("1_item")
+id = "chave_manutencao"
+nome = "Chave da manutenção"
+descricao = "Chave de latão com uma etiqueta de papel: MANUTENÇÃO. Abre a porta do corredor de serviço, no salão."
+icone = ExtResource("2_icone")
+sprite_chao = ExtResource("3_chao")

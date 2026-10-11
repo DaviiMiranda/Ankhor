@@ -38,7 +38,7 @@ docs/
 │   ├── furtividade_e_esconderijos.md # Esconderijos, microgames de tensão e distrações
 │   ├── iluminacao_e_lanterna.md   # Lanterna a pilha, dilema luz/perigo, luzes de emergência
 │   ├── vida_e_checkpoint.md       # 3 corações, dano, tela de morte e checkpoints
-│   ├── registros_e_caderno.md     # Documentos dos antecessores, rádio do Rafael e o Caderno do Gabriel
+│   ├── registros_e_caderno.md     # Documentos dos antecessores, rádio e o Caderno do Gabriel
 │   └── sono_e_sonhos.md           # Salas seguras, mecânica de save e investigação no passado
 │
 ├── computacao/                    # Requisitos da disciplina de Computação Gráfica / CC
@@ -65,14 +65,16 @@ docs/
     ├── template_personagem.md     # Modelo de ficha para um personagem novo
     ├── outras_ideias.md           # Ideias ainda não decididas (não é lei)
     ├── personagens/               # Uma ficha por personagem (parte do Enredo Principal)
+    │   ├── resumo.md              # Resumo de todos os personagens, para consulta rápida
     │   ├── gabriel.md             # O protagonista: estados, estamina, inventário
     │   ├── baltazar.md            # ~1750, antepassado de Gabriel
     │   ├── diana.md               # 1978, recruta da polícia
     │   ├── clarice.md             # 1994, aluna de processamento de dados
     │   ├── rafael.md              # 2008, segurança noturno
-    │   ├── pesquisador.md         # 2019, aluno de iniciação científica
-    │   ├── zane.md                # 2123, o último a chegar
-    │   └── robos.md               # Os inimigos da IA: sensores, FSM e patrulhas
+    │   ├── henrique.md            # 2019, o pesquisador
+    │   ├── carlos.md              # 3026, o antagonista
+    │   ├── zane.md                # 2123, faz as comunicações do bunker
+    │   └── robos.md               # Os robôs inimigos: sensores, FSM e patrulhas
     └── roteiro/                   # Roteirização cinematográfica e cutscenes
         ├── README.md              # Diretrizes gerais de roteiro
         └── cutscenes/             # Estrutura técnica e documentação de cutscenes

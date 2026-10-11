@@ -1,0 +1,153 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="r2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lisa.tscn" id="r3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_rachada.tscn" id="r4"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas_fundo.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r10"]
+[ext_resource type="Resource" path="res://dados/documentos/ordem_disjuntores.tres" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/itens/documento_no_mundo.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/quadro_energia.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r14"]
+[ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/estante_metal.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/caixas.tscn" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/tambor.tscn" id="r20"]
+[ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r23"]
+
+[sub_resource type="StyleBoxFlat" id="Placa"]
+bg_color = Color(0.12, 0.13, 0.14, 1)
+
+[node name="Manutencao" instance=ExtResource("r1")]
+id = "biblioteca_manutencao"
+largura = 400
+altura = 240
+chao_frente = 236
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("r2")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(80, 0)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(240, 0)
+
+[node name="Parede05" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(320, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(384, 0)
+
+[node name="Chao1" parent="Chao" instance=ExtResource("r6")]
+position = Vector2(0, 0)
+
+[node name="Fundo1_1" parent="Chao" instance=ExtResource("r7")]
+position = Vector2(0, 180)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("r6")]
+position = Vector2(128, 0)
+
+[node name="Fundo2_1" parent="Chao" instance=ExtResource("r7")]
+position = Vector2(128, 180)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("r6")]
+position = Vector2(256, 0)
+
+[node name="Fundo3_1" parent="Chao" instance=ExtResource("r7")]
+position = Vector2(256, 180)
+
+[node name="Chao4" parent="Chao" instance=ExtResource("r6")]
+position = Vector2(384, 0)
+
+[node name="Fundo4_1" parent="Chao" instance=ExtResource("r7")]
+position = Vector2(384, 180)
+
+[node name="LateralEsq1" parent="Chao" instance=ExtResource("r8")]
+position = Vector2(0, 112)
+
+[node name="LateralDir1" parent="Chao" instance=ExtResource("r8")]
+position = Vector2(384, 112)
+flip_h = true
+
+[node name="LateralEsq2" parent="Chao" instance=ExtResource("r8")]
+position = Vector2(0, 176)
+
+[node name="LateralDir2" parent="Chao" instance=ExtResource("r8")]
+position = Vector2(384, 176)
+flip_h = true
+
+[node name="Escuridao" parent="."]
+color = Color(0.2, 0.21, 0.28, 1)
+
+[node name="MusicaFase" parent="." instance=ExtResource("r9")]
+
+[node name="PortaCorredor" parent="." instance=ExtResource("r10")]
+position = Vector2(41, 124)
+id = "bib_manutencao"
+cena_destino = "res://cenas/salas/biblioteca/corredor_servico.tscn"
+porta_destino = "bib_servico_manutencao"
+
+[node name="PlacaCorredor" type="Label" parent="Paredes"]
+offset_left = 9.0
+offset_top = 30.0
+offset_right = 73.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "CORREDOR"
+horizontal_alignment = 1
+
+[node name="AvisoDisjuntores" parent="Objetos" instance=ExtResource("r12")]
+position = Vector2(84, 134)
+texto_acao = "Ler o aviso da porta"
+documento = ExtResource("r11")
+altura_aviso = 60.0
+
+[node name="QuadroEnergia" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(200, 132)
+
+[node name="Clarao" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(312, 196)
+item = ExtResource("r15")
+
+[node name="Pilha" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(352, 220)
+
+[node name="Checkpoint" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(130, 204)
+id = "manutencao"
+
+[node name="EstanteMetal" parent="Objetos" instance=ExtResource("r18")]
+position = Vector2(300, 138)
+
+[node name="Caixas" parent="Objetos" instance=ExtResource("r19")]
+position = Vector2(250, 226)
+
+[node name="Tambor" parent="Objetos" instance=ExtResource("r20")]
+position = Vector2(372, 172)
+
+[node name="LuzEnergia" type="Node2D" parent="."]
+script = ExtResource("r21")
+
+[node name="Tubo" parent="LuzEnergia" instance=ExtResource("r22")]
+position = Vector2(200, 70)
+
+[node name="Lampiao" parent="Luzes" instance=ExtResource("r23")]
+position = Vector2(130, 180)
+energy = 0.5

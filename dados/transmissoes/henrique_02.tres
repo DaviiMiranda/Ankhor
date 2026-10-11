@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "henrique_02"
+falante = "HENRIQUE (rádio)"
+falas = PackedStringArray("Chhh... Você entrou no acervo. O robô daí não enxerga bem. Ele escuta.", "Então não corre. Passo de corrida ele ouve de longe. Anda... devagar.")
+titulo_anotacao = "Henrique, 2019"
+anotacao = "Henrique de novo, pelas câmeras: o robô do acervo escuta. Não correr: ele ouve os passos de longe."

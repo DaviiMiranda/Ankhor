@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "ordem_disjuntores"
+titulo = "Aviso colado na porta"
+autor = "Quadro de energia"
+papel = "caderno_gabriel"
+paginas = PackedStringArray("QUEDA DE ENERGIA: RELIGAR NESTA ORDEM
+
+3 - iluminação de emergência
+1 - terminais e sistemas
+4 - grades de segurança
+2 - geral
+
+Fora da ordem, o quadro desarma tudo.")
+anotacao = "Quadro de energia da manutenção: religar os disjuntores na ordem 3, 1, 4, 2. Fora dessa ordem, desarma tudo."
