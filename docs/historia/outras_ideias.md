@@ -21,7 +21,6 @@
 | 2 | Pegar o pulso certo | 12.1 Como cada um volta | — |
 | 3 | Fechar a fenda de uma vez | 12.1 Como cada um volta | — |
 | 4 | A IA no caminho | 12.1 Como cada um volta (e parte da 12.2) | — |
-| 5 | Os pulsos como relógio | 12.1 Quanto tempo Gabriel tem | — |
 | 8 | Ela esperou 32 anos | 12.1 O final de Gabriel e Clarice | — |
 | 9 | Ela escolhe 2026 | 12.1 O final de Gabriel e Clarice | — |
 | 10 | A Âncora é a bateria da IA | 12.2 O objetivo da IA (e parte da 12.6) | — |
@@ -32,6 +31,7 @@
 | 17 | A noite em que cada um caiu | 12.4 O que os sonhos mostram | — |
 | 18 | A escala de turnos da IA | 12.5 De onde vem a grade dos robôs | — |
 | 19 | Cada gadget vem de alguém | 12.6 Gadgets e personagens | — |
+| 20 | Quantos dias cada um está lá | 12.3 Ordem de chegada | — |
 
 ---
 
@@ -58,16 +58,6 @@ Quando a fenda se fecha, devolve a cada um o tempo de onde veio, mas **só leva 
 Combina com qualquer uma das ideias 1, 2 e 3. Em algum momento a IA percebe o que estão fazendo e **defende o D-Tec**. Isso também resolve parte da pendência 12.2 (objetivo da IA), sem dar rosto nem fala a ela.
 
 **Recomendação:** juntar a **1** com a **3**. O conserto acontece no D-Tec, a volta acontece pela Biblioteca e a fase final é levar todo mundo até o ponto. Isso amarra os dois lugares que o Enredo já tem e dá um clímax jogável.
-
----
-
-## Resolve 12.1 — Quanto tempo Gabriel tem
-
-> Pendência: "se a fenda crescendo vira um prazo que o jogador sente ou fica só na história."
-
-### Ideia 5 — Os pulsos como relógio
-
-Sem cronômetro na tela. A cada pulso (por exemplo, uma vez por fase), o campus treme, uma luz branca atravessa as janelas e alguma coisa muda: um corredor desaba, uma sala nova se abre, os robôs trocam de rota. O jogador sente o tempo passar pelo mundo, e não por um número. É também o pulso que traz o Zane.
 
 ---
 
@@ -116,6 +106,35 @@ O pesquisador descobre que a Âncora consertada só consegue mandar de volta **u
 A ficha da Clarice já diz que ela "ficou dias sozinha antes de qualquer um aparecer", então ela é a primeira. Uma ordem possível depois dela: **Clarice → Baltazar → Rafael → Diana → pesquisador → Gabriel → Zane**. O pesquisador chegando pouco antes de Gabriel deixa pouco tempo para os outros desconfiarem dele.
 
 *Atualização (2026-10-08):* esta ideia contradiz o que foi decidido depois: o Zane chega antes da Clarice, e Gabriel é o último.
+
+### Ideia 20 — Quantos dias cada um está lá
+
+Dá um número ao "com dias de diferença" do Enredo (seções 4.1 e 7.2). É uma tabela para o grupo e para o roteiro: serve para as falas ("faz quase um mês", "perdi a conta") e fecha a ordem de chegada que falta. Parte só do que já está decidido e preenche o resto.
+
+**O que já está decidido e a tabela respeita:**
+
+- O **Henrique é o primeiro** a chegar, o Zane chegou antes da Clarice, a Diana depois da Clarice, e Gabriel é o último (Enredo, seção 4.1).
+- A fenda pulsa "a cada poucos dias" (seção 3), e cada pulso puxa uma pessoa (seção 7.2).
+- O Zane deixou o rádio sintonizado no balcão da Biblioteca (seção 6.1).
+
+**O que a tabela propõe:** um pulso a cada **5 dias**, uma pessoa por pulso, na ordem **Henrique → Zane → Baltazar → Clarice → Diana → Gabriel**. A coluna da direita mostra o mesmo, se o pulso for a cada 3 dias.
+
+| Quem | Dias em 3026 quando Gabriel acorda | Se for a cada 3 dias | O que sustenta |
+|---|---|---|---|
+| Henrique | 25 | 15 | Primeiro a chegar (pedido do Davi). É quem guia Gabriel pelo rádio desde a primeira fase e vê o campus pelas câmeras (`henrique_01` e `henrique_02`): é quem está lá há mais tempo |
+| Zane | 20 | 12 | Chegou antes da Clarice (decidido). Montou a frequência e achou o bunker. Já "perdeu a conta" de quantas vezes ligou para o balcão (`zane_01`) |
+| Baltazar | 15 | 9 | Teve dificuldade com o rádio que o Zane deixou, então chegou depois dele. O diário diz "a luz tornou esta noite": houve outro pulso depois da chegada dele, com ele ainda na Biblioteca |
+| Clarice | 10 | 6 | Chegou depois do Zane e antes de Gabriel (decidido). "Ficou dias sozinha antes de achar os outros" (ficha). Deixou o bilhete e o disquete, foi para o Bloco de salas e mapeou a ronda dos robôs, o que leva tempo |
+| Diana | 5 | 3 | O mapa à mão vem de "tanto correr para todo lado" (ficha), e mora no bunker com o Zane. Cinco dias bastam para quem corre o campus inteiro |
+| Gabriel | 0 | 0 | Acorda hoje |
+| Carlos | — | — | Não foi puxado: já vivia em 3026 |
+
+**O que isso permite:**
+
+- **Falas com número.** O Henrique pode dizer que faz quase um mês; o Zane, que perdeu a conta; a Diana, cinco dias. Quem chegou antes ensina quem chegou depois.
+- **Um motivo para o Henrique ser a voz do rádio.** Quem está lá há mais tempo é quem conhece as rondas dos robôs, e por isso é ele quem guia Gabriel desde a Biblioteca.
+
+**Se for aprovada, entra no Enredo:** uma coluna "Dias em 3026" na tabela 7.1, e o fechamento da ordem de chegada nas seções 4.1 e 12.3 (hoje só falta a posição do Baltazar; a tabela propõe colocá-lo entre o Zane e a Clarice). Cada ficha ganha uma linha.
 
 ---
 

@@ -4,6 +4,7 @@ extends Node2D
 const GRUPO_LUZ_QUE_REVELA := "luz_que_revela"
 
 @export var marca: String = "energia"
+@export var some_com_marca := false
 @export var revela_quem_passa := false
 @export var piscadas_ao_acender: int = 3
 
@@ -11,7 +12,7 @@ var _animacao: Tween
 
 
 func _ready() -> void:
-	visible = Progresso.tem(marca)
+	visible = _marcada() != some_com_marca
 	if revela_quem_passa:
 		for filho in get_children():
 			if filho is PointLight2D:
@@ -20,8 +21,16 @@ func _ready() -> void:
 
 
 func _ao_mudar(nova: String) -> void:
-	if nova == marca:
+	if nova != marca:
+		return
+	if some_com_marca:
+		visible = false
+	else:
 		_acender()
+
+
+func _marcada() -> bool:
+	return marca.is_empty() or Progresso.tem(marca)
 
 
 func _acender() -> void:

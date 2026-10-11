@@ -18,6 +18,10 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="r16"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r17"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/painel_codigo.tscn" id="b_painel"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/claviculario.png" id="b_claviculario"]
+[ext_resource type="Resource" path="res://dados/itens/chave_deposito.tres" id="b_chave_deposito"]
+[ext_resource type="PackedScene" path="res://cenas/itens/aviso_no_mundo.tscn" id="b_aviso"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -261,5 +265,29 @@ position = Vector2(41, 124)
 id = "sala_203"
 cena_destino = "res://cenas/salas/bloco_de_salas/corredor_primeiro_andar.tscn"
 porta_destino = "bloco_203"
+
+
+[node name="QuadroDeAvisos" parent="Objetos" instance=ExtResource("b_aviso")]
+position = Vector2(200, 126)
+texto_acao = "Olhar o quadro de avisos"
+altura_aviso = 70.0
+texto = "Horários e avisos de mil anos atrás, quase apagados. Por cima, um bilhete mais novo, a caneta: CONFERIR A CONTAGEM - 101 · 201 · 205."
+
+[node name="Claviculario" parent="Objetos" instance=ExtResource("b_painel")]
+position = Vector2(310, 126)
+texto_acao = "Abrir o claviculário"
+altura_aviso = 74.0
+codigo = "738"
+marca_energia = ""
+marca = "claviculario_aberto"
+textura_apagado = ExtResource("b_claviculario")
+textura_aceso = ExtResource("b_claviculario")
+aviso_aberto = "O cadeado abriu. Lá dentro, num gancho com etiqueta: a chave do depósito."
+aviso_ja_aberto = "O claviculário está aberto. Não tem mais nada que sirva."
+texto_visor = "GIRE OS NÚMEROS"
+item_ao_abrir = ExtResource("b_chave_deposito")
+
+[node name="Sprite2D" parent="Objetos/Claviculario" index="0"]
+offset = Vector2(-10, -70)
 
 [editable path="Ceu"]

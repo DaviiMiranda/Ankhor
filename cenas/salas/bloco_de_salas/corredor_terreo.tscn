@@ -26,9 +26,21 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r24"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/efeitos/poeira.tscn" id="r25"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r26"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_rastreador.tscn" id="b_rastreador"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="b_robos"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="b_gatilho"]
+[ext_resource type="Resource" path="res://dados/transmissoes/clarice_01.tres" id="b_clarice_01"]
+[ext_resource type="Resource" path="res://dados/itens/radio.tres" id="b_radio"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="b_checkpoint"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/sirene.tscn" id="b_sirene"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/grade_seguranca.tscn" id="b_grade"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/grade_escada.png" id="b_grade_escada"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
+
+[sub_resource type="CircleShape2D" id="AreaClarice"]
+radius = 70.0
 
 [node name="CorredorTerreo" instance=ExtResource("r1")]
 id = "corredor_terreo"
@@ -368,6 +380,8 @@ cena_destino = "res://cenas/salas/bloco_de_salas/sala_102.tscn"
 porta_destino = "sala_102"
 
 [node name="Porta_bloco_103" parent="." instance=ExtResource("r2")]
+liberada_por = "alarme_104"
+aviso_bloqueada = "Barricada por dentro. Do outro lado, uma voz: \"Com a máquina aí fora eu não abro, não!\""
 position = Vector2(921, 124)
 id = "bloco_103"
 cena_destino = "res://cenas/salas/bloco_de_salas/sala_103.tscn"
@@ -392,11 +406,67 @@ cena_destino = "res://cenas/salas/bloco_de_salas/sala_106.tscn"
 porta_destino = "sala_106"
 
 [node name="Porta_escada_1" parent="." instance=ExtResource("r2")]
+trancada = true
+chave = "chave_grade"
+aviso_trancada = "Uma grade de aço fecha a escada, presa no chão com um cadeado."
+aviso_destrancada = "A chave da fita azul abriu o cadeado. A grade sobe."
+marca_ao_destrancar = "escada_destrancada"
+atravessa_ao_destrancar = false
 position = Vector2(2360, 124)
 id = "escada_1"
 cena_destino = "res://cenas/salas/bloco_de_salas/corredor_primeiro_andar.tscn"
 porta_destino = "escada_2"
 
 [node name="MusicaFase" parent="." instance=ExtResource("r26")]
+
+
+[node name="GradeEscada" parent="Paredes" instance=ExtResource("b_grade")]
+position = Vector2(2334, 30)
+marca = "escada_destrancada"
+
+[node name="Grade" parent="Paredes/GradeEscada" index="0"]
+texture = ExtResource("b_grade_escada")
+
+
+[node name="Radio" parent="Objetos" instance=ExtResource("r21")]
+position = Vector2(196, 162)
+item = ExtResource("b_radio")
+
+[node name="Checkpoint" parent="Objetos" instance=ExtResource("b_checkpoint")]
+position = Vector2(104, 134)
+id = "bloco_chegada"
+
+[node name="Rastreador" parent="Objetos" instance=ExtResource("b_rastreador")]
+position = Vector2(1700, 152)
+rota = NodePath("../../RotaRastreador")
+
+[node name="GatilhoClarice1" parent="Objetos" instance=ExtResource("b_gatilho")]
+position = Vector2(880, 150)
+transmissao = ExtResource("b_clarice_01")
+
+[node name="Area" parent="Objetos/GatilhoClarice1" index="0"]
+shape = SubResource("AreaClarice")
+
+
+[node name="RotaRastreador" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(380, 150)
+
+[node name="Ponto2" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(1180, 158)
+
+[node name="Ponto3" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(2280, 146)
+
+[node name="Ponto4" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(1180, 158)
+
+
+[node name="RobosDaSala" type="Node" parent="."]
+script = ExtResource("b_robos")
+
+[node name="Sirene" parent="." instance=ExtResource("b_sirene")]
+position = Vector2(2280, 146)
 
 [editable path="Ceu"]

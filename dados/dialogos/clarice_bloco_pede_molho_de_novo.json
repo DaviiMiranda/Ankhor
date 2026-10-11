@@ -1,0 +1,20 @@
+{
+	"id": "clarice_bloco_pede_molho_de_novo",
+	"inicio": "lembrete",
+	"trechos": {
+		"lembrete": {
+			"falas": [
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "E o molho? Tá na 102, na areia, perto das carteiras viradas."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Pisa de leve que o robô escuta. Se ele vier, joga uma pedra longe: ele vai atrás do barulho. É reflexo, eu já testei."
+				}
+			]
+		}
+	}
+}

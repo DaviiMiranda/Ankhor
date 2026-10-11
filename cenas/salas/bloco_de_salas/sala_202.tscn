@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira_caida.tscn" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="b_item"]
+[ext_resource type="Resource" path="res://dados/itens/pedra.tres" id="b_pedra"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -340,5 +342,10 @@ position = Vector2(441, 124)
 id = "sala_202"
 cena_destino = "res://cenas/salas/bloco_de_salas/corredor_primeiro_andar.tscn"
 porta_destino = "bloco_202"
+
+
+[node name="Pedra" parent="Objetos" instance=ExtResource("b_item")]
+position = Vector2(300, 200)
+item = ExtResource("b_pedra")
 
 [editable path="Ceu"]

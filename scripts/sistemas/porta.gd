@@ -17,6 +17,9 @@ static var _destrancadas := {}
 @export var trancada := false
 @export var chave: String = ""
 @export var aviso_trancada: String = "Trancada. Talvez dê para hackear"
+@export var aviso_destrancada: String = "Porta destrancada"
+@export var marca_ao_destrancar: String = ""
+@export var atravessa_ao_destrancar := true
 @export var bloqueada := false
 @export var dificuldade_hack := Hackeamento.Dificuldade.MEDIO
 @export var minigame_hack := Hackeamento.Tipo.ALEATORIO
@@ -24,6 +27,7 @@ static var _destrancadas := {}
 @export var marca_ao_tentar: String = ""
 @export var aviso_bloqueada: String = "A porta não abre."
 @export var som_abrir: AudioStream = SOM_ABRIR
+@export var som_destrancar: AudioStream
 
 var _atravessando := false
 var _folha: FolhaPorta
@@ -33,7 +37,7 @@ func _ready() -> void:
 	super()
 	add_to_group("portas")
 	_folha = _encontrar_folha()
-	if _destrancadas.has(id):
+	if _destrancadas.has(id) or (not marca_ao_destrancar.is_empty() and Progresso.tem(marca_ao_destrancar)):
 		trancada = false
 	if not id.is_empty() and _chegada == id:
 		_chegada = ""
@@ -56,6 +60,8 @@ func interagir() -> void:
 		return
 	if trancada and not chave.is_empty() and Inventario.tem(chave):
 		destrancar()
+		if not atravessa_ao_destrancar:
+			return
 	if trancada:
 		Inventario.aviso.emit(aviso_trancada)
 		return
@@ -78,7 +84,10 @@ func destrancar() -> void:
 	trancada = false
 	if not id.is_empty():
 		_destrancadas[id] = true
-	Inventario.aviso.emit("Porta destrancada")
+	Inventario.aviso.emit(aviso_destrancada)
+	if som_destrancar:
+		_tocar(som_destrancar)
+	Progresso.marcar(marca_ao_destrancar)
 
 
 func _encontrar_folha() -> FolhaPorta:
