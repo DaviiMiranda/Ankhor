@@ -61,6 +61,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 - A **escada** começa fechada por uma grade de aço de enrolar (como a da Biblioteca), presa no chão com um cadeado.
 - O **buraco no chão da 204** dá na **104**, logo embaixo (as duas ficam no mesmo ponto dos corredores). Ele só serve para **descer**, e vira um atalho entre os andares (seção 5.5).
 - A **saída** é a **porta corta-fogo** no fim do corredor do 1º andar, depois da escada. Ela está **acorrentada** e leva à próxima fase, o **Centro de Convivência** ([`centro_de_convivencia.md`](centro_de_convivencia.md)). Como ele ainda não existe, por enquanto a porta abre a entrada do Bunker, de forma provisória.
+- **Rotas de flanqueamento e micro-loops:** além da espinha central dos corredores, ver a seção 12 para o detalhamento de conexões inter-salas (brecha 101 ↔ 102 e trinco interno 203 ↔ 206) que transformam a topologia em um grafo com ciclos para enriquecer a navegação furtiva.
 
 ### 2.2 As salas no plano
 
@@ -256,3 +257,105 @@ Em `assets/modelagem/cenario/gerar_kit.py` (servem para qualquer sala):
 | Carteira universitária, em pé e tombada | `cenas/cenario/objetos/carteira.tscn`, `carteira_caida.tscn` |
 
 Os números das salas em cima das portas são `Label` com a fonte do jogo, dentro de `Paredes`.
+
+---
+
+## 12. Propostas e Sugestões de Melhorias de Level Design
+
+As propostas abaixo mantêm total fidelidade ao enredo já aprovado (a Clarice na 103 com a Diana, os 4 puzzles principais, a saída na porta corta-fogo e a chegada ao Centro de Convivência), focando em refinar o **pacing**, a **agência espacial do jogador**, a **legibilidade sensorial (telegraphing)** e os **requisitos acadêmicos de computação gráfica e estruturas de dados**.
+
+### 12.1 Diagnóstico do Design Atual
+
+1. **Topologia em "Espinha de Peixe" (Árvore com ramos sem saída):** Quase todas as salas (com exceção do atalho vertical 204 → 104) são nós-folha (*leaf nodes*) com apenas uma entrada e saída voltadas para o mesmo corredor. Se o robô estiver patrulhando em frente à porta, o jogador fica encurralado na sala sem escolhas táticas além de esperar passivamente ou gastar recursos escassos (pedras).
+2. **Monotonia Linear dos Corredores (2560 px / 8 telas):** Os corredores são retilíneos e extensos. Em um jogo 2.5D, uma perseguição em linha reta tão longa sem quebras arquitetônicas ou abrigos intermediários pode gerar frustração ou previsibilidade.
+3. **Saída Cega da Sala Segura (103):** Ao abrir a barricada da sala segura para retornar ao corredor do térreo, o jogador não tem como espiar o corredor com antecedência. Se o Rastreador estiver passando bem na porta, pode ocorrer uma detecção punitiva imediata.
+4. **Isolamento Sensorial Entre Pisos:** O térreo e o 1º andar operam como camadas quase desconectadas até o momento em que a grade da escada é aberta, sem antecipação tática do que está acima.
+
+---
+
+### 12.2 Proposta 1: Micro-Loops e Rotas de Flanqueamento (Grafos com Ciclos)
+
+Em jogos de terror e furtividade inspirados em *Resident Evil* e *Alien: Isolation*, a existência de pequenos caminhos circulares (*micro-loops*) enriquece a tomada de decisão. Propõe-se criar duas conexões inter-salas orgânicas:
+
+```
+ 1º ANDAR  ══[201]══[202]══[203]════════[204]══[205]══[206]══[ESCADA]══[CORTA-FOGO]──► saída
+                            │ (trinco interno)  │       │
+                            └───────────────────┼───────┘ (desbloqueio após alicate)
+                                                ▼ (queda 204→104)
+ TÉRREO    ══[101]──────[102]══[103]══[104]══[105]══[106]══[ESCADA]
+               └──(brecha)──┘
+```
+
+1. **Brecha na Alvenaria entre 101 e 102 (Flanqueamento da Duna):**
+   - **Cenário:** O peso da duna de areia na sala 102 derrubou parte da parede divisória com a 101, deixando uma passagem baixa por baixo de uma lousa retorcida.
+   - **Utilidade de Level Design:** Na busca pelo molho de chaves da Clarice na 102, caso o Rastreador esteja rondando o corredor na altura da 102, o jogador pode entrar na 101, atravessar a brecha para a 102 em silêncio (chão de areia), recolher o molho e sair pela 101, contornando a rota do robô.
+2. **Trinco Interno do Almoxarifado entre 203 e 206:**
+   - **Cenário:** A sala dos professores (203) e o depósito (206) compartilham uma porta de armário/arquivo de serviço. Essa porta começa trancada pelo lado de dentro da 206 com uma alavanca metálica simples.
+   - **Utilidade de Level Design:** Quando Gabriel pega o alicate na 206 e a Sentinela muda sua rota para patrulhar agressivamente entre a 206 e a escada (a Virada), o jogador pode destravar o trinco da porta de serviço e escapar de volta para a 203. De lá, ele pode acessar o atalho da 204 sem se expor no corredor iluminado do 1º andar.
+
+---
+
+### 12.3 Proposta 2: Zoneamento dos Corredores e Nichos de Cobertura
+
+Para quebrar a monotonia dos 2560 px de corredor e criar ritmo (*pacing*) de tensão e alívio:
+
+1. **Três Setores Arquitetônicos Claros:**
+   - **Setor Oeste (Salas x01-x02) — "O Setor Soterrado":** Montes de areia e dunas invadindo o piso. Passos completamente abafados. Teto do 1º andar ruiu, com troncos de árvores e raízes que bloqueiam linhas de visão diretas.
+   - **Setor Central (Salas x03-x04) — "O Ponto de Apoio":** Corredor intermediário com piso de lajota mista e tapetes desbotados. Onde se localizam o posto da Clarice e a porta do laboratório 104. Placas de salas legíveis e painéis informativos intactos.
+   - **Setor Leste (Salas x05-x06 + Escada) — "A Ala Industrial e de Serviço":** Lajota limpa e ressonante. Cada passo descuidado ecoa pelo corredor. É a área de maior risco sonoro no térreo e de maior exposição visual no 1º andar.
+2. **Nichos de Parede (Bebedouros e Armários Empilhados):**
+   - Inserir 2 nichos reentrantes ao longo de cada corredor (espaços onde ficavam bebedouros ou armários de vestiário desativados).
+   - O Gabriel pode recuar para a sombra do nicho e permanecer agachado enquanto um robô passa de costas pelo corredor, sem a necessidade de mudar de sala para se esconder.
+
+---
+
+### 12.4 Proposta 3: Dinâmica da Sala Segura (Posto da 103) e Fresta de Espiar
+
+1. **Fresta de Observação da Barricada (`[E] Espiar Corredor`):**
+   - Na barricada de carteiras da 103, há uma fresta entre as madeiras que permite ao Gabriel olhar o corredor do térreo antes de pedir para a Clarice abrir a passagem.
+   - A câmera desliza suavemente para o corredor através da fresta, mostrando a iluminação e se o Rastreador está nas proximidades. Isso evita mortes injustas na saída.
+2. **Mural Tático de Giz:**
+   - Na lousa da 103, além do acampamento com lampiões, a Clarice desenhou um rascunho de giz da planta baixa do bloco com anotações lógicas ("escada trancada - grade", "sirene no leste", "depósito no 1º"). Serve como mapa diegético visual para o jogador.
+
+---
+
+### 12.5 Proposta 4: Pacing Vertical e Telegraphing Sensorial Inter-Pisos
+
+1. **Feedback Auditivo e Visual do Andar Superior:**
+   - Enquanto Gabriel explora o térreo, a movimentação da Sentinela ou de máquinas pesadas no 1º andar faz as lajes estalarem: poeira de gesso cai do teto em pontos específicos.
+   - Esse recurso de *telegraphing* informa ao jogador que há perigo ativo no piso de cima antes mesmo de ele subir a escada.
+2. **Interação Sonora no Buraco de Queda (204 → 104):**
+   - **Arremesso de Distração:** Gabriel pode jogar uma pedra pelo buraco da 204 para que ela caia no chão da 104. O impacto do som da pedra atrai o Rastreador do térreo para dentro da 104, permitindo liberar o corredor de baixo antes da descida.
+   - **Amortecimento por Mobiliário:** Na 104, Gabriel cai sobre uma pilha de caixas de papelão e cadeiras de espuma tombadas, gerando um som abafado característico em vez de um estalo estrondoso, recompensando o jogador pelo uso do atalho planejado.
+
+---
+
+### 12.6 Proposta 5: Atmosfera e Storytelling Ambiental da Sala 205
+
+A sala 205 continua misteriosa conforme o Enredo Principal (sem explicação imediata), mas seu level design pode amplificar o suspense:
+- **Contraste de Iluminação e Som:** Ao entrar na 205, o ruído ambiente de vento e estalos de ruína cessa subitamente. A iluminação é estável e límpida, com uma lâmpada fluorescente que emite um zumbido limpo e contínuo de 60 Hz.
+- **Geometria Impecável:** Todas as carteiras estão alinhadas a laser em grid ortogonal perfeito; a lousa está limpa sem manchas antigas de giz, contendo apenas os 8 tracinhos gravados de forma geométrica exata. Isso gera inquietação no jogador sem violar a pendência narrativa.
+
+---
+
+### 12.7 Formalização Acadêmica para a Disciplina de Computação Gráfica
+
+Para a defesa técnica e relatórios da disciplina, o Bloco de salas demonstra conceitos fundamentais de computação:
+
+1. **Modelagem Formal em Grafo Ponderado $G = (V, E, w)$:**
+   - **Vértices ($V$):** Salas ($101 \dots 106, 201 \dots 206$), Setores dos Corredores ($C_{T1}, C_{T2}, C_{T3}$ no térreo; $C_{A1}, C_{A2}, C_{A3}$ no 1º andar) e Nós de Conexão Especial (Escada, Rota Corta-fogo).
+   - **Arestas Ponderadas ($E$):** Portas, atalho vertical direcionado ($204 \to 104$), brecha de flanqueamento ($101 \leftrightarrow 102$) e passagem de serviço ($203 \leftrightarrow 206$).
+   - **Função de Custo de Transição $w(e)$:**
+     $$w(e) = \Delta t + \lambda_{\text{ruído}} \cdot \kappa_{\text{superfície}} + \lambda_{\text{visão}} \cdot \gamma_{\text{luz}}$$
+     Onde $\kappa_{\text{superfície}}$ varia de $0.2$ (areia fofa) a $2.5$ (entulho/vidro), e $\gamma_{\text{luz}}$ pondera a exposição sob o luar do 1º andar.
+2. **Cálculo de Campo de Visão 2D (FOV por Produto Escalar):**
+   - O cone de vigilância da Sentinela com vetor de direção $\vec{d}$ e posição $\vec{p}_{\text{robo}}$ detecta Gabriel na posição $\vec{p}_{\text{gabriel}}$ se:
+     $$\frac{(\vec{p}_{\text{gabriel}} - \vec{p}_{\text{robo}}) \cdot \vec{d}}{\|\vec{p}_{\text{gabriel}} - \vec{p}_{\text{robo}}\|} \ge \cos\left(\frac{\theta_{\text{abertura}}}{2}\right) \quad \text{e} \quad \text{RaycastClear}(\vec{p}_{\text{robo}}, \vec{p}_{\text{gabriel}})$$
+     Onde $\theta_{\text{abertura}} = 70^\circ$, com raio de alcance estendido em áreas iluminadas pelo luar ($R_{\text{luar}} = 380\text{ px}$) e contraído em zonas de sombra ($R_{\text{sombra}} = 120\text{ px}$).
+3. **Propagação Sonora e Resposta dos Rastreadores via BFS:**
+   - O disparo da sirene na 104 ou arremesso de pedras propaga ondas sonoras na grade ortogonal através de uma busca em largura (BFS) com fator de atenuação logarítmica:
+     $$I(d) = I_0 - 10 \cdot \beta \cdot \log_{10}(d + 1)$$
+     Onde $\beta$ é o coeficiente de amortecimento dos obstáculos arquitetônicos (paredes grossas atenuam $18\text{ dB}$, portas abertas atenuam $4\text{ dB}$).
+4. **Ciclos Fundamentais e Análise de Conectividade:**
+   - As duas rotas de flanqueamento propostas eliminam vértices de corte (pontos de articulação) críticos no grafo de salas, garantindo que o jogador sempre disponha de pelo menos dois caminhos disjuntos em arestas para evacuação durante rondas ativas dos inimigos.
+
