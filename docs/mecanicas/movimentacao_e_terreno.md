@@ -13,7 +13,7 @@ Gabriel possui dois estados primários de movimentação em vista lateral 2.5D. 
 
 ## 2. Dinâmica de Estamina
 
-- Gabriel é um estudante comum: sua estamina se esgota rapidamente durante a corrida (~4 segundos contínuos).
+- Gabriel é um estudante comum: sua estamina se esgota rapidamente durante a corrida (~8 segundos contínuos).
 - Quando a barra de estamina zera, Gabriel entra em estado de **Exaustão**: não pode correr por 3 segundos, move-se com 40% da velocidade de caminhada e emite suspiros ofegantes audíveis via sinal `ofegante` e efeito sonoro, aumentando o risco de detecção por robôs.
 - A estamina se regenera gradualmente: em repouso (parado), recupera-se em ~4 segundos; andando, recupera-se em ~8 segundos.
 - **Implementação técnica:**

@@ -7,7 +7,7 @@ signal exaustao_terminada
 signal ofegante
 
 @export var estamina_maxima: float = 100.0
-@export var consumo_por_segundo: float = 25.0
+@export var consumo_por_segundo: float = 12.5
 @export var regeneracao_parado_por_segundo: float = 25.0
 @export var regeneracao_andando_por_segundo: float = 12.5
 @export var duracao_exaustao: float = 3.0
