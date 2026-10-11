@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-11 — Animação de abrir porta, uma por mapa
+**Decisão:** a porta ganha animação de abrir, e cada mapa terá a sua, feita a partir de um vídeo. A da Biblioteca é uma porta de correr de madeira com batente de aço (`cenas/cenario/biblioteca/parede_porta_animada.tscn`). A folha é uma peça de parede animada que a `Porta` encontra sozinha pela posição, então as salas só trocam a peça do vão. O som de abrir também é por mapa: a porta de correr da Biblioteca toca `porta_correr.wav` (rodinhas e batida no batente), em vez do `porta_abrir.wav` de porta de dobradiça.
+**Por quê:** pedido do Davi, com os vídeos de cada mapa.
+**Afeta:** `scripts/sistemas/porta.gd`, `scripts/sistemas/folha_porta.gd`, `cenas/cenario/biblioteca/`, `assets/sprites/cenario/biblioteca/porta/`, `assets/modelagem/cenario/gerar_porta_biblioteca.py`, as 8 salas de `cenas/salas/biblioteca/`, `docs/mecanicas/movimentacao_e_terreno.md`.
+
 ## 2026-10-11 — Legenda própria para cutscenes
 **Decisão:** falas e pensamentos dentro de cutscenes usam a **legenda de cutscene** (`cenas/interface/legenda_cutscene.tscn`), e não a caixa de diálogo das salas: uma faixa escura em degradê no pé da tela, com o texto centralizado, sem retrato, sem nome e sem escolhas. O jogador continua avançando com `E`.
 **Por quê:** a caixa das salas, com moldura e foto de perfil, pesava sobre as ilustrações. Pedido do Davi.
