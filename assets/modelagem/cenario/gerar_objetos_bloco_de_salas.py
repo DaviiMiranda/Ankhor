@@ -7,7 +7,7 @@
 #   python assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py
 #
 # O que sai:
-#   assets/sprites/itens/molho_rafael.png (+ _chao)    o molho de chaves do Rafael
+#   assets/sprites/itens/molho_de_chaves.png (+ _chao)  o molho de chaves da Clarice
 #   assets/sprites/itens/chave_grade.png (+ _chao)     a chave da fita azul (grade da escada)
 #   assets/sprites/itens/chave_deposito.png (+ _chao)  a chave do depósito (sala 206)
 #   assets/sprites/itens/alicate.png (+ _chao)         o alicate corta-corrente
@@ -68,7 +68,7 @@ def chave_pendurada(d, x, y, comprimento, c, claro, escuro):
     d.px(x + 1, y + 3 + comprimento, escuro)
 
 
-def molho_rafael():
+def molho_de_chaves():
     """O molho de chaves do vigia: uma argola grande de arame e cinco chaves
     penduradas, de tamanhos diferentes. Uma delas tem um pedaço de fita azul
     na cabeça (a da grade da escada)."""
@@ -79,13 +79,13 @@ def molho_rafael():
                         LATAO_ESCURO if c == LATAO else METAL_ESCURO)
     icone.ret(8, 7, 10, 9, AZUL)
     icone.px(9, 8, TRANSPARENTE)
-    icone.salvar(PASTA_ITENS, "molho_rafael.png")
+    icone.salvar(PASTA_ITENS, "molho_de_chaves.png")
     chao = Desenho(10, 5)
     argola(chao, 2, 2, 2, METAL_CLARO)
     chao.ret(4, 2, 9, 2, LATAO)
     chao.ret(4, 4, 8, 4, METAL)
     chao.px(6, 3, AZUL)
-    chao.salvar(PASTA_ITENS, "molho_rafael_chao.png")
+    chao.salvar(PASTA_ITENS, "molho_de_chaves_chao.png")
 
 
 def chave_grade():
@@ -255,7 +255,7 @@ def sirene():
 
 if __name__ == "__main__":
     print("Gerando os objetos do Bloco de salas:")
-    molho_rafael()
+    molho_de_chaves()
     chave_grade()
     chave_deposito()
     alicate()

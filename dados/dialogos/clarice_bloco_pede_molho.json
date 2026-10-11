@@ -1,0 +1,88 @@
+{
+	"id": "clarice_bloco_pede_molho",
+	"inicio": "abertura",
+	"anotacao": {
+		"titulo": "Clarice, na 103",
+		"texto": "A Clarice está na 103, atrás de uma barricada, mapeando a ronda dos robôs.\n\nPerdeu o molho de chaves na areia da 102 quando o robô a ouviu. Sem o molho ninguém sobe: a grade da escada está no cadeado.\n\nSe eu levar o molho, ela diz qual chave abre o quê. Ela chama de permuta, não de pedido de ajuda."
+	},
+	"trechos": {
+		"abertura": {
+			"falas": [
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_seria",
+					"texto": "Para aí. Mão onde eu possa ver, e devagar com a barricada: cada carteira que cai é um aviso pro robô."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Você é de carne e osso mesmo, né? Não é eco, nem alucinação de quem passou dias sem dormir."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_surpreso",
+					"texto": "Você... é de verdade. Uma pessoa."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_sorrindo",
+					"texto": "De verdade e de mau humor. Clarice. A do bilhete e do disquete da Biblioteca. Você achou, pelo jeito."
+				}
+			],
+			"escolhas": [
+				{
+					"texto": "O que aconteceu com este lugar?",
+					"vai_para": "lugar"
+				},
+				{
+					"texto": "Preciso sair daqui.",
+					"vai_para": "molho"
+				}
+			]
+		},
+		"lugar": {
+			"falas": [
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Mil anos, meu filho. Mil. Eu fiz a conta três vezes e ela fecha: isso aqui é 3026."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "Tem árvore crescendo no corredor. E areia até o joelho."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_sorrindo",
+					"texto": "Totalmente surreal, eu sei. Mas a areia ajuda: abafa passo. É só saber onde pisar."
+				}
+			],
+			"vai_para": "molho"
+		},
+		"molho": {
+			"falas": [
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_seria",
+					"texto": "Pra sair, tem que subir. A grade da escada tá no cadeado, e a chave é a da fita azul."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_seria",
+					"texto": "Só que o molho com ela caiu na 102, aqui do lado, quando o robô me ouviu no corredor. Larguei tudo e corri."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "A proposta é justa: você traz o molho, eu te digo qual chave abre o quê. Isso não é pedir ajuda, tá? É permuta."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "E eu não saio daqui. Tô mapeando a ronda deles pela fresta da barricada, e se eu saio perco o ciclo."
+				}
+			]
+		}
+	}
+}
