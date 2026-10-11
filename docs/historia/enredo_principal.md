@@ -80,7 +80,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 - Todos os puxados pela fenda têm **cerca de 20 anos**.
 - Todos têm alguma **ligação com a região da Unifor**, além de terem sido puxados no chão da Biblioteca.
 - Chegaram a 3026 **com dias de diferença**. Estão todos **vivos**, cada um sobrevivendo do seu jeito num lugar do campus, e Gabriel **encontra cada um ao longo do jogo**.
-- **Ordem de chegada:** **Gabriel é o último** a chegar. Antes dele, o **Zane** chegou antes da **Clarice**. A ordem dos outros (Baltazar, Diana e Henrique) ainda está pendente.
+- **Ordem de chegada:** o **Henrique é o primeiro** a chegar, e **Gabriel é o último**. No meio: o **Zane** chegou antes da **Clarice**, e a **Diana** chegou depois da Clarice (apareceu na 103 quando a Clarice já estava lá). Só a posição do **Baltazar** ainda está pendente.
 
 ### 4.2 Fichas
 
@@ -118,16 +118,16 @@ O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na T
 
 | Esconderijo | Quem fica |
 |---|---|
-| **Bunker**, embaixo do núcleo da Âncora. O maior e mais seguro: os robôs não descem lá | Zane, no computador da central de dados; Henrique, na mesma sala de dados, com as câmeras do campus e o rádio |
-| **Biblioteca**, escondido numa sala que o jogador ainda não consegue abrir, com medo | Baltazar, isolado dos outros |
-| **Bloco de salas**, na sala 103, atrás de uma barricada | Clarice e Diana, desde que chegaram, tentando descobrir o que é este lugar |
+| **Bunker**, embaixo do núcleo da Âncora. O maior e mais seguro: os robôs não descem lá | Zane, no computador da central de dados; Henrique, na mesma sala de dados, com as câmeras do campus e o rádio. Diz que está escondido ali, tentando entender tudo |
+| **Biblioteca**, escondido numa sala que o jogador ainda não consegue abrir, com medo | Baltazar, isolado dos outros, ali desde que chegou |
+| **Bloco de salas**, na sala 103, atrás de uma barricada | Clarice, que foi para lá depois de chegar à Biblioteca, e Diana, que apareceu depois e foi acolhida por ela. Desde então tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio |
 | **D-Tec**, no laboratório | Carlos, que nunca sai de lá |
 
 ### 6.1 Como eles se comunicam
 
 - O **Zane**, do computador do bunker, faz a **comunicação de todos**: mantém a **frequência de rádio** do grupo e deixou um rádio sintonizado nela na **Biblioteca**, no balcão de atendimento, porque é lá que quem cai na fenda acorda. Ele também liga pelos telefones velhos do campus.
-- O **Henrique**, da sala de dados do bunker, vê o campus pelas **câmeras** e dá as **dicas de patrulha** pelo rádio. É a voz que guia Gabriel desde a primeira fase. Mas fala pouco e fica na dele, mesmo dividindo a sala com o Zane.
-- **Clarice e Diana**, da 103, também falam pela frequência e estão em contato com o **Henrique**: passam para ele o que descobrem, e ele confere nas câmeras. A Clarice é quem guia Gabriel pelo rádio no Bloco de salas, e é ela quem conta a Gabriel que fala com o Henrique.
+- O **Henrique**, da sala de dados do bunker, vê o campus pelas **câmeras** e passa o que vê **pelo rádio para a Clarice e a Diana**, não direto para Gabriel. Diz que está escondido ali, tentando entender tudo, e foi ele quem disse ao grupo que, de alguma forma, estão em 3026. Fala pouco e fica na dele, mesmo dividindo a sala com o Zane.
+- **Clarice e Diana**, da 103, também falam pela frequência e estão em contato com o **Henrique**: ele confere o campus nas câmeras e conta o que vê, e elas juntam isso com o que descobrem. A **Clarice é a voz que guia Gabriel pelo rádio**, desde a Biblioteca e depois no Bloco de salas, com as dicas de patrulha que vêm das câmeras do Henrique, e é ela quem conta a Gabriel que fala com ele.
 - O **Baltazar** teve dificuldade com o rádio e com a tecnologia de 3026, ficou com medo e **se isolou**: não está na frequência. Gabriel só fala com ele em pessoa.
 
 - Os esconderijos funcionam como pontos de encontro: Gabriel volta a eles para conversar e acompanhar o que cada um descobriu.
@@ -151,7 +151,7 @@ O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na T
 
 1. **Antes do jogo:** a sociedade e o planeta ficam muito ruins, e o pouco que sobrou da humanidade vai embora para outro planeta. O Carlos fica e constrói a Âncora no D-Tec.
 2. **3026:** o Carlos começa a tentar ir para os anos 80. A cada tentativa, a fenda se abre no chão da Biblioteca.
-3. **Os pulsos:** com dias de diferença, a fenda puxa uma pessoa de cada época. Cada uma acorda sozinha, foge dos robôs e acha um canto para sobreviver. Todos chegam antes de Gabriel; o Zane, antes da Clarice.
+3. **Os pulsos:** com dias de diferença, a fenda puxa uma pessoa de cada época. Cada uma acorda sozinha, foge dos robôs e acha um canto para sobreviver. Todos chegam antes de Gabriel. O Henrique é o primeiro, o Zane chega antes da Clarice, e a Diana depois da Clarice.
 4. **O jogo:** Gabriel, o último, acorda na Biblioteca, encontra os outros um a um, descobre o que aconteceu e tenta consertar a Âncora para todos voltarem.
 
 ---
@@ -170,7 +170,7 @@ O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na T
 - Gabriel acha a **lanterna** perto de onde acorda, e **pilhas** pelo salão. O **anel da avó** já está no inventário.
 - **Acampamento de Baltazar** entre as raízes da árvore. Ele não está lá.
 - **Terminal com o bilhete da Clarice.**
-- **Rádio portátil:** sintonizado na frequência do grupo. A voz do **Henrique** dá a primeira dica de patrulha, vendo Gabriel pelas câmeras.
+- **Rádio portátil:** sintonizado na frequência do grupo. A voz da **Clarice** dá a primeira dica de patrulha, com o que o **Henrique** vê pelas câmeras.
 - **Saída:** a porta no fim da ala leste leva ao Bloco de salas.
 
 - **O telefone:** no fim da fase, o telefone do balcão toca. É o **Zane**, que destranca pelo sistema a porta de saída.
@@ -180,10 +180,10 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 ### Ato 2 — Encontrar os outros (Bloco de salas, Labirinto e demais áreas)
 
 - Cada fase leva a **um personagem** e ao esconderijo dele. Gabriel precisa chegar lá, ganhar a confiança da pessoa e receber a parte dela para consertar a Âncora (seção 3.1).
-- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Clarice** e da **Diana**, a **sala 103**, atrás de uma barricada. As duas vieram da Biblioteca, como todo mundo, e estão ali desde que chegaram, tentando descobrir o que é este lugar; falam com o Henrique pelo rádio, e a Clarice conta isso a Gabriel. Gabriel ganha a confiança dela devolvendo o molho de chaves que ela perdeu (para ela, é uma permuta, não um pedido de ajuda); daí em diante a Clarice o guia pelo rádio (o que cada chave abre, por onde os robôs passam, que ela mapeou como um grafo) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar. A saída, a porta corta-fogo do 1º andar, leva ao **Bunker**.
+- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Clarice** e da **Diana**, a **sala 103**, atrás de uma barricada. A Clarice foi para lá depois de chegar à Biblioteca; a Diana apareceu depois e foi acolhida por ela. Desde então as duas tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio, e a Clarice conta isso a Gabriel. Gabriel ganha a confiança dela devolvendo o molho de chaves que ela perdeu (para ela, é uma permuta, não um pedido de ajuda); daí em diante a Clarice o guia pelo rádio (o que cada chave abre, por onde os robôs passam, que ela mapeou como um grafo) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar. A saída, a porta corta-fogo do 1º andar, leva ao **Bunker**.
 - **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): subsolo escuro do centro de pesquisa da Âncora, com três robôs. Jogável, mas sem lugar na história ainda.
 - As áreas seguintes do GDD (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) ainda não foram redefinidas para a premissa atual.
-- **Rádio e telefone:** o Henrique fala pelo rádio, na frequência que o Zane mantém, e o Zane liga pelos telefones velhos.
+- **Rádio e telefone:** a Clarice fala pelo rádio, na frequência que o Zane mantém, com o que o Henrique vê nas câmeras, e o Zane liga pelos telefones velhos.
 - **O anel:** em algum ponto deste ato, Gabriel encontra o Baltazar e descobre o parentesco.
 
 ### Ato 3 — O esconderijo (Bunker)
@@ -232,7 +232,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 | **Narrativa ambiental** | Marcas no cenário, relíquias de épocas diferentes, os tracinhos nas lousas, os riscos de estrelas na árvore | [`../fases/`](../fases/) |
 | **Documentos** | Diários, bilhetes, disquetes. Cada época tem um papel próprio. As pistas úteis viram anotações no **Caderno do Gabriel** | [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md) e o modelo [`template_documento.md`](template_documento.md) |
 | **Inventário** | O anel da avó, e a comparação com o anel do Baltazar | [`../mecanicas/itens_e_inventario.md`](../mecanicas/itens_e_inventario.md) |
-| **Rádio** | Henrique ao vivo, na frequência do grupo, sem pausar o jogo | [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md) |
+| **Rádio** | Clarice ao vivo, na frequência do grupo, com o que o Henrique vê nas câmeras, sem pausar o jogo | [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md) |
 | **Ligações e diálogos** | Zane por telefone; todos em pessoa nos esconderijos, com retratos e escolhas | [`../dialogos/README.md`](../dialogos/README.md) |
 | **Sonhos** | O sono continua como mecânica; o que os sonhos mostram está pendente | [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md) |
 | **Cutscenes** | A abertura (`seg_acordar`) e as que o grupo decidir | [`roteiro/cutscenes/`](roteiro/cutscenes/) |
@@ -286,8 +286,8 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 - **Clarice e Diana:** se as duas continuam na 103 até o fim ou se juntam ao grupo no bunker mais tarde (o final da Clarice com Gabriel está em 12.1). As pichações assinadas "C." no bunker ("NÃO CONFIE NAS LUZES") não combinam com a Clarice estar na 103 desde que chegou: falta decidir quem as fez ou se saem.
 - **Diana na 103:** ela ainda não tem visual, então a cena da 103 mostra só a Clarice.
 - **Zane:** o que fazia no ponto quando foi puxado.
-- **Ordem de chegada** de Baltazar, Diana e Henrique (já decidido: todos antes de Gabriel, e o Zane antes da Clarice). Não precisa seguir a ordem dos anos.
-- **Qual sala da Biblioteca** é o esconderijo do Baltazar (uma que o jogador ainda não consegue abrir; a sala de obras raras, barrada por dentro, é a candidata), **quando ela passa a ficar acessível**, e como ele combina com o acampamento vazio que Gabriel acha no começo do jogo e com a última página do diário ("Hei de seguir a luz até onde ella nasce").
+- **Ordem de chegada:** só falta a posição do **Baltazar** (já decidido: o Henrique é o primeiro, o Zane vem antes da Clarice, a Diana depois da Clarice, e Gabriel é o último). Não precisa seguir a ordem dos anos.
+- **Qual sala da Biblioteca** é o esconderijo do Baltazar (uma que o jogador ainda não consegue abrir; a sala de obras raras, barrada por dentro, é a candidata) e **quando ela passa a ficar acessível**. Ele está ali desde que chegou: o acampamento vazio do começo foi o primeiro abrigo dele, e a última página do diário ("Hei de seguir a luz até onde ella nasce") combina com ficar, porque a luz nasce no chão da Biblioteca (seção 3).
 
 ### 12.4 Textos já escritos que citam a versão antiga
 
@@ -315,3 +315,4 @@ As perguntas que faltam responder sobre "A virada" (seção 8):
 1. **O Henrique trabalha para o Carlos por vontade própria, ou foi enganado por ele?**
 2. **O que exatamente o Henrique esconde do grupo?** (A ideia 12 de [`outras_ideias.md`](outras_ideias.md) é uma opção.)
 3. **Como e quando o grupo descobre a mentira?**
+4. **É verdade o que o Henrique conta?** Ele diz que está escondido no bunker, tentando entender tudo, e que, de alguma forma, estão em 3026. Falta decidir se isso é verdade ou parte do que ele esconde.

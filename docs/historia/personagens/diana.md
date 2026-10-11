@@ -26,11 +26,11 @@
 | Com | Dinâmica |
 |---|---|
 | [Clarice](clarice.md) | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Dividem a 103 do Bloco de salas e brigam o tempo todo, mas acabam amigas |
-| [Henrique](henrique.md) | Falam pelo rádio: ela e a Clarice passam para ele o que descobrem |
+| [Henrique](henrique.md) | Falam pelo rádio: ele as ajuda com o que vê nas câmeras |
 
 ## 4. No jogo
 
-- **Onde aparece:** no **Bloco de salas**, na sala 103, com a Clarice. Veio da Biblioteca e está ali desde que chegou, tentando descobrir o que é este lugar. Por enquanto só é citada pela Clarice: ainda não tem visual nem cena.
+- **Onde aparece:** no **Bloco de salas**, na sala 103, com a Clarice. Veio da Biblioteca e apareceu na 103 depois da Clarice, que a acolheu. Desde então as duas tentam descobrir o que aconteceu. Por enquanto só é citada pela Clarice: ainda não tem visual nem cena.
 - **Esconderijo:** a **sala 103** do Bloco de salas, com a Clarice.
 - **Como chega ao jogador:** pela Clarice, em pessoa na 103 (quando tiver visual) e pela frequência de rádio do grupo.
 - **Função na jogabilidade:** o **mapa à mão** dela revela **arestas escondidas no grafo do campus** (atalhos e passagens secretas). Ver [`../../computacao/grafos_e_navegacao.md`](../../computacao/grafos_e_navegacao.md).
