@@ -21,7 +21,6 @@
 | 2 | Pegar o pulso certo | 12.1 Como cada um volta | — |
 | 3 | Fechar a fenda de uma vez | 12.1 Como cada um volta | — |
 | 4 | A IA no caminho | 12.1 Como cada um volta (e parte da 12.2) | — |
-| 5 | Os pulsos como relógio | 12.1 Quanto tempo Gabriel tem | — |
 | 8 | Ela esperou 32 anos | 12.1 O final de Gabriel e Clarice | — |
 | 9 | Ela escolhe 2026 | 12.1 O final de Gabriel e Clarice | — |
 | 10 | A Âncora é a bateria da IA | 12.2 O objetivo da IA (e parte da 12.6) | — |
@@ -58,16 +57,6 @@ Quando a fenda se fecha, devolve a cada um o tempo de onde veio, mas **só leva 
 Combina com qualquer uma das ideias 1, 2 e 3. Em algum momento a IA percebe o que estão fazendo e **defende o D-Tec**. Isso também resolve parte da pendência 12.2 (objetivo da IA), sem dar rosto nem fala a ela.
 
 **Recomendação:** juntar a **1** com a **3**. O conserto acontece no D-Tec, a volta acontece pela Biblioteca e a fase final é levar todo mundo até o ponto. Isso amarra os dois lugares que o Enredo já tem e dá um clímax jogável.
-
----
-
-## Resolve 12.1 — Quanto tempo Gabriel tem
-
-> Pendência: "se a fenda crescendo vira um prazo que o jogador sente ou fica só na história."
-
-### Ideia 5 — Os pulsos como relógio
-
-Sem cronômetro na tela. A cada pulso (por exemplo, uma vez por fase), o campus treme, uma luz branca atravessa as janelas e alguma coisa muda: um corredor desaba, uma sala nova se abre, os robôs trocam de rota. O jogador sente o tempo passar pelo mundo, e não por um número. É também o pulso que traz o Zane.
 
 ---
 

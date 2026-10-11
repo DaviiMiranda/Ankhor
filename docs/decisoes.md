@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-11 — Sai a pendência "Quanto tempo Gabriel tem"
+**Decisão:** o jogo **não tem prazo para o Gabriel**: não há contagem de dias nem relógio que o jogador sinta. Sai do Enredo Principal (seção 12.1) a pendência "Quanto tempo Gabriel tem", e sai de `outras_ideias.md` a ideia 5 ("Os pulsos como relógio"), que só existia para resolvê-la. A seção 3 (como a fenda age) não muda.
+**Por quê:** pedido do Davi: não existe esse prazo.
+**Afeta:** `docs/historia/enredo_principal.md` (seção 12.1) e `docs/historia/outras_ideias.md` (índice e ideia 5).
+
 ## 2026-10-11 — A Diana fica na 103 com a Clarice, e as duas falam com o Henrique
 **Decisão:**
 - A **Clarice** veio da Biblioteca, como todos, e está na **sala 103** do Bloco de salas **desde que chegou**, tentando descobrir o que é este lugar.
