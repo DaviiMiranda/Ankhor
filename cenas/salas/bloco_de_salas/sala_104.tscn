@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cabine.tscn" id="r14"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira.tscn" id="r15"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/terminal_alarme.tscn" id="b_alarme"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -360,5 +361,20 @@ position = Vector2(441, 124)
 id = "sala_104"
 cena_destino = "res://cenas/salas/bloco_de_salas/corredor_terreo.tscn"
 porta_destino = "bloco_104"
+
+
+[node name="TerminalAlarme" parent="Objetos" instance=ExtResource("b_alarme")]
+position = Vector2(330, 140)
+aviso = "TESTE DE ALARME - BLOCO DE SALAS. Você aperta a tecla. Lá fora, no fim do corredor, uma sirene começa a tocar."
+
+[node name="LuzDoBuraco" parent="Luzes" instance=ExtResource("r16")]
+position = Vector2(200, 420)
+scale = Vector2(1.4, 1.6)
+color = Color(0.5, 0.6, 0.95, 1)
+energy = 0.6
+
+[node name="ChegadaBuraco" parent="." instance=ExtResource("r2")]
+position = Vector2(200, 440)
+id = "bloco_buraco_104"
 
 [editable path="Ceu"]

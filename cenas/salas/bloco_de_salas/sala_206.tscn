@@ -21,6 +21,10 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r20"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_rastreador.tscn" id="b_rastreador"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="b_robos"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="b_item"]
+[ext_resource type="Resource" path="res://dados/itens/alicate.tres" id="b_alicate"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -264,5 +268,40 @@ position = Vector2(41, 124)
 id = "sala_206"
 cena_destino = "res://cenas/salas/bloco_de_salas/corredor_primeiro_andar.tscn"
 porta_destino = "bloco_206"
+
+
+[node name="Alicate" parent="Objetos" instance=ExtResource("b_item")]
+position = Vector2(330, 468)
+item = ExtResource("b_alicate")
+marca_ao_pegar = "alicate"
+
+[node name="Rastreador" parent="Objetos" instance=ExtResource("b_rastreador")]
+position = Vector2(145, 385)
+rota = NodePath("../../RotaRastreador")
+
+
+[node name="RotaRastreador" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(255, 200)
+
+[node name="Ponto2" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(362, 300)
+
+[node name="Ponto3" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(350, 385)
+
+[node name="Ponto4" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(230, 455)
+
+[node name="Ponto5" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(40, 385)
+
+[node name="Ponto6" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(145, 296)
+
+
+[node name="RobosDaSala" type="Node" parent="."]
+script = ExtResource("b_robos")
 
 [editable path="Ceu"]

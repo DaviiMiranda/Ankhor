@@ -1,0 +1,92 @@
+{
+	"id": "clarice_bloco_de_novo",
+	"inicio": "posto",
+	"trechos": {
+		"posto": {
+			"falas": [
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_sorrindo",
+					"texto": "Voltou inteiro? Aí sim."
+				}
+			],
+			"escolhas": [
+				{
+					"texto": "Como abro o claviculário?",
+					"vai_para": "claviculario"
+				},
+				{
+					"texto": "Como é o andar de cima?",
+					"vai_para": "cima"
+				},
+				{
+					"texto": "O que vocês já descobriram?",
+					"vai_para": "descobertas"
+				},
+				{
+					"texto": "Até mais, Clarice.",
+					"vai_para": "tchau"
+				}
+			]
+		},
+		"claviculario": {
+			"falas": [
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_seria",
+					"texto": "Não sei. Esse cadeado eu não abri."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Mas tem um papel no quadro de avisos da 203 que eu não tinha visto antes. Alguém andou contando alguma coisa."
+				}
+			],
+			"vai_para": "posto"
+		},
+		"cima": {
+			"falas": [
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Lá em cima o teto caiu em vários pontos. Onde bate a lua, o robô de lá te enxerga de longe."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Anda pelo escuro e entra nas salas pra despistar. A rota dele é um ciclo: dá pra decorar."
+				}
+			],
+			"vai_para": "posto"
+		},
+		"tchau": {
+			"falas": [
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_sorrindo",
+					"texto": "Vai lá. E não confia nas luzes."
+				}
+			]
+		},
+		"descobertas": {
+			"falas": [
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Pouca coisa, e devagar. Eu anoto as rondas: cada robô repete o mesmo ciclo, todo dia."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_sorrindo",
+					"texto": "A Diana desenha o mapa à mão, com as passagens que não estão em mapa nenhum. Exagera nas setas, mas acerta."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "O Henrique olha as câmeras e conta o que vê, e a gente junta com as rondas e com o mapa."
+				}
+			],
+			"vai_para": "posto"
+		}
+	}
+}

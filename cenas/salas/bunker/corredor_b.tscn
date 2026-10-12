@@ -340,13 +340,13 @@ som_abrir = ExtResource("r25")
 position = Vector2(1161, 124)
 id = "laboratorio"
 bloqueada = true
-aviso_bloqueada = "Lacrada pelo sistema. A Clarice está tentando abrir."
+aviso_bloqueada = "Lacrada pelo sistema. O Zane está tentando abrir."
 
 [node name="Porta_arquivo" parent="." instance=ExtResource("r24")]
 position = Vector2(1561, 124)
 id = "arquivo"
 bloqueada = true
-aviso_bloqueada = "Lacrada pelo sistema. A Clarice está tentando abrir."
+aviso_bloqueada = "Lacrada pelo sistema. O Zane está tentando abrir."
 
 [node name="Porta_nucleo" parent="." instance=ExtResource("r24")]
 position = Vector2(1960, 124)

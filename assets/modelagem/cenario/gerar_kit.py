@@ -245,12 +245,17 @@ def parede_arandela():
     return img
 
 
-def parede_lousa():
+def parede_lousa(tracinhos=25):
     """Quadro-negro de sala de aula, ainda preso na parede: moldura de
     madeira, a lousa verde-escura manchada, restos de giz de uma conta pela
     metade e, embaixo, os TRACINHOS contados em grupos de cinco (quatro em
     pé e um cortando) de quem ficou preso aqui (docs/gdd.md, Blocos de
-    aula). Um pedaço da lousa caiu e o concreto aparece."""
+    aula). Um pedaço da lousa caiu e o concreto aparece.
+
+    tracinhos diz quantos riscos há: cada grupo completo de 5 vira quatro
+    traços em pé e um atravessado; o que sobra (tracinhos % 5) fica só em
+    pé, sem o traço que corta. As lousas do puzzle do Bloco de salas
+    (parede_lousa_<n>) usam isso para ter uma contagem fácil de ler."""
     img = parede_base()
     xa, xb, ya, yb = 6, 74, 28, 68
     img.pintar(img.ret(xa - 2, ya - 2, xb + 2, yb + 2), "madeira", 0.3 + 0.1 * img.fino)
@@ -262,11 +267,13 @@ def parede_lousa():
         x0, y0 = rng.uniform(xa + 4, xb - 18), rng.uniform(ya + 4, ya + 22)
         pontos = [(x0 + k * 2.5, y0 + rng.uniform(-1.2, 1.2)) for k in range(int(rng.integers(3, 6)))]
         img.pintar(img.caminho(pontos, 0.45) & lousa, "ceu", 0.7, achatar=False)
-    for g in range(5):
+    for g in range((tracinhos + 4) // 5):
         gx, gy = xa + 6 + g * 12, yb - 12
-        for k in range(4):
+        no_grupo = min(5, tracinhos - 5 * g)
+        for k in range(min(4, no_grupo)):
             img.pintar(img.ret(gx + 2 * k, gy, gx + 2 * k + 1, gy + 7), "ceu", 0.85)
-        img.pintar(img.linha(gx - 1, gy + 5, gx + 8, gy + 1, 0.45), "ceu", 0.85)
+        if no_grupo == 5:
+            img.pintar(img.linha(gx - 1, gy + 5, gx + 8, gy + 1, 0.45), "ceu", 0.85)
     img.pintar(img.ret(xa, yb + 2, xb, yb + 4), "metal", 0.35)
     caco = img.poligono([(xb - 14, ya), (xb, ya), (xb, ya + 12), (xb - 6, ya + 8)])
     img.pintar(caco, "concreto", img.v, achatar=False)
@@ -346,6 +353,12 @@ PAREDES = {
     "parede_desabada": parede_desabada,
     "parede_arandela": parede_arandela,
     "parede_lousa": parede_lousa,
+    # Lousas do puzzle do Bloco de salas (código do claviculário da 203):
+    # a contagem de cada uma é um número do código, na ordem 101, 201, 205.
+    "parede_lousa_0": lambda: parede_lousa(0),
+    "parede_lousa_3": lambda: parede_lousa(3),
+    "parede_lousa_7": lambda: parede_lousa(7),
+    "parede_lousa_8": lambda: parede_lousa(8),
     "parede_mural": parede_mural,
     "parede_escada_sobe": parede_escada_sobe,
     "parede_escada_desce": parede_escada_desce,

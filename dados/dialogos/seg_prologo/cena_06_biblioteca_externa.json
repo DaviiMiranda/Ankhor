@@ -1,0 +1,15 @@
+{
+	"id": "seg_prologo_cena_06_biblioteca_externa",
+	"inicio": "pensamento",
+	"trechos": {
+		"pensamento": {
+			"falas": [
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Último refúgio com silêncio e ar-condicionado. Se eu me enfiar numa cabine agora, termino esses cálculos antes da meia-noite."
+				}
+			]
+		}
+	}
+}

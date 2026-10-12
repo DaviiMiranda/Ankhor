@@ -20,7 +20,8 @@
 #
 # Quem é (docs/historia/personagens/zane.md): rapaz de uns 20 anos, de 2123,
 # quando a Unifor já era um polo de IA. Tem implantes cibernéticos, entende
-# a tecnologia da Âncora melhor que ninguém e é o último a chegar em 3026.
+# a tecnologia da Âncora melhor que ninguém e cuida das comunicações do
+# grupo no computador do bunker.
 # Confiante, direto, elétrico, e mais assustado do que admite.
 #
 # O visual conta isso:

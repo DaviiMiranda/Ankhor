@@ -17,7 +17,7 @@
 #   rafael_referencia.png          frente, 3/4, lado e costas, e os retratos
 #   assets/modelagem/personagens/rafael.blend   o modelo
 #
-# Quem é (docs/historia/personagens/rafael.md): segurança noturno da Unifor
+# Quem era (ficha retirada em 2026-10-11, ver docs/decisoes.md): segurança noturno da Unifor
 # em 2008, no primeiro emprego, com uns 20 anos. Puxado na ronda da
 # Biblioteca com o rádio e a lanterna. Caloroso, brincalhão, protetor; quer
 # ser chamado de "Seu Rafael" para parecer mais velho, e jura que 3026 é
@@ -41,7 +41,7 @@
 #
 # O rádio fica do lado direito dele (-X), virado para a câmera nas vistas de
 # lado e de 3/4: o jogador sempre vê o rádio, que é como o Rafael fala com
-# ele.
+# o grupo, na frequência do rádio.
 #
 # Modelagem: só primitivas, DETALHE 3 e sombreamento suave, como o Gabriel
 # (ver comum.py). O esqueleto tem as mesmas juntas do Gabriel, então a

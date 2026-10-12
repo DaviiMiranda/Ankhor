@@ -1,12 +1,12 @@
 # gerar_efeitos_registros.py — compõe por código os sons dos REGISTROS dos
-# antecessores: o rádio do Rafael e o papel dos bilhetes e do caderno.
+# antecessores: o rádio do grupo e o papel dos bilhetes e do caderno.
 #
 # Como rodar (Python 3 + numpy):
 #   python assets/modelagem/audio/gerar_efeitos_registros.py
 #
 # Gera:
 #   assets/audio/efeitos/objetos/radio_chiado.wav     2 s em loop: a estática
-#                                                     por baixo da voz do Rafael
+#                                                     por baixo da voz do rádio
 #   assets/audio/efeitos/objetos/radio_clique.wav     o "clec" do botão de falar
 #                                                     e o chiado curto de quando
 #                                                     a transmissão abre e fecha
@@ -41,7 +41,7 @@ _spec.loader.exec_module(ef)
 
 TAXA = ef.TAXA
 tempo, envelope, filtrar, normalizar, salvar = ef.tempo, ef.envelope, ef.filtrar, ef.normalizar, ef.salvar
-rng = np.random.default_rng(2008)   # sorteios fixos: o ano do Rafael
+rng = np.random.default_rng(2008)   # sorteios fixos
 
 
 def ruido(n):

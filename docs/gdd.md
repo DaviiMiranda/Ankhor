@@ -44,7 +44,7 @@ O jogador explora as ruínas em vista lateral, sala por sala e prédio por préd
 
 **Explorar.** Andar, correr (faz barulho), se espremer por frestas, atravessar tetos desabados, vasculhar o que restou, examinar objetos e marcas nas paredes.
 
-**Iluminar.** Quase nada elétrico funciona: só as luzes de emergência do centro de pesquisa. O protagonista usa uma **lanterna a pilha**. Luz ajuda a ver e ajuda a ser visto (os robôs enxergam mais longe), e a bateria acaba: é preciso achar pilhas.
+**Iluminar.** O campus é escuro. O protagonista usa uma **lanterna a pilha**. Luz ajuda a ver e ajuda a ser visto (os robôs enxergam mais longe), e a bateria acaba: é preciso achar pilhas.
 
 **Rondas e rotinas.** Cada robô cumpre sua rotina de patrulha programada pelo campus. Fora da rotina, quando ouve ou vê o protagonista, o robô sai do protocolo padrão e caça.
 
@@ -113,7 +113,7 @@ E, nos sonhos, o mesmo campus **na última semana antes de tudo**: cheio, ilumin
 
 - **O mundo:** em 3026 o pouco que sobrou da humanidade foi para outro planeta. Ficou o **Carlos**, cientista obcecado pelos anos 80, que criou a Âncora e controla os robôs, que caçam humanos.
 - **A Âncora e a fenda:** a Âncora é só uma máquina, abandonada no centro de pesquisa da Unifor. Ela falhou e abriu uma fenda no chão da Biblioteca, que pulsa e, por acaso, puxa quem estiver ali em alguma época.
-- **Os personagens:** jovens de cerca de 20 anos, todos vivos, puxados com dias de diferença: Baltazar Magalhães (~1750, antepassado de Gabriel), Diana (1978), Clarice (1994), Rafael (2008), Henrique (2019, o pesquisador), **Gabriel Magalhães** (2026, o protagonista, penúltimo a chegar) e Zane (2123, o último). O antagonista é o Carlos (3026).
+- **Os personagens:** jovens de cerca de 20 anos, todos vivos, puxados com dias de diferença: Baltazar Magalhães (~1750, antepassado de Gabriel), Diana (1978), Clarice (1994), Henrique (2019, o pesquisador), **Gabriel Magalhães** (2026, o protagonista, último a chegar) e Zane (2123). O antagonista é o Carlos (3026).
 - **O objetivo:** encontrar os outros, descobrir o que aconteceu e consertar a Âncora para que todos voltem às suas épocas.
 - **A primeira fase** é a **Biblioteca**.
 

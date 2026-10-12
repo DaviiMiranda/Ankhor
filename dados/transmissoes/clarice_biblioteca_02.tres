@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "clarice_biblioteca_02"
+falante = "CLARICE (rádio)"
+falas = PackedStringArray("Chhh... Você entrou no acervo. O Henrique tá vendo: o robô daí escuta, não enxerga bem.", "Então não corre. Passo de corrida ele ouve de longe. Anda... devagar.")
+titulo_anotacao = "Clarice, 1994"
+anotacao = "A Clarice de novo, com as câmeras do Henrique: o robô do acervo escuta. Não correr: ele ouve os passos de longe."

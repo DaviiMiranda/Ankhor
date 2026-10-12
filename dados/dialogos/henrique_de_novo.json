@@ -1,0 +1,66 @@
+{
+	"id": "henrique_de_novo",
+	"inicio": "abertura",
+	"trechos": {
+		"abertura": {
+			"falas": [
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "Oi. Estou aqui. Quer dizer, óbvio que estou."
+				}
+			],
+			"escolhas": [
+				{
+					"texto": "Alguma novidade do setor B?",
+					"vai_para": "setor_b"
+				},
+				{
+					"texto": "O que você está olhando?",
+					"vai_para": "olhando"
+				},
+				{
+					"texto": "Nada, só passando.",
+					"vai_para": "tchau"
+				}
+			]
+		},
+		"setor_b": {
+			"falas": [
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "Ainda não. O Zane diz que a senha tem doze caracteres e que o sistema o expulsa a cada três tentativas."
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "Se você achar algum disquete com senha por aí... traz."
+				}
+			]
+		},
+		"olhando": {
+			"falas": [
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "As rondas. Eu anoto o horário em que cada robô passa por cada câmera. É... um hábito. Para quando eu precisar corrigir."
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_timido",
+					"texto": "Tem um que atrasa três segundos toda vez que passa pelo refeitório. Não sei o que significa. Mas anotei."
+				}
+			]
+		},
+		"tchau": {
+			"falas": [
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_timido",
+					"texto": "Até. Cuidado com as luzes do corredor, elas... bom. Cuidado."
+				}
+			]
+		}
+	}
+}

@@ -9,7 +9,7 @@
 
 - **Época de origem:** 2019.
 - **Quem é:** aluno de iniciação científica da Unifor, com cerca de 20 anos.
-- **História:** estudava à noite na Biblioteca e sumiu. O orientador transformou o projeto dele na cadeira que Gabriel cursa, e as equações do caderno de Gabriel continuam esse trabalho sem Gabriel saber de quem eram. Em 3026, **engana o grupo**: esconde a ligação que tem com o **Carlos**. Se trabalha para ele ou foi enganado por ele está pendente. Quando o grupo descobre a mentira, todos vão atrás do Carlos.
+- **História:** estudava à noite na Biblioteca e sumiu. O orientador transformou o projeto dele na cadeira que Gabriel cursa, e as equações do caderno de Gabriel continuam esse trabalho sem Gabriel saber de quem eram. Em 3026, fica na **sala de dados do bunker**, junto do Zane, com acesso às **câmeras** do campus: de lá vê o campus e **ajuda a Clarice e a Diana pelo rádio**, na frequência que o Zane mantém: é dele o que a Clarice repassa a Gabriel como dica de patrulha desde a Biblioteca. **Foi o primeiro a chegar.** Diz que está escondido ali, tentando entender tudo, e é ele quem diz ao grupo que, de alguma forma, estão em 3026. Fala pouco e fica na dele. E **engana o grupo**: esconde a ligação que tem com o **Carlos**. Se trabalha para ele ou foi enganado por ele está pendente. Quando o grupo descobre a mentira, todos vão atrás do Carlos.
 
 ## 2. Personalidade
 
@@ -26,20 +26,23 @@
 | Com | Dinâmica |
 |---|---|
 | [Carlos](carlos.md) | Trabalha para ele ou foi enganado por ele (pendente) |
-| O grupo | Engana todos, e a mentira é descoberta. Divide o bunker com a [Clarice](clarice.md) |
+| O grupo | Ajuda pelo rádio, mas fala pouco e fica na dele. Engana todos, e a mentira é descoberta |
+| [Zane](zane.md) | Dividem a sala de dados do bunker: o Zane cuida da frequência e das ligações, o Henrique das câmeras |
+| [Clarice](clarice.md) e [Diana](diana.md) | Falam com ele pelo rádio, da 103 do Bloco de salas: ele as ajuda com o que vê nas câmeras, e elas juntam isso com o que descobrem. A Clarice repassa a Gabriel |
+| [Gabriel](gabriel.md) | Não fala direto com ele pelo rádio: o que o ajuda chega pela Clarice. O primeiro contato dos dois é em pessoa, no bunker. Quando a mentira aparece, quem ajudou Gabriel o jogo todo, por trás da Clarice, era quem escondia a verdade |
 
 ## 4. No jogo
 
-- **Onde aparece:** pendente.
-- **Esconderijo:** o **bunker**, com a Clarice. Depois, o Zane chega também.
-- **Como chega ao jogador:** pendente (em pessoa, registros ou os dois).
-- **Função na jogabilidade:** pendente.
+- **Onde aparece:** pelo que a Clarice repassa, desde a Biblioteca. Em pessoa, na sala de dados do bunker.
+- **Esconderijo:** o **bunker**, na **sala de dados** (a central de dados), com o Zane e com acesso às **câmeras** do campus e ao rádio.
+- **Como chega ao jogador:** pela voz da **Clarice** no rádio (o rádio portátil é um item comum do inventário) e, depois, em pessoa.
+- **Função na jogabilidade:** dicas sobre as **rotinas de patrulha dos robôs**, vendo pelas câmeras e passando para a Clarice, que as diz a Gabriel ("Antes de virar, ele dá um bipe. Ouviu o bipe, se esconde."). As dicas continuam valendo porque os robôs repetem a mesma rotina há séculos. As transmissões tocam sem pausar o jogo. Ver [`../../mecanicas/registros_e_caderno.md`](../../mecanicas/registros_e_caderno.md).
 - **Parte para consertar a Âncora:** a teoria por trás das equações.
 
 ## 5. Registros
 
 - **Suporte:** pendente. Uma sugestão que combina com ele: folhas de rascunho cheias de contas riscadas e corrigidas, na letra miúda de quem se corrige no meio da frase.
-- **Já escritos:** nenhum.
+- **Já escritos:** as duas conversas em pessoa do bunker. Ele não tem transmissão própria: as da Biblioteca e do Bloco de salas que eram dele passaram a ser da Clarice (`clarice_biblioteca_01`, `clarice_biblioteca_02` e `clarice_04`).
 
 ## 6. Direção de arte
 
@@ -51,9 +54,11 @@
 ## 7. Arquivos
 
 - **Sprites:** `assets/sprites/personagens/henrique/`, gerados por `assets/modelagem/personagens/gerar_henrique.py`.
-- **Cena:** `cenas/personagens/henrique.tscn` (parado, por enquanto só na sala de teste).
+- **Cena:** `cenas/personagens/henrique.tscn` (parado) e `cenas/personagens/henrique_na_estacao.tscn` (de costas, na estação da sala de dados do bunker, olhando as câmeras).
+- **Diálogos em pessoa:** `dados/dialogos/henrique_primeiro_encontro.json` e `henrique_de_novo.json`, no bunker.
 
 ## 8. Pendências
 
 - Se trabalha para o Carlos ou foi enganado por ele, o que exatamente esconde, e como e quando o grupo descobre (Enredo Principal, seção 12.7).
-- Como aparece no jogo e onde fica.
+- Quando Gabriel o encontra em pessoa na sala de dados, e se o acesso às câmeras vira uma mecânica (Enredo Principal, seção 12.3).
+- Se é verdade o que ele conta sobre onde está e sobre o ano (Enredo Principal, seção 12.7).
