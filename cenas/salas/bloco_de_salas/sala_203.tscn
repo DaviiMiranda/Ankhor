@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/claviculario.png" id="b_claviculario"]
 [ext_resource type="Resource" path="res://dados/itens/chave_deposito.tres" id="b_chave_deposito"]
 [ext_resource type="PackedScene" path="res://cenas/itens/aviso_no_mundo.tscn" id="b_aviso"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral_porta.tscn" id="m_servico"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -146,7 +147,7 @@ flip_h = true
 [node name="LateralEsq3" parent="Chao" instance=ExtResource("r11")]
 position = Vector2(0, 240)
 
-[node name="LateralDir3" parent="Chao" instance=ExtResource("r11")]
+[node name="LateralDir3" parent="Chao" instance=ExtResource("m_servico")]
 position = Vector2(384, 240)
 flip_h = true
 
@@ -289,5 +290,17 @@ item_ao_abrir = ExtResource("b_chave_deposito")
 
 [node name="Sprite2D" parent="Objetos/Claviculario" index="0"]
 offset = Vector2(-10, -70)
+
+[node name="PortaDeServico" parent="." instance=ExtResource("r2")]
+position = Vector2(372, 272)
+id = "servico_203"
+cena_destino = "res://cenas/salas/bloco_de_salas/sala_206.tscn"
+porta_destino = "servico_206"
+direcao_entrar = Vector2(1, 0)
+trancada = true
+aviso_trancada = "Trancada pelo outro lado. O trinco fica do lado do depósito."
+marca_ao_destrancar = "trinco_206"
+texto_acao = "Porta de serviço"
+altura_aviso = 30.0
 
 [editable path="Ceu"]

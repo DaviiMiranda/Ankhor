@@ -35,6 +35,13 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/sirene.tscn" id="b_sirene"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/grade_seguranca.tscn" id="b_grade"]
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/grade_escada.png" id="b_grade_escada"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_tapete.tscn" id="m_tapete"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_nicho_bebedouro.tscn" id="m_nicho_bebedouro"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_nicho_armario.tscn" id="m_nicho_armario"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="m_nicho"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/estalo_do_teto.tscn" id="m_estalo"]
+[ext_resource type="Script" path="res://scripts/sistemas/robo_atraido_pelo_buraco.gd" id="m_atraido"]
+[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="m_zona"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -98,7 +105,7 @@ position = Vector2(1120, 0)
 [node name="Parede16" parent="Paredes" instance=ExtResource("r4")]
 position = Vector2(1200, 0)
 
-[node name="Parede17" parent="Paredes" instance=ExtResource("r5")]
+[node name="Parede17" parent="Paredes" instance=ExtResource("m_nicho_bebedouro")]
 position = Vector2(1280, 0)
 
 [node name="Parede18" parent="Paredes" instance=ExtResource("r7")]
@@ -122,7 +129,7 @@ position = Vector2(1760, 0)
 [node name="Parede24" parent="Paredes" instance=ExtResource("r9")]
 position = Vector2(1840, 0)
 
-[node name="Parede25" parent="Paredes" instance=ExtResource("r5")]
+[node name="Parede25" parent="Paredes" instance=ExtResource("m_nicho_armario")]
 position = Vector2(1920, 0)
 
 [node name="Parede26" parent="Paredes" instance=ExtResource("r7")]
@@ -212,64 +219,64 @@ theme_override_styles/normal = SubResource("Placa")
 text = "106"
 horizontal_alignment = 1
 
-[node name="Chao1" parent="Chao" instance=ExtResource("r12")]
+[node name="Chao1" parent="Chao" instance=ExtResource("r13")]
 position = Vector2(0, 0)
 
-[node name="Chao2" parent="Chao" instance=ExtResource("r12")]
+[node name="Chao2" parent="Chao" instance=ExtResource("r13")]
 position = Vector2(128, 0)
 
-[node name="Chao3" parent="Chao" instance=ExtResource("r12")]
+[node name="Chao3" parent="Chao" instance=ExtResource("r13")]
 position = Vector2(256, 0)
 
 [node name="Chao4" parent="Chao" instance=ExtResource("r13")]
 position = Vector2(384, 0)
 
-[node name="Chao5" parent="Chao" instance=ExtResource("r12")]
+[node name="Chao5" parent="Chao" instance=ExtResource("r13")]
 position = Vector2(512, 0)
 
-[node name="Chao6" parent="Chao" instance=ExtResource("r12")]
+[node name="Chao6" parent="Chao" instance=ExtResource("r13")]
 position = Vector2(640, 0)
 
-[node name="Chao7" parent="Chao" instance=ExtResource("r13")]
+[node name="Chao7" parent="Chao" instance=ExtResource("r12")]
 position = Vector2(768, 0)
 
-[node name="Chao8" parent="Chao" instance=ExtResource("r13")]
+[node name="Chao8" parent="Chao" instance=ExtResource("m_tapete")]
 position = Vector2(896, 0)
 
 [node name="Chao9" parent="Chao" instance=ExtResource("r12")]
 position = Vector2(1024, 0)
 
-[node name="Chao10" parent="Chao" instance=ExtResource("r12")]
+[node name="Chao10" parent="Chao" instance=ExtResource("m_tapete")]
 position = Vector2(1152, 0)
 
-[node name="Chao11" parent="Chao" instance=ExtResource("r13")]
+[node name="Chao11" parent="Chao" instance=ExtResource("r12")]
 position = Vector2(1280, 0)
 
-[node name="Chao12" parent="Chao" instance=ExtResource("r12")]
+[node name="Chao12" parent="Chao" instance=ExtResource("m_tapete")]
 position = Vector2(1408, 0)
 
-[node name="Chao13" parent="Chao" instance=ExtResource("r13")]
+[node name="Chao13" parent="Chao" instance=ExtResource("r12")]
 position = Vector2(1536, 0)
 
-[node name="Chao14" parent="Chao" instance=ExtResource("r13")]
+[node name="Chao14" parent="Chao" instance=ExtResource("r12")]
 position = Vector2(1664, 0)
 
 [node name="Chao15" parent="Chao" instance=ExtResource("r12")]
 position = Vector2(1792, 0)
 
-[node name="Chao16" parent="Chao" instance=ExtResource("r13")]
+[node name="Chao16" parent="Chao" instance=ExtResource("r12")]
 position = Vector2(1920, 0)
 
-[node name="Chao17" parent="Chao" instance=ExtResource("r13")]
+[node name="Chao17" parent="Chao" instance=ExtResource("r12")]
 position = Vector2(2048, 0)
 
-[node name="Chao18" parent="Chao" instance=ExtResource("r13")]
+[node name="Chao18" parent="Chao" instance=ExtResource("r12")]
 position = Vector2(2176, 0)
 
 [node name="Chao19" parent="Chao" instance=ExtResource("r12")]
 position = Vector2(2304, 0)
 
-[node name="Chao20" parent="Chao" instance=ExtResource("r13")]
+[node name="Chao20" parent="Chao" instance=ExtResource("r12")]
 position = Vector2(2432, 0)
 
 [node name="Entulho1" parent="Objetos" instance=ExtResource("r14")]
@@ -468,5 +475,52 @@ script = ExtResource("b_robos")
 
 [node name="Sirene" parent="." instance=ExtResource("b_sirene")]
 position = Vector2(2280, 146)
+
+[node name="Nicho1280" parent="Objetos" instance=ExtResource("m_nicho")]
+position = Vector2(1320, 128)
+
+[node name="Nicho1920" parent="Objetos" instance=ExtResource("m_nicho")]
+position = Vector2(1960, 128)
+
+[node name="ZonaOeste" type="Node2D" parent="."]
+position = Vector2(0, 100)
+script = ExtResource("m_zona")
+tamanho = Vector2(768, 90)
+fator_ruido = 0.5
+nome_piso = "areia"
+
+[node name="ZonaCentro" type="Node2D" parent="."]
+position = Vector2(768, 100)
+script = ExtResource("m_zona")
+tamanho = Vector2(768, 90)
+fator_ruido = 1.0
+nome_piso = "lajota e tapete"
+
+[node name="ZonaLeste" type="Node2D" parent="."]
+position = Vector2(1536, 100)
+script = ExtResource("m_zona")
+tamanho = Vector2(1024, 90)
+fator_ruido = 1.5
+nome_piso = "lajota solta"
+
+[node name="EstaloDoTeto1" parent="Efeitos" instance=ExtResource("m_estalo")]
+position = Vector2(600, 14)
+
+[node name="EstaloDoTeto2" parent="Efeitos" instance=ExtResource("m_estalo")]
+position = Vector2(1000, 14)
+
+[node name="EstaloDoTeto3" parent="Efeitos" instance=ExtResource("m_estalo")]
+position = Vector2(1300, 14)
+
+[node name="EstaloDoTeto4" parent="Efeitos" instance=ExtResource("m_estalo")]
+position = Vector2(1800, 14)
+
+[node name="EstaloDoTeto5" parent="Efeitos" instance=ExtResource("m_estalo")]
+position = Vector2(2200, 14)
+
+[node name="RastreadorNa104" type="Node2D" parent="."]
+position = Vector2(1400, 140)
+script = ExtResource("m_atraido")
+robo = NodePath("../Objetos/Rastreador")
 
 [editable path="Ceu"]

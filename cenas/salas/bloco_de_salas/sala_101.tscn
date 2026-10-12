@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r17"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lousa_7.tscn" id="b_lousa"]
 [ext_resource type="PackedScene" path="res://cenas/itens/aviso_no_mundo.tscn" id="b_aviso"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral_brecha.tscn" id="m_brecha"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -158,7 +159,7 @@ flip_h = true
 [node name="LateralEsq3" parent="Chao" instance=ExtResource("r12")]
 position = Vector2(0, 240)
 
-[node name="LateralDir3" parent="Chao" instance=ExtResource("r12")]
+[node name="LateralDir3" parent="Chao" instance=ExtResource("m_brecha")]
 position = Vector2(464, 240)
 flip_h = true
 
@@ -446,5 +447,14 @@ position = Vector2(200, 126)
 texto_acao = "Olhar a lousa"
 altura_aviso = 70.0
 texto = "Tracinhos de giz embaixo da conta apagada, em grupos de cinco. Conto sete."
+
+[node name="Brecha" parent="." instance=ExtResource("r2")]
+position = Vector2(452, 272)
+id = "brecha_101"
+cena_destino = "res://cenas/salas/bloco_de_salas/sala_102.tscn"
+porta_destino = "brecha_102"
+direcao_entrar = Vector2(1, 0)
+texto_acao = "Passar pela brecha"
+altura_aviso = 30.0
 
 [editable path="Ceu"]

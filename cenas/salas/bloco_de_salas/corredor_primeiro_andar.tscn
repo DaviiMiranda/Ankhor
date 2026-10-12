@@ -35,6 +35,11 @@
 [ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="b_visivel"]
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/corrente_porta.png" id="b_corrente"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/corrente_cortada.wav" id="b_som_corrente"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_tapete.tscn" id="m_tapete"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_nicho_bebedouro.tscn" id="m_nicho_bebedouro"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_nicho_armario.tscn" id="m_nicho_armario"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="m_nicho"]
+[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="m_zona"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -98,7 +103,7 @@ position = Vector2(1120, 0)
 [node name="Parede16" parent="Paredes" instance=ExtResource("r4")]
 position = Vector2(1200, 0)
 
-[node name="Parede17" parent="Paredes" instance=ExtResource("r7")]
+[node name="Parede17" parent="Paredes" instance=ExtResource("m_nicho_armario")]
 position = Vector2(1280, 0)
 
 [node name="Parede18" parent="Paredes" instance=ExtResource("r6")]
@@ -122,7 +127,7 @@ position = Vector2(1760, 0)
 [node name="Parede24" parent="Paredes" instance=ExtResource("r10")]
 position = Vector2(1840, 0)
 
-[node name="Parede25" parent="Paredes" instance=ExtResource("r4")]
+[node name="Parede25" parent="Paredes" instance=ExtResource("m_nicho_bebedouro")]
 position = Vector2(1920, 0)
 
 [node name="Parede26" parent="Paredes" instance=ExtResource("r6")]
@@ -218,7 +223,7 @@ position = Vector2(0, 0)
 [node name="Chao2" parent="Chao" instance=ExtResource("r14")]
 position = Vector2(128, 0)
 
-[node name="Chao3" parent="Chao" instance=ExtResource("r15")]
+[node name="Chao3" parent="Chao" instance=ExtResource("r14")]
 position = Vector2(256, 0)
 
 [node name="Chao4" parent="Chao" instance=ExtResource("r14")]
@@ -227,31 +232,31 @@ position = Vector2(384, 0)
 [node name="Chao5" parent="Chao" instance=ExtResource("r14")]
 position = Vector2(512, 0)
 
-[node name="Chao6" parent="Chao" instance=ExtResource("r15")]
+[node name="Chao6" parent="Chao" instance=ExtResource("r14")]
 position = Vector2(640, 0)
 
-[node name="Chao7" parent="Chao" instance=ExtResource("r14")]
+[node name="Chao7" parent="Chao" instance=ExtResource("r15")]
 position = Vector2(768, 0)
 
-[node name="Chao8" parent="Chao" instance=ExtResource("r14")]
+[node name="Chao8" parent="Chao" instance=ExtResource("m_tapete")]
 position = Vector2(896, 0)
 
 [node name="Chao9" parent="Chao" instance=ExtResource("r15")]
 position = Vector2(1024, 0)
 
-[node name="Chao10" parent="Chao" instance=ExtResource("r15")]
+[node name="Chao10" parent="Chao" instance=ExtResource("m_tapete")]
 position = Vector2(1152, 0)
 
-[node name="Chao11" parent="Chao" instance=ExtResource("r14")]
+[node name="Chao11" parent="Chao" instance=ExtResource("r15")]
 position = Vector2(1280, 0)
 
-[node name="Chao12" parent="Chao" instance=ExtResource("r15")]
+[node name="Chao12" parent="Chao" instance=ExtResource("m_tapete")]
 position = Vector2(1408, 0)
 
-[node name="Chao13" parent="Chao" instance=ExtResource("r14")]
+[node name="Chao13" parent="Chao" instance=ExtResource("r15")]
 position = Vector2(1536, 0)
 
-[node name="Chao14" parent="Chao" instance=ExtResource("r14")]
+[node name="Chao14" parent="Chao" instance=ExtResource("r15")]
 position = Vector2(1664, 0)
 
 [node name="Chao15" parent="Chao" instance=ExtResource("r15")]
@@ -260,7 +265,7 @@ position = Vector2(1792, 0)
 [node name="Chao16" parent="Chao" instance=ExtResource("r15")]
 position = Vector2(1920, 0)
 
-[node name="Chao17" parent="Chao" instance=ExtResource("r14")]
+[node name="Chao17" parent="Chao" instance=ExtResource("r15")]
 position = Vector2(2048, 0)
 
 [node name="Chao18" parent="Chao" instance=ExtResource("r15")]
@@ -269,7 +274,7 @@ position = Vector2(2176, 0)
 [node name="Chao19" parent="Chao" instance=ExtResource("r15")]
 position = Vector2(2304, 0)
 
-[node name="Chao20" parent="Chao" instance=ExtResource("r14")]
+[node name="Chao20" parent="Chao" instance=ExtResource("r15")]
 position = Vector2(2432, 0)
 
 [node name="Entulho1" parent="Objetos" instance=ExtResource("r16")]
@@ -535,5 +540,32 @@ aviso_destrancada = "O alicate morde o elo. A corrente cai no chão."
 marca_ao_destrancar = "corrente_cortada"
 atravessa_ao_destrancar = false
 som_destrancar = ExtResource("b_som_corrente")
+
+[node name="Nicho1280" parent="Objetos" instance=ExtResource("m_nicho")]
+position = Vector2(1320, 128)
+
+[node name="Nicho1920" parent="Objetos" instance=ExtResource("m_nicho")]
+position = Vector2(1960, 128)
+
+[node name="ZonaOeste" type="Node2D" parent="."]
+position = Vector2(0, 100)
+script = ExtResource("m_zona")
+tamanho = Vector2(768, 90)
+fator_ruido = 0.5
+nome_piso = "mato e areia"
+
+[node name="ZonaCentro" type="Node2D" parent="."]
+position = Vector2(768, 100)
+script = ExtResource("m_zona")
+tamanho = Vector2(768, 90)
+fator_ruido = 1.0
+nome_piso = "lajota e tapete"
+
+[node name="ZonaLeste" type="Node2D" parent="."]
+position = Vector2(1536, 100)
+script = ExtResource("m_zona")
+tamanho = Vector2(1024, 90)
+fator_ruido = 1.5
+nome_piso = "lajota solta"
 
 [editable path="Ceu"]

@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="b_robos"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="b_item"]
 [ext_resource type="Resource" path="res://dados/itens/alicate.tres" id="b_alicate"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral_porta.tscn" id="m_servico"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -146,7 +147,7 @@ position = Vector2(0, 176)
 position = Vector2(384, 176)
 flip_h = true
 
-[node name="LateralEsq3" parent="Chao" instance=ExtResource("r12")]
+[node name="LateralEsq3" parent="Chao" instance=ExtResource("m_servico")]
 position = Vector2(0, 240)
 
 [node name="LateralDir3" parent="Chao" instance=ExtResource("r12")]
@@ -303,5 +304,19 @@ position = Vector2(145, 296)
 
 [node name="RobosDaSala" type="Node" parent="."]
 script = ExtResource("b_robos")
+
+[node name="PortaDeServico" parent="." instance=ExtResource("r2")]
+position = Vector2(28, 272)
+id = "servico_206"
+cena_destino = "res://cenas/salas/bloco_de_salas/sala_203.tscn"
+porta_destino = "servico_203"
+direcao_entrar = Vector2(-1, 0)
+trancada = true
+trinco_deste_lado = true
+atravessa_ao_destrancar = false
+aviso_destrancada = "Puxei o trinco. A porta de serviço dá na sala dos professores."
+marca_ao_destrancar = "trinco_206"
+texto_acao = "Porta de serviço"
+altura_aviso = 30.0
 
 [editable path="Ceu"]
