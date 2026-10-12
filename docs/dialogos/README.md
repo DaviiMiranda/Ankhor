@@ -21,6 +21,7 @@ Conversas com personagens (hoje, a Clarice no bunker). Cada conversa é um arqui
 |---|---|---|
 | Autoload `Dialogos` | `scripts/sistemas/dialogos.gd` | Lê o JSON, anda pelos trechos, pausa e despausa o jogo, guarda quais conversas já aconteceram (`vistos`) e manda a anotação para o Caderno |
 | Caixa de diálogo | `cenas/interface/caixa_dialogo.tscn` | A tela: retrato, nome, texto letra por letra, escolhas e o bipe. Já está no `modelo_sala.tscn`, então toda sala nova tem |
+| Legenda de cutscene | `cenas/interface/legenda_cutscene.tscn` | A versão discreta para cutscenes: faixa no pé da tela, texto centralizado, sem retrato, sem nome e sem escolhas. Ver `docs/historia/roteiro/cutscenes/README.md` |
 | `ConversaNpc` | `scripts/personagens/conversa_npc.gd` | Área de interação (`Interagivel`) que começa a conversa. Tem dois campos: `primeira_conversa` e `conversa_de_novo` (a que toca a partir da segunda vez) |
 
 Os três conversam por **sinais**, como o resto do jogo:

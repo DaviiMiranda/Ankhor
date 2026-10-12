@@ -1,6 +1,8 @@
 # Rafael — visual
 
-Segurança noturno da Unifor em 2008, no primeiro emprego, com uns 20 anos. Quem ele é está na ficha [`docs/historia/personagens/rafael.md`](../../../../docs/historia/personagens/rafael.md), que faz parte do Enredo Principal (a lei do projeto).
+> **Arte guardada.** O Rafael saiu da história em 2026-10-11: a Clarice ficou no lugar dele no Bloco de salas (ver `docs/decisoes.md`). Estes arquivos não são usados em nenhuma fase; ficam aqui caso o grupo queira o personagem de volta, como cameo ou como outra ideia.
+
+Segurança noturno da Unifor em 2008, no primeiro emprego, com uns 20 anos. A ficha dele foi retirada de `docs/historia/personagens/` junto com a decisão.
 
 ![Folha de referência](rafael_referencia.png)
 
@@ -12,7 +14,7 @@ Segurança noturno da Unifor em 2008, no primeiro emprego, com uns 20 anos. Quem
 - **No cinto**, o **rádio HT** no quadril direito (o mesmo do inventário: plástico preto, antena de borracha, visor esverdeado) e a **lanterna antiga** de metal no esquerdo.
 - **Cor de identificação: azul-celeste.** Gabriel vermelho, Clarice verde-azulado, Zane amarelo-ácido, Baltazar vinho.
 - **Postura:** peito estufado de quem está de serviço, passo de ronda.
-- O rádio fica do lado **direito** dele, virado para a câmera nas vistas de lado e de 3/4: é por ele que o Rafael fala com o Gabriel.
+- O rádio fica do lado **direito** dele, virado para a câmera nas vistas de lado e de 3/4: é por ele que o Rafael fala com o grupo, na frequência do grupo.
 
 ## Sprites
 
@@ -35,7 +37,7 @@ Todos em `assets/sprites/personagens/rafael/`, gerados por `assets/modelagem/per
 
 ## No jogo
 
-`cenas/personagens/rafael.tscn`: parado, respirando, com os pés sólidos (o Gabriel não atravessa). O script é o `scripts/personagens/personagem_parado.gd`, que escolhe a vista (`vista`) e se ele olha para a esquerda (`olhando_para_esquerda`). Por enquanto só aparece na sala de teste (`cenas/salas/sala_teste.tscn`). Na história, por enquanto ele só fala pelo rádio; onde fica o posto de guarda e em que fase o Gabriel o encontra estão pendentes na ficha.
+`cenas/personagens/rafael.tscn`: parado, respirando, com os pés sólidos (o Gabriel não atravessa). O script é o `scripts/personagens/personagem_parado.gd`, que escolhe a vista (`vista`) e se ele olha para a esquerda (`olhando_para_esquerda`). Só aparece na sala de teste (`cenas/salas/sala_teste.tscn`).
 
 ## Para mudar
 

@@ -6,6 +6,7 @@ extends Interagivel
 	set(valor):
 		item = valor
 		_mostrar_desenho()
+@export var marca_ao_pegar: String = ""
 
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -25,6 +26,7 @@ func _ready() -> void:
 func interagir() -> void:
 	if Inventario.adicionar(item):
 		Inventario.pegos[_id_unico()] = true
+		Progresso.marcar(marca_ao_pegar)
 		queue_free()
 
 

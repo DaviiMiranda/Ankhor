@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/rack_servidor.tscn" id="r13"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira.tscn" id="r14"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/caixas.tscn" id="r15"]
-[ext_resource type="PackedScene" path="res://cenas/personagens/clarice.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/henrique_na_estacao.tscn" id="r16"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/colchao.tscn" id="r17"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/latas.tscn" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="r19"]
@@ -293,7 +293,7 @@ espelhado = true
 [node name="Caixas1" parent="Objetos" instance=ExtResource("r15")]
 position = Vector2(400, 170)
 
-[node name="Clarice" parent="Objetos" instance=ExtResource("r16")]
+[node name="Henrique" parent="Objetos" instance=ExtResource("r16")]
 position = Vector2(440, 134)
 
 [node name="RackServidor5" parent="Objetos" instance=ExtResource("r13")]

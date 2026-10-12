@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="1_base"]
+[ext_resource type="SpriteFrames" path="res://assets/sprites/cenario/biblioteca/porta/porta_biblioteca_quadros.tres" id="2_quadros"]
+[ext_resource type="Script" path="res://scripts/sistemas/folha_porta.gd" id="3_script"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_correr.wav" id="4_som"]
+
+[node name="ParedePortaAnimada" instance=ExtResource("1_base")]
+
+[node name="Folha" type="AnimatedSprite2D" parent="." groups=["folhas_de_porta"]]
+position = Vector2(0, 24)
+sprite_frames = ExtResource("2_quadros")
+animation = &"abrir"
+centered = false
+script = ExtResource("3_script")
+som_abrir = ExtResource("4_som")

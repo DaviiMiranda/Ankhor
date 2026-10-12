@@ -1,0 +1,46 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interface/tela_hackeamento.gd" id="1_tela"]
+
+[node name="TelaHackeamento" type="CanvasLayer"]
+process_mode = 3
+layer = 9
+visible = false
+script = ExtResource("1_tela")
+
+[node name="Fundo" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.02, 0.03, 0.85)
+
+[node name="Titulo" type="Label" parent="."]
+offset_top = 14.0
+offset_right = 320.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.45, 0.9, 1, 1)
+horizontal_alignment = 1
+
+[node name="Instrucao" type="Label" parent="."]
+offset_top = 28.0
+offset_right = 320.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.75, 0.95, 1, 1)
+horizontal_alignment = 1
+
+[node name="Palco" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 50.0
+offset_right = 280.0
+offset_bottom = 154.0
+
+[node name="Dica" type="Label" parent="."]
+offset_top = 163.0
+offset_right = 320.0
+offset_bottom = 177.0
+theme_override_colors/font_color = Color(0.95, 0.88, 0.7, 1)
+horizontal_alignment = 1

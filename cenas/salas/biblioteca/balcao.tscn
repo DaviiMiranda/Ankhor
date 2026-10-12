@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="r2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/parede_porta_animada.tscn" id="r2"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_placa.tscn" id="r3"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lisa.tscn" id="r4"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_arandela.tscn" id="r5"]
@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r17"]
 [ext_resource type="Resource" path="res://dados/itens/radio.tres" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="r19"]
-[ext_resource type="Resource" path="res://dados/transmissoes/rafael_01.tres" id="r20"]
+[ext_resource type="Resource" path="res://dados/transmissoes/clarice_biblioteca_01.tres" id="r20"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira.tscn" id="r21"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="r22"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/livros.tscn" id="r23"]
@@ -178,7 +178,7 @@ espelhado = true
 position = Vector2(322, 206)
 item = ExtResource("r18")
 
-[node name="GatilhoRafael1" parent="Objetos" instance=ExtResource("r19")]
+[node name="GatilhoRadio1" parent="Objetos" instance=ExtResource("r19")]
 position = Vector2(322, 206)
 transmissao = ExtResource("r20")
 

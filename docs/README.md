@@ -38,7 +38,7 @@ docs/
 │   ├── furtividade_e_esconderijos.md # Esconderijos, microgames de tensão e distrações
 │   ├── iluminacao_e_lanterna.md   # Lanterna a pilha, dilema luz/perigo, luzes de emergência
 │   ├── vida_e_checkpoint.md       # 3 corações, dano, tela de morte e checkpoints
-│   ├── registros_e_caderno.md     # Documentos dos antecessores, rádio do Rafael e o Caderno do Gabriel
+│   ├── registros_e_caderno.md     # Documentos dos antecessores, rádio e o Caderno do Gabriel
 │   └── sono_e_sonhos.md           # Salas seguras, mecânica de save e investigação no passado
 │
 ├── computacao/                    # Requisitos da disciplina de Computação Gráfica / CC
@@ -51,6 +51,10 @@ docs/
 ├── fases/                         # Design de fases e áreas
 │   ├── README.md                  # Estrutura e funcionamento do level design no campus
 │   ├── biblioteca.md              # Fase 1 (Confirmada): O despertar na Biblioteca Central
+│   ├── bloco_de_salas.md          # Fase 2: Bloco de salas, jogável (Clarice e Diana na 103)
+│   ├── bunker.md                  # Bunker: Zane e Henrique na sala de dados
+│   ├── centro_de_convivencia.md   # Fase seguinte ao Bloco de salas (ainda não feita)
+│   ├── dtec.md                    # DTEC: laboratório, fase solta
 │   ├── labirinto.md               # Labirinto escuro com robôs (jogável pelo menu Fases)
 │   └── template_fase.md           # Modelo padronizado para documentação de novas fases/áreas
 │
@@ -70,10 +74,9 @@ docs/
     │   ├── baltazar.md            # ~1750, antepassado de Gabriel
     │   ├── diana.md               # 1978, recruta da polícia
     │   ├── clarice.md             # 1994, aluna de processamento de dados
-    │   ├── rafael.md              # 2008, segurança noturno
     │   ├── henrique.md            # 2019, o pesquisador
     │   ├── carlos.md              # 3026, o antagonista
-    │   ├── zane.md                # 2123, o último a chegar
+    │   ├── zane.md                # 2123, faz as comunicações do bunker
     │   └── robos.md               # Os robôs inimigos: sensores, FSM e patrulhas
     └── roteiro/                   # Roteirização cinematográfica e cutscenes
         ├── README.md              # Diretrizes gerais de roteiro

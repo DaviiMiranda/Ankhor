@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r18"]
 [ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r20"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/buraco_chao.png" id="b_buraco"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/queda.wav" id="b_queda"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -325,5 +327,21 @@ position = Vector2(41, 124)
 id = "sala_204"
 cena_destino = "res://cenas/salas/bloco_de_salas/corredor_primeiro_andar.tscn"
 porta_destino = "bloco_204"
+
+
+[node name="Buraco" type="Sprite2D" parent="Chao"]
+position = Vector2(183, 434)
+texture = ExtResource("b_buraco")
+centered = false
+
+[node name="DescerBuraco" parent="." instance=ExtResource("r2")]
+position = Vector2(200, 440)
+id = "bloco_buraco_204"
+cena_destino = "res://cenas/salas/bloco_de_salas/sala_104.tscn"
+porta_destino = "bloco_buraco_104"
+direcao_entrar = Vector2(0, 1)
+texto_acao = "Descer pelo buraco"
+altura_aviso = 20.0
+som_abrir = ExtResource("b_queda")
 
 [editable path="Ceu"]
