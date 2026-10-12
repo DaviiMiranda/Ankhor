@@ -166,7 +166,7 @@ O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na T
 
 - **Cutscenes de abertura:**
   - **Prólogo ilustrado** (`seg_prologo`, aprovada): ilustrações sequenciais em pixel art retratando a rotina comum de Gabriel em 2026 (acordar, anel da avó, trajeto na Washington Soares, campus vivo da Unifor, aula de cálculo com o caderno de equações, até cair no sono de madrugada na cabine da Biblioteca antes da fenda se abrir).
-  - **O despertar** (`seg_acordar`, aprovada): Gabriel desperta na cabine de estudo, mil anos depois. Luz do sol por um teto que não existe mais, uma árvore no meio do salão, estantes caídas e vazias.
+  - **O despertar** (`seg_acordar`, pronta, um vídeo curto): Gabriel desperta na cabine de estudo, mil anos depois. A cabine e a biblioteca em volta já têm a tecnologia de 3026: painéis com luz ciano, um holograma aceso sobre o caderno, torres de equipamentos entre as estantes. Ele esfrega os olhos e olha em volta sem entender onde está.
 - Gabriel acha a **lanterna** perto de onde acorda, e **pilhas** pelo salão. O **anel da avó** já está no inventário.
 - **Acampamento de Baltazar** entre as raízes da árvore. Ele não está lá.
 - **Terminal com o bilhete da Clarice.**
@@ -236,7 +236,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 | **Rádio** | Clarice ao vivo, na frequência do grupo, com o que o Henrique vê nas câmeras, sem pausar o jogo | [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md) |
 | **Ligações e diálogos** | Zane por telefone; todos em pessoa nos esconderijos, com retratos e escolhas | [`../dialogos/README.md`](../dialogos/README.md) |
 | **Sonhos** | O sono continua como mecânica; o que os sonhos mostram está pendente | [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md) |
-| **Cutscenes** | A abertura (`seg_acordar`) e as que o grupo decidir | [`roteiro/cutscenes/`](roteiro/cutscenes/) |
+| **Cutscenes** | A abertura (`seg_prologo` e `seg_acordar`) e as que o grupo decidir | [`roteiro/cutscenes/`](roteiro/cutscenes/) |
 
 ---
 
@@ -300,7 +300,7 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 - **Bloco de salas:** por que a sala 205 está intacta. O objetivo e os robôs foram decididos em 2026-10-11 ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)).
 - **O que destrava o setor B do bunker** (senhas nos disquetes, religar o gerador) e se os robôs entram lá.
 - **O D-Tec (Bloco M)** como fase: se é a última, e como o grupo enfrenta o Carlos sem lutar (Gabriel não é combatente).
-- **Cenários mais futuristas.** Pedido do Davi: os cenários precisam mostrar mais a tecnologia de 3026 (telas, máquinas, a estrutura do centro de pesquisa e do D-Tec), misturada às ruínas e à vegetação. Falta decidir quanto do campus tem esse visual futurista e onde ele aparece mais.
+- **Cenários mais futuristas.** Pedido do Davi: os cenários precisam mostrar mais a tecnologia de 3026 (telas, máquinas, a estrutura do centro de pesquisa e do D-Tec), misturada às ruínas e à vegetação. A cabine de estudo da Biblioteca já aparece assim no vídeo do despertar (`seg_acordar`). Falta decidir quanto do resto do campus tem esse visual futurista e onde ele aparece mais.
 - **Redesenho das áreas do GDD** (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) para a premissa da fenda. O Centro de Convivência vem primeiro, por ser a fase seguinte ao Bloco de salas.
 - **De onde vem a grade horária dos robôs.** Antes vinha da coloração de grafos da semana de provas; hoje a patrulha é programada (pelo Carlos ou pela IA: seção 12.2).
 

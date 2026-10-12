@@ -15,6 +15,7 @@ O mesmo nome é usado em todas as pastas da cutscene (ficha, cena, falas, sprite
 | Falas | `dados/dialogos/<nome>/` (um JSON por momento de fala) | roteiro |
 | Cena do Godot | `cenas/cutscenes/<nome>.tscn` | arte e jogabilidade |
 | Imagens | `assets/sprites/cutscenes/<nome>/` | arte |
+| Vídeo (quando a cutscene é um vídeo) | `assets/video/cutscenes/<nome>.ogv` (Ogg Theora, o único formato que o Godot toca) | arte |
 | Modelos do Blender | `assets/modelagem/cutscenes/<nome>/` | arte |
 
 Toda cena de cutscene usa o script `scripts/cutscenes/cutscene.gd`: ela toca a animação `principal` do seu `AnimationPlayer`, pode ser pulada com Esc e, ao terminar, avisa o jogo pelo sinal `cutscene_terminou` e troca para a `proxima_cena`.
@@ -68,4 +69,4 @@ Resoluções, camadas de paralaxe e conexão no Godot (`scripts/cutscenes/cutsce
 | Cutscene | Descrição | Status |
 |---|---|---|
 | [`seg_prologo`](seg_prologo.md) | Prólogo em ilustrações: rotina de Gabriel em 2026, ida à faculdade, aula e o adormecer na cabine da Biblioteca | em produção (cena montada no Godot; faltam os sons) |
-| [`seg_acordar`](seg_acordar.md) | O despertar imediato de Gabriel dentro da cabine da Biblioteca nas ruínas de 3026 | aprovada (cena provisória no Godot) |
+| [`seg_acordar`](seg_acordar.md) | Vídeo: Gabriel acorda na cabine da Biblioteca, mil anos depois, cercado pela tecnologia de 3026 | pronta |

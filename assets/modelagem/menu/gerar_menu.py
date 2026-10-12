@@ -14,8 +14,8 @@
 # ATENÇÃO: desde 2026-10-07 o menu principal NÃO usa mais estes PNGs. Ele
 # usa uma imagem só, assets/sprites/menu/menu_cena.png, feita por
 # assets/modelagem/menu/preparar_menu.py. Este script continua no projeto
-# porque a cutscene seg_acordar (gerar_seg_acordar.py) reaproveita a cabine
-# montada aqui.
+# como referência da cabine. (A cutscene seg_acordar reaproveitava esta
+# cabine no Blender até 2026-10-11, quando virou um vídeo.)
 #
 # A cena: a cabine de estudo da Biblioteca à noite, na véspera das provas.
 # As luzes estão apagadas; sobram o brilho azulado da tela do monitor e a
