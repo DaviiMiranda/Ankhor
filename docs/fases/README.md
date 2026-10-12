@@ -32,6 +32,11 @@ Diferente de fases lineares isoladas com telas de carregamento tradicionais, o m
 
 ---
 
+> [!TIP]
+> **Vai projetar o level design?** Comece pelo [`guia_level_design.md`](guia_level_design.md): reúne o contexto do jogo, os mapas como estão, os itens, os personagens e as regras que as fases precisam respeitar.
+
+---
+
 ## 📋 Como Criar uma Nova Fase
 
 Para documentar uma nova fase ou área assim que o grupo fechar o escopo:
