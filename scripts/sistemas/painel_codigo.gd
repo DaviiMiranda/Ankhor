@@ -13,6 +13,8 @@ const COR_ERRO := Color("ff5a3a")
 @export var aviso_sem_energia: String = "O painel está apagado. Sem energia."
 @export var aviso_aberto: String = "Código aceito. A grade está subindo."
 @export var aviso_ja_aberto: String = "A grade já está aberta."
+@export var texto_visor: String = "DIGITE O CÓDIGO"
+@export var item_ao_abrir: Item
 
 var _aberto := false
 var _digitos: Array[int] = []
@@ -50,14 +52,18 @@ func pode_interagir() -> bool:
 func interagir() -> void:
 	if Progresso.tem(marca):
 		Inventario.aviso.emit(aviso_ja_aberto)
-	elif not Progresso.tem(marca_energia):
+	elif not _tem_energia():
 		Inventario.aviso.emit(aviso_sem_energia)
 	else:
 		_abrir()
 
 
 func _ao_mudar() -> void:
-	sprite.texture = textura_aceso if Progresso.tem(marca_energia) else textura_apagado
+	sprite.texture = textura_aceso if _tem_energia() else textura_apagado
+
+
+func _tem_energia() -> bool:
+	return marca_energia.is_empty() or Progresso.tem(marca_energia)
 
 
 func _abrir() -> void:
@@ -68,7 +74,7 @@ func _abrir() -> void:
 	for i in codigo.length():
 		_digitos.append(0)
 	_cursor = 0
-	visor.text = "DIGITE O CÓDIGO"
+	visor.text = texto_visor
 	visor.add_theme_color_override("font_color", COR_DIGITO)
 	dica.text = "Cima/baixo: número     Lados: casa     E: confirmar     Esc: sair"
 	_mostrar()
@@ -123,6 +129,8 @@ func _confirmar() -> void:
 	visor.text = "ACESSO LIBERADO"
 	visor.add_theme_color_override("font_color", COR_DIGITO)
 	Progresso.marcar(marca)
+	if item_ao_abrir:
+		Inventario.adicionar(item_ao_abrir)
 	await get_tree().create_timer(0.8, true).timeout
 	_fechar()
 	Inventario.aviso.emit(aviso_aberto)

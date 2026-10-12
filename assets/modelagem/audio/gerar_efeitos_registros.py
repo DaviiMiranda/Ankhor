@@ -6,7 +6,7 @@
 #
 # Gera:
 #   assets/audio/efeitos/objetos/radio_chiado.wav     2 s em loop: a estática
-#                                                     por baixo da voz do Rafael
+#                                                     por baixo da voz do rádio
 #   assets/audio/efeitos/objetos/radio_clique.wav     o "clec" do botão de falar
 #                                                     e o chiado curto de quando
 #                                                     a transmissão abre e fecha
@@ -41,7 +41,7 @@ _spec.loader.exec_module(ef)
 
 TAXA = ef.TAXA
 tempo, envelope, filtrar, normalizar, salvar = ef.tempo, ef.envelope, ef.filtrar, ef.normalizar, ef.salvar
-rng = np.random.default_rng(2008)   # sorteios fixos: o ano do Rafael
+rng = np.random.default_rng(2008)   # sorteios fixos
 
 
 def ruido(n):

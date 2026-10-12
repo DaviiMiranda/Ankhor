@@ -20,7 +20,7 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../historia/p
 - Ao fechar, a **anotação** do documento entra no caderno (uma vez só) e o HUD avisa: *"Nova anotação: Baltazar, 1750   [N] ver"*.
 
 ### Ouvir o rádio
-- O rádio portátil (sintonizado na frequência do grupo, que o Zane mantém; a voz é a do Henrique) é um item comum (fica no inventário, não é gadget).
+- O rádio portátil (sintonizado na frequência do grupo, que o Zane mantém; a voz é a da Clarice, com o que o Henrique vê pelas câmeras) é um item comum (fica no inventário, não é gadget).
 - Com o rádio no inventário, **gatilhos** espalhados pela sala tocam transmissões quando o Gabriel entra neles. Cada transmissão toca **uma vez só**.
 - A transmissão **não pausa o jogo**: a fala aparece embaixo, letra por letra, com o chiado do rádio por baixo. Se duas forem pedidas juntas, a segunda espera a primeira acabar.
 - No fim, a anotação da transmissão entra no caderno.
@@ -43,10 +43,10 @@ Cada registro está numa sala da Biblioteca (`cenas/salas/biblioteca/`, ver [`..
 | Riscos de estrelas na árvore | Salão | filho de `Arvore`, no tronco | só cenário |
 | Robô desmontado | Salão | (280, 172) | só cenário |
 | Rádio portátil | Balcão (`balcao.tscn`) | (322, 206), no carrinho da segurança | `E` para pegar |
-| Transmissão `henrique_01` (`GatilhoHenrique1`) | Balcão | círculo de 40 px em volta do rádio | toca ao pegar o rádio |
+| Transmissão `clarice_biblioteca_01` (`GatilhoRadio1`) | Balcão | círculo de 40 px em volta do rádio | toca ao pegar o rádio |
 | Bilhete da Clarice (`BilheteClarice`) | Terminais (`terminais.tscn`) | (284, 228), colado no terminal dela | `E` perto |
 | Disquete da Clarice (`SENHAS.TXT`) | Terminais | o disquete em (252, 238); o terminal em (320, 230) | `E` no terminal, com energia e com o disquete |
-| Transmissão `henrique_02` (`GatilhoHenrique2`) | Acervo (`acervo.tscn`) | retângulo 480 × 240, centro (290, 300) | toca ao entrar entre as estantes com o rádio |
+| Transmissão `clarice_biblioteca_02` (`GatilhoRadio2`) | Acervo (`acervo.tscn`) | retângulo 480 × 240, centro (290, 300) | toca ao entrar entre as estantes com o rádio |
 | Aviso dos disjuntores | Manutenção (`manutencao.tscn`) | (84, 134), na porta | `E` perto |
 | Ligação `zane_01` | Balcão | o telefone, em (196, 172) | `E` quando ele toca |
 
@@ -55,10 +55,10 @@ Cada registro está numa sala da Biblioteca (`cenas/salas/biblioteca/`, ver [`..
 | Riscos de estrelas na árvore | filho de `Arvore`, no tronco | só cenário |
 | Robô desmontado | (280, 172) | só cenário |
 | Rádio portátil | (628, 162), ao lado da mesa de leitura | `E` para pegar |
-| Transmissão `henrique_01` (`GatilhoHenrique1`) | círculo de 40 px em volta do rádio | toca ao pegar o rádio |
+| Transmissão `clarice_biblioteca_01` (`GatilhoRadio1`) | círculo de 40 px em volta do rádio | toca ao pegar o rádio |
 | Terminal + bilhete da Clarice (`BilheteClarice`) | (470, 236), na parte sul | `E` perto |
 | Lampião do terminal | (492, 240) | ilumina o terminal |
-| Transmissão `henrique_02` (`GatilhoHenrique2`) | retângulo 270 × 110 no acervo, centro (548, 360) | toca ao entrar no acervo com o rádio |
+| Transmissão `clarice_biblioteca_02` (`GatilhoRadio2`) | retângulo 270 × 110 no acervo, centro (548, 360) | toca ao entrar no acervo com o rádio |
 
 ---
 
@@ -99,7 +99,7 @@ A tela de leitura, a legenda e o inventário (com a aba Anotações) já estão 
 ## 5. Como criar uma transmissão nova
 
 1. Botão direito em `dados/transmissoes/` → *Novo* → *Recurso...* → `Transmissao`.
-2. `falante` aparece em cima da fala (ex.: `HENRIQUE (rádio)`). Em `falas`, uma entrada por fala, com no máximo **2 linhas** (~85 caracteres).
+2. `falante` aparece em cima da fala (ex.: `CLARICE (rádio)`). Em `falas`, uma entrada por fala, com no máximo **2 linhas** (~85 caracteres).
 3. `vozes` é opcional: um áudio por fala, na mesma ordem. Com voz gravada, a fala espera o áudio acabar. As gravações vão em `assets/audio/vozes/`.
 4. No mapa: arraste `cenas/sistemas/gatilho_transmissao.tscn` para `Objetos`, escolha a `transmissao` e ajuste a forma da área (`Area`). O gatilho só toca com o item `item_necessario` (padrão: `radio`) no inventário.
 
@@ -110,5 +110,5 @@ A tela de leitura, a legenda e o inventário (com a aba Anotações) já estão 
 - O caderno não guarda o texto completo dos documentos, só a anotação. Reler exige voltar ao lugar.
 - Salvar caderno e transmissões ao dormir (depende do sistema de save).
 - As ligações da Clarice pelos telefones (vão reaproveitar a legenda do rádio).
-- As falas do Henrique no rádio ainda não têm voz gravada.
+- As falas da Clarice no rádio ainda não têm voz gravada.
 - O sistema de diálogos completo (escolhas, retratos) de [`../dialogos/README.md`](../dialogos/README.md): a legenda do rádio é só a parte de falas em sequência.

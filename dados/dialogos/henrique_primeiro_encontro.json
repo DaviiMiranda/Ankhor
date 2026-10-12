@@ -1,0 +1,182 @@
+{
+	"id": "henrique_primeiro_encontro",
+	"inicio": "abertura",
+	"anotacao": {
+		"titulo": "Henrique, na sala de dados",
+		"texto": "O Henrique é o das câmeras: a Clarice repassa o que ele vê. Fica escondido na sala de dados do bunker, tentando entender tudo, e diz que, de alguma forma, estamos em 3026.\n\nO setor B está lacrado pelo sistema. O Zane está tentando quebrar a senha.\n\nFala pouco e se corrige no meio da frase. Ficou nervoso quando perguntei da Âncora."
+	},
+	"trechos": {
+		"abertura": {
+			"falas": [
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_nervoso",
+					"texto": "Ah. Você... é você. Eu vi você chegando pelas câmeras. Quer dizer, na entrada do bunker. Não aqui dentro."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_surpreso",
+					"texto": "Você é o Henrique? O das câmeras? A Clarice me guiou a Biblioteca com o que você via."
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "Sou. Eu... prefiro passar tudo pela Clarice, na verdade. Pessoalmente eu me enrolo. Quer dizer, me enrolo bastante."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Funcionou. Eu cheguei até aqui."
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_timido",
+					"texto": "Foi... o mínimo. As câmeras mostram tudo. Eu só precisava de alguém para usar o que elas mostram. A Clarice usou."
+				}
+			],
+			"escolhas": [
+				{
+					"texto": "Como você me vê?",
+					"vai_para": "cameras"
+				},
+				{
+					"texto": "Que lugar é este?",
+					"vai_para": "bunker"
+				},
+				{
+					"texto": "Você sabe o que é a Âncora?",
+					"vai_para": "ancora"
+				},
+				{
+					"texto": "Como viemos parar em 3026?",
+					"vai_para": "ano"
+				}
+			]
+		},
+		"cameras": {
+			"falas": [
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "Tem câmera em quase todo o campus. A maioria morreu. Umas trinta ainda transmitem, aqui para estes monitores."
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "E os robôs repetem a ronda há séculos. Dá para decorar. Quer dizer, eu decorei. Você só... precisa escutar."
+				}
+			],
+			"vai_para": "mais_alguma"
+		},
+		"bunker": {
+			"falas": [
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "Bunker de pesquisa, embaixo do núcleo da Âncora. Os robôs não descem. Pelo que vi, nem sabem que existe."
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "A energia vem direto da Âncora. Por isso as telas funcionam."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "E as portas lacradas lá no corredor?"
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "Setor B: laboratório, arquivo e o acesso ao núcleo. Lacrado pelo sistema. O Zane está tentando quebrar a senha. Eu... eu não mexo nisso."
+				}
+			],
+			"vai_para": "mais_alguma"
+		},
+		"ancora": {
+			"falas": [
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_nervoso",
+					"texto": "A Âncora. Eu... é uma máquina. De física do tempo. Quer dizer, é o que parece."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "Você parece saber mais do que está dizendo."
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_nervoso",
+					"texto": "Teoria não é fato. Eu só... li sobre isso, antes. Esquece. Próxima pergunta."
+				}
+			],
+			"vai_para": "mais_alguma"
+		},
+		"mais_alguma": {
+			"falas": [
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "Mais... mais alguma coisa? Estou no meio de uma contagem."
+				}
+			],
+			"escolhas": [
+				{
+					"texto": "Como você me vê?",
+					"vai_para": "cameras"
+				},
+				{
+					"texto": "Que lugar é este?",
+					"vai_para": "bunker"
+				},
+				{
+					"texto": "Você sabe o que é a Âncora?",
+					"vai_para": "ancora"
+				},
+				{
+					"texto": "Como viemos parar em 3026?",
+					"vai_para": "ano"
+				},
+				{
+					"texto": "Preciso ir.",
+					"vai_para": "despedida"
+				}
+			]
+		},
+		"despedida": {
+			"falas": [
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "Vai com cuidado. A Clarice e a Diana ficam na escuta, e eu também. Se precisar, é só chamar."
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_timido",
+					"texto": "E... obrigado por vir até aqui. Quase ninguém vem."
+				}
+			]
+		},
+		"ano": {
+			"falas": [
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_nervoso",
+					"texto": "Eu... não sei. De alguma forma, estamos em 3026. As datas dos sistemas, o estado do prédio, tudo bate."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "De alguma forma?"
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_nervoso",
+					"texto": "Estou tentando entender. Por isso fico aqui embaixo, escondido, olhando tudo. Quando eu entender, eu... aviso."
+				}
+			],
+			"vai_para": "mais_alguma"
+		}
+	}
+}

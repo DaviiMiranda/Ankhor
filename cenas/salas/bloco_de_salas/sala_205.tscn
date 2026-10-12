@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira.tscn" id="r12"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/mesa_leitura.tscn" id="r13"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lousa_8.tscn" id="b_lousa"]
+[ext_resource type="PackedScene" path="res://cenas/itens/aviso_no_mundo.tscn" id="b_aviso"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -31,7 +33,7 @@ texture = ExtResource("r3")
 [node name="Parede01" parent="Paredes" instance=ExtResource("r4")]
 position = Vector2(0, 0)
 
-[node name="Parede02" parent="Paredes" instance=ExtResource("r5")]
+[node name="Parede02" parent="Paredes" instance=ExtResource("b_lousa")]
 position = Vector2(80, 0)
 
 [node name="Parede03" parent="Paredes" instance=ExtResource("r6")]
@@ -347,5 +349,12 @@ position = Vector2(361, 124)
 id = "sala_205"
 cena_destino = "res://cenas/salas/bloco_de_salas/corredor_primeiro_andar.tscn"
 porta_destino = "bloco_205"
+
+
+[node name="Tracinhos" parent="Objetos" instance=ExtResource("b_aviso")]
+position = Vector2(120, 126)
+texto_acao = "Olhar a lousa"
+altura_aviso = 70.0
+texto = "Tracinhos de giz embaixo da conta apagada, em grupos de cinco. Conto oito."
 
 [editable path="Ceu"]

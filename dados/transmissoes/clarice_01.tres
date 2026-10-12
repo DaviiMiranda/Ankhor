@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "clarice_01"
+falante = "CLARICE (rádio)"
+falas = PackedStringArray("Chhh... Ei, você aí no corredor. Devagar com o entulho, meu filho: o robô que ronda aí escuta até pensamento.", "Sou eu de novo, a Clarice. A do rádio da Biblioteca. Tô na 103, atrás da barricada.", "Só que o robô não sai da frente da minha porta, e abrir a barricada faz um barulho dos infernos. Com ele aí, eu não mexo.", "Faz o seguinte: na 104, o laboratório de informática, tem um terminal com teste de alarme. Liga aquilo.", "A sirene fica no fim do corredor. Ele vai atrás do barulho: é reflexo, eu já anotei. Aí você vem. Entendeu? Então vai.")
+titulo_anotacao = "Clarice, 1994"
+anotacao = "A Clarice, a voz do rádio da Biblioteca, está na sala 103 e não abre a barricada com o robô na porta.
+- Na 104 tem o teste de alarme.
+- A sirene fica no fim do corredor: o robô vai até lá."

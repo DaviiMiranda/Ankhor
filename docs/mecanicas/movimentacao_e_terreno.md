@@ -61,4 +61,8 @@ O som gerado pelos passos varia conforme o piso sobre o qual Gabriel se move:
 
 Ao atravessar toca `porta_abrir.wav` (trinco, dobradiça rangendo, porta batendo). O som toca fora da cena, então continua durante a troca.
 
+**Animação de abrir (por mapa):** a folha da porta é uma peça de parede animada, não parte da `Porta`. Cada mapa tem a sua. A da Biblioteca é `cenas/cenario/biblioteca/parede_porta_animada.tscn` (filha de `parede_porta.tscn`, com o nó `Folha`, que está no grupo `folhas_de_porta`). Para ligar a animação em uma porta, use essa peça no vão em vez de `parede_porta.tscn`: a `Porta` acha sozinha a folha cujo centro fica a até 12 px dela (peça de 80 px de largura, `Porta` no meio do vão) e não precisa de campo no Inspetor. Ao apertar `E` a folha abre, durando o mesmo que `segundos_andando`; na sala de destino ela fecha. O som de abrir também vem da folha (`som_abrir` no nó `Folha`): na Biblioteca é `porta_correr.wav`, e vale no lugar do `som_abrir` da `Porta`. Sem peça animada por perto, a porta funciona como antes.
+
+Os quadros saem de um vídeo, convertido por `assets/modelagem/cenario/gerar_porta_biblioteca.py` (recorta o batente, reduz para 80×88 e grava o `SpriteFrames` em `assets/sprites/cenario/biblioteca/porta/`). Para outro mapa, copie o script com o recorte e o caminho de saída próprios.
+
 A porta de chegada é guardada numa variável estática da classe `Porta` (sobrevive à troca de cena sem precisar de autoload). Código: `scripts/sistemas/porta.gd`; o controle automático do Gabriel é `andar_sozinho()` / `devolver_controle()` em `scripts/personagens/gabriel.gd`.
