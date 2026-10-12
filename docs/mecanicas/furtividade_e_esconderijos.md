@@ -10,6 +10,9 @@ Quando um robô está patrulhando ou perseguindo Gabriel, a principal forma de q
 | **Cabine Individual de Estudo** | Biblioteca Central | Prender a respiração no timing correto | Médio (visível se tiver frestas) |
 | **Raízes Caídas e Mesas Quebradas** | Pátios e Convivência | Ficar imóvel (manter tecla pressionada) | Médio |
 | **Macas com Cortinas Desfiadas** | Enfermarias e Clínicas | Controle de batimento cardíaco / respiração | Médio-Alto |
+| **Nicho de parede** (bebedouro ou armários) | Corredores do Bloco de salas | Ficar imóvel, sem `E`: parado no nicho com a lanterna apagada | Médio (contato ainda denuncia) |
+
+**Já no jogo:** o nicho de parede (2026-10-12). Ficar parado por 0,4 s dentro dele, com a lanterna apagada, esconde o Gabriel da visão dos robôs; andar ou acender a luz revela. Ver `docs/fases/bloco_de_salas.md`, seção 12.8.
 
 ---
 

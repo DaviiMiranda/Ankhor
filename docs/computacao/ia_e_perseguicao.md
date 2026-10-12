@@ -89,6 +89,8 @@ $$\text{limite} = \begin{cases} 14 \times f & \text{correndo} \\ 5 \times f & \t
 
 com $f$ = fator de audição do robô (Sentinela 0,5; Rastreador 1,8). Se a célula do robô é alcançada, ele ouviu e vai **investigar** o lugar.
 
+Onde há uma `ZonaDePiso` (os corredores do Bloco de salas), o limite também é multiplicado pelo fator do piso em que o Gabriel pisa: $\lfloor A_0 \cdot f_{\text{piso}} \cdot f \rfloor$, com areia 0,5, lajota 1,0 e lajota solta 1,5 (`docs/fases/bloco_de_salas.md`, seção 12.7). Parado num nicho, o Gabriel não é **visto** (o teste de visão retorna falso), mas a audição e o contato continuam valendo.
+
 A BFS anda pelos corredores, não em linha reta: um robô do outro lado de uma parede fina, a 2 células em linha reta mas a 20 células de corredor, **não ouve**. É exatamente a ideia da propagação de som do item 1, com distância em número de arestas.
 
 ### 5.4 Perseguição: A\*

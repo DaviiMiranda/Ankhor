@@ -31,6 +31,7 @@ O som gerado pelos passos varia conforme o piso sobre o qual Gabriel se move:
 - **Piso de Concreto / Cerâmica Antiga:** Emite ruído regular.
 - **Dunas de Areia:** Abafam o som dos passos (excelente para passar despercebido), mas reduzem ligeiramente a velocidade de corrida.
 - **Entulho com Cacos de Vidro e Vergalhões:** Correr sobre entulho produz ruído estridente e imediato, gerando um evento sonoro de alta magnitude propagado via BFS para salas vizinhas.
+- **Já no jogo (Bloco de salas, 2026-10-12):** o piso muda o alcance do som dos passos por um fator: areia e mato **0,5**, lajota e tapete **1,0**, lajota solta e entulho **1,5**. Ver `docs/fases/bloco_de_salas.md`, seções 12.7 e 12.8, e `scripts/sistemas/zona_de_piso.gd`.
 - **Pisos Alagados (Subsolo do NAMI):** Geram ruído de chapinha d'água ritmado, exigindo que o jogador ande devagar, sem correr.
 
 ---
