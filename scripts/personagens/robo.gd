@@ -204,7 +204,7 @@ func pode_ser_hackeado_de(ponto: Vector2) -> bool:
 	return direcao_olhar.dot(global_position.direction_to(ponto)) < 0.0
 
 
-func ouvir_barulho(origem: Vector2, alcance_base: int) -> void:
+func ouvir_barulho(origem: Vector2, alcance_base: float) -> void:
 	if grade == null or _segundos_distraido > 0.0 or estado in [Estado.PERSEGUINDO, Estado.ATACOU, Estado.ATORDOADO]:
 		return
 	var alcance := int(alcance_base * fator_audicao)
@@ -368,14 +368,14 @@ func _olhar_em_volta(delta: float) -> void:
 
 
 func _ve_o_jogador() -> bool:
-	if _gabriel == null or not Vida.esta_viva():
+	if _gabriel == null or not Vida.esta_viva() or _gabriel.escondido:
 		return false
 	var para := _gabriel.global_position - global_position
 	var distancia := para.length()
 	if distancia <= alcance_sentir:
 		return true
 	var alcance := alcance_visao
-	if _lanterna_acesa() or _jogador_iluminado():
+	if luz_do_jogador_acesa() or _jogador_iluminado():
 		alcance *= fator_lanterna
 	if distancia > alcance:
 		return false
@@ -390,7 +390,7 @@ func _linha_livre(ate: Vector2) -> bool:
 	return get_world_2d().direct_space_state.intersect_ray(consulta).is_empty()
 
 
-func _lanterna_acesa() -> bool:
+static func luz_do_jogador_acesa() -> bool:
 	return Inventario.estado_de("lanterna").get("aceso", false) or Inventario.estado_de("notebook").get("aceso", false)
 
 
@@ -403,7 +403,8 @@ func _jogador_iluminado() -> bool:
 
 
 func _ao_ouvir_passo(correndo: bool) -> void:
-	ouvir_barulho(_gabriel.global_position, ALCANCE_SOM_CORRENDO if correndo else ALCANCE_SOM_ANDANDO)
+	var alcance := ALCANCE_SOM_CORRENDO if correndo else ALCANCE_SOM_ANDANDO
+	ouvir_barulho(_gabriel.global_position, alcance * ZonaDePiso.fator_em(get_tree(), _gabriel.global_position))
 
 
 func _tentar_atacar() -> void:

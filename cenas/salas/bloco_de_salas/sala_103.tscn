@@ -26,6 +26,9 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r24"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/clarice_posto.tscn" id="b_clarice"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="b_checkpoint"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lousa_mapa.tscn" id="m_lousa_mapa"]
+[ext_resource type="PackedScene" path="res://cenas/itens/aviso_no_mundo.tscn" id="m_aviso"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/fresta_da_barricada.tscn" id="m_fresta"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -49,7 +52,7 @@ position = Vector2(80, 0)
 [node name="Parede03" parent="Paredes" instance=ExtResource("r6")]
 position = Vector2(160, 0)
 
-[node name="Parede04" parent="Paredes" instance=ExtResource("r7")]
+[node name="Parede04" parent="Paredes" instance=ExtResource("m_lousa_mapa")]
 position = Vector2(240, 0)
 
 [node name="Parede05" parent="Paredes" instance=ExtResource("r8")]
@@ -362,5 +365,15 @@ position = Vector2(250, 392)
 [node name="Checkpoint" parent="Objetos" instance=ExtResource("b_checkpoint")]
 position = Vector2(340, 392)
 id = "sala_segura_103"
+
+[node name="MapaDeGiz" parent="Objetos" instance=ExtResource("m_aviso")]
+position = Vector2(280, 126)
+texto_acao = "Olhar a lousa"
+altura_aviso = 70.0
+texto = "O bloco desenhado a giz pela Clarice: embaixo o térreo, em cima o 1º andar. Um ponto na 103. Um X na 206, com \"DEPÓSITO\". Do lado da escada: \"GRADE - CADEADO\". Na ponta do térreo: \"SIRENE\". E embaixo de tudo: \"A RONDA É UM CICLO. CONTA OS PASSOS.\""
+
+[node name="Fresta" parent="Objetos" instance=ExtResource("m_fresta")]
+position = Vector2(84, 132)
+porta = NodePath("../../Porta_sala_103")
 
 [editable path="Ceu"]

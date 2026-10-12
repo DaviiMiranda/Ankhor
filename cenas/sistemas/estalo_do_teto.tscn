@@ -1,0 +1,32 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/estalo_do_teto.gd" id="1_estalo"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/estalo_laje.wav" id="2_som"]
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
+[node name="EstaloDoTeto" type="Node2D"]
+script = ExtResource("1_estalo")
+
+[node name="Som" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_som")
+volume_db = -4.0
+max_distance = 520.0
+bus = &"Efeitos"
+
+[node name="Poeira" type="CPUParticles2D" parent="."]
+material = SubResource("SemLuz")
+emitting = false
+amount = 36
+lifetime = 2.4
+one_shot = true
+explosiveness = 0.35
+emission_shape = 3
+emission_rect_extents = Vector2(18, 2)
+direction = Vector2(0, 1)
+spread = 12.0
+gravity = Vector2(0, 46)
+initial_velocity_min = 4.0
+initial_velocity_max = 14.0
+color = Color(0.78, 0.75, 0.68, 0.55)

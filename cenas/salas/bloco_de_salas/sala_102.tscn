@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/efeitos/poeira.tscn" id="r19"]
 [ext_resource type="Resource" path="res://dados/itens/molho_de_chaves.tres" id="b_molho"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral_brecha.tscn" id="m_brecha"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -141,7 +142,7 @@ position = Vector2(0, 176)
 position = Vector2(384, 176)
 flip_h = true
 
-[node name="LateralEsq3" parent="Chao" instance=ExtResource("r12")]
+[node name="LateralEsq3" parent="Chao" instance=ExtResource("m_brecha")]
 position = Vector2(0, 240)
 
 [node name="LateralDir3" parent="Chao" instance=ExtResource("r12")]
@@ -330,5 +331,14 @@ porta_destino = "bloco_102"
 [node name="Molho" parent="Objetos" instance=ExtResource("r16")]
 position = Vector2(326, 390)
 item = ExtResource("b_molho")
+
+[node name="Brecha" parent="." instance=ExtResource("r2")]
+position = Vector2(28, 272)
+id = "brecha_102"
+cena_destino = "res://cenas/salas/bloco_de_salas/sala_101.tscn"
+porta_destino = "brecha_101"
+direcao_entrar = Vector2(-1, 0)
+texto_acao = "Passar pela brecha"
+altura_aviso = 30.0
 
 [editable path="Ceu"]

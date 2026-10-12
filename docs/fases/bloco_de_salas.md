@@ -1,6 +1,6 @@
 # Fase — Bloco de salas
 
-> **Status:** **jogável do começo ao fim** (2026-10-11): objetivos, puzzles, robôs, a Clarice no posto e a saída.
+> **Status:** **jogável do começo ao fim** (2026-10-11): objetivos, puzzles, robôs, a Clarice no posto e a saída. As melhorias de level design da seção 12 foram implementadas em 2026-10-12 (resumo em 12.8).
 > **Área:** um bloco de salas de aula da Unifor, dois andares (no GDD: "Blocos de aula").
 > **Vem de:** a porta de saída da ala leste da Biblioteca ([`biblioteca.md`](biblioteca.md)).
 > **História:** o que o Bloco de salas conta segue o [Enredo Principal](../historia/enredo_principal.md) (Ato 2), que é a lei do projeto. O plano foi aprovado pelo Davi em 2026-10-11 (registro em `docs/decisoes.md`).
@@ -234,6 +234,7 @@ A sala "intacta demais" entra no puzzle só como uma das lousas. **Por que ela e
 | Itens novos | `dados/itens/molho_de_chaves.tres`, `chave_grade.tres`, `chave_deposito.tres`, `alicate.tres` |
 | Arte nova | `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` (ícones, claviculário, grade, corrente, buraco, sirene) e `gerar_kit.py` (lousas `parede_lousa_0`, `_3`, `_7`, `_8`) |
 | Sons novos | `assets/modelagem/audio/gerar_efeitos_bloco_de_salas.py`: sirene (em loop), queda e corrente cortada |
+| Melhorias da seção 12 | Ver a tabela da seção 12.8 |
 
 ---
 
@@ -360,10 +361,10 @@ Para a defesa técnica e os relatórios da disciplina, o Bloco de salas demonstr
      | Rastreador | 80 px | 100° | 104 px (×1,3) |
 
    - "Há luz" quer dizer: a lanterna (ou o notebook) acesa, ou Gabriel a menos de 56 px de uma luz que revela (luar, luz de emergência).
-3. **Propagação sonora por BFS (implementada) e fator de piso (proposta):**
+3. **Propagação sonora por BFS e fator de piso (os dois implementados):**
    - **Hoje:** cada passo de Gabriel gera um evento com alcance-base $A_0$ de $5$ células andando e $14$ correndo (célula de $16$ px). O alcance de cada robô é $A = \lfloor A_0 \cdot f_{\text{audição}} \rfloor$, com $f_{\text{audição}} = 0{,}5$ na Sentinela e $1{,}8$ no Rastreador. Uma busca em largura (BFS, vizinhança de 4) parte da célula do som, anda só por células livres e para depois de $A$ passos. O robô que estiver numa célula alcançada vai investigar. Os obstáculos da sala (paredes e móveis) bloqueiam o som por completo, e o corte é por número de passos, sem decaimento em dB.
    - **A grade é por sala:** cada sala é uma cena com a sua grade, então a BFS acontece dentro dela. O som que passa de uma sala para outra (a sirene da 104, a pedra pelo buraco da 204) é repassado por evento, como descrito na seção 5.1.
-   - **Proposta (b), fator de piso:** multiplicar a base pelo fator do piso em que Gabriel pisa,
+   - **Fator de piso (implementado em 2026-10-12):** a base é multiplicada pelo fator do piso em que Gabriel pisa,
      $$A = \lfloor A_0 \cdot f_{\text{piso}} \cdot f_{\text{audição}} \rfloor$$
      com valores iniciais, a calibrar em teste: areia e mato $0{,}5$, lajota e tapete $1{,}0$, entulho $1{,}5$. Isso realiza a regra que o jogo já anuncia ("a areia abafa, o entulho denuncia", em `movimentacao_e_terreno.md` e na seção 4 deste documento). Hoje o piso só vale como cenário: o alcance depende apenas de andar ou correr.
    - **Efeito da proposta**, em células ($16$ px cada), andando e correndo:
@@ -374,6 +375,30 @@ Para a defesa técnica e os relatórios da disciplina, o Bloco de salas demonstr
      | Rastreador | 4 e 12 | 9 e 25 | 13 e 37 |
 
    - **Como implementar (sugestão):** marcar as peças de chão do kit (areia, mato, lajota, tapete, entulho) com um campo de ruído, e fazer o robô ler o piso sob Gabriel na hora do passo e multiplicar o alcance-base. É uma mudança pequena em `robo.gd` mais a marcação das peças.
-4. **Ciclos fundamentais e conectividade (proposta):**
+4. **Ciclos fundamentais e conectividade (implementados):**
    - As duas arestas novas criam dois ciclos, $101$–$102$–corredor e $203$–$206$–corredor, e dão uma rota alternativa de fuga nesses pares de salas.
    - As demais salas ($103$, $105$, $106$, $201$, $202$, $205$) continuam com uma só porta, e a $104$ ganha apenas a entrada de descida ($204 \to 104$). É uma melhoria local: o grafo não passa a ter dois caminhos disjuntos para toda sala, e é assim que deve ser apresentada.
+
+### 12.8 O que foi implementado (2026-10-12)
+
+Todas as propostas acima entraram no jogo. Onde a implementação precisou de uma escolha que o texto não fazia, ela está na coluna "Como ficou".
+
+| Proposta | Como ficou | Onde |
+|---|---|---|
+| Brecha 101 ↔ 102 | Uma brecha na parede lateral: a da direita da 101 e a da esquerda da 102, na mesma altura (y = 272). Apertar `E` passa para a outra sala, como numa porta | `parede_lateral_brecha.tscn` e a `Porta` "Brecha" nas duas salas |
+| Porta de serviço 203 ↔ 206 | Uma porta de serviço nas paredes laterais (a direita da 203 e a esquerda da 206). Começa trancada; do lado do depósito há o trinco: o primeiro `E` na 206 destranca (marca `trinco_206`) sem atravessar, o segundo atravessa. Da 203, sem o trinco puxado, aparece "Trancada pelo outro lado" | `parede_lateral_porta.tscn` e a `Porta` "PortaDeServico", com o campo novo `trinco_deste_lado` |
+| Três setores nos corredores | O chão dos dois corredores foi trocado por setor: oeste (salas x01 e x02) de **areia** no térreo e **mato** no 1º andar; centro (x03 e x04) de **lajota e tapete** alternados; leste (x05, x06 e a escada) de **lajota solta** | as peças `Chao1` a `Chao20` dos corredores |
+| Fator de piso no som | Cada setor tem uma `ZonaDePiso` com o fator de ruído: oeste **0,5**, centro **1,0**, leste **1,5**. O alcance do passo é $A = \lfloor A_0 \cdot f_{\text{piso}} \cdot f_{\text{audição}} \rfloor$ (a tabela da seção 12.7). Fora das zonas (dentro das salas) o fator é 1 | `scripts/sistemas/zona_de_piso.gd`; `robo.gd` lê o fator em `_ao_ouvir_passo` |
+| Nichos de cobertura | Dois nichos por corredor (um com bebedouro, outro com armários): no térreo nos x 1280 e 1920, no 1º andar nos mesmos x, longe das faixas de luar. Ficar **parado** no nicho, com a lanterna apagada, por 0,4 s esconde o Gabriel (ele fica azulado): os robôs não o veem. Andar, ou acender a lanterna, revela. Um robô que encoste nele ainda ataca | `parede_nicho_bebedouro.tscn`, `parede_nicho_armario.tscn`, `cenas/sistemas/nicho_esconderijo.tscn` (`nicho_esconderijo.gd`) e `Gabriel.esconder()` |
+| Fresta da barricada (103) | Ao lado da porta da 103, "Espiar o corredor". O jogo abre o corredor com o Gabriel escondido atrás da porta (sem corpo e invisível para os robôs) e a câmera desliza para os dois lados. `E` (ou para baixo) sai para o corredor de verdade; para cima volta para a 103. O que se vê é o corredor que o jogador vai encontrar ao sair | `fresta_da_barricada.tscn` e `Porta.espiar()` |
+| Mural de giz (103) | A lousa da 103 virou o mapa do bloco desenhado pela Clarice (`parede_lousa_mapa`), com as anotações no aviso "Olhar a lousa" | `sala_103.tscn` |
+| Estalos no teto do térreo | Cinco pontos no corredor do térreo (x 600, 1000, 1300, 1800 e 2200) que, de tempos em tempos (12 a 28 s), estalam e soltam poeira de gesso, se o Gabriel estiver a menos de 280 px | `cenas/sistemas/estalo_do_teto.tscn` (`estalo_do_teto.gd`) e o som `estalo_laje.wav` |
+| Pedra pelo buraco (204 → 104) | Uma pedra que cai no buraco da 204 faz barulho na 104: por 18 s o Rastreador do térreo fica **dentro** da 104, investigando onde ela caiu. No corredor ele some nesse tempo (e mais 4 s, o tempo de sair da sala) e depois volta pela porta da 104. Quem descer pelo buraco nesse tempo cai perto dele | `cenas/sistemas/buraco_no_chao.tscn` (`buraco_no_chao.gd`), `robo_atraido_pelo_buraco.gd` no corredor e na 104, e `pedra_arremessada.gd` |
+| Queda amortecida | Embaixo do buraco, na 104, um monte de caixas de papelão e assentos de espuma; a descida toca um baque abafado | `caixas_queda.png` e `queda_abafada.wav` |
+| Sala 205 | A lousa ficou limpa, com os oito tracinhos iguais e no mesmo espaçamento (`parede_lousa_8_limpa`); uma calha fluorescente acesa (`parede_fluorescente`) e duas luzes frias estáveis, sem tremer; as carteiras alinhadas em grade; e o zumbido de 60 Hz em loop (`zumbido_60hz.wav`). O mistério continua sem explicação | `sala_205.tscn` |
+
+**Limites conhecidos:**
+- O robô "dentro da 104" é contado em tempo real (`Time.get_ticks_msec`), não em tempo de jogo: se o jogador pausar, a janela de 18 s continua correndo.
+- Os estalos do teto são sorteados: o 1º andar não roda enquanto o Gabriel está no térreo, então eles não seguem a posição real da Sentinela.
+- O nicho esconde da visão, não do contato: se a rota do robô passar colada à parede, ele esbarra no Gabriel.
+

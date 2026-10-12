@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-12 — Melhorias de level design do Bloco de salas implementadas
+**Decisão:** as propostas da seção 12 de `docs/fases/bloco_de_salas.md` (PR #96) entram no jogo: a brecha 101 ↔ 102 e a porta de serviço 203 ↔ 206 (com o trinco do lado do depósito), os três setores de piso dos corredores com o **fator de piso** no alcance do som (areia/mato 0,5, lajota/tapete 1,0, lajota solta 1,5), dois **nichos** por corredor onde o Gabriel parado e sem luz não é visto, a **fresta da barricada** da 103 para espiar o corredor antes de sair, o **mapa de giz** da Clarice na lousa da 103, os **estalos** do teto do térreo, a **pedra pelo buraco** da 204 que leva o Rastreador para dentro da 104 por 18 s, a queda **amortecida** por caixas na 104, e a sala **205** limpa, com luz fluorescente estável e zumbido de 60 Hz.
+**Por quê:** pedido do Davi, depois de mesclar o #96.
+**Afeta:** `docs/fases/bloco_de_salas.md` (seções 9 e 12.8), `docs/mecanicas/furtividade_e_esconderijos.md`, `docs/mecanicas/movimentacao_e_terreno.md`, `docs/computacao/ia_e_perseguicao.md`; os scripts `porta.gd` (`espiar()` e `trinco_deste_lado`), `robo.gd`, `gabriel.gd` (`esconder()`), `pedra_arremessada.gd` e os novos `zona_de_piso.gd`, `nicho_esconderijo.gd`, `estalo_do_teto.gd`, `buraco_no_chao.gd`, `robo_atraido_pelo_buraco.gd` e `fresta_da_barricada.gd`; as cenas do bloco (corredores e salas 101, 102, 103, 104, 203, 204, 205 e 206); peças novas do kit (`gerar_kit.py`), `caixas_queda.png` e quatro sons novos.
+
 ## 2026-10-11 — O despertar (seg_acordar) vira vídeo, com a Biblioteca tecnológica de 3026
 **Decisão:**
 - A animação provisória da `seg_acordar`, feita no Blender, foi descartada. A cutscene agora é um **vídeo de 6 s com som** (`assets/video/cutscenes/seg_acordar.ogv`), convertido de `animação_gabriel_acordando.mp4` para Ogg Theora em 1280×720.

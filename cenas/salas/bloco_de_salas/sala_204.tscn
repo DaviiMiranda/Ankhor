@@ -21,7 +21,8 @@
 [ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r20"]
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/buraco_chao.png" id="b_buraco"]
-[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/queda.wav" id="b_queda"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/queda_abafada.wav" id="b_queda"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/buraco_no_chao.tscn" id="m_buraco"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -343,5 +344,8 @@ direcao_entrar = Vector2(0, 1)
 texto_acao = "Descer pelo buraco"
 altura_aviso = 20.0
 som_abrir = ExtResource("b_queda")
+
+[node name="BuracoNoChao" parent="." instance=ExtResource("m_buraco")]
+position = Vector2(200, 440)
 
 [editable path="Ceu"]

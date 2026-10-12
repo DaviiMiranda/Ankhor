@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/nicho_esconderijo.gd" id="1_nicho"]
+
+[sub_resource type="RectangleShape2D" id="Recuo"]
+size = Vector2(44, 16)
+
+[node name="NichoEsconderijo" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_nicho")
+
+[node name="Recuo" type="CollisionShape2D" parent="."]
+shape = SubResource("Recuo")

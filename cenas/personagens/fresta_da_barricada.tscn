@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/personagens/fresta_da_barricada.gd" id="1_fresta"]
+
+[sub_resource type="CircleShape2D" id="Alcance"]
+radius = 16.0
+
+[node name="FrestaDaBarricada" type="Area2D"]
+script = ExtResource("1_fresta")
+texto_acao = "Espiar o corredor"
+altura_aviso = 34.0
+
+[node name="Alcance" type="CollisionShape2D" parent="."]
+shape = SubResource("Alcance")

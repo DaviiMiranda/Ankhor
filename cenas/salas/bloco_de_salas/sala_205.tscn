@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r14"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lousa_8.tscn" id="b_lousa"]
 [ext_resource type="PackedScene" path="res://cenas/itens/aviso_no_mundo.tscn" id="b_aviso"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lousa_8_limpa.tscn" id="m_lousa_limpa"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_fluorescente.tscn" id="m_fluorescente"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambiente/zumbido_60hz.wav" id="m_zumbido"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -33,10 +36,10 @@ texture = ExtResource("r3")
 [node name="Parede01" parent="Paredes" instance=ExtResource("r4")]
 position = Vector2(0, 0)
 
-[node name="Parede02" parent="Paredes" instance=ExtResource("b_lousa")]
+[node name="Parede02" parent="Paredes" instance=ExtResource("m_lousa_limpa")]
 position = Vector2(80, 0)
 
-[node name="Parede03" parent="Paredes" instance=ExtResource("r6")]
+[node name="Parede03" parent="Paredes" instance=ExtResource("m_fluorescente")]
 position = Vector2(160, 0)
 
 [node name="Parede04" parent="Paredes" instance=ExtResource("r4")]
@@ -166,40 +169,40 @@ position = Vector2(384, 432)
 flip_h = true
 
 [node name="Carteira1" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(96, 134)
+position = Vector2(96, 130)
 
 [node name="Carteira2" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(140, 134)
+position = Vector2(140, 130)
 
 [node name="Carteira3" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(184, 134)
+position = Vector2(184, 130)
 
 [node name="Carteira4" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(228, 134)
+position = Vector2(228, 130)
 
 [node name="Carteira5" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(106, 154)
+position = Vector2(96, 156)
 
 [node name="Carteira6" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(150, 154)
+position = Vector2(140, 156)
 
 [node name="Carteira7" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(194, 154)
+position = Vector2(184, 156)
 
 [node name="Carteira8" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(238, 154)
+position = Vector2(228, 156)
 
 [node name="Carteira9" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(116, 174)
+position = Vector2(96, 182)
 
 [node name="Carteira10" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(160, 174)
+position = Vector2(140, 182)
 
 [node name="Carteira11" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(204, 174)
+position = Vector2(184, 182)
 
 [node name="Carteira12" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(248, 174)
+position = Vector2(228, 182)
 
 [node name="MesaLeitura1" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(300, 134)
@@ -334,15 +337,15 @@ position = Vector2(342, 422)
 [node name="Lua1" parent="Luzes" instance=ExtResource("r14")]
 position = Vector2(40, 50)
 color = Color(0.5, 0.6, 0.95, 1)
-energy = 0.72
+energy = 0.3
 
 [node name="Lua2" parent="Luzes" instance=ExtResource("r14")]
 position = Vector2(280, 50)
 color = Color(0.5, 0.6, 0.95, 1)
-energy = 0.72
+energy = 0.3
 
 [node name="Escuridao" parent="."]
-color = Color(0.32, 0.34, 0.48, 1)
+color = Color(0.44, 0.46, 0.52, 1)
 
 [node name="Porta_sala_205" parent="." instance=ExtResource("r2")]
 position = Vector2(361, 124)
@@ -355,6 +358,24 @@ porta_destino = "bloco_205"
 position = Vector2(120, 126)
 texto_acao = "Olhar a lousa"
 altura_aviso = 70.0
-texto = "Tracinhos de giz embaixo da conta apagada, em grupos de cinco. Conto oito."
+texto = "Uma lousa limpa, sem uma mancha. Só tracinhos, todos do mesmo tamanho e à mesma distância, como se fossem gravados. Conto oito."
+
+[node name="Fluorescente" parent="Luzes" instance=ExtResource("r14")]
+position = Vector2(200, 30)
+scale = Vector2(5, 4)
+color = Color(0.9, 0.96, 1, 1)
+energy = 0.9
+
+[node name="FluorescenteFundo" parent="Luzes" instance=ExtResource("r14")]
+position = Vector2(200, 330)
+scale = Vector2(6, 5)
+color = Color(0.9, 0.96, 1, 1)
+energy = 0.55
+
+[node name="Zumbido" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("m_zumbido")
+volume_db = -10.0
+autoplay = true
+bus = &"Efeitos"
 
 [editable path="Ceu"]

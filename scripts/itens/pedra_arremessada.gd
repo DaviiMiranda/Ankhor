@@ -41,10 +41,22 @@ func _voar(t: float) -> void:
 func _cair() -> void:
 	_altura = 0.0
 	queue_redraw()
+	if _caiu_num_buraco():
+		queue_free()
+		return
 	impacto.play()
 	impacto.finished.connect(queue_free)
 	for no in get_tree().get_nodes_in_group("robos"):
 		(no as Robo).ouvir_barulho(global_position, ALCANCE_SOM)
+
+
+func _caiu_num_buraco() -> bool:
+	for no in get_tree().get_nodes_in_group(BuracoNoChao.GRUPO):
+		var buraco := no as BuracoNoChao
+		if buraco and buraco.engole(global_position):
+			buraco.receber_pedra()
+			return true
+	return false
 
 
 func _draw() -> void:
