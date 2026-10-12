@@ -16,6 +16,7 @@
 #   assets/sprites/cenario/objetos/corrente_porta.png  corrente e cadeado na porta corta-fogo
 #   assets/sprites/cenario/objetos/buraco_chao.png     o buraco no chão da sala 204
 #   assets/sprites/cenario/objetos/sirene.png          a sirene vermelha do corredor do térreo
+#   assets/sprites/cenario/objetos/caixas_queda.png    o monte de caixas e espuma embaixo do buraco, na 104
 #
 # Medidas que precisam bater com o kit (gerar_kit.py):
 #   - a grade da escada cobre o vão de parede_escada_sobe.png: 53 x 82 px,
@@ -46,6 +47,13 @@ VERMELHO_CLARO = cor("#ff7a5c")
 BURACO = cor("#0b0b10")
 ENTULHO = cor("#5b5f66")
 ENTULHO_CLARO = cor("#80868f")
+PAPELAO = cor("#8a6a44")
+PAPELAO_CLARO = cor("#a8865a")
+PAPELAO_ESCURO = cor("#5e4630")
+FITA = cor("#b9a67a")
+ESPUMA = cor("#6e5a7a")
+ESPUMA_CLARA = cor("#8e7a9a")
+ESPUMA_ESCURA = cor("#463a50")
 TRANSPARENTE = (0, 0, 0, 0)
 
 
@@ -253,6 +261,26 @@ def sirene():
     d.salvar(PASTA_OBJETOS, "sirene.png")
 
 
+def caixas_queda():
+    """O monte macio embaixo do buraco, na sala 104: caixas de papelão
+    amassadas e os assentos de espuma de cadeiras velhas, empilhados. É
+    onde o Gabriel cai quando desce pelo buraco da 204, e por isso a queda
+    faz um baque abafado, e não um estalo. O pé (o ponto que encosta no
+    chão) fica no meio da borda de baixo: offset = Vector2(-21, -21)."""
+    d = Desenho(42, 22)
+    d.caixa(1, 9, 15, 21, PAPELAO, PAPELAO_CLARO, PAPELAO_ESCURO)
+    d.ret(2, 14, 14, 14, PAPELAO_ESCURO)
+    d.caixa(25, 11, 40, 21, PAPELAO, PAPELAO_CLARO, PAPELAO_ESCURO)
+    d.ret(31, 12, 33, 20, FITA)
+    d.caixa(8, 2, 22, 11, PAPELAO_CLARO, ETIQUETA, PAPELAO)
+    d.ret(9, 6, 21, 6, PAPELAO_ESCURO)
+    d.caixa(13, 12, 30, 19, ESPUMA, ESPUMA_CLARA, ESPUMA_ESCURA)
+    d.caixa(16, 16, 34, 21, ESPUMA_ESCURA, ESPUMA, CONTORNO)
+    for x, y in ((18, 13), (24, 14), (27, 17), (20, 18)):
+        d.px(x, y, ESPUMA_CLARA)
+    d.salvar(PASTA_OBJETOS, "caixas_queda.png")
+
+
 if __name__ == "__main__":
     print("Gerando os objetos do Bloco de salas:")
     molho_de_chaves()
@@ -264,3 +292,4 @@ if __name__ == "__main__":
     corrente_porta()
     buraco_chao()
     sirene()
+    caixas_queda()

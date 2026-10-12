@@ -18,7 +18,9 @@
 #                        y = 180 para baixo). Encaixa nos dois sentidos: embaixo
 #                        da peça normal e embaixo de outra peça de fundo
 #   paredes/parede_lateral.png  16 x 64 px: a parede do lado da sala funda,
-#                        vista de cima; repete para baixo
+#                        vista de cima; repete para baixo. As variações
+#                        parede_lateral_brecha.png e parede_lateral_porta.png
+#                        são as passagens entre salas do Bloco de salas
 # Com CATALOGO=1 ele também monta folhas de catálogo, com o nome de cada peça
 # (kit_paredes.png, kit_chao.png, kit_objetos.png), nesta pasta. Com
 # CATALOGO=<pasta>, salva nela. O catálogo NÃO vai para o jogo e não deve ser
@@ -245,7 +247,7 @@ def parede_arandela():
     return img
 
 
-def parede_lousa(tracinhos=25):
+def parede_lousa(tracinhos=25, limpa=False):
     """Quadro-negro de sala de aula, ainda preso na parede: moldura de
     madeira, a lousa verde-escura manchada, restos de giz de uma conta pela
     metade e, embaixo, os TRACINHOS contados em grupos de cinco (quatro em
@@ -255,11 +257,23 @@ def parede_lousa(tracinhos=25):
     tracinhos diz quantos riscos há: cada grupo completo de 5 vira quatro
     traços em pé e um atravessado; o que sobra (tracinhos % 5) fica só em
     pé, sem o traço que corta. As lousas do puzzle do Bloco de salas
-    (parede_lousa_<n>) usam isso para ter uma contagem fácil de ler."""
+    (parede_lousa_<n>) usam isso para ter uma contagem fácil de ler.
+
+    limpa=True é a lousa da sala 205, a "intacta demais": a mesma moldura,
+    mas sem manchas, sem restos de giz e sem o pedaço caído. Só os
+    tracinhos, um ao lado do outro com o mesmo espaçamento (6 px) e a mesma
+    altura, sem o traço que corta: parecem gravados, não riscados."""
     img = parede_base()
     xa, xb, ya, yb = 6, 74, 28, 68
     img.pintar(img.ret(xa - 2, ya - 2, xb + 2, yb + 2), "madeira", 0.3 + 0.1 * img.fino)
     lousa = img.ret(xa, ya, xb, yb)
+    if limpa:
+        img.pintar(lousa, "verde", 0.16)
+        for k in range(tracinhos):
+            gx = xa + 13 + k * 6
+            img.pintar(img.ret(gx, yb - 26, gx + 1, yb - 14), "ceu", 0.9)
+        img.pintar(img.ret(xa, yb + 2, xb, yb + 4), "metal", 0.4)
+        return img
     manchas = ruido_ciclico(img.w, img.h, 10, 6, 70)
     img.pintar(lousa, "verde", 0.1 + 0.12 * manchas + 0.04 * img.fino)
     rng = np.random.default_rng(71)
@@ -296,6 +310,103 @@ def parede_mural():
         for ly in range(y0 + 2, y0 + h - 2, 2):
             img.pintar(img.ret(x0 + 2, ly, x0 + w - 2 - int(rng.integers(0, 4)), ly + 1), "papel", 0.15)
         img.pintar(img.ret(x0 + w // 2, y0, x0 + w // 2 + 1, y0 + 1), "ferrugem", 0.85)
+    return img
+
+
+def parede_lousa_mapa():
+    """A lousa do posto da Clarice (sala 103): ela apagou a conta antiga e
+    desenhou o bloco a giz, visto de frente. Duas fileiras de seis caixas
+    (em cima o 1º andar, 201 a 206; embaixo o térreo, 101 a 106), a escada
+    subindo na ponta direita, um ponto cheio na 103 (onde ela está), um X
+    amarelo na 206 (o depósito) e uma seta saindo da escada. As anotações
+    escritas ficam no aviso da cena: em 80 px não cabe letra legível."""
+    img = parede_base()
+    xa, xb, ya, yb = 6, 74, 28, 68
+    img.pintar(img.ret(xa - 2, ya - 2, xb + 2, yb + 2), "madeira", 0.3 + 0.1 * img.fino)
+    lousa = img.ret(xa, ya, xb, yb)
+    manchas = ruido_ciclico(img.w, img.h, 10, 6, 74)
+    img.pintar(lousa, "verde", 0.1 + 0.1 * manchas + 0.04 * img.fino)
+    giz = img.ret(0, 0, 0, 0)
+    for y0 in (33, 49):
+        for k in range(6):
+            x0 = xa + 2 + k * 9
+            giz |= (img.ret(x0, y0, x0 + 8, y0 + 1) | img.ret(x0, y0 + 8, x0 + 8, y0 + 9)
+                    | img.ret(x0, y0, x0 + 1, y0 + 9) | img.ret(x0 + 7, y0, x0 + 8, y0 + 9))
+    giz |= img.linha(xa + 57, 57, xa + 64, 34, 0.5)
+    for k in range(4):
+        giz |= img.ret(xa + 58 + k * 2, 53 - k * 5, xa + 61 + k * 2, 54 - k * 5)
+    giz |= img.linha(xa + 64, 34, xa + 64, 30, 0.5) | img.linha(xa + 62, 32, xa + 64, 30, 0.5) | img.linha(xa + 66, 32, xa + 64, 30, 0.5)
+    img.pintar(giz & lousa, "ceu", 0.85, achatar=False)
+    x103 = xa + 2 + 2 * 9
+    img.pintar(img.ret(x103 + 3, 52, x103 + 5, 55), "ceu", 0.95)
+    x206 = xa + 2 + 5 * 9
+    xis = img.linha(x206 + 2, 35, x206 + 5, 39, 0.5) | img.linha(x206 + 5, 35, x206 + 2, 39, 0.5)
+    img.pintar(xis & lousa, "sol", 0.8, achatar=False)
+    img.pintar(img.ret(xa, yb + 2, xb, yb + 4), "metal", 0.35)
+    return img
+
+
+def parede_nicho(conteudo):
+    """Um nicho na parede do corredor: um recuo escuro, largo e baixo (da
+    altura de um adulto, mais largo que uma porta, para não ser confundido
+    com uma), onde antes ficava um bebedouro ou os armários dos alunos.
+    Quem fica parado ali, no escuro, some da vista dos robôs (o nicho é um
+    esconderijo de imobilidade: docs/mecanicas/furtividade_e_esconderijos.md).
+
+    O recuo é mais escuro em cima (a sombra do teto do nicho) e tem as
+    laterais em tons diferentes, para dar profundidade: a da esquerda pega
+    um pouco de luz, a da direita fica na sombra. Uma verga de concreto,
+    mais clara, marca o topo.
+
+    conteudo: "bebedouro" (um bebedouro de inox enferrujado no fundo, à
+    direita) ou "armario" (dois armários de aço lado a lado à esquerda, um
+    com a porta aberta)."""
+    img = parede_base()
+    xa, xb, ya = 6, 74, 58
+    parede = img.ret(0, 0, img.w, Y_CHAO)
+    recuo = img.ret(xa, ya, xb, Y_CHAO)
+    fundo = 0.05 + 0.06 * img.fino + 0.06 * np.clip((img.Y - ya) / 50, 0, 1)
+    img.pintar(recuo, "concreto", fundo)
+    img.pintar(img.ret(xa, ya, xa + 3, Y_CHAO), "concreto", 0.2 + 0.05 * img.fino)
+    img.pintar(img.ret(xb - 3, ya, xb, Y_CHAO), "concreto", 0.03)
+    img.pintar(img.ret(xa - 2, ya - 4, xb + 2, ya), "concreto", 0.52 + 0.08 * img.fino)
+    img.pintar(img.ret(xa - 2, ya - 4, xb + 2, ya - 3), "concreto", 0.68)
+    img.cor(img.ret(xa, ya, xb, ya + 2), SOMBRA)
+    if conteudo == "bebedouro":
+        bx = 50
+        img.pintar(img.ret(bx, 70, bx + 16, 72), "metal", 0.6)
+        img.pintar(img.ret(bx + 1, 72, bx + 15, 96), "metal", 0.3 + 0.1 * img.fino)
+        img.pintar(img.ret(bx + 3, 75, bx + 13, 77), "metal", 0.15)
+        img.pintar(img.ret(bx + 7, 68, bx + 9, 70), "metal", 0.5)
+        ferrugem = img.ret(bx + 1, 84, bx + 15, 96) & (ruido_ciclico(img.w, img.h, 4, 4, 81) > 0.55)
+        img.pintar(ferrugem, "ferrugem", 0.4 + 0.2 * img.fino)
+        img.pintar(img.ret(bx + 6, 96, bx + 9, Y_CHAO), "metal", 0.22)
+    else:
+        for x0 in (xa + 3, xa + 18):
+            img.pintar(img.ret(x0, 64, x0 + 14, Y_CHAO - 1), "metal", 0.28 + 0.08 * img.fino)
+            img.pintar(img.ret(x0, 64, x0 + 14, 65), "metal", 0.5)
+            for k in range(3):
+                img.pintar(img.ret(x0 + 3, 68 + 2 * k, x0 + 11, 69 + 2 * k), "metal", 0.12)
+            img.pintar(img.ret(x0 + 11, 84, x0 + 12, 88), "metal", 0.6)
+        porta_aberta = img.poligono([(xa + 32, 64), (xa + 38, 67), (xa + 38, 108), (xa + 32, 111)])
+        img.pintar(porta_aberta, "metal", 0.22)
+    img.cor(img.ret(xa, Y_CHAO - 2, xb, Y_CHAO) & parede & ((img.X + img.Y) % 2 == 0), SOMBRA)
+    return img
+
+
+def parede_fluorescente():
+    """Parede lisa com uma calha de luz fluorescente presa no alto, acesa:
+    a da sala 205, a única do bloco que ainda funciona direito. A calha é de
+    metal e o tubo é quase branco; a luz de verdade vem de uma PointLight2D
+    fria posta em cima dela (em x = 40, y = 20 da peça)."""
+    img = parede_base()
+    img.pintar(img.ret(8, 16, 72, 19), "metal", 0.45)
+    img.pintar(img.ret(10, 19, 70, 22), "ceu", 0.98)
+    img.pintar(img.ret(8, 22, 72, 23), "metal", 0.3)
+    for x in (12, 68):
+        img.pintar(img.ret(x, 12, x + 1, 16), "metal", 0.35)
+    halo = img.ret(4, 23, 76, 34) & ((img.X + img.Y) % 2 == 0)
+    img.pintar(halo, "concreto", img.v + 0.18, achatar=False)
     return img
 
 
@@ -359,6 +470,12 @@ PAREDES = {
     "parede_lousa_3": lambda: parede_lousa(3),
     "parede_lousa_7": lambda: parede_lousa(7),
     "parede_lousa_8": lambda: parede_lousa(8),
+    # A sala 205, a "intacta demais": a mesma contagem, sem sujeira nenhuma.
+    "parede_lousa_8_limpa": lambda: parede_lousa(8, limpa=True),
+    "parede_lousa_mapa": parede_lousa_mapa,
+    "parede_nicho_bebedouro": lambda: parede_nicho("bebedouro"),
+    "parede_nicho_armario": lambda: parede_nicho("armario"),
+    "parede_fluorescente": parede_fluorescente,
     "parede_mural": parede_mural,
     "parede_escada_sobe": parede_escada_sobe,
     "parede_escada_desce": parede_escada_desce,
@@ -651,6 +768,48 @@ def parede_lateral():
     return img
 
 
+def parede_lateral_brecha():
+    """A parede lateral com uma BRECHA: o peso da duna derrubou um pedaço
+    do muro entre as salas 101 e 102. Vista de cima, a abertura é um vão
+    escuro (a outra sala, sem luz) com a borda quebrada e cacos de concreto
+    espalhados no chão, dos dois lados. Mesmas medidas da parede_lateral
+    (16 x 64), para trocar uma peça pela outra."""
+    img = parede_lateral()
+    rng = np.random.default_rng(91)
+    topo = [(-1, 10)] + [(x, 10 + rng.uniform(-3, 3)) for x in range(0, 17, 4)] + [(17, 10)]
+    base = [(17, 54)] + [(x, 54 + rng.uniform(-3, 3)) for x in range(16, -1, -4)] + [(-1, 54)]
+    vao = img.poligono(topo + base)
+    img.cor(dilatar(vao, 1) & ~vao, RAMPAS["concreto"][2])
+    img.cor(vao, SOMBRA)
+    img.pintar(vao & (img.Y > 44) & (ruido_ciclico_2d(img.w, img.h, 2, 2, 92) > 0.6), "areia", 0.3)
+    for _ in range(9):
+        x, y = int(rng.integers(0, 16)), int(rng.integers(6, 58))
+        img.pintar(img.ret(x, y, x + 2, y + 1), "concreto", 0.45 + 0.2 * rng.random())
+    return img
+
+
+def parede_lateral_porta():
+    """A parede lateral com a PORTA DE SERVIÇO entre a sala dos professores
+    (203) e o depósito (206), vista de cima: o vão no muro com o batente de
+    aço nas duas pontas e a folha de metal fechada no meio da espessura da
+    parede, com o trinco (a alavanca) puxado para o lado do depósito."""
+    img = parede_lateral()
+    img.cor(img.ret(0, 14, 16, 50), SOMBRA)
+    img.pintar(img.ret(0, 12, 16, 14), "metal", 0.45)
+    img.pintar(img.ret(0, 50, 16, 52), "metal", 0.45)
+    img.pintar(img.ret(6, 14, 10, 50), "metal", 0.32 + 0.06 * img.Y / img.h)
+    img.pintar(img.ret(6, 14, 7, 50), "metal", 0.5)
+    img.pintar(img.ret(10, 30, 14, 33), "ferrugem", 0.6)
+    return img
+
+
+LATERAIS = {
+    "parede_lateral": parede_lateral,
+    "parede_lateral_brecha": parede_lateral_brecha,
+    "parede_lateral_porta": parede_lateral_porta,
+}
+
+
 # ---------------------------------------------------------------------------
 # Céu (repete na horizontal a cada 320 px)
 # ---------------------------------------------------------------------------
@@ -780,7 +939,8 @@ def main():
         chaos[nome] = img
     for nome, f in CHAOS_FUNDO.items():
         f().salvar(f"{nome}.png", os.path.join(PASTA_KIT, "chao"))
-    parede_lateral().salvar("parede_lateral.png", os.path.join(PASTA_KIT, "paredes"))
+    for nome, f in LATERAIS.items():
+        f().salvar(f"{nome}.png", os.path.join(PASTA_KIT, "paredes"))
     img_ceu = ceu()
     img_ceu.salvar("ceu.png", os.path.join(PASTA_KIT, "ceu"))
     ceu_noite().salvar("ceu_noite.png", os.path.join(PASTA_KIT, "ceu"))
