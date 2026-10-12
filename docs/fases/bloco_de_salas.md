@@ -67,14 +67,14 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 
 | Sala | Papel no plano | O que tem | Esconderijos | Ameaça |
 |---|---|---|---|---|
-| Corredor térreo | Chegada e eixo do andar de baixo | Areia em parte do chão (passos abafados), entulho perto da 102 (passos barulhentos) | Atrás dos montes de areia e entulho | **Rastreador** (audição) |
+| Corredor térreo | Chegada e eixo do andar de baixo | Três setores de piso: oeste de areia (passos abafados, ×0,5), centro de lajota e tapete (×1,0) e leste de lajota solta (passos barulhentos, ×1,5) | Atrás dos montes de areia e entulho | **Rastreador** (audição) |
 | 101 | Pista do código | Lousa com tracinhos (1º número do cadeado) | Debaixo das carteiras | Nenhuma |
 | 102 | Chave da escada | O **molho de chaves da Clarice**, caído na areia. 3 pedras | Atrás das carteiras tombadas | O Rastreador passa na porta |
 | 103 | **Posto da Clarice e da Diana** e **sala segura** | A Clarice (a Diana ainda não tem visual), o acampamento, 2 pilhas | Não precisa: a barricada protege | Nenhuma |
 | 104 | Distração e fim do atalho | Os terminais acesos. Um deles tem o **teste de alarme** do bloco, que dispara a **sirene do fim do corredor** (perto da escada). No teto, o buraco que vem da 204 | Debaixo das mesas | Nenhuma |
 | 105 | Respiro | 2 robôs desmontados, 2 pilhas | Atrás dos robôs desmontados | Nenhuma (os robôs desmontados não ligam) |
 | 106 | Respiro | A árvore e o luar | Atrás da árvore | Nenhuma |
-| Corredor 1º andar | Eixo do andar de cima | Luar pelos buracos do teto: faixas de luz e de sombra no chão. Mato (passos abafados) | Na sombra das árvores do corredor | **Sentinela** (visão) |
+| Corredor 1º andar | Eixo do andar de cima | Luar pelos buracos do teto: faixas de luz e de sombra no chão. Mato e areia no oeste (passos abafados, ×0,5), lajota solta no leste (×1,5) | Na sombra das árvores do corredor | **Sentinela** (visão) |
 | 201 | Pista do código | Duas lousas; a da esquerda tem os tracinhos (2º número) | Entre as fileiras | Nenhuma |
 | 202 | Respiro | As duas árvores. 1 pedra | Atrás das árvores | Nenhuma |
 | 203 | Cadeado de segredo | O **claviculário** (armário de chaves) com cadeado de 3 números e o **quadro de avisos** com a pista | Debaixo das mesas | Nenhuma |
@@ -92,7 +92,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 
 ### 3.1 Passo a passo
 
-1. **A chegada (corredor térreo).** O Gabriel sai da Biblioteca no oeste do corredor. O **Rastreador** patrulha o corredor de ponta a ponta. A areia abafa os passos; o entulho perto da 102 faz barulho.
+1. **A chegada (corredor térreo).** O Gabriel sai da Biblioteca no oeste do corredor. O **Rastreador** patrulha o corredor de ponta a ponta. No oeste, a areia abafa os passos (×0,5); no leste, a lajota solta faz barulho (×1,5).
    - *O que o jogador aprende:* o chão muda o barulho dos passos.
 2. **A voz nova (rádio).** Na porta da 103, o rádio chia: é de novo a **Clarice**, a voz que o guiou na Biblioteca ("Ei, você aí no corredor. Devagar com o entulho, meu filho: o robô que ronda aí escuta até pensamento."). Ela está entrincheirada na 103 e não mexe na barricada com o robô rondando a porta dela (abrir faz um barulho dos infernos). Pede ao Gabriel que tire o robô dali: na 104 tem o teste de alarme, e a sirene fica no fim do corredor; o robô vai correndo ver o que é.
 3. **A distração (sala 104).** Num dos terminais acesos, o Gabriel liga o **teste de alarme**. Quando ele volta ao corredor, a **sirene do fim do corredor está tocando** e o **Rastreador está lá, investigando** (por 20 s ele não ouve mais nada). O caminho até a 103 fica livre, e a barricada da 103 se abre.
@@ -146,7 +146,7 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 | **Sentinela** | Corredor do 1º andar | Visão | Antes do alicate: ronda entre a 202 e a 204, parando debaixo dos buracos do teto. Depois do alicate (passo 11): ronda entre a 203 e a porta corta-fogo, passando pela 206 e pela escada |
 | **Rastreador** | Depósito (206) | Audição | Circula entre os corredores de estantes |
 
-- **O chão:** na **areia** e no **mato**, os passos quase não fazem barulho. No **entulho**, até andando faz (ver [`../mecanicas/movimentacao_e_terreno.md`](../mecanicas/movimentacao_e_terreno.md)).
+- **O chão:** nos corredores, no setor oeste de **areia** (ou **mato**) o alcance do som dos passos cai pela metade (×0,5), e no setor leste de **lajota solta** ele sobe a 150% (×1,5). Dentro das salas o fator é 1 (ver [`../mecanicas/movimentacao_e_terreno.md`](../mecanicas/movimentacao_e_terreno.md) e a seção 12.7).
 - **O luar:** no 1º andar, as faixas de luz dos buracos do teto funcionam como as luzes de emergência da Biblioteca: quem está nelas é visto de mais longe.
 - **Salas sem robôs:** todas as salas de aula, menos a 206. São os respiros entre os corredores.
 - Ser pego dá game over e volta ao último checkpoint.
@@ -341,16 +341,16 @@ A sala 205 continua misteriosa conforme o Enredo Principal (sem explicação ime
 
 ### 12.7 Formalização Acadêmica para a Disciplina de Computação Gráfica
 
-Para a defesa técnica e os relatórios da disciplina, o Bloco de salas demonstra conceitos fundamentais de computação. Cada item diz o que **já está implementado** e o que é **proposta**. Os números do que está implementado vêm de `scripts/personagens/robo.gd` e das cenas `robo_sentinela.tscn` e `robo_rastreador.tscn`.
+Para a defesa técnica e os relatórios da disciplina, o Bloco de salas demonstra conceitos fundamentais de computação. O item 1 é o modelo de projeto, e os itens 2 a 4 estão no jogo desde 2026-10-12 (seção 12.8). Os números vêm de `scripts/personagens/robo.gd`, das cenas `robo_sentinela.tscn` e `robo_rastreador.tscn` e das `ZonaDePiso` dos dois corredores.
 
 1. **Modelagem em grafo ponderado $G = (V, E, W)$ (modelo de projeto):**
    - **Vértices ($V$):** salas ($101 \dots 106, 201 \dots 206$), setores dos corredores ($C_{T1}, C_{T2}, C_{T3}$ no térreo; $C_{A1}, C_{A2}, C_{A3}$ no 1º andar) e nós de conexão especial (escada, porta corta-fogo).
-   - **Arestas ($E$):** portas, atalho vertical direcionado ($204 \to 104$), brecha de flanqueamento ($101 \leftrightarrow 102$) e passagem de serviço ($203 \leftrightarrow 206$).
+   - **Arestas ($E$):** portas, atalho vertical direcionado ($204 \to 104$), brecha de flanqueamento ($101 \leftrightarrow 102$) e passagem de serviço ($203 \leftrightarrow 206$, que começa trancada e tem o trinco do lado da 206).
    - **Pesos ($W$):** a mesma fórmula do documento [`grafos_e_navegacao.md`](../computacao/grafos_e_navegacao.md):
      $$W(u, v) = \text{Distância}(u, v) \times \text{FatorPiso}(u, v)$$
-   - **No código**, os robôs andam por A* em grade (heurística octile, diagonal só sem obstáculo) e patrulham uma sequência de pontos fixos, que muda com a marca do alicate. O grafo de salas é o modelo de projeto, e o grafo de dependências dos puzzles está na seção 3.2 (ordenação topológica).
+   - **No código**, os robôs andam por A* em grade (heurística octile, diagonal só sem obstáculo), sem pesar o piso, e patrulham uma sequência de pontos fixos, que muda com a marca do alicate. O fator de piso da fórmula entra no jogo só no som, como o `fator_ruido` das `ZonaDePiso` (item 3). O grafo de salas é o modelo de projeto, e o grafo de dependências dos puzzles está na seção 3.2 (ordenação topológica).
 2. **Campo de visão 2D por produto escalar (implementado):**
-   - Gabriel é percebido se estiver a até $20$ px do robô (percepção por proximidade) ou se
+   - Gabriel não é percebido enquanto estiver escondido num nicho (parado por $0{,}4$ s e sem lanterna); a audição e o contato continuam valendo. Fora do nicho, ele é percebido se estiver a até $20$ px do robô (percepção por proximidade) ou se
      $$\lVert \vec{p}_{\text{gabriel}} - \vec{p}_{\text{robô}} \rVert \le R \quad \text{e} \quad \frac{(\vec{p}_{\text{gabriel}} - \vec{p}_{\text{robô}}) \cdot \vec{d}}{\lVert \vec{p}_{\text{gabriel}} - \vec{p}_{\text{robô}} \rVert} \ge \cos\left(\frac{\theta}{2}\right) \quad \text{e} \quad \text{LinhaLivre}(\vec{p}_{\text{robô}}, \vec{p}_{\text{gabriel}})$$
      onde $\vec{d}$ é a direção do olhar e `LinhaLivre` é um raio contra a camada de paredes.
    - $R$ e $\theta$ dependem do tipo de robô, e $R$ é multiplicado quando há luz:
@@ -362,19 +362,27 @@ Para a defesa técnica e os relatórios da disciplina, o Bloco de salas demonstr
 
    - "Há luz" quer dizer: a lanterna (ou o notebook) acesa, ou Gabriel a menos de 56 px de uma luz que revela (luar, luz de emergência).
 3. **Propagação sonora por BFS e fator de piso (os dois implementados):**
-   - **Hoje:** cada passo de Gabriel gera um evento com alcance-base $A_0$ de $5$ células andando e $14$ correndo (célula de $16$ px). O alcance de cada robô é $A = \lfloor A_0 \cdot f_{\text{audição}} \rfloor$, com $f_{\text{audição}} = 0{,}5$ na Sentinela e $1{,}8$ no Rastreador. Uma busca em largura (BFS, vizinhança de 4) parte da célula do som, anda só por células livres e para depois de $A$ passos. O robô que estiver numa célula alcançada vai investigar. Os obstáculos da sala (paredes e móveis) bloqueiam o som por completo, e o corte é por número de passos, sem decaimento em dB.
-   - **A grade é por sala:** cada sala é uma cena com a sua grade, então a BFS acontece dentro dela. O som que passa de uma sala para outra (a sirene da 104, a pedra pelo buraco da 204) é repassado por evento, como descrito na seção 5.1.
-   - **Fator de piso (implementado em 2026-10-12):** a base é multiplicada pelo fator do piso em que Gabriel pisa,
+   - **Base:** cada passo de Gabriel gera um evento com alcance-base $A_0$ de $5$ células andando e $14$ correndo (célula de $16$ px). O alcance de cada robô é
      $$A = \lfloor A_0 \cdot f_{\text{piso}} \cdot f_{\text{audição}} \rfloor$$
-     com valores iniciais, a calibrar em teste: areia e mato $0{,}5$, lajota e tapete $1{,}0$, entulho $1{,}5$. Isso realiza a regra que o jogo já anuncia ("a areia abafa, o entulho denuncia", em `movimentacao_e_terreno.md` e na seção 4 deste documento). Hoje o piso só vale como cenário: o alcance depende apenas de andar ou correr.
-   - **Efeito da proposta**, em células ($16$ px cada), andando e correndo:
+     com $f_{\text{audição}} = 0{,}5$ na Sentinela e $1{,}8$ no Rastreador. Uma busca em largura (BFS, vizinhança de 4) parte da célula do som, anda só por células livres e para depois de $A$ passos. O robô que estiver numa célula alcançada vai investigar. Os obstáculos da sala (paredes e móveis) bloqueiam o som por completo, e o corte é por número de passos, sem decaimento em dB.
+   - **A grade é por sala:** cada sala é uma cena com a sua grade, então a BFS acontece dentro dela. O som que passa de uma sala para outra é repassado por evento, como descrito na seção 5.1: a sirene da 104 e a pedra pelo buraco da 204, que deixa o Rastreador do térreo $18$ s dentro da 104 (mais $4$ s para sair da sala).
+   - **Fator de piso $f_{\text{piso}}$, por setor do corredor:** cada corredor (térreo e 1º andar) tem três faixas de chão, cada uma com uma `ZonaDePiso` de $90$ px de altura. Fora das zonas, dentro das salas, o fator é $1$.
 
-     | Robô | Areia (×0,5) | Lajota (hoje) | Entulho (×1,5) |
+     | Setor | Eixo x da cena | Piso (térreo / 1º andar) | $f_{\text{piso}}$ |
+     |---|---|---|---|
+     | Oeste (salas x01 e x02) | 0 a 768 px | areia / mato e areia | $0{,}5$ |
+     | Centro (x03 e x04) | 768 a 1536 px | lajota e tapete | $1{,}0$ |
+     | Leste (x05, x06 e escada) | 1536 a 2560 px | lajota solta | $1{,}5$ |
+
+     Isso realiza a regra que o jogo anuncia: a areia abafa e o chão solto denuncia (`movimentacao_e_terreno.md`). No código, `ZonaDePiso.fator_em` devolve o fator da zona que contém o ponto (ou $1$), e `robo.gd` o multiplica pela base em `_ao_ouvir_passo`; `ouvir_barulho` aplica $f_{\text{audição}}$ e trunca para inteiro.
+   - **Efeito**, em células ($16$ px cada), andando e correndo:
+
+     | Robô | Oeste (×0,5) | Centro (×1,0) | Leste (×1,5) |
      |---|---|---|---|
      | Sentinela | 1 e 3 | 2 e 7 | 3 e 10 |
      | Rastreador | 4 e 12 | 9 e 25 | 13 e 37 |
 
-   - **Como implementar (sugestão):** marcar as peças de chão do kit (areia, mato, lajota, tapete, entulho) com um campo de ruído, e fazer o robô ler o piso sob Gabriel na hora do passo e multiplicar o alcance-base. É uma mudança pequena em `robo.gd` mais a marcação das peças.
+   - **Limites:** o fator é por zona (um retângulo do corredor), não por peça de chão, e vale só nos corredores. As salas de chão de areia ou mato (102, 106, 202, 204 e 206) têm fator $1$.
 4. **Ciclos fundamentais e conectividade (implementados):**
    - As duas arestas novas criam dois ciclos, $101$–$102$–corredor e $203$–$206$–corredor, e dão uma rota alternativa de fuga nesses pares de salas.
    - As demais salas ($103$, $105$, $106$, $201$, $202$, $205$) continuam com uma só porta, e a $104$ ganha apenas a entrada de descida ($204 \to 104$). É uma melhoria local: o grafo não passa a ter dois caminhos disjuntos para toda sala, e é assim que deve ser apresentada.
