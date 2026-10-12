@@ -325,7 +325,7 @@ Para quebrar a monotonia dos 2560 px de corredor e criar ritmo de tensão e alí
    - Enquanto Gabriel explora o térreo, a movimentação da Sentinela ou de máquinas pesadas no 1º andar faz as lajes estalarem: poeira de gesso cai do teto em pontos específicos.
    - Esse aviso antecipado informa ao jogador que há perigo ativo no piso de cima antes mesmo de ele subir a escada.
 2. **Interação Sonora no Buraco de Queda (204 → 104):**
-   - **Arremesso de Distração:** Gabriel pode jogar uma pedra pelo buraco da 204 para que ela caia no chão da 104. O impacto do som da pedra atrai o Rastreador do térreo para dentro da 104, permitindo liberar o corredor de baixo antes da descida.
+   - **Arremesso de Distração:** Gabriel pode jogar uma pedra pelo buraco da 204 para que ela caia no chão da 104. O impacto do som da pedra atrai o Rastreador do térreo para dentro da 104, permitindo liberar o corredor de baixo antes da descida. Como cada sala é uma cena com a sua grade, o som da pedra é repassado à 104 por evento, como o da sirene (seção 5.1).
    - **Amortecimento por Mobiliário:** Na 104, Gabriel cai sobre uma pilha de caixas de papelão e cadeiras de espuma tombadas, gerando um som abafado característico em vez de um estalo estrondoso, recompensando o jogador pelo uso do atalho planejado.
 
 ---
@@ -340,22 +340,40 @@ A sala 205 continua misteriosa conforme o Enredo Principal (sem explicação ime
 
 ### 12.7 Formalização Acadêmica para a Disciplina de Computação Gráfica
 
-Para a defesa técnica e relatórios da disciplina, o Bloco de salas demonstra conceitos fundamentais de computação:
+Para a defesa técnica e os relatórios da disciplina, o Bloco de salas demonstra conceitos fundamentais de computação. Cada item diz o que **já está implementado** e o que é **proposta**. Os números do que está implementado vêm de `scripts/personagens/robo.gd` e das cenas `robo_sentinela.tscn` e `robo_rastreador.tscn`.
 
-1. **Modelagem Formal em Grafo Ponderado $G = (V, E, w)$:**
-   - **Vértices ($V$):** Salas ($101 \dots 106, 201 \dots 206$), Setores dos Corredores ($C_{T1}, C_{T2}, C_{T3}$ no térreo; $C_{A1}, C_{A2}, C_{A3}$ no 1º andar) e Nós de Conexão Especial (Escada, Rota Corta-fogo).
-   - **Arestas Ponderadas ($E$):** Portas, atalho vertical direcionado ($204 \to 104$), brecha de flanqueamento ($101 \leftrightarrow 102$) e passagem de serviço ($203 \leftrightarrow 206$).
-   - **Função de Custo de Transição $w(e)$:**
-     $$w(e) = \Delta t + \lambda_{\text{ruído}} \cdot \kappa_{\text{superfície}} + \lambda_{\text{visão}} \cdot \gamma_{\text{luz}}$$
-     Onde $\kappa_{\text{superfície}}$ varia de $0.2$ (areia fofa) a $2.5$ (entulho/vidro), e $\gamma_{\text{luz}}$ pondera a exposição sob o luar do 1º andar.
-2. **Cálculo do Campo de Visão 2D (por Produto Escalar):**
-   - O cone de vigilância da Sentinela com vetor de direção $\vec{d}$ e posição $\vec{p}_{\text{robo}}$ detecta Gabriel na posição $\vec{p}_{\text{gabriel}}$ se:
-     $$\frac{(\vec{p}_{\text{gabriel}} - \vec{p}_{\text{robo}}) \cdot \vec{d}}{\|\vec{p}_{\text{gabriel}} - \vec{p}_{\text{robo}}\|} \ge \cos\left(\frac{\theta_{\text{abertura}}}{2}\right) \quad \text{e} \quad \text{LinhaLivre}(\vec{p}_{\text{robo}}, \vec{p}_{\text{gabriel}})$$
-     Onde $\theta_{\text{abertura}} = 70^\circ$, com raio de alcance estendido em áreas iluminadas pelo luar ($R_{\text{luar}} = 380\text{ px}$) e contraído em zonas de sombra ($R_{\text{sombra}} = 120\text{ px}$).
-3. **Propagação Sonora e Resposta dos Rastreadores via BFS:**
-   - O disparo da sirene na 104 ou arremesso de pedras propaga ondas sonoras na grade ortogonal através de uma busca em largura (BFS) com fator de atenuação logarítmica:
-     $$I(d) = I_0 - 10 \cdot \beta \cdot \log_{10}(d + 1)$$
-     Onde $\beta$ é o coeficiente de amortecimento dos obstáculos arquitetônicos (paredes grossas atenuam $18\text{ dB}$, portas abertas atenuam $4\text{ dB}$).
-4. **Ciclos Fundamentais e Análise de Conectividade:**
-   - As duas rotas de flanqueamento propostas eliminam vértices de corte (pontos de articulação) críticos no grafo de salas, garantindo que o jogador sempre disponha de pelo menos dois caminhos disjuntos em arestas para evacuação durante rondas ativas dos inimigos.
+1. **Modelagem em grafo ponderado $G = (V, E, W)$ (modelo de projeto):**
+   - **Vértices ($V$):** salas ($101 \dots 106, 201 \dots 206$), setores dos corredores ($C_{T1}, C_{T2}, C_{T3}$ no térreo; $C_{A1}, C_{A2}, C_{A3}$ no 1º andar) e nós de conexão especial (escada, porta corta-fogo).
+   - **Arestas ($E$):** portas, atalho vertical direcionado ($204 \to 104$), brecha de flanqueamento ($101 \leftrightarrow 102$) e passagem de serviço ($203 \leftrightarrow 206$).
+   - **Pesos ($W$):** a mesma fórmula do documento [`grafos_e_navegacao.md`](../computacao/grafos_e_navegacao.md):
+     $$W(u, v) = \text{Distância}(u, v) \times \text{FatorPiso}(u, v)$$
+   - **No código**, os robôs andam por A* em grade (heurística octile, diagonal só sem obstáculo) e patrulham uma sequência de pontos fixos, que muda com a marca do alicate. O grafo de salas é o modelo de projeto, e o grafo de dependências dos puzzles está na seção 3.2 (ordenação topológica).
+2. **Campo de visão 2D por produto escalar (implementado):**
+   - Gabriel é percebido se estiver a até $20$ px do robô (percepção por proximidade) ou se
+     $$\lVert \vec{p}_{\text{gabriel}} - \vec{p}_{\text{robô}} \rVert \le R \quad \text{e} \quad \frac{(\vec{p}_{\text{gabriel}} - \vec{p}_{\text{robô}}) \cdot \vec{d}}{\lVert \vec{p}_{\text{gabriel}} - \vec{p}_{\text{robô}} \rVert} \ge \cos\left(\frac{\theta}{2}\right) \quad \text{e} \quad \text{LinhaLivre}(\vec{p}_{\text{robô}}, \vec{p}_{\text{gabriel}})$$
+     onde $\vec{d}$ é a direção do olhar e `LinhaLivre` é um raio contra a camada de paredes.
+   - $R$ e $\theta$ dependem do tipo de robô, e $R$ é multiplicado quando há luz:
 
+     | Robô | $R$ | $\theta$ | $R$ com luz |
+     |---|---|---|---|
+     | Sentinela | 170 px | 60° | 289 px (×1,7) |
+     | Rastreador | 80 px | 100° | 104 px (×1,3) |
+
+   - "Há luz" quer dizer: a lanterna (ou o notebook) acesa, ou Gabriel a menos de 56 px de uma luz que revela (luar, luz de emergência).
+3. **Propagação sonora por BFS (implementada) e fator de piso (proposta):**
+   - **Hoje:** cada passo de Gabriel gera um evento com alcance-base $A_0$ de $5$ células andando e $14$ correndo (célula de $16$ px). O alcance de cada robô é $A = \lfloor A_0 \cdot f_{\text{audição}} \rfloor$, com $f_{\text{audição}} = 0{,}5$ na Sentinela e $1{,}8$ no Rastreador. Uma busca em largura (BFS, vizinhança de 4) parte da célula do som, anda só por células livres e para depois de $A$ passos. O robô que estiver numa célula alcançada vai investigar. Os obstáculos da sala (paredes e móveis) bloqueiam o som por completo, e o corte é por número de passos, sem decaimento em dB.
+   - **A grade é por sala:** cada sala é uma cena com a sua grade, então a BFS acontece dentro dela. O som que passa de uma sala para outra (a sirene da 104, a pedra pelo buraco da 204) é repassado por evento, como descrito na seção 5.1.
+   - **Proposta (b), fator de piso:** multiplicar a base pelo fator do piso em que Gabriel pisa,
+     $$A = \lfloor A_0 \cdot f_{\text{piso}} \cdot f_{\text{audição}} \rfloor$$
+     com valores iniciais, a calibrar em teste: areia e mato $0{,}5$, lajota e tapete $1{,}0$, entulho $1{,}5$. Isso realiza a regra que o jogo já anuncia ("a areia abafa, o entulho denuncia", em `movimentacao_e_terreno.md` e na seção 4 deste documento). Hoje o piso só vale como cenário: o alcance depende apenas de andar ou correr.
+   - **Efeito da proposta**, em células ($16$ px cada), andando e correndo:
+
+     | Robô | Areia (×0,5) | Lajota (hoje) | Entulho (×1,5) |
+     |---|---|---|---|
+     | Sentinela | 1 e 3 | 2 e 7 | 3 e 10 |
+     | Rastreador | 4 e 12 | 9 e 25 | 13 e 37 |
+
+   - **Como implementar (sugestão):** marcar as peças de chão do kit (areia, mato, lajota, tapete, entulho) com um campo de ruído, e fazer o robô ler o piso sob Gabriel na hora do passo e multiplicar o alcance-base. É uma mudança pequena em `robo.gd` mais a marcação das peças.
+4. **Ciclos fundamentais e conectividade (proposta):**
+   - As duas arestas novas criam dois ciclos, $101$–$102$–corredor e $203$–$206$–corredor, e dão uma rota alternativa de fuga nesses pares de salas.
+   - As demais salas ($103$, $105$, $106$, $201$, $202$, $205$) continuam com uma só porta, e a $104$ ganha apenas a entrada de descida ($204 \to 104$). É uma melhoria local: o grafo não passa a ter dois caminhos disjuntos para toda sala, e é assim que deve ser apresentada.
