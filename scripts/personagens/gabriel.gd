@@ -5,6 +5,8 @@ signal passo_dado(correndo: bool)
 signal fadiga_mudou(estamina: float, maxima: float)
 signal exaustao_mudou(esta_exausto: bool)
 
+const COR_ESCONDIDO := Color(0.45, 0.45, 0.6)
+
 @export var velocidade_andar: float = 60.0
 @export var fator_profundidade: float = 0.65
 @export var multiplicador_correr: float = 1.8
@@ -41,6 +43,7 @@ signal exaustao_mudou(esta_exausto: bool)
 var jogador_controla := true
 var direcao_automatica := Vector2.ZERO
 var correndo := false
+var escondido := false
 
 var vista := "lado"
 var direcao_olhar := Vector2.RIGHT
@@ -140,6 +143,11 @@ func _physics_process(delta: float) -> void:
 	_animar(get_real_velocity().length() * delta, delta)
 
 	_piscar()
+
+
+func esconder(sim: bool) -> void:
+	escondido = sim
+	sprite.self_modulate = COR_ESCONDIDO if sim else Color.WHITE
 
 
 func andar_sozinho(direcao: Vector2) -> void:
