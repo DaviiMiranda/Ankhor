@@ -58,7 +58,7 @@
 | `cantina` | Cantina Abandonada / Balcões | 640 × 260 px | Cerâmica e cacos de vidro (Ruído ×2,0) | `patio_central`, `deposito_cantina` | Embaixo da bancada do balcão de inox | 1 **Rastreador** (patrulha área externa) |
 | `deposito_cantina` | Depósito e Câmara Frigorífica | 400 × 240 px | Concreto liso | `cantina` | Entre prateleiras de mantimentos | Nenhuma |
 | `grafica_rapida` | Anexo da Gráfica e Serviços | 480 × 260 px | Lajota | `patio_central`, `posto_manutencao` | Atrás de maquinários de impressão antigos | Nenhuma |
-| `posto_manutencao` | Posto de Manutenção Predial | 400 × 240 px | Concreto e tapete | `grafica_rapida` | **Sala Segura** (robôs não entram) | Nenhuma |
+| `posto_manutencao` | Posto de Manutenção Predial | 400 × 240 px | Concreto e tapete | `grafica_rapida` | **Sala Segura com a Diana** (robôs não entram) | Nenhuma |
 | `rampa_subsolo` | Pátio de Carga e Rampa Técnica | 640 × 360 px | Concreto e brita | `patio_central`, comporta para o Bunker | Caçambas e contêineres de entulho | Sentinela reposicionada (após energização) |
 
 ---
@@ -66,10 +66,10 @@
 ## 3. Objetivos e Progressão
 
 ### 3.1 Objetivo Principal
-Atravessar o descampado do Centro de Convivência e **destrancar a comporta de contenção da Rampa do Subsolo** para acessar o **Bunker** (onde estão Henrique e Zane).
+Atravessar o descampado do Centro de Convivência, encontrar a **Diana** no Posto de Manutenção, obter a Célula de Energia na Cantina, resolver o puzzle elétrico da Gráfica e **destrancar a comporta de contenção da Rampa do Subsolo** para descer ao **Bunker** (onde estão Henrique e Zane).
 
 ### 3.2 O Obstáculo
-A comporta magnética da rampa está desativada. O relé manual de comutação na Gráfica necessita de uma **Célula de Energia de Alta Densidade** (armazenada na câmara frigorífica da Cantina) e do alinhamento de frequências no quadro elétrico (resolução de conflito de fases por coloração de grafos).
+A comporta magnética da rampa está desativada. O relé manual de comutação na Gráfica necessita de uma **Célula de Energia de Alta Densidade** (armazenada na câmara frigorífica da Cantina) e do alinhamento de frequências no quadro elétrico (resolução de conflito de fases por coloração de grafos com as orientações da Diana).
 
 ### 3.3 Passo a Passo
 
@@ -81,35 +81,37 @@ A comporta magnética da rampa está desativada. O relé manual de comutação n
    - O jogador aplica a mecânica de furtividade em descampado: agachar atrás das mesas de concreto tombadas e contornar as raízes para evitar os cones de luz dos robôs.
 3. **Inspeção da Rampa (`rampa_subsolo`):**
    - Gabriel chega à rampa e tenta abrir a comporta. O painel informa: *"Cancela bloqueada. Relé de comutação sem alimentação primária."*
-4. **Localização da Sala Segura (`posto_manutencao`):**
-   - Pelo anexo sul (atravessando a antiga Gráfica), Gabriel encontra o Posto de Manutenção Predial e fecha a porta de aço por dentro.
-   - Encontra o ponto de descanso e salvamento (checkpoint).
-   - No quadro de avisos, uma **Ordem de Manutenção Técnica de 3026** indica: *"Célula de energia reserva realocada para o gerador de emergência da câmara frigorífica da cantina (Setor Norte)."*
+4. **Localização da Sala Segura e Encontro com a Diana (`posto_manutencao`):**
+   - Pelo anexo sul (atravessando a antiga Gráfica), Gabriel encontra o Posto de Manutenção Predial com a porta trancada por dentro. Ao bater/interagir, a tranca de aço é puxada e Gabriel se depara com a **Diana** (recruta de 1978).
+   - Ocorre o diálogo inicial (`diana_primeiro_encontro`): Diana, tensa e armada com um cassetete de obra, toma um susto achando que era outro dos "autômatos". Ao reconhecer Gabriel e saber que a Clarice o guiou pelo rádio, Diana se alivia no seu estilo dramático e intenso.
+   - Diana explica que se cansou de ficar parada na 103 e avançou com seu mapa à mão para tentar abrir o caminho para o Bunker subterrâneo, mas ficou encurralada pelos robôs no pátio.
+   - Ela detalha o obstáculo da rampa e a necessidade da **Célula de Energia** (localizada na câmara frigorífica da Cantina), alertando Gabriel sobre o piso de cacos de cerâmica/vidro que denuncia passos para o autômato cego (Rastreador).
+   - Sala segura e ponto de salvamento (checkpoint).
 5. **Travessia até a Cantina e Infiltração (`cantina` e `deposito_cantina`):**
    - Gabriel cruza o pátio em direção à ala norte.
    - Diante da cantina, um **Rastreador** patrulha. O piso diante do balcão está coberto de cerâmica estilhaçada e cacos de vidro (piso tático de alto ruído com Fator `2.0`, amplificando o som dos passos).
    - Gabriel deve andar devagar pelas passadeiras de borracha ou arremessar uma **pedra** (ou uma **lata de refrigerante**) para afastar o Rastreador.
    - No `deposito_cantina`, Gabriel recolhe a **Célula de Energia de Alta Densidade** e uma **pilha**.
-6. **O Puzzle da Gráfica (`grafica_rapida`):**
-   - Gabriel retorna à gráfica e insere a Célula de Energia no Quadro de Comutação.
-   - O painel abre a interface do **Puzzle de Coloração de Grafos**: 4 nós de circuitos interconectados precisam ter suas frequências de fase reguladas (Azul, Amarelo, Vermelho) sem que dois setores vizinhos compartilhem a mesma frequência, prevenindo sobrecarga harmônica na rede.
+6. **O Puzzle da Gráfica com Orientação da Diana (`grafica_rapida`):**
+   - Gabriel retorna com a Célula de Energia. Diana orienta Gabriel sobre o painel elétrico de alta tensão (`diana_ajuda_grafica`), explicando a regra trifásica industrial de 1978:
+   - Gabriel insere a Célula no Quadro de Comutação. O painel abre a interface do **Puzzle de Coloração de Grafos**: 4 nós de circuitos interconectados precisam ter suas frequências de fase reguladas (Azul, Amarelo, Vermelho) sem que dois setores vizinhos compartilhem a mesma frequência, prevenindo sobrecarga harmônica na rede ($\chi(G) = 3$).
    - Ao solucionar o grafo, a chave geral arma e direciona carga elétrica para a comporta da rampa.
 7. **A Virada no Pátio (Holofotes de Vigilância Ativados):**
    - Com o circuito armado, os **holofotes perimetrais** do pátio acendem e iniciam varreduras lentas em arcos giratórios.
    - A Clarice avisa no rádio (com o que Henrique reporta das câmeras): *"Gabriel, a energia voltou, mas ligou os refletores do pátio! O padrão das Sentinelas mudou, fica nas sombras!"*
-   - O retorno exige sincronizar o avanço entre as sombras das mesas e os intervalos de passagem dos feixes dos holofotes.
-8. **Abertura da Rampa e Saída (`rampa_subsolo`):**
-   - Na rampa, o painel agora exibe luz verde estável. Gabriel aciona o mecanismo da comporta.
-   - A comporta pesada sobe, revelando a descida protegida que leva ao **Bunker**.
-   - Fim da fase e transição de nível.
+   - O retorno exige sincronizar o avanço entre as sombras das mesas e os intervalos de passagem dos feixes dos holofotes. Diana acompanha Gabriel pelo pátio em furtividade sincronizada.
+8. **Abertura da Rampa e Saída para o Bunker (`rampa_subsolo`):**
+   - Na rampa, o painel agora exibe luz verde estável. Gabriel e Diana chegam juntos à comporta.
+   - Ocorre o diálogo de saída (`diana_saida_rampa`): Gabriel aciona a alavanca da comporta, que sobe com ruído mecânico pesado, revelando a descida protegida que dá no **Bunker**.
+   - Diana comemora a missão cumprida e os dois descem para encontrar Zane e Henrique. Fim da fase e transição de nível.
 
 ### 3.4 Grafo de Dependências
 
 ```
-Passarela → Pátio → Checar Rampa (bloqueada) → Sala Segura (ordem de manutenção)
+Passarela → Pátio → Checar Rampa (bloqueada) → Sala Segura (encontro com Diana)
    → Travessia à Cantina (cacos de vidro) → Coletar Célula de Energia
-   → Puzzle de Coloração na Gráfica → Energização do Circuito (holofotes ativos / nova ronda)
-   → Comporta da Rampa liberada → Entrada do Bunker
+   → Puzzle de Coloração na Gráfica (com dicas da Diana) → Energização do Circuito (holofotes ativos / nova ronda)
+   → Comporta da Rampa liberada → Entrada do Bunker com a Diana
 ```
 
 ### 3.5 Tabela de Itens e Recursos
@@ -159,19 +161,44 @@ Passarela → Pátio → Checar Rampa (bloqueada) → Sala Segura (ordem de manu
 ## 6. Sala Segura e Sonho
 
 - **Local:** `posto_manutencao` (Posto de Manutenção Predial, anexo à Gráfica).
-- **Por que é segura:** Sala de alvenaria reforçada com porta de serviço trancável por ferrolho interno. Robôs não entram nem possuem nós de navegação nela.
-- **Ambiente:** Um sofá rasgado, mesa de apoio com lampião fraco, rádio de mesa e terminal de diagnóstico offline.
-- **Evento do Sono:** Gabriel descansa no sofá. O sonho evoca o Centro de Convivência vivo em 2026: risos, sol da tarde, fila da cantina e o murmúrio dos universitários. Gabriel acorda no silêncio escuro de 3026 com estalos metálicos ao fundo.
+- **Por que é segura:** Sala de alvenaria reforçada com porta de serviço trancável por ferrolho interno de aço. Robôs não entram nem possuem nós de navegação nela.
+- **Ambiente:** Um sofá rasgado, bancada de ferramentas, lampião de querosene fraco, rádio portátil e terminal de diagnóstico offline.
+- **Presença da Diana:** A Diana permanece nesta sala enquanto Gabriel explora a Cantina e a Gráfica. Ela monta guarda com um cassetete improvisado e analisa seu mapa à mão. Ao interagir com ela na sala, o jogador pode revisar as dicas e ouvir seus desabafos ansiosos.
+- **Evento do Sono:** Gabriel descansa no sofá enquanto a Diana vigia a porta. O sonho evoca o Centro de Convivência vivo em 2026: risos, sol da tarde, fila da cantina e o murmúrio dos universitários. Gabriel acorda no silêncio escuro de 3026 com os estalos metálicos ao fundo e a respiração alerta da Diana ao lado.
 
 ---
 
-## 7. Registros e Comunicações
+## 7. Registros, Comunicações e Diálogos
 
-- **Clarice no rádio:**
-  - Chegada na passarela: instrução sobre o descampado aberto e os cones das Sentinelas sob o luar.
-  - Alerta pós-energização: aviso sobre a ativação dos holofotes móveis e a alteração da rota dos robôs.
+### 7.1 Clarice no Rádio
+- **Chegada na passarela:** Instrução sobre o descampado aberto e os cones das Sentinelas sob o luar.
+- **Alerta pós-energização:** Aviso sobre a ativação dos holofotes móveis e a alteração da rota dos robôs (com o apoio visual do Henrique nas câmeras).
+
+### 7.2 Documentos Escritos
 - **Documento 1 — Panfleto da Semana Universitária (2024):** Encontrado na Gráfica. Traz a programação cultural do campus vivo, acentuando o contraste temporal.
-- **Documento 2 — Ordem de Manutenção Técnica (3026):** Encontrado na Sala Segura. Dá a pista sobre a Célula de Energia na câmara frigorífica da cantina e menciona evacuação de emergência do pessoal para as instalações subterrâneas (Bunker).
+- **Documento 2 — Ordem de Manutenção Técnica (3026):** Encontrado na Sala Segura. Dá a pista técnica sobre a Célula de Energia na câmara frigorífica da cantina e menciona evacuação de emergência para as instalações subterrâneas (Bunker).
+
+### 7.3 Diálogos entre Gabriel e Diana
+
+Os diálogos utilizam a caixa de diálogo (`cenas/interface/caixa_dialogo.tscn`) e geram anotações no Caderno do Gabriel:
+
+1. **`diana_primeiro_encontro.json` (No Posto de Manutenção):**
+   - **Gatilho:** Ao entrar no `posto_manutencao` pela primeira vez.
+   - **Dinâmica:** Diana reage assustada, empunhando uma chave inglesa/cassetete e dando voz de prisão em jargão policial dramático ("PARADO! Mão na cabeça!"). Ao descobrir que Gabriel é humano e veio do Bloco de salas com a bênção da Clarice, Diana desaba em alívio cômico ("Você sangra?! Ai, meu Deus, achei que eram aqueles autômatos do diabo!").
+   - **Conteúdo:** Diana explica que avançou na frente por impulso, ficou encurralada pelos robôs no pátio e descobriu que a rampa precisa da Célula de Energia da Cantina. Ela alerta com veemência sobre os cacos de vidro que denunciam passos ao autômato cego (Rastreador).
+   - **Anotação gerada:** *"Encontrei a Diana"*.
+
+2. **`diana_ajuda_grafica.json` (Na Gráfica / Sala Segura):**
+   - **Gatilho:** Ao retornar da cantina com a Célula de Energia no inventário e interagir com Diana no quadro elétrico.
+   - **Dinâmica:** Diana vibra com o sucesso da infiltração ("Positivo! Você conseguiu a Célula!"). Ela explica as regras de instalação trifásica industrial de 1978: 4 setores e 3 cores de fase (Azul, Amarelo, Vermelho), enfatizando que setores diretamente ligados não podem ter a mesma cor para não causar sobrecarga harmônica.
+   - **Conteúdo:** Dá as instruções diretas para o jogador resolver o **Puzzle de Coloração de Grafos** ($\chi(G) = 3$).
+   - **Anotação gerada:** *"Comutador da Gráfica"*.
+
+3. **`diana_saida_rampa.json` (Diante da Rampa do Subsolo):**
+   - **Gatilho:** Ao chegar na comporta da `rampa_subsolo` após a virada dos holofotes.
+   - **Dinâmica:** Em meio à tensão dos holofotes varrendo o pátio, Diana celebra o sucesso da operação policial improvisada ("Olha o tamanho dessa descida... Nós conseguimos, soldado!"). Ao saber que Zane e Henrique estão no Bunker, Diana se empolga para finalmente conhecer a voz misteriosa do rádio.
+   - **Conteúdo:** Gabriel e Diana descem juntos pela rampa de acesso rumo ao Bunker.
+   - **Anotação gerada:** *"Rampa do Bunker aberta"*.
 
 ---
 

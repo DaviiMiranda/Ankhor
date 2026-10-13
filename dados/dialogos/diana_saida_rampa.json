@@ -1,0 +1,45 @@
+{
+	"id": "diana_saida_rampa",
+	"inicio": "abertura_rampa",
+	"anotacao": {
+		"titulo": "Rampa do Bunker aberta",
+		"texto": "Energizamos o circuito da Gráfica e destrancamos a comporta da Rampa do Subsolo.\n\nA Diana e eu estamos descendo para o Bunker subterrâneo, onde estão o Zane e o Henrique."
+	},
+	"trechos": {
+		"abertura_rampa": {
+			"falas": [
+				{
+					"quem": "Diana",
+					"texto": "Misericórdia divina! A energia voltou mas ligou os holofotes do inferno! O pátio virou dia!"
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Pelo menos conseguimos chegar até a rampa. O painel está verde."
+				},
+				{
+					"quem": "Diana",
+					"texto": "Puxa essa alavanca logo, Gabriel! Rápido, antes que as Sentinelas peguem a gente pelas costas!"
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Comporta liberada. A passagem pro Bunker tá aberta."
+				},
+				{
+					"quem": "Diana",
+					"texto": "Olha o tamanho dessa descida blindada... Nós conseguimos! Missão cumprida, soldado!"
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Lá embaixo ficam o Zane e o Henrique. Eles estão operando os sistemas e as câmeras."
+				},
+				{
+					"quem": "Diana",
+					"texto": "O Henrique do rádio?! Quero ver a cara desse sujeito que me fez andar no escuro! Avançar em formação, Gabriel!"
+				}
+			]
+		}
+	}
+}
