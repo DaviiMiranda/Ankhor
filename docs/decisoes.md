@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-13 — Level design do Centro de Convivência planejado e detalhado
+**Decisão:** a fase **Centro de Convivência** ganha documentação completa de level design em `docs/fases/centro_de_convivencia.md`, estruturada em 7 setores (`passarela_acesso`, `patio_central`, `cantina`, `deposito_cantina`, `grafica_rapida`, `posto_manutencao` e `rampa_subsolo`). O pátio aberto (1280×360 px) adota furtividade com cobertura física (mesas de concreto e raízes) contra 2 Sentinelas em rotas estocásticas via **Cadeia de Markov** e holofotes giratórios ativados na virada pós-energia. A cantina introduz piso de alto ruído (cacos de vidro/cerâmica com Fator 2,0) vigiado por um Rastreador. O comutador da Gráfica introduz o puzzle de **Coloração de Grafos** ($\chi(G) = 3$) para energizar a cancela da Rampa do Subsolo, conectando a saída da fase ao Bunker. A sala segura é o Posto de Manutenção Predial. Adicionadas sugestões de 3 novos itens táticos (lata de refrigerante antiga, fusível industrial de 20A e crachá de acesso).
+**Por quê:** fechar o planejamento da terceira fase do jogo e aplicar os requisitos computacionais (coloração de grafos, cadeias de Markov, BFS de som e produto escalar) exigidos pela disciplina.
+**Afeta:** `docs/fases/centro_de_convivencia.md`, `docs/fases/README.md`, `docs/fases.md` e `docs/README.md`.
+
 ## 2026-10-12 — Melhorias de level design do Bloco de salas implementadas
 **Decisão:** as propostas da seção 12 de `docs/fases/bloco_de_salas.md` (PR #96) entram no jogo: a brecha 101 ↔ 102 e a porta de serviço 203 ↔ 206 (com o trinco do lado do depósito), os três setores de piso dos corredores com o **fator de piso** no alcance do som (areia/mato 0,5, lajota/tapete 1,0, lajota solta 1,5), dois **nichos** por corredor onde o Gabriel parado e sem luz não é visto, a **fresta da barricada** da 103 para espiar o corredor antes de sair, o **mapa de giz** da Clarice na lousa da 103, os **estalos** do teto do térreo, a **pedra pelo buraco** da 204 que leva o Rastreador para dentro da 104 por 18 s, a queda **amortecida** por caixas na 104, e a sala **205** limpa, com luz fluorescente estável e zumbido de 60 Hz.
 **Por quê:** pedido do Davi, depois de mesclar o #96.
