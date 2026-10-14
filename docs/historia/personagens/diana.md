@@ -30,10 +30,10 @@
 
 ## 4. No jogo
 
-- **Onde aparece:** no **Bloco de salas**, na sala 103, com a Clarice. Veio da Biblioteca e apareceu na 103 depois da Clarice, que a acolheu. Desde então as duas tentam descobrir o que aconteceu. Por enquanto só é citada pela Clarice: ainda não tem visual nem cena.
-- **Esconderijo:** a **sala 103** do Bloco de salas, com a Clarice.
-- **Como chega ao jogador:** pela Clarice, em pessoa na 103 (quando tiver visual) e pela frequência de rádio do grupo.
-- **Função na jogabilidade:** o **mapa à mão** dela revela **arestas escondidas no grafo do campus** (atalhos e passagens secretas). Ver [`../../computacao/grafos_e_navegacao.md`](../../computacao/grafos_e_navegacao.md).
+- **Onde aparece:** no **Centro de Convivência**, no Posto de Manutenção Predial (`posto_manutencao`, sala segura). Veio da Biblioteca e passou pela 103 do Bloco de salas com a Clarice; impaciente e querendo explorar o terreno da obra de 1978, avançou na frente rumo à rampa do Bunker e acabou encurralada pelos robôs no Centro de Convivência. Gabriel a encontra em pessoa pela primeira vez no Posto de Manutenção.
+- **Esconderijo:** o **Posto de Manutenção Predial** do Centro de Convivência.
+- **Como chega ao jogador:** citada pela Clarice no Bloco de salas; depois em pessoa no Centro de Convivência (`dados/dialogos/diana_primeiro_encontro.json`, `diana_ajuda_grafica.json` e `diana_saida_rampa.json`).
+- **Função na jogabilidade:** o **mapa à mão** dela revela passagens e atalhos na travessia da Cantina; ela orienta a lógica das 3 fases elétricas no puzzle de coloração de grafos da Gráfica e desce com Gabriel para o Bunker na rampa do subsolo. Ver [`../../computacao/grafos_e_navegacao.md`](../../computacao/grafos_e_navegacao.md).
 - **Parte para consertar a Âncora:** investigação: descobre onde fica o núcleo e as passagens até lá.
 
 ## 5. Registros
