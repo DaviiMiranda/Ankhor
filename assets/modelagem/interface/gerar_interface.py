@@ -10,6 +10,7 @@
 #   assets/sprites/itens/<item>.png                16 x 16 px: ícone do item (inventário)
 #   assets/sprites/itens/<item>_chao.png           o item caído no chão, na escala do
 #                                                  cenário (1 px ≈ 3,6 cm: uma lanterna tem ~6 px)
+#   assets/sprites/itens/lanterna_mao.png          7 x 4 px: a lanterna na mão do Gabriel
 #   assets/sprites/interface/espaco.png            20 x 20 px: um espaço vazio da grade
 #   assets/sprites/interface/espaco_selecionado.png  o mesmo, com a borda acesa
 #   assets/sprites/interface/painel.png            24 x 24 px: fundo das janelas, em
@@ -95,6 +96,19 @@ def lanterna_chao():
     img.pintar(img.ret(0, 1, 6, 4), "metal", 0.25)
     img.pintar(img.ret(6, 0, 9, 5), "metal", 0.35)
     img.pintar(img.ret(8, 1, 9, 4), "sol", 0.7)
+    img.contornar(CONTORNO)
+    return img
+
+
+def lanterna_mao():
+    """A lanterna como aparece na mão do Gabriel: 7 x 4 px (~25 cm na escala
+    do personagem, 1 px ≈ 3,6 cm). Cabo à esquerda, cabeça mais alta e a
+    lente na ponta direita. Está apontada para a direita; o jogo gira e
+    espelha o sprite conforme a direção da mira (scripts/itens/lanterna.gd)."""
+    img = Imagem(7, 4)
+    img.pintar(img.ret(0, 1, 4, 3), "metal", 0.25)
+    img.pintar(img.ret(4, 0, 6, 4), "metal", 0.35)
+    img.pintar(img.ret(5, 1, 6, 3), "sol", 0.7)
     img.contornar(CONTORNO)
     return img
 
@@ -233,6 +247,7 @@ def notebook_chao():
 ICONES = {
     "lanterna": lanterna,
     "lanterna_chao": lanterna_chao,
+    "lanterna_mao": lanterna_mao,
     "pilha": pilha,
     "pilha_chao": pilha_chao,
     "radio": radio,

@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-14 — A lanterna aparece na mão do Gabriel e o feixe sai da lente
+**Decisão:** com a lanterna equipada, o Gabriel passa a **segurar a lanterna na mão**: um sprite de 7 × 4 px (`lanterna_mao.png`), preso à mão do sprite em cada vista e em cada quadro da caminhada, girado para a direção da mira e espelhado quando ele olha para a esquerda. O cone e o brilho nascem na **lente** dessa lanterna, e não mais de um ponto fixo na altura do tronco. A sombra continua calculada a partir de um ponto no chão (como em `docs/fases/labirinto.md`, seção 4), só a textura da luz é que sai da lente.
+**Por quê:** pedido do Davi. A luz parecia sair da cintura, porque não havia lanterna desenhada e o ponto de origem ficava fixo no corpo.
+**Afeta:** `scripts/itens/lanterna.gd`, `cenas/itens/lanterna.tscn`, `scripts/personagens/gabriel.gd` (tabela `MAOS_NO_QUADRO` e `posicao_da_mao()`), `assets/sprites/itens/lanterna_mao.png`, `assets/modelagem/interface/gerar_interface.py`, `docs/mecanicas/iluminacao_e_lanterna.md`. Se o sprite do Gabriel mudar, a tabela de posições da mão precisa ser refeita.
+
 ## 2026-10-14 — Mensagens do HUD quebram em linhas e ficam mais tempo na tela
 **Decisão:** a mensagem do topo da tela (pegar item, porta trancada, bilhetes e placas) passa a **quebrar em várias linhas** dentro da largura da tela, com 8 px de margem de cada lado, em vez de ficar numa linha só. O tempo na tela continua 3,5 s para textos curtos e cresce com o tamanho: 0,05 s por caractere (`segundos_por_caractere` no `hud.gd`), então um texto de 100 caracteres fica 5 s.
 **Por quê:** textos longos (o maior, o mapa de giz da sala 103, tem mais de 250 caracteres) passavam das laterais da tela e eram cortados, e nem dava tempo de ler os que cabiam por pouco.
