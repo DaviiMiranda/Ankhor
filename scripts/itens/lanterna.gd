@@ -5,14 +5,14 @@ extends Node2D
 @export var energia_nas_paredes: float = 1.0
 @export var energia_halo: float = 0.45
 @export var carga_fraca: float = 0.15
-@export var distancia_da_mao: float = 6.0
-@export var altura_da_mao: float = 2.0
+@export var distancia_da_lente: float = 2.5
 @export var altura_da_sombra: float = 20.0
 
 var item: Item
 var _estado: Dictionary
 var _tempo := 0.0
 
+@onready var corpo: Sprite2D = $Corpo
 @onready var feixe: PointLight2D = $Feixe
 @onready var feixe_paredes: PointLight2D = $FeixeParedes
 @onready var halo: PointLight2D = $Halo
@@ -52,13 +52,21 @@ func _process(delta: float) -> void:
 func _apontar() -> void:
 	var dono := get_parent().get_parent() as Gabriel
 	if dono:
-		var mao := Vector2(dono.direcao_olhar.x * distancia_da_mao, altura_da_mao)
-		feixe_paredes.position = mao
-		halo.position = mao
+		var angulo := dono.direcao_olhar.angle()
+		var peito := to_local(dono.to_global(dono.posicao_do_peito()))
+		var lente := peito + Vector2.from_angle(angulo) * distancia_da_lente
+		corpo.position = peito
+		corpo.rotation = angulo
+		corpo.flip_v = dono.direcao_olhar.x < 0.0
+		corpo.visible = not dono.vista.ends_with("costas")
+		corpo.self_modulate = dono.sprite.self_modulate
+		corpo.modulate.a = dono.sprite.modulate.a
+		feixe_paredes.position = lente
+		halo.position = lente
 		feixe.position = Vector2(0, altura_da_sombra)
-		feixe.rotation = dono.direcao_olhar.angle()
-		feixe.offset = (mao - feixe.position).rotated(-feixe.rotation)
-		feixe_paredes.rotation = feixe.rotation
+		feixe.rotation = angulo
+		feixe.offset = (lente - feixe.position).rotated(-feixe.rotation)
+		feixe_paredes.rotation = angulo
 
 
 func _atualizar_luz() -> void:

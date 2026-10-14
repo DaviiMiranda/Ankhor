@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-14 — A lanterna aparece presa ao peito do Gabriel e o feixe sai da lente
+**Decisão:** com a lanterna equipada, aparece no **peito** do Gabriel uma lanterna pequena e escura (5 × 3 px, `lanterna_peito.png`), girada para a direção da mira e espelhada quando ele olha para a esquerda. Nas vistas de costas ela fica escondida pelo corpo. O cone e o brilho nascem na **lente** dela, e não mais de um ponto fixo na altura do tronco. A sombra continua calculada a partir de um ponto no chão (como em `docs/fases/labirinto.md`, seção 4), só a textura da luz é que sai da lente. A primeira versão pôs a lanterna na mão (7 × 4 px) e foi trocada pelo peito, a pedido do Davi, por ficar grande demais e chamar atenção.
+**Por quê:** pedido do Davi. A luz parecia sair da cintura, porque não havia lanterna desenhada e o ponto de origem ficava fixo no corpo. No peito ela fica mais discreta e não depende do balanço do braço.
+**Afeta:** `scripts/itens/lanterna.gd`, `cenas/itens/lanterna.tscn`, `scripts/personagens/gabriel.gd` (`PEITO_NO_QUADRO` e `posicao_do_peito()`), `assets/sprites/itens/lanterna_peito.png`, `assets/modelagem/interface/gerar_interface.py`, `docs/mecanicas/iluminacao_e_lanterna.md`. Se o sprite do Gabriel mudar, os pontos do peito precisam ser conferidos.
+
 ## 2026-10-14 — A terceira fase é o Labirinto, com a oficina do Zane
 **Decisão:**
 - **A fase depois do Bloco de salas é o Labirinto** (já jogável), no lugar do Centro de Convivência. A ordem fica **Biblioteca → Bloco de salas → Labirinto**. Isso substitui a entrada de 2026-10-11 ("A fase depois do Bloco de salas é o Centro de Convivência"); o Centro fica sem lugar na ordem. O projeto detalhado do Centro e a Diana no Posto de Manutenção (#101) foram desfeitos (#102).

@@ -6,6 +6,14 @@ signal fadiga_mudou(estamina: float, maxima: float)
 signal exaustao_mudou(esta_exausto: bool)
 
 const COR_ESCONDIDO := Color(0.45, 0.45, 0.6)
+const LARGURA_QUADRO := 96.0
+const PEITO_NO_QUADRO := {
+	"lado": Vector2(54, 40),
+	"frente": Vector2(47, 40),
+	"tres_quartos": Vector2(44, 40),
+	"costas": Vector2(47, 40),
+	"tres_quartos_costas": Vector2(45, 40),
+}
 
 @export var velocidade_andar: float = 60.0
 @export var fator_profundidade: float = 0.65
@@ -148,6 +156,14 @@ func _physics_process(delta: float) -> void:
 func esconder(sim: bool) -> void:
 	escondido = sim
 	sprite.self_modulate = COR_ESCONDIDO if sim else Color.WHITE
+
+
+func posicao_do_peito() -> Vector2:
+	var pixel: Vector2 = PEITO_NO_QUADRO[vista]
+	var x := pixel.x + 0.5
+	if sprite.flip_h:
+		x = LARGURA_QUADRO - x
+	return sprite.position + (Vector2(x, pixel.y + 0.5) + sprite.offset) * sprite.scale
 
 
 func andar_sozinho(direcao: Vector2) -> void:
