@@ -10,7 +10,7 @@
 ## 2. Checkpoint
 
 - Os checkpoints são **postos de emergência**: um poste com uma caixa de luz. Apagado, a luz é vermelha e fraca.
-- **O Labirinto tem 3 checkpoints**, um dentro de cada salão de nó de controle (letra `C` no modelo da sala, em `gerar_labirinto.py`): morrer volta ao último que o Gabriel acendeu, ou ao começo se nenhum. As outras fases ainda não têm. As invasões já feitas (`Progresso`) não se perdem ao morrer.
+- **O Labirinto tem 4 checkpoints**: um na oficina do Zane e um dentro de cada salão de nó de controle (letra `C` no modelo da sala, em `gerar_labirinto.py`): morrer volta ao último que o Gabriel acendeu, ou ao começo se nenhum. As outras fases ainda não têm. As invasões já feitas (`Progresso`) não se perdem ao morrer.
 - Passar pelo posto **salva o checkpoint**: a luz fica verde, toca o som de relé com dois bipes, o HUD mostra *Checkpoint salvo* e **os corações voltam a 3**.
 - Só um checkpoint fica ativo por vez (o último por onde o Gabriel passou).
 - **Ao morrer**, a fase é recarregada inteira (robôs voltam ao lugar de origem) e o Gabriel aparece no último posto.

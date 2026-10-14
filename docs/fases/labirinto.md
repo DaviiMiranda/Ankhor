@@ -8,7 +8,7 @@
 
 ## 1. Visão geral
 
-Um labirinto de corredores de concreto no escuro. O Gabriel começa dentro da **oficina do Zane**, no canto de baixo à esquerda. O Zane não consegue invadir de longe a rede do subsolo: entrega o **notebook** a Gabriel e pede que invada **três nós de controle**, em três salões espalhados pelo labirinto. A **porta de SAÍDA** (placa verde, no alto à direita) fica trancada até os três caírem; depois o Zane abre pelo rádio. No caminho, seis robôs patrulham os corredores.
+Um labirinto de corredores de concreto no escuro. O Gabriel começa no canto de baixo à direita, com a lanterna no chão ao lado, e precisa **atravessar o labirinto** (18 salinhas de caminho, uns 40 s a pé) até a **oficina do Zane**, no canto de baixo à esquerda. O Zane não consegue invadir de longe a rede do subsolo: entrega o **notebook** a Gabriel e pede que invada **três nós de controle**, em três salões espalhados pelo labirinto. A **porta de SAÍDA** (placa verde, no alto à direita) fica trancada até os três caírem; depois o Zane abre pelo rádio. No caminho, seis robôs patrulham os corredores.
 
 - **Cena:** `cenas/salas/labirinto.tscn` · **Script:** `scripts/salas/labirinto.gd` (herda de `Sala`)
 - **Mapa:** `dados/labirinto/mapa_labirinto.tres` (texto, uma letra por bloco)
@@ -17,7 +17,7 @@ Um labirinto de corredores de concreto no escuro. O Gabriel começa dentro da **
 
 ### Como a fase se joga
 
-1. O Gabriel acorda na oficina. Pega a lanterna (se ainda não tem) e fala com o Zane (`E`). Ao fim da primeira conversa recebe o **notebook**.
+1. O Gabriel começa no canto de baixo à direita. Pega a lanterna (se ainda não tem) e atravessa o labirinto até a oficina do Zane, no canto oposto, escondendo-se dos robôs. Fala com o Zane (`E`). Ao fim da primeira conversa recebe o **notebook**; a oficina é segura e tem um checkpoint.
 2. Procura os três salões. Cada um tem **uma entrada só**, um **console** com a luz vermelha (o nó) e um **checkpoint**. Perto do console, o notebook (tecla do espaço dele) abre o minigame; vencer acende a luz verde.
 3. O aviso "Nó N de 3 invadido" marca o progresso. No terceiro, o Zane avisa pelo rádio e a placa da saída passa do vermelho ao verde.
 4. Foge dos robôs até a porta de saída, no canto de cima à direita.
@@ -39,9 +39,9 @@ Legenda do mapa:
 |---|---|
 | `#` | parede |
 | `.` | chão |
-| `G` | onde o Gabriel começa (dentro da oficina) |
-| `T` | a lanterna (só aparece se ele ainda não tem) |
-| `C` | checkpoint (um dentro de cada salão de nó) |
+| `G` | onde o Gabriel começa (canto de baixo à direita, longe da oficina) |
+| `T` | a lanterna, ao lado do início (só aparece se ele ainda não tem) |
+| `C` | checkpoint (um na oficina e um dentro de cada salão de nó: 4) |
 | `P` | pilha (5, em becos sem saída) |
 | `L` | lampião de emergência (14 em cruzamentos, mais 2 dentro das salas) |
 | `V` | Sentinela · `R` Rastreador (6 no total, nascem longe do início) |
@@ -52,7 +52,7 @@ Legenda do mapa:
 | `r` `k` `a` `u` | rack, caixas de peças, braço robótico, cadeira |
 | `h` `i` `j` | holograma de ondas, de barras, de código |
 
-Para mudar o mapa: altere o `.tres` à mão (mantendo o formato) ou mude `SEMENTE`, `FRACAO_CICLOS`, `SALAS` e `MODELOS` no gerador e rode `python assets/modelagem/salas/labirinto/gerar_labirinto.py` (com `PREVIA=<pasta>` ele salva uma imagem do mapa inteiro). O gerador falha com uma mensagem se o modelo de uma sala não bate com o tamanho dela ou se não couberem os robôs.
+Para mudar o mapa: altere o `.tres` à mão (mantendo o formato) ou mude `SEMENTE`, `FRACAO_CICLOS`, `INICIO`, `SALAS` e `MODELOS` no gerador e rode `python assets/modelagem/salas/labirinto/gerar_labirinto.py` (com `PREVIA=<pasta>` ele salva uma imagem do mapa inteiro). O gerador falha com uma mensagem se o modelo de uma sala não bate com o tamanho dela, se o início ficar fora da faixa `CAMINHO_ATE_A_OFICINA` (de 12 a 24 salinhas de caminho até a oficina) ou se não couberem os robôs.
 
 ### Por que corredores de 2 blocos
 Na vista do jogo (lateral com profundidade), a parede tem 40 px de altura e cobre o que está logo atrás dela. Com corredor de 1 bloco, a parede de baixo cobriria o corredor inteiro. Com 2 blocos, sobra uma faixa de chão visível, e quem anda rente à parede de baixo some da cintura para baixo. Por isso **os itens ficam sempre na fileira de cima** de cada corredor. Nas salas (5 fileiras de blocos), a última fileira fica parcialmente atrás da parede de baixo: nada importante nela.
@@ -68,12 +68,12 @@ Uma sala é um retângulo de salinhas com as paredes internas derrubadas, e **um
 
 | Sala | Onde | Tamanho | O que tem |
 |---|---|---|---|
-| **Oficina do Zane** | canto inferior esquerdo (onde o Gabriel começa) | 4 × 2 salinhas (11 × 5 blocos) | O Zane, a lanterna, bancada, racks, mesa com computador, caixas, braço robótico, cadeira, robô desmontado, 2 hologramas, 1 lampião e **26 peças eletrônicas** espalhadas pelo chão (placas, cabos, resistores, bandeja de chips) |
+| **Oficina do Zane** | canto inferior esquerdo (o primeiro destino do Gabriel) | 4 × 2 salinhas (11 × 5 blocos) | O Zane, um checkpoint, bancada, racks, mesa com computador, caixas, braço robótico, cadeira, robô desmontado, 2 hologramas, 1 lampião e **26 peças eletrônicas** espalhadas pelo chão (placas, cabos, resistores, bandeja de chips) |
 | **Nó 1** (sala dos servidores) | canto superior esquerdo | 3 × 2 (8 × 5) | Fileira de racks, 1 holograma de ondas, o console do nó (**fácil**) e o checkpoint |
 | **Nó 2** (sala de controle) | centro | 3 × 2 | Dois consoles grandes, 2 hologramas, o console do nó (**médio**) e o checkpoint |
 | **Nó 3** (laboratório) | canto inferior direito | 3 × 2 | Bancada, braço robótico, caixas, holograma, o console do nó (**difícil**) e o checkpoint |
 
-- **A oficina é segura:** a patrulha dos robôs nunca escolhe uma salinha dela como destino (`MapaLabirinto.salinhas_seguras`). Um robô que persegue o Gabriel entra normalmente.
+- **A oficina é segura:** a patrulha dos robôs nunca escolhe uma salinha dela como destino (`MapaLabirinto.salinhas_seguras`), e nenhum robô nasce a menos de 5 salinhas de caminho da porta dela. Um robô que persegue o Gabriel entra normalmente.
 - **Os salões dos nós não são seguros:** são becos sem saída. Quem entra com um robô atrás fica encurralado; é a tensão da fase.
 - **Luz:** hologramas e consoles têm `PointLight2D` ciano (hologramas, com tremor) ou vermelha/verde (nó). Os hologramas são desenhados **sem luz**, como os olhos dos robôs, e brilham no escuro.
 
@@ -104,7 +104,7 @@ Uma sala é um retângulo de salinhas com as paredes internas derrubadas, e **um
 
 O Gabriel anda a 45 px/s e corre a 81 px/s: consegue fugir correndo, mas correr faz barulho e o Rastreador escuta de longe.
 
-Eram 3 robôs na grade de 96 salinhas; na grade de 198 salinhas são 6. Os robôs nascem a pelo menos 8 salinhas de caminho do início e a pelo menos 5 de distância entre si (em `gerar_labirinto.py`: `TIPOS_DE_ROBO`, `DISTANCIA_MINIMA_DO_INICIO`, `SEPARACAO_ENTRE_ROBOS`).
+Eram 3 robôs na grade de 96 salinhas; na grade de 198 salinhas são 6. Os robôs nascem a pelo menos 8 salinhas de caminho do início, a pelo menos 5 da porta da oficina e a pelo menos 5 de distância entre si (em `gerar_labirinto.py`: `TIPOS_DE_ROBO`, `DISTANCIA_MINIMA_DO_INICIO`, `DISTANCIA_MINIMA_DA_OFICINA`, `SEPARACAO_ENTRE_ROBOS`).
 
 A IA (máquina de estados, cone por produto escalar, BFS do som, A\*, Markov) está em [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md) e [`../historia/personagens/robos.md`](../historia/personagens/robos.md).
 
@@ -145,4 +145,4 @@ Quando um robô vê o Gabriel, a camada de perseguição sobe em 0,8 s; quando t
 - O que os nós de controle são na história: hoje são terminais da trava do sistema do subsolo (proposta; Enredo, seção 12.5).
 - Por onde o Gabriel chega do Bloco de salas ao subsolo (hoje a porta corta-fogo abre direto o Labirinto) e para onde a saída leva de verdade (hoje, o Bunker, provisoriamente).
 - Rotina de patrulha por grade horária (coloração de grafos): hoje a patrulha é só a cadeia de Markov.
-- Sprite próprio para a luz do nó e animação de entrada na oficina; o Zane está parado.
+- Uma porta de entrada visível no canto de baixo à direita (hoje o Gabriel simplesmente começa ali) e animação do Zane; ele está parado.

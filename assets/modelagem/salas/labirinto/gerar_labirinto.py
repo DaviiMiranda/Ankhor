@@ -35,8 +35,8 @@
 # AS SALAS: RETÂNGULOS DE SALINHAS COM UMA ENTRADA SÓ
 # ---------------------------------------------------------------------------
 #
-# A fase tem quatro salas (ver SALAS): a oficina do Zane, onde o Gabriel
-# começa, e três salas com um nó de controle para hackear. Cada sala é um
+# A fase tem quatro salas (ver SALAS): a oficina do Zane, que é o primeiro
+# destino do Gabriel, e três salas com um nó de controle para hackear. Cada sala é um
 # retângulo de salinhas com TODAS as paredes internas derrubadas: um
 # salão aberto de (3w - 1) x (3h - 1) blocos.
 #
@@ -68,7 +68,7 @@
 # CICLOS, e sempre dá para dar a volta num quarteirão para despistar.
 #
 # Os marcadores no mapa (uma letra por bloco):
-#   #  parede          .  chão           G  início do Gabriel   T  lanterna
+#   #  parede          .  chão           G  início do Gabriel   T  lanterna (ao lado do início)
 #   D  porta de saída (na parede de cima)                        S  saída (gatilho)
 #   C  checkpoint      P  pilha          L  lâmpada               V  Sentinela   R  Rastreador
 #   Z  o Zane          N  nó de controle (hackeável; 2 blocos de largura)
@@ -120,6 +120,16 @@ SEPARACAO_ENTRE_ROBOS = 5
 QUANTIDADE_PILHAS = 5
 QUANTIDADE_LAMPADAS = 14
 
+# Onde o Gabriel começa (uma salinha, com a lanterna ao lado): o canto
+# oposto ao da oficina. Ele precisa atravessar o labirinto até o Zane. O
+# caminho mais curto até a entrada da oficina tem de ficar nesta faixa
+# (em salinhas), senão o gerador reclama.
+INICIO = (COLUNAS - 1, FILEIRAS - 1)
+CAMINHO_ATE_A_OFICINA = (12, 24)
+# Os robôs não nascem a menos disso de caminho da entrada da oficina: o
+# destino não pode ter um robô parado na porta.
+DISTANCIA_MINIMA_DA_OFICINA = 5
+
 # Cada sala: posição (x, y) e tamanho (w, h) em SALINHAS. A oficina tem a
 # entrada fixa (o par de salinhas, de dentro para fora) e é "segura": os
 # robôs não patrulham nela (mas podem entrar se estiverem perseguindo).
@@ -138,7 +148,7 @@ MODELOS = {
         "hLbb.rr.kj.",
         ".....mm...a",
         "k....Z..u..",
-        "..G.T...xx.",
+        "..C.....xx.",
         "...........",
     ),
     "no_1": (
@@ -281,14 +291,18 @@ def montar_mapa(rng):
                 grade[by][bx] = "."
 
     oficina = next(s for s in SALAS if s["nome"] == "oficina")
-    inicio, fim = oficina["entrada"][0], (COLUNAS - 1, 0)
+    entrada_da_oficina = oficina["entrada"][0]
+    inicio, fim = INICIO, (COLUNAS - 1, 0)
+    dist_oficina, _ = bfs(abertas, entrada_da_oficina)
+    assert CAMINHO_ATE_A_OFICINA[0] <= dist_oficina[inicio] <= CAMINHO_ATE_A_OFICINA[1], \
+        f"o início fica a {dist_oficina[inicio]} salinhas da oficina"
     dist, pai = bfs(abertas, inicio)
     caminho = [fim]
     while pai[caminho[-1]] is not None:
         caminho.append(pai[caminho[-1]])
     caminho.reverse()
     em_sala = {c for sala in SALAS for c in celulas_da_sala(sala)}
-    usadas = em_sala | {fim}
+    usadas = em_sala | {inicio, fim}
 
     def marcar(c, letra, dx=1, dy=1):
         grade[3 * c[1] + dy][3 * c[0] + dx] = letra
@@ -303,6 +317,8 @@ def montar_mapa(rng):
                 if letra != ".":
                     grade[3 * sala["y"] + 1 + j][3 * sala["x"] + 1 + i] = letra
 
+    marcar(inicio, "G")
+    marcar(inicio, "T", 2, 1)
     grade[0][3 * fim[0] + 1] = "D"
     grade[0][3 * fim[0] + 2] = "D"
     marcar(fim, "S")
@@ -313,6 +329,8 @@ def montar_mapa(rng):
     robos = []
     for c in longe:
         if c in usadas or dist[c] < DISTANCIA_MINIMA_DO_INICIO:
+            continue
+        if dist_oficina[c] < DISTANCIA_MINIMA_DA_OFICINA:
             continue
         if any(abs(c[0] - r[0]) + abs(c[1] - r[1]) < SEPARACAO_ENTRE_ROBOS for r in robos):
             continue
@@ -332,6 +350,7 @@ def montar_mapa(rng):
     rng.shuffle(cruzamentos)
     for c in cruzamentos[:QUANTIDADE_LAMPADAS]:
         marcar(c, "L", 1, 1)
+    print(f"  caminho do início até a entrada da oficina: {dist_oficina[inicio]} salinhas")
     return ["".join(linha) for linha in grade], len(caminho)
 
 
