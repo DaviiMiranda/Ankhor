@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "zane_labirinto_01"
+falante = "ZANE (rádio)"
+falas = PackedStringArray("Chhh... Gabriel? Três de três! O sistema do subsolo acabou de me dar acesso.", "Abri a porta de saída. A placa deve ter voltado para o verde. Vai, mas sem barulho.", "E... valeu, tá? Eu desligo as minhas coisas aqui e já te alcanço.")
+titulo_anotacao = "Zane abriu a saída"
+anotacao = "O terceiro nó caiu e o Zane abriu a porta de saída do Labirinto pelo rádio. Ele disse que vem atrás depois de desligar as coisas dele."

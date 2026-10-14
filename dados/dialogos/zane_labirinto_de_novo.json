@@ -1,0 +1,90 @@
+{
+	"id": "zane_labirinto_de_novo",
+	"inicio": "oficina",
+	"trechos": {
+		"oficina": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Voltou inteiro? Ainda tem nó pra cair. O terminal fica no meio de cada salão."
+				}
+			],
+			"escolhas": [
+				{
+					"texto": "Como eu invado um nó?",
+					"vai_para": "como"
+				},
+				{
+					"texto": "E os robôs?",
+					"vai_para": "robos"
+				},
+				{
+					"texto": "Até mais, Zane.",
+					"vai_para": "tchau"
+				}
+			]
+		},
+		"como": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Toma o meu notebook de pesquisa. Chega perto do terminal do nó, equipa e aciona: abre um joguinho de invasão. Acertou, o nó cai."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Nos nós não gasta bateria: o terminal alimenta o notebook. Pode errar à vontade, só não erra perto de robô."
+				}
+			],
+			"vai_para": "oficina_menu"
+		},
+		"robos": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_assustado",
+					"texto": "Uns seis, na última contagem. A Sentinela é a alta, de olho vermelho: vê longe, e mais longe ainda com a sua lanterna acesa."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "O Rastreador é o baixinho, de antena. Quase não enxerga, mas ouve tudo. Correr perto dele é pedir pra morrer."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Anda devagar, apaga a lanterna quando precisar e usa os cantos. Cada salão tem uma entrada só, então olha antes de entrar."
+				}
+			],
+			"vai_para": "oficina_menu"
+		},
+		"oficina_menu": {
+			"falas": [],
+			"escolhas": [
+				{
+					"texto": "Como eu invado um nó?",
+					"vai_para": "como"
+				},
+				{
+					"texto": "E os robôs?",
+					"vai_para": "robos"
+				},
+				{
+					"texto": "Até mais, Zane.",
+					"vai_para": "tchau"
+				}
+			]
+		},
+		"tchau": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Vai com calma. E apaga a lanterna na hora certa!"
+				}
+			]
+		}
+	}
+}

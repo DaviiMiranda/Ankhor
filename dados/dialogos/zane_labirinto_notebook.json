@@ -1,0 +1,15 @@
+{
+	"id": "zane_labirinto_notebook",
+	"inicio": "toma",
+	"trechos": {
+		"toma": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_assustado",
+					"texto": "Ei, o notebook! Você ia sem ele? Toma. Cuidado com ele, é o único que eu tenho."
+				}
+			]
+		}
+	}
+}

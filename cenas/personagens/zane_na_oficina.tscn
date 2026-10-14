@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/personagens/zane.tscn" id="1_zane"]
+[ext_resource type="Script" path="res://scripts/personagens/zane_oficina.gd" id="2_conversa"]
+
+[sub_resource type="CircleShape2D" id="Alcance"]
+radius = 34.0
+
+[node name="ZaneNaOficina" type="Node2D"]
+
+[node name="Zane" parent="." instance=ExtResource("1_zane")]
+vista = "tres_quartos"
+olhando_para_esquerda = true
+
+[node name="Conversa" type="Area2D" parent="."]
+script = ExtResource("2_conversa")
+texto_acao = "Conversar"
+altura_aviso = 60.0
+primeira_conversa = "res://dados/dialogos/zane_labirinto_primeiro_encontro.json"
+conversa_de_novo = "res://dados/dialogos/zane_labirinto_de_novo.json"
+conversa_do_notebook = "res://dados/dialogos/zane_labirinto_notebook.json"
+conversa_concluida = "res://dados/dialogos/zane_labirinto_concluido.json"
+
+[node name="Alcance" type="CollisionShape2D" parent="Conversa"]
+position = Vector2(0, -4)
+shape = SubResource("Alcance")
