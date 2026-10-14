@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-14 — As salas do Labirinto têm porta e não se vê o que há dentro de fora
+**Decisão:** cada uma das 4 salas do Labirinto (a oficina do Zane e os 3 salões dos nós) ganha uma **porta na entrada**. Fechada, ela bloqueia o Gabriel e os robôs, a visão dos robôs e a luz. O Gabriel abre com `E`; um robô abre sozinho ao chegar nela; fecha sozinha 1,2 s depois que ninguém está perto. Enquanto a porta está fechada e o Gabriel está fora da sala, **tudo o que há dentro dela fica invisível** (props, luzes, nó, checkpoint, Zane, alçapão, peças do chão e os robôs que estiverem lá); as paredes continuam à vista. A animação é um **placeholder**: duas folhas de aço (retângulos coloridos) que recolhem para as bordas em 0,35 s, com lâmpada vermelha/verde e o som `porta_correr.wav`.
+**Por quê:** pedido do Davi: dava para ver as salas de fora (luzes, hologramas, consoles) e não havia porta para entrar nelas.
+**Afeta:** `scripts/sistemas/porta_da_sala.gd` e `cenas/sistemas/porta_da_sala.tscn` (novos); `scripts/salas/labirinto.gd` (`_colocar_portas`, `_guardar_na_sala`); `scripts/labirinto/mapa_labirinto.gd` (`salas`, `indice_da_sala`, `entrada_da_sala`); `dados/labirinto/mapa_labirinto.tres` e o gerador `gerar_labirinto.py` (campo `salas`); `docs/fases/labirinto.md` (seção 3). A arte final da porta (sprite) entra depois sem mudar o script.
+
 ## 2026-10-14 — A lanterna aparece presa ao peito do Gabriel e o feixe sai da lente
 **Decisão:** com a lanterna equipada, aparece no **peito** do Gabriel uma lanterna pequena e escura (5 × 3 px, `lanterna_peito.png`), girada para a direção da mira e espelhada quando ele olha para a esquerda. Nas vistas de costas ela fica escondida pelo corpo. O cone e o brilho nascem na **lente** dela, e não mais de um ponto fixo na altura do tronco. A sombra continua calculada a partir de um ponto no chão (como em `docs/fases/labirinto.md`, seção 4), só a textura da luz é que sai da lente. A primeira versão pôs a lanterna na mão (7 × 4 px) e foi trocada pelo peito, a pedido do Davi, por ficar grande demais e chamar atenção.
 **Por quê:** pedido do Davi. A luz parecia sair da cintura, porque não havia lanterna desenhada e o ponto de origem ficava fixo no corpo. No peito ela fica mais discreta e não depende do balanço do braço.

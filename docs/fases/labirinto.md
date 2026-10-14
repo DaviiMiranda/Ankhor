@@ -17,7 +17,7 @@ Um labirinto de corredores de concreto no escuro. O Gabriel começa **fora da of
 
 ### Como a fase se joga
 
-1. O Gabriel começa perto da oficina. Pega a lanterna (se ainda não tem), segue pelo corredor de baixo até a porta da oficina e fala com o Zane (`E`). Ao fim da primeira conversa recebe o **notebook**; a oficina é segura e tem um checkpoint.
+1. O Gabriel começa perto da oficina. Pega a lanterna (se ainda não tem), segue pelo corredor de baixo até a porta da oficina, abre (`E`) e fala com o Zane (`E`). Ao fim da primeira conversa recebe o **notebook**; a oficina é segura e tem um checkpoint.
 2. Procura os três salões. Cada um tem **uma entrada só**, um **console** com a luz vermelha (o nó) e um **checkpoint**. Perto do console, o notebook (tecla do espaço dele) abre o minigame; vencer acende a luz verde.
 3. O aviso "Nó N de 3 invadido" marca o progresso. No terceiro, aparece "Rede invadida. Volte ao Zane" e o Zane chama pelo rádio.
 4. Volta aos poucos passos da oficina (fugindo dos robôs, que continuam patrulhando) e fala com o Zane de novo: outra conversa, em que ele revela o alçapão sob a lona e o abre.
@@ -60,13 +60,13 @@ Para mudar o mapa: altere o `.tres` à mão (mantendo o formato) ou mude `SEMENT
 Na vista do jogo (lateral com profundidade), a parede tem 40 px de altura e cobre o que está logo atrás dela. Com corredor de 1 bloco, a parede de baixo cobriria o corredor inteiro. Com 2 blocos, sobra uma faixa de chão visível, e quem anda rente à parede de baixo some da cintura para baixo. Por isso **os itens ficam sempre na fileira de cima** de cada corredor. Nas salas (5 fileiras de blocos), a última fileira fica parcialmente atrás da parede de baixo: nada importante nela.
 
 ### Como a sala se monta
-`labirinto.gd` lê o mapa ao carregar e cria: o chão (uma textura repetida), um nó por bloco de parede (topo + face da frente, no y-sort), a colisão (retângulos juntando blocos vizinhos da mesma fileira), os oclusores de luz, os detalhes do chão (marcas de garra, poças, papéis, e as peças eletrônicas na oficina) e os marcadores. Uma sequência de letras largas iguais (`bb`, `NN`) vira **um** objeto centrado.
+`labirinto.gd` lê o mapa ao carregar e cria: o chão (uma textura repetida), um nó por bloco de parede (topo + face da frente, no y-sort), a colisão (retângulos juntando blocos vizinhos da mesma fileira), os oclusores de luz, os detalhes do chão (marcas de garra, poças, papéis, e as peças eletrônicas na oficina), os marcadores e as portas das salas (seção 3). Uma sequência de letras largas iguais (`bb`, `NN`) vira **um** objeto centrado.
 
 ---
 
 ## 3. As quatro salas
 
-Uma sala é um retângulo de salinhas com as paredes internas derrubadas, e **uma entrada só** (no sorteio ela é uma folha da árvore: a busca entra e volta). O desenho de cada uma está em `MODELOS`, no gerador. O mapa guarda a área da oficina (`area_oficina`) e as salinhas seguras (`salinhas_seguras`).
+Uma sala é um retângulo de salinhas com as paredes internas derrubadas, e **uma entrada só** (no sorteio ela é uma folha da árvore: a busca entra e volta). O desenho de cada uma está em `MODELOS`, no gerador. O mapa guarda o miolo de cada sala em blocos (`salas`, sem as paredes), a área da oficina (`area_oficina`) e as salinhas seguras (`salinhas_seguras`).
 
 | Sala | Onde | Tamanho | O que tem |
 |---|---|---|---|
@@ -78,6 +78,21 @@ Uma sala é um retângulo de salinhas com as paredes internas derrubadas, e **um
 - **A oficina é segura:** a patrulha dos robôs nunca escolhe uma salinha dela como destino (`MapaLabirinto.salinhas_seguras`), e nenhum robô nasce a menos de 5 salinhas de caminho da porta dela. Um robô que persegue o Gabriel entra normalmente.
 - **Os salões dos nós não são seguros:** são becos sem saída. Quem entra com um robô atrás fica encurralado; é a tensão da fase.
 - **Luz:** hologramas e consoles têm `PointLight2D` ciano (hologramas, com tremor) ou vermelha/verde (nó). Os hologramas são desenhados **sem luz**, como os olhos dos robôs, e brilham no escuro.
+
+### As portas das salas
+Cada sala tem uma **porta na entrada** (`cenas/sistemas/porta_da_sala.tscn`, script `porta_da_sala.gd`). `labirinto.gd` acha a entrada olhando o anel de blocos em volta de cada retângulo de `salas` (`MapaLabirinto.entrada_da_sala`): os blocos que não são parede formam a passagem, e a porta cobre todos eles (2 blocos, na horizontal ou na vertical).
+
+| | Porta fechada | Porta aberta |
+|---|---|---|
+| Passagem | bloqueia o Gabriel e os robôs (camadas 1 e 8) | livre |
+| Visão dos robôs | bloqueia (o raio contra a camada 8 bate nela) | livre |
+| Luz | tem oclusor: a luz de dentro não vaza e a lanterna não entra | sem oclusor |
+| Lâmpada | vermelha | verde |
+
+- **Quem abre:** o Gabriel aperta `E` a até 24 px da porta (`[E] Abrir`). Um **robô** abre sozinha ao chegar a 14 px dela (a patrulha e a perseguição continuam entrando nas salas, sem o robô travar na porta). Um robô que só passa pelo corredor ao lado não abre.
+- **Fecha sozinha:** 1,2 s depois que ninguém (nem o Gabriel nem robô) está a menos de 24 px dela. Quem estiver dentro da sala precisa apertar `E` de novo para sair.
+- **Animação (placeholder):** duas folhas de aço (retângulos coloridos, sem sprite) que recolhem para as bordas em 0,35 s, com o som `porta_correr.wav` (mais grave ao fechar). A arte final entra depois sem mudar o script.
+- **Não dá para ver a sala de fora:** enquanto a porta está fechada e o Gabriel fora do retângulo da sala, **todo o conteúdo da sala fica invisível** (props, luzes, nó, checkpoint, Zane, alçapão, peças do chão) e também os robôs que estiverem lá dentro. As paredes continuam à vista. Ao abrir a porta ou entrar na sala, tudo aparece; ao fechar de novo, some. Quem nasce ou renasce dentro de uma sala (checkpoint) a vê normalmente.
 
 ### O nó de controle
 `cenas/sistemas/no_hackeavel.tscn` (script `no_hackeavel.gd`, herda de `Porta`): console, alcance de interação e luz. O notebook o trata como uma porta trancada e abre o minigame (ver [`../mecanicas/hackeamento.md`](../mecanicas/hackeamento.md)); **não gasta bateria**. As marcas `labirinto_no_1`, `_2` e `_3` ficam em `Progresso` e `rede_do_labirinto.gd` conta; no terceiro, marca `labirinto_rede_invadida`, avisa "Volte ao Zane" e toca a transmissão `zane_labirinto_01`.
@@ -152,3 +167,4 @@ Quando um robô vê o Gabriel, a camada de perseguição sobe em 0,8 s; quando t
 - Por onde o Gabriel chega do Bloco de salas ao subsolo (hoje a porta corta-fogo abre direto o Labirinto) e para onde o alçapão leva de verdade (hoje, o Bunker, provisoriamente).
 - Rotina de patrulha por grade horária (coloração de grafos): hoje a patrulha é só a cadeia de Markov.
 - Uma porta de entrada visível no ponto onde o Gabriel começa (hoje ele simplesmente aparece ali) e animação do Zane; ele está parado.
+- Arte final das portas das salas (hoje são retângulos de aço com lâmpada, só para marcar a posição e a animação) e um som de trava ao fechar.
