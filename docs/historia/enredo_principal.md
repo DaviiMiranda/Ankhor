@@ -118,7 +118,8 @@ O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na T
 
 | Esconderijo | Quem fica |
 |---|---|
-| **Bunker**, embaixo do núcleo da Âncora. O maior e mais seguro: os robôs não descem lá | Zane, no computador da central de dados; Henrique, na mesma sala de dados, com as câmeras do campus e o rádio. Diz que está escondido ali, tentando entender tudo |
+| **Bunker**, embaixo do núcleo da Âncora. O maior e mais seguro: os robôs não descem lá | Zane, no computador da central de dados (depois do Labirinto: ver 12.3); Henrique, na mesma sala de dados, com as câmeras do campus e o rádio. Diz que está escondido ali, tentando entender tudo |
+| **Labirinto**, numa oficina no canto do subsolo da Âncora, perto de onde Gabriel entra | Zane, entre componentes eletrônicos jogados por todo lado e telas holográficas. Não consegue invadir de longe a rede do subsolo, e pede ajuda a Gabriel |
 | **Biblioteca**, escondido numa sala que o jogador ainda não consegue abrir, com medo | Baltazar, isolado dos outros, ali desde que chegou |
 | **Bloco de salas**, na sala 103, atrás de uma barricada | Clarice, que foi para lá depois de chegar à Biblioteca, e Diana, que apareceu depois e foi acolhida por ela. Desde então tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio |
 | **D-Tec**, no laboratório | Carlos, que nunca sai de lá |
@@ -158,7 +159,7 @@ O antagonista é o **Carlos**, cientista de 3026 que criou a Âncora, ficou na T
 
 ## 8. Estrutura da história
 
-> Já decidido: **Biblioteca → Bloco de salas → Centro de Convivência**. O Centro de Convivência ainda não foi feito. Onde entram o Bunker (o Ato 3 abaixo), o Labirinto e as outras áreas **não está decidido** (seção 12). Esta estrutura segue a lógica da história, não uma ordem de jogo travada.
+> Já decidido: **Biblioteca → Bloco de salas → Labirinto** (2026-10-14). O Labirinto é a terceira fase e é nele que Gabriel encontra o Zane em pessoa. Por enquanto a saída do Labirinto abre a entrada do Bunker (o Ato 3 abaixo), de forma provisória. O Centro de Convivência deixou de ser a fase seguinte ao Bloco de salas e está sem lugar na ordem. Onde entram o Bunker, o Centro de Convivência e as outras áreas **não está decidido** (seção 12). Esta estrutura segue a lógica da história, não uma ordem de jogo travada.
 
 ### Ato 1 — Acordar (Biblioteca)
 
@@ -180,9 +181,9 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 ### Ato 2 — Encontrar os outros (Bloco de salas, Labirinto e demais áreas)
 
 - Cada fase leva a **um personagem** e ao esconderijo dele. Gabriel precisa chegar lá, ganhar a confiança da pessoa e receber a parte dela para consertar a Âncora (seção 3.1).
-- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Clarice** e da **Diana**, a **sala 103**, atrás de uma barricada. A Clarice foi para lá depois de chegar à Biblioteca; a Diana apareceu depois e foi acolhida por ela. Desde então as duas tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio, e a Clarice conta isso a Gabriel. Gabriel ganha a confiança dela devolvendo o molho de chaves que ela perdeu (para ela, é uma permuta, não um pedido de ajuda); daí em diante a Clarice o guia pelo rádio (o que cada chave abre, por onde os robôs passam, que ela mapeou como um grafo) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar. A saída, a porta corta-fogo do 1º andar, leva à próxima fase, o **Centro de Convivência**. Como ele ainda não existe, por enquanto a porta abre a entrada do Bunker, de forma provisória.
-- **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): subsolo escuro do centro de pesquisa da Âncora, com três robôs. Jogável, mas sem lugar na história ainda.
-- **Centro de Convivência** ([`../fases/centro_de_convivencia.md`](../fases/centro_de_convivencia.md), ainda não feito): é a fase que vem depois do Bloco de salas. O que acontece nela, quem Gabriel encontra e o que ela ensina ainda não foi definido.
+- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Clarice** e da **Diana**, a **sala 103**, atrás de uma barricada. A Clarice foi para lá depois de chegar à Biblioteca; a Diana apareceu depois e foi acolhida por ela. Desde então as duas tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio, e a Clarice conta isso a Gabriel. Gabriel ganha a confiança dela devolvendo o molho de chaves que ela perdeu (para ela, é uma permuta, não um pedido de ajuda); daí em diante a Clarice o guia pelo rádio (o que cada chave abre, por onde os robôs passam, que ela mapeou como um grafo) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar. A saída, a porta corta-fogo do 1º andar, leva à próxima fase, o **Labirinto**.
+- **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): a terceira fase. Subsolo escuro do centro de pesquisa da Âncora, com seis robôs patrulhando corredores que se cruzam. Gabriel entra no subsolo e, a poucos passos, chega à **oficina do Zane**: uma sala cheia de componentes eletrônicos, desorganizada, com telas holográficas. O Zane não consegue invadir a rede do subsolo de longe, então entrega a Gabriel o **notebook** dele e pede que invada **três nós de controle**, em três salões espalhados pelo labirinto (cada salão tem uma entrada só). Quando o terceiro cai, o Zane chama Gabriel de volta pelo rádio e, na oficina, mostra a saída: um **alçapão escondido sob uma lona**, que o sistema mantinha lacrado e que desce para o bunker. O Zane diz que desliga as coisas dele e vai atrás depois. Decidido pelo Davi em 2026-10-14; o que os nós são exatamente é proposta (seção 12.5).
+- **Centro de Convivência** ([`../fases/centro_de_convivencia.md`](../fases/centro_de_convivencia.md), ainda não feito): deixou de ser a fase seguinte ao Bloco de salas (2026-10-14) e está sem lugar na ordem. O que acontece nela, quem Gabriel encontra e o que ela ensina continua indefinido.
 - As outras áreas do GDD (Espaço Cultural, NAMI, Reitoria) ainda não foram redefinidas para a premissa atual.
 - **Rádio e telefone:** a Clarice fala pelo rádio, na frequência que o Zane mantém, com o que o Henrique vê nas câmeras, e o Zane liga pelos telefones velhos.
 - **O anel:** em algum ponto deste ato, Gabriel encontra o Baltazar e descobre o parentesco.
@@ -192,8 +193,8 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 **Fase em desenvolvimento.** [`../fases/bunker.md`](../fases/bunker.md).
 
 - O bunker de pesquisa embaixo do núcleo da Âncora ("ÂNCORA-03"), com dois setores. Os robôs não descem aqui.
-- **De onde Gabriel chega aqui não está decidido.** Por enquanto a porta corta-fogo do Bloco de salas abre a entrada do bunker, mas a fase seguinte ao bloco é o Centro de Convivência (seção 12.5).
-- **Gabriel encontra o Zane em pessoa**, no computador da central de dados. O **Henrique** fica na mesma sala de dados, com o acesso às câmeras do campus.
+- **De onde Gabriel chega aqui não está decidido.** Por enquanto a saída do Labirinto abre a entrada do bunker, de forma provisória (seção 12.5).
+- **O Gabriel já encontrou o Zane em pessoa no Labirinto**, e o Zane disse que ia atrás dele depois. O que o Zane faz na central de dados quando Gabriel chega está pendente (seção 12.3). O **Henrique** fica na sala de dados, com o acesso às câmeras do campus, e é quem Gabriel encontra em pessoa aqui.
 - O **setor B** (laboratório, arquivo e a comporta do núcleo) está lacrado pelo sistema, e o Zane tenta quebrar a senha.
 - Seis portas lacradas são os ganchos para as próximas fases: escotilha da superfície, elevador, arsenal, laboratório, arquivo e a comporta do núcleo.
 
@@ -286,6 +287,7 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 - **Clarice e Diana:** se as duas continuam na 103 até o fim ou se juntam ao grupo no bunker mais tarde (o final da Clarice com Gabriel está em 12.1). As pichações assinadas "C." no bunker ("NÃO CONFIE NAS LUZES") não combinam com a Clarice estar na 103 desde que chegou: falta decidir quem as fez ou se saem.
 - **Diana na 103:** ela ainda não tem visual, então a cena da 103 mostra só a Clarice.
 - **Zane:** o que fazia no ponto quando foi puxado.
+- **Zane no Labirinto:** ele aparece em pessoa numa oficina no começo do Labirinto (decidido em 2026-10-14), e não só no bunker. Falta decidir como isso conversa com as seções 6 e 6.1 (o computador do bunker, a frequência de rádio): se a oficina é um segundo ponto dele, quando ele vai para o bunker (a conversa do fim do Labirinto diz que ele "vai atrás") e o que ele está fazendo na central de dados quando Gabriel chega lá.
 - **Ordem de chegada:** só falta a posição do **Baltazar** (já decidido: o Henrique é o primeiro, o Zane vem antes da Clarice, a Diana depois da Clarice, e Gabriel é o último). Não precisa seguir a ordem dos anos.
 - **Qual sala da Biblioteca** é o esconderijo do Baltazar (uma que o jogador ainda não consegue abrir; a sala de obras raras, barrada por dentro, é a candidata) e **quando ela passa a ficar acessível**. Ele está ali desde que chegou: o acampamento vazio do começo foi o primeiro abrigo dele, e a última página do diário ("Hei de seguir a luz até onde ella nasce") combina com ficar, porque a luz nasce no chão da Biblioteca (seção 3).
 
@@ -296,12 +298,13 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 
 ### 12.5 Estrutura e fases
 
-- **Ordem das fases:** onde entram o Bunker, o Labirinto e as outras áreas, e qual personagem aparece em cada uma. Já decidido: Biblioteca → Bloco de salas → Centro de Convivência.
+- **Ordem das fases:** onde entram o Bunker, o Centro de Convivência e as outras áreas, e qual personagem aparece em cada uma. Já decidido: Biblioteca → Bloco de salas → Labirinto. Por enquanto a saída do Labirinto abre a entrada do Bunker, de forma provisória.
+- **Labirinto:** o que os três nós de controle são na história (a proposta atual: terminais da trava do sistema do subsolo, que lacra a saída e só lê de dentro), por que a rede do subsolo é fechada para o Zane, e por onde o Gabriel chega do Bloco de salas ao subsolo.
 - **Bloco de salas:** por que a sala 205 está intacta. O objetivo e os robôs foram decididos em 2026-10-11 ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)).
 - **O que destrava o setor B do bunker** (senhas nos disquetes, religar o gerador) e se os robôs entram lá.
 - **O D-Tec (Bloco M)** como fase: se é a última, e como o grupo enfrenta o Carlos sem lutar (Gabriel não é combatente).
 - **Cenários mais futuristas.** Pedido do Davi: os cenários precisam mostrar mais a tecnologia de 3026 (telas, máquinas, a estrutura do centro de pesquisa e do D-Tec), misturada às ruínas e à vegetação. A cabine de estudo da Biblioteca já aparece assim no vídeo do despertar (`seg_acordar`). Falta decidir quanto do resto do campus tem esse visual futurista e onde ele aparece mais.
-- **Redesenho das áreas do GDD** (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) para a premissa da fenda. O Centro de Convivência vem primeiro, por ser a fase seguinte ao Bloco de salas.
+- **Redesenho das áreas do GDD** (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) para a premissa da fenda. O Centro de Convivência perdeu o lugar de fase seguinte ao Bloco de salas (2026-10-14) e está sem lugar na ordem.
 - **De onde vem a grade horária dos robôs.** Antes vinha da coloração de grafos da semana de provas; hoje a patrulha é programada (pelo Carlos ou pela IA: seção 12.2).
 
 ### 12.6 Mecânicas que dependem da história

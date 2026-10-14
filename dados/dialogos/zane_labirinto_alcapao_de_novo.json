@@ -1,0 +1,15 @@
+{
+	"id": "zane_labirinto_alcapao_de_novo",
+	"inicio": "pressa",
+	"trechos": {
+		"pressa": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "O alçapão tá aberto, do meu lado. Desce logo, antes que os robôs achem o duto. Eu vou atrás!"
+				}
+			]
+		}
+	}
+}

@@ -7,7 +7,26 @@ const CENA_LAMPADA := preload("res://cenas/cenario/objetos/lampada.tscn")
 const CENA_PILHA := preload("res://cenas/itens/pilha_no_chao.tscn")
 const CENA_ITEM := preload("res://cenas/itens/item_no_chao.tscn")
 const CENA_SAIDA := preload("res://cenas/sistemas/saida_fase.tscn")
+const CENA_NO := preload("res://cenas/sistemas/no_hackeavel.tscn")
+const CENA_ZANE := preload("res://cenas/personagens/zane_na_oficina.tscn")
+const CENA_ALCAPAO := preload("res://cenas/sistemas/alcapao.tscn")
 const LANTERNA := preload("res://dados/itens/lanterna.tres")
+const PROPS := {
+	"b": preload("res://cenas/cenario/dtec/objetos/bancada_eletronica.tscn"),
+	"c": preload("res://cenas/cenario/dtec/objetos/console.tscn"),
+	"m": preload("res://cenas/cenario/dtec/objetos/mesa_computador.tscn"),
+	"x": preload("res://cenas/cenario/dtec/objetos/robo_desmontado.tscn"),
+	"r": preload("res://cenas/cenario/dtec/objetos/rack_dtec.tscn"),
+	"k": preload("res://cenas/cenario/dtec/objetos/caixas_lab.tscn"),
+	"a": preload("res://cenas/cenario/dtec/objetos/braco_robotico.tscn"),
+	"u": preload("res://cenas/cenario/dtec/objetos/cadeira_escritorio.tscn"),
+	"h": preload("res://cenas/cenario/objetos/holograma_onda.tscn"),
+	"i": preload("res://cenas/cenario/objetos/holograma_barras.tscn"),
+	"j": preload("res://cenas/cenario/objetos/holograma_codigo.tscn"),
+}
+const LETRAS_LARGAS := "bcmxN"
+const DIFICULDADES_DOS_NOS := [Hackeamento.Dificuldade.FACIL, Hackeamento.Dificuldade.MEDIO, Hackeamento.Dificuldade.DIFICIL]
+
 const TEXTURA_LUZ := preload("res://assets/sprites/cenario/luzes/luz.png")
 const ALTURA_PAREDE := 40
 const CAMADAS_PAREDE := 1 | 8
@@ -19,11 +38,18 @@ const LUZ_EM_TUDO := 1 | 2
 @export var frentes: Array[Texture2D] = []
 @export var textura_porta: Texture2D
 @export var decalques: Array[Texture2D] = []
-@export var quantidade_decalques: int = 45
+@export var quantidade_decalques: int = 70
+@export var componentes: Array[Texture2D] = []
+@export var quantidade_componentes: int = 26
 @export var semente: int = 26
+@export var transmissao_da_rede: Transmissao
+@export_file("*.tscn") var cena_da_saida: String = ""
+@export var titulo_da_saida: String = ""
+@export var subtitulo_da_saida: String = ""
 
 var grade: GradeLabirinto
 var _perseguindo := {}
+var _numero_do_no := 0
 
 @onready var chao: Sprite2D = $Chao
 @onready var no_decalques: Node2D = $Decalques
@@ -43,7 +69,9 @@ func _ready() -> void:
 	_montar_chao()
 	_montar_paredes()
 	_espalhar_decalques()
+	_espalhar_componentes()
 	_colocar_marcadores()
+	_montar_rede()
 	super()
 
 
@@ -156,6 +184,41 @@ func _espalhar_decalques() -> void:
 		no_decalques.add_child(decalque)
 
 
+func _espalhar_componentes() -> void:
+	var area := mapa.area_oficina
+	if componentes.is_empty() or area.size == Vector2i.ZERO:
+		return
+	var sorteio := RandomNumberGenerator.new()
+	sorteio.seed = semente + 7
+	for i in quantidade_componentes:
+		var celula := Vector2i(area.position.x + sorteio.randi() % area.size.x,
+				area.position.y + sorteio.randi() % area.size.y)
+		var peca := Sprite2D.new()
+		peca.texture = componentes[sorteio.randi() % componentes.size()]
+		peca.position = grade.centro(celula) + Vector2(sorteio.randf_range(-10, 10), sorteio.randf_range(-8, 8))
+		peca.flip_h = sorteio.randf() < 0.5
+		no_decalques.add_child(peca)
+
+
+func _montar_rede() -> void:
+	var total := _contar_nos()
+	if total == 0:
+		return
+	var rede := RedeDoLabirinto.new()
+	rede.name = "RedeDoLabirinto"
+	rede.total_de_nos = total
+	rede.transmissao = transmissao_da_rede
+	add_child(rede)
+
+
+func _contar_nos() -> int:
+	var total := 0
+	for celula in mapa.celulas_com("N"):
+		if _comeca_sequencia(celula, "N"):
+			total += 1
+	return total
+
+
 func _colocar_marcadores() -> void:
 	var numero := 0
 	for y in mapa.altura():
@@ -184,12 +247,72 @@ func _colocar_marcadores() -> void:
 					lampada.name = "Lampada_%d_%d" % [x, y]
 					_colocar(lampada, posicao + Vector2(-8, 0))
 				"S":
-					var saida := CENA_SAIDA.instantiate()
-					saida.name = "Saida"
-					_colocar(saida, posicao + Vector2(mapa.tamanho_bloco / 2.0, 0))
+					_colocar_saida(posicao + Vector2(mapa.tamanho_bloco / 2.0, 0))
+				"Z":
+					var zane := CENA_ZANE.instantiate()
+					zane.name = "Zane"
+					_colocar(zane, posicao)
+				"A":
+					_colocar_alcapao(posicao)
+				"N":
+					if _comeca_sequencia(celula, "N"):
+						_colocar_no(_posicao_da_sequencia(celula, "N"))
 				"V", "R":
 					numero += 1
 					_colocar_robo(mapa.letra(celula), posicao, numero)
+				_:
+					_colocar_prop(celula)
+
+
+func _colocar_saida(posicao: Vector2) -> void:
+	var saida := CENA_SAIDA.instantiate()
+	saida.name = "Saida"
+	_colocar(saida, posicao)
+
+
+func _colocar_alcapao(posicao: Vector2) -> void:
+	var alcapao: Alcapao = CENA_ALCAPAO.instantiate()
+	alcapao.name = "Alcapao"
+	if not cena_da_saida.is_empty():
+		alcapao.cena_destino = cena_da_saida
+	if not titulo_da_saida.is_empty():
+		alcapao.titulo = titulo_da_saida
+	if not subtitulo_da_saida.is_empty():
+		alcapao.subtitulo = subtitulo_da_saida
+	_colocar(alcapao, posicao)
+
+
+func _colocar_no(posicao: Vector2) -> void:
+	_numero_do_no += 1
+	var no: NoHackeavel = CENA_NO.instantiate()
+	no.name = "No_%d" % _numero_do_no
+	no.id = "%s%d" % [RedeDoLabirinto.PREFIXO_DA_MARCA, _numero_do_no]
+	no.marca_ao_destrancar = no.id
+	no.dificuldade_hack = DIFICULDADES_DOS_NOS[mini(_numero_do_no - 1, DIFICULDADES_DOS_NOS.size() - 1)]
+	_colocar(no, posicao)
+
+
+func _colocar_prop(celula: Vector2i) -> void:
+	var letra := mapa.letra(celula)
+	if not PROPS.has(letra):
+		return
+	var largo := LETRAS_LARGAS.contains(letra)
+	if largo and not _comeca_sequencia(celula, letra):
+		return
+	var prop: Node2D = PROPS[letra].instantiate()
+	prop.name = "Prop_%s_%d_%d" % [letra, celula.x, celula.y]
+	_colocar(prop, _posicao_da_sequencia(celula, letra) if largo else grade.centro(celula))
+
+
+func _comeca_sequencia(celula: Vector2i, letra: String) -> bool:
+	return mapa.letra(celula + Vector2i.LEFT) != letra
+
+
+func _posicao_da_sequencia(celula: Vector2i, letra: String) -> Vector2:
+	var tamanho := 1
+	while mapa.letra(celula + Vector2i(tamanho, 0)) == letra:
+		tamanho += 1
+	return grade.centro(celula) + Vector2((tamanho - 1) * mapa.tamanho_bloco / 2.0, 0)
 
 
 func _colocar(no: Node2D, posicao: Vector2) -> void:

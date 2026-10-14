@@ -22,14 +22,33 @@
 #
 # O labirinto tem duas grades:
 #
-#   Grade LÓGICA: 12 x 8 salinhas. É nela que o labirinto é sorteado e é o
+#   Grade LÓGICA: 18 x 11 salinhas. É nela que o labirinto é sorteado e é o
 #   GRAFO que os robôs usam para patrulhar (cada salinha é um nó; duas
 #   salinhas vizinhas sem parede entre elas são ligadas por uma aresta).
 #
 #   Grade de BLOCOS (32 x 32 px): cada salinha vira 2 x 2 blocos de chão e
 #   as paredes têm 1 bloco de espessura. Por isso a grade de blocos tem
-#   3 · 12 + 1 = 37 colunas e 3 · 8 + 1 = 25 fileiras (1184 x 800 px). É
+#   3 · 18 + 1 = 55 colunas e 3 · 11 + 1 = 34 fileiras (1760 x 1088 px). É
 #   nela que rodam o A* (perseguição) e a BFS (som), no Godot.
+#
+# ---------------------------------------------------------------------------
+# AS SALAS: RETÂNGULOS DE SALINHAS COM UMA ENTRADA SÓ
+# ---------------------------------------------------------------------------
+#
+# A fase tem quatro salas (ver SALAS): a oficina do Zane, que é o primeiro
+# destino do Gabriel, e três salas com um nó de controle para hackear. Cada sala é um
+# retângulo de salinhas com TODAS as paredes internas derrubadas: um
+# salão aberto de (3w - 1) x (3h - 1) blocos.
+#
+# No sorteio, cada sala é tratada como UM vértice só (uma região) e como
+# FOLHA: a busca em profundidade entra nela por uma aresta e volta
+# imediatamente, sem expandir. Resultado: a sala tem exatamente uma
+# entrada (um beco sem saída, bom para esconder-se... ou para ser
+# encurralado). Na etapa dos ciclos, nenhuma parede encostada numa sala é
+# derrubada, para a entrada continuar única.
+#
+# O que fica dentro de cada sala (bancadas, racks, hologramas, o nó, o
+# Zane) vem dos MODELOS: um desenho em letras, um caractere por bloco.
 #
 # Por que corredores de 2 blocos? Na vista do jogo (lateral com
 # profundidade), uma parede de 40 px de altura esconde o que está logo
@@ -49,14 +68,21 @@
 # CICLOS, e sempre dá para dar a volta num quarteirão para despistar.
 #
 # Os marcadores no mapa (uma letra por bloco):
-#   #  parede          .  chão           G  início do Gabriel   T  lanterna
+#   #  parede          .  chão           G  início do Gabriel   T  lanterna (ao lado do início)
 #   D  porta de saída (na parede de cima)                        S  saída (gatilho)
+#      (D e S só existem no mapa de teste: a saída da fase é o alçapão A)
+#   A  alçapão escondido na oficina (a saída da fase; o Zane o revela)
 #   C  checkpoint      P  pilha          L  lâmpada               V  Sentinela   R  Rastreador
+#   Z  o Zane          N  nó de controle (hackeável; 2 blocos de largura)
+#   Objetos das salas (minúsculas):
+#   b  bancada   c  console   m  mesa com computador   x  robô desmontado   (largos: 2 blocos)
+#   r  rack      k  caixas    a  braço robótico        u  cadeira
+#   h  holograma de ondas     i  holograma de barras   j  holograma de código
 # Todos os marcadores ficam na fileira de CIMA da salinha: a de baixo fica
 # atrás do topo da parede de baixo (ver "Por que corredores de 2 blocos").
-# Os checkpoints (se houver: ver CHECKPOINTS) ficam em frações do caminho
-# mais curto do início à saída (calculado por BFS no grafo lógico). Os robôs nascem longe do início; as
-# pilhas ficam em becos sem saída; as lâmpadas, em cruzamentos.
+# Os checkpoints ficam dentro das salas (nos modelos). Os robôs nascem
+# longe do início e da porta da oficina; as pilhas ficam em becos sem
+# saída; as lâmpadas, em cruzamentos.
 
 import importlib.util
 import os
@@ -78,15 +104,73 @@ bib = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(bib)
 Imagem, RAMPAS, CONTORNO, salvar_png = bib.Imagem, bib.RAMPAS, bib.CONTORNO, bib.salvar_png
 
-COLUNAS, FILEIRAS = 12, 8
+COLUNAS, FILEIRAS = 18, 11
 BLOCO = 32
 ALTURA_PAREDE = 40
 SEMENTE = 3026
 FRACAO_CICLOS = 0.18
-# Onde pôr checkpoints, em fração do caminho mais curto até a saída (ex.:
-# (0.40, 0.75)). Vazio por enquanto: a fase ainda é pequena e morrer
-# recomeça do início.
-CHECKPOINTS = ()
+# Quantos robôs e de que tipo (V = Sentinela, R = Rastreador). Eram 3 numa
+# grade de 96 salinhas; a grade nova tem 198, então o dobro.
+TIPOS_DE_ROBO = ("V", "R", "V", "V", "R", "V")
+DISTANCIA_MINIMA_DO_INICIO = 10
+SEPARACAO_ENTRE_ROBOS = 5
+QUANTIDADE_PILHAS = 5
+QUANTIDADE_LAMPADAS = 14
+
+# Onde o Gabriel começa (uma salinha, com a lanterna ao lado): fora da
+# oficina, mas a poucos passos da porta dela. Esta salinha é uma câmara
+# logo acima do corredor de baixo, a 5 salinhas de caminho da porta. O
+# caminho mais curto até a entrada da oficina tem de ficar nesta faixa
+# (em salinhas), senão o gerador reclama.
+INICIO = (7, 9)
+CAMINHO_ATE_A_OFICINA = (3, 8)
+# Os robôs não nascem a menos disso de caminho da entrada da oficina: o
+# destino não pode ter um robô parado na porta.
+DISTANCIA_MINIMA_DA_OFICINA = 5
+
+# Cada sala: posição (x, y) e tamanho (w, h) em SALINHAS. A oficina tem a
+# entrada fixa (o par de salinhas, de dentro para fora) e é "segura": os
+# robôs não patrulham nela (mas podem entrar se estiverem perseguindo).
+SALAS = (
+    {"nome": "oficina", "x": 0, "y": 9, "w": 4, "h": 2, "entrada": ((3, 10), (4, 10)), "segura": True},
+    {"nome": "no_1", "x": 1, "y": 0, "w": 3, "h": 2},
+    {"nome": "no_2", "x": 8, "y": 4, "w": 3, "h": 2},
+    {"nome": "no_3", "x": 13, "y": 8, "w": 3, "h": 2},
+)
+
+# O desenho de cada sala, um caractere por bloco. A fileira 0 é a de cima.
+# As duas últimas fileiras de baixo ficam parcialmente atrás do topo da
+# parede de baixo (40 px de altura): nada importante nelas.
+MODELOS = {
+    "oficina": (
+        "hLbb.rr.kj.",
+        ".....mm...a",
+        "k....Z.Au..",
+        "..C.....xx.",
+        "...........",
+    ),
+    "no_1": (
+        "r.rLr.rh",
+        "........",
+        "...NN...",
+        ".C......",
+        "........",
+    ),
+    "no_2": (
+        "cc.hcc.i",
+        "........",
+        "..NN....",
+        "......C.",
+        "........",
+    ),
+    "no_3": (
+        "bb.a.kkj",
+        "........",
+        "...NN...",
+        ".C..xx..",
+        "........",
+    ),
+}
 
 VERDE = bib.hexa("#0c2014", "#14432a", "#1f7a46", "#3fbf6e", "#9cf2b4", "#e4ffe9")
 VERMELHO = bib.hexa("#1e0a0a", "#4a1212", "#7e1c1a", "#b7302a")
@@ -97,35 +181,66 @@ AMARELO = bib.hexa("#2a220c", "#5c4a16", "#9a7c22", "#c9a83a")
 # Mapa
 # ---------------------------------------------------------------------------
 
+def aresta(a, b):
+    return tuple(sorted((a, b)))
+
+
+def celulas_da_sala(sala):
+    return [(x, y) for y in range(sala["y"], sala["y"] + sala["h"])
+            for x in range(sala["x"], sala["x"] + sala["w"])]
+
+
 def sortear_labirinto(rng):
-    """Busca em profundidade com volta atrás, e depois os ciclos. Devolve o
-    conjunto de arestas abertas entre salinhas: {((x, y), (x2, y2)), ...}."""
-    visitada = np.zeros((FILEIRAS, COLUNAS), dtype=bool)
+    """Busca em profundidade com volta atrás sobre REGIÕES (uma salinha
+    comum é uma região; cada sala inteira é uma só, e é folha), e depois
+    os ciclos. Devolve o conjunto de arestas abertas entre salinhas:
+    {((x, y), (x2, y2)), ...}."""
+    sala_da = {}
     abertas = set()
-    pilha = [(0, FILEIRAS - 1)]
-    visitada[FILEIRAS - 1, 0] = True
+    for i, sala in enumerate(SALAS):
+        celulas = celulas_da_sala(sala)
+        for c in celulas:
+            sala_da[c] = i
+        for (x, y) in celulas:
+            for v in ((x + 1, y), (x, y + 1)):
+                if v in celulas:
+                    abertas.add(aresta((x, y), v))
+
+    def regiao(c):
+        return ("sala", sala_da[c]) if c in sala_da else c
+
+    indice_oficina = next(i for i, s in enumerate(SALAS) if s["nome"] == "oficina")
+    dentro, fora = SALAS[indice_oficina]["entrada"]
+    abertas.add(aresta(dentro, fora))
+    visitadas = {("sala", indice_oficina), fora}
+    pilha = [fora]
     while pilha:
         x, y = pilha[-1]
-        livres = [(x + dx, y + dy) for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))
-                  if 0 <= x + dx < COLUNAS and 0 <= y + dy < FILEIRAS and not visitada[y + dy, x + dx]]
-        if not livres:
+        candidatas = [((x, y), (x + dx, y + dy)) for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))
+                      if 0 <= x + dx < COLUNAS and 0 <= y + dy < FILEIRAS
+                      and regiao((x + dx, y + dy)) not in visitadas]
+        if not candidatas:
             pilha.pop()
             continue
-        nx, ny = livres[rng.integers(len(livres))]
-        visitada[ny, nx] = True
-        abertas.add(tuple(sorted(((x, y), (nx, ny)))))
-        pilha.append((nx, ny))
+        de, para = candidatas[rng.integers(len(candidatas))]
+        abertas.add(aresta(de, para))
+        visitadas.add(regiao(para))
+        if para not in sala_da:
+            pilha.append(para)
+    esperadas = COLUNAS * FILEIRAS - len(sala_da) + len(SALAS)
+    assert len(visitadas) == esperadas, f"regiões inalcançáveis: {len(visitadas)} de {esperadas}"
+
     fechadas = []
     for y in range(FILEIRAS):
         for x in range(COLUNAS):
             for nx, ny in ((x + 1, y), (x, y + 1)):
-                if nx < COLUNAS and ny < FILEIRAS:
-                    aresta = tuple(sorted(((x, y), (nx, ny))))
-                    if aresta not in abertas:
-                        fechadas.append(aresta)
+                if nx < COLUNAS and ny < FILEIRAS and (x, y) not in sala_da and (nx, ny) not in sala_da:
+                    a = aresta((x, y), (nx, ny))
+                    if a not in abertas:
+                        fechadas.append(a)
     rng.shuffle(fechadas)
-    for aresta in fechadas[:int(len(fechadas) * FRACAO_CICLOS)]:
-        abertas.add(aresta)
+    for a in fechadas[:int(len(fechadas) * FRACAO_CICLOS)]:
+        abertas.add(a)
     return abertas
 
 
@@ -168,57 +283,80 @@ def montar_mapa(rng):
             for dx in (1, 2):
                 grade[3 * y2][3 * x1 + dx] = "."
 
-    inicio, fim = (0, FILEIRAS - 1), (COLUNAS - 1, 0)
-    dist, pai = bfs(abertas, inicio)
-    caminho = [fim]
-    while pai[caminho[-1]] is not None:
-        caminho.append(pai[caminho[-1]])
-    caminho.reverse()
-    usadas = {inicio, fim}
+    for sala in SALAS:
+        for by in range(3 * sala["y"] + 1, 3 * (sala["y"] + sala["h"])):
+            for bx in range(3 * sala["x"] + 1, 3 * (sala["x"] + sala["w"])):
+                grade[by][bx] = "."
+
+    oficina = next(s for s in SALAS if s["nome"] == "oficina")
+    entrada_da_oficina = oficina["entrada"][0]
+    inicio = INICIO
+    dist_oficina, _ = bfs(abertas, entrada_da_oficina)
+    assert CAMINHO_ATE_A_OFICINA[0] <= dist_oficina[inicio] <= CAMINHO_ATE_A_OFICINA[1], \
+        f"o início fica a {dist_oficina[inicio]} salinhas da oficina"
+    dist, _ = bfs(abertas, inicio)
+    em_sala = {c for sala in SALAS for c in celulas_da_sala(sala)}
+    usadas = em_sala | {inicio}
 
     def marcar(c, letra, dx=1, dy=1):
         grade[3 * c[1] + dy][3 * c[0] + dx] = letra
         usadas.add(c)
 
+    for sala in SALAS:
+        modelo = MODELOS[sala["nome"]]
+        assert len(modelo) == 3 * sala["h"] - 1, f"{sala['nome']}: altura do modelo"
+        for j, linha in enumerate(modelo):
+            assert len(linha) == 3 * sala["w"] - 1, f"{sala['nome']}: largura da fileira {j}"
+            for i, letra in enumerate(linha):
+                if letra != ".":
+                    grade[3 * sala["y"] + 1 + j][3 * sala["x"] + 1 + i] = letra
+
     marcar(inicio, "G")
     marcar(inicio, "T", 2, 1)
-    grade[0][3 * fim[0] + 1] = "D"
-    grade[0][3 * fim[0] + 2] = "D"
-    marcar(fim, "S")
-    for fracao in CHECKPOINTS:
-        marcar(caminho[int(len(caminho) * fracao)], "C", 2, 1)
 
     longe = sorted(dist, key=lambda c: -dist[c])
     robos = []
     for c in longe:
-        if c in usadas or dist[c] < 6 or any(abs(c[0] - r[0]) + abs(c[1] - r[1]) < 4 for r in robos):
+        if c in usadas or dist[c] < DISTANCIA_MINIMA_DO_INICIO:
+            continue
+        if dist_oficina[c] < DISTANCIA_MINIMA_DA_OFICINA:
+            continue
+        if any(abs(c[0] - r[0]) + abs(c[1] - r[1]) < SEPARACAO_ENTRE_ROBOS for r in robos):
             continue
         robos.append(c)
-        if len(robos) == 3:
+        if len(robos) == len(TIPOS_DE_ROBO):
             break
-    for c, letra in zip(robos, ("V", "R", "V")):
+    assert len(robos) == len(TIPOS_DE_ROBO), f"só coube {len(robos)} robôs"
+    for c, letra in zip(robos, TIPOS_DE_ROBO):
         marcar(c, letra, 2, 1)
 
     becos = [c for c in dist if len(vizinhos(abertas, c)) == 1 and c not in usadas]
     becos.sort(key=lambda c: -dist[c])
-    for c in becos[::max(1, len(becos) // 3)][:3]:
+    for c in becos[::max(1, len(becos) // QUANTIDADE_PILHAS)][:QUANTIDADE_PILHAS]:
         marcar(c, "P", 2, 1)
 
     cruzamentos = [c for c in dist if len(vizinhos(abertas, c)) >= 3 and c not in usadas]
     rng.shuffle(cruzamentos)
-    for c in cruzamentos[:8]:
+    for c in cruzamentos[:QUANTIDADE_LAMPADAS]:
         marcar(c, "L", 1, 1)
-    return ["".join(linha) for linha in grade], len(caminho)
+    print(f"  caminho do início até a entrada da oficina: {dist_oficina[inicio]} salinhas")
+    return ["".join(linha) for linha in grade], dist_oficina[inicio]
 
 
 def salvar_mapa(linhas):
     os.makedirs(os.path.dirname(ARQUIVO_MAPA), exist_ok=True)
     corpo = ", ".join(f'"{l}"' for l in linhas)
+    seguras = [s for s in SALAS if s.get("segura")]
+    retangulos = ", ".join(f"Rect2i({s['x']}, {s['y']}, {s['w']}, {s['h']})" for s in seguras)
+    oficina = next(s for s in SALAS if s["nome"] == "oficina")
+    area = (3 * oficina["x"] + 1, 3 * oficina["y"] + 1, 3 * oficina["w"] - 1, 3 * oficina["h"] - 1)
     with open(ARQUIVO_MAPA, "w", encoding="utf-8", newline="\n") as f:
         f.write('[gd_resource type="Resource" script_class="MapaLabirinto" format=3]\n\n')
         f.write('[ext_resource type="Script" path="res://scripts/labirinto/mapa_labirinto.gd" id="1_mapa"]\n\n')
         f.write('[resource]\nscript = ExtResource("1_mapa")\n')
         f.write(f"tamanho_bloco = {BLOCO}\nblocos_por_salinha = 3\n")
+        f.write(f"salinhas_seguras = Array[Rect2i]([{retangulos}])\n")
+        f.write(f"area_oficina = Rect2i({area[0]}, {area[1]}, {area[2]}, {area[3]})\n")
         f.write(f"linhas = PackedStringArray({corpo})\n")
     print("  salvo:", os.path.relpath(ARQUIVO_MAPA, PASTA_PROJETO))
 
@@ -457,7 +595,10 @@ def previa(linhas, sprites):
                 else:
                     sala.colar(sprites["frente"][(bx * 7 + by * 3) % 4], x, y + BLOCO - ALTURA_PAREDE)
     cores = {"G": (60, 200, 255), "C": (80, 255, 120), "V": (255, 60, 60), "R": (255, 140, 40),
-             "P": (240, 240, 80), "L": (255, 220, 150), "S": (80, 255, 120), "T": (200, 200, 255)}
+             "P": (240, 240, 80), "L": (255, 220, 150), "S": (80, 255, 120), "T": (200, 200, 255),
+             "Z": (255, 255, 60), "N": (255, 60, 255), "A": (255, 255, 255)}
+    for letra in "bcmxrkauhij":
+        cores[letra] = (60, 160, 200)
     for by in range(h):
         for bx in range(w):
             if linhas[by][bx] in cores:
@@ -473,7 +614,6 @@ def main():
     linhas, tamanho_caminho = montar_mapa(rng)
     for l in linhas:
         print("   ", l)
-    print(f"  caminho mais curto do início à saída: {tamanho_caminho} salinhas")
     salvar_mapa(linhas)
 
     os.makedirs(PASTA_SALA, exist_ok=True)

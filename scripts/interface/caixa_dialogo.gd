@@ -3,11 +3,12 @@ extends CanvasLayer
 const CORES_NOMES := {
 	"Clarice": Color(0.45, 0.86, 0.82),
 	"Gabriel": Color(0.93, 0.55, 0.47),
+	"Zane": Color(0.84, 0.92, 0.26),
 }
 const COR_NOME_PADRAO := Color(0.95, 0.88, 0.7)
 const COR_ESCOLHA := Color(0.95, 0.88, 0.7)
 const COR_ESCOLHA_APAGADA := Color(0.55, 0.53, 0.5)
-const TOM_VOZ := {"Clarice": 1.3, "Gabriel": 0.85}
+const TOM_VOZ := {"Clarice": 1.3, "Gabriel": 0.85, "Zane": 1.15}
 const PAUSA_PONTUACAO := {".": 0.22, "!": 0.22, "?": 0.22, ",": 0.08, "…": 0.3}
 
 @export var letras_por_segundo: float = 42.0

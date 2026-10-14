@@ -1,0 +1,129 @@
+{
+	"id": "zane_labirinto_primeiro_encontro",
+	"inicio": "abertura",
+	"anotacao": {
+		"titulo": "Zane, na oficina do Labirinto",
+		"texto": "O Zane montou uma oficina no canto do Labirinto, cheia de peças e telas holográficas.\n\nA saída do subsolo está lacrada pelo sistema. A trava lê três nós de controle espalhados pelo labirinto, em salões com uma entrada só. O Zane não consegue invadir de longe: a rede do subsolo é fechada.\n\nEle me deu o notebook dele. Chego perto do terminal de cada nó e invado. Nos nós o notebook não gasta bateria.\n\nQuando os três caírem, volto ao Zane para ele mostrar por onde sair. Os robôs patrulham o labirinto inteiro: a Sentinela vê longe, o Rastreador ouve tudo."
+	},
+	"trechos": {
+		"abertura": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Olha só: gente de carne e osso! Eu sabia que o sinal ia te puxar pra cá. Zane. A voz do telefone, lembra?"
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "O do telefone da Biblioteca. Foi você que destrancou a porta pra mim."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Destranquei! De longe é fácil. Aqui embaixo é outra história: a rede do subsolo é fechada, de fora eu não passo nem com reza."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "Então a saída daqui também está presa no sistema?"
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Lacrada. Mas a trava lê três nós de controle, espalhados pelo labirinto. Invadiu os três, ela solta. Se eu pudesse ir lá, abria em dois minutos."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_assustado",
+					"texto": "Só que tem robôs, e eu sou bom de máquina, não de correr. Aí entra você."
+				}
+			],
+			"escolhas": [
+				{
+					"texto": "Como eu invado um nó?",
+					"vai_para": "como"
+				},
+				{
+					"texto": "E os robôs?",
+					"vai_para": "robos"
+				},
+				{
+					"texto": "Tá bom. Me dá esse notebook.",
+					"vai_para": "toma"
+				}
+			]
+		},
+		"como": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Toma o meu notebook de pesquisa. Chega perto do terminal do nó, equipa e aciona: abre um joguinho de invasão. Acertou, o nó cai."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Nos nós não gasta bateria: o terminal alimenta o notebook. Pode errar à vontade, só não erra perto de robô."
+				}
+			],
+			"vai_para": "menu"
+		},
+		"robos": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_assustado",
+					"texto": "Uns seis, na última contagem. A Sentinela é a alta, de olho vermelho: vê longe, e mais longe ainda com a sua lanterna acesa."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "O Rastreador é o baixinho, de antena. Quase não enxerga, mas ouve tudo. Correr perto dele é pedir pra morrer."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Anda devagar, apaga a lanterna quando precisar e usa os cantos. Cada salão tem uma entrada só, então olha antes de entrar."
+				}
+			],
+			"vai_para": "menu"
+		},
+		"menu": {
+			"falas": [],
+			"escolhas": [
+				{
+					"texto": "Como eu invado um nó?",
+					"vai_para": "como"
+				},
+				{
+					"texto": "E os robôs?",
+					"vai_para": "robos"
+				},
+				{
+					"texto": "Tá bom. Me dá esse notebook.",
+					"vai_para": "toma"
+				}
+			]
+		},
+		"toma": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Boa! Toma. E ó: cuidado com ele, tá? É o único que eu tenho."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Pode deixar. Volto quando os três nós caírem."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Quando o terceiro cair, volta aqui: eu te mostro por onde sair. E não é pela porta que você tá pensando."
+				}
+			]
+		}
+	}
+}

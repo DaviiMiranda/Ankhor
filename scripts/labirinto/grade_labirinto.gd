@@ -21,7 +21,7 @@ func _init(novo_mapa: MapaLabirinto) -> void:
 	astar.update()
 	for y in mapa.altura():
 		for x in mapa.largura():
-			if mapa.e_parede(Vector2i(x, y)):
+			if mapa.e_parede(Vector2i(x, y)) or mapa.e_obstaculo(Vector2i(x, y)):
 				astar.set_point_solid(Vector2i(x, y))
 
 
@@ -106,8 +106,9 @@ func vizinhas_da_salinha(s: Vector2i) -> Array[Vector2i]:
 		var vizinha: Vector2i = s + passo
 		if vizinha.x < 0 or vizinha.y < 0 or vizinha.x >= colunas() or vizinha.y >= fileiras():
 			continue
-		if livre(passagens[passo]):
-			abertas.append(vizinha)
+		if mapa.e_parede(passagens[passo]) or mapa.salinha_segura(vizinha):
+			continue
+		abertas.append(vizinha)
 	return abertas
 
 

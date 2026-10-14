@@ -70,8 +70,8 @@ O primeiro uso real destes algoritmos é o **Labirinto** ([`../fases/labirinto.m
 Arquivos: `scripts/labirinto/grade_labirinto.gd` (grafo, A\*, BFS, Markov) e `scripts/personagens/robo.gd` (máquina de estados e sentidos).
 
 ### 5.1 Dois grafos
-- **Grade de blocos** (37 × 25 células de 32 px): cada célula livre é um nó, ligado às 4 vizinhas livres. Usado pelo A\* e pela BFS.
-- **Grafo lógico** (12 × 8 salinhas): cada salinha é um nó; há aresta entre duas salinhas vizinhas quando a parede entre elas foi derrubada. Usado pela patrulha (Markov).
+- **Grade de blocos** (55 × 34 células de 32 px): cada célula livre é um nó, ligado às 4 vizinhas livres. Usado pelo A\* e pela BFS.
+- **Grafo lógico** (18 × 11 salinhas): cada salinha é um nó; há aresta entre duas salinhas vizinhas quando a parede entre elas foi derrubada. Usado pela patrulha (Markov). As salinhas da **oficina do Zane** são "seguras": a patrulha nunca escolhe uma delas como próximo nó (`MapaLabirinto.salinhas_seguras`), mas o A* da perseguição entra nelas normalmente. Os objetos das salas (bancadas, racks, hologramas) são obstáculos do A* e da BFS do som, mas não fecham as passagens do grafo lógico.
 
 ### 5.2 Visão: produto escalar + raio
 O robô olha numa direção $\vec{d}$ (vetor unitário). Seja $\vec{v}$ o vetor do robô até o Gabriel e $|\vec{v}|$ a distância. O Gabriel é visto se:
