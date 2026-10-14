@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_documento.tscn" id="19_documento"]
 [ext_resource type="PackedScene" path="res://cenas/interface/legenda_radio.tscn" id="21_legenda"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_morte.tscn" id="22_morte"]
+[ext_resource type="PackedScene" path="res://cenas/interface/caixa_dialogo.tscn" id="29_caixa_dialogo"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_labirinto.tscn" id="23_musica"]
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/componentes_0.png" id="24_comp0"]
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/componentes_1.png" id="25_comp1"]
@@ -102,5 +103,7 @@ color = Color(0, 0, 0, 1)
 [node name="LegendaRadio" parent="." instance=ExtResource("21_legenda")]
 
 [node name="TelaMorte" parent="." instance=ExtResource("22_morte")]
+
+[node name="CaixaDialogo" parent="." instance=ExtResource("29_caixa_dialogo")]
 
 [node name="MusicaLabirinto" parent="." instance=ExtResource("23_musica")]
