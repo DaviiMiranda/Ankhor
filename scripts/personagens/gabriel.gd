@@ -7,47 +7,12 @@ signal exaustao_mudou(esta_exausto: bool)
 
 const COR_ESCONDIDO := Color(0.45, 0.45, 0.6)
 const LARGURA_QUADRO := 96.0
-const MAOS_NO_QUADRO := {
-	"lado": {
-		"parado": Vector2(50, 68),
-		"andar": [
-			Vector2(50, 68), Vector2(45, 68), Vector2(41, 68), Vector2(40, 69),
-			Vector2(41, 69), Vector2(45, 69), Vector2(50, 68), Vector2(54, 67),
-			Vector2(58, 67), Vector2(59, 67), Vector2(58, 68), Vector2(54, 68),
-		],
-	},
-	"frente": {
-		"parado": Vector2(57, 68),
-		"andar": [
-			Vector2(56, 64), Vector2(56, 64), Vector2(56, 64), Vector2(60, 65),
-			Vector2(60, 65), Vector2(60, 65), Vector2(56, 64), Vector2(56, 64),
-			Vector2(56, 64), Vector2(59, 65), Vector2(59, 65), Vector2(59, 65),
-		],
-	},
-	"tres_quartos": {
-		"parado": Vector2(35, 66),
-		"andar": [
-			Vector2(35, 66), Vector2(31, 66), Vector2(29, 64), Vector2(28, 64),
-			Vector2(29, 64), Vector2(31, 65), Vector2(35, 66), Vector2(38, 65),
-			Vector2(40, 64), Vector2(41, 64), Vector2(40, 64), Vector2(38, 65),
-		],
-	},
-	"costas": {
-		"parado": Vector2(58, 68),
-		"andar": [
-			Vector2(59, 63), Vector2(59, 63), Vector2(59, 63), Vector2(61, 66),
-			Vector2(61, 66), Vector2(61, 66), Vector2(62, 65), Vector2(62, 65),
-			Vector2(62, 65), Vector2(61, 65), Vector2(61, 65), Vector2(61, 65),
-		],
-	},
-	"tres_quartos_costas": {
-		"parado": Vector2(56, 66),
-		"andar": [
-			Vector2(56, 66), Vector2(53, 64), Vector2(51, 63), Vector2(50, 63),
-			Vector2(51, 63), Vector2(53, 67), Vector2(56, 66), Vector2(59, 64),
-			Vector2(62, 63), Vector2(63, 63), Vector2(62, 63), Vector2(59, 67),
-		],
-	},
+const PEITO_NO_QUADRO := {
+	"lado": Vector2(54, 40),
+	"frente": Vector2(47, 40),
+	"tres_quartos": Vector2(44, 40),
+	"costas": Vector2(47, 40),
+	"tres_quartos_costas": Vector2(45, 40),
 }
 
 @export var velocidade_andar: float = 60.0
@@ -94,7 +59,6 @@ var _empurrao := Vector2.ZERO
 var _velocidade_propria := Vector2.ZERO
 var _distancia := 0.0
 var _tempo_parado := 0.0
-var _andando := false
 var _passos := 0
 var _mascara_colisao := 0
 
@@ -194,12 +158,8 @@ func esconder(sim: bool) -> void:
 	sprite.self_modulate = COR_ESCONDIDO if sim else Color.WHITE
 
 
-func posicao_da_mao() -> Vector2:
-	var maos: Dictionary = MAOS_NO_QUADRO[vista]
-	var pixel: Vector2 = maos["parado"]
-	if _andando:
-		var andar: Array = maos["andar"]
-		pixel = andar[mini(sprite.frame, andar.size() - 1)]
+func posicao_do_peito() -> Vector2:
+	var pixel: Vector2 = PEITO_NO_QUADRO[vista]
 	var x := pixel.x + 0.5
 	if sprite.flip_h:
 		x = LARGURA_QUADRO - x
@@ -268,20 +228,17 @@ func _animar(andou: float, delta: float) -> void:
 			"tres_quartos": sprite_tres_quartos, "costas": sprite_costas,
 			"tres_quartos_costas": sprite_tres_quartos_costas}
 	if andou > 0.01 and andando[vista]:
-		_andando = true
 		_tempo_parado = 0.0
 		_distancia += andou
 		_mostrar(andando[vista], quadros_andar, int(_distancia / px_por_quadro) % quadros_andar)
 		_contar_passos()
 	elif respirando[vista]:
-		_andando = false
 		_distancia = 0.0
 		_passos = 0
 		_tempo_parado += delta
 		_mostrar(respirando[vista], quadros_parado,
 				int(_tempo_parado / segundos_por_quadro_parado) % quadros_parado)
 	elif imovel[vista]:
-		_andando = false
 		_distancia = 0.0
 		_passos = 0
 		_mostrar(imovel[vista], 1, 0)

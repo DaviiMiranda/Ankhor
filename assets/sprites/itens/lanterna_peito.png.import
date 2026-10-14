@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqjkwuqkcup4v"
-path="res://.godot/imported/lanterna_mao.png-cf652a598b2ad4e06e6074399294ff3e.ctex"
+uid="uid://cobcbo23qnyrv"
+path="res://.godot/imported/lanterna_peito.png-6e398ae9f45d66c59aa48e1600325add.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/itens/lanterna_mao.png"
-dest_files=["res://.godot/imported/lanterna_mao.png-cf652a598b2ad4e06e6074399294ff3e.ctex"]
+source_file="res://assets/sprites/itens/lanterna_peito.png"
+dest_files=["res://.godot/imported/lanterna_peito.png-6e398ae9f45d66c59aa48e1600325add.ctex"]
 
 [params]
 

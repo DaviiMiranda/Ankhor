@@ -11,8 +11,8 @@ O campus em 3026 é quase todo escuro. O pouco que ainda tem energia são os **s
 ## 2. A lanterna
 
 - **O que é:** uma lanterna de mão comum, a pilha. É um gadget: fica num dos 3 espaços e liga/desliga com a tecla do espaço (`1`, `2` ou `3`).
-- **O feixe:** um cone de luz que sai da **lente da lanterna**, que o Gabriel segura na mão, e aponta para onde ele está andando (a última direção do movimento). Em volta da lente fica um brilho fraco, que ilumina o próprio Gabriel.
-- **Na mão:** com a lanterna equipada, ela aparece desenhada na mão do Gabriel (aceso ou apagado), girada para a direção da mira e espelhada quando ele olha para a esquerda. A mão acompanha o balanço do braço: `Gabriel.posicao_da_mao()` devolve a posição do pixel da mão na vista e no quadro de caminhada em que ele está, e a lanterna se prende a esse ponto. A lanterna usa a mão visível de cada vista (a do lado do corpo mais perto da câmera).
+- **O feixe:** um cone de luz que sai da **lente da lanterna**, presa ao peito do Gabriel, e aponta para onde ele está andando (a última direção do movimento). Em volta da lente fica um brilho fraco, que ilumina o próprio Gabriel.
+- **No peito:** com a lanterna equipada, uma peça pequena e escura (5 × 3 px, com um ponto claro só na lente) aparece presa ao peito do Gabriel, ligada ou apagada. Ela gira para a direção da mira e espelha quando ele olha para a esquerda. Nas vistas de costas ela fica escondida pelo corpo, e a luz continua saindo do peito. `Gabriel.posicao_do_peito()` devolve o ponto do peito na vista em que ele está.
 - **O dilema (ver vs. ser visto):**
   - **Ligada:** o jogador enxerga corredores, pilhas e bilhetes. Mas **os robôs enxergam o Gabriel de mais longe**: o alcance da visão deles é multiplicado (Sentinela ×1,7, Rastreador ×1,3).
   - **Desligada:** o Gabriel some no escuro; o jogador anda quase às cegas, guiado pelas luminárias e pelo brilho vermelho dos olhos dos robôs.
@@ -50,7 +50,7 @@ A defesa de emergência do GDD continua prevista, agora sem fungos: um **flash d
 | Textura do feixe (cone) | `assets/sprites/cenario/luzes/luz_cone.png`, gerada por `assets/modelagem/salas/labirinto/gerar_labirinto.py` |
 | Luz que treme | `scripts/salas/luz_tremula.gd`, `cenas/cenario/luzes/luz_lampada.tscn` |
 | Ícones (lanterna, pilha) | `assets/modelagem/interface/gerar_interface.py` |
-| Sprite da lanterna na mão (7 × 4 px) | `assets/sprites/itens/lanterna_mao.png`, gerado por `gerar_interface.py` (função `lanterna_mao`) |
-| Posição da mão em cada vista e quadro | `MAOS_NO_QUADRO` e `posicao_da_mao()` em `scripts/personagens/gabriel.gd` |
+| Sprite da lanterna no peito (5 × 3 px) | `assets/sprites/itens/lanterna_peito.png`, gerado por `gerar_interface.py` (função `lanterna_peito`) |
+| Posição do peito em cada vista | `PEITO_NO_QUADRO` e `posicao_do_peito()` em `scripts/personagens/gabriel.gd` |
 
-> **Se o sprite do Gabriel mudar** (nova arte, outro balanço de braço), a tabela `MAOS_NO_QUADRO` precisa ser refeita: ela guarda, em pixels do quadro de 96 × 112, onde está a mão parada e em cada um dos 12 quadros de caminhada, para as cinco vistas. Na sala de teste em que `C` troca de personagem, a tabela é a do Gabriel, então a lanterna dos outros fica aproximada.
+> **Se o sprite do Gabriel mudar** (nova arte, outro corte de roupa), os cinco pontos de `PEITO_NO_QUADRO` precisam ser conferidos: eles guardam, em pixels do quadro de 96 × 112, onde fica o peito em cada vista (sempre na linha 40, pelo moletom). O peito varia no máximo 2 px entre os quadros da caminhada, menos de 1 px no jogo, então um ponto por vista basta. Na sala de teste em que `C` troca de personagem, os pontos são os do Gabriel, então a lanterna dos outros fica aproximada.
