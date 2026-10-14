@@ -4,6 +4,8 @@ Tudo que é específico de cada fase e área do **Ankhor** fica documentado na p
 
 > [!NOTE]
 > - **Primeira Fase (Confirmada):** [`fases/biblioteca.md`](fases/biblioteca.md).
+> - **Labirinto** (jogável, 3ª fase): [`fases/labirinto.md`](fases/labirinto.md). Subsolo escuro com 6 robôs, a oficina do Zane no começo e 3 salões com nós de controle para hackear; a saída só abre quando os 3 caem.
+> - **Centro de Convivência** (sem lugar na ordem): [`fases/centro_de_convivencia.md`](fases/centro_de_convivencia.md). Só o que está decidido e as perguntas em aberto.
 > - **Bunker** (em desenvolvimento): [`fases/bunker.md`](fases/bunker.md). Dois setores, 9 salas, a Clarice e seis portas lacradas para depois.
 > - **Bloco de salas** (em desenvolvimento): [`fases/bloco_de_salas.md`](fases/bloco_de_salas.md). Dois corredores e 12 salas de aula.
 > - **DTEC** (mapa pronto, fase solta): [`fases/dtec.md`](fases/dtec.md). O departamento de tecnologia: dois corredores, 8 salas (2 trancadas para hackear, 5 portas lacradas) e, no meio, o salão de uma máquina grande e brilhante. Sem lugar na história ainda.

@@ -1,8 +1,8 @@
 # Fase — Centro de Convivência
 
-> **Status:** Ainda não feita. Só o nome e a posição na ordem das fases estão decididos (2026-10-11). Este documento guarda o que já se sabe e as perguntas que faltam, no formato de [`template_fase.md`](template_fase.md).
+> **Status:** Ainda não feita e **sem lugar na ordem das fases** (em 2026-10-14 o Labirinto passou a ser a terceira fase; a posição decidida em 2026-10-11 deixou de valer). Este documento guarda o que já se sabe e as perguntas que faltam, no formato de [`template_fase.md`](template_fase.md).
 > **Área:** o Centro de Convivência da Unifor, em 3026 (no GDD: "Centro de Convivência").
-> **Vem de:** a porta corta-fogo do 1º andar do Bloco de salas ([`bloco_de_salas.md`](bloco_de_salas.md)). Por enquanto, essa porta abre a entrada do Bunker, de forma provisória, porque esta fase ainda não existe.
+> **Vem de:** não está decidido. A porta corta-fogo do Bloco de salas ([`bloco_de_salas.md`](bloco_de_salas.md)) agora leva ao Labirinto ([`labirinto.md`](labirinto.md)).
 > **História:** o que esta fase conta segue o [Enredo Principal](../historia/enredo_principal.md) (Ato 2), que é a lei do projeto. Nada da história dela está decidido.
 > **No menu Fases:** ainda não aparece.
 
@@ -13,8 +13,8 @@
 | O quê | Decisão |
 |---|---|
 | **Nome** | Centro de Convivência |
-| **Posição** | Depois do Bloco de salas: **Biblioteca → Bloco de salas → Centro de Convivência** (`docs/decisoes.md`, 2026-10-11) |
-| **Como se chega** | Pela porta corta-fogo do 1º andar do Bloco de salas, que é a saída daquela fase |
+| **Posição** | Sem lugar na ordem: a entrada de 2026-10-11 (depois do Bloco de salas) foi substituída em 2026-10-14, quando o **Labirinto** virou a terceira fase (`docs/decisoes.md`) |
+| **Como se chega** | Não está decidido |
 | **O que vem depois** | Não está decidido. O Bunker continua sendo o Ato 3 da história, mas a posição dele na ordem das fases está em aberto |
 
 Todo o resto abaixo está **pendente**. Por regra do projeto, as respostas são do grupo: nada aqui deve ser preenchido por dedução.

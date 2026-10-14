@@ -1,19 +1,26 @@
 # Fase — Labirinto (subsolo)
 
-> **Status:** Jogável (primeira versão)  
+> **Status:** Jogável (segunda versão: ampliado, com a oficina do Zane e três nós de controle)  
 > **Área:** subsolo escuro do centro de pesquisa da Âncora  
-> **Ordem na história:** a definir. Não é necessariamente a fase depois da Biblioteca. Por enquanto se entra pelo menu **Fases**.
+> **Ordem na história:** **terceira fase**, depois do Bloco de salas (decidido em 2026-10-14). A saída do Bloco leva a ela; a saída dela abre, por enquanto, a entrada do Bunker. Também aparece pelo menu **Fases**.
 
 ---
 
 ## 1. Visão geral
 
-Um labirinto de corredores de concreto no escuro. O Gabriel começa no canto de baixo à esquerda, com uma lanterna no chão ao lado, e precisa chegar à **porta de SAÍDA** (placa verde) no alto à direita, fugindo de três robôs. Não há checkpoint: a fase é curta e morrer recomeça do início.
+Um labirinto de corredores de concreto no escuro. O Gabriel começa dentro da **oficina do Zane**, no canto de baixo à esquerda. O Zane não consegue invadir de longe a rede do subsolo: entrega o **notebook** a Gabriel e pede que invada **três nós de controle**, em três salões espalhados pelo labirinto. A **porta de SAÍDA** (placa verde, no alto à direita) fica trancada até os três caírem; depois o Zane abre pelo rádio. No caminho, seis robôs patrulham os corredores.
 
 - **Cena:** `cenas/salas/labirinto.tscn` · **Script:** `scripts/salas/labirinto.gd` (herda de `Sala`)
 - **Mapa:** `dados/labirinto/mapa_labirinto.tres` (texto, uma letra por bloco)
-- **Arte e mapa gerados por:** `assets/modelagem/salas/labirinto/gerar_labirinto.py`
-- **Trilha:** `cenas/sistemas/musica_labirinto.tscn` (ver seção 5)
+- **Arte e mapa gerados por:** `assets/modelagem/salas/labirinto/gerar_labirinto.py` (mapa, paredes, piso) e `gerar_oficina.py` (hologramas e peças eletrônicas)
+- **Trilha:** `cenas/sistemas/musica_labirinto.tscn` (ver seção 7)
+
+### Como a fase se joga
+
+1. O Gabriel acorda na oficina. Pega a lanterna (se ainda não tem) e fala com o Zane (`E`). Ao fim da primeira conversa recebe o **notebook**.
+2. Procura os três salões. Cada um tem **uma entrada só**, um **console** com a luz vermelha (o nó) e um **checkpoint**. Perto do console, o notebook (tecla do espaço dele) abre o minigame; vencer acende a luz verde.
+3. O aviso "Nó N de 3 invadido" marca o progresso. No terceiro, o Zane avisa pelo rádio e a placa da saída passa do vermelho ao verde.
+4. Foge dos robôs até a porta de saída, no canto de cima à direita.
 
 ---
 
@@ -21,10 +28,10 @@ Um labirinto de corredores de concreto no escuro. O Gabriel começa no canto de 
 
 O labirinto é **sorteado uma vez** (semente fixa, sempre o mesmo) pelo gerador em Python e salvo como texto. Duas grades:
 
-- **Lógica (12 × 8 salinhas):** é onde o labirinto é sorteado por **busca em profundidade com volta atrás**, e é o **grafo** da patrulha dos robôs.
-- **De blocos (37 × 25, blocos de 32 px):** cada salinha vira 2 × 2 blocos de chão; paredes têm 1 bloco. É nela que rodam o **A\*** e a **BFS**.
+- **Lógica (18 × 11 salinhas):** é onde o labirinto é sorteado por **busca em profundidade com volta atrás**, e é o **grafo** da patrulha dos robôs.
+- **De blocos (55 × 34, blocos de 32 px = 1760 × 1088 px):** cada salinha vira 2 × 2 blocos de chão; paredes têm 1 bloco. É nela que rodam o **A\*** e a **BFS**.
 
-A busca em profundidade gera uma árvore (um só caminho entre dois pontos). Depois, **18% das paredes internas são derrubadas** para criar ciclos: sempre dá para dar a volta num quarteirão e despistar.
+A busca em profundidade gera uma árvore (um só caminho entre dois pontos). Depois, **18% das paredes internas são derrubadas** para criar ciclos: sempre dá para dar a volta num quarteirão e despistar. As paredes encostadas numa sala não entram nesse sorteio, para a entrada da sala continuar única.
 
 Legenda do mapa:
 
@@ -32,29 +39,64 @@ Legenda do mapa:
 |---|---|
 | `#` | parede |
 | `.` | chão |
-| `G` | onde o Gabriel começa |
+| `G` | onde o Gabriel começa (dentro da oficina) |
 | `T` | a lanterna (só aparece se ele ainda não tem) |
-| `C` | checkpoint (nenhum por enquanto; para pôr, preencha `CHECKPOINTS` no gerador com frações do caminho mais curto, ex.: `(0.40, 0.75)`) |
-| `P` | pilha (3, em becos sem saída) |
-| `L` | lampião de emergência (8, em cruzamentos) |
-| `V` | Sentinela · `R` Rastreador (nascem longe do início) |
+| `C` | checkpoint (um dentro de cada salão de nó) |
+| `P` | pilha (5, em becos sem saída) |
+| `L` | lampião de emergência (14 em cruzamentos, mais 2 dentro das salas) |
+| `V` | Sentinela · `R` Rastreador (6 no total, nascem longe do início) |
 | `D` | porta de saída (na parede de cima) · `S` gatilho da saída |
+| `Z` | o Zane |
+| `N` | nó de controle (2 blocos de largura: `NN`) |
+| `b` `c` `m` `x` | bancada eletrônica, console, mesa com computador, robô desmontado (largos: `bb`, `cc`...) |
+| `r` `k` `a` `u` | rack, caixas de peças, braço robótico, cadeira |
+| `h` `i` `j` | holograma de ondas, de barras, de código |
 
-Para mudar o mapa: altere o `.tres` à mão (mantendo o formato) ou mude `SEMENTE`/`FRACAO_CICLOS` no gerador e rode `python assets/modelagem/salas/labirinto/gerar_labirinto.py` (com `PREVIA=1` ele salva uma imagem do mapa inteiro).
+Para mudar o mapa: altere o `.tres` à mão (mantendo o formato) ou mude `SEMENTE`, `FRACAO_CICLOS`, `SALAS` e `MODELOS` no gerador e rode `python assets/modelagem/salas/labirinto/gerar_labirinto.py` (com `PREVIA=<pasta>` ele salva uma imagem do mapa inteiro). O gerador falha com uma mensagem se o modelo de uma sala não bate com o tamanho dela ou se não couberem os robôs.
 
 ### Por que corredores de 2 blocos
-Na vista do jogo (lateral com profundidade), a parede tem 40 px de altura e cobre o que está logo atrás dela. Com corredor de 1 bloco, a parede de baixo cobriria o corredor inteiro. Com 2 blocos, sobra uma faixa de chão visível, e quem anda rente à parede de baixo some da cintura para baixo. Por isso **os itens ficam sempre na fileira de cima** de cada corredor.
+Na vista do jogo (lateral com profundidade), a parede tem 40 px de altura e cobre o que está logo atrás dela. Com corredor de 1 bloco, a parede de baixo cobriria o corredor inteiro. Com 2 blocos, sobra uma faixa de chão visível, e quem anda rente à parede de baixo some da cintura para baixo. Por isso **os itens ficam sempre na fileira de cima** de cada corredor. Nas salas (5 fileiras de blocos), a última fileira fica parcialmente atrás da parede de baixo: nada importante nela.
 
 ### Como a sala se monta
-`labirinto.gd` lê o mapa ao carregar e cria: o chão (uma textura repetida), um nó por bloco de parede (topo + face da frente, no y-sort), a colisão (retângulos juntando blocos vizinhos da mesma fileira), os oclusores de luz, os detalhes do chão (marcas de garra, poças, papéis) e os marcadores.
+`labirinto.gd` lê o mapa ao carregar e cria: o chão (uma textura repetida), um nó por bloco de parede (topo + face da frente, no y-sort), a colisão (retângulos juntando blocos vizinhos da mesma fileira), os oclusores de luz, os detalhes do chão (marcas de garra, poças, papéis, e as peças eletrônicas na oficina) e os marcadores. Uma sequência de letras largas iguais (`bb`, `NN`) vira **um** objeto centrado.
 
 ---
 
-## 3. Robôs
+## 3. As quatro salas
+
+Uma sala é um retângulo de salinhas com as paredes internas derrubadas, e **uma entrada só** (no sorteio ela é uma folha da árvore: a busca entra e volta). O desenho de cada uma está em `MODELOS`, no gerador. O mapa guarda a área da oficina (`area_oficina`) e as salinhas seguras (`salinhas_seguras`).
+
+| Sala | Onde | Tamanho | O que tem |
+|---|---|---|---|
+| **Oficina do Zane** | canto inferior esquerdo (onde o Gabriel começa) | 4 × 2 salinhas (11 × 5 blocos) | O Zane, a lanterna, bancada, racks, mesa com computador, caixas, braço robótico, cadeira, robô desmontado, 2 hologramas, 1 lampião e **26 peças eletrônicas** espalhadas pelo chão (placas, cabos, resistores, bandeja de chips) |
+| **Nó 1** (sala dos servidores) | canto superior esquerdo | 3 × 2 (8 × 5) | Fileira de racks, 1 holograma de ondas, o console do nó (**fácil**) e o checkpoint |
+| **Nó 2** (sala de controle) | centro | 3 × 2 | Dois consoles grandes, 2 hologramas, o console do nó (**médio**) e o checkpoint |
+| **Nó 3** (laboratório) | canto inferior direito | 3 × 2 | Bancada, braço robótico, caixas, holograma, o console do nó (**difícil**) e o checkpoint |
+
+- **A oficina é segura:** a patrulha dos robôs nunca escolhe uma salinha dela como destino (`MapaLabirinto.salinhas_seguras`). Um robô que persegue o Gabriel entra normalmente.
+- **Os salões dos nós não são seguros:** são becos sem saída. Quem entra com um robô atrás fica encurralado; é a tensão da fase.
+- **Luz:** hologramas e consoles têm `PointLight2D` ciano (hologramas, com tremor) ou vermelha/verde (nó). Os hologramas são desenhados **sem luz**, como os olhos dos robôs, e brilham no escuro.
+
+### O nó de controle
+`cenas/sistemas/no_hackeavel.tscn` (script `no_hackeavel.gd`, herda de `Porta`): console, alcance de interação e luz. O notebook o trata como uma porta trancada e abre o minigame (ver [`../mecanicas/hackeamento.md`](../mecanicas/hackeamento.md)); **não gasta bateria**. As marcas `labirinto_no_1`, `_2` e `_3` ficam em `Progresso` e `rede_do_labirinto.gd` conta e libera a saída.
+
+### O Zane
+`cenas/personagens/zane_na_oficina.tscn` (script `zane_oficina.gd`, herda de `ConversaNpc`). Quatro conversas em `dados/dialogos/`:
+
+| Arquivo | Quando |
+|---|---|
+| `zane_labirinto_primeiro_encontro.json` | Primeira vez. Ao terminar, entrega o notebook. Tem escolhas: como invadir, os robôs, e "Me dá esse notebook" |
+| `zane_labirinto_notebook.json` | Se a primeira conversa terminou mas o notebook não coube no inventário |
+| `zane_labirinto_de_novo.json` | Nas próximas vezes, antes de a saída abrir |
+| `zane_labirinto_concluido.json` | Depois de os três nós caírem |
+
+---
+
+## 4. Robôs
 
 | | Sentinela | Rastreador |
 |---|---|---|
-| Quantos | 2 | 1 |
+| Quantos | 4 | 2 |
 | Aparência | 2,1 m, curvada, braços longos, um olho-farol vermelho | quadrúpede baixo, três olhos, antenas parabólicas |
 | Sentido forte | **Visão**: cone de 60° até 170 px (×1,7 com a lanterna acesa); o farol mostra para onde ela olha | **Audição**: ouve passos pelos corredores (×1,8); visão curta (80 px) e larga (100°) |
 | Velocidade (patrulha / perseguição) | 18 / 36 px/s | 24 / 50 px/s |
@@ -62,20 +104,31 @@ Na vista do jogo (lateral com profundidade), a parede tem 40 px de altura e cobr
 
 O Gabriel anda a 45 px/s e corre a 81 px/s: consegue fugir correndo, mas correr faz barulho e o Rastreador escuta de longe.
 
+Eram 3 robôs na grade de 96 salinhas; na grade de 198 salinhas são 6. Os robôs nascem a pelo menos 8 salinhas de caminho do início e a pelo menos 5 de distância entre si (em `gerar_labirinto.py`: `TIPOS_DE_ROBO`, `DISTANCIA_MINIMA_DO_INICIO`, `SEPARACAO_ENTRE_ROBOS`).
+
 A IA (máquina de estados, cone por produto escalar, BFS do som, A\*, Markov) está em [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md) e [`../historia/personagens/robos.md`](../historia/personagens/robos.md).
 
 ---
 
-## 4. Luz e escuridão
+## 5. A saída
+
+- A porta de saída (`D`) tem uma luz sobre a placa: **vermelha** enquanto a rede não foi invadida, **verde** depois.
+- Trancada, o gatilho de saída (`SaidaFase`) não detecta o Gabriel (`monitoring = false`).
+- Ao liberar (`rede_do_labirinto.gd` emite `liberada`), o gatilho liga e a luz fica verde. Se o jogador morrer e recarregar a fase depois de ter invadido tudo, a saída já volta aberta.
+- Ao passar: tela "VOCÊ SAIU DO LABIRINTO · Próxima fase: o Bunker" e a entrada do Bunker. Os campos `cena_da_saida`, `titulo_da_saida` e `subtitulo_da_saida` na cena do Labirinto controlam isso.
+
+---
+
+## 6. Luz e escuridão
 
 - `CanvasModulate` quase preto (0,13): sem luz, só se vê a silhueta das paredes.
-- A lanterna do Gabriel, os 8 lampiões, o farol vermelho da Sentinela, os olhos dos robôs (desenhados **sem luz**, sempre acesos) e a placa verde da saída.
+- A lanterna do Gabriel, os lampiões, o farol vermelho da Sentinela, os olhos dos robôs (desenhados **sem luz**, sempre acesos), os hologramas, as luzes dos nós e a placa da saída.
 - **De onde sai a luz:** o feixe da lanterna sai da mão do Gabriel e o farol da Sentinela sai da testa (as posições da testa de cada vista estão no Inspetor do robô, grupo *Testa*). A **sombra**, porém, é calculada a partir de um ponto no chão, e só a textura da luz é deslocada até a mão ou a testa (`offset` da `PointLight2D`). Sem isso, um robô encostado numa parede teria a testa "dentro" da sombra da parede e o farol apagaria.
 - **Sombras:** cada fileira de parede tem um `LightOccluder2D`; a lanterna e o farol projetam sombra. As paredes em si ficam numa camada de luz separada (`light_mask = 2`), acesa por um segundo feixe sem sombra, para o bloco atingido pela luz aparecer.
 
 ---
 
-## 5. Trilha adaptativa
+## 7. Trilha adaptativa
 
 Duas camadas, **mesmo andamento e mesma duração** (100 BPM, 38,4 s, Ré frígio), tocando juntas desde o início:
 
@@ -86,8 +139,10 @@ Quando um robô vê o Gabriel, a camada de perseguição sobe em 0,8 s; quando t
 
 ---
 
-## 6. Ainda não feito
+## 8. Ainda não feito
 
 - Esconderijos (armários) e distrações (arremesso) do GDD.
-- Ligar o labirinto ao resto do campus (de onde se entra, para onde a saída leva). Hoje a saída volta ao menu.
+- O que os nós de controle são na história: hoje são terminais da trava do sistema do subsolo (proposta; Enredo, seção 12.5).
+- Por onde o Gabriel chega do Bloco de salas ao subsolo (hoje a porta corta-fogo abre direto o Labirinto) e para onde a saída leva de verdade (hoje, o Bunker, provisoriamente).
 - Rotina de patrulha por grade horária (coloração de grafos): hoje a patrulha é só a cadeia de Markov.
+- Sprite próprio para a luz do nó e animação de entrada na oficina; o Zane está parado.

@@ -16,6 +16,16 @@ Formato:
 
 ---
 
+## 2026-10-14 — A terceira fase é o Labirinto, com a oficina do Zane
+**Decisão:**
+- **A fase depois do Bloco de salas é o Labirinto** (já jogável), no lugar do Centro de Convivência. A ordem fica **Biblioteca → Bloco de salas → Labirinto**. Isso substitui a entrada de 2026-10-11 ("A fase depois do Bloco de salas é o Centro de Convivência"); o Centro fica sem lugar na ordem. O projeto detalhado do Centro e a Diana no Posto de Manutenção (#101) foram desfeitos (#102).
+- **O Zane fica no começo do Labirinto**, numa oficina cheia de componentes eletrônicos, desorganizada, com telas holográficas. Ele pede ajuda a Gabriel e entrega o **notebook** dele: Gabriel invade **três nós de controle**, em três salões espalhados pelo labirinto, e o Zane abre a porta de saída pelo rádio.
+- **O Labirinto foi ampliado com os mesmos sprites:** de 12 × 8 para 18 × 11 salinhas (1760 × 1088 px), com **6 robôs** (4 Sentinelas e 2 Rastreadores; eram 3), 5 pilhas, 14 lampiões e 4 salas (a oficina e os 3 salões dos nós), cada uma com uma entrada só. A saída fica trancada até os 3 nós caírem.
+- **Escolhas de implementação, a confirmar:** os nós são terminais da trava do sistema do subsolo, que só lê de dentro; nos nós o notebook **não gasta bateria** (para a fase não travar por falta de carga) e a dificuldade do hack sobe do fácil ao difícil; a oficina é **segura** (a patrulha dos robôs não entra nela, mas eles entram se estiverem perseguindo o Gabriel); cada salão de nó tem um checkpoint; a saída do Labirinto abre, provisoriamente, a entrada do Bunker.
+
+**Por quê:** pedido do Davi.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 6, 8, 12.3 e 12.5), `docs/historia/personagens/zane.md`, `docs/fases/labirinto.md`, `bloco_de_salas.md`, `bunker.md` e `centro_de_convivencia.md`, `docs/mecanicas/hackeamento.md` e `vida_e_checkpoint.md`; `cenas/salas/labirinto.tscn`, `bloco_de_salas/fim_do_bloco.tscn` e `menu_principal.tscn` (fases renumeradas: `02_blocos_de_aula` e `03_labirinto`); scripts `labirinto.gd`, `mapa_labirinto.gd`, `grade_labirinto.gd`, `notebook.gd`, `caixa_dialogo.gd` e os novos `no_hackeavel.gd`, `rede_do_labirinto.gd` e `zane_oficina.gd`; cenas novas `no_hackeavel`, `zane_na_oficina` e `holograma_*`; diálogos `zane_labirinto_*.json` e a transmissão `zane_labirinto_01`; geradores `gerar_labirinto.py` e `gerar_oficina.py`.
+
 ## 2026-10-12 — Melhorias de level design do Bloco de salas implementadas
 **Decisão:** as propostas da seção 12 de `docs/fases/bloco_de_salas.md` (PR #96) entram no jogo: a brecha 101 ↔ 102 e a porta de serviço 203 ↔ 206 (com o trinco do lado do depósito), os três setores de piso dos corredores com o **fator de piso** no alcance do som (areia/mato 0,5, lajota/tapete 1,0, lajota solta 1,5), dois **nichos** por corredor onde o Gabriel parado e sem luz não é visto, a **fresta da barricada** da 103 para espiar o corredor antes de sair, o **mapa de giz** da Clarice na lousa da 103, os **estalos** do teto do térreo, a **pedra pelo buraco** da 204 que leva o Rastreador para dentro da 104 por 18 s, a queda **amortecida** por caixas na 104, e a sala **205** limpa, com luz fluorescente estável e zumbido de 60 Hz.
 **Por quê:** pedido do Davi, depois de mesclar o #96.
