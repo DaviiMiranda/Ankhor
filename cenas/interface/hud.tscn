@@ -10,6 +10,13 @@ content_margin_right = 3.0
 content_margin_bottom = 1.0
 bg_color = Color(0, 0, 0, 0.55)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mensagem"]
+content_margin_left = 8.0
+content_margin_top = 0.0
+content_margin_right = 8.0
+content_margin_bottom = 1.0
+bg_color = Color(0, 0, 0, 0.55)
+
 [sub_resource type="LabelSettings" id="LabelSettings_aviso"]
 font_size = 8
 line_spacing = 0.0
@@ -39,9 +46,10 @@ anchor_right = 1.0
 offset_top = 6.0
 offset_bottom = 20.0
 grow_horizontal = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_fundo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mensagem")
 label_settings = SubResource("LabelSettings_aviso")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="FlashDano" type="ColorRect" parent="."]
 offset_right = 320.0
