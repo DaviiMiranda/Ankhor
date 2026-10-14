@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-14 — Animação de abrir porta e som próprio no Bloco de salas
+**Decisão:** a porta do Bloco de salas ganha animação de abrir e som próprio de porta pesada de aço com trinco eletromecânico (`cenas/cenario/bloco_de_salas/parede_porta_animada.tscn`), seguindo o padrão de uma porta animada por mapa da Biblioteca. A peça base de parede é `parede_porta_bloco.png` (80×112 px) e a folha animada (`porta_bloco_quadros.tres`, 80×88 px) roda a 36 fps, com a folha de aço com visor de vidro aramado correndo para o lado (deslizando para dentro do bolso de parede em trilho superior). O som ao atravessar passa a ser `porta_bloco.wav` (destrave de solenóide, desengate mecânico de aço, rolamento no trilho e descompressão do amortecedor pneumático).
+**Por quê:** pedido do usuário a partir da arte e do sprite da porta de correr do bloco.
+**Afeta:** `cenas/cenario/bloco_de_salas/parede_porta_animada.tscn`, `assets/sprites/cenario/bloco_de_salas/porta/`, `assets/modelagem/cenario/gerar_porta_bloco.py`, `assets/modelagem/audio/gerar_efeitos_porta_bloco.py`, `assets/audio/efeitos/objetos/porta_bloco.wav`, as 14 cenas de salas de `cenas/salas/bloco_de_salas/`, `docs/mecanicas/movimentacao_e_terreno.md` e `assets/audio/README.md`.
+
 ## 2026-10-14 — A lanterna aparece presa ao peito do Gabriel e o feixe sai da lente
 **Decisão:** com a lanterna equipada, aparece no **peito** do Gabriel uma lanterna pequena e escura (5 × 3 px, `lanterna_peito.png`), girada para a direção da mira e espelhada quando ele olha para a esquerda. Nas vistas de costas ela fica escondida pelo corpo. O cone e o brilho nascem na **lente** dela, e não mais de um ponto fixo na altura do tronco. A sombra continua calculada a partir de um ponto no chão (como em `docs/fases/labirinto.md`, seção 4), só a textura da luz é que sai da lente. A primeira versão pôs a lanterna na mão (7 × 4 px) e foi trocada pelo peito, a pedido do Davi, por ficar grande demais e chamar atenção.
 **Por quê:** pedido do Davi. A luz parecia sair da cintura, porque não havia lanterna desenhada e o ponto de origem ficava fixo no corpo. No peito ela fica mais discreta e não depende do balanço do braço.
