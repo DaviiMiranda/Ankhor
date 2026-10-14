@@ -10,11 +10,11 @@ offset_bottom = 180.0
 color = Color(0, 0, 0, 1)
 
 [node name="SaidaFase" parent="." instance=ExtResource("1_saida")]
-cena_destino = "res://cenas/salas/bunker/entrada.tscn"
+cena_destino = "res://cenas/salas/labirinto.tscn"
 sair_ao_carregar = true
 
 [node name="Titulo" parent="SaidaFase/Tela" index="1"]
 text = "VOCÊ SAIU DO BLOCO"
 
 [node name="Subtitulo" parent="SaidaFase/Tela/Titulo" index="0"]
-text = "Próxima fase: o Bunker"
+text = "Próxima fase: o Labirinto"
