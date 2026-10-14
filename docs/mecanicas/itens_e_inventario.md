@@ -20,6 +20,7 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 - **Gadgets:** **3 espaços**, um para cada ferramenta equipável prevista em [`docs/historia/personagens/gabriel.md`](../historia/personagens/gabriel.md): lanterna, cápsulas de clarão e objetos de arremesso. Equipar não tira o item da grade; o espaço de gadget é um atalho para ele.
 - **Aviso de `E`:** perto de um item ou de uma pilha, aparece só a tecla `[E]` em cima dele, sem texto. O nome do item aparece depois de pegar ("Você pegou: ...") e a descrição fica no inventário. Documentos continuam com o verbo (`[E] Ler o bilhete`), porque ler é uma ação diferente de pegar. Quem decide o texto é o `texto_acao` do `Interagivel`: vazio mostra só a tecla.
 - Ao pegar um gadget com um espaço livre, ele já é equipado.
+- **Item novo (primeira vez):** ao pegar um item pela primeira vez no jogo, o jogo pausa e abre a **tela de item novo**: a imagem detalhada, o nome e a descrição. `E` ou `Esc` guardam e voltam ao jogo. Detalhes na seção 3.
 - **Item único já pego não aparece de novo:** um item que não empilha (lanterna, rádio, notebook) só aparece no chão se o Gabriel ainda não tiver um. Assim a mesma lanterna pode estar no começo de várias fases sem duplicar.
 - Na tela, os espaços de gadget ficam no canto de baixo à esquerda, com o número da tecla. A borda acende enquanto o gadget está em uso (pote destampado), e a barrinha embaixo mostra a carga.
 
@@ -101,3 +102,29 @@ Para destacar outra coisa coletável, instancie `cenas/itens/destaque_coletavel.
 - Descartar ou usar itens que não são gadgets pelo inventário.
 - A luz do pote chamar a atenção dos robôs (depende da IA deles).
 - Salvar o inventário ao dormir (depende do sistema de save).
+
+---
+
+## 3. Tela de item novo (imagem detalhada)
+
+A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo novo), o jogo pausa e mostra a imagem grande do item, o nome e a descrição. É como o Resident Evil faz ao pegar um objeto.
+
+- **Quem dispara:** `Inventario.adicionar()` registra o `id` em `Inventario.vistos` e emite o sinal `item_novo`. Pegar mais uma unidade de um item que empilha (pedra, clarão) não dispara de novo.
+- **Quem mostra:** `cenas/interface/tela_item_novo.tscn`, um autoload chamado `ItemNovo`. Fica acima de todas as telas (camada 10). Se já houver outra tela aberta (menu de pausa, documento), ela espera fechar. Vários itens ao mesmo tempo entram numa fila.
+- **Fechar:** `E` ou `Esc`, só depois de 0,45 s.
+- **Sem imagem detalhada:** o item mostra o ícone de 16 × 16 ampliado em escala inteira, com a mesma descrição. Nenhum item fica sem a tela.
+- **A descrição** é o campo `descricao` do item (o mesmo que aparece no inventário). Cabem 7 linhas; se passar, o Godot avisa no console.
+
+### Como colocar a imagem detalhada de um item
+
+1. Gere a imagem no gerador de imagem, com o item inteiro e centralizado, sobre um **fundo chapado de uma cor só** (cinza serve). Estilo pixel art, o mesmo para todos os itens.
+2. Rode o script, que tira o fundo, corta rente e salva em `assets/sprites/itens/<id>_detalhe.png`:
+   ```bash
+   python assets/modelagem/itens/preparar_detalhe.py caminho/da/imagem.webp lanterna
+   ```
+3. Abra o projeto no Godot (ele cria o `.import`) e, em `dados/itens/<id>.tres`, arraste o PNG para o campo **Imagem Detalhe**.
+4. Para a tela ficar de acordo, redesenhe também o ícone (16 × 16) e o sprite do chão em `assets/modelagem/interface/gerar_interface.py`, com as cores da imagem.
+
+### Conteúdo de computação
+
+O fundo é tirado por **"color to alpha"**: a transparência de cada pixel é uma função da **distância euclidiana** entre a cor dele e a cor do fundo no espaço RGB, e a cor do objeto nas bordas é recuperada invertendo a mistura `pixel = a · objeto + (1 − a) · fundo`. A fila de itens é uma **fila (FIFO)**. A matemática está comentada em `preparar_detalhe.py`.

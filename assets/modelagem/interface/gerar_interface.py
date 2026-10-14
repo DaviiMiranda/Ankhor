@@ -62,6 +62,14 @@ TAMANHO_ESPACO = 20
 TAMANHO_PAINEL = 24
 MARGEM_PAINEL = 6       # patch_margin do NinePatchRect (mude lá se mudar aqui)
 
+# Cores da lanterna, tiradas da imagem detalhada dela
+# (assets/sprites/itens/lanterna_detalhe.png): carcaça verde-oliva militar,
+# placa de aço azulada atrás, botão vermelho, alça de nylon oliva escuro.
+OLIVA = bib.hexa("#10170c", "#1c2713", "#2a3a1c", "#3a4e26", "#4f6632", "#6c8445", "#8da25a")
+ACO_AZUL = bib.hexa("#0f1219", "#1a202b", "#28313f", "#3a4658", "#52627a")
+VERMELHO_BOTAO = bib.hexa("#3a0f0c", "#6e1c15", "#b02a1e", "#e0513a")
+NYLON = bib.hexa("#0d100a", "#171c11", "#222a18", "#323b22", "#444e2f")
+
 
 # ---------------------------------------------------------------------------
 # Ícones dos itens
@@ -70,25 +78,36 @@ MARGEM_PAINEL = 6       # patch_margin do NinePatchRect (mude lá se mudar aqui)
 
 def lanterna():
     """A lanterna do Gabriel, a mesma peça que vai presa ao peito dele
-    (lanterna_peito): pequena e compacta, de plástico preto, deitada, com o
-    corpo à esquerda, uma tampa mais alta em volta da lente e a lente à
-    direita (borda âmbar, miolo claro). Por cima, a alça de elástico que a
-    prende ao peito. Não tem luz acesa no ícone: se ela está ligada, o
-    espaço de gadget mostra."""
+    (lanterna_peito) e que aparece na imagem detalhada
+    (lanterna_detalhe.png): carcaça verde-oliva de cantos cortados sobre uma
+    placa de aço, com o botão vermelho e as nervuras na tampa, o apoio de
+    borracha preta à esquerda e a lente redonda à direita (aro escuro,
+    miolo quente). Duas alças de nylon sobem pela placa. Não tem luz acesa
+    no ícone: se ela está ligada, o espaço de gadget mostra."""
     img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
     X, Y = img.X, img.Y
     fino = ruido(img.w, img.h, 2, 2, 7)
-    # Alça: um laço de elástico por cima do corpo.
-    laco = img.ret(4, 3, 9, 4) | img.ret(4, 3, 5, 6) | img.ret(8, 3, 9, 6)
-    img.pintar(laco, "ferrugem", 0.42)
-    # Corpo: um bloco curto de cantos cortados, mais claro no topo.
-    corpo = img.poligono([(2, 7), (3, 6), (10, 6), (10, 11), (3, 11), (2, 10)])
-    img.pintar(corpo, "metal", 0.14 + 0.2 * (Y < 8) + 0.05 * fino)
-    # Tampa da lente: mais alta que o corpo.
-    img.pintar(img.ret(10, 5, 13, 12), "metal", 0.3 + 0.14 * (Y < 7))
-    # Lente: borda âmbar e miolo claro.
-    img.pintar(img.ret(13, 6, 15, 11), "sol", 0.45)
-    img.pintar(img.ret(14, 7, 15, 10), "sol", 0.9)
+    # Alças: dois laços de nylon saindo da placa para cima.
+    for x0 in (3, 10):
+        laco = img.ret(x0, 1, x0 + 3, 2) | img.ret(x0, 1, x0 + 1, 5) | img.ret(x0 + 2, 1, x0 + 3, 5)
+        img.pintar(laco, NYLON, 0.55)
+    img.pintar(img.ret(4, 1, 5, 2) | img.ret(11, 1, 12, 2), "metal", 0.55)         # fivelas
+    # Placa de aço: só aparece nas bordas, atrás da carcaça.
+    img.pintar(img.ret(1, 4, 12, 14), ACO_AZUL, 0.5 + 0.2 * (Y < 6))
+    # Carcaça: bloco de cantos cortados, mais claro no topo e na esquerda.
+    corpo = img.poligono([(2, 6), (3, 5), (12, 5), (13, 6), (13, 12), (12, 13), (3, 13), (2, 12)])
+    img.pintar(corpo, OLIVA, 0.42 + 0.22 * (Y < 7) + 0.1 * (X < 4) + 0.05 * fino)
+    # Apoio de borracha preta, na lateral esquerda.
+    img.pintar(img.ret(2, 7, 5, 12), "metal", 0.1)
+    img.pintar(img.ret(3, 8, 4, 11), "metal", 0.28)
+    # Botão vermelho na tampa e nervuras de ventilação.
+    img.pintar(img.ret(5, 5, 8, 6), VERMELHO_BOTAO, 0.9)
+    img.pintar(img.ret(5, 6, 8, 7), VERMELHO_BOTAO, 0.4)
+    img.pintar(img.ret(9, 6, 13, 7) & (X % 2 == 1), OLIVA, 0.12)
+    # Lente: aro escuro, anel âmbar e miolo quase branco.
+    img.pintar(img.elipse(8.5, 9.5, 3.4, 3.4), "metal", 0.12)
+    img.pintar(img.elipse(8.5, 9.5, 2.4, 2.4), "lampada", 0.72)
+    img.pintar(img.ret(8, 9, 10, 11), "lampada", 1.0)
     img.contornar(CONTORNO)
     return img
 
@@ -96,10 +115,12 @@ def lanterna():
 def lanterna_chao():
     """A mesma lanterna caída no chão, na escala do cenário: um pouco maior
     que a do peito (5 x 3 px) porque aqui o contorno e o corpo aparecem
-    inteiros."""
+    inteiros. Um bloco verde-oliva com o botão vermelho e a lente acesa."""
     img = Imagem(7, 4)
-    img.pintar(img.ret(1, 1, 5, 3), "metal", 0.25)
-    img.pintar(img.ret(5, 1, 6, 3), "sol", 0.7)
+    img.pintar(img.ret(1, 1, 5, 2), OLIVA, 0.6)
+    img.pintar(img.ret(1, 2, 5, 3), OLIVA, 0.35)
+    img.pintar(img.ret(2, 1, 3, 2), VERMELHO_BOTAO, 0.9)
+    img.pintar(img.ret(5, 1, 6, 3), "lampada", 0.85)
     img.contornar(CONTORNO)
     return img
 
@@ -107,12 +128,12 @@ def lanterna_chao():
 def lanterna_peito():
     """A lanterna como aparece presa ao peito do Gabriel: 5 x 3 px (~18 cm na
     escala do personagem, 1 px ≈ 3,6 cm), pequena e escura para não chamar
-    atenção. Corpo à esquerda e a lente na ponta direita. Está apontada para
-    a direita; o jogo gira e espelha o sprite conforme a direção da mira
-    (scripts/itens/lanterna.gd)."""
+    atenção. Corpo verde-oliva escuro à esquerda e a lente na ponta direita.
+    Está apontada para a direita; o jogo gira e espelha o sprite conforme a
+    direção da mira (scripts/itens/lanterna.gd)."""
     img = Imagem(5, 3)
-    img.pintar(img.ret(1, 1, 4, 2), "metal", 0.22)
-    img.pintar(img.ret(4, 1, 5, 2), "sol", 0.55)
+    img.pintar(img.ret(1, 1, 4, 2), OLIVA, 0.3)
+    img.pintar(img.ret(4, 1, 5, 2), "lampada", 0.7)
     img.contornar(CONTORNO)
     return img
 

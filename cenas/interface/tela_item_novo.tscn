@@ -1,0 +1,97 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interface/tela_item_novo.gd" id="1_tela"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/inventario_abrir.wav" id="2_abrir"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/inventario_fechar.wav" id="3_fechar"]
+
+[sub_resource type="Gradient" id="Gradient_luz"]
+offsets = PackedFloat32Array(0, 0.55, 1)
+colors = PackedColorArray(1, 0.84, 0.52, 0.3, 1, 0.78, 0.42, 0.09, 1, 0.78, 0.42, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_luz"]
+gradient = SubResource("Gradient_luz")
+width = 160
+height = 160
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="TelaItemNovo" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+visible = false
+script = ExtResource("1_tela")
+
+[node name="Fundo" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.02, 0.02, 0.025, 0.86)
+
+[node name="Luz" type="TextureRect" parent="."]
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 164.0
+pivot_offset = Vector2(80, 80)
+mouse_filter = 2
+texture_filter = 2
+texture = SubResource("GradientTexture2D_luz")
+
+[node name="Imagem" type="TextureRect" parent="."]
+mouse_filter = 2
+texture_filter = 2
+expand_mode = 1
+
+[node name="Etiqueta" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 152.0
+offset_bottom = 22.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.72, 0.62, 0.38, 1)
+text = "Novo item"
+
+[node name="Texto" type="VBoxContainer" parent="."]
+offset_left = 160.0
+offset_top = 14.0
+offset_right = 308.0
+offset_bottom = 160.0
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="Nome" type="Label" parent="Texto"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99, 0.95, 0.82, 1)
+theme_override_font_sizes/font_size = 16
+autowrap_mode = 3
+
+[node name="Separador" type="ColorRect" parent="Texto"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.95, 0.88, 0.7, 0.4)
+
+[node name="Descricao" type="Label" parent="Texto"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84, 0.84, 0.8, 1)
+autowrap_mode = 3
+
+[node name="Dica" type="Label" parent="."]
+offset_top = 166.0
+offset_right = 320.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0.95, 0.88, 0.7, 1)
+text = "E: guardar"
+horizontal_alignment = 1
+
+[node name="SomAbrir" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_abrir")
+volume_db = -4.0
+bus = &"Efeitos"
+
+[node name="SomFechar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fechar")
+volume_db = -6.0
+bus = &"Efeitos"

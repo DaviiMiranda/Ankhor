@@ -16,6 +16,14 @@ Formato:
 
 ---
 
+## 2026-10-14 — Tela de item novo: na primeira vez que pega um item, o jogo mostra a imagem detalhada dele
+**Decisão:** na **primeira vez** que um item entra no inventário (uma vez por `id`, por jogo novo), o jogo pausa e mostra uma tela no estilo do Resident Evil: a **imagem detalhada** do item, o nome e a descrição. `E` ou `Esc` fecham (só depois de 0,45 s, para não fechar sem querer). Item sem imagem detalhada mostra o ícone ampliado, então todos os itens passam pela tela e a arte entra aos poucos. Vários itens pegos juntos entram numa fila. Pegar outra unidade de item que empilha (pedra, clarão) não abre a tela de novo. A tela é um autoload (`ItemNovo`), por isso nenhuma cena de sala foi alterada.
+A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de imagem) e mostrada como está, com filtro suave. O ícone de 16 × 16, o sprite do chão e a lanterna do peito continuam em pixel art pequena, desenhados a partir dela. A **lanterna foi refeita** para combinar com a imagem: carcaça verde-oliva, placa de aço azulada, botão vermelho e lente âmbar.
+**Por quê:** pedido do Davi. O jogador vê o item de perto, com a descrição, no momento em que o pega, em vez de só ler "Você pegou: ..." no canto da tela.
+**Afeta:** `scripts/sistemas/inventario.gd` (`vistos` e sinal `item_novo`), `scripts/itens/item.gd` (campo `imagem_detalhe`), `scripts/interface/tela_item_novo.gd` e `cenas/interface/tela_item_novo.tscn`, `project.godot` (autoload `ItemNovo`), `dados/itens/lanterna.tres`, `assets/sprites/itens/lanterna_detalhe.png`, `assets/modelagem/itens/preparar_detalhe.py`, `assets/modelagem/interface/gerar_interface.py` (lanterna), `docs/mecanicas/itens_e_inventario.md`.
+
+---
+
 ## 2026-10-14 — A lanterna aparece presa ao peito do Gabriel e o feixe sai da lente
 **Decisão:** com a lanterna equipada, aparece no **peito** do Gabriel uma lanterna pequena e escura (5 × 3 px, `lanterna_peito.png`), girada para a direção da mira e espelhada quando ele olha para a esquerda. Nas vistas de costas ela fica escondida pelo corpo. O cone e o brilho nascem na **lente** dela, e não mais de um ponto fixo na altura do tronco. A sombra continua calculada a partir de um ponto no chão (como em `docs/fases/labirinto.md`, seção 4), só a textura da luz é que sai da lente. A primeira versão pôs a lanterna na mão (7 × 4 px) e foi trocada pelo peito, a pedido do Davi, por ficar grande demais e chamar atenção.
 **Por quê:** pedido do Davi. A luz parecia sair da cintura, porque não havia lanterna desenhada e o ponto de origem ficava fixo no corpo. No peito ela fica mais discreta e não depende do balanço do braço.

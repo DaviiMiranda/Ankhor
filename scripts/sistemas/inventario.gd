@@ -2,6 +2,7 @@ extends Node
 
 signal mudou
 signal item_pego(item: Item)
+signal item_novo(item: Item)
 signal aviso(texto: String)
 
 const LINHAS := 3
@@ -12,6 +13,7 @@ var grade: Array = []
 var gadgets: Array = []
 var estado: Dictionary = {}
 var pegos: Dictionary = {}
+var vistos: Dictionary = {}
 
 
 func _ready() -> void:
@@ -28,6 +30,7 @@ func limpar() -> void:
 	gadgets.resize(ESPACOS_GADGET)
 	estado = {}
 	pegos = {}
+	vistos = {}
 	mudou.emit()
 
 
@@ -45,6 +48,7 @@ func adicionar(item: Item) -> bool:
 					if livre != -1:
 						gadgets[livre] = item
 				item_pego.emit(item)
+				_registrar_visto(item)
 				mudou.emit()
 				return true
 	return false
@@ -119,3 +123,10 @@ func _somar_unidade(item: Item) -> bool:
 	item_pego.emit(item)
 	mudou.emit()
 	return true
+
+
+func _registrar_visto(item: Item) -> void:
+	if vistos.has(item.id):
+		return
+	vistos[item.id] = true
+	item_novo.emit(item)
