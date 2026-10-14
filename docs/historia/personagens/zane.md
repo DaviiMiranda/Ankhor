@@ -31,16 +31,16 @@
 
 ## 4. No jogo
 
-- **Onde aparece:** pelo telefone desde a Biblioteca. Em pessoa, no **bunker**, sentado no computador da central de dados.
-- **Esconderijo:** o **bunker**, com o Henrique (na mesma sala de dados).
-- **Como chega ao jogador:** **telefone** (a primeira ligação é no balcão da Biblioteca), a frequência de rádio do grupo e, no bunker, em pessoa.
-- **Função na jogabilidade:** as **comunicações**: põe Gabriel em contato com os outros, abre portas pelo sistema e tenta quebrar a senha do setor B do bunker. Por entender de tecnologia, é um candidato natural a trazer o **notebook** (gadget de hackear portas e robôs), mas isso não está decidido.
+- **Onde aparece:** pelo telefone desde a Biblioteca. Em pessoa, primeiro na **oficina do Labirinto** (decidido em 2026-10-14) e depois no **bunker**, no computador da central de dados (pendente: Enredo, seção 12.3).
+- **Esconderijo:** a **oficina do Labirinto**, num canto do subsolo, perto de onde Gabriel chega, e o **bunker**, com o Henrique (na mesma sala de dados).
+- **Como chega ao jogador:** **telefone** (a primeira ligação é no balcão da Biblioteca), a frequência de rádio do grupo e, em pessoa, na oficina do Labirinto e no bunker.
+- **Função na jogabilidade:** as **comunicações**: põe Gabriel em contato com os outros, abre portas pelo sistema e tenta quebrar a senha do setor B do bunker. No Labirinto ele **entrega o notebook** a Gabriel (gadget de hackear portas e robôs) e pede que invada três nós de controle da rede do subsolo, porque de longe ele não consegue; quando o terceiro cai, chama Gabriel de volta pelo rádio e revela o alçapão escondido da oficina, que é a saída.
 - **Parte para consertar a Âncora:** a tecnologia mais próxima da Âncora.
 
 ## 5. Registros
 
 - **Suporte:** áudio com interface holográfica: tela ciano com forma de onda e falhas de sinal. Ainda não existe no jogo.
-- **Já escritos:** a ligação do fim da Biblioteca, `dados/transmissoes/zane_01.tres`.
+- **Já escritos:** a ligação do fim da Biblioteca, `dados/transmissoes/zane_01.tres`; as conversas da oficina, `dados/dialogos/zane_labirinto_primeiro_encontro.json`, `zane_labirinto_notebook.json`, `zane_labirinto_de_novo.json`, `zane_labirinto_alcapao.json` (revela o alçapão) e `zane_labirinto_alcapao_de_novo.json`; e o chamado pelo rádio quando o terceiro nó cai, `dados/transmissoes/zane_labirinto_01.tres`.
 
 ## 6. Direção de arte
 
@@ -48,13 +48,14 @@
 - **Visual definido:** [`assets/sprites/personagens/zane/visual.md`](../../../assets/sprites/personagens/zane/visual.md). Braço direito de prótese com linhas de luz ciano, olho de implante, placa na têmpora e porta na nuca; jaqueta técnica curta amarelo-ácido com gola alta; cabelo raspado dos lados com o topo descolorido.
 - **Cor de identificação:** amarelo-ácido (Gabriel vermelho, Clarice verde-azulado).
 - Sprites em resolução dobrada, com o mesmo conjunto do Gabriel (ver `CLAUDE.md`).
+- **Feito:** o Zane **na oficina do Labirinto** (`cenas/personagens/zane_na_oficina.tscn`), parado, em pé em frente à mesa com o computador, entre bancadas, racks e telas holográficas.
 - **Falta:** o Zane **na sala de dados do bunker**. A estação agora existe sozinha (`assets/sprites/cenario/objetos/estacao_dados.png`) e quem aparece nela é o Henrique; o Zane precisa de um lugar na sala (a mesma estação, uma segunda ou o computador do gerador).
 
 ## 7. Arquivos
 
 - **Sprites:** `assets/sprites/personagens/zane/`
 - **Gerador:** `assets/modelagem/personagens/gerar_zane.py`
-- **Cena:** `cenas/personagens/zane.tscn` (parado, por enquanto só na sala de teste).
+- **Cena:** `cenas/personagens/zane.tscn` (parado) e `cenas/personagens/zane_na_oficina.tscn` (com a conversa, no Labirinto).
 - **Ligação:** `dados/transmissoes/zane_01.tres`, tocada pelo telefone do balcão (`cenas/sistemas/telefone.tscn`).
 
 ## 8. Pendências

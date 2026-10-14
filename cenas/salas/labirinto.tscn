@@ -21,7 +21,13 @@
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_documento.tscn" id="19_documento"]
 [ext_resource type="PackedScene" path="res://cenas/interface/legenda_radio.tscn" id="21_legenda"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_morte.tscn" id="22_morte"]
+[ext_resource type="PackedScene" path="res://cenas/interface/caixa_dialogo.tscn" id="29_caixa_dialogo"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_labirinto.tscn" id="23_musica"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/componentes_0.png" id="24_comp0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/componentes_1.png" id="25_comp1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/componentes_2.png" id="26_comp2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/componentes_3.png" id="27_comp3"]
+[ext_resource type="Resource" path="res://dados/transmissoes/zane_labirinto_01.tres" id="28_transmissao"]
 
 [sub_resource type="ShaderMaterial" id="Vinheta"]
 shader = ExtResource("16_vinheta")
@@ -33,10 +39,15 @@ topos = Array[Texture2D]([ExtResource("4_topo0"), ExtResource("5_topo1"), ExtRes
 frentes = Array[Texture2D]([ExtResource("7_frente0"), ExtResource("8_frente1"), ExtResource("9_frente2"), ExtResource("10_frente3")])
 textura_porta = ExtResource("11_porta")
 decalques = Array[Texture2D]([ExtResource("12_garra"), ExtResource("13_poca"), ExtResource("14_papel")])
+componentes = Array[Texture2D]([ExtResource("24_comp0"), ExtResource("25_comp1"), ExtResource("26_comp2"), ExtResource("27_comp3")])
+transmissao_da_rede = ExtResource("28_transmissao")
+cena_da_saida = "res://cenas/salas/bunker/entrada.tscn"
+titulo_da_saida = "VOCÊ SAIU DO LABIRINTO"
+subtitulo_da_saida = "Próxima fase: o Bunker"
 id = "labirinto"
 duracao_entrada = 1.5
-largura = 1184
-altura = 800
+largura = 1760
+altura = 1088
 criar_limites = false
 
 [node name="Chao" type="Sprite2D" parent="."]
@@ -44,7 +55,7 @@ texture_repeat = 2
 texture = ExtResource("3_piso")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 1184, 800)
+region_rect = Rect2(0, 0, 1760, 1088)
 
 [node name="Decalques" type="Node2D" parent="."]
 
@@ -92,5 +103,7 @@ color = Color(0, 0, 0, 1)
 [node name="LegendaRadio" parent="." instance=ExtResource("21_legenda")]
 
 [node name="TelaMorte" parent="." instance=ExtResource("22_morte")]
+
+[node name="CaixaDialogo" parent="." instance=ExtResource("29_caixa_dialogo")]
 
 [node name="MusicaLabirinto" parent="." instance=ExtResource("23_musica")]

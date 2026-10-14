@@ -32,10 +32,10 @@ func _ready() -> void:
 func usar() -> void:
 	if _alvo:
 		return
-	if _estado["carga"] < gasto_por_hack - 0.001:
+	var alvo := _procurar_alvo()
+	if _estado["carga"] < _gasto_de(alvo) - 0.001:
 		Inventario.aviso.emit("Notebook sem bateria")
 		return
-	var alvo := _procurar_alvo()
 	if alvo == null:
 		Inventario.aviso.emit("Nada para hackear. Robôs, só por trás")
 		return
@@ -79,8 +79,14 @@ func _comecar(alvo: Node2D) -> void:
 		(alvo as Robo).atordoar(segundos_hack + 0.2)
 
 
+func _gasto_de(alvo: Node2D) -> float:
+	if alvo is NoHackeavel:
+		return (alvo as NoHackeavel).gasto_hack
+	return gasto_por_hack
+
+
 func _abrir_minigame(porta: Porta) -> void:
-	_estado["carga"] = maxf(_estado["carga"] - gasto_por_hack, 0.0)
+	_estado["carga"] = maxf(_estado["carga"] - _gasto_de(porta), 0.0)
 	var janela := TELA_HACKEAMENTO.instantiate() as TelaHackeamento
 	get_tree().current_scene.add_child(janela)
 	janela.concluido.connect(_ao_terminar_minigame.bind(porta))
