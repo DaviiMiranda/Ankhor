@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-14 — Mensagens do HUD quebram em linhas e ficam mais tempo na tela
+**Decisão:** a mensagem do topo da tela (pegar item, porta trancada, bilhetes e placas) passa a **quebrar em várias linhas** dentro da largura da tela, com 8 px de margem de cada lado, em vez de ficar numa linha só. O tempo na tela continua 3,5 s para textos curtos e cresce com o tamanho: 0,05 s por caractere (`segundos_por_caractere` no `hud.gd`), então um texto de 100 caracteres fica 5 s.
+**Por quê:** textos longos (o maior, o mapa de giz da sala 103, tem mais de 250 caracteres) passavam das laterais da tela e eram cortados, e nem dava tempo de ler os que cabiam por pouco.
+**Afeta:** `cenas/interface/hud.tscn` (nó `Mensagem`), `scripts/interface/hud.gd`.
+
 ## 2026-10-12 — Melhorias de level design do Bloco de salas implementadas
 **Decisão:** as propostas da seção 12 de `docs/fases/bloco_de_salas.md` (PR #96) entram no jogo: a brecha 101 ↔ 102 e a porta de serviço 203 ↔ 206 (com o trinco do lado do depósito), os três setores de piso dos corredores com o **fator de piso** no alcance do som (areia/mato 0,5, lajota/tapete 1,0, lajota solta 1,5), dois **nichos** por corredor onde o Gabriel parado e sem luz não é visto, a **fresta da barricada** da 103 para espiar o corredor antes de sair, o **mapa de giz** da Clarice na lousa da 103, os **estalos** do teto do térreo, a **pedra pelo buraco** da 204 que leva o Rastreador para dentro da 104 por 18 s, a queda **amortecida** por caixas na 104, e a sala **205** limpa, com luz fluorescente estável e zumbido de 60 Hz.
 **Por quê:** pedido do Davi, depois de mesclar o #96.
