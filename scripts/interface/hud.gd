@@ -5,6 +5,7 @@ const CORACAO_CHEIO := preload("res://assets/sprites/interface/coracao_cheio.png
 const CORACAO_VAZIO := preload("res://assets/sprites/interface/coracao_vazio.png")
 
 @export var duracao_mensagem: float = 3.5
+@export var segundos_por_caractere: float = 0.05
 
 var _espacos: Array[EspacoItem] = []
 var _coracoes: Array[TextureRect] = []
@@ -119,7 +120,7 @@ func _mostrar_mensagem(texto: String) -> void:
 		_tween_mensagem.kill()
 	mensagem.modulate.a = 1.0
 	_tween_mensagem = create_tween()
-	_tween_mensagem.tween_interval(duracao_mensagem)
+	_tween_mensagem.tween_interval(maxf(duracao_mensagem, texto.length() * segundos_por_caractere))
 	_tween_mensagem.tween_property(mensagem, "modulate:a", 0.0, 0.8)
 
 
