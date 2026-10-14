@@ -2,13 +2,13 @@
 
 > **Status:** Jogável (segunda versão: ampliado, com a oficina do Zane e três nós de controle)  
 > **Área:** subsolo escuro do centro de pesquisa da Âncora  
-> **Ordem na história:** **terceira fase**, depois do Bloco de salas (decidido em 2026-10-14). A saída do Bloco leva a ela; a saída dela abre, por enquanto, a entrada do Bunker. Também aparece pelo menu **Fases**.
+> **Ordem na história:** **terceira fase**, depois do Bloco de salas (decidido em 2026-10-14). A saída do Bloco leva a ela; o alçapão da oficina do Zane, que é a saída dela, abre por enquanto a entrada do Bunker. Também aparece pelo menu **Fases**.
 
 ---
 
 ## 1. Visão geral
 
-Um labirinto de corredores de concreto no escuro. O Gabriel começa **fora da oficina do Zane, mas perto dela**: numa câmara logo acima do corredor de baixo, com a lanterna no chão ao lado, a 5 salinhas de caminho (uns 13 s a pé) da porta da **oficina**, no canto de baixo à esquerda. O Zane não consegue invadir de longe a rede do subsolo: entrega o **notebook** a Gabriel e pede que invada **três nós de controle**, em três salões espalhados pelo labirinto. A **porta de SAÍDA** (placa verde, no alto à direita) fica trancada até os três caírem; depois o Zane abre pelo rádio. No caminho, seis robôs patrulham os corredores.
+Um labirinto de corredores de concreto no escuro. O Gabriel começa **fora da oficina do Zane, mas perto dela**: numa câmara logo acima do corredor de baixo, com a lanterna no chão ao lado, a 5 salinhas de caminho (uns 13 s a pé) da porta da **oficina**, no canto de baixo à esquerda. O Zane não consegue invadir de longe a rede do subsolo: entrega o **notebook** a Gabriel e pede que invada **três nós de controle**, em três salões espalhados pelo labirinto. Quando os três caem, o Zane o chama pelo rádio: o Gabriel **volta à oficina**, e o Zane mostra a saída, um **alçapão escondido** sob uma lona. No caminho, seis robôs patrulham os corredores.
 
 - **Cena:** `cenas/salas/labirinto.tscn` · **Script:** `scripts/salas/labirinto.gd` (herda de `Sala`)
 - **Mapa:** `dados/labirinto/mapa_labirinto.tres` (texto, uma letra por bloco)
@@ -19,8 +19,9 @@ Um labirinto de corredores de concreto no escuro. O Gabriel começa **fora da of
 
 1. O Gabriel começa perto da oficina. Pega a lanterna (se ainda não tem), segue pelo corredor de baixo até a porta da oficina e fala com o Zane (`E`). Ao fim da primeira conversa recebe o **notebook**; a oficina é segura e tem um checkpoint.
 2. Procura os três salões. Cada um tem **uma entrada só**, um **console** com a luz vermelha (o nó) e um **checkpoint**. Perto do console, o notebook (tecla do espaço dele) abre o minigame; vencer acende a luz verde.
-3. O aviso "Nó N de 3 invadido" marca o progresso. No terceiro, o Zane avisa pelo rádio e a placa da saída passa do vermelho ao verde.
-4. Foge dos robôs até a porta de saída, no canto de cima à direita.
+3. O aviso "Nó N de 3 invadido" marca o progresso. No terceiro, aparece "Rede invadida. Volte ao Zane" e o Zane chama pelo rádio.
+4. Volta aos poucos passos da oficina (fugindo dos robôs, que continuam patrulhando) e fala com o Zane de novo: outra conversa, em que ele revela o alçapão sob a lona e o abre.
+5. Aperta `E` no alçapão ("Descer"): o Gabriel some no escuro e a fase termina.
 
 ---
 
@@ -45,7 +46,8 @@ Legenda do mapa:
 | `P` | pilha (5, em becos sem saída) |
 | `L` | lampião de emergência (14 em cruzamentos, mais 2 dentro das salas) |
 | `V` | Sentinela · `R` Rastreador (6 no total, nascem longe do início) |
-| `D` | porta de saída (na parede de cima) · `S` gatilho da saída |
+| `A` | o alçapão da saída, na oficina (escondido até o Zane revelar) |
+| `D` · `S` | porta de saída (na parede de cima) e gatilho: só existem no mapa de teste (`labirinto_teste`), não neste mapa |
 | `Z` | o Zane |
 | `N` | nó de controle (2 blocos de largura: `NN`) |
 | `b` `c` `m` `x` | bancada eletrônica, console, mesa com computador, robô desmontado (largos: `bb`, `cc`...) |
@@ -78,7 +80,7 @@ Uma sala é um retângulo de salinhas com as paredes internas derrubadas, e **um
 - **Luz:** hologramas e consoles têm `PointLight2D` ciano (hologramas, com tremor) ou vermelha/verde (nó). Os hologramas são desenhados **sem luz**, como os olhos dos robôs, e brilham no escuro.
 
 ### O nó de controle
-`cenas/sistemas/no_hackeavel.tscn` (script `no_hackeavel.gd`, herda de `Porta`): console, alcance de interação e luz. O notebook o trata como uma porta trancada e abre o minigame (ver [`../mecanicas/hackeamento.md`](../mecanicas/hackeamento.md)); **não gasta bateria**. As marcas `labirinto_no_1`, `_2` e `_3` ficam em `Progresso` e `rede_do_labirinto.gd` conta e libera a saída.
+`cenas/sistemas/no_hackeavel.tscn` (script `no_hackeavel.gd`, herda de `Porta`): console, alcance de interação e luz. O notebook o trata como uma porta trancada e abre o minigame (ver [`../mecanicas/hackeamento.md`](../mecanicas/hackeamento.md)); **não gasta bateria**. As marcas `labirinto_no_1`, `_2` e `_3` ficam em `Progresso` e `rede_do_labirinto.gd` conta; no terceiro, marca `labirinto_rede_invadida`, avisa "Volte ao Zane" e toca a transmissão `zane_labirinto_01`.
 
 ### O Zane
 `cenas/personagens/zane_na_oficina.tscn` (script `zane_oficina.gd`, herda de `ConversaNpc`). Quatro conversas em `dados/dialogos/`:
@@ -87,8 +89,9 @@ Uma sala é um retângulo de salinhas com as paredes internas derrubadas, e **um
 |---|---|
 | `zane_labirinto_primeiro_encontro.json` | Primeira vez. Ao terminar, entrega o notebook. Tem escolhas: como invadir, os robôs, e "Me dá esse notebook" |
 | `zane_labirinto_notebook.json` | Se a primeira conversa terminou mas o notebook não coube no inventário |
-| `zane_labirinto_de_novo.json` | Nas próximas vezes, antes de a saída abrir |
-| `zane_labirinto_concluido.json` | Depois de os três nós caírem |
+| `zane_labirinto_de_novo.json` | Nas próximas vezes, enquanto faltam nós |
+| `zane_labirinto_alcapao.json` | Depois de os três nós caírem: o Zane revela e abre o alçapão. Ao terminar, marca `labirinto_alcapao_revelado` |
+| `zane_labirinto_alcapao_de_novo.json` | Depois de o alçapão aberto: "Desce logo, eu vou atrás" |
 
 ---
 
@@ -110,11 +113,14 @@ A IA (máquina de estados, cone por produto escalar, BFS do som, A\*, Markov) es
 
 ---
 
-## 5. A saída
+## 5. A saída: o alçapão
 
-- A porta de saída (`D`) tem uma luz sobre a placa: **vermelha** enquanto a rede não foi invadida, **verde** depois.
-- Trancada, o gatilho de saída (`SaidaFase`) não detecta o Gabriel (`monitoring = false`).
-- Ao liberar (`rede_do_labirinto.gd` emite `liberada`), o gatilho liga e a luz fica verde. Se o jogador morrer e recarregar a fase depois de ter invadido tudo, a saída já volta aberta.
+- **Onde:** `A` no modelo da oficina, dois blocos à direita do Zane. Cena `cenas/sistemas/alcapao.tscn`, script `alcapao.gd` (herda de `Interagivel`).
+- **Escondido:** até a marca `labirinto_alcapao_revelado`, o sprite é uma **lona velha** (`alcapao_escondido.png`) e não dá para interagir.
+- **Revelado:** ao fim da conversa `zane_labirinto_alcapao.json` o Zane o abre: o sprite vira o alçapão aberto com escada (`alcapao_aberto.png`), uma luz ciano acende e aparece `[E] Descer`.
+- **Descer:** o Gabriel para e escurece (0,7 s) e entra a tela `SaidaFase` com o texto da fase. O alçapão leva, provisoriamente, à entrada do Bunker (`cena_da_saida`, `titulo_da_saida` e `subtitulo_da_saida` na cena do Labirinto).
+- **Se morrer e recarregar:** as marcas ficam em `Progresso`; o alçapão volta já aberto, se o Zane o tinha revelado.
+- **Só com o Zane:** ele não abre o alçapão antes de os 3 nós caírem, mesmo que o jogador fale com ele.
 - Ao passar: tela "VOCÊ SAIU DO LABIRINTO · Próxima fase: o Bunker" e a entrada do Bunker. Os campos `cena_da_saida`, `titulo_da_saida` e `subtitulo_da_saida` na cena do Labirinto controlam isso.
 
 ---
@@ -143,6 +149,6 @@ Quando um robô vê o Gabriel, a camada de perseguição sobe em 0,8 s; quando t
 
 - Esconderijos (armários) e distrações (arremesso) do GDD.
 - O que os nós de controle são na história: hoje são terminais da trava do sistema do subsolo (proposta; Enredo, seção 12.5).
-- Por onde o Gabriel chega do Bloco de salas ao subsolo (hoje a porta corta-fogo abre direto o Labirinto) e para onde a saída leva de verdade (hoje, o Bunker, provisoriamente).
+- Por onde o Gabriel chega do Bloco de salas ao subsolo (hoje a porta corta-fogo abre direto o Labirinto) e para onde o alçapão leva de verdade (hoje, o Bunker, provisoriamente).
 - Rotina de patrulha por grade horária (coloração de grafos): hoje a patrulha é só a cadeia de Markov.
 - Uma porta de entrada visível no ponto onde o Gabriel começa (hoje ele simplesmente aparece ali) e animação do Zane; ele está parado.

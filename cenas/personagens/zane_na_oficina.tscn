@@ -19,7 +19,8 @@ altura_aviso = 60.0
 primeira_conversa = "res://dados/dialogos/zane_labirinto_primeiro_encontro.json"
 conversa_de_novo = "res://dados/dialogos/zane_labirinto_de_novo.json"
 conversa_do_notebook = "res://dados/dialogos/zane_labirinto_notebook.json"
-conversa_concluida = "res://dados/dialogos/zane_labirinto_concluido.json"
+conversa_do_alcapao = "res://dados/dialogos/zane_labirinto_alcapao.json"
+conversa_depois_do_alcapao = "res://dados/dialogos/zane_labirinto_alcapao_de_novo.json"
 
 [node name="Alcance" type="CollisionShape2D" parent="Conversa"]
 position = Vector2(0, -4)

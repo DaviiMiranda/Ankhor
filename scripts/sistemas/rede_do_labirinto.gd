@@ -1,9 +1,7 @@
 class_name RedeDoLabirinto
 extends Node
 
-signal liberada
-
-const MARCA_LIBERADA := "labirinto_saida_liberada"
+const MARCA_REDE_INVADIDA := "labirinto_rede_invadida"
 const PREFIXO_DA_MARCA := "labirinto_no_"
 
 @export var total_de_nos: int = 3
@@ -12,8 +10,6 @@ const PREFIXO_DA_MARCA := "labirinto_no_"
 
 func _ready() -> void:
 	Progresso.mudou.connect(_ao_marcar)
-	if Progresso.tem(MARCA_LIBERADA):
-		liberada.emit.call_deferred()
 
 
 func nos_invadidos() -> int:
@@ -31,7 +27,6 @@ func _ao_marcar(marca: String) -> void:
 	if quantos < total_de_nos:
 		Inventario.aviso.emit("Nó %d de %d invadido" % [quantos, total_de_nos])
 		return
-	Progresso.marcar(MARCA_LIBERADA)
-	Inventario.aviso.emit("Rede invadida. A saída foi liberada")
+	Progresso.marcar(MARCA_REDE_INVADIDA)
+	Inventario.aviso.emit("Rede invadida. Volte ao Zane")
 	Radio.transmitir(transmissao)
-	liberada.emit()

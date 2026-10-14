@@ -1,0 +1,44 @@
+{
+	"id": "zane_labirinto_alcapao",
+	"inicio": "volta",
+	"anotacao": {
+		"titulo": "O alçapão da oficina",
+		"texto": "Invadi os três nós e voltei ao Zane. A saída do subsolo não é uma porta: é um alçapão de manutenção escondido debaixo de uma lona, na oficina dele, que o sistema mantinha lacrado.\n\nO Zane o abriu. Ele desce para o nível de baixo, o bunker. O Zane disse que desliga as coisas dele e vai atrás."
+	},
+	"trechos": {
+		"volta": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Três de três! Eu senti daqui: o sistema do subsolo inteiro piscou e a trava soltou. Você é bom nisso, hein?"
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "E a saída? Não vi porta nenhuma abrindo."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Porque não é porta. Essa oficina era um posto de manutenção: o duto de serviço desce por baixo da bancada. A tampa ficava lacrada pelo sistema."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "Lacrada onde? Eu não vejo tampa nenhuma."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_assustado",
+					"texto": "Debaixo daquela lona, do meu lado! Eu passei esse tempo todo em cima de uma saída e só mapeei agora que a trava soltou. Nem me fala."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Pronto, destravou. Ela desce para o nível de baixo: o bunker. Vai, eu desligo as minhas coisas aqui e vou atrás."
+				}
+			]
+		}
+	}
+}

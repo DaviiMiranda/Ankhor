@@ -34,13 +34,13 @@
 - **Onde aparece:** pelo telefone desde a Biblioteca. Em pessoa, primeiro na **oficina do Labirinto** (decidido em 2026-10-14) e depois no **bunker**, no computador da central de dados (pendente: Enredo, seção 12.3).
 - **Esconderijo:** a **oficina do Labirinto**, num canto do subsolo, perto de onde Gabriel chega, e o **bunker**, com o Henrique (na mesma sala de dados).
 - **Como chega ao jogador:** **telefone** (a primeira ligação é no balcão da Biblioteca), a frequência de rádio do grupo e, em pessoa, na oficina do Labirinto e no bunker.
-- **Função na jogabilidade:** as **comunicações**: põe Gabriel em contato com os outros, abre portas pelo sistema e tenta quebrar a senha do setor B do bunker. No Labirinto ele **entrega o notebook** a Gabriel (gadget de hackear portas e robôs) e pede que invada três nós de controle da rede do subsolo, porque de longe ele não consegue; quando o terceiro cai, abre a saída pelo rádio.
+- **Função na jogabilidade:** as **comunicações**: põe Gabriel em contato com os outros, abre portas pelo sistema e tenta quebrar a senha do setor B do bunker. No Labirinto ele **entrega o notebook** a Gabriel (gadget de hackear portas e robôs) e pede que invada três nós de controle da rede do subsolo, porque de longe ele não consegue; quando o terceiro cai, chama Gabriel de volta pelo rádio e revela o alçapão escondido da oficina, que é a saída.
 - **Parte para consertar a Âncora:** a tecnologia mais próxima da Âncora.
 
 ## 5. Registros
 
 - **Suporte:** áudio com interface holográfica: tela ciano com forma de onda e falhas de sinal. Ainda não existe no jogo.
-- **Já escritos:** a ligação do fim da Biblioteca, `dados/transmissoes/zane_01.tres`; as conversas da oficina, `dados/dialogos/zane_labirinto_primeiro_encontro.json`, `zane_labirinto_notebook.json`, `zane_labirinto_de_novo.json` e `zane_labirinto_concluido.json`; e o aviso pelo rádio quando a saída abre, `dados/transmissoes/zane_labirinto_01.tres`.
+- **Já escritos:** a ligação do fim da Biblioteca, `dados/transmissoes/zane_01.tres`; as conversas da oficina, `dados/dialogos/zane_labirinto_primeiro_encontro.json`, `zane_labirinto_notebook.json`, `zane_labirinto_de_novo.json`, `zane_labirinto_alcapao.json` (revela o alçapão) e `zane_labirinto_alcapao_de_novo.json`; e o chamado pelo rádio quando o terceiro nó cai, `dados/transmissoes/zane_labirinto_01.tres`.
 
 ## 6. Direção de arte
 

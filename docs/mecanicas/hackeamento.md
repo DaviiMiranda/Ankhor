@@ -16,7 +16,7 @@ O Labirinto usa o mesmo notebook e os mesmos minigames em **nós de controle** (
 - O jogo continua pausado enquanto o minigame está aberto.
 - Cada nó tem uma luz que passa do vermelho ao verde quando é invadido.
 - A dificuldade sobe do primeiro ao terceiro nó: **fácil, médio, difícil** (tipo aleatório).
-- `rede_do_labirinto.gd` conta os nós (marcas `labirinto_no_1`, `_2`, `_3`), avisa "Nó N de 3 invadido" e, no terceiro, marca `labirinto_saida_liberada`, toca a transmissão `zane_labirinto_01` e destrava a saída.
+- `rede_do_labirinto.gd` conta os nós (marcas `labirinto_no_1`, `_2`, `_3`), avisa "Nó N de 3 invadido" e, no terceiro, marca `labirinto_rede_invadida`, avisa "Volte ao Zane" e toca a transmissão `zane_labirinto_01`. A saída (o alçapão da oficina) só abre depois de a conversa seguinte com o Zane.
 
 ## Dificuldade e escolha do minigame
 

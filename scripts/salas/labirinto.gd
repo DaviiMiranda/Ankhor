@@ -9,6 +9,7 @@ const CENA_ITEM := preload("res://cenas/itens/item_no_chao.tscn")
 const CENA_SAIDA := preload("res://cenas/sistemas/saida_fase.tscn")
 const CENA_NO := preload("res://cenas/sistemas/no_hackeavel.tscn")
 const CENA_ZANE := preload("res://cenas/personagens/zane_na_oficina.tscn")
+const CENA_ALCAPAO := preload("res://cenas/sistemas/alcapao.tscn")
 const LANTERNA := preload("res://dados/itens/lanterna.tres")
 const PROPS := {
 	"b": preload("res://cenas/cenario/dtec/objetos/bancada_eletronica.tscn"),
@@ -25,10 +26,7 @@ const PROPS := {
 }
 const LETRAS_LARGAS := "bcmxN"
 const DIFICULDADES_DOS_NOS := [Hackeamento.Dificuldade.FACIL, Hackeamento.Dificuldade.MEDIO, Hackeamento.Dificuldade.DIFICIL]
-const COR_SAIDA_TRANCADA := Color(1.0, 0.25, 0.2)
-const COR_SAIDA_LIBERADA := Color(0.3, 1.0, 0.5)
-const ENERGIA_SAIDA_TRANCADA := 0.6
-const ENERGIA_SAIDA_LIBERADA := 0.9
+
 const TEXTURA_LUZ := preload("res://assets/sprites/cenario/luzes/luz.png")
 const ALTURA_PAREDE := 40
 const CAMADAS_PAREDE := 1 | 8
@@ -51,8 +49,6 @@ const LUZ_EM_TUDO := 1 | 2
 
 var grade: GradeLabirinto
 var _perseguindo := {}
-var _saida: SaidaFase
-var _luz_saida: PointLight2D
 var _numero_do_no := 0
 
 @onready var chao: Sprite2D = $Chao
@@ -171,7 +167,6 @@ func _acender_placa_saida(celula: Vector2i) -> void:
 	luz.range_item_cull_mask = LUZ_EM_TUDO
 	luz.position = Vector2((celula.x + 1) * bloco, (celula.y + 1) * bloco - ALTURA_PAREDE + 8)
 	luzes.add_child(luz)
-	_luz_saida = luz
 
 
 func _espalhar_decalques() -> void:
@@ -214,7 +209,6 @@ func _montar_rede() -> void:
 	rede.total_de_nos = total
 	rede.transmissao = transmissao_da_rede
 	add_child(rede)
-	rede.liberada.connect(_liberar_saida)
 
 
 func _contar_nos() -> int:
@@ -223,14 +217,6 @@ func _contar_nos() -> int:
 		if _comeca_sequencia(celula, "N"):
 			total += 1
 	return total
-
-
-func _liberar_saida() -> void:
-	if _saida:
-		_saida.set_deferred("monitoring", true)
-	if _luz_saida:
-		_luz_saida.color = COR_SAIDA_LIBERADA
-		_luz_saida.energy = ENERGIA_SAIDA_LIBERADA
 
 
 func _colocar_marcadores() -> void:
@@ -266,6 +252,8 @@ func _colocar_marcadores() -> void:
 					var zane := CENA_ZANE.instantiate()
 					zane.name = "Zane"
 					_colocar(zane, posicao)
+				"A":
+					_colocar_alcapao(posicao)
 				"N":
 					if _comeca_sequencia(celula, "N"):
 						_colocar_no(_posicao_da_sequencia(celula, "N"))
@@ -277,20 +265,21 @@ func _colocar_marcadores() -> void:
 
 
 func _colocar_saida(posicao: Vector2) -> void:
-	var saida: SaidaFase = CENA_SAIDA.instantiate()
+	var saida := CENA_SAIDA.instantiate()
 	saida.name = "Saida"
-	if _contar_nos() > 0:
-		saida.monitoring = false
-		_luz_saida.color = COR_SAIDA_TRANCADA
-		_luz_saida.energy = ENERGIA_SAIDA_TRANCADA
-	if not cena_da_saida.is_empty():
-		saida.cena_destino = cena_da_saida
-	_saida = saida
 	_colocar(saida, posicao)
+
+
+func _colocar_alcapao(posicao: Vector2) -> void:
+	var alcapao: Alcapao = CENA_ALCAPAO.instantiate()
+	alcapao.name = "Alcapao"
+	if not cena_da_saida.is_empty():
+		alcapao.cena_destino = cena_da_saida
 	if not titulo_da_saida.is_empty():
-		(saida.get_node("Tela/Titulo") as Label).text = titulo_da_saida
+		alcapao.titulo = titulo_da_saida
 	if not subtitulo_da_saida.is_empty():
-		(saida.get_node("Tela/Titulo/Subtitulo") as Label).text = subtitulo_da_saida
+		alcapao.subtitulo = subtitulo_da_saida
+	_colocar(alcapao, posicao)
 
 
 func _colocar_no(posicao: Vector2) -> void:

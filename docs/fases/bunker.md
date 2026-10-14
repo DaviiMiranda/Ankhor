@@ -70,7 +70,7 @@ O Henrique explica no diálogo que o setor B está lacrado pelo sistema e que o 
 ## 3. Objetivos e Progressão
 
 - **Hoje:** explorar o bunker, achar o Henrique na sala de dados e conversar com ele (a conversa anota "Henrique, na sala de dados" no caderno).
-- **Chegada:** por enquanto, o Gabriel chega ao bunker saindo do Labirinto: a porta de saída (liberada depois dos 3 nós) mostra "Você saiu do Labirinto" e leva direto à `entrada`. Isso é provisório: a ordem das fases depois do Labirinto não está decidida.
+- **Chegada:** por enquanto, o Gabriel chega ao bunker saindo do Labirinto: o alçapão da oficina do Zane (revelado por ele depois dos 3 nós) mostra "Você saiu do Labirinto" e leva direto à `entrada`. Isso é provisório: a ordem das fases depois do Labirinto não está decidida.
 - **A definir com a equipe:** o que destrava o setor B (senhas nos disquetes? religar o gerador?) e se os robôs entram aqui em algum momento.
 
 ---

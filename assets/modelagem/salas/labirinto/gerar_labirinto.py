@@ -70,6 +70,8 @@
 # Os marcadores no mapa (uma letra por bloco):
 #   #  parede          .  chão           G  início do Gabriel   T  lanterna (ao lado do início)
 #   D  porta de saída (na parede de cima)                        S  saída (gatilho)
+#      (D e S só existem no mapa de teste: a saída da fase é o alçapão A)
+#   A  alçapão escondido na oficina (a saída da fase; o Zane o revela)
 #   C  checkpoint      P  pilha          L  lâmpada               V  Sentinela   R  Rastreador
 #   Z  o Zane          N  nó de controle (hackeável; 2 blocos de largura)
 #   Objetos das salas (minúsculas):
@@ -78,9 +80,9 @@
 #   h  holograma de ondas     i  holograma de barras   j  holograma de código
 # Todos os marcadores ficam na fileira de CIMA da salinha: a de baixo fica
 # atrás do topo da parede de baixo (ver "Por que corredores de 2 blocos").
-# Os checkpoints (se houver: ver CHECKPOINTS) ficam em frações do caminho
-# mais curto do início à saída (calculado por BFS no grafo lógico). Os robôs nascem longe do início; as
-# pilhas ficam em becos sem saída; as lâmpadas, em cruzamentos.
+# Os checkpoints ficam dentro das salas (nos modelos). Os robôs nascem
+# longe do início e da porta da oficina; as pilhas ficam em becos sem
+# saída; as lâmpadas, em cruzamentos.
 
 import importlib.util
 import os
@@ -107,11 +109,6 @@ BLOCO = 32
 ALTURA_PAREDE = 40
 SEMENTE = 3026
 FRACAO_CICLOS = 0.18
-# Onde pôr checkpoints, em fração do caminho mais curto até a saída (ex.:
-# (0.40, 0.75)). Vazio por enquanto: a fase ainda é pequena e morrer
-# recomeça do início.
-CHECKPOINTS = ()
-
 # Quantos robôs e de que tipo (V = Sentinela, R = Rastreador). Eram 3 numa
 # grade de 96 salinhas; a grade nova tem 198, então o dobro.
 TIPOS_DE_ROBO = ("V", "R", "V", "V", "R", "V")
@@ -148,7 +145,7 @@ MODELOS = {
     "oficina": (
         "hLbb.rr.kj.",
         ".....mm...a",
-        "k....Z..u..",
+        "k....Z.Au..",
         "..C.....xx.",
         "...........",
     ),
@@ -293,17 +290,13 @@ def montar_mapa(rng):
 
     oficina = next(s for s in SALAS if s["nome"] == "oficina")
     entrada_da_oficina = oficina["entrada"][0]
-    inicio, fim = INICIO, (COLUNAS - 1, 0)
+    inicio = INICIO
     dist_oficina, _ = bfs(abertas, entrada_da_oficina)
     assert CAMINHO_ATE_A_OFICINA[0] <= dist_oficina[inicio] <= CAMINHO_ATE_A_OFICINA[1], \
         f"o início fica a {dist_oficina[inicio]} salinhas da oficina"
-    dist, pai = bfs(abertas, inicio)
-    caminho = [fim]
-    while pai[caminho[-1]] is not None:
-        caminho.append(pai[caminho[-1]])
-    caminho.reverse()
+    dist, _ = bfs(abertas, inicio)
     em_sala = {c for sala in SALAS for c in celulas_da_sala(sala)}
-    usadas = em_sala | {inicio, fim}
+    usadas = em_sala | {inicio}
 
     def marcar(c, letra, dx=1, dy=1):
         grade[3 * c[1] + dy][3 * c[0] + dx] = letra
@@ -320,11 +313,6 @@ def montar_mapa(rng):
 
     marcar(inicio, "G")
     marcar(inicio, "T", 2, 1)
-    grade[0][3 * fim[0] + 1] = "D"
-    grade[0][3 * fim[0] + 2] = "D"
-    marcar(fim, "S")
-    for fracao in CHECKPOINTS:
-        marcar(caminho[int(len(caminho) * fracao)], "C", 2, 1)
 
     longe = sorted(dist, key=lambda c: -dist[c])
     robos = []
@@ -352,7 +340,7 @@ def montar_mapa(rng):
     for c in cruzamentos[:QUANTIDADE_LAMPADAS]:
         marcar(c, "L", 1, 1)
     print(f"  caminho do início até a entrada da oficina: {dist_oficina[inicio]} salinhas")
-    return ["".join(linha) for linha in grade], len(caminho)
+    return ["".join(linha) for linha in grade], dist_oficina[inicio]
 
 
 def salvar_mapa(linhas):
@@ -608,7 +596,7 @@ def previa(linhas, sprites):
                     sala.colar(sprites["frente"][(bx * 7 + by * 3) % 4], x, y + BLOCO - ALTURA_PAREDE)
     cores = {"G": (60, 200, 255), "C": (80, 255, 120), "V": (255, 60, 60), "R": (255, 140, 40),
              "P": (240, 240, 80), "L": (255, 220, 150), "S": (80, 255, 120), "T": (200, 200, 255),
-             "Z": (255, 255, 60), "N": (255, 60, 255)}
+             "Z": (255, 255, 60), "N": (255, 60, 255), "A": (255, 255, 255)}
     for letra in "bcmxrkauhij":
         cores[letra] = (60, 160, 200)
     for by in range(h):
@@ -626,7 +614,6 @@ def main():
     linhas, tamanho_caminho = montar_mapa(rng)
     for l in linhas:
         print("   ", l)
-    print(f"  caminho mais curto do início à saída: {tamanho_caminho} salinhas")
     salvar_mapa(linhas)
 
     os.makedirs(PASTA_SALA, exist_ok=True)

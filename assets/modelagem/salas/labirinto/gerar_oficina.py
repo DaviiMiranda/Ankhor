@@ -13,6 +13,8 @@
 #   assets/sprites/salas/labirinto/componentes_1.png      cabo enrolado
 #   assets/sprites/salas/labirinto/componentes_2.png      peças soltas (resistores, capacitor, parafuso)
 #   assets/sprites/salas/labirinto/componentes_3.png      bandeja de chips
+#   assets/sprites/cenario/objetos/alcapao_escondido.png  32 x 16  lona velha sobre o alçapão
+#   assets/sprites/cenario/objetos/alcapao_aberto.png     32 x 16  o alçapão aberto, com a escada
 # Com PREVIA=<pasta>, também salva previa_oficina.png nessa pasta (não commitar).
 #
 # ---------------------------------------------------------------------------
@@ -247,6 +249,46 @@ def bandeja_de_chips():
     return img
 
 
+def alcapao_escondido():
+    """Uma lona velha esticada sobre o alçapão: de longe é só mais um trapo
+    no chão da oficina. Um quadrilátero achatado (o chão visto de lado,
+    como o resto do cenário) com dobras em linhas escuras e a borda de
+    baixo mais escura, que dá volume."""
+    img = Imagem(32, 16)
+    lona = img.poligono([(2, 3), (29, 2), (31, 12), (4, 14)])
+    fino = np.sin(img.X * 1.7 + img.Y * 0.9) * 0.04
+    img.pintar(lona, "tecido", 0.42 + fino)
+    img.pintar(lona & (img.Y > 11), "tecido", 0.18)
+    for dobra in ([(6, 5), (15, 8), (24, 6)], [(9, 10), (18, 12), (27, 10)]):
+        img.pintar(img.caminho(dobra, 0.5) & lona, "tecido", 0.12)
+    img.pintar(img.linha(3, 3, 29, 2, 0.6) & lona, "tecido", 0.62)
+    return img
+
+
+def alcapao_aberto():
+    """O alçapão aberto: a moldura de metal, o buraco escuro com três
+    degraus de escada e a tampa levantada na borda de trás. Uma borda ciano
+    fina no buraco mostra que há luz lá embaixo."""
+    img = Imagem(32, 16)
+    moldura = img.poligono([(2, 5), (29, 4), (31, 13), (4, 15)])
+    img.pintar(moldura, "metal", 0.42)
+    buraco = img.poligono([(5, 7), (26, 6), (28, 12), (7, 13)])
+    img.pintar(buraco, "concreto", 0.02)
+    brilho = buraco & ~img.poligono([(5.8, 7.8), (25.6, 6.8), (27.6, 11.6), (7.8, 12.6)])
+    img.cor(brilho, rgba(CIANO[2], 255))
+    for t in (0.25, 0.5, 0.75):
+        y0 = 7.5 + 4.5 * t
+        x0 = 6.5 + 1.5 * t
+        x1 = 25.5 + 1.5 * t
+        y1 = y0 - 0.8
+        img.pintar(img.linha(x0, y0, x1, y1, 0.4) & buraco, "metal", 0.7)
+    tampa = img.poligono([(3, 4), (28, 3), (27, 0), (5, 0)])
+    img.pintar(tampa, "metal", 0.62)
+    img.pintar(img.linha(5, 0.5, 27, 0.5, 0.5) & tampa, "metal", 0.9)
+    img.cor(img.ret(2, 5, 3, 7), rgba(RAMPAS["ferrugem"][4], 255))
+    return img
+
+
 def main():
     print("Gerando a oficina do Zane e os nós de controle")
     os.makedirs(PASTA_OBJETOS, exist_ok=True)
@@ -258,17 +300,20 @@ def main():
     barras.salvar("holograma_barras.png", PASTA_OBJETOS)
     codigo.salvar("holograma_codigo.png", PASTA_OBJETOS)
     pecas = [placa_de_circuito(), cabo_enrolado(), pecas_soltas(), bandeja_de_chips()]
+    alcapoes = [alcapao_escondido(), alcapao_aberto()]
+    alcapoes[0].salvar("alcapao_escondido.png", PASTA_OBJETOS)
+    alcapoes[1].salvar("alcapao_aberto.png", PASTA_OBJETOS)
     for i, img in enumerate(pecas):
         img.salvar(f"componentes_{i}.png", PASTA_SALA)
     if PREVIA:
-        folha = Imagem(150, 84)
+        folha = Imagem(220, 84)
         folha.px[:, :] = [22, 24, 30, 255]
         x = 4
         for img in (onda, barras, codigo):
             folha.colar(img, x, 4)
             x += 46
         x = 4
-        for img in pecas:
+        for img in pecas + alcapoes:
             folha.colar(img, x, 66)
             x += img.w + 4
         ampliada = np.kron(folha.px, np.ones((4, 4, 1), dtype=np.uint8))
