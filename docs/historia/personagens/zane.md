@@ -32,7 +32,7 @@
 ## 4. No jogo
 
 - **Onde aparece:** pelo telefone desde a Biblioteca. Em pessoa, primeiro na **oficina do Labirinto** (decidido em 2026-10-14) e depois no **bunker**, no computador da central de dados (pendente: Enredo, seção 12.3).
-- **Esconderijo:** a **oficina do Labirinto**, no canto do subsolo oposto à entrada, e o **bunker**, com o Henrique (na mesma sala de dados).
+- **Esconderijo:** a **oficina do Labirinto**, num canto do subsolo, perto de onde Gabriel chega, e o **bunker**, com o Henrique (na mesma sala de dados).
 - **Como chega ao jogador:** **telefone** (a primeira ligação é no balcão da Biblioteca), a frequência de rádio do grupo e, em pessoa, na oficina do Labirinto e no bunker.
 - **Função na jogabilidade:** as **comunicações**: põe Gabriel em contato com os outros, abre portas pelo sistema e tenta quebrar a senha do setor B do bunker. No Labirinto ele **entrega o notebook** a Gabriel (gadget de hackear portas e robôs) e pede que invada três nós de controle da rede do subsolo, porque de longe ele não consegue; quando o terceiro cai, abre a saída pelo rádio.
 - **Parte para consertar a Âncora:** a tecnologia mais próxima da Âncora.

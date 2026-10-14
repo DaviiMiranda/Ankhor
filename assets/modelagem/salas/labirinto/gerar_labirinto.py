@@ -115,17 +115,18 @@ CHECKPOINTS = ()
 # Quantos robôs e de que tipo (V = Sentinela, R = Rastreador). Eram 3 numa
 # grade de 96 salinhas; a grade nova tem 198, então o dobro.
 TIPOS_DE_ROBO = ("V", "R", "V", "V", "R", "V")
-DISTANCIA_MINIMA_DO_INICIO = 8
+DISTANCIA_MINIMA_DO_INICIO = 10
 SEPARACAO_ENTRE_ROBOS = 5
 QUANTIDADE_PILHAS = 5
 QUANTIDADE_LAMPADAS = 14
 
-# Onde o Gabriel começa (uma salinha, com a lanterna ao lado): o canto
-# oposto ao da oficina. Ele precisa atravessar o labirinto até o Zane. O
+# Onde o Gabriel começa (uma salinha, com a lanterna ao lado): fora da
+# oficina, mas a poucos passos da porta dela. Esta salinha é uma câmara
+# logo acima do corredor de baixo, a 5 salinhas de caminho da porta. O
 # caminho mais curto até a entrada da oficina tem de ficar nesta faixa
 # (em salinhas), senão o gerador reclama.
-INICIO = (COLUNAS - 1, FILEIRAS - 1)
-CAMINHO_ATE_A_OFICINA = (12, 24)
+INICIO = (7, 9)
+CAMINHO_ATE_A_OFICINA = (3, 8)
 # Os robôs não nascem a menos disso de caminho da entrada da oficina: o
 # destino não pode ter um robô parado na porta.
 DISTANCIA_MINIMA_DA_OFICINA = 5
