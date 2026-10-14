@@ -1,30 +1,29 @@
 # gerar_efeitos_porta_bloco.py — compõe por código o som da porta de aço
-# institucional/corta-fogo do Bloco de salas (com trinco eletromecânico e amortecedor).
+# de correr do Bloco de salas (com trinco eletromecânico, rodízios e amortecedor).
 #
 # Como rodar (Python 3 + numpy):
 #   python assets/modelagem/audio/gerar_efeitos_porta_bloco.py
 #
 # Gera:
 #   assets/audio/efeitos/objetos/porta_bloco.wav   1,1 s: destrave de solenóide,
-#                                                 clique mecânico, giro em dobradiças
-#                                                 pesadas de aço e amortecedor pneumático.
+#                                                 clique mecânico, rolamento no trilho
+#                                                 de aço e amortecedor pneumático.
 #
-# Ao contrário da porta de correr de madeira da Biblioteca (porta_correr.wav)
-# ou do rangido de dobradiça antiga de madeira (porta_abrir.wav), a porta do
-# Bloco de salas em 3026 é pesada, de aço maciço com vidro aramado, controlada
-# por teclado numérico e trinco de pressão.
+# A porta do Bloco de salas em 3026 é uma porta pesada de aço com visor de
+# vidro aramado, que desliza de lado ("correndo pro lado") num trilho superior
+# de embutir com amortecedor pneumático de desaceleração.
 #
 # Componentes sintetizados:
 #   1. Solenóide e trava elétrica: pulso agudo curto (1650 e 2800 Hz) e estalo
-#      de choque eletromecânico rápido (0.0 a 0.05 s).
+#      de choque eletromecânico rápido (0.00 a 0.05 s).
 #   2. Bipe suave de liberação eletrônica (C7 - 2093 Hz).
-#   3. Desengate do trinco de pressão: baque metálico de média-baixa frequência
+#   3. Desengate do trinco mecânico de pressão: baque metálico de baixa-média frequência
 #      (210 e 540 Hz) com ruído de mola desarmando (0.07 a 0.15 s).
-#   4. Giro da folha de aço: ressonância oca de chapa (95 e 185 Hz) multiplicada
-#      pelo perfil de velocidade angular v(t) = sen(pi * x)^1.3.
-#   5. Fricção metálica da dobradiça pesada: ruído filtrado entre 800 e 2600 Hz.
-#   6. Descompressão do amortecedor pneumático: hiss de ar pressurizado (1800 a 6500 Hz).
-#   7. Fim de curso suave com ressonância no corredor do prédio.
+#   4. Rolamento dos rodízios industriais no trilho de aço: ruído filtrado entre 100 e
+#      800 Hz modulado pela velocidade v(t) = sen(pi * x)^1.2 e pulso periódico do giro.
+#   5. Raspar metálico suave da guia inferior no canal de piso (1200 a 4500 Hz).
+#   6. Descompressão do amortecedor pneumático: hiss de ar pressurizado (1800 a 6000 Hz).
+#   7. Batente de fim de curso suave com ressonância no corredor do prédio.
 
 import importlib.util
 import os
@@ -95,25 +94,35 @@ def porta_bloco() -> np.ndarray:
         * 0.9
     )
 
-    # 3. Movimento angular da chapa de aço e dobradiças pesadas (0.12s a 0.80s)
-    x = np.clip((t - 0.12) / 0.65, 0.0, 1.0)
-    v = np.sin(np.pi * x) ** 1.3
+    # 3. Movimento de deslizamento em trilho com rodízios de aço (0.10s a 0.78s)
+    x = np.clip((t - 0.10) / 0.68, 0.0, 1.0)
+    v = np.sin(np.pi * x) ** 1.2
 
-    # Ressonância de chapa oca em deslocamento
-    folha = np.sin(2 * np.pi * 95 * t) * v * 0.7
-    folha += np.sin(2 * np.pi * 185 * t) * v * 0.4
-    folha += filtrar(rng.standard_normal(n), corte_baixo=120, corte_alto=900) * v * 0.5
-
-    # Fricção das dobradiças pesadas
-    dobradica = (
-        filtrar(rng.standard_normal(n), corte_baixo=800, corte_alto=2600)
-        * (v**1.5)
-        * 0.35
+    # Rodízios no trilho superior de aço
+    giro = 8.0 + 20.0 * v
+    fase = np.cumsum(giro) / TAXA
+    pulso = np.abs(np.sin(np.pi * fase)) ** 3
+    rodinhas = (
+        filtrar(rng.standard_normal(n), corte_baixo=100, corte_alto=800)
+        * (0.3 + 0.7 * pulso)
+        * v
+        * 1.5
     )
+
+    # Raspar suave da guia no canal inferior
+    raspar = (
+        filtrar(rng.standard_normal(n), corte_baixo=1200, corte_alto=4500)
+        * 0.3
+        * (v**1.3)
+    )
+
+    # Ressonância de chapa oca em movimento
+    folha = np.sin(2 * np.pi * 92 * t) * v * 0.5
+    folha += np.sin(2 * np.pi * 180 * t) * v * 0.3
 
     # 4. Amortecedor pneumático (descompressão suave)
     ar = (
-        filtrar(rng.standard_normal(n), corte_baixo=1800, corte_alto=6500)
+        filtrar(rng.standard_normal(n), corte_baixo=1800, corte_alto=6000)
         * (v**1.2)
         * 0.25
     )
@@ -139,12 +148,12 @@ def porta_bloco() -> np.ndarray:
         * 0.6
     )
 
-    soma = solenoide + bipe + trinco + folha + dobradica + ar + baque
+    soma = solenoide + bipe + trinco + rodinhas + raspar + folha + ar + baque
     return normalizar(sala(soma, mistura=0.25), -4.0)
 
 
 def main() -> None:
-    print("[efeito sonoro da porta do Bloco de salas]")
+    print("[efeito sonoro da porta de correr do Bloco de salas]")
     caminho = os.path.join(PASTA_OBJETOS, "porta_bloco.wav")
     salvar(caminho, porta_bloco())
     print(f"Salvo: {caminho}")

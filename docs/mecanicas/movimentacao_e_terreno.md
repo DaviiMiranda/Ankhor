@@ -64,7 +64,7 @@ Ao atravessar toca `porta_abrir.wav` (trinco, dobradiça rangendo, porta batendo
 
 **Animação de abrir (por mapa):** a folha da porta é uma peça de parede animada, não parte da `Porta`. Cada mapa tem a sua:
 - **Biblioteca:** `cenas/cenario/biblioteca/parede_porta_animada.tscn` (porta de correr de madeira com batente de aço e som `porta_correr.wav`). Os quadros foram gerados por `assets/modelagem/cenario/gerar_porta_biblioteca.py`.
-- **Bloco de salas:** `cenas/cenario/bloco_de_salas/parede_porta_animada.tscn` (porta pesada de aço com visor de vidro aramado, trava eletromecânica e som `porta_bloco.wav`). Os quadros e a rotação em perspectiva 2.5D foram gerados por `assets/modelagem/cenario/gerar_porta_bloco.py`, e o áudio por `gerar_efeitos_porta_bloco.py`.
+- **Bloco de salas:** `cenas/cenario/bloco_de_salas/parede_porta_animada.tscn` (porta de aço correndo para o lado com visor de vidro aramado, trava eletromecânica e som `porta_bloco.wav`). Os quadros foram gerados por `assets/modelagem/cenario/gerar_porta_bloco.py`, e o áudio por `gerar_efeitos_porta_bloco.py`.
 
 Para ligar a animação em uma porta, use a peça animada correspondente no vão em vez de `parede_porta.tscn`: a `Porta` acha sozinha a folha cujo centro fica a até 12 px dela (peça de 80 px de largura, `Porta` no meio do vão) e não precisa de campo no Inspetor. Ao apertar `E` a folha abre, durando o mesmo que `segundos_andando`; na sala de destino ela fecha. O som de abrir também vem da folha (`som_abrir` no nó `Folha`), valendo no lugar do `som_abrir` padrão da `Porta`. Sem peça animada por perto, a porta funciona como antes.
 
