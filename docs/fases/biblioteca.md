@@ -30,6 +30,28 @@ A Biblioteca é uma cena por sala, em `cenas/salas/biblioteca/`. O jogo começa 
 
 A sala 9 (obras raras) não tem cena: a porta fica barrada nesta fase.
 
+### 1.2 O visual de 3026 (2026-10-15)
+
+A Biblioteca é uma **ruína de alta tecnologia**: a tecnologia de 3026 convive com a árvore, o musgo e as relíquias dos anos 80 do Carlos (monitores de tubo, telefone, disquete, quadro de chaves). Ela segue o vídeo da abertura (`seg_acordar`): painéis ciano, holograma sobre a mesa, torres de equipamentos entre as estantes.
+
+- **A tecnologia acorda com a energia.** Antes de o Gabriel religar os disjuntores, as peças modernas aparecem apagadas, só o corpo escuro; quando a marca `energia` chega, a camada de luz de cada uma acende em ciano, piscando como as luzes de emergência (nó `VisivelComMarca`). A cabine fica sempre acesa, como no vídeo.
+- **Cores:** ciano é tecnologia de 3026 funcionando; âmbar é alerta ou sem carga; vermelho é robô e perigo; verde de monitor de tubo é o mundo do Carlos.
+- **Luz decorativa não entrega o Gabriel:** as luzes novas ficam com `revela_quem_passa` desligado. O único aviso de perigo continua sendo a luz de emergência.
+- **Troca 1:1:** o rack de arquivo tem a mesma medida, pegada e camada de colisão da estante vazia, então a visão dos robôs e os esconderijos não mudam.
+
+| Sala | O que mudou |
+|---|---|
+| Cabine | Cabines de vidro ciano com holograma, torre de equipamentos, vão de servidores no lugar de uma das estantes, cadeira VR |
+| Salão | Letreiros das portas e a placa SILÊNCIO holográficos, 3 vãos de parede e 2 estantes viram servidores e racks, mesas holográficas, cabines ciano |
+| Balcão | Robô bibliotecário desligado na doca, mesas holográficas, letreiros; telefone e quadro de chaves como estavam |
+| Acervo sul | 2 vãos de servidores, 4 racks no lugar de estantes vazias (2 com musgo), letreiros; o carrinho com a chave não mudou |
+| Corredor de serviço | Conduítes com fio de ciano |
+| Manutenção | Conduítes que pulsam com a energia, gerador e painel de distribuição ao lado do quadro de energia |
+| Terminais | Painéis de rede nas paredes, torre de equipamentos, cadeiras VR; os terminais de tubo ficam |
+| Ala leste | Mesmo visual do salão: servidores no fundo, cabines ciano, mesas holográficas, 2 racks, letreiros |
+
+Os arquivos antigos do fundo (`biblioteca_fundo.png`) continuam no projeto; as cenas do salão e da ala leste usam `biblioteca_fundo_moderna.png`. A arte sai de `assets/modelagem/cenario/gerar_biblioteca_moderna.py`.
+
 ---|---|---|
 | **Formato** | Uma cena só, `cenas/salas/biblioteca.tscn`, de 1440 × 420 px (salão, acervo sul e ala leste com a saída) | **Várias salas ligadas por portas** (seção 2) |
 | **Robôs** | Nenhum | Sentinela no salão e Rastreador no acervo sul (seção 4) |
