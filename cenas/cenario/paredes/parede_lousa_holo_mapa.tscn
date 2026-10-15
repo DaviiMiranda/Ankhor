@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/paredes/parede_lousa_holo_mapa.png" id="1_peca"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/paredes/parede_lousa_holo_mapa_luz.png" id="2_luz_peca"]
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
+[node name="ParedeLousaHoloMapa" type="Sprite2D"]
+texture = ExtResource("1_peca")
+centered = false
+
+[node name="Painel" type="Sprite2D" parent="."]
+material = SubResource("SemLuz")
+texture = ExtResource("2_luz_peca")
+centered = false

@@ -28,18 +28,18 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 |---|---|---|
 | `corredor_terreo` | Corredor do térreo, 2560 px (8 telas), meio enterrado na areia | lajota e areia |
 | `corredor_primeiro_andar` | Corredor do 1º andar, 2560 px, teto aberto | mato e lajota |
-| `sala_101` | Sala de aula futurista (piloto de 2026-10-15): fileiras de cadeiras com óculos VR, lousa holográfica apagada que mantém os tracinhos e o professor robô desligado na doca de recarga | lajota |
-| `sala_102` | Invadida pela duna: chão de areia, teto caído, carteiras tombadas entre montes de entulho (3 pedras) | areia |
-| `sala_103` | Barricada: carteiras tombadas e estantes atravessam a sala; atrás, um acampamento com lampiões (2 pilhas) | lajota e tapete |
-| `sala_104` | Laboratório de informática: fileiras de terminais; telas ainda acesas, verdes | tapete e lajota |
-| `sala_105` | Sem janela, a mais escura: carteiras reviradas, dois robôs desmontados, um lampião (2 pilhas) | lajota |
-| `sala_106` | Teto desabado, uma árvore no meio do chão e o luar caindo nela | lajota, mato e areia |
-| `sala_201` | Auditório: doze fileiras de carteiras, duas lousas | tapete |
-| `sala_202` | Duas árvores furando o chão, carteiras em volta, luar por cima | mato e lajota |
-| `sala_203` | Sala dos professores: oito mesas, estantes, quadro de avisos | tapete e lajota |
-| `sala_204` | O chão cedeu: monte de entulho no meio, carteiras tombadas (1 cápsula de clarão) | lajota e areia |
-| `sala_205` | Intacta demais: seis fileiras perfeitamente alinhadas, sem entulho, a mais clara. Estranha | lajota |
-| `sala_206` | Depósito: corredores de estantes, carteiras empilhadas, um lampião (1 pilha) | lajota e areia |
+| `sala_101` | Sala de aula futurista: oito fileiras de cadeiras com óculos VR, lousa holográfica apagada com 7 tracinhos de luz e o professor robô desligado na doca de recarga | lajota |
+| `sala_102` | Invadida pela duna: chão de areia, teto caído, cadeiras VR tombadas entre montes de entulho (3 pedras), a lousa holográfica meio soterrada e o professor robô caído de costas | areia |
+| `sala_103` | Barricada: cadeiras VR tombadas, estantes e o professor robô caído atravessam a sala; atrás, um acampamento com lampiões (2 pilhas). A lousa é um painel apagado com o mapa a giz da Clarice | lajota e tapete |
+| `sala_104` | Laboratório de informática e de imersão: fileiras de terminais antigos com telas verdes, cadeiras VR com muitas lentes acesas e dois painéis de óculos nas paredes | tapete e lajota |
+| `sala_105` | Sem janela, a mais escura: cadeiras reviradas, painel trincado, a doca vazia, o professor robô desmontado no chão e dois robôs desmontados, um lampião (2 pilhas) | lajota |
+| `sala_106` | Teto desabado, uma árvore no meio do chão e o luar caindo nela; o painel e um rack de óculos tomados de musgo, o professor robô caído sob as raízes | lajota, mato e areia |
+| `sala_201` | Auditório: doze fileiras de cadeiras VR com dezenas de lentes acesas, dois painéis de ensino, um professor robô na doca ao lado do palco e dois painéis de óculos | tapete |
+| `sala_202` | Duas árvores furando o chão, cadeiras VR em volta, luar por cima; um rack de óculos com musgo e um professor robô na doca com raízes | mato e lajota |
+| `sala_203` | Sala dos professores: oito mesas com cadeiras VR de friso âmbar, um rack de óculos, a doca de um professor robô e o quadro de avisos | tapete e lajota |
+| `sala_204` | O chão cedeu: monte de entulho no meio, cadeiras VR tombadas, óculos pelo chão e um professor robô sem a cabeça na doca (1 cápsula de clarão) | lajota e areia |
+| `sala_205` | Intacta demais: seis fileiras perfeitamente alinhadas, todas as lentes acesas, sem entulho, a mais clara; o painel e a doca do professor robô sem uma marca de uso. Estranha | lajota |
+| `sala_206` | Depósito: corredores de estantes (metade virou rack de óculos VR), cadeiras tombadas, peças do professor robô desmontado, um lampião (1 pilha) | lajota e areia |
 
 ---
 

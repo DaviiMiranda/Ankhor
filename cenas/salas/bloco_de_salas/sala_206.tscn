@@ -16,8 +16,8 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_quebrada.tscn" id="r14"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carrinho.tscn" id="r15"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cabine.tscn" id="r16"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira_caida.tscn" id="r17"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira_vr_caida.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira_vr.tscn" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r20"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r21"]
@@ -26,6 +26,10 @@
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="b_item"]
 [ext_resource type="Resource" path="res://dados/itens/alicate.tres" id="b_alicate"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral_porta.tscn" id="m_servico"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_oculos_vr.tscn" id="fut_estante_oculos_vr"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_oculos_vr_musgo.tscn" id="fut_estante_oculos_vr_musgo"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/professor_desmontado.tscn" id="fut_professor_desmontado"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/oculos_no_chao.tscn" id="fut_oculos_no_chao"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -175,7 +179,7 @@ position = Vector2(0, 432)
 position = Vector2(384, 432)
 flip_h = true
 
-[node name="EstanteVazia1" parent="Objetos" instance=ExtResource("r13")]
+[node name="EstanteOculosVR1" parent="Objetos" instance=ExtResource("fut_estante_oculos_vr")]
 position = Vector2(140, 130)
 
 [node name="EstanteQuebrada1" parent="Objetos" instance=ExtResource("r14")]
@@ -189,18 +193,19 @@ position = Vector2(300, 150)
 position = Vector2(330, 172)
 espelhado = true
 
-[node name="CarteiraCaida1" parent="Objetos" instance=ExtResource("r17")]
+[node name="CadeiraVRCaida1" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(110, 160)
 
-[node name="CarteiraCaida2" parent="Objetos" instance=ExtResource("r17")]
+[node name="CadeiraVRCaida2" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(118, 168)
 espelhado = true
 
-[node name="CarteiraCaida3" parent="Objetos" instance=ExtResource("r17")]
+[node name="CadeiraVRCaida3" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(160, 172)
 
-[node name="Carteira1" parent="Objetos" instance=ExtResource("r18")]
+[node name="CadeiraVR1" parent="Objetos" instance=ExtResource("r18")]
 position = Vector2(250, 164)
+lente_acesa = true
 
 [node name="Lampada1" parent="Objetos" instance=ExtResource("r19")]
 position = Vector2(360, 136)
@@ -208,7 +213,7 @@ position = Vector2(360, 136)
 [node name="EstanteVazia2" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(90, 250)
 
-[node name="EstanteVazia3" parent="Objetos" instance=ExtResource("r13")]
+[node name="EstanteOculosVR3" parent="Objetos" instance=ExtResource("fut_estante_oculos_vr_musgo")]
 position = Vector2(200, 250)
 
 [node name="EstanteVazia4" parent="Objetos" instance=ExtResource("r13")]
@@ -220,29 +225,29 @@ position = Vector2(90, 340)
 [node name="EstanteQuebrada3" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(200, 340)
 
-[node name="EstanteVazia5" parent="Objetos" instance=ExtResource("r13")]
+[node name="EstanteOculosVR5" parent="Objetos" instance=ExtResource("fut_estante_oculos_vr")]
 position = Vector2(310, 340)
 
 [node name="EstanteVazia6" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(90, 430)
 
-[node name="EstanteVazia7" parent="Objetos" instance=ExtResource("r13")]
+[node name="EstanteOculosVR7" parent="Objetos" instance=ExtResource("fut_estante_oculos_vr_musgo")]
 position = Vector2(200, 430)
 
 [node name="EstanteVazia8" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(310, 430)
 
-[node name="CarteiraCaida4" parent="Objetos" instance=ExtResource("r17")]
+[node name="CadeiraVRCaida4" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(150, 300)
 
-[node name="CarteiraCaida5" parent="Objetos" instance=ExtResource("r17")]
+[node name="CadeiraVRCaida5" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(158, 306)
 espelhado = true
 
-[node name="CarteiraCaida6" parent="Objetos" instance=ExtResource("r17")]
+[node name="CadeiraVRCaida6" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(262, 390)
 
-[node name="CarteiraCaida7" parent="Objetos" instance=ExtResource("r17")]
+[node name="CadeiraVRCaida7" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(270, 396)
 espelhado = true
 
@@ -318,5 +323,14 @@ aviso_destrancada = "Puxei o trinco. A porta de serviço dá na sala dos profess
 marca_ao_destrancar = "trinco_206"
 texto_acao = "Porta de serviço"
 altura_aviso = 30.0
+
+[node name="ProfessorDesmontado" parent="Objetos" instance=ExtResource("fut_professor_desmontado")]
+position = Vector2(132, 270)
+
+[node name="OculosNoChao1" parent="Objetos" instance=ExtResource("fut_oculos_no_chao")]
+position = Vector2(136, 470)
+
+[node name="OculosNoChao2" parent="Objetos" instance=ExtResource("fut_oculos_no_chao")]
+position = Vector2(254, 294)
 
 [editable path="Ceu"]

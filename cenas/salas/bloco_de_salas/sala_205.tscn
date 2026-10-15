@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="r9"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas_fundo.tscn" id="r10"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral.tscn" id="r11"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira_vr_limpa.tscn" id="r12"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/mesa_leitura.tscn" id="r13"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r14"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lousa_8.tscn" id="b_lousa"]
@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lousa_8_limpa.tscn" id="m_lousa_limpa"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_fluorescente.tscn" id="m_fluorescente"]
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/zumbido_60hz.wav" id="m_zumbido"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lousa_holo_8_limpa.tscn" id="fut_parede_lousa_holo_8_limpa"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_doca_professor_limpo.tscn" id="fut_parede_doca_professor_limpo"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -33,10 +35,10 @@ chao_frente = 476
 self_modulate = Color(1, 1, 1, 1)
 texture = ExtResource("r3")
 
-[node name="Parede01" parent="Paredes" instance=ExtResource("r4")]
+[node name="Parede01" parent="Paredes" instance=ExtResource("fut_parede_doca_professor_limpo")]
 position = Vector2(0, 0)
 
-[node name="Parede02" parent="Paredes" instance=ExtResource("m_lousa_limpa")]
+[node name="Parede02" parent="Paredes" instance=ExtResource("fut_parede_lousa_holo_8_limpa")]
 position = Vector2(80, 0)
 
 [node name="Parede03" parent="Paredes" instance=ExtResource("m_fluorescente")]
@@ -168,171 +170,225 @@ position = Vector2(0, 432)
 position = Vector2(384, 432)
 flip_h = true
 
-[node name="Carteira1" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR1" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(96, 130)
+lente_acesa = true
 
-[node name="Carteira2" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR2" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(140, 130)
+lente_acesa = true
 
-[node name="Carteira3" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR3" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(184, 130)
+lente_acesa = true
 
-[node name="Carteira4" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR4" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(228, 130)
+lente_acesa = true
 
-[node name="Carteira5" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR5" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(96, 156)
+lente_acesa = true
 
-[node name="Carteira6" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR6" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(140, 156)
+lente_acesa = true
 
-[node name="Carteira7" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR7" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(184, 156)
+lente_acesa = true
 
-[node name="Carteira8" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR8" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(228, 156)
+lente_acesa = true
 
-[node name="Carteira9" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR9" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(96, 182)
+lente_acesa = true
 
-[node name="Carteira10" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR10" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(140, 182)
+lente_acesa = true
 
-[node name="Carteira11" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR11" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(184, 182)
+lente_acesa = true
 
-[node name="Carteira12" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR12" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(228, 182)
+lente_acesa = true
 
 [node name="MesaLeitura1" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(300, 134)
 espelhado = true
 
-[node name="Carteira13" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR13" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(66, 212)
+lente_acesa = true
 
-[node name="Carteira14" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR14" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(112, 212)
+lente_acesa = true
 
-[node name="Carteira15" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR15" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(158, 212)
+lente_acesa = true
 
-[node name="Carteira16" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR16" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(204, 212)
+lente_acesa = true
 
-[node name="Carteira17" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR17" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(250, 212)
+lente_acesa = true
 
-[node name="Carteira18" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR18" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(296, 212)
+lente_acesa = true
 
-[node name="Carteira19" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR19" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(342, 212)
+lente_acesa = true
 
-[node name="Carteira20" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR20" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(66, 254)
+lente_acesa = true
 
-[node name="Carteira21" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR21" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(112, 254)
+lente_acesa = true
 
-[node name="Carteira22" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR22" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(158, 254)
+lente_acesa = true
 
-[node name="Carteira23" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR23" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(204, 254)
+lente_acesa = true
 
-[node name="Carteira24" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR24" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(250, 254)
+lente_acesa = true
 
-[node name="Carteira25" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR25" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(296, 254)
+lente_acesa = true
 
-[node name="Carteira26" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR26" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(342, 254)
+lente_acesa = true
 
-[node name="Carteira27" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR27" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(66, 296)
+lente_acesa = true
 
-[node name="Carteira28" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR28" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(112, 296)
+lente_acesa = true
 
-[node name="Carteira29" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR29" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(158, 296)
+lente_acesa = true
 
-[node name="Carteira30" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR30" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(204, 296)
+lente_acesa = true
 
-[node name="Carteira31" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR31" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(250, 296)
+lente_acesa = true
 
-[node name="Carteira32" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR32" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(296, 296)
+lente_acesa = true
 
-[node name="Carteira33" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR33" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(342, 296)
+lente_acesa = true
 
-[node name="Carteira34" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR34" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(66, 338)
+lente_acesa = true
 
-[node name="Carteira35" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR35" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(112, 338)
+lente_acesa = true
 
-[node name="Carteira36" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR36" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(158, 338)
+lente_acesa = true
 
-[node name="Carteira37" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR37" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(204, 338)
+lente_acesa = true
 
-[node name="Carteira38" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR38" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(250, 338)
+lente_acesa = true
 
-[node name="Carteira39" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR39" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(296, 338)
+lente_acesa = true
 
-[node name="Carteira40" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR40" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(342, 338)
+lente_acesa = true
 
-[node name="Carteira41" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR41" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(66, 380)
+lente_acesa = true
 
-[node name="Carteira42" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR42" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(112, 380)
+lente_acesa = true
 
-[node name="Carteira43" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR43" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(158, 380)
+lente_acesa = true
 
-[node name="Carteira44" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR44" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(204, 380)
+lente_acesa = true
 
-[node name="Carteira45" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR45" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(250, 380)
+lente_acesa = true
 
-[node name="Carteira46" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR46" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(296, 380)
+lente_acesa = true
 
-[node name="Carteira47" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR47" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(342, 380)
+lente_acesa = true
 
-[node name="Carteira48" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR48" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(66, 422)
+lente_acesa = true
 
-[node name="Carteira49" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR49" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(112, 422)
+lente_acesa = true
 
-[node name="Carteira50" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR50" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(158, 422)
+lente_acesa = true
 
-[node name="Carteira51" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR51" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(204, 422)
+lente_acesa = true
 
-[node name="Carteira52" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR52" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(250, 422)
+lente_acesa = true
 
-[node name="Carteira53" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR53" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(296, 422)
+lente_acesa = true
 
-[node name="Carteira54" parent="Objetos" instance=ExtResource("r12")]
+[node name="CadeiraVR54" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(342, 422)
+lente_acesa = true
 
 [node name="Lua1" parent="Luzes" instance=ExtResource("r14")]
 position = Vector2(40, 50)
@@ -358,7 +414,7 @@ porta_destino = "bloco_205"
 position = Vector2(120, 126)
 texto_acao = "Olhar a lousa"
 altura_aviso = 70.0
-texto = "Uma lousa limpa, sem uma mancha. Só tracinhos, todos do mesmo tamanho e à mesma distância, como se fossem gravados. Conto oito."
+texto = "Um painel limpo, sem uma trinca. Só tracinhos, todos do mesmo tamanho e à mesma distância, como se fossem gravados. Conto oito."
 
 [node name="Fluorescente" parent="Luzes" instance=ExtResource("r14")]
 position = Vector2(200, 30)
@@ -377,5 +433,11 @@ stream = ExtResource("m_zumbido")
 volume_db = -10.0
 autoplay = true
 bus = &"Efeitos"
+
+[node name="Professor" parent="Objetos" instance=ExtResource("b_aviso")]
+position = Vector2(40, 126)
+texto_acao = "Olhar o professor"
+altura_aviso = 70.0
+texto = "Um robô professor na doca, sem uma marca de poeira ou de ferrugem. A luz da doca está firme, mas a tela do rosto continua escura."
 
 [editable path="Ceu"]
