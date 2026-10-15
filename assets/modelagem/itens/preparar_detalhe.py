@@ -12,6 +12,10 @@
 #                   entre os cabos do alicate) que ficou com um resto de brilho
 #                   do fundo. X,Y é um ponto dentro do vão, em pixels da imagem
 #                   crua. Pode repetir: --furo 500,520 --furo 990,350
+#   --apagar X0,Y0,X1,Y1
+#                   apaga um retângulo (pixels da imagem crua), para um
+#                   resto que o gerador desenhou colado no item, como a faixa
+#                   preta de "chão" embaixo da pedra. Pode repetir.
 #   --passo N       o limite de mudança de cor ao escorrer pelo brilho
 #                   (padrão 7). Se o fundo comer uma parte escura do objeto,
 #                   tente 4 ou 5. Pequeno demais, sobra brilho.
@@ -255,18 +259,27 @@ def ponto(texto):
     return int(x), int(y)
 
 
+def retangulo(texto):
+    x0, y0, x1, y1 = (int(v) for v in texto.split(","))
+    return x0, y0, x1, y1
+
+
 def main():
     parser = argparse.ArgumentParser(description="Prepara a imagem detalhada de um item (fundo transparente, corte rente).")
     parser.add_argument("entrada", help="imagem crua (png, jpg ou webp)")
     parser.add_argument("item", help="id do item, o mesmo de dados/itens/<id>.tres")
     parser.add_argument("--furo", type=ponto, action="append", default=[], metavar="X,Y",
                         help="ponto dentro de um vão fechado que deve ficar transparente")
+    parser.add_argument("--apagar", type=retangulo, action="append", default=[], metavar="X0,Y0,X1,Y1",
+                        help="retângulo (pixels da imagem crua) a apagar do resultado")
     parser.add_argument("--passo", type=float, default=PASSO,
                         help="mudança de cor máxima ao escorrer pelo brilho (padrão %(default)s)")
     args = parser.parse_args()
 
     rgb = np.array(Image.open(args.entrada).convert("RGB"))
     opaco = mascara_do_objeto(rgb.astype(np.float64), args.furo, args.passo)
+    for x0, y0, x1, y1 in args.apagar:
+        opaco[y0:y1, x0:x1] = False
     rgba = np.zeros(rgb.shape[:2] + (4,), dtype=np.uint8)
     rgba[opaco, :3] = rgb[opaco]
     rgba[opaco, 3] = 255

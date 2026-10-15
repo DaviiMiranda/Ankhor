@@ -138,16 +138,37 @@ def chave_manutencao():
     chao.salvar(PASTA_ITENS, "chave_manutencao_chao.png")
 
 
+DISQUETE_AZUL = cor("#243cb4")
+DISQUETE_AZUL_CLARO = cor("#54b4fc")
+DISQUETE_AZUL_ESCURO = cor("#0c0c54")
+DISQUETE_METAL = cor("#b4b4b4")
+DISQUETE_METAL_CLARO = cor("#e4e4e4")
+DISQUETE_METAL_ESCURO = cor("#848484")
+DISQUETE_PAPEL = cor("#f4f2e0")
+DISQUETE_PAUTA = cor("#c4c6c2")
+
+
 def disquete(d, x0, y0, tamanho):
-    """Disquete de 3,5": corpo azul, o obturador de metal em cima e a
-    etiqueta branca embaixo, com a letra da Clarice em rosa."""
+    """Disquete de 3,5" (disquete_clarice_detalhe.png): corpo azul de canto
+    cortado em cima à direita, o obturador de metal cinza com a janelinha
+    azul, e a etiqueta de papel embaixo, pautada. A caneta rosa da Clarice
+    vem em cima, na primeira pauta."""
     x1, y1 = x0 + tamanho - 1, y0 + tamanho - 1
-    d.caixa(x0, y0, x1, y1, AZUL, cor("#5a7cc4"), AZUL_ESCURO)
+    d.caixa(x0, y0, x1, y1, DISQUETE_AZUL, DISQUETE_AZUL_CLARO, DISQUETE_AZUL_ESCURO)
+    d.px(x1, y0, (0, 0, 0, 0))
+    d.px(x1 - 1, y0, CONTORNO)
+    d.px(x1, y0 + 1, CONTORNO)
     meio = (x0 + x1) // 2
-    d.ret(meio - tamanho // 5, y0 + 1, meio + tamanho // 5, y0 + tamanho // 3, METAL_CLARO)
-    d.ret(x0 + 2, y1 - tamanho // 3, x1 - 2, y1 - 1, ETIQUETA)
+    obt_x0, obt_x1 = meio - tamanho // 4, meio + tamanho // 4
+    obt_y1 = y0 + tamanho // 3
+    d.ret(obt_x0, y0 + 1, obt_x1, obt_y1, DISQUETE_METAL)
+    d.ret(obt_x0, y0 + 1, obt_x0 + 1, obt_y1, DISQUETE_METAL_CLARO)
+    d.ret(obt_x1 - 2, y0 + 2, obt_x1 - 1, obt_y1 - 1, DISQUETE_AZUL_ESCURO)
+    d.ret(obt_x0, obt_y1, obt_x1, obt_y1, DISQUETE_METAL_ESCURO)
+    d.ret(x0 + 2, y1 - tamanho // 3, x1 - 2, y1 - 1, DISQUETE_PAPEL)
     if tamanho >= 12:
         d.ret(x0 + 3, y1 - tamanho // 3 + 1, x1 - 4, y1 - tamanho // 3 + 1, CANETA)
+        d.ret(x0 + 3, y1 - 2, x1 - 4, y1 - 2, DISQUETE_PAUTA)
 
 
 def disquete_clarice():
@@ -155,10 +176,10 @@ def disquete_clarice():
     disquete(icone, 1, 1, 14)
     icone.salvar(PASTA_ITENS, "disquete_clarice.png")
     chao = Desenho(7, 4)
-    chao.ret(0, 0, 6, 3, AZUL)
-    chao.ret(0, 0, 6, 0, cor("#5a7cc4"))
-    chao.ret(2, 0, 4, 1, METAL_CLARO)
-    chao.ret(1, 3, 5, 3, ETIQUETA)
+    chao.ret(0, 0, 6, 3, DISQUETE_AZUL)
+    chao.ret(0, 0, 6, 0, DISQUETE_AZUL_CLARO)
+    chao.ret(2, 0, 4, 1, DISQUETE_METAL)
+    chao.ret(1, 3, 5, 3, DISQUETE_PAPEL)
     chao.salvar(PASTA_ITENS, "disquete_clarice_chao.png")
 
 
