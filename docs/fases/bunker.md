@@ -1,6 +1,6 @@
 # Fase — Bunker
 
-> **Status:** Em desenvolvimento (cenário, portas, o Henrique na estação e o primeiro diálogo prontos; salas lacradas para depois)  
+> **Status:** Em desenvolvimento (cenário, portas, o Henrique na estação e o primeiro diálogo prontos; robôs, salas antigas e salas lacradas para depois)  
 > **Área:** bunker de pesquisa embaixo do núcleo da Âncora ("ÂNCORA-03")  
 > **No menu Fases:** **Bunker** (começa na entrada)
 
@@ -11,8 +11,12 @@
 - **O que é:** um bunker do centro de pesquisa, construído para proteger a equipe da Âncora. Fechado e seco, ainda de pé depois de mil anos, mas gasto: concreto aparente em cima e tinta verde-oliva descascando embaixo, eletrocalhas com cabos pendurados, portas de aço de correr, faixas de perigo amarelas e pretas.
 - **Luz:** tubos fluorescentes frios que piscam e luzes de emergência vermelhas. O setor B (lá embaixo) está quase todo no vermelho e alagado.
 - **Som:** a trilha do bunker (grave e opressiva, em Dó frígio, com a fita da Clarice ao longe) em todas as salas, por baixo do zumbido do transformador e do ar parado do duto, goteiras no setor B e o motor do gerador.
-- **Quem vive aqui:** pelas decisões de 2026-10-08 e 2026-10-11, o **Zane** (no computador da central de dados), e o **Henrique** (na mesma sala de dados, com acesso às câmeras do campus). A Diana fica no Bloco de salas, com a Clarice. A cena mostra hoje o **Henrique** na estação, de costas, olhando as câmeras (a Clarice agora fica no Bloco de salas). O **Zane** ainda não aparece: falta a cena dele (Enredo Principal, seção 12.4). Os robôs não descem ao bunker (ou não sabem que ele existe), por isso aqui não há perseguição: é o lugar mais seguro do jogo até agora.
-- **Clarice pelas paredes:** "NÃO CONFIE NAS LUZES" pichado no corredor, a seta "→ DADOS C." apontando para a sala dela, "NÃO ABRE. JÁ TENTEI. C." perto das portas lacradas, e o grafo das rotas dos robôs na parede da central.
+- **Quem vive aqui:** o **Henrique**, **sozinho**, numa sala de dados **trancada** (a central de dados), com acesso às câmeras do campus e ao rádio. Diz que está ali tentando consertar tudo. A cena mostra o Henrique na estação, de costas, olhando as câmeras. A Clarice e a Diana ficam no Bloco de salas, na 103. Decidido em 2026-10-15 (Enredo Principal, seção 8, Ato 3).
+- **O Zane chega depois:** Gabriel chega ao bunker pelo alçapão da oficina do Zane, no fim do Labirinto, e o Zane disse que ia atrás dele depois. O que o Zane faz quando chega, e onde fica na sala de dados, está pendente (Enredo Principal, seção 12.3). Ele ainda não aparece no bunker.
+- **O Carlos nunca vem ao bunker.**
+- **Os robôs patrulham o bunker** (decidido em 2026-10-15). Ainda não estão nas cenas: falta escolher quais robôs, as rotas nos corredores e se eles entram também no setor B (Enredo Principal, seção 12.5). Quando entrarem, o bunker deixa de ser um lugar seguro, e a sala de dados trancada do Henrique é o único canto protegido.
+- **As salas antigas:** uma ou mais salas do bunker são montadas como **interiores de casas e lugares antigos dos séculos XIX e XX**. Mostram a obsessão do Carlos pelo passado **sem explicar**: o jogo não diz quem as montou nem por quê, e nenhum personagem comenta. Quantas são, de que épocas e lugares e onde ficam está pendente (Enredo Principal, seção 12.5). Ainda não existem.
+- **Pichações pelas paredes:** "NÃO CONFIE NAS LUZES" pichado no corredor, a seta "→ DADOS C." apontando para a sala de dados, "NÃO ABRE. JÁ TENTEI. C." perto das portas lacradas, e o grafo das rotas dos robôs na parede da central. Foram feitas quando a Clarice morava aqui; agora ela fica na 103 desde que chegou, e falta decidir quem as fez ou se saem (uma opção: virar marcas antigas dos Faroleiros; Enredo Principal, seção 12.3).
 
 ---
 
@@ -27,7 +31,7 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`) com o som da porta b
   CORREDOR A ── dormitório
    (setor A)  ── refeitório
               ── enfermaria
-              ── central de dados (Clarice)
+              ── central de dados (Henrique, trancada)
               ── ARSENAL (lacrado)
                     │ escada
                     │
@@ -41,12 +45,12 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`) com o som da porta b
 | Cena (`cenas/salas/bunker/`) | Largura | O que tem | Itens |
 |---|---|---|---|
 | `entrada` | 480 × 560 | Escada da superfície, descontaminação (chuveiros e faixas de perigo), armários, posto de guarda (mesa, cadeira, lampião), planta de evacuação, elevador lacrado e a porta para o setor A | — |
-| `corredor_a` | 2560 × 180 | O corredor principal: portas com placas, janela para a sala dos servidores, canos, quadros elétricos, pichações da Clarice e a escada para o setor B | — |
+| `corredor_a` | 2560 × 180 | O corredor principal: portas com placas, janela para a sala dos servidores, canos, quadros elétricos, as pichações assinadas "C." e a escada para o setor B | — |
 | `corredor_b` | 2240 × 180 | Nível de baixo: água no chão, luz vermelha, infiltração nas paredes, três portas lacradas e a **comporta do núcleo** | — |
 | `dormitorio` | 480 × 560 | Fileiras de beliches (três por fileira), armários, caixas | 1 pilha |
 | `refeitorio` | 480 × 560 | Fileiras de mesas compridas de aço, prateleiras de latas, planta do bunker | 1 cápsula de clarão |
 | `enfermaria` | 400 × 480 | Duas fileiras de macas com biombos entre elas, suportes de soro, armários de remédios | 1 pilha |
-| `central_dados` | 560 × 640 | **A sala de dados** (do Zane e do Henrique; hoje a cena mostra só o Henrique): corredores de racks de servidores, janela para os servidores, a parede do grafo, a estação (`estacao_dados.png`: três monitores de tubo que mostram as câmeras do campus) e o canto onde dormem (colchão, cobertor roxo, latas, lampião) | — |
+| `central_dados` | 560 × 640 | **A sala de dados** do Henrique, trancada: corredores de racks de servidores, janela para os servidores, a parede do grafo, a estação (`estacao_dados.png`: três monitores de tubo que mostram as câmeras do campus) e o canto onde ele dorme (colchão, cobertor roxo, latas, lampião). Hoje a porta abre normalmente: na conversa, o Henrique diz que abriu para Gabriel porque o viu chegando | — |
 | `gerador` | 480 × 560 | Dois geradores a diesel ligados, tambores de combustível, quadros elétricos | — |
 | `deposito` | 400 × 480 | Corredores de estantes, caixotes, tambores | 1 pilha, 1 cápsula de clarão, 2 pedras |
 
@@ -69,9 +73,9 @@ O Henrique explica no diálogo que o setor B está lacrado pelo sistema e que o 
 
 ## 3. Objetivos e Progressão
 
-- **Hoje:** explorar o bunker, achar o Henrique na sala de dados e conversar com ele (a conversa anota "Henrique, na sala de dados" no caderno).
+- **Hoje:** explorar o bunker, achar o Henrique na sala de dados e conversar com ele (a conversa anota "Henrique, na sala de dados" no caderno). Gabriel o reconhece pela lenda do campus: o aluno que sumiu na Biblioteca em 2019 (Enredo Principal, seção 7.2). Na conversa, o Henrique diz que está tentando consertar tudo; a mentira dele não aparece aqui (Enredo Principal, seção 8, "A virada").
 - **Chegada:** por enquanto, o Gabriel chega ao bunker saindo do Labirinto: o alçapão da oficina do Zane (revelado por ele depois dos 3 nós) mostra "Você saiu do Labirinto" e leva direto à `entrada`. Isso é provisório: a ordem das fases depois do Labirinto não está decidida.
-- **A definir com a equipe:** o que destrava o setor B (senhas nos disquetes? religar o gerador?) e se os robôs entram aqui em algum momento.
+- **A definir com a equipe:** o que destrava o setor B (senhas nos disquetes? religar o gerador?); quais robôs patrulham o bunker e se entram no setor B; as salas antigas (quantas, de que épocas, onde); a cena do Zane quando ele chega.
 
 ---
 
@@ -95,4 +99,4 @@ O Henrique explica no diálogo que o setor B está lacrado pelo sistema e que o 
 - **Chão (128 × 68):** `chao_bunker`, `chao_bunker_grade`, `chao_bunker_agua`, `chao_bunker_faixa`.
 - **Salas fundas:** as salas (não os corredores) são mais altas que largas. Abaixo da peça de chão normal vão as peças de fundo (128 × 64, repetem para baixo): `chao_bunker_fundo`, `chao_bunker_grade_fundo`, `chao_bunker_agua_fundo`; nos lados, `bunker_lateral` (16 × 64; a da direita com `flip_h`). No `Sala`, `altura` e `chao_frente` (= altura - 4).
 - **Objetos:** `beliche`, `mesa_refeitorio`, `maca`, `suporte_soro`, `biombo`, `gerador`, `tambor`, `tambor_verde`, `caixas`, `rack_servidor`, `colchao`, `estante_metal`, `latas`, `mesa_metal`.
-- **Placas das portas:** são `Label` dentro de `Paredes` (fundo de aço escuro, letra amarela), em cima da plaquinha que as peças de porta já trazem. As pichações da Clarice também são `Label`, em vermelho.
+- **Placas das portas:** são `Label` dentro de `Paredes` (fundo de aço escuro, letra amarela), em cima da plaquinha que as peças de porta já trazem. As pichações também são `Label`, em vermelho.
