@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-15 — O menu principal perde o sombreamento escuro nas bordas da tela
+**Decisão:** o menu principal não tem mais a **vinheta pixelada** escura que cobria as bordas e os cantos da tela inteira (o nó `Vinheta`, com `shaders/vinheta.gdshader`). A cena do monitor aparece clara até a borda. O efeito CRT dentro do vidro do monitor (linhas, cantos arredondados e um leve escurecimento nas pontas do vidro) continua.
+**Por quê:** pedido do Davi: o sombreamento ao redor da tela do jogo, no menu, escurecia a cena e não era desejado.
+**Afeta:** `cenas/menu_principal.tscn` (nó `Vinheta` e seus recursos saíram). O `vinheta.gdshader` continua em uso nas salas.
+
 ## 2026-10-15 — Salas de aula do Bloco ficam futuristas
 **Decisão:** o Bloco de salas ganha um visual de alta tecnologia em ruínas, em todas as 12 salas e nos dois corredores, sem mudar objetivo, robôs, itens nem puzzles.
 - **Cadeira com óculos VR no lugar da carteira** (`cadeira_vr`, `cadeira_vr_caida`; friso âmbar na 203 e versão nova em folha na 205). A pegada é a mesma de 14×4 px da carteira, então a navegação não muda. Nas cadeiras, a lente dos óculos acesa é uma camada de luz (`lente_acesa`): poucas por sala (a 104, o laboratório, tem 9; o auditório 201, 14) e **todas** na 205, a "intacta demais".
