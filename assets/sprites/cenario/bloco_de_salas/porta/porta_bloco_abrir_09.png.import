@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5lomt2g45e5l"
-path="res://.godot/imported/gabriel_retrato_bravo.png-be300079c023f1f6c56a5bbb0320bf8c.ctex"
+uid="uid://qkqfirtom46k"
+path="res://.godot/imported/porta_bloco_abrir_09.png-ad7a72e3c24c416da4ab3320dab9aa98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/personagens/gabriel/gabriel_retrato_bravo.png"
-dest_files=["res://.godot/imported/gabriel_retrato_bravo.png-be300079c023f1f6c56a5bbb0320bf8c.ctex"]
+source_file="res://assets/sprites/cenario/bloco_de_salas/porta/porta_bloco_abrir_09.png"
+dest_files=["res://.godot/imported/porta_bloco_abrir_09.png-ad7a72e3c24c416da4ab3320dab9aa98.ctex"]
 
 [params]
 

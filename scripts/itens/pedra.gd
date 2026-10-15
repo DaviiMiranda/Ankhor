@@ -16,4 +16,5 @@ func usar() -> void:
 	var dono := get_parent().get_parent() as Gabriel
 	var pedra := CENA_PEDRA.instantiate() as PedraArremessada
 	get_tree().current_scene.add_child(pedra)
-	pedra.lancar(dono.global_position, dono.direcao_olhar * distancia)
+	var altura_do_peito := -dono.posicao_do_peito().y
+	pedra.lancar(dono.global_position, dono.direcao_olhar * distancia, altura_do_peito)

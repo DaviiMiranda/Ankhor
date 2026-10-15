@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blpqajwat53rs"
-path="res://.godot/imported/gabriel_retrato_envergonhado.png-0498b948bfeb5da7e7509bc63c507da3.ctex"
+uid="uid://dksa6wvhpmury"
+path="res://.godot/imported/porta_bloco_abrir_25.png-909a83f5fe30f820a5354975b46b5dd0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/personagens/gabriel/gabriel_retrato_envergonhado.png"
-dest_files=["res://.godot/imported/gabriel_retrato_envergonhado.png-0498b948bfeb5da7e7509bc63c507da3.ctex"]
+source_file="res://assets/sprites/cenario/bloco_de_salas/porta/porta_bloco_abrir_25.png"
+dest_files=["res://.godot/imported/porta_bloco_abrir_25.png-909a83f5fe30f820a5354975b46b5dd0.ctex"]
 
 [params]
 
