@@ -1,0 +1,27 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="1_marca"]
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
+[sub_resource type="StyleBoxFlat" id="Vidro"]
+bg_color = Color(0.02, 0.13, 0.17, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.85, 0.95, 0.8)
+
+[node name="LetreiroHolografico" type="Node2D"]
+script = ExtResource("1_marca")
+marca = "energia"
+
+[node name="Texto" type="Label" parent="."]
+material = SubResource("SemLuz")
+offset_right = 56.0
+offset_bottom = 14.0
+theme_override_colors/font_color = Color(0.72, 0.97, 1, 1)
+theme_override_styles/normal = SubResource("Vidro")
+text = "LETREIRO"
+horizontal_alignment = 1

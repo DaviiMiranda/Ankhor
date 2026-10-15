@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral.tscn" id="r8"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r9"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cabine.tscn" id="r10"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira_vr.tscn" id="r11"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/livros.tscn" id="r12"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="r13"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r14"]
@@ -18,6 +18,10 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r16"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_sol.tscn" id="r17"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cabine_vidro_ciano_acesa.tscn" id="fut_cabine_vidro_ciano_acesa"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_servidores.tscn" id="fut_parede_servidores"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/torre_equipamentos.tscn" id="fut_torre_equipamentos"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/letreiro_holografico.tscn" id="fut_letreiro"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -26,7 +30,7 @@ bg_color = Color(0.12, 0.13, 0.14, 1)
 id = "biblioteca_cabine"
 largura = 320
 
-[node name="Parede01" parent="Paredes" instance=ExtResource("r2")]
+[node name="Parede01" parent="Paredes" instance=ExtResource("fut_parede_servidores")]
 position = Vector2(0, 0)
 
 [node name="Parede02" parent="Paredes" instance=ExtResource("r3")]
@@ -75,10 +79,10 @@ color = Color(0.4, 0.42, 0.52, 1)
 [node name="Gabriel" parent="Objetos"]
 position = Vector2(112, 154)
 
-[node name="CabineDespertar" parent="Objetos" instance=ExtResource("r10")]
+[node name="CabineDespertar" parent="Objetos" instance=ExtResource("fut_cabine_vidro_ciano_acesa")]
 position = Vector2(74, 136)
 
-[node name="CabineVizinha" parent="Objetos" instance=ExtResource("r10")]
+[node name="CabineVizinha" parent="Objetos" instance=ExtResource("fut_cabine_vidro_ciano_acesa")]
 position = Vector2(176, 132)
 espelhado = true
 
@@ -107,7 +111,7 @@ offset_left = 253.0
 offset_top = 30.0
 offset_right = 309.0
 offset_bottom = 44.0
-theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_colors/font_color = Color(0.3, 0.37, 0.4, 1)
 theme_override_styles/normal = SubResource("Placa")
 text = "SALÃO"
 horizontal_alignment = 1
@@ -119,3 +123,14 @@ energy = 0.8
 
 [node name="Rebatida" parent="Luzes" instance=ExtResource("r18")]
 position = Vector2(200, 120)
+
+[node name="TorreEquipamentos" parent="Objetos" instance=ExtResource("fut_torre_equipamentos")]
+position = Vector2(226, 134)
+
+[node name="LetreiroSalao" parent="Paredes" instance=ExtResource("fut_letreiro")]
+position = Vector2(253.0, 30.0)
+
+[node name="Texto" parent="Paredes/LetreiroSalao" index="0"]
+offset_right = 56.0
+offset_bottom = 14.0
+text = "SALÃO"
