@@ -31,9 +31,30 @@
 #
 # Isso também faz o brilho em volta da lente virar um halo quente e translúcido,
 # em vez de um borrão cinza.
+#
+# Sombra no chão: o gerador às vezes desenha uma sombra embaixo do objeto (o
+# rádio tem). Sombra é o próprio fundo, só que mais escuro: a cor dela fica na
+# reta que vai do preto até a cor do fundo, c ≈ k * f, com 0 < k < 1. Por isso,
+# em vez de medir a distância até o ponto f, medimos a distância até essa reta.
+# A projeção de c na reta dá o k:
+#
+#     k = (c · f) / (f · f)        (produto escalar)
+#
+# e o ponto mais perto é k * f (com k limitado entre K_MINIMO e 1). A distância
+# d = |c - k * f| entra na mesma rampa do alfa, e o "fundo" que se tira na
+# inversão da mistura passa a ser k * f. Com K_MINIMO = 0,4 o contorno preto e
+# as partes cinza do objeto ficam longe da reta e não somem.
+#
+# Só o fundo ligado às bordas da imagem sai: uma busca em largura (BFS) parte
+# de todos os pixels da borda e anda pelos vizinhos que parecem fundo. Uma
+# parte do objeto da mesma cor do fundo, mas cercada por ele (um vão dentro do
+# desenho, um reflexo), não é alcançada e continua opaca. Uma segunda BFS,
+# partindo do centro, fica só com a mancha do objeto e apaga os pontinhos
+# soltos que o ruído do JPEG deixa no fundo.
 
 import argparse
 import os
+from collections import deque
 
 import numpy as np
 from PIL import Image
@@ -43,6 +64,7 @@ PASTA_ITENS = os.path.join(PASTA_PROJETO, "assets", "sprites", "itens")
 
 D0 = 4.0      # até aqui o pixel é fundo puro (alfa 0)
 D1 = 13.0     # daqui para cima o pixel é objeto puro (alfa 1)
+K_MINIMO = 0.4  # sombra mais escura que 40% do fundo já conta como objeto
 MARGEM = 8    # pixels de folga em volta do objeto
 LIMITE_LADO = 512
 
@@ -54,13 +76,55 @@ def cor_do_fundo(rgb):
     return valores[np.argmax(contagens)].astype(np.float64)
 
 
+def busca_em_largura(pode_andar, sementes):
+    """BFS: marca todo pixel alcançável a partir das sementes, andando só para
+    os 4 vizinhos onde pode_andar é verdadeiro."""
+    altura, largura = pode_andar.shape
+    alcancado = np.zeros_like(pode_andar)
+    fila = deque()
+    for y, x in sementes:
+        if pode_andar[y, x] and not alcancado[y, x]:
+            alcancado[y, x] = True
+            fila.append((y, x))
+    while fila:
+        y, x = fila.popleft()
+        for vy, vx in ((y - 1, x), (y + 1, x), (y, x - 1), (y, x + 1)):
+            if 0 <= vy < altura and 0 <= vx < largura and pode_andar[vy, vx] and not alcancado[vy, vx]:
+                alcancado[vy, vx] = True
+                fila.append((vy, vx))
+    return alcancado
+
+
+def fundo_alcancavel(parece_fundo):
+    altura, largura = parece_fundo.shape
+    bordas = [(y, x) for y in range(altura) for x in (0, largura - 1)]
+    bordas += [(y, x) for x in range(largura) for y in (0, altura - 1)]
+    return busca_em_largura(parece_fundo, bordas)
+
+
+def so_o_objeto(rgba):
+    """Apaga os pontinhos soltos (ruído do JPEG que passou do limiar): fica só
+    a mancha opaca ligada ao pixel mais opaco do centro da imagem."""
+    visivel = rgba[..., 3] > 12
+    altura, largura = visivel.shape
+    centro = np.argwhere(visivel)
+    meio = np.array([altura / 2, largura / 2])
+    semente = tuple(centro[np.argmin(((centro - meio) ** 2).sum(axis=1))])
+    objeto = busca_em_largura(visivel, [semente])
+    rgba[~objeto] = 0
+    return rgba
+
+
 def remover_fundo(rgb):
     fundo = cor_do_fundo(rgb)
     pix = rgb.astype(np.float64)
-    distancia = np.sqrt(((pix - fundo) ** 2).sum(axis=2))
+    k = np.clip((pix @ fundo) / (fundo @ fundo), K_MINIMO, 1.0)[..., None]
+    fundo_local = k * fundo
+    distancia = np.sqrt(((pix - fundo_local) ** 2).sum(axis=2))
     alfa = np.clip((distancia - D0) / (D1 - D0), 0.0, 1.0)
+    alfa[~fundo_alcancavel(alfa < 1.0)] = 1.0
     seguro = np.maximum(alfa, 1e-3)[..., None]
-    objeto = (pix - (1.0 - alfa[..., None]) * fundo) / seguro
+    objeto = (pix - (1.0 - alfa[..., None]) * fundo_local) / seguro
     objeto = np.clip(objeto, 0, 255)
     saida = np.zeros(rgb.shape[:2] + (4,), dtype=np.uint8)
     saida[..., :3] = objeto.round().astype(np.uint8)
@@ -87,7 +151,7 @@ def main():
     args = parser.parse_args()
 
     rgb = np.array(Image.open(args.entrada).convert("RGB"))
-    rgba = cortar_rente(remover_fundo(rgb))
+    rgba = cortar_rente(so_o_objeto(remover_fundo(rgb)))
     imagem = Image.fromarray(rgba, "RGBA")
     if max(imagem.size) > LIMITE_LADO:
         escala = LIMITE_LADO / max(imagem.size)

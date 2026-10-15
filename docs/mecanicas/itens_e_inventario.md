@@ -114,10 +114,12 @@ A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo no
 - **Fechar:** `E` ou `Esc`, só depois de 0,45 s.
 - **Sem imagem detalhada:** o item mostra o ícone de 16 × 16 ampliado em escala inteira, com a mesma descrição. Nenhum item fica sem a tela.
 - **A descrição** é o campo `descricao` do item (o mesmo que aparece no inventário). Cabem 7 linhas; se passar, o Godot avisa no console.
+- **Para testar:** a sala de teste tem um exemplar de cada item do jogo. Os das fases (chaves, molho de chaves, disquete e alicate) ficam em fila no canto direito, depois da porta dos robôs.
+- **Com imagem detalhada:** lanterna e rádio. Os outros ainda mostram o ícone ampliado.
 
 ### Como colocar a imagem detalhada de um item
 
-1. Gere a imagem no gerador de imagem, com o item inteiro e centralizado, sobre um **fundo chapado de uma cor só** (cinza serve). Estilo pixel art, o mesmo para todos os itens.
+1. Gere a imagem no gerador de imagem, com o item inteiro e centralizado, sobre um **fundo chapado de uma cor só** (cinza serve). Estilo pixel art, o mesmo para todos os itens. Uma sombra embaixo do item pode ficar: o script a reconhece e tira junto com o fundo.
 2. Rode o script, que tira o fundo, corta rente e salva em `assets/sprites/itens/<id>_detalhe.png`:
    ```bash
    python assets/modelagem/itens/preparar_detalhe.py caminho/da/imagem.webp lanterna
@@ -127,4 +129,4 @@ A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo no
 
 ### Conteúdo de computação
 
-O fundo é tirado por **"color to alpha"**: a transparência de cada pixel é uma função da **distância euclidiana** entre a cor dele e a cor do fundo no espaço RGB, e a cor do objeto nas bordas é recuperada invertendo a mistura `pixel = a · objeto + (1 − a) · fundo`. A fila de itens é uma **fila (FIFO)**. A matemática está comentada em `preparar_detalhe.py`.
+O fundo é tirado por **"color to alpha"**: a transparência de cada pixel é uma função da **distância euclidiana** entre a cor dele e a cor do fundo no espaço RGB, e a cor do objeto nas bordas é recuperada invertendo a mistura `pixel = a · objeto + (1 − a) · fundo`. A sombra no chão é o fundo mais escuro (`c ≈ k · fundo`), então a distância é medida até a **reta** do preto ao fundo, com o `k` achado por **projeção (produto escalar)**. Só sai o fundo ligado às bordas da imagem, achado por uma **busca em largura (BFS)**; outra BFS, partindo do centro, apaga os pontinhos soltos do ruído do JPEG. A fila de itens é uma **fila (FIFO)**. A matemática está comentada em `preparar_detalhe.py`.

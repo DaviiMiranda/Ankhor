@@ -70,6 +70,17 @@ ACO_AZUL = bib.hexa("#0f1219", "#1a202b", "#28313f", "#3a4658", "#52627a")
 VERMELHO_BOTAO = bib.hexa("#3a0f0c", "#6e1c15", "#b02a1e", "#e0513a")
 NYLON = bib.hexa("#0d100a", "#171c11", "#222a18", "#323b22", "#444e2f")
 
+# Cores do rádio, tiradas da imagem detalhada dele
+# (assets/sprites/itens/radio_detalhe.png): carcaça de plástico verde-oliva
+# com a quina de cima quase menta, detalhes em laranja (anel da antena, aro do
+# botão de falar, botão de emergência), tela de LCD verde e borracha cinza
+# escura na antena, na grade do alto-falante e no para-choque de baixo.
+OLIVA_RADIO = bib.hexa("#141a12", "#242e20", "#3a4630", "#535f3f", "#6c7852", "#8a9a6c", "#b5cba8")
+LARANJA_RADIO = bib.hexa("#4a1d08", "#8c3c12", "#d16b23", "#f59a51")
+LCD_RADIO = bib.hexa("#1f2e1c", "#3e5a38", "#6c8f65", "#9ed591")
+BORRACHA_RADIO = bib.hexa("#121316", "#1f2024", "#2c2c34", "#3c3e45", "#52565a", "#6f7875")
+TECLA_RADIO = bib.hexa("#5e636e", "#9298a6", "#c2ccd6")
+
 
 # ---------------------------------------------------------------------------
 # Ícones dos itens
@@ -163,42 +174,58 @@ def pilha_chao():
 
 
 def radio():
-    """O rádio portátil do grupo (um HT da segurança, de 2008): corpo
-    de plástico preto, antena de borracha à esquerda, tela pequena de LCD
-    esverdeado e a grade do alto-falante embaixo. O botão de falar (PTT)
-    fica na lateral, em ferrugem."""
+    """O rádio portátil do grupo (um HT da segurança, de 2008), o mesmo da
+    imagem detalhada (radio_detalhe.png): carcaça verde-oliva com a quina da
+    esquerda clara, antena de borracha com anel laranja, o botão de volume em
+    cima, o botão de falar (PTT) na lateral com aro laranja, a tela de LCD
+    verde, a grade do alto-falante e a fileira de teclas embaixo (duas cinza
+    e a de emergência laranja)."""
     img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
     X, Y = img.X, img.Y
     fino = ruido(img.w, img.h, 2, 2, 11)
-    # Antena: um bastão grosso de 2 px, mais claro na ponta.
-    img.pintar(img.ret(4, 0, 6, 5), "metal", 0.18 + 0.2 * (Y == 0))
-    # Corpo: retângulo de cantos cortados, mais claro na esquerda.
-    corpo = img.poligono([(4, 5), (5, 4), (12, 4), (13, 5), (13, 15), (12, 16), (5, 16), (4, 15)])
-    img.pintar(corpo, "metal", 0.12 + 0.18 * (1 - (X - 4) / 9) + 0.05 * fino)
-    # Botão de falar na lateral esquerda.
-    img.pintar(img.ret(3, 7, 4, 10), "ferrugem", 0.5)
-    # Tela de LCD: verde apagado, com uma linha mais clara (os números).
-    tela = img.ret(6, 6, 12, 9)
-    img.pintar(tela, "verde", 0.55)
-    img.pintar(img.ret(7, 7, 11, 8), "verde", 0.8)
-    # Grade do alto-falante: pontos alternados, como furos.
-    furos = img.ret(6, 11, 12, 15) & ((X + Y) % 2 == 0)
-    img.pintar(furos, "metal", 0.02)
-    # Brilho de 1 px na quina de cima do corpo.
-    img.pintar(img.ret(5, 5, 7, 6), "metal", 0.7)
+    # Antena: bastão de 2 px, com o anel laranja perto da ponta e o colar na base.
+    img.pintar(img.ret(5, 0, 7, 6), BORRACHA_RADIO, 0.3 + 0.25 * (X == 5))
+    img.pintar(img.ret(5, 1, 7, 2), LARANJA_RADIO, 0.7)
+    img.pintar(img.ret(5, 5, 7, 6), LARANJA_RADIO, 0.55)
+    # Botão de volume em cima, à direita.
+    img.pintar(img.ret(9, 3, 13, 5), OLIVA_RADIO, 0.18 + 0.15 * (Y == 3))
+    # Carcaça: a lateral esquerda (2 px) e a frente, de cantos cortados.
+    corpo = img.poligono([(3, 6), (4, 5), (13, 5), (14, 6), (14, 14), (13, 15), (4, 15), (3, 14)])
+    img.pintar(corpo, OLIVA_RADIO, 0.5 + 0.06 * fino)
+    img.pintar(corpo & (X < 5), OLIVA_RADIO, 0.36 + 0.06 * fino)
+    img.pintar(corpo & (Y == 5) & (X > 4), OLIVA_RADIO, 0.72)
+    img.pintar(img.ret(5, 5, 6, 14), OLIVA_RADIO, 1.0)
+    # Botão de falar (PTT) na lateral, com aro laranja.
+    img.pintar(img.ret(2, 7, 4, 11), LARANJA_RADIO, 0.6)
+    img.pintar(img.ret(3, 8, 4, 10), BORRACHA_RADIO, 0.35)
+    # Tela de LCD: verde, com uma linha de números ("CH 08") mais escura.
+    img.pintar(img.ret(7, 6, 13, 9), LCD_RADIO, 0.75)
+    img.pintar(img.ret(8, 7, 12, 8) & (X != 10), LCD_RADIO, 0.3)
+    # Grade do alto-falante: fendas horizontais na borracha escura.
+    img.pintar(img.ret(7, 10, 13, 13), BORRACHA_RADIO, 0.2 + 0.25 * (Y % 2 == 1))
+    # Teclas: duas cinza e a de emergência laranja.
+    img.pintar(img.ret(7, 13, 8, 14) | img.ret(9, 13, 10, 14), TECLA_RADIO, 0.6)
+    img.pintar(img.ret(11, 13, 13, 14), LARANJA_RADIO, 0.85)
+    # Para-choque de borracha embaixo.
+    img.pintar(corpo & (Y == 14), BORRACHA_RADIO, 0.25)
     img.contornar(CONTORNO)
     return img
 
 
 def radio_chao():
     """O mesmo rádio caído no chão, na escala do cenário: um HT tem uns
-    20 cm, então ~6 px de corpo mais a antena."""
+    20 cm, então ~6 px de corpo mais a antena. Carcaça oliva com a quina
+    clara, tela verde, a grade escura e o ponto laranja da tecla."""
     img = Imagem(7, 11)
-    img.pintar(img.ret(1, 0, 2, 4), "metal", 0.3)
+    img.pintar(img.ret(1, 0, 2, 4), BORRACHA_RADIO, 0.35)
+    img.pintar(img.ret(1, 1, 2, 2), LARANJA_RADIO, 0.7)
     corpo = img.ret(1, 3, 6, 10)
-    img.pintar(corpo, "metal", 0.22)
-    img.pintar(img.ret(2, 4, 5, 6), "verde", 0.6)
-    img.pintar(img.ret(2, 7, 5, 9) & ((img.X + img.Y) % 2 == 0), "metal", 0.02)
+    img.pintar(corpo, OLIVA_RADIO, 0.45)
+    img.pintar(img.ret(1, 3, 2, 9), OLIVA_RADIO, 0.85)
+    img.pintar(img.ret(2, 4, 5, 5), LCD_RADIO, 0.8)
+    img.pintar(img.ret(2, 6, 5, 8), BORRACHA_RADIO, 0.2 + 0.2 * (img.Y == 7))
+    img.pintar(img.ret(4, 8, 5, 9), LARANJA_RADIO, 0.8)
+    img.pintar(img.ret(1, 9, 6, 10), BORRACHA_RADIO, 0.25)
     img.contornar(CONTORNO)
     return img
 
