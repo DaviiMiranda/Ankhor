@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-15 — Objetos discretos dos personagens no menu principal (teste)
+**Decisão:** a mesa do menu principal ganha três objetos pequenos, só para quem procura: o **anel da avó do Gabriel**, gasto, deitado na madeira entre o teclado e a caneca; os **óculos do Zane**, um visor de 2123 com armação grafite, linha de luz ciano e um detalhe amarelo-ácido, dobrados sobre a capa dos livros; e o **símbolo dos Faroleiros** rabiscado a caneta no post-it da moldura do monitor, feito a partir da pintura do símbolo que o Davi mandou (com as cores invertidas: tinta escura no papel). Cada objeto é um Sprite2D por cima da arte, no nó `ObjetosDosPersonagens`; a `menu_cena.png` não mudou. Os óculos não estão na ficha do Zane: são um objeto novo, que combina com o visual dele.
+**Por quê:** pedido do Davi: o menu lembrar alguns personagens bem discretamente. É um teste, para o grupo ver se fica.
+**Afeta:** `assets/modelagem/menu/gerar_objetos_menu.py` (novo), `assets/sprites/menu/menu_anel_gabriel.png`, `menu_oculos_zane.png` e `menu_farol_postit.png` (novos), `cenas/menu_principal.tscn`.
+
 ## 2026-10-15 — *Homo sideralis*, os Faroleiros e a mentira do Henrique
 **Decisão:**
 - **Quem foi embora:** os ***Homo sideralis***, uma espécie humana evoluída que aceita melhor os implantes e vive melhor no espaço e em planetas com outra temperatura ou gravidade. Partiram para outro planeta há menos de 100 anos.
