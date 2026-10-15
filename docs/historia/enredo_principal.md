@@ -316,6 +316,6 @@ Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decis
 As perguntas que faltam responder sobre "A virada" (seção 8):
 
 1. **O Henrique trabalha para o Carlos por vontade própria, ou foi enganado por ele?**
-2. **O que exatamente o Henrique esconde do grupo?** (A ideia 12 de [`outras_ideias.md`](outras_ideias.md) é uma opção.)
+2. **O que exatamente o Henrique esconde do grupo?**
 3. **Como e quando o grupo descobre a mentira?**
 4. **É verdade o que o Henrique conta?** Ele diz que está escondido no bunker, tentando entender tudo, e que, de alguma forma, estão em 3026. Falta decidir se isso é verdade ou parte do que ele esconde.
