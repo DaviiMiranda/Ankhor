@@ -7,7 +7,7 @@
 #
 # Sai, em assets/sprites/menu/:
 #   menu_anel_gabriel.png   o anel da avó do Gabriel, gasto, deitado na mesa
-#   menu_oculos_zane.png    os óculos de 2123 do Zane, dobrados sobre os livros
+#   menu_oculos_zane.png    os óculos de 2123 do Zane, na estante do fundo
 #   menu_farol_postit.png   o símbolo dos Faroleiros, rabiscado no post-it
 #
 # Por que objetos separados, e não pintados na menu_cena.png? Assim a arte
@@ -37,10 +37,12 @@ AMPLIACAO = 4
 
 # Anel do Gabriel: ouro velho, gasto. Visto de cima e um pouco de lado, então
 # vira uma elipse. A luz da luminária vem da direita, por isso o brilho fica no
-# lado direito do aro e a sombra no esquerdo e embaixo.
+# lado direito do aro. O lado esquerdo, na sombra, não pode ser escuro demais:
+# sobre a madeira escura ele sumia e o anel parecia um "C". O ouro da sombra
+# fica só um pouco mais escuro que o ouro gasto, e o aro inteiro aparece.
 PALETA_ANEL = {
-    "e": (88, 62, 36, 255),      # ouro na sombra
-    "o": (146, 110, 58, 255),    # ouro gasto
+    "e": (150, 112, 60, 255),    # ouro na sombra
+    "o": (178, 138, 74, 255),    # ouro gasto
     "c": (204, 168, 98, 255),    # ouro claro, virado para a luz
     "b": (244, 224, 168, 255),   # o único ponto de brilho
     "s": (30, 18, 12, 110),      # sombra do anel na madeira
@@ -58,26 +60,28 @@ ANEL = [
 # combina com o visual dele. Uma lente só, contínua, de ponta a ponta (como um
 # visor), com armação grafite, a linha de luz ciano dos implantes dele e um
 # detalhe amarelo-ácido na dobradiça, a cor de identificação do Zane.
-# Estão dobrados, deitados sobre a capa dos livros: as hastes aparecem por
-# trás da lente, como uma linha fina.
+# Estão em pé, de frente, na prateleira do meio da estante do fundo, na frente
+# das lombadas dos livros (as hastes dobradas ficam escondidas atrás da lente).
+# A estante é escura, por isso a armação é um grafite mais claro que o da
+# sombra das prateleiras, e a linha ciano é o que chama o olho de quem procura.
 PALETA_OCULOS = {
-    "f": (30, 34, 44, 255),      # armação grafite
-    "g": (52, 58, 72, 255),      # armação com reflexo
-    "l": (16, 30, 40, 255),      # lente escura
-    "r": (40, 86, 104, 255),     # reflexo frio na lente
-    "c": (56, 146, 162, 255),    # linha de luz ciano, fraca
-    "C": (118, 206, 218, 255),   # ponto mais aceso da luz
-    "a": (150, 160, 40, 255),    # amarelo-ácido apagado, na dobradiça
-    "h": (24, 28, 36, 255),      # hastes dobradas
-    "s": (8, 12, 22, 120),       # sombra na capa do livro
+    "f": (62, 68, 84, 255),      # armação grafite
+    "g": (96, 104, 122, 255),    # armação com reflexo
+    "l": (18, 32, 44, 255),      # lente escura
+    "r": (50, 100, 120, 255),    # reflexo frio na lente
+    "c": (70, 170, 186, 255),    # linha de luz ciano
+    "C": (146, 228, 238, 255),   # ponto mais aceso da luz
+    "a": (170, 182, 42, 255),    # amarelo-ácido, na dobradiça
+    "s": (6, 8, 14, 140),        # sombra na prateleira
 }
 OCULOS = [
-    "..hhhhhhhhhhh...",
-    ".gffffffffffffa.",
-    "fcccCcllrrcccccf",
-    "flllllr..lllrllf",
-    ".flll.....flllf.",
-    "..ssss....ssss..",
+    ".gffffffffffffffffa.",
+    "fcccccCccccccccccccf",
+    "fllllrrllllllllrrllf",
+    "fllllllll..llllllllf",
+    ".flllllf....flllllf.",
+    "..ffff........ffff..",
+    "..ssss........ssss..",
 ]
 
 

@@ -129,7 +129,7 @@ scale = Vector2(0.25, 0.25)
 [node name="OculosZane" type="Sprite2D" parent="ObjetosDosPersonagens"]
 light_mask = 2
 texture_filter = 2
-position = Vector2(27, 117)
+position = Vector2(22, 54)
 texture = ExtResource("12_oculos")
 centered = false
 scale = Vector2(0.25, 0.25)
