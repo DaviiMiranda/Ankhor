@@ -115,7 +115,7 @@ A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo no
 - **Sem imagem detalhada:** o item mostra o ícone de 16 × 16 ampliado em escala inteira, com a mesma descrição. Nenhum item fica sem a tela.
 - **A descrição** é o campo `descricao` do item (o mesmo que aparece no inventário). Cabem 7 linhas; se passar, o Godot avisa no console.
 - **Para testar:** a sala de teste tem um exemplar de cada item do jogo. Os das fases (chaves, molho de chaves, disquete e alicate) ficam em fila no canto direito, depois da porta dos robôs.
-- **Com imagem detalhada:** lanterna, rádio, cápsula de clarão, notebook, chave da manutenção, chave da fita azul, molho de chaves e alicate. Faltam a chave do depósito, o disquete da Clarice e a pedra, que ainda mostram o ícone ampliado.
+- **Com imagem detalhada:** lanterna, rádio, cápsula de clarão, notebook, chave da manutenção, chave da fita azul, molho de chaves, alicate e chave do depósito. Faltam o disquete da Clarice e a pedra, que ainda mostram o ícone ampliado.
 
 ### Como colocar a imagem detalhada de um item
 
@@ -124,7 +124,7 @@ A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo no
    ```bash
    python assets/modelagem/itens/preparar_detalhe.py caminho/da/imagem.webp lanterna
    ```
-   Se um vão fechado do desenho (o meio de uma argola, o espaço entre os cabos do alicate) ficar com uma mancha do brilho do fundo, rode de novo com `--furo X,Y`, onde X,Y é um ponto dentro do vão, em pixels da imagem original. Pode repetir a opção. Os comandos usados em cada item estão na tabela abaixo.
+   Se um vão fechado do desenho (o meio de uma argola, o espaço entre os cabos do alicate) ficar com uma mancha do brilho do fundo, rode de novo com `--furo X,Y`, onde X,Y é um ponto dentro do vão, em pixels da imagem original. Pode repetir a opção. Se, ao contrário, o fundo comer uma parte escura do item, diminua o `--passo` (padrão 7; tente 4 ou 5). Os comandos usados em cada item estão na tabela abaixo.
 3. Abra o projeto no Godot (ele cria o `.import`) e, em `dados/itens/<id>.tres`, arraste o PNG para o campo **Imagem Detalhe**.
 4. Para a tela ficar de acordo, redesenhe também o ícone (16 × 16) e o sprite do chão com as cores da imagem. Eles estão em `assets/modelagem/interface/gerar_interface.py` (gadgets), `assets/modelagem/cenario/gerar_objetos_biblioteca.py` (chave da manutenção, disquete) e `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` (chaves do bloco, molho, alicate).
 
@@ -133,6 +133,7 @@ A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo no
 | `chave_grade` | `--furo 900,450 --furo 490,540` |
 | `molho_de_chaves` | `--furo 1000,350` |
 | `alicate` | `--furo 1062,524` |
+| `chave_deposito` | `--passo 4 --furo 1000,150 --furo 780,320` (o cone de luz de cima e o furo da cabeça; com o passo padrão o fundo comia a parte escura da chave) |
 | `chave_manutencao`, `clarao`, `notebook` | nenhuma |
 | `radio` | feito com a versão anterior do script (commit `0399b1a` do PR #107), que tirava a sombra num fundo de uma cor só |
 

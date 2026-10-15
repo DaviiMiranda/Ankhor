@@ -12,6 +12,9 @@
 #                   entre os cabos do alicate) que ficou com um resto de brilho
 #                   do fundo. X,Y é um ponto dentro do vão, em pixels da imagem
 #                   crua. Pode repetir: --furo 500,520 --furo 990,350
+#   --passo N       o limite de mudança de cor ao escorrer pelo brilho
+#                   (padrão 7). Se o fundo comer uma parte escura do objeto,
+#                   tente 4 ou 5. Pequeno demais, sobra brilho.
 #
 # O que sai:
 #   assets/sprites/itens/<id_do_item>_detalhe.png   RGBA, fundo transparente, cortada rente
@@ -201,20 +204,20 @@ def distancia(c, f):
     return np.sqrt(((c - f) ** 2).sum(axis=-1))
 
 
-def escorrer(pix, fundo, perto, sementes):
+def escorrer(pix, fundo, perto, sementes, passo):
     """Passo 3, segunda BFS: anda pelo brilho suave a partir do fundo conhecido."""
     salto_lado = distancia(pix[:, 1:], pix[:, :-1])
     salto_baixo = distancia(pix[1:], pix[:-1])
 
     def passo_ok(y, x, vy, vx):
         if vy == y:
-            return salto_lado[y, min(x, vx)] < PASSO
-        return salto_baixo[min(y, vy), x] < PASSO
+            return salto_lado[y, min(x, vx)] < passo
+        return salto_baixo[min(y, vy), x] < passo
 
     return busca_em_largura(perto | fundo, sementes, passo_ok) | fundo
 
 
-def mascara_do_objeto(pix, furos):
+def mascara_do_objeto(pix, furos, passo=PASSO):
     altura, largura, _ = pix.shape
     modelo = ajustar_polinomio(pix)
     for volta in range(4):
@@ -223,9 +226,9 @@ def mascara_do_objeto(pix, furos):
         if volta < 3:
             modelo = corrigir_brilho(pix, modelo, fundo)
     perto = d < LIMITE_BRILHO * T_FUNDO
-    fundo = escorrer(pix, fundo, perto, list(map(tuple, np.argwhere(fundo))))
+    fundo = escorrer(pix, fundo, perto, list(map(tuple, np.argwhere(fundo))), passo)
     if furos:
-        fundo |= escorrer(pix, np.zeros_like(fundo), np.ones_like(fundo), [(y, x) for x, y in furos])
+        fundo |= escorrer(pix, np.zeros_like(fundo), np.ones_like(fundo), [(y, x) for x, y in furos], passo)
     rotulos, tamanhos = componentes((d < T_FUNDO) & ~fundo)
     vao = tamanhos >= FURO_MINIMO * altura * largura
     vao[0] = False
@@ -258,10 +261,12 @@ def main():
     parser.add_argument("item", help="id do item, o mesmo de dados/itens/<id>.tres")
     parser.add_argument("--furo", type=ponto, action="append", default=[], metavar="X,Y",
                         help="ponto dentro de um vão fechado que deve ficar transparente")
+    parser.add_argument("--passo", type=float, default=PASSO,
+                        help="mudança de cor máxima ao escorrer pelo brilho (padrão %(default)s)")
     args = parser.parse_args()
 
     rgb = np.array(Image.open(args.entrada).convert("RGB"))
-    opaco = mascara_do_objeto(rgb.astype(np.float64), args.furo)
+    opaco = mascara_do_objeto(rgb.astype(np.float64), args.furo, args.passo)
     rgba = np.zeros(rgb.shape[:2] + (4,), dtype=np.uint8)
     rgba[opaco, :3] = rgb[opaco]
     rgba[opaco, 3] = 255

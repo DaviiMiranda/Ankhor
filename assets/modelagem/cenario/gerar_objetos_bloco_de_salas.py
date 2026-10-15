@@ -66,6 +66,7 @@ CHAVEIRO = cor("#2b3f86")
 CHAVEIRO_CLARO = cor("#5068b0")
 FERRO = cor("#4a4c52")
 FERRO_CLARO = cor("#76787e")
+FERRUGEM = cor("#7a4a2a")
 LARANJA_CABO = cor("#d0662f")
 LARANJA_CABO_CLARO = cor("#f08c50")
 
@@ -159,27 +160,38 @@ def chave_grade():
 
 
 def chave_deposito():
-    """A chave do depósito, do claviculário da sala dos professores: chave
-    de ferro (mais escura que as de latão) com a etiqueta de papel 206."""
+    """A chave do depósito, do claviculário da sala dos professores
+    (chave_deposito_detalhe.png): chave de ferro gasta, de cabeça quadrada,
+    com uma etiqueta de papel pendurada por um arame. Na etiqueta, em
+    vermelho: DEPÓSITO 206."""
     icone = Desenho(16, 16)
-    chave(icone, 2, 4)
-    for x in range(2, 12):
-        for y in range(4, 8):
-            if icone.p[x, y] == LATAO:
-                icone.px(x, y, METAL)
-            elif icone.p[x, y] == LATAO_CLARO:
-                icone.px(x, y, METAL_CLARO)
-            elif icone.p[x, y] == LATAO_ESCURO:
-                icone.px(x, y, METAL_ESCURO)
-    icone.ret(1, 9, 9, 14, ETIQUETA)
-    icone.ret(1, 14, 9, 14, BEGE_ESCURO)
-    icone.ret(2, 11, 8, 11, VERMELHO)
-    icone.ret(2, 12, 6, 12, VERMELHO_ESCURO)
-    icone.px(2, 8, METAL_CLARO)
+    icone.ret(1, 1, 5, 5, METAL)
+    icone.ret(2, 2, 4, 4, TRANSPARENTE)
+    icone.ret(1, 1, 5, 1, METAL_CLARO)
+    icone.ret(1, 5, 5, 5, METAL_ESCURO)
+    icone.ret(6, 2, 14, 3, METAL)
+    icone.ret(6, 2, 14, 2, METAL_CLARO)
+    icone.px(9, 3, FERRUGEM)
+    icone.ret(10, 4, 10, 5, METAL_ESCURO)
+    icone.ret(13, 4, 13, 5, METAL_ESCURO)
+    icone.ret(2, 6, 2, 8, METAL_ESCURO)
+    icone.ret(1, 8, 14, 14, ETIQUETA)
+    icone.ret(1, 14, 14, 14, BEGE_ESCURO)
+    icone.px(14, 8, BEGE_ESCURO)
+    icone.px(2, 9, METAL_ESCURO)
+    icone.ret(3, 11, 9, 11, VERMELHO_ESCURO)
+    icone.ret(11, 11, 13, 11, VERMELHO_ESCURO)
     icone.salvar(PASTA_ITENS, "chave_deposito.png")
     chao = Desenho(10, 5)
-    chave(chao, 0, 0)
-    chao.ret(0, 3, 3, 4, ETIQUETA)
+    chao.ret(0, 0, 3, 3, METAL)
+    chao.ret(1, 1, 2, 2, TRANSPARENTE)
+    chao.ret(0, 0, 3, 0, METAL_CLARO)
+    chao.ret(4, 1, 9, 2, METAL)
+    chao.ret(4, 1, 9, 1, METAL_CLARO)
+    chao.px(7, 3, METAL_ESCURO)
+    chao.px(9, 3, METAL_ESCURO)
+    chao.ret(0, 4, 4, 4, ETIQUETA)
+    chao.px(2, 4, VERMELHO_ESCURO)
     chao.salvar(PASTA_ITENS, "chave_deposito_chao.png")
 
 
