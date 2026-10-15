@@ -12,8 +12,8 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_areia.tscn" id="r10"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_areia_fundo.tscn" id="r11"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral.tscn" id="r12"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira.tscn" id="r13"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira_caida.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira_vr.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira_vr_caida.tscn" id="r14"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="r15"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r16"]
 [ext_resource type="Resource" path="res://dados/itens/pedra.tres" id="r17"]
@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/efeitos/poeira.tscn" id="r19"]
 [ext_resource type="Resource" path="res://dados/itens/molho_de_chaves.tres" id="b_molho"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral_brecha.tscn" id="m_brecha"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lousa_holo_25_areia.tscn" id="fut_parede_lousa_holo_25_areia"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/professor_caido.tscn" id="fut_professor_caido"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/oculos_no_chao.tscn" id="fut_oculos_no_chao"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -38,7 +41,7 @@ texture = ExtResource("r3")
 [node name="Parede01" parent="Paredes" instance=ExtResource("r4")]
 position = Vector2(0, 0)
 
-[node name="Parede02" parent="Paredes" instance=ExtResource("r5")]
+[node name="Parede02" parent="Paredes" instance=ExtResource("fut_parede_lousa_holo_25_areia")]
 position = Vector2(80, 0)
 
 [node name="Parede03" parent="Paredes" instance=ExtResource("r6")]
@@ -170,23 +173,23 @@ position = Vector2(0, 432)
 position = Vector2(384, 432)
 flip_h = true
 
-[node name="Carteira1" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR1" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(60, 136)
 
-[node name="Carteira2" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR2" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(110, 150)
 
-[node name="Carteira3" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR3" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(150, 162)
 espelhado = true
 
-[node name="CarteiraCaida1" parent="Objetos" instance=ExtResource("r14")]
+[node name="CadeiraVRCaida1" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(200, 142)
 
 [node name="Entulho1" parent="Objetos" instance=ExtResource("r15")]
 position = Vector2(236, 128)
 
-[node name="CarteiraCaida2" parent="Objetos" instance=ExtResource("r14")]
+[node name="CadeiraVRCaida2" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(270, 168)
 espelhado = true
 
@@ -194,89 +197,91 @@ espelhado = true
 position = Vector2(150, 176)
 espelhado = true
 
-[node name="Carteira4" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR4" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(116, 213)
 
-[node name="Carteira5" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR5" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(170, 211)
+lente_acesa = true
 
-[node name="Carteira6" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR6" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(214, 214)
 
-[node name="Carteira7" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR7" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(272, 210)
 
-[node name="CarteiraCaida3" parent="Objetos" instance=ExtResource("r14")]
+[node name="CadeiraVRCaida3" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(317, 213)
 
-[node name="CarteiraCaida4" parent="Objetos" instance=ExtResource("r14")]
+[node name="CadeiraVRCaida4" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(73, 255)
 
-[node name="Carteira8" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR8" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(166, 254)
 
-[node name="CarteiraCaida5" parent="Objetos" instance=ExtResource("r14")]
+[node name="CadeiraVRCaida5" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(224, 251)
 espelhado = true
 
-[node name="Carteira9" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR9" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(322, 254)
 
-[node name="Carteira10" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR10" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(70, 294)
 
-[node name="CarteiraCaida6" parent="Objetos" instance=ExtResource("r14")]
+[node name="CadeiraVRCaida6" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(224, 295)
 
-[node name="Carteira11" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR11" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(274, 299)
 
-[node name="Carteira12" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR12" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(324, 298)
+lente_acesa = true
 
-[node name="Carteira13" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR13" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(71, 341)
 
-[node name="CarteiraCaida7" parent="Objetos" instance=ExtResource("r14")]
+[node name="CadeiraVRCaida7" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(124, 336)
 
-[node name="CarteiraCaida8" parent="Objetos" instance=ExtResource("r14")]
+[node name="CadeiraVRCaida8" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(172, 339)
 
-[node name="CarteiraCaida9" parent="Objetos" instance=ExtResource("r14")]
+[node name="CadeiraVRCaida9" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(214, 338)
 espelhado = true
 
-[node name="Carteira14" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR14" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(268, 335)
 
-[node name="CarteiraCaida10" parent="Objetos" instance=ExtResource("r14")]
+[node name="CadeiraVRCaida10" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(320, 340)
 
-[node name="CarteiraCaida11" parent="Objetos" instance=ExtResource("r14")]
+[node name="CadeiraVRCaida11" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(67, 379)
 
-[node name="Carteira15" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR15" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(166, 381)
 
-[node name="CarteiraCaida12" parent="Objetos" instance=ExtResource("r14")]
+[node name="CadeiraVRCaida12" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(316, 377)
 espelhado = true
 
-[node name="Carteira16" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR16" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(69, 421)
 
-[node name="CarteiraCaida13" parent="Objetos" instance=ExtResource("r14")]
+[node name="CadeiraVRCaida13" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(117, 422)
 espelhado = true
 
-[node name="Carteira17" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR17" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(167, 419)
 
-[node name="Carteira18" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR18" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(226, 422)
 
-[node name="Carteira19" parent="Objetos" instance=ExtResource("r13")]
+[node name="CadeiraVR19" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(318, 419)
 
 [node name="Entulho3" parent="Objetos" instance=ExtResource("r15")]
@@ -340,5 +345,14 @@ porta_destino = "brecha_101"
 direcao_entrar = Vector2(-1, 0)
 texto_acao = "Passar pela brecha"
 altura_aviso = 30.0
+
+[node name="ProfessorCaido" parent="Objetos" instance=ExtResource("fut_professor_caido")]
+position = Vector2(272, 400)
+
+[node name="OculosNoChao1" parent="Objetos" instance=ExtResource("fut_oculos_no_chao")]
+position = Vector2(60, 200)
+
+[node name="OculosNoChao2" parent="Objetos" instance=ExtResource("fut_oculos_no_chao")]
+position = Vector2(180, 296)
 
 [editable path="Ceu"]

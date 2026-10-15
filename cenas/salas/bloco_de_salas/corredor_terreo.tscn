@@ -14,10 +14,10 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="r12"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_areia.tscn" id="r13"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="r14"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira_caida.tscn" id="r15"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/carteira.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira_vr_caida.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira_vr.tscn" id="r16"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="r17"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira_vr.tscn" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/livros.tscn" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_caida.tscn" id="r20"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r21"]
@@ -282,10 +282,10 @@ position = Vector2(2432, 0)
 [node name="Entulho1" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(420, 128)
 
-[node name="CarteiraCaida1" parent="Objetos" instance=ExtResource("r15")]
+[node name="CadeiraVRCaida1" parent="Objetos" instance=ExtResource("r15")]
 position = Vector2(520, 164)
 
-[node name="Carteira1" parent="Objetos" instance=ExtResource("r16")]
+[node name="CadeiraVR1" parent="Objetos" instance=ExtResource("r16")]
 position = Vector2(556, 152)
 espelhado = true
 
@@ -296,11 +296,11 @@ position = Vector2(700, 168)
 position = Vector2(980, 126)
 espelhado = true
 
-[node name="CarteiraCaida2" parent="Objetos" instance=ExtResource("r15")]
+[node name="CadeiraVRCaida2" parent="Objetos" instance=ExtResource("r15")]
 position = Vector2(1120, 142)
 espelhado = true
 
-[node name="Cadeira1" parent="Objetos" instance=ExtResource("r18")]
+[node name="CadeiraVRAvulsa1" parent="Objetos" instance=ExtResource("r18")]
 position = Vector2(1260, 170)
 
 [node name="Livros1" parent="Objetos" instance=ExtResource("r19")]
@@ -309,13 +309,13 @@ position = Vector2(1340, 166)
 [node name="EstanteCaida1" parent="Objetos" instance=ExtResource("r20")]
 position = Vector2(1500, 172)
 
-[node name="Carteira2" parent="Objetos" instance=ExtResource("r16")]
+[node name="CadeiraVR2" parent="Objetos" instance=ExtResource("r16")]
 position = Vector2(1600, 138)
 
 [node name="Entulho3" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(1840, 150)
 
-[node name="CarteiraCaida3" parent="Objetos" instance=ExtResource("r15")]
+[node name="CadeiraVRCaida3" parent="Objetos" instance=ExtResource("r15")]
 position = Vector2(1900, 172)
 espelhado = true
 
@@ -327,7 +327,7 @@ espelhado = true
 position = Vector2(2240, 168)
 espelhado = true
 
-[node name="CarteiraCaida4" parent="Objetos" instance=ExtResource("r15")]
+[node name="CadeiraVRCaida4" parent="Objetos" instance=ExtResource("r15")]
 position = Vector2(2470, 150)
 
 [node name="Entulho5" parent="Objetos" instance=ExtResource("r14")]

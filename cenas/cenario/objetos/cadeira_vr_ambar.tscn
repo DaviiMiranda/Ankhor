@@ -1,0 +1,30 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/cenario/cadeira_vr.gd" id="1_cadeira"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/cadeira_vr_ambar.png" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/cadeira_vr_ambar_lente.png" id="3_lente"]
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id="Pegada"]
+size = Vector2(14, 4)
+
+[node name="CadeiraVRAmbar" type="StaticBody2D"]
+script = ExtResource("1_cadeira")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_sprite")
+centered = false
+offset = Vector2(-11, -29)
+
+[node name="Lente" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("SemLuz")
+texture = ExtResource("3_lente")
+centered = false
+offset = Vector2(-11, -29)
+
+[node name="Pegada" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("Pegada")

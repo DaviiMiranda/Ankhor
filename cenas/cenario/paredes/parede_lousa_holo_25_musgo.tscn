@@ -1,0 +1,29 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/paredes/parede_lousa_holo_25_musgo.png" id="1_peca"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/paredes/parede_lousa_holo_25_musgo_luz.png" id="2_luz_peca"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="3_luz"]
+[ext_resource type="Script" path="res://scripts/salas/luz_tremula.gd" id="4_tremula"]
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
+[node name="ParedeLousaHolo25Musgo" type="Sprite2D"]
+texture = ExtResource("1_peca")
+centered = false
+
+[node name="Painel" type="Sprite2D" parent="."]
+material = SubResource("SemLuz")
+texture = ExtResource("2_luz_peca")
+centered = false
+
+[node name="Luz" type="PointLight2D" parent="."]
+position = Vector2(40, 48)
+color = Color(0.45, 0.9, 1, 1)
+energy = 0.5
+range_item_cull_mask = 3
+texture = ExtResource("3_luz")
+texture_scale = 1.8
+script = ExtResource("4_tremula")
+tremor = 0.2
+piscadas_por_segundo = 0.3
