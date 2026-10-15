@@ -79,11 +79,11 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 
 ## 6. O que ainda falta
 
-As pendências de cada personagem estão no fim da ficha dele e no [Enredo Principal](../enredo_principal.md), seção 12. As principais:
+As pendências de cada personagem estão no fim da ficha dele e no [Enredo Principal](../enredo_principal.md), seção 10. As principais:
 
 - **Diana:** ainda sem visual definido.
-- **Henrique:** como e quando o grupo descobre a mentira, e o que ele faz depois (seção 12.7).
-- **Carlos:** como consegue o conhecimento, por que saiu dos Faroleiros, e o resto da ficha (seção 12.2).
+- **Henrique:** como e quando o grupo descobre a mentira, e o que ele faz depois (seção 10.3).
+- **Carlos:** como consegue o conhecimento, por que saiu dos Faroleiros, e o resto da ficha (seção 10.2).
 - **Zane:** o que fazia quando foi puxado, o que teme e o final dele.
 - **Clarice:** se continua na 103 até o fim ou se junta ao grupo no bunker.
 - **Baltazar:** qual sala da Biblioteca é o esconderijo dele, e quando ela se abre.

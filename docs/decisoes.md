@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-15 — O Enredo Principal fica só com a história
+**Decisão:** o Enredo Principal passa a ter só o que é história, mundo e personagens. As antigas seções 9 ("Temas e tom") e 10 ("Como a história chega ao jogador") foram para o guia de escrita em `docs/historia/roteiro/README.md`. O Vocabulário oficial vira a seção 9. As pendências viram a **seção 10**, a última, e passam a ser só **perguntas sobre a história**, em seis grupos: o mundo de 3026, o Carlos, o Henrique e a mentira, os outros personagens, a estrutura da história, e a volta e o fim. O que era de arte, mecânica, fases e textos antigos foi para o documento novo `docs/pendencias_de_producao.md`.
+**Por quê:** pedido do Davi: as seções 9, 10 e as pendências misturavam roteiro com produção.
+**Afeta:** `docs/historia/enredo_principal.md`, `docs/historia/roteiro/README.md`, `docs/pendencias_de_producao.md` (novo) e as referências às seções antigas nas fichas, no resumo, nos modelos, nas fases (Biblioteca, Bloco de salas, Centro de Convivência, Labirinto) e no agente `roteirista`. A referência em `docs/fases/bunker.md` fica para o PR #119, que reescreve aquela linha.
+
 ## 2026-10-15 — *Homo sideralis*, os Faroleiros e a mentira do Henrique
 **Decisão:**
 - **Quem foi embora:** os ***Homo sideralis***, uma espécie humana evoluída que aceita melhor os implantes e vive melhor no espaço e em planetas com outra temperatura ou gravidade. Partiram para outro planeta há menos de 100 anos.

@@ -189,7 +189,7 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 
 - **Sala segura:** o **posto da Clarice (103)**. A barricada protege, e os robôs não entram. Tem um checkpoint ao lado da Clarice. Há outro na chegada do corredor do térreo.
 - **Por que aqui:** fica no meio do térreo, perto da escada e do atalho, e é o lugar para onde o Gabriel volta depois de cada parte difícil.
-- **O sonho:** o que os sonhos mostram está pendente no Enredo (seção 12.4).
+- **O sonho:** o que os sonhos mostram está pendente no Enredo (seção 10.5).
 
 ---
 

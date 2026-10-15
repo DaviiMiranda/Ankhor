@@ -4,7 +4,7 @@
 > **Este documento é a lei do projeto**, junto com as fichas de [`personagens/`](personagens/) (uma por personagem), que fazem parte dele. Tudo o que diz respeito à história, ao mundo e aos personagens de **Ankhor** vale como está escrito aqui e nas fichas, **acima de qualquer outro documento**: GDD, fases, diálogos, arte, textos em `dados/` e o próprio `decisoes.md`. Em caso de dúvida em qualquer parte do jogo (o que uma fase conta, como um personagem fala, o que um objeto significa), consulte este documento e a ficha do personagem. Se outra parte do projeto contradisser o que está aqui, **a outra parte está errada** e deve ser corrigida.
 
 > **Status:** reescrito em 2026-10-06, quando a história mudou de rumo: saíram os loops e a revelação de "Gabriel é o paradoxo", e a fenda passou a ser **um acaso** para quem cai nela. Em 2026-10-07 entrou o antagonista, o **Carlos**. Em 2026-10-15 entraram os ***Homo sideralis*** (quem foi embora), os **Faroleiros** (quem ficou) e o conteúdo da mentira do **Henrique**.
-> **Como mudar:** só por decisão do grupo. Toda mudança de história entra **no mesmo PR** neste documento e em [`../decisoes.md`](../decisoes.md) (que guarda o histórico de quando e por que mudou). Tudo o que ainda não foi decidido fica na **seção 12 ("Pendências")**, no fim, e não no meio da narrativa: o que está fora das pendências está decidido.
+> **Como mudar:** só por decisão do grupo. Toda mudança de história entra **no mesmo PR** neste documento e em [`../decisoes.md`](../decisoes.md) (que guarda o histórico de quando e por que mudou). Tudo o que ainda não foi decidido fica na **seção 10 ("Pendências")**, no fim, e não no meio da narrativa: o que está fora das pendências está decidido.
 
 ---
 
@@ -36,7 +36,7 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 
 - Os inimigos são **robôs** controlados pelo **Carlos**, que patrulham o campus por **rotinas programadas**. Repetem o mesmo caminho há séculos: dá para decorar. São ferramentas: a IA que os move não tem consciência (seção 2.1).
 - Patrulham **também o bunker** (seção 6).
-- Fora da rotina, quando ouvem ou veem um humano, saem do protocolo e caçam. Por que caçam (para capturar ou para eliminar) está pendente (seção 12.2).
+- Fora da rotina, quando ouvem ou veem um humano, saem do protocolo e caçam. Por que caçam (para capturar ou para eliminar) está pendente (seção 10.2).
 - São agressivos: se pegam Gabriel, é **game over** e o jogo volta ao último checkpoint (ver [`../mecanicas/vida_e_checkpoint.md`](../mecanicas/vida_e_checkpoint.md)).
 - Cada tipo tem um sentido dominante (som, visão, luz). Os dois já implementados são a **Sentinela** (visão) e o **Rastreador** (audição). Ver [`personagens/robos.md`](personagens/robos.md).
 - Gabriel não é um combatente: **fugir e se esconder é a regra**, defender-se é a exceção.
@@ -121,7 +121,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e controla os robôs. Era um **Faroleiro**: saiu da resistência e se isolou na Unifor, sozinho durante anos, para ir viver nos anos 80. Quem ele é está na [ficha dele](personagens/carlos.md).
 
 - **Ele e o Henrique:** quando o Henrique caiu, o primeiro de todos, o Carlos prometeu levá-lo de volta **para antes da morte da mãe dele** e assim ganhou a confiança do Henrique. Na verdade, só o usa: o Henrique serve para **atrasar os outros** enquanto o Carlos conserta a Âncora. O Carlos não se importa com os puxados (seção 8, "A virada").
-- Muita coisa sobre o Carlos ainda está pendente (seção 12.2).
+- Muita coisa sobre o Carlos ainda está pendente (seção 10.2).
 
 ---
 
@@ -188,7 +188,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 
 ## 8. Estrutura da história
 
-> Já decidido: **Biblioteca → Bloco de salas → Labirinto** (2026-10-14). O Labirinto é a terceira fase e é nele que Gabriel encontra o Zane em pessoa. Por enquanto a saída do Labirinto abre a entrada do Bunker (o Ato 3 abaixo), de forma provisória. O Centro de Convivência deixou de ser a fase seguinte ao Bloco de salas e está sem lugar na ordem. Onde entram o Bunker, o Centro de Convivência e as outras áreas **não está decidido** (seção 12). Esta estrutura segue a lógica da história, não uma ordem de jogo travada.
+> Já decidido: **Biblioteca → Bloco de salas → Labirinto** (2026-10-14). O Labirinto é a terceira fase e é nele que Gabriel encontra o Zane em pessoa. Por enquanto a saída do Labirinto abre a entrada do Bunker (o Ato 3 abaixo), de forma provisória. O Centro de Convivência deixou de ser a fase seguinte ao Bloco de salas e está sem lugar na ordem. Onde entram o Bunker, o Centro de Convivência e as outras áreas **não está decidido** (seção 10.5). Esta estrutura segue a lógica da história, não uma ordem de jogo travada.
 
 ### Ato 1 — Acordar (Biblioteca)
 
@@ -223,7 +223,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 
 - O bunker de pesquisa embaixo do núcleo da Âncora ("ÂNCORA-03"), com dois setores. É difícil de alcançar, e **os robôs patrulham aqui também**.
 - **As salas antigas:** no bunker há uma ou mais salas montadas como **interiores de casas e lugares antigos dos séculos XIX e XX**. Mostram a obsessão do Carlos pelo passado, **sem explicar**: o jogo não diz quem as montou nem por quê.
-- **De onde Gabriel chega aqui:** pelo alçapão da oficina do Zane, aberto no fim do Labirinto (por enquanto, de forma provisória: seção 12.5).
+- **De onde Gabriel chega aqui:** pelo alçapão da oficina do Zane, aberto no fim do Labirinto (por enquanto, de forma provisória: seção 10.5).
 - **O Gabriel já encontrou o Zane em pessoa no Labirinto**, e o Zane disse que ia atrás dele depois. O **Henrique** fica **sozinho** numa sala de dados **trancada**, com o acesso às câmeras do campus, e é quem Gabriel encontra em pessoa aqui. Gabriel o reconhece pela lenda: é o aluno que sumiu em 2019 (seção 7.2). O Carlos nunca vai ao bunker.
 - O **setor B** (laboratório, arquivo e a comporta do núcleo) está lacrado pelo sistema, e o Zane tenta quebrar a senha.
 - Seis portas lacradas são os ganchos para as próximas fases: escotilha da superfície, elevador, arsenal, laboratório, arquivo e a comporta do núcleo.
@@ -238,47 +238,21 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 - **Como atrasa sem parecer sabotador:** as dicas de patrulha são verdadeiras (é assim que ganha a confiança), mas ele mantém cada um no seu canto, e tudo o que o grupo sabe passa por ele. **O Henrique divide, o Gabriel une** (seção 3.1).
 - **O que é verdade no que ele conta:** está mesmo no bunker, e estão mesmo em 3026 (ele sabe pelo Carlos). É mentira que esteja tentando consertar tudo.
 - **O Zane já desconfia dele** desde antes de Gabriel chegar, e é por isso que tenta invadir o bunker (Labirinto, Ato 2).
-- Em algum momento, o grupo **descobre a mentira** (como e quando: seção 12.7).
+- Em algum momento, o grupo **descobre a mentira** (como e quando: seção 10.3).
 - É aí que todos **vão atrás do Carlos**, no D-Tec.
 
 ### Ato 4 — Consertar a Âncora e voltar (Núcleo)
 
 - A reta final passa pela **comporta do núcleo**, no setor B do bunker.
 - Com as partes de todos reunidas, Gabriel e os outros tentam consertar a Âncora e mandar cada um para a sua noite.
-- **O Zane:** o final dele está pendente (seção 12.3). O final antigo (ficar em 3026 para domar a IA) saiu, porque a IA não tem consciência.
+- **O Zane:** o final dele está pendente (seção 10.4). O final antigo (ficar em 3026 para domar a IA) saiu, porque a IA não tem consciência.
 - **O Baltazar volta para 1750**, mesmo querendo ficar: Gabriel precisa convencê-lo (seção 5).
-- **O Carlos:** como o grupo o enfrenta, sem lutar, está pendente (seção 12.5).
-- Como isso acontece e como o jogo termina está nas pendências (seção 12).
+- **O Carlos:** como o grupo o enfrenta, sem lutar, está pendente (seção 10.2).
+- Como isso acontece e como o jogo termina está nas pendências (seção 10.6).
 
 ---
 
-## 9. Temas e tom
-
-- **Estranhamento do familiar:** o jogador reconhece a catraca, o bebedouro, a Biblioteca. O mundo em volta não reconhece mais nada disso.
-- **Gente de épocas diferentes:** jovens da mesma idade e do mesmo lugar, separados por séculos, tentando se entender (gírias, costumes, tecnologia).
-- **Família e origem:** Gabriel descobre que a família dele sempre esteve naquele chão.
-- **Tempo como relógio mortal:** os robôs seguem rotinas, e quem aprende a rotina sobrevive.
-- **Vulnerabilidade:** Gabriel é um estudante, não um soldado.
-- Terror silencioso, de tensão e mistério, mais do que de susto. O maior choque é perceber **quanto tempo passou**.
-- **Público:** 14+, sem violência explícita. Os lugares da Unifor são só cenário; pessoas, pesquisa e acontecimentos são fictícios.
-
----
-
-## 10. Como a história chega ao jogador
-
-| Camada | O que é | Onde está |
-|---|---|---|
-| **Narrativa ambiental** | Marcas no cenário, relíquias de épocas diferentes, os tracinhos nas lousas, os riscos de estrelas na árvore | [`../fases/`](../fases/) |
-| **Documentos** | Diários, bilhetes, disquetes. Cada época tem um papel próprio. As pistas úteis viram anotações no **Caderno do Gabriel** | [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md) e o modelo [`template_documento.md`](template_documento.md) |
-| **Inventário** | O anel da avó, e a comparação com o anel do Baltazar | [`../mecanicas/itens_e_inventario.md`](../mecanicas/itens_e_inventario.md) |
-| **Rádio** | Clarice ao vivo, na frequência do grupo, com o que o Henrique vê nas câmeras, sem pausar o jogo | [`../mecanicas/registros_e_caderno.md`](../mecanicas/registros_e_caderno.md) |
-| **Ligações e diálogos** | Zane por telefone; todos em pessoa nos esconderijos, com retratos e escolhas | [`../dialogos/README.md`](../dialogos/README.md) |
-| **Sonhos** | O sono continua como mecânica; o que os sonhos mostram está pendente | [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md) |
-| **Cutscenes** | A abertura (`seg_prologo` e `seg_acordar`) e as que o grupo decidir | [`roteiro/cutscenes/`](roteiro/cutscenes/) |
-
----
-
-## 11. Vocabulário oficial
+## 9. Vocabulário oficial
 
 Para qualquer texto do jogo ou da documentação:
 
@@ -301,62 +275,61 @@ Para qualquer texto do jogo ou da documentação:
 
 ---
 
-## 12. Pendências
+## 10. Pendências: o que falta decidir na história
 
-Nada aqui está decidido. Quando o grupo decidir algum item, ele vai para `decisoes.md` e sai desta lista.
+Nada aqui está decidido. Cada item é uma **pergunta sobre a história** que o grupo ainda precisa responder. Quando uma for decidida, a resposta entra no texto acima e em `decisoes.md`, e a pergunta sai daqui. Não invente resposta para uma pendência: pergunte ao Davi.
 
-### 12.1 A volta e o fim
+O que falta fazer em arte, mecânica e fases (e não muda a história) fica em [`../pendencias_de_producao.md`](../pendencias_de_producao.md).
 
-- **Como cada um volta:** todos de uma vez no final, ou um por um, conforme a Âncora vai sendo consertada.
-- **O final** de Gabriel e Clarice. O final antigo ("A mesma madrugada": os dois acordam juntos em 2026, e ela rasga a página das equações) foi escrito para a versão com loops e precisa ser revisto.
+### 10.1 O mundo de 3026
 
-### 12.2 O Carlos, a Âncora e o mundo
+- Há quantos anos exatamente os *Homo sideralis* partiram (sabemos que foi há menos de 100), e para onde foram?
+- Onde estão os Faroleiros hoje? Eles aparecem no jogo (em pessoa, por rádio, ou só pelas marcas no cenário)? Sabem do Carlos e da Âncora?
+- Como a Unifor virou um centro de pesquisa em física do tempo?
+- Por que a fenda se abre sempre no chão da Biblioteca?
+- Por que a rede do subsolo é fechada para o Zane, a ponto de ele não conseguir invadi-la de longe?
+- Por que a sala 205 do Bloco de salas está intacta?
 
-- **Como o Carlos consegue o conhecimento** que falta para a Âncora funcionar. A IA é uma ferramenta sem consciência (seção 2.1) e pode ser parte da resposta.
-- **As IAs do Carlos:** quantas ferramentas de IA ele usa e o que cada uma faz (os robôs, a Âncora, os sistemas do D-Tec).
-- **Por que os robôs caçam os humanos:** para capturar e levar ao Bloco M, ou para eliminar quem atrapalha.
-- **O Carlos:** idade exata, como fala, o que teme, defeito e arco; **por que saiu dos Faroleiros** e há quantos anos está sozinho; e **quando o jogador descobre** que ele existe.
-- **Os Faroleiros:** onde estão hoje, se aparecem no jogo (em pessoa, por rádio, só por marcas no cenário) e se sabem do Carlos e da Âncora.
-- **Os *Homo sideralis*:** há quantos anos exatamente partiram (menos de 100) e para onde.
-- **Como a Unifor virou um centro de pesquisa em física do tempo.**
-- **Por que a fenda se abre sempre na Biblioteca.**
+### 10.2 O Carlos
 
-### 12.3 Personagens
+- Como ele consegue o conhecimento que falta para a Âncora funcionar? (A IA é uma ferramenta sem consciência e pode ser parte da resposta.)
+- Quantas ferramentas de IA ele usa, e o que cada uma faz (os robôs, a Âncora, os sistemas do D-Tec)?
+- Por que os robôs caçam os humanos: para capturar e levar ao Bloco M, ou para eliminar quem atrapalha?
+- Qual a idade dele, como fala, o que teme, qual o defeito e qual o arco?
+- Por que ele saiu dos Faroleiros, e há quantos anos está sozinho?
+- Quando o jogador descobre que ele existe?
+- Como o grupo o enfrenta sem lutar (Gabriel não é combatente)? O D-Tec é o último lugar do jogo?
 
-- **Gabriel falhando na tela:** enquanto o Baltazar estiver fora de 1750, o sprite de Gabriel pisca ou se desfaz, como a foto em *De Volta para o Futuro*. Seria um shader (bom para a apresentação de Computação Gráfica).
-- **Henrique:** se o acesso às câmeras vira uma mecânica (ver o campus, avisar de ronda nova); como a mãe dele morreu e quando; onde a lenda do aluno que sumiu aparece para o jogador (prólogo, conversa, cartaz no campus).
-- **Clarice e Diana:** se as duas continuam na 103 até o fim ou se juntam ao grupo no bunker mais tarde (o final da Clarice com Gabriel está em 12.1). As pichações assinadas "C." no bunker ("NÃO CONFIE NAS LUZES") não combinam com a Clarice estar na 103 desde que chegou: falta decidir quem as fez ou se saem (uma opção: virar marcas antigas dos Faroleiros).
-- **Diana na 103:** ela ainda não tem visual, então a cena da 103 mostra só a Clarice.
-- **Zane:** o que fazia no ponto quando foi puxado; **o que teme e o final dele**. O arco antigo (medo da IA, ficar em 3026 para domá-la) saiu, porque a IA não tem consciência. Opções em conversa: ficar em 3026 para guardar a Âncora, ficar para se juntar aos Faroleiros, ou voltar para 2123.
-- **Zane no bunker:** o que ele faz quando chega lá, depois do Labirinto, e onde fica na sala de dados.
-- **Ordem de chegada:** só falta a posição do **Baltazar** (já decidido: o Henrique é o primeiro, o Zane vem antes da Clarice, a Diana depois da Clarice, e Gabriel é o último). Não precisa seguir a ordem dos anos.
-- **Qual sala da Biblioteca** é o esconderijo do Baltazar (uma que o jogador ainda não consegue abrir; a sala de obras raras, barrada por dentro, é a candidata) e **quando ela passa a ficar acessível**. Ele está ali desde que chegou: o acampamento vazio do começo foi o primeiro abrigo dele, e a última página do diário ("Hei de seguir a luz até onde ella nasce") combina com ficar, porque a luz nasce no chão da Biblioteca (seção 3).
+### 10.3 O Henrique e a mentira
 
-### 12.4 Textos já escritos que citam a versão antiga
+Já decidido (seção 8, "A virada"): ele trabalha para o Carlos por causa da promessa sobre a mãe, o Carlos só o usa para atrasar o grupo, ele finge consertar tudo e usa a IA na própria pesquisa.
 
-- **O bunker:** as conversas `dados/dialogos/clarice_primeiro_encontro.json` e `clarice_de_novo.json` e a arte da estação de trabalho (`gerar_clarice.py`) foram feitas para a Clarice no computador da central de dados. A Clarice agora fica no Bloco de salas, e a cena do bunker mostra o **Henrique** na estação, com conversas novas (`henrique_primeiro_encontro.json` e `henrique_de_novo.json`). As conversas da Clarice, com as falas de loop ("Você sempre lê" e outras), ficaram sem uso e podem ser apagadas. Falta a cena do **Zane** na mesma sala de dados. As conversas do Henrique precisam ser conferidas contra a seção 8 ("A virada"): ele agora está **sozinho** no bunker e diz que está tentando consertar tudo.
-- **Mudanças de 2026-10-15 que ainda não chegaram aos textos e às fases:** o bilhete da Clarice (`dados/documentos/bilhete_clarice.tres`) ainda diz "Hoje à noite vou tentar entrar no sistema" e precisa virar o pedido para quem chegar procurá-la no Bloco de salas; [`../fases/bunker.md`](../fases/bunker.md) ainda diz que os robôs não descem ao bunker e põe o Zane na sala de dados; o prólogo (`seg_prologo`) mostra uma "aula de cálculo", e a cadeira do caderno agora é **Modelagem e Simulação**.
-- [`../mecanicas/sono_e_sonhos.md`](../mecanicas/sono_e_sonhos.md): **o que os sonhos mostram** agora que não há loops (memória, o passado do campus, outra coisa).
+- Como e quando o grupo descobre a mentira, e que papel tem nisso a desconfiança do Zane?
+- O que o Henrique faz depois que a mentira aparece: como assume a responsabilidade (o arco dele)? Ainda tenta voltar para antes da morte da mãe?
+- Como e quando a mãe dele morreu?
+- Onde a lenda do aluno que sumiu em 2019 aparece para o jogador (no prólogo, numa conversa, num cartaz do campus)?
 
-### 12.5 Estrutura e fases
+### 10.4 Os outros personagens
 
-- **Ordem das fases:** onde entram o Bunker, o Centro de Convivência e as outras áreas, e qual personagem aparece em cada uma. Já decidido: Biblioteca → Bloco de salas → Labirinto. Por enquanto a saída do Labirinto abre a entrada do Bunker, de forma provisória.
-- **Labirinto:** por que a rede do subsolo é fechada para o Zane, e por onde o Gabriel chega do Bloco de salas ao subsolo. (Já decidido: os três nós guardam a trava que lacra o bunker.)
-- **Bloco de salas:** por que a sala 205 está intacta. O objetivo e os robôs foram decididos em 2026-10-11 ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)).
-- **O que destrava o setor B do bunker** (senhas nos disquetes, religar o gerador). Os robôs patrulham o bunker (decidido); falta decidir se entram também no setor B.
-- **As salas antigas do bunker:** quantas são, de que épocas e lugares, e onde ficam. A origem fica sem explicação no jogo.
-- **O D-Tec (Bloco M)** como fase: se é a última, e como o grupo enfrenta o Carlos sem lutar (Gabriel não é combatente).
-- **Cenários mais futuristas.** Pedido do Davi: os cenários precisam mostrar mais a tecnologia de 3026 (telas, máquinas, a estrutura do centro de pesquisa e do D-Tec), misturada às ruínas e à vegetação. A cabine de estudo da Biblioteca já aparece assim no vídeo do despertar (`seg_acordar`). Falta decidir quanto do resto do campus tem esse visual futurista e onde ele aparece mais.
-- **Redesenho das áreas do GDD** (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) para a premissa da fenda. O Centro de Convivência perdeu o lugar de fase seguinte ao Bloco de salas (2026-10-14) e está sem lugar na ordem.
-- **De onde vem a grade horária dos robôs.** Antes vinha da coloração de grafos da semana de provas; hoje a patrulha é programada pelo Carlos, com a IA como ferramenta.
+- **Zane:** o que fazia no ponto quando foi puxado? O que ele teme, agora que a IA não tem consciência? Qual é o final dele (ficar em 3026 para guardar a Âncora, ficar para se juntar aos Faroleiros, ou voltar para 2123)? O que ele faz quando chega ao bunker, depois do Labirinto?
+- **Baltazar:** em que posição da ordem de chegada ele está? (Já decidido: o Henrique é o primeiro, o Zane vem antes da Clarice, a Diana depois da Clarice, e Gabriel é o último; não precisa seguir a ordem dos anos.) Qual sala da Biblioteca é o esconderijo dele (a sala de obras raras, barrada por dentro, é a candidata), e quando ela se abre? Ele está ali desde que chegou: o acampamento vazio do começo foi o primeiro abrigo, e a última página do diário ("Hei de seguir a luz até onde ella nasce") combina com ficar, porque a luz nasce no chão da Biblioteca.
+- **Clarice e Diana:** continuam na 103 até o fim, ou se juntam ao grupo mais tarde?
+- **Gabriel:** enquanto o Baltazar está fora de 1750, o Gabriel começa a falhar (piscar, se desfazer), como a foto em *De Volta para o Futuro*? (Se sim, vira um shader, bom para a apresentação de Computação Gráfica.)
+- **As pichações "C." no bunker** ("NÃO CONFIE NAS LUZES"): quem fez? Não podem ser da Clarice, que está na 103 desde que chegou. Uma opção é virarem marcas antigas dos Faroleiros; a outra é saírem.
 
-### 12.6 Mecânicas que dependem da história
+### 10.5 A estrutura da história
 
-- **Gadgets e personagens:** em que fase cada gadget aparece e se cada um vem de um personagem.
+Já decidido: Biblioteca → Bloco de salas → Labirinto. Por enquanto a saída do Labirinto leva ao Bunker, de forma provisória.
 
-### 12.7 A mentira do Henrique
+- Em que ordem vêm os lugares depois do Labirinto (Bunker, Centro de Convivência, D-Tec, outras áreas), e qual personagem Gabriel encontra em cada um?
+- Por onde Gabriel chega do Bloco de salas ao subsolo do Labirinto?
+- O que acontece no Centro de Convivência, e quem Gabriel encontra lá?
+- Em que momento Gabriel encontra o Baltazar e descobre o parentesco?
+- O que os sonhos mostram, agora que não há loops (memória de cada um, o passado do campus, outra coisa)?
 
-Já decidido (seção 8, "A virada"): ele trabalha para o Carlos por causa da promessa sobre a mãe, o Carlos só o usa para atrasar o grupo, ele finge consertar tudo e usa a IA na própria pesquisa. Falta:
+### 10.6 A volta e o fim
 
-1. **Como e quando o grupo descobre a mentira**, e que papel tem nisso a desconfiança do Zane.
-2. **O que o Henrique faz depois** que a mentira aparece: como assume a responsabilidade (o arco dele) e se ainda tenta voltar para antes da morte da mãe.
+- Como cada um volta: todos de uma vez no final, ou um por um, conforme a Âncora vai sendo consertada?
+- Qual é o final de Gabriel e Clarice? O final antigo ("A mesma madrugada": os dois acordam juntos em 2026, e ela rasga a página das equações) foi escrito para a versão com loops e precisa ser revisto.
+- O que acontece com o Carlos no fim?
+- O que acontece com o Henrique no fim?

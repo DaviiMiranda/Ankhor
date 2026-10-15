@@ -26,3 +26,31 @@ A narrativa e os roteiros do jogo estão distribuídos nos seguintes módulos in
 
 > [!NOTE]
 > Todo roteiro segue o [Enredo Principal](../enredo_principal.md), a lei do projeto. Qualquer ideia nova que altere a história deve ser acordada em grupo e entrar no mesmo PR no Enredo Principal e em [`../../decisoes.md`](../../decisoes.md).
+
+---
+
+## ✍️ Guia de escrita
+
+Estas duas partes estavam no Enredo Principal (seções 9 e 10) até 2026-10-15. Saíram de lá porque o Enredo ficou só com a história; aqui servem de guia para quem escreve falas, documentos e cutscenes.
+
+### Temas e tom
+
+- **Estranhamento do familiar:** o jogador reconhece a catraca, o bebedouro, a Biblioteca. O mundo em volta não reconhece mais nada disso.
+- **Gente de épocas diferentes:** jovens da mesma idade e do mesmo lugar, separados por séculos, tentando se entender (gírias, costumes, tecnologia).
+- **Família e origem:** Gabriel descobre que a família dele sempre esteve naquele chão.
+- **Tempo como relógio mortal:** os robôs seguem rotinas, e quem aprende a rotina sobrevive.
+- **Vulnerabilidade:** Gabriel é um estudante, não um soldado.
+- Terror silencioso, de tensão e mistério, mais do que de susto. O maior choque é perceber **quanto tempo passou**.
+- **Público:** 14+, sem violência explícita. Os lugares da Unifor são só cenário; pessoas, pesquisa e acontecimentos são fictícios.
+
+### Como a história chega ao jogador
+
+| Camada | O que é | Onde está |
+|---|---|---|
+| **Narrativa ambiental** | Marcas no cenário, relíquias de épocas diferentes, os tracinhos nas lousas, os riscos de estrelas na árvore | [`fases/`](../../fases/) |
+| **Documentos** | Diários, bilhetes, disquetes. Cada época tem um papel próprio. As pistas úteis viram anotações no **Caderno do Gabriel** | [`mecanicas/registros_e_caderno.md`](../../mecanicas/registros_e_caderno.md) e o modelo [`template_documento.md`](../template_documento.md) |
+| **Inventário** | O anel da avó, e a comparação com o anel do Baltazar | [`mecanicas/itens_e_inventario.md`](../../mecanicas/itens_e_inventario.md) |
+| **Rádio** | Clarice ao vivo, na frequência do grupo, com o que o Henrique vê nas câmeras, sem pausar o jogo | [`mecanicas/registros_e_caderno.md`](../../mecanicas/registros_e_caderno.md) |
+| **Ligações e diálogos** | Zane por telefone; todos em pessoa nos esconderijos, com retratos e escolhas | [`dialogos/README.md`](../../dialogos/README.md) |
+| **Sonhos** | O sono continua como mecânica; o que os sonhos mostram está pendente (Enredo, seção 10.5) | [`mecanicas/sono_e_sonhos.md`](../../mecanicas/sono_e_sonhos.md) |
+| **Cutscenes** | A abertura (`seg_prologo` e `seg_acordar`) e as que o grupo decidir | [`cutscenes/`](cutscenes/) |

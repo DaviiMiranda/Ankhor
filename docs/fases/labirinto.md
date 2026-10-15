@@ -163,7 +163,7 @@ Quando um robô vê o Gabriel, a camada de perseguição sobe em 0,8 s; quando t
 ## 8. Ainda não feito
 
 - Esconderijos (armários) e distrações (arremesso) do GDD.
-- O que os nós de controle são na história: hoje são terminais da trava do sistema do subsolo (proposta; Enredo, seção 12.5).
+- Por que a rede do subsolo é fechada para o Zane (Enredo, seção 10.1). Já decidido: os três nós guardam a trava que lacra o bunker (Enredo, seção 8, Ato 2).
 - Por onde o Gabriel chega do Bloco de salas ao subsolo (hoje a porta corta-fogo abre direto o Labirinto) e para onde o alçapão leva de verdade (hoje, o Bunker, provisoriamente).
 - Rotina de patrulha por grade horária (coloração de grafos): hoje a patrulha é só a cadeia de Markov.
 - Uma porta de entrada visível no ponto onde o Gabriel começa (hoje ele simplesmente aparece ali) e animação do Zane; ele está parado.

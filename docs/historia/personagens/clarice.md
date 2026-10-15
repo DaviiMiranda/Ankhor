@@ -43,7 +43,7 @@
 ## 5. Registros
 
 - **Suporte:** folha de fichário com pautas azuis e adesivos coloridos (`papel = caderno_clarice`), disquete com etiqueta escrita à mão. Na ligação, só a voz e o chiado da linha.
-- **Já escritos:** `dados/documentos/bilhete_clarice.tres` (ainda com o texto antigo, "Hoje à noite vou tentar entrar no sistema": precisa virar o pedido para procurá-la no Bloco de salas, Enredo Principal, seção 12.4) e o disquete `dados/itens/disquete_clarice.tres`. Transmissões: `clarice_biblioteca_01.tres` e `clarice_biblioteca_02.tres` (Biblioteca, balcão e acervo) e `clarice_01.tres` a `clarice_04.tres` (Bloco de salas). Quatro conversas no Bloco de salas em `dados/dialogos/clarice_bloco_*.json`. As conversas `clarice_primeiro_encontro.json` e `clarice_de_novo.json` foram escritas para ela no computador do bunker e ficaram sem uso: ela não está lá, e a cena do bunker agora mostra o Henrique (Enredo Principal, seção 12.4).
+- **Já escritos:** `dados/documentos/bilhete_clarice.tres` (ainda com o texto antigo, "Hoje à noite vou tentar entrar no sistema": precisa virar o pedido para procurá-la no Bloco de salas: ver as [pendências de produção](../../pendencias_de_producao.md) e o disquete `dados/itens/disquete_clarice.tres`. Transmissões: `clarice_biblioteca_01.tres` e `clarice_biblioteca_02.tres` (Biblioteca, balcão e acervo) e `clarice_01.tres` a `clarice_04.tres` (Bloco de salas). Quatro conversas no Bloco de salas em `dados/dialogos/clarice_bloco_*.json`. As conversas `clarice_primeiro_encontro.json` e `clarice_de_novo.json` foram escritas para ela no computador do bunker e ficaram sem uso: ela não está lá, e a cena do bunker agora mostra o Henrique (ver as [pendências de produção](../../pendencias_de_producao.md)).
 
 ## 6. Direção de arte
 
@@ -62,5 +62,5 @@
 
 ## 8. Pendências
 
-- Se ela e a Diana continuam na 103 até o fim ou se juntam ao grupo no bunker mais tarde, e quem fez as pichações assinadas "C." no bunker (Enredo Principal, seção 12.3).
-- O final dela com Gabriel (seção 12.1).
+- Se ela e a Diana continuam na 103 até o fim ou se juntam ao grupo no bunker mais tarde, e quem fez as pichações assinadas "C." no bunker (Enredo Principal, seção 10.4).
+- O final dela com Gabriel (seção 10.6).

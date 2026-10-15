@@ -24,9 +24,9 @@ Todo o resto abaixo está **pendente**. Por regra do projeto, as respostas são 
 ## 2. Visão geral da área
 
 - **Esboço do GDD (a confirmar):** "estrutura aberta tomada pelo mato, balcões e mesas cobertos de raízes, o céu aparecendo pela cobertura", uma área ampla com poucos esconderijos. O esboço é da premissa anterior; só vale se o grupo confirmar.
-- **O que do GDD não vale mais:** "os Calouros andam em grupo" (os inimigos são os **robôs**, ver o vocabulário oficial do Enredo, seção 11) e a tabela da semana ("Quarta: havia uma pesquisa com voluntários"), que é do roteiro antigo.
+- **O que do GDD não vale mais:** "os Calouros andam em grupo" (os inimigos são os **robôs**, ver o vocabulário oficial do Enredo, seção 9) e a tabela da semana ("Quarta: havia uma pesquisa com voluntários"), que é do roteiro antigo.
 - **Ambientação em 3026:** segue o que o Enredo diz do campus (seção 2.2): concreto rachado e desabado, árvores dentro das salas, dunas, vegetação, e as relíquias do cotidiano. O Enredo cita a cantina como uma dessas relíquias; se ela fica no Centro de Convivência, falta decidir.
-- **Contraste no passado (sonho):** pendente, junto com o que os sonhos mostram (Enredo, seção 12.4).
+- **Contraste no passado (sonho):** pendente, junto com o que os sonhos mostram (Enredo, seção 10.5).
 
 ---
 
@@ -80,7 +80,7 @@ Nada definido. Toda área deve ter pelo menos uma sala protegida (ver [`README.m
 3. **Quais robôs** ficam aqui, e o que a fase ensina de novo?
 4. **Onde fica a sala segura**?
 5. **Para onde leva a saída**: o Bunker, o Labirinto ou outra área?
-6. **Como fica o visual**: o esboço do GDD (estrutura aberta, mato, raízes, céu aparecendo) vale, e quanto dele mostra a tecnologia de 3026 (Enredo, seção 12.5, "Cenários mais futuristas")?
+6. **Como fica o visual**: o esboço do GDD (estrutura aberta, mato, raízes, céu aparecendo) vale, e quanto dele mostra a tecnologia de 3026 ([pendências de produção](../pendencias_de_producao.md), "Cenários mais futuristas")?
 
 Quando alguma dessas for decidida, entra aqui e em `docs/decisoes.md`; se mexer na história, entra também no Enredo Principal.
 

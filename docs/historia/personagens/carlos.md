@@ -52,7 +52,7 @@ Pendente.
 
 ## 8. Pendências
 
-Todas no Enredo Principal, seção 12.2:
+Todas no Enredo Principal, seção 10.2:
 - Como ele consegue o conhecimento que falta para a Âncora funcionar.
 - Quantas ferramentas de IA ele usa e o que cada uma faz.
 - Por que os robôs caçam os humanos (capturar ou eliminar).
