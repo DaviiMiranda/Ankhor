@@ -28,6 +28,9 @@ docs/
 ├── gdd.md                         # GDD executivo integrado
 ├── sugestao-melhoramento-futuro.md # Backlog de melhorias secundárias, polimento e QoL
 │
+├── entrega/                       # Documentos de entrega da disciplina
+│   └── gdd_ankhor.docx            # GDD no modelo do template da disciplina (estado de 15/10/2026)
+│
 ├── visao_geral/                   # Pilares conceituais, escopo e identidade
 │   ├── conceito.md                # Premissa, público-alvo, escopo e pilares de design
 │   └── estilo_artistico.md        # Identidade visual 2.5D, iluminação e pipeline Blender->Sprites
