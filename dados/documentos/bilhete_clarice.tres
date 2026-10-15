@@ -12,9 +12,11 @@ paginas = PackedStringArray("Se alguém ler isso: sou a Clarice, de 1994, Proces
 
 Descobri umas coisas. Os robôs não andam à toa: fazem sempre o mesmo caminho, que nem um programa em loop. Dá pra decorar.", "Os terminais pedem senha. Guardei as que achei no meu disquete. Uma delas abre a grade do salão, então não perde, meu filho.
 
-Vou pro Bloco de salas. Se mais alguém chegou, me procura lá. Foi legal conversar com alguém, mesmo que seja com um papel, mas gente de verdade é melhor.
+Vou pro Bloco de salas. Se mais alguém chegou, me procura lá.", "Foi legal conversar com alguém, mesmo que seja com um papel, mas gente de verdade é melhor.
 
-Não confie nas luzes. — Clarice", "PS: se você for um robô, finge que não leu.")
+Não confie nas luzes. — Clarice
+
+PS: se você for um robô, finge que não leu.")
 anotacao = "Aluna de 1994. Os robôs repetem sempre o mesmo caminho: dá para decorar.
 
 Guardou senhas num disquete. Uma delas abre a grade do salão.
