@@ -350,6 +350,11 @@ def salvar_mapa(linhas):
     retangulos = ", ".join(f"Rect2i({s['x']}, {s['y']}, {s['w']}, {s['h']})" for s in seguras)
     oficina = next(s for s in SALAS if s["nome"] == "oficina")
     area = (3 * oficina["x"] + 1, 3 * oficina["y"] + 1, 3 * oficina["w"] - 1, 3 * oficina["h"] - 1)
+    # O miolo de cada sala em BLOCOS (sem as paredes). O jogo acha a
+    # entrada de cada sala (o único buraco na parede em volta) a partir
+    # desses retângulos, põe a porta ali e esconde o que há dentro.
+    salas = ", ".join(
+        f"Rect2i({3 * s['x'] + 1}, {3 * s['y'] + 1}, {3 * s['w'] - 1}, {3 * s['h'] - 1})" for s in SALAS)
     with open(ARQUIVO_MAPA, "w", encoding="utf-8", newline="\n") as f:
         f.write('[gd_resource type="Resource" script_class="MapaLabirinto" format=3]\n\n')
         f.write('[ext_resource type="Script" path="res://scripts/labirinto/mapa_labirinto.gd" id="1_mapa"]\n\n')
@@ -357,6 +362,7 @@ def salvar_mapa(linhas):
         f.write(f"tamanho_bloco = {BLOCO}\nblocos_por_salinha = 3\n")
         f.write(f"salinhas_seguras = Array[Rect2i]([{retangulos}])\n")
         f.write(f"area_oficina = Rect2i({area[0]}, {area[1]}, {area[2]}, {area[3]})\n")
+        f.write(f"salas = Array[Rect2i]([{salas}])\n")
         f.write(f"linhas = PackedStringArray({corpo})\n")
     print("  salvo:", os.path.relpath(ARQUIVO_MAPA, PASTA_PROJETO))
 

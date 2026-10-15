@@ -7,6 +7,7 @@ const LETRAS_DE_OBSTACULO := "bcmxrkauhijNZ"
 @export var blocos_por_salinha: int = 3
 @export var salinhas_seguras: Array[Rect2i] = []
 @export var area_oficina: Rect2i = Rect2i()
+@export var salas: Array[Rect2i] = []
 @export var linhas: PackedStringArray = PackedStringArray()
 
 
@@ -38,6 +39,27 @@ func salinha_segura(salinha: Vector2i) -> bool:
 		if retangulo.has_point(salinha):
 			return true
 	return false
+
+
+func indice_da_sala(celula: Vector2i) -> int:
+	for i in salas.size():
+		if salas[i].has_point(celula):
+			return i
+	return -1
+
+
+func entrada_da_sala(indice: int) -> Array[Vector2i]:
+	var sala := salas[indice]
+	var achadas: Array[Vector2i] = []
+	for y in range(sala.position.y - 1, sala.end.y + 1):
+		for x in range(sala.position.x - 1, sala.end.x + 1):
+			var na_borda_x := x < sala.position.x or x >= sala.end.x
+			var na_borda_y := y < sala.position.y or y >= sala.end.y
+			if na_borda_x == na_borda_y:
+				continue
+			if not e_parede(Vector2i(x, y)):
+				achadas.append(Vector2i(x, y))
+	return achadas
 
 
 func celulas_com(procurada: String) -> Array[Vector2i]:

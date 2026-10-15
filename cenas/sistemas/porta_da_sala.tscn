@@ -1,0 +1,31 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/porta_da_sala.gd" id="1_porta"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_correr.wav" id="2_som"]
+
+[node name="PortaDaSala" type="Area2D"]
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_porta")
+texto_acao = "Abrir"
+altura_aviso = 44.0
+
+[node name="Alcance" type="CollisionShape2D" parent="."]
+
+[node name="Bloqueio" type="StaticBody2D" parent="."]
+collision_layer = 9
+collision_mask = 0
+
+[node name="Forma" type="CollisionShape2D" parent="Bloqueio"]
+
+[node name="Oclusor" type="LightOccluder2D" parent="."]
+
+[node name="Som" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_som")
+volume_db = -4.0
+max_distance = 260.0
+attenuation = 1.6
+bus = &"Efeitos"
+
+[node name="Espera" type="Timer" parent="."]
+one_shot = true

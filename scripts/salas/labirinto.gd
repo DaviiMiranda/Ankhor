@@ -10,6 +10,7 @@ const CENA_SAIDA := preload("res://cenas/sistemas/saida_fase.tscn")
 const CENA_NO := preload("res://cenas/sistemas/no_hackeavel.tscn")
 const CENA_ZANE := preload("res://cenas/personagens/zane_na_oficina.tscn")
 const CENA_ALCAPAO := preload("res://cenas/sistemas/alcapao.tscn")
+const CENA_PORTA := preload("res://cenas/sistemas/porta_da_sala.tscn")
 const LANTERNA := preload("res://dados/itens/lanterna.tres")
 const PROPS := {
 	"b": preload("res://cenas/cenario/dtec/objetos/bancada_eletronica.tscn"),
@@ -50,6 +51,7 @@ const LUZ_EM_TUDO := 1 | 2
 var grade: GradeLabirinto
 var _perseguindo := {}
 var _numero_do_no := 0
+var _conteudo_das_salas := {}
 
 @onready var chao: Sprite2D = $Chao
 @onready var no_decalques: Node2D = $Decalques
@@ -71,6 +73,7 @@ func _ready() -> void:
 	_espalhar_decalques()
 	_espalhar_componentes()
 	_colocar_marcadores()
+	_colocar_portas()
 	_montar_rede()
 	super()
 
@@ -182,6 +185,7 @@ func _espalhar_decalques() -> void:
 		decalque.position = grade.centro(celula) + Vector2(sorteio.randf_range(-10, 10), sorteio.randf_range(-10, 10))
 		decalque.flip_h = sorteio.randf() < 0.5
 		no_decalques.add_child(decalque)
+		_guardar_na_sala(decalque, decalque.position)
 
 
 func _espalhar_componentes() -> void:
@@ -198,6 +202,7 @@ func _espalhar_componentes() -> void:
 		peca.position = grade.centro(celula) + Vector2(sorteio.randf_range(-10, 10), sorteio.randf_range(-8, 8))
 		peca.flip_h = sorteio.randf() < 0.5
 		no_decalques.add_child(peca)
+		_guardar_na_sala(peca, peca.position)
 
 
 func _montar_rede() -> void:
@@ -318,6 +323,42 @@ func _posicao_da_sequencia(celula: Vector2i, letra: String) -> Vector2:
 func _colocar(no: Node2D, posicao: Vector2) -> void:
 	no.position = posicao
 	objetos.add_child(no)
+	if not no is Robo:
+		_guardar_na_sala(no, posicao)
+
+
+func _guardar_na_sala(no: Node2D, posicao: Vector2) -> void:
+	var indice := mapa.indice_da_sala(grade.celula(posicao))
+	if indice == -1:
+		return
+	if not _conteudo_das_salas.has(indice):
+		var nova: Array[Node2D] = []
+		_conteudo_das_salas[indice] = nova
+	_conteudo_das_salas[indice].append(no)
+
+
+func _colocar_portas() -> void:
+	var bloco := mapa.tamanho_bloco
+	for indice in mapa.salas.size():
+		var entrada := mapa.entrada_da_sala(indice)
+		if entrada.is_empty():
+			continue
+		var minimo := entrada[0]
+		var maximo := entrada[0]
+		for celula in entrada:
+			minimo = Vector2i(mini(minimo.x, celula.x), mini(minimo.y, celula.y))
+			maximo = Vector2i(maxi(maximo.x, celula.x), maxi(maximo.y, celula.y))
+		var passagem := Rect2i(minimo, maximo - minimo + Vector2i.ONE)
+		var sala := mapa.salas[indice]
+		var porta: PortaDaSala = CENA_PORTA.instantiate()
+		porta.name = "Porta_%d_%d" % [minimo.x, minimo.y]
+		porta.tamanho = Vector2(passagem.size * bloco)
+		porta.frente_visivel = not mapa.e_parede(Vector2i(minimo.x, maximo.y + 1))
+		porta.area_da_sala = Rect2(Vector2(sala.position * bloco), Vector2(sala.size * bloco))
+		if _conteudo_das_salas.has(indice):
+			porta.conteudo = _conteudo_das_salas[indice]
+		porta.position = Vector2(passagem.position.x + passagem.size.x / 2.0, passagem.end.y) * bloco
+		objetos.add_child(porta)
 
 
 func _colocar_robo(letra: String, posicao: Vector2, numero: int) -> void:

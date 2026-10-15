@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-14 — As salas do Labirinto têm porta e não se vê o que há dentro de fora
+**Decisão:** cada uma das 4 salas do Labirinto (a oficina do Zane e os 3 salões dos nós) ganha uma **porta na entrada**. Fechada, ela bloqueia o Gabriel e os robôs, a visão dos robôs e a luz. O Gabriel abre com `E`; um robô abre sozinho ao chegar nela; fecha sozinha 1,2 s depois que ninguém está perto. Enquanto a porta está fechada e o Gabriel está fora da sala, **tudo o que há dentro dela fica invisível** (props, luzes, nó, checkpoint, Zane, alçapão, peças do chão e os robôs que estiverem lá); as paredes continuam à vista. A animação é um **placeholder**: duas folhas de aço (retângulos coloridos) que recolhem para as bordas em 0,35 s, com lâmpada vermelha/verde e o som `porta_correr.wav`.
+**Por quê:** pedido do Davi: dava para ver as salas de fora (luzes, hologramas, consoles) e não havia porta para entrar nelas.
+**Afeta:** `scripts/sistemas/porta_da_sala.gd` e `cenas/sistemas/porta_da_sala.tscn` (novos); `scripts/salas/labirinto.gd` (`_colocar_portas`, `_guardar_na_sala`); `scripts/labirinto/mapa_labirinto.gd` (`salas`, `indice_da_sala`, `entrada_da_sala`); `dados/labirinto/mapa_labirinto.tres` e o gerador `gerar_labirinto.py` (campo `salas`); `docs/fases/labirinto.md` (seção 3). A arte final da porta (sprite) entra depois sem mudar o script.
+
 ## 2026-10-14 — Animação de abrir porta e som próprio no Bloco de salas
 **Decisão:** a porta do Bloco de salas ganha animação de abrir e som próprio de porta pesada de aço com trinco eletromecânico (`cenas/cenario/bloco_de_salas/parede_porta_animada.tscn`), seguindo o padrão de uma porta animada por mapa da Biblioteca. A peça base de parede é `parede_porta_bloco.png` (80×112 px) e a folha animada (`porta_bloco_quadros.tres`, 80×88 px) roda a 36 fps, com a folha de aço com visor de vidro aramado correndo para o lado (deslizando para dentro do bolso de parede em trilho superior). O som ao atravessar passa a ser `porta_bloco.wav` (destrave de solenóide, desengate mecânico de aço, rolamento no trilho e descompressão do amortecedor pneumático).
 **Por quê:** pedido do usuário a partir da arte e do sprite da porta de correr do bloco.
