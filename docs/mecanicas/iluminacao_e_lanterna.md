@@ -10,7 +10,7 @@ O campus em 3026 é quase todo escuro. O pouco que ainda tem energia são os **s
 
 ## 2. A lanterna
 
-- **O que é:** uma lanterna de mão comum, a pilha. É um gadget: fica num dos 3 espaços e liga/desliga com a tecla do espaço (`1`, `2` ou `3`).
+- **O que é:** uma lanterna pequena, a pilha, com uma alça para prender ao peito. É um gadget: fica num dos 3 espaços e liga/desliga com a tecla do espaço (`1`, `2` ou `3`).
 - **O feixe:** um cone de luz que sai da **lente da lanterna**, presa ao peito do Gabriel, e aponta para onde ele está andando (a última direção do movimento). Em volta da lente fica um brilho fraco, que ilumina o próprio Gabriel.
 - **No peito:** com a lanterna equipada, uma peça pequena e escura (5 × 3 px, com um ponto claro só na lente) aparece presa ao peito do Gabriel, ligada ou apagada. Ela gira para a direção da mira e espelha quando ele olha para a esquerda. Nas vistas de costas ela fica escondida pelo corpo, e a luz continua saindo do peito. `Gabriel.posicao_do_peito()` devolve o ponto do peito na vista em que ele está.
 - **O dilema (ver vs. ser visto):**

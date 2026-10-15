@@ -9,7 +9,7 @@
 script = ExtResource("1_item")
 id = "lanterna"
 nome = "Lanterna"
-descricao = "Lanterna de mão a pilha. Ilumina à frente, mas a luz chama a atenção dos robôs. Quando a bateria acabar, troque a pilha."
+descricao = "Lanterna pequena a pilha, com uma alça para prender ao peito. Ilumina à frente, mas a luz chama a atenção dos robôs. Quando a bateria acabar, troque a pilha."
 icone = ExtResource("2_icone")
 sprite_chao = ExtResource("3_chao")
 equipavel = true
