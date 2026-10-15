@@ -8,8 +8,9 @@
 ## 1. Quem é
 
 - **Época:** 3026. Não foi puxado pela fenda: ele já vivia nessa época.
-- **Quem é:** um cientista, vivo, que **criou a Âncora**. É um dos poucos humanos que ficaram na Terra.
-- **História:** na época dele, a sociedade e o planeta estavam muito ruins, e o pouco que sobrou da humanidade decidiu ir embora para outro planeta. O Carlos **ficou**, por um objetivo egoísta: é obcecado pelos **anos 80** e quer usar a Âncora para ir viver lá. A máquina é imprecisa: a cada tentativa dele, abre uma fenda no chão da Biblioteca e puxa gente de outras épocas, sem escolher quem. Ele controla os **robôs**.
+- **Quem é:** um cientista *sapiens*, vivo, que **criou a Âncora**. É um dos poucos humanos que ficaram na Terra.
+- **História:** na época dele, a sociedade e o planeta estavam muito ruins, e os ***Homo sideralis***, a espécie humana evoluída, foram embora para outro planeta. Os *sapiens* que ficaram formaram os **Faroleiros**, a resistência que defende a Terra, e o Carlos **era um deles**. Saiu do grupo e **se isolou na Unifor**, por um objetivo egoísta: é obcecado pelos **anos 80** e quer usar a Âncora para ir viver lá. Passou **anos sozinho**. A máquina é imprecisa: a cada tentativa dele, abre uma fenda no chão da Biblioteca e puxa gente de outras épocas, sem escolher quem. Ele controla os **robôs**, com a IA como ferramenta.
+- **O Henrique:** quando o Henrique caiu, o primeiro de todos, o Carlos prometeu levá-lo de volta para antes da morte da mãe e ganhou a confiança dele. Só o usa: o Henrique atrasa o grupo enquanto o Carlos conserta a Âncora. O Carlos **não se importa com os puxados**.
 - **Onde fica:** o laboratório dele e a Âncora ficam no **D-Tec**, a parte de tecnologia da Unifor, no **Bloco M**. Ele **nunca sai do laboratório**.
 
 ## 2. Personalidade
@@ -24,7 +25,8 @@
 
 | Com | Dinâmica |
 |---|---|
-| [Henrique](henrique.md) | O Henrique trabalha para ele ou foi enganado por ele (pendente). Por causa dele, o Henrique mente para o grupo |
+| [Henrique](henrique.md) | Promete levá-lo para antes da morte da mãe e o usa para atrasar o grupo. Por causa dele, o Henrique mente para o grupo |
+| Os Faroleiros | Foi um deles e saiu para se isolar na Unifor. Por que saiu está pendente |
 
 ## 4. No jogo
 
@@ -51,7 +53,7 @@ Pendente.
 ## 8. Pendências
 
 Todas no Enredo Principal, seção 12.2:
-- Como ele consegue o conhecimento que falta para a Âncora funcionar (roubar consciências, construir uma super IA, ou as duas).
-- A relação dele com a IA.
+- Como ele consegue o conhecimento que falta para a Âncora funcionar.
+- Quantas ferramentas de IA ele usa e o que cada uma faz.
 - Por que os robôs caçam os humanos (capturar ou eliminar).
-- Idade exata, como fala, o que teme, defeito e arco; e quando o jogador descobre que ele existe.
+- Idade exata, como fala, o que teme, defeito e arco; por que saiu dos Faroleiros e há quantos anos está sozinho; e quando o jogador descobre que ele existe.

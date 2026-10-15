@@ -74,7 +74,7 @@ docs/
     │   ├── resumo.md              # Resumo de todos os personagens, para consulta rápida
     │   ├── gabriel.md             # O protagonista: estados, estamina, inventário
     │   ├── baltazar.md            # ~1750, antepassado de Gabriel
-    │   ├── diana.md               # 1978, recruta da polícia
+    │   ├── diana.md               # 1978, estagiária de arquitetura
     │   ├── clarice.md             # 1994, aluna de processamento de dados
     │   ├── henrique.md            # 2019, o pesquisador
     │   ├── carlos.md              # 3026, o antagonista

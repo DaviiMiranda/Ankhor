@@ -16,6 +16,23 @@ Formato:
 
 ---
 
+## 2026-10-15 — *Homo sideralis*, os Faroleiros e a mentira do Henrique
+**Decisão:**
+- **Quem foi embora:** os ***Homo sideralis***, uma espécie humana evoluída que aceita melhor os implantes e vive melhor no espaço e em planetas com outra temperatura ou gravidade. Partiram para outro planeta há menos de 100 anos.
+- **Quem ficou:** os *sapiens* que não partiram formaram uma resistência que defende o planeta, os **Faroleiros**, que ainda existem longe do campus. O símbolo é um farol âmbar com três raios para o céu (Enredo, seção 2.4).
+- **O Carlos era um Faroleiro.** Saiu do grupo e se isolou na Unifor, sozinho durante anos, para ir viver nos anos 80.
+- **A IA** é avançada, mas **sem consciência**: é uma ferramenta. Saem as pendências da IA que domina a Terra e da super IA.
+- **O Henrique** foi o primeiro a chegar e é quem está há mais tempo em 3026. O Carlos prometeu levá-lo para **antes da morte da mãe** e o usa para **atrasar o grupo** enquanto conserta a Âncora; não se importa com os puxados. O Henrique diz que está consertando tudo, mas não faz nada pelo grupo: usa a IA de 3026 na própria pesquisa sobre viagem no tempo, só para voltar a antes da morte da mãe. Fica **sozinho** numa sala trancada do bunker. Em 2026 é a **lenda do aluno que sumiu na Biblioteca**, e a pesquisa dele virou a cadeira de **Modelagem e Simulação**.
+- **O Zane** tem a base na **oficina do Labirinto**, de onde mantém a frequência. Desconfia do Henrique e passa dias tentando invadir o bunker; os três nós do Labirinto guardam a trava do bunker. O final antigo (ficar para domar a IA) sai; medo e final ficam pendentes.
+- **O rádio do balcão** existe por causa da Clarice, que passou dias sozinha antes de alguém achá-la.
+- **O bilhete da Clarice** passa a pedir que, se mais alguém chegou, a procure no Bloco de salas.
+- **O bunker** tem robôs, é difícil de alcançar e tem salas montadas como interiores dos séculos XIX e XX, que mostram a obsessão do Carlos sem explicar.
+- **A Diana** passa a ser **estagiária de arquitetura** na obra de 1978 (não mais recruta da polícia). O lote sumiu sob a responsabilidade dela, e a parte dela são as galerias da obra.
+- **A parte do Gabriel** deixa de ser as equações: o caderno é o lugar onde as partes de todos se juntam, porque ele é o único que passa por todos os esconderijos.
+
+**Por quê:** conversa do Davi com o Claude no papel de roteirista: fechar os furos da história (a idade do Carlos, o Zane no bunker lacrado, a Clarice sozinha com um rádio já no balcão) e dar conteúdo à mentira do Henrique.
+**Afeta:** `docs/historia/enredo_principal.md` (seções 1, 2.1, 2.3, 2.4 nova, 3.1, 4.1, 4.3, 6, 6.1, 7.1, 7.2, 8, 11 e 12); as fichas de Henrique, Carlos, Diana, Zane, Clarice, Gabriel e robôs; `resumo.md`; `docs/README.md`. Ainda não foram atualizados (listados no Enredo, seção 12.4): `dados/documentos/bilhete_clarice.tres`, `docs/fases/bunker.md`, as conversas do Henrique no bunker e a "aula de cálculo" do prólogo.
+
 ## 2026-10-15 — Salas de aula do Bloco ficam futuristas
 **Decisão:** o Bloco de salas ganha um visual de alta tecnologia em ruínas, em todas as 12 salas e nos dois corredores, sem mudar objetivo, robôs, itens nem puzzles.
 - **Cadeira com óculos VR no lugar da carteira** (`cadeira_vr`, `cadeira_vr_caida`; friso âmbar na 203 e versão nova em folha na 205). A pegada é a mesma de 14×4 px da carteira, então a navegação não muda. Nas cadeiras, a lente dos óculos acesa é uma camada de luz (`lente_acesa`): poucas por sala (a 104, o laboratório, tem 9; o auditório 201, 14) e **todas** na 205, a "intacta demais".
