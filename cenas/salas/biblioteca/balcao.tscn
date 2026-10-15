@@ -20,11 +20,14 @@
 [ext_resource type="Resource" path="res://dados/itens/radio.tres" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="r19"]
 [ext_resource type="Resource" path="res://dados/transmissoes/clarice_biblioteca_01.tres" id="r20"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira_vr.tscn" id="r21"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="r22"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/livros.tscn" id="r23"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r24"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r25"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/mesa_holografica.tscn" id="fut_mesa_holografica"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_doca_bibliotecario.tscn" id="fut_parede_doca_bibliotecario"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/letreiro_holografico.tscn" id="fut_letreiro"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -41,7 +44,7 @@ position = Vector2(0, 0)
 [node name="Parede02" parent="Paredes" instance=ExtResource("r3")]
 position = Vector2(80, 0)
 
-[node name="Parede03" parent="Paredes" instance=ExtResource("r4")]
+[node name="Parede03" parent="Paredes" instance=ExtResource("fut_parede_doca_bibliotecario")]
 position = Vector2(160, 0)
 
 [node name="Parede04" parent="Paredes" instance=ExtResource("r5")]
@@ -135,7 +138,7 @@ offset_left = 13.0
 offset_top = 30.0
 offset_right = 69.0
 offset_bottom = 44.0
-theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_colors/font_color = Color(0.3, 0.37, 0.4, 1)
 theme_override_styles/normal = SubResource("Placa")
 text = "SALÃO"
 horizontal_alignment = 1
@@ -145,15 +148,15 @@ offset_left = 329.0
 offset_top = 30.0
 offset_right = 393.0
 offset_bottom = 44.0
-theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_colors/font_color = Color(0.3, 0.37, 0.4, 1)
 theme_override_styles/normal = SubResource("Placa")
 text = "TERMINAIS"
 horizontal_alignment = 1
 
-[node name="Balcao1" parent="Objetos" instance=ExtResource("r12")]
+[node name="Balcao1" parent="Objetos" instance=ExtResource("fut_mesa_holografica")]
 position = Vector2(168, 168)
 
-[node name="Balcao2" parent="Objetos" instance=ExtResource("r12")]
+[node name="Balcao2" parent="Objetos" instance=ExtResource("fut_mesa_holografica")]
 position = Vector2(256, 168)
 espelhado = true
 
@@ -197,3 +200,27 @@ position = Vector2(280, 70)
 
 [node name="Rebatida" parent="Luzes" instance=ExtResource("r25")]
 position = Vector2(200, 170)
+
+[node name="LetreiroSalao" parent="Paredes" instance=ExtResource("fut_letreiro")]
+position = Vector2(13.0, 30.0)
+
+[node name="Texto" parent="Paredes/LetreiroSalao" index="0"]
+offset_right = 56.0
+offset_bottom = 14.0
+text = "SALÃO"
+
+[node name="LetreiroTerminais" parent="Paredes" instance=ExtResource("fut_letreiro")]
+position = Vector2(329.0, 30.0)
+
+[node name="Texto" parent="Paredes/LetreiroTerminais" index="0"]
+offset_right = 64.0
+offset_bottom = 14.0
+text = "TERMINAIS"
+
+[node name="LetreiroSilencio" parent="Paredes" instance=ExtResource("fut_letreiro")]
+position = Vector2(100, 41)
+
+[node name="Texto" parent="Paredes/LetreiroSilencio" index="0"]
+offset_right = 39.0
+offset_bottom = 12.0
+text = "SILÊNCIO"

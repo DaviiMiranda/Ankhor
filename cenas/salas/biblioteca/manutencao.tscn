@@ -23,6 +23,10 @@
 [ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="r21"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r22"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r23"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_conduites.tscn" id="fut_parede_conduites"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/gerador.tscn" id="fut_gerador"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/painel_distribuicao.tscn" id="fut_painel_distribuicao"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/letreiro_holografico.tscn" id="fut_letreiro"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -39,13 +43,13 @@ position = Vector2(0, 0)
 [node name="Parede02" parent="Paredes" instance=ExtResource("r3")]
 position = Vector2(80, 0)
 
-[node name="Parede03" parent="Paredes" instance=ExtResource("r3")]
+[node name="Parede03" parent="Paredes" instance=ExtResource("fut_parede_conduites")]
 position = Vector2(160, 0)
 
 [node name="Parede04" parent="Paredes" instance=ExtResource("r4")]
 position = Vector2(240, 0)
 
-[node name="Parede05" parent="Paredes" instance=ExtResource("r3")]
+[node name="Parede05" parent="Paredes" instance=ExtResource("fut_parede_conduites")]
 position = Vector2(320, 0)
 
 [node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r5")]
@@ -108,7 +112,7 @@ offset_left = 9.0
 offset_top = 30.0
 offset_right = 73.0
 offset_bottom = 44.0
-theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_colors/font_color = Color(0.3, 0.37, 0.4, 1)
 theme_override_styles/normal = SubResource("Placa")
 text = "CORREDOR"
 horizontal_alignment = 1
@@ -151,3 +155,17 @@ position = Vector2(200, 70)
 [node name="Lampiao" parent="Luzes" instance=ExtResource("r23")]
 position = Vector2(130, 180)
 energy = 0.5
+
+[node name="Gerador" parent="Objetos" instance=ExtResource("fut_gerador")]
+position = Vector2(72, 214)
+
+[node name="PainelDistribuicao" parent="Objetos" instance=ExtResource("fut_painel_distribuicao")]
+position = Vector2(252, 146)
+
+[node name="LetreiroCorredor" parent="Paredes" instance=ExtResource("fut_letreiro")]
+position = Vector2(9.0, 30.0)
+
+[node name="Texto" parent="Paredes/LetreiroCorredor" index="0"]
+offset_right = 64.0
+offset_bottom = 14.0
+text = "CORREDOR"

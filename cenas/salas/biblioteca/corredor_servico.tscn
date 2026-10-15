@@ -17,6 +17,8 @@
 [ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="r15"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r16"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_conduites.tscn" id="fut_parede_conduites"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/letreiro_holografico.tscn" id="fut_letreiro"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -31,13 +33,13 @@ position = Vector2(0, 0)
 [node name="Parede02" parent="Paredes" instance=ExtResource("r3")]
 position = Vector2(80, 0)
 
-[node name="Parede03" parent="Paredes" instance=ExtResource("r4")]
+[node name="Parede03" parent="Paredes" instance=ExtResource("fut_parede_conduites")]
 position = Vector2(160, 0)
 
 [node name="Parede04" parent="Paredes" instance=ExtResource("r5")]
 position = Vector2(240, 0)
 
-[node name="Parede05" parent="Paredes" instance=ExtResource("r4")]
+[node name="Parede05" parent="Paredes" instance=ExtResource("fut_parede_conduites")]
 position = Vector2(320, 0)
 
 [node name="Parede06" parent="Paredes" instance=ExtResource("r2")]
@@ -97,7 +99,7 @@ offset_left = 13.0
 offset_top = 30.0
 offset_right = 69.0
 offset_bottom = 44.0
-theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_colors/font_color = Color(0.3, 0.37, 0.4, 1)
 theme_override_styles/normal = SubResource("Placa")
 text = "SALÃO"
 horizontal_alignment = 1
@@ -107,7 +109,7 @@ offset_left = 405.0
 offset_top = 30.0
 offset_right = 477.0
 offset_bottom = 44.0
-theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_colors/font_color = Color(0.3, 0.37, 0.4, 1)
 theme_override_styles/normal = SubResource("Placa")
 text = "MANUTENÇÃO"
 horizontal_alignment = 1
@@ -137,3 +139,19 @@ position = Vector2(360, 70)
 [node name="Fresta" parent="Luzes" instance=ExtResource("r17")]
 position = Vector2(240, 120)
 energy = 0.2
+
+[node name="LetreiroSalao" parent="Paredes" instance=ExtResource("fut_letreiro")]
+position = Vector2(13.0, 30.0)
+
+[node name="Texto" parent="Paredes/LetreiroSalao" index="0"]
+offset_right = 56.0
+offset_bottom = 14.0
+text = "SALÃO"
+
+[node name="LetreiroManutencao" parent="Paredes" instance=ExtResource("fut_letreiro")]
+position = Vector2(405.0, 30.0)
+
+[node name="Texto" parent="Paredes/LetreiroManutencao" index="0"]
+offset_right = 72.0
+offset_bottom = 14.0
+text = "MANUTENÇÃO"
