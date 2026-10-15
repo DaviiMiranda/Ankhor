@@ -28,7 +28,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 |---|---|---|
 | `corredor_terreo` | Corredor do térreo, 2560 px (8 telas), meio enterrado na areia | lajota e areia |
 | `corredor_primeiro_andar` | Corredor do 1º andar, 2560 px, teto aberto | mato e lajota |
-| `sala_101` | Sala de aula comum: oito fileiras de carteiras, lousa, mesa do professor | lajota |
+| `sala_101` | Sala de aula futurista (piloto de 2026-10-15): fileiras de cadeiras com óculos VR, lousa holográfica apagada que mantém os tracinhos e o professor robô desligado na doca de recarga | lajota |
 | `sala_102` | Invadida pela duna: chão de areia, teto caído, carteiras tombadas entre montes de entulho (3 pedras) | areia |
 | `sala_103` | Barricada: carteiras tombadas e estantes atravessam a sala; atrás, um acampamento com lampiões (2 pilhas) | lajota e tapete |
 | `sala_104` | Laboratório de informática: fileiras de terminais; telas ainda acesas, verdes | tapete e lajota |
