@@ -83,6 +83,9 @@ TECLA_RADIO = bib.hexa("#5e636e", "#9298a6", "#c2ccd6")
 
 # A lâmpada da cápsula de clarão (clarao_detalhe.png), uma bolha de vidro
 # azul-clara, e a tela acesa do notebook (notebook_detalhe.png), branco-azulada.
+# A pedra (pedra_detalhe.png): cinza-pedra neutro, claro e quente em cima,
+# azulado e escuro nas sombras.
+PEDRA_CINZA = bib.hexa("#1c1c26", "#38383f", "#5a5a60", "#807d7a", "#a89f98", "#cbbfae", "#ece0cc")
 LAMPADA_CLARAO = bib.hexa("#2a5fb0", "#4d8fe0", "#86c3f5", "#c8ecff", "#f2fbff")
 TELA_NOTEBOOK = bib.hexa("#4f5d6e", "#7f8fa3", "#aebdd0", "#cfdbe8", "#e4edf5")
 
@@ -267,12 +270,15 @@ def clarao_chao():
 
 
 def pedra():
-    """Um pedaço de concreto quebrado, do tamanho da mão: polígono
-    irregular, mais claro em cima (a luz vem de cima)."""
+    """A pedra (pedra_detalhe.png): um pedaço de pedra cinza arredondado, do
+    tamanho da mão, com o topo claro e quente (a luz vem de cima, da
+    esquerda) e o lado direito e a base em sombra azulada."""
     img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
-    Y = img.Y
-    corpo = img.poligono([(4, 8), (7, 4), (11, 5), (13, 9), (11, 13), (5, 12)])
-    img.pintar(corpo, "concreto", 0.75 - 0.4 * (Y - 4) / 9 + 0.1 * ruido(img.w, img.h, 2, 2, 7))
+    X, Y = img.X, img.Y
+    corpo = img.poligono([(2, 11), (3, 7), (6, 4), (10, 3), (13, 6), (14, 10), (13, 13), (4, 13)])
+    luz = 0.85 - 0.5 * (Y - 3) / 10 - 0.3 * (X - 2) / 12
+    img.pintar(corpo, PEDRA_CINZA, luz + 0.1 * ruido(img.w, img.h, 2, 2, 7))
+    img.pintar(img.ret(4, 5, 8, 6) & corpo, PEDRA_CINZA, 1.0)
     img.contornar(CONTORNO)
     return img
 
@@ -280,8 +286,10 @@ def pedra():
 def pedra_chao():
     """Três pedrinhas juntas no chão (cada monte vale uma pedra no inventário)."""
     img = Imagem(9, 4)
-    for x0 in (0, 3, 6):
-        img.pintar(img.ret(x0, 1, x0 + 3, 4), "concreto", 0.7)
+    for x0, topo in ((0, 1), (3, 0), (6, 2)):
+        img.pintar(img.ret(x0, topo, x0 + 3, 4), PEDRA_CINZA, 0.45)
+        img.pintar(img.ret(x0, topo, x0 + 2, topo + 1), PEDRA_CINZA, 0.95)
+        img.pintar(img.ret(x0 + 2, topo + 1, x0 + 3, 4), PEDRA_CINZA, 0.2)
     img.contornar(CONTORNO)
     return img
 
