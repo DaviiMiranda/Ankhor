@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/itens/item.gd" id="1_item"]
 [ext_resource type="Texture2D" path="res://assets/sprites/itens/radio.png" id="2_icone"]
 [ext_resource type="Texture2D" path="res://assets/sprites/itens/radio_chao.png" id="3_chao"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/radio_detalhe.png" id="4_detalhe"]
 
 [resource]
 script = ExtResource("1_item")
@@ -11,3 +12,4 @@ nome = "Rádio portátil"
 descricao = "Rádio de ronda de segurança, de 2008. Ainda liga. Às vezes, no meio do chiado, alguém fala."
 icone = ExtResource("2_icone")
 sprite_chao = ExtResource("3_chao")
+imagem_detalhe = ExtResource("4_detalhe")

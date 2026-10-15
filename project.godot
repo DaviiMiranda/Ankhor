@@ -26,6 +26,7 @@ Progresso="*res://scripts/sistemas/progresso.gd"
 Configuracoes="*res://scripts/sistemas/configuracoes.gd"
 Dialogos="*res://scripts/sistemas/dialogos.gd"
 Pausa="*res://cenas/interface/tela_pausa.tscn"
+ItemNovo="*res://cenas/interface/tela_item_novo.tscn"
 
 [display]
 

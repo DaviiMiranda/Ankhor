@@ -28,6 +28,7 @@ var _espacos_gadget: Array[EspacoItem] = []
 @onready var nome: Label = $Janela/Itens/Nome
 @onready var descricao: Label = $Janela/Itens/Descricao
 @onready var situacao: Label = $Janela/Itens/Situacao
+@onready var dica_examinar: Label = $Janela/Itens/Examinar
 @onready var som_abrir: AudioStreamPlayer = $SomAbrir
 @onready var som_fechar: AudioStreamPlayer = $SomFechar
 @onready var som_aba: AudioStreamPlayer = $SomAba
@@ -59,6 +60,8 @@ func _criar_espacos() -> void:
 
 
 func _unhandled_input(evento: InputEvent) -> void:
+	if ItemNovo.aberto:
+		return
 	if evento.is_action_pressed("inventario"):
 		_tratar_atalho(Aba.ITENS)
 		return
@@ -115,6 +118,14 @@ func _tratar_itens(evento: InputEvent) -> void:
 	for i in Inventario.ESPACOS_GADGET:
 		if evento.is_action_pressed("gadget_%d" % (i + 1)):
 			_equipar_no_espaco(i)
+	if evento.is_action_pressed("interagir"):
+		_examinar()
+
+
+func _examinar() -> void:
+	var item := Inventario.item_em(_cursor.y, _cursor.x)
+	if item:
+		ItemNovo.examinar(item)
 
 
 func _abrir(abrir: bool) -> void:
@@ -194,6 +205,7 @@ func _atualizar() -> void:
 	var escolhido := Inventario.item_em(_cursor.y, _cursor.x)
 	nome.text = escolhido.nome if escolhido else ""
 	descricao.text = escolhido.descricao if escolhido else ""
+	dica_examinar.text = "E: examinar" if escolhido else ""
 	situacao.text = ""
 	if escolhido and escolhido.equipavel:
 		var espaco := Inventario.espaco_do_gadget(escolhido)
