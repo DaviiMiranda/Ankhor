@@ -3,7 +3,7 @@
 	"inicio": "abertura",
 	"anotacao": {
 		"titulo": "Henrique, na sala de dados",
-		"texto": "O Henrique é o das câmeras: a Clarice repassa o que ele vê. Fica escondido na sala de dados do bunker, tentando entender tudo, e diz que, de alguma forma, estamos em 3026.\n\nO setor B está lacrado pelo sistema. O Zane está tentando quebrar a senha.\n\nFala pouco e se corrige no meio da frase. Ficou nervoso quando perguntei da Âncora."
+		"texto": "O Henrique é o das câmeras: a Clarice repassa o que ele vê. É o aluno que sumiu na Biblioteca em 2019, o da história do campus.\n\nFica sozinho, trancado na sala de dados do bunker. Diz que está tentando consertar tudo e acha melhor cada um ficar no seu canto.\n\nO setor B está lacrado. O Zane está tentando quebrar a senha.\n\nFala pouco e se corrige no meio da frase. Ficou nervoso quando perguntei da Âncora."
 	},
 	"trechos": {
 		"abertura": {
@@ -11,22 +11,32 @@
 				{
 					"quem": "Henrique",
 					"retrato": "henrique/henrique_retrato_nervoso",
-					"texto": "Ah. Você... é você. Eu vi você chegando pelas câmeras. Quer dizer, na entrada do bunker. Não aqui dentro."
+					"texto": "Ah. Você... é você. Eu vi você chegando pelas câmeras. Quer dizer, pelas daqui de baixo. Abri a porta e tranquei de novo."
 				},
 				{
 					"quem": "Gabriel",
 					"retrato": "gabriel/gabriel_retrato_surpreso",
-					"texto": "Você é o Henrique? O das câmeras? A Clarice me guiou a Biblioteca com o que você via."
+					"texto": "Você é o Henrique? O das câmeras? A Clarice me guiou na Biblioteca com o que você via."
 				},
 				{
 					"quem": "Henrique",
 					"retrato": "henrique/henrique_retrato_normal",
-					"texto": "Sou. Eu... prefiro passar tudo pela Clarice, na verdade. Pessoalmente eu me enrolo. Quer dizer, me enrolo bastante."
+					"texto": "Sou. Henrique, de 2019. Eu... prefiro passar tudo pela Clarice. Pessoalmente eu me enrolo. Quer dizer, me enrolo bastante."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_surpreso",
+					"texto": "2019? Você é o aluno que sumiu na Biblioteca! Lá no campus todo mundo conta essa história."
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_timido",
+					"texto": "Contam? Eu virei... história de corredor. Quer dizer, faz sentido. Eu sumi."
 				},
 				{
 					"quem": "Gabriel",
 					"retrato": "gabriel/gabriel_retrato_normal",
-					"texto": "Funcionou. Eu cheguei até aqui."
+					"texto": "As suas dicas funcionaram. Cheguei até aqui."
 				},
 				{
 					"quem": "Henrique",
@@ -73,12 +83,12 @@
 				{
 					"quem": "Henrique",
 					"retrato": "henrique/henrique_retrato_normal",
-					"texto": "Bunker de pesquisa, embaixo do núcleo da Âncora. Os robôs não descem. Pelo que vi, nem sabem que existe."
+					"texto": "Bunker de pesquisa, embaixo do núcleo da Âncora. Os robôs patrulham os corredores daqui também. Por isso eu fico trancado."
 				},
 				{
 					"quem": "Henrique",
-					"retrato": "henrique/henrique_retrato_normal",
-					"texto": "A energia vem direto da Âncora. Por isso as telas funcionam."
+					"retrato": "henrique/henrique_retrato_nervoso",
+					"texto": "Lá fora eles passam de tempos em tempos. Aqui dentro, não. Quer dizer, até agora não."
 				},
 				{
 					"quem": "Gabriel",
@@ -108,7 +118,7 @@
 				{
 					"quem": "Henrique",
 					"retrato": "henrique/henrique_retrato_nervoso",
-					"texto": "Teoria não é fato. Eu só... li sobre isso, antes. Esquece. Próxima pergunta."
+					"texto": "Teoria não é fato. Eu só... li sobre isso, antes. Quer dizer, pesquisei. Um pouco. Esquece. Próxima pergunta."
 				}
 			],
 			"vai_para": "mais_alguma"
@@ -149,12 +159,12 @@
 				{
 					"quem": "Henrique",
 					"retrato": "henrique/henrique_retrato_normal",
-					"texto": "Vai com cuidado. A Clarice e a Diana ficam na escuta, e eu também. Se precisar, é só chamar."
+					"texto": "Vai com cuidado. Os robôs passam no corredor de... de tempos em tempos. Escuta antes de sair."
 				},
 				{
 					"quem": "Henrique",
 					"retrato": "henrique/henrique_retrato_timido",
-					"texto": "E... obrigado por vir até aqui. Quase ninguém vem."
+					"texto": "E... obrigado por vir até aqui. Ninguém vem."
 				}
 			]
 		},
@@ -173,7 +183,22 @@
 				{
 					"quem": "Henrique",
 					"retrato": "henrique/henrique_retrato_nervoso",
-					"texto": "Estou tentando entender. Por isso fico aqui embaixo, escondido, olhando tudo. Quando eu entender, eu... aviso."
+					"texto": "Estou tentando entender. Por isso fico aqui embaixo, olhando tudo. Quando eu entender, eu... aviso."
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "E consertar. Tudo. A fenda, a máquina, mandar cada um de volta. Quer dizer, entender primeiro. Depois consertar."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "Sozinho? A gente podia ajudar."
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_nervoso",
+					"texto": "Não. Quer dizer... é melhor cada um no seu canto. Juntos, a gente chama atenção. Eu vejo pelas câmeras e aviso a Clarice. Funciona assim."
 				}
 			],
 			"vai_para": "mais_alguma"
