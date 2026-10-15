@@ -10,6 +10,5 @@ Comece pelo **[Enredo Principal](enredo_principal.md)**. Ele é a lei do projeto
 | [`roteiro/`](roteiro/) | Roteiro das cutscenes |
 | [`template_documento.md`](template_documento.md) | Modelo para escrever um bilhete, diário ou relatório novo |
 | [`template_personagem.md`](template_personagem.md) | Modelo de ficha para um personagem novo |
-| [`outras_ideias.md`](outras_ideias.md) | Ideias para resolver as pendências do Enredo. **Ainda não decididas** e não valem como lei |
 
 Mudança de história entra **no mesmo PR** no Enredo Principal e em [`../decisoes.md`](../decisoes.md).

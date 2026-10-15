@@ -70,7 +70,6 @@ docs/
     ├── README.md                  # Índice da pasta: comece pelo Enredo Principal
     ├── template_documento.md      # Modelo para escrever bilhetes, diários e relatórios
     ├── template_personagem.md     # Modelo de ficha para um personagem novo
-    ├── outras_ideias.md           # Ideias ainda não decididas (não é lei)
     ├── personagens/               # Uma ficha por personagem (parte do Enredo Principal)
     │   ├── resumo.md              # Resumo de todos os personagens, para consulta rápida
     │   ├── gabriel.md             # O protagonista: estados, estamina, inventário
