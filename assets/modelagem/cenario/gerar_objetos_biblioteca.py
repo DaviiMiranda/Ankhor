@@ -112,15 +112,29 @@ def chave(d, x, y):
 
 
 def chave_manutencao():
+    """Chave de latão de cabeça quadrada e dois dentes, com a etiqueta de
+    papel presa por um arame na argola (chave_manutencao_detalhe.png): o
+    nome escrito em azul e uma faixa azul embaixo."""
     icone = Desenho(16, 16)
-    chave(icone, 2, 6)
-    # Etiqueta de papel presa na argola: "MANUT."
-    icone.ret(1, 10, 6, 14, ETIQUETA)
-    icone.ret(2, 12, 5, 12, AZUL_ESCURO)
-    icone.ret(1, 14, 6, 14, BEGE_ESCURO)
+    icone.ret(1, 2, 5, 6, LATAO)
+    icone.ret(2, 3, 4, 5, (0, 0, 0, 0))
+    icone.ret(1, 2, 5, 2, LATAO_CLARO)
+    icone.ret(6, 3, 14, 4, LATAO)
+    icone.ret(6, 3, 14, 3, LATAO_CLARO)
+    icone.px(10, 5, LATAO_ESCURO)
+    icone.px(13, 5, LATAO_ESCURO)
+    icone.px(10, 6, LATAO_ESCURO)
+    icone.px(13, 6, LATAO_ESCURO)
+    icone.px(3, 7, METAL_CLARO)
+    icone.ret(3, 8, 13, 14, ETIQUETA)
+    icone.ret(6, 10, 12, 10, AZUL_ESCURO)
+    icone.ret(3, 12, 13, 13, AZUL)
+    icone.ret(3, 14, 13, 14, BEGE_ESCURO)
     icone.salvar(PASTA_ITENS, "chave_manutencao.png")
-    chao = Desenho(10, 4)
+    chao = Desenho(10, 5)
     chave(chao, 0, 0)
+    chao.ret(1, 4, 4, 4, ETIQUETA)
+    chao.px(4, 4, AZUL)
     chao.salvar(PASTA_ITENS, "chave_manutencao_chao.png")
 
 

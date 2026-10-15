@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blpqajwat53rs"
-path="res://.godot/imported/gabriel_retrato_envergonhado.png-0498b948bfeb5da7e7509bc63c507da3.ctex"
+uid="uid://bbxvpyebgs06y"
+path="res://.godot/imported/chave_deposito_detalhe.png-21cc03b80037c5c9bcb6bcd829125f79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/personagens/gabriel/gabriel_retrato_envergonhado.png"
-dest_files=["res://.godot/imported/gabriel_retrato_envergonhado.png-0498b948bfeb5da7e7509bc63c507da3.ctex"]
+source_file="res://assets/sprites/itens/chave_deposito_detalhe.png"
+dest_files=["res://.godot/imported/chave_deposito_detalhe.png-21cc03b80037c5c9bcb6bcd829125f79.ctex"]
 
 [params]
 

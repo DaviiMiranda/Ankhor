@@ -13,6 +13,12 @@
 [ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="i_clarao"]
 [ext_resource type="Resource" path="res://dados/itens/pedra.tres" id="i_pedra"]
 [ext_resource type="Resource" path="res://dados/itens/notebook.tres" id="i_notebook"]
+[ext_resource type="Resource" path="res://dados/itens/chave_manutencao.tres" id="i_chave_manutencao"]
+[ext_resource type="Resource" path="res://dados/itens/disquete_clarice.tres" id="i_disquete_clarice"]
+[ext_resource type="Resource" path="res://dados/itens/chave_grade.tres" id="i_chave_grade"]
+[ext_resource type="Resource" path="res://dados/itens/molho_de_chaves.tres" id="i_molho_de_chaves"]
+[ext_resource type="Resource" path="res://dados/itens/chave_deposito.tres" id="i_chave_deposito"]
+[ext_resource type="Resource" path="res://dados/itens/alicate.tres" id="i_alicate"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/clarice_em_pe.tscn" id="p_clarice"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/zane.tscn" id="p_zane"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/baltazar.tscn" id="p_baltazar"]
@@ -111,6 +117,30 @@ item = ExtResource("i_pedra")
 [node name="Notebook" parent="Objetos" instance=ExtResource("i_item")]
 position = Vector2(370, 150)
 item = ExtResource("i_notebook")
+
+[node name="ChaveManutencao" parent="Objetos" instance=ExtResource("i_item")]
+position = Vector2(470, 160)
+item = ExtResource("i_chave_manutencao")
+
+[node name="DisqueteClarice" parent="Objetos" instance=ExtResource("i_item")]
+position = Vector2(494, 160)
+item = ExtResource("i_disquete_clarice")
+
+[node name="ChaveGrade" parent="Objetos" instance=ExtResource("i_item")]
+position = Vector2(518, 160)
+item = ExtResource("i_chave_grade")
+
+[node name="MolhoDeChaves" parent="Objetos" instance=ExtResource("i_item")]
+position = Vector2(542, 160)
+item = ExtResource("i_molho_de_chaves")
+
+[node name="ChaveDeposito" parent="Objetos" instance=ExtResource("i_item")]
+position = Vector2(566, 160)
+item = ExtResource("i_chave_deposito")
+
+[node name="Alicate" parent="Objetos" instance=ExtResource("i_item")]
+position = Vector2(590, 160)
+item = ExtResource("i_alicate")
 
 [node name="Clarice" parent="Objetos" instance=ExtResource("p_clarice")]
 position = Vector2(104, 134)

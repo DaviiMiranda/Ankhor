@@ -157,6 +157,14 @@ offset_right = 294.0
 offset_bottom = 124.0
 label_settings = SubResource("LabelSettings_situacao")
 
+[node name="Examinar" type="Label" parent="Janela/Itens"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 126.0
+offset_right = 294.0
+offset_bottom = 140.0
+label_settings = SubResource("LabelSettings_dica")
+
 [node name="Anotacoes" parent="Janela" instance=ExtResource("5_anotacoes")]
 visible = false
 

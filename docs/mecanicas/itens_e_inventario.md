@@ -20,6 +20,8 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 - **Gadgets:** **3 espaços**, um para cada ferramenta equipável prevista em [`docs/historia/personagens/gabriel.md`](../historia/personagens/gabriel.md): lanterna, cápsulas de clarão e objetos de arremesso. Equipar não tira o item da grade; o espaço de gadget é um atalho para ele.
 - **Aviso de `E`:** perto de um item ou de uma pilha, aparece só a tecla `[E]` em cima dele, sem texto. O nome do item aparece depois de pegar ("Você pegou: ...") e a descrição fica no inventário. Documentos continuam com o verbo (`[E] Ler o bilhete`), porque ler é uma ação diferente de pegar. Quem decide o texto é o `texto_acao` do `Interagivel`: vazio mostra só a tecla.
 - Ao pegar um gadget com um espaço livre, ele já é equipado.
+- **Item novo (primeira vez):** ao pegar um item pela primeira vez no jogo, o jogo pausa e abre a **tela de item novo**: a imagem detalhada, o nome e a descrição. `E` ou `Esc` guardam e voltam ao jogo. Detalhes na seção 3.
+- **Examinar:** no inventário, com um item escolhido, `E` abre a mesma tela (imagem detalhada, nome e descrição), com o título "Examinar" e o fundo opaco. `E` ou `Esc` voltam ao inventário. Serve para rever um item quando quiser.
 - **Item único já pego não aparece de novo:** um item que não empilha (lanterna, rádio, notebook) só aparece no chão se o Gabriel ainda não tiver um. Assim a mesma lanterna pode estar no começo de várias fases sem duplicar.
 - Na tela, os espaços de gadget ficam no canto de baixo à esquerda, com o número da tecla. A borda acende enquanto o gadget está em uso (pote destampado), e a barrinha embaixo mostra a carga.
 
@@ -36,7 +38,7 @@ Os três estão na sala de teste (menu Fases → Teste, só pelo editor) e ainda
 | Gadget | Como usa | O que faz | O custo |
 |---|---|---|---|
 | **Cápsula de clarão** (`clarao`) | Tecla do espaço | Flash que paralisa por 3,5 s os robôs a até 110 px. O tempo é multiplicado pelo `fator_clarao` do robô: Sentinela ×1,5 (enxerga, sofre mais), Rastreador ×0,6 | No máximo **2**. Paralisado, o robô apaga os olhos; depois procura o Gabriel onde está |
-| **Pedra** (`pedra`) | Tecla do espaço | Joga uma pedra ~110 px para onde o Gabriel olha (para antes de uma parede). Onde cai, faz barulho: os robôs que ouvem vão investigar | No máximo **5**. Não serve numa perseguição |
+| **Pedra** (`pedra`) | Tecla do espaço | Joga uma pedra ~110 px para onde o Gabriel olha (para antes de uma parede). Ela sai da altura do peito (`Gabriel.posicao_do_peito()`) e cai até o chão em arco. Onde cai, faz barulho: os robôs que ouvem vão investigar | No máximo **5**. Não serve numa perseguição |
 | **Notebook** (`notebook`) | Tecla do espaço, parado perto do alvo (44 px) | Hackeia: **porta trancada** abre ao vencer um minigame (ver [`hackeamento.md`](hackeamento.md)); **robô** fica desligado 8 s. Em robô, uma barra em cima do Gabriel mostra o progresso de 2,5 s | Gasta 25% da bateria (4 hacks). Durante o hack o Gabriel não se mexe e a tela acesa conta como lanterna para o Sentinela. Levar dano interrompe. Robô **só por trás** |
 
 - **Itens que empilham:** um item com `maximo_unidades` maior que 0 ocupa um espaço só; pegar outro soma 1 até o máximo (cheio, fica no chão com o aviso "no máximo N"). A barrinha do espaço mostra quantas unidades sobram e o número no canto de baixo à direita mostra a quantidade.
@@ -101,3 +103,42 @@ Para destacar outra coisa coletável, instancie `cenas/itens/destaque_coletavel.
 - Descartar ou usar itens que não são gadgets pelo inventário.
 - A luz do pote chamar a atenção dos robôs (depende da IA deles).
 - Salvar o inventário ao dormir (depende do sistema de save).
+
+---
+
+## 3. Tela de item novo (imagem detalhada)
+
+A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo novo), o jogo pausa e mostra a imagem grande do item, o nome e a descrição. É como o Resident Evil faz ao pegar um objeto.
+
+- **Quem dispara:** `Inventario.adicionar()` registra o `id` em `Inventario.vistos` e emite o sinal `item_novo`. Pegar mais uma unidade de um item que empilha (pedra, clarão) não dispara de novo.
+- **Quem mostra:** `cenas/interface/tela_item_novo.tscn`, um autoload chamado `ItemNovo`. Fica acima de todas as telas (camada 10). Se já houver outra tela aberta (menu de pausa, documento), ela espera fechar. Vários itens ao mesmo tempo entram numa fila.
+- **Fechar:** `E` ou `Esc`, só depois de 0,45 s.
+- **Sem imagem detalhada:** o item mostra o ícone de 16 × 16 ampliado em escala inteira, com a mesma descrição. Nenhum item fica sem a tela.
+- **A descrição** é o campo `descricao` do item (o mesmo que aparece no inventário). Cabem 7 linhas; se passar, o Godot avisa no console.
+- **Para testar:** a sala de teste tem um exemplar de cada item do jogo. Os das fases (chaves, molho de chaves, disquete e alicate) ficam em fila no canto direito, depois da porta dos robôs.
+- **Examinar pelo inventário:** `TelaInventario` chama `ItemNovo.examinar(item)`. Nesse modo a tela não despausa o jogo ao fechar (quem pausou foi o inventário), e o inventário ignora as teclas enquanto ela está aberta.
+- **Com imagem detalhada:** lanterna, rádio, cápsula de clarão, notebook, chave da manutenção, chave da fita azul, molho de chaves, alicate e chave do depósito. Faltam o disquete da Clarice e a pedra, que ainda mostram o ícone ampliado.
+
+### Como colocar a imagem detalhada de um item
+
+1. Gere a imagem no gerador de imagem, com o item inteiro e centralizado, sobre um **fundo escuro e liso**. Pode ter degradê, vinheta e um brilho atrás do item: o script tira. Peça **sem sombra no chão**, porque uma sombra de borda dura fica grudada no item. Estilo pixel art, o mesmo para todos os itens.
+2. Rode o script, que tira o fundo, corta rente e salva em `assets/sprites/itens/<id>_detalhe.png`:
+   ```bash
+   python assets/modelagem/itens/preparar_detalhe.py caminho/da/imagem.webp lanterna
+   ```
+   Se um vão fechado do desenho (o meio de uma argola, o espaço entre os cabos do alicate) ficar com uma mancha do brilho do fundo, rode de novo com `--furo X,Y`, onde X,Y é um ponto dentro do vão, em pixels da imagem original. Pode repetir a opção. Se, ao contrário, o fundo comer uma parte escura do item, diminua o `--passo` (padrão 7; tente 4 ou 5). Os comandos usados em cada item estão na tabela abaixo.
+3. Abra o projeto no Godot (ele cria o `.import`) e, em `dados/itens/<id>.tres`, arraste o PNG para o campo **Imagem Detalhe**.
+4. Para a tela ficar de acordo, redesenhe também o ícone (16 × 16) e o sprite do chão com as cores da imagem. Eles estão em `assets/modelagem/interface/gerar_interface.py` (gadgets), `assets/modelagem/cenario/gerar_objetos_biblioteca.py` (chave da manutenção, disquete) e `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` (chaves do bloco, molho, alicate).
+
+| Item | Opções usadas |
+|---|---|
+| `chave_grade` | `--furo 900,450 --furo 490,540` |
+| `molho_de_chaves` | `--furo 1000,350` |
+| `alicate` | `--furo 1062,524` |
+| `chave_deposito` | `--passo 4 --furo 1000,150 --furo 780,320` (o cone de luz de cima e o furo da cabeça; com o passo padrão o fundo comia a parte escura da chave) |
+| `chave_manutencao`, `clarao`, `notebook` | nenhuma |
+| `radio` | feito com a versão anterior do script (commit `0399b1a` do PR #107), que tirava a sombra num fundo de uma cor só |
+
+### Conteúdo de computação
+
+O fundo é tirado em quatro passos. (1) A cor do fundo é modelada como um **polinômio de grau 4 em x e y**, ajustado por **mínimos quadrados** e refeito só com os pixels perto do modelo (ajuste robusto: o objeto não puxa a curva). (2) O brilho forte atrás do objeto, que o polinômio não acompanha, é corrigido por **convolução normalizada**: o erro medido no fundo conhecido é espalhado para os vizinhos por uma média ponderada. (3) Uma **busca em largura (BFS)** parte das bordas e anda pelos pixels a menos de uma **distância euclidiana** (no espaço RGB) do modelo; outra BFS "escorre" pelo brilho, andando só onde a cor muda pouco de um pixel para o vizinho, e para no contorno escuro do desenho. (4) Cada mancha que sobra é um **componente conexo**; as pequenas (poeira, ruído do JPEG) somem. A fila de itens é uma **fila (FIFO)**. A matemática está comentada em `preparar_detalhe.py`.

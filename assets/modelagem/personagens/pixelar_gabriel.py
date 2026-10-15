@@ -2,6 +2,13 @@
 # sprites de jogo de verdade (pixel art no tamanho do jogo, paleta fechada)
 # e monta, a partir delas, as vistas e as animações que faltam.
 #
+# ATENÇÃO: desde 2026-10-15 os sprites do Gabriel que o jogo usa voltam a
+# sair do gerar_gabriel.py (modelo 3D), como os dos outros personagens.
+# Rodar este script como programa sobrescreve esses sprites com a pixel art
+# desenhada. Ele fica no repositório porque o pixelar_clarice.py e o
+# pixelar_seg_prologo.py importam as ferramentas daqui (recorte, k-médias,
+# contorno). Ver docs/decisoes.md.
+#
 # Como rodar (só precisa de Python 3 com Pillow e NumPy, sem Blender):
 #
 #   python assets/modelagem/personagens/pixelar_gabriel.py

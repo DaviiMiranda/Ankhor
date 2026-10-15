@@ -62,6 +62,30 @@ TAMANHO_ESPACO = 20
 TAMANHO_PAINEL = 24
 MARGEM_PAINEL = 6       # patch_margin do NinePatchRect (mude lá se mudar aqui)
 
+# Cores da lanterna, tiradas da imagem detalhada dela
+# (assets/sprites/itens/lanterna_detalhe.png): carcaça verde-oliva militar,
+# placa de aço azulada atrás, botão vermelho, alça de nylon oliva escuro.
+OLIVA = bib.hexa("#10170c", "#1c2713", "#2a3a1c", "#3a4e26", "#4f6632", "#6c8445", "#8da25a")
+ACO_AZUL = bib.hexa("#0f1219", "#1a202b", "#28313f", "#3a4658", "#52627a")
+VERMELHO_BOTAO = bib.hexa("#3a0f0c", "#6e1c15", "#b02a1e", "#e0513a")
+NYLON = bib.hexa("#0d100a", "#171c11", "#222a18", "#323b22", "#444e2f")
+
+# Cores do rádio, tiradas da imagem detalhada dele
+# (assets/sprites/itens/radio_detalhe.png): carcaça de plástico verde-oliva
+# com a quina de cima quase menta, detalhes em laranja (anel da antena, aro do
+# botão de falar, botão de emergência), tela de LCD verde e borracha cinza
+# escura na antena, na grade do alto-falante e no para-choque de baixo.
+OLIVA_RADIO = bib.hexa("#141a12", "#242e20", "#3a4630", "#535f3f", "#6c7852", "#8a9a6c", "#b5cba8")
+LARANJA_RADIO = bib.hexa("#4a1d08", "#8c3c12", "#d16b23", "#f59a51")
+LCD_RADIO = bib.hexa("#1f2e1c", "#3e5a38", "#6c8f65", "#9ed591")
+BORRACHA_RADIO = bib.hexa("#121316", "#1f2024", "#2c2c34", "#3c3e45", "#52565a", "#6f7875")
+TECLA_RADIO = bib.hexa("#5e636e", "#9298a6", "#c2ccd6")
+
+# A lâmpada da cápsula de clarão (clarao_detalhe.png), uma bolha de vidro
+# azul-clara, e a tela acesa do notebook (notebook_detalhe.png), branco-azulada.
+LAMPADA_CLARAO = bib.hexa("#2a5fb0", "#4d8fe0", "#86c3f5", "#c8ecff", "#f2fbff")
+TELA_NOTEBOOK = bib.hexa("#4f5d6e", "#7f8fa3", "#aebdd0", "#cfdbe8", "#e4edf5")
+
 
 # ---------------------------------------------------------------------------
 # Ícones dos itens
@@ -70,25 +94,36 @@ MARGEM_PAINEL = 6       # patch_margin do NinePatchRect (mude lá se mudar aqui)
 
 def lanterna():
     """A lanterna do Gabriel, a mesma peça que vai presa ao peito dele
-    (lanterna_peito): pequena e compacta, de plástico preto, deitada, com o
-    corpo à esquerda, uma tampa mais alta em volta da lente e a lente à
-    direita (borda âmbar, miolo claro). Por cima, a alça de elástico que a
-    prende ao peito. Não tem luz acesa no ícone: se ela está ligada, o
-    espaço de gadget mostra."""
+    (lanterna_peito) e que aparece na imagem detalhada
+    (lanterna_detalhe.png): carcaça verde-oliva de cantos cortados sobre uma
+    placa de aço, com o botão vermelho e as nervuras na tampa, o apoio de
+    borracha preta à esquerda e a lente redonda à direita (aro escuro,
+    miolo quente). Duas alças de nylon sobem pela placa. Não tem luz acesa
+    no ícone: se ela está ligada, o espaço de gadget mostra."""
     img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
     X, Y = img.X, img.Y
     fino = ruido(img.w, img.h, 2, 2, 7)
-    # Alça: um laço de elástico por cima do corpo.
-    laco = img.ret(4, 3, 9, 4) | img.ret(4, 3, 5, 6) | img.ret(8, 3, 9, 6)
-    img.pintar(laco, "ferrugem", 0.42)
-    # Corpo: um bloco curto de cantos cortados, mais claro no topo.
-    corpo = img.poligono([(2, 7), (3, 6), (10, 6), (10, 11), (3, 11), (2, 10)])
-    img.pintar(corpo, "metal", 0.14 + 0.2 * (Y < 8) + 0.05 * fino)
-    # Tampa da lente: mais alta que o corpo.
-    img.pintar(img.ret(10, 5, 13, 12), "metal", 0.3 + 0.14 * (Y < 7))
-    # Lente: borda âmbar e miolo claro.
-    img.pintar(img.ret(13, 6, 15, 11), "sol", 0.45)
-    img.pintar(img.ret(14, 7, 15, 10), "sol", 0.9)
+    # Alças: dois laços de nylon saindo da placa para cima.
+    for x0 in (3, 10):
+        laco = img.ret(x0, 1, x0 + 3, 2) | img.ret(x0, 1, x0 + 1, 5) | img.ret(x0 + 2, 1, x0 + 3, 5)
+        img.pintar(laco, NYLON, 0.55)
+    img.pintar(img.ret(4, 1, 5, 2) | img.ret(11, 1, 12, 2), "metal", 0.55)         # fivelas
+    # Placa de aço: só aparece nas bordas, atrás da carcaça.
+    img.pintar(img.ret(1, 4, 12, 14), ACO_AZUL, 0.5 + 0.2 * (Y < 6))
+    # Carcaça: bloco de cantos cortados, mais claro no topo e na esquerda.
+    corpo = img.poligono([(2, 6), (3, 5), (12, 5), (13, 6), (13, 12), (12, 13), (3, 13), (2, 12)])
+    img.pintar(corpo, OLIVA, 0.42 + 0.22 * (Y < 7) + 0.1 * (X < 4) + 0.05 * fino)
+    # Apoio de borracha preta, na lateral esquerda.
+    img.pintar(img.ret(2, 7, 5, 12), "metal", 0.1)
+    img.pintar(img.ret(3, 8, 4, 11), "metal", 0.28)
+    # Botão vermelho na tampa e nervuras de ventilação.
+    img.pintar(img.ret(5, 5, 8, 6), VERMELHO_BOTAO, 0.9)
+    img.pintar(img.ret(5, 6, 8, 7), VERMELHO_BOTAO, 0.4)
+    img.pintar(img.ret(9, 6, 13, 7) & (X % 2 == 1), OLIVA, 0.12)
+    # Lente: aro escuro, anel âmbar e miolo quase branco.
+    img.pintar(img.elipse(8.5, 9.5, 3.4, 3.4), "metal", 0.12)
+    img.pintar(img.elipse(8.5, 9.5, 2.4, 2.4), "lampada", 0.72)
+    img.pintar(img.ret(8, 9, 10, 11), "lampada", 1.0)
     img.contornar(CONTORNO)
     return img
 
@@ -96,10 +131,12 @@ def lanterna():
 def lanterna_chao():
     """A mesma lanterna caída no chão, na escala do cenário: um pouco maior
     que a do peito (5 x 3 px) porque aqui o contorno e o corpo aparecem
-    inteiros."""
+    inteiros. Um bloco verde-oliva com o botão vermelho e a lente acesa."""
     img = Imagem(7, 4)
-    img.pintar(img.ret(1, 1, 5, 3), "metal", 0.25)
-    img.pintar(img.ret(5, 1, 6, 3), "sol", 0.7)
+    img.pintar(img.ret(1, 1, 5, 2), OLIVA, 0.6)
+    img.pintar(img.ret(1, 2, 5, 3), OLIVA, 0.35)
+    img.pintar(img.ret(2, 1, 3, 2), VERMELHO_BOTAO, 0.9)
+    img.pintar(img.ret(5, 1, 6, 3), "lampada", 0.85)
     img.contornar(CONTORNO)
     return img
 
@@ -107,12 +144,12 @@ def lanterna_chao():
 def lanterna_peito():
     """A lanterna como aparece presa ao peito do Gabriel: 5 x 3 px (~18 cm na
     escala do personagem, 1 px ≈ 3,6 cm), pequena e escura para não chamar
-    atenção. Corpo à esquerda e a lente na ponta direita. Está apontada para
-    a direita; o jogo gira e espelha o sprite conforme a direção da mira
-    (scripts/itens/lanterna.gd)."""
+    atenção. Corpo verde-oliva escuro à esquerda e a lente na ponta direita.
+    Está apontada para a direita; o jogo gira e espelha o sprite conforme a
+    direção da mira (scripts/itens/lanterna.gd)."""
     img = Imagem(5, 3)
-    img.pintar(img.ret(1, 1, 4, 2), "metal", 0.22)
-    img.pintar(img.ret(4, 1, 5, 2), "sol", 0.55)
+    img.pintar(img.ret(1, 1, 4, 2), OLIVA, 0.3)
+    img.pintar(img.ret(4, 1, 5, 2), "lampada", 0.7)
     img.contornar(CONTORNO)
     return img
 
@@ -142,64 +179,89 @@ def pilha_chao():
 
 
 def radio():
-    """O rádio portátil do grupo (um HT da segurança, de 2008): corpo
-    de plástico preto, antena de borracha à esquerda, tela pequena de LCD
-    esverdeado e a grade do alto-falante embaixo. O botão de falar (PTT)
-    fica na lateral, em ferrugem."""
+    """O rádio portátil do grupo (um HT da segurança, de 2008), o mesmo da
+    imagem detalhada (radio_detalhe.png): carcaça verde-oliva com a quina da
+    esquerda clara, antena de borracha com anel laranja, o botão de volume em
+    cima, o botão de falar (PTT) na lateral com aro laranja, a tela de LCD
+    verde, a grade do alto-falante e a fileira de teclas embaixo (duas cinza
+    e a de emergência laranja)."""
     img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
     X, Y = img.X, img.Y
     fino = ruido(img.w, img.h, 2, 2, 11)
-    # Antena: um bastão grosso de 2 px, mais claro na ponta.
-    img.pintar(img.ret(4, 0, 6, 5), "metal", 0.18 + 0.2 * (Y == 0))
-    # Corpo: retângulo de cantos cortados, mais claro na esquerda.
-    corpo = img.poligono([(4, 5), (5, 4), (12, 4), (13, 5), (13, 15), (12, 16), (5, 16), (4, 15)])
-    img.pintar(corpo, "metal", 0.12 + 0.18 * (1 - (X - 4) / 9) + 0.05 * fino)
-    # Botão de falar na lateral esquerda.
-    img.pintar(img.ret(3, 7, 4, 10), "ferrugem", 0.5)
-    # Tela de LCD: verde apagado, com uma linha mais clara (os números).
-    tela = img.ret(6, 6, 12, 9)
-    img.pintar(tela, "verde", 0.55)
-    img.pintar(img.ret(7, 7, 11, 8), "verde", 0.8)
-    # Grade do alto-falante: pontos alternados, como furos.
-    furos = img.ret(6, 11, 12, 15) & ((X + Y) % 2 == 0)
-    img.pintar(furos, "metal", 0.02)
-    # Brilho de 1 px na quina de cima do corpo.
-    img.pintar(img.ret(5, 5, 7, 6), "metal", 0.7)
+    # Antena: bastão de 2 px, com o anel laranja perto da ponta e o colar na base.
+    img.pintar(img.ret(5, 0, 7, 6), BORRACHA_RADIO, 0.3 + 0.25 * (X == 5))
+    img.pintar(img.ret(5, 1, 7, 2), LARANJA_RADIO, 0.7)
+    img.pintar(img.ret(5, 5, 7, 6), LARANJA_RADIO, 0.55)
+    # Botão de volume em cima, à direita.
+    img.pintar(img.ret(9, 3, 13, 5), OLIVA_RADIO, 0.18 + 0.15 * (Y == 3))
+    # Carcaça: a lateral esquerda (2 px) e a frente, de cantos cortados.
+    corpo = img.poligono([(3, 6), (4, 5), (13, 5), (14, 6), (14, 14), (13, 15), (4, 15), (3, 14)])
+    img.pintar(corpo, OLIVA_RADIO, 0.5 + 0.06 * fino)
+    img.pintar(corpo & (X < 5), OLIVA_RADIO, 0.36 + 0.06 * fino)
+    img.pintar(corpo & (Y == 5) & (X > 4), OLIVA_RADIO, 0.72)
+    img.pintar(img.ret(5, 5, 6, 14), OLIVA_RADIO, 1.0)
+    # Botão de falar (PTT) na lateral, com aro laranja.
+    img.pintar(img.ret(2, 7, 4, 11), LARANJA_RADIO, 0.6)
+    img.pintar(img.ret(3, 8, 4, 10), BORRACHA_RADIO, 0.35)
+    # Tela de LCD: verde, com uma linha de números ("CH 08") mais escura.
+    img.pintar(img.ret(7, 6, 13, 9), LCD_RADIO, 0.75)
+    img.pintar(img.ret(8, 7, 12, 8) & (X != 10), LCD_RADIO, 0.3)
+    # Grade do alto-falante: fendas horizontais na borracha escura.
+    img.pintar(img.ret(7, 10, 13, 13), BORRACHA_RADIO, 0.2 + 0.25 * (Y % 2 == 1))
+    # Teclas: duas cinza e a de emergência laranja.
+    img.pintar(img.ret(7, 13, 8, 14) | img.ret(9, 13, 10, 14), TECLA_RADIO, 0.6)
+    img.pintar(img.ret(11, 13, 13, 14), LARANJA_RADIO, 0.85)
+    # Para-choque de borracha embaixo.
+    img.pintar(corpo & (Y == 14), BORRACHA_RADIO, 0.25)
     img.contornar(CONTORNO)
     return img
 
 
 def radio_chao():
     """O mesmo rádio caído no chão, na escala do cenário: um HT tem uns
-    20 cm, então ~6 px de corpo mais a antena."""
+    20 cm, então ~6 px de corpo mais a antena. Carcaça oliva com a quina
+    clara, tela verde, a grade escura e o ponto laranja da tecla."""
     img = Imagem(7, 11)
-    img.pintar(img.ret(1, 0, 2, 4), "metal", 0.3)
+    img.pintar(img.ret(1, 0, 2, 4), BORRACHA_RADIO, 0.35)
+    img.pintar(img.ret(1, 1, 2, 2), LARANJA_RADIO, 0.7)
     corpo = img.ret(1, 3, 6, 10)
-    img.pintar(corpo, "metal", 0.22)
-    img.pintar(img.ret(2, 4, 5, 6), "verde", 0.6)
-    img.pintar(img.ret(2, 7, 5, 9) & ((img.X + img.Y) % 2 == 0), "metal", 0.02)
+    img.pintar(corpo, OLIVA_RADIO, 0.45)
+    img.pintar(img.ret(1, 3, 2, 9), OLIVA_RADIO, 0.85)
+    img.pintar(img.ret(2, 4, 5, 5), LCD_RADIO, 0.8)
+    img.pintar(img.ret(2, 6, 5, 8), BORRACHA_RADIO, 0.2 + 0.2 * (img.Y == 7))
+    img.pintar(img.ret(4, 8, 5, 9), LARANJA_RADIO, 0.8)
+    img.pintar(img.ret(1, 9, 6, 10), BORRACHA_RADIO, 0.25)
     img.contornar(CONTORNO)
     return img
 
 
 def clarao():
-    """Cápsula de clarão: um cilindro curto de metal com a lente de vidro
-    na ponta (a "cara" do flash) e o anel de ferrugem do gatilho."""
+    """Cápsula de clarão (clarao_detalhe.png): cilindro de aço escuro
+    deitado, com a ponta de trás frisada e enferrujada, o anel de cobre
+    parafusado, uma braçadeira no meio e, na frente, a coroa dentada que
+    segura a lâmpada: uma bolha de vidro azul-clara."""
     img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
-    X = img.X
-    img.pintar(img.ret(4, 5, 13, 11), "metal", 0.25 + 0.3 * (1 - (X - 4) / 9))
-    img.pintar(img.ret(7, 5, 8, 11), "ferrugem", 0.6)
-    img.pintar(img.elipse(12.5, 8, 2.5, 3.5), "ceu", 0.85)
-    img.pintar(img.ret(5, 6, 7, 7), "metal", 0.8)
+    X, Y = img.X, img.Y
+    img.pintar(img.ret(1, 5, 12, 12), "metal", 0.12 + 0.35 * (Y == 6) + 0.1 * (Y == 7))
+    img.pintar(img.ret(1, 5, 4, 12) & (Y % 2 == 1), "metal", 0.02)
+    img.pintar(img.ret(1, 5, 4, 12) & (Y % 2 == 0), "ferrugem", 0.45)
+    img.pintar(img.ret(4, 5, 6, 12), "ferrugem", 0.75 + 0.2 * (Y == 5))
+    img.pintar(img.ret(8, 5, 9, 12), "metal", 0.45)
+    img.pintar(img.ret(10, 4, 12, 13), "metal", 0.2 + 0.3 * (X == 10))
+    img.pintar(img.ret(11, 4, 12, 13) & (Y % 2 == 0), "metal", 0.0)
+    img.pintar(img.elipse(13.0, 8.5, 2.6, 3.6) & (X >= 12), LAMPADA_CLARAO, 0.55)
+    img.pintar(img.elipse(13.6, 7.6, 1.2, 1.4) & (X >= 12), LAMPADA_CLARAO, 1.0)
     img.contornar(CONTORNO)
     return img
 
 
 def clarao_chao():
-    """A cápsula no chão: 5 px de corpo e a lente clara na ponta."""
+    """A cápsula no chão: o corpo escuro com o anel de cobre e a lâmpada
+    azul-clara na ponta."""
     img = Imagem(7, 4)
-    img.pintar(img.ret(0, 0, 5, 3), "metal", 0.35)
-    img.pintar(img.ret(5, 0, 7, 3), "ceu", 0.85)
+    img.pintar(img.ret(0, 0, 5, 3), "metal", 0.15)
+    img.pintar(img.ret(1, 0, 2, 3), "ferrugem", 0.75)
+    img.pintar(img.ret(5, 0, 7, 3), LAMPADA_CLARAO, 0.8)
     img.contornar(CONTORNO)
     return img
 
@@ -225,23 +287,34 @@ def pedra_chao():
 
 
 def notebook():
-    """Notebook aberto de lado: a tampa com a tela azulada acesa e a base
-    com o teclado (pontos escuros alternados)."""
+    """Notebook de campo (notebook_detalhe.png): carcaça robusta de plástico
+    cinza-chumbo com cantoneiras nas quinas e manchas de ferrugem, a tela
+    branco-azulada acesa com a barra verde e os blocos de dados, as
+    dobradiças cor de ferrugem e a base grossa com o teclado escuro."""
     img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
     X, Y = img.X, img.Y
-    img.pintar(img.ret(2, 2, 14, 10), "metal", 0.2)
-    img.pintar(img.ret(3, 3, 13, 9), "ceu", 0.35 + 0.3 * (Y - 3) / 6)
-    img.pintar(img.ret(4, 4, 9, 5), "verde", 0.9)
-    img.pintar(img.ret(1, 11, 15, 14), "metal", 0.35)
-    img.pintar(img.ret(2, 12, 14, 13) & ((X + Y) % 2 == 0), "metal", 0.05)
+    fino = ruido(img.w, img.h, 2, 2, 23)
+    img.pintar(img.ret(2, 1, 14, 10), "metal", 0.18 + 0.08 * fino)
+    img.pintar(img.ret(2, 1, 4, 3) | img.ret(12, 1, 14, 3), "metal", 0.4)
+    img.pintar(img.ret(3, 2, 13, 9), TELA_NOTEBOOK, 0.75 + 0.2 * (Y < 4))
+    img.pintar(img.ret(4, 3, 9, 4), "verde", 0.85)
+    img.pintar(img.ret(4, 6, 12, 7) & (X % 3 == 1), TELA_NOTEBOOK, 0.35)
+    img.pintar(img.ret(4, 10, 6, 11) | img.ret(10, 10, 12, 11), "ferrugem", 0.45)
+    img.pintar(img.ret(1, 11, 15, 15), "metal", 0.2 + 0.08 * fino)
+    img.pintar(img.ret(3, 11, 13, 13) & ((X + Y) % 2 == 0), "metal", 0.04)
+    img.pintar(img.ret(1, 14, 15, 15), "metal", 0.1)
+    img.pintar(img.ret(13, 13, 14, 14), "verde", 0.95)
+    img.pintar(img.ret(2, 13, 3, 14), "ferrugem", 0.4)
     img.contornar(CONTORNO)
     return img
 
 
 def notebook_chao():
-    """O notebook fechado no chão: uma placa fina com o LED aceso."""
+    """O notebook fechado no chão: uma placa grossa cinza-chumbo, com as
+    dobradiças cor de ferrugem e o LED verde aceso."""
     img = Imagem(9, 3)
-    img.pintar(img.ret(0, 0, 9, 3), "metal", 0.3)
+    img.pintar(img.ret(0, 0, 9, 3), "metal", 0.22)
+    img.pintar(img.ret(1, 0, 3, 1) | img.ret(6, 0, 8, 1), "ferrugem", 0.45)
     img.pintar(img.ret(7, 1, 8, 2), "verde", 0.95)
     img.contornar(CONTORNO)
     return img
