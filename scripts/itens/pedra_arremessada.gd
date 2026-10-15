@@ -11,14 +11,18 @@ const COR := Color(0.55, 0.55, 0.5)
 var _inicio := Vector2.ZERO
 var _fim := Vector2.ZERO
 var _altura := 0.0
+var _altura_inicial := 0.0
 
 @onready var impacto: AudioStreamPlayer2D = $Impacto
 
 
-func lancar(de: Vector2, deslocamento: Vector2) -> void:
+func lancar(de: Vector2, deslocamento: Vector2, altura_inicial: float = 0.0) -> void:
 	_inicio = de
+	_altura_inicial = altura_inicial
 	_fim = _ate_a_parede(de, de + deslocamento)
 	global_position = de
+	_altura = altura_inicial
+	queue_redraw()
 	var voo := create_tween()
 	voo.tween_method(_voar, 0.0, 1.0, segundos_voo)
 	voo.tween_callback(_cair)
@@ -34,7 +38,7 @@ func _ate_a_parede(de: Vector2, ate: Vector2) -> Vector2:
 
 func _voar(t: float) -> void:
 	global_position = _inicio.lerp(_fim, t)
-	_altura = sin(t * PI) * altura_arco
+	_altura = lerpf(_altura_inicial, 0.0, t) + sin(t * PI) * altura_arco
 	queue_redraw()
 
 
