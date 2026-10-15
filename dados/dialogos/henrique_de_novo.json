@@ -12,6 +12,10 @@
 			],
 			"escolhas": [
 				{
+					"texto": "Como vai o conserto?",
+					"vai_para": "conserto"
+				},
+				{
 					"texto": "Alguma novidade do setor B?",
 					"vai_para": "setor_b"
 				},
@@ -22,6 +26,20 @@
 				{
 					"texto": "Nada, só passando.",
 					"vai_para": "tchau"
+				}
+			]
+		},
+		"conserto": {
+			"falas": [
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_nervoso",
+					"texto": "Vai. Quer dizer... vai indo. As contas ainda não fecham."
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_normal",
+					"texto": "Quando fecharem, eu aviso a Clarice. Ela avisa vocês."
 				}
 			]
 		},
@@ -58,7 +76,7 @@
 				{
 					"quem": "Henrique",
 					"retrato": "henrique/henrique_retrato_timido",
-					"texto": "Até. Cuidado com as luzes do corredor, elas... bom. Cuidado."
+					"texto": "Até. Cuidado no corredor. O robô daqui passa a cada... bom. Escuta antes de sair."
 				}
 			]
 		}
