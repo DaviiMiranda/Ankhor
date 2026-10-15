@@ -69,33 +69,37 @@ MARGEM_PAINEL = 6       # patch_margin do NinePatchRect (mude lá se mudar aqui)
 
 
 def lanterna():
-    """A lanterna do Gabriel: uma lanterna de mão comum, de plástico preto,
-    deitada na diagonal. Cabo com o botão de borracha, cabeça mais larga e
-    a lente com a lâmpada (miolo claro, borda âmbar). Não tem luz acesa no
-    ícone: se ela está ligada, o espaço de gadget mostra."""
+    """A lanterna do Gabriel, a mesma peça que vai presa ao peito dele
+    (lanterna_peito): pequena e compacta, de plástico preto, deitada, com o
+    corpo à esquerda, uma tampa mais alta em volta da lente e a lente à
+    direita (borda âmbar, miolo claro). Por cima, a alça de elástico que a
+    prende ao peito. Não tem luz acesa no ícone: se ela está ligada, o
+    espaço de gadget mostra."""
     img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
     X, Y = img.X, img.Y
     fino = ruido(img.w, img.h, 2, 2, 7)
-    # Cabo: um bastão grosso da esquerda-baixo até o meio.
-    cabo = img.linha(3, 13, 9, 7, 2.1)
-    img.pintar(cabo, "metal", 0.16 + 0.16 * (X + Y < 16) + 0.05 * fino)
-    img.pintar(img.linha(5, 10, 6, 9, 0.8), "ferrugem", 0.45)            # botão
-    # Cabeça: mais larga, em volta da lente.
-    cabeca = img.elipse(11, 5, 3.6, 3.6) | img.linha(8, 8, 11, 5, 2.6)
-    img.pintar(cabeca, "metal", 0.22 + 0.2 * (Y < 4) + 0.05 * fino)
-    lente = img.elipse(11.8, 4.2, 2.3, 2.3)
-    img.pintar(lente, "sol", 0.35)
-    img.pintar(img.elipse(12.2, 3.8, 1.1, 1.1), "sol", 0.9)
+    # Alça: um laço de elástico por cima do corpo.
+    laco = img.ret(4, 3, 9, 4) | img.ret(4, 3, 5, 6) | img.ret(8, 3, 9, 6)
+    img.pintar(laco, "ferrugem", 0.42)
+    # Corpo: um bloco curto de cantos cortados, mais claro no topo.
+    corpo = img.poligono([(2, 7), (3, 6), (10, 6), (10, 11), (3, 11), (2, 10)])
+    img.pintar(corpo, "metal", 0.14 + 0.2 * (Y < 8) + 0.05 * fino)
+    # Tampa da lente: mais alta que o corpo.
+    img.pintar(img.ret(10, 5, 13, 12), "metal", 0.3 + 0.14 * (Y < 7))
+    # Lente: borda âmbar e miolo claro.
+    img.pintar(img.ret(13, 6, 15, 11), "sol", 0.45)
+    img.pintar(img.ret(14, 7, 15, 10), "sol", 0.9)
     img.contornar(CONTORNO)
     return img
 
 
 def lanterna_chao():
-    """A mesma lanterna caída no chão, na escala do cenário (~20 cm = 6 px)."""
-    img = Imagem(10, 5)
-    img.pintar(img.ret(0, 1, 6, 4), "metal", 0.25)
-    img.pintar(img.ret(6, 0, 9, 5), "metal", 0.35)
-    img.pintar(img.ret(8, 1, 9, 4), "sol", 0.7)
+    """A mesma lanterna caída no chão, na escala do cenário: um pouco maior
+    que a do peito (5 x 3 px) porque aqui o contorno e o corpo aparecem
+    inteiros."""
+    img = Imagem(7, 4)
+    img.pintar(img.ret(1, 1, 5, 3), "metal", 0.25)
+    img.pintar(img.ret(5, 1, 6, 3), "sol", 0.7)
     img.contornar(CONTORNO)
     return img
 
