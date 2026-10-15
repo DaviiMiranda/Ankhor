@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-15 — O menu principal perde o sombreamento escuro nas bordas da tela
+**Decisão:** o menu principal não tem mais a **vinheta pixelada** escura que cobria as bordas e os cantos da tela inteira (o nó `Vinheta`, com `shaders/vinheta.gdshader`). A cena do monitor aparece clara até a borda. O efeito CRT dentro do vidro do monitor (linhas, cantos arredondados e um leve escurecimento nas pontas do vidro) continua.
+**Por quê:** pedido do Davi: o sombreamento ao redor da tela do jogo, no menu, escurecia a cena e não era desejado.
+**Afeta:** `cenas/menu_principal.tscn` (nó `Vinheta` e seus recursos saíram). O `vinheta.gdshader` continua em uso nas salas.
+
 ## 2026-10-15 — A Biblioteca fica futurista, e a tecnologia acorda com a energia
 **Decisão:** a Biblioteca ganha o visual de 3026 que o vídeo da abertura (`seg_acordar`) já mostrava: racks de arquivo no lugar de parte das estantes (mesma medida, pegada e camada de colisão, então a visão dos robôs e os esconderijos não mudam), mesas holográficas, cabines de vidro ciano, torres de equipamentos, vãos de servidores nas paredes e no fundo pintado, letreiros das portas e a placa SILÊNCIO holográficos, conduítes, gerador e painel de distribuição na manutenção e um robô bibliotecário desligado na doca do balcão (só cenário). A tecnologia **acorda com a energia**: antes de religar os disjuntores as peças novas aparecem apagadas, e quando a marca `energia` chega elas acendem em ciano, piscando como as luzes de emergência; só a cabine começa acesa. As relíquias dos anos 80 do Carlos (monitores de tubo, telefone, disquete, quadro de chaves) continuam. Luz nova não revela o Gabriel (`revela_quem_passa` desligado). Nenhum item, gatilho, posição de interação, rota de robô ou puzzle mudou.
 **Por quê:** pedido do Davi (Enredo, seção 12.5: cenários mais futuristas). O jogo contradizia o vídeo logo no primeiro minuto, e a Fase 1 parecia mais antiga que o Bloco de salas, que já ficou futurista.
