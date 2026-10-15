@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-15 — O Enredo Principal fica só com a história
+**Decisão:** o Enredo Principal passa a ter só o que é história, mundo e personagens. As antigas seções 9 ("Temas e tom") e 10 ("Como a história chega ao jogador") foram para o guia de escrita em `docs/historia/roteiro/README.md`. O Vocabulário oficial vira a seção 9. As pendências viram a **seção 10**, a última, e passam a ser só **perguntas sobre a história**, em seis grupos: o mundo de 3026, o Carlos, o Henrique e a mentira, os outros personagens, a estrutura da história, e a volta e o fim. O que era de arte, mecânica, fases e textos antigos foi para o documento novo `docs/pendencias_de_producao.md`.
+**Por quê:** pedido do Davi: as seções 9, 10 e as pendências misturavam roteiro com produção.
+**Afeta:** `docs/historia/enredo_principal.md`, `docs/historia/roteiro/README.md`, `docs/pendencias_de_producao.md` (novo) e as referências às seções antigas nas fichas, no resumo, nos modelos, nas fases (Biblioteca, Bloco de salas, Centro de Convivência, Labirinto) e no agente `roteirista`. A referência em `docs/fases/bunker.md` fica para o PR #119, que reescreve aquela linha.
+
 ## 2026-10-15 — Objetos discretos dos personagens no menu principal (teste)
 **Decisão:** a mesa do menu principal ganha três objetos pequenos, só para quem procura: o **anel da avó do Gabriel**, gasto, deitado na madeira entre o teclado e a caneca; os **óculos do Zane**, um visor de 2123 com armação grafite, linha de luz ciano e um detalhe amarelo-ácido, em pé na prateleira do meio da estante do fundo, na frente dos livros; e o **símbolo dos Faroleiros** rabiscado a caneta no post-it da moldura do monitor, feito a partir da pintura do símbolo que o Davi mandou (com as cores invertidas: tinta escura no papel). Cada objeto é um Sprite2D por cima da arte, no nó `ObjetosDosPersonagens`; a `menu_cena.png` não mudou. Os óculos não estão na ficha do Zane: são um objeto novo, que combina com o visual dele.
 **Por quê:** pedido do Davi: o menu lembrar alguns personagens bem discretamente. É um teste, para o grupo ver se fica.

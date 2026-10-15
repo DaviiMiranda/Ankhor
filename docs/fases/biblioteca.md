@@ -165,7 +165,7 @@ Os dois robôs já existem no jogo, no Labirinto. Ver [`../historia/personagens/
 
 - **Sala segura:** a **sala de manutenção (5)**. Fechada, escura e com porta: os robôs não entram. Gabriel pode dormir e salvar aqui.
 - **Por que aqui:** fica no meio da fase, logo depois da primeira parte difícil (acervo sul) e antes da volta pelo salão iluminado.
-- **O sonho:** o que os sonhos mostram está pendente no Enredo Principal (seção 12.4).
+- **O sonho:** o que os sonhos mostram está pendente no Enredo Principal (seção 10.5).
 
 ---
 
@@ -190,7 +190,7 @@ O Baltazar **não aparece** nesta fase: só o acampamento que ele deixou (Enredo
 
 A porta da sala 9 fica **barrada por dentro** durante toda a fase, e às vezes se ouve alguém do outro lado. Ela só abre quando Gabriel voltar à Biblioteca, mais adiante no jogo. É o gancho para o jogador querer voltar, como as portas que só se abrem mais tarde em *Resident Evil*.
 
-**Sugestão, não decisão:** o Enredo diz que o esconderijo do Baltazar fica dentro da Biblioteca, mas o lugar exato está pendente (seção 12.3). A sala de obras raras é uma boa candidata.
+**Sugestão, não decisão:** o Enredo diz que o esconderijo do Baltazar fica dentro da Biblioteca, mas o lugar exato está pendente (seção 10.4). A sala de obras raras é uma boa candidata.
 
 ---
 

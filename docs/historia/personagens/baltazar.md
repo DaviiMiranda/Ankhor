@@ -60,6 +60,6 @@
 
 ## 8. Pendências
 
-- Em que fase Gabriel o encontra e onde fica, dentro da Biblioteca, o esconderijo dele (Enredo Principal, seção 12.3).
-- Gabriel falhando na tela enquanto o Baltazar estiver fora de 1750 (seção 12.3).
+- Em que fase Gabriel o encontra e onde fica, dentro da Biblioteca, o esconderijo dele (Enredo Principal, seção 10.4).
+- Gabriel falhando na tela enquanto o Baltazar estiver fora de 1750 (seção 10.4).
 - O item do anel no inventário ainda não existe.

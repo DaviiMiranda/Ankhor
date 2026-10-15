@@ -19,7 +19,7 @@
 - **O que quer:** resolver tudo aquilo e descobrir o que o Henrique esconde.
 - **O que teme:** pendente. O medo antigo (a IA) saiu: em 3026 a IA é uma ferramenta, sem consciência (Enredo Principal, seção 2.1).
 - **Defeito:** confia demais na tecnologia: acha que toda máquina tem conserto.
-- **Arco:** pendente (Enredo Principal, seção 12.3). O arco antigo, ficar em 3026 para domar a IA, saiu.
+- **Arco:** pendente (Enredo Principal, seção 10.4). O arco antigo, ficar em 3026 para domar a IA, saiu.
 
 ## 3. Relações
 
@@ -31,7 +31,7 @@
 
 ## 4. No jogo
 
-- **Onde aparece:** pelo telefone desde a Biblioteca. Em pessoa, primeiro na **oficina do Labirinto** e depois no **bunker**, aonde chega depois de Gabriel (o que faz lá está pendente: Enredo, seção 12.3).
+- **Onde aparece:** pelo telefone desde a Biblioteca. Em pessoa, primeiro na **oficina do Labirinto** e depois no **bunker**, aonde chega depois de Gabriel (o que faz lá está pendente: Enredo, seção 10.4).
 - **Esconderijo:** a **oficina do Labirinto**, num canto do subsolo, perto de onde Gabriel chega. É a base dele. Só entra no bunker depois que Gabriel quebra a trava.
 - **Como chega ao jogador:** **telefone** (a primeira ligação é no balcão da Biblioteca), a frequência de rádio do grupo e, em pessoa, na oficina do Labirinto e no bunker.
 - **Função na jogabilidade:** as **comunicações**: põe Gabriel em contato com os outros, abre portas pelo sistema e tenta quebrar a senha do setor B do bunker. No Labirinto ele **entrega o notebook** a Gabriel (gadget de hackear portas e robôs) e pede que invada três nós de controle da rede do subsolo, que guardam a trava do bunker, porque de longe ele não consegue; quando o terceiro cai, chama Gabriel de volta pelo rádio e revela o alçapão escondido da oficina, que é a saída.
@@ -60,6 +60,6 @@
 
 ## 8. Pendências
 
-- O que fazia no ponto quando foi puxado (Enredo Principal, seção 12.3).
-- A cena e as conversas dele na sala de dados do bunker, que hoje só mostram o Henrique (seção 12.4).
-- O que teme e o final dele (seção 12.3). Opções em conversa: ficar em 3026 para guardar a Âncora, ficar para se juntar aos Faroleiros, ou voltar para 2123.
+- O que fazia no ponto quando foi puxado (Enredo Principal, seção 10.4).
+- A cena e as conversas dele na sala de dados do bunker, que hoje só mostram o Henrique ([pendências de produção](../../pendencias_de_producao.md)).
+- O que teme e o final dele (seção 10.4). Opções em conversa: ficar em 3026 para guardar a Âncora, ficar para se juntar aos Faroleiros, ou voltar para 2123.

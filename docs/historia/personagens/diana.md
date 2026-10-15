@@ -52,4 +52,4 @@ Nenhum ainda.
 
 ## 8. Pendências
 
-Nenhuma específica dela no momento. As pendências gerais estão no Enredo Principal, seção 12.
+Nenhuma específica dela no momento. As pendências gerais estão no Enredo Principal, seção 10. Ela ainda não tem visual: ver as [pendências de produção](../../pendencias_de_producao.md).

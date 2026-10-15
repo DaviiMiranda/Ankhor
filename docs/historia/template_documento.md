@@ -65,5 +65,5 @@ Copie daqui para baixo e preencha.
 **Conferência:**
 
 - [ ] Combina com a ficha de quem escreve no Enredo Principal (personalidade, época, o que sabe)?
-- [ ] Não responde nenhuma pendência do Enredo Principal (seção 12) como se estivesse decidida?
+- [ ] Não responde nenhuma pendência do Enredo Principal (seção 10) como se estivesse decidida?
 - [ ] Cada página cabe em 8 linhas?

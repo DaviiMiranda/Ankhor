@@ -60,6 +60,7 @@
 
 ## 8. Pendências
 
-- Como e quando o grupo descobre a mentira, e o que ele faz depois (Enredo Principal, seção 12.7).
-- Se o acesso às câmeras vira uma mecânica; como e quando a mãe morreu; onde a lenda do campus aparece para o jogador (Enredo Principal, seção 12.3).
-- As conversas do bunker (`henrique_primeiro_encontro.json` e `henrique_de_novo.json`) precisam ser conferidas: ele agora está sozinho e diz que está tentando consertar tudo (Enredo Principal, seção 12.4).
+- Como e quando o grupo descobre a mentira, e o que ele faz depois (Enredo Principal, seção 10.3).
+- Como e quando a mãe morreu; onde a lenda do campus aparece para o jogador (Enredo Principal, seção 10.3).
+- Se o acesso às câmeras vira uma mecânica ([pendências de produção](../../pendencias_de_producao.md)).
+- As conversas do bunker (`henrique_primeiro_encontro.json` e `henrique_de_novo.json`) precisam ser conferidas: ele agora está sozinho e diz que está tentando consertar tudo ([pendências de produção](../../pendencias_de_producao.md)).

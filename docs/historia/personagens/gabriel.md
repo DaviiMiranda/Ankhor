@@ -71,5 +71,5 @@
 
 ## 8. Pendências
 
-- Gabriel falhando na tela enquanto o Baltazar estiver fora de 1750 (Enredo Principal, seção 12.3).
-- O final dele com a Clarice (seção 12.1).
+- Gabriel falhando na tela enquanto o Baltazar estiver fora de 1750 (Enredo Principal, seção 10.4).
+- O final dele com a Clarice (seção 10.6).

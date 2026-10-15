@@ -64,4 +64,4 @@ Copie daqui para baixo. Dentro de `personagens/`, os links para o Enredo começa
 
 ## 8. Pendências
 
-[O que falta decidir. As pendências de história ficam na seção 12 do Enredo Principal; aqui só aponte para elas.]
+[O que falta decidir. As pendências de história ficam na seção 10 do Enredo Principal; aqui só aponte para elas.]
