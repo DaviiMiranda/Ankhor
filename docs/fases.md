@@ -3,7 +3,7 @@
 Tudo que é específico de cada fase e área do **Ankhor** fica documentado na pasta [`fases/`](fases/): salas, puzzles, robôs presentes e eventos de sonho.
 
 > [!NOTE]
-> - **Primeira Fase (Confirmada):** [`fases/biblioteca.md`](fases/biblioteca.md). Proposta de visual mais futurista, aguardando decisão: [`fases/biblioteca_modernizacao.md`](fases/biblioteca_modernizacao.md).
+> - **Primeira Fase (Confirmada):** [`fases/biblioteca.md`](fases/biblioteca.md).
 > - **Labirinto** (jogável, 3ª fase): [`fases/labirinto.md`](fases/labirinto.md). Subsolo escuro com 6 robôs, a oficina do Zane no começo e 3 salões com nós de controle para hackear; quando os 3 caem, o Zane revela o alçapão escondido da oficina, que é a saída.
 > - **Centro de Convivência** (sem lugar na ordem): [`fases/centro_de_convivencia.md`](fases/centro_de_convivencia.md). Só o que está decidido e as perguntas em aberto.
 > - **Bunker** (em desenvolvimento): [`fases/bunker.md`](fases/bunker.md). Dois setores, 9 salas, a Clarice e seis portas lacradas para depois.

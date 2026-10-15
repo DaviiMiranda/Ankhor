@@ -2,14 +2,14 @@
 
 [ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/biblioteca/biblioteca_ceu.png" id="r2"]
-[ext_resource type="Texture2D" path="res://assets/sprites/salas/biblioteca/biblioteca_fundo.png" id="r3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/biblioteca/biblioteca_fundo_moderna.png" id="r3"]
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/biblioteca/biblioteca_chao.png" id="r4"]
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/biblioteca/biblioteca_frente.png" id="r5"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/parede_porta_animada.tscn" id="r6"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/grade_seguranca.tscn" id="r7"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_vazia.tscn" id="r8"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/mesa_leitura.tscn" id="r9"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira_vr.tscn" id="r10"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/arvore.tscn" id="r11"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="r12"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cabine.tscn" id="r13"]
@@ -25,6 +25,13 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r23"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/toque_distante.tscn" id="r24"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r25"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cabine_vidro_ciano.tscn" id="fut_cabine_vidro_ciano"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/mesa_holografica.tscn" id="fut_mesa_holografica"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/rack_arquivo.tscn" id="fut_rack_arquivo"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/rack_arquivo_musgo.tscn" id="fut_rack_arquivo_musgo"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/letreiro_holografico.tscn" id="fut_letreiro"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/biblioteca/biblioteca_fundo_moderna_luz.png" id="fut_fundo_luz"]
+[ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="fut_vcm"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -40,6 +47,9 @@ shader_parameter/comprimento = 260.0
 shader_parameter/degraus = 4.0
 shader_parameter/tamanho = Vector2(300, 300)
 
+[sub_resource type="CanvasItemMaterial" id="fut_semluz"]
+light_mode = 1
+
 [node name="AlaLeste" instance=ExtResource("r1")]
 id = "biblioteca_ala_leste"
 largura = 480
@@ -53,6 +63,17 @@ texture = ExtResource("r2")
 
 [node name="Fundo" type="Sprite2D" parent="Paredes"]
 texture = ExtResource("r3")
+centered = false
+region_enabled = true
+region_rect = Rect2(960, 0, 480, 180)
+
+[node name="FundoLuz" type="Node2D" parent="Paredes"]
+script = ExtResource("fut_vcm")
+marca = "energia"
+
+[node name="Camada" type="Sprite2D" parent="Paredes/FundoLuz"]
+material = SubResource("fut_semluz")
+texture = ExtResource("fut_fundo_luz")
 centered = false
 region_enabled = true
 region_rect = Rect2(960, 0, 480, 180)
@@ -80,7 +101,7 @@ offset_left = 25.0
 offset_top = 30.0
 offset_right = 73.0
 offset_bottom = 44.0
-theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_colors/font_color = Color(0.3, 0.37, 0.4, 1)
 theme_override_styles/normal = SubResource("Placa")
 text = "SALÃO"
 horizontal_alignment = 1
@@ -90,15 +111,15 @@ offset_left = 415.0
 offset_top = 30.0
 offset_right = 463.0
 offset_bottom = 44.0
-theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_colors/font_color = Color(0.3, 0.37, 0.4, 1)
 theme_override_styles/normal = SubResource("Placa")
 text = "SAÍDA"
 horizontal_alignment = 1
 
-[node name="EstanteVaziaLeste" parent="Objetos" instance=ExtResource("r8")]
+[node name="EstanteVaziaLeste" parent="Objetos" instance=ExtResource("fut_rack_arquivo")]
 position = Vector2(50, 134)
 
-[node name="MesaLeituraLeste" parent="Objetos" instance=ExtResource("r9")]
+[node name="MesaLeituraLeste" parent="Objetos" instance=ExtResource("fut_mesa_holografica")]
 position = Vector2(110, 162)
 
 [node name="CadeiraLeste1" parent="Objetos" instance=ExtResource("r10")]
@@ -106,6 +127,7 @@ position = Vector2(64, 170)
 
 [node name="CadeiraLeste2" parent="Objetos" instance=ExtResource("r10")]
 position = Vector2(156, 150)
+lente_acesa = true
 espelhado = true
 
 [node name="ArvoreLeste" parent="Objetos" instance=ExtResource("r11")]
@@ -115,7 +137,7 @@ espelhado = true
 [node name="EntulhoLeste1" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(270, 126)
 
-[node name="CabineLeste" parent="Objetos" instance=ExtResource("r13")]
+[node name="CabineLeste" parent="Objetos" instance=ExtResource("fut_cabine_vidro_ciano")]
 position = Vector2(350, 130)
 espelhado = true
 
@@ -136,7 +158,7 @@ position = Vector2(136, 262)
 position = Vector2(190, 222)
 espelhado = true
 
-[node name="MesaLeituraLesteSul" parent="Objetos" instance=ExtResource("r9")]
+[node name="MesaLeituraLesteSul" parent="Objetos" instance=ExtResource("fut_mesa_holografica")]
 position = Vector2(340, 236)
 espelhado = true
 
@@ -161,7 +183,7 @@ position = Vector2(56, 340)
 position = Vector2(152, 340)
 espelhado = true
 
-[node name="EstanteAcervoLeste3" parent="Objetos" instance=ExtResource("r8")]
+[node name="EstanteAcervoLeste3" parent="Objetos" instance=ExtResource("fut_rack_arquivo_musgo")]
 position = Vector2(100, 398)
 
 [node name="EstanteAcervoLeste4" parent="Objetos" instance=ExtResource("r18")]
@@ -171,7 +193,7 @@ espelhado = true
 [node name="LivrosLeste3" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(146, 372)
 
-[node name="CabineLesteFundoSul" parent="Objetos" instance=ExtResource("r13")]
+[node name="CabineLesteFundoSul" parent="Objetos" instance=ExtResource("fut_cabine_vidro_ciano")]
 position = Vector2(340, 360)
 
 [node name="EntulhoLeste3" parent="Objetos" instance=ExtResource("r12")]
@@ -291,5 +313,21 @@ aviso_bloqueada = "Trancada eletronicamente. Deste lado não há painel: só abr
 color = Color(0.52, 0.54, 0.64, 1)
 
 [node name="MusicaFase" parent="." instance=ExtResource("r25")]
+
+[node name="LetreiroSalao" parent="Paredes" instance=ExtResource("fut_letreiro")]
+position = Vector2(25.0, 30.0)
+
+[node name="Texto" parent="Paredes/LetreiroSalao" index="0"]
+offset_right = 48.0
+offset_bottom = 14.0
+text = "SALÃO"
+
+[node name="LetreiroSaida" parent="Paredes" instance=ExtResource("fut_letreiro")]
+position = Vector2(415.0, 30.0)
+
+[node name="Texto" parent="Paredes/LetreiroSaida" index="0"]
+offset_right = 48.0
+offset_bottom = 14.0
+text = "SAÍDA"
 
 [editable path="Ceu"]
