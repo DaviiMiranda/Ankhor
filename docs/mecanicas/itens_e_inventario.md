@@ -21,6 +21,7 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 - **Aviso de `E`:** perto de um item ou de uma pilha, aparece só a tecla `[E]` em cima dele, sem texto. O nome do item aparece depois de pegar ("Você pegou: ...") e a descrição fica no inventário. Documentos continuam com o verbo (`[E] Ler o bilhete`), porque ler é uma ação diferente de pegar. Quem decide o texto é o `texto_acao` do `Interagivel`: vazio mostra só a tecla.
 - Ao pegar um gadget com um espaço livre, ele já é equipado.
 - **Item novo (primeira vez):** ao pegar um item pela primeira vez no jogo, o jogo pausa e abre a **tela de item novo**: a imagem detalhada, o nome e a descrição. `E` ou `Esc` guardam e voltam ao jogo. Detalhes na seção 3.
+- **Examinar:** no inventário, com um item escolhido, `E` abre a mesma tela (imagem detalhada, nome e descrição), com o título "Examinar" e o fundo opaco. `E` ou `Esc` voltam ao inventário. Serve para rever um item quando quiser.
 - **Item único já pego não aparece de novo:** um item que não empilha (lanterna, rádio, notebook) só aparece no chão se o Gabriel ainda não tiver um. Assim a mesma lanterna pode estar no começo de várias fases sem duplicar.
 - Na tela, os espaços de gadget ficam no canto de baixo à esquerda, com o número da tecla. A borda acende enquanto o gadget está em uso (pote destampado), e a barrinha embaixo mostra a carga.
 
@@ -115,6 +116,7 @@ A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo no
 - **Sem imagem detalhada:** o item mostra o ícone de 16 × 16 ampliado em escala inteira, com a mesma descrição. Nenhum item fica sem a tela.
 - **A descrição** é o campo `descricao` do item (o mesmo que aparece no inventário). Cabem 7 linhas; se passar, o Godot avisa no console.
 - **Para testar:** a sala de teste tem um exemplar de cada item do jogo. Os das fases (chaves, molho de chaves, disquete e alicate) ficam em fila no canto direito, depois da porta dos robôs.
+- **Examinar pelo inventário:** `TelaInventario` chama `ItemNovo.examinar(item)`. Nesse modo a tela não despausa o jogo ao fechar (quem pausou foi o inventário), e o inventário ignora as teclas enquanto ela está aberta.
 - **Com imagem detalhada:** lanterna, rádio, cápsula de clarão, notebook, chave da manutenção, chave da fita azul, molho de chaves, alicate e chave do depósito. Faltam o disquete da Clarice e a pedra, que ainda mostram o ícone ampliado.
 
 ### Como colocar a imagem detalhada de um item

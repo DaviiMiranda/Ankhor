@@ -10,8 +10,14 @@ const LINHAS_DESCRICAO := 7
 const DURACAO_ENTRADA := 0.28
 const AMPLITUDE_BALANCO := 1.5
 const VELOCIDADE_BALANCO := 1.6
+const ETIQUETA_NOVO := "Novo item"
+const ETIQUETA_EXAMINAR := "Examinar"
+const DICA_NOVO := "E: guardar"
+const DICA_EXAMINAR := "E: voltar"
 
 var aberto := false
+var _examinando := false
+var _opacidade_fundo := 1.0
 var _fila: Array[Item] = []
 var _tempo := 0.0
 var _base_imagem := Vector2.ZERO
@@ -32,6 +38,7 @@ var _tween: Tween
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
+	_opacidade_fundo = fundo.color.a
 	Inventario.item_novo.connect(_ao_item_novo)
 
 
@@ -51,11 +58,20 @@ func _unhandled_input(evento: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 
 
+func examinar(item: Item) -> void:
+	if not aberto:
+		_abrir(item, true)
+
+
 func _ao_item_novo(item: Item) -> void:
 	_fila.append(item)
 
 
-func _abrir(item: Item) -> void:
+func _abrir(item: Item, examinando := false) -> void:
+	_examinando = examinando
+	etiqueta.text = ETIQUETA_EXAMINAR if examinando else ETIQUETA_NOVO
+	dica.text = DICA_EXAMINAR if examinando else DICA_NOVO
+	fundo.color.a = 1.0 if examinando else _opacidade_fundo
 	_mostrar_imagem(item)
 	_mostrar_texto(item)
 	aberto = true
@@ -69,7 +85,8 @@ func _abrir(item: Item) -> void:
 func _fechar() -> void:
 	aberto = false
 	visible = false
-	get_tree().paused = false
+	if not _examinando:
+		get_tree().paused = false
 	som_fechar.play()
 
 
