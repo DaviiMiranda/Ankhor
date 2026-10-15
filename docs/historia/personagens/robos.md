@@ -4,7 +4,8 @@
 
 ## 0. Na história
 
-- Os robôs são controlados pelo **Carlos**, o antagonista (ficha em [`carlos.md`](carlos.md)). Se existe também uma IA, e qual a relação dela com o Carlos, está pendente (Enredo Principal, seção 12.2).
+- Os robôs são controlados pelo **Carlos**, o antagonista (ficha em [`carlos.md`](carlos.md)). A IA que os move **não tem consciência**: é uma ferramenta do Carlos (Enredo Principal, seção 2.1).
+- Patrulham também o **bunker**.
 - Caçam qualquer pessoa que encontram. Por que caçam (para capturar e levar ao Bloco M, ou para eliminar) está pendente.
 - Patrulham o campus por **rotinas programadas** e repetem o mesmo caminho há séculos: dá para decorar.
 - Se pegam Gabriel, é game over e o jogo volta ao último checkpoint.

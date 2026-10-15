@@ -9,7 +9,7 @@
 
 - **Época de origem:** 1994.
 - **Quem é:** aluna de processamento de dados da Unifor, com cerca de 20 anos, que mora perto do campus.
-- **História:** rodava um programa num terminal da Biblioteca de madrugada e foi puxada. Foi a primeira a notar que as rotas dos robôs formam um **grafo**. Deixou um bilhete e disquetes com senhas num terminal da Biblioteca ("Hoje à noite vou tentar entrar no sistema. Se der errado, foi mal."). Chegou a 3026 **depois do Zane e antes de Gabriel**. Fala com o grupo pela frequência de rádio que o Zane mantém. Depois de chegar à Biblioteca, foi para o **Bloco de salas** e ficou na **sala 103**, atrás de uma barricada. A **Diana** apareceu por lá depois e ela a acolheu: desde então as duas tentam descobrir o que aconteceu, com a ajuda do **Henrique** pelo rádio (ele vê o campus pelas câmeras e diz que, de alguma forma, estão em 3026), e ela mapeia a ronda dos robôs pela fresta. **É a voz do rádio que ajuda Gabriel na Biblioteca**, com o que o Henrique vê, e a **primeira pessoa que Gabriel encontra em pessoa**, na 103, de onde o ajuda a sair do bloco. A **relação dela com Gabriel vai sendo desenvolvida ao longo do jogo**.
+- **História:** rodava um programa num terminal da Biblioteca de madrugada e foi puxada. Foi a primeira a notar que as rotas dos robôs formam um **grafo**. Deixou num terminal da Biblioteca um bilhete pedindo que, se mais alguém chegasse, a procurasse no Bloco de salas, e disquetes com senhas. Chegou a 3026 **depois do Zane e antes de Gabriel**. Fala com o grupo pela frequência de rádio que o Zane mantém. Depois de chegar à Biblioteca, foi para o **Bloco de salas** e ficou na **sala 103**, atrás de uma barricada. A **Diana** apareceu por lá depois e ela a acolheu: desde então as duas tentam descobrir o que aconteceu, com a ajuda do **Henrique** pelo rádio (ele vê o campus pelas câmeras e diz que, de alguma forma, estão em 3026), e ela mapeia a ronda dos robôs pela fresta. **É a voz do rádio que ajuda Gabriel na Biblioteca**, com o que o Henrique vê, e a **primeira pessoa que Gabriel encontra em pessoa**, na 103, de onde o ajuda a sair do bloco. A **relação dela com Gabriel vai sendo desenvolvida ao longo do jogo**.
 
 ## 2. Personalidade
 
@@ -17,7 +17,7 @@
 - **Traços:** rápida, independente, prática, engraçada, competitiva.
 - **Como fala:** gírias dos anos 90 ("Isso é totalmente surreal", "meu filho", "Não confie nas luzes"), tom de deboche. Explica tudo como um problema de lógica.
 - **O que quer:** resolver o problema grande, que é sair dali, e provar que consegue sozinha.
-- **O que teme:** ser esquecida. Ficou dias sozinha antes de achar os outros.
+- **O que teme:** ser esquecida. Ficou dias sozinha antes de achar os outros: é por causa dela que o Zane deixou um rádio no balcão da Biblioteca, para que o próximo não passasse pelo mesmo.
 - **Defeito:** não pede ajuda e quer controlar tudo.
 - **Arco:** de quem resolve tudo sozinha a quem confia no grupo. A relação com Gabriel cresce nesse caminho.
 
@@ -43,7 +43,7 @@
 ## 5. Registros
 
 - **Suporte:** folha de fichário com pautas azuis e adesivos coloridos (`papel = caderno_clarice`), disquete com etiqueta escrita à mão. Na ligação, só a voz e o chiado da linha.
-- **Já escritos:** `dados/documentos/bilhete_clarice.tres` e o disquete `dados/itens/disquete_clarice.tres`. Transmissões: `clarice_biblioteca_01.tres` e `clarice_biblioteca_02.tres` (Biblioteca, balcão e acervo) e `clarice_01.tres` a `clarice_04.tres` (Bloco de salas). Quatro conversas no Bloco de salas em `dados/dialogos/clarice_bloco_*.json`. As conversas `clarice_primeiro_encontro.json` e `clarice_de_novo.json` foram escritas para ela no computador do bunker e ficaram sem uso: ela não está lá, e a cena do bunker agora mostra o Henrique (Enredo Principal, seção 12.4).
+- **Já escritos:** `dados/documentos/bilhete_clarice.tres` (ainda com o texto antigo, "Hoje à noite vou tentar entrar no sistema": precisa virar o pedido para procurá-la no Bloco de salas, Enredo Principal, seção 12.4) e o disquete `dados/itens/disquete_clarice.tres`. Transmissões: `clarice_biblioteca_01.tres` e `clarice_biblioteca_02.tres` (Biblioteca, balcão e acervo) e `clarice_01.tres` a `clarice_04.tres` (Bloco de salas). Quatro conversas no Bloco de salas em `dados/dialogos/clarice_bloco_*.json`. As conversas `clarice_primeiro_encontro.json` e `clarice_de_novo.json` foram escritas para ela no computador do bunker e ficaram sem uso: ela não está lá, e a cena do bunker agora mostra o Henrique (Enredo Principal, seção 12.4).
 
 ## 6. Direção de arte
 
