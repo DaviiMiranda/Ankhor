@@ -81,6 +81,11 @@ LCD_RADIO = bib.hexa("#1f2e1c", "#3e5a38", "#6c8f65", "#9ed591")
 BORRACHA_RADIO = bib.hexa("#121316", "#1f2024", "#2c2c34", "#3c3e45", "#52565a", "#6f7875")
 TECLA_RADIO = bib.hexa("#5e636e", "#9298a6", "#c2ccd6")
 
+# A lâmpada da cápsula de clarão (clarao_detalhe.png), uma bolha de vidro
+# azul-clara, e a tela acesa do notebook (notebook_detalhe.png), branco-azulada.
+LAMPADA_CLARAO = bib.hexa("#2a5fb0", "#4d8fe0", "#86c3f5", "#c8ecff", "#f2fbff")
+TELA_NOTEBOOK = bib.hexa("#4f5d6e", "#7f8fa3", "#aebdd0", "#cfdbe8", "#e4edf5")
+
 
 # ---------------------------------------------------------------------------
 # Ícones dos itens
@@ -231,23 +236,32 @@ def radio_chao():
 
 
 def clarao():
-    """Cápsula de clarão: um cilindro curto de metal com a lente de vidro
-    na ponta (a "cara" do flash) e o anel de ferrugem do gatilho."""
+    """Cápsula de clarão (clarao_detalhe.png): cilindro de aço escuro
+    deitado, com a ponta de trás frisada e enferrujada, o anel de cobre
+    parafusado, uma braçadeira no meio e, na frente, a coroa dentada que
+    segura a lâmpada: uma bolha de vidro azul-clara."""
     img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
-    X = img.X
-    img.pintar(img.ret(4, 5, 13, 11), "metal", 0.25 + 0.3 * (1 - (X - 4) / 9))
-    img.pintar(img.ret(7, 5, 8, 11), "ferrugem", 0.6)
-    img.pintar(img.elipse(12.5, 8, 2.5, 3.5), "ceu", 0.85)
-    img.pintar(img.ret(5, 6, 7, 7), "metal", 0.8)
+    X, Y = img.X, img.Y
+    img.pintar(img.ret(1, 5, 12, 12), "metal", 0.12 + 0.35 * (Y == 6) + 0.1 * (Y == 7))
+    img.pintar(img.ret(1, 5, 4, 12) & (Y % 2 == 1), "metal", 0.02)
+    img.pintar(img.ret(1, 5, 4, 12) & (Y % 2 == 0), "ferrugem", 0.45)
+    img.pintar(img.ret(4, 5, 6, 12), "ferrugem", 0.75 + 0.2 * (Y == 5))
+    img.pintar(img.ret(8, 5, 9, 12), "metal", 0.45)
+    img.pintar(img.ret(10, 4, 12, 13), "metal", 0.2 + 0.3 * (X == 10))
+    img.pintar(img.ret(11, 4, 12, 13) & (Y % 2 == 0), "metal", 0.0)
+    img.pintar(img.elipse(13.0, 8.5, 2.6, 3.6) & (X >= 12), LAMPADA_CLARAO, 0.55)
+    img.pintar(img.elipse(13.6, 7.6, 1.2, 1.4) & (X >= 12), LAMPADA_CLARAO, 1.0)
     img.contornar(CONTORNO)
     return img
 
 
 def clarao_chao():
-    """A cápsula no chão: 5 px de corpo e a lente clara na ponta."""
+    """A cápsula no chão: o corpo escuro com o anel de cobre e a lâmpada
+    azul-clara na ponta."""
     img = Imagem(7, 4)
-    img.pintar(img.ret(0, 0, 5, 3), "metal", 0.35)
-    img.pintar(img.ret(5, 0, 7, 3), "ceu", 0.85)
+    img.pintar(img.ret(0, 0, 5, 3), "metal", 0.15)
+    img.pintar(img.ret(1, 0, 2, 3), "ferrugem", 0.75)
+    img.pintar(img.ret(5, 0, 7, 3), LAMPADA_CLARAO, 0.8)
     img.contornar(CONTORNO)
     return img
 
@@ -273,23 +287,34 @@ def pedra_chao():
 
 
 def notebook():
-    """Notebook aberto de lado: a tampa com a tela azulada acesa e a base
-    com o teclado (pontos escuros alternados)."""
+    """Notebook de campo (notebook_detalhe.png): carcaça robusta de plástico
+    cinza-chumbo com cantoneiras nas quinas e manchas de ferrugem, a tela
+    branco-azulada acesa com a barra verde e os blocos de dados, as
+    dobradiças cor de ferrugem e a base grossa com o teclado escuro."""
     img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
     X, Y = img.X, img.Y
-    img.pintar(img.ret(2, 2, 14, 10), "metal", 0.2)
-    img.pintar(img.ret(3, 3, 13, 9), "ceu", 0.35 + 0.3 * (Y - 3) / 6)
-    img.pintar(img.ret(4, 4, 9, 5), "verde", 0.9)
-    img.pintar(img.ret(1, 11, 15, 14), "metal", 0.35)
-    img.pintar(img.ret(2, 12, 14, 13) & ((X + Y) % 2 == 0), "metal", 0.05)
+    fino = ruido(img.w, img.h, 2, 2, 23)
+    img.pintar(img.ret(2, 1, 14, 10), "metal", 0.18 + 0.08 * fino)
+    img.pintar(img.ret(2, 1, 4, 3) | img.ret(12, 1, 14, 3), "metal", 0.4)
+    img.pintar(img.ret(3, 2, 13, 9), TELA_NOTEBOOK, 0.75 + 0.2 * (Y < 4))
+    img.pintar(img.ret(4, 3, 9, 4), "verde", 0.85)
+    img.pintar(img.ret(4, 6, 12, 7) & (X % 3 == 1), TELA_NOTEBOOK, 0.35)
+    img.pintar(img.ret(4, 10, 6, 11) | img.ret(10, 10, 12, 11), "ferrugem", 0.45)
+    img.pintar(img.ret(1, 11, 15, 15), "metal", 0.2 + 0.08 * fino)
+    img.pintar(img.ret(3, 11, 13, 13) & ((X + Y) % 2 == 0), "metal", 0.04)
+    img.pintar(img.ret(1, 14, 15, 15), "metal", 0.1)
+    img.pintar(img.ret(13, 13, 14, 14), "verde", 0.95)
+    img.pintar(img.ret(2, 13, 3, 14), "ferrugem", 0.4)
     img.contornar(CONTORNO)
     return img
 
 
 def notebook_chao():
-    """O notebook fechado no chão: uma placa fina com o LED aceso."""
+    """O notebook fechado no chão: uma placa grossa cinza-chumbo, com as
+    dobradiças cor de ferrugem e o LED verde aceso."""
     img = Imagem(9, 3)
-    img.pintar(img.ret(0, 0, 9, 3), "metal", 0.3)
+    img.pintar(img.ret(0, 0, 9, 3), "metal", 0.22)
+    img.pintar(img.ret(1, 0, 3, 1) | img.ret(6, 0, 8, 1), "ferrugem", 0.45)
     img.pintar(img.ret(7, 1, 8, 2), "verde", 0.95)
     img.contornar(CONTORNO)
     return img

@@ -115,18 +115,27 @@ A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo no
 - **Sem imagem detalhada:** o item mostra o ícone de 16 × 16 ampliado em escala inteira, com a mesma descrição. Nenhum item fica sem a tela.
 - **A descrição** é o campo `descricao` do item (o mesmo que aparece no inventário). Cabem 7 linhas; se passar, o Godot avisa no console.
 - **Para testar:** a sala de teste tem um exemplar de cada item do jogo. Os das fases (chaves, molho de chaves, disquete e alicate) ficam em fila no canto direito, depois da porta dos robôs.
-- **Com imagem detalhada:** lanterna e rádio. Os outros ainda mostram o ícone ampliado.
+- **Com imagem detalhada:** lanterna, rádio, cápsula de clarão, notebook, chave da manutenção, chave da fita azul, molho de chaves e alicate. Faltam a chave do depósito, o disquete da Clarice e a pedra, que ainda mostram o ícone ampliado.
 
 ### Como colocar a imagem detalhada de um item
 
-1. Gere a imagem no gerador de imagem, com o item inteiro e centralizado, sobre um **fundo chapado de uma cor só** (cinza serve). Estilo pixel art, o mesmo para todos os itens. Uma sombra embaixo do item pode ficar: o script a reconhece e tira junto com o fundo.
+1. Gere a imagem no gerador de imagem, com o item inteiro e centralizado, sobre um **fundo escuro e liso**. Pode ter degradê, vinheta e um brilho atrás do item: o script tira. Peça **sem sombra no chão**, porque uma sombra de borda dura fica grudada no item. Estilo pixel art, o mesmo para todos os itens.
 2. Rode o script, que tira o fundo, corta rente e salva em `assets/sprites/itens/<id>_detalhe.png`:
    ```bash
    python assets/modelagem/itens/preparar_detalhe.py caminho/da/imagem.webp lanterna
    ```
+   Se um vão fechado do desenho (o meio de uma argola, o espaço entre os cabos do alicate) ficar com uma mancha do brilho do fundo, rode de novo com `--furo X,Y`, onde X,Y é um ponto dentro do vão, em pixels da imagem original. Pode repetir a opção. Os comandos usados em cada item estão na tabela abaixo.
 3. Abra o projeto no Godot (ele cria o `.import`) e, em `dados/itens/<id>.tres`, arraste o PNG para o campo **Imagem Detalhe**.
-4. Para a tela ficar de acordo, redesenhe também o ícone (16 × 16) e o sprite do chão em `assets/modelagem/interface/gerar_interface.py`, com as cores da imagem.
+4. Para a tela ficar de acordo, redesenhe também o ícone (16 × 16) e o sprite do chão com as cores da imagem. Eles estão em `assets/modelagem/interface/gerar_interface.py` (gadgets), `assets/modelagem/cenario/gerar_objetos_biblioteca.py` (chave da manutenção, disquete) e `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` (chaves do bloco, molho, alicate).
+
+| Item | Opções usadas |
+|---|---|
+| `chave_grade` | `--furo 900,450 --furo 490,540` |
+| `molho_de_chaves` | `--furo 1000,350` |
+| `alicate` | `--furo 1062,524` |
+| `chave_manutencao`, `clarao`, `notebook` | nenhuma |
+| `radio` | feito com a versão anterior do script (commit `0399b1a` do PR #107), que tirava a sombra num fundo de uma cor só |
 
 ### Conteúdo de computação
 
-O fundo é tirado por **"color to alpha"**: a transparência de cada pixel é uma função da **distância euclidiana** entre a cor dele e a cor do fundo no espaço RGB, e a cor do objeto nas bordas é recuperada invertendo a mistura `pixel = a · objeto + (1 − a) · fundo`. A sombra no chão é o fundo mais escuro (`c ≈ k · fundo`), então a distância é medida até a **reta** do preto ao fundo, com o `k` achado por **projeção (produto escalar)**. Só sai o fundo ligado às bordas da imagem, achado por uma **busca em largura (BFS)**; outra BFS, partindo do centro, apaga os pontinhos soltos do ruído do JPEG. A fila de itens é uma **fila (FIFO)**. A matemática está comentada em `preparar_detalhe.py`.
+O fundo é tirado em quatro passos. (1) A cor do fundo é modelada como um **polinômio de grau 4 em x e y**, ajustado por **mínimos quadrados** e refeito só com os pixels perto do modelo (ajuste robusto: o objeto não puxa a curva). (2) O brilho forte atrás do objeto, que o polinômio não acompanha, é corrigido por **convolução normalizada**: o erro medido no fundo conhecido é espalhado para os vizinhos por uma média ponderada. (3) Uma **busca em largura (BFS)** parte das bordas e anda pelos pixels a menos de uma **distância euclidiana** (no espaço RGB) do modelo; outra BFS "escorre" pelo brilho, andando só onde a cor muda pouco de um pixel para o vizinho, e para no contorno escuro do desenho. (4) Cada mancha que sobra é um **componente conexo**; as pequenas (poeira, ruído do JPEG) somem. A fila de itens é uma **fila (FIFO)**. A matemática está comentada em `preparar_detalhe.py`.

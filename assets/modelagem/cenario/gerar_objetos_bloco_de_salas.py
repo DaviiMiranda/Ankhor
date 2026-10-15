@@ -55,6 +55,19 @@ ESPUMA = cor("#6e5a7a")
 ESPUMA_CLARA = cor("#8e7a9a")
 ESPUMA_ESCURA = cor("#463a50")
 TRANSPARENTE = (0, 0, 0, 0)
+# Cores tiradas das imagens detalhadas (assets/sprites/itens/*_detalhe.png).
+OURO = cor("#d99a2b")
+OURO_CLARO = cor("#ffd56a")
+OURO_ESCURO = cor("#8a5418")
+FITA_AZUL = cor("#2457c9")
+FITA_AZUL_CLARA = cor("#6f9df0")
+FITA_AZUL_ESCURA = cor("#142e7a")
+CHAVEIRO = cor("#2b3f86")
+CHAVEIRO_CLARO = cor("#5068b0")
+FERRO = cor("#4a4c52")
+FERRO_CLARO = cor("#76787e")
+LARANJA_CABO = cor("#d0662f")
+LARANJA_CABO_CLARO = cor("#f08c50")
 
 
 def argola(d, cx, cy, raio, c):
@@ -77,38 +90,71 @@ def chave_pendurada(d, x, y, comprimento, c, claro, escuro):
 
 
 def molho_de_chaves():
-    """O molho de chaves do vigia: uma argola grande de arame e cinco chaves
-    penduradas, de tamanhos diferentes. Uma delas tem um pedaço de fita azul
-    na cabeça (a da grade da escada)."""
+    """O molho de chaves do vigia (molho_de_chaves_detalhe.png): uma argola
+    grande de arame e cinco chaves abertas em leque, cada uma de um metal
+    (ouro, aço, latão, ferro e latão). A do meio tem a cabeça azul: é o
+    chaveiro da Unifor, desbotado."""
     icone = Desenho(16, 16)
     argola(icone, 8, 4, 3, METAL_CLARO)
-    for x, comprimento, c in ((3, 6, LATAO), (6, 8, METAL), (9, 7, LATAO), (12, 5, METAL), (14, 6, LATAO)):
-        chave_pendurada(icone, x, 7, comprimento, c, LATAO_CLARO if c == LATAO else METAL_CLARO,
-                        LATAO_ESCURO if c == LATAO else METAL_ESCURO)
-    icone.ret(8, 7, 10, 9, AZUL)
-    icone.px(9, 8, TRANSPARENTE)
+    icone.px(6, 2, METAL)
+    icone.px(10, 2, METAL)
+    chave_pendurada(icone, 2, 7, 5, OURO, OURO_CLARO, OURO_ESCURO)
+    chave_pendurada(icone, 5, 7, 6, METAL, METAL_CLARO, METAL_ESCURO)
+    chave_pendurada(icone, 11, 7, 6, FERRO, FERRO_CLARO, METAL_ESCURO)
+    chave_pendurada(icone, 14, 7, 5, LATAO, LATAO_CLARO, LATAO_ESCURO)
+    icone.ret(7, 6, 9, 8, CHAVEIRO)
+    icone.ret(7, 6, 9, 6, CHAVEIRO_CLARO)
+    icone.px(8, 7, CONTORNO)
+    icone.ret(8, 9, 8, 14, LATAO)
+    icone.px(9, 12, LATAO_ESCURO)
+    icone.px(9, 14, LATAO_ESCURO)
     icone.salvar(PASTA_ITENS, "molho_de_chaves.png")
     chao = Desenho(10, 5)
     argola(chao, 2, 2, 2, METAL_CLARO)
-    chao.ret(4, 2, 9, 2, LATAO)
-    chao.ret(4, 4, 8, 4, METAL)
-    chao.px(6, 3, AZUL)
+    chao.ret(4, 1, 9, 1, OURO)
+    chao.ret(4, 2, 8, 2, METAL)
+    chao.ret(4, 4, 8, 4, FERRO)
+    chao.ret(4, 3, 5, 3, CHAVEIRO)
     chao.salvar(PASTA_ITENS, "molho_de_chaves_chao.png")
 
 
 def chave_grade():
-    """A chave da grade da escada, tirada do molho: chave de latão com uma
-    volta de fita isolante azul na argola, para achar no escuro."""
+    """A chave da grade da escada, tirada do molho (chave_grade_detalhe.png):
+    chave dourada de cabeça trabalhada, com um laço de fita azul na argola,
+    para achar no escuro. O laço tem duas alças em cima e duas pontas caindo."""
     icone = Desenho(16, 16)
-    chave(icone, 2, 6)
-    icone.ret(1, 5, 4, 10, AZUL)
-    icone.ret(1, 5, 4, 5, cor("#5b80c8"))
-    icone.ret(1, 10, 4, 10, AZUL_ESCURO)
-    icone.ret(2, 7, 3, 8, TRANSPARENTE)
+    icone.ret(2, 6, 5, 9, OURO)
+    icone.ret(3, 7, 4, 8, TRANSPARENTE)
+    icone.px(2, 6, OURO_CLARO)
+    icone.ret(6, 7, 13, 8, OURO)
+    icone.ret(6, 7, 13, 7, OURO_CLARO)
+    icone.px(8, 7, OURO_ESCURO)
+    icone.px(11, 7, OURO_ESCURO)
+    icone.ret(11, 9, 13, 11, OURO)
+    icone.px(12, 10, TRANSPARENTE)
+    icone.ret(11, 11, 13, 11, OURO_ESCURO)
+    icone.ret(0, 2, 2, 5, FITA_AZUL)
+    icone.ret(5, 2, 7, 5, FITA_AZUL)
+    icone.ret(0, 2, 1, 2, FITA_AZUL_CLARA)
+    icone.ret(5, 2, 6, 2, FITA_AZUL_CLARA)
+    icone.px(1, 4, FITA_AZUL_ESCURA)
+    icone.px(6, 4, FITA_AZUL_ESCURA)
+    icone.ret(3, 4, 4, 6, FITA_AZUL_ESCURA)
+    icone.px(3, 4, FITA_AZUL)
+    icone.ret(2, 10, 3, 12, FITA_AZUL)
+    icone.px(1, 13, FITA_AZUL)
+    icone.ret(5, 10, 6, 11, FITA_AZUL)
+    icone.px(7, 12, FITA_AZUL_ESCURA)
     icone.salvar(PASTA_ITENS, "chave_grade.png")
     chao = Desenho(10, 4)
-    chave(chao, 0, 0)
-    chao.ret(0, 0, 1, 3, AZUL)
+    chao.ret(0, 0, 3, 3, OURO)
+    chao.ret(1, 1, 2, 2, TRANSPARENTE)
+    chao.ret(4, 1, 9, 2, OURO)
+    chao.ret(4, 1, 9, 1, OURO_CLARO)
+    chao.px(7, 3, OURO_ESCURO)
+    chao.px(9, 3, OURO_ESCURO)
+    chao.ret(0, 0, 1, 2, FITA_AZUL)
+    chao.px(0, 0, FITA_AZUL_CLARA)
     chao.salvar(PASTA_ITENS, "chave_grade_chao.png")
 
 
@@ -138,25 +184,29 @@ def chave_deposito():
 
 
 def alicate():
-    """Alicate corta-corrente (corta-vergalhão): dois cabos compridos com
-    as pontas de borracha vermelha e, na outra ponta, a mandíbula curta de
-    aço que morde a corrente. Desenhado na diagonal, como numa caixa de
-    ferramentas."""
+    """Alicate corta-corrente (alicate_detalhe.png): dois cabos compridos de
+    aço, abertos, com as pontas de borracha (uma vermelha, outra laranja) e,
+    na outra ponta, a cabeça de aço com o parafuso do pivô e a mandíbula.
+    Desenhado na diagonal, como numa caixa de ferramentas."""
     icone = Desenho(16, 16)
-    for i in range(9):
-        icone.ret(3 + i, 12 - i, 4 + i, 12 - i, METAL_CLARO)
+    for i in range(7):
+        icone.ret(4 + i, 10 - i, 5 + i, 10 - i, METAL_CLARO)
         icone.ret(5 + i, 13 - i, 6 + i, 13 - i, METAL)
-    icone.ret(0, 11, 3, 13, VERMELHO)
-    icone.ret(0, 11, 2, 11, VERMELHO_CLARO)
-    icone.ret(2, 13, 5, 15, VERMELHO_ESCURO)
-    icone.ret(11, 1, 15, 4, METAL_ESCURO)
-    icone.ret(11, 1, 14, 1, METAL_CLARO)
-    icone.ret(13, 0, 15, 0, METAL_ESCURO)
-    icone.px(14, 2, CONTORNO)
-    icone.px(13, 3, CONTORNO)
+    icone.ret(0, 10, 3, 12, VERMELHO_ESCURO)
+    icone.ret(0, 10, 2, 10, VERMELHO)
+    icone.ret(1, 13, 4, 15, LARANJA_CABO)
+    icone.ret(1, 13, 3, 13, LARANJA_CABO_CLARO)
+    icone.px(2, 14, VERMELHO_ESCURO)
+    icone.ret(10, 2, 14, 6, METAL)
+    icone.ret(10, 2, 13, 2, METAL_CLARO)
+    icone.ret(14, 0, 15, 3, METAL_CLARO)
+    icone.px(15, 0, METAL)
+    icone.px(12, 4, CONTORNO)
+    icone.px(11, 5, METAL_ESCURO)
+    icone.px(14, 5, METAL_ESCURO)
     icone.salvar(PASTA_ITENS, "alicate.png")
     chao = Desenho(14, 4)
-    chao.ret(0, 1, 2, 2, VERMELHO)
+    chao.ret(0, 1, 2, 2, LARANJA_CABO)
     chao.ret(3, 1, 10, 1, METAL_CLARO)
     chao.ret(3, 2, 10, 2, METAL)
     chao.ret(11, 0, 13, 3, METAL_ESCURO)
