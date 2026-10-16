@@ -6,6 +6,6 @@
 script = ExtResource("1_transmissao")
 id = "zane_convivencia_02"
 falante = "ZANE (rádio)"
-falas = PackedStringArray("Chhh... Boa, Gabriel! A comutação trifásica funcionou e a trava da rampa liberou!", "Mas ó: a energia ligou também os holofotes perimetrais do pátio, e as Sentinelas mudaram de rota. Fica nas sombras até a rampa do subsolo!")
-titulo_anotacao = "Holofotes acesos e rampa destravada"
-anotacao = "Armei o comutador da Gráfica. O Zane avisou pelo rádio que a comporta da Rampa do Subsolo destravou, mas os holofotes do pátio acenderam e mudaram a ronda das Sentinelas."
+falas = PackedStringArray("Chhh... Boa, Gabriel! A comutação trifásica da cozinha funcionou e o elevador de carga do Churrasco Solar liberou!", "Mas ó: a energia acendeu também os letreiros e os holofotes da cúpula, e as Sentinelas mudaram de rota. Fica nas sombras até chegar no elevador!")
+titulo_anotacao = "Letreiros acesos e elevador destravado"
+anotacao = "Armei o comutador da cozinha da Pizzaria Quasar. O Zane avisou pelo rádio que o elevador de carga do Churrasco Solar destravou, mas os letreiros e os holofotes da cúpula acenderam e mudaram a ronda das Sentinelas."
