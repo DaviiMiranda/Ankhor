@@ -16,6 +16,19 @@ Formato:
 
 ---
 
+## 2026-10-16 — O Centro de Convivência vira uma praça de alimentação em arco, com restaurantes
+**Decisão:**
+- **O mapa tem formato de arco**, como a planta desenhada pelo Davi: a entrada no meio de cima e **quatro restaurantes** na curva. Em vista lateral, a parede de trás desce para as pontas (a equação está em `docs/fases/centro_de_convivencia.md`, seção 6), e a praça fica sob uma **cúpula de vidro quebrada**, de noite. A praça tem 2000 × 560 px.
+- **As salas viram restaurantes**, cada um com a sua cor de neon e a sua decoração: **Tapioca Orbital** (âmbar, a sala segura), **Self Nebulosa** (verde, o bufê com a faixa de louça quebrada), **Pizzaria Quasar** (vermelho, a cozinha com o quadro de comutação) e **Churrasco Solar** (magenta, o bar com o elevador de carga). A **câmara fria** do Self Nebulosa guarda a Célula de Energia. A saída para o Bunker passa a ser um **elevador de carga**, e não mais uma rampa.
+- **As funções das salas antigas continuam:** o Posto de Manutenção (sala segura) virou a Tapioca Orbital, a Cantina e o seu depósito viraram o Self Nebulosa e a câmara fria, a Gráfica (o puzzle) virou a cozinha da Pizzaria, e a Rampa do Subsolo virou o Churrasco Solar. As mesmas marcas e os mesmos itens valem (`convivencia_energia`, `celula_energia`).
+- **Sprites novos, e futuristas:** mesas com projetor de holograma, cadeiras de casca, guarda-sóis de luz, totens de pedido, postes, árvores de cúpula, balcões, forno de plasma, grelha solar, tanque criogênico... Os sprites antigos da fase (mesa de concreto, balcão da cantina, comporta da rampa e cacos de vidro) saíram.
+- **Porta nova nos restaurantes:** porta de vidro automática de duas folhas que correm para os lados, com batente de aço e friso de neon da cor do restaurante, e um som próprio (`porta_restaurante.wav`).
+- **A energia acende a praça:** com `convivencia_energia`, os letreiros, as vitrines e os frisos de luz acendem (um mapa de luz por sala), além dos holofotes.
+- **Cada sala é um fundo pronto** (uma imagem com a parede e o piso), e não mais peças de 80 e 128 px, porque a parede em arco muda de altura a cada coluna. Os objetos, as portas e os letreiros continuam em peças separadas.
+
+**Por quê:** pedido do Davi: mudar o formato do mapa para o arco do desenho dele, parar de reutilizar os mesmos sprites, deixar tudo futurista e trocar as salas por restaurantes, com uma porta diferente.
+**Afeta:** `cenas/salas/centro_de_convivencia/` (as 6 salas antigas saíram; entram `praca_central`, `loja_1` a `loja_4` e `camara_fria`; `passarela_acesso` e `fim_da_convivencia` foram refeitas), `cenas/cenario/praca/` (novo; `cenas/cenario/convivencia/` saiu), `assets/sprites/cenario/praca/` (novo; `assets/sprites/cenario/convivencia/` saiu), `assets/modelagem/cenario/gerar_praca*.py`, `gerar_restaurantes.py`, `gerar_interiores.py`, `gerar_porta_restaurante.py`, `assets/modelagem/audio/gerar_efeitos_porta_restaurante.py`, `assets/modelagem/salas/centro_de_convivencia/` (`montar_convivencia.py` e `salas_convivencia.py`), os textos de `dados/transmissoes/zane_convivencia_*.tres`, `dados/documentos/ordem_manutencao_convivencia.tres` e `panfleto_universitario.tres`, `dados/itens/celula_energia.tres`, `dados/dialogos/zane_labirinto_alcapao.json`, `scripts/sistemas/painel_comutacao.gd`, `docs/fases/centro_de_convivencia.md`, `docs/fases.md`, `docs/gdd.md`. **O Enredo Principal (seção 6, Ato 2) ainda cita a Cantina, a Gráfica Rápida, o Posto de Manutenção e a Rampa do Subsolo, e precisa ser atualizado pelo Davi.**
+
 ## 2026-10-16 — Fase Centro de Convivência e sequência final das 6 fases
 **Decisão:**
 - **A sequência oficial de fases do jogo passa a ser de 6 fases:** **Biblioteca → Bloco de salas → Labirinto → Centro de Convivência → Bunker → Laboratório** (antigo D-Tec, renomeado para "Laboratório" no menu).

@@ -67,7 +67,7 @@ O jogador explora as ruínas em vista lateral, sala por sala e prédio por préd
 | 1ª | **Biblioteca** | Despertar em 3026, primeiro contato pelo rádio com a Clarice, religar os disjuntores e sair pela ala leste. |
 | 2ª | **Bloco de salas** | Encontrar a Clarice e a Diana na sala 103, devolver o molho de chaves e abrir a porta corta-fogo do 1º andar. |
 | 3ª | **Labirinto** | Encontrar o Zane na oficina do subsolo, pegar o notebook, invadir os três nós de controle e descer pelo alçapão. |
-| 4ª | **Centro de Convivência** | Guiado pelo Zane no rádio, pegar a Célula de Energia na Cantina, resolver o comutador trifásico (Coloração de Grafos) na Gráfica e abrir a rampa do subsolo. |
+| 4ª | **Centro de Convivência** | Guiado pelo Zane no rádio, pegar a Célula de Energia na câmara fria do Self Nebulosa, resolver o comutador trifásico (Coloração de Grafos) na cozinha da Pizzaria Quasar e usar o elevador de carga do Churrasco Solar. |
 | 5ª | **Bunker** | Encontrar o Henrique na sala de dados e atravessar o setor B até a comporta do núcleo. |
 | 6ª | **Laboratório (D-Tec)** | Chegar ao laboratório de tecnologia do Bloco M, onde ficam o Carlos e a Âncora. |
 
@@ -133,7 +133,7 @@ Um campus contínuo dividido em **seis fases sequenciais**: **Biblioteca → Blo
 | **Biblioteca** | Estantes e racks de arquivo, uma árvore no meio do salão, luz do sol por um teto aberto, poeira e tecnologia de 3026 acordando com a energia | Tutorial e primeiro contato. Silêncio, disjuntores e senha da grade. |
 | **Bloco de salas** | Dois corredores e 12 salas de aula futuristas em ruínas (cadeiras VR, lousas holográficas, professor robô desligado) | Encontro com Clarice na 103, distração com o alarme da 104, claviculário e alicate. |
 | **Labirinto** | Corredores escuros no subsolo com 6 robôs, oficina do Zane cheia de hologramas e 3 salões de nós | Furtividade no escuro e invasão dos 3 nós de controle com o notebook do Zane. |
-| **Centro de Convivência** | Estrutura semi-aberta tomada pelo mato, mesas de concreto cobertas de raízes sob o luar, cantina com cacos de vidro e gráfica rápida | Contato com Zane pelo rádio, Célula de Energia, Puzzle de Coloração de Grafos e rampa com holofotes. |
+| **Centro de Convivência** | Praça de alimentação em arco sob uma cúpula de vidro quebrada, com mesas de holograma, árvores que brilham e quatro restaurantes de neon (tapiocaria, self-service, pizzaria e churrasco) | Contato com Zane pelo rádio, Célula de Energia, Puzzle de Coloração de Grafos e elevador de carga, com letreiros e holofotes que acendem. |
 | **Bunker** | Dois setores subterrâneos ("ÂNCORA-03"), corredor alagado no setor B e central de dados | Encontro com Henrique em pessoa e acesso à comporta para o Laboratório. |
 | **Laboratório (D-Tec)** | Laboratórios de eletrônica, informática, química, robótica, servidores e o salão central da máquina | Fase final no departamento de tecnologia do Bloco M. |
 
