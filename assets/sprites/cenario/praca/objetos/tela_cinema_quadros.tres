@@ -1,0 +1,36 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/objetos/tela_cinema_folha.png" id="1_folha"]
+
+[sub_resource type="AtlasTexture" id="Quadro0"]
+atlas = ExtResource("1_folha")
+region = Rect2(0, 0, 230, 78)
+
+[sub_resource type="AtlasTexture" id="Quadro1"]
+atlas = ExtResource("1_folha")
+region = Rect2(230, 0, 230, 78)
+
+[sub_resource type="AtlasTexture" id="Quadro2"]
+atlas = ExtResource("1_folha")
+region = Rect2(460, 0, 230, 78)
+
+[sub_resource type="AtlasTexture" id="Quadro3"]
+atlas = ExtResource("1_folha")
+region = Rect2(690, 0, 230, 78)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Quadro0")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro1")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro2")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro3")
+}],
+"loop": true,
+"name": &"chiado",
+"speed": 5.0
+}]

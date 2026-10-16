@@ -529,8 +529,8 @@ def cantos_em_degrau(canvas):
 SEQUENCIA = [
     "fachada_canos", "fachada_cartaz_ciano", "vitrine_loja_2", "PORTA:loja_2", ("vitrine_loja_2", True),
     "fachada_nicho", "vitrine_loja_1", "PORTA:loja_1", ("vitrine_loja_1", True), "fachada_planta",
-    "fachada_painel_solar", "fachada_lisa_b", "PORTA:entrada", ("fachada_lisa_b", True),
-    ("fachada_painel_solar", True), ("fachada_planta", True), "vitrine_loja_3", "PORTA:loja_3",
+    "ESCADA:interditada", "fachada_lisa_b", "PORTA:entrada", ("fachada_lisa_b", True),
+    "ESCADA:sobe", ("fachada_planta", True), "vitrine_loja_3", "PORTA:loja_3",
     ("vitrine_loja_3", True), ("fachada_nicho", True), "vitrine_loja_4", "PORTA:loja_4",
     ("vitrine_loja_4", True), "fachada_cartaz_ambar", "fachada_rachada",
 ]
@@ -541,6 +541,11 @@ def peca_da_coluna(coluna, pecas, porta_modulo):
     espelhar = False
     if isinstance(item, tuple):
         item, espelhar = item
+    if item.startswith("ESCADA:"):
+        import gerar_andar2
+        if item.endswith("interditada"):
+            return gerar_andar2.escada(fachada_base(10), "sobe", "FECHADA", interditada=True)
+        return gerar_andar2.escada(fachada_base(14), "sobe", "MEZANINO")
     if item.startswith("PORTA:"):
         quem = item.split(":")[1]
         cor = "ciano" if quem == "entrada" else base.COR_LOJA[quem]
@@ -568,6 +573,10 @@ def fundo_praca():
         ponto = (cx + (x_porta - cx) * 0.55, cy + (y_porta - cy) * 0.55)
         trilha_ate_a_porta(chao, (x_porta, y_porta + 4), ponto, 40, 24, base.NEON[base.COR_LOJA[loja]])
     trilha_ate_a_porta(chao, (cx + 1, base.y_base(base.COLUNA_ENTRADA) + 16), (cx, cy - 118), 46, 30, base.NEON["ciano"])
+    x_escada = base.COLUNA_ESCADA_PRACA * PECA + 41
+    y_escada = base.y_base(base.COLUNA_ESCADA_PRACA) + 16
+    ponto = (cx + (x_escada - cx) * 0.55, cy + (y_escada - cy) * 0.55)
+    trilha_ate_a_porta(chao, (x_escada, y_escada), ponto, 40, 24, base.NEON["ciano"])
     cheio = chao.chao
     tela.px[cheio] = chao.px[cheio]
     cantos_em_degrau(tela)

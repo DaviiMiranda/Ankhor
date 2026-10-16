@@ -77,6 +77,30 @@ LOJAS_PRACA = {
     "loja_4": 21,
 }
 
+# O SEGUNDO ANDAR (o mezanino): um anel em volta do vazio da praça, na mesma
+# curva do arco. Em vista lateral ele é uma faixa de LARGURA_BALCAO px de
+# profundidade que acompanha a parede de trás: da parede (y_base) até a beirada
+# da laje (y_frente), onde fica o corrimão. Abaixo da beirada é o vazio do andar
+# de baixo, que não aparece.
+ANDAR2_LARGURA = LARGURA_PRACA
+ANDAR2_ALTURA = 640
+LARGURA_BALCAO = 112
+ESPESSURA_LAJE = 14
+
+LOJAS_ANDAR2 = {
+    "grafica": 2,
+    "loja_uni": 7,
+    "cinema": 22,
+}
+COLUNA_ESCADA_MEZANINO = COLUNA_ENTRADA
+COLUNA_ESCADA_PRACA = 14
+COLUNA_ESCADA_INTERDITADA = 10
+
+
+def y_frente(coluna):
+    """Altura da beirada da laje do mezanino na coluna (onde fica o corrimão)."""
+    return y_base(coluna) + LARGURA_BALCAO
+
 
 def y_base(coluna):
     """Altura em que a parede da coluna encosta no chão (ver o cabeçalho)."""
@@ -109,6 +133,12 @@ RAMPAS.update({
     "xadrez_claro": hexa("#0e1c1d", "#162a2c", "#20403f", "#2d5a56", "#3f7a72", "#5fa095"),
     "xadrez_escuro": hexa("#060d0f", "#0b1618", "#112224", "#183033", "#21433f", "#2c5650"),
     "couro": hexa("#150a12", "#241020", "#3a1a34", "#53244a", "#6e3062", "#8a3f7c"),
+    "neon_azul": hexa("#04122e", "#0a2a66", "#1450b8", "#2a7af0", "#5aa2ff", "#a6ceff", "#e2f0ff"),
+    "neon_limao": hexa("#1c2204", "#3b4a08", "#6e8a10", "#a8cc1c", "#d4f23c", "#ecff8a", "#f9ffd0"),
+    "carpete": hexa("#070e1e", "#0d1a35", "#152a52", "#1e3d72", "#2b5290", "#3a68ae"),
+    "veludo": hexa("#14060c", "#260a16", "#3d1022", "#5a1830", "#7a2240", "#9a3052"),
+    "papel_branco": hexa("#2a2d33", "#444850", "#646a72", "#868d95", "#a9b0b6", "#c9ced2", "#e6e9eb"),
+    "concreto_fut": hexa("#101214", "#1b1e21", "#292d31", "#393e43", "#4c525a", "#626971"),
 })
 
 NEON = {
@@ -118,6 +148,8 @@ NEON = {
     "verde": "neon_verde",
     "vermelho": "neon_vermelho",
     "violeta": "neon_violeta",
+    "azul": "neon_azul",
+    "limao": "neon_limao",
 }
 
 # Cada restaurante tem a sua cor de neon: é o que o jogador usa para se
@@ -127,6 +159,9 @@ COR_LOJA = {
     "loja_2": "verde",
     "loja_3": "vermelho",
     "loja_4": "magenta",
+    "grafica": "limao",
+    "loja_uni": "azul",
+    "cinema": "violeta",
 }
 
 NOME_LOJA = {
@@ -134,6 +169,9 @@ NOME_LOJA = {
     "loja_2": "SELF NEBULOSA",
     "loja_3": "PIZZARIA QUASAR",
     "loja_4": "CHURRASCO SOLAR",
+    "grafica": "GRÁFICA QUÂNTICA",
+    "loja_uni": "LOJA UNIVERSITÁRIA",
+    "cinema": "CINE ANDRÔMEDA",
 }
 
 
@@ -154,7 +192,7 @@ NOME_LOJA = {
 # LEDs.
 
 TONS_QUE_BRILHAM = (("neon_ambar", 2), ("neon_magenta", 2), ("neon_verde", 2), ("neon_vermelho", 2),
-                    ("neon_violeta", 2), ("ciano", 2), ("bioluz", 3))
+                    ("neon_violeta", 2), ("neon_azul", 2), ("neon_limao", 2), ("ciano", 2), ("bioluz", 3))
 LEDS = ("#6cf28e", "#ffc24a", "#ff5a3a", "#8cf2ff")
 
 

@@ -45,7 +45,7 @@ X_BATENTE = 10
 X_VAO0, X_VAO1 = 4, 56
 Y_VAO0, Y_VAO1 = 8, 86
 RES_PORTAS = "res://assets/sprites/cenario/praca/portas"
-CORES = ("ambar", "verde", "vermelho", "magenta", "ciano")
+CORES = ("ambar", "verde", "vermelho", "magenta", "ciano", "azul", "limao", "violeta")
 
 
 def suave(t):

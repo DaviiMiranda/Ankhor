@@ -1,0 +1,96 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/portas/porta_limao_folha.png" id="1_folha"]
+
+[sub_resource type="AtlasTexture" id="Quadro0"]
+atlas = ExtResource("1_folha")
+region = Rect2(0, 0, 80, 88)
+
+[sub_resource type="AtlasTexture" id="Quadro1"]
+atlas = ExtResource("1_folha")
+region = Rect2(80, 0, 80, 88)
+
+[sub_resource type="AtlasTexture" id="Quadro2"]
+atlas = ExtResource("1_folha")
+region = Rect2(160, 0, 80, 88)
+
+[sub_resource type="AtlasTexture" id="Quadro3"]
+atlas = ExtResource("1_folha")
+region = Rect2(240, 0, 80, 88)
+
+[sub_resource type="AtlasTexture" id="Quadro4"]
+atlas = ExtResource("1_folha")
+region = Rect2(320, 0, 80, 88)
+
+[sub_resource type="AtlasTexture" id="Quadro5"]
+atlas = ExtResource("1_folha")
+region = Rect2(400, 0, 80, 88)
+
+[sub_resource type="AtlasTexture" id="Quadro6"]
+atlas = ExtResource("1_folha")
+region = Rect2(480, 0, 80, 88)
+
+[sub_resource type="AtlasTexture" id="Quadro7"]
+atlas = ExtResource("1_folha")
+region = Rect2(560, 0, 80, 88)
+
+[sub_resource type="AtlasTexture" id="Quadro8"]
+atlas = ExtResource("1_folha")
+region = Rect2(640, 0, 80, 88)
+
+[sub_resource type="AtlasTexture" id="Quadro9"]
+atlas = ExtResource("1_folha")
+region = Rect2(720, 0, 80, 88)
+
+[sub_resource type="AtlasTexture" id="Quadro10"]
+atlas = ExtResource("1_folha")
+region = Rect2(800, 0, 80, 88)
+
+[sub_resource type="AtlasTexture" id="Quadro11"]
+atlas = ExtResource("1_folha")
+region = Rect2(880, 0, 80, 88)
+
+[sub_resource type="AtlasTexture" id="Quadro12"]
+atlas = ExtResource("1_folha")
+region = Rect2(960, 0, 80, 88)
+
+[sub_resource type="AtlasTexture" id="Quadro13"]
+atlas = ExtResource("1_folha")
+region = Rect2(1040, 0, 80, 88)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Quadro0")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro1")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro2")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro3")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro4")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro5")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro6")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro7")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro8")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro9")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro10")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro11")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro12")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro13")
+}],
+"loop": false,
+"name": &"abrir",
+"speed": 28.0
+}]

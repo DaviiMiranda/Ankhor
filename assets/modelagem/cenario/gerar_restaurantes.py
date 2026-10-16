@@ -108,7 +108,7 @@ def letreiros():
     saida = {}
     for loja in ("loja_1", "loja_2", "loja_3", "loja_4"):
         saida[f"letreiro_{loja}"] = letreiro(base.NOME_LOJA[loja], base.COR_LOJA[loja])
-    saida["letreiro_entrada"] = letreiro("CENTRO DE CONVIVÊNCIA", "ciano", 400, 28, 16, pes=False)
+    saida["letreiro_entrada"] = letreiro("CENTRO DE CONVIVÊNCIA", "ciano", 240, 28, 16, pes=False)
     return saida
 
 
