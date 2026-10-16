@@ -16,6 +16,19 @@ Formato:
 
 ---
 
+## 2026-10-16 — A praça de alimentação ganha um segundo andar (o mezanino), com gráfica, loja da universidade e cinema
+**Decisão:**
+- **O segundo andar é um anel em volta do vazio da praça**, como na planta que o Davi desenhou: o hall com a escada no meio de cima, a **Gráfica Quântica** e a **Loja Universitária** de um lado, o **Cine Andrômeda** do outro, **corrimão de vidro nas bordas** e o andar de baixo escuro, que não aparece. Em vista lateral, o corredor é uma faixa de 112 px que acompanha o arco (a beirada da laje é a mesma equação, `y_frente = y_base + 112`), e o corrimão é um sprite na frente do Gabriel.
+- **A escada** fica ao lado da entrada da praça (coluna 14). A da coluna 10 está **interditada** (a Ordem de Impressão da gráfica diz que a fila parou no meio de milhares de avisos de área interditada).
+- **É uma área opcional**: não muda o caminho da fase (Célula de Energia, comutador, elevador de carga). Tem uma **Sentinela** de ronda no corredor, dois nichos de manutenção, pedras e pilhas (e uma cápsula de clarão no cinema) e três documentos curtos: o **aviso da Loja Universitária** (2025), a **ordem de impressão** (3026) e o **canhoto do ingresso**.
+- **Cada loja tem a sua cor de neon** (limão, azul e violeta), a mesma da porta de vidro, do letreiro e da luz da vitrine; as escadas são ciano, como as outras passagens. O cinema tem uma **tela animada** que chia "sem sinal" e um saguão com bilheteria e bomboniere.
+- **Sprites novos**: fachadas das três lojas, as escadas, o corrimão e uns 30 objetos (máquina de venda, totem de informações, plotter, copiadora, impressora 3D, araras, manequins, bilheteria, bomboniere, poltronas...). Os nomes das lojas e as cores são sugestões minhas.
+
+**Por quê:** pedido do Davi: adicionar à praça um segundo andar, com a gráfica e uma loja de roupas da universidade de um lado e um cinema do outro, como no desenho dele.
+**Afeta:** `cenas/salas/centro_de_convivencia/` (entram `segundo_andar`, `loja_uni`, `grafica` e `cinema`; `praca_central` ganha as duas escadas e a luz), `cenas/cenario/praca/` (portas azul, limão e violeta; letreiros novos; objetos novos), `assets/sprites/cenario/praca/`, `assets/modelagem/cenario/gerar_andar2.py`, `gerar_interiores_andar2.py`, `gerar_andar2_objetos.py`, `gerar_praca.py` (as escadas), `gerar_praca_base.py` (geometria do mezanino e rampas novas), `gerar_porta_restaurante.py`, `gerar_restaurantes.py` (o letreiro da entrada fica com 240 px, para não cobrir as escadas), `assets/modelagem/audio/gerar_efeitos_escada.py`, `assets/modelagem/salas/centro_de_convivencia/`, `dados/documentos/` (3 novos), `docs/fases/centro_de_convivencia.md` (seção 7). **O Enredo Principal não foi mexido**: além da divergência já registrada (a Cantina, a Gráfica Rápida, o Posto de Manutenção e a Rampa do Subsolo, na seção 6, Ato 2), ele não cita o mezanino. Se o Davi quiser, é só pedir para atualizar.
+
+---
+
 ## 2026-10-16 — O Centro de Convivência vira uma praça de alimentação em arco, com restaurantes
 **Decisão:**
 - **O mapa tem formato de arco**, como a planta desenhada pelo Davi: a entrada no meio de cima e **quatro restaurantes** na curva. Em vista lateral, a parede de trás desce para as pontas (a equação está em `docs/fases/centro_de_convivencia.md`, seção 6), e a praça fica sob uma **cúpula de vidro quebrada**, de noite. A praça tem 2000 × 560 px.
