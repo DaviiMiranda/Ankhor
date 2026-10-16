@@ -4,7 +4,7 @@
 
 A topologia do campus da Unifor em *Ankhor* é formalmente estruturada como um grafo não direcionado ponderado $G = (V, E, W)$:
 
-- **Vértices ($V$):** Cada sala de aula, corredor, saguão da biblioteca, cabine de estudo, pátio externo e laboratório do NAMI é representado por um nó no grafo com coordenadas espaciais e propriedades ambientais.
+- **Vértices ($V$):** Cada sala de aula, corredor, saguão da biblioteca, cabine de estudo, pátio do Centro de Convivência, corredor do bunker e sala do laboratório é representado por um nó no grafo com coordenadas espaciais e propriedades ambientais.
 - **Arestas ($E$):** As conexões físicas transitáveis entre dois nós vizinhos — portas, arcos de corredor, vãos em tetos desabados, escadas e frestas de passagem.
 - **Pesos das Arestas ($W$):** O custo de travessia entre dois nós adjacentes, ponderado pela fórmula:
   $$W(u, v) = \text{Distância}(u, v) \times \text{FatorPiso}(u, v)$$

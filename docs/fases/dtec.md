@@ -1,14 +1,14 @@
-# Fase — DTEC
+# Fase — Laboratório (D-Tec)
 
-> **Status:** Mapa pronto (cenário, portas, luzes e itens). Sem robôs e sem lugar na história ainda.  
-> **Área:** o DTEC, departamento de tecnologia: laboratórios, servidores e o salão de uma máquina grande  
-> **No menu Fases:** **DTEC** (começa na recepção)
+> **Status:** Mapa pronto (cenário, portas, luzes e itens). Sexta fase do jogo, depois do Bunker.  
+> **Área:** o D-Tec, departamento de tecnologia: laboratórios, servidores e o salão da Âncora / máquina central  
+> **No menu Fases:** **Laboratório** (`dados/fases/09_dtec.tres`, começa na recepção)
 
 ---
 
 ## 1. Visão Geral da Área
 
-- **O que é:** uma **fase solta**, como o Labirinto. Não se chega a ela pelos mapas atuais e ela ainda não tem lugar na história (decisão do Davi). Serve para explorar e, depois, receber robôs e um objetivo.
+- **O que é:** a **6ª fase**, logo depois do Bunker (acessada pela comporta no fim do Corredor B do Bunker).
 - **A máquina:** no salão do meio (Lab Central) há uma **máquina grande e brilhante**: um anel enorme em pé, duas torres com bobinas de cobre e, no centro do anel, um núcleo ciano que pulsa e solta faíscas. **Ela não tem nome nem papel na história.** Não é a Âncora: se um dia for, isso entra no Enredo Principal por decisão do grupo.
 - **Visual:** laboratório lacrado, mais inteiro que a Biblioteca, mas com mil anos de poeira. Azulejo branco embaixo e painel cinza em cima, com a faixa azul do DTEC entre os dois; duto de ventilação no teto; janelas de laboratório, quadros brancos (um deles com um grafo), painéis e terminais. Rachaduras com mato entrando e uma planta de escritório que tomou o canto.
 - **Luz:** fluorescentes frias que piscam. No Lab Central, a luz ciano da máquina pulsa devagar (`LuzPulsante`), e ela vaza pelas portas do salão nos dois corredores.

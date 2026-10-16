@@ -3,15 +3,16 @@
 Tudo que é específico de cada fase e área do **Ankhor** fica documentado na pasta [`fases/`](fases/): salas, puzzles, robôs presentes e eventos de sonho.
 
 > [!NOTE]
-> - **Primeira Fase (Confirmada):** [`fases/biblioteca.md`](fases/biblioteca.md).
-> - **Labirinto** (jogável, 3ª fase): [`fases/labirinto.md`](fases/labirinto.md). Subsolo escuro com 6 robôs, a oficina do Zane no começo e 3 salões com nós de controle para hackear; quando os 3 caem, o Zane revela o alçapão escondido da oficina, que é a saída.
-> - **Centro de Convivência** (sem lugar na ordem): [`fases/centro_de_convivencia.md`](fases/centro_de_convivencia.md). Só o que está decidido e as perguntas em aberto.
-> - **Bunker** (em desenvolvimento): [`fases/bunker.md`](fases/bunker.md). Dois setores, 9 salas, a Clarice e seis portas lacradas para depois.
-> - **Bloco de salas** (em desenvolvimento): [`fases/bloco_de_salas.md`](fases/bloco_de_salas.md). Dois corredores e 12 salas de aula.
-> - **DTEC** (mapa pronto, fase solta): [`fases/dtec.md`](fases/dtec.md). O departamento de tecnologia: dois corredores, 8 salas (2 trancadas para hackear, 5 portas lacradas) e, no meio, o salão de uma máquina grande e brilhante. Sem lugar na história ainda.
+> **Sequência Oficial de Fases:**
+> 1. **Biblioteca** (1ª fase): [`fases/biblioteca.md`](fases/biblioteca.md).
+> 2. **Bloco de salas** (2ª fase): [`fases/bloco_de_salas.md`](fases/bloco_de_salas.md). Dois corredores e 12 salas de aula, com a Clarice na sala 103.
+> 3. **Labirinto** (3ª fase): [`fases/labirinto.md`](fases/labirinto.md). Subsolo escuro com 6 robôs, a oficina do Zane e 3 salões com nós de controle para hackear.
+> 4. **Centro de Convivência** (4ª fase): [`fases/centro_de_convivencia.md`](fases/centro_de_convivencia.md). Pátio aberto, cantina com cacos de vidro, gráfica com puzzle de coloração de grafos e rampa de acesso ao Bunker, com contato do Zane pelo rádio.
+> 5. **Bunker** (5ª fase): [`fases/bunker.md`](fases/bunker.md). Dois setores, 9 salas e o Henrique na central de dados; a comporta no fim do setor B leva ao Laboratório.
+> 6. **Laboratório (D-Tec)** (6ª fase): [`fases/dtec.md`](fases/dtec.md). O laboratório de tecnologia onde fica a máquina central.
 > - Para entender o funcionamento do design de fases, consulte [`fases/README.md`](fases/README.md).
 > - Para criar uma nova fase/área documentada, utilize o modelo [`fases/template_fase.md`](fases/template_fase.md).
-> - **Sala de teste:** `cenas/salas/sala_teste.tscn`, uma sala vazia com os itens e gadgets prontos (lanterna, rádio, pilhas, cápsulas de clarão, pedras e notebook) para testar mecânicas novas. Aparece como **Teste**, em primeiro, no menu Fases só quando o jogo roda pelo editor do Godot; no jogo exportado ela some. Gadget novo entra nela primeiro. A porta no fim da sala leva à **área dos robôs** (`cenas/salas/labirinto_teste.tscn`), um labirinto pequeno com um Sentinela e um Rastreador, montado pelo mapa `dados/labirinto/mapa_teste.tres` (mesmas letras do labirinto: `V` Sentinela, `R` Rastreador, `P` pilha, `C` checkpoint, `L` lâmpada). Na área dos robôs há uma segunda porta, **trancada**, para testar o hack do notebook; ela também volta para a sala de teste.
+> - **Sala de teste:** `cenas/salas/sala_teste.tscn`, uma sala vazia com os itens e gadgets prontos (lanterna, rádio, pilhas, cápsulas de clarão, pedras e notebook) para testar mecânicas novas. Aparece como **Teste**, em primeiro, no menu Fases só quando o jogo roda pelo editor do Godot; no jogo exportado ela some.
 
 ---
 

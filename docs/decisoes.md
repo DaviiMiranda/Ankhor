@@ -16,6 +16,18 @@ Formato:
 
 ---
 
+## 2026-10-16 — Fase Centro de Convivência e sequência final das 6 fases
+**Decisão:**
+- **A sequência oficial de fases do jogo passa a ser de 6 fases:** **Biblioteca → Bloco de salas → Labirinto → Centro de Convivência → Bunker → Laboratório** (antigo D-Tec, renomeado para "Laboratório" no menu).
+- **Saem do jogo e da documentação** as fases descartadas **Espaço Cultural**, **NAMI** e **Reitoria** (inclusive do menu principal e de `dados/fases/`).
+- **Fase 4 — Centro de Convivência (`cenas/salas/centro_de_convivencia/`):** implementada com 7 salas jogáveis (`passarela_acesso`, `patio_central`, `cantina`, `deposito_cantina`, `grafica_rapida`, `posto_manutencao` e `rampa_subsolo`) mais a transição `fim_da_convivencia`, seguindo o documento de projeto da fase.
+- **Sem NPC presencial no Centro de Convivência:** nenhum personagem ajuda o Gabriel presencialmente na fase; todo o apoio é feito pelo **Zane via rádio** (`zane_convivencia_01` na chegada pela passarela e `zane_convivencia_02` ao pegar a célula de energia no depósito).
+- **Novo item e puzzle de Coloração de Grafos:** adicionada a **Célula de Energia de Alta Densidade** (`dados/itens/celula_energia.tres`) no Depósito da Cantina e o **Painel de Comutação Trifásico** (`cenas/sistemas/painel_comutacao.tscn`, `scripts/sistemas/painel_comutacao.gd`) no Posto de Manutenção, que exige 3-coloração de um grafo planar de 4 nós e 5 arestas para destravar a comporta da Rampa do Subsolo rumo ao Bunker.
+- **Conexões entre fases:** o alçapão da oficina do Zane no Labirinto leva à Passarela de Acesso do Centro de Convivência; a Rampa do Subsolo leva ao Bunker; e a porta blindada no fim do Corredor B do Bunker leva ao Laboratório (`fim_do_bunker.tscn` → `cenas/salas/dtec/recepcao.tscn`).
+
+**Por quê:** pedido do usuário para implementar o Centro de Convivência depois do Labirinto e antes do Bunker, com o Zane ajudando pelo rádio, seguido pelo Laboratório após o Bunker, removendo qualquer menção a outras fases.
+**Afeta:** `cenas/salas/centro_de_convivencia/` (8 cenas novas), `cenas/cenario/convivencia/` (3 cenas de kit), `cenas/sistemas/painel_comutacao.tscn` e `scripts/sistemas/painel_comutacao.gd`, `dados/itens/celula_energia.tres`, `dados/documentos/panfleto_universitario.tres` e `ordem_manutencao_convivencia.tres`, `dados/transmissoes/zane_convivencia_01.tres` e `02.tres`, `cenas/salas/labirinto.tscn`, `dados/dialogos/zane_labirinto_alcapao.json`, `cenas/salas/bunker/corredor_b.tscn` e `fim_do_bunker.tscn`, `cenas/menu_principal.tscn`, `dados/fases/` (atualizados `04_convivencia.tres` e `09_dtec.tres`; removidos `05_espaco_cultural.tres`, `06_nami.tres` e `07_reitoria.tres`), `assets/modelagem/cenario/gerar_convivencia.py`, `assets/modelagem/salas/centro_de_convivencia/montar_convivencia.py` e toda a documentação em `docs/`.
+
 ## 2026-10-15 — O Enredo Principal fica só com a história
 **Decisão:** o Enredo Principal passa a ter só o que é história, mundo e personagens. As antigas seções 9 ("Temas e tom") e 10 ("Como a história chega ao jogador") foram para o guia de escrita em `docs/historia/roteiro/README.md`. O Vocabulário oficial vira a seção 9. As pendências viram a **seção 10**, a última, e passam a ser só **perguntas sobre a história**, em seis grupos: o mundo de 3026, o Carlos, o Henrique e a mentira, os outros personagens, a estrutura da história, e a volta e o fim. O que era de arte, mecânica, fases e textos antigos foi para o documento novo `docs/pendencias_de_producao.md`.
 **Por quê:** pedido do Davi: as seções 9, 10 e as pendências misturavam roteiro com produção.

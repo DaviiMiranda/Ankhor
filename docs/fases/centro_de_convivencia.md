@@ -1,91 +1,110 @@
 # Fase — Centro de Convivência
 
-> **Status:** Ainda não feita e **sem lugar na ordem das fases** (em 2026-10-14 o Labirinto passou a ser a terceira fase; a posição decidida em 2026-10-11 deixou de valer). Este documento guarda o que já se sabe e as perguntas que faltam, no formato de [`template_fase.md`](template_fase.md).
-> **Área:** o Centro de Convivência da Unifor, em 3026 (no GDD: "Centro de Convivência").
-> **Vem de:** não está decidido. A porta corta-fogo do Bloco de salas ([`bloco_de_salas.md`](bloco_de_salas.md)) agora leva ao Labirinto ([`labirinto.md`](labirinto.md)).
-> **História:** o que esta fase conta segue o [Enredo Principal](../historia/enredo_principal.md) (Ato 2), que é a lei do projeto. Nada da história dela está decidido.
-> **No menu Fases:** ainda não aparece.
+> **Status:** Jogável (7 salas, puzzle de Coloração de Grafos, Célula de Energia, holofotes e transmissões do Zane pelo rádio)  
+> **Área:** o Centro de Convivência da Unifor, em 3026  
+> **Ordem na história:** **quarta fase**, depois do Labirinto ([`labirinto.md`](labirinto.md)) e antes do Bunker ([`bunker.md`](bunker.md)).  
+> **Como se chega:** Pelo duto do alçapão da oficina do Zane no fim do Labirinto, saindo em `passarela_acesso`.  
+> **Saída:** Comporta da Rampa do Subsolo (`rampa_subsolo`), que desce para a entrada do Bunker.  
+> **No menu Fases:** Cadastrado em `dados/fases/04_convivencia.tres` ("Convivência").
 
 ---
 
-## 1. O que já está decidido
+## 1. Visão Geral da Área
 
-| O quê | Decisão |
+- **Nome do Local:** Centro de Convivência da Unifor, ano de 3026.
+- **Ambientação Visual:**
+  - **É noite** sob céu escuro com estrelas (`ceu_noite.png`).
+  - O Centro de Convivência é um grande espaço arquitetônico semi-aberto. A cobertura desabou em vários pontos, deixando o luar azulado iluminar o pátio.
+  - O chão mistura lajotas rachadas, faixas de areia fina e mato crescendo pelas frestas.
+  - Árvores cresceram furando o piso; raízes e musgo cobrem as mesas redondas de concreto e os bancos fixos.
+  - A antiga **cantina** (com balcões de aço inoxidável manchados e cacos de louça e vidro no chão) e a **gráfica rápida** permanecem como relíquias do cotidiano universitário.
+  - **Tecnologia de 3026:** painéis ciano, torres de equipamentos e **holofotes perimetrais** que acendem quando o circuito de alta tensão é armado.
+- **Comunicação:**
+  - Não há nenhum personagem em pessoa nesta fase. Todo o contato e orientação vêm do **Zane pelo rádio** (`zane_convivencia_01` e `zane_convivencia_02`).
+
+---
+
+## 2. Topologia e Salas (Nós do Grafo)
+
+### 2.1 Mapa do Grafo
+
+```
+                     [PASSARELA DE ACESSO] (vem do Labirinto)
+                              │
+                              ▼ (escada)
+    [CANTINA] ◄─────────► [PÁTIO CENTRAL] ◄─────────► [GRÁFICA RÁPIDA]
+        │                 (Amplo, Sentinelas)                │
+        ▼                         │                          ▼
+[DEPÓSITO / CÂMARA]               ▼                [POSTO DE MANUTENÇÃO]
+(Célula de Energia)      [RAMPA DO SUBSOLO]            (Sala Segura)
+                                  │
+                                  ▼
+                           (para o Bunker)
+```
+
+### 2.2 Tabela de Salas
+
+| ID da Cena (`cenas/salas/centro_de_convivencia/`) | Nome / Função | Dimensões | Tipo de Piso | Conexões | Esconderijos | Ameaça |
+|---|---|---|---|---|---|---|
+| `passarela_acesso` | Passarela Superior | 640 × 180 px | Lajota | Escada para `patio_central` | Nicho do bebedouro | Nenhuma (chegada, checkpoint e rádio do Zane) |
+| `patio_central` | Pátio das Mesas e Raízes | 1280 × 360 px | Lajota, mato e areia | `passarela_acesso`, `cantina`, `grafica_rapida`, `rampa_subsolo` | Mesas de concreto, árvores, nichos | 2 **Sentinelas** (rotas cruzadas sob o luar e holofotes) |
+| `cantina` | Quiosque da Cantina / Balcões | 640 × 260 px | Lajota, tapete e cacos de vidro | `patio_central`, `deposito_cantina` | Nicho do armário, balcões | 1 **Rastreador** |
+| `deposito_cantina` | Depósito e Câmara Frigorífica | 400 × 240 px | Lajota | `cantina` | Estantes de metal | Nenhuma |
+| `grafica_rapida` | Anexo da Gráfica e Serviços | 480 × 260 px | Lajota | `patio_central`, `posto_manutencao` | Bancadas | Nenhuma |
+| `posto_manutencao` | Posto de Manutenção Predial | 400 × 240 px | Tapete | `grafica_rapida` | **Sala Segura** (checkpoint) | Nenhuma |
+| `rampa_subsolo` | Pátio de Carga e Rampa Técnica | 640 × 360 px | Lajota e areia | `patio_central`, comporta para o Bunker (`fim_da_convivencia`) | Nicho do armário, caixas e mesa | 1 **Sentinela** |
+
+---
+
+## 3. Objetivos e Progressão
+
+### 3.1 Objetivo Principal
+Atravessar o pátio do Centro de Convivência, localizar a **Célula de Energia** na câmara da Cantina, resolver o **Puzzle de Coloração de Grafos** no comutador da Gráfica Rápida e destrancar a comporta da **Rampa do Subsolo** para entrar no **Bunker**.
+
+### 3.2 Passo a Passo
+
+1. **Chegada e Contato do Zane (`passarela_acesso`):**
+   - Gabriel sai pelo duto na passarela superior. O **Zane** chama pelo rádio (`zane_convivencia_01`), alertando sobre as duas Sentinelas no pátio aberto iluminado pelo luar e orientando a procurar o Posto de Manutenção passando pela Gráfica.
+2. **Travessia do Pátio Central (`patio_central`):**
+   - Gabriel desce para o pátio (1280 × 360 px) e usa as mesas redondas de concreto, as árvores e os nichos para evitar os cones de visão das duas Sentinelas. No pátio há 3 pedras para distração.
+3. **Sala Segura e Pista da Célula (`grafica_rapida` e `posto_manutencao`):**
+   - Na Gráfica Rápida está o **Quadro de Comutação Trifásico** (`PainelComutacao`), sem carga primária, e o documento **Panfleto da Semana Universitária (2024)**.
+   - Ao lado fica o **Posto de Manutenção** (Sala Segura com checkpoint, 1 pilha e 1 cápsula de clarão), onde a **Ordem de Manutenção Técnica (3026)** informa que a Célula de Energia reserva foi levada para o gerador da câmara frigorífica da Cantina.
+4. **Infiltração na Cantina (`cantina` e `deposito_cantina`):**
+   - Na Cantina, um **Rastreador** patrulha perto de uma faixa central de **cacos de louça e vidro** (`ZonaDePiso` com `fator_ruido = 2.0`).
+   - O jogador contorna pelas passadeiras laterais (`fator_ruido = 0.6`) ou distrai o Rastreador com pedras para entrar em `deposito_cantina` e pegar a **Célula de Energia** (`celula_energia.tres`) e 1 pilha.
+5. **Puzzle de Coloração de Grafos (`grafica_rapida`):**
+   - De volta à Gráfica, Gabriel usa a Célula de Energia no comutador e resolve o **Puzzle de Coloração de Grafos**: 4 setores (Norte, Leste, Sul, Oeste) em anel com diagonal Norte-Sul (5 arestas: N-L, L-S, S-O, O-N, N-S) precisam receber uma das 3 fases (Fase A azul, Fase B amarela, Fase C vermelha) sem que setores vizinhos compartilhem a mesma fase ($\chi(G) = 3$).
+   - Ao sincronizar as fases, a marca `convivencia_energia` é ativada.
+6. **Holofotes Acesos e Saída pela Rampa (`patio_central` e `rampa_subsolo`):**
+   - Com `convivencia_energia`, os **holofotes perimetrais** acendem no pátio e na rampa (`revela_quem_passa = true`), e as Sentinelas mudam de rota.
+   - O **Zane** avisa pelo rádio (`zane_convivencia_02`) que a comporta da rampa destravou, mas os holofotes ligaram.
+   - Em `rampa_subsolo`, a comporta de aço (`ComportaRampa`) se recolhe e a porta leva a `fim_da_convivencia.tscn`, abrindo a entrada do **Bunker**.
+
+---
+
+## 4. Itens, Documentos e Transmissões
+
+| Recurso | Arquivo | Onde fica |
+|---|---|---|
+| **Célula de Energia** | `dados/itens/celula_energia.tres` | `deposito_cantina` |
+| **Pilhas (3)** | `cenas/itens/pilha_no_chao.tscn` | `passarela_acesso`, `deposito_cantina`, `posto_manutencao` |
+| **Cápsula de Clarão (1)** | `dados/itens/clarao.tres` | `posto_manutencao` |
+| **Pedras (3)** | `dados/itens/pedra.tres` | `patio_central` |
+| **Panfleto Universitário (2024)** | `dados/documentos/panfleto_universitario.tres` | `grafica_rapida` |
+| **Ordem de Manutenção (3026)** | `dados/documentos/ordem_manutencao_convivencia.tres` | `posto_manutencao` |
+| **Zane no rádio (chegada)** | `dados/transmissoes/zane_convivencia_01.tres` | `passarela_acesso` |
+| **Zane no rádio (holofotes)** | `dados/transmissoes/zane_convivencia_02.tres` | `patio_central` (requer `convivencia_energia`) |
+
+---
+
+## 5. Onde está no projeto
+
+| O quê | Onde |
 |---|---|
-| **Nome** | Centro de Convivência |
-| **Posição** | Sem lugar na ordem: a entrada de 2026-10-11 (depois do Bloco de salas) foi substituída em 2026-10-14, quando o **Labirinto** virou a terceira fase (`docs/decisoes.md`) |
-| **Como se chega** | Não está decidido |
-| **O que vem depois** | Não está decidido. O Bunker continua sendo o Ato 3 da história, mas a posição dele na ordem das fases está em aberto |
-
-Todo o resto abaixo está **pendente**. Por regra do projeto, as respostas são do grupo: nada aqui deve ser preenchido por dedução.
-
----
-
-## 2. Visão geral da área
-
-- **Esboço do GDD (a confirmar):** "estrutura aberta tomada pelo mato, balcões e mesas cobertos de raízes, o céu aparecendo pela cobertura", uma área ampla com poucos esconderijos. O esboço é da premissa anterior; só vale se o grupo confirmar.
-- **O que do GDD não vale mais:** "os Calouros andam em grupo" (os inimigos são os **robôs**, ver o vocabulário oficial do Enredo, seção 9) e a tabela da semana ("Quarta: havia uma pesquisa com voluntários"), que é do roteiro antigo.
-- **Ambientação em 3026:** segue o que o Enredo diz do campus (seção 2.2): concreto rachado e desabado, árvores dentro das salas, dunas, vegetação, e as relíquias do cotidiano. O Enredo cita a cantina como uma dessas relíquias; se ela fica no Centro de Convivência, falta decidir.
-- **Contraste no passado (sonho):** pendente, junto com o que os sonhos mostram (Enredo, seção 10.5).
-
----
-
-## 3. Topologia e salas
-
-Nada definido. Quando houver, a tabela segue o modelo do template:
-
-| ID da sala | Nome / função | Tipo de piso | Conexões | Esconderijos |
-|---|---|---|---|---|
-| — | — | — | — | — |
-
----
-
-## 4. Objetivos e progressão
-
-Nada definido. A regra geral do Ato 2 (Enredo, seção 8) é que **cada fase leva a um personagem** e ao esconderijo dele: Gabriel chega, ganha a confiança da pessoa e recebe a parte dela para consertar a Âncora (seção 3.1). Se esta fase segue essa regra, falta dizer **qual personagem**.
-
-Quem já tem lugar, para não repetir:
-
-| Personagem | Onde fica |
-|---|---|
-| Clarice e Diana | Sala 103 do Bloco de salas |
-| Zane e Henrique | Sala de dados do bunker |
-| Baltazar | Escondido numa sala da Biblioteca |
-| Carlos | Laboratório do D-Tec |
-
----
-
-## 5. Robôs e ameaças
-
-Nada definido. Os tipos que já existem são a **Sentinela** (visão) e o **Rastreador** (audição), em [`../historia/personagens/robos.md`](../historia/personagens/robos.md). O que esta fase ensina de novo ao jogador (como o chão e o luar ensinaram no Bloco de salas) também está em aberto.
-
----
-
-## 6. Puzzles e desafios mecânicos
-
-Nada definido.
-
----
-
-## 7. Sala segura e sonho
-
-Nada definido. Toda área deve ter pelo menos uma sala protegida (ver [`README.md`](README.md)); onde fica a desta fase, e o que o sono mostra nela, está em aberto.
-
----
-
-## 8. Perguntas em aberto
-
-1. **Qual é o objetivo** de Gabriel aqui e o que bloqueia o caminho?
-2. **Qual personagem aparece** (ou se a fase não tem personagem), e qual parte ele traz para consertar a Âncora?
-3. **Quais robôs** ficam aqui, e o que a fase ensina de novo?
-4. **Onde fica a sala segura**?
-5. **Para onde leva a saída**: o Bunker, o Labirinto ou outra área?
-6. **Como fica o visual**: o esboço do GDD (estrutura aberta, mato, raízes, céu aparecendo) vale, e quanto dele mostra a tecnologia de 3026 ([pendências de produção](../pendencias_de_producao.md), "Cenários mais futuristas")?
-
-Quando alguma dessas for decidida, entra aqui e em `docs/decisoes.md`; se mexer na história, entra também no Enredo Principal.
-
----
-
-## 9. Onde está no projeto
-
-Ainda não há nada: sem cenas, sem entrada no menu Fases e sem gerador de cenário. A estrutura de pastas segue a das outras fases (`cenas/salas/centro_de_convivencia/` para as salas, como `cenas/salas/bloco_de_salas/`).
+| Cenas das salas | `cenas/salas/centro_de_convivencia/` |
+| Kit da Convivência | `cenas/cenario/convivencia/`, sprites em `assets/sprites/cenario/convivencia/` |
+| Gerador de sprites | `assets/modelagem/cenario/gerar_convivencia.py` |
+| Montador das cenas | `assets/modelagem/salas/centro_de_convivencia/montar_convivencia.py` |
+| Puzzle de Coloração de Grafos | `cenas/sistemas/painel_comutacao.tscn`, script `scripts/sistemas/painel_comutacao.gd` |
+| Fase no menu | `dados/fases/04_convivencia.tres` |

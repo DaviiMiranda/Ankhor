@@ -16,10 +16,10 @@ audio/
 ├── ambiente/            som de fundo contínuo de cada área, presente e sonho
 │   ├── biblioteca/
 │   ├── blocos_aula/
+│   ├── labirinto/
 │   ├── centro_convivencia/
-│   ├── espaco_cultural/
-│   ├── nami/
-│   ├── reitoria/
+│   ├── bunker/
+│   ├── laboratorio/
 │   └── areas_externas/  dunas e mato entre os prédios, rota do Vigia
 ├── efeitos/             sons curtos, tocados uma vez
 │   ├── gabriel/         passos, corrida, respiração, esconder, dormir
