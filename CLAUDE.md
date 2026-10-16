@@ -16,7 +16,7 @@ Este arquivo dá contexto a qualquer sessão do Claude que trabalhe neste reposi
 ## Stack
 
 - **Godot 4.7.x**, **GDScript**, 2D.
-- Resolução base 320×180, escala inteira, filtro de textura *Nearest* (pixel art). O stretch é `canvas_items`: a lógica e a interface ficam em 320×180, mas a imagem é desenhada na resolução da janela. Por isso **os personagens humanos (Gabriel, Clarice, Zane, Baltazar, Henrique, Carlos) têm sprites em resolução dobrada** (96 px de altura, mostrados com escala 0,5): no mesmo tamanho na tela, com o dobro de detalhe. O cenário continua em 1× (ver `docs/decisoes.md`).
+- Resolução base **640×360**, escala inteira (3× em Full HD), filtro de textura *Nearest* (pixel art). A câmera das salas usa `zoom = 2`: o mundo enxerga 320×180 de cenário, como sempre, e só a interface é desenhada em 640×360 (por isso o texto ocupa metade da tela de antes). Sala nova herda de `cenas/salas/modelo_sala.tscn`, que já tem o zoom. O stretch é `canvas_items`: a imagem é desenhada na resolução da janela. Por isso **os personagens humanos (Gabriel, Clarice, Zane, Baltazar, Henrique, Carlos) têm sprites em resolução dobrada** (96 px de altura, mostrados com escala 0,5): no mesmo tamanho na tela, com o dobro de detalhe. O cenário continua em 1× (ver `docs/decisoes.md`, entrada de 2026-10-16, para as regras de como montar telas de interface).
 - Fonte: **Galmuri7** (pixelada), padrão do jogo pelo tema `cenas/interface/tema_jogo.tres`. Só nos tamanhos **8** ou **16**: em outros tamanhos a letra deforma. Uma linha de texto tem 14 px de altura. Detalhes em `assets/fontes/creditos.md`.
 - Sem assets pagos. Placeholders gerados no próprio Godot até a arte ficar pronta.
 

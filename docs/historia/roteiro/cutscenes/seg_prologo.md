@@ -3,7 +3,7 @@
 - **Quando:** início do jogo, disparado logo após selecionar "Novo jogo" no menu principal. Ao terminar, passa para a cutscene do despertar ([`seg_acordar`](seg_acordar.md)).
 - **Onde:** Fortaleza em 2026 (quarto de Gabriel, trajeto na Av. Washington Soares, pátio da Unifor, sala de aula e cabine de estudo da Biblioteca).
 - **Personagens:** Gabriel Magalhães (protagonista, 2026). Figurantes de apoio: estudantes e professor de 2026 (silhuetas/desfocados).
-- **Formato visual:** sequência de ilustrações narrativas em pixel art (estilo *graphic novel* 2.5D, tela base 320×180), com camadas de paralaxe sutis, efeitos de iluminação e caixas de texto com pensamentos do Gabriel.
+- **Formato visual:** sequência de ilustrações narrativas em pixel art (estilo *graphic novel* 2.5D, tela base 640×360), com camadas de paralaxe sutis, efeitos de iluminação e caixas de texto com pensamentos do Gabriel.
 - **Objetivo dramático:** apresentar o cotidiano mundano e cansativo de Gabriel em 2026, estabelecendo o choque do contraste com o futuro arruinado de 3026. Apresenta os três elementos cruciais que o acompanharão durante todo o jogo: o **anel desgastado da avó**, o **caderno de equações** e o **moletom vermelho**.
 - **Status:** em produção (roteiro, ilustrações e cena no Godot prontos; faltam os sons).
 
@@ -101,7 +101,7 @@
 
 ## Especificações Técnicas para Produção
 
-1. **Resolução de Arte:** tela de 320×180, com as ilustrações em **resolução dobrada** (640×360, mostradas com escala 0,5): ocupam a tela inteira do mesmo jeito, com o dobro de detalhe, como os sprites dos personagens humanos. As ilustrações saem das referências em `assets/modelagem/cutscenes/seg_prologo/referencia/` pelo script `assets/modelagem/cutscenes/seg_prologo/pixelar_seg_prologo.py`, que reduz cada uma para 640×360, fecha a paleta em 96 cores e redesenha o despertador da cena 1 marcando 06:15. Para trocar uma ilustração, substitua a referência e rode o script de novo.
+1. **Resolução de Arte:** tela de 640×360, com as ilustrações do tamanho da tela (640×360, escala 1), com o dobro de detalhe do cenário das salas, como os sprites dos personagens humanos. As ilustrações saem das referências em `assets/modelagem/cutscenes/seg_prologo/referencia/` pelo script `assets/modelagem/cutscenes/seg_prologo/pixelar_seg_prologo.py`, que reduz cada uma para 640×360, fecha a paleta em 96 cores e redesenha o despertador da cena 1 marcando 06:15. Para trocar uma ilustração, substitua a referência e rode o script de novo.
 2. **Camadas por Ilustração (quando aplicável):** hoje cada ilustração é uma imagem só. Se quiserem paralaxe depois, a ilustração precisa ser separada em:
    - Camada 0: Fundo estático (arquitetura/céu).
    - Camada 1: Elementos intermediários / Gabriel.
