@@ -1,9 +1,10 @@
-# gerar_convivencia.py — desenha os assets procedurais do Centro de Convivência:
-#   - kit de cenário em assets/sprites/cenario/convivencia/ (mesas redondas de
-#     concreto com raízes, balcões da cantina, cacos de vidro, holofotes,
-#     comporta da rampa);
-#   - item-chave Célula de Energia (ícone 16x16, sprite de chão e imagem de
-#     detalhe 128x128 em assets/sprites/itens/).
+# gerar_convivencia.py — desenha o item-chave do Centro de Convivência, a
+# Célula de Energia (ícone 16x16, sprite de chão e imagem de detalhe 128x128
+# em assets/sprites/itens/).
+#
+# O cenário da fase (a praça de alimentação, os restaurantes, a porta de vidro
+# e os objetos) é desenhado por gerar_praca.py, gerar_restaurantes.py,
+# gerar_porta_restaurante.py e gerar_praca_objetos.py.
 #
 # Como rodar:
 #   python assets/modelagem/cenario/gerar_convivencia.py
@@ -17,7 +18,6 @@ from PIL import Image
 
 PASTA_SCRIPT = os.path.dirname(os.path.abspath(__file__))
 PASTA_PROJETO = os.path.normpath(os.path.join(PASTA_SCRIPT, "..", "..", ".."))
-PASTA_CONV = os.path.join(PASTA_PROJETO, "assets", "sprites", "cenario", "convivencia")
 PASTA_ITENS = os.path.join(PASTA_PROJETO, "assets", "sprites", "itens")
 
 _spec = importlib.util.spec_from_file_location(
@@ -99,98 +99,9 @@ def gerar_celula_energia():
     det.save(os.path.join(PASTA_ITENS, "celula_energia_detalhe.png"))
 
 
-def gerar_mesa_concreto():
-    """Mesa redonda de concreto tradicional do Centro de Convivência,
-    coberta parcialmente por raízes e musgo (56 x 36 px)."""
-    d = Desenho(56, 36)
-    # Sombra e base central
-    d.ret(22, 18, 33, 33, CONCRETO_ESCURO)
-    d.ret(24, 18, 31, 32, CONCRETO)
-    # Bancos laterais de concreto
-    d.caixa(2, 20, 14, 30, CONCRETO, CONCRETO_CLARO, CONCRETO_ESCURO)
-    d.caixa(41, 20, 53, 30, CONCRETO, CONCRETO_CLARO, CONCRETO_ESCURO)
-    # Tampo redondo (elipse em perspectiva)
-    for y in range(6, 22):
-        for x in range(8, 48):
-            nx = (x - 28) / 19.0
-            ny = (y - 13) / 7.0
-            dist = nx * nx + ny * ny
-            if dist <= 1.0:
-                if dist > 0.82 or y >= 19:
-                    d.px(x, y, CONCRETO_ESCURO)
-                elif y <= 9 and nx < 0.3:
-                    d.px(x, y, CONCRETO_CLARO)
-                else:
-                    d.px(x, y, CONCRETO)
-    # Raízes e musgo subindo pelo pé e tampo
-    for i in range(14):
-        rx = 18 + i
-        ry = 33 - int(i * 1.3)
-        d.ret(rx, ry, rx + 2, ry + 2, RAIZ if i % 2 == 0 else RAIZ_ESCURA)
-    d.ret(14, 9, 25, 13, MUSGO)
-    d.ret(16, 10, 22, 12, MUSGO_CLARO)
-    d.salvar(PASTA_CONV, "mesa_concreto.png")
-
-
-def gerar_balcao_cantina():
-    """Balcão de aço inoxidável manchado da cantina (96 x 40 px)."""
-    d = Desenho(96, 40)
-    d.caixa(0, 6, 95, 38, ACO, ACO_CLARO, ACO_ESCURO)
-    # Tampo superior de inox
-    d.ret(1, 7, 94, 13, ACO_CLARO)
-    d.ret(1, 14, 94, 15, CONTORNO)
-    # Painéis frontais e manchas de ferrugem/tempo
-    for x in (24, 48, 72):
-        d.ret(x, 15, x + 1, 37, ACO_ESCURO)
-    d.ret(10, 22, 18, 28, RAIZ_ESCURA)
-    d.ret(54, 25, 65, 33, MUSGO_ESCURO)
-    # Estufa de salgados quebrada em cima do balcão
-    d.caixa(64, 0, 88, 8, ACO_ESCURO, ACO_CLARO, CONTORNO)
-    d.ret(66, 2, 86, 6, VIDRO)
-    d.px(70, 4, CONTORNO)
-    d.px(71, 5, CONTORNO)
-    d.salvar(PASTA_CONV, "balcao_cantina.png")
-
-
-def gerar_cacos_vidro():
-    """Tapete de cacos de louça e vidro estilhaçado no chão (64 x 28 px)."""
-    d = Desenho(64, 28)
-    rng = np.random.default_rng(42)
-    for _ in range(55):
-        x = int(rng.integers(2, 60))
-        y = int(rng.integers(2, 25))
-        c = VIDRO_CLARO if rng.random() > 0.4 else VIDRO
-        d.px(x, y, c)
-        d.px(x + 1, y, c)
-        if rng.random() > 0.5:
-            d.px(x, y + 1, ACO_CLARO)
-    d.salvar(PASTA_CONV, "cacos_vidro.png")
-
-
-def gerar_comporta_rampa():
-    """Comporta pesada de contenção da rampa do subsolo (48 x 68 px)."""
-    d = Desenho(48, 68)
-    d.caixa(0, 0, 47, 67, ACO_ESCURO, ACO, CONTORNO)
-    for y in range(8, 60, 10):
-        d.ret(3, y, 44, y + 5, ACO)
-        d.ret(3, y, 44, y + 1, ACO_CLARO)
-    # Faixa de alerta amarela e preta na base
-    for x in range(4, 44, 6):
-        d.ret(x, 58, x + 2, 64, AMARELO)
-        d.ret(x + 3, 58, x + 5, 64, CONTORNO)
-    # Luz indicadora vermelha (comporta travada)
-    d.ret(21, 3, 26, 6, VERMELHO)
-    d.salvar(PASTA_CONV, "comporta_rampa.png")
-
-
 def main():
-    os.makedirs(PASTA_CONV, exist_ok=True)
     gerar_celula_energia()
-    gerar_mesa_concreto()
-    gerar_balcao_cantina()
-    gerar_cacos_vidro()
-    gerar_comporta_rampa()
-    print("Assets do Centro de Convivencia gerados com sucesso.")
+    print("Célula de Energia gerada com sucesso.")
 
 
 if __name__ == "__main__":
