@@ -24,8 +24,8 @@ const COR_CONFLITO := Color("ff5c5c")
 @export var item_requerido: String = "celula_energia"
 @export var marca: String = "convivencia_energia"
 @export var aviso_sem_item: String = "Comutador sem carga primária. Falta a Célula de Energia de Alta Densidade."
-@export var aviso_ligado: String = "Comutador armado! A energia foi enviada para a comporta da rampa."
-@export var aviso_ja_ligado: String = "O comutador já está armado e alimentando a rampa."
+@export var aviso_ligado: String = "Comutador armado! A energia foi enviada para o elevador de carga."
+@export var aviso_ja_ligado: String = "O comutador já está armado e alimentando o elevador de carga."
 
 var _aberto := false
 var _cursor := 0

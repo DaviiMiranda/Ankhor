@@ -1,0 +1,188 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/fundo_loja_4.png" id="r2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/fundo_loja_4_luz.png" id="r3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/porta_magenta.tscn" id="r4"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/grelha_solar.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/balcao_bar.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/banqueta_alta.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/mesa_vidro.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/cadeira_fut.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/caixas_carga.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r13"]
+[ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="r14"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/objetos/elevador_carga.png" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/grade_seguranca.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r18"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r20"]
+
+[node name="Loja4" instance=ExtResource("r1")]
+id = "conv_loja_4"
+largura = 640
+altura = 360
+chao_frente = 356
+
+[node name="Ceu" parent="."]
+visible = false
+
+[node name="Fundo" type="Sprite2D" parent="Chao"]
+texture = ExtResource("r2")
+centered = false
+
+[node name="Brilho" type="PointLight2D" parent="Chao"]
+position = Vector2(320, 180)
+texture = ExtResource("r3")
+energy = 1.3
+range_item_cull_mask = 1
+
+[node name="FolhaLoja4Praca" parent="Chao" instance=ExtResource("r4")]
+position = Vector2(0, 0)
+
+[node name="GrelhaSolar1" parent="Objetos" instance=ExtResource("r5")]
+position = Vector2(175, 170)
+
+[node name="BalcaoBar1" parent="Objetos" instance=ExtResource("r6")]
+position = Vector2(350, 178)
+
+[node name="BanquetaAlta1" parent="Objetos" instance=ExtResource("r7")]
+position = Vector2(290, 200)
+
+[node name="BanquetaAlta2" parent="Objetos" instance=ExtResource("r7")]
+position = Vector2(335, 200)
+
+[node name="BanquetaAlta3" parent="Objetos" instance=ExtResource("r7")]
+position = Vector2(380, 200)
+
+[node name="BanquetaAlta4" parent="Objetos" instance=ExtResource("r7")]
+position = Vector2(425, 200)
+
+[node name="MesaVidro1" parent="Objetos" instance=ExtResource("r8")]
+position = Vector2(170, 290)
+
+[node name="CadeiraFut1" parent="Objetos" instance=ExtResource("r9")]
+position = Vector2(130, 298)
+
+[node name="CadeiraFut2" parent="Objetos" instance=ExtResource("r9")]
+position = Vector2(212, 298)
+espelhado = true
+
+[node name="MesaVidro2" parent="Objetos" instance=ExtResource("r8")]
+position = Vector2(450, 310)
+
+[node name="CadeiraFut3" parent="Objetos" instance=ExtResource("r9")]
+position = Vector2(410, 318)
+
+[node name="CadeiraFut4" parent="Objetos" instance=ExtResource("r9")]
+position = Vector2(492, 318)
+espelhado = true
+
+[node name="CaixasCarga1" parent="Objetos" instance=ExtResource("r10")]
+position = Vector2(560, 250)
+
+[node name="Nicho1" parent="Objetos" instance=ExtResource("r11")]
+position = Vector2(360, 128)
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r12")]
+position = Vector2(175, 120)
+color = Color(1, 0.4, 0.85, 1)
+energy = 0.8
+
+[node name="Luz2" parent="Luzes" instance=ExtResource("r12")]
+position = Vector2(360, 110)
+color = Color(1, 0.4, 0.85, 1)
+energy = 0.7
+
+[node name="Luz3" parent="Luzes" instance=ExtResource("r13")]
+position = Vector2(580, 40)
+energy = 0.6
+
+[node name="HolofotesPerimetrais" type="Node2D" parent="."]
+script = ExtResource("r14")
+marca = "convivencia_energia"
+revela_quem_passa = true
+
+[node name="Holofote1" parent="HolofotesPerimetrais" instance=ExtResource("r12")]
+position = Vector2(320, 210)
+scale = Vector2(2.2, 2.0)
+color = Color(0.85, 0.95, 1, 1)
+energy = 1.15
+
+[node name="Holofote2" parent="HolofotesPerimetrais" instance=ExtResource("r12")]
+position = Vector2(500, 200)
+scale = Vector2(2.2, 2.0)
+color = Color(0.85, 0.95, 1, 1)
+energy = 1.15
+
+[node name="Escuridao" parent="."]
+color = Color(0.26, 0.22, 0.3, 1)
+
+[node name="Gabriel" parent="Objetos"]
+position = Vector2(80, 160)
+
+[node name="ComportaCarga" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(568, 28)
+marca = "convivencia_energia"
+
+[node name="Grade" parent="Objetos/ComportaCarga" index="0"]
+texture = ExtResource("r15")
+
+[node name="Porta_loja_4_praca" parent="." instance=ExtResource("r17")]
+position = Vector2(41, 124)
+id = "loja_4_praca"
+cena_destino = "res://cenas/salas/centro_de_convivencia/praca_central.tscn"
+porta_destino = "praca_loja_4"
+
+[node name="Porta_loja_4_elevador" parent="." instance=ExtResource("r17")]
+position = Vector2(601, 124)
+id = "loja_4_elevador"
+liberada_por = "convivencia_energia"
+aviso_bloqueada = "Elevador de carga sem alimentação. O quadro de comutação da cozinha da Pizzaria Quasar está desligado."
+cena_destino = "res://cenas/salas/centro_de_convivencia/fim_da_convivencia.tscn"
+porta_destino = ""
+
+[node name="Sentinela1" parent="Objetos" instance=ExtResource("r18")]
+position = Vector2(400, 250)
+rota = NodePath("../../RotaSentinela1")
+rota_com_marca = NodePath("../../RotaSentinela1Energia")
+marca_da_rota = "convivencia_energia"
+bipa_antes_de_virar = true
+
+[node name="RotaSentinela1" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinela1"]
+position = Vector2(180, 240)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinela1"]
+position = Vector2(520, 240)
+
+[node name="Ponto3" type="Marker2D" parent="RotaSentinela1"]
+position = Vector2(520, 335)
+
+[node name="Ponto4" type="Marker2D" parent="RotaSentinela1"]
+position = Vector2(180, 335)
+
+[node name="RotaSentinela1Energia" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinela1Energia"]
+position = Vector2(160, 250)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinela1Energia"]
+position = Vector2(560, 300)
+
+[node name="Ponto3" type="Marker2D" parent="RotaSentinela1Energia"]
+position = Vector2(560, 335)
+
+[node name="Ponto4" type="Marker2D" parent="RotaSentinela1Energia"]
+position = Vector2(260, 335)
+
+[node name="RobosDaSala" type="Node" parent="."]
+script = ExtResource("r19")
+
+[node name="MusicaFase" parent="." instance=ExtResource("r20")]
+
+[editable path="Ceu"]

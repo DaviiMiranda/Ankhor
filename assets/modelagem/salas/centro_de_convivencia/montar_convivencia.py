@@ -1,29 +1,62 @@
-# montar_convivencia.py — monta as cenas do kit do Centro de Convivência
-# (cenas/cenario/convivencia/) e as 8 cenas da fase
-# (cenas/salas/centro_de_convivencia/).
+# montar_convivencia.py — monta as cenas do Godot da fase CENTRO DE
+# CONVIVÊNCIA (docs/fases/centro_de_convivencia.md): as peças do kit da praça
+# (cenas/cenario/praca/) e as salas da fase (cenas/salas/centro_de_convivencia/).
 #
-# Como rodar:
-#   python assets/modelagem/cenario/gerar_convivencia.py
+# Como rodar (Python 3, depois dos geradores de sprites):
+#
+#   python assets/modelagem/cenario/gerar_porta_restaurante.py
+#   python assets/modelagem/cenario/gerar_praca.py
+#   python assets/modelagem/cenario/gerar_restaurantes.py
 #   python assets/modelagem/salas/centro_de_convivencia/montar_convivencia.py
+#
+# ATENÇÃO: este script é a montagem das cenas. Ele sobrescreve as cenas das
+# salas. Depois que alguém ajustar uma sala no editor do Godot, não rode de
+# novo sem antes passar o ajuste para a descrição da sala aqui embaixo.
+#
+# Diferente do Bloco de salas e do DTEC (que montam a sala com peças de parede
+# de 80 px e de chão de 128 px), aqui cada sala tem um FUNDO PRONTO: uma
+# imagem só com a parede e o piso. A praça tem formato de arco, e cada
+# restaurante tem a sua decoração. O que o Godot ainda monta por cima do fundo:
+#   - as portas de vidro (a folha que corre) e os letreiros de neon;
+#   - os objetos (mesas, balcões...), com a "pegada" de colisão no chão;
+#   - na praça, as colisões do arco: uma caixa por coluna de 80 px, do topo da
+#     sala até a altura em que a parede dela encosta no chão.
 
-import math
 import os
+import sys
 
 PASTA_SCRIPT = os.path.dirname(os.path.abspath(__file__))
 PASTA_PROJETO = os.path.normpath(os.path.join(PASTA_SCRIPT, "..", "..", "..", ".."))
-PASTA_KIT_CONV = os.path.join(PASTA_PROJETO, "cenas", "cenario", "convivencia")
+PASTA_KIT_PRACA = os.path.join(PASTA_PROJETO, "cenas", "cenario", "praca")
 PASTA_SALAS = os.path.join(PASTA_PROJETO, "cenas", "salas", "centro_de_convivencia")
+PASTA_LETREIROS = os.path.join(PASTA_PROJETO, "assets", "sprites", "cenario", "praca", "letreiros")
+sys.path.insert(0, os.path.join(PASTA_PROJETO, "assets", "modelagem", "cenario"))
 
-PECA = 80
-CHAO = 128
-FUNDO = 64
-Y_CHAO = 112
+import gerar_praca_base as base  # noqa: E402
+import gerar_praca_objetos as gerador_objetos  # noqa: E402
+
+sys.path.insert(0, PASTA_SCRIPT)
+import salas_convivencia  # noqa: E402
+
+PECA = base.PECA
 X_PORTA = 41
-Y_PORTA = 124
+RES_PRACA = "res://assets/sprites/cenario/praca"
+COR_DA_LUZ = {
+    "ciano": "Color(0.45, 0.9, 1, 1)",
+    "ambar": "Color(1, 0.7, 0.3, 1)",
+    "verde": "Color(0.35, 1, 0.65, 1)",
+    "vermelho": "Color(1, 0.4, 0.3, 1)",
+    "magenta": "Color(1, 0.4, 0.85, 1)",
+    "violeta": "Color(0.7, 0.5, 1, 1)",
+}
+MARCA_ENERGIA = "convivencia_energia"
 
-OBJETOS_CONV = {
-    "mesa_concreto": ((28, 34), (48, 12)),
-    "balcao_cantina": ((48, 38), (92, 10)),
+LETREIROS = {
+    "letreiro_loja_1": ("ambar", 240, 28),
+    "letreiro_loja_2": ("verde", 240, 28),
+    "letreiro_loja_3": ("vermelho", 240, 28),
+    "letreiro_loja_4": ("magenta", 240, 28),
+    "letreiro_entrada": ("ciano", 400, 28),
 }
 
 
@@ -37,13 +70,99 @@ def escrever(caminho, texto):
         arquivo.write(texto)
 
 
-def cena_objeto_conv(nome):
-    (px, py), (larg, alt) = OBJETOS_CONV[nome]
+# ---------------------------------------------------------------------------
+# Peças do kit
+# ---------------------------------------------------------------------------
+
+
+def cena_porta(cor):
     return f"""[gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/cenario/objeto_cenario.gd" id="1_objeto"]
-[ext_resource type="Texture2D" path="res://assets/sprites/cenario/convivencia/{nome}.png" id="2_sprite"]
+[ext_resource type="SpriteFrames" path="{RES_PRACA}/portas/porta_{cor}_quadros.tres" id="1_quadros"]
+[ext_resource type="Script" path="res://scripts/sistemas/folha_porta.gd" id="2_script"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_restaurante.wav" id="3_som"]
 
+[node name="Porta{pascal(cor)}" type="Node2D"]
+
+[node name="Folha" type="AnimatedSprite2D" parent="." groups=["folhas_de_porta"]]
+position = Vector2(0, 24)
+sprite_frames = ExtResource("1_quadros")
+animation = &"abrir"
+centered = false
+script = ExtResource("2_script")
+som_abrir = ExtResource("3_som")
+"""
+
+
+def cena_letreiro(nome, cor, largura, altura):
+    luz = COR_DA_LUZ[cor]
+    return f"""[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="1_marca"]
+[ext_resource type="Texture2D" path="{RES_PRACA}/letreiros/{nome}.png" id="2_apagado"]
+[ext_resource type="Texture2D" path="{RES_PRACA}/letreiros/{nome}_aceso.png" id="3_aceso"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="4_luz"]
+
+[node name="{pascal(nome)}" type="Sprite2D"]
+texture = ExtResource("2_apagado")
+centered = false
+
+[node name="Acende" type="Node2D" parent="."]
+script = ExtResource("1_marca")
+marca = "{MARCA_ENERGIA}"
+
+[node name="Camada" type="PointLight2D" parent="Acende"]
+position = Vector2({largura // 2}, {altura // 2 + 2})
+energy = 2.2
+range_item_cull_mask = 1
+texture = ExtResource("3_aceso")
+
+[node name="Luz" type="PointLight2D" parent="Acende"]
+position = Vector2({largura // 2}, {altura + 14})
+color = {luz}
+energy = 0.7
+range_item_cull_mask = 3
+texture = ExtResource("4_luz")
+texture_scale = {round(largura / 120.0, 2)}
+"""
+
+
+# Luzes que cada objeto leva junto: (x, y, cor, energia, escala), com o ponto
+# (x, y) em relação ao pé do objeto. O brilho de verdade vem do Godot.
+LUZES_DOS_OBJETOS = {
+    "poste_luz": [(0, -82, "Color(1, 0.78, 0.45, 1)", 0.95, 2.4)],
+    "mesa_holo": [(0, -40, "Color(0.45, 0.9, 1, 1)", 0.3, 1.0)],
+    "holograma_central": [(0, -62, "Color(0.42, 0.95, 1, 1)", 1.1, 4.0)],
+    "guarda_sol_holo": [(0, -64, "Color(0.45, 0.9, 1, 1)", 0.4, 1.6)],
+    "totem_pedidos": [(0, -32, "Color(0.45, 0.9, 1, 1)", 0.35, 0.9)],
+    "vaso_planta": [(0, -30, "Color(0.4, 1, 0.8, 1)", 0.3, 0.8)],
+    "arvore_cupula": [(0, -110, "Color(0.4, 1, 0.8, 1)", 0.45, 2.6)],
+    "balcao_tapioca": [(-22, -34, "Color(1, 0.7, 0.3, 1)", 0.8, 1.6)],
+    "maquina_cafe": [(0, -34, "Color(0.45, 0.9, 1, 1)", 0.3, 0.8)],
+    "estufa_salgados": [(0, -26, "Color(1, 0.7, 0.3, 1)", 0.5, 1.0)],
+    "bufe": [(0, -30, "Color(0.35, 1, 0.65, 1)", 0.6, 2.2)],
+    "mesa_vidro": [(0, -24, "Color(0.35, 1, 0.65, 1)", 0.25, 0.8)],
+    "tanque_cripto": [(0, -40, "Color(0.5, 0.9, 1, 1)", 0.6, 1.2)],
+    "forno_plasma": [(0, -26, "Color(1, 0.45, 0.2, 1)", 1.0, 2.0)],
+    "grelha_solar": [(0, -50, "Color(1, 0.4, 0.85, 1)", 0.9, 2.2)],
+    "balcao_bar": [(0, -30, "Color(1, 0.4, 0.85, 1)", 0.6, 2.2)],
+    "banqueta_alta": [],
+}
+OBJETOS_SEM_COLISAO = ("cacos_louca", "elevador_carga")
+
+
+def cena_objeto(nome, px, py, larg, alt):
+    luzes = LUZES_DOS_OBJETOS.get(nome, [])
+    texto = f"""[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/cenario/objeto_cenario.gd" id="1_objeto"]
+[ext_resource type="Texture2D" path="{RES_PRACA}/objetos/{nome}.png" id="2_sprite"]
+"""
+    if luzes:
+        texto += '[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="3_luz"]\n'
+    if nome == "holograma_central":
+        texto += '[ext_resource type="Script" path="res://scripts/cenario/luz_pulsante.gd" id="4_pulsante"]\n'
+    texto += f"""
 [sub_resource type="RectangleShape2D" id="Pegada"]
 size = Vector2({larg}, {alt})
 
@@ -59,25 +178,57 @@ offset = Vector2({-px}, {-py})
 position = Vector2(0, {-alt / 2})
 shape = SubResource("Pegada")
 """
+    for k, (x, y, cor, energia, escala) in enumerate(luzes):
+        texto += f"""
+[node name="Luz{k + 1}" type="PointLight2D" parent="."]
+position = Vector2({x}, {y})
+color = {cor}
+energy = {energia}
+texture = ExtResource("3_luz")
+texture_scale = {escala}
+"""
+        if nome == "holograma_central":
+            texto += 'script = ExtResource("4_pulsante")\nperiodo = 3.2\nvariacao = 0.25\n'
+    return texto
 
 
-def cena_cacos_vidro():
-    return """[gd_scene format=3]
+def cena_decal(nome, largura, altura):
+    return f"""[gd_scene format=3]
 
-[ext_resource type="Texture2D" path="res://assets/sprites/cenario/convivencia/cacos_vidro.png" id="1_tex"]
+[ext_resource type="Texture2D" path="{RES_PRACA}/objetos/{nome}.png" id="1_tex"]
 
-[node name="CacosVidro" type="Sprite2D"]
+[node name="{pascal(nome)}" type="Sprite2D"]
 texture = ExtResource("1_tex")
-centered = false
-offset = Vector2(-32, -24)
 """
 
 
+def montar_objetos():
+    """Uma cena por objeto (cenas/cenario/praca/objetos/). O pé de cada um e a
+    pegada vêm do próprio gerador de sprites."""
+    caminhos = {}
+    for nome, (funcao, pegada) in gerador_objetos.OBJETOS.items():
+        img, px, py = funcao()
+        escrever(os.path.join(PASTA_KIT_PRACA, "objetos", f"{nome}.tscn"), cena_objeto(nome, px, py, pegada[0], pegada[1]))
+        caminhos[nome] = f"res://cenas/cenario/praca/objetos/{nome}.tscn"
+    for nome in ("cacos_louca",):
+        img, _, _ = gerador_objetos.ENFEITES[nome]()
+        escrever(os.path.join(PASTA_KIT_PRACA, "objetos", f"{nome}.tscn"), cena_decal(nome, img.w, img.h))
+        caminhos[nome] = f"res://cenas/cenario/praca/objetos/{nome}.tscn"
+    return caminhos
+
+
 def montar_kit():
-    for nome in OBJETOS_CONV:
-        escrever(os.path.join(PASTA_KIT_CONV, f"{nome}.tscn"), cena_objeto_conv(nome))
-    escrever(os.path.join(PASTA_KIT_CONV, "cacos_vidro.tscn"), cena_cacos_vidro())
-    print("  kit: cenas/cenario/convivencia/")
+    for cor in ("ambar", "verde", "vermelho", "magenta", "ciano"):
+        escrever(os.path.join(PASTA_KIT_PRACA, f"porta_{cor}.tscn"), cena_porta(cor))
+    for nome, (cor, largura, altura) in LETREIROS.items():
+        if os.path.exists(os.path.join(PASTA_LETREIROS, f"{nome}_aceso.png")):
+            escrever(os.path.join(PASTA_KIT_PRACA, f"{nome}.tscn"), cena_letreiro(nome, cor, largura, altura))
+    print("  kit: cenas/cenario/praca/")
+
+
+# ---------------------------------------------------------------------------
+# Montagem de uma sala
+# ---------------------------------------------------------------------------
 
 
 class Montagem:
@@ -94,9 +245,9 @@ class Montagem:
     def cena(self, caminho):
         return self.recurso("PackedScene", caminho)
 
-    def nome(self, base):
-        self.contagem[base] = self.contagem.get(base, 0) + 1
-        return f"{base}{self.contagem[base]}"
+    def nome(self, base_nome):
+        self.contagem[base_nome] = self.contagem.get(base_nome, 0) + 1
+        return f"{base_nome}{self.contagem[base_nome]}"
 
     def no(self, cabecalho, propriedades):
         self.nos.append((cabecalho, propriedades))
@@ -123,132 +274,53 @@ class Montagem:
         return "\n".join(linhas)
 
 
-PLACA = """[sub_resource type="StyleBoxFlat" id="Placa"]
-bg_color = Color(0.12, 0.13, 0.14, 1)"""
-
-MAPA_PAREDE = {
-    "lisa": "res://cenas/cenario/paredes/parede_lisa.tscn",
-    "rachada": "res://cenas/cenario/paredes/parede_rachada.tscn",
-    "janela": "res://cenas/cenario/paredes/parede_janela.tscn",
-    "arandela": "res://cenas/cenario/paredes/parede_arandela.tscn",
-    "desabada": "res://cenas/cenario/paredes/parede_desabada.tscn",
-    "mural": "res://cenas/cenario/paredes/parede_mural.tscn",
-    "conduites": "res://cenas/cenario/paredes/parede_conduites.tscn",
-    "fluorescente": "res://cenas/cenario/paredes/parede_fluorescente.tscn",
-    "servidores": "res://cenas/cenario/paredes/parede_servidores.tscn",
-    "painel_ciano": "res://cenas/cenario/paredes/parede_painel_ciano.tscn",
-    "escada_sobe": "res://cenas/cenario/paredes/parede_escada_sobe.tscn",
-    "escada_desce": "res://cenas/cenario/paredes/parede_escada_desce.tscn",
-    "nicho_armario": "res://cenas/cenario/paredes/parede_nicho_armario.tscn",
-    "nicho_bebedouro": "res://cenas/cenario/paredes/parede_nicho_bebedouro.tscn",
-    "porta": "res://cenas/cenario/bloco_de_salas/parede_porta_animada.tscn",
-}
-
-MAPA_CHAO = {
-    "lajotas": ("res://cenas/cenario/chao/chao_lajotas.tscn", "res://cenas/cenario/chao/chao_lajotas_fundo.tscn"),
-    "areia": ("res://cenas/cenario/chao/chao_areia.tscn", "res://cenas/cenario/chao/chao_areia_fundo.tscn"),
-    "mato": ("res://cenas/cenario/chao/chao_mato.tscn", "res://cenas/cenario/chao/chao_mato_fundo.tscn"),
-    "tapete": ("res://cenas/cenario/chao/chao_tapete.tscn", "res://cenas/cenario/chao/chao_tapete_fundo.tscn"),
-}
-
-MAPA_OBJETO = {
-    "mesa_concreto": "res://cenas/cenario/convivencia/mesa_concreto.tscn",
-    "balcao_cantina": "res://cenas/cenario/convivencia/balcao_cantina.tscn",
-    "cacos_vidro": "res://cenas/cenario/convivencia/cacos_vidro.tscn",
-    "arvore": "res://cenas/cenario/objetos/arvore.tscn",
-    "entulho": "res://cenas/cenario/objetos/entulho.tscn",
-    "lampada": "res://cenas/cenario/objetos/lampada.tscn",
-    "gerador": "res://cenas/cenario/objetos/gerador.tscn",
-    "painel_distribuicao": "res://cenas/cenario/objetos/painel_distribuicao.tscn",
-    "terminal": "res://cenas/cenario/objetos/terminal.tscn",
-    "torre_equipamentos": "res://cenas/cenario/objetos/torre_equipamentos.tscn",
-    "mesa_leitura": "res://cenas/cenario/objetos/mesa_leitura.tscn",
-    "cadeira": "res://cenas/cenario/objetos/cadeira.tscn",
-    "carrinho": "res://cenas/cenario/objetos/carrinho.tscn",
-    "livros": "res://cenas/cenario/objetos/livros.tscn",
-    "estante_vazia": "res://cenas/cenario/objetos/estante_vazia.tscn",
-    "estante_quebrada": "res://cenas/cenario/objetos/estante_quebrada.tscn",
-    "estante_metal": "res://cenas/cenario/bunker/objetos/estante_metal.tscn",
-    "caixas": "res://cenas/cenario/bunker/objetos/caixas.tscn",
-    "latas": "res://cenas/cenario/bunker/objetos/latas.tscn",
-    "tambor": "res://cenas/cenario/bunker/objetos/tambor.tscn",
-    "colchao": "res://cenas/cenario/bunker/objetos/colchao.tscn",
-    "mesa_metal": "res://cenas/cenario/bunker/objetos/mesa_metal.tscn",
-    "mesa_computador": "res://cenas/cenario/dtec/objetos/mesa_computador.tscn",
-    "bancada_eletronica": "res://cenas/cenario/dtec/objetos/bancada_eletronica.tscn",
-}
-
-
-def montar_sala(sala):
+def montar_sala(sala, objetos):
     m = Montagem()
     id_sala, largura, altura = sala["id"], sala["largura"], sala["altura"]
-    funda = altura > 180
     m.cena("res://cenas/salas/modelo_sala.tscn")
-    ceu_tex = m.recurso("Texture2D", "res://assets/sprites/cenario/ceu/ceu_noite.png")
-    m.no('[node name="Sprite2D" parent="Ceu"]', ["self_modulate = Color(1, 1, 1, 1)", f'texture = ExtResource("{ceu_tex}")'])
+    m.no('[node name="Ceu" parent="."]', ["visible = false"])
+    fundo = m.recurso("Texture2D", f"{RES_PRACA}/{sala['fundo']}.png")
+    m.no('[node name="Fundo" type="Sprite2D" parent="Chao"]', [f'texture = ExtResource("{fundo}")', "centered = false"])
+    sub_recursos = []
+    rodape = []
 
-    paredes = list(sala["paredes"])
-    pecas = largura // PECA
-    paredes += ["lisa"] * (pecas - len(paredes))
-    portas = {p["peca"]: p for p in sala.get("portas", [])}
-    for i, tipo in enumerate(paredes[:pecas]):
-        if i in portas and portas[i].get("parede_tipo"):
-            tipo_p = portas[i]["parede_tipo"]
-        elif i in portas:
-            tipo_p = "porta"
-        else:
-            tipo_p = tipo
-        m.instancia(f"Parede{i + 1:02d}", "Paredes", MAPA_PAREDE[tipo_p], [f"position = Vector2({i * PECA}, 0)"])
-        if tipo_p in ("nicho_armario", "nicho_bebedouro"):
-            m.instancia(f"Nicho{i * PECA}", "Objetos", "res://cenas/sistemas/nicho_esconderijo.tscn",
-                        [f"position = Vector2({i * PECA + 40}, 128)"])
+    escuridao = sala.get("escuridao", (0.22, 0.24, 0.36, 1))
+    luz_png = m.recurso("Texture2D", f"{RES_PRACA}/{sala['fundo']}_luz.png")
+    camada = [f"position = Vector2({largura // 2}, {altura // 2})", f'texture = ExtResource("{luz_png}")',
+              f"energy = {sala.get('energia_do_brilho', 1.3)}", "range_item_cull_mask = 1"]
+    if sala.get("acende_com_energia"):
+        scr_marca = m.recurso("Script", "res://scripts/sistemas/visivel_com_marca.gd")
+        m.no('[node name="Brilho" type="Node2D" parent="Chao"]', [f'script = ExtResource("{scr_marca}")', f'marca = "{MARCA_ENERGIA}"'])
+        m.no('[node name="Camada" type="PointLight2D" parent="Chao/Brilho"]', camada)
+    else:
+        m.no('[node name="Brilho" type="PointLight2D" parent="Chao"]', camada)
 
-    m.instancia("PilarEsquerda", "Paredes", "res://cenas/cenario/paredes/pilar.tscn", ["position = Vector2(0, 0)"])
-    m.instancia("PilarDireita", "Paredes", "res://cenas/cenario/paredes/pilar.tscn", [f"position = Vector2({largura - 16}, 0)"])
+    for porta in sala.get("portas", []):
+        if porta.get("cor"):
+            m.instancia(f"Folha{pascal(porta['id'])}", "Chao", f"res://cenas/cenario/praca/porta_{porta['cor']}.tscn",
+                        [f"position = Vector2({porta['coluna'] * PECA}, {porta['y_peca']})"])
 
-    for i, porta in portas.items():
-        if porta.get("placa"):
-            x = i * PECA
-            m.no(f'[node name="Placa{pascal(porta["id"])}" type="Label" parent="Paredes"]', [
-                f"offset_left = {x + 6}.0", "offset_top = 30.0", f"offset_right = {x + 74}.0", "offset_bottom = 44.0",
-                "theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)",
-                'theme_override_styles/normal = SubResource("Placa")',
-                f'text = "{porta["placa"]}"', "horizontal_alignment = 1"])
+    for (nome_decal, x, y) in sala.get("decais", []):
+        m.instancia(m.nome(pascal(nome_decal)), "Chao", objetos[nome_decal], [f"position = Vector2({x}, {y})"])
 
-    if sala.get("comporta_rampa") is not None:
-        peca_c = sala["comporta_rampa"]
-        tex_comp = m.recurso("Texture2D", "res://assets/sprites/cenario/convivencia/comporta_rampa.png")
-        m.instancia("ComportaRampa", "Paredes", "res://cenas/sistemas/grade_seguranca.tscn",
-                    [f"position = Vector2({peca_c * PECA + 16}, 44)", 'marca = "convivencia_energia"'])
-        m.no('[node name="Grade" parent="Paredes/ComportaRampa" index="0"]', [f'texture = ExtResource("{tex_comp}")'])
+    for (nome_letreiro, x, y) in sala.get("letreiros", []):
+        if os.path.exists(os.path.join(PASTA_KIT_PRACA, f"{nome_letreiro}.tscn")):
+            m.instancia(pascal(nome_letreiro), "Chao", f"res://cenas/cenario/praca/{nome_letreiro}.tscn", [f"position = Vector2({x}, {y})"])
 
-    colunas = math.ceil(largura / CHAO)
-    trocas = sala.get("chao_trocas", {})
-    chao_padrao = sala.get("chao", "lajotas")
-    for c in range(colunas):
-        tipo_c = trocas.get(c, chao_padrao)
-        m.instancia(f"Chao{c + 1}", "Chao", MAPA_CHAO[tipo_c][0], [f"position = Vector2({c * CHAO}, 0)"])
-    if funda:
-        linhas = math.ceil((altura - 180) / FUNDO)
-        trocas_fundo = sala.get("fundo_trocas", {})
-        for c in range(colunas):
-            tipo_c = trocas.get(c, chao_padrao)
-            for f in range(linhas):
-                tipo_f = trocas_fundo.get((c, f), tipo_c)
-                m.instancia(f"Fundo{c + 1}_{f + 1}", "Chao", MAPA_CHAO[tipo_f][1],
-                            [f"position = Vector2({c * CHAO}, {180 + f * FUNDO})"])
-        for f in range(math.ceil((altura - Y_CHAO) / FUNDO)):
-            y = Y_CHAO + f * FUNDO
-            m.instancia(f"LateralEsq{f + 1}", "Chao", "res://cenas/cenario/paredes/parede_lateral.tscn", [f"position = Vector2(0, {y})"])
-            m.instancia(f"LateralDir{f + 1}", "Chao", "res://cenas/cenario/paredes/parede_lateral.tscn",
-                        [f"position = Vector2({largura - 16}, {y})", "flip_h = true"])
+    if sala.get("arco"):
+        m.no('[node name="LimitesArco" type="StaticBody2D" parent="."]', ["collision_layer = 9"])
+        for c in range(base.COLUNAS_PRACA):
+            topo, baixo = -40, base.y_base(c) + 8
+            sub_id = f"CaixaArco{c}"
+            sub_recursos.append(f'[sub_resource type="RectangleShape2D" id="{sub_id}"]\nsize = Vector2({PECA}, {baixo - topo})')
+            m.no(f'[node name="Coluna{c}" type="CollisionShape2D" parent="LimitesArco"]',
+                 [f"position = Vector2({c * PECA + PECA // 2}, {(topo + baixo) // 2})", f'shape = SubResource("{sub_id}")'])
 
     for (nome, x, y, *resto) in sala.get("objetos", []):
-        caminho = MAPA_OBJETO[nome]
         props = [f"position = Vector2({x}, {y})"]
         if resto and resto[0]:
             props.append("espelhado = true")
-        m.instancia(m.nome(pascal(nome)), "Objetos", caminho, props)
+        m.instancia(m.nome(pascal(nome)), "Objetos", objetos[nome], props)
 
     for (item, x, y) in sala.get("itens", []):
         if item == "pilha":
@@ -263,6 +335,9 @@ def montar_sala(sala):
         m.instancia(m.nome("Documento"), "Objetos", "res://cenas/itens/documento_no_mundo.tscn",
                     [f"position = Vector2({x}, {y})", f'texto_acao = "{acao}"', f'documento = ExtResource("{id_doc}")', "altura_aviso = 52.0"])
 
+    for (x, y) in sala.get("nichos", []):
+        m.instancia(m.nome("Nicho"), "Objetos", "res://cenas/sistemas/nicho_esconderijo.tscn", [f"position = Vector2({x}, {y})"])
+
     if sala.get("checkpoint"):
         id_cp, x_cp, y_cp = sala["checkpoint"]
         m.instancia("Checkpoint", "Objetos", "res://cenas/sistemas/checkpoint.tscn",
@@ -270,8 +345,7 @@ def montar_sala(sala):
 
     if sala.get("painel_comutacao"):
         x_pc, y_pc = sala["painel_comutacao"]
-        m.instancia("PainelComutacao", "Objetos", "res://cenas/sistemas/painel_comutacao.tscn",
-                    [f"position = Vector2({x_pc}, {y_pc})"])
+        m.instancia("PainelComutacao", "Objetos", "res://cenas/sistemas/painel_comutacao.tscn", [f"position = Vector2({x_pc}, {y_pc})"])
 
     for (cena_luz, x, y, *props) in sala.get("luzes", []):
         m.instancia(m.nome("Luz"), "Luzes", f"res://cenas/cenario/luzes/{cena_luz}.tscn", [f"position = Vector2({x}, {y})", *props])
@@ -279,18 +353,24 @@ def montar_sala(sala):
     if sala.get("holofotes"):
         scr_vcm = m.recurso("Script", "res://scripts/sistemas/visivel_com_marca.gd")
         m.no('[node name="HolofotesPerimetrais" type="Node2D" parent="."]', [
-            f'script = ExtResource("{scr_vcm}")', 'marca = "convivencia_energia"', "revela_quem_passa = true"])
+            f'script = ExtResource("{scr_vcm}")', f'marca = "{MARCA_ENERGIA}"', "revela_quem_passa = true"])
         for idx, (hx, hy) in enumerate(sala["holofotes"]):
             m.instancia(f"Holofote{idx + 1}", "HolofotesPerimetrais", "res://cenas/cenario/luzes/luz_fria.tscn",
                         [f"position = Vector2({hx}, {hy})", "scale = Vector2(2.2, 2.0)", "color = Color(0.85, 0.95, 1, 1)", "energy = 1.15"])
 
-    m.no('[node name="Escuridao" parent="."]', [f"color = Color{sala.get('escuridao', (0.22, 0.24, 0.36, 1))}"])
+    m.no('[node name="Escuridao" parent="."]', [f"color = Color{escuridao}"])
     if "gabriel" in sala:
         m.no('[node name="Gabriel" parent="Objetos"]', [f"position = Vector2{sala['gabriel']}"])
 
-    for i, porta in portas.items():
-        x = i * PECA + X_PORTA
-        props = [f"position = Vector2({x}, {Y_PORTA})", f'id = "{porta["id"]}"']
+    if sala.get("comporta"):
+        c = sala["comporta"]
+        tex = m.recurso("Texture2D", f"{RES_PRACA}/objetos/{c['textura']}.png")
+        m.instancia("ComportaCarga", "Objetos", "res://cenas/sistemas/grade_seguranca.tscn",
+                    [f"position = Vector2({c['x']}, {c['y']})", f'marca = "{MARCA_ENERGIA}"'])
+        m.no('[node name="Grade" parent="Objetos/ComportaCarga" index="0"]', [f'texture = ExtResource("{tex}")'])
+
+    for porta in sala.get("portas", []):
+        props = [f"position = Vector2({porta['x']}, {porta['y']})", f'id = "{porta["id"]}"']
         if porta.get("liberada_por"):
             props += [f'liberada_por = "{porta["liberada_por"]}"', f'aviso_bloqueada = "{porta["aviso"]}"']
         if porta.get("bloqueada"):
@@ -300,9 +380,7 @@ def montar_sala(sala):
                       f'porta_destino = "{porta["porta_destino"]}"']
         m.instancia(f"Porta_{porta['id']}", ".", "res://cenas/sistemas/porta.tscn", props)
 
-    sub_recursos = [PLACA]
-    rodape = ['[editable path="Ceu"]']
-
+    rodape.append('[editable path="Ceu"]')
     for idx, (trans_id, gx, gy, marca_req) in enumerate(sala.get("transmissoes", [])):
         sub_id = f"AreaTransmissao{idx + 1}"
         sub_recursos.append(f'[sub_resource type="CircleShape2D" id="{sub_id}"]\nradius = 65.0')
@@ -323,7 +401,7 @@ def montar_sala(sala):
             props_r = [f"position = Vector2{r['pos']}", f'rota = NodePath("../../{nome_rota}")']
             if r.get("rota_energia"):
                 nome_rota_e = f"Rota{nome_r}Energia"
-                props_r += [f'rota_com_marca = NodePath("../../{nome_rota_e}")', 'marca_da_rota = "convivencia_energia"']
+                props_r += [f'rota_com_marca = NodePath("../../{nome_rota_e}")', f'marca_da_rota = "{MARCA_ENERGIA}"']
             if r["tipo"] == "sentinela":
                 props_r.append("bipa_antes_de_virar = true")
             m.instancia(nome_r, "Objetos", cena_robo, props_r)
@@ -348,7 +426,7 @@ def montar_sala(sala):
 
     raiz = f'[node name="{pascal(id_sala)}" instance=ExtResource("r1")]'
     props_raiz = [f'id = "conv_{id_sala}"', f"largura = {largura}"]
-    if funda:
+    if altura > 180:
         props_raiz += [f"altura = {altura}", f"chao_frente = {altura - 4}"]
     escrever(os.path.join(PASTA_SALAS, f"{id_sala}.tscn"), m.texto(raiz, props_raiz, sub_recursos, rodape))
     print(f"  sala: cenas/salas/centro_de_convivencia/{id_sala}.tscn ({largura} x {altura})")
@@ -371,7 +449,7 @@ cena_destino = "res://cenas/salas/bunker/entrada.tscn"
 sair_ao_carregar = true
 
 [node name="Titulo" parent="SaidaFase/Tela" index="1"]
-text = "VOCÊ DESCEU PELA RAMPA"
+text = "VOCÊ DESCEU PELO ELEVADOR DE CARGA"
 
 [node name="Subtitulo" parent="SaidaFase/Tela/Titulo" index="0"]
 text = "Próxima fase: o Bunker"
@@ -380,213 +458,16 @@ text = "Próxima fase: o Bunker"
     print("  sala: cenas/salas/centro_de_convivencia/fim_da_convivencia.tscn")
 
 
-SALAS = [
-    {
-        "id": "passarela_acesso", "largura": 640, "altura": 180, "gabriel": "(96, 152)",
-        "paredes": ["escada_sobe", "janela", "mural", "arandela", "nicho_bebedouro", "janela", "escada_desce", "rachada"],
-        "portas": [
-            {"peca": 0, "parede_tipo": "escada_sobe", "id": "passarela_subsolo", "placa": "SUBSOLO",
-             "bloqueada": True, "aviso": "O alçapão de manutenção se fechou por trás na subida."},
-            {"peca": 6, "parede_tipo": "escada_desce", "id": "passarela_patio", "placa": "PÁTIO",
-             "destino": "patio_central", "porta_destino": "patio_passarela"},
-        ],
-        "objetos": [("lampada", 290, 134), ("entulho", 420, 148)],
-        "itens": [("pilha", 360, 162), ("lanterna", 140, 160), ("radio", 180, 160)],
-        "checkpoint": ("conv_passarela", 60, 140),
-        "transmissoes": [("zane_convivencia_01", 220, 152, "")],
-        "luzes": [
-            ("luz_fria", 120, 50, "color = Color(0.5, 0.65, 0.95, 1)", "energy = 0.65"),
-            ("luz_lampada", 290, 126, "energy = 0.65"),
-            ("luz_fria", 440, 50, "color = Color(0.5, 0.65, 0.95, 1)", "energy = 0.65"),
-        ],
-        "escuridao": (0.24, 0.26, 0.38, 1),
-    },
-    {
-        "id": "patio_central", "largura": 1280, "altura": 360,
-        "paredes": ["escada_sobe", "desabada", "janela", "nicho_armario", "porta", "rachada", "desabada", "arandela",
-                    "desabada", "porta", "nicho_bebedouro", "desabada", "rachada", "porta", "janela", "desabada"],
-        "portas": [
-            {"peca": 0, "parede_tipo": "escada_sobe", "id": "patio_passarela", "placa": "PASSARELA",
-             "destino": "passarela_acesso", "porta_destino": "passarela_patio"},
-            {"peca": 4, "id": "patio_cantina", "placa": "CANTINA",
-             "destino": "cantina", "porta_destino": "cantina_patio"},
-            {"peca": 9, "id": "patio_grafica", "placa": "GRÁFICA",
-             "destino": "grafica_rapida", "porta_destino": "grafica_patio"},
-            {"peca": 13, "id": "patio_rampa", "placa": "RAMPA",
-             "destino": "rampa_subsolo", "porta_destino": "rampa_patio"},
-        ],
-        "chao": "lajotas",
-        "chao_trocas": {1: "mato", 2: "areia", 4: "mato", 5: "areia", 7: "mato", 8: "areia"},
-        "fundo_trocas": {(1, 0): "mato", (2, 1): "areia", (4, 1): "mato", (6, 0): "areia", (7, 1): "mato"},
-        "objetos": [
-            ("arvore", 220, 210), ("mesa_concreto", 310, 185), ("mesa_concreto", 440, 290, True),
-            ("arvore", 590, 235, True), ("mesa_concreto", 700, 185), ("mesa_concreto", 860, 290),
-            ("arvore", 990, 215), ("mesa_concreto", 1140, 250, True),
-            ("entulho", 150, 310), ("entulho", 640, 320, True), ("lampada", 520, 145), ("lampada", 1020, 145),
-        ],
-        "itens": [("pedra", 170, 318), ("pedra", 620, 325), ("pedra", 940, 315)],
-        "transmissoes": [("zane_convivencia_02", 760, 150, "convivencia_energia")],
-        "luzes": [
-            ("luz_fria", 160, 90, "scale = Vector2(1.8, 1.8)", "color = Color(0.5, 0.65, 0.98, 1)", "energy = 0.7"),
-            ("luz_fria", 520, 180, "scale = Vector2(2.0, 1.8)", "color = Color(0.5, 0.65, 0.98, 1)", "energy = 0.75"),
-            ("luz_fria", 880, 190, "scale = Vector2(2.0, 1.8)", "color = Color(0.5, 0.65, 0.98, 1)", "energy = 0.75"),
-            ("luz_fria", 1160, 160, "scale = Vector2(1.8, 1.8)", "color = Color(0.5, 0.65, 0.98, 1)", "energy = 0.7"),
-            ("luz_lampada", 520, 137, "energy = 0.55"),
-            ("luz_lampada", 1020, 137, "energy = 0.55"),
-        ],
-        "holofotes": [(260, 240), (540, 200), (820, 240), (1060, 200)],
-        "robos": [
-            {
-                "tipo": "sentinela", "pos": "(420, 160)",
-                "rota": ["(200, 155)", "(520, 155)", "(520, 315)", "(200, 315)"],
-                "rota_energia": ["(180, 155)", "(660, 155)", "(660, 250)", "(180, 315)"],
-            },
-            {
-                "tipo": "sentinela", "pos": "(920, 310)",
-                "rota": ["(740, 155)", "(1080, 155)", "(1080, 315)", "(740, 315)"],
-                "rota_energia": ["(680, 315)", "(1120, 155)", "(1120, 315)", "(680, 155)"],
-            },
-        ],
-        "zonas_piso": [
-            (0, 112, 420, 248, 0.7, "areia e folhas"),
-            (420, 112, 440, 248, 1.0, "lajota rachada"),
-            (860, 112, 420, 248, 0.7, "areia e raízes"),
-        ],
-        "escuridao": (0.2, 0.23, 0.35, 1),
-    },
-    {
-        "id": "cantina", "largura": 640, "altura": 260,
-        "paredes": ["porta", "mural", "nicho_armario", "fluorescente", "rachada", "conduites", "porta", "arandela"],
-        "portas": [
-            {"peca": 0, "id": "cantina_patio", "placa": "PÁTIO",
-             "destino": "patio_central", "porta_destino": "patio_cantina"},
-            {"peca": 6, "id": "cantina_deposito", "placa": "CÂMARA",
-             "destino": "deposito_cantina", "porta_destino": "deposito_cantina"},
-        ],
-        "chao": "lajotas",
-        "chao_trocas": {0: "tapete", 4: "tapete"},
-        "objetos": [
-            ("balcao_cantina", 300, 165), ("balcao_cantina", 420, 165, True),
-            ("cacos_vidro", 220, 210), ("cacos_vidro", 320, 215), ("cacos_vidro", 420, 210),
-            ("mesa_concreto", 120, 225), ("carrinho", 560, 215),
-        ],
-        "robos": [
-            {
-                "tipo": "rastreador", "pos": "(460, 220)",
-                "rota": ["(180, 145)", "(460, 145)", "(540, 230)", "(180, 230)"],
-            }
-        ],
-        "zonas_piso": [
-            (0, 112, 160, 148, 0.6, "passadeira de borracha"),
-            (160, 180, 320, 80, 2.0, "cacos de louça e vidro"),
-            (480, 112, 160, 148, 0.6, "passadeira de borracha"),
-        ],
-        "luzes": [
-            ("luz_tubo", 280, 34, "energy = 0.65"),
-            ("luz_emergencia", 440, 34, "energy = 0.5"),
-        ],
-        "escuridao": (0.2, 0.21, 0.28, 1),
-    },
-    {
-        "id": "deposito_cantina", "largura": 400, "altura": 240,
-        "paredes": ["porta", "conduites", "fluorescente", "rachada", "painel_ciano"],
-        "portas": [
-            {"peca": 0, "id": "deposito_cantina", "placa": "CANTINA",
-             "destino": "cantina", "porta_destino": "cantina_deposito"},
-        ],
-        "objetos": [
-            ("estante_metal", 140, 145), ("estante_metal", 210, 145),
-            ("gerador", 320, 185), ("caixas", 100, 215), ("tambor", 250, 215), ("latas", 180, 210),
-        ],
-        "itens": [("celula_energia", 290, 205), ("pilha", 140, 215)],
-        "luzes": [
-            ("luz_tubo", 200, 34, "energy = 0.6"),
-            ("luz_fria", 320, 160, "color = Color(0.3, 0.9, 1, 1)", "energy = 0.75"),
-        ],
-        "escuridao": (0.18, 0.2, 0.26, 1),
-    },
-    {
-        "id": "grafica_rapida", "largura": 480, "altura": 260,
-        "paredes": ["porta", "mural", "conduites", "painel_ciano", "fluorescente", "porta"],
-        "portas": [
-            {"peca": 0, "id": "grafica_patio", "placa": "PÁTIO",
-             "destino": "patio_central", "porta_destino": "patio_grafica"},
-            {"peca": 5, "id": "grafica_posto", "placa": "MANUTENÇÃO",
-             "destino": "posto_manutencao", "porta_destino": "posto_grafica"},
-        ],
-        "objetos": [
-            ("bancada_eletronica", 160, 195), ("mesa_computador", 310, 205),
-            ("estante_vazia", 110, 140), ("livros", 210, 230), ("caixas", 380, 225),
-        ],
-        "documentos": [("panfleto_universitario", 160, 210, "Ler o panfleto na bancada")],
-        "painel_comutacao": (240, 132),
-        "luzes": [
-            ("luz_tubo", 360, 34, "energy = 0.7"),
-            ("luz_fria", 240, 90, "color = Color(0.35, 0.85, 1, 1)", "energy = 0.6"),
-        ],
-        "escuridao": (0.22, 0.23, 0.3, 1),
-    },
-    {
-        "id": "posto_manutencao", "largura": 400, "altura": 240,
-        "paredes": ["porta", "mural", "conduites", "servidores", "arandela"],
-        "portas": [
-            {"peca": 0, "id": "posto_grafica", "placa": "GRÁFICA",
-             "destino": "grafica_rapida", "porta_destino": "grafica_posto"},
-        ],
-        "chao": "tapete",
-        "objetos": [
-            ("colchao", 290, 205), ("mesa_metal", 180, 160), ("lampada", 235, 165),
-            ("painel_distribuicao", 340, 145), ("caixas", 90, 215),
-        ],
-        "itens": [("pilha", 180, 185), ("clarao", 330, 215)],
-        "documentos": [("ordem_manutencao_convivencia", 120, 134, "Ler a ordem de manutenção")],
-        "checkpoint": ("conv_posto_seguro", 235, 190),
-        "luzes": [
-            ("luz_lampada", 235, 157, "energy = 0.85"),
-            ("luz_tubo", 180, 34, "energy = 0.55"),
-        ],
-        "escuridao": (0.24, 0.24, 0.3, 1),
-    },
-    {
-        "id": "rampa_subsolo", "largura": 640, "altura": 360,
-        "paredes": ["porta", "rachada", "nicho_armario", "conduites", "painel_ciano", "arandela", "porta", "conduites"],
-        "portas": [
-            {"peca": 0, "id": "rampa_patio", "placa": "PÁTIO",
-             "destino": "patio_central", "porta_destino": "patio_rampa"},
-            {"peca": 6, "id": "rampa_bunker", "placa": "BUNKER",
-             "liberada_por": "convivencia_energia",
-             "aviso": "Comporta magnética travada. Relé de comutação na Gráfica sem alimentação primária.",
-             "destino": "fim_da_convivencia", "porta_destino": ""},
-        ],
-        "comporta_rampa": 6,
-        "chao": "lajotas",
-        "chao_trocas": {1: "areia", 3: "areia"},
-        "objetos": [
-            ("caixas", 160, 210), ("tambor", 220, 240), ("mesa_concreto", 340, 270),
-            ("entulho", 460, 220), ("torre_equipamentos", 420, 145), ("lampada", 560, 155),
-        ],
-        "robos": [
-            {
-                "tipo": "sentinela", "pos": "(360, 220)",
-                "rota": ["(180, 160)", "(440, 160)", "(440, 310)", "(180, 310)"],
-                "rota_energia": ["(160, 160)", "(520, 160)", "(520, 310)", "(260, 310)"],
-            }
-        ],
-        "holofotes": [(320, 210), (500, 190)],
-        "luzes": [
-            ("luz_emergencia", 520, 34, "energy = 0.7"),
-            ("luz_lampada", 560, 147, "energy = 0.6"),
-            ("luz_fria", 280, 120, "color = Color(0.5, 0.65, 0.95, 1)", "energy = 0.6"),
-        ],
-        "escuridao": (0.2, 0.22, 0.32, 1),
-    },
-]
+# ---------------------------------------------------------------------------
+# Execução
+# ---------------------------------------------------------------------------
 
 
 def main():
     montar_kit()
-    for sala in SALAS:
-        montar_sala(sala)
+    objetos = montar_objetos()
+    for sala in salas_convivencia.SALAS:
+        montar_sala(sala, objetos)
     montar_fim_convivencia()
 
 

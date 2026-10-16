@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="SpriteFrames" path="res://assets/sprites/cenario/praca/portas/porta_verde_quadros.tres" id="1_quadros"]
+[ext_resource type="Script" path="res://scripts/sistemas/folha_porta.gd" id="2_script"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_restaurante.wav" id="3_som"]
+
+[node name="PortaVerde" type="Node2D"]
+
+[node name="Folha" type="AnimatedSprite2D" parent="." groups=["folhas_de_porta"]]
+position = Vector2(0, 24)
+sprite_frames = ExtResource("1_quadros")
+animation = &"abrir"
+centered = false
+script = ExtResource("2_script")
+som_abrir = ExtResource("3_som")

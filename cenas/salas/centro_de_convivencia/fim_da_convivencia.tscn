@@ -14,7 +14,7 @@ cena_destino = "res://cenas/salas/bunker/entrada.tscn"
 sair_ao_carregar = true
 
 [node name="Titulo" parent="SaidaFase/Tela" index="1"]
-text = "VOCÊ DESCEU PELA RAMPA"
+text = "VOCÊ DESCEU PELO ELEVADOR DE CARGA"
 
 [node name="Subtitulo" parent="SaidaFase/Tela/Titulo" index="0"]
 text = "Próxima fase: o Bunker"
