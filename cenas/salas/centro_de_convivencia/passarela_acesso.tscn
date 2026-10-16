@@ -1,0 +1,174 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/ceu/ceu_noite.png" id="r2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_escada_sobe.tscn" id="r3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_janela.tscn" id="r4"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_mural.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_arandela.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_nicho_bebedouro.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_escada_desce.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_rachada.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/lampada.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r15"]
+[ext_resource type="Resource" path="res://dados/itens/lanterna.tres" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r17"]
+[ext_resource type="Resource" path="res://dados/itens/radio.tres" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r22"]
+[ext_resource type="Resource" path="res://dados/transmissoes/zane_convivencia_01.tres" id="r23"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r25"]
+
+[sub_resource type="StyleBoxFlat" id="Placa"]
+bg_color = Color(0.12, 0.13, 0.14, 1)
+
+[sub_resource type="CircleShape2D" id="AreaTransmissao1"]
+radius = 65.0
+
+[node name="PassarelaAcesso" instance=ExtResource("r1")]
+id = "conv_passarela_acesso"
+largura = 640
+
+[node name="Sprite2D" parent="Ceu"]
+self_modulate = Color(1, 1, 1, 1)
+texture = ExtResource("r2")
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(80, 0)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(240, 0)
+
+[node name="Parede05" parent="Paredes" instance=ExtResource("r7")]
+position = Vector2(320, 0)
+
+[node name="Nicho320" parent="Objetos" instance=ExtResource("r8")]
+position = Vector2(360, 128)
+
+[node name="Parede06" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(400, 0)
+
+[node name="Parede07" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(480, 0)
+
+[node name="Parede08" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(560, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r11")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("r11")]
+position = Vector2(624, 0)
+
+[node name="PlacaPassarelaSubsolo" type="Label" parent="Paredes"]
+offset_left = 6.0
+offset_top = 30.0
+offset_right = 74.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "SUBSOLO"
+horizontal_alignment = 1
+
+[node name="PlacaPassarelaPatio" type="Label" parent="Paredes"]
+offset_left = 486.0
+offset_top = 30.0
+offset_right = 554.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "PÁTIO"
+horizontal_alignment = 1
+
+[node name="Chao1" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(0, 0)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(128, 0)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(256, 0)
+
+[node name="Chao4" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(384, 0)
+
+[node name="Chao5" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(512, 0)
+
+[node name="Lampada1" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(290, 134)
+
+[node name="Entulho1" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(420, 148)
+
+[node name="Pilha1" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(360, 162)
+
+[node name="Lanterna1" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(140, 160)
+item = ExtResource("r16")
+
+[node name="Radio1" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(180, 160)
+item = ExtResource("r18")
+
+[node name="Checkpoint" parent="Objetos" instance=ExtResource("r19")]
+position = Vector2(60, 140)
+id = "conv_passarela"
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r20")]
+position = Vector2(120, 50)
+color = Color(0.5, 0.65, 0.95, 1)
+energy = 0.65
+
+[node name="Luz2" parent="Luzes" instance=ExtResource("r21")]
+position = Vector2(290, 126)
+energy = 0.65
+
+[node name="Luz3" parent="Luzes" instance=ExtResource("r20")]
+position = Vector2(440, 50)
+color = Color(0.5, 0.65, 0.95, 1)
+energy = 0.65
+
+[node name="Escuridao" parent="."]
+color = Color(0.24, 0.26, 0.38, 1)
+
+[node name="Gabriel" parent="Objetos"]
+position = Vector2(96, 152)
+
+[node name="Porta_passarela_subsolo" parent="." instance=ExtResource("r22")]
+position = Vector2(41, 124)
+id = "passarela_subsolo"
+bloqueada = true
+aviso_bloqueada = "O alçapão de manutenção se fechou por trás na subida."
+
+[node name="Porta_passarela_patio" parent="." instance=ExtResource("r22")]
+position = Vector2(521, 124)
+id = "passarela_patio"
+cena_destino = "res://cenas/salas/centro_de_convivencia/patio_central.tscn"
+porta_destino = "patio_passarela"
+
+[node name="GatilhoTransmissao1" parent="Objetos" instance=ExtResource("r24")]
+position = Vector2(220, 152)
+transmissao = ExtResource("r23")
+
+[node name="Area" parent="Objetos/GatilhoTransmissao1" index="0"]
+shape = SubResource("AreaTransmissao1")
+
+[node name="MusicaFase" parent="." instance=ExtResource("r25")]
+
+[editable path="Ceu"]
+[editable path="Objetos/GatilhoTransmissao1"]

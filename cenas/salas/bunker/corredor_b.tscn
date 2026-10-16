@@ -351,8 +351,8 @@ aviso_bloqueada = "Lacrada pelo sistema. O Zane está tentando abrir."
 [node name="Porta_nucleo" parent="." instance=ExtResource("r24")]
 position = Vector2(1960, 124)
 id = "nucleo"
-bloqueada = true
-aviso_bloqueada = "A comporta do núcleo não se mexe. Nem um milímetro."
+cena_destino = "res://cenas/salas/bunker/fim_do_bunker.tscn"
+som_abrir = ExtResource("r25")
 
 [node name="Zumbido" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("r26")

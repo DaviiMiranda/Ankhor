@@ -1,0 +1,92 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/painel_comutacao.gd" id="1_painel"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/quadro_energia.png" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/disjuntor.wav" id="3_clique"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_emperrada.wav" id="4_desarme"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_alcance"]
+radius = 22.0
+
+[node name="PainelComutacao" type="Area2D"]
+process_mode = 3
+script = ExtResource("1_painel")
+texto_acao = "Operar comutador"
+altura_aviso = 76.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_sprite")
+centered = false
+offset = Vector2(-12, -76)
+
+[node name="Alcance" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_alcance")
+
+[node name="Tela" type="CanvasLayer" parent="."]
+layer = 9
+visible = false
+
+[node name="Fundo" type="ColorRect" parent="Tela"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="Painel" type="ColorRect" parent="Tela"]
+offset_left = 40.0
+offset_top = 24.0
+offset_right = 280.0
+offset_bottom = 148.0
+mouse_filter = 2
+color = Color(0.14, 0.16, 0.2, 1)
+
+[node name="Titulo" type="Label" parent="Tela/Painel"]
+offset_top = 6.0
+offset_right = 240.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(0.94, 0.82, 0.28, 1)
+text = "COMUTADOR TRIFÁSICO (GRAFO)"
+horizontal_alignment = 1
+
+[node name="Regra" type="Label" parent="Tela/Painel"]
+offset_top = 20.0
+offset_right = 240.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.68, 0.78, 0.86, 1)
+text = "Vizinhos (N-L, L-S, S-O, O-N, N-S) ≠ mesma fase"
+horizontal_alignment = 1
+
+[node name="Setores" type="HBoxContainer" parent="Tela/Painel"]
+offset_left = 12.0
+offset_top = 38.0
+offset_right = 228.0
+offset_bottom = 100.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="StatusArestas" type="Label" parent="Tela/Painel"]
+offset_top = 104.0
+offset_right = 240.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(1, 0.36, 0.36, 1)
+text = "Conflito de fase"
+horizontal_alignment = 1
+
+[node name="Dica" type="Label" parent="Tela"]
+offset_top = 158.0
+offset_right = 320.0
+offset_bottom = 172.0
+theme_override_colors/font_color = Color(0.95, 0.88, 0.7, 1)
+horizontal_alignment = 1
+
+[node name="SomClique" type="AudioStreamPlayer" parent="Tela"]
+stream = ExtResource("3_clique")
+bus = &"Efeitos"
+
+[node name="SomDesarme" type="AudioStreamPlayer" parent="Tela"]
+stream = ExtResource("4_desarme")
+bus = &"Efeitos"

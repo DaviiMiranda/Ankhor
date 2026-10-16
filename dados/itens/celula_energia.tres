@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/item.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/celula_energia.png" id="2_icone"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/celula_energia_chao.png" id="3_chao"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/celula_energia_detalhe.png" id="4_detalhe"]
+
+[resource]
+script = ExtResource("1_item")
+id = "celula_energia"
+nome = "Célula de energia"
+descricao = "Célula industrial de alta densidade, tirada da câmara frigorífica da cantina. Alimenta o quadro de comutação da Gráfica."
+icone = ExtResource("2_icone")
+sprite_chao = ExtResource("3_chao")
+imagem_detalhe = ExtResource("4_detalhe")

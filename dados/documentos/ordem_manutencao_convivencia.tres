@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "ordem_manutencao_convivencia"
+titulo = "Ordem de Manutenção Técnica (3026)"
+autor = "Posto de Manutenção Predial"
+papel = "caderno_gabriel"
+paginas = PackedStringArray("RELATÓRIO DE MANUTENÇÃO — SETOR CONVIVÊNCIA
+
+1. A comporta magnética da Rampa do Subsolo (acesso ao Bunker) depende do Quadro de Comutação na Gráfica Rápida.
+2. A Célula de Energia reserva foi realocada para o gerador de emergência da câmara frigorífica da Cantina (Ala Norte).
+3. Ao armar o comutador trifásico, regule as 3 fases para que setores vizinhos (N-L, L-S, S-O, O-N e diagonal N-S) não usem a mesma fase.")
+anotacao = "Ordem de manutenção no Posto: a Célula de Energia que alimenta o comutador da Gráfica está na câmara frigorífica da Cantina. No comutador, setores ligados não podem ter a mesma fase."

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "zane_convivencia_01"
+falante = "ZANE (rádio)"
+falas = PackedStringArray("Chhh... Gabriel? Você saiu na passarela do Centro de Convivência! Tô vendo o sinal do seu rádio daqui.", "Cuidado aí fora: tem duas Sentinelas cobrindo o pátio aberto, e o luar entrega qualquer um no meio do descampado. Usa as mesas de concreto e as raízes pra cortar a linha de visão.", "A descida pro Bunker fica na Rampa do Subsolo, mas a comporta tá sem carga. Procura o Posto de Manutenção passando pela Gráfica pra descobrir onde guardaram a célula reserva.")
+titulo_anotacao = "Zane no rádio: Centro de Convivência"
+anotacao = "O Zane avisou pelo rádio que o pátio aberto do Centro de Convivência tem duas Sentinelas sob o luar. Preciso usar as mesas e raízes como cobertura, passar pela Gráfica até o Posto de Manutenção e achar a célula de energia para abrir a comporta da Rampa do Subsolo."

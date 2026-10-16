@@ -3,7 +3,7 @@
 	"inicio": "volta",
 	"anotacao": {
 		"titulo": "O alçapão da oficina",
-		"texto": "Invadi os três nós e voltei ao Zane. A saída do subsolo não é uma porta: é um alçapão de manutenção escondido debaixo de uma lona, na oficina dele, que o sistema mantinha lacrado.\n\nO Zane o abriu. Ele desce para o nível de baixo, o bunker. O Zane disse que desliga as coisas dele e vai atrás."
+		"texto": "Invadi os três nós e voltei ao Zane. A saída do subsolo não é uma porta: é um alçapão de manutenção escondido debaixo de uma lona, na oficina dele, que o sistema mantinha lacrado.\n\nO Zane o abriu. O duto sai na passarela do Centro de Convivência, por onde dá para chegar à rampa do bunker. O Zane continua no rádio comigo."
 	},
 	"trechos": {
 		"volta": {
@@ -21,7 +21,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_confiante",
-					"texto": "Porque não é porta. Essa oficina era um posto de manutenção: o duto de serviço desce por baixo da bancada. A tampa ficava lacrada pelo sistema."
+					"texto": "Porque não é porta. Essa oficina era um posto de manutenção: o duto de serviço passa por baixo da bancada. A tampa ficava lacrada pelo sistema."
 				},
 				{
 					"quem": "Gabriel",
@@ -36,7 +36,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_confiante",
-					"texto": "Pronto, destravou. Ela desce para o nível de baixo: o bunker. Vai, eu desligo as minhas coisas aqui e vou atrás."
+					"texto": "Pronto, destravou. O duto sai na passarela do Centro de Convivência, bem em frente à rampa que desce pro bunker. Vai lá, eu te guio pelo rádio!"
 				}
 			]
 		}

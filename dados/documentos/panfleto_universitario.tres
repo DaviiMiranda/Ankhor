@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "panfleto_universitario"
+titulo = "Panfleto da Semana Universitária (2024)"
+autor = "Centro de Convivência — Unifor"
+papel = "caderno_gabriel"
+paginas = PackedStringArray("SEMANA CULTURAL E UNIVERSITÁRIA — 2024
+
+12h00 — Apresentação acústica no pátio das mesas
+14h30 — Feira de livros e troca de apostilas na Gráfica Rápida
+17h00 — Encontro dos centros acadêmicos junto à Cantina Central
+
+Traga sua caneca! Nos vemos debaixo das árvores do Convivência.")
+anotacao = "Panfleto de 2024 na Gráfica Rápida: programação de música e feira no Centro de Convivência, mil anos antes deste silêncio."

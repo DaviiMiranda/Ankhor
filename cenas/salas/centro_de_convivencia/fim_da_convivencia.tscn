@@ -1,0 +1,20 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/sistemas/saida_fase.tscn" id="1_saida"]
+
+[node name="FimDaConvivencia" type="Node2D"]
+
+[node name="Fundo" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
+
+[node name="SaidaFase" parent="." instance=ExtResource("1_saida")]
+cena_destino = "res://cenas/salas/bunker/entrada.tscn"
+sair_ao_carregar = true
+
+[node name="Titulo" parent="SaidaFase/Tela" index="1"]
+text = "VOCÊ DESCEU PELA RAMPA"
+
+[node name="Subtitulo" parent="SaidaFase/Tela/Titulo" index="0"]
+text = "Próxima fase: o Bunker"

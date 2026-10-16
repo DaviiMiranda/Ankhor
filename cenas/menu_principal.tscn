@@ -12,12 +12,9 @@
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/menu_clique.wav" id="10_clique"]
 [ext_resource type="Script" path="res://scripts/sistemas/fase.gd" id="f_script"]
 [ext_resource type="Resource" path="res://dados/fases/01_biblioteca.tres" id="f_1"]
-[ext_resource type="Resource" path="res://dados/fases/03_labirinto.tres" id="f_3"]
 [ext_resource type="Resource" path="res://dados/fases/02_blocos_de_aula.tres" id="f_2"]
+[ext_resource type="Resource" path="res://dados/fases/03_labirinto.tres" id="f_3"]
 [ext_resource type="Resource" path="res://dados/fases/04_convivencia.tres" id="f_4"]
-[ext_resource type="Resource" path="res://dados/fases/05_espaco_cultural.tres" id="f_5"]
-[ext_resource type="Resource" path="res://dados/fases/06_nami.tres" id="f_6"]
-[ext_resource type="Resource" path="res://dados/fases/07_reitoria.tres" id="f_7"]
 [ext_resource type="Resource" path="res://dados/fases/08_bunker.tres" id="f_8"]
 [ext_resource type="Resource" path="res://dados/fases/09_dtec.tres" id="f_9"]
 
@@ -107,7 +104,7 @@ script = ExtResource("1_menu")
 energia_luz = 0.12
 oscilacao_luz = 0.06
 cena_novo_jogo = ExtResource("8_novo_jogo")
-fases = Array[ExtResource("f_script")]([ExtResource("f_1"), ExtResource("f_2"), ExtResource("f_3"), ExtResource("f_4"), ExtResource("f_5"), ExtResource("f_6"), ExtResource("f_7"), ExtResource("f_8"), ExtResource("f_9")])
+fases = Array[ExtResource("f_script")]([ExtResource("f_1"), ExtResource("f_2"), ExtResource("f_3"), ExtResource("f_4"), ExtResource("f_8"), ExtResource("f_9")])
 
 [node name="Cenario" type="Sprite2D" parent="."]
 light_mask = 2
