@@ -46,10 +46,10 @@ func _mostrar_fala(quem: String, fala: String, imagem: Texture2D) -> void:
 	texto.visible = true
 	moldura_retrato.visible = imagem != null
 	retrato.texture = imagem
-	var margem := 52.0 if imagem else 8.0
+	var margem := 104.0 if imagem else 16.0
 	nome.position.x = margem
 	texto.position.x = margem
-	texto.size.x = janela.size.x - margem - 8.0
+	texto.size.x = janela.size.x - margem - 16.0
 	nome.text = quem
 	nome.add_theme_color_override("font_color", CORES_NOMES.get(quem, COR_NOME_PADRAO))
 	texto.text = fala

@@ -32,8 +32,8 @@ proxima_cena = ExtResource("7_biblioteca")
 
 [node name="Video" type="VideoStreamPlayer" parent="."]
 texture_filter = 2
-offset_right = 320.0
-offset_bottom = 180.0
+offset_right = 640.0
+offset_bottom = 360.0
 mouse_filter = 2
 stream = ExtResource("2_video")
 autoplay = true
@@ -43,8 +43,8 @@ bus = &"Efeitos"
 [node name="Escuro" type="ColorRect" parent="."]
 offset_left = -10.0
 offset_top = -10.0
-offset_right = 330.0
-offset_bottom = 190.0
+offset_right = 650.0
+offset_bottom = 370.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
