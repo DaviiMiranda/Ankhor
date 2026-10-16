@@ -1,0 +1,28 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="1_marca"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/letreiros/letreiro_cinema.png" id="2_apagado"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/letreiros/letreiro_cinema_aceso.png" id="3_aceso"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="4_luz"]
+
+[node name="LetreiroCinema" type="Sprite2D"]
+texture = ExtResource("2_apagado")
+centered = false
+
+[node name="Acende" type="Node2D" parent="."]
+script = ExtResource("1_marca")
+marca = "convivencia_energia"
+
+[node name="Camada" type="PointLight2D" parent="Acende"]
+position = Vector2(120, 16)
+energy = 2.2
+range_item_cull_mask = 1
+texture = ExtResource("3_aceso")
+
+[node name="Luz" type="PointLight2D" parent="Acende"]
+position = Vector2(120, 42)
+color = Color(0.7, 0.5, 1, 1)
+energy = 0.7
+range_item_cull_mask = 3
+texture = ExtResource("4_luz")
+texture_scale = 2.0

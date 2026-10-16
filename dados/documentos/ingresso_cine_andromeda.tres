@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "ingresso_cine_andromeda"
+titulo = "Canhoto de ingresso do Cine Andrômeda"
+autor = "Cine Andrômeda"
+papel = "caderno_gabriel"
+paginas = PackedStringArray("CINE ANDRÔMEDA
+
+SALA 1 — SESSÃO DAS 19h30
+\"A ÚLTIMA TRANSMISSÃO\"
+POLTRONA F-12 — MEIA-ENTRADA ESTUDANTE
+
+Sem reembolso depois do início da sessão.
+Guarde este canhoto.")
+anotacao = "Um canhoto de ingresso esquecido na bilheteria do Cine Andrômeda: sessão das 19h30, Sala 1. A tela lá dentro ainda mostra \"sem sinal\"."

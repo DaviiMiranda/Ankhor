@@ -14,15 +14,15 @@ script = ExtResource("1_marca")
 marca = "convivencia_energia"
 
 [node name="Camada" type="PointLight2D" parent="Acende"]
-position = Vector2(200, 16)
+position = Vector2(120, 16)
 energy = 2.2
 range_item_cull_mask = 1
 texture = ExtResource("3_aceso")
 
 [node name="Luz" type="PointLight2D" parent="Acende"]
-position = Vector2(200, 42)
+position = Vector2(120, 42)
 color = Color(0.45, 0.9, 1, 1)
 energy = 0.7
 range_item_cull_mask = 3
 texture = ExtResource("4_luz")
-texture_scale = 3.33
+texture_scale = 2.0

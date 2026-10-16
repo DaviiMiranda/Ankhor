@@ -20,7 +20,11 @@
 #   - as portas de vidro (a folha que corre) e os letreiros de neon;
 #   - os objetos (mesas, balcões...), com a "pegada" de colisão no chão;
 #   - na praça, as colisões do arco: uma caixa por coluna de 80 px, do topo da
-#     sala até a altura em que a parede dela encosta no chão.
+#     sala até a altura em que a parede dela encosta no chão;
+#   - no mezanino (segundo andar), além disso, uma caixa por coluna na BEIRADA
+#     da laje (o corrimão), e o sprite do corrimão na camada Frente, na frente
+#     do Gabriel;
+#   - a tela animada do cinema.
 
 import os
 import sys
@@ -34,6 +38,7 @@ sys.path.insert(0, os.path.join(PASTA_PROJETO, "assets", "modelagem", "cenario")
 
 import gerar_praca_base as base  # noqa: E402
 import gerar_praca_objetos as gerador_objetos  # noqa: E402
+import gerar_andar2_objetos as gerador_objetos2  # noqa: E402
 
 sys.path.insert(0, PASTA_SCRIPT)
 import salas_convivencia  # noqa: E402
@@ -48,6 +53,8 @@ COR_DA_LUZ = {
     "vermelho": "Color(1, 0.4, 0.3, 1)",
     "magenta": "Color(1, 0.4, 0.85, 1)",
     "violeta": "Color(0.7, 0.5, 1, 1)",
+    "azul": "Color(0.4, 0.62, 1, 1)",
+    "limao": "Color(0.85, 1, 0.3, 1)",
 }
 MARCA_ENERGIA = "convivencia_energia"
 
@@ -56,7 +63,11 @@ LETREIROS = {
     "letreiro_loja_2": ("verde", 240, 28),
     "letreiro_loja_3": ("vermelho", 240, 28),
     "letreiro_loja_4": ("magenta", 240, 28),
-    "letreiro_entrada": ("ciano", 400, 28),
+    "letreiro_entrada": ("ciano", 240, 28),
+    "letreiro_grafica": ("limao", 240, 28),
+    "letreiro_loja_uni": ("azul", 240, 28),
+    "letreiro_cinema": ("violeta", 240, 28),
+    "letreiro_mezanino": ("ciano", 240, 28),
 }
 
 
@@ -147,6 +158,17 @@ LUZES_DOS_OBJETOS = {
     "grelha_solar": [(0, -50, "Color(1, 0.4, 0.85, 1)", 0.9, 2.2)],
     "balcao_bar": [(0, -30, "Color(1, 0.4, 0.85, 1)", 0.6, 2.2)],
     "banqueta_alta": [],
+    "maquina_venda": [(0, -30, "Color(0.45, 0.9, 1, 1)", 0.4, 1.0)],
+    "diretorio_holo": [(0, -40, "Color(0.4, 0.62, 1, 1)", 0.45, 1.2)],
+    "jardineira": [(0, -24, "Color(0.4, 1, 0.8, 1)", 0.35, 1.4)],
+    "luminaria_chao": [(0, -60, "Color(0.6, 0.95, 1, 1)", 0.8, 2.0)],
+    "balcao_caixa_uni": [(0, -30, "Color(0.4, 0.62, 1, 1)", 0.5, 1.6)],
+    "impressora_3d": [(0, -24, "Color(0.85, 1, 0.3, 1)", 0.5, 1.0)],
+    "plotter_grande": [(0, -30, "Color(0.85, 1, 0.3, 1)", 0.4, 1.4)],
+    "balcao_grafica": [(-30, -34, "Color(0.85, 1, 0.3, 1)", 0.5, 1.4)],
+    "balcao_pipoca": [(-30, -30, "Color(1, 0.7, 0.3, 1)", 0.9, 1.8)],
+    "bilheteria_balcao": [(0, -30, "Color(0.7, 0.5, 1, 1)", 0.6, 1.4)],
+    "standee_filme": [(0, -34, "Color(0.7, 0.5, 1, 1)", 0.35, 1.0)],
 }
 OBJETOS_SEM_COLISAO = ("cacos_louca", "elevador_carga")
 
@@ -206,7 +228,7 @@ def montar_objetos():
     """Uma cena por objeto (cenas/cenario/praca/objetos/). O pé de cada um e a
     pegada vêm do próprio gerador de sprites."""
     caminhos = {}
-    for nome, (funcao, pegada) in gerador_objetos.OBJETOS.items():
+    for nome, (funcao, pegada) in {**gerador_objetos.OBJETOS, **gerador_objetos2.OBJETOS}.items():
         img, px, py = funcao()
         escrever(os.path.join(PASTA_KIT_PRACA, "objetos", f"{nome}.tscn"), cena_objeto(nome, px, py, pegada[0], pegada[1]))
         caminhos[nome] = f"res://cenas/cenario/praca/objetos/{nome}.tscn"
@@ -218,7 +240,7 @@ def montar_objetos():
 
 
 def montar_kit():
-    for cor in ("ambar", "verde", "vermelho", "magenta", "ciano"):
+    for cor in ("ambar", "verde", "vermelho", "magenta", "ciano", "azul", "limao", "violeta"):
         escrever(os.path.join(PASTA_KIT_PRACA, f"porta_{cor}.tscn"), cena_porta(cor))
     for nome, (cor, largura, altura) in LETREIROS.items():
         if os.path.exists(os.path.join(PASTA_LETREIROS, f"{nome}_aceso.png")):
@@ -315,6 +337,27 @@ def montar_sala(sala, objetos):
             sub_recursos.append(f'[sub_resource type="RectangleShape2D" id="{sub_id}"]\nsize = Vector2({PECA}, {baixo - topo})')
             m.no(f'[node name="Coluna{c}" type="CollisionShape2D" parent="LimitesArco"]',
                  [f"position = Vector2({c * PECA + PECA // 2}, {(topo + baixo) // 2})", f'shape = SubResource("{sub_id}")'])
+        if sala.get("balcao"):
+            for c in range(base.COLUNAS_PRACA):
+                topo, baixo = base.y_frente(c) - 4, altura + 40
+                sub_id = f"CaixaBeirada{c}"
+                sub_recursos.append(f'[sub_resource type="RectangleShape2D" id="{sub_id}"]\nsize = Vector2({PECA}, {baixo - topo})')
+                m.no(f'[node name="Beirada{c}" type="CollisionShape2D" parent="LimitesArco"]',
+                     [f"position = Vector2({c * PECA + PECA // 2}, {(topo + baixo) // 2})", f'shape = SubResource("{sub_id}")'])
+
+    if sala.get("corrimao"):
+        corrimao = m.recurso("Texture2D", f"{RES_PRACA}/{sala['corrimao']}.png")
+        m.no('[node name="Corrimao" type="Sprite2D" parent="Frente"]', [f'texture = ExtResource("{corrimao}")', "centered = false"])
+
+    for (nome_animado, x, y, animacao) in sala.get("animados", []):
+        quadros = m.recurso("SpriteFrames", f"{RES_PRACA}/objetos/{nome_animado}_quadros.tres")
+        m.no(f'[node name="{pascal(nome_animado)}" type="AnimatedSprite2D" parent="Chao"]',
+             [f"position = Vector2({x}, {y})", f'sprite_frames = ExtResource("{quadros}")', f'animation = &"{animacao}"', "autoplay = " + f'"{animacao}"', "centered = false"])
+        scr_tremula = m.recurso("Script", "res://scripts/salas/luz_tremula.gd")
+        tex_luz = m.recurso("Texture2D", "res://assets/sprites/cenario/luzes/luz.png")
+        m.no(f'[node name="Luz{pascal(nome_animado)}" type="PointLight2D" parent="Chao"]',
+             [f"position = Vector2({x + 115}, {y + 90})", 'color = Color(0.82, 0.88, 1, 1)', "energy = 0.9", f'texture = ExtResource("{tex_luz}")',
+              "texture_scale = 5.0", f'script = ExtResource("{scr_tremula}")', "tremor = 0.25", "piscadas_por_segundo = 0.6"])
 
     for (nome, x, y, *resto) in sala.get("objetos", []):
         props = [f"position = Vector2({x}, {y})"]
@@ -371,6 +414,9 @@ def montar_sala(sala, objetos):
 
     for porta in sala.get("portas", []):
         props = [f"position = Vector2({porta['x']}, {porta['y']})", f'id = "{porta["id"]}"']
+        if porta.get("som"):
+            som = m.recurso("AudioStream", f"res://assets/audio/efeitos/objetos/{porta['som']}.wav")
+            props.append(f'som_abrir = ExtResource("{som}")')
         if porta.get("liberada_por"):
             props += [f'liberada_por = "{porta["liberada_por"]}"', f'aviso_bloqueada = "{porta["aviso"]}"']
         if porta.get("bloqueada"):

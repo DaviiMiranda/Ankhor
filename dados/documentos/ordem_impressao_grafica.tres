@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "ordem_impressao_grafica"
+titulo = "Ordem de Impressão (3026)"
+autor = "Gráfica Quântica — fila automática"
+papel = "caderno_gabriel"
+paginas = PackedStringArray("ORDEM DE IMPRESSÃO N.º 4.127 — PRIORIDADE: MANUTENÇÃO
+
+Item: 4.000 avisos \"ÁREA INTERDITADA — USE O ACESSO PRINCIPAL\".
+Impressos: 3.912.
+Situação: PARADA. Cartucho magenta vazio e papel acabando.
+
+Destino: escadas de emergência e corredores do mezanino.
+A fila aguarda reposição de insumos.")
+anotacao = "A Gráfica Quântica parou no meio de uma ordem: milhares de avisos de área interditada para as escadas de emergência e os corredores do mezanino. É por isso que a escada ao lado da entrada da praça está fechada."

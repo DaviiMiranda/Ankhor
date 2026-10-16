@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "aviso_loja_universitaria"
+titulo = "Aviso da Loja Universitária (2025)"
+autor = "Loja Universitária — Centro de Convivência"
+papel = "caderno_gabriel"
+paginas = PackedStringArray("LOJA UNIVERSITÁRIA — AVISO AOS ALUNOS
+
+Moletons da Calourada: lote novo, do P ao GG.
+Retirada no balcão, com a carteirinha da universidade.
+Trocas em até 7 dias, com a etiqueta.
+
+Semana de provas: a loja fecha às 20h.")
+anotacao = "Aviso preso no balcão da Loja Universitária: o lote de moletons da calourada e o horário da semana de provas. Um papel de 2025 que sobreviveu a mil anos."

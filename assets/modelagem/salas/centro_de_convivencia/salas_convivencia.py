@@ -15,6 +15,9 @@
 #        |                                                      |
 #   camara_fria                                         elevador de carga
 #                                                       (para o Bunker)
+#
+#   A escada da praça (coluna 14) sobe para o segundo_andar (o mezanino), de onde
+#   saem a grafica, a loja_uni e o cinema (mais embaixo, na seção "O segundo andar").
 
 import sys
 import os
@@ -60,6 +63,9 @@ COR_NEON_LUZ = {
     "verde": "Color(0.35, 1, 0.65, 1)",
     "vermelho": "Color(1, 0.4, 0.3, 1)",
     "magenta": "Color(1, 0.4, 0.85, 1)",
+    "violeta": "Color(0.7, 0.5, 1, 1)",
+    "azul": "Color(0.4, 0.62, 1, 1)",
+    "limao": "Color(0.85, 1, 0.3, 1)",
 }
 
 # ---------------------------------------------------------------------------
@@ -122,7 +128,7 @@ PRACA = {
         porta_da_praca("loja_3", "loja_3", "loja_3_praca"),
         porta_da_praca("loja_4", "loja_4", "loja_4_praca"),
     ],
-    "letreiros": [letreiro_da_loja(f"loja_{i}") for i in (1, 2, 3, 4)] + [("letreiro_entrada", 800, 2)],
+    "letreiros": [letreiro_da_loja(f"loja_{i}") for i in (1, 2, 3, 4)] + [("letreiro_entrada", 880, 2)],
     "objetos": OBJETOS_PRACA,
     "itens": [("pedra", 520, 400), ("pedra", 1000, 480), ("pedra", 1460, 400)],
     "nichos": [(440, 192), (1560, 192)],
@@ -266,4 +272,174 @@ LOJA_4 = {
     "escuridao": (0.26, 0.22, 0.3, 1),
 }
 
-SALAS = [PASSARELA, PRACA, LOJA_1, LOJA_2, CAMARA_FRIA, LOJA_3, LOJA_4]
+# ---------------------------------------------------------------------------
+# O segundo andar (o mezanino)
+# ---------------------------------------------------------------------------
+#
+# A praça tem uma escada ao lado da entrada (coluna 14) que sobe para o
+# mezanino, um anel em volta do vazio com a Gráfica Quântica e a Loja
+# Universitária de um lado e o Cine Andrômeda do outro (a planta do Davi). A
+# escada da coluna 10 está interditada. O corredor do mezanino é uma faixa de
+# 112 px que acompanha o arco (ver gerar_andar2.py), com o corrimão na frente.
+#
+#                  praca_central ── escada ──► segundo_andar
+#                                                  │
+#                      ┌───────────────────────────┼─────────────────────────┐
+#                    grafica                   loja_uni                    cinema
+
+
+def no_corredor(coluna, fundo):
+    """O ponto do corredor na coluna: o meio dela e 'fundo' px abaixo da
+    parede."""
+    return (coluna * PECA + PECA // 2, base.y_base(coluna) + fundo)
+
+
+def porta_do_mezanino(loja, destino, porta_destino, **extras):
+    coluna = base.LOJAS_ANDAR2[loja]
+    y_base = base.y_base(coluna)
+    return {"id": f"mezanino_{loja}", "coluna": coluna, "y_peca": y_base - base.ALTURA_PAREDE, "cor": base.COR_LOJA[loja],
+            "x": coluna * PECA + X_PORTA, "y": y_base + 12, "destino": destino, "porta_destino": porta_destino, **extras}
+
+
+def letreiro_do_mezanino(loja):
+    coluna = base.LOJAS_ANDAR2[loja]
+    topo_da_fachada = base.y_base(coluna) - base.ALTURA_PAREDE
+    return (f"letreiro_{loja}", (coluna - 1) * PECA, topo_da_fachada - 30)
+
+
+def ronda_do_corredor(primeira, ultima, fundo=56):
+    """A rota de ida e volta da Sentinela: um ponto no meio de cada coluna,
+    na faixa de andar do corredor (fundo px abaixo da parede)."""
+    colunas = list(range(primeira, ultima + 1))
+    ida = [f"({c * PECA + PECA // 2}, {base.y_base(c) + fundo})" for c in colunas]
+    volta = ida[-2:0:-1]
+    return ida + volta
+
+
+PORTAS_ESCADA_DA_PRACA = [
+    {"id": "praca_escada", "coluna": base.COLUNA_ESCADA_PRACA, "y_peca": 0, "x": base.COLUNA_ESCADA_PRACA * PECA + X_PORTA,
+     "y": base.y_base(base.COLUNA_ESCADA_PRACA) + 12, "destino": "segundo_andar", "porta_destino": "mezanino_escada",
+     "som": "escada"},
+    {"id": "praca_escada_interditada", "coluna": base.COLUNA_ESCADA_INTERDITADA, "y_peca": 0,
+     "x": base.COLUNA_ESCADA_INTERDITADA * PECA + X_PORTA, "y": base.y_base(base.COLUNA_ESCADA_INTERDITADA) + 12,
+     "bloqueada": True, "aviso": "Escada de emergência interditada: fiação exposta e avisos de área interditada."},
+]
+
+OBJETOS_MEZANINO = [
+    ("jardineira", 44, base.y_base(0) + 40),
+    ("maquina_venda", *no_corredor(4, 32)),
+    ("banco_mirante", *no_corredor(9, 80)),
+    ("luminaria_chao", 862, base.y_base(10) + 30),
+    ("diretorio_holo", 912, base.y_base(11) + 36),
+    ("banco_mirante", 960, base.y_base(12) + 90),
+    ("banco_mirante", 1040, base.y_base(12) + 90, True),
+    ("diretorio_holo", 1088, base.y_base(13) + 36),
+    ("luminaria_chao", 1138, base.y_base(14) + 30),
+    ("maquina_venda", *no_corredor(16, 32), True),
+    ("jardineira", *no_corredor(18, 40)),
+    ("cadeira_espera", *no_corredor(20, 94)),
+    ("carrinho_limpeza", 1700, base.y_base(21) + 94),
+    ("jardineira", 1956, base.y_base(24) + 40),
+]
+
+MEZANINO = {
+    "id": "segundo_andar", "largura": base.ANDAR2_LARGURA, "altura": base.ANDAR2_ALTURA, "fundo": "fundo_andar2",
+    "arco": True, "balcao": True, "corrimao": "corrimao_andar2", "acende_com_energia": True, "gabriel": "(1001, 140)",
+    "portas": [
+        {"id": "mezanino_escada", "coluna": base.COLUNA_ESCADA_MEZANINO, "y_peca": 0, "x": base.COLUNA_ESCADA_MEZANINO * PECA + X_PORTA,
+         "y": base.y_base(base.COLUNA_ESCADA_MEZANINO) + 12, "destino": "praca_central", "porta_destino": "praca_escada",
+         "som": "escada"},
+        porta_do_mezanino("grafica", "grafica", "grafica_mezanino"),
+        porta_do_mezanino("loja_uni", "loja_uni", "loja_uni_mezanino"),
+        porta_do_mezanino("cinema", "cinema", "cinema_mezanino"),
+    ],
+    "letreiros": [letreiro_do_mezanino(loja) for loja in ("grafica", "loja_uni", "cinema")] + [("letreiro_mezanino", 880, 2)],
+    "objetos": OBJETOS_MEZANINO,
+    "itens": [("pedra", 330, base.y_base(4) + 88), ("pedra", 1440, base.y_base(18) + 84), ("pilha", 1880, base.y_base(23) + 72)],
+    "nichos": [(440, base.y_base(5) + 16), (1560, base.y_base(19) + 16)],
+    "luzes": [
+        *[("luz_fria", base.LOJAS_ANDAR2[loja] * PECA + X_PORTA, base.y_base(base.LOJAS_ANDAR2[loja]) + 34,
+           f"color = {COR_NEON_LUZ[base.COR_LOJA[loja]]}", "energy = 0.6", "scale = Vector2(2.8, 1.7)")
+          for loja in base.LOJAS_ANDAR2],
+        ("luz_fria", COLUNA_ENTRADA * PECA + X_PORTA, 150, f"color = {COR_NEON_LUZ['ciano']}", "energy = 0.55", "scale = Vector2(3.2, 1.8)"),
+        ("luz_fria", 520, base.y_base(6) + 70, "color = Color(0.5, 0.65, 0.98, 1)", "energy = 0.35", "scale = Vector2(5, 3)"),
+        ("luz_fria", 1480, base.y_base(18) + 70, "color = Color(0.5, 0.65, 0.98, 1)", "energy = 0.35", "scale = Vector2(5, 3)"),
+        ("luz_fria", 120, base.y_base(1) + 70, "color = Color(0.5, 0.65, 0.98, 1)", "energy = 0.3", "scale = Vector2(4, 3)"),
+        ("luz_fria", 1880, base.y_base(23) + 70, "color = Color(0.5, 0.65, 0.98, 1)", "energy = 0.3", "scale = Vector2(4, 3)"),
+    ],
+    "robos": [
+        {"tipo": "sentinela", "pos": f"({3 * PECA + 40}, {base.y_base(3) + 56})", "rota": ronda_do_corredor(3, 21)},
+    ],
+    "zonas_piso": [(0, 112, base.ANDAR2_LARGURA, 528, 1.0, "chapa de aço")],
+    "escuridao": (0.24, 0.27, 0.4, 1),
+}
+
+# ---------------------------------------------------------------------------
+# Lojas do mezanino
+# ---------------------------------------------------------------------------
+
+LOJA_UNI = {
+    "id": "loja_uni", "largura": 560, "altura": 240, "fundo": "fundo_loja_uni", "gabriel": "(80, 160)",
+    "portas": [porta_interna("loja_uni_mezanino", 0, "azul", "segundo_andar", "mezanino_loja_uni")],
+    "objetos": [
+        ("manequim_uni", 140, 152), ("arara_a", 215, 156), ("balcao_caixa_uni", 330, 152),
+        ("mesa_dobrados", 160, 208), ("arara_b", 262, 214), ("estante_moletons", 372, 216), ("cesto_promocao", 452, 208),
+        ("espelho_standing", 526, 206),
+    ],
+    "itens": [("pilha", 110, 228), ("pedra", 330, 232)],
+    "documentos": [("aviso_loja_universitaria", 330, 170, "Ler o aviso do balcão")],
+    "nichos": [(440, 128)],
+    "luzes": [
+        ("luz_lampada", 150, 100, "energy = 0.7"),
+        ("luz_fria", 330, 100, "color = Color(0.4, 0.62, 1, 1)", "energy = 0.55"),
+        ("luz_fria", 490, 110, "color = Color(0.4, 0.62, 1, 1)", "energy = 0.4"),
+    ],
+    "zonas_piso": [(0, 112, 560, 128, 0.5, "carpete macio")],
+    "escuridao": (0.28, 0.3, 0.42, 1),
+}
+
+GRAFICA = {
+    "id": "grafica", "largura": 560, "altura": 240, "fundo": "fundo_grafica", "gabriel": "(80, 160)",
+    "portas": [porta_interna("grafica_mezanino", 0, "limao", "segundo_andar", "mezanino_grafica")],
+    "objetos": [
+        ("plotter_grande", 180, 206), ("copiadora", 365, 206), ("estante_resmas", 268, 156), ("impressora_3d", 452, 160),
+        ("guilhotina", 62, 226), ("balcao_grafica", 275, 234), ("mesa_corte", 478, 228), ("rolo_papel", 56, 186),
+    ],
+    "itens": [("pedra", 400, 184), ("pedra", 110, 192), ("pilha", 520, 196)],
+    "documentos": [("ordem_impressao_grafica", 275, 216, "Ler a ordem de impressão")],
+    "nichos": [(520, 128)],
+    "luzes": [
+        ("luz_tubo", 180, 36, "energy = 0.55"),
+        ("luz_tubo", 400, 36, "energy = 0.5"),
+        ("luz_fria", 300, 100, "color = Color(0.85, 1, 0.3, 1)", "energy = 0.35"),
+    ],
+    "zonas_piso": [(0, 112, 560, 128, 1.0, "concreto polido")],
+    "escuridao": (0.28, 0.3, 0.28, 1),
+}
+
+CINEMA = {
+    "id": "cinema", "largura": 800, "altura": 280, "fundo": "fundo_cinema", "gabriel": "(80, 160)",
+    "portas": [porta_interna("cinema_mezanino", 0, "violeta", "segundo_andar", "mezanino_cinema")],
+    "objetos": [
+        ("balcao_pipoca", 190, 158), ("bilheteria_balcao", 120, 216), ("cordao_fila", 250, 214), ("cordao_fila", 320, 214, True),
+        ("standee_filme", 362, 178),
+        ("poltronas_4", 450, 188), ("poltronas_4", 560, 188), ("poltronas_4", 640, 188), ("poltronas_4", 750, 188),
+        ("poltronas_4", 450, 240), ("poltronas_4", 560, 240), ("poltronas_4", 640, 240), ("poltronas_4", 750, 240),
+    ],
+    "animados": [("tela_cinema", 485, 18, "chiado")],
+    "itens": [("pilha", 60, 252), ("clarao", 770, 140)],
+    "documentos": [("ingresso_cine_andromeda", 160, 236, "Ler o canhoto do ingresso")],
+    "nichos": [(280, 128)],
+    "luzes": [
+        ("luz_lampada", 150, 90, "energy = 0.7"),
+        ("luz_fria", 280, 100, "color = Color(0.7, 0.5, 1, 1)", "energy = 0.45"),
+        ("luz_fria", 600, 150, "color = Color(0.8, 0.85, 1, 1)", "energy = 0.55", "scale = Vector2(7, 4)"),
+    ],
+    "zonas_piso": [(0, 112, 800, 168, 0.5, "carpete de veludo")],
+    "escuridao": (0.24, 0.2, 0.3, 1),
+}
+
+PRACA["portas"] += PORTAS_ESCADA_DA_PRACA
+PRACA["luzes"].append(("luz_fria", base.COLUNA_ESCADA_PRACA * PECA + X_PORTA, 150, f"color = {COR_NEON_LUZ['ciano']}", "energy = 0.45", "scale = Vector2(2.6, 1.6)"))
+
+SALAS = [PASSARELA, PRACA, LOJA_1, LOJA_2, CAMARA_FRIA, LOJA_3, LOJA_4, MEZANINO, LOJA_UNI, GRAFICA, CINEMA]
