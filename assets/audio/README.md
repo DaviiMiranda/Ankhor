@@ -16,10 +16,10 @@ audio/
 ├── ambiente/            som de fundo contínuo de cada área, presente e sonho
 │   ├── biblioteca/
 │   ├── blocos_aula/
+│   ├── labirinto/
 │   ├── centro_convivencia/
-│   ├── espaco_cultural/
-│   ├── nami/
-│   ├── reitoria/
+│   ├── bunker/
+│   ├── laboratorio/
 │   └── areas_externas/  dunas e mato entre os prédios, rota do Vigia
 ├── efeitos/             sons curtos, tocados uma vez
 │   ├── gabriel/         passos, corrida, respiração, esconder, dormir
@@ -55,6 +55,8 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `efeitos/objetos/porta_abrir.wav` | `assets/modelagem/audio/gerar_efeitos_gadgets.py` | 1,4 s: trinco, dobradiça rangendo e a porta batendo. Toca ao atravessar uma porta (`cenas/sistemas/porta.tscn`) |
 | `efeitos/objetos/porta_correr.wav` | `assets/modelagem/audio/gerar_efeitos_porta_correr.py` | 1,3 s: porta de correr de madeira com batente de aço: trinco, rodinhas no trilho, raspar da folha e a batida no batente. Toca nas portas da Biblioteca (vem da `Folha` de `parede_porta_animada.tscn`) |
 | `efeitos/objetos/porta_bloco.wav` | `assets/modelagem/audio/gerar_efeitos_porta_bloco.py` | 1,1 s: porta pesada de aço do Bloco de salas: destrave de solenóide, clique mecânico, giro em dobradiças de aço e amortecedor pneumático. Toca nas portas do Bloco de salas (vem da `Folha` de `parede_porta_animada.tscn`) |
+| `efeitos/objetos/porta_restaurante.wav` | `assets/modelagem/audio/gerar_efeitos_porta_restaurante.py` | 0,95 s: porta de vidro automática de duas folhas: sensor de duas notas, motor que sobe e desce de tom, vidro no trilho e a batidinha de borracha no fim. Toca nas portas dos restaurantes do Centro de Convivência (vem da `Folha` de `porta_<cor>.tscn`) |
+| `efeitos/objetos/escada.wav` | `assets/modelagem/audio/gerar_efeitos_escada.py` | 1,1 s: oito passos numa escada de grade de aço (baque da sola, clique do metal e tinido), cada um mais baixo que o anterior, com o eco do vão. Toca nas portas de escada entre a praça de alimentação e o mezanino do Centro de Convivência |
 | `efeitos/objetos/clarao_disparo.wav`, `pedra_impacto.wav`, `notebook_hack.wav` | `assets/modelagem/audio/gerar_efeitos_gadgets.py` | Estalo do flash com o capacitor recarregando; pedra batendo e quicando; 2,5 s de bipes de dados com o "ok" no fim |
 | `ambiente/bunker/bunker_zumbido.wav`, `bunker_goteiras.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | Loops do bunker: transformador de 60 Hz com o ar parado do duto, grave e constante (em toda sala do bunker; mais grave e alto no gerador) e pingos d'água no setor B |
 | `efeitos/objetos/porta_blindada.wav`, `porta_emperrada.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | Porta de aço de correr (trava, pistão, batida) e a maçaneta de uma porta lacrada |

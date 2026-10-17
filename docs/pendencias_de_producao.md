@@ -23,5 +23,4 @@ Estes itens estavam nas pendências do Enredo até 2026-10-15 e saíram de lá q
 
 - **Bunker:** o que destrava o setor B (senhas nos disquetes, religar o gerador) e se os robôs entram também no setor B. As **salas antigas**: quantas são, de que épocas e lugares, e onde ficam (a origem fica sem explicação no jogo).
 - **Cenários mais futuristas.** Pedido do Davi: os cenários precisam mostrar mais a tecnologia de 3026 (telas, máquinas, a estrutura do centro de pesquisa e do D-Tec), misturada às ruínas e à vegetação. A Biblioteca e o Bloco de salas já estão assim. Falta decidir quanto do resto do campus tem esse visual e onde ele aparece mais.
-- **Redesenho das áreas do GDD** (Centro de Convivência, Espaço Cultural, NAMI, Reitoria) para a premissa da fenda.
 - **De onde vem a grade horária dos robôs.** Antes vinha da coloração de grafos da semana de provas; hoje a patrulha é programada pelo Carlos, com a IA como ferramenta. Falta decidir como isso aparece no jogo e na apresentação da disciplina.

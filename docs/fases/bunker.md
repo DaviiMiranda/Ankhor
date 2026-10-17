@@ -74,7 +74,7 @@ O Henrique explica no diálogo que o setor B está lacrado pelo sistema e que o 
 ## 3. Objetivos e Progressão
 
 - **Hoje:** explorar o bunker, achar o Henrique na sala de dados e conversar com ele (a conversa anota "Henrique, na sala de dados" no caderno). Gabriel o reconhece pela lenda do campus: o aluno que sumiu na Biblioteca em 2019 (Enredo Principal, seção 7.2). Na conversa, o Henrique diz que está tentando consertar tudo; a mentira dele não aparece aqui (Enredo Principal, seção 8, "A virada").
-- **Chegada:** por enquanto, o Gabriel chega ao bunker saindo do Labirinto: o alçapão da oficina do Zane (revelado por ele depois dos 3 nós) mostra "Você saiu do Labirinto" e leva direto à `entrada`. Isso é provisório: a ordem das fases depois do Labirinto não está decidida.
+- **Chegada e saída:** o Bunker é a **5ª fase**, depois do Centro de Convivência (a rampa do subsolo do Convivência leva à `entrada`). A comporta do núcleo no fim do Corredor B (`Porta_nucleo`) leva à 6ª fase, o **Laboratório (D-Tec)**.
 - **A definir com a equipe:** o que destrava o setor B (senhas nos disquetes? religar o gerador?); quais robôs patrulham o bunker e se entram no setor B; as salas antigas (quantas, de que épocas, onde); a cena do Zane quando ele chega.
 
 ---

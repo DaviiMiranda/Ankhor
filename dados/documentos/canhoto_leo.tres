@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "canhoto_leo"
+titulo = "Canhoto do Léo"
+autor = "Cine Andrômeda"
+papel = "caderno_gabriel"
+paginas = PackedStringArray("CINE ANDRÔMEDA — SALA 1
+SESSÃO DE SEXTA, 21h00
+
+LÉO
+FILEIRA C — POLTRONA 4
+INTEIRA
+
+Guarde este canhoto.")
+anotacao = "Canhoto do Léo, amigo do lanterninha: fileira C, poltrona 4."

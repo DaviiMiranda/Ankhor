@@ -2,7 +2,7 @@
 
 > **Status:** Jogável (segunda versão: ampliado, com a oficina do Zane e três nós de controle)  
 > **Área:** subsolo escuro do centro de pesquisa da Âncora  
-> **Ordem na história:** **terceira fase**, depois do Bloco de salas (decidido em 2026-10-14). A saída do Bloco leva a ela; o alçapão da oficina do Zane, que é a saída dela, abre por enquanto a entrada do Bunker. Também aparece pelo menu **Fases**.
+> **Ordem na história:** **terceira fase**, depois do Bloco de salas e antes do Centro de Convivência ([`centro_de_convivencia.md`](centro_de_convivencia.md)). A saída do Bloco leva a ela; o alçapão da oficina do Zane leva à passarela do Centro de Convivência. Também aparece pelo menu **Fases**.
 
 ---
 
@@ -133,10 +133,10 @@ A IA (máquina de estados, cone por produto escalar, BFS do som, A\*, Markov) es
 - **Onde:** `A` no modelo da oficina, dois blocos à direita do Zane. Cena `cenas/sistemas/alcapao.tscn`, script `alcapao.gd` (herda de `Interagivel`).
 - **Escondido:** até a marca `labirinto_alcapao_revelado`, o sprite é uma **lona velha** (`alcapao_escondido.png`) e não dá para interagir.
 - **Revelado:** ao fim da conversa `zane_labirinto_alcapao.json` o Zane o abre: o sprite vira o alçapão aberto com escada (`alcapao_aberto.png`), uma luz ciano acende e aparece `[E] Descer`.
-- **Descer:** o Gabriel para e escurece (0,7 s) e entra a tela `SaidaFase` com o texto da fase. O alçapão leva, provisoriamente, à entrada do Bunker (`cena_da_saida`, `titulo_da_saida` e `subtitulo_da_saida` na cena do Labirinto).
+- **Descer:** o Gabriel para e escurece (0,7 s) e entra a tela `SaidaFase` com o texto da fase. O alçapão leva à passarela do Centro de Convivência (`cena_da_saida`, `titulo_da_saida` e `subtitulo_da_saida` na cena do Labirinto).
 - **Se morrer e recarregar:** as marcas ficam em `Progresso`; o alçapão volta já aberto, se o Zane o tinha revelado.
 - **Só com o Zane:** ele não abre o alçapão antes de os 3 nós caírem, mesmo que o jogador fale com ele.
-- Ao passar: tela "VOCÊ SAIU DO LABIRINTO · Próxima fase: o Bunker" e a entrada do Bunker. Os campos `cena_da_saida`, `titulo_da_saida` e `subtitulo_da_saida` na cena do Labirinto controlam isso.
+- Ao passar: tela "VOCÊ SAIU DO LABIRINTO · Próxima fase: o Centro de Convivência" e a passarela do Centro de Convivência. Os campos `cena_da_saida`, `titulo_da_saida` e `subtitulo_da_saida` na cena do Labirinto controlam isso.
 
 ---
 

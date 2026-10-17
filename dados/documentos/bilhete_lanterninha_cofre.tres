@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "bilhete_lanterninha_cofre"
+titulo = "Bilhete do lanterninha"
+autor = "Tadeu, lanterninha do Cine Andrômeda"
+papel = "caderno_gabriel"
+paginas = PackedStringArray("Pessoal da sexta,
+
+Deixei as minhas coisas no cofre cinza do saguão, ao lado do arco da sala 1.
+
+O código eu não escrevo aqui, que a Bia mexe em tudo. É só juntar as poltronas dos meus três amigos: o Léo, a Bia e o Caio. Só o número de cada uma, sem a fileira.", "Os canhotos dos três eu espalhei pelo cinema, que é pra vocês me darem trabalho.
+
+E a ordem eu embaralhei de propósito. Quem for esperto, vai testando até acertar.
+
+— Tadeu")
+anotacao = "O lanterninha do Cine Andrômeda deixou as coisas dele no cofre cinza do saguão. O código é o número da poltrona do Léo, da Bia e do Caio (sem a fileira), numa ordem embaralhada. Os canhotos dos três estão espalhados pelo cinema."

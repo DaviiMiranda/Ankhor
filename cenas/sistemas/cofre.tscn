@@ -1,0 +1,41 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/sistemas/painel_codigo.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scripts/sistemas/cofre.gd" id="2_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/cofre.png" id="3_fechado"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/cofre_aberto.png" id="4_aberto"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="5_luz"]
+
+[sub_resource type="RectangleShape2D" id="Pegada"]
+size = Vector2(30, 6)
+
+[node name="Cofre" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+codigo = "000"
+marca_energia = ""
+marca = "cofre_aberto"
+texto_acao = "Mexer no cofre"
+altura_aviso = 52.0
+textura_apagado = ExtResource("3_fechado")
+textura_aceso = ExtResource("3_fechado")
+aviso_aberto = "O cofre abriu."
+aviso_ja_aberto = "O cofre já está aberto e vazio."
+texto_visor = "CÓDIGO DO COFRE"
+textura_aberto = ExtResource("4_aberto")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_fechado")
+offset = Vector2(-20, -46)
+
+[node name="Corpo" type="StaticBody2D" parent="." index="3"]
+
+[node name="Pegada" type="CollisionShape2D" parent="Corpo"]
+position = Vector2(0, -3)
+shape = SubResource("Pegada")
+
+[node name="Brilho" type="PointLight2D" parent="." index="4"]
+position = Vector2(4, -26)
+color = Color(0.45, 0.9, 1, 1)
+energy = 0.4
+texture = ExtResource("5_luz")
+texture_scale = 0.7

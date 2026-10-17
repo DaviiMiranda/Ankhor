@@ -58,21 +58,20 @@ O jogador explora as ruínas em vista lateral, sala por sala e prédio por préd
 
 ### Objetivos e Progressão
 
-> ⚠️ **A definir com a nova premissa** (fenda da Âncora, 3026 — `docs/decisoes.md`, 2026-09-26). O texto abaixo é da premissa antiga (Insones e semana de provas) e fica como referência até o grupo decidir.
+**Objetivo geral:** encontrar os outros jovens puxados pela fenda, descobrir o que aconteceu e consertar a Âncora para voltar para 2026.
 
-**Objetivo geral:** descobrir o que aconteceu, por que ele dormiu mil anos, e sair do campus.
+**Estrutura em seis fases sequenciais:**
 
-**Estrutura em cinco dias**, um para cada dia da semana de provas que os Insones continuam repetindo. Cada dia abre uma nova área e fica mais perigoso: mais Insones ativos, rotinas mais agressivas, menos recursos.
-
-| Dia | Área principal | O que se descobre |
+| Ordem | Fase | O que acontece |
 |---|---|---|
-| Segunda | Biblioteca | Ele dormiu muito. As pessoas ainda estão aqui — ou o que sobrou delas. |
-| Terça | Blocos de aula | Os Insones seguem a grade da semana de provas. Os tracinhos contados nas paredes indicam séculos. |
-| Quarta | Centro de Convivência e Espaço Cultural | Havia uma pesquisa com voluntários naquela semana. |
-| Quinta | NAMI | O estimulante, os testes, a lista de voluntários — e o nome dele nela. |
-| Sexta | Reitoria e portão principal | Quanto tempo passou de verdade, e o que aconteceu com o mundo lá fora. |
+| 1ª | **Biblioteca** | Despertar em 3026, primeiro contato pelo rádio com a Clarice, religar os disjuntores e sair pela ala leste. |
+| 2ª | **Bloco de salas** | Encontrar a Clarice e a Diana na sala 103, devolver o molho de chaves e abrir a porta corta-fogo do 1º andar. |
+| 3ª | **Labirinto** | Encontrar o Zane na oficina do subsolo, pegar o notebook, invadir os três nós de controle e descer pelo alçapão. |
+| 4ª | **Centro de Convivência** | Guiado pelo Zane no rádio, pegar a Célula de Energia na câmara fria do Self Nebulosa, resolver o comutador trifásico (Coloração de Grafos) na cozinha da Pizzaria Quasar e usar o elevador de carga do Churrasco Solar. |
+| 5ª | **Bunker** | Encontrar o Henrique na sala de dados e atravessar o setor B até a comporta do núcleo. |
+| 6ª | **Laboratório (D-Tec)** | Chegar ao laboratório de tecnologia do Bloco M, onde ficam o Carlos e a Âncora. |
 
-A progressão entre áreas é por **passagens abertas, mecanismos e senhas**, parte encontrada nas ruínas e parte aprendida nos sonhos.
+A progressão entre áreas é por **passagens abertas, mecanismos, puzzles de grafos e senhas**.
 
 ### Sistema de Recompensas
 
@@ -125,24 +124,18 @@ E, nos sonhos, o mesmo campus **na última semana antes de tudo**: cheio, ilumin
 
 ### Estrutura dos Níveis
 
-> ⚠️ **A definir com a nova premissa** (fenda da Âncora, 3026 — `docs/decisoes.md`, 2026-09-26). O texto abaixo é da premissa antiga (Insones e semana de provas) e fica como referência até o grupo decidir.
-
-Um campus contínuo, dividido em **cinco áreas** ligadas entre si, uma aberta a cada dia. As áreas visitadas continuam acessíveis — voltar faz parte do jogo, e cada volta encontra os Insones num horário diferente da grade.
-
-As áreas externas entre prédios são as mais expostas: abertas, com dunas e mato alto, poucos esconderijos, e a rota do Vigia. Em vários pontos, o caminho entre dois prédios não é mais pelo chão: é por um teto desabado, uma árvore caída ou um andar enterrado.
+Um campus contínuo dividido em **seis fases sequenciais**: **Biblioteca → Bloco de salas → Labirinto → Centro de Convivência → Bunker → Laboratório (D-Tec)**.
 
 ### Design dos Ambientes
 
-> ⚠️ **A definir com a nova premissa** (fenda da Âncora, 3026 — `docs/decisoes.md`, 2026-09-26). A coluna "Função" ainda cita a premissa antiga (a Bibliotecária, o Professor e os Calouros, que eram Insones, e o projeto VIGÍLIA-7) e fica como referência até o grupo decidir.
-
 | Área | Visual | Função |
 |---|---|---|
-| **Biblioteca** | Estantes caídas e vazias, uma árvore no meio do salão, luz do sol por um teto aberto, poeira e pólen no ar | Tutorial e primeiro contato. Silêncio é regra: correr aqui chama a Bibliotecária. |
-| **Blocos de aula** | Corredores parcialmente enterrados em areia, salas sem teto, quadros ainda presos às paredes, paredes cobertas de tracinhos | Onde a grade mais importa: o Professor muda de sala a cada horário. |
-| **Centro de Convivência** | Estrutura aberta tomada pelo mato, balcões e mesas cobertos de raízes, o céu aparecendo pela cobertura | Área ampla, poucos esconderijos, os Calouros andam em grupo. |
-| **Espaço Cultural** | Galeria escura e fechada, obras irreconhecíveis, só as luzes de emergência piscando | Puzzles visuais e as primeiras peças do projeto VIGÍLIA-7. |
-| **NAMI** | Corredores de azulejo rachado, macas de metal, o andar de baixo alagado, as luzes de emergência como única iluminação | O ponto alto da tensão e das revelações. |
-| **Reitoria e portão** | O prédio mais conservado, com o cofre e os arquivos; do lado de fora do portão, só vegetação | O final. |
+| **Biblioteca** | Estantes e racks de arquivo, uma árvore no meio do salão, luz do sol por um teto aberto, poeira e tecnologia de 3026 acordando com a energia | Tutorial e primeiro contato. Silêncio, disjuntores e senha da grade. |
+| **Bloco de salas** | Dois corredores e 12 salas de aula futuristas em ruínas (cadeiras VR, lousas holográficas, professor robô desligado) | Encontro com Clarice na 103, distração com o alarme da 104, claviculário e alicate. |
+| **Labirinto** | Corredores escuros no subsolo com 6 robôs, oficina do Zane cheia de hologramas e 3 salões de nós | Furtividade no escuro e invasão dos 3 nós de controle com o notebook do Zane. |
+| **Centro de Convivência** | Praça de alimentação em arco sob uma cúpula de vidro quebrada, com mesas de holograma, árvores que brilham e quatro restaurantes de neon (tapiocaria, self-service, pizzaria e churrasco), mais um segundo andar opcional com gráfica, loja da universidade e cinema | Contato com Zane pelo rádio, Célula de Energia, Puzzle de Coloração de Grafos e elevador de carga, com letreiros e holofotes que acendem. |
+| **Bunker** | Dois setores subterrâneos ("ÂNCORA-03"), corredor alagado no setor B e central de dados | Encontro com Henrique em pessoa e acesso à comporta para o Laboratório. |
+| **Laboratório (D-Tec)** | Laboratórios de eletrônica, informática, química, robótica, servidores e o salão central da máquina | Fase final no departamento de tecnologia do Bloco M. |
 
 ### Desafios e Obstáculos
 

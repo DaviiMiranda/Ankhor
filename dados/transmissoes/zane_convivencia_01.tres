@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "zane_convivencia_01"
+falante = "ZANE (rádio)"
+falas = PackedStringArray("Chhh... Gabriel? Você saiu na passarela do Centro de Convivência! Tô vendo o sinal do seu rádio daqui.", "Cuidado aí embaixo: a praça de alimentação fica sob uma cúpula de vidro quebrada, com duas Sentinelas rondando as mesas, e o luar entrega qualquer um. Usa as mesas, as árvores e os nichos de manutenção pra cortar a linha de visão.", "O elevador de carga que desce pro Bunker fica nos fundos do Churrasco Solar, mas tá sem energia. Entra na Tapioca Orbital: é uma sala segura, e a ordem de serviço de lá diz onde guardaram a célula reserva.")
+titulo_anotacao = "Zane no rádio: Centro de Convivência"
+anotacao = "O Zane avisou pelo rádio que a praça de alimentação do Centro de Convivência tem duas Sentinelas sob a cúpula. Preciso usar mesas, árvores e nichos como cobertura, ler a ordem de serviço na Tapioca Orbital e achar a célula de energia para ligar o elevador de carga do Churrasco Solar."

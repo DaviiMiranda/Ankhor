@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_fase")
 nome = "Convivência"
-cena = ""
+cena = "res://cenas/salas/centro_de_convivencia/passarela_acesso.tscn"

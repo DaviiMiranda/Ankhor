@@ -29,7 +29,7 @@ O Enredo Principal é a referência completa. Em resumo:
 - Quando houver mais de um caminho, **ofereça 2 ou 3 opções curtas** com o que cada uma muda na história, em vez de decidir sozinho.
 - Diálogos **curtos**: é um jogo, a fala aparece numa caixa de texto. Uma ideia por fala.
 - Documentos encontrados nas ruínas: bilhetes deixados pelos outros personagens e relíquias gravadas ou preservadas.
-- Salve textos novos em `docs/historia/roteiro/`, um arquivo por assunto (`personagens.md`, `sonho_segunda.md`, `documentos_nami.md`…).
+- Salve textos novos em `docs/historia/roteiro/`, um arquivo por assunto (`personagens.md`, `sonho_segunda.md`, `documentos_bunker.md`…).
 - Se o grupo aprovar uma mudança de história, ela entra no mesmo PR no Enredo Principal e em `docs/decisoes.md`.
 - Quando o texto depende do visual (o que está escrito nas paredes, como um robô se parece, o que muda entre presente e sonho), deixe isso explícito para o agente `artista` e para a co-roteirista (papel 3), que cuidam de a história aparecer na arte.
 - Escreva em português do Brasil.

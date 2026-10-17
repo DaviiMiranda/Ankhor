@@ -188,7 +188,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 
 ## 8. Estrutura da história
 
-> Já decidido: **Biblioteca → Bloco de salas → Labirinto** (2026-10-14). O Labirinto é a terceira fase e é nele que Gabriel encontra o Zane em pessoa. Por enquanto a saída do Labirinto abre a entrada do Bunker (o Ato 3 abaixo), de forma provisória. O Centro de Convivência deixou de ser a fase seguinte ao Bloco de salas e está sem lugar na ordem. Onde entram o Bunker, o Centro de Convivência e as outras áreas **não está decidido** (seção 10.5). Esta estrutura segue a lógica da história, não uma ordem de jogo travada.
+> **Sequência oficial de fases (2026-10-16):** **Biblioteca → Bloco de salas → Labirinto → Centro de Convivência → Bunker → Laboratório (D-Tec)**.
 
 ### Ato 1 — Acordar (Biblioteca)
 
@@ -207,26 +207,23 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 
 O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e que **não está sozinho**: outras pessoas caíram ali antes dele.
 
-### Ato 2 — Encontrar os outros (Bloco de salas, Labirinto e demais áreas)
+### Ato 2 — Encontrar os outros (Bloco de salas, Labirinto e Centro de Convivência)
 
-- Cada fase leva a **um personagem** e ao esconderijo dele. Gabriel precisa chegar lá, ganhar a confiança da pessoa e receber a parte dela para consertar a Âncora (seção 3.1).
 - **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Clarice** e da **Diana**, a **sala 103**, atrás de uma barricada. A Clarice foi para lá depois de chegar à Biblioteca; a Diana apareceu depois e foi acolhida por ela. Desde então as duas tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio, e a Clarice conta isso a Gabriel. Gabriel ganha a confiança dela devolvendo o molho de chaves que ela perdeu (para ela, é uma permuta, não um pedido de ajuda); daí em diante a Clarice o guia pelo rádio (o que cada chave abre, por onde os robôs passam, que ela mapeou como um grafo) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar. A saída, a porta corta-fogo do 1º andar, leva à próxima fase, o **Labirinto**.
-- **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): a terceira fase. Subsolo escuro do centro de pesquisa da Âncora, com seis robôs patrulhando corredores que se cruzam. Gabriel entra no subsolo e, a poucos passos, chega à **oficina do Zane**: uma sala cheia de componentes eletrônicos, desorganizada, com telas holográficas, a base do Zane. O Zane quer resolver tudo aquilo e **desconfia do Henrique**: está há dias tentando invadir o bunker, onde o Henrique fica, e não consegue de longe. Então entrega a Gabriel o **notebook** dele e pede que invada **três nós de controle**, em três salões espalhados pelo labirinto (cada salão tem uma entrada só). Os três nós guardam a trava que lacra o bunker. Quando o terceiro cai, o Zane chama Gabriel de volta pelo rádio e, na oficina, mostra a saída: um **alçapão escondido sob uma lona**, que o sistema mantinha lacrado e que desce para o bunker. O Zane diz que desliga as coisas dele e vai atrás depois. Decidido pelo Davi em 2026-10-14 e 2026-10-15.
-- **Centro de Convivência** ([`../fases/centro_de_convivencia.md`](../fases/centro_de_convivencia.md), ainda não feito): deixou de ser a fase seguinte ao Bloco de salas (2026-10-14) e está sem lugar na ordem. O que acontece nela, quem Gabriel encontra e o que ela ensina continua indefinido.
-- As outras áreas do GDD (Espaço Cultural, NAMI, Reitoria) ainda não foram redefinidas para a premissa atual.
-- **Rádio e telefone:** a Clarice fala pelo rádio, na frequência que o Zane mantém da oficina, com o que o Henrique vê nas câmeras, e o Zane liga pelos telefones velhos.
-- **O anel:** em algum ponto deste ato, Gabriel encontra o Baltazar e descobre o parentesco.
+- **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): a terceira fase. Subsolo escuro do centro de pesquisa da Âncora, com seis robôs patrulhando corredores que se cruzam. Gabriel entra no subsolo e, a poucos passos, chega à **oficina do Zane**: uma sala cheia de componentes eletrônicos, desorganizada, com telas holográficas, a base do Zane. O Zane quer resolver tudo aquilo e **desconfia do Henrique**: está há dias tentando invadir o bunker, onde o Henrique fica, e não consegue de longe. Então entrega a Gabriel o **notebook** dele e pede que invada **três nós de controle**, em três salões espalhados pelo labirinto (cada salão tem uma entrada só). Os três nós guardam a trava que lacra o bunker. Quando o terceiro cai, o Zane chama Gabriel de volta pelo rádio e, na oficina, mostra a saída: um **alçapão escondido sob uma lona**, cujo duto sobe para a passarela do **Centro de Convivência**.
+- **Centro de Convivência** ([`../fases/centro_de_convivencia.md`](../fases/centro_de_convivencia.md)): a quarta fase, entre o Labirinto e o Bunker. Gabriel atravessa o pátio aberto sob o luar, sem nenhum personagem em pessoa no local, sendo guiado pelo **Zane pelo rádio**. Ele encontra a Sala Segura no Posto de Manutenção, busca a **Célula de Energia** na câmara da Cantina (contornando os cacos de vidro e o Rastreador), resolve o **Puzzle de Coloração de Grafos** no comutador da Gráfica Rápida (o que acende os holofotes perimetrais do pátio) e abre a comporta da **Rampa do Subsolo** que desce para o **Bunker**.
+- **Rádio e telefone:** a Clarice fala pelo rádio na Biblioteca e no Bloco de salas, e o Zane mantém a frequência da oficina, ligando pelos telefones velhos e guiando Gabriel pelo rádio no Labirinto e no Centro de Convivência.
+- **O anel:** em algum ponto, Gabriel encontra o Baltazar e descobre o parentesco.
 
 ### Ato 3 — O esconderijo (Bunker)
 
-**Fase em desenvolvimento.** [`../fases/bunker.md`](../fases/bunker.md).
+**Quinta fase.** [`../fases/bunker.md`](../fases/bunker.md).
 
 - O bunker de pesquisa embaixo do núcleo da Âncora ("ÂNCORA-03"), com dois setores. É difícil de alcançar, e **os robôs patrulham aqui também**.
 - **As salas antigas:** no bunker há uma ou mais salas montadas como **interiores de casas e lugares antigos dos séculos XIX e XX**. Mostram a obsessão do Carlos pelo passado, **sem explicar**: o jogo não diz quem as montou nem por quê.
-- **De onde Gabriel chega aqui:** pelo alçapão da oficina do Zane, aberto no fim do Labirinto (por enquanto, de forma provisória: seção 10.5).
-- **O Gabriel já encontrou o Zane em pessoa no Labirinto**, e o Zane disse que ia atrás dele depois. O **Henrique** fica **sozinho** numa sala de dados **trancada**, com o acesso às câmeras do campus, e é quem Gabriel encontra em pessoa aqui. Gabriel o reconhece pela lenda: é o aluno que sumiu em 2019 (seção 7.2). O Carlos nunca vai ao bunker.
-- O **setor B** (laboratório, arquivo e a comporta do núcleo) está lacrado pelo sistema, e o Zane tenta quebrar a senha.
-- Seis portas lacradas são os ganchos para as próximas fases: escotilha da superfície, elevador, arsenal, laboratório, arquivo e a comporta do núcleo.
+- **De onde Gabriel chega aqui:** pela rampa técnica do subsolo aberta no fim do **Centro de Convivência**.
+- **O Gabriel já encontrou o Zane em pessoa no Labirinto**. O **Henrique** fica **sozinho** numa sala de dados **trancada**, com o acesso às câmeras do campus, e é quem Gabriel encontra em pessoa aqui. Gabriel o reconhece pela lenda: é o aluno que sumiu em 2019 (seção 7.2). O Carlos nunca vai ao bunker.
+- O **setor B** (laboratório, arquivo e a comporta do núcleo) leva à reta final: a comporta no fim do Corredor B abre o acesso à sexta fase, o **Laboratório (D-Tec)**.
 
 ### A virada — A mentira do Henrique
 
@@ -319,11 +316,9 @@ Já decidido (seção 8, "A virada"): ele trabalha para o Carlos por causa da pr
 
 ### 10.5 A estrutura da história
 
-Já decidido: Biblioteca → Bloco de salas → Labirinto. Por enquanto a saída do Labirinto leva ao Bunker, de forma provisória.
+Já decidido: **Biblioteca → Bloco de salas → Labirinto → Centro de Convivência → Bunker → Laboratório (D-Tec)**.
 
-- Em que ordem vêm os lugares depois do Labirinto (Bunker, Centro de Convivência, D-Tec, outras áreas), e qual personagem Gabriel encontra em cada um?
 - Por onde Gabriel chega do Bloco de salas ao subsolo do Labirinto?
-- O que acontece no Centro de Convivência, e quem Gabriel encontra lá?
 - Em que momento Gabriel encontra o Baltazar e descobre o parentesco?
 - O que os sonhos mostram, agora que não há loops (memória de cada um, o passado do campus, outra coisa)?
 

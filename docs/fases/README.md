@@ -3,7 +3,7 @@
 Este documento define como as fases e áreas do **Ankhor** funcionam em termos de arquitetura, fluxo de jogo e design de níveis (*level design*).
 
 > [!IMPORTANT]
-> **Primeira Fase Definida:** A primeira fase do jogo é a **Biblioteca** ([`biblioteca.md`](biblioteca.md)). O **Bloco de salas** ([`bloco_de_salas.md`](bloco_de_salas.md)) é jogável do começo ao fim, e a saída dele leva ao **Labirinto** ([`labirinto.md`](labirinto.md)), a terceira fase (decidido em 2026-10-14): lá fica a oficina do Zane e três nós de controle para invadir com o notebook. O **Centro de Convivência** ([`centro_de_convivencia.md`](centro_de_convivencia.md)) ainda não foi feito e está sem lugar na ordem: o documento só guarda o que está decidido e as perguntas em aberto. O **Bunker** ([`bunker.md`](bunker.md)) é onde fica o Henrique, com a primeira conversa em pessoa dele; a posição dele na ordem das fases não está decidida (por enquanto a saída do Labirinto abre a entrada dele). As fases seguintes serão definidas em conjunto com a equipe. Este módulo fornece a **estrutura conceitual e o template padronizado** para documentação de cada área.
+> **Sequência de Fases Definida:** A ordem das fases do jogo é: **Biblioteca** ([`biblioteca.md`](biblioteca.md)) → **Bloco de salas** ([`bloco_de_salas.md`](bloco_de_salas.md)) → **Labirinto** ([`labirinto.md`](labirinto.md)) → **Centro de Convivência** ([`centro_de_convivencia.md`](centro_de_convivencia.md)) → **Bunker** ([`bunker.md`](bunker.md)) → **Laboratório (D-Tec)** ([`dtec.md`](dtec.md)). Este módulo fornece a **estrutura conceitual e o template padronizado** para documentação de cada área.
 
 ---
 

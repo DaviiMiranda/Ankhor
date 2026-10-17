@@ -1,0 +1,678 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/fundo_praca.png" id="r2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/fundo_praca_luz.png" id="r3"]
+[ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="r4"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/porta_ciano.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/porta_ambar.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/porta_verde.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/porta_vermelho.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/porta_magenta.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/letreiro_loja_1.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/letreiro_loja_2.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/letreiro_loja_3.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/letreiro_loja_4.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/letreiro_entrada.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/mesa_holo.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/cadeira_fut.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/arvore_cupula.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/holograma_central.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/poste_luz.tscn" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/guarda_sol_holo.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/banco_curvo.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/vaso_planta.tscn" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/totem_pedidos.tscn" id="r23"]
+[ext_resource type="Resource" path="res://dados/itens/pedra.tres" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r25"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r26"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r27"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r28"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/escada.wav" id="r29"]
+[ext_resource type="Resource" path="res://dados/transmissoes/zane_convivencia_02.tres" id="r30"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="r31"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r32"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r33"]
+[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r34"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r35"]
+
+[sub_resource type="RectangleShape2D" id="CaixaArco0"]
+size = Vector2(80, 432)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco1"]
+size = Vector2(80, 368)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco2"]
+size = Vector2(80, 320)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco3"]
+size = Vector2(80, 272)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco4"]
+size = Vector2(80, 256)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco5"]
+size = Vector2(80, 224)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco6"]
+size = Vector2(80, 208)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco7"]
+size = Vector2(80, 192)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco8"]
+size = Vector2(80, 176)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco9"]
+size = Vector2(80, 176)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco10"]
+size = Vector2(80, 160)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco11"]
+size = Vector2(80, 160)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco12"]
+size = Vector2(80, 160)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco13"]
+size = Vector2(80, 160)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco14"]
+size = Vector2(80, 160)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco15"]
+size = Vector2(80, 176)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco16"]
+size = Vector2(80, 176)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco17"]
+size = Vector2(80, 192)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco18"]
+size = Vector2(80, 208)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco19"]
+size = Vector2(80, 224)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco20"]
+size = Vector2(80, 256)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco21"]
+size = Vector2(80, 272)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco22"]
+size = Vector2(80, 320)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco23"]
+size = Vector2(80, 368)
+
+[sub_resource type="RectangleShape2D" id="CaixaArco24"]
+size = Vector2(80, 432)
+
+[sub_resource type="CircleShape2D" id="AreaTransmissao1"]
+radius = 65.0
+
+[node name="PracaCentral" instance=ExtResource("r1")]
+id = "conv_praca_central"
+largura = 2000
+altura = 560
+chao_frente = 556
+
+[node name="Ceu" parent="."]
+visible = false
+
+[node name="Fundo" type="Sprite2D" parent="Chao"]
+texture = ExtResource("r2")
+centered = false
+
+[node name="Brilho" type="Node2D" parent="Chao"]
+script = ExtResource("r4")
+marca = "convivencia_energia"
+
+[node name="Camada" type="PointLight2D" parent="Chao/Brilho"]
+position = Vector2(1000, 280)
+texture = ExtResource("r3")
+energy = 1.3
+range_item_cull_mask = 1
+
+[node name="FolhaPracaPassarela" parent="Chao" instance=ExtResource("r5")]
+position = Vector2(960, 0)
+
+[node name="FolhaPracaLoja1" parent="Chao" instance=ExtResource("r6")]
+position = Vector2(560, 32)
+
+[node name="FolhaPracaLoja2" parent="Chao" instance=ExtResource("r7")]
+position = Vector2(240, 112)
+
+[node name="FolhaPracaLoja3" parent="Chao" instance=ExtResource("r8")]
+position = Vector2(1360, 32)
+
+[node name="FolhaPracaLoja4" parent="Chao" instance=ExtResource("r9")]
+position = Vector2(1680, 112)
+
+[node name="LetreiroLoja1" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(480, 2)
+
+[node name="LetreiroLoja2" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(160, 82)
+
+[node name="LetreiroLoja3" parent="Chao" instance=ExtResource("r12")]
+position = Vector2(1280, 2)
+
+[node name="LetreiroLoja4" parent="Chao" instance=ExtResource("r13")]
+position = Vector2(1600, 82)
+
+[node name="LetreiroEntrada" parent="Chao" instance=ExtResource("r14")]
+position = Vector2(880, 2)
+
+[node name="LimitesArco" type="StaticBody2D" parent="."]
+collision_layer = 9
+
+[node name="Coluna0" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(40, 176)
+shape = SubResource("CaixaArco0")
+
+[node name="Coluna1" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(120, 144)
+shape = SubResource("CaixaArco1")
+
+[node name="Coluna2" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(200, 120)
+shape = SubResource("CaixaArco2")
+
+[node name="Coluna3" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(280, 96)
+shape = SubResource("CaixaArco3")
+
+[node name="Coluna4" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(360, 88)
+shape = SubResource("CaixaArco4")
+
+[node name="Coluna5" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(440, 72)
+shape = SubResource("CaixaArco5")
+
+[node name="Coluna6" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(520, 64)
+shape = SubResource("CaixaArco6")
+
+[node name="Coluna7" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(600, 56)
+shape = SubResource("CaixaArco7")
+
+[node name="Coluna8" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(680, 48)
+shape = SubResource("CaixaArco8")
+
+[node name="Coluna9" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(760, 48)
+shape = SubResource("CaixaArco9")
+
+[node name="Coluna10" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(840, 40)
+shape = SubResource("CaixaArco10")
+
+[node name="Coluna11" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(920, 40)
+shape = SubResource("CaixaArco11")
+
+[node name="Coluna12" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(1000, 40)
+shape = SubResource("CaixaArco12")
+
+[node name="Coluna13" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(1080, 40)
+shape = SubResource("CaixaArco13")
+
+[node name="Coluna14" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(1160, 40)
+shape = SubResource("CaixaArco14")
+
+[node name="Coluna15" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(1240, 48)
+shape = SubResource("CaixaArco15")
+
+[node name="Coluna16" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(1320, 48)
+shape = SubResource("CaixaArco16")
+
+[node name="Coluna17" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(1400, 56)
+shape = SubResource("CaixaArco17")
+
+[node name="Coluna18" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(1480, 64)
+shape = SubResource("CaixaArco18")
+
+[node name="Coluna19" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(1560, 72)
+shape = SubResource("CaixaArco19")
+
+[node name="Coluna20" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(1640, 88)
+shape = SubResource("CaixaArco20")
+
+[node name="Coluna21" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(1720, 96)
+shape = SubResource("CaixaArco21")
+
+[node name="Coluna22" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(1800, 120)
+shape = SubResource("CaixaArco22")
+
+[node name="Coluna23" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(1880, 144)
+shape = SubResource("CaixaArco23")
+
+[node name="Coluna24" type="CollisionShape2D" parent="LimitesArco"]
+position = Vector2(1960, 176)
+shape = SubResource("CaixaArco24")
+
+[node name="MesaHolo1" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(560, 330)
+
+[node name="CadeiraFut1" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(522, 339)
+
+[node name="CadeiraFut2" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(598, 339)
+espelhado = true
+
+[node name="MesaHolo2" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(1440, 330)
+
+[node name="CadeiraFut3" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(1402, 339)
+
+[node name="CadeiraFut4" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(1478, 339)
+espelhado = true
+
+[node name="MesaHolo3" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(470, 450)
+
+[node name="CadeiraFut5" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(432, 459)
+
+[node name="CadeiraFut6" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(508, 459)
+espelhado = true
+
+[node name="MesaHolo4" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(1530, 450)
+
+[node name="CadeiraFut7" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(1492, 459)
+
+[node name="CadeiraFut8" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(1568, 459)
+espelhado = true
+
+[node name="MesaHolo5" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(800, 300)
+
+[node name="CadeiraFut9" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(762, 309)
+
+[node name="CadeiraFut10" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(838, 309)
+espelhado = true
+
+[node name="MesaHolo6" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(1200, 300)
+
+[node name="CadeiraFut11" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(1162, 309)
+
+[node name="CadeiraFut12" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(1238, 309)
+espelhado = true
+
+[node name="MesaHolo7" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(840, 500)
+
+[node name="CadeiraFut13" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(802, 509)
+
+[node name="CadeiraFut14" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(878, 509)
+espelhado = true
+
+[node name="MesaHolo8" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(1160, 500)
+
+[node name="CadeiraFut15" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(1122, 509)
+
+[node name="CadeiraFut16" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(1198, 509)
+espelhado = true
+
+[node name="ArvoreCupula1" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(300, 452)
+
+[node name="ArvoreCupula2" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(1700, 452)
+
+[node name="ArvoreCupula3" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(200, 524)
+
+[node name="ArvoreCupula4" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(1800, 524)
+
+[node name="HologramaCentral1" parent="Objetos" instance=ExtResource("r18")]
+position = Vector2(1000, 396)
+
+[node name="PosteLuz1" parent="Objetos" instance=ExtResource("r19")]
+position = Vector2(705, 330)
+
+[node name="PosteLuz2" parent="Objetos" instance=ExtResource("r19")]
+position = Vector2(705, 470)
+
+[node name="PosteLuz3" parent="Objetos" instance=ExtResource("r19")]
+position = Vector2(1295, 330)
+
+[node name="PosteLuz4" parent="Objetos" instance=ExtResource("r19")]
+position = Vector2(1295, 470)
+
+[node name="GuardaSolHolo1" parent="Objetos" instance=ExtResource("r20")]
+position = Vector2(700, 200)
+
+[node name="GuardaSolHolo2" parent="Objetos" instance=ExtResource("r20")]
+position = Vector2(1300, 200)
+
+[node name="BancoCurvo1" parent="Objetos" instance=ExtResource("r21")]
+position = Vector2(790, 410)
+
+[node name="BancoCurvo2" parent="Objetos" instance=ExtResource("r21")]
+position = Vector2(1210, 410)
+espelhado = true
+
+[node name="VasoPlanta1" parent="Objetos" instance=ExtResource("r22")]
+position = Vector2(900, 178)
+
+[node name="VasoPlanta2" parent="Objetos" instance=ExtResource("r22")]
+position = Vector2(1100, 178)
+
+[node name="TotemPedidos1" parent="Objetos" instance=ExtResource("r23")]
+position = Vector2(640, 206)
+
+[node name="TotemPedidos2" parent="Objetos" instance=ExtResource("r23")]
+position = Vector2(1360, 206)
+
+[node name="TotemPedidos3" parent="Objetos" instance=ExtResource("r23")]
+position = Vector2(340, 300)
+
+[node name="TotemPedidos4" parent="Objetos" instance=ExtResource("r23")]
+position = Vector2(1660, 300)
+
+[node name="Pedra1" parent="Objetos" instance=ExtResource("r25")]
+position = Vector2(520, 400)
+item = ExtResource("r24")
+
+[node name="Pedra2" parent="Objetos" instance=ExtResource("r25")]
+position = Vector2(1000, 480)
+item = ExtResource("r24")
+
+[node name="Pedra3" parent="Objetos" instance=ExtResource("r25")]
+position = Vector2(1460, 400)
+item = ExtResource("r24")
+
+[node name="Nicho1" parent="Objetos" instance=ExtResource("r26")]
+position = Vector2(440, 192)
+
+[node name="Nicho2" parent="Objetos" instance=ExtResource("r26")]
+position = Vector2(1560, 192)
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r27")]
+position = Vector2(601, 178)
+color = Color(1, 0.7, 0.3, 1)
+energy = 0.6
+scale = Vector2(2.8, 1.7)
+
+[node name="Luz2" parent="Luzes" instance=ExtResource("r27")]
+position = Vector2(281, 258)
+color = Color(0.35, 1, 0.65, 1)
+energy = 0.6
+scale = Vector2(2.8, 1.7)
+
+[node name="Luz3" parent="Luzes" instance=ExtResource("r27")]
+position = Vector2(1401, 178)
+color = Color(1, 0.4, 0.3, 1)
+energy = 0.6
+scale = Vector2(2.8, 1.7)
+
+[node name="Luz4" parent="Luzes" instance=ExtResource("r27")]
+position = Vector2(1721, 258)
+color = Color(1, 0.4, 0.85, 1)
+energy = 0.6
+scale = Vector2(2.8, 1.7)
+
+[node name="Luz5" parent="Luzes" instance=ExtResource("r27")]
+position = Vector2(1001, 150)
+color = Color(0.45, 0.9, 1, 1)
+energy = 0.55
+scale = Vector2(3.2, 1.8)
+
+[node name="Luz6" parent="Luzes" instance=ExtResource("r27")]
+position = Vector2(380, 300)
+color = Color(0.5, 0.65, 0.98, 1)
+energy = 0.4
+scale = Vector2(5, 3.5)
+
+[node name="Luz7" parent="Luzes" instance=ExtResource("r27")]
+position = Vector2(1620, 300)
+color = Color(0.5, 0.65, 0.98, 1)
+energy = 0.4
+scale = Vector2(5, 3.5)
+
+[node name="Luz8" parent="Luzes" instance=ExtResource("r27")]
+position = Vector2(700, 480)
+color = Color(0.5, 0.65, 0.98, 1)
+energy = 0.35
+scale = Vector2(5, 3)
+
+[node name="Luz9" parent="Luzes" instance=ExtResource("r27")]
+position = Vector2(1300, 480)
+color = Color(0.5, 0.65, 0.98, 1)
+energy = 0.35
+scale = Vector2(5, 3)
+
+[node name="Luz10" parent="Luzes" instance=ExtResource("r27")]
+position = Vector2(1161, 150)
+color = Color(0.45, 0.9, 1, 1)
+energy = 0.45
+scale = Vector2(2.6, 1.6)
+
+[node name="HolofotesPerimetrais" type="Node2D" parent="."]
+script = ExtResource("r4")
+marca = "convivencia_energia"
+revela_quem_passa = true
+
+[node name="Holofote1" parent="HolofotesPerimetrais" instance=ExtResource("r27")]
+position = Vector2(520, 300)
+scale = Vector2(2.2, 2.0)
+color = Color(0.85, 0.95, 1, 1)
+energy = 1.15
+
+[node name="Holofote2" parent="HolofotesPerimetrais" instance=ExtResource("r27")]
+position = Vector2(800, 420)
+scale = Vector2(2.2, 2.0)
+color = Color(0.85, 0.95, 1, 1)
+energy = 1.15
+
+[node name="Holofote3" parent="HolofotesPerimetrais" instance=ExtResource("r27")]
+position = Vector2(1200, 420)
+scale = Vector2(2.2, 2.0)
+color = Color(0.85, 0.95, 1, 1)
+energy = 1.15
+
+[node name="Holofote4" parent="HolofotesPerimetrais" instance=ExtResource("r27")]
+position = Vector2(1480, 300)
+scale = Vector2(2.2, 2.0)
+color = Color(0.85, 0.95, 1, 1)
+energy = 1.15
+
+[node name="Escuridao" parent="."]
+color = Color(0.3, 0.34, 0.48, 1)
+
+[node name="Gabriel" parent="Objetos"]
+position = Vector2(1040, 150)
+
+[node name="Porta_praca_passarela" parent="." instance=ExtResource("r28")]
+position = Vector2(1001, 124)
+id = "praca_passarela"
+cena_destino = "res://cenas/salas/centro_de_convivencia/passarela_acesso.tscn"
+porta_destino = "passarela_praca"
+
+[node name="Porta_praca_loja_1" parent="." instance=ExtResource("r28")]
+position = Vector2(601, 156)
+id = "praca_loja_1"
+cena_destino = "res://cenas/salas/centro_de_convivencia/loja_1.tscn"
+porta_destino = "loja_1_praca"
+
+[node name="Porta_praca_loja_2" parent="." instance=ExtResource("r28")]
+position = Vector2(281, 236)
+id = "praca_loja_2"
+cena_destino = "res://cenas/salas/centro_de_convivencia/loja_2.tscn"
+porta_destino = "loja_2_praca"
+
+[node name="Porta_praca_loja_3" parent="." instance=ExtResource("r28")]
+position = Vector2(1401, 156)
+id = "praca_loja_3"
+cena_destino = "res://cenas/salas/centro_de_convivencia/loja_3.tscn"
+porta_destino = "loja_3_praca"
+
+[node name="Porta_praca_loja_4" parent="." instance=ExtResource("r28")]
+position = Vector2(1721, 236)
+id = "praca_loja_4"
+cena_destino = "res://cenas/salas/centro_de_convivencia/loja_4.tscn"
+porta_destino = "loja_4_praca"
+
+[node name="Porta_praca_escada" parent="." instance=ExtResource("r28")]
+position = Vector2(1161, 124)
+id = "praca_escada"
+som_abrir = ExtResource("r29")
+cena_destino = "res://cenas/salas/centro_de_convivencia/segundo_andar.tscn"
+porta_destino = "mezanino_escada"
+
+[node name="Porta_praca_escada_interditada" parent="." instance=ExtResource("r28")]
+position = Vector2(841, 124)
+id = "praca_escada_interditada"
+bloqueada = true
+aviso_bloqueada = "Escada de emergência interditada: fiação exposta e avisos de área interditada."
+
+[node name="GatilhoTransmissao1" parent="Objetos" instance=ExtResource("r31")]
+position = Vector2(1000, 300)
+transmissao = ExtResource("r30")
+requer_marca = "convivencia_energia"
+
+[node name="Area" parent="Objetos/GatilhoTransmissao1" index="0"]
+shape = SubResource("AreaTransmissao1")
+
+[node name="Sentinela1" parent="Objetos" instance=ExtResource("r32")]
+position = Vector2(500, 262)
+rota = NodePath("../../RotaSentinela1")
+rota_com_marca = NodePath("../../RotaSentinela1Energia")
+marca_da_rota = "convivencia_energia"
+bipa_antes_de_virar = true
+
+[node name="RotaSentinela1" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinela1"]
+position = Vector2(380, 262)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinela1"]
+position = Vector2(940, 262)
+
+[node name="Ponto3" type="Marker2D" parent="RotaSentinela1"]
+position = Vector2(940, 540)
+
+[node name="Ponto4" type="Marker2D" parent="RotaSentinela1"]
+position = Vector2(380, 540)
+
+[node name="RotaSentinela1Energia" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinela1Energia"]
+position = Vector2(380, 262)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinela1Energia"]
+position = Vector2(660, 262)
+
+[node name="Ponto3" type="Marker2D" parent="RotaSentinela1Energia"]
+position = Vector2(660, 540)
+
+[node name="Ponto4" type="Marker2D" parent="RotaSentinela1Energia"]
+position = Vector2(940, 540)
+
+[node name="Ponto5" type="Marker2D" parent="RotaSentinela1Energia"]
+position = Vector2(940, 262)
+
+[node name="Sentinela2" parent="Objetos" instance=ExtResource("r32")]
+position = Vector2(1500, 262)
+rota = NodePath("../../RotaSentinela2")
+rota_com_marca = NodePath("../../RotaSentinela2Energia")
+marca_da_rota = "convivencia_energia"
+bipa_antes_de_virar = true
+
+[node name="RotaSentinela2" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinela2"]
+position = Vector2(1620, 262)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinela2"]
+position = Vector2(1060, 262)
+
+[node name="Ponto3" type="Marker2D" parent="RotaSentinela2"]
+position = Vector2(1060, 540)
+
+[node name="Ponto4" type="Marker2D" parent="RotaSentinela2"]
+position = Vector2(1620, 540)
+
+[node name="RotaSentinela2Energia" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinela2Energia"]
+position = Vector2(1620, 262)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinela2Energia"]
+position = Vector2(1340, 262)
+
+[node name="Ponto3" type="Marker2D" parent="RotaSentinela2Energia"]
+position = Vector2(1340, 540)
+
+[node name="Ponto4" type="Marker2D" parent="RotaSentinela2Energia"]
+position = Vector2(1060, 540)
+
+[node name="Ponto5" type="Marker2D" parent="RotaSentinela2Energia"]
+position = Vector2(1060, 262)
+
+[node name="RobosDaSala" type="Node" parent="."]
+script = ExtResource("r33")
+
+[node name="ZonaPiso1" type="Node2D" parent="."]
+position = Vector2(0, 112)
+script = ExtResource("r34")
+tamanho = Vector2(700, 448)
+fator_ruido = 0.7
+nome_piso = "pedra rachada e musgo"
+
+[node name="ZonaPiso2" type="Node2D" parent="."]
+position = Vector2(700, 112)
+script = ExtResource("r34")
+tamanho = Vector2(600, 448)
+fator_ruido = 1.0
+nome_piso = "emblema de pedra"
+
+[node name="ZonaPiso3" type="Node2D" parent="."]
+position = Vector2(1300, 112)
+script = ExtResource("r34")
+tamanho = Vector2(700, 448)
+fator_ruido = 0.7
+nome_piso = "pedra rachada e musgo"
+
+[node name="MusicaFase" parent="." instance=ExtResource("r35")]
+
+[editable path="Ceu"]
+[editable path="Objetos/GatilhoTransmissao1"]
