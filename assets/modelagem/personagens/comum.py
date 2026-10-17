@@ -807,7 +807,7 @@ def salvar_sprites_jogo(pasta, nome, paleta, jogo, andar, parado):
 
 
 def gerar_em_pe(nome, raiz, materiais, max_cores, expressoes, expressao, esconder_boca,
-                passo=None, respirar=None):
+                passo=None, respirar=None, salvar_retratos=True):
     """O roteiro inteiro de um personagem em pé, depois de montado (com o
     "Rosto" já achatado): renderiza as vistas de jogo, a caminhada, a
     respiração, a folha de referência e os retratos, junta tudo numa paleta
@@ -818,7 +818,9 @@ def gerar_em_pe(nome, raiz, materiais, max_cores, expressoes, expressao, esconde
     expressao(qual) arma o rosto e esconder_boca() tira a boca dos sprites
     de jogo (no sprite de 48 px ela vira um risco no queixo). passo e
     respirar são as amplitudes próprias do personagem para pose_andar e
-    pose_parado."""
+    pose_parado. Com salvar_retratos=False os retratos entram só na folha de
+    referência e os <nome>_retrato_<expressão>.png não são tocados (para os
+    personagens cujos retratos vêm do pixelar_retratos.py)."""
     pasta = os.path.join(PASTA_SPRITES, nome)
     expressao(expressoes[0])
     esconder_boca()
@@ -855,8 +857,9 @@ def gerar_em_pe(nome, raiz, materiais, max_cores, expressoes, expressao, esconde
     vistas = convertidas[1:5]
     retratos = dict(zip(retratos.keys(), convertidas[5:]))
     salvar_sprites_jogo(pasta, nome, paleta, jogo, andar, respiracao)
-    for qual, img in retratos.items():
-        salvar_png(img, os.path.join(pasta, f"{nome}_retrato_{qual}.png"))
+    if salvar_retratos:
+        for qual, img in retratos.items():
+            salvar_png(img, os.path.join(pasta, f"{nome}_retrato_{qual}.png"))
     salvar_png(montar_folha([vistas, list(retratos.values())]), os.path.join(pasta, f"{nome}_referencia.png"))
     print(f"[{nome}] paleta:", " ".join(rgb_para_hex(np.array(cor) / 255) for cor in paleta))
     salvar_blend(os.path.join(PASTA_SCRIPT, f"{nome}.blend"), raiz)
