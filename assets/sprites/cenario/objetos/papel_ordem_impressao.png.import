@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xxpru3iqisy4"
-path="res://.godot/imported/poltronas_4.png-5ed80ea4e5a4157fb48ea5a0ae61ee3c.ctex"
+uid="uid://citekcbgi2qon"
+path="res://.godot/imported/papel_ordem_impressao.png-5b303cabb6b0f11b25df4dc3b493f1da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/cenario/praca/objetos/poltronas_4.png"
-dest_files=["res://.godot/imported/poltronas_4.png-5ed80ea4e5a4157fb48ea5a0ae61ee3c.ctex"]
+source_file="res://assets/sprites/cenario/objetos/papel_ordem_impressao.png"
+dest_files=["res://.godot/imported/papel_ordem_impressao.png-5b303cabb6b0f11b25df4dc3b493f1da.ctex"]
 
 [params]
 

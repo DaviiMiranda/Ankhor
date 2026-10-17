@@ -38,6 +38,7 @@ TEMAS = {
     "grafica": "limao",
     "cinema": "violeta",
     "sala_cinema": "violeta",
+    "cabine": "violeta",
 }
 
 
@@ -86,6 +87,14 @@ def parede(tema, semente=0):
         img.pintar(baixo, "madeira_fut", (0.38 + 0.08 * manchas) * LUZ)
         img.pintar(baixo & ((X % 20) == 0), "madeira_fut", 0.12, achatar=False)
         img.pintar(baixo & ((X % 20) == 1), "madeira_fut", 0.5, achatar=False)
+    elif tema == "cabine":
+        v = (0.3 + 0.1 * manchas + 0.04 * fino) * LUZ
+        img.pintar(alto, "concreto_fut", v)
+        img.pintar(alto & ((X % 40) == 0), "concreto_fut", v - 0.22, achatar=False)
+        img.pintar(alto & (Y == 34), "inox", 0.3, achatar=False)
+        img.pintar(baixo, "madeira_fut", (0.3 + 0.08 * manchas) * LUZ)
+        img.pintar(baixo & ((X % 16) == 0), "madeira_fut", 0.1, achatar=False)
+        img.pintar(baixo & ((X % 16) == 1), "madeira_fut", 0.44, achatar=False)
     else:
         v = (0.22 + 0.08 * manchas + 0.03 * fino) * LUZ
         img.pintar(alto, "grafite", v)
@@ -463,6 +472,117 @@ def tela_larga(largura=240, altura=112):
 
 
 # ---------------------------------------------------------------------------
+# Detalhes da cabine de projeção
+# ---------------------------------------------------------------------------
+
+
+def p_janela(semente=1):
+    """A janelinha de projeção: um vão comprido com o vidro escuro de onde sai
+    o feixe de luz violeta (pontilhado) para a sala, e o painel de botões
+    embaixo."""
+    img = parede("cabine", semente)
+    X, Y = img.X, img.Y
+    moldura(img, 8, 30, 72, 52, "inox", 0.4)
+    vidro = img.ret(11, 33, 69, 49)
+    img.pintar(vidro, "grafite", 0.04)
+    feixe = img.poligono([(18, 41), (68, 34), (68, 48)]) & vidro
+    img.pintar(feixe & (((X + Y) % 2) == 0), "neon_violeta", 0.46, achatar=False)
+    img.pintar(img.ret(14, 40, 19, 43) & vidro, "papel_branco", 0.9, achatar=False)
+    moldura(img, 12, 58, 68, 80, "inox", 0.34)
+    img.pintar(img.ret(14, 60, 66, 78), "grafite", 0.07)
+    cores = ("neon_verde", "neon_ambar", "inox", "neon_vermelho", "inox", "neon_verde", "inox", "neon_ambar")
+    for k, rampa in enumerate(cores):
+        img.pintar(img.ret(16 + k * 6, 63, 19 + k * 6, 66), rampa, 0.6)
+    for k in range(3):
+        img.pintar(img.ret(16, 69 + k * 3, 62, 70 + k * 3), "inox", 0.2)
+        img.pintar(img.ret(20 + k * 16, 68 + k * 3, 23 + k * 16, 72 + k * 3), "inox", 0.74)
+    return img
+
+
+def p_horarios(semente=2):
+    """Quadro de sessões: o título em violeta e três horários em âmbar, cada um
+    com a barra de lotação."""
+    img = parede("cabine", semente)
+    X, Y = img.X, img.Y
+    moldura(img, 8, 18, 72, 92, "inox", 0.4)
+    img.pintar(img.ret(11, 21, 69, 89), "grafite", 0.05 + 0.04 * (Y % 3 == 0))
+    base.escrever(img, 40 - base.largura_do_texto("SESSÕES", 8) // 2, 24, "SESSÕES", "neon_violeta", 0.92, 8)
+    img.pintar(img.ret(14, 35, 66, 36), "neon_violeta", 0.4, achatar=False)
+    for k, (hora, lotacao) in enumerate((("19:30", 30), ("21:00", 44), ("23:15", 12))):
+        y = 41 + k * 15
+        base.escrever(img, 15, y, hora, "neon_ambar", 0.9, 8)
+        img.pintar(img.ret(44, y + 2, 66, y + 5), "grafite", 0.12)
+        img.pintar(img.ret(44, y + 2, 44 + int(lotacao / 2), y + 5), "neon_verde", 0.6, achatar=False)
+    return img
+
+
+def p_rolos(semente=3):
+    """Prateleira de latas de filme, vistas de frente: discos de aço com a
+    etiqueta colorida, em duas fileiras."""
+    img = parede("cabine", semente)
+    X, Y = img.X, img.Y
+    img.pintar(img.ret(6, 18, 74, 98), "inox", 0.14)
+    for y in (56, 96):
+        img.pintar(img.ret(6, y, 74, y + 3), "inox", 0.5 + 0.2 * (Y == y))
+    cores = ("neon_violeta", "neon_ambar", "neon_azul", "neon_magenta")
+    for linha, y_c in enumerate((43, 83)):
+        for k, x_c in enumerate((17, 32, 47, 62)):
+            r = 6.5
+            lata = img.elipse(x_c, y_c, r, r)
+            img.pintar(lata, "inox", 0.36 + 0.3 * (((X - x_c) + (Y - y_c)) < 0))
+            img.pintar(img.elipse(x_c, y_c, 4, 4), "grafite", 0.1)
+            img.pintar(img.elipse(x_c, y_c, 1.4, 1.4), "inox", 0.6)
+            img.pintar(img.ret(x_c - 5, y_c + 4, x_c + 5, y_c + 6) & lata, cores[(k + linha) % 4], 0.6)
+    return img
+
+
+def p_uniforme(semente=4):
+    """Os ganchos do lanterninha: o paletó vinho com os botões dourados, a
+    lanterna pendurada e a plaqueta com o nome TADEU."""
+    img = parede("cabine", semente)
+    X, Y = img.X, img.Y
+    img.pintar(img.ret(10, 24, 70, 26), "inox", 0.6 + 0.2 * (Y == 24))
+    for x in (14, 40, 64):
+        img.pintar(img.ret(x - 1, 26, x + 2, 30), "inox", 0.7)
+    img.pintar(img.poligono([(24, 30), (32, 28), (40, 30), (44, 38), (42, 76), (22, 76), (20, 38)]), "veludo", 0.46 + 0.22 * ((X - 20) < 8))
+    img.pintar(img.ret(31, 30, 33, 76), "veludo", 0.2, achatar=False)
+    for y in (42, 54, 66):
+        img.pintar(img.elipse(35, y, 1.4, 1.4), "neon_ambar", 0.9, achatar=False)
+    img.pintar(img.ret(54, 30, 58, 34), "inox", 0.6)
+    img.pintar(img.ret(55, 34, 57, 52), "inox", 0.4)
+    img.pintar(img.poligono([(52, 52), (60, 52), (62, 62), (50, 62)]), "grafite", 0.14)
+    img.pintar(img.ret(52, 52, 60, 53), "neon_ambar", 0.7, achatar=False)
+    img.pintar(img.ret(22, 84, 58, 96), "grafite", 0.07)
+    img.pintar(img.ret(22, 84, 58, 85), "inox", 0.5)
+    base.escrever(img, 40 - base.largura_do_texto("TADEU", 8) // 2, 86, "TADEU", "neon_violeta", 0.9, 8)
+    return img
+
+
+def piso_cabine(largura, altura, y0=112):
+    """Chão de concreto escuro da cabine, com um tapete de veludo velho no meio
+    e os cabos grossos que saem do projetor para a janela."""
+    img = Imagem(largura, altura)
+    X, Y = img.X, img.Y
+    chao = Y >= y0
+    fino = ciclico(largura, altura, 2, 2, 3530)
+    manchas = ruido(largura, altura, 50, 20, 3531)
+    v = (0.26 + 0.12 * manchas + 0.04 * fino) * LUZ - 0.14 * np.clip((20 - (Y - y0)) / 20, 0, 1)
+    img.pintar(chao, "concreto_fut", v)
+    img.pintar(chao & ((((Y - y0) % 32) == 0) | ((X % 64) == 0)), "concreto_fut", v - 0.18, achatar=False)
+    tapete = chao & (X >= 120) & (X < 300) & (Y >= y0 + 36) & (Y < y0 + 90)
+    img.pintar(tapete, "veludo", 0.34 + 0.1 * manchas)
+    img.pintar(tapete & (((X + Y) % 10) == 0), "veludo", 0.16, achatar=False)
+    borda = chao & (X >= 118) & (X < 302) & (Y >= y0 + 34) & (Y < y0 + 92) & ~tapete
+    img.pintar(borda, "neon_ambar", 0.3, achatar=False)
+    cabo = img.caminho([(150, y0 + 6), (160, y0 + 24), (190, y0 + 30), (200, y0 + 52)], 1.2) & chao
+    img.pintar(cabo, "grafite", 0.06)
+    img.pintar(np.roll(cabo, -1, axis=0) & ~cabo & chao, "grafite", 0.22, achatar=False)
+    img.cor(chao & (Y == y0), SOMBRA)
+    img.chao = chao
+    return img
+
+
+# ---------------------------------------------------------------------------
 # Pisos
 # ---------------------------------------------------------------------------
 
@@ -557,18 +677,33 @@ SALAS = {
     "grafica": {"tema": "grafica", "largura": 560, "altura": 240, "pecas": [
         "PORTA:limao", ("g_escaninhos", 1), ("g_painel", 5), ("g_tintas", 3), ("g_cartazes", 2), ("g_rolos", 4), ("g_nicho", 6)]},
     "cinema": {"tema": "cinema", "largura": 800, "altura": 280, "pecas": [
-        "PORTA:violeta", ("c_cartazes", 1), ("c_cardapio", 2), ("c_nicho", 4), ("c_arco_sala", 3), ("s_painel", 5), "TELA", "TELA", "TELA", ("s_painel", 15)]},
+        "PORTA:violeta", ("c_cartazes", 1), ("c_cardapio", 2), ("c_nicho", 4), ("c_arco_sala", 3), ("s_painel", 5), "TELA", "TELA", "TELA", "PORTA:ciano|CABINE"]},
+    "cabine": {"tema": "cabine", "largura": 400, "altura": 220, "pecas": [
+        "PORTA:ciano", ("p_janela", 1), ("p_horarios", 2), ("p_rolos", 3), ("p_uniforme", 4)]},
 }
 
 FUNCOES = {
     "u_prateleira": u_prateleira, "u_cabides": u_cabides, "u_brasao": u_brasao, "u_espelho": u_espelho, "u_provador": u_provador,
     "g_escaninhos": g_escaninhos, "g_painel": g_painel, "g_tintas": g_tintas, "g_cartazes": g_cartazes, "g_rolos": g_rolos,
     "g_nicho": g_nicho, "c_cartazes": c_cartazes, "c_cardapio": c_cardapio, "c_nicho": c_nicho, "c_arco_sala": c_arco_sala,
-    "s_painel": s_painel,
+    "s_painel": s_painel, "p_janela": p_janela, "p_horarios": p_horarios, "p_rolos": p_rolos, "p_uniforme": p_uniforme,
 }
 
-PISOS = {"loja_uni": piso_loja_uni, "grafica": piso_grafica}
+PISOS = {"loja_uni": piso_loja_uni, "grafica": piso_grafica, "cabine": piso_cabine}
 X_SOLEIRA_CINEMA = 5 * L
+
+
+def placa_da_porta(peca, texto, cor):
+    """A plaquinha de neon com o nome da sala, em cima da porta (o quadro da
+    porta começa em y = 24, e a placa fica em y de 13 a 22)."""
+    X, Y = peca.X, peca.Y
+    rampa = base.NEON[cor]
+    largura_texto = base.largura_do_texto(texto, 8)
+    x0 = 40 - largura_texto // 2 - 3
+    peca.pintar(peca.ret(x0, 12, x0 + largura_texto + 6, 22), "grafite", 0.07)
+    peca.pintar(peca.ret(x0, 12, x0 + largura_texto + 6, 13), rampa, 0.4, achatar=False)
+    peca.pintar(peca.ret(x0, 21, x0 + largura_texto + 6, 22), rampa, 0.4, achatar=False)
+    base.escrever(peca, x0 + 3, 13, texto, rampa, 0.92, 8)
 
 
 def montar_fundo(nome):
@@ -580,7 +715,10 @@ def montar_fundo(nome):
     parte_da_tela = 0
     for coluna, item in enumerate(sala["pecas"]):
         if isinstance(item, str) and item.startswith("PORTA:"):
-            peca = porta.peca_de_parede(parede(tema, 70 + coluna), item.split(":")[1])
+            cor_porta, _, rotulo = item.split(":")[1].partition("|")
+            peca = porta.peca_de_parede(parede(tema, 70 + coluna), cor_porta)
+            if rotulo:
+                placa_da_porta(peca, rotulo, cor_porta)
         elif item == "TELA":
             peca = Imagem(L, H)
             peca.px[:] = tela.px[:, parte_da_tela * L:(parte_da_tela + 1) * L]
