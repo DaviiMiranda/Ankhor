@@ -4,6 +4,7 @@ extends Node2D
 
 @export var id: String = ""
 @export var duracao_entrada: float = 1.0
+@export_range(0.3, 1.5, 0.05) var alcance_da_lanterna: float = 1.0
 
 @export_group("Tamanho")
 @export var largura: int = 960:

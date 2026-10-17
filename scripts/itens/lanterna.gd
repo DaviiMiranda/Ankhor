@@ -25,7 +25,16 @@ func _ready() -> void:
 		_estado["carga"] = 1.0
 	if not _estado.has("aceso"):
 		_estado["aceso"] = false
+	_ajustar_alcance_da_sala()
 	_atualizar_luz()
+
+
+func _ajustar_alcance_da_sala() -> void:
+	var sala := get_tree().current_scene as Sala
+	if sala == null:
+		return
+	for luz: PointLight2D in [feixe, feixe_paredes, halo]:
+		luz.texture_scale *= sala.alcance_da_lanterna
 
 
 func usar() -> void:
