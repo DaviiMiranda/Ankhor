@@ -44,6 +44,16 @@ Registro de melhorias secundárias, polimento visual, sonoro e ajustes de qualid
   - **Toque de computação gráfica / computação:** conexão direta com o modelo do campus como grafo (GDD 2.4). O mapa pode destacar os nós (salas) e arestas (portas/corredores) já percorridos, calculando o percentual de cobertura do grafo da fase em tempo real.
   - **Depende de:** arte das plantas/telas de mapa de cada fase, registro de itens/salas coletados por fase no estado do jogo e persistência no sistema de save.
 
+- [ ] **Sala Segura (*Safe Room*), salvamento em arquivo e retorno a fases anteriores:**
+  - Criação de uma **sala segura dedicada por fase** (ex.: sala dos servidores na Biblioteca, sala dos professores no Bloco de Salas, depósito isolado no Centro de Convivência, oficina do Zane no Labirinto).
+  - **Zona livre de perigo:** robôs não conseguem entrar ou perdem a perseguição na porta. A sala possui iluminação estável, tranca funcional e música ambiente característica de calma/alívio (estilo clássico de *survival horror*).
+  - **Ponto de salvamento permanente:** além dos checkpoints voláteis espalhados pela fase (postos de emergência), a Safe Room contém o ponto para salvar o jogo em arquivo definitivo (mecânica de dormir/descansar ou terminal de registro), garantindo a persistência do progresso entre sessões de jogo.
+  - **Retorno a fases anteriores (*Backtracking* interligado):**
+    - A sala segura funciona como ponto de conexão ou rota de atalho para transitar de volta para fases já exploradas.
+    - Permite revisitar setores anteriores com novos itens, ferramentas e senhas obtidas mais adiante, viabilizando abrir portas trancadas, resgatar colecionáveis/relíquias deixados para trás e buscar 100% de exploração no mapa de cada fase.
+  - **Toque de computação gráfica / computação:** uso da estrutura de grafos do campus (GDD 2.4) para modelar as conexões bidirecionais entre os nós de salas seguras, aplicando busca em largura (BFS) ou Dijkstra para calcular e validar atalhos acessíveis e garantir que rotas de retorno não quebrem o fluxo da história.
+  - **Depende de:** sistema de persistência/savegame em disco, portas de transição inter-fases nas salas seguras e trilha/efeitos sonoros de alívio dedicados.
+
 ## Conteúdo extra
 
 - [ ] **Easter eggs colecionáveis que dão conquistas:**
