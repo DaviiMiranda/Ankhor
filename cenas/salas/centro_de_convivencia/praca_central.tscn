@@ -650,6 +650,7 @@ position = Vector2(1060, 262)
 
 [node name="RobosDaSala" type="Node" parent="."]
 script = ExtResource("r33")
+folga_obstaculos = 10.0
 
 [node name="ZonaPiso1" type="Node2D" parent="."]
 position = Vector2(0, 112)

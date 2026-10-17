@@ -8,6 +8,7 @@
 size = Vector2(84, 8)
 
 [node name="BalcaoGrafica" type="StaticBody2D"]
+collision_layer = 9
 script = ExtResource("1_objeto")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
