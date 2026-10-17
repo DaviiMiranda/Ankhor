@@ -1,0 +1,108 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/fundo_cabine.png" id="r2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/fundo_cabine_luz.png" id="r3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/porta_ciano.tscn" id="r4"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/projetor_cinema.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/mesa_lanterninha.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/caixas_rolos.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r8"]
+[ext_resource type="Resource" path="res://dados/documentos/canhoto_caio.tres" id="r9"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_canhoto_caio.png" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="r11"]
+[ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/cofre.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r16"]
+[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r18"]
+
+[node name="CinemaCabine" instance=ExtResource("r1")]
+id = "conv_cinema_cabine"
+largura = 400
+altura = 220
+chao_frente = 216
+
+[node name="Ceu" parent="."]
+visible = false
+
+[node name="Fundo" type="Sprite2D" parent="Chao"]
+texture = ExtResource("r2")
+centered = false
+
+[node name="Brilho" type="PointLight2D" parent="Chao"]
+position = Vector2(200, 110)
+texture = ExtResource("r3")
+energy = 1.3
+range_item_cull_mask = 1
+
+[node name="FolhaCabineCinema" parent="Chao" instance=ExtResource("r4")]
+position = Vector2(0, 0)
+
+[node name="ProjetorCinema1" parent="Objetos" instance=ExtResource("r5")]
+position = Vector2(196, 160)
+
+[node name="MesaLanterninha1" parent="Objetos" instance=ExtResource("r6")]
+position = Vector2(120, 208)
+
+[node name="CaixasRolos1" parent="Objetos" instance=ExtResource("r7")]
+position = Vector2(52, 198)
+
+[node name="CaixasRolos2" parent="Objetos" instance=ExtResource("r7")]
+position = Vector2(362, 208)
+
+[node name="Pilha1" parent="Objetos" instance=ExtResource("r8")]
+position = Vector2(262, 196)
+
+[node name="Documento1" parent="Objetos" instance=ExtResource("r11")]
+position = Vector2(160, 196)
+texto_acao = "Ler o canhoto"
+documento = ExtResource("r9")
+textura = ExtResource("r10")
+
+[node name="Cofre1" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(340, 152)
+codigo = "724"
+marca = "cofre_cinema_aberto"
+item_ao_abrir = ExtResource("r12")
+quantidade = 1
+aviso_aberto = "O cofre abriu: caiu uma cápsula de clarão."
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r14")]
+position = Vector2(200, 90)
+energy = 0.7
+
+[node name="Luz2" parent="Luzes" instance=ExtResource("r15")]
+position = Vector2(130, 100)
+color = Color(0.7, 0.5, 1, 1)
+energy = 0.5
+
+[node name="Luz3" parent="Luzes" instance=ExtResource("r15")]
+position = Vector2(330, 120)
+color = Color(0.45, 0.9, 1, 1)
+energy = 0.4
+
+[node name="Escuridao" parent="."]
+color = Color(0.26, 0.22, 0.32, 1)
+
+[node name="Gabriel" parent="Objetos"]
+position = Vector2(80, 160)
+
+[node name="Porta_cabine_cinema" parent="." instance=ExtResource("r16")]
+position = Vector2(41, 124)
+id = "cabine_cinema"
+cena_destino = "res://cenas/salas/centro_de_convivencia/cinema.tscn"
+porta_destino = "cinema_cabine"
+
+[node name="ZonaPiso1" type="Node2D" parent="."]
+position = Vector2(0, 112)
+script = ExtResource("r17")
+tamanho = Vector2(400, 108)
+fator_ruido = 1.0
+nome_piso = "concreto"
+
+[node name="MusicaFase" parent="." instance=ExtResource("r18")]
+
+[editable path="Ceu"]

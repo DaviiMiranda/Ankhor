@@ -582,9 +582,11 @@ def balcao_pipoca():
     return img, 52, 60
 
 
-def poltronas(quantas=4):
-    """Fileira de poltronas de cinema vista de TRÁS (de frente para a tela):
-    encostos altos de veludo com a borda de latão, o número da poltrona e os
+def poltronas(quantas=4, primeiro=1):
+    """Um trecho de fileira de poltronas de cinema visto de TRÁS (de frente para
+    a tela): encostos altos de veludo com a borda de latão, o número da poltrona
+    (de 'primeiro' em diante, da esquerda para a direita, como numa fileira de
+    verdade: os trechos 1 a 4, 5 a 8, 9 a 12 e 13 a 16 formam a fileira) e os
     porta-copos entre elas."""
     largura = quantas * 19 + 4
     img = Imagem(largura, 40)
@@ -595,8 +597,9 @@ def poltronas(quantas=4):
         img.pintar(encosto, "veludo", 0.34 + 0.24 * ((X - x0) < 5) + 0.08 * (Y < 12))
         img.pintar(img.elipse(x0 + 8.5, 9, 8, 4), "veludo", 0.5 + 0.16 * ((X - x0) < 6))
         neon(img, img.ret(x0 + 2, 8, x0 + 15, 9), "neon_ambar", 0.4)
-        img.pintar(img.ret(x0 + 5, 20, x0 + 12, 24), "grafite", 0.06)
-        base.escrever(img, x0 + 6, 21, str((k * 3 + 7) % 9 + 1), "neon_ambar", 0.5, 8)
+        numero = str(primeiro + k)
+        img.pintar(img.ret(x0 + 3, 18, x0 + 14, 27), "grafite", 0.06)
+        base.escrever(img, x0 + 9 - base.largura_do_texto(numero, 8) // 2, 19, numero, "neon_ambar", 0.6, 8)
         img.pintar(img.ret(x0 + 1, 33, x0 + 16, 36), "grafite", 0.1)
         if k:
             img.pintar(img.ret(x0 - 3, 26, x0, 28), "inox", 0.5)
@@ -626,6 +629,60 @@ def standee_filme():
     return img, 16, 63
 
 
+def fliperama():
+    """Fliperama de pé: o gabinete de grafite com as laterais de neon violeta, a
+    marquise magenta, a tela com um jogo de blocos coloridos, o painel inclinado
+    com o manche e três botões, e o moedeiro."""
+    img = Imagem(38, 60)
+    X, Y = img.X, img.Y
+    rng = np.random.default_rng(4500)
+    caixa(img, 5, 8, 33, 56, "grafite", 0.2)
+    caixa(img, 3, 2, 35, 10, "grafite", 0.16)
+    neon(img, img.ret(5, 4, 33, 7), "neon_magenta", 0.9)
+    tela = img.ret(8, 12, 30, 31)
+    img.pintar(tela, "grafite", 0.03)
+    cores = ("neon_verde", "neon_azul", "neon_ambar", "neon_magenta")
+    for _ in range(22):
+        x, y = int(rng.integers(9, 28)), int(rng.integers(13, 29))
+        neon(img, img.ret(x, y, x + 2, y + 2) & tela, cores[int(rng.integers(0, 4))], 0.7)
+    img.pintar(img.poligono([(5, 33), (33, 33), (37, 40), (1, 40)]), "inox", 0.34 + 0.2 * (Y == 33))
+    img.pintar(img.ret(10, 34, 11, 38), "inox", 0.6)
+    img.pintar(img.elipse(10.5, 34, 2.2, 2.2), "neon_vermelho", 0.7)
+    for k, cor in enumerate(("neon_azul", "neon_ambar", "neon_verde")):
+        img.pintar(img.elipse(20 + k * 5, 37, 1.6, 1.2), cor, 0.8, achatar=False)
+    img.pintar(img.ret(12, 44, 26, 49), "grafite", 0.04)
+    neon(img, img.ret(14, 46, 24, 47), "neon_ambar", 0.6)
+    neon(img, img.ret(5, 10, 6, 54), "neon_violeta", 0.7)
+    neon(img, img.ret(32, 10, 33, 54), "neon_violeta", 0.7)
+    for x in (8, 26):
+        img.pintar(img.ret(x, 56, x + 4, 59), "inox", 0.3)
+    img.contornar()
+    return img, 19, 58
+
+
+def sofa_veludo():
+    """Sofá de três lugares de veludo vinho com o encosto capitonê (os botões de
+    latão), os braços roliços e os pés de latão."""
+    img = Imagem(88, 46)
+    X, Y = img.X, img.Y
+    for x in (6, 78):
+        img.pintar(img.ret(x, 40, x + 3, 45), "neon_ambar", 0.5)
+    caixa(img, 4, 26, 84, 40, "veludo", 0.4)
+    caixa(img, 9, 8, 79, 28, "veludo", 0.46)
+    caixa(img, 2, 18, 13, 40, "veludo", 0.52)
+    caixa(img, 75, 18, 86, 40, "veludo", 0.38)
+    for k in range(3):
+        x = 15 + k * 20
+        img.pintar(img.ret(x, 27, x + 19, 36), "veludo", 0.56 + 0.1 * (k % 2))
+        img.pintar(img.ret(x, 27, x + 19, 28), "veludo", 0.78, achatar=False)
+        img.pintar(img.ret(x + 19, 27, x + 20, 38), "veludo", 0.14, achatar=False)
+    for x in range(17, 78, 8):
+        for y in (14, 20):
+            img.pintar(img.ret(x, y, x + 1, y + 1), "neon_ambar", 0.6, achatar=False)
+    img.contornar()
+    return img, 44, 44
+
+
 def cordao_fila():
     """Dois postes de aço com o cordão de veludo âmbar entre eles, para
     organizar a fila."""
@@ -641,6 +698,76 @@ def cordao_fila():
     neon(img, img.caminho(corda, 0.5), "veludo", 0.9)
     img.contornar()
     return img, 30, 28
+
+
+def projetor_cinema():
+    """Projetor de filme de rolo sobre um tripé de aço: o corpo de grafite com a
+    lente apontada para a janela, dois carretéis em cima ligados pela fita e a
+    luz ciano do motor."""
+    img = Imagem(68, 62)
+    X, Y = img.X, img.Y
+    img.pintar(img.caminho([(34, 38), (12, 58)], 1.2), "inox", 0.4)
+    img.pintar(img.caminho([(34, 38), (56, 58)], 1.2), "inox", 0.34)
+    img.pintar(img.caminho([(34, 38), (34, 58)], 1.2), "inox", 0.46)
+    for x in (10, 34, 58):
+        img.pintar(img.elipse(x, 59, 4, 1.6), "inox", 0.3)
+    caixa(img, 14, 24, 54, 40, "grafite", 0.3)
+    for y in (28, 32, 36):
+        img.pintar(img.ret(40, y, 52, y + 1), "grafite", 0.08, achatar=False)
+    caixa(img, 4, 28, 14, 36, "inox", 0.5)
+    img.pintar(img.ret(2, 30, 5, 34), "inox", 0.64)
+    neon(img, img.ret(1, 31, 3, 33), "papel_branco", 0.95)
+    for cx in (24, 44):
+        img.pintar(img.elipse(cx, 12, 11, 11), "inox", 0.3 + 0.28 * (((X - cx) + (Y - 12)) < 0))
+        img.pintar(img.elipse(cx, 12, 8, 8), "grafite", 0.1)
+        img.pintar(img.elipse(cx, 12, 2, 2), "inox", 0.7)
+        for ang in (0, 120, 240):
+            a = np.radians(ang + 20)
+            img.pintar(img.linha(cx, 12, cx + 7 * np.cos(a), 12 + 7 * np.sin(a), 0.7) & img.elipse(cx, 12, 8, 8), "inox", 0.5)
+    img.pintar(img.caminho([(24, 23), (24, 28), (34, 26), (44, 23)], 0.6), "grafite", 0.05)
+    img.cor(img.ret(18, 30, 20, 32), base.hexa("#6cf28e")[0])
+    neon(img, img.ret(46, 30, 48, 32), "ciano", 0.95)
+    img.contornar()
+    return img, 34, 60
+
+
+def mesa_lanterninha():
+    """A mesa do lanterninha: tampo de madeira escura, a gaveta, o abajur
+    articulado de luz âmbar, a garrafa térmica, uma caneca e uma pilha de papel."""
+    img = Imagem(72, 48)
+    X, Y = img.X, img.Y
+    for x in (6, 62):
+        caixa(img, x, 30, x + 4, 46, "madeira_fut", 0.3)
+    caixa(img, 2, 22, 70, 31, "madeira_fut", 0.46)
+    img.pintar(img.ret(2, 22, 70, 24), "madeira_fut", 0.64, achatar=False)
+    caixa(img, 40, 31, 60, 42, "madeira_fut", 0.34)
+    img.pintar(img.ret(46, 36, 54, 37), "inox", 0.7)
+    img.pintar(img.caminho([(12, 22), (14, 12), (24, 6)], 0.9), "inox", 0.46)
+    img.pintar(img.poligono([(20, 3), (30, 3), (32, 9), (18, 9)]), "grafite", 0.14)
+    neon(img, img.ret(19, 8, 31, 10), "neon_ambar", 0.9)
+    img.pintar(img.poligono([(16, 10), (34, 10), (40, 22), (10, 22)]) & (((X + Y) % 2) == 0), "neon_ambar", 0.2, achatar=False)
+    img.pintar(img.ret(46, 10, 52, 22), "inox", 0.5 + 0.3 * (X == 46))
+    img.pintar(img.ret(46, 8, 52, 10), "neon_vermelho", 0.5)
+    img.pintar(img.ret(56, 16, 62, 22), "papel_branco", 0.74)
+    img.pintar(img.ret(62, 17, 64, 20), "papel_branco", 0.6)
+    for k in range(3):
+        img.pintar(img.ret(26, 19 - k, 42, 22 - k), "papel_branco", 0.78 + 0.06 * k)
+    img.contornar()
+    return img, 36, 46
+
+
+def caixas_rolos():
+    """Pilha de latas de filme, vistas de lado, com a correia colorida."""
+    img = Imagem(42, 32)
+    X, Y = img.X, img.Y
+    for k, (cx, cy, rampa) in enumerate(((11, 24, "neon_violeta"), (30, 24, "neon_ambar"), (20, 11, "neon_azul"))):
+        lata = img.elipse(cx, cy, 10, 6)
+        img.pintar(img.ret(cx - 10, cy, cx + 10, cy + 5), "inox", 0.3)
+        img.pintar(lata, "inox", 0.46 + 0.26 * ((X - cx) < -2) * ((Y - cy) < 0))
+        img.pintar(img.elipse(cx, cy - 1, 7, 3.4), "inox", 0.56)
+        img.pintar(img.ret(cx - 10, cy + 1, cx + 10, cy + 3), rampa, 0.5)
+    img.contornar()
+    return img, 21, 30
 
 
 # ---------------------------------------------------------------------------
@@ -779,10 +906,18 @@ OBJETOS = {
     # cine andrômeda
     "bilheteria_balcao": (bilheteria_balcao, (62, 8)),
     "balcao_pipoca": (balcao_pipoca, (98, 8)),
-    "poltronas_4": (lambda: poltronas(4), (72, 7)),
-    "poltronas_3": (lambda: poltronas(3), (54, 7)),
+    "poltronas_1": (lambda: poltronas(4, 1), (72, 7)),
+    "poltronas_5": (lambda: poltronas(4, 5), (72, 7)),
+    "poltronas_9": (lambda: poltronas(4, 9), (72, 7)),
+    "poltronas_13": (lambda: poltronas(4, 13), (72, 7)),
     "standee_filme": (standee_filme, (20, 5)),
     "cordao_fila": (cordao_fila, (52, 4)),
+    "fliperama": (fliperama, (26, 6)),
+    "sofa_veludo": (sofa_veludo, (76, 8)),
+    # cabine de projeção
+    "projetor_cinema": (projetor_cinema, (44, 8)),
+    "mesa_lanterninha": (mesa_lanterninha, (68, 9)),
+    "caixas_rolos": (caixas_rolos, (36, 6)),
 }
 
 

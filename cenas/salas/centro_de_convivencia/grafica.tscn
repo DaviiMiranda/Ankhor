@@ -16,13 +16,14 @@
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r14"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r15"]
 [ext_resource type="Resource" path="res://dados/documentos/ordem_impressao_grafica.tres" id="r16"]
-[ext_resource type="PackedScene" path="res://cenas/itens/documento_no_mundo.tscn" id="r17"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r18"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r19"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r20"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r21"]
-[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r22"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r23"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_ordem_impressao.png" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r22"]
+[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r23"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r24"]
 
 [node name="Grafica" instance=ExtResource("r1")]
 id = "conv_grafica"
@@ -81,24 +82,24 @@ item = ExtResource("r13")
 [node name="Pilha1" parent="Objetos" instance=ExtResource("r15")]
 position = Vector2(520, 196)
 
-[node name="Documento1" parent="Objetos" instance=ExtResource("r17")]
+[node name="Documento1" parent="Objetos" instance=ExtResource("r18")]
 position = Vector2(275, 216)
 texto_acao = "Ler a ordem de impressão"
 documento = ExtResource("r16")
-altura_aviso = 52.0
+textura = ExtResource("r17")
 
-[node name="Nicho1" parent="Objetos" instance=ExtResource("r18")]
+[node name="Nicho1" parent="Objetos" instance=ExtResource("r19")]
 position = Vector2(520, 128)
 
-[node name="Luz1" parent="Luzes" instance=ExtResource("r19")]
+[node name="Luz1" parent="Luzes" instance=ExtResource("r20")]
 position = Vector2(180, 36)
 energy = 0.55
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r19")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r20")]
 position = Vector2(400, 36)
 energy = 0.5
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r20")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r21")]
 position = Vector2(300, 100)
 color = Color(0.85, 1, 0.3, 1)
 energy = 0.35
@@ -109,7 +110,7 @@ color = Color(0.28, 0.3, 0.28, 1)
 [node name="Gabriel" parent="Objetos"]
 position = Vector2(80, 160)
 
-[node name="Porta_grafica_mezanino" parent="." instance=ExtResource("r21")]
+[node name="Porta_grafica_mezanino" parent="." instance=ExtResource("r22")]
 position = Vector2(41, 124)
 id = "grafica_mezanino"
 cena_destino = "res://cenas/salas/centro_de_convivencia/segundo_andar.tscn"
@@ -117,11 +118,11 @@ porta_destino = "mezanino_grafica"
 
 [node name="ZonaPiso1" type="Node2D" parent="."]
 position = Vector2(0, 112)
-script = ExtResource("r22")
+script = ExtResource("r23")
 tamanho = Vector2(560, 128)
 fator_ruido = 1.0
 nome_piso = "concreto polido"
 
-[node name="MusicaFase" parent="." instance=ExtResource("r23")]
+[node name="MusicaFase" parent="." instance=ExtResource("r24")]
 
 [editable path="Ceu"]

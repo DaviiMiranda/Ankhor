@@ -1,12 +1,12 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/cenario/objeto_cenario.gd" id="1_objeto"]
-[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/objetos/poltronas_4.png" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/objetos/poltronas_5.png" id="2_sprite"]
 
 [sub_resource type="RectangleShape2D" id="Pegada"]
 size = Vector2(72, 7)
 
-[node name="Poltronas4" type="StaticBody2D"]
+[node name="Poltronas5" type="StaticBody2D"]
 collision_layer = 9
 script = ExtResource("1_objeto")
 
