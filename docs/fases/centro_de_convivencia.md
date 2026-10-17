@@ -1,6 +1,6 @@
 # Fase — Centro de Convivência (a Praça de Alimentação)
 
-> **Status:** Jogável (11 salas: a praça com 4 restaurantes e o segundo andar com 3 lojas, puzzle de Coloração de Grafos, Célula de Energia, letreiros e holofotes que acendem com a energia, transmissões do Zane pelo rádio)  
+> **Status:** Jogável (12 salas: a praça com 4 restaurantes e o segundo andar com 3 lojas, puzzle de Coloração de Grafos, Célula de Energia, letreiros e holofotes que acendem com a energia, transmissões do Zane pelo rádio)  
 > **Área:** o Centro de Convivência da Unifor, em 3026: uma praça de alimentação sob uma cúpula de vidro quebrada  
 > **Ordem na história:** **quarta fase**, depois do Labirinto ([`labirinto.md`](labirinto.md)) e antes do Bunker ([`bunker.md`](bunker.md)).  
 > **Como se chega:** Pelo duto do alçapão da oficina do Zane no fim do Labirinto, saindo em `passarela_acesso`.  
@@ -66,7 +66,8 @@ O **segundo andar** (opcional, seção 7) é outro pedaço do grafo, pendurado n
 | `segundo_andar` | **Mezanino** (opcional): o anel em volta do vazio, com corrimão de vidro | 2000 × 640 px | placas de aço e passadeira | escada da praça, `grafica`, `loja_uni`, `cinema` | 2 nichos de manutenção | 1 **Sentinela** (ronda de ida e volta) |
 | `loja_uni` | **Loja Universitária**: moletons, araras, o brasão e o provador | 560 × 240 px | carpete azul | `segundo_andar` | Provador (nicho) | Nenhuma |
 | `grafica` | **Gráfica Quântica**: plotters, copiadoras e a ordem de impressão parada | 560 × 240 px | concreto polido | `segundo_andar` | Nicho dos fundos | Nenhuma |
-| `cinema` | **Cine Andrômeda**: saguão com bilheteria e bomboniere, a sala com a tela que chia e o **cofre** (puzzle da seção 7.5) | 800 × 280 px | carpete de veludo | `segundo_andar` | Nicho atrás da cortina | Nenhuma |
+| `cinema` | **Cine Andrômeda**: saguão com bilheteria e bomboniere e a sala com a tela que chia; uma porta cinza leva à cabine do cofre | 800 × 280 px | carpete de veludo | `segundo_andar`, `cinema_cabine` | Nicho atrás da cortina | Nenhuma |
+| `cinema_cabine` | **Cabine de projeção** do cinema: a salinha com o projetor, a mesa do lanterninha e o **cofre** (puzzle da seção 7.5) | 400 × 220 px | concreto e tapete de veludo | `cinema` | — | Nenhuma |
 
 ---
 
@@ -110,7 +111,7 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 | **Aviso da Loja Universitária (2025)** | `dados/documentos/aviso_loja_universitaria.tres` | `loja_uni` |
 | **Ordem de Impressão (3026)** | `dados/documentos/ordem_impressao_grafica.tres` | `grafica` (explica por que a escada de emergência da praça está interditada) |
 | **Canhoto do Cine Andrômeda** | `dados/documentos/ingresso_cine_andromeda.tres` | `cinema` (não tem nome: não é pista do cofre) |
-| **Bilhete do lanterninha** | `dados/documentos/bilhete_lanterninha_cofre.tres` | `cinema`, no balcão da bomboniere |
+| **Bilhete do lanterninha** | `dados/documentos/bilhete_lanterninha_cofre.tres` | `cinema`, perto da bomboniere (diz onde está o cofre e como é o código) |
 | **Canhoto do Léo, da Bia e do Caio** | `dados/documentos/canhoto_leo.tres`, `canhoto_bia.tres`, `canhoto_caio.tres` | `cinema`: o do Léo no saguão, o da Bia na frente da fileira de trás da sala e o do Caio dentro do nicho da cortina |
 | **Zane no rádio (chegada)** | `dados/transmissoes/zane_convivencia_01.tres` | `passarela_acesso` |
 | **Zane no rádio (luzes acesas)** | `dados/transmissoes/zane_convivencia_02.tres` | `praca_central` (requer `convivencia_energia`) |
@@ -132,6 +133,7 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 | Fundos das três lojas do mezanino | `assets/modelagem/cenario/gerar_interiores_andar2.py` |
 | Objetos do mezanino e das lojas (e a tela animada do cinema) | `assets/modelagem/cenario/gerar_andar2_objetos.py` |
 | Som da escada | `assets/modelagem/audio/gerar_efeitos_escada.py` |
+| Sprites dos papéis no chão (documentos) | `assets/modelagem/cenario/gerar_papeis.py`, `cenas/itens/papel_no_mundo.tscn` e `scripts/itens/papel_no_mundo.gd` |
 | Cofre do cinema (cena, script e como reutilizar) | `cenas/sistemas/cofre.tscn`, `scripts/sistemas/cofre.gd` e [`../mecanicas/cofre_e_codigos.md`](../mecanicas/cofre_e_codigos.md) |
 | Porta de vidro dos restaurantes | `assets/modelagem/cenario/gerar_porta_restaurante.py` e o som em `assets/modelagem/audio/gerar_efeitos_porta_restaurante.py` |
 | Base comum (geometria do arco, cores de neon, texto em pixel) | `assets/modelagem/cenario/gerar_praca_base.py` |
@@ -191,7 +193,7 @@ O Davi desenhou a planta de um segundo andar: um **anel em volta do vazio da pra
 |---|---|---|
 | **Gráfica Quântica** (`grafica`, coluna 2) | limão | plotter, copiadora, guilhotina, impressora 3D, estante de resmas, mesa de corte; as faixas de segurança no piso; a Ordem de Impressão; 2 pedras, 1 pilha |
 | **Loja Universitária** (`loja_uni`, coluna 7) | azul | araras, manequins de moletom, estante de camisetas, espelho, o brasão da universidade e o provador de cortina (nicho); o aviso da loja; 1 pedra, 1 pilha |
-| **Cine Andrômeda** (`cinema`, coluna 22) | violeta | saguão com bilheteria, bomboniere e cordões de fila; a sala com a tela larga que chia ("sem sinal", animada, com a luz piscando) e duas fileiras de poltronas; o **cofre** do lanterninha e as pistas dele; 1 pilha, 1 pedra |
+| **Cine Andrômeda** (`cinema`, coluna 22) | violeta | saguão com bilheteria, bomboniere e cordões de fila; a sala com a tela larga que chia ("sem sinal", animada, com a luz piscando) e duas fileiras de poltronas numeradas de 1 a 16, da esquerda para a direita; a **cabine de projeção** atrás da sala, com o cofre do lanterninha, e as pistas dele; 2 pilhas, 1 pedra |
 
 Cada loja tem a sua cor, a mesma da porta de vidro, do letreiro e da luz que a vitrine joga no chão do corredor. As portas de vidro e os letreiros são os mesmos tipos dos restaurantes (seção 5), em três cores novas (azul, limão e violeta).
 
@@ -205,10 +207,14 @@ Cada loja tem a sua cor, a mesma da porta de vidro, do letreiro e da luz que a v
 
 Cada sala do mezanino vai ganhar um puzzle próprio, mesmo que não leve a história adiante. O do **Cine Andrômeda** é o primeiro:
 
-- **O cofre cinza** fica no saguão, ao lado do arco da sala (`cenas/sistemas/cofre.tscn`, código de 3 dígitos). O prêmio é **1 cápsula de clarão**, que cai no chão ao abrir.
-- **O bilhete do lanterninha** (na bomboniere) diz que o código são as poltronas dos três amigos dele, o **Léo**, a **Bia** e o **Caio**, só o número, sem a fileira, e que **a ordem foi embaralhada de propósito**. Não dá o código.
+- **O cofre cinza** fica na **cabine de projeção** (`cinema_cabine`), a salinha atrás da sala de cinema: a porta cinza com a plaquinha CABINE, na ponta direita da parede da sala (`cenas/sistemas/cofre.tscn`, código de 3 dígitos). O prêmio é **1 cápsula de clarão**, que cai no chão ao abrir.
+- **O bilhete do lanterninha** (perto da bomboniere) diz onde está o cofre (na cabine, a porta cinza ao lado da tela) e que o código são as poltronas dos três amigos dele, o **Léo**, a **Bia** e o **Caio**, só o número, sem a fileira, e que **a ordem foi embaralhada de propósito**. Não dá o código.
 - **Os três canhotos** estão espalhados pelo cinema, cada um com o nome do amigo, a fileira e a poltrona: **Léo, fileira C, poltrona 4**, no saguão; **Bia, fileira F, poltrona 7**, na frente da fileira de trás da sala; **Caio, fileira B, poltrona 2**, escondido no nicho da cortina. Há ainda um canhoto sem nome (fileira F, poltrona 12) que não faz parte do puzzle.
 - **A combinação** é **Bia, Caio, Léo: 7-2-4**. Com três números, o jogador testa no máximo 6 ordens (4-7-2, 4-2-7, 7-4-2, 7-2-4, 2-4-7, 2-7-4) até o cofre abrir. Errar não tem castigo.
 - **Dica de leitura:** a anotação de cada documento vai para o Caderno (`N`), então o jogador consulta os números fora do painel.
 
 Como o sistema funciona e como montar outros cofres: [`../mecanicas/cofre_e_codigos.md`](../mecanicas/cofre_e_codigos.md).
+
+### 7.6 Os papéis no chão
+
+Os documentos da fase (o bilhete e os canhotos do cinema, o aviso da loja, a ordem da gráfica, a ordem de serviço e o panfleto) aparecem como **sprites pequenos no chão**, com o brilho dos itens colecionáveis, e não mais como áreas invisíveis. Cada tipo tem o seu desenho (`assets/modelagem/cenario/gerar_papeis.py`): o **bilhete** é uma folha dobrada com linhas à mão, o **canhoto** é uma tira com o picotado à esquerda e uma faixa de cor à direita (**ciano** do Léo, **magenta** da Bia, **âmbar** do Caio e **violeta** o canhoto sem nome), e o **aviso**, a **ordem** e o **panfleto** são folhas com o cabeçalho na cor da loja. Cena: `cenas/itens/papel_no_mundo.tscn` (herda de `documento_no_mundo.tscn` e põe o sprite e o brilho).

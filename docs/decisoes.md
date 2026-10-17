@@ -28,6 +28,18 @@ Formato:
 
 ---
 
+## 2026-10-17 — Os documentos da fase ganham sprite no chão, e o cofre do cinema vai para uma cabine de projeção
+**Decisão:**
+- **Os papéis têm sprite.** Os documentos do Centro de Convivência eram áreas invisíveis: o Gabriel só os achava por acaso. Agora cada um é um **sprite pequeno no chão**, com o brilho dos itens colecionáveis (cena nova `papel_no_mundo.tscn`): um bilhete, quatro canhotos (uma cor por amigo no cinema), o aviso da loja, a ordem da gráfica, a ordem de serviço e o panfleto.
+- **O cofre do cinema muda de lugar:** em vez de ficar no saguão, ele fica numa **sala pequena nova, a cabine de projeção** (`cinema_cabine`, 400 × 220 px), atrás da sala de cinema. A porta cinza, com a plaquinha CABINE, fica na ponta direita da parede da sala. A cabine tem o projetor de rolo, a mesa do lanterninha, latas de filme, o quadro de sessões, os ganchos com o paletó do Tadeu e o cofre.
+- **O bilhete do lanterninha foi atualizado:** agora diz que as coisas dele estão no cofre da cabine de projeção, a porta cinza ao lado da tela, que está aberta. O código continua o mesmo (7-2-4, a ordem embaralhada das poltronas dos três amigos) e os canhotos continuam espalhados pelo cinema.
+- **As poltronas da sala ganharam numeração em ordem:** cada fileira vai de 1 a 16, da esquerda para a direita, atravessando os corredores (antes os números se repetiam sem sentido: 8, 2, 5, 8). Os trechos de fileira viraram quatro sprites (`poltronas_1`, `_5`, `_9` e `_13`), no lugar de `poltronas_3` e `poltronas_4`.
+- O cartaz recortado do saguão e a pedra do fundo da sala mudaram de lugar para abrir espaço à porta.
+**Por quê:** pedido do Davi: os bilhetes estavam invisíveis no jogo, e o cofre deveria ficar numa sala pequena à parte no cinema.
+**Afeta:** `assets/modelagem/cenario/gerar_papeis.py` (novo), `cenas/itens/papel_no_mundo.tscn` e `scripts/itens/papel_no_mundo.gd` (novos), `assets/sprites/cenario/objetos/papel_*.png`, `assets/modelagem/cenario/gerar_interiores_andar2.py` e `gerar_andar2_objetos.py` (a cabine e três objetos novos), `assets/modelagem/salas/centro_de_convivencia/` (a sala nova, a porta e o mapa de sprites dos documentos), `cenas/salas/centro_de_convivencia/cinema.tscn`, `cinema_cabine.tscn` (nova) e as cenas das salas com documento, `dados/documentos/bilhete_lanterninha_cofre.tres`, `docs/fases/centro_de_convivencia.md` (seções 7.5 e 7.6).
+
+---
+
 ## 2026-10-17 — Os robôs do Centro de Convivência passam a contornar os objetos
 **Decisão:**
 - **O bug:** o Rastreador (o "cachorro" do Self Nebulosa) e a Sentinela do Churrasco Solar atravessavam mesas, cadeiras e balcões. Os robôs só enxergam a **camada 8** (a das paredes): é com ela que `RobosDaSala` monta o mapa de caminhos e que o robô risca a linha de visão. Os objetos do Centro de Convivência estavam só na camada 1, a que o Gabriel enxerga, e por isso eram invisíveis para os robôs (que também viam o Gabriel através deles).
