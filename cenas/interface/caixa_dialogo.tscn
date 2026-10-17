@@ -13,10 +13,10 @@ layer = 9
 script = ExtResource("1_caixa")
 
 [node name="Janela" type="NinePatchRect" parent="."]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 316.0
-offset_bottom = 68.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 632.0
+offset_bottom = 112.0
 mouse_filter = 2
 texture = ExtResource("2_painel")
 patch_margin_left = 6
@@ -26,53 +26,53 @@ patch_margin_bottom = 6
 
 [node name="MolduraRetrato" type="ColorRect" parent="Janela"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 11.0
-offset_right = 48.0
-offset_bottom = 53.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 94.0
+offset_bottom = 94.0
 mouse_filter = 2
 color = Color(0.07, 0.07, 0.09, 1)
 
 [node name="Retrato" type="TextureRect" parent="Janela/MolduraRetrato"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 41.0
-offset_bottom = 41.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 82.0
+offset_bottom = 82.0
 mouse_filter = 2
 expand_mode = 1
 
 [node name="Nome" type="Label" parent="Janela"]
 layout_mode = 0
-offset_left = 52.0
-offset_top = 3.0
-offset_right = 252.0
-offset_bottom = 17.0
+offset_left = 104.0
+offset_top = 6.0
+offset_right = 500.0
+offset_bottom = 20.0
 
 [node name="Texto" type="Label" parent="Janela"]
 layout_mode = 0
-offset_left = 52.0
-offset_top = 17.0
-offset_right = 304.0
-offset_bottom = 59.0
+offset_left = 104.0
+offset_top = 22.0
+offset_right = 608.0
+offset_bottom = 78.0
 theme_override_colors/font_color = Color(0.9, 0.88, 0.82, 1)
 autowrap_mode = 3
-max_lines_visible = 3
+max_lines_visible = 4
 
 [node name="Escolhas" type="VBoxContainer" parent="Janela"]
 layout_mode = 0
-offset_left = 52.0
-offset_top = 17.0
-offset_right = 304.0
-offset_bottom = 61.0
+offset_left = 104.0
+offset_top = 22.0
+offset_right = 608.0
+offset_bottom = 86.0
 theme_override_constants/separation = 0
 
 [node name="Dica" type="Label" parent="Janela"]
 layout_mode = 0
-offset_left = 290.0
-offset_top = 46.0
-offset_right = 306.0
-offset_bottom = 60.0
+offset_left = 580.0
+offset_top = 84.0
+offset_right = 612.0
+offset_bottom = 98.0
 text = "E"
 label_settings = SubResource("LabelSettings_dica")
 horizontal_alignment = 2

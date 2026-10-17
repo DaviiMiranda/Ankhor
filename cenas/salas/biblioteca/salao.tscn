@@ -249,6 +249,7 @@ y_sort_enabled = true
 position = Vector2(124, 150)
 
 [node name="Camera2D" type="Camera2D" parent="Objetos/Gabriel"]
+zoom = Vector2(2, 2)
 position = Vector2(0, -30)
 limit_left = 0
 limit_top = 0
@@ -610,16 +611,22 @@ layer = 5
 
 [node name="Tela" type="ColorRect" parent="Vinheta"]
 material = SubResource("Vinheta")
-offset_right = 320.0
-offset_bottom = 180.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="Transicao" type="CanvasLayer" parent="."]
 layer = 10
 
 [node name="Escuro" type="ColorRect" parent="Transicao"]
-offset_right = 320.0
-offset_bottom = 180.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 

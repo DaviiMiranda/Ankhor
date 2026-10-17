@@ -50,7 +50,7 @@ Cada cutscene possui um documento dedicado nesta pasta seguindo a estrutura:
 
 ## Roteiro Ilustração por Ilustração (quando aplicável)
 
-Para cada cena/take ilustrado em pixel art (tela de 320×180; ilustrações em resolução dobrada, 640×360, mostradas com escala 0,5):
+Para cada cena/take ilustrado em pixel art (tela de 640×360; ilustrações com a resolução da tela, 640×360, mostradas com escala 1):
 - **Arquivo proposto:** caminho em `assets/sprites/cutscenes/<nome>/`.
 - **Enquadramento:** composição, foco, planos (fechado, médio, aberto).
 - **Paleta e iluminação:** atmosfera visual, tons e iluminação.

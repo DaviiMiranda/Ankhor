@@ -39,15 +39,15 @@ font_color = Color(0.55, 0.56, 0.52, 1)
 [node name="TelaInventario" type="CanvasLayer"]
 process_mode = 3
 layer = 8
+offset = Vector2(160, 90)
 visible = false
 script = ExtResource("1_tela")
 
 [node name="Fundo" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 480.0
+offset_bottom = 270.0
 color = Color(0, 0, 0, 0.6)
 
 [node name="Janela" type="NinePatchRect" parent="."]

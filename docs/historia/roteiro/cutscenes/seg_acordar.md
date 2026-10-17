@@ -11,7 +11,7 @@
 
 ## Nota da cena
 
-A cena `cenas/cutscenes/seg_acordar.tscn` toca o vídeo `assets/video/cutscenes/seg_acordar.ogv` num `VideoStreamPlayer` do tamanho da tela (320×180, com `expand`). Ela usa o script `scripts/cutscenes/cutscene.gd`: a animação `principal` dura o mesmo que o vídeo (6 s) e só faz a tela sair do preto no começo (0,6 s), continuando o preto em que o prólogo termina.
+A cena `cenas/cutscenes/seg_acordar.tscn` toca o vídeo `assets/video/cutscenes/seg_acordar.ogv` num `VideoStreamPlayer` do tamanho da tela (640×360, com `expand`). Ela usa o script `scripts/cutscenes/cutscene.gd`: a animação `principal` dura o mesmo que o vídeo (6 s) e só faz a tela sair do preto no começo (0,6 s), continuando o preto em que o prólogo termina.
 
 - **Formato do vídeo:** o Godot só toca vídeo em **Ogg Theora** (`.ogv`). O original (`animação_gabriel_acordando.mp4`, 1920×1080, 24 quadros por segundo) foi convertido para 1280×720 com o `ffmpeg`:
   ```

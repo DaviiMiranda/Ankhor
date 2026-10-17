@@ -19,15 +19,15 @@ fill_to = Vector2(1, 0.5)
 [node name="TelaItemNovo" type="CanvasLayer"]
 process_mode = 3
 layer = 10
+offset = Vector2(160, 90)
 visible = false
 script = ExtResource("1_tela")
 
 [node name="Fundo" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 480.0
+offset_bottom = 270.0
 mouse_filter = 2
 color = Color(0.02, 0.02, 0.025, 0.86)
 

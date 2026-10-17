@@ -37,7 +37,9 @@ uniform float fim : hint_range(0.0, 2.0) = 1.25;
 uniform float forca : hint_range(0.0, 1.0) = 0.85;
 // Quantos níveis de escuridão. Poucos = mais "pixel art".
 uniform float niveis = 4.0;
-// Tamanho da tela em pixels do jogo (para achar o pixel de cada fragmento).
+// Grade do jogo em pixels (320×180, o que a câmera enxerga). A tela tem 640×360,
+// então cada pixel do jogo cobre 2×2 pixels da tela e o dithering continua do
+// tamanho do pixel do cenário. Serve para achar o pixel de cada fragmento.
 uniform vec2 tamanho = vec2(320.0, 180.0);
 
 // Matriz de Bayer 4×4, lida linha a linha. Somamos 0,5 e dividimos por 16
