@@ -76,10 +76,11 @@ func _atualizar_aviso() -> void:
 		return
 	aviso.text = ("[E] " + alvo.texto_acao).strip_edges()
 	aviso.reset_size()
-	var na_tela := alvo.get_global_transform_with_canvas().origin
-	var pos := na_tela + Vector2(-aviso.size.x / 2.0, -alvo.altura_aviso - aviso.size.y)
-	pos.x = clampf(pos.x, 2.0, 318.0 - aviso.size.x)
-	pos.y = clampf(pos.y, 2.0, 178.0 - aviso.size.y)
+	var topo := alvo.get_global_transform_with_canvas() * Vector2(0.0, -alvo.altura_aviso)
+	var tela := get_viewport().get_visible_rect().size
+	var pos := topo + Vector2(-aviso.size.x / 2.0, -aviso.size.y)
+	pos.x = clampf(pos.x, 4.0, tela.x - 4.0 - aviso.size.x)
+	pos.y = clampf(pos.y, 4.0, tela.y - 4.0 - aviso.size.y)
 	aviso.position = pos.round()
 
 
@@ -128,16 +129,16 @@ func _configurar_barra_estamina() -> void:
 	_barra_estamina_fundo = ColorRect.new()
 	_barra_estamina_fundo.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_barra_estamina_fundo.color = Color(0.0, 0.0, 0.0, 0.65)
-	_barra_estamina_fundo.position = Vector2(4.0, 14.0)
-	_barra_estamina_fundo.size = Vector2(34.0, 4.0)
+	_barra_estamina_fundo.position = Vector2(8.0, 28.0)
+	_barra_estamina_fundo.size = Vector2(68.0, 8.0)
 	_barra_estamina_fundo.modulate.a = 0.0
 	add_child(_barra_estamina_fundo)
 
 	_barra_estamina_preenchimento = ColorRect.new()
 	_barra_estamina_preenchimento.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_barra_estamina_preenchimento.color = Color(0.9, 0.8, 0.55, 1.0)
-	_barra_estamina_preenchimento.position = Vector2(1.0, 1.0)
-	_barra_estamina_preenchimento.size = Vector2(32.0, 2.0)
+	_barra_estamina_preenchimento.position = Vector2(2.0, 2.0)
+	_barra_estamina_preenchimento.size = Vector2(64.0, 4.0)
 	_barra_estamina_fundo.add_child(_barra_estamina_preenchimento)
 
 
@@ -157,7 +158,7 @@ func _ao_mudar_estamina(atual: float, maxima: float) -> void:
 	if maxima <= 0.0 or _barra_estamina_preenchimento == null:
 		return
 	var proporcao := clampf(atual / maxima, 0.0, 1.0)
-	_barra_estamina_preenchimento.size.x = roundf(32.0 * proporcao)
+	_barra_estamina_preenchimento.size.x = roundf(64.0 * proporcao)
 	if proporcao < 0.999:
 		if _tween_estamina:
 			_tween_estamina.kill()

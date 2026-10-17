@@ -3,7 +3,7 @@
 ## 1. Direção Visual
 
 - **Estilo:** Pixel art em vista lateral com sensação de profundidade 2.5D (estilo consagrado por *Five Nights at Freddy's: Into the Pit*).
-- **Resolução Nativa:** 320×180 pixels, com escala inteira (*pixel perfect*) na viewport do Godot 4.7.
+- **Resolução Nativa:** 640×360 pixels, com escala inteira (*pixel perfect*) na viewport do Godot 4.7. A câmera das salas usa zoom 2, então cada tela de jogo mostra 320×180 de cenário; a interface usa os 640×360.
 - **Filtragem de Texturas:** *Nearest* (sem interpolação linear, preservando a nitidez de cada pixel).
 - **Camadas de Profundidade:**
   - **Fundo (Background):** Paredes distantes, janelas com luz exterior filtrada, silhuetas de prédios ao longe.

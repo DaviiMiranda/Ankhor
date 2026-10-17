@@ -103,6 +103,7 @@ VScrollBar/styles/scroll = SubResource("StyleBoxFlat_barra_fundo")
 VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_barra_fundo")
 
 [node name="MenuPrincipal" type="Node2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_menu")
 energia_luz = 0.12
 oscilacao_luz = 0.06
