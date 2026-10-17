@@ -16,6 +16,18 @@ Formato:
 
 ---
 
+## 2026-10-17 — Cada sala do mezanino ganha um puzzle; o do cinema é um cofre de código
+**Decisão:**
+- **Cada sala do segundo andar terá um puzzle próprio**, mesmo que não leve a história adiante. Por enquanto só o do **Cine Andrômeda** está feito; a gráfica e a loja universitária ficam para depois.
+- **O cofre do cinema:** um cofre cinza no saguão guarda uma **cápsula de clarão** (que cai no chão ao abrir). O código é de **3 dígitos** e **nunca aparece escrito**: o **bilhete do lanterninha** diz que são as poltronas dos amigos dele (**Léo**, **Bia** e **Caio**, só o número, sem a fileira), numa **ordem embaralhada de propósito**. Os **três canhotos** estão espalhados pelo cinema (saguão, sala e o nicho da cortina), cada um com um número. O jogador testa as ordens (no máximo 6) até abrir; errar não tem castigo. A combinação certa é Bia, Caio, Léo: **7-2-4**.
+- **O sistema é reutilizável** (`cenas/sistemas/cofre.tscn`, `scripts/sistemas/cofre.gd`, que herda do `PainelCodigo` da Biblioteca): código com qualquer número de dígitos, item e quantidade de prêmio, marca de abertura própria. O prêmio cai no chão, para não se perder se o inventário estiver no limite do item. Está descrito em `docs/mecanicas/cofre_e_codigos.md`.
+- **Mudanças pequenas no cinema:** o clarão que estava no chão virou uma pedra (o clarão agora é o prêmio do cofre) e o cartaz recortado mudou de lugar para abrir espaço ao cofre.
+
+**Por quê:** pedido do Davi: um puzzle em cada sala do mezanino, o do cinema sendo um cofre cujo código vem dos assentos dos amigos de quem deixou as coisas lá, com os bilhetes espalhados pela sala e o jogador testando as ordens.
+**Afeta:** `cenas/sistemas/cofre.tscn` e `scripts/sistemas/cofre.gd` (novos), `assets/sprites/cenario/objetos/cofre.png` e `cofre_aberto.png` (novos), `assets/modelagem/cenario/gerar_andar2_objetos.py` (o desenho do cofre), `assets/modelagem/salas/centro_de_convivencia/` (lista `cofres` da sala e o montador), `cenas/salas/centro_de_convivencia/cinema.tscn`, `dados/documentos/` (4 novos: o bilhete do lanterninha e os canhotos), `docs/fases/centro_de_convivencia.md` (seção 7.5), `docs/mecanicas/cofre_e_codigos.md` (novo) e o índice `docs/mecanicas/README.md`. Os nomes do lanterninha e dos amigos e o texto dos bilhetes são meus; o Enredo Principal não foi mexido.
+
+---
+
 ## 2026-10-16 — A praça de alimentação ganha um segundo andar (o mezanino), com gráfica, loja da universidade e cinema
 **Decisão:**
 - **O segundo andar é um anel em volta do vazio da praça**, como na planta que o Davi desenhou: o hall com a escada no meio de cima, a **Gráfica Quântica** e a **Loja Universitária** de um lado, o **Cine Andrômeda** do outro, **corrimão de vidro nas bordas** e o andar de baixo escuro, que não aparece. Em vista lateral, o corredor é uma faixa de 112 px que acompanha o arco (a beirada da laje é a mesma equação, `y_frente = y_base + 112`), e o corrimão é um sprite na frente do Gabriel.
