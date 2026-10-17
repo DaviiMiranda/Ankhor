@@ -23,10 +23,15 @@ Todos em `assets/sprites/personagens/baltazar/`, gerados por `assets/modelagem/p
 | `baltazar_<vista>.png` | 96 × 112 | parado, em cada vista: `lado`, `frente`, `tres_quartos`, `costas`, `tres_quartos_costas` |
 | `baltazar_andar_<vista>.png` | 12 quadros de 96 × 112 | caminhada (dois passos), um arquivo por vista |
 | `baltazar_parado_<vista>.png` | 8 quadros de 96 × 112 | respirando, um arquivo por vista |
-| `baltazar_retrato_normal.png` | 80 × 80 | a seriedade cerimoniosa (mostrado em 40 × 40) |
-| `baltazar_retrato_encantado.png` | 80 × 80 | sorriso e sobrancelhas lá em cima: tudo em 3026 é um milagre |
-| `baltazar_retrato_aflito.png` | 80 × 80 | boca aberta e sobrancelhas levantadas no meio: a hora do latim |
-| `baltazar_referencia.png` | — | frente, 3/4, lado e costas, e os retratos |
+| `baltazar_retrato_normal.png` | 80 × 80 | a seriedade cerimoniosa (mostrado em 40 × 40). **Ainda é o antigo, do Blender**: a folha nova não tem o `normal` |
+| `baltazar_retrato_encantado.png` | 80 × 80 | sorriso e olhos brilhando: tudo em 3026 é um milagre |
+| `baltazar_retrato_aflito.png` | 80 × 80 | olhos arregalados e suor na testa: a hora do latim |
+| `baltazar_retrato_rezando.png` | 80 × 80 | olhos fechados, calmo |
+| `baltazar_retrato_teimoso.png` | 80 × 80 | cenho franzido, olhando de lado |
+| `baltazar_retrato_orgulhoso.png` | 80 × 80 | sorriso de canto, olhando de lado: o "meu neto de mil anos" |
+| `baltazar_referencia.png` | — | frente, 3/4, lado e costas, e os retratos antigos (os três primeiros) |
+
+Os **retratos** não vêm mais do `gerar_baltazar.py`: saem do `assets/modelagem/personagens/pixelar_retratos.py` (`python assets/modelagem/personagens/pixelar_retratos.py baltazar`), a partir da folha desenhada em `assets/modelagem/personagens/baltazar_referencia/expressoes.jpg`. Rodar o `gerar_baltazar.py` de novo sobrescreve os retratos novos com os antigos do Blender. As molduras desenhadas são altas (rosto, colete e braços); o recorte de 80 × 80 pega do chapéu ao colarinho, então as mãos juntas do `rezando` e os braços cruzados do `teimoso` ficam de fora.
 
 - **Escala:** a mesma de todos os personagens (1,75 m do Gabriel = 48 px na tela). Ele tem 1,63 m de corpo; o tricórnio passa disso.
 - **Resolução dobrada:** como o Gabriel, a cena usa `scale = Vector2(0.5, 0.5)` e `offset = Vector2(-46, -108)`. Para a esquerda, o Godot espelha o sprite de lado.

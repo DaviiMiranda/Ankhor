@@ -22,10 +22,16 @@ Todos em `assets/sprites/personagens/zane/`, gerados por `assets/modelagem/perso
 | `zane_<vista>.png` | 96 × 112 | parado, em cada vista: `lado`, `frente`, `tres_quartos`, `costas`, `tres_quartos_costas` |
 | `zane_andar_<vista>.png` | 12 quadros de 96 × 112 | caminhada (dois passos), um arquivo por vista |
 | `zane_parado_<vista>.png` | 8 quadros de 96 × 112 | respirando, um arquivo por vista |
-| `zane_retrato_normal.png` | 80 × 80 | retrato da caixa de diálogo (mostrado em 40 × 40) |
-| `zane_retrato_confiante.png` | 80 × 80 | sorriso de lado e uma sobrancelha erguida |
-| `zane_retrato_assustado.png` | 80 × 80 | boca aberta e sobrancelhas levantadas no meio: o medo que ele não admite |
-| `zane_referencia.png` | — | frente, 3/4, lado e costas, e os retratos |
+| `zane_retrato_normal.png` | 80 × 80 | retrato da caixa de diálogo (mostrado em 40 × 40): boca reta, o visor verde |
+| `zane_retrato_confiante.png` | 80 × 80 | sorriso de lado e um brilho no visor |
+| `zane_retrato_assustado.png` | 80 × 80 | boca aberta, uma gota de suor e o visor falhando: o medo que ele não admite |
+| `zane_retrato_empolgado.png` | 80 × 80 | sorriso aberto e faíscas verdes em volta do visor |
+| `zane_retrato_desconfiado.png` | 80 × 80 | cenho franzido e a boca torta |
+| `zane_retrato_concentrado.png` | 80 × 80 | uma moldura de varredura em volta do rosto: ele está invadindo algo |
+| `zane_retrato_frustrado.png` | 80 × 80 | dentes cerrados e o visor com falhas de imagem |
+| `zane_referencia.png` | — | frente, 3/4, lado e costas, e os retratos antigos (os três primeiros) |
+
+Os **retratos** não vêm mais do `gerar_zane.py`: saem do `assets/modelagem/personagens/pixelar_retratos.py` (`python assets/modelagem/personagens/pixelar_retratos.py zane`), a partir da folha desenhada em `assets/modelagem/personagens/zane_referencia/expressoes.jpg`. Rodar o `gerar_zane.py` de novo sobrescreve os retratos novos com os antigos do Blender. No retrato o Zane tem cabelo branco, um visor verde e uma jaqueta escura com linhas ciano; o corpo dos sprites (jaqueta amarelo-ácido, braço de metal) ainda é o antigo.
 
 - **Escala:** a mesma de todos os personagens (1,75 m do Gabriel = 48 px na tela). O corpo dele tem 1,80 m, e o topete passa disso.
 - **Resolução dobrada:** como o Gabriel, os sprites saem com o dobro de pixels e a cena usa `scale = Vector2(0.5, 0.5)`. Para a esquerda, o Godot espelha o sprite de lado.
