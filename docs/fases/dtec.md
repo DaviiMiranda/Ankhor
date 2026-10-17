@@ -1,7 +1,7 @@
 # Fase — Laboratório (D-Tec)
 
 > **Status:** Mapa pronto (cenário, portas, luzes e itens). Sexta fase do jogo, depois do Bunker.  
-> **Área:** o D-Tec, departamento de tecnologia: laboratórios, servidores e o salão da Âncora / máquina central  
+> **Área:** o D-Tec, departamento de tecnologia: laboratórios, servidores e o salão da Âncora (a máquina central)  
 > **No menu Fases:** **Laboratório** (`dados/fases/09_dtec.tres`, começa na recepção)
 
 ---
@@ -9,7 +9,7 @@
 ## 1. Visão Geral da Área
 
 - **O que é:** a **6ª fase**, logo depois do Bunker (acessada pela comporta no fim do Corredor B do Bunker).
-- **A máquina:** no salão do meio (Lab Central) há uma **máquina grande e brilhante**: um anel enorme em pé, duas torres com bobinas de cobre e, no centro do anel, um núcleo ciano que pulsa e solta faíscas. A máquina é **animada** (seção 4): o núcleo bate, a onda de choque sai dele até o anel, os raios saltam, a trilha de luz do anel gira com um cometa, a energia sobe pelas bobinas e as luzes das torres piscam, num laço de 2,4 s. **Ela não tem nome nem papel na história.** Não é a Âncora: se um dia for, isso entra no Enredo Principal por decisão do grupo.
+- **A máquina:** no salão do meio (Lab Central) há uma **máquina grande e brilhante**: um anel enorme em pé, duas torres com bobinas de cobre e, no centro do anel, um núcleo ciano que pulsa e solta faíscas. A máquina é **animada** (seção 4): o núcleo bate, a onda de choque sai dele até o anel, os raios saltam, a trilha de luz do anel gira com um cometa, a energia sobe pelas bobinas e as luzes das torres piscam, num laço de 2,4 s. **Ela é a Âncora** (decisão de 2026-10-17): o aparelho de física do tempo que o Carlos criou, descrito na seção 3 do [Enredo Principal](../historia/enredo_principal.md). O que a Âncora faz nesta fase (consertá-la, o final) ainda não está decidido: ver as pendências 10.2 e 10.6 do Enredo.
 - **Visual:** laboratório lacrado, mais inteiro que a Biblioteca, mas com mil anos de poeira. Azulejo branco embaixo e painel cinza em cima, com a faixa azul do DTEC entre os dois; duto de ventilação no teto; janelas de laboratório, quadros brancos (um deles com um grafo), painéis e terminais. Rachaduras com mato entrando e uma planta de escritório que tomou o canto.
 - **Luz:** fluorescentes frias que piscam. No Lab Central, a luz ciano da máquina pulsa devagar (`LuzPulsante`), e ela vaza pelas portas do salão nos dois corredores.
 - **Som:** o zumbido do prédio em todas as salas e, perto da máquina, um ronco grave (o mesmo zumbido do bunker, com o tom mais baixo).
@@ -25,7 +25,7 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
                    │
  CORREDOR NORTE ── eletrônica
                 ── informática (o notebook está aqui)
-                ── LAB CENTRAL (a máquina) ──┐
+                ── LAB CENTRAL (a Âncora)  ──┐
                 ── SERVIDORES (trancada)     │
                 ── depósito (lacrada)        │
                 ── diretoria (lacrada)       │
@@ -42,14 +42,14 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 |---|---|---|---|
 | `recepcao` | 640 × 400 | Letreiro DTEC, balcão da recepção, catracas, mesa, plantas, a saída lacrada | lanterna, 1 pilha |
 | `corredor_norte` | 2400 × 180 | Seis portas com placa, janelas dos laboratórios, quadro, mural, extintores, painel e a porta larga do Lab Central com a faixa de perigo | 1 pilha, 1 cápsula de clarão |
-| `lab_central` | 960 × 560 | **A máquina** no centro, consoles dos dois lados, racks, cilindros de gás, telões e janelas | 1 cápsula de clarão |
+| `lab_central` | 960 × 560 | **A Âncora (a máquina)** no centro, consoles dos dois lados, racks, cilindros de gás, telões e janelas | 1 cápsula de clarão |
 | `corredor_sul` | 2400 × 180 | O outro lado: seis portas, telão, terminal e a porta larga do Lab Central | 1 pilha, 2 pedras |
 | `lab_eletronica` | 480 × 560 | Três bancadas de eletrônica (osciloscópio, solda, placas), armário, cilindros | 1 pilha, 1 cápsula de clarão |
 | `lab_informatica` | 560 × 560 | Nove mesas com computador em três fileiras, rack, quadro | **notebook**, 1 pilha |
 | `sala_servidores` | 480 × 480 | Piso elevado e duas fileiras de racks com corredores entre eles, luz verde | 2 pilhas, 1 cápsula de clarão |
 | `lab_quimica` | 400 × 480 | Duas capelas de exaustão, bancadas, armários de reagentes, linhas de gás | 1 pilha |
 | `lab_robotica` | 560 × 560 | Braços robóticos, dois robôs desmontados nas mesas de manutenção, bancada | 2 cápsulas de clarão, 1 pilha |
-| `sala_controle` | 560 × 480 | Telões com o gráfico da máquina, três consoles, mesas, janela | 1 pilha |
+| `sala_controle` | 560 × 480 | Telões com o gráfico da Âncora, três consoles, mesas, janela | 1 pilha |
 
 ### Salas trancadas e lacradas
 
@@ -60,8 +60,8 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 
 ## 3. Objetivos e Progressão
 
-- **Hoje:** explorar, pegar o notebook na Informática, hackear as duas salas trancadas e chegar à máquina.
-- **A definir com a equipe:** se a fase entra na história (e onde), se terá robôs, e se a máquina tem algum papel.
+- **Hoje:** explorar, pegar o notebook na Informática, hackear as duas salas trancadas e chegar à Âncora.
+- **A definir com a equipe:** como a fase entra na história (a Âncora está aqui, mas o que se faz com ela está nas pendências do Enredo), e se terá robôs.
 
 ---
 

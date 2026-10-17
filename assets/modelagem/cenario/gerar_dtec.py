@@ -951,7 +951,7 @@ def arco_de_energia(img, cx, cy, graus, rng):
 
 
 def maquina(quadro=None):
-    """A MÁQUINA do salão central: uma plataforma em degraus, duas torres com
+    """A MÁQUINA do salão central (a Âncora, seção 3 do Enredo Principal): uma plataforma em degraus, duas torres com
     bobinas de cobre, um anel enorme em pé e, no meio do anel, o núcleo
     ciano brilhando, com arcos de energia saltando até o anel.
 

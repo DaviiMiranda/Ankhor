@@ -16,13 +16,14 @@ Formato:
 
 ---
 
-## 2026-10-17 — A máquina do Laboratório ganha animação
+## 2026-10-17 — A máquina do Laboratório é a Âncora e ganha animação
 **Decisão:**
-- **O que mexe:** a máquina do Lab Central (`maquina.tscn`) deixa de ser uma imagem parada e passa a tocar uma animação em laço de **24 quadros a 10 por segundo (2,4 s)**: o núcleo bate (raio de 18 px ± 10%) e gira lóbulos de brilho por dentro, uma onda de choque pontilhada sai dele e bate no anel, raios de energia mudam de lugar a cada 2 quadros (mais raios na hora da descarga), a trilha de luz do anel gira com um cometa e acende os parafusos por onde passa, um pulso de energia sobe pelas bobinas das torres e as luzes delas dão um clarão em cruz quando ele chega ao topo.
+- **A máquina do Lab Central é a Âncora.** Até aqui o `docs/fases/dtec.md` dizia que ela não tinha nome nem papel na história e que não era a Âncora. O Enredo Principal já põe a Âncora no D-Tec, junto do laboratório do Carlos, e a máquina do salão central é essa. Os dois passam a dizer a mesma coisa. O Enredo Principal não muda: ele não dizia em que sala a Âncora está e não contradiz isso. O que a Âncora faz nessa fase (consertá-la, o final) continua nas pendências do Enredo (seções 10.2 e 10.6).
+- **A animação, o que mexe:** a máquina do Lab Central (`maquina.tscn`) deixa de ser uma imagem parada e passa a tocar uma animação em laço de **24 quadros a 10 por segundo (2,4 s)**: o núcleo bate (raio de 18 px ± 10%) e gira lóbulos de brilho por dentro, uma onda de choque pontilhada sai dele e bate no anel, raios de energia mudam de lugar a cada 2 quadros (mais raios na hora da descarga), a trilha de luz do anel gira com um cometa e acende os parafusos por onde passa, um pulso de energia sobe pelas bobinas das torres e as luzes delas dão um clarão em cruz quando ele chega ao topo.
 - **Como entra no jogo:** o `Sprite2D` da máquina vira um `AnimatedSprite2D` (`Animacao`) com autoplay na animação `ativa`. Sem script novo. A folha de quadros e o `SpriteFrames` saem do `gerar_dtec.py`.
 - **Sincronia:** o laço tem o mesmo período da luz ciano da cena (`LuzPulsante.periodo = 2.4`) e a mesma fase (os dois são `sin(2π t)`), então o núcleo e a luz pulsam juntos. A segunda luz, de 1,2 s, é o dobro da frequência e também fecha com o laço.
-- **O que não mudou:** o `maquina.png` parado continua sendo gerado, idêntico ao de antes. As faíscas (`CPUParticles2D`), a colisão e as luzes ficam como estavam. A história não muda: o `docs/fases/dtec.md` continua dizendo que essa máquina não tem papel nela.
-**Por quê:** pedido do Davi: uma animação para a máquina do laboratório.
+- **O que não mudou:** o `maquina.png` parado continua sendo gerado, idêntico ao de antes. As faíscas (`CPUParticles2D`), a colisão e as luzes ficam como estavam.
+**Por quê:** pedido do Davi: uma animação para a máquina do laboratório. Ao pedir, ele confirmou que ela é a Âncora.
 **Afeta:** `cenas/cenario/dtec/objetos/maquina.tscn`, `assets/modelagem/cenario/gerar_dtec.py`, `assets/sprites/cenario/dtec/objetos/maquina_folha.png` e `maquina_quadros.tres` (novos) e `docs/fases/dtec.md`.
 
 ---
