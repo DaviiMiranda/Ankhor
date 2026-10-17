@@ -34,6 +34,16 @@ Registro de melhorias secundárias, polimento visual, sonoro e ajustes de qualid
   - **Toque de computação gráfica:** o item pode **girar devagar** na tela, com os quadros renderizados do modelo 3D pelo mesmo pipeline do Blender dos personagens. Bom exemplo para a apresentação da disciplina.
   - **Depende de:** uma imagem grande de cada item, além do ícone do inventário, e de guardar quais itens o jogador já viu (no save).
 
+- [ ] **Mapa de fase colecionável e rastreador de completude:**
+  - Cada fase principal (Biblioteca, Bloco de Salas, Centro de Convivência, Labirinto, D-Tec, Bunker) pode conter um **mapa esquemático ou planta baixa** escondido pelo cenário, para ser encontrado como um **item coletável** (ex.: planta da biblioteca num quadro de avisos, mapa de evacuação no bloco de salas, guia do campus no centro de convivência).
+  - **Visualização:** ao ser achado, o mapa pode ser aberto e consultado a qualquer momento (pela mochila/caderno ou por uma tecla de atalho dedicada, como `M`). A interface exibe a planta no estilo do jogo (papel técnico desgastado ou esquema digital em pixel art).
+  - **Indicadores de exploração e completude:**
+    - **Salas visitadas:** mostra o desenho das salas já exploradas e conexões descobertas vs. áreas ainda não visitadas (reveladas conforme o jogador explora ou já desenhadas com demarcação do que foi visitado).
+    - **Itens e colecionáveis da fase:** exibe um resumo da completude da fase (ex.: quantos itens-chave, documentos/anotações e colecionáveis/easter eggs foram encontrados do total da fase).
+    - **Status da fase:** indica se a fase foi 100% concluída/explorada ou se ainda restam segredos e itens pendentes para trás.
+  - **Toque de computação gráfica / computação:** conexão direta com o modelo do campus como grafo (GDD 2.4). O mapa pode destacar os nós (salas) e arestas (portas/corredores) já percorridos, calculando o percentual de cobertura do grafo da fase em tempo real.
+  - **Depende de:** arte das plantas/telas de mapa de cada fase, registro de itens/salas coletados por fase no estado do jogo e persistência no sistema de save.
+
 ## Conteúdo extra
 
 - [ ] **Easter eggs colecionáveis que dão conquistas:**
