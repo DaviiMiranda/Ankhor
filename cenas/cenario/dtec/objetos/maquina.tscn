@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/cenario/objeto_cenario.gd" id="1_objeto"]
-[ext_resource type="Texture2D" path="res://assets/sprites/cenario/dtec/objetos/maquina.png" id="2_sprite"]
+[ext_resource type="SpriteFrames" path="res://assets/sprites/cenario/dtec/objetos/maquina_quadros.tres" id="2_quadros"]
 
 [sub_resource type="Gradient" id="Gradient_faisca"]
 colors = PackedColorArray(0.85, 1, 1, 1, 0.3, 0.9, 1, 0)
@@ -12,8 +12,10 @@ size = Vector2(150, 22)
 [node name="Maquina" type="StaticBody2D"]
 script = ExtResource("1_objeto")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_sprite")
+[node name="Animacao" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_quadros")
+animation = &"ativa"
+autoplay = "ativa"
 centered = false
 offset = Vector2(-88, -154)
 

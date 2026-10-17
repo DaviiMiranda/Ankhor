@@ -16,6 +16,8 @@
 #   chao/<peça>_fundo.png  128 x 64 px: o chão da parte sul das salas fundas
 #   objetos/<objeto>.png objetos que o Gabriel contorna (y-sort); o "pé" de
 #                        cada um sai no terminal, como no gerar_bunker.py
+#   objetos/maquina_folha.png    os 24 quadros da animação da máquina lado a lado
+#   objetos/maquina_quadros.tres o SpriteFrames dela, animação "ativa" em laço
 # Com CATALOGO=1 monta folhas com o nome de cada peça nesta pasta. Não commitar.
 #
 # ---------------------------------------------------------------------------
@@ -35,6 +37,41 @@
 #   - a máquina do salão central: um anel enorme em pé em volta de um
 #     núcleo CIANO que brilha. O brilho de verdade vem das PointLight2D da
 #     cena; aqui só pintamos os pixels mais claros da rampa "ciano".
+#
+# ---------------------------------------------------------------------------
+# A ANIMAÇÃO DA MÁQUINA
+# ---------------------------------------------------------------------------
+#
+# A máquina é desenhada 24 vezes, uma por quadro, e toca a 10 quadros por
+# segundo: um laço de 2,4 s, o mesmo período da luz ciano da cena
+# (LuzPulsante, periodo = 2.4). Cada quadro é uma foto da máquina na FASE
+# t = quadro / 24, que vai de 0 a 1 e volta a 0. Tudo que se mexe é função
+# periódica de t, então o último quadro emenda no primeiro sem salto:
+#
+#   - Batida: b(t) = sin(2π t). O raio do núcleo é 18 px · (1 + 0,10 b) e o
+#     brilho sobe e desce com b. É a mesma senoide da luz da cena, então o
+#     núcleo e a luz pulsam juntos (o pico vem em t = 0,25).
+#   - Lóbulos: o brilho dentro do núcleo ganha 0,07 · sin(3θ - 2π t), onde θ
+#     é o ângulo do pixel em volta do centro: três manchas claras que dão
+#     uma volta por laço.
+#   - Onda de choque: de t = 0,25 a 0,80 um anel pontilhado sai do núcleo e
+#     cresce de 21 px até o anel de aço (u = (t - 0,25) / 0,55, raio = 21 +
+#     20 u), escurecendo ao longo do caminho.
+#   - Arcos: quatro "vagas" de raios. Cada uma sorteia direção e forma de
+#     novo a cada 2 quadros, com a semente 900 + 31 · ciclo + vaga (por isso
+#     o laço fecha). A vaga 0 sempre acende; as outras acendem com
+#     probabilidade 0,4 + 0,5 · d(t), onde d é um pulso triangular em torno
+#     de t = 0,82, o momento em que a onda de choque bate no anel.
+#   - Trilha do anel: as faixas de 15° giram 60° por laço e um cometa dá uma
+#     volta inteira (cabeça em 360° · t). O brilho do pixel cai com a
+#     distância angular atrás da cabeça, de 1 a 0 em 100°. Cada parafuso do
+#     anel acende nos 40° depois que o cometa passa.
+#   - Torres: um pulso de energia sobe pelas 15 bobinas de cobre (a cabeça
+#     anda de -2,5 a 17,5 bobinas) e, quando chega ao topo (t = 0,80), as
+#     luzes das torres dão um clarão em cruz.
+#
+# A imagem parada (maquina.png) continua sendo gerada com maquina() sem
+# argumento; a cena usa a folha de quadros.
 #
 # Tudo encaixa sem emenda pelo mesmo truque do kit: ruído cíclico (a grade
 # de números sorteados dá a volta na largura da peça) e juntas na coluna 0.
@@ -889,7 +926,31 @@ def catraca():
     return img, 10, 28
 
 
-def maquina():
+QUADROS_MAQUINA = 24
+FPS_MAQUINA = 10.0
+RES_OBJETOS_DTEC = "res://assets/sprites/cenario/dtec/objetos"
+
+
+def pico(t, centro, largura):
+    """Pulso triangular na fase t (de 0 a 1, que dá a volta): vale 1 em
+    'centro' e cai em linha reta até 0 a 'largura' de distância."""
+    distancia = abs((t - centro + 0.5) % 1.0 - 0.5)
+    return max(0.0, 1.0 - distancia / largura)
+
+
+def arco_de_energia(img, cx, cy, graus, rng):
+    """Um raio saindo do núcleo na direção 'graus' até o anel: um passeio
+    aleatório de 7 pontos. Devolve o ponto onde ele bate no anel."""
+    a = np.radians(graus)
+    pontos = []
+    for u in np.linspace(0.0, 1.0, 7):
+        r = 16 + u * 28
+        pontos.append((cx + r * np.cos(a) + rng.uniform(-3, 3), cy + r * 1.1 * np.sin(a) + rng.uniform(-3, 3)))
+    img.pintar(img.caminho(pontos, 0.6), "ciano", 0.95, achatar=False)
+    return pontos[-1]
+
+
+def maquina(quadro=None):
     """A MÁQUINA do salão central: uma plataforma em degraus, duas torres com
     bobinas de cobre, um anel enorme em pé e, no meio do anel, o núcleo
     ciano brilhando, com arcos de energia saltando até o anel.
@@ -900,7 +961,15 @@ def maquina():
     (luz vindo de cima à esquerda) clareia um lado e escurece o outro.
 
     O núcleo é uma esfera: o tom cai do centro para a borda (1 - d²), e
-    os arcos de energia são passeios aleatórios do núcleo até o anel."""
+    os arcos de energia são passeios aleatórios do núcleo até o anel.
+
+    Sem argumento, desenha a imagem parada (maquina.png). Com 'quadro'
+    (de 0 a QUADROS_MAQUINA - 1), desenha um quadro da animação em laço,
+    na fase t = quadro / QUADROS_MAQUINA (ver "A ANIMAÇÃO DA MÁQUINA"
+    no começo do arquivo)."""
+    animada = quadro is not None
+    t = quadro / QUADROS_MAQUINA if animada else 0.0
+    batida = np.sin(2 * np.pi * t)
     W, H = 176, 156
     img = Imagem(W, H)
     X, Y = img.X, img.Y
@@ -911,47 +980,123 @@ def maquina():
         img.pintar(degrau, "aco", 0.3 + 0.1 * k + 0.25 * (Y == y0))
         listras(img, img.ret(x0, y0, x1, y0 + 2), 4)
     # Duas torres com bobinas de cobre (faixas alternadas) e luz no topo.
+    # Na animação, um pulso de energia sobe pelas bobinas (t de 0 a 0,8) e,
+    # quando chega ao topo, as luzes das torres piscam.
+    faixas = list(range(30, 116, 6))
+    cabeca_subida = t * (len(faixas) + 5) - 2.5
+    clarao = pico(t, 0.80, 0.10) if animada else 0.0
+    brilho_lampada = min(1.0, 0.45 + 0.15 * batida + 0.5 * clarao) if animada else 0.8
     for tx in (30, 134):
         img.pintar(img.ret(tx, 22, tx + 12, 122), "aco", 0.32 + 0.22 * (X == tx) - 0.1 * (X == tx + 11))
-        for y in range(30, 116, 6):
-            img.pintar(img.ret(tx - 2, y, tx + 14, y + 3), "ferrugem", 0.6 + 0.2 * (Y == y))
+        for i, y in enumerate(faixas):
+            bobina = img.ret(tx - 2, y, tx + 14, y + 3)
+            img.pintar(bobina, "ferrugem", 0.6 + 0.2 * (Y == y))
+            energia = max(0.0, 1.0 - abs((len(faixas) - 1 - i) - cabeca_subida) / 1.8) if animada else 0.0
+            if energia > 0.1:
+                img.pintar(bobina, "ciano", 0.3 + 0.5 * energia)
         img.pintar(img.ret(tx - 3, 16, tx + 15, 22), "aco", 0.5)
-        img.pintar(img.elipse(tx + 6, 13, 5, 4), "ciano", 0.8)
+        img.pintar(img.elipse(tx + 6, 13, 5, 4), "ciano", brilho_lampada)
     # O anel em pé.
     dx, dy = X + 0.5 - cx, Y + 0.5 - cy
     anel = img.elipse(cx, cy, 52, 58) & ~img.elipse(cx, cy, 40, 46)
     angulo = np.arctan2(dy, dx)
     volume = 0.5 + 0.3 * np.cos(angulo - np.radians(-135))
     img.pintar(anel, "aco", volume)
+    # A trilha de luz do anel: faixas de 15° que giram devagar (60° por laço)
+    # e um cometa que dá uma volta por laço. 'atras' é quantos graus o pixel
+    # está atrás da cabeça do cometa; o brilho cai de 1 a 0 em 100°.
     trilha = img.elipse(cx, cy, 47, 53) & ~img.elipse(cx, cy, 45, 51)
-    img.pintar(trilha, "ciano", 0.55 + 0.25 * ((np.degrees(angulo) // 15) % 2))
+    graus_pixel = np.degrees(angulo)
+    cabeca_cometa = 360.0 * t
+    atras = (cabeca_cometa - graus_pixel) % 360.0
+    cometa = np.clip(1.0 - atras / 100.0, 0.0, 1.0) ** 1.6 if animada else 0.0
+    img.pintar(trilha, "ciano", 0.55 + 0.25 * (((graus_pixel - 60.0 * t) // 15) % 2) + 0.4 * cometa)
     for graus in range(0, 360, 45):
         a = np.radians(graus)
         bx, by = cx + 49 * np.cos(a), cy + 55 * np.sin(a)
         img.pintar(img.elipse(bx, by, 4, 4), "aco", 0.7)
+        passou = (cabeca_cometa - graus) % 360.0
+        if animada and passou < 40.0:
+            img.pintar(img.elipse(bx, by, 4, 4), "ciano", 0.9 - 0.5 * passou / 40.0)
     # Suporte do anel até a plataforma.
     img.pintar(img.poligono([(cx - 14, 118), (cx + 14, 118), (cx + 6, 120), (cx - 6, 120)]), "aco", 0.5)
     img.pintar(img.ret(cx - 6, 108, cx + 6, 120), "aco", 0.4)
     # O núcleo: esfera ciano, mais clara no centro, com um halo pontilhado.
-    d2 = (dx / 18) ** 2 + (dy / 18) ** 2
+    # Na animação o raio bate com o seno da fase (18 px ± 10%) e três lóbulos
+    # de brilho giram dentro da esfera: sin(3·ângulo - 2π·t).
+    raio_nucleo = 18.0 * (1.0 + 0.10 * batida)
+    d2 = (dx / raio_nucleo) ** 2 + (dy / raio_nucleo) ** 2
     halo = (d2 <= 1.8) & (d2 > 1.0) & (((X + Y) % 2) == 0)
     img.pintar(halo, "ciano", 0.45)
     nucleo = d2 <= 1.0
-    img.pintar(nucleo, "ciano", 0.55 + 0.45 * (1 - d2) + 0.15 * ((dx < 0) & (dy < 0)))
+    brilho_nucleo = 0.55 + 0.45 * (1 - d2) + 0.15 * ((dx < 0) & (dy < 0))
+    if animada:
+        brilho_nucleo = brilho_nucleo + 0.05 * batida + 0.07 * np.sin(3 * angulo - 2 * np.pi * t)
+    img.pintar(nucleo, "ciano", brilho_nucleo)
     # Arcos de energia: passeios aleatórios do núcleo até o anel.
-    rng = np.random.default_rng(390)
-    for graus in (20, 150, 250, 320):
-        a = np.radians(graus)
-        pontos = []
-        for t in np.linspace(0.0, 1.0, 7):
-            r = 16 + t * 28
-            pontos.append((cx + r * np.cos(a) + rng.uniform(-3, 3), cy + r * 1.1 * np.sin(a) + rng.uniform(-3, 3)))
-        img.pintar(img.caminho(pontos, 0.6), "ciano", 0.95, achatar=False)
+    if animada:
+        # Quatro vagas de arco, cada uma muda de direção e de forma a cada
+        # 2 quadros (uma semente por vaga e por ciclo, então o laço fecha).
+        # A primeira vaga está sempre acesa; as outras acendem mais perto da
+        # descarga (t = 0,82), quando a onda de choque bate no anel.
+        descarga = pico(t, 0.82, 0.18)
+        for vaga in range(4):
+            ciclo = ((quadro + 2 * vaga) % QUADROS_MAQUINA) // 2
+            rng = np.random.default_rng(900 + 31 * ciclo + vaga)
+            if vaga > 0 and rng.random() > 0.4 + 0.5 * descarga:
+                continue
+            fim = arco_de_energia(img, cx, cy, rng.uniform(0, 360), rng)
+            img.pintar(img.elipse(fim[0], fim[1], 2.5, 2.5), "ciano", 0.9, achatar=False)
+    else:
+        rng = np.random.default_rng(390)
+        for graus in (20, 150, 250, 320):
+            arco_de_energia(img, cx, cy, graus, rng)
     # Cabos grossos descendo das torres para o chão.
     for (x0, x1) in ((36, 12), (140, 164)):
         img.pintar(img.caminho([(x0, 118), ((x0 + x1) / 2, 140), (x1, 152)], 1.4), "aco", 0.2)
     img.contornar()
+    if animada:
+        # Depois do contorno, para não ganhar borda escura: a onda de choque
+        # (um anel pontilhado que sai do núcleo e cresce até o anel, de
+        # t = 0,25 a 0,8) e o brilho em cruz das luzes das torres.
+        u = (t - 0.25) / 0.55
+        if 0.0 <= u < 1.0:
+            r = 21 + 20 * u
+            onda = img.elipse(cx, cy, r + 1, r * 1.1 + 1) & ~img.elipse(cx, cy, r - 1, r * 1.1 - 1)
+            onda &= (((X + Y) % 2) == 0) & img.elipse(cx, cy, 39, 45)
+            img.pintar(onda, "ciano", 0.85 - 0.5 * u, achatar=False)
+        if clarao > 0.3:
+            for tx in (30, 134):
+                lx, ly, ponta = tx + 6, 13, 3 + 5 * clarao
+                cruz = img.linha(lx - ponta, ly, lx + ponta, ly, 0.5) | img.linha(lx, ly - ponta, lx, ly + ponta, 0.5)
+                img.pintar(cruz, "ciano", 0.9, achatar=False)
     return img, 88, 154
+
+
+def gravar_animacao_maquina():
+    """Junta os quadros da animação numa folha só (maquina_folha.png, um
+    quadro de 176 x 156 ao lado do outro) e escreve o SpriteFrames do Godot
+    (maquina_quadros.tres) com a animação "ativa", em laço."""
+    quadros = [maquina(i)[0] for i in range(QUADROS_MAQUINA)]
+    largura, altura = quadros[0].w, quadros[0].h
+    pasta = os.path.join(PASTA_DTEC, "objetos")
+    folha = np.zeros((altura, largura * len(quadros), 4), dtype=np.uint8)
+    for i, q in enumerate(quadros):
+        folha[:, i * largura:(i + 1) * largura] = q.px
+    bib.salvar_png(os.path.join(pasta, "maquina_folha.png"), folha)
+    linhas = ['[gd_resource type="SpriteFrames" format=3]', "",
+              f'[ext_resource type="Texture2D" path="{RES_OBJETOS_DTEC}/maquina_folha.png" id="1_folha"]', ""]
+    for i in range(len(quadros)):
+        linhas += [f'[sub_resource type="AtlasTexture" id="Quadro{i}"]', 'atlas = ExtResource("1_folha")',
+                   f"region = Rect2({i * largura}, 0, {largura}, {altura})", ""]
+    linhas += ["[resource]", "animations = [{", '"frames": [{']
+    itens = [f'"duration": 1.0,\n"texture": SubResource("Quadro{i}")' for i in range(len(quadros))]
+    linhas.append("}, {\n".join(itens) + "\n}],")
+    linhas += ['"loop": true,', '"name": &"ativa",', f'"speed": {FPS_MAQUINA}', "}]", ""]
+    with open(os.path.join(pasta, "maquina_quadros.tres"), "w", encoding="utf-8", newline="\n") as arquivo:
+        arquivo.write("\n".join(linhas))
+    print(f"  salvo: maquina_folha.png e maquina_quadros.tres ({len(quadros)} quadros, {FPS_MAQUINA:g} fps, "
+          f"laço de {len(quadros) / FPS_MAQUINA:g} s)")
 
 
 def caixas_lab():
@@ -1008,6 +1153,7 @@ def main():
         img.salvar(f"{nome}.png", os.path.join(PASTA_DTEC, "objetos"))
         print(f"    {nome}: pé em ({px}, {py}) -> offset = Vector2({-px}, {-py}), pegada {pegada}")
         objetos[nome] = img
+    gravar_animacao_maquina()
     if not CATALOGO:
         return
     pasta = PASTA_SCRIPT if CATALOGO == "1" else CATALOGO

@@ -16,6 +16,17 @@ Formato:
 
 ---
 
+## 2026-10-17 — A máquina do Laboratório ganha animação
+**Decisão:**
+- **O que mexe:** a máquina do Lab Central (`maquina.tscn`) deixa de ser uma imagem parada e passa a tocar uma animação em laço de **24 quadros a 10 por segundo (2,4 s)**: o núcleo bate (raio de 18 px ± 10%) e gira lóbulos de brilho por dentro, uma onda de choque pontilhada sai dele e bate no anel, raios de energia mudam de lugar a cada 2 quadros (mais raios na hora da descarga), a trilha de luz do anel gira com um cometa e acende os parafusos por onde passa, um pulso de energia sobe pelas bobinas das torres e as luzes delas dão um clarão em cruz quando ele chega ao topo.
+- **Como entra no jogo:** o `Sprite2D` da máquina vira um `AnimatedSprite2D` (`Animacao`) com autoplay na animação `ativa`. Sem script novo. A folha de quadros e o `SpriteFrames` saem do `gerar_dtec.py`.
+- **Sincronia:** o laço tem o mesmo período da luz ciano da cena (`LuzPulsante.periodo = 2.4`) e a mesma fase (os dois são `sin(2π t)`), então o núcleo e a luz pulsam juntos. A segunda luz, de 1,2 s, é o dobro da frequência e também fecha com o laço.
+- **O que não mudou:** o `maquina.png` parado continua sendo gerado, idêntico ao de antes. As faíscas (`CPUParticles2D`), a colisão e as luzes ficam como estavam. A história não muda: o `docs/fases/dtec.md` continua dizendo que essa máquina não tem papel nela.
+**Por quê:** pedido do Davi: uma animação para a máquina do laboratório.
+**Afeta:** `cenas/cenario/dtec/objetos/maquina.tscn`, `assets/modelagem/cenario/gerar_dtec.py`, `assets/sprites/cenario/dtec/objetos/maquina_folha.png` e `maquina_quadros.tres` (novos) e `docs/fases/dtec.md`.
+
+---
+
 ## 2026-10-17 — Os robôs do Centro de Convivência passam a contornar os objetos
 **Decisão:**
 - **O bug:** o Rastreador (o "cachorro" do Self Nebulosa) e a Sentinela do Churrasco Solar atravessavam mesas, cadeiras e balcões. Os robôs só enxergam a **camada 8** (a das paredes): é com ela que `RobosDaSala` monta o mapa de caminhos e que o robô risca a linha de visão. Os objetos do Centro de Convivência estavam só na camada 1, a que o Gabriel enxerga, e por isso eram invisíveis para os robôs (que também viam o Gabriel através deles).
