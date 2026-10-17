@@ -7,7 +7,7 @@ Uma pasta por personagem. Cada pasta tem a ficha `visual.md` e os sprites daquel
 | `gabriel/` | Gabriel |
 | `vigia/` | O Vigia |
 | `clarice/` | Clarice (1994): sentada na estação de trabalho do bunker, em pé (vistas, caminhada e respiração, como o Gabriel) e retratos |
-| `diana/` | Diana (1978): vistas em pé (`lado`, `tres_quartos` e `tres_quartos_costas`), respiração e retratos, feitos a partir de folhas desenhadas (`pixelar_diana.py` e `pixelar_retratos.py`). Ainda sem `frente`, `costas` e caminhada |
+| `diana/` | Diana (1978): vistas, caminhada, respiração e retratos, como o Gabriel (corpo no Blender por `gerar_diana.py`; retratos desenhados, convertidos por `pixelar_retratos.py`) |
 | `zane/` | Zane (2123): vistas, caminhada, respiração e retratos, como o Gabriel |
 | `baltazar/` | Baltazar (~1750): vistas, caminhada, respiração e retratos, como o Gabriel |
 | `rafael/` | **Arte guardada.** Rafael (2008) saiu da história em 2026-10-11 (ver `docs/decisoes.md`): vistas, caminhada, respiração e retratos, como o Gabriel. Não é usada em nenhuma fase |

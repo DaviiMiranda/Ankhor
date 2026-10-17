@@ -15,7 +15,7 @@ Estes itens estavam nas pendências do Enredo até 2026-10-15 e saíram de lá q
 
 ## Personagens: arte e mecânica
 
-- **Diana:** o visual existe (retratos e vistas em pé, em `assets/sprites/personagens/diana/`), mas a cena da sala 103 ainda mostra só a Clarice. Faltam as vistas de frente e de costas e a caminhada (a folha desenhada só tem meio passo).
+- **Diana:** o visual existe (sprites e retratos em `assets/sprites/personagens/diana/`), mas a cena da sala 103 ainda mostra só a Clarice.
 - **Henrique:** se o acesso às câmeras do campus vira uma mecânica (ver o campus, avisar de ronda nova).
 - **Gadgets:** em que fase cada gadget aparece e se cada um vem de um personagem.
 
