@@ -4,31 +4,38 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/fundo_cinema.png" id="r2"]
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/fundo_cinema_luz.png" id="r3"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/praca/porta_violeta.tscn" id="r4"]
-[ext_resource type="SpriteFrames" path="res://assets/sprites/cenario/praca/objetos/tela_cinema_quadros.tres" id="r5"]
-[ext_resource type="Script" path="res://scripts/salas/luz_tremula.gd" id="r6"]
-[ext_resource type="Texture2D" path="res://assets/sprites/cenario/luzes/luz.png" id="r7"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/balcao_pipoca.tscn" id="r8"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/bilheteria_balcao.tscn" id="r9"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/cordao_fila.tscn" id="r10"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/standee_filme.tscn" id="r11"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/poltronas_4.tscn" id="r12"]
-[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r13"]
-[ext_resource type="Resource" path="res://dados/itens/pedra.tres" id="r14"]
-[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r15"]
-[ext_resource type="Resource" path="res://dados/documentos/ingresso_cine_andromeda.tres" id="r16"]
-[ext_resource type="PackedScene" path="res://cenas/itens/documento_no_mundo.tscn" id="r17"]
-[ext_resource type="Resource" path="res://dados/documentos/bilhete_lanterninha_cofre.tres" id="r18"]
-[ext_resource type="Resource" path="res://dados/documentos/canhoto_leo.tres" id="r19"]
-[ext_resource type="Resource" path="res://dados/documentos/canhoto_bia.tres" id="r20"]
-[ext_resource type="Resource" path="res://dados/documentos/canhoto_caio.tres" id="r21"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r22"]
-[ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r23"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/cofre.tscn" id="r24"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r25"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r26"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r27"]
-[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r28"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r29"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/porta_ciano.tscn" id="r5"]
+[ext_resource type="SpriteFrames" path="res://assets/sprites/cenario/praca/objetos/tela_cinema_quadros.tres" id="r6"]
+[ext_resource type="Script" path="res://scripts/salas/luz_tremula.gd" id="r7"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/luzes/luz.png" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/balcao_pipoca.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/bilheteria_balcao.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/cordao_fila.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/standee_filme.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/poltronas_1.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/poltronas_5.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/poltronas_9.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/poltronas_13.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r17"]
+[ext_resource type="Resource" path="res://dados/itens/pedra.tres" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r19"]
+[ext_resource type="Resource" path="res://dados/documentos/ingresso_cine_andromeda.tres" id="r20"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_canhoto_ingresso.png" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="r22"]
+[ext_resource type="Resource" path="res://dados/documentos/bilhete_lanterninha_cofre.tres" id="r23"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_bilhete.png" id="r24"]
+[ext_resource type="Resource" path="res://dados/documentos/canhoto_leo.tres" id="r25"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_canhoto_leo.png" id="r26"]
+[ext_resource type="Resource" path="res://dados/documentos/canhoto_bia.tres" id="r27"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_canhoto_bia.png" id="r28"]
+[ext_resource type="Resource" path="res://dados/documentos/canhoto_caio.tres" id="r29"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_canhoto_caio.png" id="r30"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r31"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r32"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r33"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r34"]
+[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r35"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r36"]
 
 [node name="Cinema" instance=ExtResource("r1")]
 id = "conv_cinema"
@@ -52,9 +59,12 @@ range_item_cull_mask = 1
 [node name="FolhaCinemaMezanino" parent="Chao" instance=ExtResource("r4")]
 position = Vector2(0, 0)
 
+[node name="FolhaCinemaCabine" parent="Chao" instance=ExtResource("r5")]
+position = Vector2(720, 0)
+
 [node name="TelaCinema" type="AnimatedSprite2D" parent="Chao"]
 position = Vector2(485, 18)
-sprite_frames = ExtResource("r5")
+sprite_frames = ExtResource("r6")
 animation = &"chiado"
 autoplay = "chiado"
 centered = false
@@ -63,110 +73,102 @@ centered = false
 position = Vector2(600, 108)
 color = Color(0.82, 0.88, 1, 1)
 energy = 0.9
-texture = ExtResource("r7")
+texture = ExtResource("r8")
 texture_scale = 5.0
-script = ExtResource("r6")
+script = ExtResource("r7")
 tremor = 0.25
 piscadas_por_segundo = 0.6
 
-[node name="BalcaoPipoca1" parent="Objetos" instance=ExtResource("r8")]
+[node name="BalcaoPipoca1" parent="Objetos" instance=ExtResource("r9")]
 position = Vector2(190, 158)
 
-[node name="BilheteriaBalcao1" parent="Objetos" instance=ExtResource("r9")]
+[node name="BilheteriaBalcao1" parent="Objetos" instance=ExtResource("r10")]
 position = Vector2(120, 216)
 
-[node name="CordaoFila1" parent="Objetos" instance=ExtResource("r10")]
+[node name="CordaoFila1" parent="Objetos" instance=ExtResource("r11")]
 position = Vector2(250, 214)
 
-[node name="CordaoFila2" parent="Objetos" instance=ExtResource("r10")]
+[node name="CordaoFila2" parent="Objetos" instance=ExtResource("r11")]
 position = Vector2(320, 214)
 espelhado = true
 
-[node name="StandeeFilme1" parent="Objetos" instance=ExtResource("r11")]
+[node name="StandeeFilme1" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(38, 204)
 
-[node name="Poltronas41" parent="Objetos" instance=ExtResource("r12")]
+[node name="Poltronas11" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(450, 188)
 
-[node name="Poltronas42" parent="Objetos" instance=ExtResource("r12")]
+[node name="Poltronas51" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(560, 188)
 
-[node name="Poltronas43" parent="Objetos" instance=ExtResource("r12")]
+[node name="Poltronas91" parent="Objetos" instance=ExtResource("r15")]
 position = Vector2(640, 188)
 
-[node name="Poltronas44" parent="Objetos" instance=ExtResource("r12")]
+[node name="Poltronas131" parent="Objetos" instance=ExtResource("r16")]
 position = Vector2(750, 188)
 
-[node name="Poltronas45" parent="Objetos" instance=ExtResource("r12")]
+[node name="Poltronas12" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(450, 240)
 
-[node name="Poltronas46" parent="Objetos" instance=ExtResource("r12")]
+[node name="Poltronas52" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(560, 240)
 
-[node name="Poltronas47" parent="Objetos" instance=ExtResource("r12")]
+[node name="Poltronas92" parent="Objetos" instance=ExtResource("r15")]
 position = Vector2(640, 240)
 
-[node name="Poltronas48" parent="Objetos" instance=ExtResource("r12")]
+[node name="Poltronas132" parent="Objetos" instance=ExtResource("r16")]
 position = Vector2(750, 240)
 
-[node name="Pilha1" parent="Objetos" instance=ExtResource("r13")]
+[node name="Pilha1" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(60, 252)
 
-[node name="Pedra1" parent="Objetos" instance=ExtResource("r15")]
-position = Vector2(770, 140)
-item = ExtResource("r14")
+[node name="Pedra1" parent="Objetos" instance=ExtResource("r19")]
+position = Vector2(690, 150)
+item = ExtResource("r18")
 
-[node name="Documento1" parent="Objetos" instance=ExtResource("r17")]
+[node name="Documento1" parent="Objetos" instance=ExtResource("r22")]
 position = Vector2(160, 236)
 texto_acao = "Ler o canhoto do ingresso"
-documento = ExtResource("r16")
-altura_aviso = 52.0
+documento = ExtResource("r20")
+textura = ExtResource("r21")
 
-[node name="Documento2" parent="Objetos" instance=ExtResource("r17")]
+[node name="Documento2" parent="Objetos" instance=ExtResource("r22")]
 position = Vector2(190, 176)
 texto_acao = "Ler o bilhete do lanterninha"
-documento = ExtResource("r18")
-altura_aviso = 52.0
+documento = ExtResource("r23")
+textura = ExtResource("r24")
 
-[node name="Documento3" parent="Objetos" instance=ExtResource("r17")]
+[node name="Documento3" parent="Objetos" instance=ExtResource("r22")]
 position = Vector2(292, 242)
 texto_acao = "Ler o canhoto"
-documento = ExtResource("r19")
-altura_aviso = 52.0
+documento = ExtResource("r25")
+textura = ExtResource("r26")
 
-[node name="Documento4" parent="Objetos" instance=ExtResource("r17")]
+[node name="Documento4" parent="Objetos" instance=ExtResource("r22")]
 position = Vector2(470, 262)
 texto_acao = "Ler o canhoto"
-documento = ExtResource("r20")
-altura_aviso = 52.0
+documento = ExtResource("r27")
+textura = ExtResource("r28")
 
-[node name="Documento5" parent="Objetos" instance=ExtResource("r17")]
+[node name="Documento5" parent="Objetos" instance=ExtResource("r22")]
 position = Vector2(280, 134)
 texto_acao = "Ler o canhoto"
-documento = ExtResource("r21")
-altura_aviso = 52.0
+documento = ExtResource("r29")
+textura = ExtResource("r30")
 
-[node name="Nicho1" parent="Objetos" instance=ExtResource("r22")]
+[node name="Nicho1" parent="Objetos" instance=ExtResource("r31")]
 position = Vector2(280, 128)
 
-[node name="Cofre1" parent="Objetos" instance=ExtResource("r24")]
-position = Vector2(372, 152)
-codigo = "724"
-marca = "cofre_cinema_aberto"
-item_ao_abrir = ExtResource("r23")
-quantidade = 1
-aviso_aberto = "O cofre abriu: caiu uma cápsula de clarão."
-
-[node name="Luz1" parent="Luzes" instance=ExtResource("r25")]
+[node name="Luz1" parent="Luzes" instance=ExtResource("r32")]
 position = Vector2(150, 90)
 energy = 0.7
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r26")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r33")]
 position = Vector2(280, 100)
 color = Color(0.7, 0.5, 1, 1)
 energy = 0.45
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r26")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r33")]
 position = Vector2(600, 150)
 color = Color(0.8, 0.85, 1, 1)
 energy = 0.55
@@ -178,19 +180,25 @@ color = Color(0.24, 0.2, 0.3, 1)
 [node name="Gabriel" parent="Objetos"]
 position = Vector2(80, 160)
 
-[node name="Porta_cinema_mezanino" parent="." instance=ExtResource("r27")]
+[node name="Porta_cinema_mezanino" parent="." instance=ExtResource("r34")]
 position = Vector2(41, 124)
 id = "cinema_mezanino"
 cena_destino = "res://cenas/salas/centro_de_convivencia/segundo_andar.tscn"
 porta_destino = "mezanino_cinema"
 
+[node name="Porta_cinema_cabine" parent="." instance=ExtResource("r34")]
+position = Vector2(761, 124)
+id = "cinema_cabine"
+cena_destino = "res://cenas/salas/centro_de_convivencia/cinema_cabine.tscn"
+porta_destino = "cabine_cinema"
+
 [node name="ZonaPiso1" type="Node2D" parent="."]
 position = Vector2(0, 112)
-script = ExtResource("r28")
+script = ExtResource("r35")
 tamanho = Vector2(800, 168)
 fator_ruido = 0.5
 nome_piso = "carpete de veludo"
 
-[node name="MusicaFase" parent="." instance=ExtResource("r29")]
+[node name="MusicaFase" parent="." instance=ExtResource("r36")]
 
 [editable path="Ceu"]

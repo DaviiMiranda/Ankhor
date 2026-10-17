@@ -13,12 +13,13 @@
 [ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r11"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r12"]
 [ext_resource type="Resource" path="res://dados/documentos/ordem_manutencao_convivencia.tres" id="r13"]
-[ext_resource type="PackedScene" path="res://cenas/itens/documento_no_mundo.tscn" id="r14"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="r15"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r16"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r17"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r18"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r19"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_ordem_servico.png" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r20"]
 
 [node name="Loja1" instance=ExtResource("r1")]
 id = "conv_loja_1"
@@ -77,25 +78,25 @@ position = Vector2(190, 190)
 position = Vector2(350, 190)
 item = ExtResource("r11")
 
-[node name="Documento1" parent="Objetos" instance=ExtResource("r14")]
+[node name="Documento1" parent="Objetos" instance=ExtResource("r15")]
 position = Vector2(125, 152)
 texto_acao = "Ler a ordem de serviço"
 documento = ExtResource("r13")
-altura_aviso = 52.0
+textura = ExtResource("r14")
 
-[node name="Checkpoint" parent="Objetos" instance=ExtResource("r15")]
+[node name="Checkpoint" parent="Objetos" instance=ExtResource("r16")]
 position = Vector2(235, 190)
 id = "conv_posto_seguro"
 
-[node name="Luz1" parent="Luzes" instance=ExtResource("r16")]
+[node name="Luz1" parent="Luzes" instance=ExtResource("r17")]
 position = Vector2(235, 157)
 energy = 0.85
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r16")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r17")]
 position = Vector2(100, 120)
 energy = 0.6
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r17")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r18")]
 position = Vector2(330, 100)
 color = Color(1, 0.7, 0.3, 1)
 energy = 0.5
@@ -106,12 +107,12 @@ color = Color(0.32, 0.29, 0.3, 1)
 [node name="Gabriel" parent="Objetos"]
 position = Vector2(80, 160)
 
-[node name="Porta_loja_1_praca" parent="." instance=ExtResource("r18")]
+[node name="Porta_loja_1_praca" parent="." instance=ExtResource("r19")]
 position = Vector2(41, 124)
 id = "loja_1_praca"
 cena_destino = "res://cenas/salas/centro_de_convivencia/praca_central.tscn"
 porta_destino = "praca_loja_1"
 
-[node name="MusicaFase" parent="." instance=ExtResource("r19")]
+[node name="MusicaFase" parent="." instance=ExtResource("r20")]
 
 [editable path="Ceu"]

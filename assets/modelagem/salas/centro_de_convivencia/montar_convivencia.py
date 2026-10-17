@@ -57,6 +57,19 @@ COR_DA_LUZ = {
     "limao": "Color(0.85, 1, 0.3, 1)",
 }
 MARCA_ENERGIA = "convivencia_energia"
+# O sprite de cada documento no chão (assets/modelagem/cenario/gerar_papeis.py).
+# Sem ele, o documento é só uma área invisível que o Gabriel lê com E.
+PAPEL_DO_DOCUMENTO = {
+    "bilhete_lanterninha_cofre": "papel_bilhete",
+    "canhoto_leo": "papel_canhoto_leo",
+    "canhoto_bia": "papel_canhoto_bia",
+    "canhoto_caio": "papel_canhoto_caio",
+    "ingresso_cine_andromeda": "papel_canhoto_ingresso",
+    "aviso_loja_universitaria": "papel_aviso_loja",
+    "ordem_impressao_grafica": "papel_ordem_impressao",
+    "ordem_manutencao_convivencia": "papel_ordem_servico",
+    "panfleto_universitario": "papel_panfleto",
+}
 # Quanto o mapa de caminhos dos robôs engorda cada objeto (RobosDaSala): o
 # Rastreador tem 18 px de largura e o mapa é feito de células de 16 px, então a
 # folga padrão (4 px) deixava o robô raspar nos cantos das cadeiras e travar.
@@ -177,6 +190,8 @@ LUZES_DOS_OBJETOS = {
     "balcao_pipoca": [(-30, -30, "Color(1, 0.7, 0.3, 1)", 0.9, 1.8)],
     "bilheteria_balcao": [(0, -30, "Color(0.7, 0.5, 1, 1)", 0.6, 1.4)],
     "standee_filme": [(0, -34, "Color(0.7, 0.5, 1, 1)", 0.35, 1.0)],
+    "mesa_lanterninha": [(-26, -34, "Color(1, 0.7, 0.3, 1)", 0.7, 1.4)],
+    "projetor_cinema": [(-30, -28, "Color(0.8, 0.85, 1, 1)", 0.4, 0.9)],
 }
 OBJETOS_SEM_COLISAO = ("cacos_louca", "elevador_carga")
 
@@ -384,8 +399,15 @@ def montar_sala(sala, objetos):
 
     for (doc, x, y, acao) in sala.get("documentos", []):
         id_doc = m.recurso("Resource", f"res://dados/documentos/{doc}.tres")
-        m.instancia(m.nome("Documento"), "Objetos", "res://cenas/itens/documento_no_mundo.tscn",
-                    [f"position = Vector2({x}, {y})", f'texto_acao = "{acao}"', f'documento = ExtResource("{id_doc}")', "altura_aviso = 52.0"])
+        papel = PAPEL_DO_DOCUMENTO.get(doc)
+        if papel:
+            textura = m.recurso("Texture2D", f"res://assets/sprites/cenario/objetos/{papel}.png")
+            m.instancia(m.nome("Documento"), "Objetos", "res://cenas/itens/papel_no_mundo.tscn",
+                        [f"position = Vector2({x}, {y})", f'texto_acao = "{acao}"', f'documento = ExtResource("{id_doc}")',
+                         f'textura = ExtResource("{textura}")'])
+        else:
+            m.instancia(m.nome("Documento"), "Objetos", "res://cenas/itens/documento_no_mundo.tscn",
+                        [f"position = Vector2({x}, {y})", f'texto_acao = "{acao}"', f'documento = ExtResource("{id_doc}")', "altura_aviso = 52.0"])
 
     for (x, y) in sala.get("nichos", []):
         m.instancia(m.nome("Nicho"), "Objetos", "res://cenas/sistemas/nicho_esconderijo.tscn", [f"position = Vector2({x}, {y})"])
