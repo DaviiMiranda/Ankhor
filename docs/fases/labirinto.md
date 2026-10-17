@@ -143,7 +143,6 @@ A IA (máquina de estados, cone por produto escalar, BFS do som, A\*, Markov) es
 ## 6. Luz e escuridão
 
 - `CanvasModulate` quase preto (0,13): sem luz, só se vê a silhueta das paredes.
-- **Alcance da lanterna:** no Labirinto o feixe e o brilho em volta do Gabriel valem metade do tamanho normal (`alcance_da_lanterna = 0,5` na cena; o feixe cai de uns 140 px para uns 70 px). Os robôs continuam vendo mais longe com a lanterna acesa (×1,7 e ×1,3), então o aperto entre ver e ser visto fica maior.
 - A lanterna do Gabriel, os lampiões, o farol vermelho da Sentinela, os olhos dos robôs (desenhados **sem luz**, sempre acesos), os hologramas, as luzes dos nós e a placa da saída.
 - **De onde sai a luz:** o feixe da lanterna sai da mão do Gabriel e o farol da Sentinela sai da testa (as posições da testa de cada vista estão no Inspetor do robô, grupo *Testa*). A **sombra**, porém, é calculada a partir de um ponto no chão, e só a textura da luz é deslocada até a mão ou a testa (`offset` da `PointLight2D`). Sem isso, um robô encostado numa parede teria a testa "dentro" da sombra da parede e o farol apagaria.
 - **Sombras:** cada fileira de parede tem um `LightOccluder2D`; a lanterna e o farol projetam sombra. As paredes em si ficam numa camada de luz separada (`light_mask = 2`), acesa por um segundo feixe sem sombra, para o bloco atingido pela luz aparecer.

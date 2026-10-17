@@ -46,7 +46,6 @@ titulo_da_saida = "VOCÊ SAIU DO LABIRINTO"
 subtitulo_da_saida = "Próxima fase: o Bunker"
 id = "labirinto"
 duracao_entrada = 1.5
-alcance_da_lanterna = 0.5
 largura = 1760
 altura = 1088
 criar_limites = false
