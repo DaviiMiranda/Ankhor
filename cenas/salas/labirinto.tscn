@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/componentes_2.png" id="26_comp2"]
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/componentes_3.png" id="27_comp3"]
 [ext_resource type="Resource" path="res://dados/transmissoes/zane_labirinto_01.tres" id="28_transmissao"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/raio_de_visao.tscn" id="30_raio"]
 
 [sub_resource type="ShaderMaterial" id="Vinheta"]
 shader = ExtResource("16_vinheta")
@@ -76,6 +77,8 @@ position_smoothing_speed = 6.0
 
 [node name="Escuridao" type="CanvasModulate" parent="."]
 color = Color(0.13, 0.13, 0.17, 1)
+
+[node name="RaioDeVisao" parent="." instance=ExtResource("30_raio")]
 
 [node name="Vinheta" type="CanvasLayer" parent="."]
 layer = 5

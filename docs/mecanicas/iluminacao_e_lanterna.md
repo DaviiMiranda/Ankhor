@@ -22,6 +22,11 @@ O campus em 3026 é quase todo escuro. O pouco que ainda tem energia são os **s
 ### Sombras
 No labirinto, as paredes bloqueiam o feixe (o `LightOccluder2D` de cada fileira de blocos): o chão atrás de uma parede fica escuro. Um segundo feixe, sem sombra, ilumina só as paredes, para o jogador ver o bloco em que a luz bate. Detalhes em [`../fases/labirinto.md`](../fases/labirinto.md).
 
+### Raio de visão
+Independente da lanterna, uma sala pode limitar tudo o que o Gabriel enxerga a um **círculo em volta dele**: dentro do `raio_livre` se vê normalmente, entre `raio_livre` e `raio_escuro` a escuridão cresce em pixels "xadrez" (dithering), e depois disso fica tudo preto, inclusive o feixe da lanterna e os olhos dos robôs. Os raios são em pixels do mundo (a câmera tem zoom 2) e o círculo é centrado no peito do Gabriel (`deslocamento_do_centro`, padrão `(0, -24)`).
+
+Para usar numa sala, instancie `cenas/sistemas/raio_de_visao.tscn` (um `CanvasLayer` na camada 4, abaixo da vinheta e da interface). O script acha o Gabriel pelo grupo `jogador`, converte a posição dele para a tela com a transformada da câmera e passa o centro e os raios ao shader todo quadro. A matemática (distância, `smoothstep`, matriz de Bayer) está comentada em `shaders/raio_de_visao.gdshader`. Hoje só o Labirinto usa (raios 56 e 96).
+
 ---
 
 ## 3. Luzes do cenário
@@ -48,6 +53,7 @@ A defesa de emergência do GDD continua prevista, agora sem fungos: um **flash d
 | Lanterna (gadget) | `cenas/itens/lanterna.tscn`, `scripts/itens/lanterna.gd`, `dados/itens/lanterna.tres` |
 | Pilha no chão | `cenas/itens/pilha_no_chao.tscn`, `scripts/itens/pilha_no_chao.gd` |
 | Textura do feixe (cone) | `assets/sprites/cenario/luzes/luz_cone.png`, gerada por `assets/modelagem/salas/labirinto/gerar_labirinto.py` |
+| Raio de visão | `cenas/sistemas/raio_de_visao.tscn`, `scripts/sistemas/raio_de_visao.gd`, `shaders/raio_de_visao.gdshader` |
 | Luz que treme | `scripts/salas/luz_tremula.gd`, `cenas/cenario/luzes/luz_lampada.tscn` |
 | Ícones (lanterna, pilha) | `assets/modelagem/interface/gerar_interface.py` |
 | Sprite da lanterna no peito (5 × 3 px) | `assets/sprites/itens/lanterna_peito.png`, gerado por `gerar_interface.py` (função `lanterna_peito`) |
