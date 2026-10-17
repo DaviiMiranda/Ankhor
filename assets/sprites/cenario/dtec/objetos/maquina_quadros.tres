@@ -1,0 +1,156 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/dtec/objetos/maquina_folha.png" id="1_folha"]
+
+[sub_resource type="AtlasTexture" id="Quadro0"]
+atlas = ExtResource("1_folha")
+region = Rect2(0, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro1"]
+atlas = ExtResource("1_folha")
+region = Rect2(176, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro2"]
+atlas = ExtResource("1_folha")
+region = Rect2(352, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro3"]
+atlas = ExtResource("1_folha")
+region = Rect2(528, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro4"]
+atlas = ExtResource("1_folha")
+region = Rect2(704, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro5"]
+atlas = ExtResource("1_folha")
+region = Rect2(880, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro6"]
+atlas = ExtResource("1_folha")
+region = Rect2(1056, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro7"]
+atlas = ExtResource("1_folha")
+region = Rect2(1232, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro8"]
+atlas = ExtResource("1_folha")
+region = Rect2(1408, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro9"]
+atlas = ExtResource("1_folha")
+region = Rect2(1584, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro10"]
+atlas = ExtResource("1_folha")
+region = Rect2(1760, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro11"]
+atlas = ExtResource("1_folha")
+region = Rect2(1936, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro12"]
+atlas = ExtResource("1_folha")
+region = Rect2(2112, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro13"]
+atlas = ExtResource("1_folha")
+region = Rect2(2288, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro14"]
+atlas = ExtResource("1_folha")
+region = Rect2(2464, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro15"]
+atlas = ExtResource("1_folha")
+region = Rect2(2640, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro16"]
+atlas = ExtResource("1_folha")
+region = Rect2(2816, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro17"]
+atlas = ExtResource("1_folha")
+region = Rect2(2992, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro18"]
+atlas = ExtResource("1_folha")
+region = Rect2(3168, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro19"]
+atlas = ExtResource("1_folha")
+region = Rect2(3344, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro20"]
+atlas = ExtResource("1_folha")
+region = Rect2(3520, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro21"]
+atlas = ExtResource("1_folha")
+region = Rect2(3696, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro22"]
+atlas = ExtResource("1_folha")
+region = Rect2(3872, 0, 176, 156)
+
+[sub_resource type="AtlasTexture" id="Quadro23"]
+atlas = ExtResource("1_folha")
+region = Rect2(4048, 0, 176, 156)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Quadro0")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro1")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro2")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro3")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro4")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro5")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro6")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro7")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro8")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro9")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro10")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro11")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro12")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro13")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro14")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro15")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro16")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro17")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro18")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro19")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro20")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro21")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro22")}, {
+"duration": 1.0,
+"texture": SubResource("Quadro23")
+}],
+"loop": true,
+"name": &"ativa",
+"speed": 10.0
+}]
