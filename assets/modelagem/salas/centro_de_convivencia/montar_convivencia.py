@@ -381,6 +381,12 @@ def montar_sala(sala, objetos):
     for (x, y) in sala.get("nichos", []):
         m.instancia(m.nome("Nicho"), "Objetos", "res://cenas/sistemas/nicho_esconderijo.tscn", [f"position = Vector2({x}, {y})"])
 
+    for (x, y, codigo, item, quantidade, marca_cofre, aviso) in sala.get("cofres", []):
+        id_item = m.recurso("Resource", f"res://dados/itens/{item}.tres")
+        m.instancia(m.nome("Cofre"), "Objetos", "res://cenas/sistemas/cofre.tscn",
+                    [f"position = Vector2({x}, {y})", f'codigo = "{codigo}"', f'marca = "{marca_cofre}"',
+                     f'item_ao_abrir = ExtResource("{id_item}")', f"quantidade = {quantidade}", f'aviso_aberto = "{aviso}"'])
+
     if sala.get("checkpoint"):
         id_cp, x_cp, y_cp = sala["checkpoint"]
         m.instancia("Checkpoint", "Objetos", "res://cenas/sistemas/checkpoint.tscn",

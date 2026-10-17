@@ -417,18 +417,30 @@ GRAFICA = {
     "escuridao": (0.28, 0.3, 0.28, 1),
 }
 
+# O cofre do cinema: o lanterninha diz que o código são as poltronas do Léo (4),
+# da Bia (7) e do Caio (2), numa ordem embaralhada. A ordem certa é Bia, Caio, Léo.
+CODIGO_DO_COFRE_DO_CINEMA = "724"
+
 CINEMA = {
     "id": "cinema", "largura": 800, "altura": 280, "fundo": "fundo_cinema", "gabriel": "(80, 160)",
     "portas": [porta_interna("cinema_mezanino", 0, "violeta", "segundo_andar", "mezanino_cinema")],
     "objetos": [
         ("balcao_pipoca", 190, 158), ("bilheteria_balcao", 120, 216), ("cordao_fila", 250, 214), ("cordao_fila", 320, 214, True),
-        ("standee_filme", 362, 178),
+        ("standee_filme", 38, 204),
         ("poltronas_4", 450, 188), ("poltronas_4", 560, 188), ("poltronas_4", 640, 188), ("poltronas_4", 750, 188),
         ("poltronas_4", 450, 240), ("poltronas_4", 560, 240), ("poltronas_4", 640, 240), ("poltronas_4", 750, 240),
     ],
     "animados": [("tela_cinema", 485, 18, "chiado")],
-    "itens": [("pilha", 60, 252), ("clarao", 770, 140)],
-    "documentos": [("ingresso_cine_andromeda", 160, 236, "Ler o canhoto do ingresso")],
+    "itens": [("pilha", 60, 252), ("pedra", 770, 140)],
+    "documentos": [
+        ("ingresso_cine_andromeda", 160, 236, "Ler o canhoto do ingresso"),
+        ("bilhete_lanterninha_cofre", 190, 176, "Ler o bilhete do lanterninha"),
+        ("canhoto_leo", 292, 242, "Ler o canhoto"),
+        ("canhoto_bia", 470, 262, "Ler o canhoto"),
+        ("canhoto_caio", 280, 134, "Ler o canhoto"),
+    ],
+    "cofres": [(372, 152, CODIGO_DO_COFRE_DO_CINEMA, "clarao", 1, "cofre_cinema_aberto",
+                "O cofre abriu: caiu uma cápsula de clarão.")],
     "nichos": [(280, 128)],
     "luzes": [
         ("luz_lampada", 150, 90, "energy = 0.7"),

@@ -12,7 +12,9 @@
 # e a pegada (a caixa de colisão no chão) em OBJETOS, no fim deste arquivo, do
 # mesmo jeito do gerar_praca_objetos.py. A TELA do cinema é um sprite animado:
 # sai como uma folha de 4 quadros (tela_cinema_folha.png) mais o SpriteFrames
-# (tela_cinema_quadros.tres).
+# (tela_cinema_quadros.tres). O COFRE (fechado e aberto) não é um objeto
+# comum: é o sistema cenas/sistemas/cofre.tscn, e os sprites saem em
+# assets/sprites/cenario/objetos/ (cofre.png e cofre_aberto.png).
 # Com CATALOGO=1 monta uma folha com os objetos. Não commitar.
 
 import math
@@ -698,6 +700,55 @@ def gravar_tela_cinema():
     return quadros
 
 
+# ---------------------------------------------------------------------------
+# O cofre (puzzle do cinema)
+# ---------------------------------------------------------------------------
+
+
+def cofre(aberto=False):
+    """Cofre de aço compacto: corpo grafite com o topo chanfrado, a porta com a
+    roda de abrir, o teclado com três dígitos de luz ciano, as dobradiças e um
+    LED (vermelho trancado, verde aberto). Aberto, a porta vira uma lâmina
+    fina de lado e aparece o vão escuro com uma prateleira."""
+    img = Imagem(40, 48)
+    X, Y = img.X, img.Y
+    for x in (4, 31):
+        caixa(img, x, 44, x + 5, 47, "inox", 0.3)
+    caixa(img, 2, 4, 38, 44, "grafite", 0.34)
+    img.pintar(img.ret(2, 4, 38, 7), "inox", 0.46 + 0.2 * (Y == 4))
+    vao = img.ret(5, 9, 35, 41)
+    if not aberto:
+        caixa(img, 5, 9, 35, 41, "inox", 0.3)
+        placa = img.ret(8, 12, 32, 38)
+        img.pintar(placa, "grafite", 0.24 + 0.1 * (Y < 16) + 0.06 * (X < 11))
+        d = np.hypot(X + 0.5 - 17, Y + 0.5 - 26)
+        img.pintar((d < 7) & (d >= 5), "inox", 0.62)
+        img.pintar(d < 5, "grafite", 0.12)
+        img.pintar(d < 2, "inox", 0.7)
+        for ang in (0, 90):
+            a = math.radians(ang)
+            img.pintar(img.linha(17 - 6 * math.cos(a), 26 - 6 * math.sin(a), 17 + 6 * math.cos(a), 26 + 6 * math.sin(a), 0.6) & (d < 6.5), "inox", 0.62)
+        img.pintar(img.ret(23, 13, 32, 22), "grafite", 0.03)
+        for k in range(3):
+            neon(img, img.ret(24 + k * 3, 16, 26 + k * 3, 19), "ciano", 0.95)
+        img.cor(img.ret(30, 23, 31, 24), base.hexa("#ff5a3a")[0])
+        img.pintar(img.ret(23, 30, 32, 31), "inox", 0.22)
+    else:
+        prof = np.clip((X - 5) / 30.0, 0, 1)
+        img.pintar(vao, "grafite", 0.03 + 0.05 * (1 - prof))
+        img.pintar(img.ret(6, 25, 34, 27), "inox", 0.4)
+        img.pintar(img.ret(6, 25, 34, 26), "inox", 0.62, achatar=False)
+        neon(img, img.ret(10, 30, 12, 31), "ciano", 0.6)
+        img.pintar(img.ret(5, 9, 11, 41), "inox", 0.34 + 0.2 * (X == 5))
+        img.pintar(img.ret(7, 11, 10, 39), "grafite", 0.2)
+        img.pintar(img.ret(8, 24, 9, 30), "inox", 0.7)
+        img.cor(img.ret(30, 11, 31, 12), base.hexa("#6cf28e")[0])
+    for y in (14, 33):
+        img.pintar(img.ret(3, y, 5, y + 4), "inox", 0.7)
+    img.contornar()
+    return img, 20, 46
+
+
 OBJETOS = {
     # mezanino
     "maquina_venda": (maquina_venda, (26, 6)),
@@ -742,6 +793,12 @@ def main():
         img, px, py = f()
         base.salvar(img, f"{nome}.png", "objetos")
         print(f"    {nome}: pé em ({px}, {py}) -> offset = Vector2({-px}, {-py}), pegada {pegada}")
+        objetos[nome] = img
+    pasta_cofre = os.path.join(base.PASTA_PROJETO, "assets", "sprites", "cenario", "objetos")
+    for nome, aberto in (("cofre", False), ("cofre_aberto", True)):
+        img, px, py = cofre(aberto)
+        img.salvar(f"{nome}.png", pasta_cofre)
+        print(f"    {nome}: pé em ({px}, {py}) -> offset = Vector2({-px}, {-py})")
         objetos[nome] = img
     quadros = gravar_tela_cinema()
     objetos["tela_cinema_0"] = quadros[0]
