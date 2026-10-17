@@ -8,6 +8,7 @@
 size = Vector2(8, 4)
 
 [node name="LuminariaChao" type="StaticBody2D"]
+collision_layer = 9
 script = ExtResource("1_objeto")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

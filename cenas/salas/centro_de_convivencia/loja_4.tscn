@@ -182,6 +182,7 @@ position = Vector2(260, 335)
 
 [node name="RobosDaSala" type="Node" parent="."]
 script = ExtResource("r19")
+folga_obstaculos = 10.0
 
 [node name="MusicaFase" parent="." instance=ExtResource("r20")]
 

@@ -57,6 +57,10 @@ COR_DA_LUZ = {
     "limao": "Color(0.85, 1, 0.3, 1)",
 }
 MARCA_ENERGIA = "convivencia_energia"
+# Quanto o mapa de caminhos dos robôs engorda cada objeto (RobosDaSala): o
+# Rastreador tem 18 px de largura e o mapa é feito de células de 16 px, então a
+# folga padrão (4 px) deixava o robô raspar nos cantos das cadeiras e travar.
+FOLGA_DOS_ROBOS = 10.0
 
 LETREIROS = {
     "letreiro_loja_1": ("ambar", 240, 28),
@@ -138,6 +142,10 @@ texture_scale = {round(largura / 120.0, 2)}
 """
 
 
+# Os objetos ficam nas camadas 1 e 8 (collision_layer = 9): a camada 1 é a que o
+# Gabriel enxerga, e a 8 é a das paredes dos robôs. Os robôs montam o mapa de
+# caminhos (RobosDaSala) e riscam a linha de visão (Robo._linha_livre) só com
+# a camada 8; numa camada só (a 1), eles atravessavam as mesas e viam através.
 # Luzes que cada objeto leva junto: (x, y, cor, energia, escala), com o ponto
 # (x, y) em relação ao pé do objeto. O brilho de verdade vem do Godot.
 LUZES_DOS_OBJETOS = {
@@ -189,6 +197,7 @@ def cena_objeto(nome, px, py, larg, alt):
 size = Vector2({larg}, {alt})
 
 [node name="{pascal(nome)}" type="StaticBody2D"]
+collision_layer = 9
 script = ExtResource("1_objeto")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -466,7 +475,7 @@ def montar_sala(sala, objetos):
                 for p_idx, pt in enumerate(r["rota_energia"]):
                     m.no(f'[node name="Ponto{p_idx + 1}" type="Marker2D" parent="{nome_rota_e}"]', [f"position = Vector2{pt}"])
         scr_robos = m.recurso("Script", "res://scripts/salas/robos_da_sala.gd")
-        m.no('[node name="RobosDaSala" type="Node" parent="."]', [f'script = ExtResource("{scr_robos}")'])
+        m.no('[node name="RobosDaSala" type="Node" parent="."]', [f'script = ExtResource("{scr_robos}")', f"folga_obstaculos = {FOLGA_DOS_ROBOS}"])
 
     for z_idx, (zx, zy, zw, zh, fator, nome_piso) in enumerate(sala.get("zonas_piso", [])):
         scr_zona = m.recurso("Script", "res://scripts/sistemas/zona_de_piso.gd")

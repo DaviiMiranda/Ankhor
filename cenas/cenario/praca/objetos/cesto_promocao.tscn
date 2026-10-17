@@ -7,6 +7,7 @@
 size = Vector2(26, 5)
 
 [node name="CestoPromocao" type="StaticBody2D"]
+collision_layer = 9
 script = ExtResource("1_objeto")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

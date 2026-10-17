@@ -16,6 +16,17 @@ Formato:
 
 ---
 
+## 2026-10-17 — Os robôs do Centro de Convivência passam a contornar os objetos
+**Decisão:**
+- **O bug:** o Rastreador (o "cachorro" do Self Nebulosa) e a Sentinela do Churrasco Solar atravessavam mesas, cadeiras e balcões. Os robôs só enxergam a **camada 8** (a das paredes): é com ela que `RobosDaSala` monta o mapa de caminhos e que o robô risca a linha de visão. Os objetos do Centro de Convivência estavam só na camada 1, a que o Gabriel enxerga, e por isso eram invisíveis para os robôs (que também viam o Gabriel através deles).
+- **A correção:** os objetos do kit da praça (`cenas/cenario/praca/objetos/`) e o corpo do cofre passam para as camadas **1 e 8** (`collision_layer = 9`), como já eram as paredes em arco. Agora os robôs desviam deles e as mesas, as árvores e os postes cortam a linha de visão, como o texto da fase sempre disse.
+- **A folga:** o mapa de caminhos engorda cada objeto em 4 px, pouco para o Rastreador (18 px de largura) numa grade de células de 16 px: ele raspava na quina das cadeiras e parava. As salas com robôs passam a usar `folga_obstaculos = 10`.
+- **Teste:** com o Gabriel escondido, cada robô patrulhou 150 s no jogo, em todas as salas com robô (Self Nebulosa, Churrasco Solar, praça e mezanino): nenhum entrou num objeto e a maior parada foi de 1,4 s (a pausa normal do ponto de ronda).
+**Por quê:** relato do Davi: o cachorro robô atravessava os objetos na sala mais à esquerda da praça.
+**Afeta:** `assets/modelagem/salas/centro_de_convivencia/montar_convivencia.py` (a camada dos objetos e a folga), os 60 objetos de `cenas/cenario/praca/objetos/`, `cenas/sistemas/cofre.tscn` e as cenas `loja_2`, `loja_4`, `praca_central` e `segundo_andar`. Nada nas salas das outras fases.
+
+---
+
 ## 2026-10-17 — Cada sala do mezanino ganha um puzzle; o do cinema é um cofre de código
 **Decisão:**
 - **Cada sala do segundo andar terá um puzzle próprio**, mesmo que não leve a história adiante. Por enquanto só o do **Cine Andrômeda** está feito; a gráfica e a loja universitária ficam para depois.
