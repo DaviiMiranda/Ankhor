@@ -629,6 +629,60 @@ def standee_filme():
     return img, 16, 63
 
 
+def fliperama():
+    """Fliperama de pé: o gabinete de grafite com as laterais de neon violeta, a
+    marquise magenta, a tela com um jogo de blocos coloridos, o painel inclinado
+    com o manche e três botões, e o moedeiro."""
+    img = Imagem(38, 60)
+    X, Y = img.X, img.Y
+    rng = np.random.default_rng(4500)
+    caixa(img, 5, 8, 33, 56, "grafite", 0.2)
+    caixa(img, 3, 2, 35, 10, "grafite", 0.16)
+    neon(img, img.ret(5, 4, 33, 7), "neon_magenta", 0.9)
+    tela = img.ret(8, 12, 30, 31)
+    img.pintar(tela, "grafite", 0.03)
+    cores = ("neon_verde", "neon_azul", "neon_ambar", "neon_magenta")
+    for _ in range(22):
+        x, y = int(rng.integers(9, 28)), int(rng.integers(13, 29))
+        neon(img, img.ret(x, y, x + 2, y + 2) & tela, cores[int(rng.integers(0, 4))], 0.7)
+    img.pintar(img.poligono([(5, 33), (33, 33), (37, 40), (1, 40)]), "inox", 0.34 + 0.2 * (Y == 33))
+    img.pintar(img.ret(10, 34, 11, 38), "inox", 0.6)
+    img.pintar(img.elipse(10.5, 34, 2.2, 2.2), "neon_vermelho", 0.7)
+    for k, cor in enumerate(("neon_azul", "neon_ambar", "neon_verde")):
+        img.pintar(img.elipse(20 + k * 5, 37, 1.6, 1.2), cor, 0.8, achatar=False)
+    img.pintar(img.ret(12, 44, 26, 49), "grafite", 0.04)
+    neon(img, img.ret(14, 46, 24, 47), "neon_ambar", 0.6)
+    neon(img, img.ret(5, 10, 6, 54), "neon_violeta", 0.7)
+    neon(img, img.ret(32, 10, 33, 54), "neon_violeta", 0.7)
+    for x in (8, 26):
+        img.pintar(img.ret(x, 56, x + 4, 59), "inox", 0.3)
+    img.contornar()
+    return img, 19, 58
+
+
+def sofa_veludo():
+    """Sofá de três lugares de veludo vinho com o encosto capitonê (os botões de
+    latão), os braços roliços e os pés de latão."""
+    img = Imagem(88, 46)
+    X, Y = img.X, img.Y
+    for x in (6, 78):
+        img.pintar(img.ret(x, 40, x + 3, 45), "neon_ambar", 0.5)
+    caixa(img, 4, 26, 84, 40, "veludo", 0.4)
+    caixa(img, 9, 8, 79, 28, "veludo", 0.46)
+    caixa(img, 2, 18, 13, 40, "veludo", 0.52)
+    caixa(img, 75, 18, 86, 40, "veludo", 0.38)
+    for k in range(3):
+        x = 15 + k * 20
+        img.pintar(img.ret(x, 27, x + 19, 36), "veludo", 0.56 + 0.1 * (k % 2))
+        img.pintar(img.ret(x, 27, x + 19, 28), "veludo", 0.78, achatar=False)
+        img.pintar(img.ret(x + 19, 27, x + 20, 38), "veludo", 0.14, achatar=False)
+    for x in range(17, 78, 8):
+        for y in (14, 20):
+            img.pintar(img.ret(x, y, x + 1, y + 1), "neon_ambar", 0.6, achatar=False)
+    img.contornar()
+    return img, 44, 44
+
+
 def cordao_fila():
     """Dois postes de aço com o cordão de veludo âmbar entre eles, para
     organizar a fila."""
@@ -858,6 +912,8 @@ OBJETOS = {
     "poltronas_13": (lambda: poltronas(4, 13), (72, 7)),
     "standee_filme": (standee_filme, (20, 5)),
     "cordao_fila": (cordao_fila, (52, 4)),
+    "fliperama": (fliperama, (26, 6)),
+    "sofa_veludo": (sofa_veludo, (76, 8)),
     # cabine de projeção
     "projetor_cinema": (projetor_cinema, (44, 8)),
     "mesa_lanterninha": (mesa_lanterninha, (68, 9)),

@@ -190,6 +190,7 @@ LUZES_DOS_OBJETOS = {
     "balcao_pipoca": [(-30, -30, "Color(1, 0.7, 0.3, 1)", 0.9, 1.8)],
     "bilheteria_balcao": [(0, -30, "Color(0.7, 0.5, 1, 1)", 0.6, 1.4)],
     "standee_filme": [(0, -34, "Color(0.7, 0.5, 1, 1)", 0.35, 1.0)],
+    "fliperama": [(0, -34, "Color(1, 0.4, 0.85, 1)", 0.55, 1.2)],
     "mesa_lanterninha": [(-26, -34, "Color(1, 0.7, 0.3, 1)", 0.7, 1.4)],
     "projetor_cinema": [(-30, -28, "Color(0.8, 0.85, 1, 1)", 0.4, 0.9)],
 }

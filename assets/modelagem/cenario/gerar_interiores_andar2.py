@@ -363,21 +363,65 @@ def c_lisa(semente=0):
     return parede("cinema", semente)
 
 
-def c_cartazes(semente=1):
+def c_cartazes(semente=1, variante=0):
     """Três cartazes de filme emoldurados em dourado, com lâmpadas de marquise
-    acima."""
+    acima. A 'variante' troca as cores dos cartazes."""
     img = parede("cinema", semente)
     X, Y = img.X, img.Y
     rng = np.random.default_rng(3300 + semente)
     for k, x0 in enumerate((6, 29, 52)):
         img.pintar(img.ret(x0 - 1, 22, x0 + 21, 82), "neon_ambar", 0.3 + 0.15 * (Y == 22))
         quadro = img.ret(x0, 23, x0 + 20, 81)
-        cores = (("neon_violeta", "neon_ambar"), ("neon_magenta", "ciano"), ("neon_azul", "neon_limao"))[k]
+        conjuntos = ((("neon_violeta", "neon_ambar"), ("neon_magenta", "ciano"), ("neon_azul", "neon_limao")),
+                     (("neon_azul", "neon_ambar"), ("neon_violeta", "neon_limao"), ("neon_magenta", "papel_branco")))
+        cores = conjuntos[variante][k]
         img.pintar(quadro, cores[0], 0.22 + 0.3 * (1 - (Y - 23) / 58.0))
         img.pintar(img.elipse(x0 + 10, 44 + 3 * k, 6, 6) & quadro, cores[1], 0.68 + 0.2 * ((X - x0 - 10) < 0))
         img.pintar(img.poligono([(x0 + 3, 81), (x0 + 6, 60), (x0 + 10, 56), (x0 + 14, 60), (x0 + 17, 81)]) & quadro, "grafite", 0.05)
         img.pintar(img.ret(x0 + 2, 74, x0 + 2 + int(rng.integers(8, 16)), 75) & quadro, "papel_branco", 0.8, achatar=False)
         img.pintar(img.elipse(x0 + 10, 19, 1.3, 1.3), "neon_ambar", 1.0 if k % 2 == 0 else 0.5, achatar=False)
+    return img
+
+
+def c_planta(semente=7):
+    """Um vaso grande com uma palmeira de interior, entre duas arandelas de luz
+    âmbar."""
+    img = parede("cinema", semente)
+    X, Y = img.X, img.Y
+    rng = np.random.default_rng(3320 + semente)
+    for x in (12, 68):
+        img.pintar(img.ret(x - 2, 30, x + 3, 40), "grafite", 0.1)
+        img.pintar(img.elipse(x, 40, 3, 2), "neon_ambar", 0.7, achatar=False)
+        img.pintar(img.poligono([(x - 3, 30), (x + 4, 30), (x + 8, 48), (x - 7, 48)]) & (((X + Y) % 2) == 0), "neon_ambar", 0.2, achatar=False)
+    for k in range(9):
+        ang = np.radians(-165 + k * 18.75)
+        comp = 26 + 8 * rng.random()
+        meio = (40 + comp * 0.55 * np.cos(ang), 80 + comp * 0.55 * np.sin(ang) - 4)
+        ponta = (40 + comp * 0.95 * np.cos(ang), 80 + comp * 0.8 * np.sin(ang) + 6)
+        img.pintar(img.caminho([(40, 80), meio, ponta], 1.3), "verde", 0.4 + 0.2 * rng.random())
+        img.pintar(img.caminho([meio, ponta], 0.6), "bioluz", 0.55)
+    img.pintar(img.poligono([(24, 80), (56, 80), (53, 100), (27, 100)]), "grafite", 0.2 + 0.1 * (X < 36))
+    img.pintar(img.ret(24, 80, 56, 83), "neon_ambar", 0.4)
+    return img
+
+
+def c_relogio(semente=8):
+    """Relógio redondo de parede com o aro âmbar, e a plaquinha de SAÍDA."""
+    img = parede("cinema", semente)
+    X, Y = img.X, img.Y
+    cx, cy = 40, 48
+    img.pintar(img.elipse(cx, cy, 17, 17), "neon_ambar", 0.3 + 0.1 * (Y < cy))
+    img.pintar(img.elipse(cx, cy, 15, 15), "grafite", 0.07)
+    for k in range(12):
+        a = np.radians(k * 30)
+        x, y = int(round(cx + 12.5 * np.sin(a))), int(round(cy - 12.5 * np.cos(a)))
+        img.pintar(img.ret(x, y, x + 1, y + 1), "neon_ambar", 0.9, achatar=False)
+    img.pintar(img.caminho([(cx, cy), (cx + 6, cy - 7)], 0.7), "papel_branco", 0.9, achatar=False)
+    img.pintar(img.caminho([(cx, cy), (cx - 2, cy - 11)], 0.6), "papel_branco", 0.9, achatar=False)
+    img.pintar(img.elipse(cx, cy, 1.4, 1.4), "neon_ambar", 1.0, achatar=False)
+    img.pintar(img.ret(26, 76, 54, 88), "grafite", 0.06)
+    img.pintar(img.ret(26, 76, 54, 77), "neon_verde", 0.4, achatar=False)
+    base.escrever(img, 40 - base.largura_do_texto("SAÍDA", 8) // 2, 79, "SAÍDA", "neon_verde", 0.92, 8)
     return img
 
 
@@ -676,8 +720,9 @@ SALAS = {
         "PORTA:azul", ("u_prateleira", 1), ("u_cabides", 2), ("u_brasao", 3), ("u_prateleira", 11), ("u_provador", 5), ("u_espelho", 4)]},
     "grafica": {"tema": "grafica", "largura": 560, "altura": 240, "pecas": [
         "PORTA:limao", ("g_escaninhos", 1), ("g_painel", 5), ("g_tintas", 3), ("g_cartazes", 2), ("g_rolos", 4), ("g_nicho", 6)]},
-    "cinema": {"tema": "cinema", "largura": 800, "altura": 280, "pecas": [
-        "PORTA:violeta", ("c_cartazes", 1), ("c_cardapio", 2), ("c_nicho", 4), ("c_arco_sala", 3), ("s_painel", 5), "TELA", "TELA", "TELA", "PORTA:ciano|CABINE"]},
+    "cinema": {"tema": "cinema", "largura": 1040, "altura": 320, "pecas": [
+        "PORTA:violeta", ("c_cartazes", 1), ("c_cardapio", 2), ("c_planta", 7), ("c_cartazes_b", 9), ("c_nicho", 4),
+        ("c_relogio", 8), ("c_arco_sala", 3), ("s_painel", 5), "TELA", "TELA", "TELA", "PORTA:ciano|CABINE"]},
     "cabine": {"tema": "cabine", "largura": 400, "altura": 220, "pecas": [
         "PORTA:ciano", ("p_janela", 1), ("p_horarios", 2), ("p_rolos", 3), ("p_uniforme", 4)]},
 }
@@ -686,11 +731,12 @@ FUNCOES = {
     "u_prateleira": u_prateleira, "u_cabides": u_cabides, "u_brasao": u_brasao, "u_espelho": u_espelho, "u_provador": u_provador,
     "g_escaninhos": g_escaninhos, "g_painel": g_painel, "g_tintas": g_tintas, "g_cartazes": g_cartazes, "g_rolos": g_rolos,
     "g_nicho": g_nicho, "c_cartazes": c_cartazes, "c_cardapio": c_cardapio, "c_nicho": c_nicho, "c_arco_sala": c_arco_sala,
+    "c_planta": c_planta, "c_relogio": c_relogio, "c_cartazes_b": lambda semente: c_cartazes(semente, 1),
     "s_painel": s_painel, "p_janela": p_janela, "p_horarios": p_horarios, "p_rolos": p_rolos, "p_uniforme": p_uniforme,
 }
 
 PISOS = {"loja_uni": piso_loja_uni, "grafica": piso_grafica, "cabine": piso_cabine}
-X_SOLEIRA_CINEMA = 5 * L
+X_SOLEIRA_CINEMA = 8 * L
 
 
 def placa_da_porta(peca, texto, cor):
