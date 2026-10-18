@@ -9,12 +9,13 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/mesa_pizza.tscn" id="r7"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/caixas_pizza.tscn" id="r8"]
 [ext_resource type="Resource" path="res://dados/documentos/panfleto_universitario.tres" id="r9"]
-[ext_resource type="PackedScene" path="res://cenas/itens/documento_no_mundo.tscn" id="r10"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/painel_comutacao.tscn" id="r11"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r12"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r13"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r14"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r15"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_panfleto.png" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/painel_comutacao.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r16"]
 
 [node name="Loja3" instance=ExtResource("r1")]
 id = "conv_loja_3"
@@ -53,25 +54,25 @@ position = Vector2(340, 232)
 [node name="CaixasPizza1" parent="Objetos" instance=ExtResource("r8")]
 position = Vector2(440, 152)
 
-[node name="Documento1" parent="Objetos" instance=ExtResource("r10")]
+[node name="Documento1" parent="Objetos" instance=ExtResource("r11")]
 position = Vector2(215, 156)
 texto_acao = "Ler o panfleto na bancada"
 documento = ExtResource("r9")
-altura_aviso = 52.0
+textura = ExtResource("r10")
 
-[node name="PainelComutacao" parent="Objetos" instance=ExtResource("r11")]
+[node name="PainelComutacao" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(330, 134)
 
-[node name="Luz1" parent="Luzes" instance=ExtResource("r12")]
+[node name="Luz1" parent="Luzes" instance=ExtResource("r13")]
 position = Vector2(125, 110)
 color = Color(1, 0.45, 0.2, 1)
 energy = 0.85
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r13")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r14")]
 position = Vector2(300, 34)
 energy = 0.6
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r12")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r13")]
 position = Vector2(400, 130)
 color = Color(1, 0.4, 0.3, 1)
 energy = 0.4
@@ -82,12 +83,12 @@ color = Color(0.3, 0.25, 0.25, 1)
 [node name="Gabriel" parent="Objetos"]
 position = Vector2(80, 160)
 
-[node name="Porta_loja_3_praca" parent="." instance=ExtResource("r14")]
+[node name="Porta_loja_3_praca" parent="." instance=ExtResource("r15")]
 position = Vector2(41, 124)
 id = "loja_3_praca"
 cena_destino = "res://cenas/salas/centro_de_convivencia/praca_central.tscn"
 porta_destino = "praca_loja_3"
 
-[node name="MusicaFase" parent="." instance=ExtResource("r15")]
+[node name="MusicaFase" parent="." instance=ExtResource("r16")]
 
 [editable path="Ceu"]

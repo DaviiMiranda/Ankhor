@@ -417,41 +417,65 @@ GRAFICA = {
     "escuridao": (0.28, 0.3, 0.28, 1),
 }
 
-# O cofre do cinema: o lanterninha diz que o código são as poltronas do Léo (4),
-# da Bia (7) e do Caio (2), numa ordem embaralhada. A ordem certa é Bia, Caio, Léo.
+# O cofre do cinema fica na cabine de projeção (a salinha atrás da tela): o
+# lanterninha diz que o código são as poltronas do Léo (4), da Bia (7) e do Caio
+# (2), numa ordem embaralhada. A ordem certa é Bia, Caio, Léo.
 CODIGO_DO_COFRE_DO_CINEMA = "724"
 
 CINEMA = {
-    "id": "cinema", "largura": 800, "altura": 280, "fundo": "fundo_cinema", "gabriel": "(80, 160)",
-    "portas": [porta_interna("cinema_mezanino", 0, "violeta", "segundo_andar", "mezanino_cinema")],
+    "id": "cinema", "largura": 1040, "altura": 320, "fundo": "fundo_cinema", "gabriel": "(80, 160)",
+    "portas": [
+        porta_interna("cinema_mezanino", 0, "violeta", "segundo_andar", "mezanino_cinema"),
+        porta_interna("cinema_cabine", 12, "ciano", "cinema_cabine", "cabine_cinema"),
+    ],
     "objetos": [
         ("balcao_pipoca", 190, 158), ("bilheteria_balcao", 120, 216), ("cordao_fila", 250, 214), ("cordao_fila", 320, 214, True),
-        ("standee_filme", 38, 204),
-        ("poltronas_4", 450, 188), ("poltronas_4", 560, 188), ("poltronas_4", 640, 188), ("poltronas_4", 750, 188),
-        ("poltronas_4", 450, 240), ("poltronas_4", 560, 240), ("poltronas_4", 640, 240), ("poltronas_4", 750, 240),
+        ("standee_filme", 38, 204), ("standee_filme", 600, 236, True), ("jardineira", 284, 156),
+        ("fliperama", 346, 154), ("fliperama", 386, 154), ("sofa_veludo", 520, 182), ("luminaria_chao", 470, 232),
+        ("poltronas_1", 690, 188), ("poltronas_5", 800, 188), ("poltronas_9", 880, 188), ("poltronas_13", 990, 188),
+        ("poltronas_1", 690, 240), ("poltronas_5", 800, 240), ("poltronas_9", 880, 240), ("poltronas_13", 990, 240),
+        ("poltronas_1", 690, 292), ("poltronas_5", 800, 292), ("poltronas_9", 880, 292), ("poltronas_13", 990, 292),
     ],
-    "animados": [("tela_cinema", 485, 18, "chiado")],
-    "itens": [("pilha", 60, 252), ("pedra", 770, 140)],
+    "animados": [("tela_cinema", 725, 18, "chiado")],
+    "itens": [("pilha", 60, 290), ("pedra", 520, 284), ("pedra", 930, 150)],
     "documentos": [
         ("ingresso_cine_andromeda", 160, 236, "Ler o canhoto do ingresso"),
         ("bilhete_lanterninha_cofre", 190, 176, "Ler o bilhete do lanterninha"),
-        ("canhoto_leo", 292, 242, "Ler o canhoto"),
-        ("canhoto_bia", 470, 262, "Ler o canhoto"),
-        ("canhoto_caio", 280, 134, "Ler o canhoto"),
+        ("canhoto_leo", 470, 268, "Ler o canhoto"),
+        ("canhoto_bia", 780, 266, "Ler o canhoto"),
     ],
-    "cofres": [(372, 152, CODIGO_DO_COFRE_DO_CINEMA, "clarao", 1, "cofre_cinema_aberto",
-                "O cofre abriu: caiu uma cápsula de clarão.")],
-    "nichos": [(280, 128)],
+    "nichos": [(440, 128)],
     "luzes": [
         ("luz_lampada", 150, 90, "energy = 0.7"),
         ("luz_fria", 280, 100, "color = Color(0.7, 0.5, 1, 1)", "energy = 0.45"),
-        ("luz_fria", 600, 150, "color = Color(0.8, 0.85, 1, 1)", "energy = 0.55", "scale = Vector2(7, 4)"),
+        ("luz_fria", 420, 100, "color = Color(1, 0.7, 0.3, 1)", "energy = 0.4"),
+        ("luz_fria", 560, 120, "color = Color(0.7, 0.5, 1, 1)", "energy = 0.45", "scale = Vector2(5, 3)"),
+        ("luz_fria", 840, 150, "color = Color(0.8, 0.85, 1, 1)", "energy = 0.55", "scale = Vector2(7, 4)"),
     ],
-    "zonas_piso": [(0, 112, 800, 168, 0.5, "carpete de veludo")],
+    "zonas_piso": [(0, 112, 1040, 208, 0.5, "carpete de veludo")],
     "escuridao": (0.24, 0.2, 0.3, 1),
 }
 
 PRACA["portas"] += PORTAS_ESCADA_DA_PRACA
 PRACA["luzes"].append(("luz_fria", base.COLUNA_ESCADA_PRACA * PECA + X_PORTA, 150, f"color = {COR_NEON_LUZ['ciano']}", "energy = 0.45", "scale = Vector2(2.6, 1.6)"))
 
-SALAS = [PASSARELA, PRACA, LOJA_1, LOJA_2, CAMARA_FRIA, LOJA_3, LOJA_4, MEZANINO, LOJA_UNI, GRAFICA, CINEMA]
+CINEMA_CABINE = {
+    "id": "cinema_cabine", "largura": 400, "altura": 220, "fundo": "fundo_cabine", "gabriel": "(80, 160)",
+    "portas": [porta_interna("cabine_cinema", 0, "ciano", "cinema", "cinema_cabine")],
+    "objetos": [
+        ("projetor_cinema", 196, 160), ("mesa_lanterninha", 120, 208), ("caixas_rolos", 52, 198), ("caixas_rolos", 362, 208),
+    ],
+    "documentos": [("canhoto_caio", 160, 196, "Ler o canhoto")],
+    "cofres": [(340, 152, CODIGO_DO_COFRE_DO_CINEMA, "clarao", 1, "cofre_cinema_aberto",
+                "O cofre abriu: caiu uma cápsula de clarão.")],
+    "itens": [("pilha", 262, 196)],
+    "luzes": [
+        ("luz_lampada", 200, 90, "energy = 0.7"),
+        ("luz_fria", 130, 100, "color = Color(0.7, 0.5, 1, 1)", "energy = 0.5"),
+        ("luz_fria", 330, 120, "color = Color(0.45, 0.9, 1, 1)", "energy = 0.4"),
+    ],
+    "zonas_piso": [(0, 112, 400, 108, 1.0, "concreto")],
+    "escuridao": (0.26, 0.22, 0.32, 1),
+}
+
+SALAS = [PASSARELA, PRACA, LOJA_1, LOJA_2, CAMARA_FRIA, LOJA_3, LOJA_4, MEZANINO, LOJA_UNI, GRAFICA, CINEMA, CINEMA_CABINE]

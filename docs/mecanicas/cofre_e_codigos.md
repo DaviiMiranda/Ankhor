@@ -1,6 +1,6 @@
 # Cofres e puzzles de código
 
-Um **cofre** guarda um prêmio atrás de um código de dígitos. O código nunca aparece escrito de uma vez: o jogador junta **pistas espalhadas pela sala** (documentos) e vai **testando as combinações** até acertar. O primeiro cofre está no Cine Andrômeda do Centro de Convivência ([`../fases/centro_de_convivencia.md`](../fases/centro_de_convivencia.md), seção 7.5).
+Um **cofre** guarda um prêmio atrás de um código de dígitos. O código nunca aparece escrito de uma vez: o jogador junta **pistas espalhadas pela sala** (documentos) e vai **testando as combinações** até acertar. O primeiro cofre está na cabine de projeção do Cine Andrômeda, no Centro de Convivência ([`../fases/centro_de_convivencia.md`](../fases/centro_de_convivencia.md), seção 7.5).
 
 ## Como funciona
 

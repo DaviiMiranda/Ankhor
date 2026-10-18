@@ -10,11 +10,11 @@ autor = "Tadeu, lanterninha do Cine Andrômeda"
 papel = "caderno_gabriel"
 paginas = PackedStringArray("Pessoal da sexta,
 
-Deixei as minhas coisas no cofre cinza do saguão, ao lado do arco da sala 1.
+Deixei as minhas coisas no cofre da cabine de projeção. É a porta cinza ao lado da tela, na sala 1, e está aberta.
 
 O código eu não escrevo aqui, que a Bia mexe em tudo. É só juntar as poltronas dos meus três amigos: o Léo, a Bia e o Caio. Só o número de cada uma, sem a fileira.", "Os canhotos dos três eu espalhei pelo cinema, que é pra vocês me darem trabalho.
 
 E a ordem eu embaralhei de propósito. Quem for esperto, vai testando até acertar.
 
 — Tadeu")
-anotacao = "O lanterninha do Cine Andrômeda deixou as coisas dele no cofre cinza do saguão. O código é o número da poltrona do Léo, da Bia e do Caio (sem a fileira), numa ordem embaralhada. Os canhotos dos três estão espalhados pelo cinema."
+anotacao = "O lanterninha do Cine Andrômeda deixou as coisas dele no cofre da cabine de projeção (a porta cinza ao lado da tela, na sala 1). O código é o número da poltrona do Léo, da Bia e do Caio (sem a fileira), numa ordem embaralhada. Os canhotos dos três estão espalhados pelo cinema."
