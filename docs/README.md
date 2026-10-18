@@ -28,6 +28,9 @@ docs/
 ├── gdd.md                         # GDD executivo integrado
 ├── sugestao-melhoramento-futuro.md # Backlog de melhorias secundárias, polimento e QoL
 │
+├── producao/                      # Como gerar e mandar as versões de teste
+│   └── beta.md                    # Versões beta: número da versão, ícone, .exe, zip e retorno dos testadores
+│
 ├── entrega/                       # Documentos de entrega da disciplina
 │   └── gdd_ankhor.docx            # GDD no modelo do template da disciplina (estado de 15/10/2026)
 │

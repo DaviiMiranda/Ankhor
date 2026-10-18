@@ -16,6 +16,18 @@ Formato:
 
 ---
 
+## 2026-10-18 — Primeira beta (0.1.0-beta.1): versão no menu, ícone do jogo e `.exe` para Windows
+**Decisão:**
+- **A primeira versão de teste do jogo é a `0.1.0-beta.1`.** O formato é `MAIOR.MENOR.CORREÇÃO-beta.N`, e o número vive num lugar só, `application/config/version` em `project.godot`. Ele aparece **no canto de baixo do menu principal** (`cenas/interface/rotulo_versao.tscn`), para qualquer relato de erro dizer qual versão o testador jogava, e dá o nome da pasta e do `.zip` da beta.
+- **O ícone do jogo é a arte do "A" que o Davi mandou** (`assets/icone/ankhor_icone.png` e `.ico`, com os cantos transparentes). Ele é o ícone do projeto, da janela e do `.exe`, e as propriedades do `.exe` mostram nome, empresa e versão.
+- **O `.exe` sai do preset "Windows Desktop"** (`export_presets.cfg`, que entra no git): arquivo único com o jogo dentro, só 64 bits, sem `docs/`, `assets/modelagem/` e `ferramentas/`, com os `.json` dos diálogos. O `ferramentas/gerar_beta.py` roda a exportação, confere que a versão do projeto e a do `.exe` batem e monta o `.zip` com o `LEIAME.txt` para o testador. O processo e o que fazer antes de enviar estão em `docs/producao/beta.md`.
+- **Sem assinatura digital** (certificado pago): o Windows avisa "O Windows protegeu o computador", e o `LEIAME.txt` ensina a seguir.
+- **Verificação da primeira beta:** o `.exe` exportado abre no menu com a versão no canto, os 1307 arquivos de cena, dados e arte estão dentro do pacote, e as 63 cenas de salas e cutscenes carregam do pacote sem erro. O jogo não foi jogado de ponta a ponta à mão.
+**Por quê:** pedido do Davi: fazer a primeira beta do jogo, com a arte dele de ícone, e mostrar a versão da beta no menu principal.
+**Afeta:** `project.godot` (versão e ícone), `export_presets.cfg` (novo), `assets/icone/` (novo), `cenas/interface/rotulo_versao.tscn` e `scripts/interface/rotulo_versao.gd` (novos), `cenas/menu_principal.tscn` (instancia o rótulo), `ferramentas/` (novo: `gerar_beta.py` e `leiame_beta.txt`), `docs/producao/beta.md` (novo), `docs/README.md` e `README.md` (links).
+
+---
+
 ## 2026-10-18 — A trilha sonora oficial toca em loop no menu principal
 **Decisão:**
 - **O menu principal passa a tocar a trilha sonora oficial do jogo** (`trilha_sonora_oficial_ANKHOR.ogg`, enviada pelo Davi), em **loop**, no lugar da música `menu_whispers_in_the_dark.mp3` que tocava antes. A música continua tocando enquanto o jogador troca de tela dentro do menu (fases, opções, controles) e para ao começar o jogo, quando cada fase usa a sua própria trilha.
