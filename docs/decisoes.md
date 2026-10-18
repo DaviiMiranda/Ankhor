@@ -16,6 +16,16 @@ Formato:
 
 ---
 
+## 2026-10-18 — A trilha sonora oficial toca em loop no menu principal
+**Decisão:**
+- **O menu principal passa a tocar a trilha sonora oficial do jogo** (`trilha_sonora_oficial_ANKHOR.ogg`, enviada pelo Davi), em **loop**, no lugar da música `menu_whispers_in_the_dark.mp3` que tocava antes. A música continua tocando enquanto o jogador troca de tela dentro do menu (fases, opções, controles) e para ao começar o jogo, quando cada fase usa a sua própria trilha.
+- **O arquivo foi convertido de Opus para Ogg Vorbis** (`ffmpeg -c:a libvorbis -q:a 5`): o `.ogg` original está em Opus, que o Godot não reproduz (ele marca o arquivo como inválido e fica mudo). O arquivo do projeto é `assets/audio/musica/oficial/trilha_sonora_oficial_ankhor.ogg`, com **Loop** ligado na importação, e o nó `Musica` do menu toca a −4 dB (a trilha nova é 2 dB mais baixa que a anterior, e o menu usava −6 dB).
+- As trilhas antigas do menu (`menu_whispers_in_the_dark.mp3` e `menu_trilha.ogg`) **ficaram no repositório, sem uso**. A autoria e a licença da trilha oficial estão como "(preencher)" em `assets/audio/creditos.md`.
+**Por quê:** pedido do Davi: colocar essa música como trilha sonora do jogo, em loop no menu principal.
+**Afeta:** `cenas/menu_principal.tscn` (o arquivo e o volume do nó `Musica`), `assets/audio/musica/oficial/` (novo), `assets/audio/README.md` e `assets/audio/creditos.md`.
+
+---
+
 ## 2026-10-17 — A máquina do Laboratório é a Âncora e ganha animação
 **Decisão:**
 - **A máquina do Lab Central é a Âncora.** Até aqui o `docs/fases/dtec.md` dizia que ela não tinha nome nem papel na história e que não era a Âncora. O Enredo Principal já põe a Âncora no D-Tec, junto do laboratório do Carlos, e a máquina do salão central é essa. Os dois passam a dizer a mesma coisa. O Enredo Principal não muda: ele não dizia em que sala a Âncora está e não contradiz isso. O que a Âncora faz nessa fase (consertá-la, o final) continua nas pendências do Enredo (seções 10.2 e 10.6).
