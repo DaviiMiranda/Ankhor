@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-18 — Cada pessoa chega a 3026 três dias depois da anterior
+**Decisão:** entre uma chegada e a seguinte passam **3 dias**, e a fenda pulsa a cada 3 dias. Pela ordem já fechada (Henrique, Zane, Clarice, Diana, Gabriel), o Gabriel chega 3 dias depois da Diana, 6 depois da Clarice, 9 depois do Zane e 12 depois do Henrique. A posição do Baltazar continua pendente: se ele entrar no meio da ordem, quem veio antes dele ganha mais 3 dias.
+**Por quê:** pedido do Davi, para as falas poderem dizer há quantos dias cada um está lá.
+**Afeta:** a História Completa (seções da fenda, 4.1, 7.2 e 10.4), o GDD e as falas que citam dias (a Clarice, na cena 2.2 do `Roteiro.docx`).
+
 ## 2026-10-18 — A Clarice passa a ser de 1990
 **Decisão:** a Clarice vem de **1990**, não mais de 1994. Continua aluna de processamento de dados, com cerca de 20 anos, e o resto da ficha não muda.
 **Por quê:** pedido do Davi.
