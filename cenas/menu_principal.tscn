@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cutscenes/seg_prologo.tscn" id="8_novo_jogo"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/menu_passar.wav" id="9_passar"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/menu_clique.wav" id="10_clique"]
+[ext_resource type="PackedScene" path="res://cenas/interface/rotulo_versao.tscn" id="14_versao"]
 [ext_resource type="Script" path="res://scripts/sistemas/fase.gd" id="f_script"]
 [ext_resource type="Resource" path="res://dados/fases/01_biblioteca.tres" id="f_1"]
 [ext_resource type="Resource" path="res://dados/fases/02_blocos_de_aula.tres" id="f_2"]
@@ -359,3 +360,5 @@ bus = &"Efeitos"
 stream = ExtResource("10_clique")
 volume_db = -4.0
 bus = &"Efeitos"
+
+[node name="RotuloVersao" parent="." instance=ExtResource("14_versao")]
