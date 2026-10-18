@@ -78,7 +78,7 @@ docs/
     │   ├── gabriel.md             # O protagonista: estados, estamina, inventário
     │   ├── baltazar.md            # ~1750, antepassado de Gabriel
     │   ├── diana.md               # 1978, estagiária de arquitetura
-    │   ├── clarice.md             # 1994, aluna de processamento de dados
+    │   ├── clarice.md             # 1990, aluna de processamento de dados
     │   ├── henrique.md            # 2019, o pesquisador
     │   ├── carlos.md              # 3026, o antagonista
     │   ├── zane.md                # 2123, faz as comunicações do bunker

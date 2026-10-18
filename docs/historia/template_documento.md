@@ -22,7 +22,7 @@ Antes de escrever, leia a ficha de quem escreve em [`personagens/`](personagens/
 | Quem escreve | `papel` | Estado |
 |---|---|---|
 | Baltazar (~1750) | `pergaminho` | Pronto |
-| Clarice (1994) | `caderno_clarice` | Pronto |
+| Clarice (1990) | `caderno_clarice` | Pronto |
 | Gabriel (2026) | `caderno_gabriel` | Pronto |
 | Diana (1978), Henrique (2019), Zane (2123) | — | Falta desenhar. O suporte de cada um está na seção "Registros" da ficha em [`personagens/`](personagens/) |
 

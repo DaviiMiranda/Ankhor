@@ -6,7 +6,7 @@ Uma pasta por personagem. Cada pasta tem a ficha `visual.md` e os sprites daquel
 |---|---|
 | `gabriel/` | Gabriel |
 | `vigia/` | O Vigia |
-| `clarice/` | Clarice (1994): sentada na estação de trabalho do bunker, em pé (vistas, caminhada e respiração, como o Gabriel) e retratos |
+| `clarice/` | Clarice (1990): sentada na estação de trabalho do bunker, em pé (vistas, caminhada e respiração, como o Gabriel) e retratos |
 | `zane/` | Zane (2123): vistas, caminhada, respiração e retratos, como o Gabriel |
 | `baltazar/` | Baltazar (~1750): vistas, caminhada, respiração e retratos, como o Gabriel |
 | `rafael/` | **Arte guardada.** Rafael (2008) saiu da história em 2026-10-11 (ver `docs/decisoes.md`): vistas, caminhada, respiração e retratos, como o Gabriel. Não é usada em nenhuma fase |

@@ -1,4 +1,4 @@
-# Clarice (1994)
+# Clarice (1990)
 
 > **Status:** Em desenvolvimento. Guia Gabriel pelo rádio na Biblioteca e no Bloco de salas, e aparece em pessoa na sala 103.
 > **Lei do projeto:** esta ficha faz parte do [Enredo Principal](../História_Completa.md) e tem a mesma autoridade: quem a Clarice é vale como está escrito aqui. A história em volta dela (o acidente, a ordem dos acontecimentos, as pendências) está no Enredo.
@@ -7,7 +7,7 @@
 
 ## 1. Quem é
 
-- **Época de origem:** 1994.
+- **Época de origem:** 1990.
 - **Quem é:** aluna de processamento de dados da Unifor, com cerca de 20 anos, que mora perto do campus.
 - **História:** rodava um programa num terminal da Biblioteca de madrugada e foi puxada. Foi a primeira a notar que as rotas dos robôs formam um **grafo**. Deixou num terminal da Biblioteca um bilhete pedindo que, se mais alguém chegasse, a procurasse no Bloco de salas, e disquetes com senhas. Chegou a 3026 **depois do Zane e antes de Gabriel**. Fala com o grupo pela frequência de rádio que o Zane mantém. Depois de chegar à Biblioteca, foi para o **Bloco de salas** e ficou na **sala 103**, atrás de uma barricada. A **Diana** apareceu por lá depois e ela a acolheu: desde então as duas tentam descobrir o que aconteceu, com a ajuda do **Henrique** pelo rádio (ele vê o campus pelas câmeras e diz que, de alguma forma, estão em 3026), e ela mapeia a ronda dos robôs pela fresta. **É a voz do rádio que ajuda Gabriel na Biblioteca**, com o que o Henrique vê, e a **primeira pessoa que Gabriel encontra em pessoa**, na 103, de onde o ajuda a sair do bloco. A **relação dela com Gabriel vai sendo desenvolvida ao longo do jogo**.
 

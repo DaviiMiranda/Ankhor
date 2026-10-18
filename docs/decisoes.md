@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-18 — A Clarice passa a ser de 1990
+**Decisão:** a Clarice vem de **1990**, não mais de 1994. Continua aluna de processamento de dados, com cerca de 20 anos, e o resto da ficha não muda.
+**Por quê:** pedido do Davi.
+**Afeta:** a História Completa (tabelas de personagens e linha do tempo), a ficha e o resumo da Clarice, o GDD, `docs/` (registros e modelo de documento), os arquivos do jogo (`dados/documentos/bilhete_clarice.tres`, `disquete_clarice.tres` e `dados/transmissoes/clarice_*.tres`, cujo título no Caderno agora é "Clarice, 1990"), os textos dos geradores de arte, o agente roteirista e o `Roteiro.docx`. Entradas antigas deste registro que citam 1994 ficam como histórico. O número 1994 que sobra nos geradores de som e de bunker é só semente de sorteio, e não foi mexido para não mudar os arquivos gerados.
+
 ## 2026-10-18 — Primeira beta (0.1.0-beta.1): versão no menu, ícone do jogo e `.exe` para Windows
 **Decisão:**
 - **A primeira versão de teste do jogo é a `0.1.0-beta.1`.** O formato é `MAIOR.MENOR.CORREÇÃO-beta.N`, e o número vive num lugar só, `application/config/version` em `project.godot`. Ele aparece **no canto de baixo do menu principal** (`cenas/interface/rotulo_versao.tscn`), para qualquer relato de erro dizer qual versão o testador jogava, e dá o nome da pasta e do `.zip` da beta.

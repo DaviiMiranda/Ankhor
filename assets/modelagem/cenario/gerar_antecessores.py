@@ -14,7 +14,7 @@
 #   riscos_estrelas.png       mapas de estrelas riscados na casca da árvore
 #                             (vai por cima do tronco, como filho da árvore)
 #   terminal.png              terminal de 3026, apagado, com o bilhete da
-#                             Clarice (1994) colado na tela
+#                             Clarice (1990) colado na tela
 #
 # Como o gerar_kit.py, este script IMPORTA as funções do gerar_biblioteca.py
 # (paleta, dithering, contorno), então os objetos saem no mesmo estilo.

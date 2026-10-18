@@ -7,5 +7,5 @@ script = ExtResource("1_transmissao")
 id = "clarice_biblioteca_02"
 falante = "CLARICE (rádio)"
 falas = PackedStringArray("Chhh... Você entrou no acervo. O Henrique tá vendo: o robô daí escuta, não enxerga bem.", "Então não corre. Passo de corrida ele ouve de longe. Anda... devagar.")
-titulo_anotacao = "Clarice, 1994"
+titulo_anotacao = "Clarice, 1990"
 anotacao = "A Clarice de novo, com as câmeras do Henrique: o robô do acervo escuta. Não correr: ele ouve os passos de longe."

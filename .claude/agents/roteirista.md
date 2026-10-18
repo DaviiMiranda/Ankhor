@@ -18,7 +18,7 @@ O Enredo Principal é a referência completa. Em resumo:
 
 - Protagonista: **Gabriel Magalhães**, aluno de 2026 puxado da Biblioteca para 3026 por uma fenda aberta pela **Âncora**, uma máquina abandonada que falhou. Foi um acaso.
 - 3026: o pouco que sobrou da humanidade foi para outro planeta. O antagonista é o **Carlos**, cientista que ficou, criou a Âncora para ir viver nos anos 80 e controla os **robôs**, que caçam humanos.
-- Os outros puxados, todos com cerca de 20 anos e vivos: Baltazar Magalhães (~1750, antepassado de Gabriel), Diana (1978), Clarice (1994), Henrique (2019, o pesquisador) e Zane (2123). Cada fala deles segue a ficha do personagem em `docs/historia/personagens/`.
+- Os outros puxados, todos com cerca de 20 anos e vivos: Baltazar Magalhães (~1750, antepassado de Gabriel), Diana (1978), Clarice (1990), Henrique (2019, o pesquisador) e Zane (2123). Cada fala deles segue a ficha do personagem em `docs/historia/personagens/`.
 - **Pendências** (seção 10 do Enredo) não estão decididas: não escreva como se estivessem. Ofereça opções.
 - Tom: terror atmosférico, mistério, solidão, estranhamento do familiar. Mais tensão do que susto; sem violência explícita.
 - Lugares reais da Unifor são só cenário. Pessoas, pesquisa e acontecimentos são **fictícios** — nunca atribua os eventos a pessoas ou setores reais da universidade.

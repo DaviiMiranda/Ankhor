@@ -85,7 +85,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 |---|---|
 | Baltazar (1750) | As estrelas: o céu é o único relógio que não muda, e é por ele que se acerta a data de volta de cada um |
 | Diana (1978) | As plantas: estagiária de arquitetura na obra, conhece as galerias de 1978, que não aparecem nos mapas de 3026, e descobre por elas onde fica o núcleo e as passagens até lá |
-| Clarice (1994) | Código: faz os terminais da Âncora funcionarem. Mapeou as rondas dos robôs como um grafo e sabe o que cada chave abre |
+| Clarice (1990) | Código: faz os terminais da Âncora funcionarem. Mapeou as rondas dos robôs como um grafo e sabe o que cada chave abre |
 | Henrique (2019) | A teoria por trás das equações |
 | Zane (2123) | A tecnologia mais próxima da Âncora |
 | Gabriel (2026) | O caderno, como o lugar onde as partes de todos se juntam. O grupo está espalhado, e Gabriel é o único que passa por todos os esconderijos: anota o que cada um sabe, e no fim o caderno é o único lugar onde o quadro inteiro existe |
@@ -109,7 +109,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 |---|---|
 | ~1750 | [Baltazar Magalhães](personagens/baltazar.md) |
 | 1978 | [Diana](personagens/diana.md) |
-| 1994 | [Clarice](personagens/clarice.md) |
+| 1990 | [Clarice](personagens/clarice.md) |
 | 2019 | [Henrique](personagens/henrique.md), o pesquisador |
 | 2026 | [Gabriel Magalhães](personagens/gabriel.md) (protagonista) |
 | 2123 | [Zane](personagens/zane.md) |
@@ -168,7 +168,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 |---|---|---|
 | ~1750 | Baltazar | Viu uma luz estranha pela luneta, no sítio da família, e foi investigar |
 | 1978 | Diana | Estagiária de arquitetura na obra do campus: vigiava a obra à noite depois que um lote de material sumiu sob a responsabilidade dela |
-| 1994 | Clarice | Rodava um programa num terminal da Biblioteca, de madrugada |
+| 1990 | Clarice | Rodava um programa num terminal da Biblioteca, de madrugada |
 | 2019 | Henrique | Estudava à noite na Biblioteca, na pesquisa dele sobre viagem no tempo |
 | 2026 | Gabriel | Dormiu na Biblioteca com o caderno aberto |
 | 2123 | Zane | *A definir* |

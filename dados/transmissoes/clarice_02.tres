@@ -7,6 +7,6 @@ script = ExtResource("1_transmissao")
 id = "clarice_02"
 falante = "CLARICE (rádio)"
 falas = PackedStringArray("Chhh... Subiu? Então presta atenção. O robô daí de cima não é igual ao de baixo: esse não escuta, esse enxerga longe.", "Ele para debaixo dos buracos do teto, onde a lua bate. É ali que ele te vê de longe.", "Passa pelo escuro, colado nas portas, e não fica parado no claro. A rota dele é um ciclo: dá pra decorar.")
-titulo_anotacao = "Clarice, 1994"
+titulo_anotacao = "Clarice, 1990"
 anotacao = "O robô do 1º andar enxerga longe e para debaixo dos buracos do teto, onde bate a lua.
 - Passar pelo escuro, perto das portas."

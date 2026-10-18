@@ -6,9 +6,9 @@
 script = ExtResource("1_documento")
 id = "bilhete_clarice"
 titulo = "Bilhete colado no terminal"
-autor = "Clarice, 1994"
+autor = "Clarice, 1990"
 papel = "caderno_clarice"
-paginas = PackedStringArray("Se alguém ler isso: sou a Clarice, de 1994, Processamento de Dados. Rodei um programa no terminal da Biblioteca de madrugada e PUF, vim parar aqui. Totalmente surreal.
+paginas = PackedStringArray("Se alguém ler isso: sou a Clarice, de 1990, Processamento de Dados. Rodei um programa no terminal da Biblioteca de madrugada e PUF, vim parar aqui. Totalmente surreal.
 
 Descobri umas coisas. Os robôs não andam à toa: fazem sempre o mesmo caminho, que nem um programa em loop. Dá pra decorar.", "Os terminais pedem senha. Guardei as que achei no meu disquete. Uma delas abre a grade do salão, então não perde, meu filho.
 
@@ -17,7 +17,7 @@ Vou pro Bloco de salas. Se mais alguém chegou, me procura lá.", "Foi legal con
 Não confie nas luzes. — Clarice
 
 PS: se você for um robô, finge que não leu.")
-anotacao = "Aluna de 1994. Os robôs repetem sempre o mesmo caminho: dá para decorar.
+anotacao = "Aluna de 1990. Os robôs repetem sempre o mesmo caminho: dá para decorar.
 
 Guardou senhas num disquete. Uma delas abre a grade do salão.
 
