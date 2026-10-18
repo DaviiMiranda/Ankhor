@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/menu/menu_anel_gabriel.png" id="11_anel"]
 [ext_resource type="Texture2D" path="res://assets/sprites/menu/menu_oculos_zane.png" id="12_oculos"]
 [ext_resource type="Texture2D" path="res://assets/sprites/menu/menu_farol_postit.png" id="13_farol"]
-[ext_resource type="AudioStream" path="res://assets/audio/musica/menu/menu_whispers_in_the_dark.mp3" id="7_trilha"]
+[ext_resource type="AudioStream" path="res://assets/audio/musica/oficial/trilha_sonora_oficial_ankhor.ogg" id="7_trilha"]
 [ext_resource type="PackedScene" path="res://cenas/cutscenes/seg_prologo.tscn" id="8_novo_jogo"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/menu_passar.wav" id="9_passar"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/menu_clique.wav" id="10_clique"]
@@ -346,7 +346,7 @@ texture_scale = 2.4
 
 [node name="Musica" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_trilha")
-volume_db = -6.0
+volume_db = -4.0
 autoplay = true
 bus = &"Musica"
 
