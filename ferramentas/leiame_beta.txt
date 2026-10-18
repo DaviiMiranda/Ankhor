@@ -1,0 +1,39 @@
+ANKHOR — versão beta {versao}
+================================
+
+Obrigado por testar! Esta é uma versão de TESTE de um jogo de faculdade (Computação
+Gráfica, Unifor). Ela ainda tem erros, e achar esses erros é o motivo do teste.
+
+COMO JOGAR
+- Não precisa instalar. Descompacte a pasta e abra o Ankhor.exe.
+- O jogo abre em tela cheia (F11 alterna para janela). Pausar: Esc ou P.
+- Controles: andar W A S D ou setas; correr Shift; interagir E; inventário Tab ou I;
+  anotações N; trocar de aba no inventário Q; gadgets 1, 2 e 3.
+- Em "Novo jogo" você começa pela Biblioteca. O menu "Fases" deixa abrir qualquer fase
+  direto, para quem quer testar uma fase específica.
+- É um jogo de terror e fuga: os robôs patrulham, então esconda-se e fique no escuro.
+
+SE O WINDOWS AVISAR "O Windows protegeu o computador"
+O arquivo não tem assinatura digital (isso custa caro e não vale para um trabalho
+de faculdade). Clique em "Mais informações" e depois em "Executar assim mesmo". Se o
+antivírus bloquear, avise a equipe, que vamos conferir o arquivo com você.
+
+O QUE JÁ SABEMOS QUE NÃO ESTÁ PRONTO
+- A Diana ainda não tem visual, e o Zane ainda não aparece no bunker.
+- Só o cinema do Centro de Convivência tem puzzle no segundo andar; a gráfica e a
+  loja universitária ainda não têm.
+- Pode haver erros de colisão (andar por cima de algo), de som e de arte.
+
+COMO NOS AJUDAR
+Ao achar um erro ou algo estranho, anote:
+1. A versão do jogo (no canto de baixo do menu principal, em "v{versao}").
+2. Em que fase e em que lugar você estava, e o que estava fazendo.
+3. O que esperava que acontecesse e o que aconteceu.
+4. Se puder, um print ou um vídeo curto.
+5. Se o jogo travou ou fechou sozinho, o arquivo de registro (log):
+   aperte Windows + R, digite %APPDATA%\Godot\app_userdata\Ankhor\logs e envie o
+   arquivo godot.log.
+Também queremos saber o que você GOSTOU, onde ficou perdido e onde achou fácil ou
+difícil demais.
+
+Envie tudo para quem te mandou o jogo. Bom jogo!
