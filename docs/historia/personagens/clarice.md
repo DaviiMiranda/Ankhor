@@ -1,7 +1,7 @@
 # Clarice (1994)
 
 > **Status:** Em desenvolvimento. Guia Gabriel pelo rádio na Biblioteca e no Bloco de salas, e aparece em pessoa na sala 103.
-> **Lei do projeto:** esta ficha faz parte do [Enredo Principal](../enredo_principal.md) e tem a mesma autoridade: quem a Clarice é vale como está escrito aqui. A história em volta dela (o acidente, a ordem dos acontecimentos, as pendências) está no Enredo.
+> **Lei do projeto:** esta ficha faz parte do [Enredo Principal](../História_Completa.md) e tem a mesma autoridade: quem a Clarice é vale como está escrito aqui. A história em volta dela (o acidente, a ordem dos acontecimentos, as pendências) está no Enredo.
 
 ---
 

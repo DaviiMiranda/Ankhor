@@ -1,6 +1,6 @@
 # Resumo dos personagens
 
-> Este é um **resumo** das fichas desta pasta, para consultar rápido. A lei do projeto são as fichas de cada personagem, que fazem parte do [Enredo Principal](../enredo_principal.md). **Se este resumo e uma ficha discordarem, vale a ficha**, e o resumo deve ser corrigido.
+> Este é um **resumo** das fichas desta pasta, para consultar rápido. A lei do projeto são as fichas de cada personagem, que fazem parte do [Enredo Principal](../História_Completa.md). **Se este resumo e uma ficha discordarem, vale a ficha**, e o resumo deve ser corrigido.
 
 ---
 
@@ -79,7 +79,7 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 
 ## 6. O que ainda falta
 
-As pendências de cada personagem estão no fim da ficha dele e no [Enredo Principal](../enredo_principal.md), seção 10. As principais:
+As pendências de cada personagem estão no fim da ficha dele e no [Enredo Principal](../História_Completa.md), seção 10. As principais:
 
 - **Diana:** ainda sem visual definido.
 - **Henrique:** como e quando o grupo descobre a mentira, e o que ele faz depois (seção 10.3).
