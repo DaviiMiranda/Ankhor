@@ -11,6 +11,9 @@ config_version=5
 [application]
 
 config/name="Ankhor"
+config/version="0.1.0-beta.1"
+config/icon="res://assets/icone/ankhor_icone.png"
+config/windows_native_icon="res://assets/icone/ankhor_icone.ico"
 run/main_scene="res://cenas/menu_principal.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
