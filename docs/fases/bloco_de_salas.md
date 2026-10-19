@@ -3,7 +3,7 @@
 > **Status:** **jogável do começo ao fim** (2026-10-11): objetivos, puzzles, robôs, a Clarice no posto e a saída. As melhorias de level design da seção 12 foram implementadas em 2026-10-12 (resumo em 12.8).
 > **Área:** um bloco de salas de aula da Unifor, dois andares (no GDD: "Blocos de aula").
 > **Vem de:** a porta de saída da ala leste da Biblioteca ([`biblioteca.md`](biblioteca.md)).
-> **História:** o que o Bloco de salas conta segue o [Enredo Principal](../historia/enredo_principal.md) (Ato 2), que é a lei do projeto. O plano foi aprovado pelo Davi em 2026-10-11 (registro em `docs/decisoes.md`).
+> **História:** o que o Bloco de salas conta segue o [Enredo Principal](../historia/História_Completa.md) (Ato 2), que é a lei do projeto. O plano foi aprovado pelo Davi em 2026-10-11 (registro em `docs/decisoes.md`).
 
 ---
 

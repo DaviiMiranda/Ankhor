@@ -35,7 +35,7 @@ _spec.loader.exec_module(ef)
 
 TAXA = ef.TAXA
 tempo, envelope, filtrar, normalizar, salvar = ef.tempo, ef.envelope, ef.filtrar, ef.normalizar, ef.salvar
-rng = np.random.default_rng(1994)   # sorteios fixos: o ano da Clarice
+rng = np.random.default_rng(1994)   # sorteios fixos (semente antiga, o ano da Clarice quando era 1994)
 
 
 def telefone_toque():

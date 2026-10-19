@@ -432,7 +432,7 @@ def papel_pergaminho():
 
 
 def papel_caderno_clarice():
-    """O bilhete da Clarice (1994): folha de fichário, com os furos do lado,
+    """O bilhete da Clarice (1990): folha de fichário, com os furos do lado,
     pautas azuis, a margem vermelha e um adesivo de estrela no canto. Em
     cima, o pedaço de fita adesiva que a prendia na tela do terminal."""
     img = Imagem(LARGURA_PAPEL, ALTURA_PAPEL)
@@ -452,7 +452,7 @@ def papel_caderno_clarice():
     meio = LARGURA_PAPEL // 2
     fita = img.poligono([(meio - 17, 0), (meio + 17, 0), (meio + 16, 7), (meio - 16, 8)])
     img.pintar(fita, bib.hexa("#d8d0a8", "#e6dfbd", "#f0ead0"), 0.5 + 0.3 * fino)
-    # Adesivo de estrela no canto de cima (cor forte: é de 1994).
+    # Adesivo de estrela no canto de cima (cor forte: é de 1990).
     estrela = []
     for i in range(10):
         ang = np.pi / 2 + i * np.pi / 5

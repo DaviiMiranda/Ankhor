@@ -1,10 +1,10 @@
 # História
 
-Comece pelo **[Enredo Principal](enredo_principal.md)**. Ele é a lei do projeto, junto com as fichas de [`personagens/`](personagens/): história, mundo, personagens, como a história chega ao jogador e tudo o que ainda está pendente. Se qualquer outro documento contradisser o Enredo, vale o Enredo.
+Comece pelo **[Enredo Principal](História_Completa.md)**. Ele é a lei do projeto, junto com as fichas de [`personagens/`](personagens/): história, mundo, personagens, como a história chega ao jogador e tudo o que ainda está pendente. Se qualquer outro documento contradisser o Enredo, vale o Enredo.
 
 | Onde | O que tem |
 |---|---|
-| [`enredo_principal.md`](enredo_principal.md) | A história inteira, em um só lugar |
+| [`História_Completa.md`](História_Completa.md) | A história inteira, em um só lugar |
 | [`personagens/`](personagens/) | Uma ficha por personagem: quem é, personalidade, relações, função no jogo, arte e arquivos. Faz parte do Enredo Principal |
 | [`personagens/resumo.md`](personagens/resumo.md) | Resumo de todos os personagens numa página, para consulta rápida (em caso de diferença, vale a ficha) |
 | [`roteiro/`](roteiro/) | Roteiro das cutscenes |

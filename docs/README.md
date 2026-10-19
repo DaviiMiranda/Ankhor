@@ -8,7 +8,7 @@ Bem-vindo ao repositório de documentação do **Ankhor**, jogo de terror atmosf
 
 Para manter a consistência entre o código, o design e o roteiro, adotamos a seguinte regra de precedência:
 
-1. **[`docs/historia/enredo_principal.md`](historia/enredo_principal.md)** — **Lei do projeto para história, mundo e personagens**, junto com as fichas de [`docs/historia/personagens/`](historia/personagens/) (uma por personagem). Vale acima de qualquer outro documento, inclusive do registro de decisões. Em caso de dúvida em qualquer parte do jogo, consulte-o primeiro. O que ele ainda não decidiu está na seção "Pendências", no fim dele.
+1. **[`docs/historia/História_Completa.md`](historia/História_Completa.md)** — **Lei do projeto para história, mundo e personagens**, junto com as fichas de [`docs/historia/personagens/`](historia/personagens/) (uma por personagem). Vale acima de qualquer outro documento, inclusive do registro de decisões. Em caso de dúvida em qualquer parte do jogo, consulte-o primeiro. O que ele ainda não decidiu está na seção "Pendências", no fim dele.
 2. **[`docs/decisoes.md`](decisoes.md)** — Autoridade máxima para design, mecânicas e técnica, e histórico de todas as mudanças (inclusive as de história, que entram no mesmo PR aqui e no Enredo Principal).
 3. **Documentos Específicos de Módulos** — Estruturações técnicas e mecânicas detalhadas em suas respectivas pastas.
 4. **[`docs/gdd.md`](gdd.md)** — Sumário executivo e visão geral unificada (Game Design Document).
@@ -69,7 +69,7 @@ docs/
 │   └── template_dialogo.md        # Modelo estrutural (JSON / GDScript) para criação de diálogos
 │
 └── historia/                      # História, personagens e roteiro
-    ├── enredo_principal.md        # A LEI DO PROJETO: história, mundo, personagens e pendências
+    ├── História_Completa.md        # A LEI DO PROJETO: história, mundo, personagens e pendências
     ├── README.md                  # Índice da pasta: comece pelo Enredo Principal
     ├── template_documento.md      # Modelo para escrever bilhetes, diários e relatórios
     ├── template_personagem.md     # Modelo de ficha para um personagem novo
@@ -78,7 +78,7 @@ docs/
     │   ├── gabriel.md             # O protagonista: estados, estamina, inventário
     │   ├── baltazar.md            # ~1750, antepassado de Gabriel
     │   ├── diana.md               # 1978, estagiária de arquitetura
-    │   ├── clarice.md             # 1994, aluna de processamento de dados
+    │   ├── clarice.md             # 1990, aluna de processamento de dados
     │   ├── henrique.md            # 2019, o pesquisador
     │   ├── carlos.md              # 3026, o antagonista
     │   ├── zane.md                # 2123, faz as comunicações do bunker

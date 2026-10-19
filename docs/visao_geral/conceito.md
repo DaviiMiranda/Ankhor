@@ -16,7 +16,7 @@ Gabriel, um estudante universitário, acorda **mil anos no futuro, em 3026**.
 
 Ele descobre o que aconteceu com ele e com outras pessoas de outras épocas: em 3026, a Unifor é um centro de pesquisa em física do tempo, e a explosão de um aparelho chamado **Âncora** rasgou o tempo dentro do campus. A fenda temporal encosta em momentos aleatórios do passado e puxa quem estiver perto — numa madrugada de 2026, puxou Gabriel da Biblioteca.
 
-A fenda está crescendo e, se não for fechada, vai engolir o passado do campus, incluindo o tempo de Gabriel. Gabriel não é o primeiro a ser puxado: antes dele vieram uma aluna de 1994, um segurança de 2008, um professor de 2019 e alguém de 2041, e ninguém conseguiu. Esses viajantes deixaram **bilhetes** pelo campus explicando melhor os acontecimentos. O campus em ruínas é patrulhado por **robôs**. Para sobreviver, impedir o colapso e salvar seu próprio tempo, Gabriel precisa investigar as ruínas do campus, evitar os robôs, entender o que ocorreu através dos bilhetes e fechar a fenda.
+A fenda está crescendo e, se não for fechada, vai engolir o passado do campus, incluindo o tempo de Gabriel. Gabriel não é o primeiro a ser puxado: antes dele vieram uma aluna de 1990, um segurança de 2008, um professor de 2019 e alguém de 2041, e ninguém conseguiu. Esses viajantes deixaram **bilhetes** pelo campus explicando melhor os acontecimentos. O campus em ruínas é patrulhado por **robôs**. Para sobreviver, impedir o colapso e salvar seu próprio tempo, Gabriel precisa investigar as ruínas do campus, evitar os robôs, entender o que ocorreu através dos bilhetes e fechar a fenda.
 
 ---
 

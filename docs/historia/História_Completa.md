@@ -70,7 +70,7 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 | **Quem criou** | O **Carlos** (seção 4.3), para ir viver nos anos 80 |
 | **O que aconteceu** | O Carlos tenta usar a Âncora para ir para os anos 80, mas a máquina é **imprecisa**: não acerta a época nem escolhe quem puxa. Cada tentativa abre uma fenda no tempo |
 | **Onde a fenda se abre** | Sempre no mesmo ponto: o chão onde hoje fica a Biblioteca (ou onde ela ainda viria a ser construída) |
-| **Como a fenda age** | **Pulsa.** A cada tentativa do Carlos, a cada poucos dias, encosta numa época diferente e puxa quem estiver no ponto naquela noite. A cada pulso fica maior |
+| **Como a fenda age** | **Pulsa.** A cada tentativa do Carlos, a cada 3 dias, encosta numa época diferente e puxa quem estiver no ponto naquela noite. A cada pulso fica maior |
 | **Por que essas pessoas** | **Acaso.** O Carlos não escolhe quem a fenda puxa: estavam no lugar errado na noite errada |
 | **A ameaça** | Enquanto o Carlos continuar tentando, gente nova continua caindo, e a fenda continua crescendo |
 | **Nome** | O aparelho se chama **Âncora**. **Ankhor** é o nome do jogo. Os dois não se confundem |
@@ -85,7 +85,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 |---|---|
 | Baltazar (1750) | As estrelas: o céu é o único relógio que não muda, e é por ele que se acerta a data de volta de cada um |
 | Diana (1978) | As plantas: estagiária de arquitetura na obra, conhece as galerias de 1978, que não aparecem nos mapas de 3026, e descobre por elas onde fica o núcleo e as passagens até lá |
-| Clarice (1994) | Código: faz os terminais da Âncora funcionarem. Mapeou as rondas dos robôs como um grafo e sabe o que cada chave abre |
+| Clarice (1990) | Código: faz os terminais da Âncora funcionarem. Mapeou as rondas dos robôs como um grafo e sabe o que cada chave abre |
 | Henrique (2019) | A teoria por trás das equações |
 | Zane (2123) | A tecnologia mais próxima da Âncora |
 | Gabriel (2026) | O caderno, como o lugar onde as partes de todos se juntam. O grupo está espalhado, e Gabriel é o único que passa por todos os esconderijos: anota o que cada um sabe, e no fim o caderno é o único lugar onde o quadro inteiro existe |
@@ -100,8 +100,9 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 
 - Todos os puxados pela fenda têm **cerca de 20 anos**.
 - Todos têm alguma **ligação com a região da Unifor**, além de terem sido puxados no chão da Biblioteca.
-- Chegaram a 3026 **com dias de diferença**. Estão todos **vivos**, cada um sobrevivendo do seu jeito num lugar do campus, e Gabriel **encontra cada um ao longo do jogo**.
+- Chegaram a 3026 **com 3 dias de intervalo entre uma chegada e a seguinte**. Estão todos **vivos**, cada um sobrevivendo do seu jeito num lugar do campus, e Gabriel **encontra cada um ao longo do jogo**.
 - **Ordem de chegada:** o **Henrique é o primeiro** a chegar, e por isso é quem está há mais tempo em 3026. **Gabriel é o último**. No meio: o **Zane** chegou antes da **Clarice**, e a **Diana** chegou depois da Clarice (apareceu na 103 quando a Clarice já estava lá). Só a posição do **Baltazar** ainda está pendente.
+- **Quantos dias cada um está lá:** como são 3 dias entre uma chegada e a seguinte, quem chega *n* posições antes de Gabriel chegou 3 × *n* dias antes dele. Sem contar o Baltazar: a Diana, 3 dias antes; a Clarice, 6; o Zane, 9; o Henrique, 12. Se o Baltazar entrar no meio da ordem, quem veio antes dele ganha mais 3 dias.
 
 ### 4.2 Fichas
 
@@ -109,7 +110,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 |---|---|
 | ~1750 | [Baltazar Magalhães](personagens/baltazar.md) |
 | 1978 | [Diana](personagens/diana.md) |
-| 1994 | [Clarice](personagens/clarice.md) |
+| 1990 | [Clarice](personagens/clarice.md) |
 | 2019 | [Henrique](personagens/henrique.md), o pesquisador |
 | 2026 | [Gabriel Magalhães](personagens/gabriel.md) (protagonista) |
 | 2123 | [Zane](personagens/zane.md) |
@@ -168,7 +169,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 |---|---|---|
 | ~1750 | Baltazar | Viu uma luz estranha pela luneta, no sítio da família, e foi investigar |
 | 1978 | Diana | Estagiária de arquitetura na obra do campus: vigiava a obra à noite depois que um lote de material sumiu sob a responsabilidade dela |
-| 1994 | Clarice | Rodava um programa num terminal da Biblioteca, de madrugada |
+| 1990 | Clarice | Rodava um programa num terminal da Biblioteca, de madrugada |
 | 2019 | Henrique | Estudava à noite na Biblioteca, na pesquisa dele sobre viagem no tempo |
 | 2026 | Gabriel | Dormiu na Biblioteca com o caderno aberto |
 | 2123 | Zane | *A definir* |
@@ -179,7 +180,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 2. **O Carlos sai dos Faroleiros** e se isola na Unifor. Passa anos sozinho, constrói a Âncora no D-Tec e toma o controle dos robôs.
 3. **3026:** o Carlos começa a tentar ir para os anos 80. A cada tentativa, a fenda se abre no chão da Biblioteca.
 4. **O primeiro puxado é o Henrique.** O Carlos promete levá-lo para antes da morte da mãe e passa a usá-lo.
-5. **Os outros pulsos:** com dias de diferença, a fenda puxa uma pessoa de cada época. Cada uma acorda sozinha, foge dos robôs e acha um canto para sobreviver. Todos chegam antes de Gabriel. O Zane chega antes da Clarice, e a Diana depois da Clarice.
+5. **Os outros pulsos:** com 3 dias de intervalo entre um e outro, a fenda puxa uma pessoa de cada época. Cada uma acorda sozinha, foge dos robôs e acha um canto para sobreviver. Todos chegam antes de Gabriel. O Zane chega antes da Clarice, e a Diana depois da Clarice.
 6. **O jogo:** Gabriel, o último, acorda na Biblioteca, encontra os outros um a um, descobre o que aconteceu e tenta consertar a Âncora para todos voltarem.
 
 **Em 2026, o sumiço do Henrique virou lenda do campus:** um aluno que sumiu na Biblioteca em 2019. A pesquisa dele sobre viagem no tempo, que ele estava fazendo quando foi puxado, foi levada adiante pelo orientador e virou a cadeira de **Modelagem e Simulação**, a que Gabriel cursa: as equações do caderno de Gabriel vêm dela, sem ele saber de quem eram. Gabriel conhece a lenda, e por isso reconhece o Henrique quando o encontra.
@@ -309,7 +310,7 @@ Já decidido (seção 8, "A virada"): ele trabalha para o Carlos por causa da pr
 ### 10.4 Os outros personagens
 
 - **Zane:** o que fazia no ponto quando foi puxado? O que ele teme, agora que a IA não tem consciência? Qual é o final dele (ficar em 3026 para guardar a Âncora, ficar para se juntar aos Faroleiros, ou voltar para 2123)? O que ele faz quando chega ao bunker, depois do Labirinto?
-- **Baltazar:** em que posição da ordem de chegada ele está? (Já decidido: o Henrique é o primeiro, o Zane vem antes da Clarice, a Diana depois da Clarice, e Gabriel é o último; não precisa seguir a ordem dos anos.) Qual sala da Biblioteca é o esconderijo dele (a sala de obras raras, barrada por dentro, é a candidata), e quando ela se abre? Ele está ali desde que chegou: o acampamento vazio do começo foi o primeiro abrigo, e a última página do diário ("Hei de seguir a luz até onde ella nasce") combina com ficar, porque a luz nasce no chão da Biblioteca.
+- **Baltazar:** em que posição da ordem de chegada ele está? (Já decidido: o Henrique é o primeiro, o Zane vem antes da Clarice, a Diana depois da Clarice, e Gabriel é o último; não precisa seguir a ordem dos anos. Cada chegada vem 3 dias depois da anterior, então a posição dele muda quantos dias cada um está lá.) Qual sala da Biblioteca é o esconderijo dele (a sala de obras raras, barrada por dentro, é a candidata), e quando ela se abre? Ele está ali desde que chegou: o acampamento vazio do começo foi o primeiro abrigo, e a última página do diário ("Hei de seguir a luz até onde ella nasce") combina com ficar, porque a luz nasce no chão da Biblioteca.
 - **Clarice e Diana:** continuam na 103 até o fim, ou se juntam ao grupo mais tarde?
 - **Gabriel:** enquanto o Baltazar está fora de 1750, o Gabriel começa a falhar (piscar, se desfazer), como a foto em *De Volta para o Futuro*? (Se sim, vira um shader, bom para a apresentação de Computação Gráfica.)
 - **As pichações "C." no bunker** ("NÃO CONFIE NAS LUZES"): quem fez? Não podem ser da Clarice, que está na 103 desde que chegou. Uma opção é virarem marcas antigas dos Faroleiros; a outra é saírem.
