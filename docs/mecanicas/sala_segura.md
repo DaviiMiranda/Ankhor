@@ -63,7 +63,7 @@ Novo jogo e a lista de fases **não apagam** o save: ele só é sobrescrito na p
 
 ## 6. Pendências
 
-- **A sala segura da Biblioteca ainda não tem porta de entrada** numa sala da fase: falta pôr uma porta (ver o passo 5 acima) numa sala existente. O plano antigo era a manutenção (sala 5); o modelo é uma cena à parte, então decidam em qual sala fica a porta.
+- **A porta da Biblioteca** fica no corredor de serviço, ao lado da porta do salão, com o letreiro DESCANSO (um nome que não entrega o que é). O plano antigo era a manutenção (sala 5); se o grupo preferir outra sala ou outro nome, é só mover a `PortaSalaSegura` e o letreiro em `corredor_servico.tscn`.
 - **Dormir e sonhar** (GDD, `sono_e_sonhos.md`) continua pendente. Salvar passou para os óculos; o sonho ainda não tem lugar definido.
 - **Os óculos do Zane como máquina** é uma decisão de jogo, não de história: o Enredo Principal ainda não explica por que o visor dele existe em cada fase (o Zane é o último a chegar). Confirmar com o Davi antes de escrever qualquer fala sobre isso.
 - A arte do pedestal e o piano são placeholders gerados por código.

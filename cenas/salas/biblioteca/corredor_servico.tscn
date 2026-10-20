@@ -30,7 +30,7 @@ largura = 480
 [node name="Parede01" parent="Paredes" instance=ExtResource("r2")]
 position = Vector2(0, 0)
 
-[node name="Parede02" parent="Paredes" instance=ExtResource("r3")]
+[node name="Parede02" parent="Paredes" instance=ExtResource("r2")]
 position = Vector2(80, 0)
 
 [node name="Parede03" parent="Paredes" instance=ExtResource("fut_parede_conduites")]
@@ -94,6 +94,12 @@ id = "bib_servico_manutencao"
 cena_destino = "res://cenas/salas/biblioteca/manutencao.tscn"
 porta_destino = "bib_manutencao"
 
+[node name="PortaSalaSegura" parent="." instance=ExtResource("r11")]
+position = Vector2(121, 124)
+id = "bib_servico_sala_segura"
+cena_destino = "res://cenas/salas/biblioteca/sala_segura.tscn"
+porta_destino = "safe_room_saida"
+
 [node name="PlacaSalao" type="Label" parent="Paredes"]
 offset_left = 13.0
 offset_top = 30.0
@@ -102,6 +108,16 @@ offset_bottom = 44.0
 theme_override_colors/font_color = Color(0.3, 0.37, 0.4, 1)
 theme_override_styles/normal = SubResource("Placa")
 text = "SALÃO"
+horizontal_alignment = 1
+
+[node name="PlacaDescanso" type="Label" parent="Paredes"]
+offset_left = 93.0
+offset_top = 30.0
+offset_right = 149.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.3, 0.37, 0.4, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "DESCANSO"
 horizontal_alignment = 1
 
 [node name="PlacaManutencao" type="Label" parent="Paredes"]
@@ -155,3 +171,11 @@ position = Vector2(405.0, 30.0)
 offset_right = 72.0
 offset_bottom = 14.0
 text = "MANUTENÇÃO"
+
+[node name="LetreiroDescanso" parent="Paredes" instance=ExtResource("fut_letreiro")]
+position = Vector2(93.0, 30.0)
+
+[node name="Texto" parent="Paredes/LetreiroDescanso" index="0"]
+offset_right = 56.0
+offset_bottom = 14.0
+text = "DESCANSO"
