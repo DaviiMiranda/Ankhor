@@ -4,13 +4,15 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/luzes/luz_cone.png" id="2_cone"]
 [ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="3_luz"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/lanterna_clique.wav" id="4_clique"]
-[ext_resource type="Texture2D" uid="uid://cobcbo23qnyrv" path="res://assets/sprites/itens/lanterna_peito.png" id="5_corpo"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/lanterna_mao.png" id="5_corpo"]
 
 [node name="Lanterna" type="Node2D"]
 script = ExtResource("1_lanterna")
 
 [node name="Corpo" type="Sprite2D" parent="."]
 texture = ExtResource("5_corpo")
+offset = Vector2(2, -0.5)
+scale = Vector2(0.5, 0.5)
 
 [node name="Feixe" type="PointLight2D" parent="."]
 visible = false

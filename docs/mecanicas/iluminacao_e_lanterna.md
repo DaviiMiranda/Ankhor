@@ -10,9 +10,9 @@ O campus em 3026 é quase todo escuro. O pouco que ainda tem energia são os **s
 
 ## 2. A lanterna
 
-- **O que é:** uma lanterna pequena, a pilha, com uma alça para prender ao peito. É um gadget: fica num dos 3 espaços e liga/desliga com a tecla do espaço (`1`, `2` ou `3`).
-- **O feixe:** um cone de luz que sai da **lente da lanterna**, presa ao peito do Gabriel, e aponta para onde ele está andando (a última direção do movimento). Em volta da lente fica um brilho fraco, que ilumina o próprio Gabriel.
-- **No peito:** com a lanterna equipada, uma peça pequena e escura, verde-oliva (5 × 3 px, com um ponto claro só na lente) aparece presa ao peito do Gabriel, ligada ou apagada. Ela gira para a direção da mira e espelha quando ele olha para a esquerda. Nas vistas de costas ela fica escondida pelo corpo, e a luz continua saindo do peito. `Gabriel.posicao_do_peito()` devolve o ponto do peito na vista em que ele está.
+- **O que é:** uma lanterna pequena, a pilha, de aço azulado escuro, com botão vermelho e uma alça de pulso, que o Gabriel leva na mão. É um gadget: fica num dos 3 espaços e liga/desliga com a tecla do espaço (`1`, `2` ou `3`).
+- **O feixe:** um cone de luz que sai da **lente da lanterna**, na mão do Gabriel, e aponta para onde ele está andando (a última direção do movimento). Em volta da lente fica um brilho fraco, que ilumina o próprio Gabriel.
+- **Na mão:** com a lanterna equipada, uma peça pequena de aço azulado (14 × 8 px em resolução dobrada, 7 × 4 px no jogo, com o botão vermelho em cima e um ponto claro na lente) aparece na mão do Gabriel, ligada ou apagada. Ela acompanha a mão em cada quadro da caminhada, gira para a direção da mira e espelha quando ele olha para a esquerda. Nas vistas de costas ela fica escondida pelo corpo, e a luz continua saindo da lente. `Gabriel.posicao_da_mao()` devolve o ponto da mão na vista e no quadro em que ele está.
 - **O dilema (ver vs. ser visto):**
   - **Ligada:** o jogador enxerga corredores, pilhas e bilhetes. Mas **os robôs enxergam o Gabriel de mais longe**: o alcance da visão deles é multiplicado (Sentinela ×1,7, Rastreador ×1,3).
   - **Desligada:** o Gabriel some no escuro; o jogador anda quase às cegas, guiado pelas luminárias e pelo brilho vermelho dos olhos dos robôs.
@@ -56,7 +56,8 @@ A defesa de emergência do GDD continua prevista, agora sem fungos: um **flash d
 | Raio de visão | `cenas/sistemas/raio_de_visao.tscn`, `scripts/sistemas/raio_de_visao.gd`, `shaders/raio_de_visao.gdshader` |
 | Luz que treme | `scripts/salas/luz_tremula.gd`, `cenas/cenario/luzes/luz_lampada.tscn` |
 | Ícones (lanterna, pilha) | `assets/modelagem/interface/gerar_interface.py` |
-| Sprite da lanterna no peito (5 × 3 px) | `assets/sprites/itens/lanterna_peito.png`, gerado por `gerar_interface.py` (função `lanterna_peito`) |
-| Posição do peito em cada vista | `PEITO_NO_QUADRO` e `posicao_do_peito()` em `scripts/personagens/gabriel.gd` |
+| Sprite da lanterna na mão (14 × 8 px) | `assets/sprites/itens/lanterna_mao.png`, gerado por `gerar_interface.py` (função `lanterna_mao`) |
+| Imagem da tela de item novo | `assets/sprites/itens/lanterna_detalhe.png`, da foto de referência, preparada por `assets/modelagem/itens/preparar_detalhe.py` |
+| Posição da mão em cada vista e quadro | `scripts/personagens/maos_do_gabriel.gd` (gerado por `assets/modelagem/personagens/medir_maos_gabriel.py`) e `posicao_da_mao()` em `scripts/personagens/gabriel.gd` |
 
-> **Se o sprite do Gabriel mudar** (nova arte, outro corte de roupa), os cinco pontos de `PEITO_NO_QUADRO` precisam ser conferidos: eles guardam, em pixels do quadro de 96 × 112, onde fica o peito em cada vista (sempre na linha 40, pelo moletom). O peito varia no máximo 2 px entre os quadros da caminhada, menos de 1 px no jogo, então um ponto por vista basta. Na sala de teste em que `C` troca de personagem, os pontos são os do Gabriel, então a lanterna dos outros fica aproximada.
+> **Se o sprite do Gabriel mudar** (nova arte, outro corte de roupa), rode `python assets/modelagem/personagens/medir_maos_gabriel.py`: ele acha a mão (o único pedaço de pele abaixo do moletom) em cada quadro de cada vista e refaz `maos_do_gabriel.gd`. A pedra continua saindo do peito (`PEITO_NO_QUADRO`, que também precisa ser conferido). Na sala de teste em que `C` troca de personagem, os pontos são os do Gabriel, então a lanterna dos outros fica aproximada.

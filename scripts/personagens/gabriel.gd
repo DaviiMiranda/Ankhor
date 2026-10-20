@@ -7,6 +7,7 @@ signal exaustao_mudou(esta_exausto: bool)
 
 const COR_ESCONDIDO := Color(0.45, 0.45, 0.6)
 const LARGURA_QUADRO := 96.0
+const MAOS := preload("res://scripts/personagens/maos_do_gabriel.gd").MAOS
 const PEITO_NO_QUADRO := {
 	"lado": Vector2(54, 40),
 	"frente": Vector2(47, 40),
@@ -60,6 +61,7 @@ var _velocidade_propria := Vector2.ZERO
 var _distancia := 0.0
 var _tempo_parado := 0.0
 var _passos := 0
+var _tira_da_mao := "imovel"
 var _mascara_colisao := 0
 
 @onready var sprite: Sprite2D = $Sprite2D
@@ -166,6 +168,15 @@ func posicao_do_peito() -> Vector2:
 	return sprite.position + (Vector2(x, pixel.y + 0.5) + sprite.offset) * sprite.scale
 
 
+func posicao_da_mao() -> Vector2:
+	var quadros: Array = MAOS[vista][_tira_da_mao]
+	var pixel: Vector2 = quadros[mini(sprite.frame, quadros.size() - 1)]
+	var x := pixel.x
+	if sprite.flip_h:
+		x = LARGURA_QUADRO - x
+	return sprite.position + (Vector2(x, pixel.y) + sprite.offset) * sprite.scale
+
+
 func andar_sozinho(direcao: Vector2) -> void:
 	if jogador_controla:
 		_mascara_colisao = collision_mask
@@ -230,17 +241,20 @@ func _animar(andou: float, delta: float) -> void:
 	if andou > 0.01 and andando[vista]:
 		_tempo_parado = 0.0
 		_distancia += andou
+		_tira_da_mao = "andar"
 		_mostrar(andando[vista], quadros_andar, int(_distancia / px_por_quadro) % quadros_andar)
 		_contar_passos()
 	elif respirando[vista]:
 		_distancia = 0.0
 		_passos = 0
 		_tempo_parado += delta
+		_tira_da_mao = "parado"
 		_mostrar(respirando[vista], quadros_parado,
 				int(_tempo_parado / segundos_por_quadro_parado) % quadros_parado)
 	elif imovel[vista]:
 		_distancia = 0.0
 		_passos = 0
+		_tira_da_mao = "imovel"
 		_mostrar(imovel[vista], 1, 0)
 
 
