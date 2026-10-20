@@ -2,6 +2,8 @@
 
 ## 1. O Ponto de Salvamento (Salas Seguras)
 
+> **Atualização de 2026-10-20:** quem salva o jogo, na sala segura, é a **máquina dos óculos do Zane**, e não mais o sono. Como a sala segura e o salvamento funcionam hoje está em [`sala_segura.md`](sala_segura.md). O sono e o sonho continuam pendentes.
+
 Diferente de jogos com salvamento automático contínuo, em *Ankhor* salvar o jogo é uma decisão consciente do jogador integrada à narrativa:
 
 - **Localização:** Em cada área do campus existe pelo menos uma **Sala Segura** (ex.: uma sala de professores com porta blindada, uma cabine isolada de estudo, uma enfermaria com tranca interna).

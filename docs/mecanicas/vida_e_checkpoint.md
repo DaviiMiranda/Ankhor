@@ -18,7 +18,7 @@
 - O que **não** é desfeito ao morrer: itens pegos (a lanterna não reaparece, pilhas usadas não voltam), anotações do caderno e transmissões já ouvidas.
 - **Entrar numa fase pelo menu** (Novo jogo ou Fases) apaga checkpoint, vida, inventário, caderno e rádio.
 
-> O GDD prevê que **dormir numa sala segura** salve o jogo. O checkpoint não substitui isso: ele é o "voltar ao último ponto" durante uma fase. O save em arquivo (dormir) ainda não existe.
+> O checkpoint é o "voltar ao último ponto" durante uma fase. O **save em arquivo** é outra coisa: só a máquina de salvar da **sala segura** grava, e o botão Continuar do menu carrega. Ao salvar, a máquina também vira o checkpoint (morrer volta para a sala segura). Ver [`sala_segura.md`](sala_segura.md).
 
 ---
 

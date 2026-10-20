@@ -41,6 +41,16 @@ var _camada_gabriel := 0
 var _olhar: Tween
 
 
+static func destrancadas_salvas() -> Array:
+	return _destrancadas.keys()
+
+
+static func restaurar_destrancadas(ids: Array) -> void:
+	_destrancadas = {}
+	for id in ids:
+		_destrancadas[id] = true
+
+
 func _ready() -> void:
 	super()
 	add_to_group("portas")
