@@ -1,33 +1,31 @@
 extends Control
 
-enum Estado { ENTRANDO, ANDANDO, MOVENDO_CAMERA, NA_TELA, SAINDO }
+enum Estado { ENTRANDO, ANDANDO, MOVENDO_CAMERA, FOCADO, SAINDO }
 
 const DICA_ANDANDO := "Esc: tirar os óculos"
-const DICA_PERTO := "[E] Usar a tela"
-const DICA_NA_TELA := "W/S: escolher   E: confirmar   Esc: afastar"
 
-@export var alcance_da_tela: float = 1.5
 @export var cosseno_do_olhar: float = 0.8
-@export var ocupacao_da_tela: float = 0.8
 @export var segundos_movendo_camera: float = 0.6
 @export var segundos_escurecendo: float = 0.6
 
 var _estado := Estado.ENTRANDO
+var _foco: FocoVisor
 var _camera_ao_andar: Transform3D
 
+@onready var mundo: SubViewport = $Imagem/Mundo
 @onready var jogador: JogadorVisor = $Imagem/Mundo/JogadorVisor
-@onready var tela: MeshInstance3D = $Imagem/Mundo/Modelo/Tela
-@onready var imagem_da_tela: SubViewport = $Imagem/Mundo/ImagemDaTela
-@onready var menu: MenuVisor = $Imagem/Mundo/ImagemDaTela/MenuVisor
+@onready var tela: TelaDoVisor = $Imagem/Mundo/TelaDoVisor
+@onready var tela_documento: CanvasLayer = $TelaDocumento
 @onready var efeito_crt: ColorRect = $EfeitoCRT
 @onready var escuro: ColorRect = $Escuro
 @onready var dica: Label = $Dica
 
 
 func _ready() -> void:
-	_pintar_a_tela()
-	menu.salvar_pedido.connect(_salvar)
-	menu.voltar_pedido.connect(_sair)
+	tela.menu.salvar_pedido.connect(_salvar)
+	tela.menu.voltar_pedido.connect(_sair)
+	for foco in _focos():
+		foco.leitura_pedida.connect(_ler)
 	Configuracoes.mudou.connect(_ao_mudar_configuracoes)
 	_ao_mudar_configuracoes()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -40,14 +38,15 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if _estado == Estado.ANDANDO:
-		dica.text = DICA_PERTO if _pode_usar_a_tela() else DICA_ANDANDO
+		var foco := foco_a_frente()
+		dica.text = "[E] " + foco.texto_acao if foco else DICA_ANDANDO
 
 
 func _unhandled_input(evento: InputEvent) -> void:
 	if _estado == Estado.ANDANDO:
 		_entrada_andando(evento)
-	elif _estado == Estado.NA_TELA:
-		_entrada_na_tela(evento)
+	elif _estado == Estado.FOCADO:
+		_entrada_focado(evento)
 
 
 func _entrada_andando(evento: InputEvent) -> void:
@@ -55,8 +54,8 @@ func _entrada_andando(evento: InputEvent) -> void:
 		jogador.girar(evento.screen_relative)
 	elif evento is InputEventMouseButton and evento.pressed:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	elif evento.is_action_pressed("interagir") and _pode_usar_a_tela():
-		_ir_ate_a_tela()
+	elif evento.is_action_pressed("interagir") and foco_a_frente():
+		_ir_ate(foco_a_frente())
 	elif evento.is_action_pressed("pausar"):
 		_sair()
 	else:
@@ -64,47 +63,40 @@ func _entrada_andando(evento: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 
 
-func _entrada_na_tela(evento: InputEvent) -> void:
+func _entrada_focado(evento: InputEvent) -> void:
 	if evento.is_action_pressed("pausar"):
 		_voltar_a_andar()
 	elif evento is InputEventKey:
-		imagem_da_tela.push_input(evento)
+		_foco.receber(evento)
 	else:
 		return
 	get_viewport().set_input_as_handled()
 
 
-func _pintar_a_tela() -> void:
-	var material := StandardMaterial3D.new()
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
-	material.albedo_texture = imagem_da_tela.get_texture()
-	tela.material_override = material
+func foco_a_frente() -> FocoVisor:
+	var olhar := _no_chao(jogador.direcao_do_olhar()).normalized()
+	var melhor: FocoVisor = null
+	var melhor_cosseno := cosseno_do_olhar
+	for foco in _focos():
+		var ate_o_foco := _no_chao(foco.centro() - jogador.global_position)
+		if ate_o_foco.length() > foco.alcance:
+			continue
+		var cosseno := olhar.dot(ate_o_foco.normalized())
+		if cosseno >= melhor_cosseno:
+			melhor = foco
+			melhor_cosseno = cosseno
+	return melhor
 
 
-func _centro_da_tela() -> Vector3:
-	return tela.global_transform * tela.get_aabb().get_center()
-
-
-func _pode_usar_a_tela() -> bool:
-	var ate_a_tela := _no_chao(_centro_da_tela() - jogador.global_position)
-	if ate_a_tela.length() > alcance_da_tela:
-		return false
-	var olhar := _no_chao(jogador.direcao_do_olhar())
-	return olhar.normalized().dot(ate_a_tela.normalized()) >= cosseno_do_olhar
+func _focos() -> Array[FocoVisor]:
+	var focos: Array[FocoVisor] = []
+	for no in get_tree().get_nodes_in_group(FocoVisor.GRUPO):
+		focos.append(no as FocoVisor)
+	return focos
 
 
 func _no_chao(vetor: Vector3) -> Vector3:
 	return Vector3(vetor.x, 0.0, vetor.z)
-
-
-func _camera_diante_da_tela() -> Transform3D:
-	var centro := _centro_da_tela()
-	var frente := (tela.global_basis * Vector3.BACK).normalized()
-	var altura := tela.get_aabb().size.y * tela.global_basis.get_scale().y
-	var meio_angulo := deg_to_rad(jogador.camera.fov) / 2.0
-	var distancia := (altura / ocupacao_da_tela) / (2.0 * tan(meio_angulo))
-	return Transform3D(Basis(), centro + frente * distancia).looking_at(centro, Vector3.UP)
 
 
 func _comecar_a_andar() -> void:
@@ -112,21 +104,24 @@ func _comecar_a_andar() -> void:
 	_mudar_estado(Estado.ANDANDO)
 
 
-func _ir_ate_a_tela() -> void:
+func _ir_ate(foco: FocoVisor) -> void:
+	_foco = foco
 	_mudar_estado(Estado.MOVENDO_CAMERA)
 	jogador.controlando = false
 	_camera_ao_andar = jogador.camera.transform
-	var movimento := _mover_camera(jogador.camera.global_transform, _camera_diante_da_tela())
-	movimento.tween_callback(_chegar_na_tela)
+	var proporcao := float(mundo.size.x) / float(mundo.size.y)
+	var destino := foco.camera_diante(jogador.camera.fov, proporcao)
+	var movimento := _mover_camera(jogador.camera.global_transform, destino)
+	movimento.tween_callback(_chegar_no_foco)
 
 
-func _chegar_na_tela() -> void:
-	_mudar_estado(Estado.NA_TELA)
-	menu.focar()
+func _chegar_no_foco() -> void:
+	_mudar_estado(Estado.FOCADO)
+	_foco.focar()
 
 
 func _voltar_a_andar() -> void:
-	menu.soltar()
+	_foco.soltar()
 	_mudar_estado(Estado.MOVENDO_CAMERA)
 	var destino := jogador.cabeca.global_transform * _camera_ao_andar
 	var movimento := _mover_camera(jogador.camera.global_transform, destino)
@@ -135,6 +130,7 @@ func _voltar_a_andar() -> void:
 
 func _soltar_camera() -> void:
 	jogador.camera.transform = _camera_ao_andar
+	_foco = null
 	_comecar_a_andar()
 
 
@@ -148,14 +144,19 @@ func _posicionar_camera(peso: float, inicio: Transform3D, fim: Transform3D) -> v
 	jogador.camera.global_transform = inicio.interpolate_with(fim, peso)
 
 
+func _ler(documento: Documento) -> void:
+	tela_documento.abrir(documento)
+
+
 func _salvar() -> void:
-	menu.mostrar_resultado(Visor.salvar())
+	tela.menu.mostrar_resultado(Visor.salvar())
 
 
 func _sair() -> void:
 	if _estado == Estado.SAINDO:
 		return
-	menu.soltar()
+	if _foco:
+		_foco.soltar()
 	jogador.controlando = false
 	_mudar_estado(Estado.SAINDO)
 	var saida := create_tween()
@@ -168,8 +169,8 @@ func _mudar_estado(novo: Estado) -> void:
 	match novo:
 		Estado.ANDANDO:
 			dica.text = DICA_ANDANDO
-		Estado.NA_TELA:
-			dica.text = DICA_NA_TELA
+		Estado.FOCADO:
+			dica.text = _foco.dica_focado
 		_:
 			dica.text = ""
 

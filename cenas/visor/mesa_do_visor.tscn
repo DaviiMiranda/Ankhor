@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/visor/mesa_do_visor.gd" id="1_mesa"]
+
+[node name="MesaDoVisor" type="Node3D"]
+script = ExtResource("1_mesa")
+texto_acao = "Ver os papéis"
+dica_focado = "WASD: escolher   E: ler   Esc: afastar"
+tamanho = Vector2(1.1, 0.45)

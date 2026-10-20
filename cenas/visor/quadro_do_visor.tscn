@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/visor/quadro_do_visor.gd" id="1_quadro"]
+
+[node name="QuadroDoVisor" type="Node3D"]
+script = ExtResource("1_quadro")
+texto_acao = "Ler o quadro"
+tamanho = Vector2(1.3, 0.85)
+alcance = 1.7
