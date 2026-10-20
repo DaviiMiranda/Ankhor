@@ -1,12 +1,11 @@
 extends Node
 
-const PERSONAGENS: Array[String] = ["gabriel", "clarice", "zane", "baltazar", "rafael", "henrique", "carlos", "diana"]
+const PERSONAGENS: Array[String] = ["gabriel", "clarice", "zane", "baltazar", "henrique", "carlos", "diana"]
 const NOMES := {
 	"gabriel": "Gabriel",
 	"clarice": "Clarice",
 	"zane": "Zane",
 	"baltazar": "Baltazar",
-	"rafael": "Rafael",
 	"henrique": "Henrique",
 	"carlos": "Carlos",
 	"diana": "Diana",
