@@ -12,10 +12,8 @@ const SEGUNDOS_ATE_O_LUGAR := 3.0
 const DISTANCIA_CHEGADA := 1.5
 
 @export var aviso_salvo: String = "Jogo salvo"
-@export var aviso_falha: String = "Não foi possível salvar"
 @export var deslocamento_retorno := Vector2(0, 14)
 @export var segundos_escurecendo: float = 0.9
-@export var segundos_conectado: float = 1.2
 @export var segundos_por_quadro: float = 0.1
 
 var _salvando := false
@@ -27,7 +25,6 @@ var _escala_oculos: Vector2
 @onready var camada_luz: Sprite2D = $CamadaLuz
 @onready var oculos: Sprite2D = $OculosDoZane
 @onready var luz: PointLight2D = $Luz
-@onready var som: AudioStreamPlayer = $Som
 
 
 func _ready() -> void:
@@ -56,7 +53,7 @@ func _sessao(gabriel: Gabriel) -> void:
 	gabriel.z_index = CAMADA_GABRIEL
 	oculos.z_index = CAMADA_OCULOS
 	await _tocar_quadros(gabriel, range(QUADROS.size()))
-	await _conectar()
+	await _usar_o_visor()
 	await _tocar_quadros(gabriel, range(QUADROS.size() - 1, -1, -1))
 	_terminar(gabriel)
 
@@ -111,26 +108,20 @@ func _tamanho_dos_oculos(escala: Vector2) -> Vector2:
 	return oculos.texture.get_size() * escala
 
 
-func _conectar() -> void:
+func _usar_o_visor() -> void:
 	var escuro := get_tree().current_scene.get_node_or_null("Transicao/Escuro") as ColorRect
-	som.play()
-	var sessao := create_tween()
-	sessao.tween_property(luz, "energy", ENERGIA_ATIVA, 0.5)
-	sessao.parallel().tween_property(camada_luz, "modulate:a", 1.0, 0.5)
+	var acender := create_tween()
+	acender.tween_property(luz, "energy", ENERGIA_ATIVA, 0.5)
+	acender.parallel().tween_property(camada_luz, "modulate:a", 1.0, 0.5)
 	if escuro:
-		sessao.tween_property(escuro, "color:a", 1.0, segundos_escurecendo)
-	sessao.tween_interval(segundos_conectado)
-	sessao.tween_callback(_gravar)
+		acender.tween_property(escuro, "color:a", 1.0, segundos_escurecendo)
+	await acender.finished
+	Visor.abrir(_cena(), global_position + deslocamento_retorno)
+	_salvou = await Visor.fechado
 	if escuro:
-		sessao.tween_property(escuro, "color:a", 0.0, segundos_escurecendo)
-	await sessao.finished
-
-
-func _gravar() -> void:
-	var posicao := global_position + deslocamento_retorno
-	Vida.limpar()
-	Checkpoints.marcar("maquina_de_salvar", _cena(), posicao)
-	_salvou = Salvamento.salvar(_cena(), posicao)
+		var clarear := create_tween()
+		clarear.tween_property(escuro, "color:a", 0.0, segundos_escurecendo)
+		await clarear.finished
 
 
 func _terminar(gabriel: Gabriel) -> void:
@@ -141,7 +132,8 @@ func _terminar(gabriel: Gabriel) -> void:
 	var apagar := create_tween().set_parallel()
 	apagar.tween_property(luz, "energy", _energia_ociosa, 0.6)
 	apagar.tween_property(camada_luz, "modulate:a", ALFA_OCIOSA, 0.6)
-	Inventario.aviso.emit(aviso_salvo if _salvou else aviso_falha)
+	if _salvou:
+		Inventario.aviso.emit(aviso_salvo)
 	_salvando = false
 
 

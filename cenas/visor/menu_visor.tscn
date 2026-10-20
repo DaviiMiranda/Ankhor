@@ -1,0 +1,110 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/visor/menu_visor.gd" id="1_menu"]
+[ext_resource type="Theme" path="res://cenas/interface/tema_tela_crt.tres" id="2_tema"]
+[ext_resource type="Shader" path="res://shaders/tela_crt.gdshader" id="3_crt"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/menu_passar.wav" id="4_passar"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/menu_clique.wav" id="5_clique"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/salvar_jogo.wav" id="6_salvar"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crt"]
+shader = ExtResource("3_crt")
+shader_parameter/forca_linhas = 0.18
+shader_parameter/forca_vinheta = 0.6
+shader_parameter/raio_cantos = 0.07
+shader_parameter/proporcao = 1.3333
+shader_parameter/linhas_na_altura = 72.0
+
+[node name="MenuVisor" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 192.0
+offset_bottom = 144.0
+theme = ExtResource("2_tema")
+script = ExtResource("1_menu")
+
+[node name="Fundo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.035, 0.07, 0.1, 1)
+
+[node name="Conteudo" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 172.0
+offset_bottom = 132.0
+theme_override_constants/separation = 0
+
+[node name="Titulo" type="Label" parent="Conteudo"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.98, 0.98, 1)
+theme_override_colors/font_shadow_color = Color(0.55, 0.85, 1, 0.3)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "ANKHOR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UltimoSave" type="Label" parent="Conteudo"]
+layout_mode = 2
+text = "Nenhum jogo salvo"
+horizontal_alignment = 1
+
+[node name="DataDoSave" type="Label" parent="Conteudo"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.85, 0.95, 1)
+horizontal_alignment = 1
+
+[node name="Espaco" type="Control" parent="Conteudo"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BotaoSalvar" type="Button" parent="Conteudo"]
+layout_mode = 2
+text = "Salvar jogo"
+
+[node name="BotaoVoltar" type="Button" parent="Conteudo"]
+layout_mode = 2
+text = "Voltar"
+
+[node name="Resultado" type="Label" parent="Conteudo"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.89, 0.95, 0.35, 1)
+horizontal_alignment = 1
+
+[node name="EfeitoCRT" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_crt")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SomPassar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_passar")
+volume_db = -4.0
+bus = &"Efeitos"
+
+[node name="SomClique" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_clique")
+volume_db = -4.0
+bus = &"Efeitos"
+
+[node name="SomSalvar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_salvar")
+volume_db = -4.0
+bus = &"Efeitos"

@@ -17,6 +17,11 @@ uniform float forca_faixa : hint_range(0.0, 0.5) = 0.12;
 uniform float velocidade_faixa = 0.12;
 // Proporção largura / altura do retângulo da tela (140 / 102).
 uniform float proporcao = 1.3725;
+// Quantas linhas cabem na altura da imagem em que o efeito é desenhado.
+// No menu principal, 180: uma por pixel do jogo. Na TV do visor 3D
+// (cenas/visor/menu_visor.tscn) a imagem tem 144 px e usa 72: uma linha a
+// cada 2 px, senão as linhas ficam mais finas que o pixel e somem.
+uniform float linhas_na_altura = 180.0;
 
 // Distância com sinal até um retângulo de cantos arredondados centrado na
 // origem: negativa dentro, positiva fora. "metade" é a metade do tamanho.
@@ -27,9 +32,9 @@ float distancia_retangulo_arredondado(vec2 p, vec2 metade, float raio) {
 
 void fragment() {
 	// Linhas: um pixel sim, um pixel não, fica mais escuro.
-	// Uma linha a cada pixel DO JOGO (180 na altura), qualquer que seja o
-	// tamanho da janela: FRAGCOORD.y * SCREEN_PIXEL_SIZE.y vai de 0 a 1.
-	float linha = mod(floor(FRAGCOORD.y * SCREEN_PIXEL_SIZE.y * 180.0), 2.0) * forca_linhas;
+	// Uma linha a cada fatia de altura / linhas_na_altura, qualquer que seja
+	// o tamanho da janela: FRAGCOORD.y * SCREEN_PIXEL_SIZE.y vai de 0 a 1.
+	float linha = mod(floor(FRAGCOORD.y * SCREEN_PIXEL_SIZE.y * linhas_na_altura), 2.0) * forca_linhas;
 
 	// Vinheta: quanto mais longe do centro (UV = 0.5, 0.5), mais escuro.
 	vec2 do_centro = UV - vec2(0.5);

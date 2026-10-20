@@ -1,0 +1,156 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/visor/sala_visor.gd" id="1_sala"]
+[ext_resource type="PackedScene" uid="uid://b3xnllrb3kb2n" path="res://assets/modelos/sala_visor.glb" id="2_modelo"]
+[ext_resource type="PackedScene" path="res://cenas/visor/jogador_visor.tscn" id="3_jogador"]
+[ext_resource type="PackedScene" path="res://cenas/visor/menu_visor.tscn" id="4_menu"]
+[ext_resource type="Shader" path="res://shaders/tela_crt.gdshader" id="5_crt"]
+
+[sub_resource type="Environment" id="Ambiente"]
+background_mode = 1
+background_color = Color(0.01, 0.015, 0.025, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.3, 0.42, 0.6, 1)
+ambient_light_energy = 0.35
+glow_enabled = true
+glow_intensity = 0.6
+glow_bloom = 0.05
+fog_enabled = true
+fog_light_color = Color(0.02, 0.05, 0.08, 1)
+fog_density = 0.06
+
+[sub_resource type="BoxShape3D" id="Chao"]
+size = Vector3(5, 0.2, 5)
+
+[sub_resource type="BoxShape3D" id="ParedeComprida"]
+size = Vector3(5.4, 3, 0.2)
+
+[sub_resource type="BoxShape3D" id="ParedeLateral"]
+size = Vector3(0.2, 3, 5.4)
+
+[sub_resource type="BoxShape3D" id="MovelComTV"]
+size = Vector3(1, 1.2, 0.85)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crt"]
+shader = ExtResource("5_crt")
+shader_parameter/forca_linhas = 0.12
+shader_parameter/forca_vinheta = 0.9
+shader_parameter/forca_cintilacao = 0.02
+shader_parameter/raio_cantos = 0.05
+shader_parameter/forca_faixa = 0.05
+shader_parameter/proporcao = 1.7778
+shader_parameter/linhas_na_altura = 180.0
+
+[node name="SalaVisor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_sala")
+
+[node name="Imagem" type="SubViewportContainer" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+
+[node name="Mundo" type="SubViewport" parent="Imagem"]
+handle_input_locally = false
+gui_disable_input = true
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Ambiente" type="WorldEnvironment" parent="Imagem/Mundo"]
+environment = SubResource("Ambiente")
+
+[node name="Modelo" parent="Imagem/Mundo" instance=ExtResource("2_modelo")]
+
+[node name="LuzDaTela" type="OmniLight3D" parent="Imagem/Mundo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -0.9)
+light_color = Color(0.6, 0.85, 1, 1)
+light_energy = 0.7
+omni_range = 3.5
+
+[node name="LuzDoTeto" type="OmniLight3D" parent="Imagem/Mundo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0.5)
+light_color = Color(0.55, 0.65, 0.85, 1)
+light_energy = 0.5
+omni_range = 5.0
+
+[node name="Colisao" type="StaticBody3D" parent="Imagem/Mundo"]
+
+[node name="Chao" type="CollisionShape3D" parent="Imagem/Mundo/Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("Chao")
+
+[node name="ParedeFundo" type="CollisionShape3D" parent="Imagem/Mundo/Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -2.6)
+shape = SubResource("ParedeComprida")
+
+[node name="ParedeFrente" type="CollisionShape3D" parent="Imagem/Mundo/Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 2.6)
+shape = SubResource("ParedeComprida")
+
+[node name="ParedeEsquerda" type="CollisionShape3D" parent="Imagem/Mundo/Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 1.4, 0)
+shape = SubResource("ParedeLateral")
+
+[node name="ParedeDireita" type="CollisionShape3D" parent="Imagem/Mundo/Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 1.4, 0)
+shape = SubResource("ParedeLateral")
+
+[node name="MovelComTV" type="CollisionShape3D" parent="Imagem/Mundo/Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -2.075)
+shape = SubResource("MovelComTV")
+
+[node name="JogadorVisor" parent="Imagem/Mundo" instance=ExtResource("3_jogador")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2)
+
+[node name="ImagemDaTela" type="SubViewport" parent="Imagem/Mundo"]
+size = Vector2i(192, 144)
+render_target_update_mode = 4
+
+[node name="MenuVisor" parent="Imagem/Mundo/ImagemDaTela" instance=ExtResource("4_menu")]
+
+[node name="EfeitoCRT" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_crt")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dica" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 0.9)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+
+[node name="Escuro" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

@@ -1,0 +1,29 @@
+[gd_resource type="Theme" format=3]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_botao"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_destaque"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.17, 0.27, 0.39, 0.85)
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.22, 0.3, 0.4, 1)
+
+[resource]
+default_font_size = 8
+Label/constants/line_spacing = 0
+Button/colors/font_color = Color(0.68, 0.79, 0.87, 1)
+Button/colors/font_disabled_color = Color(0.25, 0.29, 0.34, 1)
+Button/colors/font_focus_color = Color(0.95, 0.99, 1, 1)
+Button/colors/font_hover_color = Color(0.95, 0.99, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/disabled = SubResource("StyleBoxEmpty_botao")
+Button/styles/focus = SubResource("StyleBoxFlat_destaque")
+Button/styles/hover = SubResource("StyleBoxEmpty_botao")
+Button/styles/normal = SubResource("StyleBoxEmpty_botao")
+Button/styles/pressed = SubResource("StyleBoxFlat_destaque")
+Label/colors/font_color = Color(0.72, 0.82, 0.9, 1)

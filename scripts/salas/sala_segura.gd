@@ -4,6 +4,12 @@ extends Sala
 const GRUPO := "sala_segura"
 
 
+func _enter_tree() -> void:
+	if Engine.is_editor_hint():
+		return
+	get_tree().node_added.connect(_ao_entrar_no_arvore)
+
+
 func _ready() -> void:
 	super()
 	if Engine.is_editor_hint():
@@ -11,7 +17,6 @@ func _ready() -> void:
 	add_to_group(GRUPO)
 	for no in get_tree().get_nodes_in_group("robos"):
 		no.queue_free()
-	get_tree().node_added.connect(_ao_entrar_no_arvore)
 
 
 func _exit_tree() -> void:

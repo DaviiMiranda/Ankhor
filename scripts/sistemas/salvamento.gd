@@ -6,6 +6,7 @@ signal carregou
 const CAMINHO := "user://salvamento.cfg"
 const VERSAO := 1
 const CAMINHO_ITEM := "res://dados/itens/%s.tres"
+const FORMATO_DATA := "%02d/%02d/%04d %02d:%02d"
 
 
 func existe() -> bool:
@@ -19,10 +20,21 @@ func cena_salva() -> String:
 	return arquivo.get_value("jogo", "cena", "")
 
 
+func data_salva() -> String:
+	var arquivo := _ler()
+	if arquivo == null:
+		return ""
+	var data: Dictionary = arquivo.get_value("jogo", "data", {})
+	if data.is_empty():
+		return ""
+	return FORMATO_DATA % [data.day, data.month, data.year, data.hour, data.minute]
+
+
 func salvar(cena: String, posicao: Vector2) -> bool:
 	var arquivo := ConfigFile.new()
 	arquivo.set_value("jogo", "versao", VERSAO)
 	arquivo.set_value("jogo", "cena", cena)
+	arquivo.set_value("jogo", "data", Time.get_datetime_dict_from_system())
 	arquivo.set_value("jogo", "posicao", posicao)
 	arquivo.set_value("inventario", "grade", _ids_da_grade())
 	arquivo.set_value("inventario", "gadgets", _ids_dos_gadgets())
