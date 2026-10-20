@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-20 — Visor 3D sem CRT, na resolução da janela, com estrelas coloridas no céu
+**Decisão:** o quarto do visor deixa de ter o efeito CRT por cima da visão (só a tela da TV mantém o dela) e passa a ser desenhado **na resolução real da janela**, em vez de 640 × 360 ampliado. As texturas continuam em pixel art com filtro Nearest; as bordas dos móveis ficam lisas, com MSAA 2×. Acima das paredes, o céu ganha **centenas de pontos de luz coloridos** que acendem e apagam; dentro do quarto não há partículas.
+**Por quê:** pedido do Davi: os textos do mural, da mesa e do quadro precisam ser legíveis mesmo de longe, e o céu aberto pedia mais vida.
+**Afeta:** `cenas/visor/sala_visor.tscn`, `scripts/visor/sala_visor.gd` (`resolucao_do_3d`, `_ajustar_resolucao`), `docs/mecanicas/visor_3d.md`.
+
 ## 2026-10-20 — O visor é o quarto do Gabriel, a mente dele materializada
 **Decisão:** a sala 3D do visor passa a ser **o quarto do Gabriel**, o mesmo de 2026 da ilustração do prólogo (janela com o pôr do sol, escrivaninha, estante, cama, pôsteres), como **a mente dele materializada**: sem teto, as paredes terminam numa linha ciano e acima é o escuro. O quarto **guarda o jogo até ali**: um **mural de cortiça** com um cartão para cada anotação do caderno, ligados por um fio vermelho; os **documentos já lidos jogados na escrivaninha**; e um **quadro branco com os números** (fase, documentos lidos, transmissões ouvidas, anotações, portas destrancadas, itens na mochila, último save). O jogador chega perto, aperta E e a câmera vai até o lugar; no mural e na mesa escolhe um papel e lê o texto inteiro. A TV de salvar continua no fundo. Nada é texto novo: tudo vem do save.
 **Por quê:** pedido do Davi. O caderno já é, na história, "o único lugar onde o quadro inteiro existe" (ficha do Gabriel); o quarto dá corpo a isso e abre caminho para o quarto ser, no futuro, a materialização do save de cada jogador.

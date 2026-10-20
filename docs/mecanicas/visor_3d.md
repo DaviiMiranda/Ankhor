@@ -1,6 +1,6 @@
 # Mecânicas — O visor 3D: o quarto do Gabriel (salvar em primeira pessoa)
 
-Quando o Gabriel põe os óculos do Zane na sala segura ([`sala_segura.md`](sala_segura.md)), o jogo **vira 3D em primeira pessoa**. Ele aparece no **próprio quarto, a mente dele materializada**: o quarto de 2026 do prólogo (`seg_prologo`, cena 2), com a janela do pôr do sol, a escrivaninha, a estante, a cama e os pôsteres, só que sem teto. As paredes terminam numa linha ciano e, acima delas, é o escuro, com poeira brilhando no ar. É um quarto lembrado, não um quarto de verdade.
+Quando o Gabriel põe os óculos do Zane na sala segura ([`sala_segura.md`](sala_segura.md)), o jogo **vira 3D em primeira pessoa**. Ele aparece no **próprio quarto, a mente dele materializada**: o quarto de 2026 do prólogo (`seg_prologo`, cena 2), com a janela do pôr do sol, a escrivaninha, a estante, a cama e os pôsteres, só que sem teto. As paredes terminam numa linha ciano e, acima delas, é o escuro, cheio de pontos de luz coloridos (só no céu, nunca dentro do quarto). É um quarto lembrado, não um quarto de verdade.
 
 O quarto guarda o jogo até ali. Tudo o que aparece nele vem do estado do jogo naquele momento (o mesmo que vai para o save):
 
@@ -61,11 +61,15 @@ O mural e a mesa montam os papéis com o `PapelDoVisor` (`scripts/visor/papel_do
 
 **Limites:** o mural mostra as **24** anotações mais recentes (6 × 4) e a mesa os **15** primeiros documentos lidos (5 × 3). O jogo tem 13 documentos hoje.
 
-## 4. A imagem pixelada
+## 4. A imagem e o céu
 
-O 3D é desenhado num `SubViewport` de **640 × 360** (a resolução base do jogo) dentro de um `SubViewportContainer` com filtro **Nearest**. A janela amplia essa imagem como amplia o resto do jogo: os pixels ficam grandes e o 3D combina com o pixel art. Por cima vai o mesmo efeito CRT do menu principal (`shaders/tela_crt.gdshader`), mais fraco, e ele obedece à opção **Efeito CRT** das configurações.
+O 3D é desenhado num `SubViewport` **na resolução real da janela** (1920 × 1080 em Full HD), não nos 640 × 360 do resto do jogo. Assim os textos do mural, da mesa e do quadro ficam legíveis mesmo de longe: em 640 × 360, uma letra a 3 m de distância ocupava um ou dois pixels. As texturas continuam em pixel art com filtro **Nearest** (papéis, janela, pôsteres, fonte), então os pixels delas continuam nítidos; só as bordas dos móveis ficam lisas, com antisserrilhado **MSAA 2×**.
 
-Para deixar mais pixelado, ponha `stretch_shrink = 2` no nó `Imagem` de `cenas/visor/sala_visor.tscn` (o 3D passa a ser desenhado em 320 × 180, o mesmo tamanho do cenário 2D). O texto do mural, da mesa e do quadro fica ilegível nesse caso.
+Quem cuida disso é `_ajustar_resolucao` em `scripts/visor/sala_visor.gd`: desenha o 3D do tamanho da janela e encolhe a imagem (`scale`) para caber nos 640 × 360 da interface. Ela roda de novo quando a janela muda de tamanho. Para voltar ao visual pixelado, baixe `resolucao_do_3d` no nó raiz da cena (0,33 em Full HD dá os mesmos 640 × 360 de antes; os textos de longe voltam a ficar ilegíveis).
+
+Não há efeito CRT por cima da visão: só a tela da TV tem CRT, porque ali ele é a própria TV.
+
+**O céu:** as estrelas são um `CPUParticles3D` (nó `Estrelas`) que nasce numa caixa de 14 × 3 × 14 m entre 3,3 m e 6,3 m de altura, acima das paredes (2,8 m): elas sobem devagar e nunca entram no quarto. Cada uma ganha uma cor sorteada de uma paleta (ciano, rosa, âmbar, violeta, verde, vermelho, branco: `color_initial_ramp`), acende e apaga ao longo da vida (`color_ramp`, só no alfa) e brilha um pouco por causa do *glow* do ambiente. O material some quando a estrela fica a menos de 1,2 m da câmera (`distance_fade`), para nenhuma virar um quadrado grande na frente dos olhos.
 
 O menu da TV é uma cena de interface comum (`MenuVisor`), desenhada noutro `SubViewport`, de **192 × 144** (4:3, como a tela). A imagem desse viewport vira a textura da tela da TV (material sem sombreamento, filtro Nearest). Como esse `SubViewport` não está dentro de um container, ele não recebe teclas sozinho: a TV repassa as teclas para ele com `push_input` enquanto a câmera está nela.
 
@@ -91,7 +95,7 @@ Na TV ($h = 0{,}33$ m), $d \approx 0{,}36$ m; no mural ($2{,}05 \times 1{,}05$ m
 
 ### Tamanho das letras em 3D
 
-Para o texto em `Label3D` ficar nítido, cada pixel da fonte deve virar mais ou menos **um pixel da imagem**. A câmera enquadra uma altura $H$ em 360 pixels, então cada pixel da imagem mede $H/360$ metros naquela distância. Esse é o `pixel_size` de cada lugar:
+Com a câmera parada no lugar, cada pixel da fonte deve virar **um pixel do jogo** (a grade de 640 × 360 da interface; em Full HD, 3 × 3 pixels da tela), o mesmo tamanho das letras do resto do jogo. A câmera enquadra uma altura $H$ em 360 pixels do jogo, então cada um mede $H/360$ metros naquela distância. Esse é o `pixel_size` de cada lugar:
 
 | Lugar | $H$ | `pixel_size` |
 |---|---|---|
