@@ -1,14 +1,14 @@
 # GDD — respostas dos itens 1 a 4
 
 > **Título do Jogo:** Ankhor  
-> **Hierarquia:** Para **história, mundo e personagens**, a lei do projeto é o [Enredo Principal](historia/enredo_principal.md): se este GDD contradizer o Enredo, vale o Enredo. Para decisões recentes de design e técnica, consulte [`decisoes.md`](decisoes.md). Para a documentação técnica aprofundada, consulte o índice mestre em [`README.md`](README.md).
+> **Hierarquia:** Para **história, mundo e personagens**, a lei do projeto é o [Enredo Principal](historia/História_Completa.md): se este GDD contradizer o Enredo, vale o Enredo. Para decisões recentes de design e técnica, consulte [`decisoes.md`](decisoes.md). Para a documentação técnica aprofundada, consulte o índice mestre em [`README.md`](README.md).
 
 > [!TIP]
 > **Documentação Modular Detalhada:**
 > - 🎯 **[Visão Geral e Pilares](visao_geral/conceito.md)** | **[Estilo Artístico 2.5D](visao_geral/estilo_artistico.md)**
 > - ⚙️ **[Mecânicas e Core Loop](mecanicas/README.md)** | **[Furtividade](mecanicas/furtividade_e_esconderijos.md)** | **[Iluminação](mecanicas/iluminacao_e_lanterna.md)** | **[Vida e Checkpoint](mecanicas/vida_e_checkpoint.md)** | **[Sono e Sonhos](mecanicas/sono_e_sonhos.md)**
 > - 💻 **[Conceitos de Computação](computacao/README.md)** (Grafos, Coloração, BFS, A*, Markov, Shaders)
-> - 📜 **[Enredo Principal](historia/enredo_principal.md)** | **[Índice da História](historia/README.md)** | **[Modelo de Documento](historia/template_documento.md)**
+> - 📜 **[Enredo Principal](historia/História_Completa.md)** | **[Índice da História](historia/README.md)** | **[Modelo de Documento](historia/template_documento.md)**
 > - 👥 **[Personagens](historia/personagens/)** ([Gabriel](historia/personagens/gabriel.md), [Robôs](historia/personagens/robos.md), [Modelo de ficha](historia/template_personagem.md))
 > - 🗺️ **[Design de Fases](fases/README.md)** | **[Template de Fase](fases/template_fase.md)**
 > - 💬 **[Sistema de Diálogos](dialogos/README.md)** | **[Template de Diálogo](dialogos/template_dialogo.md)**
@@ -25,7 +25,7 @@
 
 **Público-alvo:** adolescentes e adultos, a partir de 14 anos. Terror de tensão, sem violência explícita. Pensado primeiro para quem conhece a Unifor: alunos e ex-alunos reconhecem cada prédio, mesmo em ruínas.
 
-**Resumo do Conceito:** Gabriel Magalhães, estudante de 2026, pega no sono na Biblioteca da Unifor e acorda mil anos no futuro, no ano de 3026. A humanidade abandonou a Terra e uma IA dominou o planeta. No antigo centro de pesquisa da Unifor, uma máquina abandonada, a **Âncora**, falhou e abriu uma fenda no tempo no chão da Biblioteca, que por acaso puxou, com dias de diferença, jovens de épocas diferentes. Gabriel precisa encontrá-los, fugir dos robôs da IA, descobrir o que aconteceu e achar um jeito de todos voltarem. A primeira fase do jogo é a Biblioteca. A história completa está no [Enredo Principal](historia/enredo_principal.md).
+**Resumo do Conceito:** Gabriel Magalhães, estudante de 2026, pega no sono na Biblioteca da Unifor e acorda mil anos no futuro, no ano de 3026. A humanidade abandonou a Terra e uma IA dominou o planeta. No antigo centro de pesquisa da Unifor, uma máquina abandonada, a **Âncora**, falhou e abriu uma fenda no tempo no chão da Biblioteca, que por acaso puxou, com dias de diferença, jovens de épocas diferentes. Gabriel precisa encontrá-los, fugir dos robôs da IA, descobrir o que aconteceu e achar um jeito de todos voltarem. A primeira fase do jogo é a Biblioteca. A história completa está no [Enredo Principal](historia/História_Completa.md).
 
 O que torna o jogo diferente:
 - **Estranhamento do familiar:** o jogador reconhece a catraca, o bebedouro, o quadro, a Biblioteca. O mundo em volta não reconhece mais nada disso.
@@ -108,11 +108,11 @@ E, nos sonhos, o mesmo campus **na última semana antes de tudo**: cheio, ilumin
 
 ### História e Personagens
 
-> A história, o mundo e os personagens estão no **[Enredo Principal](historia/enredo_principal.md)**, que é a lei do projeto. Aqui fica só o resumo.
+> A história, o mundo e os personagens estão no **[Enredo Principal](historia/História_Completa.md)**, que é a lei do projeto. Aqui fica só o resumo.
 
 - **O mundo:** em 3026 o pouco que sobrou da humanidade foi para outro planeta. Ficou o **Carlos**, cientista obcecado pelos anos 80, que criou a Âncora e controla os robôs, que caçam humanos.
 - **A Âncora e a fenda:** a Âncora é só uma máquina, abandonada no centro de pesquisa da Unifor. Ela falhou e abriu uma fenda no chão da Biblioteca, que pulsa e, por acaso, puxa quem estiver ali em alguma época.
-- **Os personagens:** jovens de cerca de 20 anos, todos vivos, puxados com dias de diferença: Baltazar Magalhães (~1750, antepassado de Gabriel), Diana (1978), Clarice (1994), Henrique (2019, o pesquisador), **Gabriel Magalhães** (2026, o protagonista, último a chegar) e Zane (2123). O antagonista é o Carlos (3026).
+- **Os personagens:** jovens de cerca de 20 anos, todos vivos, puxados com 3 dias de intervalo entre um e outro: Baltazar Magalhães (~1750, antepassado de Gabriel), Diana (1978), Clarice (1990), Henrique (2019, o pesquisador), **Gabriel Magalhães** (2026, o protagonista, último a chegar) e Zane (2123). O antagonista é o Carlos (3026).
 - **O objetivo:** encontrar os outros, descobrir o que aconteceu e consertar a Âncora para que todos voltem às suas épocas.
 - **A primeira fase** é a **Biblioteca**.
 

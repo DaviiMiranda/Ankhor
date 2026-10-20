@@ -3,7 +3,7 @@
 Toda decisão de design, história ou técnica que muda o jogo entra aqui, **a mais recente no topo**. Se algo contradiz o GDD, vale o que está aqui.
 
 > [!IMPORTANT]
-> Para **história, mundo e personagens**, a lei do projeto é o [Enredo Principal](historia/enredo_principal.md), que vale acima deste registro. Toda decisão de história entra **no mesmo PR** aqui (o histórico de quando e por que mudou) e no Enredo Principal (como a história está agora). Entradas antigas abaixo podem citar nomes e ideias que não valem mais.
+> Para **história, mundo e personagens**, a lei do projeto é o [Enredo Principal](historia/História_Completa.md), que vale acima deste registro. Toda decisão de história entra **no mesmo PR** aqui (o histórico de quando e por que mudou) e no Enredo Principal (como a história está agora). Entradas antigas abaixo podem citar nomes e ideias que não valem mais.
 
 Formato:
 
@@ -16,6 +16,38 @@ Formato:
 
 ---
 
+## 2026-10-18 — Cada pessoa chega a 3026 três dias depois da anterior
+**Decisão:** entre uma chegada e a seguinte passam **3 dias**, e a fenda pulsa a cada 3 dias. Pela ordem já fechada (Henrique, Zane, Clarice, Diana, Gabriel), o Gabriel chega 3 dias depois da Diana, 6 depois da Clarice, 9 depois do Zane e 12 depois do Henrique. A posição do Baltazar continua pendente: se ele entrar no meio da ordem, quem veio antes dele ganha mais 3 dias.
+**Por quê:** pedido do Davi, para as falas poderem dizer há quantos dias cada um está lá.
+**Afeta:** a História Completa (seções da fenda, 4.1, 7.2 e 10.4), o GDD e as falas que citam dias (a Clarice, na cena 2.2 do `Roteiro.docx`).
+
+## 2026-10-18 — A Clarice passa a ser de 1990
+**Decisão:** a Clarice vem de **1990**, não mais de 1994. Continua aluna de processamento de dados, com cerca de 20 anos, e o resto da ficha não muda.
+**Por quê:** pedido do Davi.
+**Afeta:** a História Completa (tabelas de personagens e linha do tempo), a ficha e o resumo da Clarice, o GDD, `docs/` (registros e modelo de documento), os arquivos do jogo (`dados/documentos/bilhete_clarice.tres`, `disquete_clarice.tres` e `dados/transmissoes/clarice_*.tres`, cujo título no Caderno agora é "Clarice, 1990"), os textos dos geradores de arte, o agente roteirista e o `Roteiro.docx`. Entradas antigas deste registro que citam 1994 ficam como histórico. O número 1994 que sobra nos geradores de som e de bunker é só semente de sorteio, e não foi mexido para não mudar os arquivos gerados.
+
+## 2026-10-18 — Primeira beta (0.1.0-beta.1): versão no menu, ícone do jogo e `.exe` para Windows
+**Decisão:**
+- **A primeira versão de teste do jogo é a `0.1.0-beta.1`.** O formato é `MAIOR.MENOR.CORREÇÃO-beta.N`, e o número vive num lugar só, `application/config/version` em `project.godot`. Ele aparece **no canto de baixo do menu principal** (`cenas/interface/rotulo_versao.tscn`), para qualquer relato de erro dizer qual versão o testador jogava, e dá o nome da pasta e do `.zip` da beta.
+- **O ícone do jogo é a arte do "A" que o Davi mandou** (`assets/icone/ankhor_icone.png` e `.ico`, com os cantos transparentes). Ele é o ícone do projeto, da janela e do `.exe`, e as propriedades do `.exe` mostram nome, empresa e versão.
+- **O `.exe` sai do preset "Windows Desktop"** (`export_presets.cfg`, que entra no git): arquivo único com o jogo dentro, só 64 bits, sem `docs/`, `assets/modelagem/` e `ferramentas/`, com os `.json` dos diálogos. O `ferramentas/gerar_beta.py` roda a exportação, confere que a versão do projeto e a do `.exe` batem e monta o `.zip` com o `LEIAME.txt` para o testador. O processo e o que fazer antes de enviar estão em `docs/producao/beta.md`.
+- **Sem assinatura digital** (certificado pago): o Windows avisa "O Windows protegeu o computador", e o `LEIAME.txt` ensina a seguir.
+- **Verificação da primeira beta:** o `.exe` exportado abre no menu com a versão no canto, os 1307 arquivos de cena, dados e arte estão dentro do pacote, e as 63 cenas de salas e cutscenes carregam do pacote sem erro. O jogo não foi jogado de ponta a ponta à mão.
+**Por quê:** pedido do Davi: fazer a primeira beta do jogo, com a arte dele de ícone, e mostrar a versão da beta no menu principal.
+**Afeta:** `project.godot` (versão e ícone), `export_presets.cfg` (novo), `assets/icone/` (novo), `cenas/interface/rotulo_versao.tscn` e `scripts/interface/rotulo_versao.gd` (novos), `cenas/menu_principal.tscn` (instancia o rótulo), `ferramentas/` (novo: `gerar_beta.py` e `leiame_beta.txt`), `docs/producao/beta.md` (novo), `docs/README.md` e `README.md` (links).
+
+---
+
+## 2026-10-18 — A trilha sonora oficial toca em loop no menu principal
+**Decisão:**
+- **O menu principal passa a tocar a trilha sonora oficial do jogo** (`trilha_sonora_oficial_ANKHOR.ogg`, enviada pelo Davi), em **loop**, no lugar da música `menu_whispers_in_the_dark.mp3` que tocava antes. A música continua tocando enquanto o jogador troca de tela dentro do menu (fases, opções, controles) e para ao começar o jogo, quando cada fase usa a sua própria trilha.
+- **O arquivo foi convertido de Opus para Ogg Vorbis** (`ffmpeg -c:a libvorbis -q:a 5`): o `.ogg` original está em Opus, que o Godot não reproduz (ele marca o arquivo como inválido e fica mudo). O arquivo do projeto é `assets/audio/musica/oficial/trilha_sonora_oficial_ankhor.ogg`, com **Loop** ligado na importação, e o nó `Musica` do menu toca a −4 dB (a trilha nova é 2 dB mais baixa que a anterior, e o menu usava −6 dB).
+- As trilhas antigas do menu (`menu_whispers_in_the_dark.mp3` e `menu_trilha.ogg`) **ficaram no repositório, sem uso**. A autoria e a licença da trilha oficial estão como "(preencher)" em `assets/audio/creditos.md`.
+**Por quê:** pedido do Davi: colocar essa música como trilha sonora do jogo, em loop no menu principal.
+**Afeta:** `cenas/menu_principal.tscn` (o arquivo e o volume do nó `Musica`), `assets/audio/musica/oficial/` (novo), `assets/audio/README.md` e `assets/audio/creditos.md`.
+
+---
+
 ## 2026-10-17 — A máquina do Laboratório é a Âncora e ganha animação
 **Decisão:**
 - **A máquina do Lab Central é a Âncora.** Até aqui o `docs/fases/dtec.md` dizia que ela não tinha nome nem papel na história e que não era a Âncora. O Enredo Principal já põe a Âncora no D-Tec, junto do laboratório do Carlos, e a máquina do salão central é essa. Os dois passam a dizer a mesma coisa. O Enredo Principal não muda: ele não dizia em que sala a Âncora está e não contradiz isso. O que a Âncora faz nessa fase (consertá-la, o final) continua nas pendências do Enredo (seções 10.2 e 10.6).
@@ -25,6 +57,19 @@ Formato:
 - **O que não mudou:** o `maquina.png` parado continua sendo gerado, idêntico ao de antes. As faíscas (`CPUParticles2D`), a colisão e as luzes ficam como estavam.
 **Por quê:** pedido do Davi: uma animação para a máquina do laboratório. Ao pedir, ele confirmou que ela é a Âncora.
 **Afeta:** `cenas/cenario/dtec/objetos/maquina.tscn`, `assets/modelagem/cenario/gerar_dtec.py`, `assets/sprites/cenario/dtec/objetos/maquina_folha.png` e `maquina_quadros.tres` (novos) e `docs/fases/dtec.md`.
+
+---
+
+## 2026-10-17 — Os documentos da fase ganham sprite no chão, e o cofre do cinema vai para uma cabine de projeção
+**Decisão:**
+- **Os papéis têm sprite.** Os documentos do Centro de Convivência eram áreas invisíveis: o Gabriel só os achava por acaso. Agora cada um é um **sprite pequeno no chão**, com o brilho dos itens colecionáveis (cena nova `papel_no_mundo.tscn`): um bilhete, quatro canhotos (uma cor por amigo no cinema), o aviso da loja, a ordem da gráfica, a ordem de serviço e o panfleto.
+- **O cofre do cinema muda de lugar:** em vez de ficar no saguão, ele fica numa **sala pequena nova, a cabine de projeção** (`cinema_cabine`, 400 × 220 px), atrás da sala de cinema. A porta cinza, com a plaquinha CABINE, fica na ponta direita da parede da sala. A cabine tem o projetor de rolo, a mesa do lanterninha, latas de filme, o quadro de sessões, os ganchos com o paletó do Tadeu e o cofre.
+- **O bilhete do lanterninha foi atualizado:** agora diz que as coisas dele estão no cofre da cabine de projeção, a porta cinza ao lado da tela, que está aberta. O código continua o mesmo (7-2-4, a ordem embaralhada das poltronas dos três amigos) e os canhotos continuam espalhados pelo cinema.
+- **As poltronas da sala ganharam numeração em ordem:** cada fileira vai de 1 a 16, da esquerda para a direita, atravessando os corredores (antes os números se repetiam sem sentido: 8, 2, 5, 8). Os trechos de fileira viraram quatro sprites (`poltronas_1`, `_5`, `_9` e `_13`), no lugar de `poltronas_3` e `poltronas_4`.
+- **O hall do cinema ficou maior** (o cinema foi de 800 × 280 para 1040 × 320 px): o hall foi de 400 para 640 px de largura e ganhou fliperamas, um sofá de veludo, uma jardineira, um relógio de parede e uma segunda caixa de cartazes; a sala ganhou uma terceira fileira de poltronas e fica agora depois do batente de latão em x = 640. Os canhotos foram **espalhados pelo hall, pela sala e pela cabine** (Léo, Bia e Caio); antes dois estavam no saguão.
+- O cartaz recortado do saguão e a pedra do fundo da sala mudaram de lugar para abrir espaço à porta.
+**Por quê:** pedido do Davi: os bilhetes estavam invisíveis no jogo, e o cofre deveria ficar numa sala pequena à parte no cinema.
+**Afeta:** `assets/modelagem/cenario/gerar_papeis.py` (novo), `cenas/itens/papel_no_mundo.tscn` e `scripts/itens/papel_no_mundo.gd` (novos), `assets/sprites/cenario/objetos/papel_*.png`, `assets/modelagem/cenario/gerar_interiores_andar2.py` e `gerar_andar2_objetos.py` (a cabine e três objetos novos), `assets/modelagem/salas/centro_de_convivencia/` (a sala nova, a porta e o mapa de sprites dos documentos), `cenas/salas/centro_de_convivencia/cinema.tscn`, `cinema_cabine.tscn` (nova) e as cenas das salas com documento, `dados/documentos/bilhete_lanterninha_cofre.tres`, `docs/fases/centro_de_convivencia.md` (seções 7.5 e 7.6).
 
 ---
 
@@ -106,7 +151,7 @@ Regras para montar telas daqui em diante:
 ## 2026-10-15 — O Enredo Principal fica só com a história
 **Decisão:** o Enredo Principal passa a ter só o que é história, mundo e personagens. As antigas seções 9 ("Temas e tom") e 10 ("Como a história chega ao jogador") foram para o guia de escrita em `docs/historia/roteiro/README.md`. O Vocabulário oficial vira a seção 9. As pendências viram a **seção 10**, a última, e passam a ser só **perguntas sobre a história**, em seis grupos: o mundo de 3026, o Carlos, o Henrique e a mentira, os outros personagens, a estrutura da história, e a volta e o fim. O que era de arte, mecânica, fases e textos antigos foi para o documento novo `docs/pendencias_de_producao.md`.
 **Por quê:** pedido do Davi: as seções 9, 10 e as pendências misturavam roteiro com produção.
-**Afeta:** `docs/historia/enredo_principal.md`, `docs/historia/roteiro/README.md`, `docs/pendencias_de_producao.md` (novo) e as referências às seções antigas nas fichas, no resumo, nos modelos, nas fases (Biblioteca, Bloco de salas, Centro de Convivência, Labirinto) e no agente `roteirista`. A referência em `docs/fases/bunker.md` fica para o PR #119, que reescreve aquela linha.
+**Afeta:** `docs/historia/História_Completa.md`, `docs/historia/roteiro/README.md`, `docs/pendencias_de_producao.md` (novo) e as referências às seções antigas nas fichas, no resumo, nos modelos, nas fases (Biblioteca, Bloco de salas, Centro de Convivência, Labirinto) e no agente `roteirista`. A referência em `docs/fases/bunker.md` fica para o PR #119, que reescreve aquela linha.
 
 ## 2026-10-15 — Objetos discretos dos personagens no menu principal (teste)
 **Decisão:** a mesa do menu principal ganha três objetos pequenos, só para quem procura: o **anel da avó do Gabriel**, gasto, deitado na madeira entre o teclado e a caneca; os **óculos do Zane**, um visor de 2123 com armação grafite, linha de luz ciano e um detalhe amarelo-ácido, em pé na prateleira do meio da estante do fundo, na frente dos livros; e o **símbolo dos Faroleiros** rabiscado a caneta no post-it da moldura do monitor, feito a partir da pintura do símbolo que o Davi mandou (com as cores invertidas: tinta escura no papel). Cada objeto é um Sprite2D por cima da arte, no nó `ObjetosDosPersonagens`; a `menu_cena.png` não mudou. Os óculos não estão na ficha do Zane: são um objeto novo, que combina com o visual dele.
@@ -128,7 +173,7 @@ Regras para montar telas daqui em diante:
 - **A parte do Gabriel** deixa de ser as equações: o caderno é o lugar onde as partes de todos se juntam, porque ele é o único que passa por todos os esconderijos.
 
 **Por quê:** conversa do Davi com o Claude no papel de roteirista: fechar os furos da história (a idade do Carlos, o Zane no bunker lacrado, a Clarice sozinha com um rádio já no balcão) e dar conteúdo à mentira do Henrique.
-**Afeta:** `docs/historia/enredo_principal.md` (seções 1, 2.1, 2.3, 2.4 nova, 3.1, 4.1, 4.3, 6, 6.1, 7.1, 7.2, 8, 11 e 12); as fichas de Henrique, Carlos, Diana, Zane, Clarice, Gabriel e robôs; `resumo.md`; `docs/README.md`. Ainda não foram atualizados (listados no Enredo, seção 12.4): `dados/documentos/bilhete_clarice.tres`, `docs/fases/bunker.md`, as conversas do Henrique no bunker e a "aula de cálculo" do prólogo.
+**Afeta:** `docs/historia/História_Completa.md` (seções 1, 2.1, 2.3, 2.4 nova, 3.1, 4.1, 4.3, 6, 6.1, 7.1, 7.2, 8, 11 e 12); as fichas de Henrique, Carlos, Diana, Zane, Clarice, Gabriel e robôs; `resumo.md`; `docs/README.md`. Ainda não foram atualizados (listados no Enredo, seção 12.4): `dados/documentos/bilhete_clarice.tres`, `docs/fases/bunker.md`, as conversas do Henrique no bunker e a "aula de cálculo" do prólogo.
 
 ## 2026-10-15 — O menu principal perde o sombreamento escuro nas bordas da tela
 **Decisão:** o menu principal não tem mais a **vinheta pixelada** escura que cobria as bordas e os cantos da tela inteira (o nó `Vinheta`, com `shaders/vinheta.gdshader`). A cena do monitor aparece clara até a borda. O efeito CRT dentro do vidro do monitor (linhas, cantos arredondados e um leve escurecimento nas pontas do vidro) continua.
@@ -184,7 +229,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - **Escolhas de implementação, a confirmar:** os nós são terminais da trava do sistema do subsolo, que só lê de dentro; nos nós o notebook **não gasta bateria** (para a fase não travar por falta de carga) e a dificuldade do hack sobe do fácil ao difícil; a oficina é **segura** (a patrulha dos robôs não entra nela, mas eles entram se estiverem perseguindo o Gabriel); a oficina e cada salão de nó têm um checkpoint; o alçapão leva, provisoriamente, à entrada do Bunker.
 
 **Por quê:** pedido do Davi.
-**Afeta:** `docs/historia/enredo_principal.md` (seções 6, 8, 12.3 e 12.5), `docs/historia/personagens/zane.md`, `docs/fases/labirinto.md`, `bloco_de_salas.md`, `bunker.md` e `centro_de_convivencia.md`, `docs/mecanicas/hackeamento.md` e `vida_e_checkpoint.md`; `cenas/salas/labirinto.tscn`, `bloco_de_salas/fim_do_bloco.tscn` e `menu_principal.tscn` (fases renumeradas: `02_blocos_de_aula` e `03_labirinto`); scripts `labirinto.gd`, `mapa_labirinto.gd`, `grade_labirinto.gd`, `notebook.gd`, `caixa_dialogo.gd` e os novos `no_hackeavel.gd`, `rede_do_labirinto.gd`, `alcapao.gd` e `zane_oficina.gd`; cenas novas `no_hackeavel`, `zane_na_oficina`, `alcapao` e `holograma_*`; diálogos `zane_labirinto_*.json` e a transmissão `zane_labirinto_01`; geradores `gerar_labirinto.py` e `gerar_oficina.py`.
+**Afeta:** `docs/historia/História_Completa.md` (seções 6, 8, 12.3 e 12.5), `docs/historia/personagens/zane.md`, `docs/fases/labirinto.md`, `bloco_de_salas.md`, `bunker.md` e `centro_de_convivencia.md`, `docs/mecanicas/hackeamento.md` e `vida_e_checkpoint.md`; `cenas/salas/labirinto.tscn`, `bloco_de_salas/fim_do_bloco.tscn` e `menu_principal.tscn` (fases renumeradas: `02_blocos_de_aula` e `03_labirinto`); scripts `labirinto.gd`, `mapa_labirinto.gd`, `grade_labirinto.gd`, `notebook.gd`, `caixa_dialogo.gd` e os novos `no_hackeavel.gd`, `rede_do_labirinto.gd`, `alcapao.gd` e `zane_oficina.gd`; cenas novas `no_hackeavel`, `zane_na_oficina`, `alcapao` e `holograma_*`; diálogos `zane_labirinto_*.json` e a transmissão `zane_labirinto_01`; geradores `gerar_labirinto.py` e `gerar_oficina.py`.
 
 ## 2026-10-14 — Mensagens do HUD quebram em linhas e ficam mais tempo na tela
 **Decisão:** a mensagem do topo da tela (pegar item, porta trancada, bilhetes e placas) passa a **quebrar em várias linhas** dentro da largura da tela, com 8 px de margem de cada lado, em vez de ficar numa linha só. O tempo na tela continua 3,5 s para textos curtos e cresce com o tamanho: 0,05 s por caractere (`segundos_por_caractere` no `hud.gd`), então um texto de 100 caracteres fica 5 s.
@@ -202,7 +247,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - **História:** no vídeo, a cabine e a biblioteca em volta têm a **tecnologia de 3026** (painéis com luz ciano, holograma sobre o caderno, torres de equipamentos). Saem da descrição desta cena no Enredo a luz do sol pelo teto quebrado, a árvore e as estantes caídas e vazias. A árvore e o acampamento do Baltazar no salão continuam como estavam no Ato 1. A pendência "Cenários mais futuristas" anota que a cabine já aparece assim.
 
 **Por quê:** decisão do Davi.
-**Afeta:** `docs/historia/enredo_principal.md` (Ato 1, seção 12.5 e a tabela de cutscenes), `docs/historia/roteiro/cutscenes/seg_acordar.md` e `README.md`, `cenas/cutscenes/seg_acordar.tscn`, `assets/video/cutscenes/seg_acordar.ogv` (novo). Saíram `assets/sprites/cutscenes/seg_acordar/` e `assets/modelagem/cutscenes/seg_acordar/` (`gerar_seg_acordar.py` e o `.blend`); comentários de `gerar_menu.py` e `gerar_biblioteca.py` e a lista de scripts em `docs/visao_geral/estilo_artistico.md` foram ajustados.
+**Afeta:** `docs/historia/História_Completa.md` (Ato 1, seção 12.5 e a tabela de cutscenes), `docs/historia/roteiro/cutscenes/seg_acordar.md` e `README.md`, `cenas/cutscenes/seg_acordar.tscn`, `assets/video/cutscenes/seg_acordar.ogv` (novo). Saíram `assets/sprites/cutscenes/seg_acordar/` e `assets/modelagem/cutscenes/seg_acordar/` (`gerar_seg_acordar.py` e o `.blend`); comentários de `gerar_menu.py` e `gerar_biblioteca.py` e a lista de scripts em `docs/visao_geral/estilo_artistico.md` foram ajustados.
 
 ## 2026-10-11 — A fase depois do Bloco de salas é o Centro de Convivência
 **Decisão:** a fase que vem depois do **Bloco de salas** é o **Centro de Convivência**. Ele ainda não foi feito: por enquanto só o nome e a posição estão decididos. A ordem fica **Biblioteca → Bloco de salas → Centro de Convivência**. Isso substitui a entrada anterior de que a saída do Bloco de salas levava ao Bunker: o Bunker continua sendo o Ato 3 da história, mas a posição dele na ordem das fases deixa de estar decidida.
@@ -210,7 +255,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - **Fica pendente:** o que acontece no Centro de Convivência, quem Gabriel encontra nele e o que ele ensina (Enredo, seções 8 e 12.5). O texto antigo dele no GDD é da premissa anterior (Calouros) e precisa ser refeito.
 
 **Por quê:** decisão do Davi.
-**Afeta:** `docs/historia/enredo_principal.md` (seções 8, 12.5), `docs/fases/bloco_de_salas.md`, `bunker.md` e `README.md`, e o documento novo `docs/fases/centro_de_convivencia.md` (só o que está decidido e as perguntas em aberto).
+**Afeta:** `docs/historia/História_Completa.md` (seções 8, 12.5), `docs/fases/bloco_de_salas.md`, `bunker.md` e `README.md`, e o documento novo `docs/fases/centro_de_convivencia.md` (só o que está decidido e as perguntas em aberto).
 
 ## 2026-10-11 — O começo da história: a Clarice é a voz do rádio, o Henrique chegou primeiro e ajuda por trás
 **Decisão:**
@@ -222,12 +267,12 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - No jogo: as transmissões da Biblioteca passaram do Henrique para a Clarice (`henrique_01` e `henrique_02` viraram `clarice_biblioteca_01` e `clarice_biblioteca_02`, com os gatilhos `GatilhoRadio1` e `GatilhoRadio2`), e o aviso de ronda do Bloco de salas passou a ser dela (`henrique_03` virou `clarice_04`). As conversas da Clarice no Bloco e a do Henrique no bunker foram ajustadas.
 
 **Por quê:** história contada pelo Davi.
-**Afeta:** `docs/historia/enredo_principal.md` (seções 4.1, 6, 6.1, 7.2, 8, 10, 12.3 e 12.7), as fichas de Clarice, Henrique, Diana e Baltazar, `resumo.md`, `docs/fases/biblioteca.md` e `bloco_de_salas.md`, `docs/mecanicas/registros_e_caderno.md` e `README.md`, `dados/transmissoes/clarice_*.tres`, `dados/dialogos/clarice_bloco_*.json` e `henrique_primeiro_encontro.json`, e as cenas `balcao.tscn`, `acervo.tscn`, `salao.tscn` e `corredor_primeiro_andar.tscn`.
+**Afeta:** `docs/historia/História_Completa.md` (seções 4.1, 6, 6.1, 7.2, 8, 10, 12.3 e 12.7), as fichas de Clarice, Henrique, Diana e Baltazar, `resumo.md`, `docs/fases/biblioteca.md` e `bloco_de_salas.md`, `docs/mecanicas/registros_e_caderno.md` e `README.md`, `dados/transmissoes/clarice_*.tres`, `dados/dialogos/clarice_bloco_*.json` e `henrique_primeiro_encontro.json`, e as cenas `balcao.tscn`, `acervo.tscn`, `salao.tscn` e `corredor_primeiro_andar.tscn`.
 
 ## 2026-10-11 — Sai a pendência "Quanto tempo Gabriel tem"
 **Decisão:** o jogo **não tem prazo para o Gabriel**: não há contagem de dias nem relógio que o jogador sinta. Sai do Enredo Principal (seção 12.1) a pendência "Quanto tempo Gabriel tem", e sai de `outras_ideias.md` a ideia 5 ("Os pulsos como relógio"), que só existia para resolvê-la. A seção 3 (como a fenda age) não muda.
 **Por quê:** pedido do Davi: não existe esse prazo.
-**Afeta:** `docs/historia/enredo_principal.md` (seção 12.1) e `docs/historia/outras_ideias.md` (índice e ideia 5).
+**Afeta:** `docs/historia/História_Completa.md` (seção 12.1) e `docs/historia/outras_ideias.md` (índice e ideia 5).
 
 ## 2026-10-11 — A Diana fica na 103 com a Clarice, e as duas falam com o Henrique
 **Decisão:**
@@ -237,7 +282,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - As falas da Clarice no Bloco de salas e as do Henrique no bunker passam a ser **definitivas** (deixam de ser rascunho).
 
 **Por quê:** pedido do Davi.
-**Afeta:** `docs/historia/enredo_principal.md` (seções 6, 6.1, 8, 12.3 e 12.4), as fichas de Clarice, Diana, Henrique e Zane, `resumo.md`, `docs/fases/bloco_de_salas.md` (passo 6 e sala 103) e `bunker.md`, os diálogos e a transmissão citados acima.
+**Afeta:** `docs/historia/História_Completa.md` (seções 6, 6.1, 8, 12.3 e 12.4), as fichas de Clarice, Diana, Henrique e Zane, `resumo.md`, `docs/fases/bloco_de_salas.md` (passo 6 e sala 103) e `bunker.md`, os diálogos e a transmissão citados acima.
 
 ## 2026-10-11 — A eletricidade funciona, e o Bloco de salas leva ao Bunker
 **Decisão:**
@@ -246,7 +291,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - **Sai a pendência dos tracinhos:** quem riscou as lousas e deixou o bilhete da 203 não precisa de resposta. O puzzle continua igual (738).
 
 **Por quê:** pedido do Davi.
-**Afeta:** `docs/historia/enredo_principal.md` (seções 2.2, 8, 12.5 e 12.6), `docs/gdd.md` (item Iluminar), `docs/fases/bloco_de_salas.md`, `docs/fases/bunker.md`, `cenas/salas/bloco_de_salas/fim_do_bloco.tscn`.
+**Afeta:** `docs/historia/História_Completa.md` (seções 2.2, 8, 12.5 e 12.6), `docs/gdd.md` (item Iluminar), `docs/fases/bloco_de_salas.md`, `docs/fases/bunker.md`, `cenas/salas/bloco_de_salas/fim_do_bloco.tscn`.
 
 ## 2026-10-11 — O Henrique no lugar da Clarice na sala de dados do bunker
 **Decisão:** na cena do bunker (`central_dados`), o **Henrique** substitui a Clarice na estação de trabalho. Ele aparece em pé, de costas, olhando as câmeras (`henrique_na_estacao.tscn`), e tem conversa própria: `henrique_primeiro_encontro.json` e `henrique_de_novo.json` (rascunho, para o roteiro revisar; no jeito dele: pausado, se corrigindo, fala pouco, e fica nervoso quando o assunto é a Âncora). A estação ganhou um sprite próprio, sem ninguém sentado, com as três telas mostrando câmeras (`estacao_dados.png`). As portas lacradas do setor B passam a dizer "O Zane está tentando abrir". O **Zane** ainda não tem cena no bunker.
@@ -263,7 +308,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - **A arte do Rafael fica guardada** (sprites, gerador, `rafael.tscn` e a instância dele na sala de teste), sem uso nas fases. Dá para apagar depois, se o grupo quiser.
 
 **Por quê:** pedido do Davi, para diminuir o grupo de personagens (pendência de 2026-10-08, opção de tirar o Rafael).
-**Afeta:** `docs/historia/enredo_principal.md` (seções 3.1, 4.2, 6, 6.1, 7.1, 8 e 12.3 a 12.4), as fichas de Clarice, Henrique, Baltazar, Diana e Zane, `resumo.md` e a ficha do Rafael (retirada), `docs/fases/bloco_de_salas.md`, `bunker.md` e `biblioteca.md`, `docs/gdd.md`, `docs/README.md`, `template_documento.md`, `CLAUDE.md`, `.claude/agents/roteirista.md`, `dados/dialogos/clarice_bloco_*.json`, `dados/transmissoes/clarice_01.tres` a `clarice_03.tres`, `dados/itens/molho_de_chaves.tres` e `chave_grade.tres`, os ícones `assets/sprites/itens/molho_de_chaves*.png` (e `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py`), `cenas/personagens/clarice_posto.tscn`, as cenas `sala_102`, `sala_103`, `corredor_terreo` e `corredor_primeiro_andar` do Bloco de salas, e `assets/sprites/personagens/README.md` e `rafael/visual.md` (arte guardada).
+**Afeta:** `docs/historia/História_Completa.md` (seções 3.1, 4.2, 6, 6.1, 7.1, 8 e 12.3 a 12.4), as fichas de Clarice, Henrique, Baltazar, Diana e Zane, `resumo.md` e a ficha do Rafael (retirada), `docs/fases/bloco_de_salas.md`, `bunker.md` e `biblioteca.md`, `docs/gdd.md`, `docs/README.md`, `template_documento.md`, `CLAUDE.md`, `.claude/agents/roteirista.md`, `dados/dialogos/clarice_bloco_*.json`, `dados/transmissoes/clarice_01.tres` a `clarice_03.tres`, `dados/itens/molho_de_chaves.tres` e `chave_grade.tres`, os ícones `assets/sprites/itens/molho_de_chaves*.png` (e `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py`), `cenas/personagens/clarice_posto.tscn`, as cenas `sala_102`, `sala_103`, `corredor_terreo` e `corredor_primeiro_andar` do Bloco de salas, e `assets/sprites/personagens/README.md` e `rafael/visual.md` (arte guardada).
 
 ## 2026-10-11 — Bloco de salas jogável: o posto do Rafael (103) e a saída pela porta corta-fogo
 **Decisão:** o Bloco de salas ganha objetivos e puzzles no estilo da Biblioteca (*Resident Evil*), conforme [`fases/bloco_de_salas.md`](fases/bloco_de_salas.md). O **posto de guarda do Rafael é a sala 103**, que é também a sala segura do bloco. O Gabriel liga o teste de alarme na 104 (a sirene do fim do corredor atrai o Rastreador), devolve ao Rafael o molho de chaves perdido na 102 e recebe a **chave da fita azul** (grade da escada). Daí em diante, a parte do Rafael ("sabe o que cada chave abre") chega **pelo que ele fala**, em pessoa e pelo rádio: **não existe livro de ocorrências**, nem no jogo nem na ficha. No 1º andar, o código do claviculário da 203 é a contagem de tracinhos das lousas da 101, 201 e 205 (**738**), a chave do depósito abre a 206 e o alicate corta a corrente da **porta corta-fogo**, a saída do bloco. Pegar o alicate muda a ronda da Sentinela; o buraco da 204 desce para a 104 (atalho de mão única). Quem riscou os tracinhos e quem deixou o bilhete do quadro de avisos fica em aberto. Para onde a porta corta-fogo leva depende da ordem das fases (pendente); por enquanto ela termina a fase.
@@ -293,7 +338,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 ## 2026-10-08 — Cutscene de prólogo e organização de cutscenes
 **Decisão:** criado o documento de roteiro e storyboard para a cutscene inicial de prólogo (`docs/historia/roteiro/cutscenes/seg_prologo.md`), composta por 8 ilustrações sequenciais em pixel art retratando o dia a dia de Gabriel em 2026 (acordando, o anel da avó, trajeto até a Unifor, aula de cálculo com o caderno de equações e o adormecer na cabine da Biblioteca de madrugada, terminando no pulso da fenda). O despertar em 3026 continua sendo a cutscene `seg_acordar`, que vem logo depois. A pasta de cutscenes foi organizada com uma ficha detalhada por cena e especificações técnicas de produção.
 **Por quê:** dar contexto narrativo ao jogador antes do despertar nas ruínas e estabelecer o contraste dramático entre a normalidade de 2026 e o colapso de 3026.
-**Afeta:** `docs/historia/roteiro/cutscenes/seg_prologo.md` (novo), `docs/historia/roteiro/cutscenes/README.md`, `docs/historia/enredo_principal.md` (Ato 1).
+**Afeta:** `docs/historia/roteiro/cutscenes/seg_prologo.md` (novo), `docs/historia/roteiro/cutscenes/README.md`, `docs/historia/História_Completa.md` (Ato 1).
 
 ## 2026-10-08 — Sistema de fadiga e estamina do Gabriel
 **Decisão:** implementado o sistema modular de fadiga (`scripts/sistemas/fadiga.gd` e `cenas/sistemas/fadiga.tscn`). Correr consome estamina de forma contínua (~8s de corrida total). Ao zerar a estamina, Gabriel entra em estado de exaustão por 3 segundos, ficando impossibilitado de correr, andando a 40% da velocidade normal e emitindo o sinal `ofegante` com efeito sonoro. A estamina se regenera gradualmente (mais rápido parado do que andando). O HUD exibe uma barra discreta no canto superior que surge apenas durante o consumo e esmaece quando cheia.
@@ -308,7 +353,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - No jogo: a ligação do fim da Biblioteca passou a ser do Zane (`clarice_01.tres` → `zane_01.tres`, em `cenas/sistemas/telefone.tscn`), e a anotação do bilhete da Clarice não diz mais que "parece que não voltou". A arte da estação de trabalho e as conversas do bunker continuam da Clarice e precisam ser refeitas para o Zane.
 
 **Por quê:** decisão do Davi.
-**Afeta:** `docs/historia/enredo_principal.md` (seções 4.1, 6, 6.1, 7.2, 8, 10, 12.3 e 12.4), as fichas de Zane, Clarice, Diana, Henrique, Rafael e Gabriel, `resumo.md`, `docs/fases/biblioteca.md` e `bunker.md`, `docs/mecanicas/registros_e_caderno.md`, `docs/gdd.md`, `docs/README.md`, `outras_ideias.md` (ideia 14), `dados/transmissoes/zane_01.tres`, `dados/documentos/bilhete_clarice.tres`, `cenas/sistemas/telefone.tscn`, os `visual.md` do Zane e do Rafael e um comentário de `gerar_rafael.py`.
+**Afeta:** `docs/historia/História_Completa.md` (seções 4.1, 6, 6.1, 7.2, 8, 10, 12.3 e 12.4), as fichas de Zane, Clarice, Diana, Henrique, Rafael e Gabriel, `resumo.md`, `docs/fases/biblioteca.md` e `bunker.md`, `docs/mecanicas/registros_e_caderno.md`, `docs/gdd.md`, `docs/README.md`, `outras_ideias.md` (ideia 14), `dados/transmissoes/zane_01.tres`, `dados/documentos/bilhete_clarice.tres`, `cenas/sistemas/telefone.tscn`, os `visual.md` do Zane e do Rafael e um comentário de `gerar_rafael.py`.
 
 ## 2026-10-08 — Onde cada personagem fica, e a frequência de rádio do grupo
 **Decisão:**
@@ -318,7 +363,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - Resolve a pendência de como a voz do rádio "parece ver" Gabriel: pelas câmeras.
 
 **Por quê:** decisão do Davi. A voz que ajuda Gabriel desde o começo ser justamente a de quem mente deixa "A virada" mais forte.
-**Afeta:** `docs/historia/enredo_principal.md` (seções 6, 6.1, 8, 10 e 12.3), as fichas de Rafael, Henrique, Diana, Clarice, Baltazar, Zane e Carlos, `resumo.md`, `docs/fases/biblioteca.md`, `docs/mecanicas/registros_e_caderno.md` e `README.md`, `dados/transmissoes/henrique_01.tres` e `henrique_02.tres`, `cenas/salas/biblioteca/salao.tscn`, `balcao.tscn` e `acervo.tscn`, comentários de `gerar_efeitos_registros.py` e `gerar_interface.py`, `assets/sprites/personagens/rafael/visual.md`.
+**Afeta:** `docs/historia/História_Completa.md` (seções 6, 6.1, 8, 10 e 12.3), as fichas de Rafael, Henrique, Diana, Clarice, Baltazar, Zane e Carlos, `resumo.md`, `docs/fases/biblioteca.md`, `docs/mecanicas/registros_e_caderno.md` e `README.md`, `dados/transmissoes/henrique_01.tres` e `henrique_02.tres`, `cenas/salas/biblioteca/salao.tscn`, `balcao.tscn` e `acervo.tscn`, comentários de `gerar_efeitos_registros.py` e `gerar_interface.py`, `assets/sprites/personagens/rafael/visual.md`.
 
 ## 2026-10-08 — Sala de teste: escolher o personagem
 **Decisão:** na **sala de teste** (e só nela), a tecla **C** troca o personagem que o jogador controla, em ciclo: Gabriel, Clarice, Zane, Baltazar, Rafael, Henrique e Carlos. O HUD mostra o nome ("Personagem: Clarice   [C] trocar"). A troca só muda os sprites: velocidade, corrida, itens e o resto do jogador continuam os do Gabriel. Começa no Gabriel. Ao sair da sala de teste, o jogador volta a ser o Gabriel.
@@ -387,7 +432,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - Os dois têm o mesmo conjunto de sprites do Gabriel (cinco vistas em 96 × 112, caminhada, respiração e três retratos) e estão na sala de teste, ao lado dos outros.
 
 **Por quê:** pedido do Davi: os modelos do Henrique e do "cientista maluco que é o Carlos".
-**Afeta:** `docs/historia/personagens/henrique.md` e `carlos.md` (direção de arte e arquivos), `docs/historia/enredo_principal.md` (pendência 12.2), `assets/modelagem/personagens/` (`gerar_henrique.py`, `gerar_carlos.py`), `assets/sprites/personagens/henrique/` e `carlos/`, `cenas/personagens/henrique.tscn` e `carlos.tscn`, `cenas/salas/sala_teste.tscn`, `CLAUDE.md`.
+**Afeta:** `docs/historia/personagens/henrique.md` e `carlos.md` (direção de arte e arquivos), `docs/historia/História_Completa.md` (pendência 12.2), `assets/modelagem/personagens/` (`gerar_henrique.py`, `gerar_carlos.py`), `assets/sprites/personagens/henrique/` e `carlos/`, `cenas/personagens/henrique.tscn` e `carlos.tscn`, `cenas/salas/sala_teste.tscn`, `CLAUDE.md`.
 
 ## 2026-10-07 — O Carlos é o antagonista (ideia 23), o pesquisador é o Henrique
 **Decisão:**
@@ -398,7 +443,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - **Ideias 20, 21 e 22 descartadas** (o pesquisador mentiu, o cientista que morreu, o drone).
 
 **Por quê:** decisão do Davi.
-**Afeta:** `docs/historia/enredo_principal.md` (seções 1, 2, 3, 4, 6, 7, 8, 11 e 12), a ficha nova `docs/historia/personagens/carlos.md`, `pesquisador.md` → `henrique.md`, as fichas de Clarice, Zane, Gabriel e robôs, `docs/historia/outras_ideias.md`, `docs/historia/template_documento.md`, `docs/README.md`, `docs/gdd.md`, `CLAUDE.md` e o agente `roteirista`.
+**Afeta:** `docs/historia/História_Completa.md` (seções 1, 2, 3, 4, 6, 7, 8, 11 e 12), a ficha nova `docs/historia/personagens/carlos.md`, `pesquisador.md` → `henrique.md`, as fichas de Clarice, Zane, Gabriel e robôs, `docs/historia/outras_ideias.md`, `docs/historia/template_documento.md`, `docs/README.md`, `docs/gdd.md`, `CLAUDE.md` e o agente `roteirista`.
 
 ## 2026-10-07 — Visual do Baltazar e do Rafael, com os sprites do Gabriel
 **Decisão:**
@@ -426,7 +471,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - **Ideia 15, com ajustes do Davi:** o **bunker** fica com a Clarice e o pesquisador (e depois o Zane); o **posto de guarda** fica com o Rafael; o **Baltazar** tem um esconderijo **dentro da Biblioteca** (no lugar do terraço da ideia original); a **Diana** fica numa das **salas de aula do Bloco de salas** (no lugar do posto de guarda da ideia original).
 
 **Por quê:** aprovação do Davi das ideias 6, 7 e 15 de `docs/historia/outras_ideias.md`.
-**Afeta:** `docs/historia/enredo_principal.md` (seções 5, 6, Atos 2 e 4 e pendências 12.1 e 12.3), as fichas de Baltazar, Zane, Gabriel, Clarice, pesquisador, Rafael e Diana, `docs/fases/bloco_de_salas.md`, e `docs/historia/outras_ideias.md` (as três ideias saíram).
+**Afeta:** `docs/historia/História_Completa.md` (seções 5, 6, Atos 2 e 4 e pendências 12.1 e 12.3), as fichas de Baltazar, Zane, Gabriel, Clarice, pesquisador, Rafael e Diana, `docs/fases/bloco_de_salas.md`, e `docs/historia/outras_ideias.md` (as três ideias saíram).
 
 ## 2026-10-07 — A Âncora fica no Bloco J, e cada personagem tem a sua ficha completa
 **Decisão:**
@@ -435,7 +480,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - A pasta `personagens/` tem **só as fichas** (mais a dos robôs). O índice dela saiu, e o modelo de ficha foi para `docs/historia/template_personagem.md`.
 
 **Por quê:** pedido do Davi.
-**Afeta:** `docs/historia/enredo_principal.md` (seções 1, 2.2, 3, 4 e 7.2), as fichas de `docs/historia/personagens/`, `docs/historia/template_personagem.md`, `CLAUDE.md`, `docs/README.md`, `docs/gdd.md`, `docs/historia/README.md`, `docs/historia/roteiro/README.md`, `docs/historia/template_documento.md`, `docs/dialogos/template_dialogo.md`, os agentes `roteirista` e `artista`, `clarice/visual.md` e `gerar_clarice.py`.
+**Afeta:** `docs/historia/História_Completa.md` (seções 1, 2.2, 3, 4 e 7.2), as fichas de `docs/historia/personagens/`, `docs/historia/template_personagem.md`, `CLAUDE.md`, `docs/README.md`, `docs/gdd.md`, `docs/historia/README.md`, `docs/historia/roteiro/README.md`, `docs/historia/template_documento.md`, `docs/dialogos/template_dialogo.md`, os agentes `roteirista` e `artista`, `clarice/visual.md` e `gerar_clarice.py`.
 
 ## 2026-10-07 — Personagens e roteiro dentro de `docs/historia/`, uma ficha por personagem
 **Decisão:**
@@ -454,7 +499,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 
 ## 2026-10-06 — Enredo Principal vira a lei do projeto, personalidades, Diana e Rafael
 **Decisão:**
-- O **Enredo Principal** (`docs/historia/enredo_principal.md`) passa a ser a **lei do projeto** para história, mundo e personagens, acima de qualquer outro documento, inclusive deste registro. Em caso de dúvida em qualquer parte do jogo, vale o que ele diz. Mudanças de história entram no mesmo PR nele e aqui.
+- O **Enredo Principal** (`docs/historia/História_Completa.md`) passa a ser a **lei do projeto** para história, mundo e personagens, acima de qualquer outro documento, inclusive deste registro. Em caso de dúvida em qualquer parte do jogo, vale o que ele diz. Mudanças de história entram no mesmo PR nele e aqui.
 - **O policial de 1978 (Agostinho) vira mulher e se chama Diana**: recruta da polícia, dramática, ansiosa e impulsiva. **Valdir passa a se chamar Rafael** ("Seu Rafael").
 - **Zane é homem**, e o defeito dele é confiar demais na tecnologia (a impulsividade ficou só com a Diana).
 - **Gabriel é irônico**, de ironia seca, e é isso que combina com o sarcasmo da Clarice: os dois se provocam no mesmo tom.
@@ -462,7 +507,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - Cada personagem ganhou uma **ficha de personalidade** (essência, traços, como fala, o que quer, o que teme, defeito e arco) e o grupo ganhou um quadro de relações entre eles.
 
 **Por quê:** decisão do Davi: um documento único e profissional para consultar em caso de dúvida, e nomes e personalidades definidos antes de escrever falas e desenhar os personagens.
-**Afeta:** `docs/historia/enredo_principal.md`, `CLAUDE.md`, `docs/README.md`, `docs/gdd.md`, `docs/historia/README.md`, `docs/personagens/README.md`, os agentes `roteirista`, `artista` e `sistemas`. As transmissões do rádio viraram `dados/transmissoes/rafael_01.tres` e `rafael_02.tres` (com "Aqui é o Seu Rafael"), e os gatilhos em `cenas/salas/biblioteca.tscn` viraram `GatilhoRafael1` e `GatilhoRafael2`. Comentários dos geradores de áudio e interface, `assets/audio/README.md`, `docs/fases/biblioteca.md` e `docs/mecanicas/` também. `revelacao_central.md` e `antecessores.md` continuam com a versão antiga, marcados como fora de uso.
+**Afeta:** `docs/historia/História_Completa.md`, `CLAUDE.md`, `docs/README.md`, `docs/gdd.md`, `docs/historia/README.md`, `docs/personagens/README.md`, os agentes `roteirista`, `artista` e `sistemas`. As transmissões do rádio viraram `dados/transmissoes/rafael_01.tres` e `rafael_02.tres` (com "Aqui é o Seu Rafael"), e os gatilhos em `cenas/salas/biblioteca.tscn` viraram `GatilhoRafael1` e `GatilhoRafael2`. Comentários dos geradores de áudio e interface, `assets/audio/README.md`, `docs/fases/biblioteca.md` e `docs/mecanicas/` também. `revelacao_central.md` e `antecessores.md` continuam com a versão antiga, marcados como fora de uso.
 
 ## 2026-10-06 — Nova linha da história: a fenda é um acaso
 **Decisão:**
@@ -475,7 +520,7 @@ A imagem detalhada é a arte de "capa" do item, feita à parte (gerador de image
 - **Pendentes:** o objetivo da IA; quem criou a Âncora (talvez um descendente de Gabriel); Gabriel falhando na tela enquanto o Baltazar estiver fora de 1750; prazo da fenda; como cada um volta; se alguém escolhe ficar; se algum personagem atrapalha; o nome do pesquisador.
 
 **Por quê:** decisão do Davi: uma história mais simples e humana, com personagens vivos para interagir ao longo do jogo.
-**Afeta:** `docs/historia/enredo_principal.md` (reescrito, com as pendências no fim). Ainda descrevem a versão antiga e precisam ser revistos: `docs/historia/revelacao_central.md`, `docs/personagens/antecessores.md`, `docs/mecanicas/sono_e_sonhos.md`, `docs/gdd.md`, `CLAUDE.md` (premissa) e as falas de loop em `dados/dialogos/clarice_primeiro_encontro.json`.
+**Afeta:** `docs/historia/História_Completa.md` (reescrito, com as pendências no fim). Ainda descrevem a versão antiga e precisam ser revistos: `docs/historia/revelacao_central.md`, `docs/personagens/antecessores.md`, `docs/mecanicas/sono_e_sonhos.md`, `docs/gdd.md`, `CLAUDE.md` (premissa) e as falas de loop em `dados/dialogos/clarice_primeiro_encontro.json`.
 
 ## 2026-10-06 — Menu principal mais claro, com a luminária acesa
 **Decisão:** a cena do menu continua sendo a cabine de estudo da Biblioteca à noite, mas fica mais clara e legível: a **luminária de mesa está acesa** (luz quente no canto direito da mesa), tem uma caneca de café, uma pilha de livros maior à esquerda e a estante aparece melhor, com papéis largados nas prateleiras. O monitor está gasto: rachaduras na moldura, LED verde de ligado aceso, e teclas amareladas, afundadas ou faltando. A tela do monitor ganhou fundo com um leve clarão no centro, título com brilho, barra de seleção na largura toda da tela e, no efeito CRT, cantos arredondados e uma faixa clara que desce devagar. As bordas da cena escurecem com a mesma vinheta pixelada das salas, e a luz da luminária na mesa oscila de leve e de vez em quando falha por um instante, como lâmpada velha: na falha, a mesa fica mais escura que o normal. O cenário não se mexe mais com o mouse (a paralaxe saiu, e `scripts/camada_paralaxe.gd` foi apagado). O retângulo da tela não mudou (x 90–230, y 24–126).

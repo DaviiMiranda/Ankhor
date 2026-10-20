@@ -39,7 +39,7 @@
 #                   inarmônicas com ataque lento), duas vezes no loop.
 #     4. GOLPE      um baque distante e abafado, como algo pesado lá em cima,
 #                   a cada 16 s, sempre um pouco antes da troca de acorde.
-#     5. FITA       a fita da Clarice (1994): quatro notas de um piano
+#     5. FITA       a fita da Clarice (1990): quatro notas de um piano
 #                   elétrico gasto, com a afinação oscilando (fita esticada),
 #                   só na segunda metade, longe, com muito eco.
 #     6. FIO        dois senos agudos a meio-tom de distância, quase

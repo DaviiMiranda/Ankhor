@@ -1,6 +1,6 @@
 # Pendências de produção
 
-O que falta fazer ou decidir em **arte, mecânica, fases e textos já escritos** para o jogo acompanhar a história. Nada aqui muda a história: as perguntas de história ficam no [Enredo Principal](historia/enredo_principal.md), seção 10.
+O que falta fazer ou decidir em **arte, mecânica, fases e textos já escritos** para o jogo acompanhar a história. Nada aqui muda a história: as perguntas de história ficam no [Enredo Principal](historia/História_Completa.md), seção 10.
 
 Estes itens estavam nas pendências do Enredo até 2026-10-15 e saíram de lá quando o Enredo ficou só com a história. Quando um item for resolvido, ele sai daqui (e, se for decisão de design, entra em [`decisoes.md`](decisoes.md)).
 

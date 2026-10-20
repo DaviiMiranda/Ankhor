@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/itens/documento_no_mundo.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scripts/itens/papel_no_mundo.gd" id="2_script"]
+[ext_resource type="PackedScene" path="res://cenas/itens/destaque_coletavel.tscn" id="3_destaque"]
+
+[node name="PapelNoMundo" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+altura_aviso = 18.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+centered = false
+
+[node name="DestaqueColetavel" parent="." index="1" instance=ExtResource("3_destaque")]
+intensidade = 0.6

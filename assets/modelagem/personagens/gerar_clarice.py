@@ -1,4 +1,4 @@
-# gerar_clarice.py — modela a Clarice (1994) no Blender, por código, com a
+# gerar_clarice.py — modela a Clarice (1990) no Blender, por código, com a
 # estação de trabalho dela no bunker, e renderiza os sprites, os retratos
 # da caixa de diálogo e a folha de referência.
 #
@@ -31,7 +31,7 @@
 #   assets/modelagem/personagens/clarice.blend   o modelo, para abrir e mexer
 #
 # Quem é (docs/historia/personagens/clarice.md): aluna de processamento de dados,
-# puxada de uma madrugada de 1994 na Biblioteca. Está em 3026 há alguns
+# puxada de uma madrugada de 1990 na Biblioteca. Está em 3026 há alguns
 # dias, escondida no bunker perto do núcleo da Âncora, e foi a primeira a
 # ver que as rotas dos robôs formam um grafo. Sarcástica, rápida, gíria
 # dos anos 90.
@@ -219,7 +219,7 @@ def montar_clarice(mt, pai):
     tronco = c.pivo("Tronco", (0, 0, 0), quadril)
     c.caixa("Bacia", (0.27, 0.15, 0.15), (0, 0, 0.0), mt["calca"], tronco, bisel=0.03)
     # Jaqueta corta-vento: corpo verde-azulado, faixa roxa no peito e uma
-    # faixa branca embaixo dela (os blocos de cor de 1994), gola alta e o
+    # faixa branca embaixo dela (os blocos de cor de 1990), gola alta e o
     # zíper aberto mostrando a camiseta preta.
     c.cone("Jaqueta", 0.2, 0.215, 0.5, (0, 0, 0.24), mt["jaqueta"], tronco, lados=8, achatar=0.6)
     c.cone("FaixaRoxa", 0.212, 0.212, 0.1, (0, 0, 0.36), mt["jaqueta_roxo"], tronco, lados=8, achatar=0.62)

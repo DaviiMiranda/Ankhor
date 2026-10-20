@@ -7,7 +7,8 @@ Todo som do jogo fica aqui. **Dono:** papel 4 (Roteiro e fases, que inclui o áu
 ```
 audio/
 ├── musica/              trilhas que tocam em loop
-│   ├── menu/            menu principal
+│   ├── oficial/         a trilha sonora oficial do jogo (toca no menu principal)
+│   ├── menu/            as trilhas antigas do menu principal (não tocam mais)
 │   ├── gameplay/        exploração da Biblioteca (mistério, tocada de fundo)
 │   ├── bunker/          o bunker da Clarice (peso, enterrado)
 │   ├── sonho/           o campus na última semana antes de tudo
@@ -31,11 +32,19 @@ audio/
 
 ## Sons gerados por código
 
+A **trilha sonora oficial** não é composta por script, e sim um arquivo enviado pelo Davi:
+
+| Arquivo | Origem | Como é |
+|---|---|---|
+| `musica/oficial/trilha_sonora_oficial_ankhor.ogg` | `trilha_sonora_oficial_ANKHOR.ogg`, enviada pelo Davi (autoria e licença em [`creditos.md`](creditos.md)) | 127,6 s, mono, 48 kHz, Ogg Vorbis, em loop. **Toca em loop no menu principal** (`cenas/menu_principal.tscn`, nó `Musica`, barramento Música, −4 dB: o arquivo é 2 dB mais baixo que a trilha anterior do menu) |
+
+> O arquivo original veio em **Opus** (dentro de um `.ogg`), que o Godot não lê: ele marca o arquivo como inválido e a música não toca. Por isso o arquivo do projeto foi convertido para **Ogg Vorbis** com `ffmpeg -i trilha_sonora_oficial_ANKHOR.ogg -c:a libvorbis -q:a 5 trilha_sonora_oficial_ankhor.ogg`. Se o Davi mandar uma versão nova da trilha, faça a mesma conversão antes de colocar na pasta.
+
 Alguns sons são compostos por script, sem gravação (e sem problema de licença):
 
 | Arquivo | Script | Como é |
 |---|---|---|
-| `musica/menu/menu_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_menu.py` | 64 s em loop, ré menor, 60 BPM: pad escuro, drone grave, relógio e uma caixinha de música (canção de ninar) na segunda metade |
+| `musica/menu/menu_trilha.ogg` (não toca mais no menu, que usa a trilha oficial) | `assets/modelagem/audio/gerar_trilha_menu.py` | 64 s em loop, ré menor, 60 BPM: pad escuro, drone grave, relógio e uma caixinha de música (canção de ninar) na segunda metade |
 | `musica/gameplay/gameplay_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_gameplay.py` | 70 s em loop, 48 BPM em 7/4, Mi menor sem resolução: pad escuro, pulso grave, sino de vidro com eco, gongo da Âncora, tom de Shepard descendo (a fenda) e goteiras. Toca pela cena `cenas/sistemas/musica_fase.tscn` |
 | `musica/bunker/bunker_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_bunker.py` | 64 s em loop, sem andamento marcado, Dó frígio (Dó m, Ré♭/Dó, Sol♭, Dó m♭9): Dó grave com batimento, cordas graves, aço gemendo, baque distante lá em cima, a fita da Clarice (piano elétrico gasto) e um fio agudo dissonante. Toca pela cena `cenas/sistemas/musica_bunker.tscn` em todas as salas do bunker |
 | `efeitos/gabriel/gabriel_passo_ceramica_01.wav` … `_06.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 6 passos de tênis em cerâmica antiga com areia: baque do calcanhar, sola, grãos e um pouco do eco do salão. Tocados pela cena `cenas/sistemas/passos.tscn` (dentro do Gabriel), sorteando a variação |

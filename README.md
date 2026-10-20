@@ -12,6 +12,7 @@ Jogo de terror em pixel art 2.5D, feito em Godot 4.7 para a disciplina de Comput
 | [`docs/fases.md`](docs/fases.md) | Cada fase em detalhe: salas, robôs, puzzles e sonho |
 | [`docs/decisoes.md`](docs/decisoes.md) | Registro das decisões de design e de história, com data |
 | [`docs/equipe.md`](docs/equipe.md) | Papéis e divisão de tarefas |
+| [`docs/producao/beta.md`](docs/producao/beta.md) | Como gerar e mandar uma versão beta (o `.exe`) para teste |
 | [`docs/historia/`](docs/historia/) | Enredo Principal (a lei do projeto), personagens e roteiro |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | **Regras de git e de trabalho em equipe — leia antes de começar** |
 | [`CLAUDE.md`](CLAUDE.md) | Contexto do projeto para o Claude |

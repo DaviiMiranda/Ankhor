@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xxpru3iqisy4"
-path="res://.godot/imported/poltronas_4.png-5ed80ea4e5a4157fb48ea5a0ae61ee3c.ctex"
+uid="uid://cgku7fjpao4q5"
+path="res://.godot/imported/papel_canhoto_caio.png-ce241fb631d268444fd5c9264de691f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/cenario/praca/objetos/poltronas_4.png"
-dest_files=["res://.godot/imported/poltronas_4.png-5ed80ea4e5a4157fb48ea5a0ae61ee3c.ctex"]
+source_file="res://assets/sprites/cenario/objetos/papel_canhoto_caio.png"
+dest_files=["res://.godot/imported/papel_canhoto_caio.png-ce241fb631d268444fd5c9264de691f7.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 > **Status:** Primeira fase confirmada. Planejamento aprovado em 2026-10-07 e **implementado** (seção 8).
 > **Área:** Biblioteca da Unifor
 > **Ponto de partida:** Gabriel acorda nesta fase depois de ser puxado de uma madrugada de 2026 para 3026 pela fenda da Âncora.
-> **História:** o que a Biblioteca conta segue o [Enredo Principal](../historia/enredo_principal.md) (Ato 1), que é a lei do projeto.
+> **História:** o que a Biblioteca conta segue o [Enredo Principal](../historia/História_Completa.md) (Ato 1), que é a lei do projeto.
 
 ---
 

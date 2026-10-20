@@ -1,6 +1,6 @@
 # Modelo de ficha de personagem
 
-Cada personagem tem **um arquivo** em [`personagens/`](personagens/), com o nome dele em `snake_case` (ex.: `clarice.md`). A ficha **faz parte do [Enredo Principal](enredo_principal.md)** e tem a mesma autoridade: quem o personagem é vale como está escrito nela.
+Cada personagem tem **um arquivo** em [`personagens/`](personagens/), com o nome dele em `snake_case` (ex.: `clarice.md`). A ficha **faz parte do [Enredo Principal](História_Completa.md)** e tem a mesma autoridade: quem o personagem é vale como está escrito nela.
 
 Personagem novo é decisão de história: entra no mesmo PR na ficha nova, na lista da seção 4.2 do Enredo Principal e em [`../decisoes.md`](../decisoes.md). Para robôs, siga o formato de [`personagens/robos.md`](personagens/robos.md).
 

@@ -14,7 +14,7 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../historia/p
 | Papel | Quem usa | Tinta |
 |---|---|---|
 | `pergaminho` | Baltazar (1750). Tem o esboço do robô no canto | marrom |
-| `caderno_clarice` | Clarice (1994): folha de fichário, pautas azuis, estrela | azul de caneta |
+| `caderno_clarice` | Clarice (1990): folha de fichário, pautas azuis, estrela | azul de caneta |
 | `caderno_gabriel` | O caderno do Gabriel | grafite |
 
 - Ao fechar, a **anotação** do documento entra no caderno (uma vez só) e o HUD avisa: *"Nova anotação: Baltazar, 1750   [N] ver"*.
@@ -89,7 +89,7 @@ A tela de leitura, a legenda e o inventário (com a aba Anotações) já estão 
 ## 4. Como criar um documento novo
 
 1. No Godot, botão direito em `dados/documentos/` → *Novo* → *Recurso...* → `Documento`.
-2. Preencha `id` (único), `titulo` (vai no alto da folha), `autor` (vira o título da anotação no caderno, ex.: `Clarice, 1994`), `papel` e a `anotacao`.
+2. Preencha `id` (único), `titulo` (vai no alto da folha), `autor` (vira o título da anotação no caderno, ex.: `Clarice, 1990`), `papel` e a `anotacao`.
 3. Em `paginas`, **uma entrada por página**. Cada página tem no máximo **8 linhas** de ~45 caracteres (a linha em branco entre parágrafos conta). Se passar, o fim não aparece e o Godot mostra um aviso no painel de saída. Termine cada página no fim de um parágrafo.
 4. A anotação também cabe em 8 linhas.
 5. No mapa: arraste `cenas/itens/documento_no_mundo.tscn` para `Objetos`, na posição do objeto (a origem é o pé), escolha o `documento` e troque o `texto_acao` (ex.: `Ler o bilhete`). Se o objeto for alto, aumente `altura_aviso`.
