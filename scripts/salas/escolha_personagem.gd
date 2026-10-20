@@ -1,14 +1,14 @@
 extends Node
 
-const PERSONAGENS: Array[String] = ["gabriel", "clarice", "zane", "baltazar", "rafael", "henrique", "carlos"]
+const PERSONAGENS: Array[String] = ["gabriel", "clarice", "zane", "baltazar", "henrique", "carlos", "diana"]
 const NOMES := {
 	"gabriel": "Gabriel",
 	"clarice": "Clarice",
 	"zane": "Zane",
 	"baltazar": "Baltazar",
-	"rafael": "Rafael",
 	"henrique": "Henrique",
 	"carlos": "Carlos",
+	"diana": "Diana",
 }
 const VISTAS: Array[String] = ["lado", "frente", "tres_quartos", "costas", "tres_quartos_costas"]
 const TECLA_TROCAR := KEY_C
