@@ -13,9 +13,9 @@ Estilo *Resident Evil*: em cada fase há **uma sala segura**. É o único lugar 
 
 1. O Gabriel chega perto do pedestal e aparece **[E] Pôr os óculos**.
 2. Ele anda sozinho até o lado esquerdo do pedestal, de lado, e **pega os óculos do Zane**: inclina, estende o braço, pega, leva ao rosto e põe (12 quadros, 0,1 s cada).
-3. Com os óculos no rosto, a tela escurece (como numa porta), toca o som de salvar (`efeitos/interface/salvar_jogo.wav`) e a luz do pedestal acende.
-4. No escuro, o jogo grava o arquivo, a **vida volta a 3** e o pedestal vira o **checkpoint** da fase (morrer volta para a sala segura, ao lado da máquina).
-5. A tela clareia e ele **tira os óculos e devolve ao pedestal**: a mesma animação de trás para a frente. O HUD mostra **Jogo salvo** e o jogador volta a controlar o Gabriel.
+3. Com os óculos no rosto, a luz do pedestal acende, a tela escurece (como numa porta) e o jogo **vira 3D em primeira pessoa**: o Gabriel está numa sala escura, com uma TV na frente. Ele anda até ela e salva pelo menu da tela (detalhes em [`visor_3d.md`](visor_3d.md)).
+4. Ao salvar, toca o som de salvar (`efeitos/interface/salvar_jogo.wav`), o jogo grava o arquivo, a **vida volta a 3** e o pedestal vira o **checkpoint** da fase (morrer volta para a sala segura, ao lado da máquina).
+5. Ao tirar os óculos (Esc ou **Voltar** na TV), o jogo volta para a sala segura 2D, a tela clareia e ele **tira os óculos e devolve ao pedestal**: a mesma animação de trás para a frente. Se salvou, o HUD mostra **Jogo salvo**. O jogador volta a controlar o Gabriel.
 
 ### A animação de pegar e pôr os óculos
 
@@ -64,6 +64,7 @@ Novo jogo e a lista de fases **não apagam** o save: ele só é sobrescrito na p
 | Modelo da sala segura | `cenas/salas/modelo_safe_room.tscn`, `scripts/salas/sala_segura.gd` |
 | Sala segura da Biblioteca | `cenas/salas/biblioteca/sala_segura.tscn` |
 | Máquina de salvar (os óculos do Zane) | `cenas/sistemas/maquina_de_salvar.tscn`, `scripts/sistemas/maquina_de_salvar.gd` |
+| Sala 3D com a TV de salvar (autoload `Visor`) | `scripts/sistemas/visor.gd`, `cenas/visor/`, `scripts/visor/` (ver [`visor_3d.md`](visor_3d.md)) |
 | Salvar e carregar (autoload `Salvamento`) | `scripts/sistemas/salvamento.gd` |
 | Botão Continuar | `scripts/menu_principal.gd` |
 | Animação do Gabriel e tabela dos óculos | `assets/sprites/personagens/gabriel/gabriel_oculos_lado.png`, `scripts/personagens/quadros_oculos_gabriel.gd`, de `assets/modelagem/personagens/gerar_gabriel_oculos.py` |

@@ -37,5 +37,7 @@ graph TD
 - **[`itens_e_inventario.md`](itens_e_inventario.md):** Pegar, guardar, equipar e usar itens: inventário em grade (matriz), espaços de gadget e a lanterna.
 - **[`cofre_e_codigos.md`](cofre_e_codigos.md):** Cofres com código de dígitos, em que o jogador junta as pistas da sala e testa as combinações (o primeiro está no cinema do Centro de Convivência).
 - **[`hackeamento.md`](hackeamento.md):** Minigames do notebook para abrir portas trancadas (Sequência e Sincronia), em três dificuldades.
+- **[`sala_segura.md`](sala_segura.md):** A sala segura de cada fase, onde nenhum robô entra, e os óculos do Zane como máquina de salvar.
+- **[`visor_3d.md`](visor_3d.md):** Com os óculos no rosto, o jogo vira 3D em primeira pessoa e o save é feito no menu de uma TV.
 - **[`registros_e_caderno.md`](registros_e_caderno.md):** Ler os documentos dos antecessores, as transmissões de rádio (a voz da Clarice) e o Caderno do Gabriel (aba Anotações do inventário, tecla N).
 - **[`sono_e_sonhos.md`](sono_e_sonhos.md):** Arquitetura do sistema de save game e jogabilidade investigativa nos sonhos.
