@@ -1,0 +1,97 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="Script" path="res://scripts/salas/sala_segura.gd" id="r2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/parede_porta_animada.tscn" id="r3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lisa.tscn" id="r4"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_painel_ciano.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_tapete.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r9"]
+[ext_resource type="AudioStream" path="res://assets/audio/musica/sala_segura/sala_segura_tema.ogg" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/maquina_de_salvar.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/cadeira_vr.tscn" id="r13"]
+[ext_resource type="Script" path="res://scripts/cenario/luz_pulsante.gd" id="r14"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_mural.tscn" id="r16"]
+
+[node name="ModeloSafeRoom" instance=ExtResource("r1")]
+script = ExtResource("r2")
+id = "safe_room_modelo"
+largura = 320
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("r16")]
+position = Vector2(80, 0)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(240, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(304, 0)
+
+[node name="Chao1" parent="Chao" instance=ExtResource("r7")]
+position = Vector2(0, 0)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("r7")]
+position = Vector2(128, 0)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("r7")]
+position = Vector2(256, 0)
+
+[node name="LateralEsq1" parent="Chao" instance=ExtResource("r8")]
+position = Vector2(0, 112)
+
+[node name="LateralDir1" parent="Chao" instance=ExtResource("r8")]
+position = Vector2(304, 112)
+flip_h = true
+
+[node name="LateralEsq2" parent="Chao" instance=ExtResource("r8")]
+position = Vector2(0, 176)
+
+[node name="LateralDir2" parent="Chao" instance=ExtResource("r8")]
+position = Vector2(304, 176)
+flip_h = true
+
+[node name="Escuridao" parent="."]
+color = Color(0.72, 0.68, 0.7, 1)
+
+[node name="MusicaFase" parent="." instance=ExtResource("r9")]
+stream = ExtResource("r10")
+volume_final_db = -14.0
+duracao_fade = 5.0
+
+[node name="PortaSaida" parent="." instance=ExtResource("r11")]
+position = Vector2(41, 124)
+id = "safe_room_saida"
+
+[node name="MaquinaDeSalvar" parent="Objetos" instance=ExtResource("r12")]
+position = Vector2(206, 142)
+
+[node name="CadeiraVR" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(160, 150)
+espelhado = true
+
+[node name="LuzAmbiente" type="PointLight2D" parent="Luzes"]
+position = Vector2(150, 70)
+scale = Vector2(3.2, 2.6)
+color = Color(1, 0.82, 0.58, 1)
+energy = 1.0
+range_item_cull_mask = 3
+texture = ExtResource("r15")
+script = ExtResource("r14")
+periodo = 7.0
+variacao = 0.05
+
+[node name="Gabriel" parent="Objetos"]
+position = Vector2(66, 152)

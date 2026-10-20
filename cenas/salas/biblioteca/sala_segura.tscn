@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_safe_room.tscn" id="r1"]
+
+[node name="SalaSeguraBiblioteca" instance=ExtResource("r1")]
+id = "biblioteca_sala_segura"
+
+[node name="PortaSaida" parent="."]
+cena_destino = "res://cenas/salas/biblioteca/corredor_servico.tscn"
+porta_destino = "bib_servico_sala_segura"

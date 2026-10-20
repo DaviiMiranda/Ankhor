@@ -70,7 +70,7 @@ func _ready() -> void:
 	botao_volume_musica.gui_input.connect(_ao_input_volume.bind("musica"))
 	botao_volume_sfx.gui_input.connect(_ao_input_volume.bind("efeitos"))
 
-	botao_continuar.disabled = true
+	botao_continuar.disabled = not Salvamento.existe()
 	_montar_lista_fases()
 	lista_fases.hide()
 	painel_opcoes.hide()
@@ -267,6 +267,10 @@ func _ao_apertar_novo_jogo() -> void:
 
 func _ao_apertar_continuar() -> void:
 	continuar_pedido.emit()
+	await _esperar_clique()
+	if not Salvamento.carregar():
+		botao_continuar.disabled = true
+		botao_novo_jogo.grab_focus()
 
 
 func _ao_apertar_opcoes() -> void:

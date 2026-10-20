@@ -25,6 +25,7 @@ A Biblioteca é uma cena por sala, em `cenas/salas/biblioteca/`. O jogo começa 
 | `acervo.tscn` | 4, acervo sul | Peças, 560 × 420, três fileiras de estantes |
 | `corredor_servico.tscn` | corredor de serviço | Peças, 480 × 180 |
 | `manutencao.tscn` | 5, manutenção (sala segura) | Peças, 400 × 240 |
+| `sala_segura.tscn` | sala segura (herda `modelo_safe_room.tscn`) | Peças, 320 × 180; a porta fica no corredor de serviço (letreiro DESCANSO) |
 | `ala_leste.tscn` | 7, ala leste | A arte pintada, x de 960 a 1440 |
 | `terminais.tscn` | 8, sala de terminais | Peças, 400 × 260 |
 
@@ -163,7 +164,7 @@ Os dois robôs já existem no jogo, no Labirinto. Ver [`../historia/personagens/
 
 ## 5. Sala segura e sonho
 
-- **Sala segura:** a **sala de manutenção (5)**. Fechada, escura e com porta: os robôs não entram. Gabriel pode dormir e salvar aqui.
+- **Sala segura:** o plano era a **sala de manutenção (5)**. Em 2026-10-20 a sala segura virou uma **cena própria** (`sala_segura.tscn`, feita do modelo `modelo_safe_room.tscn`): fechada, calma, os robôs não entram, e a **máquina dos óculos do Zane** salva o jogo ([`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)). A porta de entrada fica no corredor de serviço.
 - **Por que aqui:** fica no meio da fase, logo depois da primeira parte difícil (acervo sul) e antes da volta pelo salão iluminado.
 - **O sonho:** o que os sonhos mostram está pendente no Enredo Principal (seção 10.5).
 

@@ -11,6 +11,7 @@ audio/
 │   ├── menu/            as trilhas antigas do menu principal (não tocam mais)
 │   ├── gameplay/        exploração da Biblioteca (mistério, tocada de fundo)
 │   ├── bunker/          o bunker da Clarice (peso, enterrado)
+│   ├── sala_segura/     o piano suave das salas seguras
 │   ├── sonho/           o campus na última semana antes de tudo
 │   ├── perseguicao/     quando um robô sai da patrulha e persegue
 │   └── final/           o final no portão
@@ -47,6 +48,8 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `musica/menu/menu_trilha.ogg` (não toca mais no menu, que usa a trilha oficial) | `assets/modelagem/audio/gerar_trilha_menu.py` | 64 s em loop, ré menor, 60 BPM: pad escuro, drone grave, relógio e uma caixinha de música (canção de ninar) na segunda metade |
 | `musica/gameplay/gameplay_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_gameplay.py` | 70 s em loop, 48 BPM em 7/4, Mi menor sem resolução: pad escuro, pulso grave, sino de vidro com eco, gongo da Âncora, tom de Shepard descendo (a fenda) e goteiras. Toca pela cena `cenas/sistemas/musica_fase.tscn` |
 | `musica/bunker/bunker_trilha.ogg` | `assets/modelagem/audio/gerar_trilha_bunker.py` | 64 s em loop, sem andamento marcado, Dó frígio (Dó m, Ré♭/Dó, Sol♭, Dó m♭9): Dó grave com batimento, cordas graves, aço gemendo, baque distante lá em cima, a fita da Clarice (piano elétrico gasto) e um fio agudo dissonante. Toca pela cena `cenas/sistemas/musica_bunker.tscn` em todas as salas do bunker |
+| `musica/sala_segura/sala_segura_tema.ogg` | `assets/modelagem/audio/gerar_trilha_sala_segura.py` | 64 s em loop, 60 BPM, Lá menor (Lá m9, Fá maj7(9), Dó maj9, Sol 6): piano macio em arpejo lento com pausas, melodia esparsa e longe, cordas suaves e grave. Toca pela cena `cenas/salas/modelo_safe_room.tscn` (nó `MusicaFase`, −14 dB) |
+| `efeitos/interface/salvar_jogo.wav` | `assets/modelagem/audio/gerar_trilha_sala_segura.py` | 3,5 s: três notas de sino subindo sobre um zumbido grave de máquina. Toca na máquina de salvar (`cenas/sistemas/maquina_de_salvar.tscn`) |
 | `efeitos/gabriel/gabriel_passo_ceramica_01.wav` … `_06.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 6 passos de tênis em cerâmica antiga com areia: baque do calcanhar, sola, grãos e um pouco do eco do salão. Tocados pela cena `cenas/sistemas/passos.tscn` (dentro do Gabriel), sorteando a variação |
 | `efeitos/interface/inventario_abrir.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 0,55 s: zíper da mochila (acelera e freia), tecido e a aba caindo. Toca ao abrir o inventário |
 | `efeitos/interface/inventario_fechar.wav` | `assets/modelagem/audio/gerar_efeitos_gabriel.py` | 0,45 s: a aba empurrada, o zíper mais rápido e o "tec" do cursor no fim. Toca ao fechar o inventário |
@@ -73,7 +76,7 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `efeitos/interface/dialogo_bip.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | O bipe das letras na caixa de diálogo (o tom muda com quem fala) |
 | `efeitos/interface/papel_folhear.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 0,35 s: uma folha virando. Toca ao abrir, folhear e fechar documentos e o caderno |
 
-Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py`, `gerar_trilha_gameplay.py`, `gerar_trilha_bunker.py`, `gerar_trilha_labirinto.py` ou `gerar_trilha_perseguicao.py` (precisa de numpy e ffmpeg). Os efeitos saem de `gerar_efeitos_gabriel.py` (só numpy).
+Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py`, `gerar_trilha_gameplay.py`, `gerar_trilha_bunker.py`, `gerar_trilha_sala_segura.py`, `gerar_trilha_labirinto.py` ou `gerar_trilha_perseguicao.py` (precisa de numpy e ffmpeg). Os efeitos saem de `gerar_efeitos_gabriel.py` (só numpy).
 
 ## Nomes de arquivo
 
