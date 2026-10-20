@@ -12,9 +12,17 @@ Estilo *Resident Evil*: em cada fase há **uma sala segura**. É o único lugar 
 ## 2. Salvar
 
 1. O Gabriel chega perto do pedestal e aparece **[E] Pôr os óculos**.
-2. A tela escurece (como numa porta), toca o som de salvar (`efeitos/interface/salvar_jogo.wav`) e a luz do pedestal acende.
-3. No escuro, o jogo grava o arquivo, a **vida volta a 3** e o pedestal vira o **checkpoint** da fase (morrer volta para a sala segura, ao lado da máquina).
-4. A tela clareia e o HUD mostra **Jogo salvo**.
+2. Ele anda sozinho até o lado esquerdo do pedestal, de lado, e **pega os óculos do Zane**: inclina, estende o braço, pega, leva ao rosto e põe (12 quadros, 0,1 s cada).
+3. Com os óculos no rosto, a tela escurece (como numa porta), toca o som de salvar (`efeitos/interface/salvar_jogo.wav`) e a luz do pedestal acende.
+4. No escuro, o jogo grava o arquivo, a **vida volta a 3** e o pedestal vira o **checkpoint** da fase (morrer volta para a sala segura, ao lado da máquina).
+5. A tela clareia e ele **tira os óculos e devolve ao pedestal**: a mesma animação de trás para a frente. O HUD mostra **Jogo salvo** e o jogador volta a controlar o Gabriel.
+
+### A animação de pegar e pôr os óculos
+
+- A tira `gabriel_oculos_lado.png` (12 quadros de 96 × 112, na paleta do Gabriel) é renderizada no Blender pelo `assets/modelagem/personagens/gerar_gabriel_oculos.py`, com o mesmo modelo dele. Para ajustar o gesto, mude a tabela `POSES` (ângulos do ombro, cotovelo, tronco e cabeça) e rode o script (`blender -b --factory-startup --python ...`).
+- Os óculos **não** estão desenhados na tira: o script grava em `scripts/personagens/quadros_oculos_gabriel.gd` o ponto (em pixels do quadro) onde eles estão em cada quadro, e a fase: `pedestal`, `mao` ou `rosto`. O `MaquinaDeSalvar` move o sprite do Zane até esse ponto e o afina de lado (a escala em x cai para 45% na mão e 30% no rosto), porque o Gabriel está de perfil.
+- O lugar onde o Gabriel para é calculado para a mão dele coincidir com os óculos no pedestal, então vale para qualquer posição do pedestal na sala. Ele sempre fica à esquerda, olhando para a direita (só existe a vista de lado). Se o pedestal ficar encostado na parede esquerda, mude o pedestal de lugar.
+- No `gabriel.gd`: `tocar_tira`, `mostrar_quadro_tira`, `terminar_tira` (tocam uma tira especial no lugar da caminhada/respiração), `olhar_para` e `ponto_do_quadro`.
 
 ## 3. Continuar
 
@@ -58,6 +66,7 @@ Novo jogo e a lista de fases **não apagam** o save: ele só é sobrescrito na p
 | Máquina de salvar (os óculos do Zane) | `cenas/sistemas/maquina_de_salvar.tscn`, `scripts/sistemas/maquina_de_salvar.gd` |
 | Salvar e carregar (autoload `Salvamento`) | `scripts/sistemas/salvamento.gd` |
 | Botão Continuar | `scripts/menu_principal.gd` |
+| Animação do Gabriel e tabela dos óculos | `assets/sprites/personagens/gabriel/gabriel_oculos_lado.png`, `scripts/personagens/quadros_oculos_gabriel.gd`, de `assets/modelagem/personagens/gerar_gabriel_oculos.py` |
 | Sprites do pedestal | `assets/sprites/cenario/objetos/maquina_de_salvar.png` e `maquina_de_salvar_luz.png`, de `assets/modelagem/cenario/gerar_sala_segura.py` |
 | Tema e som de salvar | `assets/modelagem/audio/gerar_trilha_sala_segura.py` |
 

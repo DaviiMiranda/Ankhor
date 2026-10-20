@@ -35,6 +35,7 @@ Retratos de 80 × 80, mostrados em 40 × 40 na caixa de diálogo.
 | `gabriel_<vista>.png` | 1 | parado, em cada vista |
 | `gabriel_andar_<vista>.png` | 12 | caminhada (dois passos), um arquivo por vista |
 | `gabriel_parado_<vista>.png` | 8 | respiração |
+| `gabriel_oculos_lado.png` | 12 | só de lado: pega os óculos do Zane da máquina de salvar e põe no rosto (de trás para a frente, tira). Feita por `gerar_gabriel_oculos.py` |
 | `gabriel_retrato_<nome>.png` | 1 | `normal`, `preocupado` e `surpreso` |
 
 Vistas: `lado`, `frente`, `tres_quartos`, `costas`, `tres_quartos_costas`.

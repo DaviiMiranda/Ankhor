@@ -53,6 +53,7 @@ var jogador_controla := true
 var direcao_automatica := Vector2.ZERO
 var correndo := false
 var escondido := false
+var tira_especial := false
 
 var vista := "lado"
 var direcao_olhar := Vector2.RIGHT
@@ -150,7 +151,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	_virar(direcao)
-	_animar(get_real_velocity().length() * delta, delta)
+	if not tira_especial:
+		_animar(get_real_velocity().length() * delta, delta)
 
 	_piscar()
 
@@ -170,11 +172,31 @@ func posicao_do_peito() -> Vector2:
 
 func posicao_da_mao() -> Vector2:
 	var quadros: Array = MAOS[vista][_tira_da_mao]
-	var pixel: Vector2 = quadros[mini(sprite.frame, quadros.size() - 1)]
+	return ponto_do_quadro(quadros[mini(sprite.frame, quadros.size() - 1)])
+
+
+func ponto_do_quadro(pixel: Vector2) -> Vector2:
 	var x := pixel.x
 	if sprite.flip_h:
 		x = LARGURA_QUADRO - x
 	return sprite.position + (Vector2(x, pixel.y) + sprite.offset) * sprite.scale
+
+
+func olhar_para(direcao: Vector2) -> void:
+	_virar(direcao)
+
+
+func tocar_tira(tira: Texture2D, quadros: int) -> void:
+	tira_especial = true
+	_mostrar(tira, quadros, 0)
+
+
+func mostrar_quadro_tira(quadro: int) -> void:
+	sprite.frame = quadro
+
+
+func terminar_tira() -> void:
+	tira_especial = false
 
 
 func andar_sozinho(direcao: Vector2) -> void:
