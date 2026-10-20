@@ -7,27 +7,28 @@ const DICA_ANDANDO := "Esc: tirar os óculos"
 @export var cosseno_do_olhar: float = 0.8
 @export var segundos_movendo_camera: float = 0.6
 @export var segundos_escurecendo: float = 0.6
+@export_range(0.25, 1.0) var resolucao_do_3d: float = 1.0
 
 var _estado := Estado.ENTRANDO
 var _foco: FocoVisor
 var _camera_ao_andar: Transform3D
 
+@onready var imagem: SubViewportContainer = $Imagem
 @onready var mundo: SubViewport = $Imagem/Mundo
 @onready var jogador: JogadorVisor = $Imagem/Mundo/JogadorVisor
 @onready var tela: TelaDoVisor = $Imagem/Mundo/TelaDoVisor
 @onready var tela_documento: CanvasLayer = $TelaDocumento
-@onready var efeito_crt: ColorRect = $EfeitoCRT
 @onready var escuro: ColorRect = $Escuro
 @onready var dica: Label = $Dica
 
 
 func _ready() -> void:
+	_ajustar_resolucao()
+	get_window().size_changed.connect(_ajustar_resolucao)
 	tela.menu.salvar_pedido.connect(_salvar)
 	tela.menu.voltar_pedido.connect(_sair)
 	for foco in _focos():
 		foco.leitura_pedida.connect(_ler)
-	Configuracoes.mudou.connect(_ao_mudar_configuracoes)
-	_ao_mudar_configuracoes()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	jogador.controlando = false
 	escuro.color.a = 1.0
@@ -71,6 +72,16 @@ func _entrada_focado(evento: InputEvent) -> void:
 	else:
 		return
 	get_viewport().set_input_as_handled()
+
+
+func _ajustar_resolucao() -> void:
+	var na_tela := get_viewport_rect().size
+	var desenhada := (Vector2(get_window().size) * resolucao_do_3d).round().max(na_tela)
+	imagem.stretch = false
+	imagem.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	mundo.size = Vector2i(desenhada)
+	imagem.size = desenhada
+	imagem.scale = na_tela / desenhada
 
 
 func foco_a_frente() -> FocoVisor:
@@ -173,7 +184,3 @@ func _mudar_estado(novo: Estado) -> void:
 			dica.text = _foco.dica_focado
 		_:
 			dica.text = ""
-
-
-func _ao_mudar_configuracoes() -> void:
-	efeito_crt.visible = Configuracoes.efeito_crt
