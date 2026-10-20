@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-20 — A lanterna volta para a mão do Gabriel, com o visual novo
+**Decisão:** a lanterna deixa de ficar presa ao peito e passa a ser **empunhada**: o sprite (`lanterna_mao.png`, 14 × 8 px em resolução dobrada, mostrado com escala 0,5, então 7 × 4 px no mundo) fica na mão do Gabriel e acompanha a mão na caminhada, usando uma tabela com a posição da mão em cada quadro (`scripts/personagens/maos_do_gabriel.gd`, gerada por `assets/modelagem/personagens/medir_maos_gabriel.py`). O visual novo, a partir da foto de referência do Davi, é uma lanterna de aço azulado escuro com botão vermelho, pegada quadriculada, lente quente e alça de pulso de nylon preto, no lugar da verde-oliva. A imagem da tela de "item novo" (`lanterna_detalhe.png`), o ícone do inventário (`lanterna.png`) e a lanterna no chão (`lanterna_chao.png`) foram refeitos com esse visual. A luz continua nascendo na lente, que agora fica uns 3,75 px à frente da mão. Nas vistas de costas ela continua escondida.
+**Por quê:** pedido do Davi, com a nova arte de referência. A primeira versão na mão (7 × 4 px de corpo) tinha sido trocada pelo peito por chamar atenção; desta vez o corpo da lanterna tem só uns 6 × 3 px, e o sprite do peito (`lanterna_peito.png`) foi apagado.
+**Afeta:** `scripts/itens/lanterna.gd`, `cenas/itens/lanterna.tscn`, `scripts/personagens/gabriel.gd` (`posicao_da_mao()`), `scripts/personagens/maos_do_gabriel.gd`, `assets/modelagem/interface/gerar_interface.py`, `assets/sprites/itens/lanterna*.png`, `dados/itens/lanterna.tres`, `docs/mecanicas/iluminacao_e_lanterna.md`. `posicao_do_peito()` continua existindo para a pedra. Se o sprite do Gabriel mudar, rode `medir_maos_gabriel.py` de novo.
+
 ## 2026-10-18 — Cada pessoa chega a 3026 três dias depois da anterior
 **Decisão:** entre uma chegada e a seguinte passam **3 dias**, e a fenda pulsa a cada 3 dias. Pela ordem já fechada (Henrique, Zane, Clarice, Diana, Gabriel), o Gabriel chega 3 dias depois da Diana, 6 depois da Clarice, 9 depois do Zane e 12 depois do Henrique. A posição do Baltazar continua pendente: se ele entrar no meio da ordem, quem veio antes dele ganha mais 3 dias.
 **Por quê:** pedido do Davi, para as falas poderem dizer há quantos dias cada um está lá.

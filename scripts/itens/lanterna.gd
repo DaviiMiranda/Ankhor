@@ -5,7 +5,7 @@ extends Node2D
 @export var energia_nas_paredes: float = 1.0
 @export var energia_halo: float = 0.45
 @export var carga_fraca: float = 0.15
-@export var distancia_da_lente: float = 2.5
+@export var distancia_da_lente: float = 3.75
 @export var altura_da_sombra: float = 20.0
 
 var item: Item
@@ -53,9 +53,9 @@ func _apontar() -> void:
 	var dono := get_parent().get_parent() as Gabriel
 	if dono:
 		var angulo := dono.direcao_olhar.angle()
-		var peito := to_local(dono.to_global(dono.posicao_do_peito()))
-		var lente := peito + Vector2.from_angle(angulo) * distancia_da_lente
-		corpo.position = peito
+		var mao := to_local(dono.to_global(dono.posicao_da_mao()))
+		var lente := mao + Vector2.from_angle(angulo) * distancia_da_lente
+		corpo.position = mao
 		corpo.rotation = angulo
 		corpo.flip_v = dono.direcao_olhar.x < 0.0
 		corpo.visible = not dono.vista.ends_with("costas")
