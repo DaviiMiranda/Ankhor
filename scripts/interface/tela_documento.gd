@@ -14,6 +14,14 @@ const PAPEIS := {
 		"textura": preload("res://assets/sprites/interface/papel_caderno_gabriel.png"),
 		"tinta": Color("2e2e36"),
 	},
+	"carta": {
+		"textura": preload("res://assets/sprites/interface/papel_carta.png"),
+		"tinta": Color("26283a"),
+	},
+	"carta_faroleiro": {
+		"textura": preload("res://assets/sprites/interface/papel_carta_faroleiro.png"),
+		"tinta": Color("3b2614"),
+	},
 }
 
 var aberto := false

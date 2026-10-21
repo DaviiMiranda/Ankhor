@@ -68,6 +68,24 @@ def bilhete():
     return img, 7, 10
 
 
+def carta(com_farol):
+    """Carta dobrada em três (os Faroleiros e os desconhecidos de 3026): a
+    folha sem dobra no canto, com os dois vincos em pé e as linhas de letra.
+    A dos Faroleiros leva no canto um farol âmbar de 1 x 4 px com a lanterna
+    acesa em cima, a cor deles (História Completa, seção 2.4)."""
+    img = Imagem(15, 11)
+    X = img.X
+    forma = papel_de_base(img, [(3, 1), (13, 1), (14, 8), (2, 8)], 0.78)
+    img.pintar(((X == 6) | (X == 10)) & forma, "papel_branco", 0.6, achatar=False)
+    linhas_de_texto(img, forma, 4, 10, 3, 2, 3, 0.2, 5)
+    if com_farol:
+        img.pintar(img.ret(11, 3, 12, 6) & forma, "neon_ambar", 0.55, achatar=False)
+        img.pintar(img.ret(11, 2, 12, 3) & forma, "neon_ambar", 0.85, achatar=False)
+    sombra_embaixo(img, forma)
+    img.contornar()
+    return img, 7, 10
+
+
 def canhoto(cor):
     """Canhoto de ingresso: a tira com o picotado à esquerda (dentes vazados),
     duas linhas de letra e a faixa colorida à direita."""
@@ -115,6 +133,8 @@ def folha_com_cabecalho(cor, tipo):
 
 PAPEIS = {
     "papel_bilhete": bilhete,
+    "papel_carta": lambda: carta(False),
+    "papel_carta_faroleiro": lambda: carta(True),
     "papel_canhoto_leo": lambda: canhoto("ciano"),
     "papel_canhoto_bia": lambda: canhoto("neon_magenta"),
     "papel_canhoto_caio": lambda: canhoto("neon_ambar"),

@@ -362,6 +362,11 @@ AZUL_PAUTA = bib.hexa("#9aabc4")[0]
 VERMELHO_MARGEM = bib.hexa("#c07a70")[0]
 CINZA_GRADE = bib.hexa("#c9c6b8")[0]
 TINTA_MARROM = bib.hexa("#3a2210")[0]
+# Papel de carta de 3026: reaproveitado, mais escuro e mais "cru" que o do
+# caderno. O âmbar é a cor dos Faroleiros (docs/historia/História_Completa.md,
+# seção 2.4): a luz quente de uma chama.
+PAPEL_CRU = bib.hexa("#6f6a5c", "#8f8a78", "#ada690", "#c4bca3", "#d5ceb6", "#e0d9c3")
+AMBAR_FAROL = bib.hexa("#5a2e08", "#94520f", "#c97a1c", "#eba23a", "#ffcb6b")
 
 
 def pautas():
@@ -480,10 +485,59 @@ def papel_caderno_gabriel():
     return img
 
 
+# O símbolo dos Faroleiros na grade de 9 x 12 px do Enredo (seção 2.4): os três
+# raios em leque para o céu, a lanterna de 3 x 3 com o ponto no meio e a torre
+# em trapézio, só o contorno (é pintado à mão, em três traços).
+FAROL_RAIOS = [(1, 0), (2, 1), (3, 2), (4, 0), (4, 1), (4, 2), (7, 0), (6, 1), (5, 2)]
+FAROL_LANTERNA = [(x, y) for x in range(3, 6) for y in range(3, 6)]
+FAROL_TORRE = [(3, 6), (4, 6), (5, 6), (3, 7), (5, 7), (3, 8), (5, 8),
+               (2, 9), (6, 9), (2, 10), (6, 10)] + [(x, 11) for x in range(2, 7)]
+
+
+def carimbo_farol(img, x0, y0, escala, semente):
+    """Carimba o farol âmbar com o canto de cima à esquerda em (x0, y0), cada
+    pixel da grade virando um quadrado de 'escala' px. Carimbo de verdade
+    falha: alguns pixels ficam sem tinta, e a tinta é mais forte no meio."""
+    falha = np.random.default_rng(semente).random((img.h, img.w)) < 0.9
+    def quadrados(pontos):
+        m = np.zeros((img.h, img.w), dtype=bool)
+        for (gx, gy) in pontos:
+            m |= img.ret(x0 + gx * escala, y0 + gy * escala, x0 + (gx + 1) * escala, y0 + (gy + 1) * escala)
+        return m
+    traco = quadrados(FAROL_RAIOS + FAROL_LANTERNA + FAROL_TORRE) & falha
+    img.pintar(traco, AMBAR_FAROL, 0.55 + 0.15 * ruido(img.w, img.h, 3, 3, semente + 1))
+    img.pintar(quadrados([(4, 4)]), AMBAR_FAROL, 0.95)
+
+
+def papel_carta(com_farol, semente):
+    """Carta de 3026 (os Faroleiros e os desconhecidos): folha lisa de papel
+    reaproveitado, sem pauta, dobrada em três. Os dois vincos atravessam a
+    folha (uma linha escura e, logo embaixo, uma clara, o relevo da dobra).
+    A dos Faroleiros leva o farol âmbar carimbado no canto de cima, fora da
+    área do texto (que vai de x = 14 a 234)."""
+    img = Imagem(LARGURA_PAPEL, ALTURA_PAPEL)
+    X, Y = img.X, img.Y
+    folha = borda_rasgada(img, 2, semente)
+    fino = ruido(img.w, img.h, 2, 2, semente + 1)
+    fibras = ruido(img.w, img.h, 6, 1, semente + 2)
+    manchas = ruido(img.w, img.h, 36, 28, semente + 3)
+    borda = perto_da_borda(folha, 8)
+    v = 0.78 + 0.08 * manchas + 0.04 * fino + 0.03 * fibras - 0.35 * (1 - borda)
+    for y in (ALTURA_PAPEL // 3, 2 * ALTURA_PAPEL // 3):
+        v = v - 0.1 * (Y == y) + 0.05 * (Y == y + 1)
+    img.pintar(folha, PAPEL_CRU, v)
+    if com_farol:
+        carimbo_farol(img, LARGURA_PAPEL - 22, 2, 2, semente + 4)
+    img.contornar(PAPEL_CRU[0])
+    return img
+
+
 PAPEIS = {
     "papel_pergaminho": papel_pergaminho,
     "papel_caderno_clarice": papel_caderno_clarice,
     "papel_caderno_gabriel": papel_caderno_gabriel,
+    "papel_carta": lambda: papel_carta(False, 51),
+    "papel_carta_faroleiro": lambda: papel_carta(True, 61),
 }
 
 

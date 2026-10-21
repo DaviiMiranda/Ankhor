@@ -6,6 +6,8 @@ const PAPEIS := {
 	"pergaminho": [preload("res://assets/sprites/interface/papel_pergaminho.png"), Color("3a2210")],
 	"caderno_clarice": [preload("res://assets/sprites/interface/papel_caderno_clarice.png"), Color("22306e")],
 	"caderno_gabriel": [preload("res://assets/sprites/interface/papel_caderno_gabriel.png"), Color("2e2e36")],
+	"carta": [preload("res://assets/sprites/interface/papel_carta.png"), Color("26283a")],
+	"carta_faroleiro": [preload("res://assets/sprites/interface/papel_carta_faroleiro.png"), Color("3b2614")],
 }
 const COLUNAS := 5
 const LINHAS := 3
