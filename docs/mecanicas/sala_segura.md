@@ -18,7 +18,7 @@ Estilo *Resident Evil*: em cada fase há **uma sala segura**. É o único lugar 
 | Labirinto | `cenas/salas/labirinto/sala_segura.tscn` | Parede de cima da câmara onde o Gabriel começa (`QQ` no mapa) |
 | Centro de Convivência | `cenas/salas/centro_de_convivencia/sala_segura.tscn` | Passarela de acesso, a porta de vidro verde entre as janelas |
 | Bunker | `cenas/salas/bunker/sala_segura.tscn` | Corredor A, ao lado da entrada (DESCANSO) |
-| Laboratório | `cenas/salas/dtec/sala_segura.tscn` | Corredor norte, entre a Recepção e a Eletrônica (DESCANSO) |
+| Laboratório | `cenas/salas/dtec/sala_segura.tscn` | Corredor sul, ao lado da Emergência, onde o Gabriel chega (DESCANSO) |
 
 As seis herdam do mesmo modelo e mudam só a cor da `Escuridao` e da `LuzAmbiente`. Outros cantos protegidos da história (a sala 103 da Clarice, a oficina do Zane, a Tapioca Orbital) continuam sem robôs e com checkpoint, mas não salvam.
 

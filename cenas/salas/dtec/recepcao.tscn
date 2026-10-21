@@ -19,12 +19,10 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/planta.tscn" id="r17"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/caixas_lab.tscn" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r19"]
-[ext_resource type="Resource" path="res://dados/itens/lanterna.tres" id="r20"]
-[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r21"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r22"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r23"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r24"]
-[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r25"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r22"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r23"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.06, 0.12, 0.2, 1)
@@ -243,31 +241,27 @@ espelhado = true
 [node name="Pilha1" parent="Objetos" instance=ExtResource("r19")]
 position = Vector2(520, 330)
 
-[node name="Lanterna1" parent="Objetos" instance=ExtResource("r21")]
-position = Vector2(200, 290)
-item = ExtResource("r20")
-
-[node name="Luz1" parent="Luzes" instance=ExtResource("r22")]
+[node name="Luz1" parent="Luzes" instance=ExtResource("r20")]
 position = Vector2(200, 34)
 energy = 0.85
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r22")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r20")]
 position = Vector2(520, 34)
 energy = 0.85
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r22")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r20")]
 position = Vector2(107, 250)
 energy = 0.9
 
-[node name="Luz4" parent="Luzes" instance=ExtResource("r22")]
+[node name="Luz4" parent="Luzes" instance=ExtResource("r20")]
 position = Vector2(320, 250)
 energy = 0.9
 
-[node name="Luz5" parent="Luzes" instance=ExtResource("r22")]
+[node name="Luz5" parent="Luzes" instance=ExtResource("r20")]
 position = Vector2(533, 250)
 energy = 0.9
 
-[node name="Luz6" parent="Luzes" instance=ExtResource("r23")]
+[node name="Luz6" parent="Luzes" instance=ExtResource("r21")]
 position = Vector2(560, 30)
 energy = 0.5
 
@@ -277,21 +271,21 @@ color = Color(0.32, 0.33, 0.4, 1)
 [node name="Gabriel" parent="Objetos"]
 position = Vector2(90, 320)
 
-[node name="Porta_recepcao_corredor" parent="." instance=ExtResource("r24")]
+[node name="Porta_recepcao_corredor" parent="." instance=ExtResource("r22")]
 position = Vector2(361, 124)
 id = "recepcao_corredor"
 cena_destino = "res://cenas/salas/dtec/corredor_norte.tscn"
 porta_destino = "norte_recepcao"
 som_abrir = ExtResource("r2")
 
-[node name="Porta_recepcao_saida" parent="." instance=ExtResource("r24")]
+[node name="Porta_recepcao_saida" parent="." instance=ExtResource("r22")]
 position = Vector2(41, 124)
 id = "recepcao_saida"
 bloqueada = true
 aviso_bloqueada = "As portas da entrada estão travadas por fora."
 
 [node name="Zumbido" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("r25")
+stream = ExtResource("r23")
 volume_db = -14.0
 pitch_scale = 1.15
 autoplay = true
