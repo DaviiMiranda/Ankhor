@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-20 — Quarto do visor com texturas, mais pôsteres e estrelas cadentes
+**Decisão:** o quarto do Gabriel ganha **texturas em pixel art** (tábuas no chão, papel de parede listrado, cortiça, tapete com losango, cobertor xadrez, veio nos móveis e na porta, cortina, lençol, moletom, mochila), aplicadas por **mapeamento triplanar**, e **mais pôsteres**: Fortaleza com jangada, um jogo de nave inventado (ASTRO 8), a folha de equações de Modelagem e Simulação, um calendário de 2026 e a flâmula da Unifor, além do robô e do de 8 bits do prólogo. No céu, de vez em quando passam **estrelas cadentes e luzes coloridas rápidas**, sempre acima do quarto.
+**Por quê:** pedido do Davi, para o quarto ter mais detalhe e o céu mais vida. A folha de Modelagem e Simulação vem da ficha do Gabriel (o caderno de equações da cadeira); os outros pôsteres são objetos de quarto, sem peso de história.
+**Afeta:** `assets/modelagem/cenario/gerar_texturas_quarto.py` e `assets/sprites/cenario/visor/` (novos), `assets/modelagem/cenario/gerar_sala_visor.py` e `assets/modelos/sala_visor.glb` (sem as frestas, que viraram textura), `scripts/visor/texturas_do_quarto.gd`, `scripts/visor/estrelas_cadentes.gd` e `cenas/visor/estrelas_cadentes.tscn` (novos), `cenas/visor/sala_visor.tscn`, `docs/mecanicas/visor_3d.md`.
+
 ## 2026-10-20 — Visor 3D sem CRT, na resolução da janela, com estrelas coloridas no céu
 **Decisão:** o quarto do visor deixa de ter o efeito CRT por cima da visão (só a tela da TV mantém o dela) e passa a ser desenhado **na resolução real da janela**, em vez de 640 × 360 ampliado. As texturas continuam em pixel art com filtro Nearest; as bordas dos móveis ficam lisas, com MSAA 2×. Acima das paredes, o céu ganha **centenas de pontos de luz coloridos** que acendem e apagam; dentro do quarto não há partículas.
 **Por quê:** pedido do Davi: os textos do mural, da mesa e do quadro precisam ser legíveis mesmo de longe, e o céu aberto pedia mais vida.

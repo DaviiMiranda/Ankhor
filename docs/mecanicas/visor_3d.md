@@ -1,6 +1,6 @@
 # Mecânicas — O visor 3D: o quarto do Gabriel (salvar em primeira pessoa)
 
-Quando o Gabriel põe os óculos do Zane na sala segura ([`sala_segura.md`](sala_segura.md)), o jogo **vira 3D em primeira pessoa**. Ele aparece no **próprio quarto, a mente dele materializada**: o quarto de 2026 do prólogo (`seg_prologo`, cena 2), com a janela do pôr do sol, a escrivaninha, a estante, a cama e os pôsteres, só que sem teto. As paredes terminam numa linha ciano e, acima delas, é o escuro, cheio de pontos de luz coloridos (só no céu, nunca dentro do quarto). É um quarto lembrado, não um quarto de verdade.
+Quando o Gabriel põe os óculos do Zane na sala segura ([`sala_segura.md`](sala_segura.md)), o jogo **vira 3D em primeira pessoa**. Ele aparece no **próprio quarto, a mente dele materializada**: o quarto de 2026 do prólogo (`seg_prologo`, cena 2), com a janela do pôr do sol, a escrivaninha, a estante, a cama e as paredes cheias de pôsteres (Fortaleza com jangada, um jogo de nave, o robô de olhos vermelhos, a folha de equações de Modelagem e Simulação, um calendário de 2026, a flâmula da Unifor), só que sem teto. As paredes terminam numa linha ciano e, acima delas, é o escuro, cheio de pontos de luz coloridos, cortado de vez em quando por estrelas cadentes e luzes que passam rápido (só no céu, nunca dentro do quarto). É um quarto lembrado, não um quarto de verdade.
 
 O quarto guarda o jogo até ali. Tudo o que aparece nele vem do estado do jogo naquele momento (o mesmo que vai para o save):
 
@@ -73,9 +73,27 @@ Não há efeito CRT por cima da visão: só a tela da TV tem CRT, porque ali ele
 
 O menu da TV é uma cena de interface comum (`MenuVisor`), desenhada noutro `SubViewport`, de **192 × 144** (4:3, como a tela). A imagem desse viewport vira a textura da tela da TV (material sem sombreamento, filtro Nearest). Como esse `SubViewport` não está dentro de um container, ele não recebe teclas sozinho: a TV repassa as teclas para ele com `push_input` enquanto a câmera está nela.
 
-A janela e os pôsteres são **recortes da ilustração do prólogo** (`assets/sprites/cutscenes/seg_prologo/cena_02_quarto.png`), em `Sprite3D` com `region_rect`. A janela não sofre a luz do quarto (brilha como o pôr do sol); os pôsteres sofrem.
+A janela, o pôster do robô e o de 8 bits são **recortes da ilustração do prólogo** (`assets/sprites/cutscenes/seg_prologo/cena_02_quarto.png`), copiados para `assets/sprites/cenario/visor/` pelo `gerar_texturas_quarto.py`. São cópias de propósito: se o quarto usasse a ilustração do prólogo direto, o Godot poderia detectar o uso em 3D e trocar a compressão dela, borrando a cutscene. Os outros pôsteres são desenhados pixel a pixel pelo mesmo script. Todos são `Sprite3D`; a janela não sofre a luz do quarto (brilha como o pôr do sol), os pôsteres sofrem.
+
+### Estrelas cadentes e luzes rápidas
+
+O `EstrelasCadentes` (`cenas/visor/estrelas_cadentes.tscn`, `scripts/visor/estrelas_cadentes.gd`) solta uma a cada 1 a 3,5 s (sorteado). Seis em cada dez são **estrelas cadentes**: brancas, azuladas ou douradas, rápidas (9 a 14 m/s), caindo de leve, por 0,5 a 0,9 s. As outras são **luzes que viajam**: das cores do céu, mais lentas (5 a 8 m/s), quase na horizontal, por 1 a 1,8 s.
+
+Cada uma é um rastro de 22 pontos (quadradinhos virados para a câmera, somando luz: `BLEND_MODE_ADD`), do maior e mais forte na cabeça ao menor e mais fraco na cauda. O rastro inteiro anda em linha reta e o brilho sobe e desce como $\sin(\pi p)$, com $p$ indo de 0 a 1 ao longo do voo: nasce apagado, fica mais forte no meio e some no fim. As cores passam de 1 (HDR) para o *glow* do ambiente acender um halo em volta.
+
+Para ser vista de dentro do quarto, cada uma é sorteada para **passar por um ponto em cima do quarto** (até 2,2 m do centro, entre 4 m e 6 m de altura) e começa meio voo antes dele. Se ela cai, o voo é encurtado para o fim não descer abaixo de 3,4 m: nada atravessa o quarto.
 
 ## 5. A matemática
+
+### Texturas sem UV (mapeamento triplanar)
+
+As tábuas do chão, o papel de parede, a cortiça, os tecidos e as madeiras são ladrilhos pequenos de pixel art (`gerar_texturas_quarto.py`) aplicados pelo `TexturasDoQuarto` (`scripts/visor/texturas_do_quarto.gd`), que troca o material de cada parte do modelo pelo **nome** do material do Blender (Chao, Parede, Madeira...). O modelo não tem UV desdobrado: a textura é projetada **pela posição no mundo**. Para um ponto $(x, y, z)$ com normal $ec{n}$, o Godot lê a textura em três projeções:
+
+$$	ext{cor}_x = T(z, y)\qquad 	ext{cor}_y = T(x, z)\qquad 	ext{cor}_z = T(x, y)$$
+
+e mistura as três com pesos $|n_x|, |n_y|, |n_z|$ (normalizados). Nas caixas do quarto a normal sempre aponta num eixo só, então cada face usa uma projeção pura: o chão usa $(x, z)$, a parede do fundo $(x, y)$, as laterais $(z, y)$. A escala `uv1_scale` $= 1/m$ faz o ladrilho se repetir a cada $m$ metros (0,8 m no piso: quatro tábuas de 20 cm). Como a textura é medida em metros do mundo, um móvel grande e um pequeno têm o mesmo tamanho de veio, e nada fica esticado. As texturas são importadas com **mipmaps** (cópias menores, para não tremerem de longe) e com o filtro *Nearest* (pixel nítido de perto).
+
+
 
 ### Para onde o jogador está virado (produto escalar)
 
@@ -132,6 +150,8 @@ As formas de colisão (chão, paredes, móvel da TV, estante, escrivaninha, cade
 | Papel com título (mural e mesa) | `scripts/visor/papel_do_visor.gd` |
 | Menu da TV | `cenas/visor/menu_visor.tscn`, `scripts/visor/menu_visor.gd`, tema `cenas/interface/tema_tela_crt.tres` |
 | Modelo 3D | `assets/modelos/sala_visor.glb`, de `assets/modelagem/cenario/gerar_sala_visor.py` |
+| Texturas e pôsteres | `assets/sprites/cenario/visor/`, de `assets/modelagem/cenario/gerar_texturas_quarto.py`; aplicadas por `scripts/visor/texturas_do_quarto.gd` |
+| Estrelas cadentes e luzes rápidas | `cenas/visor/estrelas_cadentes.tscn`, `scripts/visor/estrelas_cadentes.gd` |
 | Data do último save | `Salvamento.data_salva()` em `scripts/sistemas/salvamento.gd` |
 
 ## 8. Pendências
