@@ -15,30 +15,29 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/dtec_terminal.tscn" id="r13"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/dtec_porta_trancada.tscn" id="r14"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/dtec_cartaz.tscn" id="r15"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/dtec_porta_lacrada.tscn" id="r16"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/dtec_rachada.tscn" id="r17"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/pilar_dtec.tscn" id="r18"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/grade_seguranca.tscn" id="r19"]
-[ext_resource type="Texture2D" path="res://assets/sprites/cenario/dtec/objetos/grade_central.png" id="r20"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/chao/chao_dtec.tscn" id="r21"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/chao/chao_dtec_faixa.tscn" id="r22"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/chao/chao_dtec_cabos.tscn" id="r23"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/planta.tscn" id="r24"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/caixas_lab.tscn" id="r25"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/cilindros.tscn" id="r26"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/cadeira_escritorio.tscn" id="r27"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r28"]
-[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r29"]
-[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r30"]
-[ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r31"]
-[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r32"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r33"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_maquina.tscn" id="r34"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r35"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r36"]
-[ext_resource type="Script" path="res://scripts/sistemas/vigia_da_rede.gd" id="r37"]
-[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r38"]
-[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r39"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/dtec_rachada.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/paredes/pilar_dtec.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/grade_seguranca.tscn" id="r18"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/dtec/objetos/grade_central.png" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/chao/chao_dtec.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/chao/chao_dtec_faixa.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/chao/chao_dtec_cabos.tscn" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/planta.tscn" id="r23"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/caixas_lab.tscn" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/cilindros.tscn" id="r25"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/cadeira_escritorio.tscn" id="r26"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r27"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r28"]
+[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r29"]
+[ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r30"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r31"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r32"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_maquina.tscn" id="r33"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r34"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r35"]
+[ext_resource type="Script" path="res://scripts/sistemas/vigia_da_rede.gd" id="r36"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r37"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r38"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.06, 0.12, 0.2, 1)
@@ -133,16 +132,16 @@ position = Vector2(2080, 0)
 [node name="Parede28" parent="Paredes" instance=ExtResource("r15")]
 position = Vector2(2160, 0)
 
-[node name="Parede29" parent="Paredes" instance=ExtResource("r16")]
+[node name="Parede29" parent="Paredes" instance=ExtResource("r5")]
 position = Vector2(2240, 0)
 
-[node name="Parede30" parent="Paredes" instance=ExtResource("r17")]
+[node name="Parede30" parent="Paredes" instance=ExtResource("r16")]
 position = Vector2(2320, 0)
 
-[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r18")]
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r17")]
 position = Vector2(0, 0)
 
-[node name="PilarDireita" parent="Paredes" instance=ExtResource("r18")]
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("r17")]
 position = Vector2(2384, 0)
 
 [node name="PlacaNorteRecepcao" type="Label" parent="Paredes"]
@@ -185,12 +184,12 @@ theme_override_styles/normal = SubResource("Placa")
 text = "LAB CENTRAL"
 horizontal_alignment = 1
 
-[node name="GradeNorteCentral" parent="Paredes" instance=ExtResource("r19")]
+[node name="GradeNorteCentral" parent="Paredes" instance=ExtResource("r18")]
 position = Vector2(1214, 38)
 marca = "dtec_rede_cortada"
 
 [node name="Grade" parent="Paredes/GradeNorteCentral" index="0"]
-texture = ExtResource("r20")
+texture = ExtResource("r19")
 
 [node name="PlacaNorteServidores" type="Label" parent="Paredes"]
 offset_left = 1606.0
@@ -222,168 +221,168 @@ theme_override_styles/normal = SubResource("Placa")
 text = "DIRETORIA"
 horizontal_alignment = 1
 
-[node name="Chao1" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao1" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(0, 0)
 
-[node name="Chao2" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao2" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(128, 0)
 
-[node name="Chao3" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao3" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(256, 0)
 
-[node name="Chao4" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao4" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(384, 0)
 
-[node name="Chao5" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao5" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(512, 0)
 
-[node name="Chao6" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao6" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(640, 0)
 
-[node name="Chao7" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao7" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(768, 0)
 
-[node name="Chao8" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao8" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(896, 0)
 
-[node name="Chao9" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao9" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(1024, 0)
 
-[node name="Chao10" parent="Chao" instance=ExtResource("r22")]
+[node name="Chao10" parent="Chao" instance=ExtResource("r21")]
 position = Vector2(1152, 0)
 
-[node name="Chao11" parent="Chao" instance=ExtResource("r23")]
+[node name="Chao11" parent="Chao" instance=ExtResource("r22")]
 position = Vector2(1280, 0)
 
-[node name="Chao12" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao12" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(1408, 0)
 
-[node name="Chao13" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao13" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(1536, 0)
 
-[node name="Chao14" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao14" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(1664, 0)
 
-[node name="Chao15" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao15" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(1792, 0)
 
-[node name="Chao16" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao16" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(1920, 0)
 
-[node name="Chao17" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao17" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(2048, 0)
 
-[node name="Chao18" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao18" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(2176, 0)
 
-[node name="Chao19" parent="Chao" instance=ExtResource("r21")]
+[node name="Chao19" parent="Chao" instance=ExtResource("r20")]
 position = Vector2(2304, 0)
 
-[node name="Planta1" parent="Objetos" instance=ExtResource("r24")]
+[node name="Planta1" parent="Objetos" instance=ExtResource("r23")]
 position = Vector2(70, 140)
 
-[node name="CaixasLab1" parent="Objetos" instance=ExtResource("r25")]
+[node name="CaixasLab1" parent="Objetos" instance=ExtResource("r24")]
 position = Vector2(700, 150)
 
-[node name="Cilindros1" parent="Objetos" instance=ExtResource("r26")]
+[node name="Cilindros1" parent="Objetos" instance=ExtResource("r25")]
 position = Vector2(990, 130)
 
-[node name="CadeiraEscritorio1" parent="Objetos" instance=ExtResource("r27")]
+[node name="CadeiraEscritorio1" parent="Objetos" instance=ExtResource("r26")]
 position = Vector2(1420, 160)
 espelhado = true
 
-[node name="CaixasLab2" parent="Objetos" instance=ExtResource("r25")]
+[node name="CaixasLab2" parent="Objetos" instance=ExtResource("r24")]
 position = Vector2(1800, 160)
 espelhado = true
 
-[node name="Planta2" parent="Objetos" instance=ExtResource("r24")]
+[node name="Planta2" parent="Objetos" instance=ExtResource("r23")]
 position = Vector2(2340, 150)
 espelhado = true
 
-[node name="Cilindros2" parent="Objetos" instance=ExtResource("r26")]
+[node name="Cilindros2" parent="Objetos" instance=ExtResource("r25")]
 position = Vector2(2100, 132)
 
-[node name="Nicho400" parent="Objetos" instance=ExtResource("r28")]
+[node name="Nicho400" parent="Objetos" instance=ExtResource("r27")]
 position = Vector2(440, 128)
 
-[node name="Nicho1040" parent="Objetos" instance=ExtResource("r28")]
+[node name="Nicho1040" parent="Objetos" instance=ExtResource("r27")]
 position = Vector2(1080, 128)
 
-[node name="Nicho1440" parent="Objetos" instance=ExtResource("r28")]
+[node name="Nicho1440" parent="Objetos" instance=ExtResource("r27")]
 position = Vector2(1480, 128)
 
-[node name="Nicho2000" parent="Objetos" instance=ExtResource("r28")]
+[node name="Nicho2000" parent="Objetos" instance=ExtResource("r27")]
 position = Vector2(2040, 128)
 
-[node name="Sentinela" parent="Objetos" instance=ExtResource("r29")]
+[node name="Sentinela" parent="Objetos" instance=ExtResource("r28")]
 position = Vector2(1700, 150)
 rota = NodePath("../../RotaSentinela")
 
-[node name="Pilha1" parent="Objetos" instance=ExtResource("r30")]
+[node name="Pilha1" parent="Objetos" instance=ExtResource("r29")]
 position = Vector2(940, 160)
 
-[node name="Clarao1" parent="Objetos" instance=ExtResource("r32")]
+[node name="Clarao1" parent="Objetos" instance=ExtResource("r31")]
 position = Vector2(2020, 150)
-item = ExtResource("r31")
+item = ExtResource("r30")
 
-[node name="Luz1" parent="Luzes" instance=ExtResource("r33")]
+[node name="Luz1" parent="Luzes" instance=ExtResource("r32")]
 position = Vector2(280, 34)
 energy = 0.85
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r33")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r32")]
 position = Vector2(680, 34)
 energy = 0.85
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r33")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r32")]
 position = Vector2(1000, 34)
 energy = 0.85
 
-[node name="Luz4" parent="Luzes" instance=ExtResource("r33")]
+[node name="Luz4" parent="Luzes" instance=ExtResource("r32")]
 position = Vector2(1400, 34)
 energy = 0.85
 
-[node name="Luz5" parent="Luzes" instance=ExtResource("r33")]
+[node name="Luz5" parent="Luzes" instance=ExtResource("r32")]
 position = Vector2(1800, 34)
 energy = 0.85
 
-[node name="Luz6" parent="Luzes" instance=ExtResource("r33")]
+[node name="Luz6" parent="Luzes" instance=ExtResource("r32")]
 position = Vector2(2120, 34)
 energy = 0.85
 
-[node name="Luz7" parent="Luzes" instance=ExtResource("r34")]
+[node name="Luz7" parent="Luzes" instance=ExtResource("r33")]
 position = Vector2(1240, 110)
 scale = Vector2(3, 2.5)
 energy = 0.9
 
-[node name="Luz8" parent="Luzes" instance=ExtResource("r35")]
+[node name="Luz8" parent="Luzes" instance=ExtResource("r34")]
 position = Vector2(1960, 30)
 energy = 0.5
 
 [node name="Escuridao" parent="."]
 color = Color(0.33, 0.34, 0.41, 1)
 
-[node name="Porta_norte_recepcao" parent="." instance=ExtResource("r36")]
+[node name="Porta_norte_recepcao" parent="." instance=ExtResource("r35")]
 position = Vector2(201, 124)
 id = "norte_recepcao"
 cena_destino = "res://cenas/salas/dtec/recepcao.tscn"
 porta_destino = "recepcao_corredor"
 som_abrir = ExtResource("r2")
 
-[node name="Porta_norte_eletronica" parent="." instance=ExtResource("r36")]
+[node name="Porta_norte_eletronica" parent="." instance=ExtResource("r35")]
 position = Vector2(521, 124)
 id = "norte_eletronica"
 cena_destino = "res://cenas/salas/dtec/lab_eletronica.tscn"
 porta_destino = "eletronica_corredor"
 som_abrir = ExtResource("r2")
 
-[node name="Porta_norte_informatica" parent="." instance=ExtResource("r36")]
+[node name="Porta_norte_informatica" parent="." instance=ExtResource("r35")]
 position = Vector2(841, 124)
 id = "norte_informatica"
 cena_destino = "res://cenas/salas/dtec/lab_informatica.tscn"
 porta_destino = "informatica_corredor"
 som_abrir = ExtResource("r2")
 
-[node name="Porta_norte_central" parent="." instance=ExtResource("r36")]
+[node name="Porta_norte_central" parent="." instance=ExtResource("r35")]
 position = Vector2(1240, 124)
 id = "norte_central"
 liberada_por = "dtec_rede_cortada"
@@ -392,7 +391,7 @@ cena_destino = "res://cenas/salas/dtec/lab_central.tscn"
 porta_destino = "central_norte"
 som_abrir = ExtResource("r2")
 
-[node name="Porta_norte_servidores" parent="." instance=ExtResource("r36")]
+[node name="Porta_norte_servidores" parent="." instance=ExtResource("r35")]
 position = Vector2(1641, 124)
 id = "norte_servidores"
 trancada = true
@@ -400,18 +399,19 @@ cena_destino = "res://cenas/salas/dtec/sala_servidores.tscn"
 porta_destino = "servidores_corredor"
 som_abrir = ExtResource("r2")
 
-[node name="Porta_norte_servico" parent="." instance=ExtResource("r36")]
+[node name="Porta_norte_servico" parent="." instance=ExtResource("r35")]
 position = Vector2(1961, 124)
 id = "norte_servico"
 cena_destino = "res://cenas/salas/dtec/corredor_servico.tscn"
 porta_destino = "servico_norte"
 som_abrir = ExtResource("r2")
 
-[node name="Porta_norte_diretoria" parent="." instance=ExtResource("r36")]
+[node name="Porta_norte_diretoria" parent="." instance=ExtResource("r35")]
 position = Vector2(2281, 124)
 id = "norte_diretoria"
-bloqueada = true
-aviso_bloqueada = "Lacrada. O leitor nem acende."
+cena_destino = "res://cenas/salas/dtec/diretoria.tscn"
+porta_destino = "diretoria_corredor"
+som_abrir = ExtResource("r2")
 
 [node name="RotaSentinela" type="Node2D" parent="."]
 
@@ -456,14 +456,14 @@ position = Vector2(1821, 148)
 position = Vector2(1641, 160)
 
 [node name="VigiaDaRede" type="Node" parent="."]
-script = ExtResource("r37")
+script = ExtResource("r36")
 robo = NodePath("../Objetos/Sentinela")
 
 [node name="RobosDaSala" type="Node" parent="."]
-script = ExtResource("r38")
+script = ExtResource("r37")
 
 [node name="Zumbido" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("r39")
+stream = ExtResource("r38")
 volume_db = -14.0
 pitch_scale = 1.15
 autoplay = true

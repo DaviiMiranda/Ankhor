@@ -109,6 +109,8 @@ RAMPAS.update({
     "epoxi": bib.hexa("#15181a", "#1f2326", "#2a2f32", "#363c3f", "#444a4d", "#53595b", "#646a6b"),
     "ciano": bib.hexa("#0d3a44", "#13606e", "#1b8c9b", "#2bbccb", "#62e3ee", "#b6fbff", "#effeff"),
     "tela_verde": bib.hexa("#0b1a10", "#12301a", "#1d4d29", "#2d7a3e", "#4fb865", "#98f0a8"),
+    "ambar": bib.hexa("#2a1704", "#4a2a08", "#7a4510", "#a8641a", "#d48a2a", "#f2b04a"),
+    "bege": bib.hexa("#2b2620", "#4a4236", "#6e6452", "#948870", "#b8ad92", "#d8d0b8"),
 })
 LED_VERDE, LED_VERMELHO, LED_AMBAR = bunker.LED_VERDE, bunker.LED_VERMELHO, bunker.LED_AMBAR
 LED_AZUL = bib.hexa("#7fd8ff")[0]
@@ -541,6 +543,73 @@ def grade_central():
     return img
 
 
+def dtec_farol_riscado():
+    """A marca dos Faroleiros pintada à mão na parede, com os raios riscados
+    em vermelho (Enredo Principal, seção 2.4): a traição do Carlos. Ninguém
+    explica; o jogador vê o vermelho dos robôs por cima da luz dos Faroleiros.
+
+    O desenho segue a regra do Enredo, na grade de 9 x 12 px, em escala 2
+    (cada pixel do símbolo vira 2 x 2 na parede, para ler de longe):
+      - a torre: trapézio de 6 px de altura (a 7ª linha é a base da
+        lanterna), 5 de base e 3 no topo;
+      - a lanterna: quadrado de 3 x 3 em cima da torre, com o ponto no meio;
+      - três raios de 3 px saindo da lanterna para cima, em leque.
+    Tudo em âmbar, a cor dos Faroleiros, com a tinta escorrida de quem pintou
+    às pressas. Por cima, três riscos vermelhos atravessam os raios."""
+    img = parede_base(17)
+    x0, y0, e = 31, 22, 2
+
+    def px(cx, cy):
+        return img.ret(x0 + cx * e, y0 + cy * e, x0 + (cx + 1) * e, y0 + (cy + 1) * e)
+
+    raios = [(0, 0), (1, 1), (2, 2), (4, 0), (4, 1), (4, 2), (8, 0), (7, 1), (6, 2)]
+    lanterna = [(cx, cy) for cx in range(3, 6) for cy in range(3, 6) if (cx, cy) != (4, 4)]
+    torre = []
+    for linha in range(7):
+        largura = 3 if linha < 4 else 5
+        torre += [(cx, 6 + linha) for cx in range(4 - largura // 2, 4 - largura // 2 + largura)]
+    torre = [(cx, cy) for (cx, cy) in torre if cy < 12]
+    for celulas, tom in ((raios, 0.9), (lanterna, 0.95), (torre, 0.5)):
+        for (cx, cy) in celulas:
+            img.pintar(px(cx, cy), "ambar", tom + 0.06 * img.fino)
+    img.pintar(px(4, 4), "ambar", 0.12)
+    img.pintar(img.ret(x0 + 3 * e, y0 + 6 * e, x0 + 6 * e, y0 + 6 * e + 1), "ambar", 0.2)
+    img.pintar(img.ret(x0 + 7, y0 + 26, x0 + 8, y0 + 31) | img.ret(x0 + 11, y0 + 26, x0 + 12, y0 + 29), "ambar", 0.4)
+    riscos = img.linha(x0 - 2, y0 + 5, x0 + 19, y0 + 1, 0.5) | img.linha(x0 - 1, y0 + 1, x0 + 18, y0 + 6, 0.5)
+    img.pintar(riscos, "vermelho", 0.9)
+    img.pintar(img.ret(x0 + 18, y0 + 2, x0 + 19, y0 + 8), "vermelho", 0.55)
+    return img
+
+
+def mesa_anos80():
+    """A mesa da diretoria tomada pelas relíquias dos anos 80, as mesmas da
+    Biblioteca (docs/fases/biblioteca.md): o monitor de tubo com a tela
+    verde (o verde de monitor de tubo é o mundo do Carlos), o telefone bege
+    de fio enrolado e uma pilha de disquetes."""
+    img = Imagem(60, 40)
+    X, Y = img.X, img.Y
+    img.pintar(img.ret(2, 22, 58, 25), "madeira", 0.55 + 0.2 * (Y == 22))
+    img.pintar(img.ret(4, 25, 7, 38) | img.ret(53, 25, 56, 38), "madeira", 0.3)
+    img.pintar(img.ret(36, 25, 53, 36), "madeira", 0.4)
+    img.pintar(img.ret(43, 29, 47, 31), "aco", 0.6)
+    img.pintar(img.ret(8, 2, 32, 21), "bege", 0.5 + 0.15 * (X == 8) - 0.1 * (Y > 18))
+    img.pintar(img.ret(11, 4, 29, 16), "tela_verde", 0.1)
+    tela = img.ret(12, 5, 28, 15)
+    img.pintar(tela, "tela_verde", 0.25 + 0.08 * ((Y % 2) == 0))
+    for y in (7, 10, 13):
+        img.pintar(img.ret(14, y, 14 + (y * 5) % 12, y + 1), "tela_verde", 0.8)
+    img.pintar(img.ret(26, 13, 27, 14), "tela_verde", 1.0)
+    img.pintar(img.ret(10, 21, 30, 22), "bege", 0.3)
+    img.pintar(img.ret(36, 15, 50, 21), "bege", 0.55 + 0.2 * (Y == 15))
+    img.pintar(img.ret(35, 13, 51, 15), "bege", 0.45)
+    img.pintar(img.ret(40, 17, 46, 20) & (((X + Y) % 2) == 0), "bege", 0.25)
+    img.pintar(img.caminho([(50, 18), (53, 20), (52, 22)], 0.5), "bege", 0.35)
+    for k, rampa in enumerate(("aco", "dtec", "vermelho")):
+        img.pintar(img.ret(32 - k, 19 - 2 * k, 40 - k, 21 - 2 * k), rampa, 0.35 + 0.2 * (Y == 19 - 2 * k))
+    img.contornar()
+    return img, 30, 38
+
+
 PAREDES = {
     "dtec_lisa": dtec_lisa,
     "dtec_rachada": dtec_rachada,
@@ -559,6 +628,7 @@ PAREDES = {
     "dtec_canos": dtec_canos,
     "dtec_tela_grande": dtec_tela_grande,
     "dtec_nicho": dtec_nicho,
+    "dtec_farol_riscado": dtec_farol_riscado,
 }
 
 
@@ -1193,6 +1263,7 @@ OBJETOS = {
     "catraca": (catraca, (14, 4)),
     "maquina": (maquina, (150, 22)),
     "caixas_lab": (caixas_lab, (40, 5)),
+    "mesa_anos80": (mesa_anos80, (56, 5)),
 }
 
 

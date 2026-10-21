@@ -16,6 +16,16 @@ Formato:
 
 ---
 
+## 2026-10-21 — Laboratório, passos 3 e 4: a arena do Carlos e a diretoria
+**Decisão:** entram no jogo os dois últimos passos do level design do Laboratório (`docs/fases/dtec.md`, seção 3.1), **só com o que a História Completa já diz**. O que depende das pendências do Enredo ficou de fora.
+- **A arena** (Lab Central): o Carlos fica no console do fundo, parado e calado. A lupa vermelha dele (a da ficha) varre a sala como um cone de visão; ser visto enche a suspeita e dispara o alarme, que chama robôs pelas portas. O Gabriel nunca encosta nele (o Enredo diz que o grupo o enfrenta sem lutar). Dois consoles hackeáveis mudam as fases: na B a onda da Âncora (no ritmo da animação, a cada 2,4 s) passa a revelar quem não está na sombra e a porta norte trava; na C o núcleo abre. A cápsula de clarão atordoa a lupa. Cada console invadido vira checkpoint.
+- **O fim da arena:** entrar no núcleo da Âncora mostra "VOCÊ CHEGOU AO NÚCLEO DA ÂNCORA / Fim da versão de teste." e volta ao menu. **A cena final não foi feita:** o que acontece com o Carlos e com a Âncora está nas pendências 10.2 e 10.6.
+- **A diretoria** (corredor norte) deixou de ser lacrada e mostra só o que o Enredo e as fases já dizem: as relíquias dos anos 80 que a Biblioteca atribui ao Carlos (monitor de tubo verde, telefone, disquetes, numa mesa nova, `mesa_anos80`) e a marca dos Faroleiros com os raios riscados em vermelho (peça nova `dtec_farol_riscado`, desenhada pela regra da seção 2.4 do Enredo: a traição do Carlos, sem explicação).
+- **Não entrou:** falas do Carlos (como ele fala está pendente), registros dele (pendentes na ficha), dizer que a diretoria é o quarto dele ou que ele dorme ali, por que os robôs caçam, e a cena final.
+- **O clarão** (`scripts/itens/clarao.gd`) passou a atordoar também os nós do grupo `atordoaveis`, perto (110 px) ou que estejam vendo o clarão. Os robôs continuam iguais.
+**Por quê:** pedido do Davi: fazer os passos 3 e 4 sem inventar nada que não esteja na história principal.
+**Afeta:** `scripts/personagens/carlos_chefe.gd`, `scripts/sistemas/onda_ancora.gd` e `nucleo_ancora.gd` (novos), `cenas/personagens/carlos_chefe.tscn`, `cenas/sistemas/onda_ancora.tscn` e `nucleo_ancora.tscn` (novas), `scripts/itens/clarao.gd`, `assets/modelagem/cenario/gerar_dtec.py` (`dtec_farol_riscado`, `mesa_anos80` e as rampas âmbar e bege), `assets/modelagem/salas/dtec/montar_dtec.py` (arena e diretoria), `cenas/salas/dtec/lab_central.tscn`, `corredor_norte.tscn` e `diretoria.tscn` (nova), `docs/fases/dtec.md`, `docs/computacao/arena_do_carlos.md` (novo) e `docs/computacao/README.md`. **A História Completa e a ficha do Carlos não foram mexidas.** A ficha ainda diz que a cena do Carlos está "só na sala de teste"; quem decide atualizar é o Davi.
+
 ## 2026-10-21 — Laboratório, passo 2: a rede de energia da Âncora
 **Decisão:** entra no jogo o passo 2 do level design do Laboratório (`docs/fases/dtec.md`, seção 3.1, parte 2).
 - **A rede é um grafo com pesos:** dois geradores no subsolo, seis relés (um em cada laboratório: Eletrônica, Informática, Servidores, Química, Robótica e Controle) e a Âncora, ligados por 13 cabos com o comprimento em metros (`scripts/sistemas/rede_energia_dtec.gd`).

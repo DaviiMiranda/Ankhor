@@ -23,6 +23,10 @@ func usar() -> void:
 		var robo := no as Robo
 		if global_position.distance_to(robo.global_position) <= raio:
 			robo.atordoar(segundos_atordoado * robo.fator_clarao)
+	for no in get_tree().get_nodes_in_group("atordoaveis"):
+		var sensor := no as Node2D
+		if global_position.distance_to(sensor.global_position) <= raio or (sensor.has_method("ve_o_ponto") and sensor.ve_o_ponto(global_position)):
+			sensor.atordoar(segundos_atordoado)
 
 
 func _piscar() -> void:
