@@ -89,7 +89,7 @@ Para ser vista de dentro do quarto, cada uma é sorteada para **passar por um po
 
 As tábuas do chão, o papel de parede, a cortiça, os tecidos e as madeiras são ladrilhos pequenos de pixel art (`gerar_texturas_quarto.py`) aplicados pelo `TexturasDoQuarto` (`scripts/visor/texturas_do_quarto.gd`), que troca o material de cada parte do modelo pelo **nome** do material do Blender (Chao, Parede, Madeira...). O modelo não tem UV desdobrado: a textura é projetada **pela posição no mundo**. Para um ponto $(x, y, z)$ com normal $ec{n}$, o Godot lê a textura em três projeções:
 
-$$	ext{cor}_x = T(z, y)\qquad 	ext{cor}_y = T(x, z)\qquad 	ext{cor}_z = T(x, y)$$
+$$\text{cor}_x = T(z, y)\qquad \text{cor}_y = T(x, z)\qquad \text{cor}_z = T(x, y)$$
 
 e mistura as três com pesos $|n_x|, |n_y|, |n_z|$ (normalizados). Nas caixas do quarto a normal sempre aponta num eixo só, então cada face usa uma projeção pura: o chão usa $(x, z)$, a parede do fundo $(x, y)$, as laterais $(z, y)$. A escala `uv1_scale` $= 1/m$ faz o ladrilho se repetir a cada $m$ metros (0,8 m no piso: quatro tábuas de 20 cm). Como a textura é medida em metros do mundo, um móvel grande e um pequeno têm o mesmo tamanho de veio, e nada fica esticado. As texturas são importadas com **mipmaps** (cópias menores, para não tremerem de longe) e com o filtro *Nearest* (pixel nítido de perto).
 
