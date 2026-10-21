@@ -1,5 +1,5 @@
 # montar_dtec.py — monta as cenas do Godot do DTEC (docs/fases/dtec.md):
-# a cena de cada peça do kit (cenas/cenario/dtec/) e as 10 salas da fase
+# a cena de cada peça do kit (cenas/cenario/dtec/) e as 12 salas da fase
 # (cenas/salas/dtec/), a partir das descrições no fim deste arquivo.
 #
 # Como rodar (Python 3, depois do gerar_dtec.py):
@@ -61,7 +61,7 @@ OBJETOS = {
 PAREDES = ["dtec_lisa", "dtec_rachada", "dtec_luminaria", "dtec_porta", "dtec_porta_trancada",
            "dtec_porta_lacrada", "dtec_porta_central", "dtec_vidro", "dtec_quadro", "dtec_painel",
            "dtec_armario", "dtec_cartaz", "dtec_terminal", "dtec_extintor", "dtec_canos",
-           "dtec_tela_grande", "pilar_dtec", "dtec_lateral"]
+           "dtec_tela_grande", "dtec_nicho", "pilar_dtec", "dtec_lateral"]
 CHAOS = ["chao_dtec", "chao_dtec_cabos", "chao_dtec_elevado", "chao_dtec_faixa"]
 CHAOS_FUNDO = ["chao_dtec_fundo", "chao_dtec_elevado_fundo", "chao_dtec_cabos_fundo", "chao_dtec_faixa_fundo"]
 
@@ -151,6 +151,10 @@ def montar_kit():
     for nome in CHAOS_FUNDO:
         escrever(os.path.join(PASTA_KIT, "chao", f"{nome}.tscn"), cena_sprite(nome, "chao"))
     for nome in OBJETOS:
+        # A cena da máquina foi ajustada à mão para tocar a animação (Animacao,
+        # um AnimatedSprite2D: docs/decisoes.md, 2026-10-17). Não sobrescrever.
+        if nome == "maquina":
+            continue
         escrever(os.path.join(PASTA_KIT, "objetos", f"{nome}.tscn"), cena_objeto(nome))
 
 
@@ -215,6 +219,9 @@ border_color = Color(0.24, 0.4, 0.6, 1)"""
 PORTAS_PECA = {"porta": "dtec_porta", "trancada": "dtec_porta_trancada",
                "lacrada": "dtec_porta_lacrada", "central": "dtec_porta_central"}
 
+# O vão da porta larga do Lab Central (dtec_porta_central), onde entra a grade.
+X_VAO_CENTRAL, Y_VAO_CENTRAL = 14, 38
+
 
 def montar_sala(sala):
     m = Montagem()
@@ -230,10 +237,12 @@ def montar_sala(sala):
     portas = {p["peca"]: p for p in sala.get("portas", [])}
     for i, tipo in enumerate(paredes[:pecas]):
         if i in portas:
-            tipo = PORTAS_PECA[portas[i]["tipo"]]
+            caminho = kit("paredes", PORTAS_PECA[portas[i]["tipo"]])
+        elif tipo.startswith("res://"):
+            caminho = tipo
         else:
-            tipo = f"dtec_{tipo}"
-        m.instancia(f"Parede{i + 1:02d}", "Paredes", kit("paredes", tipo), [f"position = Vector2({i * PECA}, 0)"])
+            caminho = kit("paredes", f"dtec_{tipo}")
+        m.instancia(f"Parede{i + 1:02d}", "Paredes", caminho, [f"position = Vector2({i * PECA}, 0)"])
     m.instancia("PilarEsquerda", "Paredes", kit("paredes", "pilar_dtec"), ["position = Vector2(0, 0)"])
     m.instancia("PilarDireita", "Paredes", kit("paredes", "pilar_dtec"), [f"position = Vector2({largura - 16}, 0)"])
 
@@ -251,6 +260,14 @@ def montar_sala(sala):
         if porta.get("sala_segura"):
             m.instancia("SinalSalaSegura", "Paredes", "res://cenas/cenario/objetos/sinal_sala_segura.tscn",
                         [f"position = Vector2({i * PECA + 41}, 6)"])
+        # A grade de segurança no vão da porta larga: sobe quando a marca da
+        # porta (liberada_por) chega.
+        if porta.get("liberada_por") and porta["tipo"] == "central":
+            nome_grade = f"Grade{pascal(porta['id'])}"
+            m.instancia(nome_grade, "Paredes", "res://cenas/sistemas/grade_seguranca.tscn", [
+                f"position = Vector2({i * PECA + X_VAO_CENTRAL}, {Y_VAO_CENTRAL})", f'marca = "{porta["liberada_por"]}"'])
+            textura = m.recurso("Texture2D", "res://assets/sprites/cenario/dtec/objetos/grade_central.png")
+            m.no(f'[node name="Grade" parent="Paredes/{nome_grade}" index="0"]', [f'texture = ExtResource("{textura}")'])
     for k, (texto, x0, y0, x1, y1, tamanho) in enumerate(sala.get("letreiros", [])):
         m.no(f'[node name="Letreiro{k + 1}" type="Label" parent="Paredes"]', [
             f"offset_left = {x0}.0", f"offset_top = {y0}.0", f"offset_right = {x1}.0", f"offset_bottom = {y1}.0",
@@ -285,6 +302,23 @@ def montar_sala(sala):
         if resto and resto[0]:
             props.append("espelhado = true")
         m.instancia(m.nome(pascal(os.path.basename(caminho).replace(".tscn", ""))), "Objetos", caminho, props)
+
+    # Nichos: o esconderijo de imobilidade na frente de cada peça de nicho.
+    for i, tipo in enumerate(paredes[:pecas]):
+        if tipo == "nicho" and i not in portas:
+            m.instancia(f"Nicho{i * PECA}", "Objetos", "res://cenas/sistemas/nicho_esconderijo.tscn",
+                        [f"position = Vector2({i * PECA + 40}, 128)"])
+
+    # Checkpoints.
+    for (id_checkpoint, x, y) in sala.get("checkpoints", []):
+        m.instancia(m.nome("Checkpoint"), "Objetos", "res://cenas/sistemas/checkpoint.tscn",
+                    [f"position = Vector2({x}, {y})", f'id = "{id_checkpoint}"'])
+
+    # Robôs: cada um com a sua rota (Marker2D) e o RobosDaSala, que monta a
+    # grade de navegação da sala e liga a música de perseguição.
+    for (tipo_robo, nome_robo, x, y, pontos) in sala.get("robos", []):
+        m.instancia(nome_robo, "Objetos", f"res://cenas/personagens/robo_{tipo_robo}.tscn",
+                    [f"position = Vector2({x}, {y})", f'rota = NodePath("../../Rota{nome_robo}")'])
 
     # Itens no chão.
     for (item, x, y) in sala.get("itens", []):
@@ -324,11 +358,21 @@ def montar_sala(sala):
         if porta["tipo"] == "lacrada":
             props += ["bloqueada = true", f'aviso_bloqueada = "{porta["aviso"]}"']
         else:
+            if porta.get("liberada_por"):
+                props += [f'liberada_por = "{porta["liberada_por"]}"', f'aviso_bloqueada = "{porta["aviso"]}"']
             if porta["tipo"] == "trancada":
                 props.append("trancada = true")
             props += [f'cena_destino = "res://cenas/salas/dtec/{porta["destino"]}.tscn"',
                       f'porta_destino = "{porta["porta_destino"]}"', f'som_abrir = ExtResource("{som_porta}")']
         m.instancia(f"Porta_{porta['id']}", ".", "res://cenas/sistemas/porta.tscn", props)
+
+    for (_, nome_robo, _, _, pontos) in sala.get("robos", []):
+        m.no(f'[node name="Rota{nome_robo}" type="Node2D" parent="."]', [])
+        for k, (x, y) in enumerate(pontos):
+            m.no(f'[node name="Ponto{k + 1}" type="Marker2D" parent="Rota{nome_robo}"]', [f"position = Vector2({x}, {y})"])
+    if sala.get("robos"):
+        script_robos = m.recurso("Script", "res://scripts/salas/robos_da_sala.gd")
+        m.no('[node name="RobosDaSala" type="Node" parent="."]', [f'script = ExtResource("{script_robos}")'])
 
     # Som: o zumbido do prédio em toda sala e, perto da máquina, o ronco grave dela.
     zumbido = m.recurso("AudioStream", "res://assets/audio/ambiente/bunker/bunker_zumbido.wav")
@@ -351,14 +395,24 @@ def montar_sala(sala):
 # As salas
 # ---------------------------------------------------------------------------
 # paredes: uma palavra por peça de 80 px (sem o "dtec_"); as que faltam no
-#          fim viram parede lisa. Onde há porta, a peça vem da porta.
+#          fim viram parede lisa. Onde há porta, a peça vem da porta. Uma
+#          peça de outro kit entra pelo caminho da cena ("res://...").
+#          "nicho" põe também o esconderijo (NichoEsconderijo) na frente.
 # portas:  peca (índice da peça), tipo (porta, trancada, lacrada, central),
 #          id, placa, e destino + porta_destino (ou o aviso, se lacrada).
+#          liberada_por + aviso: a porta só abre com essa marca; na porta
+#          central, entra também a grade de segurança no vão.
 # objetos: (nome, x, y[, espelhado]); itens: (item, x, y).
 # luzes:   (cena em cenas/cenario/luzes, x, y, propriedades extras...).
+# robos:   (sentinela ou rastreador, nome, x, y, [pontos da rota]).
+# checkpoints: (id, x, y).
 
 ESCURO = (0.33, 0.34, 0.41, 1)
 AVISO_LACRADA = "Lacrada. O leitor nem acende."
+# A rede de energia da Âncora (docs/fases/dtec.md, seção 3.1): enquanto ela
+# não cai, a trava magnética segura a grade do Lab Central.
+MARCA_REDE = "dtec_rede_cortada"
+AVISO_GRADE = "Uma grade fecha o salão. A trava é magnética: tem energia correndo nela."
 
 SALAS = [
     {
@@ -374,38 +428,40 @@ SALAS = [
         "objetos": [("balcao_recepcao", 300, 220), ("cadeira_escritorio", 280, 196), ("mesa_computador", 140, 170),
                     ("catraca", 380, 150), ("catraca", 420, 150), ("catraca", 460, 150), ("planta", 40, 140),
                     ("planta", 600, 370, True), ("caixas_lab", 540, 260), ("cadeira_escritorio", 120, 300, True)],
-        "itens": [("pilha", 520, 330), ("lanterna", 200, 290)],
+        "itens": [("pilha", 520, 330)],
         "luzes": [("luz_emergencia", 560, 30, "energy = 0.5")],
         "escuridao": (0.32, 0.33, 0.4, 1),
     },
     {
         "id": "corredor_norte", "largura": 2400, "altura": 180,
-        "paredes": ["lisa", "extintor", "porta", "luminaria", "vidro", "cartaz", "porta", "quadro", "luminaria",
-                    "vidro", "porta", "canos", "luminaria", "armario", "lisa", "central", "painel", "luminaria",
-                    "rachada", "terminal", "porta", "vidro", "luminaria", "extintor", "porta", "lisa", "luminaria",
+        "paredes": ["lisa", "extintor", "porta", "luminaria", "vidro", "nicho", "porta", "quadro", "luminaria",
+                    "vidro", "porta", "canos", "luminaria", "nicho", "lisa", "central", "painel", "luminaria",
+                    "nicho", "terminal", "porta", "vidro", "luminaria", "extintor", "porta", "nicho", "luminaria",
                     "cartaz", "porta", "rachada"],
         "portas": [
             {"peca": 2, "tipo": "porta", "id": "norte_recepcao", "placa": "RECEPÇÃO",
              "destino": "recepcao", "porta_destino": "recepcao_corredor"},
-            {"peca": 4, "tipo": "porta", "id": "norte_sala_segura", "placa": "DESCANSO",
-             "destino": "sala_segura", "porta_destino": "safe_room_saida", "sala_segura": True},
             {"peca": 6, "tipo": "porta", "id": "norte_eletronica", "placa": "ELETRÔNICA",
              "destino": "lab_eletronica", "porta_destino": "eletronica_corredor"},
             {"peca": 10, "tipo": "porta", "id": "norte_informatica", "placa": "INFORMÁTICA",
              "destino": "lab_informatica", "porta_destino": "informatica_corredor"},
             {"peca": 15, "tipo": "central", "id": "norte_central", "placa": "LAB CENTRAL",
-             "destino": "lab_central", "porta_destino": "central_norte"},
+             "destino": "lab_central", "porta_destino": "central_norte",
+             "liberada_por": MARCA_REDE, "aviso": AVISO_GRADE},
             {"peca": 20, "tipo": "trancada", "id": "norte_servidores", "placa": "SERVIDORES",
              "destino": "sala_servidores", "porta_destino": "servidores_corredor"},
-            {"peca": 24, "tipo": "lacrada", "id": "norte_deposito", "placa": "DEPÓSITO", "aviso": AVISO_LACRADA},
+            {"peca": 24, "tipo": "porta", "id": "norte_servico", "placa": "SERVIÇO",
+             "destino": "corredor_servico", "porta_destino": "servico_norte"},
             {"peca": 28, "tipo": "lacrada", "id": "norte_diretoria", "placa": "DIRETORIA", "aviso": AVISO_LACRADA},
         ],
         "chao_trocas": {9: "chao_dtec_faixa", 10: "chao_dtec_cabos"},
-        "objetos": [("planta", 70, 140), ("caixas_lab", 700, 150), ("cilindros", 1050, 130), ("cadeira_escritorio", 1420, 160, True),
+        "objetos": [("planta", 70, 140), ("caixas_lab", 700, 150), ("cilindros", 990, 130), ("cadeira_escritorio", 1420, 160, True),
                     ("caixas_lab", 1800, 160, True), ("planta", 2340, 150, True), ("cilindros", 2100, 132)],
         "itens": [("pilha", 940, 160), ("clarao", 2020, 150)],
         "luzes": [("luz_maquina", 1240, 110, "scale = Vector2(3, 2.5)", "energy = 0.9"),
                   ("luz_emergencia", 1960, 30, "energy = 0.5")],
+        "robos": [("sentinela", "Sentinela", 1700, 150,
+                   [(560, 150), (1240, 160), (2240, 148), (1240, 160)])],
         "escuridao": ESCURO,
     },
     {
@@ -435,22 +491,26 @@ SALAS = [
     },
     {
         "id": "corredor_sul", "largura": 2400, "altura": 180,
-        "paredes": ["rachada", "lisa", "porta", "luminaria", "extintor", "canos", "porta", "vidro", "luminaria",
-                    "cartaz", "porta", "vidro", "luminaria", "quadro", "lisa", "central", "terminal", "luminaria",
-                    "armario", "lisa", "porta", "tela_grande", "luminaria", "lisa", "porta", "extintor", "luminaria",
-                    "rachada", "lisa", "cartaz"],
+        "paredes": ["rachada", "lisa", "porta", "luminaria", "porta", "canos", "porta", "vidro", "luminaria",
+                    "nicho", "porta", "vidro", "luminaria", "quadro", "nicho", "central", "terminal", "luminaria",
+                    "armario", "nicho", "porta", "tela_grande", "luminaria", "lisa", "porta", "extintor", "luminaria",
+                    "rachada", "nicho", "cartaz"],
         "portas": [
-            {"peca": 2, "tipo": "lacrada", "id": "sul_emergencia", "placa": "EMERGÊNCIA",
-             "aviso": "Bloqueada. Do outro lado, só entulho."},
+            {"peca": 2, "tipo": "porta", "id": "sul_emergencia", "placa": "EMERGÊNCIA",
+             "destino": "emergencia", "porta_destino": "emergencia_corredor"},
+            {"peca": 4, "tipo": "porta", "id": "sul_sala_segura", "placa": "DESCANSO",
+             "destino": "sala_segura", "porta_destino": "safe_room_saida", "sala_segura": True},
             {"peca": 6, "tipo": "porta", "id": "sul_quimica", "placa": "QUÍMICA",
              "destino": "lab_quimica", "porta_destino": "quimica_corredor"},
             {"peca": 10, "tipo": "trancada", "id": "sul_robotica", "placa": "ROBÓTICA",
              "destino": "lab_robotica", "porta_destino": "robotica_corredor"},
             {"peca": 15, "tipo": "central", "id": "sul_central", "placa": "LAB CENTRAL",
-             "destino": "lab_central", "porta_destino": "central_sul"},
+             "destino": "lab_central", "porta_destino": "central_sul",
+             "liberada_por": MARCA_REDE, "aviso": AVISO_GRADE},
             {"peca": 20, "tipo": "porta", "id": "sul_controle", "placa": "CONTROLE",
              "destino": "sala_controle", "porta_destino": "controle_corredor"},
-            {"peca": 24, "tipo": "lacrada", "id": "sul_arquivo", "placa": "ARQUIVO", "aviso": AVISO_LACRADA},
+            {"peca": 24, "tipo": "porta", "id": "sul_servico", "placa": "SERVIÇO",
+             "destino": "corredor_servico", "porta_destino": "servico_sul"},
         ],
         "chao_trocas": {9: "chao_dtec_faixa", 10: "chao_dtec_cabos", 4: "chao_dtec_cabos"},
         "objetos": [("caixas_lab", 120, 150), ("planta", 400, 140), ("cilindros", 980, 132), ("caixas_lab", 1500, 160, True),
@@ -458,7 +518,40 @@ SALAS = [
         "itens": [("pilha", 1460, 165), ("pedra", 600, 160), ("pedra", 2200, 150)],
         "luzes": [("luz_maquina", 1240, 110, "scale = Vector2(3, 2.5)", "energy = 0.9"),
                   ("luz_emergencia", 200, 30, "energy = 0.6")],
+        "robos": [("rastreador", "Rastreador", 1600, 152,
+                   [(900, 152), (1600, 160), (2300, 148), (1600, 160)])],
         "escuridao": ESCURO,
+    },
+    {
+        "id": "emergencia", "largura": 480, "altura": 180, "gabriel": "(120, 150)",
+        "paredes": ["extintor", "res://cenas/cenario/bunker/paredes/bunker_escada_desce.tscn", "luminaria",
+                    "lisa", "porta", "rachada"],
+        "portas": [{"peca": 4, "tipo": "porta", "id": "emergencia_corredor", "placa": "CORREDOR",
+                    "destino": "corredor_sul", "porta_destino": "sul_emergencia"}],
+        "objetos": [("caixas_lab", 40, 160), ("cilindros", 260, 132), ("planta", 450, 150, True)],
+        "itens": [("lanterna", 200, 160), ("pilha", 420, 165)],
+        "checkpoints": [("dtec_chegada", 300, 150)],
+        "luzes": [("luz_emergencia", 120, 30, "energy = 0.7")],
+        "escuridao": (0.26, 0.27, 0.33, 1),
+    },
+    {
+        "id": "corredor_servico", "largura": 960, "altura": 180,
+        "paredes": ["canos", "porta", "luminaria", "canos", "lisa", "nicho", "rachada", "luminaria", "canos",
+                    "lisa", "porta", "canos"],
+        "portas": [
+            {"peca": 1, "tipo": "porta", "id": "servico_norte", "placa": "ALA NORTE",
+             "destino": "corredor_norte", "porta_destino": "norte_servico"},
+            {"peca": 10, "tipo": "porta", "id": "servico_sul", "placa": "ALA SUL",
+             "destino": "corredor_sul", "porta_destino": "sul_servico"},
+        ],
+        "chao": "chao_dtec_cabos", "chao_trocas": {3: "chao_dtec_faixa"},
+        "objetos": [("caixas_lab", 260, 150), ("cilindros", 360, 132), ("caixas_lab", 640, 165, True),
+                    ("rack_dtec", 900, 150, True)],
+        "itens": [("pedra", 560, 160)],
+        "checkpoints": [("dtec_servico", 760, 150)],
+        "luzes": [("luz_emergencia", 700, 30, "energy = 0.5")],
+        "escuridao": (0.24, 0.25, 0.31, 1),
+        "energia_tubo": 0.6,
     },
     {
         "id": "lab_eletronica", "largura": 480, "altura": 560,

@@ -9,8 +9,8 @@ id = "dtec_sala_segura"
 color = Color(0.64, 0.68, 0.76, 1)
 
 [node name="PortaSaida" parent="."]
-cena_destino = "res://cenas/salas/dtec/corredor_norte.tscn"
-porta_destino = "norte_sala_segura"
+cena_destino = "res://cenas/salas/dtec/corredor_sul.tscn"
+porta_destino = "sul_sala_segura"
 
 [node name="LuzAmbiente" parent="Luzes"]
 color = Color(0.98, 0.88, 0.74, 1)

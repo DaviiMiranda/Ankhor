@@ -10,7 +10,7 @@ offset_bottom = 180.0
 color = Color(0, 0, 0, 1)
 
 [node name="SaidaFase" parent="." instance=ExtResource("1_saida")]
-cena_destino = "res://cenas/salas/dtec/recepcao.tscn"
+cena_destino = "res://cenas/salas/dtec/emergencia.tscn"
 sair_ao_carregar = true
 
 [node name="Titulo" parent="SaidaFase/Tela" index="1"]

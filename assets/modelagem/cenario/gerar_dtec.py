@@ -477,6 +477,70 @@ def dtec_tela_grande():
     return img
 
 
+def dtec_nicho():
+    """O vão da estação de emergência do laboratório: um recuo escuro na
+    parede, da altura de um adulto, com o chuveiro de emergência e o
+    lava-olhos encostados no fundo, à direita. É o esconderijo de
+    imobilidade dos corredores do DTEC, como o nicho do Bloco de salas
+    (docs/mecanicas/furtividade_e_esconderijos.md): o lado esquerdo do
+    recuo fica vazio e na sombra, que é onde o Gabriel se encolhe.
+
+    O recuo corta a faixa azul e os azulejos. Uma verga de aço marca o
+    topo; as laterais têm tons diferentes para dar profundidade (a da
+    esquerda pega um pouco de luz, a da direita fica na sombra)."""
+    img = parede_base(16)
+    X, Y = img.X, img.Y
+    xa, xb, ya = 6, 74, 50
+    recuo = img.ret(xa, ya, xb, Y_CHAO)
+    fundo = 0.05 + 0.05 * img.fino + 0.07 * np.clip((Y - ya) / 50, 0, 1)
+    img.pintar(recuo, "azulejo", fundo)
+    img.pintar(img.ret(xa, ya, xa + 3, Y_CHAO), "azulejo", 0.22 + 0.05 * img.fino)
+    img.pintar(img.ret(xb - 3, ya, xb, Y_CHAO), "azulejo", 0.04)
+    img.pintar(img.ret(xa - 2, ya - 4, xb + 2, ya), "aco", 0.45 + 0.06 * img.fino)
+    img.pintar(img.ret(xa - 2, ya - 4, xb + 2, ya - 3), "aco", 0.7)
+    img.cor(img.ret(xa, ya, xb, ya + 2), SOMBRA)
+    # Chuveiro de emergência: o cano verde desce da verga, a haste de puxar
+    # pendura do lado, e embaixo fica a bacia do lava-olhos.
+    cx = 58
+    img.pintar(img.ret(cx, ya + 2, cx + 2, 104), "tela_verde", 0.35 + 0.25 * (X == cx))
+    img.pintar(img.ret(cx - 7, ya + 6, cx + 9, ya + 8), "tela_verde", 0.4)
+    img.pintar(img.elipse(cx + 1, ya + 10, 6, 2), "aco", 0.5)
+    img.pintar(img.ret(cx + 6, ya + 8, cx + 7, ya + 26), "aco", 0.45)
+    img.pintar(img.ret(cx + 4, ya + 26, cx + 9, ya + 28), "tela_verde", 0.6)
+    img.pintar(img.ret(cx - 6, 84, cx + 8, 87), "tela_verde", 0.45 + 0.2 * (Y == 84))
+    img.pintar(img.ret(cx - 5, 87, cx + 7, 89), "aco", 0.25)
+    # A placa verde de emergência, quase apagada pela poeira.
+    img.pintar(img.ret(cx - 18, ya + 8, cx - 8, ya + 16), "tela_verde", 0.42)
+    img.pintar(img.ret(cx - 14, ya + 9, cx - 12, ya + 15) | img.ret(cx - 16, ya + 11, cx - 10, ya + 13),
+               "branco", 0.6, achatar=False)
+    # Ralo no chão do recuo.
+    img.pintar(img.ret(cx - 4, 106, cx + 6, 108) & ((X % 2) == 0), "aco", 0.3)
+    return img
+
+
+def grade_central():
+    """A grade de segurança da entrada do Lab Central (cenas/sistemas/
+    grade_seguranca.tscn): barras de aço na medida do vão da porta larga
+    (52 x 74 px, o vão da dtec_porta_central), travessas, a faixa de perigo
+    no pé e a caixa da trava magnética com o LED vermelho. Fecha o salão até
+    a rede de energia da Âncora cair (docs/fases/dtec.md, seção 3.1)."""
+    w, h = 52, 74
+    img = Imagem(w, h)
+    X, Y = img.X, img.Y
+    fino = ciclico(w, h, 2, 2, 340)
+    barras = img.ret(0, 0, w, h) & ((X % 6) < 2)
+    img.pintar(barras, "aco", 0.38 + 0.25 * ((X % 6) == 0) + 0.05 * fino)
+    for y0 in (2, 34, 62):
+        img.pintar(img.ret(0, y0, w, y0 + 3), "aco", 0.32 + 0.3 * (Y == y0))
+    img.pintar(img.ret(0, 0, 1, h) | img.ret(w - 1, 0, w, h), "aco", 0.2)
+    listras(img, img.ret(0, h - 5, w, h), 3)
+    trava = img.ret(20, 28, 32, 42)
+    img.pintar(trava, "aco", 0.16 + 0.3 * (Y == 28))
+    img.cor(img.ret(25, 31, 27, 33), LED_VERMELHO)
+    img.pintar(img.ret(22, 36, 30, 37) & ((X % 2) == 0), "aco", 0.55)
+    return img
+
+
 PAREDES = {
     "dtec_lisa": dtec_lisa,
     "dtec_rachada": dtec_rachada,
@@ -494,6 +558,7 @@ PAREDES = {
     "dtec_extintor": dtec_extintor,
     "dtec_canos": dtec_canos,
     "dtec_tela_grande": dtec_tela_grande,
+    "dtec_nicho": dtec_nicho,
 }
 
 
@@ -1153,6 +1218,8 @@ def main():
         img.salvar(f"{nome}.png", os.path.join(PASTA_DTEC, "objetos"))
         print(f"    {nome}: pé em ({px}, {py}) -> offset = Vector2({-px}, {-py}), pegada {pegada}")
         objetos[nome] = img
+    objetos["grade_central"] = grade_central()
+    objetos["grade_central"].salvar("grade_central.png", os.path.join(PASTA_DTEC, "objetos"))
     gravar_animacao_maquina()
     if not CATALOGO:
         return

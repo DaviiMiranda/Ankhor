@@ -16,6 +16,18 @@ Formato:
 
 ---
 
+## 2026-10-21 — Laboratório, passo 1: mapa novo, robôs, nichos e checkpoints
+**Decisão:** entra no jogo o passo 1 do level design "A Última Tentativa" (`docs/fases/dtec.md`, seção 3.1).
+- **Chegada pela Emergência** (`cenas/salas/dtec/emergencia.tscn`, nova): a comporta do bunker (`fim_do_bunker.tscn`) e a fase do menu (`09_dtec.tres`) levam para lá. A escada que desce para o bunker é a peça `bunker_escada_desce`. Checkpoint `dtec_chegada`. A lanterna saiu da recepção e foi para a Emergência (só aparece para quem começa pelo menu).
+- **Sala segura no corredor sul**, ao lado da Emergência, seguindo a regra de ficar perto da chegada. A porta DESCANSO saiu do corredor norte.
+- **Corredor de serviço** (`corredor_servico.tscn`, nova), no lugar do depósito (norte) e do arquivo (sul): liga as pontas dos dois corredores. Checkpoint `dtec_servico`.
+- **Lab Central fechado por grade** nas duas portas (`liberada_por = "dtec_rede_cortada"`). Nada grava a marca ainda: o salão só abre com a rede de energia (passo 2).
+- **Robôs:** uma Sentinela no corredor norte e um Rastreador no corredor sul, cada um com a sua rota.
+- **Nichos:** peça nova `dtec_nicho` (o vão da estação de emergência, com chuveiro e lava-olhos), quatro em cada corredor e um no serviço, com o `NichoEsconderijo` na frente.
+- **O montador** (`montar_dtec.py`) aceita robôs, checkpoints, nichos, porta com `liberada_por` (e a grade na porta central) e peça de outro kit, e deixa de sobrescrever a cena animada da máquina.
+**Por quê:** pedido do Davi: implementar o passo 1 do level design do Laboratório.
+**Afeta:** `assets/modelagem/cenario/gerar_dtec.py` (`dtec_nicho` e `grade_central`, novos), `assets/modelagem/salas/dtec/montar_dtec.py`, `assets/sprites/cenario/dtec/` (as duas imagens novas), `cenas/cenario/dtec/paredes/dtec_nicho.tscn`, `cenas/salas/dtec/` (`emergencia` e `corredor_servico` novas; `corredor_norte`, `corredor_sul`, `recepcao` e `sala_segura`), `cenas/salas/bunker/fim_do_bunker.tscn`, `dados/fases/09_dtec.tres`, `docs/fases/dtec.md`, `docs/mecanicas/sala_segura.md` e `furtividade_e_esconderijos.md`.
+
 ## 2026-10-21 — Level design novo do Laboratório, com o confronto final com o Carlos
 **Decisão:** o Laboratório (D-Tec) ganha um level design novo, "A Última Tentativa", descrito em `docs/fases/dtec.md`, seção 3.1. Ainda não foi implementado.
 - **Mapa:** o Gabriel chega pela **Emergência** (escada que sobe da comporta do núcleo do bunker), e a sala segura vai para perto dela, no corredor sul. O **Lab Central começa fechado** por grades. Um **corredor de serviço** (no lugar do depósito e do arquivo) liga as pontas dos dois corredores e fecha um ciclo no mapa. A diretoria vira o **quarto do Carlos**. Entram nichos, uma Sentinela no corredor norte, um Rastreador no sul e checkpoints.
