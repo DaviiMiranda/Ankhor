@@ -246,6 +246,11 @@ def montar_sala(sala):
                 "theme_override_colors/font_color = Color(0.78, 0.88, 0.98, 1)",
                 'theme_override_styles/normal = SubResource("Placa")',
                 f'text = "{porta["placa"]}"', "horizontal_alignment = 1"])
+        # A porta da sala segura leva a luz verde em cima da placa, a mesma
+        # em todas as fases (cenas/cenario/objetos/sinal_sala_segura.tscn).
+        if porta.get("sala_segura"):
+            m.instancia("SinalSalaSegura", "Paredes", "res://cenas/cenario/objetos/sinal_sala_segura.tscn",
+                        [f"position = Vector2({i * PECA + 41}, 6)"])
     for k, (texto, x0, y0, x1, y1, tamanho) in enumerate(sala.get("letreiros", [])):
         m.no(f'[node name="Letreiro{k + 1}" type="Label" parent="Paredes"]', [
             f"offset_left = {x0}.0", f"offset_top = {y0}.0", f"offset_right = {x1}.0", f"offset_bottom = {y1}.0",
@@ -382,6 +387,8 @@ SALAS = [
         "portas": [
             {"peca": 2, "tipo": "porta", "id": "norte_recepcao", "placa": "RECEPÇÃO",
              "destino": "recepcao", "porta_destino": "recepcao_corredor"},
+            {"peca": 4, "tipo": "porta", "id": "norte_sala_segura", "placa": "DESCANSO",
+             "destino": "sala_segura", "porta_destino": "safe_room_saida", "sala_segura": True},
             {"peca": 6, "tipo": "porta", "id": "norte_eletronica", "placa": "ELETRÔNICA",
              "destino": "lab_eletronica", "porta_destino": "eletronica_corredor"},
             {"peca": 10, "tipo": "porta", "id": "norte_informatica", "placa": "INFORMÁTICA",

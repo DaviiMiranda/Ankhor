@@ -77,8 +77,10 @@ PASSARELA = {
     "portas": [
         {"id": "passarela_subsolo", "coluna": 0, "y_peca": 0, "x": X_PORTA, "y": Y_PORTA_INTERNA, "bloqueada": True,
          "aviso": "A escotilha de manutenção travou por trás na subida."},
+        porta_interna("passarela_sala_segura", 4, "verde", "sala_segura", "safe_room_saida"),
         porta_interna("passarela_praca", 6, "ciano", "praca_central", "praca_passarela"),
     ],
+    "sinais_sala_segura": [(4 * PECA + X_PORTA, 4)],
     "objetos": [("vaso_planta", 330, 156), ("banco_curvo", 450, 160)],
     "itens": [("pilha", 360, 168), ("lanterna", 140, 160), ("radio", 180, 160)],
     "checkpoint": ("conv_passarela", 60, 140),

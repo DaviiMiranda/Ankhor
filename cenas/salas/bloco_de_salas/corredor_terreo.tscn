@@ -42,6 +42,7 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/estalo_do_teto.tscn" id="m_estalo"]
 [ext_resource type="Script" path="res://scripts/sistemas/robo_atraido_pelo_buraco.gd" id="m_atraido"]
 [ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="m_zona"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/sinal_sala_segura.tscn" id="ss_sinal"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -60,7 +61,7 @@ texture = ExtResource("r3")
 [node name="Parede01" parent="Paredes" instance=ExtResource("r4")]
 position = Vector2(0, 0)
 
-[node name="Parede02" parent="Paredes" instance=ExtResource("r5")]
+[node name="Parede02" parent="Paredes" instance=ExtResource("r7")]
 position = Vector2(80, 0)
 
 [node name="Parede03" parent="Paredes" instance=ExtResource("r6")]
@@ -522,5 +523,24 @@ position = Vector2(2200, 14)
 position = Vector2(1400, 140)
 script = ExtResource("m_atraido")
 robo = NodePath("../Objetos/Rastreador")
+
+[node name="Porta_bloco_sala_segura" parent="." instance=ExtResource("r2")]
+position = Vector2(121, 124)
+id = "bloco_sala_segura"
+cena_destino = "res://cenas/salas/bloco_de_salas/sala_segura.tscn"
+porta_destino = "safe_room_saida"
+
+[node name="PlacaDescanso" type="Label" parent="Paredes"]
+offset_left = 93.0
+offset_top = 30.0
+offset_right = 149.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.82, 0.8, 0.7, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "DESCANSO"
+horizontal_alignment = 1
+
+[node name="SinalSalaSegura" parent="Paredes" instance=ExtResource("ss_sinal")]
+position = Vector2(121, 10)
 
 [editable path="Ceu"]

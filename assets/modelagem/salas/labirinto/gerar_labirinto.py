@@ -314,6 +314,13 @@ def montar_mapa(rng):
     marcar(inicio, "G")
     marcar(inicio, "T", 2, 1)
 
+    # A porta da sala segura ("QQ"): na parede de cima da câmara onde o
+    # Gabriel começa, para ser a primeira coisa que ele vê. As duas letras
+    # ocupam os blocos de parede logo acima da salinha do início.
+    yq, xq = 3 * inicio[1], 3 * inicio[0] + 1
+    assert grade[yq][xq] == "#" and grade[yq][xq + 1] == "#", "a parede de cima do início não está fechada"
+    grade[yq][xq] = grade[yq][xq + 1] = "Q"
+
     longe = sorted(dist, key=lambda c: -dist[c])
     robos = []
     for c in longe:
@@ -589,15 +596,16 @@ def previa(linhas, sprites):
             sala.colar(sprites["piso"], x, y)
     for by in range(h):
         for bx in range(w):
-            if linhas[by][bx] not in "#D":
+            if linhas[by][bx] not in "#DQ":
                 continue
             x, y = bx * BLOCO, by * BLOCO
             sala.colar(sprites["topo"][(bx * 5 + by * 11) % 3], x, y - ALTURA_PAREDE)
             abaixo = linhas[by + 1][bx] if by + 1 < h else "."
-            if abaixo not in "#D":
-                if linhas[by][bx] == "D":
-                    if bx == 0 or linhas[by][bx - 1] != "D":
-                        sala.colar(sprites["porta"], x, y + BLOCO - ALTURA_PAREDE)
+            if abaixo not in "#DQ":
+                if linhas[by][bx] in "DQ":
+                    if bx == 0 or linhas[by][bx - 1] != linhas[by][bx]:
+                        nome = "porta" if linhas[by][bx] == "D" else "porta_segura"
+                        sala.colar(sprites[nome], x, y + BLOCO - ALTURA_PAREDE)
                 else:
                     sala.colar(sprites["frente"][(bx * 7 + by * 3) % 4], x, y + BLOCO - ALTURA_PAREDE)
     cores = {"G": (60, 200, 255), "C": (80, 255, 120), "V": (255, 60, 60), "R": (255, 140, 40),
@@ -614,6 +622,35 @@ def previa(linhas, sprites):
     print("  prévia: previa_labirinto.png (não commitar)")
 
 
+def porta_sala_segura():
+    """A porta da sala segura: as mesmas folhas de metal da saída, mas em cima,
+    no lugar da placa SAÍDA, a lâmpada verde e a plaquinha com a casinha (o
+    sinal da sala segura, igual em todas as fases; ver
+    assets/modelagem/cenario/gerar_sinal_sala_segura.py). O telhado da casinha
+    é um triângulo: |x - meio| <= (y - topo) + 1,5."""
+    img = Imagem(2 * BLOCO, ALTURA_PAREDE)
+    X, Y = img.X, img.Y
+    fino = ruido_toro(2 * BLOCO, ALTURA_PAREDE, 2, 441)
+    img.pintar(img.ret(0, 0, 2 * BLOCO, ALTURA_PAREDE), "concreto", 0.30 - 0.14 * Y / ALTURA_PAREDE + 0.04 * fino)
+    img.pintar(img.ret(0, 0, 2 * BLOCO, 1), "concreto", 0.62)
+    img.pintar(img.ret(14, 12, 50, ALTURA_PAREDE), "metal", 0.1)
+    for x0 in (15, 33):
+        folha = img.ret(x0, 13, x0 + 16, ALTURA_PAREDE)
+        img.pintar(folha, "metal", 0.36 + 0.08 * fino - 0.1 * (Y / ALTURA_PAREDE))
+        img.pintar(img.ret(x0 + 2, 16, x0 + 14, 22), "metal", 0.2)
+    img.pintar(img.ret(29, 26, 35, 28), "ferrugem", 0.6)                      # maçaneta
+    img.pintar(img.ret(18, 2, 24, 8), VERDE, 0.75)                             # a lâmpada
+    img.cor(img.ret(20, 4, 22, 6), VERDE[5])
+    img.pintar(img.ret(26, 2, 46, 11), VERDE, 0.2)                             # a plaquinha
+    meio = 35.5
+    telhado = (Y >= 3) & (Y <= 5) & (np.abs(X - meio) <= (Y - 3) + 1.5)
+    corpo = (Y >= 6) & (Y <= 9) & (X >= 33) & (X <= 38)
+    porta = (Y >= 8) & (X >= 35) & (X <= 36)
+    img.cor((telhado | corpo) & ~porta, VERDE[5])
+    img.pintar(img.ret(0, ALTURA_PAREDE - 3, 2 * BLOCO, ALTURA_PAREDE), "concreto", 0.05)
+    return img
+
+
 def main():
     print("Gerando o Labirinto")
     rng = np.random.default_rng(SEMENTE)
@@ -625,13 +662,14 @@ def main():
     os.makedirs(PASTA_SALA, exist_ok=True)
     sprites = {"piso": piso(), "topo": [parede_topo(v) for v in range(3)],
                "frente": [parede_frente(v) for v in range(4)],
-               "porta": porta_saida()}
+               "porta": porta_saida(), "porta_segura": porta_sala_segura()}
     sprites["piso"].salvar("piso.png", PASTA_SALA)
     for v, img in enumerate(sprites["topo"]):
         img.salvar(f"parede_topo_{v}.png", PASTA_SALA)
     for v, img in enumerate(sprites["frente"]):
         img.salvar(f"parede_frente_{v}.png", PASTA_SALA)
     sprites["porta"].salvar("porta_saida.png", PASTA_SALA)
+    sprites["porta_segura"].salvar("porta_sala_segura.png", PASTA_SALA)
     marcas_garra().salvar("marcas_garra.png", PASTA_SALA)
     poca().salvar("poca.png", PASTA_SALA)
     papel().salvar("papel.png", PASTA_SALA)
