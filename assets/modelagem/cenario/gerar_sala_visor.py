@@ -10,7 +10,11 @@
 #   - o QUADRO BRANCO ao lado da TV (os números do jogo).
 #
 # O que aparece em cima deles (cartões, papéis, texto) é montado no Godot com
-# os dados do save; aqui só sai o móvel. A TV de tubo continua no meio da
+# os dados do save; aqui só sai o móvel. As texturas (tábuas, papel de parede,
+# cortiça, tecidos...) também são do Godot: saem de gerar_texturas_quarto.py e
+# entram por mapeamento triplanar, procurando os materiais pelo NOME que eles
+# têm aqui (Chao, Parede, Madeira...). Se renomear um material, renomeie lá
+# também (scripts/visor/texturas_do_quarto.gd). A TV de tubo continua no meio da
 # parede do fundo, com o menu de salvar na tela.
 #
 # Não há teto: as paredes terminam numa linha ciano e, acima delas, é o escuro.
@@ -178,16 +182,10 @@ def limpar_cena():
 # ---------------------------------------------------------------------------
 
 def quarto(m):
-    """Chão de madeira com as frestas das tábuas, quatro paredes (placas de 10 cm
+    """Chão (as tábuas são a textura do Godot), quatro paredes (placas de 10 cm
     do lado de FORA do volume, para a face de dentro já apontar para o jogador),
     rodapé e a linha ciano no alto das paredes, onde o quarto "acaba"."""
     caixa("Chao", (0, -0.05, 0), (LARGURA, 0.1, PROFUNDIDADE), m["chao"])
-    frestas = []
-    tabua = 0.2
-    for i in range(1, int(LARGURA / tabua)):
-        x = -MEIA + i * tabua
-        frestas.append(caixa("Fresta", (x, 0.001, 0), (0.008, 0.002, PROFUNDIDADE), m["fresta"]))
-    juntar("Frestas", frestas)
 
     meio = ALTURA_PAREDE / 2
     juntar("Paredes", [
@@ -489,7 +487,6 @@ def main():
     limpar_cena()
     m = {
         "chao": material("Chao", "#4a3426", rugosidade=0.7),
-        "fresta": material("Fresta", "#2a1c14", rugosidade=0.9),
         "parede": material("Parede", "#55535e", rugosidade=0.95),
         "madeira": material("Madeira", "#6b4a32", rugosidade=0.7),
         "madeira_escura": material("MadeiraEscura", "#3a281c", rugosidade=0.7),
