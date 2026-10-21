@@ -16,6 +16,18 @@ Formato:
 
 ---
 
+## 2026-10-21 — Laboratório, passo 2: a rede de energia da Âncora
+**Decisão:** entra no jogo o passo 2 do level design do Laboratório (`docs/fases/dtec.md`, seção 3.1, parte 2).
+- **A rede é um grafo com pesos:** dois geradores no subsolo, seis relés (um em cada laboratório: Eletrônica, Informática, Servidores, Química, Robótica e Controle) e a Âncora, ligados por 13 cabos com o comprimento em metros (`scripts/sistemas/rede_energia_dtec.gd`).
+- **A energia corre pelo caminho mais curto** de um gerador até a Âncora (Dijkstra, rodado a partir da Âncora). No começo, Gerador Sul > Química > Robótica > Âncora.
+- **Os relés** (`cenas/sistemas/rele_rede.tscn`, um nó hackeável como os do Labirinto, sem gasto de bateria) são cortados com o notebook. O aviso diz se a energia desviou (e por onde) ou se nem passava por ali.
+- **O corte mínimo é Eletrônica + Servidores + Robótica**, e é o único de 3 relés (teorema de Menger: há três caminhos sem relé em comum). Quando a Âncora fica sem caminho, o relé grava `dtec_rede_cortada` e a grade do Lab Central abre.
+- **O telão da Sala de Controle** (`cenas/sistemas/telao_rede.tscn`) mostra o grafo em tela cheia, com o caminho ativo, os relés cortados e o comprimento dos cabos.
+- **Os robôs vigiam o caminho:** em cada corredor, o robô troca a ronda pela vigia da porta do relé do caminho ativo que fica no corredor dele (`scripts/sistemas/vigia_da_rede.gd`, rotas `Vigia_<relé>`). Sem mudança no `robo.gd`: a rota é escolhida quando o corredor carrega, e os relés ficam dentro das salas.
+- **Ficou para depois:** a fala do Carlos a cada corte (como ele fala está pendente no Enredo), as luzes que apagam, o pulso da Âncora que desacelera e os robôs desmontados da Robótica que se levantam.
+**Por quê:** pedido do Davi: implementar o passo 2 do Laboratório. É conteúdo de computação da disciplina (Dijkstra e corte mínimo), explicado em `docs/computacao/rede_e_corte_minimo.md`.
+**Afeta:** `scripts/sistemas/rede_energia_dtec.gd`, `rele_rede.gd`, `telao_rede.gd` e `vigia_da_rede.gd` (novos), `cenas/sistemas/rele_rede.tscn` e `telao_rede.tscn` (novos), `assets/modelagem/salas/dtec/montar_dtec.py` (relés, telão e vigias), as salas `corredor_norte`, `corredor_sul`, `lab_eletronica`, `lab_informatica`, `sala_servidores`, `lab_quimica`, `lab_robotica` e `sala_controle`, `docs/fases/dtec.md`, `docs/computacao/rede_e_corte_minimo.md` (novo) e `docs/computacao/README.md`.
+
 ## 2026-10-21 — Laboratório, passo 1: mapa novo, robôs, nichos e checkpoints
 **Decisão:** entra no jogo o passo 1 do level design "A Última Tentativa" (`docs/fases/dtec.md`, seção 3.1).
 - **Chegada pela Emergência** (`cenas/salas/dtec/emergencia.tscn`, nova): a comporta do bunker (`fim_do_bunker.tscn`) e a fase do menu (`09_dtec.tres`) levam para lá. A escada que desce para o bunker é a peça `bunker_escada_desce`. Checkpoint `dtec_chegada`. A lanterna saiu da recepção e foi para a Emergência (só aparece para quem começa pelo menu).

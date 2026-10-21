@@ -1,6 +1,6 @@
 # Fase — Laboratório (D-Tec)
 
-> **Status:** Mapa pronto (cenário, portas, luzes e itens). Sexta fase do jogo, depois do Bunker. Level design novo, com o confronto final com o Carlos, aprovado (seção 3.1): o passo 1 (mapa, robôs, nichos e checkpoints) está pronto; a rede de energia e a arena do Carlos, não.  
+> **Status:** Mapa pronto (cenário, portas, luzes e itens). Sexta fase do jogo, depois do Bunker. Level design novo, com o confronto final com o Carlos, aprovado (seção 3.1): os passos 1 (mapa, robôs, nichos e checkpoints) e 2 (a rede de energia) estão prontos; a arena do Carlos, não.  
 > **Área:** o D-Tec, departamento de tecnologia: laboratórios, servidores e o salão da Âncora (a máquina central)  
 > **No menu Fases:** **Laboratório** (`dados/fases/09_dtec.tres`, começa na Emergência)
 
@@ -58,19 +58,19 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 ### Salas trancadas e lacradas
 
 - **Trancadas** (`Porta.trancada`): **Servidores** e **Robótica**. O leitor de cartão da porta está com o LED vermelho. Abrem com o **notebook** (hack), que fica no Laboratório de Informática. São as salas com mais itens.
-- **Fechadas pela grade** (`Porta.liberada_por = "dtec_rede_cortada"`): as duas portas do Lab Central. A grade (`cenas/sistemas/grade_seguranca.tscn`, com a textura `grade_central.png`) sobe quando a marca chega. **Por enquanto nada grava essa marca:** o Lab Central só abre quando entrar a rede de energia (passo 2 da seção 3.1).
+- **Fechadas pela grade** (`Porta.liberada_por = "dtec_rede_cortada"`): as duas portas do Lab Central. A grade (`cenas/sistemas/grade_seguranca.tscn`, com a textura `grade_central.png`) sobe quando a marca chega. A marca é gravada pelo relé que derruba a rede de energia (seção 3.1, parte 2).
 - **Lacradas** (`Porta.bloqueada`): saída da recepção e diretoria (que vai virar o quarto do Carlos, no passo 4). Fita amarela e preta em X e placa de acesso restrito. Só mostram o aviso. Quando uma delas virar sala, basta tirar o `bloqueada`, preencher `cena_destino` e `porta_destino` e trocar a peça da parede por `dtec_porta`.
 
 ---
 
 ## 3. Objetivos e Progressão
 
-- **Hoje:** chegar pela Emergência, atravessar os corredores com a Sentinela e o Rastreador (nichos para se esconder, checkpoints na Emergência e no corredor de serviço), pegar o notebook na Informática e hackear as duas salas trancadas. O Lab Central está fechado pela grade.
-- **Próximo passo:** o passo 2 da seção 3.1, a rede de energia, que abre a grade.
+- **Hoje:** chegar pela Emergência, atravessar os corredores com a Sentinela e o Rastreador (nichos para se esconder, checkpoints na Emergência e no corredor de serviço), pegar o notebook na Informática, ler a rede no telão da Sala de Controle e cortar os três relés do gargalo (Eletrônica, Servidores e Robótica) para a grade do Lab Central abrir. O Lab Central ainda está vazio de jogo: a arena do Carlos é o passo 3.
+- **Próximo passo:** o passo 3 da seção 3.1, a arena do Carlos.
 
 ### 3.1 Level design novo: "A Última Tentativa"
 
-> **Status:** proposta aprovada em 2026-10-21 (ver `docs/decisoes.md`). **Passo 1 pronto** (mapa, robôs, nichos e checkpoints); passos 2 a 4 por fazer. É design de fase, não história: tudo o que depende das pendências do [Enredo Principal](../historia/História_Completa.md) está marcado como **espaço vazio** e não deve ser preenchido sem decisão do grupo.
+> **Status:** proposta aprovada em 2026-10-21 (ver `docs/decisoes.md`). **Passos 1 e 2 prontos** (mapa, robôs, nichos e checkpoints; a rede de energia); passos 3 e 4 por fazer. É design de fase, não história: tudo o que depende das pendências do [Enredo Principal](../historia/História_Completa.md) está marcado como **espaço vazio** e não deve ser preenchido sem decisão do grupo.
 
 #### Problemas da versão atual
 
@@ -116,6 +116,19 @@ O Gabriel chega pela Emergência (checkpoint). Na **Sala de Controle**, o telão
 
 #### Parte 2: Cortar a rede (o puzzle do grafo)
 
+> **Já no jogo** (passo 2). Os relés, o Dijkstra, o corte mínimo e a vigia dos robôs estão explicados em [`../computacao/rede_e_corte_minimo.md`](../computacao/rede_e_corte_minimo.md). O que ficou para depois: a fala do Carlos a cada corte (pendente: como ele fala), as luzes que apagam e o pulso da Âncora que desacelera, e os robôs desmontados da Robótica que se levantam.
+
+| Relé (`cenas/sistemas/rele_rede.tscn`) | Sala | Posição |
+|---|---|---|
+| `eletronica` | `lab_eletronica` | (400, 380) |
+| `informatica` | `lab_informatica` | (300, 525) |
+| `servidores` | `sala_servidores` | (80, 330) |
+| `quimica` | `lab_quimica` | (320, 445) |
+| `robotica` | `lab_robotica` | (400, 335) |
+| `controle` | `sala_controle` | (470, 335) |
+
+O telão (`cenas/sistemas/telao_rede.tscn`) fica na frente dos dois telões da Sala de Controle: `E` abre o grafo em tela cheia (o jogo pausa), com o caminho ativo em ciano, os relés cortados em vermelho e o comprimento de cada cabo.
+
 - Cada relé é um `NoHackeavel` (sem gasto de bateria). Cortar um relé faz o Carlos **redistribuir a energia pelo caminho mais curto (Dijkstra)**. O telão mostra o caminho novo, e um robô muda de rota para vigiar o próximo relé desse caminho.
 - **Sem código novo no robô:** `robo.gd` já troca de rota por marca (`rota_com_marca` e `marca_da_rota`). Cada corte só grava uma marca.
 - **O corte mínimo são 3 relés:** Eletrônica, Servidores e Robótica. Cortar um relé errado gasta tempo e faz barulho, e o barulho chama os robôs (BFS do som). O puzzle é ler o grafo e achar o gargalo. Duas das salas do corte são as trancadas: o hack ganha função.
@@ -157,7 +170,7 @@ O Carlos fica no console do fundo do Lab Central, com a Âncora entre ele e o Ga
 #### Ordem de produção (o menor passo primeiro)
 
 1. ✅ **Mapa** (pronto): chegada pela Emergência, sala segura no corredor sul, corredor de serviço, grade no Lab Central, nichos, os dois robôs e os checkpoints. Só isso já deixa a fase tensa.
-2. **A rede:** o telão do grafo, os relés e a troca de rota dos robôs.
+2. ✅ **A rede** (pronta): o telão do grafo, os relés e a troca de rota dos robôs.
 3. **A arena do Carlos.**
 4. **O quarto e os registros do Carlos**, que dependem de pendências.
 
