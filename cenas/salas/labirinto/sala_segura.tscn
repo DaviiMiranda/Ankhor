@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_safe_room.tscn" id="r1"]
+
+[node name="SalaSeguraLabirinto" instance=ExtResource("r1")]
+id = "labirinto_sala_segura"
+
+[node name="Escuridao" parent="."]
+color = Color(0.62, 0.64, 0.7, 1)
+
+[node name="PortaSaida" parent="."]
+cena_destino = "res://cenas/salas/labirinto.tscn"
+porta_destino = "labirinto_sala_segura"
+
+[node name="LuzAmbiente" parent="Luzes"]
+color = Color(1, 0.78, 0.5, 1)

@@ -14,7 +14,7 @@
 - **Quem vive aqui:** o **Henrique**, **sozinho**, numa sala de dados **trancada** (a central de dados), com acesso às câmeras do campus e ao rádio. Diz que está ali tentando consertar tudo. A cena mostra o Henrique na estação, de costas, olhando as câmeras. A Clarice e a Diana ficam no Bloco de salas, na 103. Decidido em 2026-10-15 (Enredo Principal, seção 8, Ato 3).
 - **O Zane chega depois:** Gabriel chega ao bunker pelo alçapão da oficina do Zane, no fim do Labirinto, e o Zane disse que ia atrás dele depois. O que o Zane faz quando chega, e onde fica na sala de dados, está pendente (Enredo Principal, seção 12.3). Ele ainda não aparece no bunker.
 - **O Carlos nunca vem ao bunker.**
-- **Os robôs patrulham o bunker** (decidido em 2026-10-15). Ainda não estão nas cenas: falta escolher quais robôs, as rotas nos corredores e se eles entram também no setor B (Enredo Principal, seção 12.5). Quando entrarem, o bunker deixa de ser um lugar seguro, e a sala de dados trancada do Henrique é o único canto protegido.
+- **Os robôs patrulham o bunker** (decidido em 2026-10-15). Ainda não estão nas cenas: falta escolher quais robôs, as rotas nos corredores e se eles entram também no setor B (Enredo Principal, seção 12.5). Quando entrarem, o bunker deixa de ser um lugar seguro, e os cantos protegidos são a sala de dados trancada do Henrique e a **sala segura**.
 - **As salas antigas:** uma ou mais salas do bunker são montadas como **interiores de casas e lugares antigos dos séculos XIX e XX**. Mostram a obsessão do Carlos pelo passado **sem explicar**: o jogo não diz quem as montou nem por quê, e nenhum personagem comenta. Quantas são, de que épocas e lugares e onde ficam está pendente (Enredo Principal, seção 12.5). Ainda não existem.
 - **Pichações pelas paredes:** "NÃO CONFIE NAS LUZES" pichado no corredor, a seta "→ DADOS C." apontando para a sala de dados, "NÃO ABRE. JÁ TENTEI. C." perto das portas lacradas, e o grafo das rotas dos robôs na parede da central. Foram feitas quando a Clarice morava aqui; agora ela fica na 103 desde que chegou, e falta decidir quem as fez ou se saem (uma opção: virar marcas antigas dos Faroleiros; Enredo Principal, seção 12.3).
 
@@ -28,7 +28,8 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`) com o som da porta b
                  ENTRADA ── (escotilha: lacrada)
                     │       (elevador: lacrado)
                     │
-  CORREDOR A ── dormitório
+  CORREDOR A ── SALA SEGURA (DESCANSO, ao lado da entrada)
+              ── dormitório
    (setor A)  ── refeitório
               ── enfermaria
               ── central de dados (Henrique, trancada)
@@ -47,6 +48,7 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`) com o som da porta b
 | `entrada` | 480 × 560 | Escada da superfície, descontaminação (chuveiros e faixas de perigo), armários, posto de guarda (mesa, cadeira, lampião), planta de evacuação, elevador lacrado e a porta para o setor A | — |
 | `corredor_a` | 2560 × 180 | O corredor principal: portas com placas, janela para a sala dos servidores, canos, quadros elétricos, as pichações assinadas "C." e a escada para o setor B | — |
 | `corredor_b` | 2240 × 180 | Nível de baixo: água no chão, luz vermelha, infiltração nas paredes, três portas lacradas e a **comporta do núcleo** | — |
+| `sala_segura` | 320 × 180 | A **sala segura** do modelo (os óculos do Zane para salvar, o piano), com a luz de um verde-oliva. A porta é a DESCANSO no corredor A, ao lado da entrada, com a **luz verde** em cima ([`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)) | — |
 | `dormitorio` | 480 × 560 | Fileiras de beliches (três por fileira), armários, caixas | 1 pilha |
 | `refeitorio` | 480 × 560 | Fileiras de mesas compridas de aço, prateleiras de latas, planta do bunker | 1 cápsula de clarão |
 | `enfermaria` | 400 × 480 | Duas fileiras de macas com biombos entre elas, suportes de soro, armários de remédios | 1 pilha |

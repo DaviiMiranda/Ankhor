@@ -31,6 +31,7 @@
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_blindada.wav" id="r29"]
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r30"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_bunker.tscn" id="m_musica"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/sinal_sala_segura.tscn" id="ss_sinal"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -47,7 +48,7 @@ position = Vector2(0, 0)
 [node name="Parede02" parent="Paredes" instance=ExtResource("r3")]
 position = Vector2(80, 0)
 
-[node name="Parede03" parent="Paredes" instance=ExtResource("r4")]
+[node name="Parede03" parent="Paredes" instance=ExtResource("r3")]
 position = Vector2(160, 0)
 
 [node name="Parede04" parent="Paredes" instance=ExtResource("r2")]
@@ -421,3 +422,23 @@ autoplay = true
 bus = &"Efeitos"
 
 [node name="MusicaBunker" parent="." instance=ExtResource("m_musica")]
+
+[node name="Porta_corredor_sala_segura" parent="." instance=ExtResource("r28")]
+position = Vector2(201, 124)
+id = "corredor_sala_segura"
+cena_destino = "res://cenas/salas/bunker/sala_segura.tscn"
+porta_destino = "safe_room_saida"
+som_abrir = ExtResource("r29")
+
+[node name="PlacaDescanso" type="Label" parent="Paredes"]
+offset_left = 169.0
+offset_top = 26.0
+offset_right = 233.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.86, 0.74, 0.34, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "DESCANSO"
+horizontal_alignment = 1
+
+[node name="SinalSalaSegura" parent="Paredes" instance=ExtResource("ss_sinal")]
+position = Vector2(201, 6)

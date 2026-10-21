@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r17"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_conduites.tscn" id="fut_parede_conduites"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/letreiro_holografico.tscn" id="fut_letreiro"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/sinal_sala_segura.tscn" id="ss_sinal"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -179,3 +180,6 @@ position = Vector2(93.0, 30.0)
 offset_right = 56.0
 offset_bottom = 14.0
 text = "DESCANSO"
+
+[node name="SinalSalaSegura" parent="Paredes" instance=ExtResource("ss_sinal")]
+position = Vector2(121, 10)

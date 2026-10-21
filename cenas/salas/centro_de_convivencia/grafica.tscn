@@ -18,12 +18,16 @@
 [ext_resource type="Resource" path="res://dados/documentos/ordem_impressao_grafica.tres" id="r16"]
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_ordem_impressao.png" id="r17"]
 [ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="r18"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r19"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r20"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r21"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r22"]
-[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r23"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r24"]
+[ext_resource type="Resource" path="res://dados/documentos/etiqueta_trava_plotter.tres" id="r19"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_etiqueta_plotter.png" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r21"]
+[ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/painel_bits.tscn" id="r23"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r25"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r26"]
+[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r27"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r28"]
 
 [node name="Grafica" instance=ExtResource("r1")]
 id = "conv_grafica"
@@ -88,18 +92,36 @@ texto_acao = "Ler a ordem de impressão"
 documento = ExtResource("r16")
 textura = ExtResource("r17")
 
-[node name="Nicho1" parent="Objetos" instance=ExtResource("r19")]
+[node name="Documento2" parent="Objetos" instance=ExtResource("r18")]
+position = Vector2(140, 214)
+texto_acao = "Ler a etiqueta do plotter"
+documento = ExtResource("r19")
+textura = ExtResource("r20")
+
+[node name="Nicho1" parent="Objetos" instance=ExtResource("r21")]
 position = Vector2(520, 128)
 
-[node name="Luz1" parent="Luzes" instance=ExtResource("r20")]
+[node name="TravaDoPlotter" parent="Objetos" instance=ExtResource("r23")]
+position = Vector2(180, 212)
+texto_acao = "Mexer na trava do plotter"
+titulo = "PLOTTER QX-9: TRAVA"
+marca = "plotter_destravado"
+alvo = 88
+quantidade_chaves = 7
+aviso_liberado = "A gaveta de insumos do plotter abriu: tinha uma cápsula de clarão."
+aviso_ja_liberado = "A gaveta do plotter já está aberta."
+item_premio = ExtResource("r22")
+quantidade_premio = 1
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r24")]
 position = Vector2(180, 36)
 energy = 0.55
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r20")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r24")]
 position = Vector2(400, 36)
 energy = 0.5
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r21")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r25")]
 position = Vector2(300, 100)
 color = Color(0.85, 1, 0.3, 1)
 energy = 0.35
@@ -110,7 +132,7 @@ color = Color(0.28, 0.3, 0.28, 1)
 [node name="Gabriel" parent="Objetos"]
 position = Vector2(80, 160)
 
-[node name="Porta_grafica_mezanino" parent="." instance=ExtResource("r22")]
+[node name="Porta_grafica_mezanino" parent="." instance=ExtResource("r26")]
 position = Vector2(41, 124)
 id = "grafica_mezanino"
 cena_destino = "res://cenas/salas/centro_de_convivencia/segundo_andar.tscn"
@@ -118,11 +140,11 @@ porta_destino = "mezanino_grafica"
 
 [node name="ZonaPiso1" type="Node2D" parent="."]
 position = Vector2(0, 112)
-script = ExtResource("r23")
+script = ExtResource("r27")
 tamanho = Vector2(560, 128)
 fator_ruido = 1.0
 nome_piso = "concreto polido"
 
-[node name="MusicaFase" parent="." instance=ExtResource("r24")]
+[node name="MusicaFase" parent="." instance=ExtResource("r28")]
 
 [editable path="Ceu"]

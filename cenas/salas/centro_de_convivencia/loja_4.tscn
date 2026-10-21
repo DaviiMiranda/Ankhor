@@ -10,16 +10,21 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/mesa_vidro.tscn" id="r8"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/cadeira_fut.tscn" id="r9"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/caixas_carga.tscn" id="r10"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r11"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r12"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r13"]
-[ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="r14"]
-[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/objetos/elevador_carga.png" id="r15"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/grade_seguranca.tscn" id="r16"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r17"]
-[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r18"]
-[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r19"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r20"]
+[ext_resource type="Resource" path="res://dados/documentos/checklist_churrasco_solar.tres" id="r11"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_checklist.png" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/quadro_energia.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r18"]
+[ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="r19"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/objetos/elevador_carga.png" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/grade_seguranca.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r23"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r25"]
 
 [node name="Loja4" instance=ExtResource("r1")]
 id = "conv_loja_4"
@@ -84,35 +89,54 @@ espelhado = true
 [node name="CaixasCarga1" parent="Objetos" instance=ExtResource("r10")]
 position = Vector2(560, 250)
 
-[node name="Nicho1" parent="Objetos" instance=ExtResource("r11")]
+[node name="Documento1" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(240, 194)
+texto_acao = "Ler o checklist do bar"
+documento = ExtResource("r11")
+textura = ExtResource("r12")
+
+[node name="Nicho1" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(360, 128)
 
-[node name="Luz1" parent="Luzes" instance=ExtResource("r12")]
+[node name="QuadroDoBar" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(490, 132)
+texto_acao = "Abrir o quadro do bar"
+titulo = "QUADRO DO BAR"
+marca = "churrasco_quadro_ligado"
+ordem = PackedInt32Array(2, 4, 1, 3)
+nomes = PackedStringArray("GELAD", "EXAUST", "NEON", "GRELHA")
+ruido_ao_desarmar = 14
+aviso_ligado = "Quadro do bar ligado. A gaveta de reserva destravou: duas pilhas."
+aviso_ja_ligado = "O quadro do bar já está ligado."
+cena_premio = ExtResource("r15")
+quantidade_premio = 2
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r17")]
 position = Vector2(175, 120)
 color = Color(1, 0.4, 0.85, 1)
 energy = 0.8
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r12")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r17")]
 position = Vector2(360, 110)
 color = Color(1, 0.4, 0.85, 1)
 energy = 0.7
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r13")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r18")]
 position = Vector2(580, 40)
 energy = 0.6
 
 [node name="HolofotesPerimetrais" type="Node2D" parent="."]
-script = ExtResource("r14")
+script = ExtResource("r19")
 marca = "convivencia_energia"
 revela_quem_passa = true
 
-[node name="Holofote1" parent="HolofotesPerimetrais" instance=ExtResource("r12")]
+[node name="Holofote1" parent="HolofotesPerimetrais" instance=ExtResource("r17")]
 position = Vector2(320, 210)
 scale = Vector2(2.2, 2.0)
 color = Color(0.85, 0.95, 1, 1)
 energy = 1.15
 
-[node name="Holofote2" parent="HolofotesPerimetrais" instance=ExtResource("r12")]
+[node name="Holofote2" parent="HolofotesPerimetrais" instance=ExtResource("r17")]
 position = Vector2(500, 200)
 scale = Vector2(2.2, 2.0)
 color = Color(0.85, 0.95, 1, 1)
@@ -124,20 +148,20 @@ color = Color(0.26, 0.22, 0.3, 1)
 [node name="Gabriel" parent="Objetos"]
 position = Vector2(80, 160)
 
-[node name="ComportaCarga" parent="Objetos" instance=ExtResource("r16")]
+[node name="ComportaCarga" parent="Objetos" instance=ExtResource("r21")]
 position = Vector2(568, 28)
 marca = "convivencia_energia"
 
 [node name="Grade" parent="Objetos/ComportaCarga" index="0"]
-texture = ExtResource("r15")
+texture = ExtResource("r20")
 
-[node name="Porta_loja_4_praca" parent="." instance=ExtResource("r17")]
+[node name="Porta_loja_4_praca" parent="." instance=ExtResource("r22")]
 position = Vector2(41, 124)
 id = "loja_4_praca"
 cena_destino = "res://cenas/salas/centro_de_convivencia/praca_central.tscn"
 porta_destino = "praca_loja_4"
 
-[node name="Porta_loja_4_elevador" parent="." instance=ExtResource("r17")]
+[node name="Porta_loja_4_elevador" parent="." instance=ExtResource("r22")]
 position = Vector2(601, 124)
 id = "loja_4_elevador"
 liberada_por = "convivencia_energia"
@@ -145,7 +169,7 @@ aviso_bloqueada = "Elevador de carga sem alimentação. O quadro de comutação 
 cena_destino = "res://cenas/salas/centro_de_convivencia/fim_da_convivencia.tscn"
 porta_destino = ""
 
-[node name="Sentinela1" parent="Objetos" instance=ExtResource("r18")]
+[node name="Sentinela1" parent="Objetos" instance=ExtResource("r23")]
 position = Vector2(400, 250)
 rota = NodePath("../../RotaSentinela1")
 rota_com_marca = NodePath("../../RotaSentinela1Energia")
@@ -181,9 +205,9 @@ position = Vector2(560, 335)
 position = Vector2(260, 335)
 
 [node name="RobosDaSala" type="Node" parent="."]
-script = ExtResource("r19")
+script = ExtResource("r24")
 folga_obstaculos = 10.0
 
-[node name="MusicaFase" parent="." instance=ExtResource("r20")]
+[node name="MusicaFase" parent="." instance=ExtResource("r25")]
 
 [editable path="Ceu"]

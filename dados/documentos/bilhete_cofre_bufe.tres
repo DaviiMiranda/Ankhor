@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "bilhete_cofre_bufe"
+titulo = "Bilhete da gerência do Self Nebulosa (3026)"
+autor = "Gerência do Self Nebulosa"
+papel = "caderno_gabriel"
+paginas = PackedStringArray("Equipe do salão,
+
+A senha do cofre do bufê mudou de novo. Agora é o número das cubas do PRATO DO DIA, na ordem em que aparecem no cardápio.
+
+Muda todo dia junto com o cardápio, então ninguém precisa decorar nada. O cardápio de hoje está em cima do bufê.
+
+— Gerência")
+anotacao = "A senha do cofre do bufê do Self Nebulosa são os números das cubas do prato do dia, na ordem do cardápio. O cardápio fica em cima do bufê, no meio do salão."

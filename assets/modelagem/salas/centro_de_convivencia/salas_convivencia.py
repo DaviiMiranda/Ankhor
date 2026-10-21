@@ -77,8 +77,10 @@ PASSARELA = {
     "portas": [
         {"id": "passarela_subsolo", "coluna": 0, "y_peca": 0, "x": X_PORTA, "y": Y_PORTA_INTERNA, "bloqueada": True,
          "aviso": "A escotilha de manutenção travou por trás na subida."},
+        porta_interna("passarela_sala_segura", 4, "verde", "sala_segura", "safe_room_saida"),
         porta_interna("passarela_praca", 6, "ciano", "praca_central", "praca_passarela"),
     ],
+    "sinais_sala_segura": [(4 * PECA + X_PORTA, 4)],
     "objetos": [("vaso_planta", 330, 156), ("banco_curvo", 450, 160)],
     "itens": [("pilha", 360, 168), ("lanterna", 140, 160), ("radio", 180, 160)],
     "checkpoint": ("conv_passarela", 60, 140),
@@ -132,6 +134,7 @@ PRACA = {
     "objetos": OBJETOS_PRACA,
     "itens": [("pedra", 520, 400), ("pedra", 1000, 480), ("pedra", 1460, 400)],
     "nichos": [(440, 192), (1560, 192)],
+    "sinais_sala_segura": [(base.LOJAS_PRACA["loja_1"] * PECA + 40, base.y_base(base.LOJAS_PRACA["loja_1"]) - 108)],
     "transmissoes": [("zane_convivencia_02", 1000, 300, "convivencia_energia")],
     "luzes": [
         *[("luz_fria", base.LOJAS_PRACA[loja] * PECA + X_PORTA, base.y_base(base.LOJAS_PRACA[loja]) + 34,
@@ -183,6 +186,12 @@ LOJA_1 = {
     "escuridao": (0.32, 0.29, 0.3, 1),
 }
 
+# O cofre do bufê do Self Nebulosa: o bilhete da gerência (perto da porta) diz
+# que a senha são as cubas do prato do dia, na ordem do cardápio; o cardápio
+# está em cima do bufê, no meio do salão, perto dos cacos e do Rastreador.
+# Prato do dia: baião de dois (6), paçoca (1) e vinagrete (9).
+CODIGO_DO_COFRE_DO_BUFE = "619"
+
 LOJA_2 = {
     "id": "loja_2", "largura": 640, "altura": 280, "fundo": "fundo_loja_2", "gabriel": "(80, 160)",
     "portas": [
@@ -196,6 +205,12 @@ LOJA_2 = {
         ("mesa_vidro", 580, 250), ("cadeira_fut", 540, 258),
     ],
     "decais": [("cacos_louca", 250, 205), ("cacos_louca", 340, 212), ("cacos_louca", 430, 205)],
+    "documentos": [
+        ("bilhete_cofre_bufe", 100, 174, "Ler o bilhete da gerência"),
+        ("cardapio_self_nebulosa", 258, 172, "Ler o cardápio do dia"),
+    ],
+    "cofres": [(440, 152, CODIGO_DO_COFRE_DO_BUFE, "clarao", 1, "cofre_bufe_aberto",
+                "O cofre do bufê abriu: caiu uma cápsula de clarão.")],
     "nichos": [(360, 128)],
     "robos": [{"tipo": "rastreador", "pos": "(460, 220)", "rota": ["(180, 160)", "(480, 160)", "(540, 245)", "(180, 245)"]}],
     "zonas_piso": [
@@ -243,6 +258,12 @@ LOJA_3 = {
     "escuridao": (0.3, 0.25, 0.25, 1),
 }
 
+# O quadro do bar do Churrasco Solar: o checklist (no chão, perto do balcão)
+# dá a ordem pelos nomes (exaustor antes da grelha, a geladeira depois da
+# grelha, o neon por último); o quadro mostra o nome de cada disjuntor. Errar
+# faz um estalo que a Sentinela ouve (ruido_ao_desarmar, em células de 16 px).
+ORDEM_DO_QUADRO_DO_BAR = "2, 4, 1, 3"
+
 LOJA_4 = {
     "id": "loja_4", "largura": 640, "altura": 360, "fundo": "fundo_loja_4", "gabriel": "(80, 160)",
     "portas": [
@@ -260,6 +281,17 @@ LOJA_4 = {
         ("caixas_carga", 560, 250),
     ],
     "nichos": [(360, 128)],
+    "documentos": [("checklist_churrasco_solar", 240, 194, "Ler o checklist do bar")],
+    "paineis": [{
+        "nome": "QuadroDoBar", "cena": "quadro_energia", "x": 490, "y": 132, "premio": ("pilha", 2),
+        "campos": [
+            'texto_acao = "Abrir o quadro do bar"', 'titulo = "QUADRO DO BAR"', 'marca = "churrasco_quadro_ligado"',
+            f"ordem = PackedInt32Array({ORDEM_DO_QUADRO_DO_BAR})",
+            'nomes = PackedStringArray("GELAD", "EXAUST", "NEON", "GRELHA")', "ruido_ao_desarmar = 14",
+            'aviso_ligado = "Quadro do bar ligado. A gaveta de reserva destravou: duas pilhas."',
+            'aviso_ja_ligado = "O quadro do bar já está ligado."',
+        ],
+    }],
     "robos": [{"tipo": "sentinela", "pos": "(400, 250)",
                "rota": ["(180, 240)", "(520, 240)", "(520, 335)", "(180, 335)"],
                "rota_energia": ["(160, 250)", "(560, 300)", "(560, 335)", "(260, 335)"]}],
@@ -378,6 +410,11 @@ MEZANINO = {
 # Lojas do mezanino
 # ---------------------------------------------------------------------------
 
+# A arara inteligente da Loja Universitária: os moletons estão fora de ordem e
+# o Gabriel troca dois vizinhos de cada vez até ficar do PP ao GG. A ordem
+# inicial (G, PP, GG, M, P) tem 6 inversões, o mínimo de trocas.
+ORDEM_INICIAL_DA_ARARA = "3, 0, 4, 2, 1"
+
 LOJA_UNI = {
     "id": "loja_uni", "largura": 560, "altura": 240, "fundo": "fundo_loja_uni", "gabriel": "(80, 160)",
     "portas": [porta_interna("loja_uni_mezanino", 0, "azul", "segundo_andar", "mezanino_loja_uni")],
@@ -388,6 +425,15 @@ LOJA_UNI = {
     ],
     "itens": [("pilha", 110, 228), ("pedra", 330, 232)],
     "documentos": [("aviso_loja_universitaria", 330, 170, "Ler o aviso do balcão")],
+    "paineis": [{
+        "nome": "AraraInteligente", "cena": "painel_ordenacao", "x": 215, "y": 160, "premio": ("pilha", 2),
+        "campos": [
+            'marca = "arara_loja_uni_ordenada"', 'pedido = "DO PP AO GG, DA ESQUERDA PARA A DIREITA"',
+            'ordem_certa = PackedStringArray("PP", "P", "M", "G", "GG")',
+            f"ordem_inicial = PackedInt32Array({ORDEM_INICIAL_DA_ARARA})",
+            'aviso_ordenado = "A arara apitou: tudo em ordem. Caíram duas pilhas de um bolso."',
+        ],
+    }],
     "nichos": [(440, 128)],
     "luzes": [
         ("luz_lampada", 150, 100, "energy = 0.7"),
@@ -398,6 +444,11 @@ LOJA_UNI = {
     "escuridao": (0.28, 0.3, 0.42, 1),
 }
 
+# A trava do plotter da Gráfica Quântica: a etiqueta diz que o código é quantos
+# avisos ainda faltam imprimir na ordem parada; a Ordem de Impressão diz 4.000
+# pedidos e 3.912 impressos: faltam 88 = 64 + 16 + 8 = 1011000 em binário.
+CODIGO_DA_TRAVA_DO_PLOTTER = 4000 - 3912
+
 GRAFICA = {
     "id": "grafica", "largura": 560, "altura": 240, "fundo": "fundo_grafica", "gabriel": "(80, 160)",
     "portas": [porta_interna("grafica_mezanino", 0, "limao", "segundo_andar", "mezanino_grafica")],
@@ -406,7 +457,19 @@ GRAFICA = {
         ("guilhotina", 62, 226), ("balcao_grafica", 275, 234), ("mesa_corte", 478, 228), ("rolo_papel", 56, 186),
     ],
     "itens": [("pedra", 400, 184), ("pedra", 110, 192), ("pilha", 520, 196)],
-    "documentos": [("ordem_impressao_grafica", 275, 216, "Ler a ordem de impressão")],
+    "documentos": [
+        ("ordem_impressao_grafica", 275, 216, "Ler a ordem de impressão"),
+        ("etiqueta_trava_plotter", 140, 214, "Ler a etiqueta do plotter"),
+    ],
+    "paineis": [{
+        "nome": "TravaDoPlotter", "cena": "painel_bits", "x": 180, "y": 212, "premio": ("clarao", 1),
+        "campos": [
+            'texto_acao = "Mexer na trava do plotter"', 'titulo = "PLOTTER QX-9: TRAVA"', 'marca = "plotter_destravado"',
+            f"alvo = {CODIGO_DA_TRAVA_DO_PLOTTER}", "quantidade_chaves = 7",
+            'aviso_liberado = "A gaveta de insumos do plotter abriu: tinha uma cápsula de clarão."',
+            'aviso_ja_liberado = "A gaveta do plotter já está aberta."',
+        ],
+    }],
     "nichos": [(520, 128)],
     "luzes": [
         ("luz_tubo", 180, 36, "energy = 0.55"),

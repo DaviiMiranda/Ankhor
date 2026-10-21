@@ -543,7 +543,7 @@ SALAS = {
         "PORTA:magenta", ("garrafas", 41), ("quadro_holo", 44), ("garrafas", 42), ("nicho_interior", 45), ("garrafas", 47),
         ("quadro_holo", 46), ("lisa", 48)]},
     "passarela": {"tema": "passarela", "largura": 640, "altura": 180, "pecas": [
-        ("escotilha", 51), ("janela_para_praca", 52), ("quadro_holo", 53), ("janela_para_praca", 54), ("lisa", 55),
+        ("escotilha", 51), ("janela_para_praca", 52), ("quadro_holo", 53), ("janela_para_praca", 54), "PORTA:verde",
         ("janela_para_praca", 56), "PORTA:ciano", ("lisa", 57)]},
 }
 

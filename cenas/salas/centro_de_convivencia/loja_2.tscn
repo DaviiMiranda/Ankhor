@@ -11,14 +11,21 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/lixeira_reciclagem.tscn" id="r9"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/mesa_vidro.tscn" id="r10"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/cadeira_fut.tscn" id="r11"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r12"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r13"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r14"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r15"]
-[ext_resource type="PackedScene" path="res://cenas/personagens/robo_rastreador.tscn" id="r16"]
-[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r17"]
-[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r18"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r19"]
+[ext_resource type="Resource" path="res://dados/documentos/bilhete_cofre_bufe.tres" id="r12"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_bilhete.png" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="r14"]
+[ext_resource type="Resource" path="res://dados/documentos/cardapio_self_nebulosa.tres" id="r15"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_cardapio.png" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r17"]
+[ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/cofre.tscn" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_rastreador.tscn" id="r23"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r24"]
+[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r25"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r26"]
 
 [node name="Loja2" instance=ExtResource("r1")]
 id = "conv_loja_2"
@@ -89,20 +96,40 @@ position = Vector2(580, 250)
 [node name="CadeiraFut5" parent="Objetos" instance=ExtResource("r11")]
 position = Vector2(540, 258)
 
-[node name="Nicho1" parent="Objetos" instance=ExtResource("r12")]
+[node name="Documento1" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(100, 174)
+texto_acao = "Ler o bilhete da gerência"
+documento = ExtResource("r12")
+textura = ExtResource("r13")
+
+[node name="Documento2" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(258, 172)
+texto_acao = "Ler o cardápio do dia"
+documento = ExtResource("r15")
+textura = ExtResource("r16")
+
+[node name="Nicho1" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(360, 128)
 
-[node name="Luz1" parent="Luzes" instance=ExtResource("r13")]
+[node name="Cofre1" parent="Objetos" instance=ExtResource("r19")]
+position = Vector2(440, 152)
+codigo = "619"
+marca = "cofre_bufe_aberto"
+item_ao_abrir = ExtResource("r18")
+quantidade = 1
+aviso_aberto = "O cofre do bufê abriu: caiu uma cápsula de clarão."
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r20")]
 position = Vector2(160, 90)
 color = Color(0.35, 1, 0.65, 1)
 energy = 0.6
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r13")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r20")]
 position = Vector2(420, 90)
 color = Color(0.35, 1, 0.65, 1)
 energy = 0.6
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r14")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r21")]
 position = Vector2(300, 34)
 energy = 0.55
 
@@ -112,19 +139,19 @@ color = Color(0.25, 0.3, 0.3, 1)
 [node name="Gabriel" parent="Objetos"]
 position = Vector2(80, 160)
 
-[node name="Porta_loja_2_praca" parent="." instance=ExtResource("r15")]
+[node name="Porta_loja_2_praca" parent="." instance=ExtResource("r22")]
 position = Vector2(41, 124)
 id = "loja_2_praca"
 cena_destino = "res://cenas/salas/centro_de_convivencia/praca_central.tscn"
 porta_destino = "praca_loja_2"
 
-[node name="Porta_loja_2_camara" parent="." instance=ExtResource("r15")]
+[node name="Porta_loja_2_camara" parent="." instance=ExtResource("r22")]
 position = Vector2(521, 124)
 id = "loja_2_camara"
 cena_destino = "res://cenas/salas/centro_de_convivencia/camara_fria.tscn"
 porta_destino = "camara_loja_2"
 
-[node name="Rastreador1" parent="Objetos" instance=ExtResource("r16")]
+[node name="Rastreador1" parent="Objetos" instance=ExtResource("r23")]
 position = Vector2(460, 220)
 rota = NodePath("../../RotaRastreador1")
 
@@ -143,30 +170,30 @@ position = Vector2(540, 245)
 position = Vector2(180, 245)
 
 [node name="RobosDaSala" type="Node" parent="."]
-script = ExtResource("r17")
+script = ExtResource("r24")
 folga_obstaculos = 10.0
 
 [node name="ZonaPiso1" type="Node2D" parent="."]
 position = Vector2(0, 112)
-script = ExtResource("r18")
+script = ExtResource("r25")
 tamanho = Vector2(160, 168)
 fator_ruido = 0.6
 nome_piso = "passadeira de borracha"
 
 [node name="ZonaPiso2" type="Node2D" parent="."]
 position = Vector2(160, 180)
-script = ExtResource("r18")
+script = ExtResource("r25")
 tamanho = Vector2(320, 100)
 fator_ruido = 2.0
 nome_piso = "cacos de louça e vidro"
 
 [node name="ZonaPiso3" type="Node2D" parent="."]
 position = Vector2(480, 112)
-script = ExtResource("r18")
+script = ExtResource("r25")
 tamanho = Vector2(160, 168)
 fator_ruido = 0.6
 nome_piso = "passadeira de borracha"
 
-[node name="MusicaFase" parent="." instance=ExtResource("r19")]
+[node name="MusicaFase" parent="." instance=ExtResource("r26")]
 
 [editable path="Ceu"]

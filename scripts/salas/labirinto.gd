@@ -11,6 +11,7 @@ const CENA_NO := preload("res://cenas/sistemas/no_hackeavel.tscn")
 const CENA_ZANE := preload("res://cenas/personagens/zane_na_oficina.tscn")
 const CENA_ALCAPAO := preload("res://cenas/sistemas/alcapao.tscn")
 const CENA_PORTA := preload("res://cenas/sistemas/porta_da_sala.tscn")
+const CENA_PORTA_SALA_SEGURA := preload("res://cenas/sistemas/porta.tscn")
 const LANTERNA := preload("res://dados/itens/lanterna.tres")
 const PROPS := {
 	"b": preload("res://cenas/cenario/dtec/objetos/bancada_eletronica.tscn"),
@@ -38,6 +39,9 @@ const LUZ_EM_TUDO := 1 | 2
 @export var topos: Array[Texture2D] = []
 @export var frentes: Array[Texture2D] = []
 @export var textura_porta: Texture2D
+@export var textura_porta_segura: Texture2D
+@export_file("*.tscn") var cena_sala_segura: String = ""
+@export var id_porta_sala_segura: String = "labirinto_sala_segura"
 @export var decalques: Array[Texture2D] = []
 @export var quantidade_decalques: int = 70
 @export var componentes: Array[Texture2D] = []
@@ -134,11 +138,15 @@ func _textura_da_frente(celula: Vector2i) -> Texture2D:
 	var abaixo := celula + Vector2i.DOWN
 	if abaixo.y < mapa.altura() and mapa.e_parede(abaixo):
 		return null
-	if mapa.letra(celula) != "D":
+	var letra := mapa.letra(celula)
+	if letra != "D" and letra != "Q":
 		return frentes[(celula.x * 7 + celula.y * 3) % frentes.size()]
-	if mapa.letra(celula + Vector2i.LEFT) == "D":
+	if mapa.letra(celula + Vector2i.LEFT) == letra:
 		return null
 	_acender_placa_saida(celula)
+	if letra == "Q":
+		_colocar_porta_sala_segura(celula)
+		return textura_porta_segura
 	return textura_porta
 
 
@@ -170,6 +178,17 @@ func _acender_placa_saida(celula: Vector2i) -> void:
 	luz.range_item_cull_mask = LUZ_EM_TUDO
 	luz.position = Vector2((celula.x + 1) * bloco, (celula.y + 1) * bloco - ALTURA_PAREDE + 8)
 	luzes.add_child(luz)
+
+
+func _colocar_porta_sala_segura(celula: Vector2i) -> void:
+	var bloco := mapa.tamanho_bloco
+	var porta: Porta = CENA_PORTA_SALA_SEGURA.instantiate()
+	porta.name = "PortaSalaSegura"
+	porta.id = id_porta_sala_segura
+	porta.cena_destino = cena_sala_segura
+	porta.porta_destino = "safe_room_saida"
+	porta.position = Vector2((celula.x + 1) * bloco, (celula.y + 1) * bloco + 6)
+	objetos.add_child(porta)
 
 
 func _espalhar_decalques() -> void:

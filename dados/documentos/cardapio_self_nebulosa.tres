@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "cardapio_self_nebulosa"
+titulo = "Cardápio do dia do Self Nebulosa (3026)"
+autor = "Self Nebulosa"
+papel = "caderno_gabriel"
+paginas = PackedStringArray("SELF NEBULOSA — CARDÁPIO DO DIA
+
+PRATO DO DIA
+  Baião de dois ........ cuba 6
+  Paçoca de pilão ...... cuba 1
+  Vinagrete ............ cuba 9
+
+ACOMPANHAMENTOS
+  Arroz branco ......... cuba 3
+  Salada verde ......... cuba 4
+  Farofa d'água ........ cuba 7
+
+SOBREMESA
+  Cocada ............... cuba 2")
+anotacao = "Cardápio do dia do Self Nebulosa. Prato do dia: baião de dois (cuba 6), paçoca de pilão (cuba 1) e vinagrete (cuba 9). Acompanhamentos e sobremesa nas cubas 3, 4, 7 e 2."

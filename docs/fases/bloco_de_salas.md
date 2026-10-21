@@ -70,7 +70,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 | Corredor térreo | Chegada e eixo do andar de baixo | Três setores de piso: oeste de areia (passos abafados, ×0,5), centro de lajota e tapete (×1,0) e leste de lajota solta (passos barulhentos, ×1,5) | Atrás dos montes de areia e entulho | **Rastreador** (audição) |
 | 101 | Pista do código | Lousa com tracinhos (1º número do cadeado) | Debaixo das carteiras | Nenhuma |
 | 102 | Chave da escada | O **molho de chaves da Clarice**, caído na areia. 3 pedras | Atrás das carteiras tombadas | O Rastreador passa na porta |
-| 103 | **Posto da Clarice e da Diana** e **sala segura** | A Clarice (a Diana ainda não tem visual), o acampamento, 2 pilhas | Não precisa: a barricada protege | Nenhuma |
+| 103 | **Posto da Clarice e da Diana** (protegido, mas não salva) | A Clarice (a Diana ainda não tem visual), o acampamento, 2 pilhas | Não precisa: a barricada protege | Nenhuma |
 | 104 | Distração e fim do atalho | Os terminais acesos. Um deles tem o **teste de alarme** do bloco, que dispara a **sirene do fim do corredor** (perto da escada). No teto, o buraco que vem da 204 | Debaixo das mesas | Nenhuma |
 | 105 | Respiro | 2 robôs desmontados, 2 pilhas | Atrás dos robôs desmontados | Nenhuma (os robôs desmontados não ligam) |
 | 106 | Respiro | A árvore e o luar | Atrás da árvore | Nenhuma |
@@ -187,8 +187,9 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 
 ## 6. Sala segura
 
-- **Sala segura:** o **posto da Clarice (103)**. A barricada protege, e os robôs não entram. Tem um checkpoint ao lado da Clarice. Há outro na chegada do corredor do térreo.
-- **Por que aqui:** fica no meio do térreo, perto da escada e do atalho, e é o lugar para onde o Gabriel volta depois de cada parte difícil.
+- **Sala segura (salva o jogo):** a porta **DESCANSO** no corredor do térreo, logo depois da chegada e antes da 101, com a **luz verde** em cima (`cenas/salas/bloco_de_salas/sala_segura.tscn`, do modelo; ver [`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)). É a primeira porta que o Gabriel vê ao entrar no bloco.
+- **O posto da Clarice (103)** continua protegido: a barricada segura, os robôs não entram e há um checkpoint ao lado da Clarice. Mas quem salva é a sala segura. Há outro checkpoint na chegada do corredor do térreo.
+- **Por que a 103 importa:** fica no meio do térreo, perto da escada e do atalho, e é o lugar para onde o Gabriel volta depois de cada parte difícil.
 - **O sonho:** o que os sonhos mostram está pendente no Enredo (seção 10.5).
 
 ---
