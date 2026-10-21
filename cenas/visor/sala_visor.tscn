@@ -7,8 +7,17 @@
 [ext_resource type="PackedScene" path="res://cenas/visor/mural_do_visor.tscn" id="6_mural"]
 [ext_resource type="PackedScene" path="res://cenas/visor/mesa_do_visor.tscn" id="7_mesa"]
 [ext_resource type="PackedScene" path="res://cenas/visor/quadro_do_visor.tscn" id="8_quadro"]
-[ext_resource type="Texture2D" uid="uid://ccn2dud7nxgxb" path="res://assets/sprites/cutscenes/seg_prologo/cena_02_quarto.png" id="9_quarto"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_documento.tscn" id="10_documento"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/janela_prologo.png" id="t_janela_prologo"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/poster_robo.png" id="t_poster_robo"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/poster_oito_bits.png" id="t_poster_oito_bits"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/poster_fortaleza.png" id="t_poster_fortaleza"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/poster_astro.png" id="t_poster_astro"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/folha_equacoes.png" id="t_folha_equacoes"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/calendario_2026.png" id="t_calendario_2026"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/flamula_unifor.png" id="t_flamula_unifor"]
+[ext_resource type="Script" path="res://scripts/visor/texturas_do_quarto.gd" id="s_texturas"]
+[ext_resource type="PackedScene" path="res://cenas/visor/estrelas_cadentes.tscn" id="c_cadentes"]
 
 [sub_resource type="Environment" id="Ambiente"]
 background_mode = 1
@@ -105,34 +114,79 @@ environment = SubResource("Ambiente")
 
 [node name="Modelo" parent="Imagem/Mundo" instance=ExtResource("2_modelo")]
 
+[node name="Texturas" type="Node" parent="Imagem/Mundo" node_paths=PackedStringArray("modelo")]
+script = ExtResource("s_texturas")
+modelo = NodePath("../Modelo")
+
 [node name="Janela" type="Sprite3D" parent="Imagem/Mundo"]
 position = Vector3(-2.475, 1.6, -0.2)
 rotation = Vector3(0, 1.5707964, 0)
 pixel_size = 0.006
-texture_filter = 0
-texture = ExtResource("9_quarto")
-region_enabled = true
-region_rect = Rect2(56, 30, 168, 166)
+texture_filter = 2
+texture = ExtResource("t_janela_prologo")
 
 [node name="PosterRobo" type="Sprite3D" parent="Imagem/Mundo"]
 position = Vector3(0.9, 1.6, 2.485)
 rotation = Vector3(0, 3.1415927, 0)
 pixel_size = 0.0065
 shaded = true
-texture_filter = 0
-texture = ExtResource("9_quarto")
-region_enabled = true
-region_rect = Rect2(509, 55, 70, 88)
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("t_poster_robo")
 
 [node name="PosterOitoBits" type="Sprite3D" parent="Imagem/Mundo"]
 position = Vector3(1.6, 1.45, 2.485)
 rotation = Vector3(0, 3.1415927, 0)
 pixel_size = 0.0065
 shaded = true
-texture_filter = 0
-texture = ExtResource("9_quarto")
-region_enabled = true
-region_rect = Rect2(544, 149, 37, 44)
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("t_poster_oito_bits")
+
+[node name="PosterFortaleza" type="Sprite3D" parent="Imagem/Mundo"]
+position = Vector3(0.05, 1.55, 2.485)
+rotation = Vector3(0, 3.1415927, 0)
+pixel_size = 0.0065
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("t_poster_fortaleza")
+
+[node name="PosterAstro" type="Sprite3D" parent="Imagem/Mundo"]
+position = Vector3(2.15, 1.55, 2.485)
+rotation = Vector3(0, 3.1415927, 0)
+pixel_size = 0.0065
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("t_poster_astro")
+
+[node name="FolhaEquacoes" type="Sprite3D" parent="Imagem/Mundo"]
+position = Vector3(-2.485, 1.55, 0.85)
+rotation = Vector3(0, 1.5707964, 0)
+pixel_size = 0.0065
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("t_folha_equacoes")
+
+[node name="Calendario" type="Sprite3D" parent="Imagem/Mundo"]
+position = Vector3(-2.485, 1.5, 1.35)
+rotation = Vector3(0, 1.5707964, 0)
+pixel_size = 0.0065
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("t_calendario_2026")
+
+[node name="Flamula" type="Sprite3D" parent="Imagem/Mundo"]
+position = Vector3(-1.95, 2.3, -2.485)
+rotation = Vector3(0, 0, 0)
+pixel_size = 0.0065
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("t_flamula_unifor")
 
 [node name="LuzDaJanela" type="OmniLight3D" parent="Imagem/Mundo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 1.6, -0.2)
@@ -164,6 +218,12 @@ light_color = Color(1, 0.95, 0.88, 1)
 light_energy = 0.6
 omni_range = 2.2
 
+[node name="LuzDaPorta" type="OmniLight3D" parent="Imagem/Mundo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 2.2, 1.4)
+light_color = Color(1, 0.85, 0.7, 1)
+light_energy = 0.6
+omni_range = 2.8
+
 [node name="LuzDoAlto" type="OmniLight3D" parent="Imagem/Mundo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 2.6, 0.8)
 light_color = Color(0.55, 0.65, 0.85, 1)
@@ -187,6 +247,8 @@ scale_amount_min = 0.4
 scale_amount_max = 2.0
 color_ramp = SubResource("PiscarDaParticula")
 color_initial_ramp = SubResource("CoresDasParticulas")
+
+[node name="EstrelasCadentes" parent="Imagem/Mundo" instance=ExtResource("c_cadentes")]
 
 [node name="Colisao" type="StaticBody3D" parent="Imagem/Mundo"]
 
