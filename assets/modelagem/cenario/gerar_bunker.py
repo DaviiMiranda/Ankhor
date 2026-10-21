@@ -503,7 +503,37 @@ def pilar_bunker():
     return img
 
 
+def bunker_nicho():
+    """O vão do posto de máscaras de gás: um recuo escuro na parede, da
+    altura de um adulto, com duas máscaras penduradas nos ganchos, à direita.
+    É o esconderijo de imobilidade dos corredores do bunker, como o nicho do
+    Bloco de salas (docs/mecanicas/furtividade_e_esconderijos.md): o lado
+    esquerdo do recuo fica vazio e na sombra, que é onde o Gabriel se encolhe.
+
+    Uma verga de aço com a faixa amarela marca o topo; as laterais têm tons
+    diferentes para dar profundidade."""
+    img = parede_base(20)
+    X, Y = img.X, img.Y
+    xa, xb, ya = 6, 74, 50
+    img.pintar(img.ret(xa, ya, xb, Y_CHAO), "concreto", 0.05 + 0.05 * img.fino + 0.06 * np.clip((Y - ya) / 50, 0, 1))
+    img.pintar(img.ret(xa, ya, xa + 3, Y_CHAO), "concreto", 0.2 + 0.05 * img.fino)
+    img.pintar(img.ret(xb - 3, ya, xb, Y_CHAO), "concreto", 0.03)
+    img.pintar(img.ret(xa - 2, ya - 4, xb + 2, ya), "aco", 0.4 + 0.05 * img.fino)
+    listras(img, img.ret(xa - 2, ya - 2, xb + 2, ya), 3)
+    img.cor(img.ret(xa, ya, xb, ya + 2), SOMBRA)
+    img.pintar(img.ret(40, ya + 6, 70, ya + 8), "aco", 0.45)
+    for cx in (48, 62):
+        img.pintar(img.ret(cx, ya + 8, cx + 1, ya + 12), "aco", 0.6)
+        img.pintar(img.elipse(cx, ya + 19, 5, 7), "lona", 0.4 + 0.15 * (X < cx))
+        img.pintar(img.elipse(cx - 2, ya + 17, 2, 2) | img.elipse(cx + 2, ya + 17, 2, 2), "vidro", 0.55)
+        img.pintar(img.elipse(cx, ya + 25, 2, 2), "aco", 0.3)
+        img.pintar(img.caminho([(cx, ya + 27), (cx - 1, ya + 32), (cx + 1, ya + 37)], 0.6), "aco", 0.2)
+    img.pintar(img.ret(xa + 4, 104, xa + 30, 106) & ((X % 3) == 0), "aco", 0.25)
+    return img
+
+
 PAREDES = {
+    "bunker_nicho": bunker_nicho,
     "bunker_lisa": bunker_lisa,
     "bunker_rachada": bunker_rachada,
     "bunker_canos": bunker_canos,

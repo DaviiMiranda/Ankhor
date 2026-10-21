@@ -62,5 +62,5 @@
 
 ## 8. Pendências
 
-- Se ela e a Diana continuam na 103 até o fim ou se juntam ao grupo no bunker mais tarde, e quem fez as pichações assinadas "C." no bunker (Enredo Principal, seção 10.4).
+- Como ela e a Diana chegam ao bunker para o encontro do fim da fase, e o que fazem depois (Enredo Principal, seção 10.4).
 - O final dela com Gabriel (seção 10.6).

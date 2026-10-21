@@ -28,6 +28,8 @@
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_blindada.wav" id="r26"]
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r27"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_bunker.tscn" id="m_musica"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_porta_fechada.tscn" id="n1"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="n2"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -49,7 +51,7 @@ position = Vector2(80, 0)
 [node name="Parede03" parent="Paredes" instance=ExtResource("r4")]
 position = Vector2(160, 0)
 
-[node name="Parede04" parent="Paredes" instance=ExtResource("r5")]
+[node name="Parede04" parent="Paredes" instance=ExtResource("n1")]
 position = Vector2(240, 0)
 
 [node name="Parede05" parent="Paredes" instance=ExtResource("r6")]
@@ -291,8 +293,11 @@ aviso_bloqueada = "A escotilha lá em cima emperrou."
 [node name="Porta_elevador" parent="." instance=ExtResource("r25")]
 position = Vector2(281, 124)
 id = "elevador"
-bloqueada = true
 aviso_bloqueada = "O elevador está sem energia."
+liberada_por = "bunker_energia"
+cena_destino = "res://cenas/salas/bunker/corredor_b.tscn"
+porta_destino = "corredor_b_escada"
+som_abrir = ExtResource("r26")
 
 [node name="Porta_entrada_corredor" parent="." instance=ExtResource("r25")]
 position = Vector2(441, 124)
@@ -308,3 +313,7 @@ autoplay = true
 bus = &"Efeitos"
 
 [node name="MusicaBunker" parent="." instance=ExtResource("m_musica")]
+
+[node name="Checkpoint" parent="Objetos" instance=ExtResource("n2")]
+position = Vector2(300, 200)
+id = "bunker_chegada"
