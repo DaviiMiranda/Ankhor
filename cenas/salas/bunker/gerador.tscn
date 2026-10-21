@@ -23,6 +23,8 @@
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_blindada.wav" id="r21"]
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r22"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_bunker.tscn" id="m_musica"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/painel_religacao.tscn" id="n1"]
+[ext_resource type="Resource" path="res://dados/transmissoes/zane_bunker_01.tres" id="n2"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -288,3 +290,7 @@ max_distance = 700.0
 bus = &"Efeitos"
 
 [node name="MusicaBunker" parent="." instance=ExtResource("m_musica")]
+
+[node name="PainelReligacao" parent="Objetos" instance=ExtResource("n1")]
+position = Vector2(200, 132)
+transmissao = ExtResource("n2")

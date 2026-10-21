@@ -1,0 +1,54 @@
+{
+	"id": "bunker_encontro",
+	"inicio": "encontro",
+	"anotacao": {
+		"titulo": "Todos na sala de dados",
+		"texto": "Religuei a energia do bunker e o Zane quebrou a senha do setor B. Quando cheguei à sala de dados, estavam todos lá: o Henrique, o Zane, a Clarice e a Diana. A primeira vez de todo mundo numa sala só.\n\nA comporta do núcleo, no fim do Corredor B, está destravada."
+	},
+	"trechos": {
+		"encontro": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_empolgado",
+					"texto": "Gabriel! Até que enfim! Viu a luz voltar? Com energia, o sistema do setor B baixou a guarda. Doze caracteres, três tentativas por vez... e quebrei."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "A comporta do núcleo tá destravada. Pode descer quando quiser."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_sorrindo",
+					"texto": "Meu filho, você demorou. Isso aqui é totalmente surreal: todo mundo numa sala só, pela primeira vez."
+				},
+				{
+					"quem": "Diana",
+					"retrato": "diana/diana_retrato_dramatica",
+					"texto": "Eu achei que era o fim! Juro! E olha a gente aqui, todo mundo junto!"
+				},
+				{
+					"quem": "Henrique",
+					"retrato": "henrique/henrique_retrato_nervoso",
+					"texto": "Todo mundo... aqui. Quer dizer. Eu sempre disse que era melhor cada um no seu canto."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Pois é. Não deu."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "Melhor assim. Daqui pra frente, ninguém fala por ninguém."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_seria",
+					"texto": "Então é pela comporta. Vai na frente, Gabriel: você é o que mais andou por aí."
+				}
+			]
+		}
+	}
+}

@@ -143,7 +143,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 
 | Esconderijo | Quem fica |
 |---|---|
-| **Bunker**, embaixo do núcleo da Âncora. Difícil de alcançar e lacrado pelo sistema. **Os robôs patrulham o bunker** | Henrique, **sozinho**, numa sala de dados **trancada**, com as câmeras do campus e o rádio. Diz que está escondido ali tentando consertar tudo. O Carlos nunca vai lá. O Zane chega depois do Labirinto, com Gabriel |
+| **Bunker**, embaixo do núcleo da Âncora. Difícil de alcançar e lacrado pelo sistema. **Os robôs patrulham o bunker** | Henrique, **sozinho**, numa sala de dados **trancada**, com as câmeras do campus e o rádio. Diz que está escondido ali tentando consertar tudo. O Carlos nunca vai lá. O Zane chega depois do Labirinto, com Gabriel. No fim do Bunker, o grupo todo se encontra ali pela primeira vez (Ato 3) |
 | **Labirinto**, numa oficina no canto do subsolo da Âncora, perto de onde Gabriel entra | Zane, entre componentes eletrônicos jogados por todo lado e telas holográficas. É a **base dele**: é dali que mantém a frequência do grupo. Desconfia do Henrique e **está há dias tentando invadir o bunker**, sem conseguir de longe. Pede ajuda a Gabriel |
 | **Biblioteca**, escondido numa sala que o jogador ainda não consegue abrir, com medo | Baltazar, isolado dos outros, ali desde que chegou |
 | **Bloco de salas**, na sala 103, atrás de uma barricada | Clarice, que foi para lá depois de chegar à Biblioteca, e Diana, que apareceu depois e foi acolhida por ela. Desde então tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio |
@@ -221,9 +221,11 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 **Quinta fase.** [`../fases/bunker.md`](../fases/bunker.md).
 
 - O bunker de pesquisa embaixo do núcleo da Âncora ("ÂNCORA-03"), com dois setores. É difícil de alcançar, e **os robôs patrulham aqui também**.
-- **As salas antigas:** no bunker há uma ou mais salas montadas como **interiores de casas e lugares antigos dos séculos XIX e XX**. Mostram a obsessão do Carlos pelo passado, **sem explicar**: o jogo não diz quem as montou nem por quê.
+- **As salas antigas:** no bunker há **duas** salas montadas como **interiores de casa**: a **sala de visitas de um casarão do fim do século XIX** e a **sala de estar de uma casa dos anos 80**. Mostram a obsessão do Carlos pelo passado, **sem explicar**: o jogo não diz quem as montou nem por quê.
+- **As marcas dos Faroleiros:** nas paredes do bunker há marcas dos Faroleiros pintadas em âmbar (seção 2.4): o farol inteiro perto da sala segura e o farol apagado perto da comporta do núcleo. Os Faroleiros passaram por ali; o jogo não diz quando.
 - **De onde Gabriel chega aqui:** pela rampa técnica do subsolo aberta no fim do **Centro de Convivência**.
 - **O Gabriel já encontrou o Zane em pessoa no Labirinto**. O **Henrique** fica **sozinho** numa sala de dados **trancada**, com o acesso às câmeras do campus, e é quem Gabriel encontra em pessoa aqui. Gabriel o reconhece pela lenda: é o aluno que sumiu em 2019 (seção 7.2). O Carlos nunca vai ao bunker.
+- **O encontro (fim da fase):** Gabriel religa a energia do bunker e, com ela, o **Zane quebra a senha do setor B**. Na sala de dados, o grupo se encontra **pela primeira vez numa sala só**: Gabriel, o Henrique, o Zane, a Clarice e a Diana. Dali descem pela comporta do núcleo. **A cena é provisória:** o conteúdo da conversa (rascunho em `dados/dialogos/bunker_encontro.json`) e como a Clarice e a Diana chegam ao bunker ficam em aberto para o grupo mudar.
 - O **setor B** (laboratório, arquivo e a comporta do núcleo) leva à reta final: a comporta no fim do Corredor B abre o acesso à sexta fase, o **Laboratório (D-Tec)**.
 
 ### A virada — A mentira do Henrique
@@ -309,11 +311,10 @@ Já decidido (seção 8, "A virada"): ele trabalha para o Carlos por causa da pr
 
 ### 10.4 Os outros personagens
 
-- **Zane:** o que fazia no ponto quando foi puxado? O que ele teme, agora que a IA não tem consciência? Qual é o final dele (ficar em 3026 para guardar a Âncora, ficar para se juntar aos Faroleiros, ou voltar para 2123)? O que ele faz quando chega ao bunker, depois do Labirinto?
+- **Zane:** o que fazia no ponto quando foi puxado? O que ele teme, agora que a IA não tem consciência? Qual é o final dele (ficar em 3026 para guardar a Âncora, ficar para se juntar aos Faroleiros, ou voltar para 2123)? As falas dele no bunker (a chamada pelo rádio e o encontro) são rascunho.
 - **Baltazar:** em que posição da ordem de chegada ele está? (Já decidido: o Henrique é o primeiro, o Zane vem antes da Clarice, a Diana depois da Clarice, e Gabriel é o último; não precisa seguir a ordem dos anos. Cada chegada vem 3 dias depois da anterior, então a posição dele muda quantos dias cada um está lá.) Qual sala da Biblioteca é o esconderijo dele (a sala de obras raras, barrada por dentro, é a candidata), e quando ela se abre? Ele está ali desde que chegou: o acampamento vazio do começo foi o primeiro abrigo, e a última página do diário ("Hei de seguir a luz até onde ella nasce") combina com ficar, porque a luz nasce no chão da Biblioteca.
-- **Clarice e Diana:** continuam na 103 até o fim, ou se juntam ao grupo mais tarde?
+- **Clarice e Diana:** já decidido que se juntam ao grupo no encontro do fim do Bunker (Ato 3). Como chegam até lá, e o que fazem depois?
 - **Gabriel:** enquanto o Baltazar está fora de 1750, o Gabriel começa a falhar (piscar, se desfazer), como a foto em *De Volta para o Futuro*? (Se sim, vira um shader, bom para a apresentação de Computação Gráfica.)
-- **As pichações "C." no bunker** ("NÃO CONFIE NAS LUZES"): quem fez? Não podem ser da Clarice, que está na 103 desde que chegou. Uma opção é virarem marcas antigas dos Faroleiros; a outra é saírem.
 
 ### 10.5 A estrutura da história
 

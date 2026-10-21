@@ -31,7 +31,7 @@
 
 ## 4. No jogo
 
-- **Onde aparece:** pelo telefone desde a Biblioteca. Em pessoa, primeiro na **oficina do Labirinto** e depois no **bunker**, aonde chega depois de Gabriel (o que faz lá está pendente: Enredo, seção 10.4).
+- **Onde aparece:** pelo telefone desde a Biblioteca. Em pessoa, primeiro na **oficina do Labirinto** e depois no **bunker**, aonde chega depois de Gabriel: quando Gabriel religa a energia, ele quebra a senha do setor B, chama Gabriel pelo rádio e está no encontro do grupo na sala de dados (Enredo, Ato 3). As falas ali são rascunho.
 - **Esconderijo:** a **oficina do Labirinto**, num canto do subsolo, perto de onde Gabriel chega. É a base dele. Só entra no bunker depois que Gabriel quebra a trava.
 - **Como chega ao jogador:** **telefone** (a primeira ligação é no balcão da Biblioteca), a frequência de rádio do grupo e, em pessoa, na oficina do Labirinto e no bunker.
 - **Função na jogabilidade:** as **comunicações**: põe Gabriel em contato com os outros, abre portas pelo sistema e tenta quebrar a senha do setor B do bunker. No Labirinto ele **entrega o notebook** a Gabriel (gadget de hackear portas e robôs) e pede que invada três nós de controle da rede do subsolo, que guardam a trava do bunker, porque de longe ele não consegue; quando o terceiro cai, chama Gabriel de volta pelo rádio e revela o alçapão escondido da oficina, que é a saída.
