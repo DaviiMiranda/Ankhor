@@ -4,10 +4,23 @@ Estilo *Resident Evil*: em cada fase há **uma sala segura**. É o único lugar 
 
 ## 1. Como funciona
 
-- **Por fora, é uma sala comum.** A porta é igual às outras portas da fase. Quem não procura passa direto.
+- **Por fora, é fácil de achar.** A porta fica perto de onde o Gabriel chega na fase e leva o **sinal da sala segura**: uma lâmpada verde acesa, que pulsa devagar, com uma plaquinha de casinha embaixo (`cenas/cenario/objetos/sinal_sala_segura.tscn`). O sinal é o mesmo em todas as fases, para o jogador aprender a reconhecê-lo. Onde a fase tem placas nas portas, a placa diz DESCANSO.
 - **Por dentro, é calma:** luz quente e fixa (sem tremer), um tapete, o mural e uma cadeira VR. A música é um piano devagar em Lá menor, 64 s em loop (`assets/audio/musica/sala_segura/sala_segura_tema.ogg`).
 - **Nenhum robô entra.** A sala remove qualquer robô que já esteja nela ao carregar e qualquer robô que seja adicionado depois (`SalaSegura`). Como cada sala é uma cena separada, um robô que persegue o Gabriel não atravessa a porta.
 - **A máquina de salvar são os óculos do Zane:** o visor de 2123 (armação grafite, linha de luz ciano, detalhe amarelo-ácido) em cima de um pedestal. É a mesma arte da estante do menu principal (`assets/sprites/menu/menu_oculos_zane.png`), reaproveitada.
+
+### Onde fica a de cada fase
+
+| Fase | Cena | A porta |
+|---|---|---|
+| Biblioteca | `cenas/salas/biblioteca/sala_segura.tscn` | Corredor de serviço, ao lado da porta do salão (DESCANSO) |
+| Bloco de salas | `cenas/salas/bloco_de_salas/sala_segura.tscn` | Corredor do térreo, logo depois da chegada, antes da 101 (DESCANSO) |
+| Labirinto | `cenas/salas/labirinto/sala_segura.tscn` | Parede de cima da câmara onde o Gabriel começa (`QQ` no mapa) |
+| Centro de Convivência | `cenas/salas/centro_de_convivencia/sala_segura.tscn` | Passarela de acesso, a porta de vidro verde entre as janelas |
+| Bunker | `cenas/salas/bunker/sala_segura.tscn` | Corredor A, ao lado da entrada (DESCANSO) |
+| Laboratório | `cenas/salas/dtec/sala_segura.tscn` | Corredor norte, entre a Recepção e a Eletrônica (DESCANSO) |
+
+As seis herdam do mesmo modelo e mudam só a cor da `Escuridao` e da `LuzAmbiente`. Outros cantos protegidos da história (a sala 103 da Clarice, a oficina do Zane, a Tapioca Orbital) continuam sem robôs e com checkpoint, mas não salvam.
 
 ## 2. Salvar
 
@@ -56,13 +69,15 @@ Novo jogo e a lista de fases **não apagam** o save: ele só é sobrescrito na p
    - a música, no nó `MusicaFase` (campo `stream`), se a fase pedir outro tema suave.
    - **Não mexa** na `MaquinaDeSalvar`: ela é a mesma em todas as fases.
 5. Na sala da fase, ponha uma porta normal (`cenas/sistemas/porta.tscn`) com `cena_destino` = a cena da sala segura e `porta_destino = "safe_room_saida"` (o `id` da `PortaSaida`). A `PortaSaida` da sala segura faz o caminho de volta: o `porta_destino` dela é o `id` dessa porta.
+6. **Ponha o sinal em cima da porta:** uma instância de `cenas/cenario/objetos/sinal_sala_segura.tscn` dentro de `Paredes`, com o x da porta e o y logo acima da placa (o ponto do nó é o meio da borda de cima do sinal, que tem 16 × 18 px). Escolha uma porta **perto de onde o Gabriel chega**, num lugar de passagem. Nas salas montadas por script, o sinal entra pela descrição: `"sinais_sala_segura"` no Centro de Convivência e `"sala_segura": True` na porta, no `montar_dtec.py`.
 
 ## 5. Onde está no projeto
 
 | O quê | Onde |
 |---|---|
 | Modelo da sala segura | `cenas/salas/modelo_safe_room.tscn`, `scripts/salas/sala_segura.gd` |
-| Sala segura da Biblioteca | `cenas/salas/biblioteca/sala_segura.tscn` |
+| Salas seguras de cada fase | `cenas/salas/<fase>/sala_segura.tscn` (tabela da seção 1) |
+| Sinal da sala segura (lâmpada verde e casinha) | `cenas/cenario/objetos/sinal_sala_segura.tscn`, sprite de `assets/modelagem/cenario/gerar_sinal_sala_segura.py`; no Labirinto, a porta inteira é o sprite `porta_sala_segura.png` de `gerar_labirinto.py` |
 | Máquina de salvar (os óculos do Zane) | `cenas/sistemas/maquina_de_salvar.tscn`, `scripts/sistemas/maquina_de_salvar.gd` |
 | Quarto 3D com a TV de salvar (autoload `Visor`) | `scripts/sistemas/visor.gd`, `cenas/visor/`, `scripts/visor/` (ver [`visor_3d.md`](visor_3d.md)) |
 | Salvar e carregar (autoload `Salvamento`) | `scripts/sistemas/salvamento.gd` |
@@ -73,7 +88,7 @@ Novo jogo e a lista de fases **não apagam** o save: ele só é sobrescrito na p
 
 ## 6. Pendências
 
-- **A porta da Biblioteca** fica no corredor de serviço, ao lado da porta do salão, com o letreiro DESCANSO (um nome que não entrega o que é). O plano antigo era a manutenção (sala 5); se o grupo preferir outra sala ou outro nome, é só mover a `PortaSalaSegura` e o letreiro em `corredor_servico.tscn`.
+- **A porta da Biblioteca** fica no corredor de serviço, ao lado da porta do salão, com o letreiro DESCANSO e a luz verde. É a única que não fica na sala onde o Gabriel chega; se o grupo preferir outro lugar, é só mover a `PortaSalaSegura`, o letreiro e o `SinalSalaSegura` em `corredor_servico.tscn`.
 - **Dormir e sonhar** (GDD, `sono_e_sonhos.md`) continua pendente. Salvar passou para os óculos; o sonho ainda não tem lugar definido.
 - **Os óculos do Zane como máquina** é uma decisão de jogo, não de história: o Enredo Principal ainda não explica por que o visor dele existe em cada fase (o Zane é o último a chegar). Confirmar com o Davi antes de escrever qualquer fala sobre isso.
 - A arte do pedestal e o piano são placeholders gerados por código.

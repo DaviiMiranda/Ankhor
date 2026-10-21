@@ -16,6 +16,25 @@ Formato:
 
 ---
 
+## 2026-10-21 — Puzzles nas salas do Centro de Convivência e sala segura visível em todas as fases
+**Decisão:**
+- **Quatro puzzles novos no Centro de Convivência**, todos opcionais, cada um com um prêmio que cai no chão ao resolver (como o cofre do cinema):
+  - **Gráfica Quântica:** a **trava do plotter**, 7 chaves binárias (64 a 1). A etiqueta do plotter diz que o código é quantos avisos faltam imprimir na Ordem de Impressão (4.000 − 3.912 = **88**). Prêmio: 1 cápsula de clarão.
+  - **Loja Universitária:** a **arara inteligente**, moletons fora de ordem (G, PP, GG, M, P); trocar vizinhos até ficar do PP ao GG. O painel mostra as trocas usadas e o mínimo (6, o número de inversões). Prêmio: 2 pilhas.
+  - **Self Nebulosa:** o **cofre do bufê**. O bilhete da gerência (perto da porta) diz que a senha são as cubas do prato do dia, na ordem do cardápio; o cardápio fica no meio do salão, perto dos cacos e do Rastreador: **619**. Prêmio: 1 cápsula de clarão.
+  - **Churrasco Solar:** o **quadro do bar**, disjuntores com nome (GELAD, EXAUST, NEON, GRELHA). O checklist do bar dá a ordem pelas regras (exaustor antes da grelha, geladeira depois da grelha, neon por último). Errar desarma e faz um estalo que a Sentinela ouve. Prêmio: 2 pilhas.
+- **A sala segura passa a ser visível.** Toda porta de sala segura leva o mesmo **sinal**: uma lâmpada verde acesa, que pulsa devagar, e uma plaquinha com uma casinha, em cima da porta, mais a placa DESCANSO onde a fase tem placas. A sala fica perto de onde o Gabriel chega na fase.
+- **Cada fase ganha a sua sala segura do modelo** (herdada de `modelo_safe_room.tscn`, com os óculos do Zane e o piano), além da que já existia na Biblioteca:
+  - **Bloco de salas:** porta DESCANSO no corredor do térreo, logo depois da chegada, antes da 101.
+  - **Labirinto:** porta na parede de cima da câmara onde o Gabriel começa (letra `QQ` no mapa).
+  - **Centro de Convivência:** porta de vidro verde na passarela de acesso, onde o Gabriel chega pelo duto.
+  - **Bunker:** porta DESCANSO no corredor A, ao lado da entrada.
+  - **Laboratório:** porta DESCANSO no corredor norte, entre a Recepção e a Eletrônica.
+- A **sala 103** (Clarice) e a **Tapioca Orbital** continuam lugares protegidos, com checkpoint, como dizem as falas da Clarice e do Zane; só não salvam. A oficina do Zane também.
+
+**Por quê:** pedido do Davi: enriquecer o Centro de Convivência com puzzles nas outras salas e pôr uma safe room em cada fase num lugar visível. Os puzzles da Gráfica, da Loja Universitária e do bar também contam como conteúdo de computação (sistema binário, inversões e ordenação topológica).
+**Afeta:** `scripts/sistemas/painel_bits.gd`, `painel_ordenacao.gd` e `recompensa.gd` (novos), `cenas/sistemas/painel_bits.tscn` e `painel_ordenacao.tscn` (novos), `scripts/sistemas/quadro_energia.gd` (título, nomes, barulho e prêmio; a Biblioteca não muda), `scripts/sistemas/cofre.gd`, `dados/documentos/` (etiqueta do plotter, bilhete e cardápio do Self Nebulosa, checklist do bar), `assets/modelagem/cenario/gerar_papeis.py`, `assets/modelagem/salas/centro_de_convivencia/`, as salas do Centro de Convivência; o sinal da sala segura (`assets/modelagem/cenario/gerar_sinal_sala_segura.py`, `cenas/cenario/objetos/sinal_sala_segura.tscn`); as salas seguras novas (`cenas/salas/*/sala_segura.tscn`); as portas em `biblioteca/corredor_servico.tscn`, `bloco_de_salas/corredor_terreo.tscn`, `bunker/corredor_a.tscn`, `dtec/corredor_norte.tscn` (e `montar_dtec.py`), `centro_de_convivencia/passarela_acesso.tscn` (e `gerar_interiores.py`, o fundo da passarela), o Labirinto (`gerar_labirinto.py`, `mapa_labirinto.tres`, `labirinto.gd`, `mapa_labirinto.gd`, `labirinto.tscn`); `docs/mecanicas/sala_segura.md`, `docs/computacao/binario_e_ordenacao.md` (novo) e os documentos das fases. **A História Completa não foi mexida:** os puzzles são objetos e papéis do lugar, sem fato novo de história.
+
 ## 2026-10-20 — Quarto do visor com texturas, mais pôsteres e estrelas cadentes
 **Decisão:** o quarto do Gabriel ganha **texturas em pixel art** (tábuas no chão, papel de parede listrado, cortiça, tapete com losango, cobertor xadrez, veio nos móveis e na porta, cortina, lençol, moletom, mochila), aplicadas por **mapeamento triplanar**, e **mais pôsteres**: Fortaleza com jangada, um jogo de nave inventado (ASTRO 8), a folha de equações de Modelagem e Simulação, um calendário de 2026 e a flâmula da Unifor, além do robô e do de 8 bits do prólogo. No céu, de vez em quando passam **estrelas cadentes e luzes coloridas rápidas**, sempre acima do quarto.
 **Por quê:** pedido do Davi, para o quarto ter mais detalhe e o céu mais vida. A folha de Modelagem e Simulação vem da ficha do Gabriel (o caderno de equações da cadeira); os outros pôsteres são objetos de quarto, sem peso de história.

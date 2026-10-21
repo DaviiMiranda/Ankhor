@@ -1,6 +1,6 @@
 # Fase — Centro de Convivência (a Praça de Alimentação)
 
-> **Status:** Jogável (12 salas: a praça com 4 restaurantes e o segundo andar com 3 lojas, puzzle de Coloração de Grafos, Célula de Energia, letreiros e holofotes que acendem com a energia, transmissões do Zane pelo rádio)  
+> **Status:** Jogável (13 salas: a praça com 4 restaurantes, o segundo andar com 3 lojas e a sala segura; puzzle de Coloração de Grafos e mais cinco puzzles opcionais (seção 8), Célula de Energia, letreiros e holofotes que acendem com a energia, transmissões do Zane pelo rádio)  
 > **Área:** o Centro de Convivência da Unifor, em 3026: uma praça de alimentação sob uma cúpula de vidro quebrada  
 > **Ordem na história:** **quarta fase**, depois do Labirinto ([`labirinto.md`](labirinto.md)) e antes do Bunker ([`bunker.md`](bunker.md)).  
 > **Como se chega:** Pelo duto do alçapão da oficina do Zane no fim do Labirinto, saindo em `passarela_acesso`.  
@@ -29,13 +29,13 @@
 ### 2.1 Mapa do Grafo
 
 ```
-                       [PASSARELA DE ACESSO] (vem do Labirinto)
+                       [PASSARELA DE ACESSO] (vem do Labirinto) ── [SALA SEGURA]
                                   │
                            [entrada da praça]
         LOJA 2            LOJA 1  │  PRAÇA CENTRAL  │  LOJA 3            LOJA 4
    (Self Nebulosa)    (Tapioca)  ─┴─  (arco, 2       ─┴─  (Pizzaria        (Churrasco
         │              Orbital)        Sentinelas)         Quasar)           Solar)
-        ▼             sala segura                       quadro de comutação     │
+        ▼             checkpoint                        quadro de comutação     │
   [CÂMARA FRIA]                                                                 ▼
   (Célula de Energia)                                              [ELEVADOR DE CARGA]
                                                                        (para o Bunker)
@@ -56,16 +56,17 @@ O **segundo andar** (opcional, seção 7) é outro pedaço do grafo, pendurado n
 
 | ID da Cena (`cenas/salas/centro_de_convivencia/`) | Nome / Função | Dimensões | Piso | Conexões | Esconderijos | Ameaça |
 |---|---|---|---|---|---|---|
-| `passarela_acesso` | Passarela Superior (chegada, checkpoint, rádio) | 640 × 180 px | chapa de aço | `praca_central` | — | Nenhuma |
+| `passarela_acesso` | Passarela Superior (chegada, checkpoint, rádio) e a porta de vidro verde da **sala segura**, com a luz verde em cima | 640 × 180 px | chapa de aço | `praca_central`, `sala_segura` | — | Nenhuma |
+| `sala_segura` | **Sala segura** do modelo: os óculos do Zane para salvar, o piano ([`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)) | 320 × 180 px | tapete | `passarela_acesso` | — | Nenhuma (robô não entra) |
 | `praca_central` | Praça Central, em arco, com 4 restaurantes, a entrada e a escada do mezanino | 2000 × 560 px | pedra e musgo | passarela, as 4 lojas e a escada | Mesas, árvores, 2 nichos de manutenção | 2 **Sentinelas** (rotas em volta das mesas) |
-| `loja_1` | **Tapioca Orbital**: cafeteria, **sala segura** com a Ordem de Serviço | 400 × 240 px | madeira clara | `praca_central` | — | Nenhuma |
-| `loja_2` | **Self Nebulosa**: restaurante de bufê, com a faixa de louça quebrada | 640 × 280 px | xadrez brilhante | `praca_central`, `camara_fria` | Nicho de serviço | 1 **Rastreador** |
+| `loja_1` | **Tapioca Orbital**: cafeteria protegida (sem robôs, com checkpoint), com a Ordem de Serviço | 400 × 240 px | madeira clara | `praca_central` | — | Nenhuma |
+| `loja_2` | **Self Nebulosa**: restaurante de bufê, com a faixa de louça quebrada e o **cofre do bufê** (seção 8.1) | 640 × 280 px | xadrez brilhante | `praca_central`, `camara_fria` | Nicho de serviço | 1 **Rastreador** |
 | `camara_fria` | Câmara fria do Self Nebulosa: onde está a **Célula de Energia** | 400 × 240 px | grade de aço e gelo | `loja_2` | — | Nenhuma |
 | `loja_3` | **Pizzaria Quasar**: cozinha com o forno de plasma e o **quadro de comutação** (o puzzle) | 480 × 260 px | ladrilho vermelho | `praca_central` | — | Nenhuma |
-| `loja_4` | **Churrasco Solar**: bar com a grelha solar e o **elevador de carga** (a saída) | 640 × 360 px | piso escuro com frisos | `praca_central`, elevador | Nicho de serviço | 1 **Sentinela** |
+| `loja_4` | **Churrasco Solar**: bar com a grelha solar, o **quadro do bar** (seção 8.2) e o **elevador de carga** (a saída) | 640 × 360 px | piso escuro com frisos | `praca_central`, elevador | Nicho de serviço | 1 **Sentinela** |
 | `segundo_andar` | **Mezanino** (opcional): o anel em volta do vazio, com corrimão de vidro | 2000 × 640 px | placas de aço e passadeira | escada da praça, `grafica`, `loja_uni`, `cinema` | 2 nichos de manutenção | 1 **Sentinela** (ronda de ida e volta) |
-| `loja_uni` | **Loja Universitária**: moletons, araras, o brasão e o provador | 560 × 240 px | carpete azul | `segundo_andar` | Provador (nicho) | Nenhuma |
-| `grafica` | **Gráfica Quântica**: plotters, copiadoras e a ordem de impressão parada | 560 × 240 px | concreto polido | `segundo_andar` | Nicho dos fundos | Nenhuma |
+| `loja_uni` | **Loja Universitária**: moletons, a **arara inteligente** (seção 8.4), o brasão e o provador | 560 × 240 px | carpete azul | `segundo_andar` | Provador (nicho) | Nenhuma |
+| `grafica` | **Gráfica Quântica**: plotters, copiadoras, a ordem de impressão parada e a **trava do plotter** (seção 8.3) | 560 × 240 px | concreto polido | `segundo_andar` | Nicho dos fundos | Nenhuma |
 | `cinema` | **Cine Andrômeda**: o **hall** (bilheteria, bomboniere, fliperamas, sofá e cordões de fila) e a sala com a tela que chia; uma porta cinza leva à cabine do cofre | 1040 × 320 px | carpete de veludo | `segundo_andar`, `cinema_cabine` | Nicho atrás da cortina | Nenhuma |
 | `cinema_cabine` | **Cabine de projeção** do cinema: a salinha com o projetor, a mesa do lanterninha e o **cofre** (puzzle da seção 7.5) | 400 × 220 px | concreto e tapete de veludo | `cinema` | — | Nenhuma |
 
@@ -79,10 +80,11 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 ### 3.2 Passo a Passo
 
 1. **Chegada e Contato do Zane (`passarela_acesso`):**
-   - Gabriel sai pelo duto na passarela. A escotilha se fecha atrás dele. O **Zane** chama pelo rádio (`zane_convivencia_01`): fala das duas Sentinelas na praça, manda usar as mesas, as árvores e os nichos, e aponta a **Tapioca Orbital** como sala segura.
+   - Gabriel sai pelo duto na passarela. A escotilha se fecha atrás dele. O **Zane** chama pelo rádio (`zane_convivencia_01`): fala das duas Sentinelas na praça, manda usar as mesas, as árvores e os nichos, e aponta a **Tapioca Orbital** como um lugar seguro.
+   - Na própria passarela fica a porta de vidro verde da **sala segura**, com a luz verde em cima: é ali que o jogo salva.
 2. **Travessia da Praça (`praca_central`):**
    - Gabriel entra pelo portão do meio. As Sentinelas rondam em volta do conjunto de mesas, por corredores livres (`rota`). Mesas, árvores e postes cortam a linha de visão, e os 2 nichos de manutenção (nas fachadas) escondem quem fica parado no escuro. Há 3 pedras para distração.
-3. **Sala Segura e Pista da Célula (`loja_1`):**
+3. **Abrigo e Pista da Célula (`loja_1`):**
    - Na Tapioca Orbital há um **checkpoint**, uma pilha, uma cápsula de clarão e a **Ordem de Serviço** (`ordem_manutencao_convivencia`), que diz que a célula reserva foi levada para o gerador da **câmara fria do Self Nebulosa**.
 4. **Infiltração no Self Nebulosa (`loja_2` e `camara_fria`):**
    - No salão, um **Rastreador** patrulha perto de uma faixa de **cacos de louça e vidro** (`ZonaDePiso` com `fator_ruido = 2.0`).
@@ -95,6 +97,7 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
    - O **Zane** avisa pelo rádio (`zane_convivencia_02`) que o elevador destravou, mas as luzes ligaram.
    - Na `loja_4`, a porta do elevador de carga se recolhe e a porta leva a `fim_da_convivencia.tscn`, abrindo a entrada do **Bunker**.
 7. **Segundo andar (opcional):** a escada ao lado da entrada da praça sobe para o mezanino, que tem uma Sentinela de ronda, mais pedras e pilhas, três lojas para explorar e dois nichos. Não é preciso para terminar a fase (seção 7).
+8. **Puzzles opcionais:** o cofre do bufê (Self Nebulosa), o quadro do bar (Churrasco Solar), a trava do plotter (Gráfica), a arara (Loja Universitária) e o cofre do cinema dão pilhas e cápsulas de clarão. Nenhum é preciso para terminar a fase (seção 8).
 
 ---
 
@@ -105,6 +108,7 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 | **Célula de Energia** | `dados/itens/celula_energia.tres` | `camara_fria` |
 | **Pilhas (8)** | `cenas/itens/pilha_no_chao.tscn` | `passarela_acesso`, `loja_1`, `camara_fria`, `segundo_andar`, `loja_uni`, `grafica`, `cinema`, `cinema_cabine` |
 | **Cápsulas de Clarão (2)** | `dados/itens/clarao.tres` | `loja_1` e o prêmio do cofre do `cinema` |
+| **Prêmios dos puzzles da seção 8** | caem no chão ao resolver (`Recompensa`) | 1 clarão no cofre do bufê (`loja_2`), 2 pilhas no quadro do bar (`loja_4`), 1 clarão na trava do plotter (`grafica`), 2 pilhas na arara (`loja_uni`) |
 | **Pedras (10)** | `dados/itens/pedra.tres` | `praca_central` (3), `segundo_andar` (2), `grafica` (2), `loja_uni` (1), `cinema` (2) |
 | **Panfleto da Semana Universitária (2024)** | `dados/documentos/panfleto_universitario.tres` | `loja_3` |
 | **Ordem de Serviço (3026)** | `dados/documentos/ordem_manutencao_convivencia.tres` | `loja_1` |
@@ -113,6 +117,10 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 | **Canhoto do Cine Andrômeda** | `dados/documentos/ingresso_cine_andromeda.tres` | `cinema` (não tem nome: não é pista do cofre) |
 | **Bilhete do lanterninha** | `dados/documentos/bilhete_lanterninha_cofre.tres` | `cinema`, perto da bomboniere (diz onde está o cofre e como é o código) |
 | **Canhoto do Léo, da Bia e do Caio** | `dados/documentos/canhoto_leo.tres`, `canhoto_bia.tres`, `canhoto_caio.tres` | o do Léo no hall do `cinema`, o da Bia na sala do `cinema` (entre as fileiras de poltronas) e o do Caio na `cinema_cabine`, perto da mesa do lanterninha |
+| **Bilhete da gerência do Self Nebulosa (3026)** | `dados/documentos/bilhete_cofre_bufe.tres` | `loja_2`, perto da porta (a regra do cofre do bufê) |
+| **Cardápio do dia do Self Nebulosa** | `dados/documentos/cardapio_self_nebulosa.tres` | `loja_2`, em cima do bufê, perto dos cacos (as cubas) |
+| **Checklist de abertura do Churrasco Solar** | `dados/documentos/checklist_churrasco_solar.tres` | `loja_4`, perto do balcão (a ordem do quadro do bar) |
+| **Etiqueta da trava do plotter** | `dados/documentos/etiqueta_trava_plotter.tres` | `grafica`, ao lado do plotter |
 | **Zane no rádio (chegada)** | `dados/transmissoes/zane_convivencia_01.tres` | `passarela_acesso` |
 | **Zane no rádio (luzes acesas)** | `dados/transmissoes/zane_convivencia_02.tres` | `praca_central` (requer `convivencia_energia`) |
 
@@ -139,6 +147,8 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 | Base comum (geometria do arco, cores de neon, texto em pixel) | `assets/modelagem/cenario/gerar_praca_base.py` |
 | Célula de Energia (item) | `assets/modelagem/cenario/gerar_convivencia.py` |
 | Puzzle de Coloração de Grafos | `cenas/sistemas/painel_comutacao.tscn`, script `scripts/sistemas/painel_comutacao.gd` |
+| Puzzles da seção 8 | `cenas/sistemas/painel_bits.tscn` e `painel_ordenacao.tscn` (scripts em `scripts/sistemas/`), `cofre.tscn` e `quadro_energia.tscn`; o prêmio que cai no chão é `scripts/sistemas/recompensa.gd`. Na descrição das salas, as listas `paineis` e `cofres` |
+| Sala segura | `cenas/salas/centro_de_convivencia/sala_segura.tscn`; a porta verde é a peça `PORTA:verde` do fundo da passarela (`gerar_interiores.py`), e o sinal entra pela lista `sinais_sala_segura` |
 | Fase no menu | `dados/fases/04_convivencia.tres` |
 
 Para refazer tudo, nesta ordem:
@@ -218,3 +228,40 @@ Como o sistema funciona e como montar outros cofres: [`../mecanicas/cofre_e_codi
 ### 7.6 Os papéis no chão
 
 Os documentos da fase (o bilhete e os canhotos do cinema, o aviso da loja, a ordem da gráfica, a ordem de serviço e o panfleto) aparecem como **sprites pequenos no chão**, com o brilho dos itens colecionáveis, e não mais como áreas invisíveis. Cada tipo tem o seu desenho (`assets/modelagem/cenario/gerar_papeis.py`): o **bilhete** é uma folha dobrada com linhas à mão, o **canhoto** é uma tira com o picotado à esquerda e uma faixa de cor à direita (**ciano** do Léo, **magenta** da Bia, **âmbar** do Caio e **violeta** o canhoto sem nome), e o **aviso**, a **ordem** e o **panfleto** são folhas com o cabeçalho na cor da loja. Cena: `cenas/itens/papel_no_mundo.tscn` (herda de `documento_no_mundo.tscn` e põe o sprite e o brilho).
+
+---
+
+## 8. Os puzzles das outras salas
+
+Pedido do Davi (2026-10-21): enriquecer a fase com um puzzle nas salas que não tinham. São **opcionais** e dão **prêmios** que caem no chão ao resolver (pilhas e cápsulas de clarão). Errar não tem castigo, menos no quadro do bar. A matemática dos três de computação está em [`../computacao/binario_e_ordenacao.md`](../computacao/binario_e_ordenacao.md).
+
+### 8.1 Self Nebulosa: o cofre do bufê
+
+- **O cofre** fica no salão, entre o nicho e a porta da câmara fria (`cofre.tscn`, código de 3 dígitos). O **Rastreador** patrulha bem ao lado.
+- **O bilhete da gerência**, perto da porta, diz que a senha são **as cubas do prato do dia, na ordem do cardápio**.
+- **O cardápio do dia** está **em cima do bufê**, no meio do salão, colado na faixa de cacos: para ler, o Gabriel tem de passar perto do Rastreador. Prato do dia: baião de dois (cuba 6), paçoca de pilão (cuba 1), vinagrete (cuba 9); os acompanhamentos e a sobremesa têm outras cubas, que não entram.
+- **Código: 619.** Prêmio: 1 cápsula de clarão.
+
+### 8.2 Churrasco Solar: o quadro do bar
+
+- **O quadro** fica na parede do fundo, entre a prateleira de garrafas e o quadro holográfico (o `QuadroEnergia` da Biblioteca, com título e nomes nos disjuntores): **1 GELAD**, **2 EXAUST**, **3 NEON**, **4 GRELHA**.
+- **O checklist de abertura**, no chão perto do balcão, dá a ordem por regras: o exaustor vem antes da grelha; a geladeira só depois da grelha; o neon é o último. A ordem é **2, 4, 1, 3**.
+- **Errar desarma tudo e faz um estalo** que a Sentinela do bar ouve (`ruido_ao_desarmar = 14`, a mesma BFS do som dos passos). O checklist avisa que o estalo se ouve do salão inteiro.
+- Prêmio: 2 pilhas, da gaveta de reserva embaixo do quadro.
+
+### 8.3 Gráfica Quântica: a trava do plotter
+
+- **O painel** fica no plotter grande (`painel_bits.tscn`): 7 chaves com os pesos **64, 32, 16, 8, 4, 2, 1**. Cima liga, baixo desliga, E confirma.
+- **A etiqueta da trava**, no chão ao lado do plotter, diz que o código é **quantos avisos ainda faltam imprimir na ordem parada**. A **Ordem de Impressão** (no balcão) diz 4.000 pedidos e 3.912 impressos: faltam **88 = 64 + 16 + 8**.
+- Prêmio: 1 cápsula de clarão, da gaveta de insumos.
+
+### 8.4 Loja Universitária: a arara inteligente
+
+- **O painel** fica na arara do fundo (`painel_ordenacao.tscn`): 5 moletons fora de ordem, **G, PP, GG, M, P**. Os lados escolhem um par de vizinhos e E troca os dois; a peça fica verde quando está na casa certa.
+- O pedido aparece no próprio painel: **do PP ao GG, da esquerda para a direita**. No fim, o visor mostra as trocas usadas e o mínimo (**6**, o número de inversões).
+- Prêmio: 2 pilhas, de um bolso.
+
+### 8.5 Os prêmios e a persistência
+
+- O prêmio cai no chão como um `ItemNoChao` (clarão) ou uma `PilhaNoChao`, pelo `Recompensa.soltar` (`scripts/sistemas/recompensa.gd`), o mesmo do cofre do cinema.
+- Cada puzzle grava uma marca no `Progresso` (`cofre_bufe_aberto`, `churrasco_quadro_ligado`, `plotter_destravado`, `arara_loja_uni_ordenada`). Ao voltar à sala, o puzzle continua resolvido e o prêmio que não foi pego reaparece; o que já foi pego não volta.

@@ -48,6 +48,7 @@ Legenda do mapa:
 | `V` | Sentinela · `R` Rastreador (6 no total, nascem longe do início) |
 | `A` | o alçapão da saída, na oficina (escondido até o Zane revelar) |
 | `D` · `S` | porta de saída (na parede de cima) e gatilho: só existem no mapa de teste (`labirinto_teste`), não neste mapa |
+| `Q` | a porta da **sala segura** (2 blocos de parede, `QQ`), na parede de cima da câmara onde o Gabriel começa. O gerador marca as duas letras logo acima do início |
 | `Z` | o Zane |
 | `N` | nó de controle (2 blocos de largura: `NN`) |
 | `b` `c` `m` `x` | bancada eletrônica, console, mesa com computador, robô desmontado (largos: `bb`, `cc`...) |
@@ -75,6 +76,7 @@ Uma sala é um retângulo de salinhas com as paredes internas derrubadas, e **um
 | **Nó 2** (sala de controle) | centro | 3 × 2 | Dois consoles grandes, 2 hologramas, o console do nó (**médio**) e o checkpoint |
 | **Nó 3** (laboratório) | canto inferior direito | 3 × 2 | Bancada, braço robótico, caixas, holograma, o console do nó (**difícil**) e o checkpoint |
 
+- **A sala segura (salva o jogo)** fica atrás da porta `QQ`, na parede de cima da câmara do início: porta de metal com a **luz verde** e a casinha (`porta_sala_segura.png`). `labirinto.gd` põe ali uma `Porta` para `cenas/salas/labirinto/sala_segura.tscn` (campos `textura_porta_segura` e `cena_sala_segura` do `labirinto.tscn`). Ver [`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md).
 - **A oficina é segura:** a patrulha dos robôs nunca escolhe uma salinha dela como destino (`MapaLabirinto.salinhas_seguras`), e nenhum robô nasce a menos de 5 salinhas de caminho da porta dela. Um robô que persegue o Gabriel entra normalmente.
 - **Os salões dos nós não são seguros:** são becos sem saída. Quem entra com um robô atrás fica encurralado; é a tensão da fase.
 - **Luz:** hologramas e consoles têm `PointLight2D` ciano (hologramas, com tremor) ou vermelha/verde (nó). Os hologramas são desenhados **sem luz**, como os olhos dos robôs, e brilham no escuro.

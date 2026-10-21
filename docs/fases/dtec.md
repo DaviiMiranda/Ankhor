@@ -23,7 +23,8 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 ```
                 RECEPÇÃO ── (saída: lacrada)
                    │
- CORREDOR NORTE ── eletrônica
+ CORREDOR NORTE ── SALA SEGURA (DESCANSO)
+                ── eletrônica
                 ── informática (o notebook está aqui)
                 ── LAB CENTRAL (a Âncora)  ──┐
                 ── SERVIDORES (trancada)     │
@@ -44,6 +45,7 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 | `corredor_norte` | 2400 × 180 | Seis portas com placa, janelas dos laboratórios, quadro, mural, extintores, painel e a porta larga do Lab Central com a faixa de perigo | 1 pilha, 1 cápsula de clarão |
 | `lab_central` | 960 × 560 | **A Âncora (a máquina)** no centro, consoles dos dois lados, racks, cilindros de gás, telões e janelas | 1 cápsula de clarão |
 | `corredor_sul` | 2400 × 180 | O outro lado: seis portas, telão, terminal e a porta larga do Lab Central | 1 pilha, 2 pedras |
+| `sala_segura` | 320 × 180 | A **sala segura** do modelo (os óculos do Zane para salvar, o piano), com luz mais fria. A porta é a DESCANSO no corredor norte, entre a Recepção e a Eletrônica, com a **luz verde** em cima ([`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)) | — |
 | `lab_eletronica` | 480 × 560 | Três bancadas de eletrônica (osciloscópio, solda, placas), armário, cilindros | 1 pilha, 1 cápsula de clarão |
 | `lab_informatica` | 560 × 560 | Nove mesas com computador em três fileiras, rack, quadro | **notebook**, 1 pilha |
 | `sala_servidores` | 480 × 480 | Piso elevado e duas fileiras de racks com corredores entre eles, luz verde | 2 pilhas, 1 cápsula de clarão |

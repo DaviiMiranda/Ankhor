@@ -1,12 +1,13 @@
 # Cofres e puzzles de código
 
-Um **cofre** guarda um prêmio atrás de um código de dígitos. O código nunca aparece escrito de uma vez: o jogador junta **pistas espalhadas pela sala** (documentos) e vai **testando as combinações** até acertar. O primeiro cofre está na cabine de projeção do Cine Andrômeda, no Centro de Convivência ([`../fases/centro_de_convivencia.md`](../fases/centro_de_convivencia.md), seção 7.5).
+Um **cofre** guarda um prêmio atrás de um código de dígitos. O código nunca aparece escrito de uma vez: o jogador junta **pistas espalhadas pela sala** (documentos) e vai **testando as combinações** até acertar. O primeiro cofre está na cabine de projeção do Cine Andrômeda, no Centro de Convivência ([`../fases/centro_de_convivencia.md`](../fases/centro_de_convivencia.md), seção 7.5). O segundo é o **cofre do bufê** do Self Nebulosa, na mesma fase (seção 8.1 do mesmo documento).
 
 ## Como funciona
 
 - **Abrir o painel:** perto do cofre, `E` abre um painel com os dígitos e **pausa o jogo**. Cima e baixo trocam o número da casa, os lados trocam de casa, `E` confirma e `Esc` sai.
 - **Errar:** o visor avisa "CÓDIGO INVÁLIDO" e o painel continua aberto. Não há limite de tentativas nem castigo: o perigo da sala é outro.
 - **Acertar:** o visor mostra "COFRE ABERTO", o painel fecha, o cofre muda para o desenho aberto e o prêmio **cai no chão** perto dele (um `ItemNoChao` por unidade). Assim o prêmio não se perde se o inventário estiver cheio no limite do item (por exemplo, 2 cápsulas de clarão): o jogador pega quando puder.
+- **O prêmio no chão** vem do `Recompensa.soltar` (`scripts/sistemas/recompensa.gd`), que os outros puzzles com prêmio também usam (a trava do plotter, a arara e o quadro do bar). Ele aceita um `Item` (vira `ItemNoChao`) ou uma cena pronta, como a `pilha_no_chao.tscn`.
 - **Persistência:** a abertura fica na marca `Progresso` do cofre. Ao voltar à sala, o cofre continua aberto e, se o prêmio ainda não foi pego, ele reaparece no chão; se já foi pego, não volta.
 
 ## Como montar um cofre numa sala
