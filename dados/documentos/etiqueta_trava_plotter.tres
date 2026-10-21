@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "etiqueta_trava_plotter"
+titulo = "Etiqueta da trava do plotter (3026)"
+autor = "Gráfica Quântica — manutenção"
+papel = "caderno_gabriel"
+paginas = PackedStringArray("PLOTTER QX-9 — TRAVA DA GAVETA DE INSUMOS
+
+A gaveta trava sozinha quando a fila para no meio de uma ordem.
+Para liberar sem perder a fila, ponha nas chaves quantos avisos AINDA FALTAM IMPRIMIR na ordem parada.
+
+As chaves valem 64, 32, 16, 8, 4, 2 e 1. Ligue as que somam esse número e confirme.")
+anotacao = "A trava da gaveta do plotter da Gráfica abre com o número de avisos que ainda faltam imprimir na ordem parada (a Ordem de Impressão diz quantos eram e quantos saíram). As chaves valem 64, 32, 16, 8, 4, 2 e 1: ligar as que somam esse número."

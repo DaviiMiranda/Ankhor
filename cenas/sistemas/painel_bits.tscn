@@ -1,0 +1,77 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/painel_bits.gd" id="1_painel"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/disjuntor.wav" id="2_clique"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_emperrada.wav" id="3_erro"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_alcance"]
+radius = 22.0
+
+[node name="PainelBits" type="Area2D"]
+process_mode = 3
+script = ExtResource("1_painel")
+texto_acao = "Mexer na trava"
+altura_aviso = 44.0
+
+[node name="Alcance" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_alcance")
+
+[node name="Tela" type="CanvasLayer" parent="."]
+layer = 9
+offset = Vector2(160, 90)
+visible = false
+
+[node name="Fundo" type="ColorRect" parent="Tela"]
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 480.0
+offset_bottom = 270.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Painel" type="ColorRect" parent="Tela"]
+offset_left = 70.0
+offset_top = 30.0
+offset_right = 250.0
+offset_bottom = 140.0
+mouse_filter = 2
+color = Color(0.14, 0.17, 0.12, 1)
+
+[node name="Titulo" type="Label" parent="Tela/Painel"]
+offset_top = 4.0
+offset_right = 180.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0.85, 1, 0.3, 1)
+text = "TRAVA DE MANUTENÇÃO"
+horizontal_alignment = 1
+
+[node name="Chaves" type="HBoxContainer" parent="Tela/Painel"]
+offset_left = 10.0
+offset_top = 24.0
+offset_right = 170.0
+offset_bottom = 88.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Visor" type="Label" parent="Tela/Painel"]
+offset_top = 92.0
+offset_right = 180.0
+offset_bottom = 106.0
+text = "AJUSTE AS CHAVES"
+horizontal_alignment = 1
+
+[node name="Dica" type="Label" parent="Tela"]
+offset_top = 163.0
+offset_right = 320.0
+offset_bottom = 177.0
+theme_override_colors/font_color = Color(0.95, 0.88, 0.7, 1)
+horizontal_alignment = 1
+
+[node name="SomClique" type="AudioStreamPlayer" parent="Tela"]
+stream = ExtResource("2_clique")
+bus = &"Efeitos"
+
+[node name="SomErro" type="AudioStreamPlayer" parent="Tela"]
+stream = ExtResource("3_erro")
+bus = &"Efeitos"

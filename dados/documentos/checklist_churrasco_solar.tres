@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "checklist_churrasco_solar"
+titulo = "Checklist de abertura do Churrasco Solar (3026)"
+autor = "Churrasco Solar"
+papel = "caderno_gabriel"
+paginas = PackedStringArray("CHECKLIST DE ABERTURA — QUADRO DO BAR
+
+Ligue os disjuntores nesta ordem, senão o quadro desarma tudo:
+
+- O EXAUSTOR vem antes da GRELHA. Sempre. Fumaça no salão dispara o alarme.
+- A GELADEIRA do balcão só depois da grelha: as duas juntas na partida derrubam o quadro.
+- O NEON é o último. Letreiro aceso é casa pronta.", "Se o quadro desarmar, o estalo se ouve do salão inteiro.
+
+A gaveta de reserva, embaixo do quadro, tem trava elétrica: sem energia, ela não abre.")
+anotacao = "Checklist do quadro do bar do Churrasco Solar: primeiro o exaustor, depois a grelha, depois a geladeira do balcão e, por último, o neon. Se desarmar, faz um estalo alto."

@@ -10,6 +10,12 @@ const COR_TEXTO := Color("d8dee6")
 @export var marca: String = "energia"
 @export var aviso_ligado: String = "A energia voltou. Lá fora, algo zumbiu e acendeu."
 @export var aviso_ja_ligado: String = "Os disjuntores estão ligados."
+@export var titulo: String = ""
+@export var nomes: PackedStringArray = PackedStringArray()
+@export var ruido_ao_desarmar: int = 0
+@export var item_premio: Item
+@export var cena_premio: PackedScene
+@export var quantidade_premio: int = 1
 
 var _aberto := false
 var _ligados: Array[int] = []
@@ -18,7 +24,9 @@ var _alavancas: Array[ColorRect] = []
 var _numeros: Array[Label] = []
 
 @onready var tela: CanvasLayer = $Tela
+@onready var painel: ColorRect = $Tela/Painel
 @onready var fila: HBoxContainer = $Tela/Painel/Alavancas
+@onready var rotulo_titulo: Label = $Tela/Painel/Titulo
 @onready var dica: Label = $Tela/Dica
 @onready var som_clique: AudioStreamPlayer = $Tela/SomClique
 @onready var som_desarme: AudioStreamPlayer = $Tela/SomDesarme
@@ -28,7 +36,13 @@ func _ready() -> void:
 	super()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	tela.visible = false
+	if not titulo.is_empty():
+		rotulo_titulo.text = titulo
+	if not nomes.is_empty():
+		_alargar_painel()
 	_montar_alavancas()
+	if Progresso.tem(marca):
+		_soltar_premio.call_deferred()
 
 
 func pode_interagir() -> bool:
@@ -49,7 +63,7 @@ func _montar_alavancas() -> void:
 		var alavanca := ColorRect.new()
 		alavanca.custom_minimum_size = Vector2(12, 30)
 		var numero := Label.new()
-		numero.text = str(i + 1)
+		numero.text = str(i + 1) if nomes.is_empty() else "%d\n%s" % [i + 1, nomes[i]]
 		numero.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		coluna.add_child(alavanca)
 		coluna.add_child(numero)
@@ -96,6 +110,7 @@ func _ligar(indice: int) -> void:
 	if indice + 1 != ordem[_ligados.size()]:
 		_ligados.clear()
 		som_desarme.play()
+		_fazer_barulho()
 		dica.text = "Desarmou! Todos os disjuntores caíram."
 		_mostrar()
 		return
@@ -108,6 +123,7 @@ func _ligar(indice: int) -> void:
 func _concluir() -> void:
 	dica.text = "Energia restabelecida."
 	Progresso.marcar(marca)
+	_soltar_premio()
 	await get_tree().create_timer(0.8, true).timeout
 	_fechar()
 	Inventario.aviso.emit(aviso_ligado)
@@ -117,3 +133,23 @@ func _mostrar() -> void:
 	for i in _alavancas.size():
 		_alavancas[i].color = COR_LIGADO if _ligados.has(i) else COR_DESLIGADO
 		_numeros[i].add_theme_color_override("font_color", COR_ESCOLHIDO if i == _cursor else COR_TEXTO)
+
+
+func _alargar_painel() -> void:
+	painel.offset_left = 60.0
+	painel.offset_right = 260.0
+	rotulo_titulo.offset_right = 200.0
+	fila.offset_left = 8.0
+	fila.offset_right = 192.0
+	fila.add_theme_constant_override("separation", 6)
+
+
+func _fazer_barulho() -> void:
+	if ruido_ao_desarmar <= 0:
+		return
+	for no in get_tree().get_nodes_in_group("robos"):
+		(no as Robo).ouvir_barulho(global_position, ruido_ao_desarmar)
+
+
+func _soltar_premio() -> void:
+	Recompensa.soltar(self, item_premio, cena_premio, quantidade_premio)

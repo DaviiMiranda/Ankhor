@@ -69,6 +69,10 @@ PAPEL_DO_DOCUMENTO = {
     "ordem_impressao_grafica": "papel_ordem_impressao",
     "ordem_manutencao_convivencia": "papel_ordem_servico",
     "panfleto_universitario": "papel_panfleto",
+    "etiqueta_trava_plotter": "papel_etiqueta_plotter",
+    "bilhete_cofre_bufe": "papel_bilhete",
+    "cardapio_self_nebulosa": "papel_cardapio",
+    "checklist_churrasco_solar": "papel_checklist",
 }
 # Quanto o mapa de caminhos dos robôs engorda cada objeto (RobosDaSala): o
 # Rastreador tem 18 px de largura e o mapa é feito de células de 16 px, então a
@@ -350,6 +354,10 @@ def montar_sala(sala, objetos):
     for (nome_decal, x, y) in sala.get("decais", []):
         m.instancia(m.nome(pascal(nome_decal)), "Chao", objetos[nome_decal], [f"position = Vector2({x}, {y})"])
 
+    for (x, y) in sala.get("sinais_sala_segura", []):
+        m.instancia(m.nome("SinalSalaSegura"), "Chao", "res://cenas/cenario/objetos/sinal_sala_segura.tscn",
+                    [f"position = Vector2({x}, {y})"])
+
     for (nome_letreiro, x, y) in sala.get("letreiros", []):
         if os.path.exists(os.path.join(PASTA_KIT_PRACA, f"{nome_letreiro}.tscn")):
             m.instancia(pascal(nome_letreiro), "Chao", f"res://cenas/cenario/praca/{nome_letreiro}.tscn", [f"position = Vector2({x}, {y})"])
@@ -418,6 +426,21 @@ def montar_sala(sala, objetos):
         m.instancia(m.nome("Cofre"), "Objetos", "res://cenas/sistemas/cofre.tscn",
                     [f"position = Vector2({x}, {y})", f'codigo = "{codigo}"', f'marca = "{marca_cofre}"',
                      f'item_ao_abrir = ExtResource("{id_item}")', f"quantidade = {quantidade}", f'aviso_aberto = "{aviso}"'])
+
+    # Os puzzles das salas (painel de bits, arara de ordenar, quadro de
+    # disjuntores): a cena do sistema, a posição, os campos do Inspetor e o
+    # prêmio que cai no chão ao resolver ("pilha" é uma PilhaNoChao; o resto,
+    # um Item de dados/itens/).
+    for painel in sala.get("paineis", []):
+        props = [f"position = Vector2({painel['x']}, {painel['y']})", *painel.get("campos", [])]
+        if painel.get("premio"):
+            nome_premio, quantidade = painel["premio"]
+            if nome_premio == "pilha":
+                props.append(f'cena_premio = ExtResource("{m.cena("res://cenas/itens/pilha_no_chao.tscn")}")')
+            else:
+                props.append(f'item_premio = ExtResource("{m.recurso("Resource", f"res://dados/itens/{nome_premio}.tres")}")')
+            props.append(f"quantidade_premio = {quantidade}")
+        m.instancia(painel["nome"], "Objetos", f"res://cenas/sistemas/{painel['cena']}.tscn", props)
 
     if sala.get("checkpoint"):
         id_cp, x_cp, y_cp = sala["checkpoint"]

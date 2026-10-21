@@ -19,11 +19,12 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_aviso_loja.png" id="r17"]
 [ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r19"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r20"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r21"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r22"]
-[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r23"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/painel_ordenacao.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r23"]
+[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r25"]
 
 [node name="LojaUni" instance=ExtResource("r1")]
 id = "conv_loja_uni"
@@ -87,16 +88,26 @@ textura = ExtResource("r17")
 [node name="Nicho1" parent="Objetos" instance=ExtResource("r19")]
 position = Vector2(440, 128)
 
-[node name="Luz1" parent="Luzes" instance=ExtResource("r20")]
+[node name="AraraInteligente" parent="Objetos" instance=ExtResource("r20")]
+position = Vector2(215, 160)
+marca = "arara_loja_uni_ordenada"
+pedido = "DO PP AO GG, DA ESQUERDA PARA A DIREITA"
+ordem_certa = PackedStringArray("PP", "P", "M", "G", "GG")
+ordem_inicial = PackedInt32Array(3, 0, 4, 2, 1)
+aviso_ordenado = "A arara apitou: tudo em ordem. Caíram duas pilhas de um bolso."
+cena_premio = ExtResource("r13")
+quantidade_premio = 2
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r21")]
 position = Vector2(150, 100)
 energy = 0.7
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r21")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r22")]
 position = Vector2(330, 100)
 color = Color(0.4, 0.62, 1, 1)
 energy = 0.55
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r21")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r22")]
 position = Vector2(490, 110)
 color = Color(0.4, 0.62, 1, 1)
 energy = 0.4
@@ -107,7 +118,7 @@ color = Color(0.28, 0.3, 0.42, 1)
 [node name="Gabriel" parent="Objetos"]
 position = Vector2(80, 160)
 
-[node name="Porta_loja_uni_mezanino" parent="." instance=ExtResource("r22")]
+[node name="Porta_loja_uni_mezanino" parent="." instance=ExtResource("r23")]
 position = Vector2(41, 124)
 id = "loja_uni_mezanino"
 cena_destino = "res://cenas/salas/centro_de_convivencia/segundo_andar.tscn"
@@ -115,11 +126,11 @@ porta_destino = "mezanino_loja_uni"
 
 [node name="ZonaPiso1" type="Node2D" parent="."]
 position = Vector2(0, 112)
-script = ExtResource("r23")
+script = ExtResource("r24")
 tamanho = Vector2(560, 128)
 fator_ruido = 0.5
 nome_piso = "carpete macio"
 
-[node name="MusicaFase" parent="." instance=ExtResource("r24")]
+[node name="MusicaFase" parent="." instance=ExtResource("r25")]
 
 [editable path="Ceu"]

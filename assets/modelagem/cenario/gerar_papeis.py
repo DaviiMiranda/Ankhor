@@ -18,7 +18,11 @@
 #     no direito (uma cor por amigo: Léo ciano, Bia magenta, Caio âmbar; o do
 #     ingresso sem nome é violeta);
 #   - o AVISO, a ORDEM e o PANFLETO são folhas com um cabeçalho colorido, na
-#     cor da loja de onde vêm (azul, limão, âmbar, vermelho).
+#     cor da loja de onde vêm (azul, limão, âmbar, vermelho);
+#   - as pistas dos puzzles também: a ETIQUETA da trava do plotter (limão, com
+#     a fileira de quadradinhos das chaves), o CARDÁPIO do Self Nebulosa (verde,
+#     com as cubas em coluna) e o CHECKLIST do Churrasco Solar (magenta, com as
+#     caixinhas de marcar).
 #
 # O papel é desenhado achatado no chão, então o lado de cima é puxado 1 px para
 # a direita (como se víssemos o papel um pouco de lado), e uma linha de sombra
@@ -98,6 +102,12 @@ def folha_com_cabecalho(cor, tipo):
         img.pintar((Y % 2 == 0) & ((X == 3) | (X == 13)) & forma, "grafite", 0.1, achatar=False)
     elif tipo == "panfleto":
         img.pintar(img.elipse(8, 8, 2, 1.5) & forma, cor, 0.7, achatar=False)
+    elif tipo == "etiqueta":
+        img.pintar((Y == 8) & (X >= 5) & (X <= 11) & (X % 2 == 1) & forma, "grafite", 0.15, achatar=False)
+    elif tipo == "cardapio":
+        img.pintar((X == 11) & (Y >= 5) & (Y <= 9) & (Y % 2 == 1) & forma, cor, 0.7, achatar=False)
+    elif tipo == "checklist":
+        img.pintar((X == 4) & (Y >= 5) & (Y <= 9) & (Y % 2 == 1) & forma, cor, 0.7, achatar=False)
     sombra_embaixo(img, forma)
     img.contornar()
     return img, 7, 11
@@ -113,6 +123,9 @@ PAPEIS = {
     "papel_ordem_impressao": lambda: folha_com_cabecalho("neon_limao", "impressao"),
     "papel_ordem_servico": lambda: folha_com_cabecalho("neon_ambar", "ordem"),
     "papel_panfleto": lambda: folha_com_cabecalho("neon_vermelho", "panfleto"),
+    "papel_etiqueta_plotter": lambda: folha_com_cabecalho("neon_limao", "etiqueta"),
+    "papel_cardapio": lambda: folha_com_cabecalho("neon_verde", "cardapio"),
+    "papel_checklist": lambda: folha_com_cabecalho("neon_magenta", "checklist"),
 }
 
 

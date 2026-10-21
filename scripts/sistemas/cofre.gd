@@ -1,8 +1,6 @@
 class_name Cofre
 extends PainelCodigo
 
-const CENA_ITEM := preload("res://cenas/itens/item_no_chao.tscn")
-
 @export var quantidade: int = 1
 @export var textura_aberto: Texture2D
 
@@ -34,11 +32,4 @@ func _confirmar() -> void:
 
 
 func _soltar_recompensa() -> void:
-	if item_ao_abrir == null:
-		return
-	for i in quantidade:
-		var recompensa := CENA_ITEM.instantiate() as ItemNoChao
-		recompensa.name = "Recompensa%d" % (i + 1)
-		recompensa.item = item_ao_abrir
-		recompensa.position = position + Vector2(-8 + 16 * i - 8 * (quantidade - 1), 12)
-		get_parent().add_child(recompensa)
+	Recompensa.soltar(self, item_ao_abrir, null, quantidade)

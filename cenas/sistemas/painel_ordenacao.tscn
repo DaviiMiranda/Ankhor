@@ -1,0 +1,85 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/painel_ordenacao.gd" id="1_painel"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/painel_tecla.wav" id="2_troca"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/disjuntor.wav" id="3_pronto"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_alcance"]
+radius = 22.0
+
+[node name="PainelOrdenacao" type="Area2D"]
+process_mode = 3
+script = ExtResource("1_painel")
+texto_acao = "Arrumar a arara"
+altura_aviso = 44.0
+
+[node name="Alcance" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_alcance")
+
+[node name="Tela" type="CanvasLayer" parent="."]
+layer = 9
+offset = Vector2(160, 90)
+visible = false
+
+[node name="Fundo" type="ColorRect" parent="Tela"]
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 480.0
+offset_bottom = 270.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Painel" type="ColorRect" parent="Tela"]
+offset_left = 60.0
+offset_top = 36.0
+offset_right = 260.0
+offset_bottom = 124.0
+mouse_filter = 2
+color = Color(0.12, 0.14, 0.22, 1)
+
+[node name="Titulo" type="Label" parent="Tela/Painel"]
+offset_top = 4.0
+offset_right = 200.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0.4, 0.62, 1, 1)
+text = "ARARA INTELIGENTE"
+horizontal_alignment = 1
+
+[node name="Pedido" type="Label" parent="Tela/Painel"]
+offset_top = 18.0
+offset_right = 200.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0.62, 0.68, 0.8, 1)
+text = "ORGANIZE DO MENOR PARA O MAIOR"
+horizontal_alignment = 1
+
+[node name="Pecas" type="HBoxContainer" parent="Tela/Painel"]
+offset_left = 10.0
+offset_top = 36.0
+offset_right = 190.0
+offset_bottom = 58.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Visor" type="Label" parent="Tela/Painel"]
+offset_top = 66.0
+offset_right = 200.0
+offset_bottom = 80.0
+text = "TROCAS: 0"
+horizontal_alignment = 1
+
+[node name="Dica" type="Label" parent="Tela"]
+offset_top = 163.0
+offset_right = 320.0
+offset_bottom = 177.0
+theme_override_colors/font_color = Color(0.95, 0.88, 0.7, 1)
+horizontal_alignment = 1
+
+[node name="SomTroca" type="AudioStreamPlayer" parent="Tela"]
+stream = ExtResource("2_troca")
+bus = &"Efeitos"
+
+[node name="SomPronto" type="AudioStreamPlayer" parent="Tela"]
+stream = ExtResource("3_pronto")
+bus = &"Efeitos"
