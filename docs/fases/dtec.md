@@ -1,6 +1,6 @@
 # Fase — Laboratório (D-Tec)
 
-> **Status:** Mapa pronto (cenário, portas, luzes e itens). Sexta fase do jogo, depois do Bunker.  
+> **Status:** Mapa pronto (cenário, portas, luzes e itens). Sexta fase do jogo, depois do Bunker. Level design novo, com o confronto final com o Carlos, aprovado e ainda não implementado (seção 3.1).  
 > **Área:** o D-Tec, departamento de tecnologia: laboratórios, servidores e o salão da Âncora (a máquina central)  
 > **No menu Fases:** **Laboratório** (`dados/fases/09_dtec.tres`, começa na recepção)
 
@@ -63,7 +63,108 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 ## 3. Objetivos e Progressão
 
 - **Hoje:** explorar, pegar o notebook na Informática, hackear as duas salas trancadas e chegar à Âncora.
-- **A definir com a equipe:** como a fase entra na história (a Âncora está aqui, mas o que se faz com ela está nas pendências do Enredo), e se terá robôs.
+- **Próximo passo:** o level design novo da seção 3.1 ("A Última Tentativa"), com o confronto final com o Carlos. Ainda não foi implementado.
+
+### 3.1 Level design novo: "A Última Tentativa"
+
+> **Status:** proposta aprovada em 2026-10-21 (ver `docs/decisoes.md`), ainda não implementada. É design de fase, não história: tudo o que depende das pendências do [Enredo Principal](../historia/História_Completa.md) está marcado como **espaço vazio** e não deve ser preenchido sem decisão do grupo.
+
+#### Problemas da versão atual
+
+1. **Sem ameaça:** nenhum robô, esconderijo, checkpoint, documento ou música. As 6 cápsulas de clarão não têm uso.
+2. **O objetivo acaba em 30 segundos:** a porta do Lab Central está aberta no corredor norte. As salas trancadas só guardam itens.
+3. **A chegada não faz sentido:** o Gabriel vem da comporta do núcleo do bunker (no subsolo) e aparece na recepção, cuja saída está "travada por fora".
+4. **O mapa é um pente:** dois corredores de 2400 px com salas sem saída, ligados só pelo Lab Central. O jogador atravessa a sala do clímax no meio da exploração. As portas lacradas são escolhas falsas.
+5. **O Carlos não aparece na casa dele:** nenhuma relíquia dos anos 80 (a Biblioteca tem). A Sala de Controle, com os telões da Âncora, guarda só uma pilha.
+6. **Itens repetidos:** o notebook (do Zane, desde o Labirinto) e a lanterna (da Biblioteca) aparecem de novo. Só servem para quem começa a fase pelo menu.
+7. **Nenhum conteúdo de computação**, que a disciplina exige.
+
+#### A ideia
+
+O Carlos está preparando a **próxima tentativa** (cada uma puxa alguém novo e faz a fenda crescer: Enredo, seção 3). Ele **nunca sai do laboratório** (ficha dele), então luta pelo prédio: os robôs, as portas, as luzes e a **lupa vermelha**. O Gabriel **nunca encosta nele**: o confronto é um duelo de percepção (o Carlos vigia, o Gabriel se esconde e sabota), porque o Enredo diz que o grupo o enfrenta sem lutar. O ex-Faroleiro usa um farol para caçar, não para guiar: o vermelho dele por cima da luz é o mesmo símbolo da traição (Enredo, seção 2.4).
+
+#### Mapa novo (com as salas que já existem)
+
+```
+              QUARTO DO CARLOS* (ex-diretoria: quarto anos 80)
+                     │
+ recepção ── CORREDOR NORTE ── eletrônica [RELÉ] · informática · servidores [RELÉ, trancada]
+                     │                          ║ grade
+                     │                    LAB CENTRAL (arena)
+                     │                          ║ grade
+ CORREDOR DE SERVIÇO* (ex-depósito + ex-arquivo: fecha o anel)
+                     │
+ EMERGÊNCIA* ── CORREDOR SUL ── química · robótica [RELÉ, trancada] · CONTROLE (telão do grafo)
+ (chegada: escada que sobe do bunker)
+
+ * sala nova, no lugar de uma porta lacrada
+```
+
+- **Chegada pela Emergência:** a escada sobe da comporta do núcleo do bunker. A recepção fica como sala opcional.
+- **Sala segura:** a regra de 2026-10-21 põe a sala segura perto de onde o Gabriel chega, então a porta DESCANSO passa do corredor norte para o corredor sul, perto da Emergência.
+- **O Lab Central começa fechado**, com uma grade (`GradeSeguranca`) nas duas portas. A luz ciano vaza para os corredores, mas o clímax fica guardado para o fim.
+- **O corredor de serviço** liga as pontas dos dois corredores e fecha um **ciclo** no grafo das salas: dá para despistar um robô dando a volta (o A\* ganha caminho alternativo).
+- **Os corredores mantêm o tamanho** e ganham nichos (`NichoEsconderijo`) a cada ~400 px, uma **Sentinela** no norte e um **Rastreador** no sul.
+- **Itens repetidos:** o notebook e a lanterna só aparecem quando a fase começa pelo menu (o item único que o Gabriel já tem não aparece de novo no chão).
+
+#### Parte 1: Infiltração
+
+O Gabriel chega pela Emergência (checkpoint). Na **Sala de Controle**, o telão mostra a **rede de energia da Âncora como um grafo**: geradores no subsolo, seis relés nas salas e a Âncora no centro.
+
+#### Parte 2: Cortar a rede (o puzzle do grafo)
+
+- Cada relé é um `NoHackeavel` (sem gasto de bateria). Cortar um relé faz o Carlos **redistribuir a energia pelo caminho mais curto (Dijkstra)**. O telão mostra o caminho novo, e um robô muda de rota para vigiar o próximo relé desse caminho.
+- **Sem código novo no robô:** `robo.gd` já troca de rota por marca (`rota_com_marca` e `marca_da_rota`). Cada corte só grava uma marca.
+- **O corte mínimo são 3 relés:** Eletrônica, Servidores e Robótica. Cortar um relé errado gasta tempo e faz barulho, e o barulho chama os robôs (BFS do som). O puzzle é ler o grafo e achar o gargalo. Duas das salas do corte são as trancadas: o hack ganha função.
+- **Na Robótica,** cortar o relé faz o Carlos religar os dois robôs desmontados das mesas de manutenção.
+- **Cada corte** apaga as luzes de um trecho, desacelera o pulso da Âncora (`periodo` do `LuzPulsante` e a animação juntos) e dispara uma fala do Carlos pelos alto-falantes (**espaço vazio**: como ele fala está pendente).
+- **Com os 3 cortes,** a trava magnética do Lab Central fica sem energia e a grade abre sozinha. Checkpoint na porta.
+
+#### Parte 3: A arena (o confronto com o Carlos)
+
+O Carlos fica no console do fundo do Lab Central, com a Âncora entre ele e o Gabriel. Racks, cilindros e consoles servem de cobertura. A **lupa varre a sala como um holofote**: cone de visão por produto escalar, com oclusão por raycast. Ser visto não mata: o Carlos chama os robôs pelas portas, e quem pega o Gabriel são os robôs.
+
+| Fase | O que o Carlos faz | O que o Gabriel faz |
+|---|---|---|
+| A | Varredura lenta, um robô na arena | Invade o console 1 |
+| B | Fecha uma das portas (`GradeSeguranca`); a Âncora solta a **onda de choque a cada 2,4 s** (o ritmo da animação), que revela quem não está atrás de cobertura | Invade o console 2 |
+| C | Varredura rápida, os robôs da Robótica entram | Lança a **cápsula de clarão na lupa** (sensor óptico: fica atordoada como os olhos dos robôs) e avança até o núcleo entre uma onda e outra |
+
+- Cada console invadido é um checkpoint.
+- **O fim:** a interação no núcleo leva a uma cena final que é **espaço vazio**: o que acontece com o Carlos e com a Âncora está nas pendências 10.2 e 10.6 do Enredo.
+
+#### Computação (para a apresentação)
+
+| Onde aparece | Conteúdo |
+|---|---|
+| Redistribuição da energia | Dijkstra num grafo com pesos |
+| Os 3 relés certos | Corte mínimo de vértices (teorema de Menger, fluxo máximo e corte mínimo) |
+| Lupa do Carlos | Cone de visão por produto escalar e raycast |
+| IA do Carlos | Máquina de estados: observando, varrendo, alerta, pulso, atordoado |
+| Onda da Âncora | Função periódica r(t) = v · (t mod 2,4) e oclusão |
+| Barulho dos cortes | BFS do som (já existe) |
+| Fuga pelo anel | A\* com caminho alternativo no ciclo do mapa (já existe) |
+
+#### O que reaproveita e o que é novo
+
+- **Reaproveita:** `Porta` com hack, `NoHackeavel`, `robo.gd` (troca de rota por marca), `GradeSeguranca`, `Sirene`, `NichoEsconderijo`, `Checkpoint`, `LuzPulsante`, cápsula de clarão, `gatilho_transmissao` e `SaidaFase`.
+- **Novo:** `rede_energia_dtec.gd` (o grafo, o Dijkstra e o telão), `carlos_chefe.gd` (a máquina de estados e a lupa), `onda_ancora.gd`; as salas `emergencia`, `corredor_servico` e `quarto_carlos`.
+- **Cuidado:** o `montar_dtec.py` sobrescreve as salas. As mudanças de mapa entram na descrição das salas dele.
+
+#### Ordem de produção (o menor passo primeiro)
+
+1. **Mapa:** chegada pela Emergência, sala segura no corredor sul, corredor de serviço, grade no Lab Central, nichos, os dois robôs e os checkpoints. Só isso já deixa a fase tensa.
+2. **A rede:** o telão do grafo, os relés e a troca de rota dos robôs.
+3. **A arena do Carlos.**
+4. **O quarto e os registros do Carlos**, que dependem de pendências.
+
+#### O que depende de decisão do grupo
+
+- **Enredo 10.2, como enfrentar o Carlos sem lutar:** esta seção é uma resposta possível do ponto de vista da mecânica. Só entra no Enredo se o grupo aprovar.
+- **Como o Carlos fala** (as falas dos alto-falantes) e **o que há no quarto e nos registros dele** (ficha, seções 2 e 5).
+- **Quem guia pelo rádio e se os outros estão presentes:** a proposta supõe o Zane, como no Labirinto e no Centro de Convivência (Enredo 3.1 e 10.6).
+- **Robôs capturam ou eliminam** (Enredo 10.2): se capturam, ser pego na arena pode virar uma cena em vez de game over.
+- **O que acontece com o Carlos e com a Âncora no fim** (Enredo 10.6).
 
 ---
 
