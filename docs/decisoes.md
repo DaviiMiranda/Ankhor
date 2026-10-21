@@ -16,6 +16,15 @@ Formato:
 
 ---
 
+## 2026-10-21 — Level design novo do Laboratório, com o confronto final com o Carlos
+**Decisão:** o Laboratório (D-Tec) ganha um level design novo, "A Última Tentativa", descrito em `docs/fases/dtec.md`, seção 3.1. Ainda não foi implementado.
+- **Mapa:** o Gabriel chega pela **Emergência** (escada que sobe da comporta do núcleo do bunker), e a sala segura vai para perto dela, no corredor sul. O **Lab Central começa fechado** por grades. Um **corredor de serviço** (no lugar do depósito e do arquivo) liga as pontas dos dois corredores e fecha um ciclo no mapa. A diretoria vira o **quarto do Carlos**. Entram nichos, uma Sentinela no corredor norte, um Rastreador no sul e checkpoints.
+- **Objetivo:** cortar a rede de energia da Âncora. O telão da Sala de Controle mostra a rede como um grafo; a cada relé cortado, o Carlos redistribui a energia pelo caminho mais curto (Dijkstra) e um robô passa a vigiar o relé seguinte. O **corte mínimo são 3 relés** (Eletrônica, Servidores e Robótica); com os três cortados, a grade do Lab Central abre.
+- **O confronto:** o Carlos fica no console do Lab Central e **o Gabriel nunca encosta nele**. A lupa vermelha varre a arena (cone de visão por produto escalar), a Âncora solta uma onda a cada 2,4 s que revela quem não está atrás de cobertura, e quem pega o Gabriel são os robôs. O Gabriel invade dois consoles, atordoa a lupa com a cápsula de clarão e chega ao núcleo.
+- **O que fica em aberto:** as falas do Carlos, o quarto e os registros dele, quem guia pelo rádio, se os robôs capturam ou eliminam e a cena final (o destino do Carlos e da Âncora) dependem das pendências 10.2 e 10.6 do Enredo e ficam como espaços vazios.
+**Por quê:** pedido do Davi: analisar a fase do laboratório e propor um level design melhor, com uma luta final com o Carlos. A fase não tinha ameaça nem objetivo, a chegada pelo bunker não batia com a recepção, e faltava conteúdo de computação (Dijkstra e corte mínimo entram aqui). O confronto sem combate segue o Enredo, que diz que o grupo enfrenta o Carlos sem lutar.
+**Afeta:** `docs/fases/dtec.md` (seção 3.1). Quando for implementado: as salas de `cenas/salas/dtec/` e o `montar_dtec.py`, as salas novas (`emergencia`, `corredor_servico`, `quarto_carlos`), `scripts/sistemas/rede_energia_dtec.gd`, `carlos_chefe.gd` e `onda_ancora.gd` (novos) e `docs/computacao/`. **A História Completa não foi mexida:** a forma de enfrentar o Carlos continua na pendência 10.2 até o grupo aprovar.
+
 ## 2026-10-21 — Puzzles nas salas do Centro de Convivência e sala segura visível em todas as fases
 **Decisão:**
 - **Quatro puzzles novos no Centro de Convivência**, todos opcionais, cada um com um prêmio que cai no chão ao resolver (como o cofre do cinema):
