@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "licao_taina"
+titulo = "Lição de hoje"
+autor = "Tainá, aluna"
+papel = "caderno_gabriel"
+paginas = PackedStringArray("LIÇÃO DE HOJE (tia Socorro)
+
+1. Quem foi embora? Os Homo sideralis. Eles aguentam viver no céu.
+2. Quem ficou? A gente, os sapiens.
+3. Por que a gente ficou? Pra cuidar da Terra.", "4. O que é um Faroleiro? Quem fica pra deixar a luz acesa pra quem está longe.
+5. As máquinas pensam? NÃO. Só repetem.
+
+Muito bem, Tainá! Cuidado com a letra.")
+anotacao = "Lição de criança, corrigida pela professora. O mundo em cinco perguntas:
+- os Homo sideralis foram embora pro céu;
+- os sapiens ficaram pra cuidar da Terra;
+- as máquinas não pensam. Só repetem.
+
+Primeira aula que eu entendo aqui."

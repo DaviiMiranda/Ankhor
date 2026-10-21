@@ -73,6 +73,9 @@ PAPEL_DO_DOCUMENTO = {
     "bilhete_cofre_bufe": "papel_bilhete",
     "cardapio_self_nebulosa": "papel_cardapio",
     "checklist_churrasco_solar": "papel_checklist",
+    "carta_faroleiro_neide": "papel_carta_faroleiro",
+    "carta_para_lia": "papel_carta",
+    "carta_faroleiro_tiao": "papel_carta_faroleiro",
 }
 # Quanto o mapa de caminhos dos robôs engorda cada objeto (RobosDaSala): o
 # Rastreador tem 18 px de largura e o mapa é feito de células de 16 px, então a

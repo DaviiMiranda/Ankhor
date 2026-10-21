@@ -26,16 +26,19 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/totem_pedidos.tscn" id="r24"]
 [ext_resource type="Resource" path="res://dados/itens/pedra.tres" id="r25"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r26"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r27"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r28"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r29"]
-[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/escada.wav" id="r30"]
-[ext_resource type="Resource" path="res://dados/transmissoes/zane_convivencia_02.tres" id="r31"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="r32"]
-[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r33"]
-[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r34"]
-[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r35"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r36"]
+[ext_resource type="Resource" path="res://dados/documentos/carta_para_lia.tres" id="r27"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_carta.png" id="r28"]
+[ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="r29"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r30"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r31"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r32"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/escada.wav" id="r33"]
+[ext_resource type="Resource" path="res://dados/transmissoes/zane_convivencia_02.tres" id="r34"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="r35"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r36"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r37"]
+[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r38"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r39"]
 
 [sub_resource type="RectangleShape2D" id="CaixaArco0"]
 size = Vector2(80, 432)
@@ -424,67 +427,73 @@ item = ExtResource("r25")
 position = Vector2(1460, 400)
 item = ExtResource("r25")
 
-[node name="Nicho1" parent="Objetos" instance=ExtResource("r27")]
+[node name="Documento1" parent="Objetos" instance=ExtResource("r29")]
+position = Vector2(470, 482)
+texto_acao = "Ler a carta perto da mesa"
+documento = ExtResource("r27")
+textura = ExtResource("r28")
+
+[node name="Nicho1" parent="Objetos" instance=ExtResource("r30")]
 position = Vector2(440, 192)
 
-[node name="Nicho2" parent="Objetos" instance=ExtResource("r27")]
+[node name="Nicho2" parent="Objetos" instance=ExtResource("r30")]
 position = Vector2(1560, 192)
 
-[node name="Luz1" parent="Luzes" instance=ExtResource("r28")]
+[node name="Luz1" parent="Luzes" instance=ExtResource("r31")]
 position = Vector2(601, 178)
 color = Color(1, 0.7, 0.3, 1)
 energy = 0.6
 scale = Vector2(2.8, 1.7)
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r28")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r31")]
 position = Vector2(281, 258)
 color = Color(0.35, 1, 0.65, 1)
 energy = 0.6
 scale = Vector2(2.8, 1.7)
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r28")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r31")]
 position = Vector2(1401, 178)
 color = Color(1, 0.4, 0.3, 1)
 energy = 0.6
 scale = Vector2(2.8, 1.7)
 
-[node name="Luz4" parent="Luzes" instance=ExtResource("r28")]
+[node name="Luz4" parent="Luzes" instance=ExtResource("r31")]
 position = Vector2(1721, 258)
 color = Color(1, 0.4, 0.85, 1)
 energy = 0.6
 scale = Vector2(2.8, 1.7)
 
-[node name="Luz5" parent="Luzes" instance=ExtResource("r28")]
+[node name="Luz5" parent="Luzes" instance=ExtResource("r31")]
 position = Vector2(1001, 150)
 color = Color(0.45, 0.9, 1, 1)
 energy = 0.55
 scale = Vector2(3.2, 1.8)
 
-[node name="Luz6" parent="Luzes" instance=ExtResource("r28")]
+[node name="Luz6" parent="Luzes" instance=ExtResource("r31")]
 position = Vector2(380, 300)
 color = Color(0.5, 0.65, 0.98, 1)
 energy = 0.4
 scale = Vector2(5, 3.5)
 
-[node name="Luz7" parent="Luzes" instance=ExtResource("r28")]
+[node name="Luz7" parent="Luzes" instance=ExtResource("r31")]
 position = Vector2(1620, 300)
 color = Color(0.5, 0.65, 0.98, 1)
 energy = 0.4
 scale = Vector2(5, 3.5)
 
-[node name="Luz8" parent="Luzes" instance=ExtResource("r28")]
+[node name="Luz8" parent="Luzes" instance=ExtResource("r31")]
 position = Vector2(700, 480)
 color = Color(0.5, 0.65, 0.98, 1)
 energy = 0.35
 scale = Vector2(5, 3)
 
-[node name="Luz9" parent="Luzes" instance=ExtResource("r28")]
+[node name="Luz9" parent="Luzes" instance=ExtResource("r31")]
 position = Vector2(1300, 480)
 color = Color(0.5, 0.65, 0.98, 1)
 energy = 0.35
 scale = Vector2(5, 3)
 
-[node name="Luz10" parent="Luzes" instance=ExtResource("r28")]
+[node name="Luz10" parent="Luzes" instance=ExtResource("r31")]
 position = Vector2(1161, 150)
 color = Color(0.45, 0.9, 1, 1)
 energy = 0.45
@@ -495,25 +504,25 @@ script = ExtResource("r4")
 marca = "convivencia_energia"
 revela_quem_passa = true
 
-[node name="Holofote1" parent="HolofotesPerimetrais" instance=ExtResource("r28")]
+[node name="Holofote1" parent="HolofotesPerimetrais" instance=ExtResource("r31")]
 position = Vector2(520, 300)
 scale = Vector2(2.2, 2.0)
 color = Color(0.85, 0.95, 1, 1)
 energy = 1.15
 
-[node name="Holofote2" parent="HolofotesPerimetrais" instance=ExtResource("r28")]
+[node name="Holofote2" parent="HolofotesPerimetrais" instance=ExtResource("r31")]
 position = Vector2(800, 420)
 scale = Vector2(2.2, 2.0)
 color = Color(0.85, 0.95, 1, 1)
 energy = 1.15
 
-[node name="Holofote3" parent="HolofotesPerimetrais" instance=ExtResource("r28")]
+[node name="Holofote3" parent="HolofotesPerimetrais" instance=ExtResource("r31")]
 position = Vector2(1200, 420)
 scale = Vector2(2.2, 2.0)
 color = Color(0.85, 0.95, 1, 1)
 energy = 1.15
 
-[node name="Holofote4" parent="HolofotesPerimetrais" instance=ExtResource("r28")]
+[node name="Holofote4" parent="HolofotesPerimetrais" instance=ExtResource("r31")]
 position = Vector2(1480, 300)
 scale = Vector2(2.2, 2.0)
 color = Color(0.85, 0.95, 1, 1)
@@ -525,58 +534,58 @@ color = Color(0.3, 0.34, 0.48, 1)
 [node name="Gabriel" parent="Objetos"]
 position = Vector2(1040, 150)
 
-[node name="Porta_praca_passarela" parent="." instance=ExtResource("r29")]
+[node name="Porta_praca_passarela" parent="." instance=ExtResource("r32")]
 position = Vector2(1001, 124)
 id = "praca_passarela"
 cena_destino = "res://cenas/salas/centro_de_convivencia/passarela_acesso.tscn"
 porta_destino = "passarela_praca"
 
-[node name="Porta_praca_loja_1" parent="." instance=ExtResource("r29")]
+[node name="Porta_praca_loja_1" parent="." instance=ExtResource("r32")]
 position = Vector2(601, 156)
 id = "praca_loja_1"
 cena_destino = "res://cenas/salas/centro_de_convivencia/loja_1.tscn"
 porta_destino = "loja_1_praca"
 
-[node name="Porta_praca_loja_2" parent="." instance=ExtResource("r29")]
+[node name="Porta_praca_loja_2" parent="." instance=ExtResource("r32")]
 position = Vector2(281, 236)
 id = "praca_loja_2"
 cena_destino = "res://cenas/salas/centro_de_convivencia/loja_2.tscn"
 porta_destino = "loja_2_praca"
 
-[node name="Porta_praca_loja_3" parent="." instance=ExtResource("r29")]
+[node name="Porta_praca_loja_3" parent="." instance=ExtResource("r32")]
 position = Vector2(1401, 156)
 id = "praca_loja_3"
 cena_destino = "res://cenas/salas/centro_de_convivencia/loja_3.tscn"
 porta_destino = "loja_3_praca"
 
-[node name="Porta_praca_loja_4" parent="." instance=ExtResource("r29")]
+[node name="Porta_praca_loja_4" parent="." instance=ExtResource("r32")]
 position = Vector2(1721, 236)
 id = "praca_loja_4"
 cena_destino = "res://cenas/salas/centro_de_convivencia/loja_4.tscn"
 porta_destino = "loja_4_praca"
 
-[node name="Porta_praca_escada" parent="." instance=ExtResource("r29")]
+[node name="Porta_praca_escada" parent="." instance=ExtResource("r32")]
 position = Vector2(1161, 124)
 id = "praca_escada"
-som_abrir = ExtResource("r30")
+som_abrir = ExtResource("r33")
 cena_destino = "res://cenas/salas/centro_de_convivencia/segundo_andar.tscn"
 porta_destino = "mezanino_escada"
 
-[node name="Porta_praca_escada_interditada" parent="." instance=ExtResource("r29")]
+[node name="Porta_praca_escada_interditada" parent="." instance=ExtResource("r32")]
 position = Vector2(841, 124)
 id = "praca_escada_interditada"
 bloqueada = true
 aviso_bloqueada = "Escada de emergência interditada: fiação exposta e avisos de área interditada."
 
-[node name="GatilhoTransmissao1" parent="Objetos" instance=ExtResource("r32")]
+[node name="GatilhoTransmissao1" parent="Objetos" instance=ExtResource("r35")]
 position = Vector2(1000, 300)
-transmissao = ExtResource("r31")
+transmissao = ExtResource("r34")
 requer_marca = "convivencia_energia"
 
 [node name="Area" parent="Objetos/GatilhoTransmissao1" index="0"]
 shape = SubResource("AreaTransmissao1")
 
-[node name="Sentinela1" parent="Objetos" instance=ExtResource("r33")]
+[node name="Sentinela1" parent="Objetos" instance=ExtResource("r36")]
 position = Vector2(500, 262)
 rota = NodePath("../../RotaSentinela1")
 rota_com_marca = NodePath("../../RotaSentinela1Energia")
@@ -614,7 +623,7 @@ position = Vector2(940, 540)
 [node name="Ponto5" type="Marker2D" parent="RotaSentinela1Energia"]
 position = Vector2(940, 262)
 
-[node name="Sentinela2" parent="Objetos" instance=ExtResource("r33")]
+[node name="Sentinela2" parent="Objetos" instance=ExtResource("r36")]
 position = Vector2(1500, 262)
 rota = NodePath("../../RotaSentinela2")
 rota_com_marca = NodePath("../../RotaSentinela2Energia")
@@ -653,31 +662,31 @@ position = Vector2(1060, 540)
 position = Vector2(1060, 262)
 
 [node name="RobosDaSala" type="Node" parent="."]
-script = ExtResource("r34")
+script = ExtResource("r37")
 folga_obstaculos = 10.0
 
 [node name="ZonaPiso1" type="Node2D" parent="."]
 position = Vector2(0, 112)
-script = ExtResource("r35")
+script = ExtResource("r38")
 tamanho = Vector2(700, 448)
 fator_ruido = 0.7
 nome_piso = "pedra rachada e musgo"
 
 [node name="ZonaPiso2" type="Node2D" parent="."]
 position = Vector2(700, 112)
-script = ExtResource("r35")
+script = ExtResource("r38")
 tamanho = Vector2(600, 448)
 fator_ruido = 1.0
 nome_piso = "emblema de pedra"
 
 [node name="ZonaPiso3" type="Node2D" parent="."]
 position = Vector2(1300, 112)
-script = ExtResource("r35")
+script = ExtResource("r38")
 tamanho = Vector2(700, 448)
 fator_ruido = 0.7
 nome_piso = "pedra rachada e musgo"
 
-[node name="MusicaFase" parent="." instance=ExtResource("r36")]
+[node name="MusicaFase" parent="." instance=ExtResource("r39")]
 
 [editable path="Ceu"]
 [editable path="Objetos/GatilhoTransmissao1"]

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "carta_faroleiro_neide"
+titulo = "Carta com um farol carimbado"
+autor = "Neide, Faroleira"
+papel = "carta_faroleiro"
+paginas = PackedStringArray("Para quem achar esta carta:
+
+Se você está lendo, você ficou. Como a gente. Quem podia ir embora já foi, lá pra cima, faz tempo. Quem ficou cuida do que sobrou.", "A gente se chama Faroleiros. Não tem farol de verdade, é só o nome: quem fica pra manter a luz acesa pra quem está longe.
+
+Ficar, cuidar, esperar. É só isso que a gente jura.", "Aprenda as marcas. Farol âmbar com três raios pro céu: lugar seguro, pode dormir. Farol sem raios, com um risco atravessado: a luz apagou ali. Não entre.
+
+Boa sorte.
+— Neide")
+anotacao = "Faroleiros: pelo visto, é como se chama quem ficou na Terra quando os outros foram \"lá pra cima\".
+
+As marcas deles:
+- farol âmbar com três raios: lugar seguro;
+- farol sem raios, riscado: não entrar."

@@ -83,6 +83,7 @@ PASSARELA = {
     "sinais_sala_segura": [(4 * PECA + X_PORTA, 4)],
     "objetos": [("vaso_planta", 330, 156), ("banco_curvo", 450, 160)],
     "itens": [("pilha", 360, 168), ("lanterna", 140, 160), ("radio", 180, 160)],
+    "documentos": [("carta_faroleiro_neide", 270, 166, "Ler a carta")],
     "checkpoint": ("conv_passarela", 60, 140),
     "transmissoes": [("zane_convivencia_01", 220, 152, "")],
     "luzes": [
@@ -133,6 +134,7 @@ PRACA = {
     "letreiros": [letreiro_da_loja(f"loja_{i}") for i in (1, 2, 3, 4)] + [("letreiro_entrada", 880, 2)],
     "objetos": OBJETOS_PRACA,
     "itens": [("pedra", 520, 400), ("pedra", 1000, 480), ("pedra", 1460, 400)],
+    "documentos": [("carta_para_lia", 470, 482, "Ler a carta perto da mesa")],
     "nichos": [(440, 192), (1560, 192)],
     "sinais_sala_segura": [(base.LOJAS_PRACA["loja_1"] * PECA + 40, base.y_base(base.LOJAS_PRACA["loja_1"]) - 108)],
     "transmissoes": [("zane_convivencia_02", 1000, 300, "convivencia_energia")],
@@ -388,6 +390,7 @@ MEZANINO = {
     "letreiros": [letreiro_do_mezanino(loja) for loja in ("grafica", "loja_uni", "cinema")] + [("letreiro_mezanino", 880, 2)],
     "objetos": OBJETOS_MEZANINO,
     "itens": [("pedra", 330, base.y_base(4) + 88), ("pedra", 1440, base.y_base(18) + 84), ("pilha", 1880, base.y_base(23) + 72)],
+    "documentos": [("carta_faroleiro_tiao", *no_corredor(2, 70), "Ler a carta")],
     "nichos": [(440, base.y_base(5) + 16), (1560, base.y_base(19) + 16)],
     "luzes": [
         *[("luz_fria", base.LOJAS_ANDAR2[loja] * PECA + X_PORTA, base.y_base(base.LOJAS_ANDAR2[loja]) + 34,

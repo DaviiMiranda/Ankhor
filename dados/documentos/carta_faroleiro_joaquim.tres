@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "carta_faroleiro_joaquim"
+titulo = "Carta para o novato"
+autor = "Joaquim, Faroleiro"
+papel = "carta_faroleiro"
+paginas = PackedStringArray("Novato,
+
+Você perguntou por que o farol do nosso símbolo aponta pro céu e não pro mar. É que quem a gente espera não vem pelo mar.", "Os três raios são o juramento. Ficar: a Terra ainda é a nossa casa. Cuidar: do chão, da água e de quem sobrou. Esperar: que um dia alguém lá de cima olhe pra baixo e veja uma luz acesa.", "Aqui no campus, nada de fogueira. As máquinas enxergam luz de longe. O farol, aqui, a gente leva aceso por dentro.
+
+— Joaquim")
+anotacao = "O farol do símbolo aponta pro céu: quem eles esperam vem de lá. Os três raios são ficar, cuidar, esperar.
+
+As máquinas enxergam luz de longe. Lanterna com cuidado."

@@ -22,14 +22,17 @@
 [ext_resource type="Resource" path="res://dados/itens/pedra.tres" id="r20"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r21"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r22"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r23"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r24"]
-[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/escada.wav" id="r25"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r26"]
-[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r27"]
-[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r28"]
-[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r29"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r30"]
+[ext_resource type="Resource" path="res://dados/documentos/carta_faroleiro_tiao.tres" id="r23"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_carta_faroleiro.png" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="r25"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="r26"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r27"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/escada.wav" id="r28"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r29"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r30"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r31"]
+[ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r32"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r33"]
 
 [sub_resource type="RectangleShape2D" id="CaixaArco0"]
 size = Vector2(80, 432)
@@ -487,55 +490,61 @@ item = ExtResource("r20")
 [node name="Pilha1" parent="Objetos" instance=ExtResource("r22")]
 position = Vector2(1880, 392)
 
-[node name="Nicho1" parent="Objetos" instance=ExtResource("r23")]
+[node name="Documento1" parent="Objetos" instance=ExtResource("r25")]
+position = Vector2(200, 342)
+texto_acao = "Ler a carta"
+documento = ExtResource("r23")
+textura = ExtResource("r24")
+
+[node name="Nicho1" parent="Objetos" instance=ExtResource("r26")]
 position = Vector2(440, 192)
 
-[node name="Nicho2" parent="Objetos" instance=ExtResource("r23")]
+[node name="Nicho2" parent="Objetos" instance=ExtResource("r26")]
 position = Vector2(1560, 192)
 
-[node name="Luz1" parent="Luzes" instance=ExtResource("r24")]
+[node name="Luz1" parent="Luzes" instance=ExtResource("r27")]
 position = Vector2(201, 306)
 color = Color(0.85, 1, 0.3, 1)
 energy = 0.6
 scale = Vector2(2.8, 1.7)
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r24")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r27")]
 position = Vector2(601, 178)
 color = Color(0.4, 0.62, 1, 1)
 energy = 0.6
 scale = Vector2(2.8, 1.7)
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r24")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r27")]
 position = Vector2(1801, 306)
 color = Color(0.7, 0.5, 1, 1)
 energy = 0.6
 scale = Vector2(2.8, 1.7)
 
-[node name="Luz4" parent="Luzes" instance=ExtResource("r24")]
+[node name="Luz4" parent="Luzes" instance=ExtResource("r27")]
 position = Vector2(1001, 150)
 color = Color(0.45, 0.9, 1, 1)
 energy = 0.55
 scale = Vector2(3.2, 1.8)
 
-[node name="Luz5" parent="Luzes" instance=ExtResource("r24")]
+[node name="Luz5" parent="Luzes" instance=ExtResource("r27")]
 position = Vector2(520, 230)
 color = Color(0.5, 0.65, 0.98, 1)
 energy = 0.35
 scale = Vector2(5, 3)
 
-[node name="Luz6" parent="Luzes" instance=ExtResource("r24")]
+[node name="Luz6" parent="Luzes" instance=ExtResource("r27")]
 position = Vector2(1480, 230)
 color = Color(0.5, 0.65, 0.98, 1)
 energy = 0.35
 scale = Vector2(5, 3)
 
-[node name="Luz7" parent="Luzes" instance=ExtResource("r24")]
+[node name="Luz7" parent="Luzes" instance=ExtResource("r27")]
 position = Vector2(120, 390)
 color = Color(0.5, 0.65, 0.98, 1)
 energy = 0.3
 scale = Vector2(4, 3)
 
-[node name="Luz8" parent="Luzes" instance=ExtResource("r24")]
+[node name="Luz8" parent="Luzes" instance=ExtResource("r27")]
 position = Vector2(1880, 390)
 color = Color(0.5, 0.65, 0.98, 1)
 energy = 0.3
@@ -547,32 +556,32 @@ color = Color(0.24, 0.27, 0.4, 1)
 [node name="Gabriel" parent="Objetos"]
 position = Vector2(1001, 140)
 
-[node name="Porta_mezanino_escada" parent="." instance=ExtResource("r26")]
+[node name="Porta_mezanino_escada" parent="." instance=ExtResource("r29")]
 position = Vector2(1001, 124)
 id = "mezanino_escada"
-som_abrir = ExtResource("r25")
+som_abrir = ExtResource("r28")
 cena_destino = "res://cenas/salas/centro_de_convivencia/praca_central.tscn"
 porta_destino = "praca_escada"
 
-[node name="Porta_mezanino_grafica" parent="." instance=ExtResource("r26")]
+[node name="Porta_mezanino_grafica" parent="." instance=ExtResource("r29")]
 position = Vector2(201, 284)
 id = "mezanino_grafica"
 cena_destino = "res://cenas/salas/centro_de_convivencia/grafica.tscn"
 porta_destino = "grafica_mezanino"
 
-[node name="Porta_mezanino_loja_uni" parent="." instance=ExtResource("r26")]
+[node name="Porta_mezanino_loja_uni" parent="." instance=ExtResource("r29")]
 position = Vector2(601, 156)
 id = "mezanino_loja_uni"
 cena_destino = "res://cenas/salas/centro_de_convivencia/loja_uni.tscn"
 porta_destino = "loja_uni_mezanino"
 
-[node name="Porta_mezanino_cinema" parent="." instance=ExtResource("r26")]
+[node name="Porta_mezanino_cinema" parent="." instance=ExtResource("r29")]
 position = Vector2(1801, 284)
 id = "mezanino_cinema"
 cena_destino = "res://cenas/salas/centro_de_convivencia/cinema.tscn"
 porta_destino = "cinema_mezanino"
 
-[node name="Sentinela1" parent="Objetos" instance=ExtResource("r27")]
+[node name="Sentinela1" parent="Objetos" instance=ExtResource("r30")]
 position = Vector2(280, 280)
 rota = NodePath("../../RotaSentinela1")
 bipa_antes_de_virar = true
@@ -688,16 +697,16 @@ position = Vector2(440, 232)
 position = Vector2(360, 264)
 
 [node name="RobosDaSala" type="Node" parent="."]
-script = ExtResource("r28")
+script = ExtResource("r31")
 folga_obstaculos = 10.0
 
 [node name="ZonaPiso1" type="Node2D" parent="."]
 position = Vector2(0, 112)
-script = ExtResource("r29")
+script = ExtResource("r32")
 tamanho = Vector2(2000, 528)
 fator_ruido = 1.0
 nome_piso = "chapa de aço"
 
-[node name="MusicaFase" parent="." instance=ExtResource("r30")]
+[node name="MusicaFase" parent="." instance=ExtResource("r33")]
 
 [editable path="Ceu"]

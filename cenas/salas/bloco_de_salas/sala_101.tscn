@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" path="res://cenas/itens/aviso_no_mundo.tscn" id="b_aviso"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral_brecha.tscn" id="m_brecha"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_doca_professor.tscn" id="n_doca"]
+[ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="carta_papel"]
+[ext_resource type="Resource" path="res://dados/documentos/licao_taina.tres" id="carta_documento"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_bilhete.png" id="carta_textura"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -469,5 +472,11 @@ porta_destino = "brecha_102"
 direcao_entrar = Vector2(1, 0)
 texto_acao = "Passar pela brecha"
 altura_aviso = 30.0
+
+[node name="Carta" parent="Objetos" instance=ExtResource("carta_papel")]
+position = Vector2(440, 236)
+texto_acao = "Ler a folha de caderno"
+documento = ExtResource("carta_documento")
+textura = ExtResource("carta_textura")
 
 [editable path="Ceu"]
