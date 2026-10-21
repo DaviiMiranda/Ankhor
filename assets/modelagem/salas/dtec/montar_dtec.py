@@ -57,11 +57,12 @@ OBJETOS = {
     "catraca": ((10, 28), (14, 4)),
     "maquina": ((88, 154), (150, 22)),
     "caixas_lab": ((22, 28), (40, 5)),
+    "mesa_anos80": ((30, 38), (56, 5)),
 }
 PAREDES = ["dtec_lisa", "dtec_rachada", "dtec_luminaria", "dtec_porta", "dtec_porta_trancada",
            "dtec_porta_lacrada", "dtec_porta_central", "dtec_vidro", "dtec_quadro", "dtec_painel",
            "dtec_armario", "dtec_cartaz", "dtec_terminal", "dtec_extintor", "dtec_canos",
-           "dtec_tela_grande", "dtec_nicho", "pilar_dtec", "dtec_lateral"]
+           "dtec_tela_grande", "dtec_nicho", "dtec_farol_riscado", "pilar_dtec", "dtec_lateral"]
 CHAOS = ["chao_dtec", "chao_dtec_cabos", "chao_dtec_elevado", "chao_dtec_faixa"]
 CHAOS_FUNDO = ["chao_dtec_fundo", "chao_dtec_elevado_fundo", "chao_dtec_cabos_fundo", "chao_dtec_faixa_fundo"]
 
@@ -328,6 +329,26 @@ def montar_sala(sala):
         x, y = sala["telao_rede"]
         m.instancia("TelaoRede", "Objetos", "res://cenas/sistemas/telao_rede.tscn", [f"position = Vector2({x}, {y})"])
 
+    # A arena do Carlos: os consoles, o Carlos com a lupa e o núcleo.
+    arena = sala.get("arena")
+    if arena:
+        for k, (x, y, dificuldade) in enumerate(arena["consoles"]):
+            m.instancia(f"Console{k + 1}", "Objetos", "res://cenas/sistemas/no_hackeavel.tscn", [
+                f"position = Vector2({x}, {y})", f'id = "console_{k + 1}"', f'marca_ao_destrancar = "dtec_console_{k + 1}"',
+                f"dificuldade_hack = {dificuldade}", 'texto_acao = "Console"',
+                'aviso_trancada = "Console da Âncora. O notebook invade"', 'aviso_destrancada = "Console invadido"'])
+        x, y = arena["carlos"]
+        consoles = ", ".join(f'NodePath("../Console{k + 1}")' for k in range(len(arena["consoles"])))
+        entradas = ", ".join(f'NodePath("../../Entrada{k + 1}")' for k in range(len(arena["entradas"])))
+        m.instancia("CarlosChefe", "Objetos", "res://cenas/personagens/carlos_chefe.tscn", [
+            f"position = Vector2({x}, {y})", f"consoles = Array[NodePath]([{consoles}])",
+            f"entradas_dos_robos = Array[NodePath]([{entradas}])",
+            f'porta_que_trava = NodePath("../../Porta_{arena["porta_que_trava"]}")',
+            'onda = NodePath("../../Chao/OndaAncora")', 'robos_da_sala = NodePath("../../RobosDaSala")'])
+        x, y = arena["nucleo"]
+        m.instancia("NucleoAncora", "Objetos", "res://cenas/sistemas/nucleo_ancora.tscn", [
+            f"position = Vector2({x}, {y})", 'chefe = NodePath("../CarlosChefe")'])
+
     # Itens no chão.
     for (item, x, y) in sala.get("itens", []):
         if item == "pilha":
@@ -374,6 +395,11 @@ def montar_sala(sala):
                       f'porta_destino = "{porta["porta_destino"]}"', f'som_abrir = ExtResource("{som_porta}")']
         m.instancia(f"Porta_{porta['id']}", ".", "res://cenas/sistemas/porta.tscn", props)
 
+    if arena:
+        x, y = arena["onda"]
+        m.instancia("OndaAncora", "Chao", "res://cenas/sistemas/onda_ancora.tscn", [f"position = Vector2({x}, {y})"])
+        for k, (x, y) in enumerate(arena["entradas"]):
+            m.no(f'[node name="Entrada{k + 1}" type="Marker2D" parent="."]', [f"position = Vector2({x}, {y})"])
     for (_, nome_robo, _, _, pontos) in sala.get("robos", []):
         m.no(f'[node name="Rota{nome_robo}" type="Node2D" parent="."]', [])
         for k, (x, y) in enumerate(pontos):
@@ -426,6 +452,10 @@ def montar_sala(sala):
 # telao_rede: (x, y): onde o Gabriel olha o grafo da rede na parede.
 # vigias:  {relé: [pontos]}: a rota que o primeiro robô da sala faz quando
 #          esse relé está no caminho ativo da energia (VigiaDaRede).
+# arena:   o confronto com o Carlos no Lab Central (docs/fases/dtec.md,
+#          seção 3.1, parte 3): carlos (x, y), consoles [(x, y, dificuldade)],
+#          onda (x, y, no pé da máquina), nucleo (x, y), entradas [(x, y)]
+#          por onde os robôs chamados entram, e a porta que trava.
 
 ESCURO = (0.33, 0.34, 0.41, 1)
 AVISO_LACRADA = "Lacrada. O leitor nem acende."
@@ -472,7 +502,8 @@ SALAS = [
              "destino": "sala_servidores", "porta_destino": "servidores_corredor"},
             {"peca": 24, "tipo": "porta", "id": "norte_servico", "placa": "SERVIÇO",
              "destino": "corredor_servico", "porta_destino": "servico_norte"},
-            {"peca": 28, "tipo": "lacrada", "id": "norte_diretoria", "placa": "DIRETORIA", "aviso": AVISO_LACRADA},
+            {"peca": 28, "tipo": "porta", "id": "norte_diretoria", "placa": "DIRETORIA",
+             "destino": "diretoria", "porta_destino": "diretoria_corredor"},
         ],
         "chao_trocas": {9: "chao_dtec_faixa", 10: "chao_dtec_cabos"},
         "objetos": [("planta", 70, 140), ("caixas_lab", 700, 150), ("cilindros", 990, 130), ("cadeira_escritorio", 1420, 160, True),
@@ -500,11 +531,15 @@ SALAS = [
         "fundo_trocas": {(3, 3): "chao_dtec_faixa_fundo", (4, 3): "chao_dtec_faixa_fundo",
                          (2, 2): "chao_dtec_cabos_fundo", (5, 2): "chao_dtec_cabos_fundo",
                          (2, 4): "chao_dtec_cabos_fundo", (5, 4): "chao_dtec_cabos_fundo"},
-        "objetos": [("maquina", 480, 380), ("console", 210, 440), ("console", 750, 440, True),
+        "objetos": [("maquina", 480, 380), ("console", 480, 150),
                     ("cadeira_escritorio", 200, 470), ("cadeira_escritorio", 760, 470, True),
                     ("rack_dtec", 60, 250), ("rack_dtec", 90, 250), ("rack_dtec", 870, 250, True), ("rack_dtec", 900, 250, True),
                     ("cilindros", 300, 150), ("cilindros", 660, 150, True), ("caixas_lab", 120, 520), ("caixas_lab", 860, 530, True)],
         "itens": [("clarao", 480, 500)],
+        "arena": {"carlos": (480, 186), "consoles": [(210, 440, 1), (750, 440, 2)], "onda": (480, 380),
+                  "nucleo": (480, 404), "entradas": [(121, 140), (841, 140)], "porta_que_trava": "central_norte"},
+        "robos": [("rastreador", "Rastreador", 820, 500, [(140, 500), (480, 530), (820, 500), (480, 530)])],
+        "checkpoints": [("dtec_arena", 130, 192)],
         "luzes": [("luz_maquina", 480, 300), ("luz_maquina", 480, 290, "scale = Vector2(3, 3)", "energy = 1.4", "periodo = 1.2"),
                   ("luz_fria", 160, 220, "energy = 0.4"), ("luz_fria", 800, 220, "energy = 0.4")],
         "ronco": [(480, 300)],
@@ -576,6 +611,21 @@ SALAS = [
         "luzes": [("luz_emergencia", 700, 30, "energy = 0.5")],
         "escuridao": (0.24, 0.25, 0.31, 1),
         "energia_tubo": 0.6,
+    },
+    {
+        # A diretoria: as relíquias dos anos 80 da Biblioteca e a marca dos
+        # Faroleiros com os raios riscados em vermelho (Enredo, seção 2.4).
+        # Sem texto: os registros do Carlos estão pendentes no Enredo.
+        "id": "diretoria", "largura": 480, "altura": 360,
+        "paredes": ["porta", "luminaria", "lisa", "farol_riscado", "armario", "rachada"],
+        "portas": [{"peca": 0, "tipo": "porta", "id": "diretoria_corredor", "placa": "CORREDOR",
+                    "destino": "corredor_norte", "porta_destino": "norte_diretoria"}],
+        "objetos": [("mesa_anos80", 250, 250), ("cadeira_escritorio", 250, 214), ("rack_dtec", 60, 230),
+                    ("caixas_lab", 420, 320, True), ("planta", 440, 160, True)],
+        "itens": [("pilha", 100, 320)],
+        "luzes": [("luz_fria", 240, 220, "energy = 0.55", "color = Color(0.35, 1, 0.45, 1)")],
+        "escuridao": (0.2, 0.21, 0.27, 1),
+        "energia_tubo": 0.5, "energia_chao": 0.3,
     },
     {
         "id": "lab_eletronica", "largura": 480, "altura": 560,

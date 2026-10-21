@@ -20,13 +20,20 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/rack_dtec.tscn" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/cilindros.tscn" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/caixas_lab.tscn" id="r20"]
-[ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r21"]
-[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r22"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r23"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_maquina.tscn" id="r24"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r25"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r26"]
-[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r27"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_rastreador.tscn" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/no_hackeavel.tscn" id="r23"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/carlos_chefe.tscn" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nucleo_ancora.tscn" id="r25"]
+[ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r26"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r27"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r28"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_maquina.tscn" id="r29"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r30"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r31"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/onda_ancora.tscn" id="r32"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r33"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r34"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.06, 0.12, 0.2, 1)
@@ -322,11 +329,7 @@ flip_h = true
 position = Vector2(480, 380)
 
 [node name="Console1" parent="Objetos" instance=ExtResource("r16")]
-position = Vector2(210, 440)
-
-[node name="Console2" parent="Objetos" instance=ExtResource("r16")]
-position = Vector2(750, 440)
-espelhado = true
+position = Vector2(480, 150)
 
 [node name="CadeiraEscritorio1" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(200, 470)
@@ -363,64 +366,102 @@ position = Vector2(120, 520)
 position = Vector2(860, 530)
 espelhado = true
 
-[node name="Clarao1" parent="Objetos" instance=ExtResource("r22")]
-position = Vector2(480, 500)
-item = ExtResource("r21")
+[node name="Checkpoint1" parent="Objetos" instance=ExtResource("r21")]
+position = Vector2(130, 192)
+id = "dtec_arena"
 
-[node name="Luz1" parent="Luzes" instance=ExtResource("r23")]
+[node name="Rastreador" parent="Objetos" instance=ExtResource("r22")]
+position = Vector2(820, 500)
+rota = NodePath("../../RotaRastreador")
+
+[node name="Console1" parent="Objetos" instance=ExtResource("r23")]
+position = Vector2(210, 440)
+id = "console_1"
+marca_ao_destrancar = "dtec_console_1"
+dificuldade_hack = 1
+texto_acao = "Console"
+aviso_trancada = "Console da Âncora. O notebook invade"
+aviso_destrancada = "Console invadido"
+
+[node name="Console2" parent="Objetos" instance=ExtResource("r23")]
+position = Vector2(750, 440)
+id = "console_2"
+marca_ao_destrancar = "dtec_console_2"
+dificuldade_hack = 2
+texto_acao = "Console"
+aviso_trancada = "Console da Âncora. O notebook invade"
+aviso_destrancada = "Console invadido"
+
+[node name="CarlosChefe" parent="Objetos" instance=ExtResource("r24")]
+position = Vector2(480, 186)
+consoles = Array[NodePath]([NodePath("../Console1"), NodePath("../Console2")])
+entradas_dos_robos = Array[NodePath]([NodePath("../../Entrada1"), NodePath("../../Entrada2")])
+porta_que_trava = NodePath("../../Porta_central_norte")
+onda = NodePath("../../Chao/OndaAncora")
+robos_da_sala = NodePath("../../RobosDaSala")
+
+[node name="NucleoAncora" parent="Objetos" instance=ExtResource("r25")]
+position = Vector2(480, 404)
+chefe = NodePath("../CarlosChefe")
+
+[node name="Clarao1" parent="Objetos" instance=ExtResource("r27")]
+position = Vector2(480, 500)
+item = ExtResource("r26")
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r28")]
 position = Vector2(280, 34)
 energy = 0.5
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r23")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r28")]
 position = Vector2(680, 34)
 energy = 0.5
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r23")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r28")]
 position = Vector2(120, 250)
 energy = 0.35
 
-[node name="Luz4" parent="Luzes" instance=ExtResource("r23")]
+[node name="Luz4" parent="Luzes" instance=ExtResource("r28")]
 position = Vector2(120, 450)
 energy = 0.35
 
-[node name="Luz5" parent="Luzes" instance=ExtResource("r23")]
+[node name="Luz5" parent="Luzes" instance=ExtResource("r28")]
 position = Vector2(360, 250)
 energy = 0.35
 
-[node name="Luz6" parent="Luzes" instance=ExtResource("r23")]
+[node name="Luz6" parent="Luzes" instance=ExtResource("r28")]
 position = Vector2(360, 450)
 energy = 0.35
 
-[node name="Luz7" parent="Luzes" instance=ExtResource("r23")]
+[node name="Luz7" parent="Luzes" instance=ExtResource("r28")]
 position = Vector2(600, 250)
 energy = 0.35
 
-[node name="Luz8" parent="Luzes" instance=ExtResource("r23")]
+[node name="Luz8" parent="Luzes" instance=ExtResource("r28")]
 position = Vector2(600, 450)
 energy = 0.35
 
-[node name="Luz9" parent="Luzes" instance=ExtResource("r23")]
+[node name="Luz9" parent="Luzes" instance=ExtResource("r28")]
 position = Vector2(840, 250)
 energy = 0.35
 
-[node name="Luz10" parent="Luzes" instance=ExtResource("r23")]
+[node name="Luz10" parent="Luzes" instance=ExtResource("r28")]
 position = Vector2(840, 450)
 energy = 0.35
 
-[node name="Luz11" parent="Luzes" instance=ExtResource("r24")]
+[node name="Luz11" parent="Luzes" instance=ExtResource("r29")]
 position = Vector2(480, 300)
 
-[node name="Luz12" parent="Luzes" instance=ExtResource("r24")]
+[node name="Luz12" parent="Luzes" instance=ExtResource("r29")]
 position = Vector2(480, 290)
 scale = Vector2(3, 3)
 energy = 1.4
 periodo = 1.2
 
-[node name="Luz13" parent="Luzes" instance=ExtResource("r25")]
+[node name="Luz13" parent="Luzes" instance=ExtResource("r30")]
 position = Vector2(160, 220)
 energy = 0.4
 
-[node name="Luz14" parent="Luzes" instance=ExtResource("r25")]
+[node name="Luz14" parent="Luzes" instance=ExtResource("r30")]
 position = Vector2(800, 220)
 energy = 0.4
 
@@ -430,29 +471,55 @@ color = Color(0.18, 0.19, 0.25, 1)
 [node name="Gabriel" parent="Objetos"]
 position = Vector2(160, 200)
 
-[node name="Porta_central_norte" parent="." instance=ExtResource("r26")]
+[node name="Porta_central_norte" parent="." instance=ExtResource("r31")]
 position = Vector2(121, 124)
 id = "central_norte"
 cena_destino = "res://cenas/salas/dtec/corredor_norte.tscn"
 porta_destino = "norte_central"
 som_abrir = ExtResource("r2")
 
-[node name="Porta_central_sul" parent="." instance=ExtResource("r26")]
+[node name="Porta_central_sul" parent="." instance=ExtResource("r31")]
 position = Vector2(841, 124)
 id = "central_sul"
 cena_destino = "res://cenas/salas/dtec/corredor_sul.tscn"
 porta_destino = "sul_central"
 som_abrir = ExtResource("r2")
 
+[node name="OndaAncora" parent="Chao" instance=ExtResource("r32")]
+position = Vector2(480, 380)
+
+[node name="Entrada1" type="Marker2D" parent="."]
+position = Vector2(121, 140)
+
+[node name="Entrada2" type="Marker2D" parent="."]
+position = Vector2(841, 140)
+
+[node name="RotaRastreador" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(140, 500)
+
+[node name="Ponto2" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(480, 530)
+
+[node name="Ponto3" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(820, 500)
+
+[node name="Ponto4" type="Marker2D" parent="RotaRastreador"]
+position = Vector2(480, 530)
+
+[node name="RobosDaSala" type="Node" parent="."]
+script = ExtResource("r33")
+
 [node name="Zumbido" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("r27")
+stream = ExtResource("r34")
 volume_db = -14.0
 pitch_scale = 1.15
 autoplay = true
 bus = &"Efeitos"
 
 [node name="Ronco1" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("r27")
+stream = ExtResource("r34")
 position = Vector2(480, 300)
 volume_db = 4.0
 pitch_scale = 0.5

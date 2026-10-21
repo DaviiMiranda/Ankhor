@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/personagens/carlos_chefe.gd" id="1_chefe"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/carlos.tscn" id="2_carlos"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="3_robo"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/sirene.wav" id="4_alarme"]
+
+[node name="CarlosChefe" type="Node2D"]
+script = ExtResource("1_chefe")
+cena_robo = ExtResource("3_robo")
+
+[node name="Carlos" parent="." instance=ExtResource("2_carlos")]
+
+[node name="SomAlarme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_alarme")
+volume_db = -4.0
+max_distance = 1200.0
+bus = &"Efeitos"
