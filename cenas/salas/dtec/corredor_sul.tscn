@@ -37,8 +37,9 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_maquina.tscn" id="r35"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r36"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r37"]
-[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r38"]
-[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r39"]
+[ext_resource type="Script" path="res://scripts/sistemas/vigia_da_rede.gd" id="r38"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r39"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r40"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.06, 0.12, 0.2, 1)
@@ -434,11 +435,43 @@ position = Vector2(2300, 148)
 [node name="Ponto4" type="Marker2D" parent="RotaRastreador"]
 position = Vector2(1600, 160)
 
-[node name="RobosDaSala" type="Node" parent="."]
+[node name="Vigia_robotica" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="Vigia_robotica"]
+position = Vector2(661, 150)
+
+[node name="Ponto2" type="Marker2D" parent="Vigia_robotica"]
+position = Vector2(841, 160)
+
+[node name="Ponto3" type="Marker2D" parent="Vigia_robotica"]
+position = Vector2(1021, 148)
+
+[node name="Ponto4" type="Marker2D" parent="Vigia_robotica"]
+position = Vector2(841, 160)
+
+[node name="Vigia_controle" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="Vigia_controle"]
+position = Vector2(1461, 150)
+
+[node name="Ponto2" type="Marker2D" parent="Vigia_controle"]
+position = Vector2(1641, 160)
+
+[node name="Ponto3" type="Marker2D" parent="Vigia_controle"]
+position = Vector2(1821, 148)
+
+[node name="Ponto4" type="Marker2D" parent="Vigia_controle"]
+position = Vector2(1641, 160)
+
+[node name="VigiaDaRede" type="Node" parent="."]
 script = ExtResource("r38")
+robo = NodePath("../Objetos/Rastreador")
+
+[node name="RobosDaSala" type="Node" parent="."]
+script = ExtResource("r39")
 
 [node name="Zumbido" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("r39")
+stream = ExtResource("r40")
 volume_db = -14.0
 pitch_scale = 1.15
 autoplay = true

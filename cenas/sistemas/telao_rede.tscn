@@ -1,0 +1,65 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/telao_rede.gd" id="1_telao"]
+
+[sub_resource type="RectangleShape2D" id="Alcance"]
+size = Vector2(150, 30)
+
+[node name="TelaoRede" type="Area2D"]
+process_mode = 3
+script = ExtResource("1_telao")
+texto_acao = "Ver a rede"
+altura_aviso = 70.0
+
+[node name="Alcance" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("Alcance")
+
+[node name="Tela" type="CanvasLayer" parent="."]
+layer = 9
+visible = false
+
+[node name="Fundo" type="ColorRect" parent="Tela"]
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+color = Color(0.02, 0.05, 0.08, 0.92)
+
+[node name="Moldura" type="ColorRect" parent="Tela"]
+offset_left = 24.0
+offset_top = 22.0
+offset_right = 616.0
+offset_bottom = 330.0
+mouse_filter = 2
+color = Color(0.05, 0.13, 0.17, 1)
+
+[node name="Titulo" type="Label" parent="Tela"]
+offset_left = 24.0
+offset_top = 28.0
+offset_right = 616.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.38, 0.89, 0.93, 1)
+text = "REDE DE ENERGIA DA ÂNCORA"
+horizontal_alignment = 1
+
+[node name="Quadro" type="Control" parent="Tela"]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 590.0
+offset_bottom = 300.0
+mouse_filter = 2
+
+[node name="Rodape" type="Label" parent="Tela"]
+offset_left = 24.0
+offset_top = 306.0
+offset_right = 616.0
+offset_bottom = 320.0
+horizontal_alignment = 1
+
+[node name="Dica" type="Label" parent="Tela"]
+offset_top = 336.0
+offset_right = 640.0
+offset_bottom = 350.0
+theme_override_colors/font_color = Color(0.95, 0.88, 0.7, 1)
+text = "E ou Esc: sair"
+horizontal_alignment = 1

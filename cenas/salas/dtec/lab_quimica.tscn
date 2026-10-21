@@ -15,10 +15,11 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/bancada_lab.tscn" id="r13"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/cilindros.tscn" id="r14"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/cadeira_escritorio.tscn" id="r15"]
-[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r16"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r17"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r18"]
-[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/rele_rede.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r19"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r20"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.06, 0.12, 0.2, 1)
@@ -202,25 +203,29 @@ position = Vector2(40, 400)
 position = Vector2(220, 305)
 espelhado = true
 
-[node name="Pilha1" parent="Objetos" instance=ExtResource("r16")]
+[node name="ReleQuimica" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(320, 445)
+rele = "quimica"
+
+[node name="Pilha1" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(330, 330)
 
-[node name="Luz1" parent="Luzes" instance=ExtResource("r17")]
+[node name="Luz1" parent="Luzes" instance=ExtResource("r18")]
 position = Vector2(200, 34)
 energy = 0.85
 
-[node name="Luz2" parent="Luzes" instance=ExtResource("r17")]
+[node name="Luz2" parent="Luzes" instance=ExtResource("r18")]
 position = Vector2(100, 250)
 energy = 0.9
 
-[node name="Luz3" parent="Luzes" instance=ExtResource("r17")]
+[node name="Luz3" parent="Luzes" instance=ExtResource("r18")]
 position = Vector2(300, 250)
 energy = 0.9
 
 [node name="Escuridao" parent="."]
 color = Color(0.33, 0.34, 0.41, 1)
 
-[node name="Porta_quimica_corredor" parent="." instance=ExtResource("r18")]
+[node name="Porta_quimica_corredor" parent="." instance=ExtResource("r19")]
 position = Vector2(41, 124)
 id = "quimica_corredor"
 cena_destino = "res://cenas/salas/dtec/corredor_sul.tscn"
@@ -228,7 +233,7 @@ porta_destino = "sul_quimica"
 som_abrir = ExtResource("r2")
 
 [node name="Zumbido" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("r19")
+stream = ExtResource("r20")
 volume_db = -14.0
 pitch_scale = 1.15
 autoplay = true

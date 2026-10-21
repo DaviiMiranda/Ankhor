@@ -320,6 +320,14 @@ def montar_sala(sala):
         m.instancia(nome_robo, "Objetos", f"res://cenas/personagens/robo_{tipo_robo}.tscn",
                     [f"position = Vector2({x}, {y})", f'rota = NodePath("../../Rota{nome_robo}")'])
 
+    # A rede de energia da Âncora: os relés e o telão do grafo.
+    for (rele, x, y) in sala.get("reles", []):
+        m.instancia(f"Rele{pascal(rele)}", "Objetos", "res://cenas/sistemas/rele_rede.tscn",
+                    [f"position = Vector2({x}, {y})", f'rele = "{rele}"'])
+    if "telao_rede" in sala:
+        x, y = sala["telao_rede"]
+        m.instancia("TelaoRede", "Objetos", "res://cenas/sistemas/telao_rede.tscn", [f"position = Vector2({x}, {y})"])
+
     # Itens no chão.
     for (item, x, y) in sala.get("itens", []):
         if item == "pilha":
@@ -370,6 +378,14 @@ def montar_sala(sala):
         m.no(f'[node name="Rota{nome_robo}" type="Node2D" parent="."]', [])
         for k, (x, y) in enumerate(pontos):
             m.no(f'[node name="Ponto{k + 1}" type="Marker2D" parent="Rota{nome_robo}"]', [f"position = Vector2({x}, {y})"])
+    for rele, pontos in sala.get("vigias", {}).items():
+        m.no(f'[node name="Vigia_{rele}" type="Node2D" parent="."]', [])
+        for k, (x, y) in enumerate(pontos):
+            m.no(f'[node name="Ponto{k + 1}" type="Marker2D" parent="Vigia_{rele}"]', [f"position = Vector2({x}, {y})"])
+    if sala.get("vigias"):
+        script_vigia = m.recurso("Script", "res://scripts/sistemas/vigia_da_rede.gd")
+        m.no('[node name="VigiaDaRede" type="Node" parent="."]', [
+            f'script = ExtResource("{script_vigia}")', f'robo = NodePath("../Objetos/{sala["robos"][0][1]}")'])
     if sala.get("robos"):
         script_robos = m.recurso("Script", "res://scripts/salas/robos_da_sala.gd")
         m.no('[node name="RobosDaSala" type="Node" parent="."]', [f'script = ExtResource("{script_robos}")'])
@@ -406,6 +422,10 @@ def montar_sala(sala):
 # luzes:   (cena em cenas/cenario/luzes, x, y, propriedades extras...).
 # robos:   (sentinela ou rastreador, nome, x, y, [pontos da rota]).
 # checkpoints: (id, x, y).
+# reles:   (relé da rede da Âncora, x, y): o terminal que o notebook corta.
+# telao_rede: (x, y): onde o Gabriel olha o grafo da rede na parede.
+# vigias:  {relé: [pontos]}: a rota que o primeiro robô da sala faz quando
+#          esse relé está no caminho ativo da energia (VigiaDaRede).
 
 ESCURO = (0.33, 0.34, 0.41, 1)
 AVISO_LACRADA = "Lacrada. O leitor nem acende."
@@ -462,6 +482,8 @@ SALAS = [
                   ("luz_emergencia", 1960, 30, "energy = 0.5")],
         "robos": [("sentinela", "Sentinela", 1700, 150,
                    [(560, 150), (1240, 160), (2240, 148), (1240, 160)])],
+        "vigias": {"eletronica": [(341, 150), (521, 160), (701, 148), (521, 160)],
+                   "servidores": [(1461, 150), (1641, 160), (1821, 148), (1641, 160)]},
         "escuridao": ESCURO,
     },
     {
@@ -520,6 +542,8 @@ SALAS = [
                   ("luz_emergencia", 200, 30, "energy = 0.6")],
         "robos": [("rastreador", "Rastreador", 1600, 152,
                    [(900, 152), (1600, 160), (2300, 148), (1600, 160)])],
+        "vigias": {"robotica": [(661, 150), (841, 160), (1021, 148), (841, 160)],
+                   "controle": [(1461, 150), (1641, 160), (1821, 148), (1641, 160)]},
         "escuridao": ESCURO,
     },
     {
@@ -562,6 +586,7 @@ SALAS = [
                     ("cadeira_escritorio", 270, 345, True), ("bancada_eletronica", 250, 430), ("cadeira_escritorio", 220, 455),
                     ("cilindros", 440, 160, True), ("caixas_lab", 70, 380), ("caixas_lab", 420, 520, True), ("planta", 40, 520)],
         "itens": [("pilha", 400, 260), ("clarao", 90, 470)],
+        "reles": [("eletronica", 400, 380)],
         "escuridao": ESCURO,
     },
     {
@@ -573,6 +598,7 @@ SALAS = [
                    + [(n, x, y + 24, (x // 10) % 2 == 0) for y in (210, 320, 430) for (n, x) in (("cadeira_escritorio", 150), ("cadeira_escritorio", 290), ("cadeira_escritorio", 430))]
                    + [("planta", 520, 150, True), ("rack_dtec", 40, 260), ("caixas_lab", 500, 520)],
         "itens": [("notebook", 290, 360), ("pilha", 60, 480)],
+        "reles": [("informatica", 300, 525)],
         "escuridao": ESCURO,
     },
     {
@@ -583,6 +609,7 @@ SALAS = [
         "chao": "chao_dtec_elevado", "fundo": "chao_dtec_elevado_fundo",
         "objetos": [("rack_dtec", x, y) for y in (210, 320, 430) for x in (150, 176, 202, 280, 306, 332, 358)],
         "itens": [("pilha", 240, 260), ("pilha", 420, 380), ("clarao", 100, 440)],
+        "reles": [("servidores", 80, 330)],
         "luzes": [("luz_fria", 240, 260, "energy = 0.35", "color = Color(0.4, 1, 0.6, 1)"),
                   ("luz_fria", 240, 380, "energy = 0.35", "color = Color(0.4, 1, 0.6, 1)")],
         "escuridao": (0.22, 0.24, 0.29, 1),
@@ -597,6 +624,7 @@ SALAS = [
                     ("bancada_lab", 200, 280), ("bancada_lab", 200, 390), ("cilindros", 40, 220),
                     ("armario_quimico", 40, 400), ("cadeira_escritorio", 220, 305, True)],
         "itens": [("pilha", 330, 330)],
+        "reles": [("quimica", 320, 445)],
         "escuridao": ESCURO,
     },
     {
@@ -609,6 +637,7 @@ SALAS = [
                     ("robo_desmontado", 280, 450, True), ("braco_robotico", 470, 420, True), ("bancada_eletronica", 110, 400),
                     ("caixas_lab", 500, 160), ("cilindros", 40, 520), ("caixas_lab", 520, 520, True)],
         "itens": [("clarao", 200, 300), ("clarao", 420, 480), ("pilha", 60, 260)],
+        "reles": [("robotica", 400, 335)],
         "luzes": [("luz_emergencia", 280, 30, "energy = 0.6")],
         "escuridao": ESCURO,
     },
@@ -621,6 +650,8 @@ SALAS = [
                     ("cadeira_escritorio", 160, 245), ("cadeira_escritorio", 300, 245, True), ("cadeira_escritorio", 440, 245),
                     ("mesa_computador", 200, 360), ("mesa_computador", 380, 360), ("planta", 520, 440, True), ("rack_dtec", 40, 300)],
         "itens": [("pilha", 300, 420)],
+        "reles": [("controle", 470, 335)],
+        "telao_rede": (160, 128),
         "luzes": [("luz_fria", 160, 60, "energy = 0.8", "color = Color(0.4, 0.95, 1, 1)"),
                   ("luz_fria", 400, 70, "energy = 0.6", "color = Color(0.4, 0.95, 1, 1)"),
                   ("luz_fria", 300, 230, "energy = 0.6", "color = Color(0.4, 0.95, 1, 1)")],
