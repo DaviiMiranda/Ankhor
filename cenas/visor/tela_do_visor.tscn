@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/visor/tela_do_visor.gd" id="1_tela"]
+[ext_resource type="PackedScene" path="res://cenas/visor/menu_visor.tscn" id="2_menu"]
+
+[node name="TelaDoVisor" type="Node3D"]
+script = ExtResource("1_tela")
+texto_acao = "Usar a tela"
+dica_focado = "W/S: escolher   E: confirmar   Esc: afastar"
+ocupacao = 0.8
+
+[node name="Imagem" type="SubViewport" parent="."]
+size = Vector2i(192, 144)
+render_target_update_mode = 4
+
+[node name="MenuVisor" parent="Imagem" instance=ExtResource("2_menu")]

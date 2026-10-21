@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/visor/mural_do_visor.gd" id="1_mural"]
+
+[node name="MuralDoVisor" type="Node3D"]
+script = ExtResource("1_mural")
+texto_acao = "Olhar o mural"
+dica_focado = "WASD: escolher   E: ler   Esc: afastar"
+tamanho = Vector2(2.05, 1.05)
+alcance = 1.9

@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/maquina_de_salvar_luz.png" id="4_luz_camada"]
 [ext_resource type="Texture2D" path="res://assets/sprites/menu/menu_oculos_zane.png" id="5_oculos"]
 [ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="6_luz"]
-[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/salvar_jogo.wav" id="7_som"]
 
 [sub_resource type="CanvasItemMaterial" id="SemLuz"]
 light_mode = 1
@@ -53,11 +52,6 @@ texture_scale = 1.6
 script = ExtResource("2_pulsante")
 periodo = 5.0
 variacao = 0.15
-
-[node name="Som" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_som")
-volume_db = -4.0
-bus = &"Efeitos"
 
 [node name="Bloqueio" type="StaticBody2D" parent="."]
 
