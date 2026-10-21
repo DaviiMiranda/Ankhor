@@ -16,6 +16,8 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../historia/p
 | `pergaminho` | Baltazar (1750). Tem o esboço do robô no canto | marrom |
 | `caderno_clarice` | Clarice (1990): folha de fichário, pautas azuis, estrela | azul de caneta |
 | `caderno_gabriel` | O caderno do Gabriel | grafite |
+| `carta` | Cartas de desconhecidos de 3026: papel liso e cru, dobrado em três | azul-escuro |
+| `carta_faroleiro` | Cartas dos Faroleiros: o mesmo papel, com o farol âmbar carimbado no canto | marrom-escuro |
 
 - Ao fechar, a **anotação** do documento entra no caderno (uma vez só) e o HUD avisa: *"Nova anotação: Baltazar, 1750   [N] ver"*.
 

@@ -121,6 +121,9 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 | **Cardápio do dia do Self Nebulosa** | `dados/documentos/cardapio_self_nebulosa.tres` | `loja_2`, em cima do bufê, perto dos cacos (as cubas) |
 | **Checklist de abertura do Churrasco Solar** | `dados/documentos/checklist_churrasco_solar.tres` | `loja_4`, perto do balcão (a ordem do quadro do bar) |
 | **Etiqueta da trava do plotter** | `dados/documentos/etiqueta_trava_plotter.tres` | `grafica`, ao lado do plotter |
+| **Carta da Neide, Faroleira** (quem são os Faroleiros e as marcas deles) | `dados/documentos/carta_faroleiro_neide.tres` | `passarela_acesso`, entre o rádio e o vaso |
+| **Carta para a Lia** (alguém que ficou escreve para quem foi embora) | `dados/documentos/carta_para_lia.tres` | `praca_central`, embaixo da mesa de baixo à esquerda (470, 482) |
+| **Carta do Tião, Faroleiro** (o campus em volta, as máquinas que repetem o caminho) | `dados/documentos/carta_faroleiro_tiao.tres` | `segundo_andar`, no canto esquerdo do corredor, fora da ronda da Sentinela |
 | **Zane no rádio (chegada)** | `dados/transmissoes/zane_convivencia_01.tres` | `passarela_acesso` |
 | **Zane no rádio (luzes acesas)** | `dados/transmissoes/zane_convivencia_02.tres` | `praca_central` (requer `convivencia_energia`) |
 
