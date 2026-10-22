@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "carta_para_lia"
+titulo = "Carta sem envelope"
+autor = "Carta para a Lia"
+papel = "carta"
+paginas = PackedStringArray("Lia,
+
+Hoje faz um ano que vocês subiram. Ainda olho pro céu de noite procurando vocês, mesmo sabendo que daqui não dá pra ver nada.", "Você dizia que lá em cima o corpo de vocês aguenta o que o nosso não aguenta. Eu acredito. Vi o seu braço novo pegar fácil. O meu implante nunca pegou.", "Não estou com raiva. Alguém tinha que ficar pra cuidar da casa. Só que a casa ficou grande demais.
+
+Não sei pra onde mandar esta carta. Vou deixar aqui, na nossa mesa.")
+anotacao = "Alguém que ficou escrevendo para a Lia, que foi embora \"lá pra cima\" com os outros.
+
+Quem foi aguentava implante. Quem ficou, não.
+
+Ninguém assinou."

@@ -205,6 +205,9 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 | **Como o robô de cima anda** | Topo da escada | Clarice, pelo rádio | `dados/transmissoes/clarice_02.tres` |
 | **Bilhete do quadro de avisos** ("Conferir a contagem - 101 · 201 · 205") | 203 | Em aberto | na cena `sala_203` |
 | **Aviso de ronda nova** | Porta da 206, depois do alicate | Clarice, pelo rádio (com o que o Henrique vê) | `dados/transmissoes/clarice_04.tres` |
+| **Lição da Tainá** (o mundo em cinco perguntas) | 101, no canto direito, entre as fileiras | Uma criança, corrigida pela professora | `dados/documentos/licao_taina.tres` |
+| **Carta de mãe** (para o filho que virou Faroleiro) | 106, perto da árvore | Uma mãe | `dados/documentos/carta_mae_faroleiro.tres` |
+| **Carta para o novato** (o juramento dos três raios) | 206, entre a cadeira e as estantes | Joaquim, Faroleiro | `dados/documentos/carta_faroleiro_joaquim.tres` |
 | **Despedida** | Porta corta-fogo, ao cortar a corrente | Clarice, pelo rádio | `dados/transmissoes/clarice_03.tres` |
 
 As falas são definitivas e seguem a ficha da Clarice (gírias dos anos 90, deboche, explica tudo como lógica, não pede ajuda; sem as falas de loop da versão antiga).

@@ -16,6 +16,15 @@ Formato:
 
 ---
 
+## 2026-10-21 — Cartas dos Faroleiros e de desconhecidos no Centro de Convivência e no Bloco de salas
+**Decisão:** entram seis documentos opcionais que contam um pouco do mundo de 3026, só com o que a História Completa já diz (seções 2.1 a 2.4): quem foi embora (os *Homo sideralis*, que aguentam implantes e vivem "lá em cima"), quem ficou (os *sapiens*, os Faroleiros), o juramento dos três raios (ficar, cuidar, esperar), as marcas do farol (inteiro = seguro, sem raios = perigo), o campus sem cidade em volta e as máquinas que não pensam e repetem o caminho.
+- **Centro de Convivência:** a carta da **Neide**, Faroleira (passarela), a carta sem assinatura para a **Lia** (praça) e a carta do **Tião**, Faroleiro, para o Zé (segundo andar).
+- **Bloco de salas:** a **lição da Tainá**, uma criança corrigida pela tia Socorro (101), a **carta de uma mãe** para o filho que virou Faroleiro (106) e a carta do **Joaquim**, Faroleiro, para um novato (206).
+- **Papéis novos:** `carta` (papel cru, dobrado em três) e `carta_faroleiro` (o mesmo, com o farol âmbar carimbado no canto). No chão, `papel_carta` e `papel_carta_faroleiro` (este com um tracinho âmbar).
+- **Não entrou:** onde os Faroleiros estão hoje, se sabem do Carlos e da Âncora, por que o Carlos saiu, há quantos anos os *Homo sideralis* partiram e para onde, o farol riscado em vermelho e a sala 205 (pendências 10.1, 10.2 e 10.4). As cartas não têm data.
+**Por quê:** pedido do Davi: cartas de Faroleiros e de desconhecidos que expliquem um pouco do mundo ao redor.
+**Afeta:** `dados/documentos/` (seis novos), `scripts/itens/documento.gd`, `scripts/interface/tela_documento.gd`, `scripts/visor/mesa_do_visor.gd`, `assets/modelagem/interface/gerar_interface.py`, `assets/modelagem/cenario/gerar_papeis.py`, `assets/modelagem/salas/centro_de_convivencia/` (e as cenas `passarela_acesso`, `praca_central`, `segundo_andar`), as cenas `sala_101`, `sala_106` e `sala_206` do Bloco de salas, `docs/fases/`, `docs/mecanicas/registros_e_caderno.md` e `docs/historia/template_documento.md`. **A História Completa não foi mexida:** os nomes novos (Neide, Tião, Zé, Joaquim, Lia, Tainá, tia Socorro) são gente comum, sem peso na história, e as cartas são uma forma de os Faroleiros aparecerem no jogo (pendência 10.1); se o Davi quiser, isso entra no Enredo.
+
 ## 2026-10-21 — Bunker ampliado: robôs, quadro de religação, salas antigas, marcas dos Faroleiros e o encontro do grupo
 **Decisão:**
 - **História (decidida pelo Davi):**
@@ -31,6 +40,7 @@ Formato:
   - A comporta do núcleo só abre depois do encontro.
 **Por quê:** pedido do Davi: aumentar o escopo do Bunker, a fase mais vazia (sem robôs, sem checkpoint, sem desafio), com duas salas antigas, o encontro de todos no fim e as pichações resolvidas.
 **Afeta:** a História Completa (seção 6, Ato 3 e as pendências 10.4) e as fichas da Clarice e do Zane; `docs/fases/bunker.md`; `docs/computacao/arvore_geradora_minima.md` (novo) e `README.md`; `docs/mecanicas/furtividade_e_esconderijos.md`; `scripts/sistemas/painel_religacao.gd` e `gatilho_dialogo.gd` (novos); `cenas/sistemas/painel_religacao.tscn` e `gatilho_dialogo.tscn` (novos); `dados/dialogos/bunker_encontro.json` e `dados/transmissoes/zane_bunker_01.tres` (novos, rascunho); `assets/modelagem/cenario/gerar_bunker.py` (`bunker_nicho`), `gerar_salas_antigas.py` e `gerar_marcas_faroleiros.py` (novos); `assets/modelagem/salas/bunker/montar_salas_bunker.py` (novo); as salas `entrada`, `corredor_a`, `corredor_b`, `gerador` e `central_dados`, e as novas `arsenal`, `sala_antiga_xix` e `sala_antiga_80`. O `História_Completa.docx` recebeu as mesmas mudanças (editado no lugar, com a mesma formatação, e conferido contra o `.md`).
+
 
 ## 2026-10-21 — Laboratório, passos 3 e 4: a arena do Carlos e a diretoria
 **Decisão:** entram no jogo os dois últimos passos do level design do Laboratório (`docs/fases/dtec.md`, seção 3.1), **só com o que a História Completa já diz**. O que depende das pendências do Enredo ficou de fora.

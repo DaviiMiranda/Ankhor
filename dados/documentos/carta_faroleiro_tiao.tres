@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "carta_faroleiro_tiao"
+titulo = "Carta dobrada em quatro"
+autor = "Tião, Faroleiro"
+papel = "carta_faroleiro"
+paginas = PackedStringArray("Zé,
+
+Passei pelo campus de novo, como você pediu. Está pior. O mato engoliu o estacionamento, e a areia já sobe pelos corredores. Em volta não tem mais cidade, só verde até onde a vista alcança.", "As máquinas continuam lá dentro. Não pensam, não querem nada: fazem sempre o mesmo caminho, que nem formiga. Quem decora a volta delas passa.
+
+Mas se uma te vê, ela sai do caminho e vem atrás.", "Não é lugar pra gente montar pouso. Pinta o farol apagado na entrada, pra nenhum dos nossos dormir aqui.
+
+Cuida da horta.
+— Tião")
+anotacao = "Outro Faroleiro. Em volta do campus não tem mais cidade, só mato.
+
+As máquinas repetem o mesmo caminho. Se uma te vê, sai dele e vem atrás.
+
+Diz que não é lugar de dormir. Concordo."

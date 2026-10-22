@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "carta_mae_faroleiro"
+titulo = "Carta de mãe"
+autor = "A mãe de um Faroleiro"
+papel = "carta"
+paginas = PackedStringArray("Meu filho,
+
+Seu pai contou que você se juntou aos Faroleiros. Não vou brigar. Quem foi embora foi quem podia ir. A gente fica com o que é nosso, e o que é nosso é isto aqui.", "Só me prometa uma coisa: não durma em prédio grande. Os tetos estão caindo, e as máquinas da universidade ainda andam pelos corredores como se tivesse aula.
+
+Volta no tempo das chuvas. Eu guardo feijão.
+— Mãe")
+anotacao = "Pede ao filho para não dormir em prédio grande: os tetos estão caindo.
+
+As máquinas da universidade ainda andam pelos corredores \"como se tivesse aula\".
+
+Ela guarda feijão para ele."

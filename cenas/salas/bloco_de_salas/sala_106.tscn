@@ -26,6 +26,9 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/professor_caido.tscn" id="fut_professor_caido"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_oculos_vr_musgo.tscn" id="fut_estante_oculos_vr_musgo"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/oculos_no_chao.tscn" id="fut_oculos_no_chao"]
+[ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="carta_papel"]
+[ext_resource type="Resource" path="res://dados/documentos/carta_mae_faroleiro.tres" id="carta_documento"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_carta.png" id="carta_textura"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -348,5 +351,11 @@ position = Vector2(144, 256)
 
 [node name="OculosNoChao2" parent="Objetos" instance=ExtResource("fut_oculos_no_chao")]
 position = Vector2(228, 332)
+
+[node name="Carta" parent="Objetos" instance=ExtResource("carta_papel")]
+position = Vector2(300, 305)
+texto_acao = "Ler a carta"
+documento = ExtResource("carta_documento")
+textura = ExtResource("carta_textura")
 
 [editable path="Ceu"]
