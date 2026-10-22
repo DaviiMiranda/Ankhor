@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/folha_equacoes.png" id="t_folha_equacoes"]
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/calendario_2026.png" id="t_calendario_2026"]
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/flamula_unifor.png" id="t_flamula_unifor"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/poster_equipe.png" id="t_poster_equipe"]
 [ext_resource type="Script" path="res://scripts/visor/texturas_do_quarto.gd" id="s_texturas"]
 [ext_resource type="PackedScene" path="res://cenas/visor/estrelas_cadentes.tscn" id="c_cadentes"]
 
@@ -187,6 +188,14 @@ shaded = true
 alpha_cut = 1
 texture_filter = 2
 texture = ExtResource("t_flamula_unifor")
+
+[node name="PosterEquipe" type="Sprite3D" parent="Imagem/Mundo"]
+position = Vector3(-1, 1.5, -2.485)
+pixel_size = 0.0065
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("t_poster_equipe")
 
 [node name="LuzDaJanela" type="OmniLight3D" parent="Imagem/Mundo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 1.6, -0.2)
