@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/gatilho_dialogo.gd" id="1_gatilho"]
+
+[sub_resource type="CircleShape2D" id="Area"]
+radius = 60.0
+
+[node name="GatilhoDialogo" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_gatilho")
+
+[node name="Area" type="CollisionShape2D" parent="."]
+shape = SubResource("Area")

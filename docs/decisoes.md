@@ -25,6 +25,23 @@ Formato:
 **Por quê:** pedido do Davi: cartas de Faroleiros e de desconhecidos que expliquem um pouco do mundo ao redor.
 **Afeta:** `dados/documentos/` (seis novos), `scripts/itens/documento.gd`, `scripts/interface/tela_documento.gd`, `scripts/visor/mesa_do_visor.gd`, `assets/modelagem/interface/gerar_interface.py`, `assets/modelagem/cenario/gerar_papeis.py`, `assets/modelagem/salas/centro_de_convivencia/` (e as cenas `passarela_acesso`, `praca_central`, `segundo_andar`), as cenas `sala_101`, `sala_106` e `sala_206` do Bloco de salas, `docs/fases/`, `docs/mecanicas/registros_e_caderno.md` e `docs/historia/template_documento.md`. **A História Completa não foi mexida:** os nomes novos (Neide, Tião, Zé, Joaquim, Lia, Tainá, tia Socorro) são gente comum, sem peso na história, e as cartas são uma forma de os Faroleiros aparecerem no jogo (pendência 10.1); se o Davi quiser, isso entra no Enredo.
 
+## 2026-10-21 — Bunker ampliado: robôs, quadro de religação, salas antigas, marcas dos Faroleiros e o encontro do grupo
+**Decisão:**
+- **História (decidida pelo Davi):**
+  - **Duas salas antigas:** a sala de visitas de um casarão do fim do século XIX e a sala de estar de uma casa dos anos 80, no setor B (portas B-02 e B-07). Continuam sem explicação.
+  - **As pichações assinadas "C." saem e viram marcas dos Faroleiros:** o farol inteiro perto da sala segura e o farol apagado perto da comporta do núcleo, em âmbar. O texto "NÃO CONFIE NAS LUZES" saiu porque é o bordão da Clarice, que nunca morou no bunker. "ROTAS = GRAFO", sem assinatura, ficou.
+  - **O fim do Bunker é o encontro do grupo:** na sala de dados, Gabriel, o Henrique, o Zane, a Clarice e a Diana se encontram pela primeira vez numa sala só. O Zane quebra a senha do setor B quando a energia volta, e o encontro destrava a comporta do núcleo. A cena é **provisória**: as falas são rascunho (o Davi vai refinar as do Zane), e como a Clarice e a Diana chegam ao bunker fica em aberto. O Baltazar não está no encontro, porque onde e quando Gabriel o encontra continua pendente.
+- **Mecânica:**
+  - Uma Sentinela no Corredor A e um Rastreador no Corredor B.
+  - Nichos novos (`bunker_nicho`, o vão do posto de máscaras de gás): três no A e dois no B.
+  - Checkpoints na entrada e no setor B.
+  - **O quadro de religação** no gerador: levar energia aos sete pontos do bunker com os 23 m de cabo do carretel. A única resposta é a **árvore geradora mínima** (Kruskal).
+  - A energia libera o elevador (atalho da entrada ao Corredor B) e o arsenal (sala nova, com clarões), e faz o Zane chamar pelo rádio.
+  - A comporta do núcleo só abre depois do encontro.
+**Por quê:** pedido do Davi: aumentar o escopo do Bunker, a fase mais vazia (sem robôs, sem checkpoint, sem desafio), com duas salas antigas, o encontro de todos no fim e as pichações resolvidas.
+**Afeta:** a História Completa (seção 6, Ato 3 e as pendências 10.4) e as fichas da Clarice e do Zane; `docs/fases/bunker.md`; `docs/computacao/arvore_geradora_minima.md` (novo) e `README.md`; `docs/mecanicas/furtividade_e_esconderijos.md`; `scripts/sistemas/painel_religacao.gd` e `gatilho_dialogo.gd` (novos); `cenas/sistemas/painel_religacao.tscn` e `gatilho_dialogo.tscn` (novos); `dados/dialogos/bunker_encontro.json` e `dados/transmissoes/zane_bunker_01.tres` (novos, rascunho); `assets/modelagem/cenario/gerar_bunker.py` (`bunker_nicho`), `gerar_salas_antigas.py` e `gerar_marcas_faroleiros.py` (novos); `assets/modelagem/salas/bunker/montar_salas_bunker.py` (novo); as salas `entrada`, `corredor_a`, `corredor_b`, `gerador` e `central_dados`, e as novas `arsenal`, `sala_antiga_xix` e `sala_antiga_80`. O `História_Completa.docx` recebeu as mesmas mudanças (editado no lugar, com a mesma formatação, e conferido contra o `.md`).
+
+
 ## 2026-10-21 — Laboratório, passos 3 e 4: a arena do Carlos e a diretoria
 **Decisão:** entram no jogo os dois últimos passos do level design do Laboratório (`docs/fases/dtec.md`, seção 3.1), **só com o que a História Completa já diz**. O que depende das pendências do Enredo ficou de fora.
 - **A arena** (Lab Central): o Carlos fica no console do fundo, parado e calado. A lupa vermelha dele (a da ficha) varre a sala como um cone de visão; ser visto enche a suspeita e dispara o alarme, que chama robôs pelas portas. O Gabriel nunca encosta nele (o Enredo diz que o grupo o enfrenta sem lutar). Dois consoles hackeáveis mudam as fases: na B a onda da Âncora (no ritmo da animação, a cada 2,4 s) passa a revelar quem não está na sombra e a porta norte trava; na C o núcleo abre. A cápsula de clarão atordoa a lupa. Cada console invadido vira checkpoint.

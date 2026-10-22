@@ -27,6 +27,11 @@
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_blindada.wav" id="r25"]
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r26"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_bunker.tscn" id="m_musica"]
+[ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="n1"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/zane.tscn" id="n2"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/clarice_em_pe.tscn" id="n3"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/diana.tscn" id="n4"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_dialogo.tscn" id="n5"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -442,3 +447,30 @@ autoplay = true
 bus = &"Efeitos"
 
 [node name="MusicaBunker" parent="." instance=ExtResource("m_musica")]
+
+[node name="Encontro" type="Node2D" parent="Objetos"]
+y_sort_enabled = true
+script = ExtResource("n1")
+marca = "bunker_energia"
+piscadas_ao_acender = 0
+
+[node name="Zane" parent="Objetos/Encontro" instance=ExtResource("n2")]
+position = Vector2(470, 214)
+vista = "tres_quartos"
+olhando_para_esquerda = true
+
+[node name="Clarice" parent="Objetos/Encontro" instance=ExtResource("n3")]
+position = Vector2(380, 236)
+vista = "tres_quartos"
+
+[node name="Diana" parent="Objetos/Encontro" instance=ExtResource("n4")]
+position = Vector2(470, 262)
+vista = "tres_quartos"
+olhando_para_esquerda = true
+
+[node name="GatilhoEncontro" parent="Objetos" instance=ExtResource("n5")]
+position = Vector2(400, 220)
+dialogo = "res://dados/dialogos/bunker_encontro.json"
+marca_necessaria = "bunker_energia"
+marca_ao_terminar = "bunker_comporta_aberta"
+aviso_ao_terminar = "A comporta do núcleo, no fim do Corredor B, está destravada."

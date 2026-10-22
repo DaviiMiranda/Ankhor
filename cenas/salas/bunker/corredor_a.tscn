@@ -32,6 +32,12 @@
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r30"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_bunker.tscn" id="m_musica"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/sinal_sala_segura.tscn" id="ss_sinal"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/marca_farol_inteiro.png" id="n1"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="n2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_nicho.tscn" id="n3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_porta_fechada.tscn" id="n4"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="n5"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="n6"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -66,7 +72,7 @@ position = Vector2(480, 0)
 [node name="Parede08" parent="Paredes" instance=ExtResource("r4")]
 position = Vector2(560, 0)
 
-[node name="Parede09" parent="Paredes" instance=ExtResource("r5")]
+[node name="Parede09" parent="Paredes" instance=ExtResource("n3")]
 position = Vector2(640, 0)
 
 [node name="Parede10" parent="Paredes" instance=ExtResource("r3")]
@@ -84,7 +90,7 @@ position = Vector2(960, 0)
 [node name="Parede14" parent="Paredes" instance=ExtResource("r3")]
 position = Vector2(1040, 0)
 
-[node name="Parede15" parent="Paredes" instance=ExtResource("r2")]
+[node name="Parede15" parent="Paredes" instance=ExtResource("n3")]
 position = Vector2(1120, 0)
 
 [node name="Parede16" parent="Paredes" instance=ExtResource("r4")]
@@ -96,7 +102,7 @@ position = Vector2(1280, 0)
 [node name="Parede18" parent="Paredes" instance=ExtResource("r5")]
 position = Vector2(1360, 0)
 
-[node name="Parede19" parent="Paredes" instance=ExtResource("r2")]
+[node name="Parede19" parent="Paredes" instance=ExtResource("n3")]
 position = Vector2(1440, 0)
 
 [node name="Parede20" parent="Paredes" instance=ExtResource("r3")]
@@ -111,7 +117,7 @@ position = Vector2(1680, 0)
 [node name="Parede23" parent="Paredes" instance=ExtResource("r5")]
 position = Vector2(1760, 0)
 
-[node name="Parede24" parent="Paredes" instance=ExtResource("r11")]
+[node name="Parede24" parent="Paredes" instance=ExtResource("n4")]
 position = Vector2(1840, 0)
 
 [node name="Parede25" parent="Paredes" instance=ExtResource("r12")]
@@ -213,26 +219,6 @@ theme_override_colors/font_color = Color(0.86, 0.74, 0.34, 1)
 theme_override_styles/normal = SubResource("Placa")
 text = "SETOR B"
 horizontal_alignment = 1
-
-[node name="Grafite1" type="Label" parent="Paredes"]
-offset_left = 244.0
-offset_top = 66.0
-offset_right = 316.0
-offset_bottom = 94.0
-theme_override_colors/font_color = Color(0.72, 0.13, 0.1, 1)
-text = "NÃO CONFIE NAS LUZES"
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="Grafite2" type="Label" parent="Paredes"]
-offset_left = 1215.0
-offset_top = 70.0
-offset_right = 1305.0
-offset_bottom = 98.0
-theme_override_colors/font_color = Color(0.72, 0.13, 0.1, 1)
-text = "→ DADOS  C."
-horizontal_alignment = 1
-autowrap_mode = 3
 
 [node name="Chao1" parent="Chao" instance=ExtResource("r15")]
 position = Vector2(0, 0)
@@ -405,8 +391,11 @@ som_abrir = ExtResource("r29")
 [node name="Porta_arsenal" parent="." instance=ExtResource("r28")]
 position = Vector2(1881, 124)
 id = "arsenal"
-bloqueada = true
-aviso_bloqueada = "Lacrada. \"Arsenal: acesso só com autorização.\""
+liberada_por = "bunker_energia"
+aviso_bloqueada = "Arsenal: a trava é elétrica. Sem energia, não abre."
+cena_destino = "res://cenas/salas/bunker/arsenal.tscn"
+porta_destino = "arsenal_corredor"
+som_abrir = ExtResource("r29")
 
 [node name="Porta_corredor_a_escada" parent="." instance=ExtResource("r28")]
 position = Vector2(2280, 124)
@@ -442,3 +431,38 @@ horizontal_alignment = 1
 
 [node name="SinalSalaSegura" parent="Paredes" instance=ExtResource("ss_sinal")]
 position = Vector2(201, 6)
+
+[node name="MarcaFarolInteiro" type="Sprite2D" parent="Paredes"]
+position = Vector2(269, 24)
+texture = ExtResource("n1")
+centered = false
+
+[node name="Nicho640" parent="Objetos" instance=ExtResource("n2")]
+position = Vector2(680, 128)
+
+[node name="Nicho1120" parent="Objetos" instance=ExtResource("n2")]
+position = Vector2(1160, 128)
+
+[node name="Nicho1440" parent="Objetos" instance=ExtResource("n2")]
+position = Vector2(1480, 128)
+
+[node name="Sentinela" parent="Objetos" instance=ExtResource("n5")]
+position = Vector2(1700, 150)
+rota = NodePath("../../RotaSentinela")
+
+[node name="RotaSentinela" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(600, 150)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(1300, 160)
+
+[node name="Ponto3" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(2200, 150)
+
+[node name="Ponto4" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(1300, 160)
+
+[node name="RobosDaSala" type="Node" parent="."]
+script = ExtResource("n6")
