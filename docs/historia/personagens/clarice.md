@@ -10,6 +10,7 @@
 - **Época de origem:** 1990.
 - **Quem é:** aluna de processamento de dados da Unifor, com cerca de 20 anos, que mora perto do campus.
 - **História:** rodava um programa num terminal da Biblioteca de madrugada e foi puxada. Foi a primeira a notar que as rotas dos robôs formam um **grafo**. Deixou num terminal da Biblioteca um bilhete pedindo que, se mais alguém chegasse, a procurasse no Bloco de salas, e disquetes com senhas. Chegou a 3026 **depois do Zane e antes de Gabriel**. Fala com o grupo pela frequência de rádio que o Zane mantém. Depois de chegar à Biblioteca, foi para o **Bloco de salas** e ficou na **sala 103**, atrás de uma barricada. A **Diana** apareceu por lá depois e ela a acolheu: desde então as duas tentam descobrir o que aconteceu, com a ajuda do **Henrique** pelo rádio (ele vê o campus pelas câmeras e diz que, de alguma forma, estão em 3026), e ela mapeia a ronda dos robôs pela fresta. **É a voz do rádio que ajuda Gabriel na Biblioteca**, com o que o Henrique vê, e a **primeira pessoa que Gabriel encontra em pessoa**, na 103, de onde o ajuda a sair do bloco. A **relação dela com Gabriel vai sendo desenvolvida ao longo do jogo**.
+- **Objeto-símbolo:** o **disquete**. É o que ela deixa para trás para os outros acharem (as senhas dos terminais, com a etiqueta escrita à mão).
 
 ## 2. Personalidade
 

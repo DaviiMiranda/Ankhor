@@ -16,6 +16,16 @@ Formato:
 
 ---
 
+## 2026-10-23 — Cada personagem principal tem um objeto-símbolo
+**Decisão:** cada um dos cinco tem um objeto que o representa, registrado na seção 1 da ficha de `docs/historia/personagens/`:
+- **Gabriel:** o anel desgastado da avó.
+- **Zane:** os óculos.
+- **Clarice:** o disquete.
+- **Diana:** a jaqueta dela.
+- **Baltazar:** o chapéu (o tricórnio). O anel dele continua sendo o elo com o Gabriel.
+**Por quê:** pedido do Davi: dar a cada personagem uma marca reconhecível, para a arte, os itens e os cenários poderem usá-la.
+**Afeta:** as fichas dos cinco personagens. Pendências de arte: os óculos do Zane (hoje fora do `visual.md` e do `gerar_zane.py`; a Clarice também usa óculos, então os pares precisam se distinguir) e a jaqueta da Diana (ela ainda não tem visual). O Enredo Principal não foi alterado.
+
 ## 2026-10-23 — Aba Objetivo na pausa do inventário e a sala de projeção do cinema separada, com porta e fileiras com letras
 **Decisão:** três mudanças, sem mexer na história:
 - **Aba OBJETIVO** no inventário (terceira aba, depois de ITENS e ANOTAÇÕES; `Q` passa para a próxima, ou clica). Mostra o nome da fase, o **objetivo principal** dela e o que fazer **agora** (o primeiro passo ainda não cumprido, lido das marcas de `Progresso` e do inventário). Fora das fases, mostra o objetivo geral do jogo. Os textos vêm de `docs/fases/` e ficam em `scripts/sistemas/objetivos.gd`.

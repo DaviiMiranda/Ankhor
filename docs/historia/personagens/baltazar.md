@@ -10,6 +10,7 @@
 - **Época de origem:** ~1750, Ceará colonial.
 - **Quem é:** filho de colonos portugueses, com cerca de 20 anos, curioso, com uma luneta herdada do pai. A família tem um sítio na mata onde hoje fica o campus. **Antepassado de Gabriel**, umas dez gerações antes dele.
 - **História:** viu pela luneta uma luz estranha sobre a mata, no sítio da família, foi investigar e foi puxado. Acha que tudo aquilo é o Juízo Final ("o Tormento de Leviatã"). Na Biblioteca, deixou um **acampamento** entre as raízes da árvore: luneta rachada, vela, diário e um robô desmontado peça por peça. Na última página escreve "Hei de seguir a luz até onde ella nasce", e a luz nasce no chão da Biblioteca: ele não saiu de lá. Em 3026, teve dificuldade com o rádio e com a tecnologia, ficou com **medo** e **se isolou**: está **escondido, desde que chegou, numa sala da Biblioteca que o jogador ainda não consegue acessar**, e não está na frequência de rádio do grupo. Gabriel o encontra mais tarde.
+- **Objeto-símbolo:** o **chapéu** (o tricórnio). O anel dele é o elo com o Gabriel, mas o que marca o Baltazar de longe é o chapéu.
 
 ## 2. Personalidade
 

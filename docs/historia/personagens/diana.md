@@ -10,6 +10,7 @@
 - **Época de origem:** 1978, quando o campus ainda estava em obras.
 - **Quem é:** estudante de arquitetura e **estagiária na obra do campus**, com cerca de 20 anos. Cresceu no bairro em volta e viu o mato virar universidade.
 - **História:** um lote de material de construção sumiu da obra **sob a responsabilidade dela**, e ela foi vigiar a obra à noite para provar que não tinha errado. Entrou sozinha no matagal atrás de uma luz. O material não foi roubado: a fenda engoliu o lote num pulso anterior, e Diana foi puxada no seguinte. Chama os robôs de "autômatos". Conhece as plantas da obra de 1978 e faz um **mapa à mão** com as galerias e passagens da construção, que não aparecem nos mapas de 3026.
+- **Objeto-símbolo:** a **jaqueta** dela, de estagiária da obra de 1978. Clarice e Zane também usam jaqueta, então a dela se distingue pela cor e pela silhueta, a definir quando ela ganhar visual.
 
 ## 2. Personalidade
 
@@ -52,4 +53,5 @@ Nenhum ainda.
 
 ## 8. Pendências
 
-Nenhuma específica dela no momento. As pendências gerais estão no Enredo Principal, seção 10. Ela ainda não tem visual: ver as [pendências de produção](../../pendencias_de_producao.md).
+- Desenhar a jaqueta dela quando ela ganhar visual (objeto-símbolo).
+- Nenhuma outra específica dela no momento. As pendências gerais estão no Enredo Principal, seção 10. Ela ainda não tem visual: ver as [pendências de produção](../../pendencias_de_producao.md).

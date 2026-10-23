@@ -10,6 +10,7 @@
 - **Época de origem:** 2123, quando a Unifor já era um polo de IA.
 - **Quem é:** jovem com implantes cibernéticos, com cerca de 20 anos, que morava no que sobrou do bairro.
 - **História:** é quem mais entende a tecnologia da Âncora. Chegou a 3026 **antes da Clarice e de Gabriel** e montou na **oficina do Labirinto**, no subsolo, o centro das comunicações do grupo: mantém a **frequência de rádio** de todos e liga pelos telefones velhos do campus. Depois que a Clarice passou dias sozinha antes de alguém achá-la, deixou um rádio sintonizado no balcão da Biblioteca, para que o próximo não passasse pelo mesmo. É ele quem liga para Gabriel no fim da Biblioteca e destranca, pelo sistema, a porta de saída. Quer muito resolver tudo aquilo e **desconfia do Henrique**: está há dias na oficina tentando invadir o bunker, onde o Henrique fica, e só consegue com a ajuda de Gabriel, no Labirinto.
+- **Objeto-símbolo:** os **óculos**. A Clarice também usa óculos (grandes e redondos), então os dois pares precisam ser fáceis de distinguir.
 
 ## 2. Personalidade
 
@@ -60,6 +61,7 @@
 
 ## 8. Pendências
 
+- Os óculos do Zane ainda não estão no visual dele (`assets/sprites/personagens/zane/visual.md` e `gerar_zane.py`).
 - O que fazia no ponto quando foi puxado (Enredo Principal, seção 10.4).
 - A cena e as conversas dele na sala de dados do bunker, que hoje só mostram o Henrique ([pendências de produção](../../pendencias_de_producao.md)).
 - O que teme e o final dele (seção 10.4). Opções em conversa: ficar em 3026 para guardar a Âncora, ficar para se juntar aos Faroleiros, ou voltar para 2123.
