@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/poster_equipe.png" id="t_poster_equipe"]
 [ext_resource type="Script" path="res://scripts/visor/texturas_do_quarto.gd" id="s_texturas"]
 [ext_resource type="PackedScene" path="res://cenas/visor/estrelas_cadentes.tscn" id="c_cadentes"]
+[ext_resource type="PackedScene" path="res://cenas/visor/farol_da_mesa.tscn" id="f_farol"]
 
 [sub_resource type="Environment" id="Ambiente"]
 background_mode = 1
@@ -349,6 +350,9 @@ position = Vector3(1.55, 1.425, -2.457)
 [node name="MesaDoVisor" parent="Imagem/Mundo" instance=ExtResource("7_mesa")]
 position = Vector3(-2.075, 0.762, -0.4)
 rotation = Vector3(-1.0471976, 1.5707964, 0)
+
+[node name="FarolDaMesa" parent="Imagem/Mundo" instance=ExtResource("f_farol")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -2.0, 0.76, 0.3)
 
 [node name="Dica" type="Label" parent="."]
 layout_mode = 1

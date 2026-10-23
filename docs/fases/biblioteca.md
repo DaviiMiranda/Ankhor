@@ -143,6 +143,7 @@ Para a apresentação da disciplina: as salas são **vértices** e as portas sã
 | Cápsula de clarão | Sala 5 | Primeira defesa: atordoar um robô |
 | Pilhas (4) | Salão (2, no lado escuro), sala 4, sala 5, ala leste | Recarregar a lanterna |
 | Código da grade | Sala 8 (disquete) | Abrir a grade da ala leste |
+| Pingentes de farol (3) | Salão (2, fundo sul), sala 8 (canto esquerdo), sala 4 (corredores de baixo) | Opcionais: ao juntar os três, o quarto do Gabriel ganha um farol na mesa. Não ficam na mochila (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
 
 ---
 

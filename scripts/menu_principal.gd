@@ -247,6 +247,7 @@ func _comecar_do_zero() -> void:
 	Vida.limpar()
 	Checkpoints.limpar()
 	Progresso.limpar()
+	Colecionaveis.limpar()
 
 
 func _jogar_fase(fase: Fase) -> void:
