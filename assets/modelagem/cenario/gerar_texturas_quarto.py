@@ -553,7 +553,7 @@ def teclado_notebook():
 def tela_notebook():
     """Tela do notebook, 64 x 40 px (0,30 m x 0,19 m): fundo escuro em degradê,
     barra de menu, uma janela de código (as linhas coloridas), um gráfico de
-    duas curvas (a Modelagem e Simulacao do Gabriel) e o dock embaixo."""
+    duas curvas (a Modelagem e Simulação do Gabriel) e o dock embaixo."""
     sorteio = random.Random(51)
     img = Image.new("RGBA", (64, 40))
     de, para = cor("#0e1a3a"), cor("#2c1a4c")
