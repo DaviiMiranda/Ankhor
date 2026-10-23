@@ -264,8 +264,9 @@ def montar_objetos():
         img, px, py = funcao()
         escrever(os.path.join(PASTA_KIT_PRACA, "objetos", f"{nome}.tscn"), cena_objeto(nome, px, py, pegada[0], pegada[1]))
         caminhos[nome] = f"res://cenas/cenario/praca/objetos/{nome}.tscn"
-    for nome in ("cacos_louca",):
-        img, _, _ = gerador_objetos.ENFEITES[nome]()
+    enfeites = {**gerador_objetos.ENFEITES, **gerador_objetos2.ENFEITES}
+    for nome in ("cacos_louca", *gerador_objetos2.ENFEITES):
+        img, _, _ = enfeites[nome]()
         escrever(os.path.join(PASTA_KIT_PRACA, "objetos", f"{nome}.tscn"), cena_decal(nome, img.w, img.h))
         caminhos[nome] = f"res://cenas/cenario/praca/objetos/{nome}.tscn"
     return caminhos

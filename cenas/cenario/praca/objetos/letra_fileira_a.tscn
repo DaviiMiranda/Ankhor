@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/objetos/letra_fileira_a.png" id="1_tex"]
+
+[node name="LetraFileiraA" type="Sprite2D"]
+texture = ExtResource("1_tex")
