@@ -46,6 +46,7 @@ func salvar(cena: String, posicao: Vector2) -> bool:
 	arquivo.set_value("progresso", "marcas", Progresso.marcas)
 	arquivo.set_value("progresso", "portas_destrancadas", Porta.destrancadas_salvas())
 	arquivo.set_value("dialogos", "vistos", Dialogos.vistos)
+	arquivo.set_value("colecionaveis", "pecas", Colecionaveis.pecas)
 	var resultado := arquivo.save(CAMINHO)
 	if resultado != OK:
 		push_error("Salvamento: nao foi possivel gravar %s (erro %d)" % [CAMINHO, resultado])
@@ -68,6 +69,7 @@ func carregar() -> bool:
 	Vida.limpar()
 	Checkpoints.limpar()
 	Progresso.limpar()
+	Colecionaveis.limpar()
 	_restaurar_inventario(arquivo)
 	Caderno.anotacoes.assign(arquivo.get_value("caderno", "anotacoes", []))
 	Caderno.mudou.emit()
@@ -75,6 +77,7 @@ func carregar() -> bool:
 	Progresso.marcas = arquivo.get_value("progresso", "marcas", {})
 	Porta.restaurar_destrancadas(arquivo.get_value("progresso", "portas_destrancadas", []))
 	Dialogos.vistos = arquivo.get_value("dialogos", "vistos", {})
+	Colecionaveis.pecas = arquivo.get_value("colecionaveis", "pecas", {})
 	Checkpoints.marcar("maquina_de_salvar", cena, arquivo.get_value("jogo", "posicao", Vector2.ZERO))
 	get_tree().paused = false
 	carregou.emit()

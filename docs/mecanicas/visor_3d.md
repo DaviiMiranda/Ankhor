@@ -9,7 +9,8 @@ O quarto guarda o jogo até ali. Tudo o que aparece nele vem do estado do jogo n
 | **TV de tubo**, no móvel do fundo | o menu de salvar | `Salvamento` |
 | **Mural de cortiça**, em cima da cama | um cartão para cada anotação do caderno, presos com alfinete e ligados por um fio vermelho, na ordem em que foram anotados | `Caderno.anotacoes` |
 | **Escrivaninha**, embaixo da janela | os documentos que o Gabriel já leu, jogados em cima da mesa, cada um no papel dele (caderno, pergaminho...) | os documentos de `dados/documentos/` que já têm anotação no caderno |
-| **Quadro branco**, ao lado da TV | os números do jogo: fase, documentos lidos, transmissões ouvidas, anotações, portas destrancadas, itens na mochila e o último save | `Caderno`, `Radio`, `Porta`, `Inventario`, `Salvamento` |
+| **Farol**, na ponta da frente da escrivaninha | um farol aceso em 3D, só depois de juntar os três pingentes de farol da Biblioteca (ver [`colecionaveis.md`](colecionaveis.md)) | `Colecionaveis` |
+| **Quadro branco**, ao lado da TV | os números do jogo: fase, documentos lidos, transmissões ouvidas, anotações, portas destrancadas, itens na mochila, o progresso de cada coleção (*Pingentes de farol: 2 de 3*) e o último save | `Caderno`, `Radio`, `Porta`, `Inventario`, `Colecionaveis`, `Salvamento` |
 
 Nada disso é texto novo de história: os cartões e os papéis mostram os títulos que já existem, e o texto completo é o mesmo que o jogador leu no caminho. Ao tirar os óculos, ele volta para a sala segura 2D, no mesmo lugar, e toca a animação de devolver os óculos ao pedestal.
 
@@ -167,6 +168,7 @@ As formas de colisão (chão, paredes, móvel da TV, estante, escrivaninha, cade
 | Modelo 3D | `assets/modelos/sala_visor.glb`, de `assets/modelagem/cenario/gerar_sala_visor.py` |
 | Texturas e pôsteres | `assets/sprites/cenario/visor/`, de `assets/modelagem/cenario/gerar_texturas_quarto.py`; aplicadas por `scripts/visor/texturas_do_quarto.gd` (a parede agora repete a cada 1 m, com riscos e furos de prego) |
 | Estrelas cadentes e luzes rápidas | `cenas/visor/estrelas_cadentes.tscn`, `scripts/visor/estrelas_cadentes.gd` |
+| Farol da mesa (recompensa dos pingentes) | `cenas/visor/farol_da_mesa.tscn`, `scripts/visor/farol_da_mesa.gd`, modelo `assets/modelos/farol_mesa.glb` de `assets/modelagem/cenario/gerar_farol_mesa.py` |
 | Data do último save | `Salvamento.data_salva()` em `scripts/sistemas/salvamento.gd` |
 
 ## 8. Pendências

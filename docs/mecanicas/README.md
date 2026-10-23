@@ -39,5 +39,6 @@ graph TD
 - **[`hackeamento.md`](hackeamento.md):** Minigames do notebook para abrir portas trancadas (Sequência e Sincronia), em três dificuldades.
 - **[`sala_segura.md`](sala_segura.md):** A sala segura de cada fase, onde nenhum robô entra, e os óculos do Zane como máquina de salvar.
 - **[`visor_3d.md`](visor_3d.md):** Com os óculos no rosto, o jogo vira 3D em primeira pessoa: o quarto do Gabriel, com as anotações no mural, os documentos na mesa, os números num quadro branco e o save no menu de uma TV.
+- **[`colecionaveis.md`](colecionaveis.md):** Uma coleção escondida em cada fase (a da Biblioteca: três pingentes de farol); ao juntar todas as peças, o quarto do Gabriel ganha uma recompensa (um farol 3D na mesa).
 - **[`registros_e_caderno.md`](registros_e_caderno.md):** Ler os documentos dos antecessores, as transmissões de rádio (a voz da Clarice) e o Caderno do Gabriel (aba Anotações do inventário, tecla N).
 - **[`sono_e_sonhos.md`](sono_e_sonhos.md):** Arquitetura do sistema de save game e jogabilidade investigativa nos sonhos.
