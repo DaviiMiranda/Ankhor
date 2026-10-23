@@ -11,11 +11,12 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 | `E` | Interage com o que está mais perto: pega um item do chão, troca a pilha da lanterna |
 | `Tab` ou `I` | Abre e fecha o inventário na aba **Itens** (o jogo pausa enquanto ele está aberto) |
 | `N` | Abre o inventário direto na aba **Anotações** |
-| `Q` | Com o inventário aberto, troca entre as abas **Itens** e **Anotações** (também dá para clicar na aba) |
+| `Q` | Com o inventário aberto, passa para a próxima aba: **Itens**, **Anotações** e **Objetivo** (também dá para clicar na aba) |
 | `1`, `2`, `3` | Usam o gadget equipado naquele espaço. Com o inventário aberto, equipam o item escolhido |
 
 - **Inventário:** uma grade de **3 linhas × 4 colunas**. Todo item pego entra no primeiro espaço livre.
-- **Cabeçalho com abas:** no alto da janela ficam **ITENS** e **ANOTAÇÕES**. A aba aberta fica clara e sublinhada. Quando há anotação não lida, a aba mostra um ponto (`ANOTAÇÕES •`). A aba Anotações está explicada em [`registros_e_caderno.md`](registros_e_caderno.md).
+- **Cabeçalho com abas:** no alto da janela ficam **ITENS**, **ANOTAÇÕES** e **OBJETIVO**. A aba aberta fica clara e sublinhada. Quando há anotação não lida, a aba mostra um ponto (`ANOTAÇÕES •`). A aba Anotações está explicada em [`registros_e_caderno.md`](registros_e_caderno.md).
+- **Aba Objetivo:** mostra o **objetivo principal da fase** em que o jogador está (o nome da fase, o objetivo em duas ou três frases) e, embaixo, o que fazer **agora**: o primeiro passo que ainda não foi cumprido. Os passos acompanham as marcas de `Progresso` (por exemplo `energia`, `grade_aberta`, `bunker_energia`) e itens do inventário. Fora das fases (sala de teste), mostra só o objetivo geral do jogo. Os textos ficam em `scripts/sistemas/objetivos.gd`: para uma fase nova, acrescente uma entrada em `FASES` (a pasta da fase, o nome, o objetivo, os passos com as marcas e o passo final).
 - **Destaque no cenário:** todo item que dá para pegar (itens no chão e pilhas) tem uma **luz fraca que pulsa** em volta e, de tempos em tempos, um **brilho de pixel** que pisca em cima do desenho, visível até no escuro. Assim o jogador sabe o que é coletável sem precisar de seta ou contorno.
 - **Gadgets:** **3 espaços**, um para cada ferramenta equipável prevista em [`docs/historia/personagens/gabriel.md`](../historia/personagens/gabriel.md): lanterna, cápsulas de clarão e objetos de arremesso. Equipar não tira o item da grade; o espaço de gadget é um atalho para ele.
 - **Aviso de `E`:** perto de um item ou de uma pilha, aparece só a tecla `[E]` em cima dele, sem texto. O nome do item aparece depois de pegar ("Você pegou: ...") e a descrição fica no inventário. Documentos continuam com o verbo (`[E] Ler o bilhete`), porque ler é uma ação diferente de pegar. Quem decide o texto é o `texto_acao` do `Interagivel`: vazio mostra só a tecla.
@@ -81,6 +82,7 @@ grade = [ [pote, null, null, null],     linha 0
 | HUD (espaços de gadget, aviso "[E]", mensagem) | `cenas/interface/hud.tscn` |
 | Tela do inventário (abas Itens e Anotações) | `cenas/interface/tela_inventario.tscn` |
 | Aba Anotações | `cenas/interface/painel_anotacoes.tscn` |
+| Aba Objetivo | `cenas/interface/painel_objetivo.tscn` e `scripts/sistemas/objetivos.gd` (os textos de cada fase) |
 | Ícones e peças da interface (gerados por script) | `assets/modelagem/interface/gerar_interface.py` |
 
 O HUD e a tela do inventário já estão no `modelo_sala.tscn`: toda sala nova herda os dois.

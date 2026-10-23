@@ -12,8 +12,8 @@ paginas = PackedStringArray("CINE ANDRÔMEDA — SALA 1
 SESSÃO DE SEXTA, 21h00
 
 BIA
-FILEIRA F — POLTRONA 7
+FILEIRA A — POLTRONA 7
 MEIA-ENTRADA ESTUDANTE
 
 Guarde este canhoto.")
-anotacao = "Canhoto da Bia, amiga do lanterninha: fileira F, poltrona 7."
+anotacao = "Canhoto da Bia, amiga do lanterninha: fileira A, poltrona 7."

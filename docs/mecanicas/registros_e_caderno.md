@@ -28,7 +28,7 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../historia/p
 - No fim, a anotação da transmissão entra no caderno.
 
 ### Caderno (aba Anotações do inventário)
-- As anotações ficam no **inventário**, na aba **ANOTAÇÕES**. `N` abre o inventário direto nela (e fecha, se ela já estiver aberta); `Q` troca entre Itens e Anotações. O jogo pausa enquanto está aberto.
+- As anotações ficam no **inventário**, na aba **ANOTAÇÕES**. `N` abre o inventário direto nela (e fecha, se ela já estiver aberta); `Q` passa para a próxima aba (Itens, Anotações e Objetivo). O jogo pausa enquanto está aberto.
 - À esquerda, a **lista** das anotações, na ordem em que foram achadas. Ao abrir com `N`, a mais recente já vem escolhida. As não lidas têm um ponto na frente (`• Henrique, 2019`), e a aba também mostra o ponto enquanto houver alguma não lida.
 - À direita, o **texto** da anotação escolhida: o título é quem deixou a pista, e o texto é o resumo do Gabriel, em tópicos quando for dica de jogo. Cabem 7 linhas; se passar disso, o texto vira páginas e o canto mostra `1/2`.
 - Setas **cima/baixo** escolhem a anotação; **esquerda/direita** viram a página. Dá para clicar na lista com o mouse.

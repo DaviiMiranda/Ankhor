@@ -608,6 +608,19 @@ def poltronas(quantas=4, primeiro=1):
     return img, largura // 2, 38
 
 
+def letra_fileira(letra):
+    """Plaquinha de balizamento no carpete da sala de cinema: a letra da
+    fileira em âmbar sobre grafite, com a borda de latão. Fica na ponta de cada
+    fileira e nos dois corredores, para a poltrona do canhoto (fileira B,
+    poltrona 2) ser achada sem adivinhar. A fileira A é a mais perto da tela."""
+    img = Imagem(18, 13)
+    img.pintar(img.ret(0, 0, 18, 13), "neon_ambar", 0.3)
+    img.pintar(img.ret(1, 1, 17, 12), "grafite", 0.05)
+    img.pintar(img.ret(1, 1, 17, 2), "neon_ambar", 0.14, achatar=False)
+    base.escrever(img, 9 - base.largura_do_texto(letra, 8) // 2, 2, letra, "neon_ambar", 0.85, 8)
+    return img, 9, 6
+
+
 def standee_filme():
     """Cartaz de papelão recortado em pé: a figura do filme, o título e as
     lâmpadas da marquise em volta, sobre uma base de aço."""
@@ -921,6 +934,10 @@ OBJETOS = {
 }
 
 
+# Enfeites de chão, sem pegada: o Gabriel passa por cima.
+ENFEITES = {f"letra_fileira_{letra.lower()}": (lambda letra=letra: letra_fileira(letra)) for letra in "ABC"}
+
+
 def main():
     print("Gerando os objetos do segundo andar em assets/sprites/cenario/praca/objetos")
     objetos = {}
@@ -928,6 +945,10 @@ def main():
         img, px, py = f()
         base.salvar(img, f"{nome}.png", "objetos")
         print(f"    {nome}: pé em ({px}, {py}) -> offset = Vector2({-px}, {-py}), pegada {pegada}")
+        objetos[nome] = img
+    for nome, f in ENFEITES.items():
+        img, _, _ = f()
+        base.salvar(img, f"{nome}.png", "objetos")
         objetos[nome] = img
     pasta_cofre = os.path.join(base.PASTA_PROJETO, "assets", "sprites", "cenario", "objetos")
     for nome, aberto in (("cofre", False), ("cofre_aberto", True)):

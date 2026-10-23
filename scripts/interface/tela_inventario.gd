@@ -1,14 +1,15 @@
 extends CanvasLayer
 
-enum Aba { ITENS, ANOTACOES }
+enum Aba { ITENS, ANOTACOES, OBJETIVO }
 
 const CENA_ESPACO := preload("res://cenas/interface/espaco_item.tscn")
 const COR_ABA_ATIVA := Color(0.95, 0.88, 0.7, 1)
 const COR_ABA_INATIVA := Color(0.55, 0.56, 0.52, 1)
 const MARCA_NOVA := " •"
 const DICAS := {
-	Aba.ITENS: "Q: anotações   Setas: escolher   1-3: equipar   Tab: fechar",
-	Aba.ANOTACOES: "Q: itens   Setas: escolher e folhear   Tab: fechar",
+	Aba.ITENS: "Q: próxima aba   Setas: escolher   1-3: equipar   Tab: fechar",
+	Aba.ANOTACOES: "Q: próxima aba   Setas: escolher e folhear   Tab: fechar",
+	Aba.OBJETIVO: "Q: próxima aba   Tab: fechar",
 }
 
 var aberto := false
@@ -19,9 +20,11 @@ var _espacos_gadget: Array[EspacoItem] = []
 
 @onready var aba_itens: Label = $Janela/Abas/AbaItens
 @onready var aba_anotacoes: Label = $Janela/Abas/AbaAnotacoes
+@onready var aba_objetivo: Label = $Janela/Abas/AbaObjetivo
 @onready var marcador: ColorRect = $Janela/Marcador
 @onready var painel_itens: Control = $Janela/Itens
 @onready var painel_anotacoes: PainelAnotacoes = $Janela/Anotacoes
+@onready var painel_objetivo: PainelObjetivo = $Janela/Objetivo
 @onready var dica: Label = $Janela/Dica
 @onready var grade: GridContainer = $Janela/Itens/Grade
 @onready var caixa_gadgets: HBoxContainer = $Janela/Itens/Gadgets
@@ -39,6 +42,7 @@ func _ready() -> void:
 	_criar_espacos()
 	aba_itens.gui_input.connect(_ao_clicar_aba.bind(Aba.ITENS))
 	aba_anotacoes.gui_input.connect(_ao_clicar_aba.bind(Aba.ANOTACOES))
+	aba_objetivo.gui_input.connect(_ao_clicar_aba.bind(Aba.OBJETIVO))
 	Inventario.mudou.connect(_atualizar)
 	Caderno.mudou.connect(_atualizar_abas)
 	visible = false
@@ -73,11 +77,11 @@ func _unhandled_input(evento: InputEvent) -> void:
 	if evento.is_action_pressed("ui_cancel"):
 		_abrir(false)
 	elif evento.is_action_pressed("trocar_aba"):
-		_mostrar_aba(Aba.ANOTACOES if _aba == Aba.ITENS else Aba.ITENS)
+		_mostrar_aba(((_aba + 1) % Aba.size()) as Aba)
 		som_aba.play()
 	elif _aba == Aba.ITENS:
 		_tratar_itens(evento)
-	else:
+	elif _aba == Aba.ANOTACOES:
 		painel_anotacoes.tratar_entrada(evento)
 	get_viewport().set_input_as_handled()
 
@@ -145,6 +149,8 @@ func _mostrar_aba(aba: Aba) -> void:
 	_aba = aba
 	painel_itens.visible = aba == Aba.ITENS
 	painel_anotacoes.visible = aba == Aba.ANOTACOES
+	painel_objetivo.visible = aba == Aba.OBJETIVO
+	painel_objetivo.atualizar()
 	dica.text = DICAS[aba]
 	_atualizar_abas()
 
@@ -153,14 +159,22 @@ func _atualizar_abas() -> void:
 	if not is_node_ready():
 		return
 	aba_anotacoes.text = "ANOTAÇÕES" + (MARCA_NOVA if Caderno.tem_nao_lidas() else "")
-	aba_itens.add_theme_color_override("font_color", COR_ABA_ATIVA if _aba == Aba.ITENS else COR_ABA_INATIVA)
-	aba_anotacoes.add_theme_color_override("font_color", COR_ABA_ATIVA if _aba == Aba.ANOTACOES else COR_ABA_INATIVA)
+	for aba in Aba.values():
+		_rotulo_da_aba(aba).add_theme_color_override("font_color", COR_ABA_ATIVA if _aba == aba else COR_ABA_INATIVA)
 	_posicionar_marcador.call_deferred()
 
 
+func _rotulo_da_aba(aba: Aba) -> Label:
+	match aba:
+		Aba.ANOTACOES:
+			return aba_anotacoes
+		Aba.OBJETIVO:
+			return aba_objetivo
+	return aba_itens
+
+
 func _posicionar_marcador() -> void:
-	var aba_ativa := aba_itens if _aba == Aba.ITENS else aba_anotacoes
-	var area := aba_ativa.get_global_rect()
+	var area := _rotulo_da_aba(_aba).get_global_rect()
 	marcador.global_position.x = area.position.x - 2.0
 	marcador.size.x = area.size.x + 4.0
 

@@ -15,9 +15,10 @@
 #                                provador de cortina (o esconderijo);
 #   GRÁFICA QUÂNTICA (limão)     concreto e aço, escaninhos de papel, cartuchos
 #                                de tinta C-M-Y-K e faixas de segurança no piso;
-#   CINE ANDRÔMEDA (violeta)     o saguão de veludo (cartazes, cardápio da
-#                                pipoca) e, depois do batente de latão, a sala
-#                                de projeção com a tela larga e as poltronas.
+#   CINE ANDRÔMEDA (violeta)     duas salas: o saguão de veludo (cartazes,
+#                                cardápio da pipoca e o arco SALA 1) e a sala
+#                                de projeção, que é uma sala à parte (entra-se
+#                                pelo arco), com a tela larga e as poltronas.
 
 import math
 
@@ -686,10 +687,12 @@ def piso_grafica(largura, altura, y0=112):
     return img
 
 
-def piso_cinema(largura, altura, x_soleira, y0=112):
-    """O saguão tem carpete de veludo com um desenho de estrelas; depois do
-    batente de latão (x_soleira), a sala tem carpete escuro com duas linhas
-    de luz de balizamento no sentido da profundidade (os corredores)."""
+def piso_cinema(largura, altura, x_soleira, y0=112, luzes=()):
+    """O saguão tem carpete de veludo com um desenho de estrelas; a partir de
+    x_soleira o carpete é o escuro da sala de projeção (com um batente de latão
+    na divisa, se ela cair no meio da imagem), e 'luzes' são as linhas de luz de
+    balizamento no sentido da profundidade (os corredores entre as poltronas).
+    O saguão é x_soleira = largura; a sala, x_soleira = 0."""
     img = Imagem(largura, altura)
     X, Y = img.X, img.Y
     chao = Y >= y0
@@ -702,10 +705,11 @@ def piso_cinema(largura, altura, x_soleira, y0=112):
     img.pintar(chao & ~sala & estrela, "neon_ambar", 0.34, achatar=False)
     img.pintar(chao & sala, "veludo", v - 0.06)
     img.pintar(chao & sala & (((X + Y) % 8) == 0), "veludo", 0.12, achatar=False)
-    for x in (x_soleira + 100, x_soleira + 300):
+    for x in luzes:
         img.pintar(img.ret(x, y0 + 4, x + 2, altura - 4) & chao & (((Y // 6) % 2) == 0), "neon_violeta", 0.5, achatar=False)
-    soleira = img.ret(x_soleira - 3, y0, x_soleira + 3, altura) & chao
-    img.pintar(soleira, "neon_ambar", 0.38 + 0.2 * (X == x_soleira - 3))
+    if 0 < x_soleira < largura:
+        soleira = img.ret(x_soleira - 3, y0, x_soleira + 3, altura) & chao
+        img.pintar(soleira, "neon_ambar", 0.38 + 0.2 * (X == x_soleira - 3))
     img.cor(chao & (Y == y0), SOMBRA)
     img.chao = chao
     return img
@@ -720,9 +724,11 @@ SALAS = {
         "PORTA:azul", ("u_prateleira", 1), ("u_cabides", 2), ("u_brasao", 3), ("u_prateleira", 11), ("u_provador", 5), ("u_espelho", 4)]},
     "grafica": {"tema": "grafica", "largura": 560, "altura": 240, "pecas": [
         "PORTA:limao", ("g_escaninhos", 1), ("g_painel", 5), ("g_tintas", 3), ("g_cartazes", 2), ("g_rolos", 4), ("g_nicho", 6)]},
-    "cinema": {"tema": "cinema", "largura": 1040, "altura": 320, "pecas": [
+    "cinema": {"tema": "cinema", "largura": 640, "altura": 320, "pecas": [
         "PORTA:violeta", ("c_cartazes", 1), ("c_cardapio", 2), ("c_planta", 7), ("c_cartazes_b", 9), ("c_nicho", 4),
-        ("c_relogio", 8), ("c_arco_sala", 3), ("s_painel", 5), "TELA", "TELA", "TELA", "PORTA:ciano|CABINE"]},
+        ("c_relogio", 8), ("c_arco_sala", 3)]},
+    "sala_cinema": {"tema": "sala_cinema", "largura": 480, "altura": 320, "pecas": [
+        "PORTA:violeta|SAÍDA", ("s_painel", 5), "TELA", "TELA", "TELA", "PORTA:ciano|CABINE"]},
     "cabine": {"tema": "cabine", "largura": 400, "altura": 220, "pecas": [
         "PORTA:ciano", ("p_janela", 1), ("p_horarios", 2), ("p_rolos", 3), ("p_uniforme", 4)]},
 }
@@ -735,8 +741,11 @@ FUNCOES = {
     "s_painel": s_painel, "p_janela": p_janela, "p_horarios": p_horarios, "p_rolos": p_rolos, "p_uniforme": p_uniforme,
 }
 
-PISOS = {"loja_uni": piso_loja_uni, "grafica": piso_grafica, "cabine": piso_cabine}
-X_SOLEIRA_CINEMA = 8 * L
+PISOS = {
+    "loja_uni": piso_loja_uni, "grafica": piso_grafica, "cabine": piso_cabine,
+    "cinema": lambda largura, altura: piso_cinema(largura, altura, largura),
+    "sala_cinema": lambda largura, altura: piso_cinema(largura, altura, 0, luzes=(180, 380)),
+}
 
 
 def placa_da_porta(peca, texto, cor):
@@ -773,10 +782,7 @@ def montar_fundo(nome):
             funcao, semente = item
             peca = FUNCOES[funcao](semente)
         img.colar(peca, coluna * L, 0)
-    if nome == "cinema":
-        piso = piso_cinema(sala["largura"], sala["altura"], X_SOLEIRA_CINEMA)
-    else:
-        piso = PISOS[nome](sala["largura"], sala["altura"])
+    piso = PISOS[nome](sala["largura"], sala["altura"])
     img.px[piso.chao] = piso.px[piso.chao]
     portas = [(coluna * L + 10, 24, coluna * L + 70, H) for coluna, item in enumerate(sala["pecas"])
               if isinstance(item, str) and item.startswith("PORTA:")]

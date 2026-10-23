@@ -93,8 +93,8 @@ position = Vector2(80, 160)
 [node name="Porta_cabine_cinema" parent="." instance=ExtResource("r16")]
 position = Vector2(41, 124)
 id = "cabine_cinema"
-cena_destino = "res://cenas/salas/centro_de_convivencia/cinema.tscn"
-porta_destino = "cinema_cabine"
+cena_destino = "res://cenas/salas/centro_de_convivencia/cinema_sala.tscn"
+porta_destino = "sala_cabine"
 
 [node name="ZonaPiso1" type="Node2D" parent="."]
 position = Vector2(0, 112)
