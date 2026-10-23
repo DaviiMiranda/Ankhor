@@ -28,6 +28,8 @@
 #     folha_equacoes.png    a folha de Modelagem e Simulação colada na parede
 #     calendario_2026.png   um calendário com dias riscados
 #     flamula_unifor.png    a flâmula azul da Unifor
+#     poster_equipe.png     a foto da equipe (foto_equipe_referencia.jpg, ao
+#                           lado deste script), pixelada e emoldurada
 #
 #   RECORTES DA ILUSTRAÇÃO DO PRÓLOGO (assets/sprites/cutscenes/seg_prologo/cena_02_quarto.png)
 #     janela_prologo.png    o vidro da janela, com o pôr do sol na cidade
@@ -415,6 +417,23 @@ def flamula():
     salvar(img, "flamula_unifor")
 
 
+FOTO_EQUIPE = os.path.join(PASTA_SCRIPT, "foto_equipe_referencia.jpg")
+FOTO_EQUIPE_TAMANHO = (124, 56)
+
+
+def poster_equipe():
+    """A foto da equipe como pôster: reduzida para a grade de pixels do quarto,
+    com as cores reduzidas a uma paleta de 48 tons (o mesmo ar de pixel art dos
+    outros pôsteres) e uma moldura clara de 2 px em volta."""
+    foto = Image.open(FOTO_EQUIPE).convert("RGB").resize(FOTO_EQUIPE_TAMANHO, Image.LANCZOS)
+    foto = foto.quantize(colors=48, dither=Image.Dither.NONE).convert("RGBA")
+    largura, altura = FOTO_EQUIPE_TAMANHO
+    img = Image.new("RGBA", (largura + 4, altura + 4), cor("#e8e0d0"))
+    img.paste(foto, (2, 2))
+    moldura(img, cor("#bdb4a2"))
+    salvar(img, "poster_equipe")
+
+
 PROLOGO = os.path.join(PASTA_PROJETO, "assets", "sprites", "cutscenes", "seg_prologo", "cena_02_quarto.png")
 RECORTES = {
     "janela_prologo": (56, 30, 224, 196),
@@ -453,6 +472,7 @@ def main():
     folha_equacoes()
     calendario()
     flamula()
+    poster_equipe()
     print("Texturas e pôsteres salvos em", SAIDA)
 
 
