@@ -131,6 +131,21 @@ A câmera olha a mesa de cima, a 60°, vindo do lado do quarto. Para os papéis 
 
 A câmera vai da posição do olhar até esse ponto em 0,6 s, com `Transform3D.interpolate_with`: a posição é interpolada em linha reta e a rotação por **slerp** (interpolação esférica de quatérnios), que gira pelo menor caminho com velocidade constante. A curva de tempo é senoidal (começa e termina devagar). Na volta, o caminho é o mesmo ao contrário.
 
+### Detalhes do quarto (móveis, objetos e bagunça)
+
+O quarto é cheio de pequenos objetos para parecer morado, todos gerados em `gerar_sala_visor.py`:
+
+- **Mesa:** tampo de quina arredondada com a própria textura (`tampo_mesa`: anel de caneca, marca de queimado, pingos de tinta), gaveteiro com três gavetas e puxadores, painel e travessa entre as pernas. Em cima, o **notebook** (teclado, trackpad, dobradiça, tampa inclinada 15° e a tela acesa), a caneca de café, o pote de canetas, a pilha de livros com páginas e a luminária articulada. Tudo isso fica na faixa perto da parede, para os papéis do Godot terem espaço.
+- **Móveis macios** (travesseiros, colchão, cobertor, moletom, mochila): caixas com as arestas chanfradas, para não parecerem blocos.
+- **Cadeira** com apoios de braço e base de cinco rodízios; **moletom** jogado no encosto, com capuz e mangas; **jaqueta** pendurada na porta.
+- **Estante** com uma faixa clara em cada lombada e um objeto no vão de cada prateleira: caixa de arquivo, o robozinho de brinquedo, uma planta, um porta-retrato e revistas. **Cacto** no peitoril, **despertador** (12:00 piscando) no criado-mudo, **videogame** e controle no móvel da TV.
+- **Caixas de papelão** (a bagunça de quem não terminou de desfazer a mudança): duas empilhadas no canto do fundo (LIVROS e FRAGIL), uma aberta ao lado, com livros de fora, uma caída perto da cama, com livros espalhados, e uma pequena junto da parede da porta (CABOS). Têm colisão em `Colisao` (`PilhaDeCaixas`, `CaixaAberta`, `CaixaCaida`, `CaixaPequena`). Também há um par de tênis perto da porta e bolas de papel amassado.
+
+Duas técnicas novas do gerador:
+
+- **Chanfro (`arredondar`)**: a função `caixa` aceita um raio e aplica um *Bevel* de 2 segmentos nas arestas, já aplicado antes do export.
+- **Quads com UV explícito (`quad`)**: o teclado, a tela do notebook, o mostrador do despertador e a escrita das caixas são retângulos com UV de 0 a 1 (ou um pedaço do atlas `marcas_das_caixas.png`), dados pelos quatro cantos no Godot. O triplanar não serve para eles, porque a imagem tem que cair no lugar certo. No `TexturasDoQuarto`, esses materiais têm `"uv": true`; `"brilho"` acende a imagem como emissão (tela e despertador) e `"recorte"` faz o canetão das caixas ficar transparente em volta das letras.
+
 ## 6. O modelo
 
 O quarto é gerado por código no Blender: `assets/modelagem/cenario/gerar_sala_visor.py` (como rodar e as medidas estão no começo do arquivo). Ele exporta `assets/modelos/sala_visor.glb`, em glTF, com materiais simples. As medidas do script estão **em coordenadas do Godot** (o script converte para o Blender), então os números de lá são os mesmos da cena.
@@ -150,7 +165,7 @@ As formas de colisão (chão, paredes, móvel da TV, estante, escrivaninha, cade
 | Papel com título (mural e mesa) | `scripts/visor/papel_do_visor.gd` |
 | Menu da TV | `cenas/visor/menu_visor.tscn`, `scripts/visor/menu_visor.gd`, tema `cenas/interface/tema_tela_crt.tres` |
 | Modelo 3D | `assets/modelos/sala_visor.glb`, de `assets/modelagem/cenario/gerar_sala_visor.py` |
-| Texturas e pôsteres | `assets/sprites/cenario/visor/`, de `assets/modelagem/cenario/gerar_texturas_quarto.py`; aplicadas por `scripts/visor/texturas_do_quarto.gd` |
+| Texturas e pôsteres | `assets/sprites/cenario/visor/`, de `assets/modelagem/cenario/gerar_texturas_quarto.py`; aplicadas por `scripts/visor/texturas_do_quarto.gd` (a parede agora repete a cada 1 m, com riscos e furos de prego) |
 | Estrelas cadentes e luzes rápidas | `cenas/visor/estrelas_cadentes.tscn`, `scripts/visor/estrelas_cadentes.gd` |
 | Data do último save | `Salvamento.data_salva()` em `scripts/sistemas/salvamento.gd` |
 
