@@ -21,6 +21,8 @@
 #     quadro.png         branco com manchas de caneta mal apagada
 #     moletom.png        malha vermelha do moletom
 #     mochila.png        lona verde
+#     tampo_mesa.png     tampo da escrivaninha, com anel de caneca, queimado e tinta
+#     papelao.png        papelão ondulado das caixas
 #
 #   PÔSTERES
 #     poster_fortaleza.png  o pôr do sol na praia, com uma jangada
@@ -28,6 +30,10 @@
 #     folha_equacoes.png    a folha de Modelagem e Simulação colada na parede
 #     calendario_2026.png   um calendário com dias riscados
 #     flamula_unifor.png    a flâmula azul da Unifor
+#     teclado_notebook.png, tela_notebook.png   o teclado e a tela do notebook (com UV, não triplanar)
+#     marcas_das_caixas.png   canetão e etiqueta das caixas de papelão (atlas)
+#     despertador.png    o mostrador do despertador (12:00 piscando)
+#     paginas.png        miolo das páginas dos livros e bolas de papel
 #     poster_equipe.png     a foto da equipe (foto_equipe_referencia.jpg, ao
 #                           lado deste script), pixelada e emoldurada
 #
@@ -48,6 +54,7 @@
 #
 # Tudo usa um sorteio com semente fixa: rodar de novo dá as mesmas imagens.
 
+import math
 import os
 import random
 
@@ -134,6 +141,14 @@ def piso_madeira():
         emenda = sorteio.randrange(64)
         ret(img, f * largura, emenda, largura, 1, fresta)
         ret(img, f * largura + 1, emenda + 1, largura - 1, 1, mudar(cor("#4e3728"), 12))
+    desgaste = random.Random(11)
+    for _ in range(14):
+        x, y = desgaste.randrange(64), desgaste.randrange(64)
+        for k in range(desgaste.randint(3, 7)):
+            px(img, x + k // 3, y + k, mudar(img.getpixel((x % 64, (y + k) % 64)), 16))
+    for cx, cy in [(22, 40), (47, 12)]:
+        for _ in range(26):
+            px(img, cx + desgaste.randint(-3, 3), cy + desgaste.randint(-3, 3), mudar(cor("#4e3728"), -20))
     salvar(img, "piso_madeira")
 
 
@@ -145,19 +160,32 @@ def madeira(nome, base, vertical=False):
 
 
 def parede():
-    """Papel de parede: listras verticais finas, de 8 em 8 px, um pouco mais
-    claras, com uma fileira de pontinhos entre elas, e ruído de manchas."""
+    """Papel de parede, 64 x 64 = 1 m: listras verticais finas de 8 em 8 px, um
+    pouco mais claras, com uma fileira de pontinhos entre elas, ruído de
+    manchas e o desgaste de parede de quarto: três riscos de arrasto, dois
+    furinhos de prego e uma mancha de umidade escorrendo."""
     sorteio = random.Random(2)
     base = cor("#57555f")
-    img = Image.new("RGBA", (32, 32), base)
-    for y in range(32):
-        for x in range(32):
+    img = Image.new("RGBA", (64, 64), base)
+    for y in range(64):
+        for x in range(64):
             if sorteio.random() < 0.15:
                 px(img, x, y, mudar(base, sorteio.choice([-5, 4])))
-    for x in range(0, 32, 8):
-        ret(img, x, 0, 1, 32, mudar(base, 9))
-        for y in range(2, 32, 6):
+    for x in range(0, 64, 8):
+        ret(img, x, 0, 1, 64, mudar(base, 9))
+        for y in range(2, 64, 6):
             px(img, x + 4, y, mudar(base, 6))
+    for x in range(21, 24):
+        for y in range(10, 50):
+            peso = 1 - abs(y - 30) / 20
+            if sorteio.random() < peso * 0.55:
+                px(img, x, y, mudar(img.getpixel((x, y)), -5))
+    for x, y, comprimento in [(40, 14, 9), (12, 44, 7), (50, 52, 5)]:
+        for k in range(comprimento):
+            px(img, x + k, y + k // 4, mudar(base, 9))
+    for x, y in [(30, 6), (56, 33)]:
+        px(img, x, y, mudar(base, -18))
+        px(img, x + 1, y, mudar(base, -8))
     salvar(img, "parede")
 
 
@@ -272,6 +300,15 @@ FONTE = {
     "'": [".#.", ".#.", "...", "...", "..."], "/": ["..#", "..#", ".#.", "#..", "#.."],
     "-": ["...", "...", "###", "...", "..."], "+": ["...", ".#.", "###", ".#.", "..."],
     " ": ["...", "...", "...", "...", "..."],
+    "B": ["##.", "#.#", "##.", "#.#", "##."], "H": ["#.#", "#.#", "###", "#.#", "#.#"],
+    "J": ["..#", "..#", "..#", "#.#", "###"], "K": ["#.#", "#.#", "##.", "#.#", "#.#"],
+    "P": ["###", "#.#", "###", "#..", "#.."], "V": ["#.#", "#.#", "#.#", "#.#", ".#."],
+    "W": ["#.#", "#.#", "###", "###", "#.#"], "Y": ["#.#", "#.#", ".#.", ".#.", ".#."],
+    "1": [".#.", "##.", ".#.", ".#.", "###"], "3": ["###", "..#", "###", "..#", "###"],
+    "4": ["#.#", "#.#", "###", "..#", "..#"], "5": ["###", "#..", "###", "..#", "###"],
+    "7": ["###", "..#", "..#", ".#.", ".#."], "9": ["###", "#.#", "###", "..#", "###"],
+    ":": ["...", ".#.", "...", ".#.", "..."], "!": [".#.", ".#.", ".#.", "...", ".#."],
+    ".": ["...", "...", "...", "...", ".#."],
 }
 
 
@@ -417,6 +454,197 @@ def flamula():
     salvar(img, "flamula_unifor")
 
 
+def moletom_malha():
+    """Malha canelada do moletom: costelas verticais de 2 px (uma clara, uma na
+    sombra), pontos de tricô alternando a cada linha e uns fiapos claros."""
+    sorteio = random.Random(10)
+    base = cor("#b8292f")
+    img = Image.new("RGBA", (16, 16))
+    for y in range(16):
+        for x in range(16):
+            tom = 8 if x % 4 < 2 else -12
+            if (y + x // 2) % 2 == 0:
+                tom += 5
+            c = mudar(base, tom)
+            if sorteio.random() < 0.08:
+                c = mudar(c, sorteio.choice([-6, 6]))
+            if sorteio.random() < 0.02:
+                c = mudar(c, 34)
+            img.putpixel((x, y), c)
+    salvar(img, "moletom")
+
+
+def tampo_mesa():
+    """64 x 64 = 0,7 m de tampo: veio no sentido do comprimento da mesa, um anel
+    de caneca, uma marca de queimado, pingos de tinta azul e riscos claros."""
+    sorteio = random.Random(21)
+    base = cor("#7a5638")
+    img = Image.new("RGBA", (64, 64))
+    veio(img, sorteio, base, 6, vertical=True)
+    for graus in range(0, 300, 5):
+        angulo = math.radians(graus)
+        px(img, round(40 + 7 * math.cos(angulo)), round(22 + 7 * math.sin(angulo)), mudar(base, -30))
+    ret(img, 12, 46, 3, 2, mudar(base, -52))
+    px(img, 15, 47, mudar(base, -40))
+    px(img, 11, 46, mudar(base, -34))
+    for x, y in [(50, 50), (51, 50), (50, 51), (28, 8), (29, 8), (6, 14)]:
+        px(img, x, y, cor("#2a3f86"))
+    for _ in range(12):
+        x, y = sorteio.randrange(64), sorteio.randrange(64)
+        for k in range(sorteio.randint(3, 8)):
+            px(img, x + k, y + k // 3, mudar(base, 22))
+    salvar(img, "tampo_mesa")
+
+
+def papelao():
+    """Papelão ondulado: faixas horizontais finas (a onda), grãos, manchas de
+    umidade mais escuras e riscos claros de arrasto."""
+    sorteio = random.Random(31)
+    base = cor("#a98150")
+    img = Image.new("RGBA", (32, 32))
+    for y in range(32):
+        for x in range(32):
+            tom = [4, -6, -2][y % 3]
+            c = mudar(base, tom)
+            if sorteio.random() < 0.18:
+                c = mudar(c, sorteio.choice([-8, 7]))
+            img.putpixel((x, y), c)
+    for cx, cy, r in [(8, 10, 4), (24, 24, 5), (20, 5, 3)]:
+        for y in range(cy - r, cy + r + 1):
+            for x in range(cx - r, cx + r + 1):
+                if (x - cx) ** 2 + (y - cy) ** 2 <= r * r and sorteio.random() < 0.7:
+                    px(img, x, y, mudar(img.getpixel((x % 32, y % 32)), -12))
+    for _ in range(5):
+        x, y = sorteio.randrange(32), sorteio.randrange(32)
+        ret(img, x, y, sorteio.randint(4, 9), 1, mudar(base, 18))
+    salvar(img, "papelao")
+
+
+def teclado_notebook():
+    """Teclado visto de cima, 60 x 26 px (0,30 m x 0,13 m): cinco fileiras de
+    teclas com realce no topo, a fileira de funções mais baixa, a barra de
+    espaço e uns pontinhos de legenda."""
+    sorteio = random.Random(41)
+    img = Image.new("RGBA", (60, 26), cor("#14161a"))
+    tecla, topo = cor("#2c2f37"), cor("#3d414c")
+
+    def fileira(y, altura, x0, quantas, largura=4, passo=5):
+        for i in range(quantas):
+            x = x0 + i * passo
+            ret(img, x, y, largura, altura, tecla)
+            ret(img, x, y, largura, 1, topo)
+            if altura > 2 and sorteio.random() < 0.7:
+                px(img, x + 1, y + 1, cor("#6c7384"))
+
+    fileira(1, 2, 3, 12)
+    fileira(4, 3, 3, 12)
+    fileira(8, 3, 4, 11)
+    fileira(12, 3, 5, 10)
+    fileira(16, 3, 6, 9)
+    fileira(20, 3, 3, 3, largura=6, passo=7)
+    ret(img, 24, 20, 20, 3, tecla)
+    ret(img, 24, 20, 20, 1, topo)
+    for x0 in (46, 51):
+        ret(img, x0, 20, 4, 3, tecla)
+        ret(img, x0, 20, 4, 1, topo)
+    salvar(img, "teclado_notebook")
+
+
+def tela_notebook():
+    """Tela do notebook, 64 x 40 px (0,30 m x 0,19 m): fundo escuro em degradê,
+    barra de menu, uma janela de código (as linhas coloridas), um gráfico de
+    duas curvas (a Modelagem e Simulação do Gabriel) e o dock embaixo."""
+    sorteio = random.Random(51)
+    img = Image.new("RGBA", (64, 40))
+    de, para = cor("#0e1a3a"), cor("#2c1a4c")
+    for y in range(40):
+        ret(img, 0, y, 64, 1, misturar(de, para, y / 39))
+    ret(img, 0, 0, 64, 3, cor("#0a0e1c"))
+    for x in (2, 6, 10):
+        ret(img, x, 1, 3, 1, cor("#8a93b0"))
+    ret(img, 54, 1, 8, 1, cor("#8a93b0"))
+
+    ret(img, 3, 6, 36, 28, cor("#10131e"))
+    ret(img, 3, 6, 36, 3, cor("#232a40"))
+    for i, c in enumerate(["#e0605a", "#e0b84a", "#58c060"]):
+        px(img, 5 + i * 3, 7, cor(c))
+    cores = ["#6fd8f0", "#f07fb8", "#a8e070", "#e8c870", "#c0c8e0"]
+    for i in range(8):
+        recuo = sorteio.choice([0, 0, 2, 4])
+        ret(img, 5, 11 + i * 3, 2, 1, cor("#586080"))
+        ret(img, 8 + recuo, 11 + i * 3, sorteio.randint(6, 22 - recuo), 1, cor(sorteio.choice(cores)))
+
+    ret(img, 41, 6, 20, 18, cor("#10131e"))
+    ret(img, 41, 6, 20, 3, cor("#232a40"))
+    ret(img, 43, 11, 1, 11, cor("#586080"))
+    ret(img, 43, 21, 16, 1, cor("#586080"))
+    for i in range(16):
+        px(img, 44 + i, 16 - round(4 * math.sin(i / 2.2)), cor("#6fd8f0"))
+        px(img, 44 + i, 18 - round(3 * math.cos(i / 2.8)), cor("#f07fb8"))
+
+    ret(img, 41, 26, 20, 8, cor("#10131e"))
+    for i in range(5):
+        ret(img, 43 + i * 4, 28, 3, 4, cor(cores[i]))
+
+    ret(img, 14, 36, 36, 3, cor("#0a0e1c"))
+    for i in range(7):
+        ret(img, 17 + i * 5, 37, 3, 1, cor(cores[i % 5]))
+    salvar(img, "tela_notebook")
+
+
+def escrever_grande(img, x, y, texto, c, escala=2):
+    for letra in texto:
+        for j, linha in enumerate(FONTE[letra]):
+            for i, marca in enumerate(linha):
+                if marca == "#":
+                    ret(img, x + i * escala, y + j * escala, escala, escala, c)
+        x += 4 * escala
+
+
+def marcas_das_caixas():
+    """Atlas 64 x 40 com o que está escrito nas caixas de papelão: três linhas de
+    canetão (LIVROS, CABOS, ROUPAS, 10 px cada, fundo transparente) e uma
+    etiqueta branca de FRAGIL com um código de barras."""
+    sorteio = random.Random(61)
+    img = Image.new("RGBA", (64, 40), (0, 0, 0, 0))
+    canetao = cor("#1c1a24")
+    for linha, texto in enumerate(["LIVROS", "CABOS", "ROUPAS"]):
+        escrever_grande(img, 3 + linha % 2 * 2, linha * 10, texto, canetao)
+    ret(img, 0, 30, 64, 10, cor("#e8e6e0"))
+    ret(img, 0, 30, 64, 1, cor("#c8c4bc"))
+    ret(img, 0, 39, 64, 1, cor("#c8c4bc"))
+    escrever_grande(img, 3, 33, "FRAGIL", cor("#c02a2a"))
+    x = 40
+    while x < 61:
+        largura = sorteio.choice([1, 1, 2])
+        ret(img, x, 32, largura, 6, cor("#1c1a24"))
+        x += largura + sorteio.choice([1, 2])
+    salvar(img, "marcas_das_caixas")
+
+
+def paginas():
+    """Miolo de página de livro e papel amassado, 16 x 16 px (5 cm): creme com um
+    risco mais escuro a cada 2 px (as folhas vistas de lado) e ruído leve."""
+    sorteio = random.Random(71)
+    base = cor("#e6dcc6")
+    img = Image.new("RGBA", (16, 16))
+    for y in range(16):
+        for x in range(16):
+            c = mudar(base, -14 if y % 2 else 0)
+            if sorteio.random() < 0.1:
+                c = mudar(c, sorteio.choice([-6, 5]))
+            img.putpixel((x, y), c)
+    salvar(img, "paginas")
+
+
+def despertador():
+    """Mostrador do despertador, 24 x 10 px: 12:00 em vermelho (piscando, como
+    quando falta luz) sobre fundo escuro."""
+    img = Image.new("RGBA", (24, 10), cor("#1a0a0a"))
+    escrever(img, 2, 2, "12:00", cor("#ff4a3a"))
+    salvar(img, "despertador")
+
+
 FOTO_EQUIPE = os.path.join(PASTA_SCRIPT, "foto_equipe_referencia.jpg")
 FOTO_EQUIPE_TAMANHO = (124, 56)
 
@@ -463,7 +691,14 @@ def main():
     tapete()
     cobertor()
     tecido("lencol", "#d6d8e0", ["#.", ".."], 9)
-    tecido("moletom", "#b8292f", ["#..", ".#.", "..#"], 10)
+    moletom_malha()
+    tampo_mesa()
+    papelao()
+    teclado_notebook()
+    tela_notebook()
+    marcas_das_caixas()
+    despertador()
+    paginas()
     tecido("mochila", "#5a6b3c", ["#+", "+#"], 11)
     cortina()
     quadro()

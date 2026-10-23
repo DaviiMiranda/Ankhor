@@ -54,6 +54,7 @@ import os
 import random
 
 import bpy
+from mathutils import Vector
 
 PASTA_SCRIPT = os.path.dirname(os.path.abspath(__file__))
 PASTA_PROJETO = os.path.normpath(os.path.join(PASTA_SCRIPT, "..", "..", ".."))
@@ -135,27 +136,43 @@ def tamanho_para_blender(sx, sy, sz):
     return (sx, sz, sy)
 
 
-def caixa(nome, centro, tamanho, mat, giro_y=0.0):
-    """Cubo com centro e tamanho no Godot, girado giro_y graus em volta do eixo
-    vertical (no Blender, o eixo vertical é o Z: mesmo ângulo, mesmo sentido).
-    A escala e o giro já saem aplicados: o glTF sai com medidas reais."""
+def caixa(nome, centro, tamanho, mat, giro_y=0.0, inclinar=(0.0, 0.0), arredondar=0.0):
+    """Cubo com centro e tamanho no Godot. inclinar = (giro em volta do x, giro
+    em volta do z) em graus, aplicado antes do giro_y (em volta do eixo vertical).
+    arredondar > 0 chanfra todas as arestas com esse raio (em metros): é o que
+    tira o ar de bloco dos móveis macios (travesseiro, moletom, mochila). A
+    escala, o giro e o chanfro já saem aplicados: o glTF sai com medidas reais."""
     bpy.ops.mesh.primitive_cube_add(size=1.0, location=para_blender(*centro))
     obj = bpy.context.active_object
     obj.name = nome
     obj.scale = tamanho_para_blender(*tamanho)
-    obj.rotation_euler = (0, 0, math.radians(giro_y))
+    obj.rotation_euler = (math.radians(inclinar[0]), math.radians(-inclinar[1]), math.radians(giro_y))
+    bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+    if arredondar > 0:
+        bisel = obj.modifiers.new("Bisel", "BEVEL")
+        bisel.width = min(arredondar, min(tamanho) * 0.45)
+        bisel.segments = 2
+        bisel.limit_method = "NONE"
+        bpy.ops.object.modifier_apply(modifier="Bisel")
+    obj.data.materials.append(mat)
+    return obj
+
+
+def cilindro(nome, centro, raio, altura, mat, lados=12, inclinar=(0.0, 0.0)):
+    """Cilindro em pé (eixo vertical), com centro no Godot. inclinar deita ele:
+    (90, 0) deixa o eixo ao longo do z, (0, 90) ao longo do x."""
+    bpy.ops.mesh.primitive_cylinder_add(radius=raio, depth=altura, vertices=lados, location=para_blender(*centro))
+    obj = bpy.context.active_object
+    obj.name = nome
+    obj.rotation_euler = (math.radians(inclinar[0]), math.radians(-inclinar[1]), 0.0)
     bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
     obj.data.materials.append(mat)
     return obj
 
 
-def cilindro(nome, centro, raio, altura, mat, lados=12):
-    """Cilindro em pé (eixo vertical), com centro no Godot."""
-    bpy.ops.mesh.primitive_cylinder_add(radius=raio, depth=altura, vertices=lados, location=para_blender(*centro))
-    obj = bpy.context.active_object
-    obj.name = nome
-    obj.data.materials.append(mat)
-    return obj
+LADOS = {"+z": ((0, 1), (1, 0)), "-z": ((0, -1), (-1, 0)), "+x": ((1, 0), (0, -1)), "-x": ((-1, 0), (0, 1))}
+ATLAS_MARCAS = (64, 40)
+MARCAS = {"livros": (0, 0, 64, 10), "cabos": (0, 10, 64, 20), "roupas": (0, 20, 64, 30), "fragil": (0, 30, 64, 40)}
 
 
 def juntar(nome, objetos):
@@ -223,16 +240,29 @@ def quarto(m):
 # ---------------------------------------------------------------------------
 
 def movel_da_tv(m):
-    """Móvel baixo: corpo, tampo, um friso de gaveta e quatro pés."""
+    """Móvel baixo: corpo, tampo com quina arredondada, duas gavetas com
+    puxador, quatro pés, e em cima, do lado da TV, o videogame e o controle."""
+    frente = MOVEL_Z + MOVEL_PROFUNDIDADE / 2
     partes = [
         caixa("Corpo", (0, MOVEL_ALTURA / 2 + 0.04, MOVEL_Z), (MOVEL_LARGURA - 0.04, MOVEL_ALTURA - 0.12, MOVEL_PROFUNDIDADE - 0.04), m["movel"]),
-        caixa("Tampo", (0, MOVEL_ALTURA - 0.02, MOVEL_Z), (MOVEL_LARGURA, 0.04, MOVEL_PROFUNDIDADE), m["movel"]),
-        caixa("Gaveta", (0, MOVEL_ALTURA / 2, MOVEL_Z + MOVEL_PROFUNDIDADE / 2 - 0.015), (MOVEL_LARGURA * 0.8, 0.02, 0.01), m["madeira_escura"]),
+        caixa("Tampo", (0, MOVEL_ALTURA - 0.02, MOVEL_Z), (MOVEL_LARGURA, 0.04, MOVEL_PROFUNDIDADE), m["movel"], arredondar=0.006),
     ]
+    for x in (-0.23, 0.23):
+        partes.append(caixa("GavetaTV", (x, 0.3, frente - 0.015), (0.42, 0.26, 0.012), m["madeira_escura"], arredondar=0.003))
+        partes.append(cilindro("PuxadorTV", (x, 0.3, frente - 0.002), 0.014, 0.018, m["metal"], inclinar=(90, 0)))
     for x in (-MOVEL_LARGURA / 2 + 0.06, MOVEL_LARGURA / 2 - 0.06):
         for z in (MOVEL_Z - MOVEL_PROFUNDIDADE / 2 + 0.06, MOVEL_Z + MOVEL_PROFUNDIDADE / 2 - 0.06):
             partes.append(caixa("Pe", (x, 0.02, z), (0.05, 0.04, 0.05), m["madeira_escura"]))
     juntar("MovelTV", partes)
+
+    em_cima = MOVEL_ALTURA
+    juntar("Videogame", [
+        caixa("Console", (-0.41, em_cima + 0.0175, MOVEL_Z + 0.04), (0.16, 0.035, 0.13), m["console"], arredondar=0.006),
+        caixa("FendaConsole", (-0.41, em_cima + 0.0265, MOVEL_Z + 0.106), (0.12, 0.004, 0.002), m["notebook"]),
+        caixa("Controle", (0.4, em_cima + 0.011, MOVEL_Z + 0.1), (0.11, 0.022, 0.05), m["notebook"], giro_y=-14, arredondar=0.009),
+        caixa("BotoesControle", (0.425, em_cima + 0.023, MOVEL_Z + 0.098), (0.02, 0.004, 0.02), m["led"], giro_y=-14),
+        haste("CaboControle", (0.35, em_cima + 0.005, MOVEL_Z + 0.08), (0.32, em_cima + 0.004, MOVEL_Z + 0.05), 0.0025, m["notebook"], lados=6),
+    ])
 
 
 def frente_da_tv():
@@ -335,72 +365,106 @@ def quadro_branco(m):
 
 
 def escrivaninha(m):
-    """Escrivaninha encostada na parede da esquerda, embaixo da janela: tampo,
-    gaveteiro do lado da porta e dois pés do lado do fundo. Em cima, o notebook
-    aberto, uma pilha de livros, o pote de lápis e a luminária, todos na faixa
-    perto da parede, para os papéis do Godot terem espaço no resto do tampo."""
+    """Escrivaninha encostada na parede da esquerda, embaixo da janela: tampo de
+    quina arredondada, gaveteiro do lado da porta com três gavetas e puxadores,
+    painel e travessa entre as pernas. Em cima, na faixa perto da parede (para os
+    papéis do Godot terem espaço no resto do tampo): pilha de livros com
+    páginas, pote com canetas, caneca de café e a luminária articulada. O
+    notebook tem a própria função."""
     x0 = -MEIA + MESA_FUNDO / 2
     z_porta = MESA_Z + MESA_COMPRIMENTO / 2
     z_fundo = MESA_Z - MESA_COMPRIMENTO / 2
-    juntar("Escrivaninha", [
-        caixa("TampoMesa", (x0, MESA_ALTURA - 0.02, MESA_Z), (MESA_FUNDO, 0.04, MESA_COMPRIMENTO), m["madeira"]),
-        caixa("Gaveteiro", (x0, (MESA_ALTURA - 0.04) / 2, z_porta - 0.22), (MESA_FUNDO - 0.04, MESA_ALTURA - 0.04, 0.4), m["madeira"]),
-        caixa("Gaveta1", (x0 + MESA_FUNDO / 2 - 0.015, 0.55, z_porta - 0.22), (0.01, 0.02, 0.2), m["madeira_escura"]),
-        caixa("Gaveta2", (x0 + MESA_FUNDO / 2 - 0.015, 0.3, z_porta - 0.22), (0.01, 0.02, 0.2), m["madeira_escura"]),
+    z_gav = z_porta - 0.22
+    frente_gav = x0 + (MESA_FUNDO - 0.04) / 2
+    inicio_painel = z_fundo + 0.06
+    fim_painel = z_gav - 0.2
+    partes = [
+        caixa("TampoMesa", (x0, MESA_ALTURA - 0.02, MESA_Z), (MESA_FUNDO, 0.04, MESA_COMPRIMENTO), m["tampo"], arredondar=0.006),
+        caixa("Gaveteiro", (x0, (MESA_ALTURA - 0.04) / 2, z_gav), (MESA_FUNDO - 0.04, MESA_ALTURA - 0.04, 0.4), m["madeira"]),
         caixa("PeMesa1", (x0 - MESA_FUNDO / 2 + 0.04, (MESA_ALTURA - 0.04) / 2, z_fundo + 0.04), (0.04, MESA_ALTURA - 0.04, 0.04), m["madeira"]),
         caixa("PeMesa2", (x0 + MESA_FUNDO / 2 - 0.04, (MESA_ALTURA - 0.04) / 2, z_fundo + 0.04), (0.04, MESA_ALTURA - 0.04, 0.04), m["madeira"]),
-    ])
+        caixa("PainelDeFundo", (-MEIA + 0.03, 0.47, (inicio_painel + fim_painel) / 2), (0.015, 0.45, fim_painel - inicio_painel), m["madeira_escura"]),
+        caixa("TravessaMesa", (x0, 0.69, z_fundo + 0.04), (MESA_FUNDO - 0.08, 0.05, 0.03), m["madeira"]),
+    ]
+    for y in (0.60, 0.375, 0.15):
+        partes.append(caixa("GavetaFrente", (frente_gav + 0.005, y, z_gav), (0.014, 0.2, 0.36), m["madeira_escura"], arredondar=0.003))
+        partes.append(caixa("PuxadorGaveta", (frente_gav + 0.02, y, z_gav), (0.012, 0.012, 0.14), m["metal"]))
+        for dz in (-0.06, 0.06):
+            partes.append(caixa("PostePuxador", (frente_gav + 0.0135, y, z_gav + dz), (0.012, 0.01, 0.01), m["metal"]))
+    juntar("Escrivaninha", partes)
 
     em_cima = MESA_ALTURA
-    # Notebook aberto, de frente para a cadeira: a base deitada e a tela em pé
-    # encostada na janela.
-    juntar("Notebook", [
-        caixa("BaseNotebook", (-2.32, em_cima + 0.01, 0.28), (0.24, 0.02, 0.34), m["notebook"]),
-        caixa("TampaNotebook", (-2.45, em_cima + 0.13, 0.28), (0.015, 0.23, 0.34), m["notebook"]),
+    pilha = []
+    for i, (capa, giro) in enumerate([("livro_verde", -8), ("livro_vinho", 0), ("livro_azul", 8)]):
+        pilha += livro(m, "Livro", (-2.36, em_cima + 0.0225 + i * 0.045, -0.78), (0.2, 0.045, 0.28), m[capa], giro)
+    juntar("LivrosDaMesa", pilha)
+
+    pote = [cilindro("Pote", (-2.38, em_cima + 0.05, -0.5), 0.035, 0.1, m["metal"], lados=16)]
+    for k, (cor_caneta, dx, dz) in enumerate([("lapis", 0.012, 0.0), ("caneta_azul", -0.01, 0.01), ("caneta_vermelha", 0.0, -0.014),
+                                              ("notebook", 0.014, 0.012), ("livro_verde", -0.012, -0.008)]):
+        pote.append(haste("Caneta", (-2.38 + dx * 0.3, em_cima + 0.03, -0.5 + dz * 0.3),
+                          (-2.38 + dx * 3.2, em_cima + 0.16 + 0.01 * k, -0.5 + dz * 3.2), 0.004, m[cor_caneta]))
+    juntar("PoteDeLapis", pote)
+
+    cx, cz = -2.37, -0.3
+    juntar("Caneca", [
+        cilindro("CorpoCaneca", (cx, em_cima + 0.045, cz), 0.04, 0.09, m["caneca"], lados=16),
+        cilindro("Cafe", (cx, em_cima + 0.0905, cz), 0.034, 0.002, m["cafe"], lados=16),
+        caixa("AlcaCaneca", (cx + 0.052, em_cima + 0.045, cz), (0.012, 0.055, 0.012), m["caneca"], arredondar=0.003),
+        caixa("AlcaCima", (cx + 0.044, em_cima + 0.068, cz), (0.026, 0.012, 0.012), m["caneca"]),
+        caixa("AlcaBaixo", (cx + 0.044, em_cima + 0.022, cz), (0.026, 0.012, 0.012), m["caneca"]),
     ])
-    caixa("TelaNotebook", (-2.44, em_cima + 0.13, 0.28), (0.004, 0.2, 0.31), m["tela_notebook"])
 
-    cores = ["livro_verde", "livro_vinho", "livro_azul"]
-    livros = []
-    for i, nome_cor in enumerate(cores):
-        livros.append(caixa("Livro", (-2.36, em_cima + 0.025 + i * 0.045, -0.78), (0.2, 0.045, 0.28), m[nome_cor], giro_y=8 * (i - 1)))
-    juntar("LivrosDaMesa", livros)
-
-    juntar("PoteDeLapis", [
-        cilindro("Pote", (-2.38, em_cima + 0.05, -0.5), 0.035, 0.1, m["metal"]),
-        caixa("Lapis1", (-2.38, em_cima + 0.12, -0.5), (0.008, 0.1, 0.008), m["lapis"]),
-        caixa("Lapis2", (-2.37, em_cima + 0.12, -0.49), (0.008, 0.1, 0.008), m["caneta_azul"]),
-    ])
-
+    bx = -2.4
     juntar("Luminaria", [
-        cilindro("BaseLuminaria", (-2.4, em_cima + 0.01, 0.0), 0.06, 0.02, m["notebook"]),
-        caixa("HasteLuminaria", (-2.4, em_cima + 0.2, 0.0), (0.015, 0.38, 0.015), m["notebook"]),
-        caixa("CupulaLuminaria", (-2.33, em_cima + 0.38, 0.0), (0.16, 0.06, 0.1), m["notebook"]),
+        cilindro("BaseLuminaria", (bx, em_cima + 0.01, 0.0), 0.065, 0.02, m["notebook"], lados=20),
+        haste("BracoBaixo", (bx, em_cima + 0.02, 0.0), (bx + 0.005, em_cima + 0.3, 0.0), 0.007, m["notebook"]),
+        caixa("Junta", (bx + 0.005, em_cima + 0.3, 0.0), (0.03, 0.03, 0.03), m["metal"], arredondar=0.008),
+        haste("BracoCima", (bx + 0.005, em_cima + 0.3, 0.0), (bx + 0.07, em_cima + 0.37, 0.0), 0.006, m["notebook"]),
+        caixa("CupulaLuminaria", (-2.325, em_cima + 0.375, 0.0), (0.16, 0.05, 0.1), m["notebook"], inclinar=(0, -8), arredondar=0.012),
     ])
     caixa("Lampada", (-2.31, em_cima + 0.345, 0.0), (0.08, 0.01, 0.06), m["lampada"])
 
 
 def cadeira(m):
-    """Cadeira de escritório virada para a mesa, com o moletom vermelho do
-    Gabriel jogado no encosto."""
+    """Cadeira de escritório virada para a mesa: assento e encosto acolchoados,
+    dois apoios de braço, coluna com capa e base de cinco braços com rodízios.
+    No encosto, o moletom vermelho do Gabriel, jogado (peças macias e chanfradas:
+    a parte de trás, a dobra por cima, o capuz, uma manga caída e outra no
+    assento)."""
     x, z = -1.62, -0.1
-    juntar("Cadeira", [
-        caixa("Assento", (x, 0.47, z), (0.44, 0.06, 0.44), m["cadeira"]),
-        caixa("Encosto", (x + 0.22, 0.78, z), (0.05, 0.5, 0.42), m["cadeira"]),
-        cilindro("Coluna", (x, 0.25, z), 0.025, 0.4, m["metal"]),
-        caixa("PeCadeira1", (x, 0.04, z), (0.5, 0.03, 0.05), m["metal"]),
-        caixa("PeCadeira2", (x, 0.04, z), (0.05, 0.03, 0.5), m["metal"]),
-    ])
+    partes = [
+        caixa("Assento", (x, 0.47, z), (0.46, 0.07, 0.46), m["cadeira"], arredondar=0.025),
+        caixa("Encosto", (x + 0.23, 0.80, z), (0.06, 0.5, 0.44), m["cadeira"], inclinar=(0, -8), arredondar=0.025),
+        cilindro("Coluna", (x, 0.26, z), 0.026, 0.4, m["metal"]),
+        cilindro("CapaColuna", (x, 0.37, z), 0.036, 0.16, m["cadeira"]),
+    ]
+    for k in range(5):
+        giro = 72 * k + 10
+        meio = deslocar((x, 0.075, z), 0.15, 0, giro)
+        ponta = deslocar((x, 0.03, z), 0.3, 0, giro)
+        partes.append(caixa("BracoBase", meio, (0.3, 0.035, 0.05), m["metal"], giro_y=giro, arredondar=0.01))
+        partes.append(cilindro("Rodizio", ponta, 0.025, 0.05, m["notebook"], lados=10))
+    for lado in (-1, 1):
+        partes.append(caixa("PosteBraco", (x + 0.02, 0.58, z + lado * 0.245), (0.03, 0.2, 0.03), m["cadeira"]))
+        partes.append(caixa("ApoioBraco", (x + 0.02, 0.69, z + lado * 0.245), (0.26, 0.035, 0.065), m["cadeira"], arredondar=0.012))
+    juntar("Cadeira", partes)
+
     juntar("Moletom", [
-        caixa("MoletomCostas", (x + 0.26, 0.85, z), (0.05, 0.42, 0.46), m["moletom"]),
-        caixa("MoletomCapuz", (x + 0.27, 1.07, z), (0.08, 0.06, 0.24), m["moletom"]),
-        caixa("MoletomManga", (x + 0.1, 0.52, z + 0.2), (0.3, 0.06, 0.08), m["moletom"], giro_y=20),
+        caixa("MoletomCostas", (x + 0.28, 0.86, z), (0.07, 0.46, 0.46), m["moletom"], inclinar=(0, -8), arredondar=0.025),
+        caixa("MoletomDobra", (x + 0.22, 1.09, z), (0.15, 0.07, 0.46), m["moletom"], inclinar=(0, -20), arredondar=0.03),
+        caixa("MoletomFrente", (x + 0.17, 0.94, z), (0.05, 0.3, 0.42), m["moletom"], inclinar=(0, -8), arredondar=0.02),
+        caixa("MoletomCapuz", (x + 0.34, 0.98, z - 0.02), (0.1, 0.15, 0.26), m["moletom"], inclinar=(0, -10), arredondar=0.04),
+        caixa("MoletomMangaCaida", (x + 0.22, 0.72, z + 0.27), (0.09, 0.4, 0.09), m["moletom"], inclinar=(6, 0), arredondar=0.03),
+        caixa("MoletomMangaAssento", (x + 0.02, 0.53, z - 0.18), (0.3, 0.07, 0.09), m["moletom"], giro_y=20, arredondar=0.03),
+        caixa("MoletomBolso", (x + 0.325, 0.78, z), (0.02, 0.1, 0.24), m["moletom"], inclinar=(0, -8), arredondar=0.008),
     ])
 
 
 def janela(m):
-    """Moldura da janela na parede da esquerda (o vidro é a imagem do Godot),
-    o peitoril e a cortina caída de um lado."""
+    """Moldura da janela na parede da esquerda (o vidro é a imagem do Godot), o
+    peitoril com um cacto no vasinho e a cortina de quatro dobras, pendurada
+    num varão com as pontas arredondadas."""
     x = -MEIA + 0.03
     y, z = JANELA_CENTRO_Y, JANELA_CENTRO_Z
     lado = JANELA_LADO
@@ -411,14 +475,36 @@ def janela(m):
         caixa("JanelaEsq", (x, y, z + lado / 2 + borda / 2), (0.06, lado, borda), m["janela"]),
         caixa("JanelaDir", (x, y, z - lado / 2 - borda / 2), (0.06, lado, borda), m["janela"]),
         caixa("JanelaMeio", (x + 0.01, y, z), (0.04, lado, 0.03), m["janela"]),
-        caixa("Peitoril", (x + 0.05, y - lado / 2 - borda - 0.01, z), (0.16, 0.03, lado + 0.3), m["janela"]),
+        caixa("Peitoril", (x + 0.05, y - lado / 2 - borda - 0.01, z), (0.16, 0.03, lado + 0.3), m["janela"], arredondar=0.006),
     ])
-    caixa("Cortina", (x + 0.06, y + 0.02, z - lado / 2 - 0.2), (0.05, lado + 0.4, 0.28), m["cortina"])
+    topo_peitoril = y - lado / 2 - borda - 0.01 + 0.015
+    cacto_z = z - 0.38
+    juntar("Cacto", [
+        cilindro("VasoCacto", (x + 0.05, topo_peitoril + 0.035, cacto_z), 0.04, 0.07, m["vaso"], lados=14),
+        cilindro("TerraCacto", (x + 0.05, topo_peitoril + 0.071, cacto_z), 0.034, 0.003, m["terra"], lados=14),
+        cilindro("CorpoCacto", (x + 0.05, topo_peitoril + 0.13, cacto_z), 0.028, 0.12, m["folha"], lados=10),
+        esfera("TopoCacto", (x + 0.05, topo_peitoril + 0.19, cacto_z), 0.028, m["folha"]),
+        haste("BracoCacto", (x + 0.05, topo_peitoril + 0.12, cacto_z), (x + 0.05, topo_peitoril + 0.15, cacto_z + 0.055), 0.012, m["folha"]),
+        haste("BracoCacto2", (x + 0.05, topo_peitoril + 0.11, cacto_z), (x + 0.05, topo_peitoril + 0.15, cacto_z - 0.05), 0.011, m["folha"]),
+    ])
+    pregas = []
+    for i in range(4):
+        pregas.append(caixa("Prega", (x + 0.06 + (0.016 if i % 2 else -0.012), y + 0.02, z - lado / 2 - 0.08 - i * 0.075),
+                            (0.045, lado + 0.4, 0.085), m["cortina"], arredondar=0.012))
+    juntar("Cortina", pregas)
+    juntar("VaraoDaCortina", [
+        haste("Varao", (x + 0.06, y + lado / 2 + 0.24, z - lado / 2 - 0.02), (x + 0.06, y + lado / 2 + 0.24, z - lado / 2 - 0.42), 0.011, m["metal"], lados=10),
+        esfera("PonteiraVarao", (x + 0.06, y + lado / 2 + 0.24, z - lado / 2 - 0.02), 0.02, m["metal"]),
+        esfera("PonteiraVarao", (x + 0.06, y + lado / 2 + 0.24, z - lado / 2 - 0.42), 0.02, m["metal"]),
+    ])
 
 
 def estante(m):
     """Estante no canto do fundo, à esquerda: laterais, fundo, cinco prateleiras
-    e livros de alturas e cores sorteadas (semente fixa: sai sempre igual)."""
+    e livros de alturas e cores sorteadas (semente fixa: sai sempre igual), cada
+    um com uma faixa clara na lombada. No fim de cada prateleira sobra um vão
+    com um objeto: uma caixa de arquivo, o robozinho de brinquedo, uma planta,
+    um porta-retrato e uma pilha de revistas. No topo, uma caixa de papelão."""
     sorteio = random.Random(2026)
     x, z = -1.95, -2.3
     largura, altura, fundo = 0.9, 1.9, 0.36
@@ -429,58 +515,362 @@ def estante(m):
     ]
     prateleiras = [0.03, 0.42, 0.8, 1.18, 1.56, altura - 0.015]
     for y in prateleiras:
-        partes.append(caixa("Prateleira", (x, y, z), (largura - 0.04, 0.03, fundo - 0.02), m["madeira"]))
+        partes.append(caixa("Prateleira", (x, y, z), (largura - 0.04, 0.03, fundo - 0.02), m["madeira"], arredondar=0.004))
     juntar("Estante", partes)
 
     cores = ["livro_verde", "livro_vinho", "livro_azul", "livro_bege", "livro_cinza"]
     livros = []
+    faixas = []
     for y in prateleiras[:-1]:
         xi = x - largura / 2 + 0.05
-        limite = x + largura / 2 - 0.05 - sorteio.uniform(0.0, 0.25)
+        limite = x + largura / 2 - 0.05 - 0.27
         while xi < limite:
             esp = sorteio.uniform(0.025, 0.05)
             alt = sorteio.uniform(0.22, 0.32)
             livros.append(caixa("Livro", (xi + esp / 2, y + 0.015 + alt / 2, z + 0.02), (esp, alt, 0.24), m[sorteio.choice(cores)]))
-            xi += esp + 0.004
+            faixas.append(caixa("FaixaLombada", (xi + esp / 2, y + 0.015 + alt * sorteio.uniform(0.25, 0.7), z + 0.1405), (esp + 0.001, 0.02, 0.003), m["paginas"]))
+            xi += esp + 0.004 + (0.025 if sorteio.random() < 0.05 else 0.0)
     juntar("LivrosDaEstante", livros)
+    juntar("FaixasDosLivros", faixas)
+
+    xo = x + largura / 2 - 0.17
+    base = lambda i: prateleiras[i] + 0.015
+    objetos = caixa_de_papelao(m, "CaixaDeArquivo", (xo, base(0) + 0.1, z + 0.02), (0.22, 0.2, 0.24), giro_y=-6)
+    b = base(1)
+    objetos += [
+        caixa("PernaRobo", (xo - 0.02, b + 0.02, z + 0.03), (0.022, 0.04, 0.03), m["robo_corpo"]),
+        caixa("PernaRobo", (xo + 0.02, b + 0.02, z + 0.03), (0.022, 0.04, 0.03), m["robo_corpo"]),
+        caixa("CorpoRobo", (xo, b + 0.085, z + 0.03), (0.08, 0.09, 0.06), m["robo_corpo"], arredondar=0.008),
+        caixa("PeitoRobo", (xo, b + 0.09, z + 0.0615), (0.03, 0.03, 0.003), m["led_vermelho"]),
+        caixa("BracoRobo", (xo - 0.055, b + 0.085, z + 0.03), (0.022, 0.07, 0.025), m["robo_corpo"]),
+        caixa("BracoRobo", (xo + 0.055, b + 0.085, z + 0.03), (0.022, 0.07, 0.025), m["robo_corpo"]),
+        caixa("CabecaRobo", (xo, b + 0.16, z + 0.03), (0.07, 0.055, 0.055), m["robo_corpo"], arredondar=0.008),
+        caixa("OlhoRobo", (xo - 0.016, b + 0.162, z + 0.0585), (0.014, 0.012, 0.004), m["led_vermelho"]),
+        caixa("OlhoRobo", (xo + 0.016, b + 0.162, z + 0.0585), (0.014, 0.012, 0.004), m["led_vermelho"]),
+        haste("AntenaRobo", (xo, b + 0.19, z + 0.03), (xo + 0.012, b + 0.235, z + 0.03), 0.003, m["metal"], lados=6),
+        esfera("PontaAntena", (xo + 0.012, b + 0.24, z + 0.03), 0.009, m["led_vermelho"]),
+    ]
+    b = base(2)
+    objetos += [
+        cilindro("VasoPlanta", (xo, b + 0.045, z + 0.03), 0.048, 0.09, m["vaso"], lados=14),
+        cilindro("TerraPlanta", (xo, b + 0.091, z + 0.03), 0.042, 0.003, m["terra"], lados=14),
+    ]
+    for k in range(9):
+        angulo = k * 2.4
+        raio = 0.035 * ((k % 3) / 2 + 0.3)
+        objetos.append(esfera("Folha", (xo + math.cos(angulo) * raio, b + 0.12 + 0.012 * (k % 4), z + 0.03 + math.sin(angulo) * raio),
+                              0.03, m["folha" if k % 2 else "folha_escura"], (1.0, 0.8, 1.0)))
+    b = base(3)
+    objetos += [
+        caixa("MolduraRetrato", (xo, b + 0.09, z + 0.03), (0.14, 0.18, 0.014), m["madeira_escura"], arredondar=0.003),
+        quad_na_caixa("FotoRetrato", (xo, b + 0.09, z + 0.03), (0.14, 0.18, 0.014), 0, "+z", 0.105, 0.145, m["foto"]),
+        caixa("ApoioRetrato", (xo, b + 0.07, z - 0.01), (0.03, 0.14, 0.012), m["madeira_escura"]),
+    ]
+    b = base(4)
+    for i, (capa, giro) in enumerate([("livro_vinho", -4), ("livro_azul", 6), ("livro_bege", -8)]):
+        objetos += livro(m, "Revista", (xo, b + 0.007 + i * 0.014, z + 0.03), (0.2, 0.014, 0.26), m[capa], giro)
+    objetos += caixa_de_papelao(m, "CaixaDoTopo", (x - 0.1, altura + 0.095, z + 0.01), (0.34, 0.19, 0.26), giro_y=10, marca="livros")
+    juntar("ObjetosDaEstante", objetos)
 
 
 def cama(m):
     """Cama de solteiro encostada na parede da direita, com a cabeceira no lado
-    do fundo: estrado, colchão, travesseiro, cobertor amarrotado e cabeceira.
-    Do lado da porta, o criado-mudo e a mochila verde no chão."""
+    do fundo: estrado, cabeceira com remate, colchão, dois travesseiros, cobertor
+    amarrotado com uma ponta caída pelo lado do quarto. Do lado da porta, o
+    criado-mudo (com gaveta, despertador e livro) e a mochila verde no chão."""
     x = MEIA - 0.5
     z_cabeca, z_pe = -1.35, 0.75
     z = (z_cabeca + z_pe) / 2
     comprimento = z_pe - z_cabeca
     juntar("Cama", [
-        caixa("Estrado", (x, 0.15, z), (1.0, 0.3, comprimento), m["madeira"]),
-        caixa("Cabeceira", (x, 0.45, z_cabeca - 0.03), (1.0, 0.9, 0.06), m["madeira"]),
-        caixa("Colchao", (x, 0.4, z), (0.94, 0.2, comprimento - 0.06), m["lencol"]),
-        caixa("Travesseiro", (x + 0.05, 0.55, z_cabeca + 0.25), (0.6, 0.1, 0.32), m["lencol"], giro_y=-6),
-        caixa("Cobertor", (x - 0.02, 0.52, z + 0.35), (0.98, 0.05, comprimento - 0.7), m["cobertor"]),
-        caixa("Dobra", (x - 0.1, 0.56, z - 0.05), (0.8, 0.05, 0.25), m["cobertor"], giro_y=10),
+        caixa("Estrado", (x, 0.15, z), (1.0, 0.3, comprimento), m["madeira"], arredondar=0.01),
+        caixa("Cabeceira", (x, 0.45, z_cabeca - 0.03), (1.0, 0.9, 0.06), m["madeira"], arredondar=0.012),
+        caixa("RemateCabeceira", (x, 0.92, z_cabeca - 0.03), (1.06, 0.045, 0.09), m["madeira_escura"], arredondar=0.01),
+        caixa("Colchao", (x, 0.4, z), (0.94, 0.2, comprimento - 0.06), m["lencol"], arredondar=0.035),
+        caixa("Travesseiro", (x + 0.05, 0.55, z_cabeca + 0.25), (0.6, 0.1, 0.32), m["lencol"], giro_y=-6, arredondar=0.045),
+        caixa("TravesseiroDeBaixo", (x - 0.02, 0.53, z_cabeca + 0.3), (0.56, 0.09, 0.3), m["lencol"], giro_y=7, arredondar=0.04),
+        caixa("Cobertor", (x - 0.02, 0.52, z + 0.35), (0.98, 0.05, comprimento - 0.7), m["cobertor"], arredondar=0.02),
+        caixa("Dobra", (x - 0.1, 0.56, z - 0.05), (0.8, 0.05, 0.25), m["cobertor"], giro_y=10, arredondar=0.022),
+        caixa("PontaCaida", (x - 0.49, 0.45, z + 0.4), (0.05, 0.25, 0.9), m["cobertor"], arredondar=0.02),
     ])
     juntar("CriadoMudo", [
-        caixa("CorpoCriado", (MEIA - 0.25, 0.25, 1.15), (0.42, 0.5, 0.42), m["madeira"]),
-        caixa("PuxadorCriado", (MEIA - 0.47, 0.38, 1.15), (0.01, 0.02, 0.12), m["metal"]),
+        caixa("CorpoCriado", (MEIA - 0.25, 0.25, 1.15), (0.42, 0.5, 0.42), m["madeira"], arredondar=0.006),
+        caixa("TampoCriado", (MEIA - 0.25, 0.515, 1.15), (0.46, 0.03, 0.46), m["madeira_escura"], arredondar=0.006),
+        caixa("GavetaCriado", (MEIA - 0.46, 0.34, 1.15), (0.012, 0.2, 0.34), m["madeira_escura"], arredondar=0.003),
+        caixa("PuxadorCriado", (MEIA - 0.475, 0.34, 1.15), (0.012, 0.02, 0.12), m["metal"]),
+        caixa("PeCriado", (MEIA - 0.25, 0.012, 1.15), (0.4, 0.024, 0.4), m["madeira_escura"]),
     ])
+    juntar("DespertadorNoCriado", [
+        caixa("CorpoDespertador", (MEIA - 0.2, 0.57, 1.15), (0.09, 0.08, 0.14), m["despertador_corpo"], arredondar=0.012),
+        quad("MostradorDespertador", (MEIA - 0.2 - 0.0455, 0.55, 1.15 - 0.055), (MEIA - 0.2 - 0.0455, 0.55, 1.15 + 0.055),
+             (MEIA - 0.2 - 0.0455, 0.59, 1.15 + 0.055), (MEIA - 0.2 - 0.0455, 0.59, 1.15 - 0.055), m["despertador"]),
+        haste("SinoEsq", (MEIA - 0.2, 0.61, 1.15 - 0.04), (MEIA - 0.2, 0.635, 1.15 - 0.055), 0.006, m["metal"], lados=8),
+        haste("SinoDir", (MEIA - 0.2, 0.61, 1.15 + 0.04), (MEIA - 0.2, 0.635, 1.15 + 0.055), 0.006, m["metal"], lados=8),
+    ])
+    juntar("LivroDoCriado", livro(m, "LivroCriado", (MEIA - 0.28, 0.5425, 0.92), (0.15, 0.025, 0.21), m["livro_vinho"], 22))
+
+    cx, cz, giro = 1.25, 1.25, 25
+    corpo = (cx, 0.21, cz)
     juntar("Mochila", [
-        caixa("CorpoMochila", (1.25, 0.21, 1.25), (0.34, 0.42, 0.2), m["mochila"], giro_y=25),
-        caixa("BolsoMochila", (1.2, 0.14, 1.36), (0.24, 0.18, 0.06), m["mochila_escura"], giro_y=25),
+        caixa("CorpoMochila", corpo, (0.34, 0.42, 0.2), m["mochila"], giro_y=giro, arredondar=0.05),
+        caixa("TopoMochila", deslocar((cx, 0.42, cz), 0, 0, giro), (0.3, 0.05, 0.18), m["mochila"], giro_y=giro, arredondar=0.025),
+        caixa("BolsoMochila", deslocar((cx, 0.14, cz), -0.05, 0.11, giro), (0.24, 0.18, 0.06), m["mochila_escura"], giro_y=giro, arredondar=0.02),
+        caixa("AbaDoBolso", deslocar((cx, 0.235, cz), -0.05, 0.115, giro), (0.25, 0.04, 0.065), m["mochila_escura"], giro_y=giro, arredondar=0.015),
+        caixa("ZiperMochila", deslocar((cx, 0.3, cz), 0, 0.103, giro), (0.26, 0.012, 0.004), m["metal"], giro_y=giro),
+        caixa("AlcaDaMochila", deslocar((cx, 0.46, cz), 0, 0, giro), (0.12, 0.03, 0.025), m["mochila_escura"], giro_y=giro, arredondar=0.01),
+        caixa("AlcaCaida", deslocar((cx, 0.006, cz), 0.09, 0.3, giro), (0.055, 0.012, 0.32), m["mochila_escura"], giro_y=giro + 8, arredondar=0.004),
+        caixa("AlcaCaida", deslocar((cx, 0.006, cz), -0.09, 0.32, giro), (0.055, 0.012, 0.3), m["mochila_escura"], giro_y=giro - 12, arredondar=0.004),
     ])
 
 
 def porta(m):
-    """Porta do quarto na parede da frente (atrás de quem entra) e o interruptor."""
+    """Porta do quarto na parede da frente (atrás de quem entra): batente, folha
+    com quatro almofadas em relevo, três dobradiças, maçaneta de alavanca com
+    roseta, o interruptor e uma jaqueta verde pendurada num gancho."""
     x = -1.5
     z = MEIA - 0.02
-    juntar("Porta", [
+    face = z - 0.04
+    partes = [
         caixa("Batente", (x, 1.05, z + 0.005), (1.0, 2.1, 0.03), m["madeira_escura"]),
         caixa("Folha", (x, 1.02, z - 0.02), (0.86, 2.03, 0.04), m["porta"]),
-        caixa("Macaneta", (x + 0.33, 1.0, z - 0.05), (0.1, 0.02, 0.03), m["metal"]),
+    ]
+    for dx in (-0.2, 0.2):
+        partes.append(caixa("AlmofadaCima", (x + dx, 1.5, face - 0.005), (0.34, 0.7, 0.012), m["porta"], arredondar=0.004))
+        partes.append(caixa("AlmofadaBaixo", (x + dx, 0.58, face - 0.005), (0.34, 0.62, 0.012), m["porta"], arredondar=0.004))
+    for y in (0.25, 1.0, 1.8):
+        partes.append(caixa("Dobradica", (x - 0.43, y, face), (0.02, 0.1, 0.015), m["metal"]))
+    partes += [
+        cilindro("RosetaMacaneta", (x + 0.33, 1.0, face - 0.004), 0.03, 0.01, m["metal"], lados=16, inclinar=(90, 0)),
+        caixa("Macaneta", (x + 0.38, 1.0, face - 0.026), (0.1, 0.02, 0.02), m["metal"], arredondar=0.008),
+        caixa("PinoMacaneta", (x + 0.33, 1.0, face - 0.016), (0.02, 0.02, 0.02), m["metal"]),
+    ]
+    juntar("Porta", partes)
+    caixa("Interruptor", (x + 0.7, 1.15, z - 0.005), (0.07, 0.11, 0.01), m["lencol"], arredondar=0.003)
+    juntar("JaquetaNaPorta", [
+        caixa("GanchoDaPorta", (x - 0.2, 1.8, face - 0.015), (0.03, 0.03, 0.03), m["metal"]),
+        caixa("CorpoJaqueta", (x - 0.2, 1.5, face - 0.045), (0.32, 0.55, 0.05), m["mochila_escura"], arredondar=0.02),
+        caixa("GolaJaqueta", (x - 0.2, 1.8, face - 0.045), (0.18, 0.07, 0.06), m["mochila_escura"], arredondar=0.025),
+        caixa("MangaJaqueta", (x - 0.39, 1.42, face - 0.045), (0.08, 0.42, 0.06), m["mochila_escura"], inclinar=(0, 5), arredondar=0.025),
+        caixa("MangaJaqueta", (x - 0.01, 1.42, face - 0.045), (0.08, 0.42, 0.06), m["mochila_escura"], inclinar=(0, -5), arredondar=0.025),
+        caixa("ZiperJaqueta", (x - 0.2, 1.48, face - 0.0715), (0.012, 0.5, 0.004), m["metal"]),
     ])
-    caixa("Interruptor", (x + 0.7, 1.15, z - 0.005), (0.07, 0.11, 0.01), m["lencol"])
+
+
+def haste(nome, a, b, raio, mat, lados=8):
+    """Cilindro fino ligando dois pontos do Godot (braços da luminária, canetas,
+    antenas, alças)."""
+    pa, pb = Vector(para_blender(*a)), Vector(para_blender(*b))
+    direcao = pb - pa
+    bpy.ops.mesh.primitive_cylinder_add(radius=raio, depth=direcao.length, vertices=lados, location=(pa + pb) / 2)
+    obj = bpy.context.active_object
+    obj.name = nome
+    obj.rotation_mode = "QUATERNION"
+    obj.rotation_quaternion = direcao.to_track_quat("Z", "Y")
+    bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+    obj.data.materials.append(mat)
+    return obj
+
+
+def esfera(nome, centro, raio, mat, escala=(1.0, 1.0, 1.0)):
+    """Esfera baixa (80 faces), esticada pela escala (no Godot): folhas, bolas
+    de papel, pontas de antena."""
+    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1, radius=raio, location=para_blender(*centro))
+    obj = bpy.context.active_object
+    obj.name = nome
+    obj.scale = tamanho_para_blender(*escala)
+    bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+    obj.data.materials.append(mat)
+    return obj
+
+
+def quad(nome, bl, br, tr, tl, mat, uv=(0.0, 0.0, 1.0, 1.0)):
+    """Retângulo com UV explícito, dado pelos quatro cantos NO GODOT, vistos de
+    frente: embaixo-esquerda, embaixo-direita, em cima-direita, em cima-esquerda
+    (anti-horário, para a normal apontar para quem olha). uv = (u0, v0, u1, v1)
+    no sentido do Blender (v cresce para cima). Serve para teclado, tela,
+    mostrador e escrita nas caixas, onde a imagem tem que cair no lugar certo
+    (o triplanar não resolve isso)."""
+    pontos = [para_blender(*p) for p in (bl, br, tr, tl)]
+    malha = bpy.data.meshes.new(nome)
+    malha.from_pydata(pontos, [], [(0, 1, 2, 3)])
+    malha.update()
+    u0, v0, u1, v1 = uv
+    camada = malha.uv_layers.new(name="UVMap")
+    for laco, par in zip(malha.loops, [(u0, v0), (u1, v0), (u1, v1), (u0, v1)]):
+        camada.data[laco.index].uv = par
+    malha.materials.append(mat)
+    obj = bpy.data.objects.new(nome, malha)
+    bpy.context.collection.objects.link(obj)
+    return obj
+
+
+def deslocar(centro, dx, dz, giro_y):
+    """Ponto a (dx, dz) do centro, no referencial de uma peça girada giro_y
+    graus: dx anda ao longo do x da peça e dz ao longo do z dela."""
+    c, s = math.cos(math.radians(giro_y)), math.sin(math.radians(giro_y))
+    return (centro[0] + dx * c + dz * s, centro[1], centro[2] - dx * s + dz * c)
+
+
+def uv_da_marca(nome):
+    x0, y0, x1, y1 = MARCAS[nome]
+    largura, altura = ATLAS_MARCAS
+    return (x0 / largura, 1 - y1 / altura, x1 / largura, 1 - y0 / altura)
+
+
+def quad_na_caixa(nome, centro, tam, giro_y, lado, largura, altura, mat, uv=(0.0, 0.0, 1.0, 1.0), dy=0.0):
+    """Quad colado numa face vertical de uma caixa (centro, tam, giro_y como na
+    caixa): lado é "+z", "-z", "+x" ou "-x" no referencial da caixa; largura e
+    altura em metros; dy sobe ou desce o quad em relação ao centro da caixa."""
+    (nx, nz), (rx, rz) = LADOS[lado]
+    recuo = (tam[0] if nx else tam[2]) / 2 + 0.0015
+
+    def ponto(a, b):
+        return deslocar((centro[0], centro[1] + dy + b, centro[2]), nx * recuo + rx * a, nz * recuo + rz * a, giro_y)
+
+    return quad(nome, ponto(-largura / 2, -altura / 2), ponto(largura / 2, -altura / 2),
+                ponto(largura / 2, altura / 2), ponto(-largura / 2, altura / 2), mat, uv)
+
+
+def livro(m, nome, centro, tam, mat_capa, giro_y=0.0):
+    """Livro deitado (tam = comprimento em x, espessura, largura em z): duas
+    capas, a lombada do lado -x e o miolo de páginas aparecendo do lado +x."""
+    comprimento, espessura, largura = tam
+    x, y, z = centro
+    return [
+        caixa(nome, (x, y - espessura / 2 + 0.003, z), (comprimento, 0.006, largura), mat_capa, giro_y),
+        caixa(nome, (x, y + espessura / 2 - 0.003, z), (comprimento, 0.006, largura), mat_capa, giro_y),
+        caixa(nome, deslocar((x, y, z), 0.004, 0, giro_y), (comprimento - 0.012, espessura - 0.012, largura - 0.006), m["paginas"], giro_y),
+        caixa(nome, deslocar((x, y, z), -comprimento / 2 + 0.004, 0, giro_y), (0.008, espessura, largura), mat_capa, giro_y),
+    ]
+
+
+def notebook(m):
+    """Notebook aberto em cima da mesa, de frente para a cadeira (quem senta
+    está do lado +x): base de quina arredondada com teclado e trackpad (quads com
+    UV), dobradiça, tampa inclinada 15 graus para trás e a tela acesa."""
+    y = MESA_ALTURA
+    nx, nz = -2.29, 0.28
+    topo = y + 0.014
+    esquerda, direita = nz + 0.15, nz - 0.15
+    juntar("Notebook", [
+        caixa("BaseNotebook", (nx, y + 0.007, nz), (0.24, 0.014, 0.34), m["notebook"], arredondar=0.004),
+        quad("Teclado", (nx + 0.025, topo + 0.0005, esquerda), (nx + 0.025, topo + 0.0005, direita),
+             (nx - 0.105, topo + 0.0005, direita), (nx - 0.105, topo + 0.0005, esquerda), m["teclado"]),
+        quad("Trackpad", (nx + 0.095, topo + 0.0005, nz + 0.055), (nx + 0.095, topo + 0.0005, nz - 0.055),
+             (nx + 0.045, topo + 0.0005, nz - 0.055), (nx + 0.045, topo + 0.0005, nz + 0.055), m["trackpad"]),
+        cilindro("Dobradica", (nx - 0.115, y + 0.016, nz), 0.007, 0.3, m["metal"], lados=10, inclinar=(90, 0)),
+    ])
+    angulo = math.radians(15)
+    para_cima = (-math.sin(angulo), math.cos(angulo))
+    para_a_frente = (math.cos(angulo), math.sin(angulo))
+    dobradica = (nx - 0.115, y + 0.016)
+    centro_tampa = (dobradica[0] + para_cima[0] * 0.11, dobradica[1] + para_cima[1] * 0.11)
+    caixa("TampaNotebook", (centro_tampa[0], centro_tampa[1], nz), (0.008, 0.22, 0.34), m["notebook"], inclinar=(0, 15), arredondar=0.003)
+    tela_centro = (centro_tampa[0] + para_a_frente[0] * 0.0045 + para_cima[0] * 0.005,
+                   centro_tampa[1] + para_a_frente[1] * 0.0045 + para_cima[1] * 0.005)
+
+    def ponto_da_tela(dz, subida):
+        return (tela_centro[0] + para_cima[0] * subida, tela_centro[1] + para_cima[1] * subida, nz + dz)
+
+    quad("TelaNotebook", ponto_da_tela(0.15, -0.095), ponto_da_tela(-0.15, -0.095),
+         ponto_da_tela(-0.15, 0.095), ponto_da_tela(0.15, 0.095), m["tela_notebook"])
+
+
+def caixa_de_papelao(m, nome, centro, tam, giro_y=0.0, fita=True, marca=None, aberta=False):
+    """Caixa de papelão (tam = x, altura, z; centro no meio do volume) com chanfro,
+    fita larga no topo (descendo pelas duas pontas) e, se pedir, canetão ou
+    etiqueta na face +z (marca é uma chave de MARCAS). aberta=True faz uma caixa
+    sem tampa, de paredes finas, com as quatro abas viradas para fora."""
+    w, h, d = tam
+    cx, cy, cz = centro
+    partes = []
+    if not aberta:
+        partes.append(caixa(nome, centro, tam, m["papelao"], giro_y, arredondar=0.004))
+        if fita:
+            partes.append(caixa("Fita", (cx, cy + h / 2 + 0.0015, cz), (0.05, 0.003, d + 0.004), m["fita"], giro_y))
+            for sinal in (-1, 1):
+                partes.append(caixa("FitaPonta", deslocar((cx, cy + h / 2 - 0.03, cz), 0, sinal * (d / 2 + 0.0015), giro_y),
+                                    (0.05, 0.06, 0.003), m["fita"], giro_y))
+    else:
+        t = 0.006
+        partes.append(caixa(nome, deslocar((cx, cy - h / 2 + t / 2, cz), 0, 0, giro_y), (w, t, d), m["papelao"], giro_y))
+        for sinal in (-1, 1):
+            partes.append(caixa(nome, deslocar((cx, cy, cz), sinal * (w / 2 - t / 2), 0, giro_y), (t, h, d), m["papelao"], giro_y))
+            partes.append(caixa(nome, deslocar((cx, cy, cz), 0, sinal * (d / 2 - t / 2), giro_y), (w - 2 * t, h, t), m["papelao"], giro_y))
+        abertura = 38
+        seno, cosseno = math.sin(math.radians(abertura)), math.cos(math.radians(abertura))
+        for sinal in (-1, 1):
+            comprimento = d / 2
+            dobradica = (cx, cy + h / 2 + seno * comprimento / 2, cz)
+            pos = deslocar(dobradica, 0, sinal * (d / 2 + cosseno * comprimento / 2), giro_y)
+            partes.append(caixa("Aba", pos, (w, 0.005, comprimento), m["papelao"], giro_y, inclinar=(-sinal * abertura, 0)))
+            comprimento = w / 2
+            dobradica = (cx, cy + h / 2 + seno * comprimento / 2, cz)
+            pos = deslocar(dobradica, sinal * (w / 2 + cosseno * comprimento / 2), 0, giro_y)
+            partes.append(caixa("Aba", pos, (comprimento, 0.005, d), m["papelao"], giro_y, inclinar=(0, sinal * abertura)))
+    if marca:
+        if marca == "fragil":
+            largura, altura = 0.2, 0.05
+        else:
+            largura, altura = min(0.3, w * 0.8), 0.05
+        partes.append(quad_na_caixa("Marca", centro, tam, giro_y, "+z", largura, altura, m["marcas"], uv_da_marca(marca), dy=-h * 0.1))
+    return partes
+
+
+def caixas_jogadas(m):
+    """As caixas de papelão do quarto de mudança de alguém que não terminou de
+    desfazer: duas empilhadas no canto do fundo (LIVROS e FRAGIL), uma aberta ao
+    lado, com livros de fora, uma caída de lado perto da cama, vomitando livros
+    e papéis, e uma pequena junto da parede da porta (CABOS)."""
+    pilha = caixa_de_papelao(m, "CaixaGrande", (2.08, 0.19, -2.2), (0.5, 0.38, 0.4), giro_y=8, marca="livros")
+    pilha += caixa_de_papelao(m, "CaixaDeCima", (2.1, 0.38 + 0.15, -2.18), (0.42, 0.3, 0.34), giro_y=-14, marca="fragil")
+    juntar("PilhaDeCaixas", pilha)
+
+    aberta = caixa_de_papelao(m, "CaixaAberta", (1.5, 0.14, -2.22), (0.38, 0.28, 0.32), giro_y=-5, aberta=True)
+    aberta += livro(m, "LivroNaCaixa", (1.5, 0.3, -2.2), (0.22, 0.04, 0.3), m["livro_bege"], -5)
+    aberta += livro(m, "LivroNaCaixa", (1.52, 0.34, -2.2), (0.2, 0.035, 0.28), m["livro_azul"], 12)
+    aberta += [caixa("MoletomNaCaixa", (1.45, 0.3, -2.27), (0.2, 0.08, 0.18), m["cobertor"], giro_y=20, arredondar=0.03)]
+    juntar("CaixaAbertaComLivros", aberta)
+
+    t = 0.006
+    giro = 35
+    centro = (0.9, 0.15, -1.3)
+    w, h, d = 0.36, 0.3, 0.34
+    caida = [caixa("CaixaCaida", deslocar(centro, 0, -d / 2 + t / 2, giro), (w, h, t), m["papelao"], giro)]
+    for sinal in (-1, 1):
+        caida.append(caixa("CaixaCaida", deslocar(centro, sinal * (w / 2 - t / 2), 0, giro), (t, h, d), m["papelao"], giro))
+        caida.append(caixa("CaixaCaida", deslocar((centro[0], centro[1] + sinal * (h / 2 - t / 2), centro[2]), 0, 0, giro), (w - 2 * t, t, d), m["papelao"], giro))
+    caida.append(quad_na_caixa("Marca", centro, (w, h, d), giro, "-x", 0.2, 0.05, m["marcas"], uv_da_marca("roupas"), dy=0.0))
+    juntar("CaixaCaida", caida)
+
+    espalhados = []
+    for i, (capa, dx, dz, giro_livro) in enumerate([("livro_vinho", 0.18, 0.28, 50), ("livro_verde", 0.42, 0.38, 100), ("livro_cinza", 0.12, 0.58, 18)]):
+        px_, _, pz = deslocar(centro, dx, dz, giro)
+        espalhados += livro(m, "LivroNoChao", (px_, 0.0175, pz), (0.2, 0.035, 0.27), m[capa], giro_livro)
+    juntar("LivrosNoChao", espalhados)
+
+    pequena = caixa_de_papelao(m, "CaixaPequena", (0.55, 0.13, 2.3), (0.36, 0.26, 0.3), giro_y=-8, marca="cabos")
+    juntar("CaixaPequena", pequena)
+
+
+def bagunca(m):
+    """O que ficou jogado pelo chão: um par de tênis perto da porta e bolas de
+    papel amassado debaixo da mesa."""
+    tenis = []
+    for nome, centro, giro in [("TenisEsq", (-0.85, 0, 2.05), 25), ("TenisDir", (-0.62, 0, 2.2), -50)]:
+        tenis += [
+            caixa(nome, (centro[0], 0.014, centro[2]), (0.1, 0.028, 0.27), m["tenis_sola"], giro, arredondar=0.01),
+            caixa(nome, deslocar((centro[0], 0.063, centro[2]), 0, -0.05, giro), (0.09, 0.07, 0.14), m["tenis"], giro, arredondar=0.025),
+            caixa(nome, deslocar((centro[0], 0.048, centro[2]), 0, 0.075, giro), (0.09, 0.04, 0.11), m["tenis"], giro, arredondar=0.02),
+            caixa(nome, deslocar((centro[0], 0.082, centro[2]), 0, 0.02, giro), (0.07, 0.006, 0.06), m["tenis_sola"], giro),
+            caixa(nome, deslocar((centro[0], 0.06, centro[2]), 0, 0.14, giro), (0.092, 0.012, 0.012), m["tenis_sola"], giro),
+        ]
+    juntar("Tenis", tenis)
+    juntar("PapeisAmassados", [
+        esfera("BolaDePapel", (-1.25, 0.03, 0.55), 0.035, m["paginas"], (1.0, 0.9, 1.0)),
+        esfera("BolaDePapel", (-1.05, 0.028, 0.72), 0.03, m["paginas"], (1.0, 0.9, 1.1)),
+        esfera("BolaDePapel", (-1.45, 0.03, -0.62), 0.033, m["paginas"], (1.1, 0.9, 1.0)),
+    ])
 
 
 def main():
@@ -523,6 +913,27 @@ def main():
         "mochila": material("Mochila", "#5a6b3c", rugosidade=0.9),
         "mochila_escura": material("MochilaEscura", "#3e4a28", rugosidade=0.9),
         "porta": material("Porta", "#6a4a34", rugosidade=0.7),
+        "tampo": material("Tampo", "#7a5638", rugosidade=0.6),
+        "papelao": material("Papelao", "#a98150", rugosidade=0.95),
+        "fita": material("Fita", "#d8c9a0", rugosidade=0.25),
+        "marcas": material("Marcas", "#ffffff", rugosidade=0.9),
+        "teclado": material("Teclado", "#202228", rugosidade=0.5),
+        "trackpad": material("Trackpad", "#3a3e46", rugosidade=0.3),
+        "paginas": material("Paginas", "#e6dcc6", rugosidade=0.9),
+        "caneca": material("Caneca", "#cfc8ba", rugosidade=0.3),
+        "cafe": material("Cafe", "#2b1a10", rugosidade=0.2),
+        "despertador": material("Despertador", "#1a0a0a", brilho="#ff4a3a", forca_brilho=1.0),
+        "despertador_corpo": material("DespertadorCorpo", "#2a2a30", rugosidade=0.5),
+        "vaso": material("Vaso", "#b5623a", rugosidade=0.85),
+        "terra": material("Terra", "#2a1c14", rugosidade=1.0),
+        "folha": material("Folha", "#3f7a3a", rugosidade=0.8),
+        "folha_escura": material("FolhaEscura", "#2c5a2c", rugosidade=0.8),
+        "led_vermelho": material("LedVermelho", "#c02020", brilho="#ff3030", forca_brilho=3.0),
+        "robo_corpo": material("RoboCorpo", "#8a9098", rugosidade=0.35),
+        "tenis": material("Tenis", "#2a5ea8", rugosidade=0.8),
+        "tenis_sola": material("TenisSola", "#e8e4d8", rugosidade=0.7),
+        "console": material("Console", "#d8d9dc", rugosidade=0.4),
+        "foto": material("Foto", "#8fb0c8", rugosidade=0.5),
     }
 
     quarto(m)
@@ -532,11 +943,14 @@ def main():
     mural(m)
     quadro_branco(m)
     escrivaninha(m)
+    notebook(m)
     cadeira(m)
     janela(m)
     estante(m)
     cama(m)
     porta(m)
+    caixas_jogadas(m)
+    bagunca(m)
 
     os.makedirs(os.path.dirname(SAIDA), exist_ok=True)
     bpy.ops.export_scene.gltf(filepath=SAIDA, export_format="GLB", export_apply=True)

@@ -16,6 +16,11 @@ Formato:
 
 ---
 
+## 2026-10-23 — Quarto do visor mais detalhado: notebook, mesa, caixas jogadas e texturas novas
+**Decisão:** o quarto do Gabriel no visor 3D ganha mais detalhe e menos cara de bloco. Notebook de verdade (teclado, trackpad, tampa inclinada e tela acesa com código e um gráfico), mesa com tampo próprio e três gavetas, caneca, canetas e luminária articulada, cadeira com rodízios e moletom macio, cama com dois travesseiros e uma ponta de cobertor caída, criado-mudo com despertador, mochila com alças, porta com almofadas e uma jaqueta pendurada, cacto no peitoril, objetos na estante (o robozinho de brinquedo, uma planta, um porta-retrato) e o videogame na TV. Para a bagunça, **caixas de papelão** jogadas pelo quarto (empilhadas no canto, aberta com livros, caída, pequena na porta), tênis e bolas de papel. Texturas novas ou refeitas: tampo da mesa, papelão, moletom em malha canelada, parede (agora 1 m, com riscos e furinhos) e piso com arranhões.
+**Por quê:** pedido do Davi: o quarto estava com móveis lisos e em blocos.
+**Afeta:** `assets/modelagem/cenario/gerar_sala_visor.py` (chanfro e quads com UV), `gerar_texturas_quarto.py`, `scripts/visor/texturas_do_quarto.gd` (materiais com UV, brilho e recorte), `cenas/visor/sala_visor.tscn` (colisão das caixas) e `docs/mecanicas/visor_3d.md`. Sem mudança de história.
+
 ## 2026-10-21 — Cartas dos Faroleiros e de desconhecidos no Centro de Convivência e no Bloco de salas
 **Decisão:** entram seis documentos opcionais que contam um pouco do mundo de 3026, só com o que a História Completa já diz (seções 2.1 a 2.4): quem foi embora (os *Homo sideralis*, que aguentam implantes e vivem "lá em cima"), quem ficou (os *sapiens*, os Faroleiros), o juramento dos três raios (ficar, cuidar, esperar), as marcas do farol (inteiro = seguro, sem raios = perigo), o campus sem cidade em volta e as máquinas que não pensam e repetem o caminho.
 - **Centro de Convivência:** a carta da **Neide**, Faroleira (passarela), a carta sem assinatura para a **Lia** (praça) e a carta do **Tião**, Faroleiro, para o Zé (segundo andar).
