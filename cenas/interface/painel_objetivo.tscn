@@ -1,0 +1,76 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interface/painel_objetivo.gd" id="1_painel"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fase"]
+font_size = 8
+line_spacing = 0.0
+font_color = Color(0.64, 0.9, 0.85, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_texto"]
+font_size = 8
+line_spacing = 0.0
+font_color = Color(0.82, 0.8, 0.72, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_agora"]
+font_size = 8
+line_spacing = 0.0
+font_color = Color(0.95, 0.88, 0.7, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 1)
+
+[node name="PainelObjetivo" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 304.0
+offset_bottom = 164.0
+mouse_filter = 2
+script = ExtResource("1_painel")
+
+[node name="Fase" type="Label" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 22.0
+offset_right = 294.0
+offset_bottom = 36.0
+label_settings = SubResource("LabelSettings_fase")
+
+[node name="Objetivo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 38.0
+offset_right = 294.0
+offset_bottom = 94.0
+label_settings = SubResource("LabelSettings_texto")
+autowrap_mode = 3
+max_lines_visible = 4
+
+[node name="Divisoria" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 98.0
+offset_right = 294.0
+offset_bottom = 99.0
+mouse_filter = 2
+color = Color(0.3, 0.31, 0.3, 1)
+
+[node name="TituloAgora" type="Label" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 102.0
+offset_right = 294.0
+offset_bottom = 116.0
+label_settings = SubResource("LabelSettings_agora")
+text = "AGORA"
+
+[node name="Agora" type="Label" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 116.0
+offset_right = 294.0
+offset_bottom = 144.0
+label_settings = SubResource("LabelSettings_texto")
+autowrap_mode = 3
+max_lines_visible = 2
