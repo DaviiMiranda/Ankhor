@@ -10,6 +10,7 @@
 - **Época de origem:** 2026.
 - **Quem é:** estudante da Unifor, com cerca de 20 anos. A família Magalhães vive na região há séculos, mas ele não sabe.
 - **História:** dormiu na Biblioteca de madrugada, com o caderno de equações da cadeira de **Modelagem e Simulação** aberto na mesa. A cadeira nasceu da pesquisa do Henrique, o aluno que sumiu na Biblioteca em 2019, uma lenda do campus que Gabriel conhece. Acorda em 3026, na cabine de estudo onde pegou no sono, sem saber o que aconteceu. Não é um herói: precisa entender o campus, evitar os robôs e achar os outros. Usa no dedo um **anel desgastado** que a avó deu para ele. É o **último** a chegar a 3026.
+- **Objeto-símbolo:** o **anel desgastado** que a avó deu para ele. Está no dedo dele desde o começo do jogo e é o que o liga ao Baltazar, que tem o mesmo anel, novo.
 
 ## 2. Personalidade
 
