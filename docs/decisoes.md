@@ -1,7 +1,7 @@
 # Registro de decisões
 
 ## 2026-10-24 — Ansiedade causada pela proximidade dos robôs
-**Decisão:** Gabriel ganha uma barra de ansiedade que aumenta conforme o robô mais próximo chega a até 240 px e diminui quando os robôs se afastam. A ansiedade pode aumentar em até 80% o consumo de estamina ao correr. Enquanto a barra estiver ativa, a tela recebe uma oscilação e uma separação de cores leves, proporcionais ao nível de ansiedade.
+**Decisão:** Gabriel ganha uma barra de ansiedade que aumenta conforme o robô mais próximo chega a até 240 px e diminui quando os robôs se afastam. As barras de ansiedade e estamina ficam sempre visíveis. A ansiedade pode aumentar em até 80% o consumo de estamina ao correr. A tela recebe oscilação, separação de cores e vinheta avermelhada proporcionais ao nível de ansiedade.
 **Por quê:** pedido do usuário para mostrar a tensão da aproximação dos robôs e fazer Gabriel perder estamina mais rápido sob pressão.
 **Afeta:** `scripts/sistemas/ansiedade.gd` e `cenas/sistemas/ansiedade.tscn` (novos), `scripts/personagens/gabriel.gd`, `scripts/sistemas/fadiga.gd`, `scripts/interface/hud.gd`, `shaders/ansiedade.gdshader` (novo) e `docs/mecanicas/movimentacao_e_terreno.md`.
 
