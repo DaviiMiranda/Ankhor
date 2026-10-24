@@ -4,10 +4,12 @@ extends CharacterBody2D
 signal passo_dado(correndo: bool)
 signal fadiga_mudou(estamina: float, maxima: float)
 signal exaustao_mudou(esta_exausto: bool)
+signal ansiedade_mudou(valor: float, maxima: float)
 
 const COR_ESCONDIDO := Color(0.45, 0.45, 0.6)
 const LARGURA_QUADRO := 96.0
 const MAOS := preload("res://scripts/personagens/maos_do_gabriel.gd").MAOS
+const CENA_ANSIEDADE := preload("res://cenas/sistemas/ansiedade.tscn")
 const PEITO_NO_QUADRO := {
 	"lado": Vector2(54, 40),
 	"frente": Vector2(47, 40),
@@ -68,11 +70,15 @@ var _mascara_colisao := 0
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var no_gadgets: Node2D = $Gadgets
 @onready var fadiga: Fadiga = $Fadiga
+var ansiedade: Ansiedade
 
 
 func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("jogador")
+	ansiedade = CENA_ANSIEDADE.instantiate() as Ansiedade
+	add_child(ansiedade)
+	ansiedade.mudou.connect(_ao_mudar_ansiedade)
 	Inventario.mudou.connect(_atualizar_gadgets)
 	Vida.dano_recebido.connect(_ao_receber_dano)
 	if fadiga:
@@ -136,7 +142,7 @@ func _physics_process(delta: float) -> void:
 		velocidade *= multiplicador_correr
 		correndo = true
 		if fadiga:
-			fadiga.consumir(delta)
+			fadiga.consumir(delta, ansiedade.multiplicador_consumo_estamina())
 	elif fadiga:
 		fadiga.regenerar(delta, direcao == Vector2.ZERO)
 
@@ -155,6 +161,7 @@ func _physics_process(delta: float) -> void:
 		_animar(get_real_velocity().length() * delta, delta)
 
 	_piscar()
+	ansiedade.atualizar(global_position, delta)
 
 
 func esconder(sim: bool) -> void:
@@ -219,6 +226,10 @@ func _ao_receber_dano(origem: Vector2) -> void:
 
 func _ao_mudar_fadiga(atual: float, maxima: float) -> void:
 	fadiga_mudou.emit(atual, maxima)
+
+
+func _ao_mudar_ansiedade(atual: float, maxima: float) -> void:
+	ansiedade_mudou.emit(atual, maxima)
 
 
 func _ao_iniciar_exaustao() -> void:

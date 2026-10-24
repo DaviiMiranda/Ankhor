@@ -14,6 +14,8 @@ Gabriel possui dois estados primários de movimentação em vista lateral 2.5D. 
 ## 2. Dinâmica de Estamina
 
 - Gabriel é um estudante comum: sua estamina se esgota rapidamente durante a corrida (~8 segundos contínuos).
+- **Ansiedade:** robôs próximos aumentam a ansiedade de Gabriel. Quanto mais perto o robô mais próximo, mais rápido a barra cresce; quando todos se afastam, ela diminui gradualmente. A ansiedade aumenta o consumo de estamina durante a corrida em até 80%. A barra aparece abaixo da estamina enquanto houver ansiedade.
+- Com ansiedade alta, a imagem ganha uma oscilação e uma separação de cores discretas, que aumentam junto com a barra e desaparecem quando Gabriel se acalma.
 - Quando a barra de estamina zera, Gabriel entra em estado de **Exaustão**: não pode correr por 3 segundos, move-se com 40% da velocidade de caminhada e emite suspiros ofegantes audíveis via sinal `ofegante` e efeito sonoro, aumentando o risco de detecção por robôs.
 - A estamina se regenera gradualmente: em repouso (parado), recupera-se em ~4 segundos; andando, recupera-se em ~8 segundos.
 - **Implementação técnica:**
@@ -21,6 +23,7 @@ Gabriel possui dois estados primários de movimentação em vista lateral 2.5D. 
   - Script: `scripts/sistemas/fadiga.gd` (`class_name Fadiga`).
   - Sinais: `mudou(atual, maxima)`, `exaustao_iniciada`, `exaustao_terminada`, `ofegante`.
   - Interface: o HUD monitora o jogador pelo grupo `jogador` e exibe uma barra discreta abaixo da vida, surgindo ao consumir estamina e esmaecendo suavemente quando cheia. Em exaustão, a barra muda para a cor de alerta.
+  - Ansiedade: `cenas/sistemas/ansiedade.tscn` e `scripts/sistemas/ansiedade.gd` medem a distância até o robô mais próximo. O HUD exibe a barra e aplica o efeito visual por `shaders/ansiedade.gdshader`.
 
 ---
 
