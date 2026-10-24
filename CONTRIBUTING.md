@@ -87,8 +87,8 @@ git merge main
 
 ### Revisão
 
-- O **Davi é o revisor principal** e dono do repositório: todo PR precisa da aprovação dele para entrar na `main`.
-- Os PRs do próprio Davi são aprovados por **outro integrante** — o GitHub não deixa ninguém aprovar o próprio PR, e é bom que não deixe.
+- O **Davi é o único revisor com autoridade para aprovar PRs** que entram na `main`.
+- Quando o Davi abre um PR, ele revisa as próprias mudanças e pode mesclá-lo sem aprovação de outro integrante. O GitHub não permite registrar uma autoaprovação, então essa revisão fica por conta do próprio Davi antes do merge.
 - Meta de tempo: **revisar em até 48 horas.** Se o revisor não conseguir, avisa no grupo.
 - Revisão é sobre o código, não sobre a pessoa. Comentário bom diz o problema e sugere o caminho.
 - Quem abriu o PR responde todos os comentários, mesmo que seja com "feito".

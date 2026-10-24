@@ -13,7 +13,7 @@ Quatro pessoas, quatro papéis. Duas cuidam do **código** e duas são **roteiri
 | 3 | **Roteirista e diretor de arte** | Personagens, mundo e a história contada pela imagem: decide *o que* a arte mostra | **Emanuel Melo** |
 | 4 | **Roteirista e designer de fases** | Trama, mistério, textos, e a história contada pelo espaço e pelo som | [preencher] |
 
-**Líder do projeto e revisor principal (code owner):** Davi Miranda, junto com o papel 1. Os PRs do Davi são revisados por outro integrante.
+**Líder do projeto e único revisor com autoridade para aprovar PRs:** Davi Miranda, junto com o papel 1. Quando o próprio Davi abre um PR, ele revisa as mudanças e pode mesclá-lo sem aprovação de outro integrante.
 
 ---
 
