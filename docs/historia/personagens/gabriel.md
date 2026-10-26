@@ -30,6 +30,7 @@
 | [Clarice](clarice.md) | Duelo de ironias: os dois se provocam o tempo todo no mesmo tom, e é assim que a relação cresce ao longo do jogo |
 | [Zane](zane.md) | A voz do telefone que abre a saída da Biblioteca. Da oficina do Labirinto, mantém Gabriel em contato com todos, e precisa dele para invadir o bunker |
 | [Henrique](henrique.md) | Gabriel o reconhece pela lenda do campus. O Henrique divide o grupo, e Gabriel o une |
+| [Diana](diana.md) | Ela exagera, ele responde seco. Ela chegou só três dias antes dele, mas fala como veterana e se preocupa com ele em voz alta |
 
 ## 4. No jogo
 
