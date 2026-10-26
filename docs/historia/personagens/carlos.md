@@ -31,12 +31,16 @@
 ## 4. No jogo
 
 - **Onde aparece:** pendente. O D-Tec é o candidato natural a uma fase dele: é para lá que o grupo vai quando descobre a mentira do Henrique.
-- **Como chega ao jogador:** pendente (registros, voz, os robôs, em pessoa).
+- **Como chega ao jogador:** pelo menos por **registros** (seção 5). Voz, os robôs e em pessoa: pendentes.
 - **Função na história:** é o antagonista. Por trás da Âncora, da fenda e dos robôs.
 
 ## 5. Registros
 
-Pendente.
+| Registro | Onde | O que conta |
+|---|---|---|
+| **Folha de calibração** (`dados/documentos/folha_calibracao_carlos.tres`) | Corredor do Tempo, no Labirinto (opcional: aparece depois de alinhar os quatro mecanismos) | O "teste 214" da calibração da Âncora com o disco, o relógio, o pêndulo e os anéis. A máquina errou de novo, abriu a fenda na Biblioteca e puxou alguém que ele nem foi ver. Já foi um Faroleiro; a única luz que lhe interessa é a de um rádio ligado numa tarde dos anos 80. **Assina só "C."** |
+
+O tom da folha é seco e curto, de caderno de laboratório. Não fixa como ele fala em voz alta (pendente), nem por que saiu dos Faroleiros ou há quantos anos está sozinho.
 
 ## 6. Direção de arte
 

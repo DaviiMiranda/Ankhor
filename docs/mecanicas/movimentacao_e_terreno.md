@@ -15,6 +15,7 @@ Gabriel possui dois estados primários de movimentação em vista lateral 2.5D. 
 
 - Gabriel é um estudante comum: sua estamina se esgota rapidamente durante a corrida (~8 segundos contínuos).
 - **Ansiedade:** robôs próximos aumentam a ansiedade de Gabriel. Quanto mais perto o robô mais próximo, mais rápido a barra cresce; quando todos se afastam, ela diminui gradualmente. A ansiedade aumenta o consumo de estamina durante a corrida em até 80%. A barra fica sempre visível abaixo da estamina.
+- **Pressão externa:** um sistema pode impor um piso à ansiedade com `Ansiedade.definir_pressao(valor)`; a barra não desce abaixo dele. O relógio do Corredor do Tempo (Labirinto) usa isso: quanto menos tempo resta, maior o piso ([`corredor_do_tempo.md`](corredor_do_tempo.md)).
 - Com ansiedade, a imagem ganha oscilação, separação de cores e uma vinheta avermelhada; os efeitos ficam mais fortes junto com a barra e desaparecem quando Gabriel se acalma.
 - Quando a barra de estamina zera, Gabriel entra em estado de **Exaustão**: não pode correr por 3 segundos, move-se com 40% da velocidade de caminhada e emite suspiros ofegantes audíveis via sinal `ofegante` e efeito sonoro, aumentando o risco de detecção por robôs.
 - A estamina se regenera gradualmente: em repouso (parado), recupera-se em ~4 segundos; andando, recupera-se em ~8 segundos.

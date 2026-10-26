@@ -11,6 +11,8 @@
 #   assets/sprites/salas/labirinto/parede_topo_<n>.png    32 x 32, o alto do bloco (3 variações)
 #   assets/sprites/salas/labirinto/parede_frente_<n>.png  32 x 40, a face da frente (4 variações)
 #   assets/sprites/salas/labirinto/porta_saida.png        64 x 40, a saída, com a placa SAÍDA
+#   assets/sprites/salas/labirinto/porta_sala_segura.png  64 x 40, a porta da sala segura (luz verde)
+#   assets/sprites/salas/labirinto/porta_corredor_tempo.png  64 x 40, a porta do Corredor do Tempo (luz âmbar)
 #   assets/sprites/salas/labirinto/marcas_garra.png, poca.png, papel.png   detalhes do chão
 #   assets/sprites/cenario/objetos/checkpoint_apagado.png e checkpoint_aceso.png
 #   assets/sprites/cenario/luzes/luz_cone.png   textura do feixe (lanterna e farol da Sentinela)
@@ -72,6 +74,7 @@
 #   #  parede          .  chão           G  início do Gabriel   T  lanterna (ao lado do início)
 #   D  porta de saída (na parede de cima)                        S  saída (gatilho)
 #      (D e S só existem no mapa de teste: a saída da fase é o alçapão A)
+#   Q  porta da sala segura   H  porta do Corredor do Tempo   (2 blocos de parede cada)
 #   A  alçapão escondido na oficina (a saída da fase; o Zane o revela)
 #   C  checkpoint      P  pilha          L  lâmpada               V  Sentinela   R  Rastreador
 #   Z  o Zane          N  nó de controle (hackeável; 2 blocos de largura)
@@ -149,6 +152,11 @@ CAMINHO_ATE_A_OFICINA = (3, 8)
 # Os robôs não nascem a menos disso de caminho da entrada da oficina: o
 # destino não pode ter um robô parado na porta.
 DISTANCIA_MINIMA_DA_OFICINA = 5
+# A porta do Corredor do Tempo ("HH", sala opcional): na parede de cima
+# desta salinha, no meio do mapa, entre os nós 1 e 2 (10 salinhas de
+# caminho do início). Marcar a porta não sorteia nada, então o resto do
+# mapa não muda.
+PORTA_DO_CORREDOR = (11, 3)
 
 # Cada sala: posição (x, y) e tamanho (w, h) em SALINHAS. A oficina tem a
 # entrada fixa (o par de salinhas, de dentro para fora) e é "segura": os
@@ -360,6 +368,11 @@ def montar_mapa(rng):
     yq, xq = 3 * inicio[1], 3 * inicio[0] + 1
     assert grade[yq][xq] == "#" and grade[yq][xq + 1] == "#", "a parede de cima do início não está fechada"
     grade[yq][xq] = grade[yq][xq + 1] = "Q"
+
+    yh, xh = 3 * PORTA_DO_CORREDOR[1], 3 * PORTA_DO_CORREDOR[0] + 1
+    assert grade[yh][xh] == "#" and grade[yh][xh + 1] == "#", "a parede de cima da porta do corredor não está fechada"
+    assert grade[yh + 1][xh] == "." and grade[yh + 1][xh + 1] == ".", "há um marcador na frente da porta do corredor"
+    grade[yh][xh] = grade[yh][xh + 1] = "H"
 
     longe = sorted(dist, key=lambda c: -dist[c])
     robos = []
@@ -666,15 +679,15 @@ def previa(linhas, sprites):
             sala.colar(sprites["piso"], x, y)
     for by in range(h):
         for bx in range(w):
-            if linhas[by][bx] not in "#DQF":
+            if linhas[by][bx] not in "#DQHF":
                 continue
             x, y = bx * BLOCO, by * BLOCO
             sala.colar(sprites["topo"][(bx * 5 + by * 11) % 3], x, y - ALTURA_PAREDE)
             abaixo = linhas[by + 1][bx] if by + 1 < h else "."
-            if abaixo not in "#DQF":
-                if linhas[by][bx] in "DQ":
+            if abaixo not in "#DQHF":
+                if linhas[by][bx] in "DQH":
                     if bx == 0 or linhas[by][bx - 1] != linhas[by][bx]:
-                        nome = "porta" if linhas[by][bx] == "D" else "porta_segura"
+                        nome = {"D": "porta", "Q": "porta_segura", "H": "porta_corredor"}[linhas[by][bx]]
                         sala.colar(sprites[nome], x, y + BLOCO - ALTURA_PAREDE)
                 else:
                     sala.colar(sprites["frente"][(bx * 7 + by * 3) % 4], x, y + BLOCO - ALTURA_PAREDE)
@@ -724,6 +737,33 @@ def porta_sala_segura():
     return img
 
 
+def porta_corredor_tempo():
+    """A porta do Corredor do Tempo: as mesmas folhas de metal da porta da
+    sala segura, mas com a lâmpada ÂMBAR e, na plaquinha, um relógio: um
+    anel (r entre 2,5 e 4) com os dois ponteiros marcando 10 para as 2."""
+    img = Imagem(2 * BLOCO, ALTURA_PAREDE)
+    X, Y = img.X, img.Y
+    fino = ruido_toro(2 * BLOCO, ALTURA_PAREDE, 2, 557)
+    img.pintar(img.ret(0, 0, 2 * BLOCO, ALTURA_PAREDE), "concreto", 0.30 - 0.14 * Y / ALTURA_PAREDE + 0.04 * fino)
+    img.pintar(img.ret(0, 0, 2 * BLOCO, 1), "concreto", 0.62)
+    img.pintar(img.ret(14, 12, 50, ALTURA_PAREDE), "metal", 0.1)
+    for x0 in (15, 33):
+        folha = img.ret(x0, 13, x0 + 16, ALTURA_PAREDE)
+        img.pintar(folha, "metal", 0.36 + 0.08 * fino - 0.1 * (Y / ALTURA_PAREDE))
+        img.pintar(img.ret(x0 + 2, 16, x0 + 14, 22), "metal", 0.2)
+    img.pintar(img.ret(29, 26, 35, 28), "ferrugem", 0.6)                      # maçaneta
+    img.pintar(img.ret(18, 2, 24, 8), "lampada", 0.75)                        # a lâmpada
+    img.cor(img.ret(20, 4, 22, 6), RAMPAS["lampada"][-1])
+    img.pintar(img.ret(26, 1, 46, 12), "lampada", 0.15)                       # a plaquinha
+    cx, cy = 36.0, 6.5
+    r = np.hypot(X + 0.5 - cx, Y + 0.5 - cy)
+    img.cor((r >= 2.5) & (r <= 4.0), RAMPAS["lampada"][-2])
+    img.cor(img.linha(cx, cy, cx - 1.5, cy - 1.5, 0.5), RAMPAS["lampada"][-1])
+    img.cor(img.linha(cx, cy, cx + 2.0, cy - 1.0, 0.5), RAMPAS["lampada"][-1])
+    img.pintar(img.ret(0, ALTURA_PAREDE - 3, 2 * BLOCO, ALTURA_PAREDE), "concreto", 0.05)
+    return img
+
+
 def main():
     print("Gerando o Labirinto")
     rng = np.random.default_rng(SEMENTE)
@@ -736,7 +776,8 @@ def main():
     os.makedirs(PASTA_SALA, exist_ok=True)
     sprites = {"piso": piso(), "topo": [parede_topo(v) for v in range(3)],
                "frente": [parede_frente(v) for v in range(4)],
-               "porta": porta_saida(), "porta_segura": porta_sala_segura()}
+               "porta": porta_saida(), "porta_segura": porta_sala_segura(),
+               "porta_corredor": porta_corredor_tempo()}
     sprites["piso"].salvar("piso.png", PASTA_SALA)
     for v, img in enumerate(sprites["topo"]):
         img.salvar(f"parede_topo_{v}.png", PASTA_SALA)
@@ -744,6 +785,7 @@ def main():
         img.salvar(f"parede_frente_{v}.png", PASTA_SALA)
     sprites["porta"].salvar("porta_saida.png", PASTA_SALA)
     sprites["porta_segura"].salvar("porta_sala_segura.png", PASTA_SALA)
+    sprites["porta_corredor"].salvar("porta_corredor_tempo.png", PASTA_SALA)
     marcas_garra().salvar("marcas_garra.png", PASTA_SALA)
     poca().salvar("poca.png", PASTA_SALA)
     papel().salvar("papel.png", PASTA_SALA)

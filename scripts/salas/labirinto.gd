@@ -34,6 +34,9 @@ const PROPS := {
 	"v": preload("res://cenas/cenario/objetos/velas_no_chao.tscn"),
 }
 const LETRAS_LARGAS := "bcmxNen"
+const LETRAS_DE_PORTA := "DQH"
+const COR_LUZ_SAIDA := Color(0.3, 1.0, 0.5)
+const COR_LUZ_CORREDOR := Color(1.0, 0.7, 0.3)
 const DIFICULDADES_DOS_NOS := [Hackeamento.Dificuldade.FACIL, Hackeamento.Dificuldade.MEDIO, Hackeamento.Dificuldade.DIFICIL]
 
 const TEXTURA_LUZ := preload("res://assets/sprites/cenario/luzes/luz.png")
@@ -49,6 +52,9 @@ const LUZ_EM_TUDO := 1 | 2
 @export var textura_porta_segura: Texture2D
 @export_file("*.tscn") var cena_sala_segura: String = ""
 @export var id_porta_sala_segura: String = "labirinto_sala_segura"
+@export var textura_porta_corredor: Texture2D
+@export_file("*.tscn") var cena_corredor: String = ""
+@export var id_porta_corredor: String = "labirinto_corredor_tempo"
 @export var decalques: Array[Texture2D] = []
 @export var quantidade_decalques: int = 70
 @export var componentes: Array[Texture2D] = []
@@ -168,13 +174,17 @@ func _textura_da_frente(celula: Vector2i) -> Texture2D:
 	if abaixo.y < mapa.altura() and mapa.e_parede(abaixo):
 		return null
 	var letra := mapa.letra(celula)
-	if letra != "D" and letra != "Q":
+	if not LETRAS_DE_PORTA.contains(letra):
 		return frentes[(celula.x * 7 + celula.y * 3) % frentes.size()]
 	if mapa.letra(celula + Vector2i.LEFT) == letra:
 		return null
-	_acender_placa_saida(celula)
+	if letra == "H":
+		_acender_placa_saida(celula, COR_LUZ_CORREDOR)
+		_colocar_porta(celula, "PortaCorredorDoTempo", id_porta_corredor, cena_corredor, "corredor_tempo_saida")
+		return textura_porta_corredor
+	_acender_placa_saida(celula, COR_LUZ_SAIDA)
 	if letra == "Q":
-		_colocar_porta_sala_segura(celula)
+		_colocar_porta(celula, "PortaSalaSegura", id_porta_sala_segura, cena_sala_segura, "safe_room_saida")
 		return textura_porta_segura
 	return textura_porta
 
@@ -197,11 +207,11 @@ func _adicionar_oclusor(pai: Node2D, retangulo: Rect2) -> void:
 	pai.add_child(oclusor)
 
 
-func _acender_placa_saida(celula: Vector2i) -> void:
+func _acender_placa_saida(celula: Vector2i, cor: Color) -> void:
 	var bloco := mapa.tamanho_bloco
 	var luz := PointLight2D.new()
 	luz.texture = TEXTURA_LUZ
-	luz.color = Color(0.3, 1.0, 0.5)
+	luz.color = cor
 	luz.energy = 0.9
 	luz.texture_scale = 1.6
 	luz.range_item_cull_mask = LUZ_EM_TUDO
@@ -209,13 +219,13 @@ func _acender_placa_saida(celula: Vector2i) -> void:
 	luzes.add_child(luz)
 
 
-func _colocar_porta_sala_segura(celula: Vector2i) -> void:
+func _colocar_porta(celula: Vector2i, nome: String, id_porta: String, cena: String, destino: String) -> void:
 	var bloco := mapa.tamanho_bloco
 	var porta: Porta = CENA_PORTA_SALA_SEGURA.instantiate()
-	porta.name = "PortaSalaSegura"
-	porta.id = id_porta_sala_segura
-	porta.cena_destino = cena_sala_segura
-	porta.porta_destino = "safe_room_saida"
+	porta.name = nome
+	porta.id = id_porta
+	porta.cena_destino = cena
+	porta.porta_destino = destino
 	porta.position = Vector2((celula.x + 1) * bloco, (celula.y + 1) * bloco + 6)
 	objetos.add_child(porta)
 

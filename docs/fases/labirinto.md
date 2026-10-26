@@ -1,6 +1,6 @@
 # Fase — Labirinto (subsolo)
 
-> **Status:** Jogável (segunda versão: ampliado, com a oficina do Zane e três nós de controle)  
+> **Status:** Jogável (segunda versão: ampliado, com a oficina do Zane, três nós de controle e o Corredor do Tempo, opcional)  
 > **Área:** subsolo escuro do centro de pesquisa da Âncora  
 > **Ordem na história:** **terceira fase**, depois do Bloco de salas e antes do Centro de Convivência ([`centro_de_convivencia.md`](centro_de_convivencia.md)). A saída do Bloco leva a ela; o alçapão da oficina do Zane leva à passarela do Centro de Convivência. Também aparece pelo menu **Fases**.
 
@@ -8,7 +8,7 @@
 
 ## 1. Visão geral
 
-Um labirinto de corredores de concreto no escuro. O Gabriel começa **fora da oficina do Zane, mas perto dela**: numa câmara logo acima do corredor de baixo, com a lanterna no chão ao lado, a 5 salinhas de caminho (uns 13 s a pé) da porta da **oficina**, no canto de baixo à esquerda. O Zane não consegue invadir de longe a rede do subsolo: entrega o **notebook** a Gabriel e pede que invada **três nós de controle**, em três salões espalhados pelo labirinto. Quando os três caem, o Zane o chama pelo rádio: o Gabriel **volta à oficina**, e o Zane mostra a saída, um **alçapão escondido** sob uma lona. No caminho, seis robôs patrulham os corredores.
+Um labirinto de corredores de concreto no escuro. O Gabriel começa **fora da oficina do Zane, mas perto dela**: numa câmara logo acima do corredor de baixo, com a lanterna no chão ao lado, a 5 salinhas de caminho (uns 13 s a pé) da porta da **oficina**, no canto de baixo à esquerda. O Zane não consegue invadir de longe a rede do subsolo: entrega o **notebook** a Gabriel e pede que invada **três nós de controle**, em três salões espalhados pelo labirinto. Quando os três caem, o Zane o chama pelo rádio: o Gabriel **volta à oficina**, e o Zane mostra a saída, um **alçapão escondido** sob uma lona. No caminho, seis robôs patrulham os corredores. No meio do mapa, uma porta com luz âmbar leva ao **Corredor do Tempo**, uma sala opcional contra o relógio (seção 3).
 
 - **Cena:** `cenas/salas/labirinto.tscn` · **Script:** `scripts/salas/labirinto.gd` (herda de `Sala`)
 - **Mapa:** `dados/labirinto/mapa_labirinto.tres` (texto, uma letra por bloco)
@@ -51,6 +51,7 @@ Legenda do mapa:
 | `A` | o alçapão da saída, na oficina (escondido até o Zane revelar) |
 | `D` · `S` | porta de saída (na parede de cima) e gatilho: só existem no mapa de teste (`labirinto_teste`), não neste mapa |
 | `Q` | a porta da **sala segura** (2 blocos de parede, `QQ`), na parede de cima da câmara onde o Gabriel começa. O gerador marca as duas letras logo acima do início |
+| `H` | a porta do **Corredor do Tempo** (2 blocos de parede, `HH`, luz âmbar), na parede de cima da salinha `PORTA_DO_CORREDOR` = (11, 3), no meio do mapa |
 | `Z` | o Zane |
 | `N` | nó de controle (2 blocos de largura: `NN`) |
 | `b` `c` `m` `x` | bancada eletrônica, console, mesa com computador, robô desmontado (largos: `bb`, `cc`...) |
@@ -70,7 +71,7 @@ Na vista do jogo (lateral com profundidade), a parede tem 40 px de altura e cobr
 
 ---
 
-## 3. As salas
+## 3. As salas (e o Corredor do Tempo)
 
 Uma sala é um retângulo de salinhas com as paredes internas derrubadas, e **uma entrada só** (no sorteio ela é uma folha da árvore: a busca entra e volta). O desenho de cada uma está em `MODELOS`, no gerador. O mapa guarda o miolo de cada sala em blocos (`salas`, sem as paredes), a área da oficina (`area_oficina`) e as salinhas seguras (`salinhas_seguras`).
 
@@ -103,6 +104,9 @@ Cada sala tem uma **porta na entrada** (`cenas/sistemas/porta_da_sala.tscn`, scr
 
 ### O nó de controle
 `cenas/sistemas/no_hackeavel.tscn` (script `no_hackeavel.gd`, herda de `Porta`): console, alcance de interação e luz. O notebook o trata como uma porta trancada e abre o minigame (ver [`../mecanicas/hackeamento.md`](../mecanicas/hackeamento.md)); **não gasta bateria**. As marcas `labirinto_no_1`, `_2` e `_3` ficam em `Progresso` e `rede_do_labirinto.gd` conta; no terceiro, marca `labirinto_rede_invadida`, avisa "Volte ao Zane" e toca a transmissão `zane_labirinto_01`.
+
+### O Corredor do Tempo (opcional)
+A porta `HH` (`porta_corredor_tempo.png`, luz âmbar) leva a `cenas/salas/labirinto/corredor_do_tempo.tscn` (campos `textura_porta_corredor`, `cena_corredor` e `id_porta_corredor` do `labirinto.tscn`). É onde quem construiu a Âncora testava a calibração com objetos dos anos 80: um corredor com quatro salinhas (disco, relógio, pêndulo e anéis), cada uma com um mecanismo para alinhar no tempo certo. Ao entrar, a porta tranca e um relógio de **2 minutos** começa a contar para o corredor inteiro. Errar desconta 5 s; quanto menos tempo resta, mais a **ansiedade** do Gabriel sobe; se o relógio zera, é **game over** (último checkpoint). Vencendo, a porta destrava e aparece a **Folha de calibração**, um bilhete do Carlos assinado só "C.". Não tem robôs, e não faz parte do caminho dos três nós. Regras, ajustes e arquivos em [`../mecanicas/corredor_do_tempo.md`](../mecanicas/corredor_do_tempo.md).
 
 ### O Zane
 `cenas/personagens/zane_na_oficina.tscn` (script `zane_oficina.gd`, herda de `ConversaNpc`). Quatro conversas em `dados/dialogos/`:

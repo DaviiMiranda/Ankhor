@@ -9,6 +9,7 @@ signal mudou(atual: float, maxima: float)
 @export var multiplicador_maximo_estamina: float = 1.8
 
 var valor := 0.0
+var pressao := 0.0
 
 
 func atualizar(posicao_jogador: Vector2, delta: float) -> void:
@@ -18,7 +19,15 @@ func atualizar(posicao_jogador: Vector2, delta: float) -> void:
 		valor = minf(valor + crescimento_por_segundo * intensidade_perigo * delta, 1.0)
 	else:
 		valor = maxf(valor - recuperacao_por_segundo * delta, 0.0)
+	valor = maxf(valor, pressao)
 	if not is_equal_approx(valor, valor_anterior):
+		mudou.emit(valor, 1.0)
+
+
+func definir_pressao(nova_pressao: float) -> void:
+	pressao = clampf(nova_pressao, 0.0, 1.0)
+	if valor < pressao:
+		valor = pressao
 		mudou.emit(valor, 1.0)
 
 
