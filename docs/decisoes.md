@@ -21,6 +21,11 @@ Formato:
 
 ---
 
+## 2026-10-23 — Colecionáveis por fase: três pingentes de farol na Biblioteca acendem um farol no quarto do Gabriel
+**Decisão:** cada fase passa a ter uma **coleção** escondida, e completá-la libera uma coisa no **quarto do visor 3D** (a mente do Gabriel). A primeira é a da Biblioteca: **três pingentes de farol** (o símbolo dos Faroleiros, em âmbar) espalhados pelo salão, pela sala de terminais e pelo acervo sul. Com os três, aparece na **mesa do Gabriel** um **farol** em 3D, aceso, com luz âmbar pulsando. O quadro branco do quarto mostra o progresso (*Pingentes de farol: 2 de 3*). A peça aparece como item no chão com a tela "Novo item" (contagem 1 de 3...), mas **não vai para a mochila**. O estado entra no save e zera no "Novo jogo".
+**Por quê:** pedido do Davi: dar um motivo para explorar além do caminho principal e uma recompensa que se vê no quarto.
+**Afeta:** sistema novo (`docs/mecanicas/colecionaveis.md`): autoload `Colecionaveis`, recurso `Colecao` em `dados/colecoes/`, cena `colecionavel_no_mundo.tscn`, `farol_da_mesa.tscn` no `sala_visor.tscn`, modelo `farol_mesa.glb`, `Salvamento` e `menu_principal.gd`. Também `docs/mecanicas/visor_3d.md` e `docs/fases/biblioteca.md`. A história não mudou: o texto do pingente não diz de quem ele é, porque o Enredo Principal ainda não decidiu onde os Faroleiros estão hoje (Pendências dele). As posições dos pingentes e o desenho do farol 3D são primeira versão, para ajustar jogando.
+
 ## 2026-10-23 — Cada personagem principal tem um objeto-símbolo
 **Decisão:** cada um dos cinco tem um objeto que o representa, registrado na seção 1 da ficha de `docs/historia/personagens/`:
 - **Gabriel:** o anel desgastado da avó.
