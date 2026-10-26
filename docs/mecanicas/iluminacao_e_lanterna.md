@@ -18,6 +18,7 @@ O campus em 3026 é quase todo escuro. O pouco que ainda tem energia são os **s
   - **Desligada:** o Gabriel some no escuro; o jogador anda quase às cegas, guiado pelas luminárias e pelo brilho vermelho dos olhos dos robôs.
 - **Bateria:** 4 minutos de uso contínuo. A luz enfraquece com a carga, e abaixo de 15% ela **pisca**.
 - **Pilhas:** espalhadas pelo mapa (no labirinto, nos becos sem saída; na Biblioteca, duas no lado escuro). `E` perto de uma pilha troca a bateria (só aparece se a lanterna não estiver cheia). A pilha some depois de usada e não volta.
+- **O que só a lanterna mostra:** no Labirinto, a parede falsa do esconderijo do Baltazar parece concreto liso. Com o feixe apontado para ela, aparecem os riscos (o Cruzeiro do Sul e uma cruz) e dá para afastar o painel. A força da luz naquele ponto é calculada com o mesmo cone do feixe (produto escalar entre a direção do olhar e a direção até a parede): ver [`../fases/labirinto.md`](../fases/labirinto.md), seção 3.
 
 ### Sombras
 No labirinto, as paredes bloqueiam o feixe (o `LightOccluder2D` de cada fileira de blocos): o chão atrás de uma parede fica escuro. Um segundo feixe, sem sombra, ilumina só as paredes, para o jogador ver o bloco em que a luz bate. Detalhes em [`../fases/labirinto.md`](../fases/labirinto.md).

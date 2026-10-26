@@ -191,7 +191,7 @@ O Baltazar **não aparece** nesta fase: só o acampamento que ele deixou (Enredo
 
 A porta da sala 9 fica **barrada por dentro** durante toda a fase, e às vezes se ouve alguém do outro lado. Ela só abre quando Gabriel voltar à Biblioteca, mais adiante no jogo. É o gancho para o jogador querer voltar, como as portas que só se abrem mais tarde em *Resident Evil*.
 
-**Sugestão, não decisão:** o Enredo diz que o esconderijo do Baltazar fica dentro da Biblioteca, mas o lugar exato está pendente (seção 10.4). A sala de obras raras é uma boa candidata.
+A sala de obras raras era a candidata a esconderijo do Baltazar, mas o esconderijo dele passou para o **Labirinto** (ver [`labirinto.md`](labirinto.md), seção 3). Quem está do outro lado da porta barrada agora está pendente (Enredo Principal, seção 10.4).
 
 ---
 
