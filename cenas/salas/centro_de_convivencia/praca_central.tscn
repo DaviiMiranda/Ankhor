@@ -39,6 +39,7 @@
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r37"]
 [ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r38"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r39"]
+[ext_resource type="Resource" path="res://dados/transmissoes/grupo_convivencia_01.tres" id="g_grupo_convivencia_01"]
 
 [sub_resource type="RectangleShape2D" id="CaixaArco0"]
 size = Vector2(80, 432)
@@ -690,3 +691,8 @@ nome_piso = "pedra rachada e musgo"
 
 [editable path="Ceu"]
 [editable path="Objetos/GatilhoTransmissao1"]
+
+[node name="GatilhoGrupoConvivencia01" parent="." instance=ExtResource("r35")]
+transmissao = ExtResource("g_grupo_convivencia_01")
+na_sala_inteira = true
+depois_da_transmissao = "zane_convivencia_01"

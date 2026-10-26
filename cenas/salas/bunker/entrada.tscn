@@ -30,6 +30,8 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_bunker.tscn" id="m_musica"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_porta_fechada.tscn" id="n1"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="n2"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="g_gatilho_radio"]
+[ext_resource type="Resource" path="res://dados/transmissoes/grupo_bunker_01.tres" id="g_grupo_bunker_01"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -317,3 +319,7 @@ bus = &"Efeitos"
 [node name="Checkpoint" parent="Objetos" instance=ExtResource("n2")]
 position = Vector2(300, 200)
 id = "bunker_chegada"
+
+[node name="GatilhoGrupoBunker01" parent="." instance=ExtResource("g_gatilho_radio")]
+transmissao = ExtResource("g_grupo_bunker_01")
+na_sala_inteira = true

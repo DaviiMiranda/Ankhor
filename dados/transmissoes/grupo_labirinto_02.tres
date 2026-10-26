@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "grupo_labirinto_02"
+falante = "RÁDIO"
+falas = PackedStringArray("Chhh... Dois de três! Tá voando, Gabriel.", "Pergunta. Alguém aqui desmontou um robô na Biblioteca?", "Desmontar? Com que ferramenta? Eu mal encosto num.", "Eu não. Por quê?", "Tinha um acampamento entre as raízes da árvore. Vela, luneta rachada, um robô aberto peça por peça. E um diário. De 1750.", "1750?! Isso é antes de tudo! Antes da obra, antes da cidade, antes de... tudo!", "Na frequência não tem ninguém de 1750. Eu saberia. Eu anoto tudo.", "Então tem alguém fora da rede. Sozinho. Sem rádio.", "Sozinho. Eu sei como é isso.", "Depois a gente pensa nisso. Deu lag, Gabriel? O terceiro nó não cai sozinho.")
+falantes = PackedStringArray("ZANE (rádio)", "GABRIEL (rádio)", "ZANE (rádio)", "CLARICE (rádio)", "GABRIEL (rádio)", "DIANA (rádio)", "CLARICE (rádio)", "ZANE (rádio)", "CLARICE (rádio)", "ZANE (rádio)")
+titulo_anotacao = "Alguém de 1750"
+anotacao = "Contei do acampamento e do diário de 1750 que achei na Biblioteca. Ninguém na frequência é de lá: tem mais alguém no campus, fora da rede, sozinho e sem rádio.
+A Clarice disse que sabe como é isso."
