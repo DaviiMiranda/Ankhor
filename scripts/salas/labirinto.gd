@@ -12,6 +12,8 @@ const CENA_ZANE := preload("res://cenas/personagens/zane_na_oficina.tscn")
 const CENA_ALCAPAO := preload("res://cenas/sistemas/alcapao.tscn")
 const CENA_PORTA := preload("res://cenas/sistemas/porta_da_sala.tscn")
 const CENA_PORTA_SALA_SEGURA := preload("res://cenas/sistemas/porta.tscn")
+const CENA_PAREDE_FALSA := preload("res://cenas/sistemas/parede_falsa.tscn")
+const CENA_BALTAZAR := preload("res://cenas/personagens/baltazar_no_esconderijo.tscn")
 const LANTERNA := preload("res://dados/itens/lanterna.tres")
 const PROPS := {
 	"b": preload("res://cenas/cenario/dtec/objetos/bancada_eletronica.tscn"),
@@ -25,8 +27,13 @@ const PROPS := {
 	"h": preload("res://cenas/cenario/objetos/holograma_onda.tscn"),
 	"i": preload("res://cenas/cenario/objetos/holograma_barras.tscn"),
 	"j": preload("res://cenas/cenario/objetos/holograma_codigo.tscn"),
+	"y": preload("res://cenas/cenario/objetos/altar_baltazar.tscn"),
+	"e": preload("res://cenas/cenario/objetos/chapa_estrelas.tscn"),
+	"n": preload("res://cenas/cenario/objetos/ninho_baltazar.tscn"),
+	"l": preload("res://cenas/cenario/objetos/livros.tscn"),
+	"v": preload("res://cenas/cenario/objetos/velas_no_chao.tscn"),
 }
-const LETRAS_LARGAS := "bcmxN"
+const LETRAS_LARGAS := "bcmxNen"
 const LETRAS_DE_PORTA := "DQH"
 const COR_LUZ_SAIDA := Color(0.3, 1.0, 0.5)
 const COR_LUZ_CORREDOR := Color(1.0, 0.7, 0.3)
@@ -52,6 +59,7 @@ const LUZ_EM_TUDO := 1 | 2
 @export var quantidade_decalques: int = 70
 @export var componentes: Array[Texture2D] = []
 @export var quantidade_componentes: int = 26
+@export var quantidade_pecas_no_esconderijo: int = 12
 @export var semente: int = 26
 @export var transmissao_da_rede: Transmissao
 @export_file("*.tscn") var cena_da_saida: String = ""
@@ -62,6 +70,10 @@ var grade: GradeLabirinto
 var _perseguindo := {}
 var _numero_do_no := 0
 var _conteudo_das_salas := {}
+var _parede_falsa: ParedeFalsa
+var _blocos_da_parede_falsa: Array[Node2D] = []
+var _cobertura_do_esconderijo: Array[Node2D] = []
+var _conteudo_do_esconderijo: Array[Node2D] = []
 
 @onready var chao: Sprite2D = $Chao
 @onready var no_decalques: Node2D = $Decalques
@@ -82,8 +94,10 @@ func _ready() -> void:
 	_montar_paredes()
 	_espalhar_decalques()
 	_espalhar_componentes()
+	_espalhar_pecas_no_esconderijo()
 	_colocar_marcadores()
 	_colocar_portas()
+	_ligar_esconderijo()
 	_montar_rede()
 	super()
 
@@ -106,19 +120,33 @@ func _montar_paredes() -> void:
 	for y in mapa.altura():
 		var x := 0
 		while x < mapa.largura():
-			if not mapa.e_parede(Vector2i(x, y)):
+			if not _parede_macica(Vector2i(x, y)):
+				if mapa.e_parede_falsa(Vector2i(x, y)):
+					_blocos_da_parede_falsa.append(_desenhar_bloco(Vector2i(x, y)))
 				x += 1
 				continue
 			var inicio := x
-			while x < mapa.largura() and mapa.e_parede(Vector2i(x, y)):
+			while x < mapa.largura() and _parede_macica(Vector2i(x, y)):
 				_desenhar_bloco(Vector2i(x, y))
 				x += 1
 			var retangulo := Rect2(inicio * bloco, y * bloco, (x - inicio) * bloco, bloco)
 			_adicionar_colisao(corpo, retangulo)
 			_adicionar_oclusor(oclusores, retangulo)
+	_cobrir_esconderijo()
 
 
-func _desenhar_bloco(celula: Vector2i) -> void:
+func _parede_macica(celula: Vector2i) -> bool:
+	return mapa.e_parede(celula) and not mapa.e_parede_falsa(celula)
+
+
+func _cobrir_esconderijo() -> void:
+	var area := mapa.esconderijo
+	for y in range(area.position.y, area.end.y):
+		for x in range(area.position.x, area.end.x):
+			_cobertura_do_esconderijo.append(_desenhar_bloco(Vector2i(x, y), false))
+
+
+func _desenhar_bloco(celula: Vector2i, com_frente := true) -> Node2D:
 	var bloco := mapa.tamanho_bloco
 	var no := Node2D.new()
 	no.name = "Bloco_%d_%d" % [celula.x, celula.y]
@@ -129,7 +157,7 @@ func _desenhar_bloco(celula: Vector2i) -> void:
 	topo.position = Vector2(0, -bloco - ALTURA_PAREDE)
 	topo.light_mask = LUZ_SO_NAS_PAREDES
 	no.add_child(topo)
-	var textura := _textura_da_frente(celula)
+	var textura := _textura_da_frente(celula) if com_frente else null
 	if textura:
 		var frente := Sprite2D.new()
 		frente.texture = textura
@@ -138,6 +166,7 @@ func _desenhar_bloco(celula: Vector2i) -> void:
 		frente.light_mask = LUZ_SO_NAS_PAREDES
 		no.add_child(frente)
 	objetos.add_child(no)
+	return no
 
 
 func _textura_da_frente(celula: Vector2i) -> Texture2D:
@@ -206,7 +235,7 @@ func _espalhar_decalques() -> void:
 		return
 	var sorteio := RandomNumberGenerator.new()
 	sorteio.seed = semente
-	var livres := mapa.celulas_com(".")
+	var livres := mapa.celulas_com(".").filter(func(celula: Vector2i) -> bool: return not mapa.esconderijo.has_point(celula))
 	for i in mini(quantidade_decalques, livres.size()):
 		var celula: Vector2i = livres[sorteio.randi() % livres.size()]
 		var decalque := Sprite2D.new()
@@ -228,6 +257,25 @@ func _espalhar_componentes() -> void:
 				area.position.y + sorteio.randi() % area.size.y)
 		var peca := Sprite2D.new()
 		peca.texture = componentes[sorteio.randi() % componentes.size()]
+		peca.position = grade.centro(celula) + Vector2(sorteio.randf_range(-10, 10), sorteio.randf_range(-8, 8))
+		peca.flip_h = sorteio.randf() < 0.5
+		no_decalques.add_child(peca)
+		_guardar_na_sala(peca, peca.position)
+
+
+func _espalhar_pecas_no_esconderijo() -> void:
+	var area := mapa.esconderijo
+	var pecas: Array[Texture2D] = componentes.duplicate()
+	pecas.append_array(decalques.slice(-1))
+	if pecas.is_empty() or area.size == Vector2i.ZERO:
+		return
+	var sorteio := RandomNumberGenerator.new()
+	sorteio.seed = semente + 13
+	for i in quantidade_pecas_no_esconderijo:
+		var celula := Vector2i(area.position.x + sorteio.randi() % area.size.x,
+				area.position.y + 1 + sorteio.randi() % (area.size.y - 1))
+		var peca := Sprite2D.new()
+		peca.texture = pecas[sorteio.randi() % pecas.size()]
 		peca.position = grade.centro(celula) + Vector2(sorteio.randf_range(-10, 10), sorteio.randf_range(-8, 8))
 		peca.flip_h = sorteio.randf() < 0.5
 		no_decalques.add_child(peca)
@@ -286,6 +334,13 @@ func _colocar_marcadores() -> void:
 					var zane := CENA_ZANE.instantiate()
 					zane.name = "Zane"
 					_colocar(zane, posicao)
+				"B":
+					var baltazar := CENA_BALTAZAR.instantiate()
+					baltazar.name = "Baltazar"
+					_colocar(baltazar, posicao)
+				"F":
+					if _comeca_sequencia(celula, "F"):
+						_colocar_parede_falsa(celula)
 				"A":
 					_colocar_alcapao(posicao)
 				"N":
@@ -314,6 +369,27 @@ func _colocar_alcapao(posicao: Vector2) -> void:
 	if not subtitulo_da_saida.is_empty():
 		alcapao.subtitulo = subtitulo_da_saida
 	_colocar(alcapao, posicao)
+
+
+func _colocar_parede_falsa(celula: Vector2i) -> void:
+	var bloco := mapa.tamanho_bloco
+	var tamanho := 1
+	while mapa.e_parede_falsa(celula + Vector2i(tamanho, 0)):
+		tamanho += 1
+	_parede_falsa = CENA_PAREDE_FALSA.instantiate()
+	_parede_falsa.name = "ParedeFalsa"
+	_parede_falsa.tamanho = Vector2(tamanho * bloco, bloco)
+	_parede_falsa.position = Vector2((celula.x + tamanho / 2.0) * bloco, (celula.y + 1) * bloco)
+	objetos.add_child(_parede_falsa)
+
+
+func _ligar_esconderijo() -> void:
+	if _parede_falsa == null:
+		return
+	var bloco := mapa.tamanho_bloco
+	var area := mapa.esconderijo
+	_parede_falsa.ligar(_blocos_da_parede_falsa, _cobertura_do_esconderijo, _conteudo_do_esconderijo,
+			Rect2(Vector2(area.position * bloco), Vector2(area.size * bloco)))
 
 
 func _colocar_no(posicao: Vector2) -> void:
@@ -357,6 +433,9 @@ func _colocar(no: Node2D, posicao: Vector2) -> void:
 
 
 func _guardar_na_sala(no: Node2D, posicao: Vector2) -> void:
+	if mapa.esconderijo.has_point(grade.celula(posicao)):
+		_conteudo_do_esconderijo.append(no)
+		return
 	var indice := mapa.indice_da_sala(grade.celula(posicao))
 	if indice == -1:
 		return
