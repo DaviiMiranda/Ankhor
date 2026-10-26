@@ -20,6 +20,10 @@
 					"vai_para": "robos"
 				},
 				{
+					"texto": "Por que desconfiar do Henrique?",
+					"vai_para": "henrique"
+				},
+				{
 					"texto": "Até mais, Zane.",
 					"vai_para": "tchau"
 				}
@@ -60,6 +64,31 @@
 			],
 			"vai_para": "oficina_menu"
 		},
+		"henrique": {
+			"falas": [
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "As dicas dele me trouxeram até aqui. Funcionaram."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "Funcionar, funcionam. Toda ronda que ele passa bate certinho."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_frustrado",
+					"texto": "Mas ele nunca pede ajuda, nunca chama ninguém pra lá. Ninguém conserta nada sozinho e calado desse jeito. Ninguém."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Sei lá. Pode ser só o jeito dele. É por isso que eu quero ver."
+				}
+			],
+			"vai_para": "oficina_menu"
+		},
 		"oficina_menu": {
 			"falas": [],
 			"escolhas": [
@@ -70,6 +99,10 @@
 				{
 					"texto": "E os robôs?",
 					"vai_para": "robos"
+				},
+				{
+					"texto": "Por que desconfiar do Henrique?",
+					"vai_para": "henrique"
 				},
 				{
 					"texto": "Até mais, Zane.",

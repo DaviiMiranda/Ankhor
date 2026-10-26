@@ -1,5 +1,12 @@
 # Registro de decisões
 
+## 2026-10-26 — Falas alinhadas com o Enredo: o Zane desconfia do Henrique, e saem as conversas antigas da Clarice
+**Decisão:** duas correções de texto, sem mudar a história (as duas só põem no jogo o que a História Completa já diz):
+- **O Zane, no Labirinto, passa a falar do Henrique.** Na primeira conversa ele conta que a trava que lacra a saída do subsolo também lacra o bunker, que o Henrique está trancado lá "consertando tudo" sem nunca ter mostrado nada, e que tudo o que o grupo sabe passa por ele. Uma escolha nova, "Por que desconfiar do Henrique?", mostra o lado do Gabriel (as dicas funcionaram) e deixa a dúvida aberta: o Zane admite que pode ser "só o jeito dele". Quando os três nós caem, ele diz que a trava do bunker soltou junto e pede que o Gabriel fique de olho no Henrique. Usa o retrato `zane_retrato_desconfiado`, que ainda não aparecia.
+- **Saem as conversas `clarice_primeiro_encontro.json` e `clarice_de_novo.json`**, da versão em que a Clarice morava no bunker e falava dos loops ("você *sempre* lê"). Não apareciam no jogo: a cena `clarice.tscn` (ela sentada numa estação) não está em nenhuma sala. A cena fica, sem conversa, para ser reaproveitada.
+**Por quê:** pedido do Davi, para começar o trabalho de diálogos e documentos corrigindo o que contradizia o Enredo. A ficha do Zane e o Ato 2 já diziam que ele desconfia do Henrique e que os três nós guardam a trava do bunker, mas as falas dele não diziam nada disso.
+**Afeta:** `dados/dialogos/zane_labirinto_primeiro_encontro.json`, `zane_labirinto_de_novo.json` e `zane_labirinto_alcapao.json`; `cenas/personagens/clarice.tscn` (sem conversa); `docs/fases/labirinto.md` e `bunker.md`, `docs/dialogos/README.md` e `template_dialogo.md` (o exemplo agora é o Zane), a ficha da Clarice, `assets/sprites/personagens/clarice/visual.md` e `docs/pendencias_de_producao.md`. A História Completa não muda.
+
 ## 2026-10-24 — Ansiedade causada pela proximidade dos robôs
 **Decisão:** Gabriel ganha uma barra de ansiedade que aumenta conforme o robô mais próximo chega a até 240 px e diminui quando os robôs se afastam. As barras de ansiedade e estamina ficam sempre visíveis. A ansiedade pode aumentar em até 80% o consumo de estamina ao correr. A tela recebe oscilação, separação de cores e vinheta avermelhada proporcionais ao nível de ansiedade.
 **Por quê:** pedido do usuário para mostrar a tensão da aproximação dos robôs e fazer Gabriel perder estamina mais rápido sob pressão.
