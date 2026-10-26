@@ -12,7 +12,7 @@ Um labirinto de corredores de concreto no escuro. O Gabriel começa **fora da of
 
 - **Cena:** `cenas/salas/labirinto.tscn` · **Script:** `scripts/salas/labirinto.gd` (herda de `Sala`)
 - **Mapa:** `dados/labirinto/mapa_labirinto.tres` (texto, uma letra por bloco)
-- **Arte e mapa gerados por:** `assets/modelagem/salas/labirinto/gerar_labirinto.py` (mapa, paredes, piso) e `gerar_oficina.py` (hologramas e peças eletrônicas)
+- **Arte e mapa gerados por:** `assets/modelagem/salas/labirinto/gerar_labirinto.py` (mapa, paredes, piso), `gerar_oficina.py` (hologramas e peças eletrônicas) e `gerar_esconderijo.py` (a parede falsa e a bagunça do Baltazar)
 - **Trilha:** `cenas/sistemas/musica_labirinto.tscn` (ver seção 7)
 
 ### Como a fase se joga
@@ -23,6 +23,8 @@ Um labirinto de corredores de concreto no escuro. O Gabriel começa **fora da of
 4. Volta aos poucos passos da oficina (fugindo dos robôs, que continuam patrulhando) e fala com o Zane de novo: outra conversa, em que ele revela o alçapão sob a lona e o abre.
 5. Aperta `E` no alçapão ("Descer"): o Gabriel some no escuro e a fase termina.
 
+**Opcional:** no corredor de cima, um trecho da parede é falso. Com a lanterna apontada para ele aparecem os riscos (o Cruzeiro do Sul e uma cruz); perto, `E` ("Afastar o painel") abre a passagem para o **esconderijo do Baltazar**, onde acontece o primeiro encontro dos dois (seção 3).
+
 ---
 
 ## 2. Como o mapa é feito
@@ -30,7 +32,7 @@ Um labirinto de corredores de concreto no escuro. O Gabriel começa **fora da of
 O labirinto é **sorteado uma vez** (semente fixa, sempre o mesmo) pelo gerador em Python e salvo como texto. Duas grades:
 
 - **Lógica (18 × 11 salinhas):** é onde o labirinto é sorteado por **busca em profundidade com volta atrás**, e é o **grafo** da patrulha dos robôs.
-- **De blocos (55 × 34, blocos de 32 px = 1760 × 1088 px):** cada salinha vira 2 × 2 blocos de chão; paredes têm 1 bloco. É nela que rodam o **A\*** e a **BFS**.
+- **De blocos (55 × 40, blocos de 32 px = 1760 × 1280 px):** cada salinha vira 2 × 2 blocos de chão; paredes têm 1 bloco. É nela que rodam o **A\*** e a **BFS**. As 6 fileiras de cima (2 de salinhas) entram depois do sorteio, só para o esconderijo do Baltazar: o labirinto sorteado é o mesmo, deslocado 6 blocos para baixo.
 
 A busca em profundidade gera uma árvore (um só caminho entre dois pontos). Depois, **18% das paredes internas são derrubadas** para criar ciclos: sempre dá para dar a volta num quarteirão e despistar. As paredes encostadas numa sala não entram nesse sorteio, para a entrada da sala continuar única.
 
@@ -54,8 +56,11 @@ Legenda do mapa:
 | `b` `c` `m` `x` | bancada eletrônica, console, mesa com computador, robô desmontado (largos: `bb`, `cc`...) |
 | `r` `k` `a` `u` | rack, caixas de peças, braço robótico, cadeira |
 | `h` `i` `j` | holograma de ondas, de barras, de código |
+| `F` | a **parede falsa** do esconderijo do Baltazar (2 blocos, `FF`). Para o mapa é parede: o esconderijo fica fora do grafo |
+| `B` | o Baltazar |
+| `y` `e` `n` `l` `v` | altar de velas, chapa com estrelas riscadas (larga: `ee`), ninho de panos (largo: `nn`), pilha de livros, tocos de vela |
 
-Para mudar o mapa: altere o `.tres` à mão (mantendo o formato) ou mude `SEMENTE`, `FRACAO_CICLOS`, `INICIO`, `SALAS` e `MODELOS` no gerador e rode `python assets/modelagem/salas/labirinto/gerar_labirinto.py` (com `PREVIA=<pasta>` ele salva uma imagem do mapa inteiro). O gerador falha com uma mensagem se o modelo de uma sala não bate com o tamanho dela, se o início ficar fora da faixa `CAMINHO_ATE_A_OFICINA` (de 3 a 8 salinhas de caminho até a oficina) ou se não couberem os robôs.
+Para mudar o mapa: altere o `.tres` à mão (mantendo o formato) ou mude `SEMENTE`, `FRACAO_CICLOS`, `INICIO`, `SALAS`, `MODELOS`, `ESCONDERIJO` e `MODELO_ESCONDERIJO` no gerador e rode `python assets/modelagem/salas/labirinto/gerar_labirinto.py` (com `PREVIA=<pasta>` ele salva uma imagem do mapa inteiro). O gerador falha com uma mensagem se o modelo de uma sala não bate com o tamanho dela, se o início ficar fora da faixa `CAMINHO_ATE_A_OFICINA` (de 3 a 8 salinhas de caminho até a oficina) ou se não couberem os robôs.
 
 ### Por que corredores de 2 blocos
 Na vista do jogo (lateral com profundidade), a parede tem 40 px de altura e cobre o que está logo atrás dela. Com corredor de 1 bloco, a parede de baixo cobriria o corredor inteiro. Com 2 blocos, sobra uma faixa de chão visível, e quem anda rente à parede de baixo some da cintura para baixo. Por isso **os itens ficam sempre na fileira de cima** de cada corredor. Nas salas (5 fileiras de blocos), a última fileira fica parcialmente atrás da parede de baixo: nada importante nela.
@@ -65,7 +70,7 @@ Na vista do jogo (lateral com profundidade), a parede tem 40 px de altura e cobr
 
 ---
 
-## 3. As quatro salas
+## 3. As salas
 
 Uma sala é um retângulo de salinhas com as paredes internas derrubadas, e **uma entrada só** (no sorteio ela é uma folha da árvore: a busca entra e volta). O desenho de cada uma está em `MODELOS`, no gerador. O mapa guarda o miolo de cada sala em blocos (`salas`, sem as paredes), a área da oficina (`area_oficina`) e as salinhas seguras (`salinhas_seguras`).
 
@@ -109,6 +114,16 @@ Cada sala tem uma **porta na entrada** (`cenas/sistemas/porta_da_sala.tscn`, scr
 | `zane_labirinto_de_novo.json` | Nas próximas vezes, enquanto faltam nós |
 | `zane_labirinto_alcapao.json` | Depois de os três nós caírem: o Zane revela e abre o alçapão. Ao terminar, marca `labirinto_alcapao_revelado` |
 | `zane_labirinto_alcapao_de_novo.json` | Depois de o alçapão aberto: "Desce logo, eu vou atrás" |
+
+### O esconderijo do Baltazar (a sala que só a lanterna revela)
+Uma quinta sala, **fora do grafo**: o miolo fica em `esconderijo` no mapa (8 × 5 blocos, nas fileiras novas de cima) e a entrada é a parede falsa `FF`, na parede de cima do corredor de cima, logo acima das colunas 19 e 20. Como `F` conta como parede para o A\*, a BFS e as salinhas, **nenhum robô acha caminho até lá** e o som não chega: é por isso que o Baltazar sobreviveu ali. O encontro é opcional (pendência no Enredo, seção 10.4).
+
+- **Por fora, parece parede.** Os dois blocos `FF` são desenhados como qualquer bloco (topo e frente), e o miolo da sala é coberto por topos de parede (a "tampa"), então o canto parece concreto maciço. A tampa some quando a passagem abre ou quando o Gabriel está dentro.
+- **Só a lanterna revela.** `ParedeFalsa` (`scripts/sistemas/parede_falsa.gd`, cena `cenas/sistemas/parede_falsa.tscn`) desenha por cima da frente o `painel_solto.png` (as emendas do painel, o Cruzeiro do Sul e a cruz), com opacidade igual à força da lanterna naquele ponto. A força é calculada como o cone de luz do feixe, com **produto escalar**: o cosseno entre a direção para onde o Gabriel olha e a direção da mão dele até o meio da parede. Cheia até 20°, some até 32° (`smoothstep`, os mesmos ângulos da textura `luz_cone.png`), e cai com a distância até 120 px. Um raio contra as paredes (camada 8) impede que a luz "atravesse" outra parede. Sem lanterna acesa, a força é zero.
+- **Abrir.** Com a marca visível (força acima de 0,5), perto, `E` ("Afastar o painel"): o painel sai, fica encostado no corredor ao lado (`painel_encostado.png`) e a passagem libera. Ao ser vista pela primeira vez, a parede marca `esconderijo_baltazar_descoberto`: daí em diante o `E` funciona mesmo de lanterna apagada (e sempre de dentro).
+- **Fecha sozinha.** Como as portas das salas, 1,2 s depois de o Gabriel sair da passagem. Robôs **não** abrem a parede falsa.
+- **Dentro:** o Baltazar (`cenas/personagens/baltazar_no_esconderijo.tscn`) logo acima da passagem, com velas do lado, e a bagunça: altar, ninho, livros, caixas, o robô desmontado, a chapa com estrelas e peças e papéis espalhados pelo chão (`quantidade_pecas_no_esconderijo`). As velas são `cenas/cenario/luzes/luz_vela.tscn` (luz quente que treme).
+- **Conversas** em `dados/dialogos/`: `baltazar_labirinto_primeiro_encontro.json` começa sozinha quando o Gabriel chega perto dele (gatilho de 64 px) e marca `conheceu_baltazar`; tem escolhas (o acampamento da Biblioteca, a bagunça, o convite para sair) e anota no caderno. Depois, falar com ele (`E`) toca `baltazar_labirinto_de_novo.json`, com a dica do diário sobre os olhos dos robôs.
 
 ---
 

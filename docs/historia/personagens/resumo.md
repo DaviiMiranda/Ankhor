@@ -52,7 +52,7 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 | Personagem | Esconderijo | Parte para consertar a Âncora |
 |---|---|---|
 | Gabriel | — | O caderno, como o lugar onde as partes de todos se juntam |
-| Baltazar | Escondido numa sala da Biblioteca, com medo e isolado | As estrelas, que acertam a data de volta de cada um |
+| Baltazar | Escondido numa sala secreta do Labirinto, que só a lanterna revela, com medo e isolado | As estrelas, que acertam a data de volta de cada um |
 | Diana | Sala 103 do Bloco de salas, com a Clarice | As plantas: pelas galerias da obra de 1978, onde fica o núcleo e as passagens até lá |
 | Clarice | Sala 103 do Bloco de salas, atrás de uma barricada, com a Diana: guia Gabriel pelo rádio (Biblioteca e Bloco) com o que o Henrique vê | Código: faz os terminais da Âncora funcionarem. Mapeou as rondas e sabe o que cada chave abre |
 | Henrique | Bunker, sozinho, numa sala de dados trancada, com as câmeras: ajuda a Clarice e a Diana pelo rádio | A teoria por trás das equações |
@@ -86,5 +86,5 @@ As pendências de cada personagem estão no fim da ficha dele e no [Enredo Princ
 - **Carlos:** como consegue o conhecimento, por que saiu dos Faroleiros, e o resto da ficha (seção 10.2).
 - **Zane:** o que fazia quando foi puxado, o que teme e o final dele.
 - **Clarice:** se continua na 103 até o fim ou se junta ao grupo no bunker.
-- **Baltazar:** qual sala da Biblioteca é o esconderijo dele, e quando ela se abre.
+- **Baltazar:** se o encontro no Labirinto (hoje opcional, a sala é secreta) passa a ser obrigatório, e como ele se junta ao grupo.
 - **Ordem de chegada:** só falta a posição do Baltazar (Henrique é o primeiro, o Zane vem antes da Clarice, a Diana depois da Clarice, e Gabriel é o último).

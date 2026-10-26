@@ -1,0 +1,186 @@
+{
+	"id": "baltazar_labirinto_primeiro_encontro",
+	"inicio": "abertura",
+	"anotacao": {
+		"titulo": "Baltazar, no esconderijo do Labirinto",
+		"texto": "Atrás de um painel solto no Labirinto, riscado com estrelas e uma cruz, mora um rapaz de 1750: o Baltazar. É ele o dono do acampamento e do diário da Biblioteca.\n\nSeguiu a luz até aqui embaixo e se escondeu. Acha que tudo isso é o Juízo Final. Ouve as \"caixas que falam\" pelos corredores e não responde: não está na frequência do grupo.\n\nNão quer sair. Os robôs nunca acharam a porta dele. Para voltar, é só apontar a lanterna para o Cruzeiro riscado na parede."
+	},
+	"trechos": {
+		"abertura": {
+			"falas": [
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_aflito",
+					"texto": "Alto lá! Nem mais um passo! Vade retro, Satana!"
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_aflito",
+					"texto": "Se Vossa Mercê é servo das bestas de ferro, saiba que tenho Deus comigo. E uma vela."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_surpreso",
+					"texto": "Calma! Eu sou gente. Gente normal, olha. Sem olho vermelho."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_teimoso",
+					"texto": "Ninguém acha esta porta. Nem as bestas a acharam, e passam aí fora todas as noites. Como a achou Vossa Mercê?"
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Com a lanterna. Tinha umas estrelas riscadas na parede. E uma cruz."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_encantado",
+					"texto": "O Cruzeiro! Risquei-o com uma pedra, para saber qual era a minha porta. Cá embaixo não há céu, e eu sem céu me perco."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_normal",
+					"texto": "Baltazar, criado de Vossa Mercê. Com quem tenho a honra?"
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Gabriel."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_rezando",
+					"texto": "Gabriel. Como o Arcanjo, o que traz as notícias de Deus."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_aflito",
+					"texto": "Então diga logo, que eu aguento: é hoje o fim do mundo?"
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Não sei se ajuda, mas o mundo já acabou faz tempo. A gente tá em 3026."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_aflito",
+					"texto": "Três mil e vinte e seis... Anno Domini? Sancta Maria, Mater Dei..."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_teimoso",
+					"texto": "Eu bem dizia. Isto é o Tormento de Leviatã, e eu fiquei para trás no Juízo."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Se é o Juízo, tá bem atrasado. Eu também caí aqui, e não fui o único."
+				}
+			],
+			"vai_para": "menu"
+		},
+		"menu": {
+			"falas": [],
+			"escolhas": [
+				{
+					"texto": "Você é o do acampamento da Biblioteca?",
+					"vai_para": "biblioteca"
+				},
+				{
+					"texto": "O que é essa bagunça toda?",
+					"vai_para": "bagunca"
+				},
+				{
+					"texto": "Vem comigo. Tem outras pessoas.",
+					"vai_para": "convite"
+				}
+			]
+		},
+		"biblioteca": {
+			"falas": [
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_encantado",
+					"texto": "Vossa Mercê achou o meu diário! Então leu dos olhos de vidro: quem lhes passa pelas costas não é visto."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_normal",
+					"texto": "Vi uma luz pela luneta, sobre a mata do sítio de meu pai. Fui ver de perto, e a noite se rasgou como pano velho. Acordei entre aquelas estantes."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_rezando",
+					"texto": "Depois a luz tornou, e eu jurei segui-la até onde ela nasce. Desci atrás dela por escadas de ferro, e no escuro a perdi."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_normal",
+					"texto": "Achei esta cova atrás de uma pedra solta. As bestas não a veem. Fiquei."
+				}
+			],
+			"vai_para": "menu"
+		},
+		"bagunca": {
+			"falas": [
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_encantado",
+					"texto": "Bagunça, não: estudo! Aquilo ali era uma das bestas. Desmanchei-a peça por peça. Não tem alma nem entranhas, só fios, como nervos de cobre."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_normal",
+					"texto": "Os livros trouxe da Biblioteca. Entendo metade das letras e nenhuma das figuras. As estrelas da chapa são minhas: o céu de casa, como me lembro dele."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "E as velas?"
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_rezando",
+					"texto": "São para Nosso Senhor não se esquecer de onde estou."
+				}
+			],
+			"vai_para": "menu"
+		},
+		"convite": {
+			"falas": [
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_aflito",
+					"texto": "Outras pessoas? Ouço-as às vezes, nas caixas que falam pelos corredores. Vozes sem corpo, chamando no escuro."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_teimoso",
+					"texto": "Não lhes respondo. Quem fala sem boca ou é anjo ou é demônio, e anjo não mora nestas covas."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "É só um rádio. A Clarice fala por ele. Ela é gente, igual a mim."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_teimoso",
+					"texto": "Pode ser. Mas lá fora andam as bestas, e aqui dentro elas não entram. Daqui não saio."
+				},
+				{
+					"quem": "Baltazar",
+					"retrato": "baltazar/baltazar_retrato_normal",
+					"texto": "Vossa Mercê, porém, pode voltar quando quiser. Basta apontar a sua luz para o Cruzeiro. Deixo a vela acesa."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Combinado. Só não gasta todas as velas."
+				}
+			]
+		}
+	}
+}

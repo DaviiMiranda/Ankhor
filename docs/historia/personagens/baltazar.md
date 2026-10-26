@@ -1,6 +1,6 @@
 # Baltazar Magalhães (~1750), o antepassado
 
-> **Status:** Em definição. O acampamento e o diário já estão na Biblioteca.
+> **Status:** Em definição. O acampamento e o diário estão na Biblioteca; o esconderijo e o primeiro encontro, no Labirinto.
 > **Lei do projeto:** esta ficha faz parte do [Enredo Principal](../História_Completa.md) e tem a mesma autoridade: quem o Baltazar é vale como está escrito aqui. A história em volta dele (o acidente, a família Magalhães, as pendências) está no Enredo.
 
 ---
@@ -9,7 +9,7 @@
 
 - **Época de origem:** ~1750, Ceará colonial.
 - **Quem é:** filho de colonos portugueses, com cerca de 20 anos, curioso, com uma luneta herdada do pai. A família tem um sítio na mata onde hoje fica o campus. **Antepassado de Gabriel**, umas dez gerações antes dele.
-- **História:** viu pela luneta uma luz estranha sobre a mata, no sítio da família, foi investigar e foi puxado. Acha que tudo aquilo é o Juízo Final ("o Tormento de Leviatã"). Na Biblioteca, deixou um **acampamento** entre as raízes da árvore: luneta rachada, vela, diário e um robô desmontado peça por peça. Na última página escreve "Hei de seguir a luz até onde ella nasce", e a luz nasce no chão da Biblioteca: ele não saiu de lá. Em 3026, teve dificuldade com o rádio e com a tecnologia, ficou com **medo** e **se isolou**: está **escondido, desde que chegou, numa sala da Biblioteca que o jogador ainda não consegue acessar**, e não está na frequência de rádio do grupo. Gabriel o encontra mais tarde.
+- **História:** viu pela luneta uma luz estranha sobre a mata, no sítio da família, foi investigar e foi puxado. Acha que tudo aquilo é o Juízo Final ("o Tormento de Leviatã"). Na Biblioteca, deixou um **acampamento** entre as raízes da árvore: luneta rachada, vela, diário e um robô desmontado peça por peça. Na última página escreve "Hei de seguir a luz até onde ella nasce": seguiu a luz, desceu ao subsolo e se escondeu no **Labirinto**, numa sala atrás de um painel solto que os robôs nunca acharam. Em 3026, teve dificuldade com o rádio e com a tecnologia, ficou com **medo** e **se isolou**: ouve as vozes nas "caixas que falam" e não responde, e não está na frequência de rádio do grupo. Gabriel o encontra no Labirinto.
 - **Objeto-símbolo:** o **chapéu** (o tricórnio). O anel dele é o elo com o Gabriel, mas o que marca o Baltazar de longe é o chapéu.
 
 ## 2. Personalidade
@@ -31,8 +31,9 @@
 
 ## 4. No jogo
 
-- **Onde aparece:** na Biblioteca, só o acampamento que ele deixou. Em pessoa, numa fase mais à frente (pendente).
-- **Esconderijo:** **escondido numa sala da Biblioteca que ainda não dá para abrir**, desde que chegou, com medo e isolado dos outros (qual sala e quando ela se abre, pendente; a sala de obras raras, barrada por dentro, é a candidata).
+- **Onde aparece:** na Biblioteca, só o acampamento que ele deixou. Em pessoa, no **Labirinto**, no esconderijo dele.
+- **Esconderijo:** uma **sala secreta no Labirinto**, atrás de um painel solto na parede. O painel parece parede: só aparece com a **lanterna apontada** para ele, riscado com o **Cruzeiro do Sul** e uma **cruz** (ele marcou assim a própria porta: "Cá embaixo não há céu, e eu sem céu me perco"). Dentro, a bagunça de quem mora ali: cama de panos verdes das cabines da Biblioteca com um cobertor vinho, um altar de caixa com velas e uma cruz de vergalhão amarrada com fita, livros da Biblioteca, um robô desmontado e peças espalhadas, e uma chapa de metal com o céu de casa riscado a giz. Os robôs não acham a sala: ela fica fora do grafo do labirinto.
+- **Primeiro encontro:** ao entrar, Gabriel dá de cara com ele. O Baltazar se assusta ("Vade retro, Satana!"), pergunta se é o fim do mundo, conta que seguiu a luz até o subsolo e **não quer sair**. Gabriel diz só o primeiro nome ("Como o Arcanjo"), e o parentesco não aparece. Nas visitas seguintes, ele repete o conselho do diário sobre os olhos dos robôs.
 - **Como chega ao jogador:** primeiro pelo **diário** e pelo acampamento; depois em pessoa.
 - **Função na jogabilidade:** o diário ensina o **ponto fraco do sensor óptico**: os robôs de um olho só não veem quem passa pelas costas ou pelo lado, e luz forte no olho os cega por alguns segundos. Liga com a cápsula de clarão.
 - **O anel:** o mesmo anel que Gabriel tem gasto no inventário aparece novo no dedo do Baltazar. A comparação no inventário é como o jogador descobre o parentesco.
@@ -56,11 +57,12 @@
 - **Acampamento:** `assets/modelagem/cenario/gerar_antecessores.py`, nó `AcampamentoBaltazar` em `cenas/salas/biblioteca/salao.tscn`.
 - **Diário:** `dados/documentos/diario_baltazar.tres`, nó `DiarioBaltazar` na Biblioteca.
 - **Sprites:** `assets/sprites/personagens/baltazar/`, gerados por `assets/modelagem/personagens/gerar_baltazar.py`.
-- **Cena:** `cenas/personagens/baltazar.tscn` (parado, por enquanto só na sala de teste).
-- **Diálogos:** ainda não existem.
+- **Cena:** `cenas/personagens/baltazar.tscn` (parado) e `cenas/personagens/baltazar_no_esconderijo.tscn` (no Labirinto, com a conversa e o gatilho do primeiro encontro).
+- **Esconderijo:** o mapa em `assets/modelagem/salas/labirinto/gerar_labirinto.py` (`MODELO_ESCONDERIJO`), a arte em `gerar_esconderijo.py`, a parede falsa em `scripts/sistemas/parede_falsa.gd` e `cenas/sistemas/parede_falsa.tscn`.
+- **Diálogos:** `dados/dialogos/baltazar_labirinto_primeiro_encontro.json` e `baltazar_labirinto_de_novo.json`.
 
 ## 8. Pendências
 
-- Em que fase Gabriel o encontra e onde fica, dentro da Biblioteca, o esconderijo dele (Enredo Principal, seção 10.4).
+- O encontro no Labirinto é opcional (a sala é secreta): se ele passa a ser obrigatório, e como o Baltazar sai do esconderijo e se junta ao grupo (Enredo Principal, seção 10.4).
 - Gabriel falhando na tela enquanto o Baltazar estiver fora de 1750 (seção 10.4).
 - O item do anel no inventário ainda não existe.
