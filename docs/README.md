@@ -64,10 +64,6 @@ docs/
 │   ├── dtec.md                    # Fase 6: Laboratório (D-Tec), onde fica a máquina central
 │   └── template_fase.md           # Modelo padronizado para documentação de novas fases/áreas
 │
-├── dialogos/                      # Sistema de conversação e falas
-│   ├── README.md                  # Arquitetura técnica desacoplada via sinais no Godot 4.7
-│   └── template_dialogo.md        # Modelo estrutural (JSON / GDScript) para criação de diálogos
-│
 └── historia/                      # História, personagens e roteiro
     ├── História_Completa.md        # A LEI DO PROJETO: história, mundo, personagens e pendências
     ├── README.md                  # Índice da pasta: comece pelo Enredo Principal
@@ -83,8 +79,11 @@ docs/
     │   ├── carlos.md              # 3026, o antagonista
     │   ├── zane.md                # 2123, faz as comunicações do bunker
     │   └── robos.md               # Os robôs inimigos: sensores, FSM e patrulhas
+    ├── dialogos/
+    │   └── Dialogos.docx          # Todas as falas do jogo, fase por fase (Word)
     └── roteiro/                   # Roteirização cinematográfica e cutscenes
         ├── README.md              # Diretrizes gerais de roteiro
+        ├── Roteiro.docx           # O que acontece em cada cena, sem as falas (Word)
         └── cutscenes/             # Estrutura técnica e documentação de cutscenes
             ├── README.md          # Padrão de implementação de cutscenes no Godot
             └── seg_acordar.md     # Cutscene inicial do despertar de Gabriel

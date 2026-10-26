@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-10-26 — As falas saem do Roteiro e vão para o Dialogos.docx
+**Decisão:** dois documentos Word, cada um com uma função:
+- **`docs/historia/dialogos/Dialogos.docx`** (novo): todas as falas do jogo, fase por fase e com os mesmos números de cena do roteiro. Estão lá o prólogo, as conversas em pessoa (com trechos e escolhas), o rádio e o telefone. Também ficam ali as falas novas ainda fora do jogo, com a barra azul, as revisões dessas falas, a lista de conversas de cada ato e um resumo de como cada personagem fala.
+- **`docs/historia/roteiro/Roteiro.docx`** (versão 0.9): só a descrição do que acontece ao longo do jogo (cenas, ações, jogabilidade, caderno e documentos). Cada conversa vira uma linha **FALAS**, com o id e um resumo.
+- **Saem** `docs/dialogos/README.md` (o guia técnico do sistema de diálogos) e `docs/dialogos/template_dialogo.md` (o modelo de JSON). O texto deles continua no histórico do git.
+**Por quê:** pedido do Davi: um documento só com os diálogos, e o roteiro só com a descrição do jogo.
+**Afeta:** os dois `.docx`, `docs/gdd.md`, `docs/README.md`, `docs/historia/roteiro/README.md` e `docs/mecanicas/registros_e_caderno.md` (links). O que toca no jogo continua sendo `dados/dialogos/` e `dados/transmissoes/`: mudar uma fala no Word não muda o jogo.
+
 ## 2026-10-26 — Conversas do grupo pelo rádio, gírias e medo do Zane, e as relações que faltavam
 **Decisão:**
 - **História (decidida pelo Davi):**

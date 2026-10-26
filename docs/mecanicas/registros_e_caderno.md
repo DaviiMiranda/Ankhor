@@ -119,4 +119,4 @@ A tela de leitura, a legenda e o inventário (com a aba Anotações) já estão 
 - Salvar caderno e transmissões ao dormir (depende do sistema de save).
 - As ligações da Clarice pelos telefones (vão reaproveitar a legenda do rádio).
 - As falas da Clarice no rádio ainda não têm voz gravada.
-- O sistema de diálogos completo (escolhas, retratos) de [`../dialogos/README.md`](../dialogos/README.md): a legenda do rádio é só a parte de falas em sequência.
+- O sistema de diálogos completo (escolhas, retratos, `scripts/sistemas/dialogos.gd`): a legenda do rádio é só a parte de falas em sequência.
