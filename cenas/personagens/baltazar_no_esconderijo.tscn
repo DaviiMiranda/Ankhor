@@ -1,0 +1,34 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/personagens/baltazar.tscn" id="1_baltazar"]
+[ext_resource type="Script" path="res://scripts/personagens/conversa_npc.gd" id="2_conversa"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_dialogo.tscn" id="3_gatilho"]
+
+[sub_resource type="CircleShape2D" id="Alcance"]
+radius = 34.0
+
+[sub_resource type="CircleShape2D" id="Encontro"]
+radius = 64.0
+
+[node name="BaltazarNoEsconderijo" type="Node2D"]
+
+[node name="Baltazar" parent="." instance=ExtResource("1_baltazar")]
+vista = "frente"
+
+[node name="Conversa" type="Area2D" parent="."]
+script = ExtResource("2_conversa")
+texto_acao = "Conversar"
+altura_aviso = 60.0
+primeira_conversa = "res://dados/dialogos/baltazar_labirinto_primeiro_encontro.json"
+conversa_de_novo = "res://dados/dialogos/baltazar_labirinto_de_novo.json"
+
+[node name="Alcance" type="CollisionShape2D" parent="Conversa"]
+position = Vector2(0, -4)
+shape = SubResource("Alcance")
+
+[node name="Encontro" parent="." instance=ExtResource("3_gatilho")]
+dialogo = "res://dados/dialogos/baltazar_labirinto_primeiro_encontro.json"
+marca_ao_terminar = "conheceu_baltazar"
+
+[node name="Area" parent="Encontro" index="0"]
+shape = SubResource("Encontro")
