@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/parede_frente_3.png" id="10_frente3"]
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/porta_saida.png" id="11_porta"]
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/porta_sala_segura.png" id="ss_porta_segura"]
+[ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/porta_corredor_tempo.png" id="ct_porta_corredor"]
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/marcas_garra.png" id="12_garra"]
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/poca.png" id="13_poca"]
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/papel.png" id="14_papel"]
@@ -45,6 +46,8 @@ frentes = Array[Texture2D]([ExtResource("7_frente0"), ExtResource("8_frente1"), 
 textura_porta = ExtResource("11_porta")
 textura_porta_segura = ExtResource("ss_porta_segura")
 cena_sala_segura = "res://cenas/salas/labirinto/sala_segura.tscn"
+textura_porta_corredor = ExtResource("ct_porta_corredor")
+cena_corredor = "res://cenas/salas/labirinto/corredor_do_tempo.tscn"
 decalques = Array[Texture2D]([ExtResource("12_garra"), ExtResource("13_poca"), ExtResource("14_papel")])
 componentes = Array[Texture2D]([ExtResource("24_comp0"), ExtResource("25_comp1"), ExtResource("26_comp2"), ExtResource("27_comp3")])
 transmissao_da_rede = ExtResource("28_transmissao")

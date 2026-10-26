@@ -11,6 +11,8 @@
 #   assets/sprites/salas/labirinto/parede_topo_<n>.png    32 x 32, o alto do bloco (3 variações)
 #   assets/sprites/salas/labirinto/parede_frente_<n>.png  32 x 40, a face da frente (4 variações)
 #   assets/sprites/salas/labirinto/porta_saida.png        64 x 40, a saída, com a placa SAÍDA
+#   assets/sprites/salas/labirinto/porta_sala_segura.png  64 x 40, a porta da sala segura (luz verde)
+#   assets/sprites/salas/labirinto/porta_corredor_tempo.png  64 x 40, a porta do Corredor do Tempo (luz âmbar)
 #   assets/sprites/salas/labirinto/marcas_garra.png, poca.png, papel.png   detalhes do chão
 #   assets/sprites/cenario/objetos/checkpoint_apagado.png e checkpoint_aceso.png
 #   assets/sprites/cenario/luzes/luz_cone.png   textura do feixe (lanterna e farol da Sentinela)
@@ -28,7 +30,8 @@
 #
 #   Grade de BLOCOS (32 x 32 px): cada salinha vira 2 x 2 blocos de chão e
 #   as paredes têm 1 bloco de espessura. Por isso a grade de blocos tem
-#   3 · 18 + 1 = 55 colunas e 3 · 11 + 1 = 34 fileiras (1760 x 1088 px). É
+#   3 · 18 + 1 = 55 colunas e 3 · 11 + 1 = 34 fileiras, mais as 6 do
+#   esconderijo do Baltazar em cima: 40 fileiras (1760 x 1280 px). É
 #   nela que rodam o A* (perseguição) e a BFS (som), no Godot.
 #
 # ---------------------------------------------------------------------------
@@ -71,6 +74,7 @@
 #   #  parede          .  chão           G  início do Gabriel   T  lanterna (ao lado do início)
 #   D  porta de saída (na parede de cima)                        S  saída (gatilho)
 #      (D e S só existem no mapa de teste: a saída da fase é o alçapão A)
+#   Q  porta da sala segura   H  porta do Corredor do Tempo   (2 blocos de parede cada)
 #   A  alçapão escondido na oficina (a saída da fase; o Zane o revela)
 #   C  checkpoint      P  pilha          L  lâmpada               V  Sentinela   R  Rastreador
 #   Z  o Zane          N  nó de controle (hackeável; 2 blocos de largura)
@@ -78,11 +82,32 @@
 #   b  bancada   c  console   m  mesa com computador   x  robô desmontado   (largos: 2 blocos)
 #   r  rack      k  caixas    a  braço robótico        u  cadeira
 #   h  holograma de ondas     i  holograma de barras   j  holograma de código
+#   O esconderijo do Baltazar (ver "O ESCONDERIJO DO BALTAZAR", abaixo):
+#   F  parede falsa (2 blocos; parece parede, só a lanterna revela)
+#   B  o Baltazar      y  altar improvisado (com velas)   e  estrelas riscadas na parede (largo)
+#   n  ninho de panos (largo)   l  pilha de livros   v  tocos de vela no chão
 # Todos os marcadores ficam na fileira de CIMA da salinha: a de baixo fica
 # atrás do topo da parede de baixo (ver "Por que corredores de 2 blocos").
 # Os checkpoints ficam dentro das salas (nos modelos). Os robôs nascem
 # longe do início e da porta da oficina; as pilhas ficam em becos sem
 # saída; as lâmpadas, em cruzamentos.
+#
+# ---------------------------------------------------------------------------
+# O ESCONDERIJO DO BALTAZAR: UMA SALA FORA DO GRAFO
+# ---------------------------------------------------------------------------
+#
+# Depois do sorteio, o mapa ganha FILEIRAS_DO_ESCONDERIJO fileiras de
+# salinhas EM CIMA, todas de parede, e nelas cavamos uma sala (o
+# esconderijo do Baltazar). O sorteio continua idêntico (a mesma semente
+# gera o mesmo labirinto); só desloca tudo 3 · FILEIRAS_DO_ESCONDERIJO
+# blocos para baixo. Deslocar um múltiplo de 3 mantém as salinhas alinhadas.
+#
+# A entrada da sala é a parede falsa "FF", na parede de cima do corredor
+# que passa embaixo dela. Para o mapa (A*, BFS e as salinhas dos robôs),
+# "F" é PAREDE: a sala fica fora do grafo, nenhum robô acha caminho até lá
+# e o som não chega. É por isso que o Baltazar sobreviveu escondido nela.
+# No jogo, quem desenha a parede falsa e decide quando ela abre é
+# scripts/sistemas/parede_falsa.gd.
 
 import importlib.util
 import os
@@ -127,6 +152,11 @@ CAMINHO_ATE_A_OFICINA = (3, 8)
 # Os robôs não nascem a menos disso de caminho da entrada da oficina: o
 # destino não pode ter um robô parado na porta.
 DISTANCIA_MINIMA_DA_OFICINA = 5
+# A porta do Corredor do Tempo ("HH", sala opcional): na parede de cima
+# desta salinha, no meio do mapa, entre os nós 1 e 2 (10 salinhas de
+# caminho do início). Marcar a porta não sorteia nada, então o resto do
+# mapa não muda.
+PORTA_DO_CORREDOR = (11, 3)
 
 # Cada sala: posição (x, y) e tamanho (w, h) em SALINHAS. A oficina tem a
 # entrada fixa (o par de salinhas, de dentro para fora) e é "segura": os
@@ -171,6 +201,24 @@ MODELOS = {
         "........",
     ),
 }
+
+# O esconderijo: posição (x, y) e tamanho (w, h) em salinhas, contando as
+# fileiras novas de cima. A parede falsa fica embaixo da salinha "entrada_x",
+# na parede de baixo da sala, que era a parede de cima do labirinto.
+FILEIRAS_DO_ESCONDERIJO = 2
+ESCONDERIJO = {"x": 5, "y": 0, "w": 3, "h": 2, "entrada_x": 6}
+
+# O desenho do esconderijo, como os MODELOS das salas. Bagunçado de
+# propósito: o Baltazar vive ali desde que chegou ao subsolo. Ele fica logo
+# acima da passagem (embaixo, nas colunas 3 e 4), com velas do lado: quem
+# entra dá de cara com ele, já iluminado, dentro do raio de visão.
+MODELO_ESCONDERIJO = (
+    "y.ee.lkl",
+    "nn......",
+    "..v.B.xx",
+    "l.......",
+    "........",
+)
 
 VERDE = bib.hexa("#0c2014", "#14432a", "#1f7a46", "#3fbf6e", "#9cf2b4", "#e4ffe9")
 VERMELHO = bib.hexa("#1e0a0a", "#4a1212", "#7e1c1a", "#b7302a")
@@ -321,6 +369,11 @@ def montar_mapa(rng):
     assert grade[yq][xq] == "#" and grade[yq][xq + 1] == "#", "a parede de cima do início não está fechada"
     grade[yq][xq] = grade[yq][xq + 1] = "Q"
 
+    yh, xh = 3 * PORTA_DO_CORREDOR[1], 3 * PORTA_DO_CORREDOR[0] + 1
+    assert grade[yh][xh] == "#" and grade[yh][xh + 1] == "#", "a parede de cima da porta do corredor não está fechada"
+    assert grade[yh + 1][xh] == "." and grade[yh + 1][xh + 1] == ".", "há um marcador na frente da porta do corredor"
+    grade[yh][xh] = grade[yh][xh + 1] = "H"
+
     longe = sorted(dist, key=lambda c: -dist[c])
     robos = []
     for c in longe:
@@ -350,18 +403,47 @@ def montar_mapa(rng):
     return ["".join(linha) for linha in grade], dist_oficina[inicio]
 
 
+def miolo(sala, deslocamento=0):
+    """O miolo de uma sala em BLOCOS (sem as paredes), como Rect2i: x, y,
+    largura, altura. 'deslocamento' são as fileiras de salinhas que entraram
+    em cima do mapa depois do sorteio."""
+    y = sala["y"] + deslocamento
+    return 3 * sala["x"] + 1, 3 * y + 1, 3 * sala["w"] - 1, 3 * sala["h"] - 1
+
+
+def cavar_esconderijo(linhas):
+    """Põe as fileiras novas em cima do mapa sorteado, cava o esconderijo
+    do Baltazar nelas e troca dois blocos da parede de cima do labirinto
+    (o chão da sala) pela parede falsa "FF"."""
+    largura = len(linhas[0])
+    grade = [["#"] * largura for _ in range(3 * FILEIRAS_DO_ESCONDERIJO)] + [list(l) for l in linhas]
+    x0, y0, w, h = miolo(ESCONDERIJO)
+    assert len(MODELO_ESCONDERIJO) == h, "esconderijo: altura do modelo"
+    for j, linha in enumerate(MODELO_ESCONDERIJO):
+        assert len(linha) == w, f"esconderijo: largura da fileira {j}"
+        for i, letra in enumerate(linha):
+            grade[y0 + j][x0 + i] = letra
+    yf = y0 + h
+    xf = 3 * ESCONDERIJO["entrada_x"] + 1
+    assert yf == 3 * FILEIRAS_DO_ESCONDERIJO, "a parede falsa tem de ficar na antiga parede de cima"
+    assert grade[yf + 1][xf] == "." and grade[yf + 1][xf + 1] == ".", "não há corredor embaixo da parede falsa"
+    grade[yf][xf] = grade[yf][xf + 1] = "F"
+    return ["".join(linha) for linha in grade]
+
+
 def salvar_mapa(linhas):
     os.makedirs(os.path.dirname(ARQUIVO_MAPA), exist_ok=True)
     corpo = ", ".join(f'"{l}"' for l in linhas)
+    d = FILEIRAS_DO_ESCONDERIJO
     seguras = [s for s in SALAS if s.get("segura")]
-    retangulos = ", ".join(f"Rect2i({s['x']}, {s['y']}, {s['w']}, {s['h']})" for s in seguras)
+    retangulos = ", ".join(f"Rect2i({s['x']}, {s['y'] + d}, {s['w']}, {s['h']})" for s in seguras)
     oficina = next(s for s in SALAS if s["nome"] == "oficina")
-    area = (3 * oficina["x"] + 1, 3 * oficina["y"] + 1, 3 * oficina["w"] - 1, 3 * oficina["h"] - 1)
+    area = miolo(oficina, d)
     # O miolo de cada sala em BLOCOS (sem as paredes). O jogo acha a
     # entrada de cada sala (o único buraco na parede em volta) a partir
     # desses retângulos, põe a porta ali e esconde o que há dentro.
-    salas = ", ".join(
-        f"Rect2i({3 * s['x'] + 1}, {3 * s['y'] + 1}, {3 * s['w'] - 1}, {3 * s['h'] - 1})" for s in SALAS)
+    salas = ", ".join("Rect2i(%d, %d, %d, %d)" % miolo(s, d) for s in SALAS)
+    esconderijo = "Rect2i(%d, %d, %d, %d)" % miolo(ESCONDERIJO)
     with open(ARQUIVO_MAPA, "w", encoding="utf-8", newline="\n") as f:
         f.write('[gd_resource type="Resource" script_class="MapaLabirinto" format=3]\n\n')
         f.write('[ext_resource type="Script" path="res://scripts/labirinto/mapa_labirinto.gd" id="1_mapa"]\n\n')
@@ -370,6 +452,7 @@ def salvar_mapa(linhas):
         f.write(f"salinhas_seguras = Array[Rect2i]([{retangulos}])\n")
         f.write(f"area_oficina = Rect2i({area[0]}, {area[1]}, {area[2]}, {area[3]})\n")
         f.write(f"salas = Array[Rect2i]([{salas}])\n")
+        f.write(f"esconderijo = {esconderijo}\n")
         f.write(f"linhas = PackedStringArray({corpo})\n")
     print("  salvo:", os.path.relpath(ARQUIVO_MAPA, PASTA_PROJETO))
 
@@ -596,23 +679,26 @@ def previa(linhas, sprites):
             sala.colar(sprites["piso"], x, y)
     for by in range(h):
         for bx in range(w):
-            if linhas[by][bx] not in "#DQ":
+            if linhas[by][bx] not in "#DQHF":
                 continue
             x, y = bx * BLOCO, by * BLOCO
             sala.colar(sprites["topo"][(bx * 5 + by * 11) % 3], x, y - ALTURA_PAREDE)
             abaixo = linhas[by + 1][bx] if by + 1 < h else "."
-            if abaixo not in "#DQ":
-                if linhas[by][bx] in "DQ":
+            if abaixo not in "#DQHF":
+                if linhas[by][bx] in "DQH":
                     if bx == 0 or linhas[by][bx - 1] != linhas[by][bx]:
-                        nome = "porta" if linhas[by][bx] == "D" else "porta_segura"
+                        nome = {"D": "porta", "Q": "porta_segura", "H": "porta_corredor"}[linhas[by][bx]]
                         sala.colar(sprites[nome], x, y + BLOCO - ALTURA_PAREDE)
                 else:
                     sala.colar(sprites["frente"][(bx * 7 + by * 3) % 4], x, y + BLOCO - ALTURA_PAREDE)
     cores = {"G": (60, 200, 255), "C": (80, 255, 120), "V": (255, 60, 60), "R": (255, 140, 40),
              "P": (240, 240, 80), "L": (255, 220, 150), "S": (80, 255, 120), "T": (200, 200, 255),
-             "Z": (255, 255, 60), "N": (255, 60, 255), "A": (255, 255, 255)}
+             "Z": (255, 255, 60), "N": (255, 60, 255), "A": (255, 255, 255),
+             "B": (150, 30, 60), "F": (255, 180, 60)}
     for letra in "bcmxrkauhij":
         cores[letra] = (60, 160, 200)
+    for letra in "yenlv":
+        cores[letra] = (200, 140, 90)
     for by in range(h):
         for bx in range(w):
             if linhas[by][bx] in cores:
@@ -651,10 +737,38 @@ def porta_sala_segura():
     return img
 
 
+def porta_corredor_tempo():
+    """A porta do Corredor do Tempo: as mesmas folhas de metal da porta da
+    sala segura, mas com a lâmpada ÂMBAR e, na plaquinha, um relógio: um
+    anel (r entre 2,5 e 4) com os dois ponteiros marcando 10 para as 2."""
+    img = Imagem(2 * BLOCO, ALTURA_PAREDE)
+    X, Y = img.X, img.Y
+    fino = ruido_toro(2 * BLOCO, ALTURA_PAREDE, 2, 557)
+    img.pintar(img.ret(0, 0, 2 * BLOCO, ALTURA_PAREDE), "concreto", 0.30 - 0.14 * Y / ALTURA_PAREDE + 0.04 * fino)
+    img.pintar(img.ret(0, 0, 2 * BLOCO, 1), "concreto", 0.62)
+    img.pintar(img.ret(14, 12, 50, ALTURA_PAREDE), "metal", 0.1)
+    for x0 in (15, 33):
+        folha = img.ret(x0, 13, x0 + 16, ALTURA_PAREDE)
+        img.pintar(folha, "metal", 0.36 + 0.08 * fino - 0.1 * (Y / ALTURA_PAREDE))
+        img.pintar(img.ret(x0 + 2, 16, x0 + 14, 22), "metal", 0.2)
+    img.pintar(img.ret(29, 26, 35, 28), "ferrugem", 0.6)                      # maçaneta
+    img.pintar(img.ret(18, 2, 24, 8), "lampada", 0.75)                        # a lâmpada
+    img.cor(img.ret(20, 4, 22, 6), RAMPAS["lampada"][-1])
+    img.pintar(img.ret(26, 1, 46, 12), "lampada", 0.15)                       # a plaquinha
+    cx, cy = 36.0, 6.5
+    r = np.hypot(X + 0.5 - cx, Y + 0.5 - cy)
+    img.cor((r >= 2.5) & (r <= 4.0), RAMPAS["lampada"][-2])
+    img.cor(img.linha(cx, cy, cx - 1.5, cy - 1.5, 0.5), RAMPAS["lampada"][-1])
+    img.cor(img.linha(cx, cy, cx + 2.0, cy - 1.0, 0.5), RAMPAS["lampada"][-1])
+    img.pintar(img.ret(0, ALTURA_PAREDE - 3, 2 * BLOCO, ALTURA_PAREDE), "concreto", 0.05)
+    return img
+
+
 def main():
     print("Gerando o Labirinto")
     rng = np.random.default_rng(SEMENTE)
     linhas, tamanho_caminho = montar_mapa(rng)
+    linhas = cavar_esconderijo(linhas)
     for l in linhas:
         print("   ", l)
     salvar_mapa(linhas)
@@ -662,7 +776,8 @@ def main():
     os.makedirs(PASTA_SALA, exist_ok=True)
     sprites = {"piso": piso(), "topo": [parede_topo(v) for v in range(3)],
                "frente": [parede_frente(v) for v in range(4)],
-               "porta": porta_saida(), "porta_segura": porta_sala_segura()}
+               "porta": porta_saida(), "porta_segura": porta_sala_segura(),
+               "porta_corredor": porta_corredor_tempo()}
     sprites["piso"].salvar("piso.png", PASTA_SALA)
     for v, img in enumerate(sprites["topo"]):
         img.salvar(f"parede_topo_{v}.png", PASTA_SALA)
@@ -670,6 +785,7 @@ def main():
         img.salvar(f"parede_frente_{v}.png", PASTA_SALA)
     sprites["porta"].salvar("porta_saida.png", PASTA_SALA)
     sprites["porta_segura"].salvar("porta_sala_segura.png", PASTA_SALA)
+    sprites["porta_corredor"].salvar("porta_corredor_tempo.png", PASTA_SALA)
     marcas_garra().salvar("marcas_garra.png", PASTA_SALA)
     poca().salvar("poca.png", PASTA_SALA)
     papel().salvar("papel.png", PASTA_SALA)

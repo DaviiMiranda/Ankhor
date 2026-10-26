@@ -143,6 +143,7 @@ Para a apresentação da disciplina: as salas são **vértices** e as portas sã
 | Cápsula de clarão | Sala 5 | Primeira defesa: atordoar um robô |
 | Pilhas (4) | Salão (2, no lado escuro), sala 4, sala 5, ala leste | Recarregar a lanterna |
 | Código da grade | Sala 8 (disquete) | Abrir a grade da ala leste |
+| Pingentes de farol (3) | Salão (2, fundo sul), sala 8 (canto esquerdo), sala 4 (corredores de baixo) | Opcionais: ao juntar os três, o quarto do Gabriel ganha um farol na mesa. Não ficam na mochila (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
 
 ---
 
@@ -191,7 +192,7 @@ O Baltazar **não aparece** nesta fase: só o acampamento que ele deixou (Enredo
 
 A porta da sala 9 fica **barrada por dentro** durante toda a fase, e às vezes se ouve alguém do outro lado. Ela só abre quando Gabriel voltar à Biblioteca, mais adiante no jogo. É o gancho para o jogador querer voltar, como as portas que só se abrem mais tarde em *Resident Evil*.
 
-**Sugestão, não decisão:** o Enredo diz que o esconderijo do Baltazar fica dentro da Biblioteca, mas o lugar exato está pendente (seção 10.4). A sala de obras raras é uma boa candidata.
+A sala de obras raras era a candidata a esconderijo do Baltazar, mas o esconderijo dele passou para o **Labirinto** (ver [`labirinto.md`](labirinto.md), seção 3). Quem está do outro lado da porta barrada agora está pendente (Enredo Principal, seção 10.4).
 
 ---
 

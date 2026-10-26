@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/sistemas/mecanismo_do_tempo.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scripts/sistemas/toca_discos_do_tempo.gd" id="2_script"]
+
+[node name="TocaDiscosDoTempo" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+id = "disco"
+titulo = "TOCA-DISCOS"
+instrucao = "E: soltar a agulha na faixa verde"
+texto_acao = "Mexer no toca-discos"

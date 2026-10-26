@@ -1,13 +1,14 @@
 class_name MapaLabirinto
 extends Resource
 
-const LETRAS_DE_OBSTACULO := "bcmxrkauhijNZ"
+const LETRAS_DE_OBSTACULO := "bcmxrkauhijNZByenlv"
 
 @export var tamanho_bloco: int = 32
 @export var blocos_por_salinha: int = 3
 @export var salinhas_seguras: Array[Rect2i] = []
 @export var area_oficina: Rect2i = Rect2i()
 @export var salas: Array[Rect2i] = []
+@export var esconderijo: Rect2i = Rect2i()
 @export var linhas: PackedStringArray = PackedStringArray()
 
 
@@ -27,7 +28,11 @@ func letra(celula: Vector2i) -> String:
 
 func e_parede(celula: Vector2i) -> bool:
 	var l := letra(celula)
-	return l == "#" or l == "D" or l == "Q"
+	return l == "#" or l == "D" or l == "Q" or l == "H" or l == "F"
+
+
+func e_parede_falsa(celula: Vector2i) -> bool:
+	return letra(celula) == "F"
 
 
 func e_obstaculo(celula: Vector2i) -> bool:

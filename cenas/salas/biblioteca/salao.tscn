@@ -60,6 +60,8 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/biblioteca/biblioteca_fundo_moderna_luz.png" id="fut_fundo_luz"]
 [ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="fut_vcm"]
 [ext_resource type="Resource" path="res://dados/transmissoes/grupo_biblioteca_01.tres" id="g_grupo_biblioteca_01"]
+[ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
+[ext_resource type="Resource" path="res://dados/colecoes/biblioteca.tres" id="col_dados"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -381,6 +383,11 @@ collision_layer = 9
 [node name="Entulho5" parent="Objetos" instance=ExtResource("o_entulho")]
 position = Vector2(86, 372)
 espelhado = true
+
+[node name="PingenteFarol1" parent="Objetos" instance=ExtResource("col_cena")]
+position = Vector2(214, 388)
+colecao = ExtResource("col_dados")
+numero = 1
 
 [node name="Livros5" parent="Objetos" instance=ExtResource("o_livros")]
 position = Vector2(190, 392)

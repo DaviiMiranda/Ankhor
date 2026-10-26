@@ -28,6 +28,8 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/rack_arquivo_musgo.tscn" id="fut_rack_arquivo_musgo"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_servidores.tscn" id="fut_parede_servidores"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/letreiro_holografico.tscn" id="fut_letreiro"]
+[ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
+[ext_resource type="Resource" path="res://dados/colecoes/biblioteca.tres" id="col_dados"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -270,6 +272,11 @@ espelhado = true
 
 [node name="Livros3" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(530, 330)
+
+[node name="PingenteFarol3" parent="Objetos" instance=ExtResource("col_cena")]
+position = Vector2(262, 396)
+colecao = ExtResource("col_dados")
+numero = 3
 
 [node name="Livros4" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(290, 410)

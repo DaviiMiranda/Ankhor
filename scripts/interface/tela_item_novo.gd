@@ -63,8 +63,12 @@ func examinar(item: Item) -> void:
 		_abrir(item, true)
 
 
-func _ao_item_novo(item: Item) -> void:
+func mostrar_novo(item: Item) -> void:
 	_fila.append(item)
+
+
+func _ao_item_novo(item: Item) -> void:
+	mostrar_novo(item)
 
 
 func _abrir(item: Item, examinando := false) -> void:

@@ -26,15 +26,18 @@ func _ready() -> void:
 
 func atualizar() -> void:
 	var data := Salvamento.data_salva()
-	_linhas.text = "\n".join([
+	var linhas := [
 		"Fase: %s" % _nome_da_fase(Visor.cena_do_save),
 		"Documentos lidos: %d de %d" % [MesaDoVisor.documentos_lidos().size(), MesaDoVisor.todos_os_documentos().size()],
 		"Transmissões ouvidas: %d de %d" % [Radio.ouvidas.size(), _contar(PASTA_TRANSMISSOES)],
 		"Anotações no caderno: %d" % Caderno.anotacoes.size(),
 		"Portas destrancadas: %d" % Porta.destrancadas_salvas().size(),
 		"Itens na mochila: %d" % _itens_na_mochila(),
-		"Último save: %s" % (SEM_SAVE if data.is_empty() else data),
-	])
+	]
+	for colecao in Colecionaveis.todas():
+		linhas.append("%s: %d de %d" % [colecao.nome, Colecionaveis.quantidade(colecao.id), colecao.total])
+	linhas.append("Último save: %s" % (SEM_SAVE if data.is_empty() else data))
+	_linhas.text = "\n".join(linhas)
 
 
 func _rotulo(tamanho_da_fonte: int, tinta: Color) -> Label3D:
