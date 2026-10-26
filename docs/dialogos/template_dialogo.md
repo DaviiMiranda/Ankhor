@@ -8,7 +8,7 @@ Todo diálogo é um arquivo **JSON** em `dados/dialogos/<nome>.json` (nome em `s
 
 ```json
 {
-	"id": "clarice_primeiro_encontro",
+	"id": "clarice_bloco_pede_molho",
 	"inicio": "abertura",
 	"anotacao": {
 		"titulo": "Clarice está viva",

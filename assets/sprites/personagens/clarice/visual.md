@@ -68,7 +68,7 @@ O resto (a estação de trabalho e o 3/4 de frente) ainda sai de `assets/modelag
 
 ## No jogo
 
-`cenas/personagens/clarice.tscn`, na central de dados do bunker. O script (`scripts/personagens/clarice.gd`) faz:
+`cenas/personagens/clarice.tscn`, sentada numa estação de trabalho. Foi feita para a central de dados do bunker, onde ela não mora mais, e hoje não está em nenhuma sala nem tem conversa ligada. O script (`scripts/personagens/clarice.gd`) faz:
 
 - **longe do Gabriel:** digitando, com o som do teclado;
 - **Gabriel a menos de 80 px, ou conversando:** a cadeira gira (quadros de `virando`) e ela fica olhando para ele;

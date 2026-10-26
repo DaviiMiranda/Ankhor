@@ -48,4 +48,4 @@ Cada **trecho** é um nó; cada **escolha** e cada `vai_para` é uma aresta que 
 3. Na cena do personagem, adicione uma `Area2D` com o script `conversa_npc.gd` e uma `CollisionShape2D` (o alcance). No Inspetor: `texto_acao = Conversar`, `primeira_conversa` e, se quiser, `conversa_de_novo`.
 4. Nome com cor própria e tom de bipe: `CORES_NOMES` e `TOM_VOZ` no começo de `scripts/interface/caixa_dialogo.gd`.
 
-Exemplo pronto: `cenas/personagens/clarice.tscn` com `dados/dialogos/clarice_primeiro_encontro.json` e `clarice_de_novo.json`.
+Exemplo pronto: `cenas/personagens/zane_na_oficina.tscn` com `dados/dialogos/zane_labirinto_primeiro_encontro.json` e `zane_labirinto_de_novo.json`.

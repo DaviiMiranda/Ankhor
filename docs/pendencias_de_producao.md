@@ -8,7 +8,7 @@ Estes itens estavam nas pendências do Enredo até 2026-10-15 e saíram de lá q
 
 ## Textos já escritos que citam a versão antiga da história
 
-- **Bunker:** as conversas `dados/dialogos/clarice_primeiro_encontro.json` e `clarice_de_novo.json` e a arte da estação de trabalho (`gerar_clarice.py`) foram feitas para a Clarice no computador da central de dados. A Clarice agora fica no Bloco de salas, e a cena do bunker mostra o **Henrique** na estação. As conversas da Clarice, com as falas de loop ("Você sempre lê" e outras), ficaram sem uso e podem ser apagadas.
+- **Bunker:** a arte da Clarice sentada na estação de trabalho (`gerar_clarice.py`, cena `cenas/personagens/clarice.tscn`) foi feita para ela no computador da central de dados. A Clarice agora fica no Bloco de salas, e a cena do bunker mostra o **Henrique** na estação; a cena dela ficou sem uso e sem conversa. As conversas antigas, com as falas de loop, foram apagadas em 2026-10-26.
 - **Zane no bunker:** falta a cena e as conversas dele na sala de dados.
 - **Mudanças de 2026-10-15** (em andamento no PR #119): o bilhete da Clarice (`dados/documentos/bilhete_clarice.tres`), [`fases/bunker.md`](fases/bunker.md) (robôs no bunker, o Henrique sozinho) e as conversas do Henrique no bunker (`henrique_primeiro_encontro.json` e `henrique_de_novo.json`).
 - **Prólogo:** o `seg_prologo` mostra uma "aula de cálculo", e a cadeira do caderno agora é **Modelagem e Simulação**.
