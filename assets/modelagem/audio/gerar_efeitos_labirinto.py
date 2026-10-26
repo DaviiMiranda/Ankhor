@@ -176,6 +176,49 @@ def pilha_troca():
     return normalizar(s, -8.0)
 
 
+def ronda_passo():
+    """Marcha da Ronda: um pisão médio e seco (pé de plástico duro sobre
+    metal) e, colado nele, o chacoalhar da carcaça oca: ruído de banda
+    média que some rápido, como uma caixa de computador batendo."""
+    t = tempo(0.45)
+    n = len(t)
+    baque = np.sin(2 * np.pi * np.cumsum(90 * (1 + 0.6 * np.exp(-t / 0.02))) / TAXA) * envelope(t, 0, 0.05)
+    carcaca = filtrar(ruido(n), corte_baixo=600, corte_alto=2200) * envelope(t, 0.008, 0.035, 0.001)
+    carcaca /= np.max(np.abs(carcaca))
+    servo = 0.15 * np.tanh(3 * np.sin(2 * np.pi * np.cumsum(380 + 200 * t) / TAXA)) * envelope(t, 0.03, 0.08, 0.01)
+    return normalizar(sala(baque + 0.5 * carcaca + servo, mistura=0.2), -6.0)
+
+
+def enxame_passo():
+    """Seis patinhas de metal: seis estalos agudos e fracos, espalhados ao
+    acaso em 60 ms (um tripé e o outro), como unhas tamborilando numa lata.
+    Com vários robôs juntos, vira um chiado de inseto."""
+    t = tempo(0.18)
+    n = len(t)
+    s = np.zeros(n)
+    for inicio in np.sort(rng.uniform(0.0, 0.06, 6)):
+        f = rng.uniform(3200, 4200)
+        s += metal(t, f, inicio, ((1.0, 1.0, 0.006), (1.62, 0.4, 0.004)))
+    return normalizar(sala(s, mistura=0.1), -12.0)
+
+
+def cacador_passo():
+    """Caçador: o punho e depois o pé batem no chão (dois baques graves, o
+    segundo mais fraco), com o tinido da junta e o ronco do escapamento."""
+    t = tempo(0.8)
+    n = len(t)
+    s = np.zeros(n)
+    for inicio, forca in ((0.0, 1.0), (0.11, 0.6)):
+        queda = np.exp(-np.maximum(t - inicio, 0) / 0.025)
+        s += forca * np.sin(2 * np.pi * np.cumsum(48 * (1 + 0.9 * queda)) / TAXA) * envelope(t, inicio, 0.11)
+        s += forca * 0.4 * filtrar(ruido(n), corte_alto=260) * envelope(t, inicio, 0.05)
+    s += metal(t, 330, 0.02, ((1.0, 1.0, 0.10), (2.76, 0.5, 0.06)), 0.25)
+    ronco = filtrar(ruido(n), corte_baixo=60, corte_alto=180)
+    ronco /= np.max(np.abs(ronco))
+    s += 0.25 * ronco * envelope(t, 0.05, 0.2, 0.05)
+    return normalizar(sala(s, mistura=0.25), -3.0)
+
+
 def main():
     print("[efeitos do labirinto]")
     for pasta, nome, funcao in (("robos", "sentinela_passo", sentinela_passo),
@@ -186,7 +229,10 @@ def main():
                                 ("interface", "morte", morte),
                                 ("interface", "checkpoint", checkpoint),
                                 ("objetos", "lanterna_clique", lanterna_clique),
-                                ("objetos", "pilha_troca", pilha_troca)):
+                                ("objetos", "pilha_troca", pilha_troca),
+                                ("robos", "ronda_passo", ronda_passo),
+                                ("robos", "enxame_passo", enxame_passo),
+                                ("robos", "cacador_passo", cacador_passo)):
         salvar(os.path.join(PASTA_AUDIO, pasta, f"{nome}.wav"), funcao())
 
 

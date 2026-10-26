@@ -49,6 +49,10 @@ const SOM_BIPE := preload("res://assets/audio/efeitos/robos/robo_bipe.wav")
 @export var segundos_olhando_em_volta: float = 2.5
 @export var segundos_procurando: float = 4.0
 @export var segundos_depois_do_ataque: float = 1.3
+@export var rastreia_sem_ver := false
+
+@export_group("Enxame")
+@export var lider: NodePath
 
 @export_group("Sprites")
 @export var andar_lado: Texture2D
@@ -90,6 +94,8 @@ var _indice_rota := -1
 var _bipou := false
 var _som_bipe: AudioStreamPlayer2D
 var _segundos_distraido := 0.0
+var _lider: Robo
+var _lugar_no_enxame := Vector2.ZERO
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var olhos: Sprite2D = $Olhos
@@ -106,6 +112,7 @@ func configurar(nova_grade: GradeLabirinto, semente: int) -> void:
 	_salinha = grade.salinha(global_position)
 	_indice_rota = _indice_do_ponto_mais_perto() - 1
 	Progresso.mudou.connect(_ao_mudar_progresso)
+	_entrar_no_enxame()
 	_patrulhar()
 
 
@@ -140,12 +147,16 @@ func _decidir(delta: float) -> void:
 		Estado.PATRULHA, Estado.INVESTIGANDO, Estado.PROCURANDO:
 			if vendo:
 				_perseguir()
+			elif estado == Estado.PATRULHA and _tem_lider():
+				_seguir_lider(delta)
 		Estado.PERSEGUINDO:
 			if vendo:
 				_ultima_vista = _gabriel.global_position
 				_tempo_sem_ver = 0.0
 			else:
 				_tempo_sem_ver += delta
+				if _pode_rastrear_sem_ver():
+					_ultima_vista = _gabriel.global_position
 				if _tempo_sem_ver > segundos_memoria:
 					_procurar()
 			_tempo_novo_caminho -= delta
@@ -174,6 +185,9 @@ func _patrulhar() -> void:
 	_mudar_estado(Estado.PATRULHA)
 	_bipou = false
 	_segundos_distraido = 0.0
+	if _tem_lider():
+		_ir_para(_lugar_perto_do_lider())
+		return
 	var pontos := _pontos_da_rota()
 	if not pontos.is_empty():
 		_indice_rota = posmod(_indice_rota + 1, pontos.size())
@@ -238,6 +252,50 @@ func _perseguir() -> void:
 		jogador_detectado.emit(self)
 
 
+func chefe_do_enxame() -> Robo:
+	if lider.is_empty():
+		return self
+	var chefe := get_node_or_null(lider) as Robo
+	return chefe if chefe else self
+
+
+func _entrar_no_enxame() -> void:
+	_lider = chefe_do_enxame()
+	if _tem_lider():
+		_lugar_no_enxame = global_position - _lider.global_position
+	for no in get_tree().get_nodes_in_group("robos"):
+		var outro := no as Robo
+		if outro == null or outro == self or outro.chefe_do_enxame() != chefe_do_enxame():
+			continue
+		if not outro.jogador_detectado.is_connected(_ao_companheiro_ver):
+			outro.jogador_detectado.connect(_ao_companheiro_ver)
+
+
+func _tem_lider() -> bool:
+	return _lider != null and is_instance_valid(_lider) and _lider != self
+
+
+func _lugar_perto_do_lider() -> Vector2:
+	return _lider.global_position + _lugar_no_enxame
+
+
+func _seguir_lider(delta: float) -> void:
+	_tempo_novo_caminho -= delta
+	if _tempo_novo_caminho <= 0.0:
+		_tempo_novo_caminho = INTERVALO_NOVO_CAMINHO
+		_ir_para(_lugar_perto_do_lider())
+
+
+func _ao_companheiro_ver(_robo: Robo) -> void:
+	if grade == null or _gabriel == null or estado in [Estado.PERSEGUINDO, Estado.ATACOU, Estado.ATORDOADO]:
+		return
+	_perseguir()
+
+
+func _pode_rastrear_sem_ver() -> bool:
+	return rastreia_sem_ver and Vida.esta_viva() and not _gabriel.escondido
+
+
 func _procurar() -> void:
 	_mudar_estado(Estado.PROCURANDO)
 	_ir_para(_ultima_vista)
@@ -290,6 +348,8 @@ func _ir_para(alvo: Vector2) -> void:
 func _ao_chegar() -> void:
 	match estado:
 		Estado.PATRULHA:
+			if _tem_lider():
+				return
 			if _pontos_da_rota().is_empty():
 				if _tempo_desde_chegada > 0.4:
 					_patrulhar()
