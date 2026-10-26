@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/sistemas/mecanismo_do_tempo.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scripts/sistemas/pendulo_do_tempo.gd" id="2_script"]
+
+[node name="PenduloDoTempo" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+id = "pendulo"
+titulo = "PÊNDULO"
+instrucao = "E: travar o peso na faixa verde"
+texto_acao = "Mexer no pêndulo"

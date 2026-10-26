@@ -1,0 +1,61 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/relogio_do_corredor.gd" id="1_relogio"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/relogio_tique.wav" id="2_tique"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/tempo_trava.wav" id="3_trava"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/tempo_alinhado.wav" id="4_alinhado"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/tempo_vencido.wav" id="5_vencido"]
+
+[sub_resource type="StyleBoxFlat" id="Fundo"]
+bg_color = Color(0, 0, 0, 0.65)
+content_margin_left = 6.0
+content_margin_right = 6.0
+
+[node name="RelogioDoCorredor" type="CanvasLayer"]
+layer = 9
+script = ExtResource("1_relogio")
+
+[node name="Mostrador" type="Label" parent="."]
+offset_left = 528.0
+offset_top = 32.0
+offset_right = 632.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("Fundo")
+text = "2:00"
+horizontal_alignment = 2
+
+[node name="Contagem" type="Label" parent="."]
+offset_left = 528.0
+offset_top = 62.0
+offset_right = 632.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(0.86, 0.74, 0.34, 1)
+text = "ALINHADOS 0/4"
+horizontal_alignment = 2
+
+[node name="Desconto" type="Label" parent="."]
+offset_left = 480.0
+offset_top = 38.0
+offset_right = 524.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(1, 0.29, 0.23, 1)
+text = "-5 s"
+horizontal_alignment = 2
+
+[node name="SomTique" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tique")
+volume_db = -4.0
+bus = &"Efeitos"
+
+[node name="SomTrava" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_trava")
+bus = &"Efeitos"
+
+[node name="SomAlinhado" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_alinhado")
+bus = &"Efeitos"
+
+[node name="SomVencido" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_vencido")
+bus = &"Efeitos"
