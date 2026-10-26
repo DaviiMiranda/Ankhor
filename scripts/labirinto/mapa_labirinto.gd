@@ -27,7 +27,7 @@ func letra(celula: Vector2i) -> String:
 
 func e_parede(celula: Vector2i) -> bool:
 	var l := letra(celula)
-	return l == "#" or l == "D" or l == "Q"
+	return l == "#" or l == "D" or l == "Q" or l == "H"
 
 
 func e_obstaculo(celula: Vector2i) -> bool:
