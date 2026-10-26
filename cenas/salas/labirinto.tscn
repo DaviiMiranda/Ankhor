@@ -31,6 +31,9 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/labirinto/componentes_3.png" id="27_comp3"]
 [ext_resource type="Resource" path="res://dados/transmissoes/zane_labirinto_01.tres" id="28_transmissao"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/raio_de_visao.tscn" id="30_raio"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="g_gatilho_radio"]
+[ext_resource type="Resource" path="res://dados/transmissoes/grupo_labirinto_01.tres" id="g_grupo_labirinto_01"]
+[ext_resource type="Resource" path="res://dados/transmissoes/grupo_labirinto_02.tres" id="g_grupo_labirinto_02"]
 
 [sub_resource type="ShaderMaterial" id="Vinheta"]
 shader = ExtResource("16_vinheta")
@@ -123,3 +126,14 @@ color = Color(0, 0, 0, 1)
 [node name="CaixaDialogo" parent="." instance=ExtResource("29_caixa_dialogo")]
 
 [node name="MusicaLabirinto" parent="." instance=ExtResource("23_musica")]
+
+[node name="GatilhoGrupoLabirinto01" parent="." instance=ExtResource("g_gatilho_radio")]
+transmissao = ExtResource("g_grupo_labirinto_01")
+marca_necessaria = "labirinto_notebook_entregue"
+na_sala_inteira = true
+depois_do_dialogo = "res://dados/dialogos/zane_labirinto_primeiro_encontro.json"
+
+[node name="GatilhoGrupoLabirinto02" parent="." instance=ExtResource("g_gatilho_radio")]
+transmissao = ExtResource("g_grupo_labirinto_02")
+marca_necessaria = "labirinto_no_2"
+na_sala_inteira = true

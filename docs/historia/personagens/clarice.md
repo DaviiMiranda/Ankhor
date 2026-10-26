@@ -28,7 +28,8 @@
 |---|---|
 | [Gabriel](gabriel.md) | Duelo de ironias: os dois se provocam o tempo todo no mesmo tom, e é assim que a relação cresce ao longo do jogo |
 | [Diana](diana.md) | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Dividem a 103 do Bloco de salas: a Clarice anota as rondas, a Diana desenha o mapa. Brigam o tempo todo e acabam amigas |
-| [Henrique](henrique.md) | Falam pelo rádio: ele as ajuda com o que vê nas câmeras, e elas juntam isso com o que descobrem. É por ele que a Clarice sabe das rondas na Biblioteca e de que Gabriel acordou |
+| [Henrique](henrique.md) | Falam pelo rádio: ele as ajuda com o que vê nas câmeras, e elas juntam isso com o que descobrem. É por ele que a Clarice sabe das rondas na Biblioteca e de que Gabriel acordou. Ela confia nele ("as dicas dele sempre bateram") e o defende quando o Zane desconfia |
+| [Zane](zane.md) | Rivalidade de tecnologia, duas épocas da computação: ele a chama de "analógica" e o disquete de pré-histórico; ela acha que ele não sabe fazer nada sem uma máquina. Competem o tempo todo pela frequência. Por baixo, respeito: foi por causa dela que o Zane deixou o rádio no balcão da Biblioteca |
 
 ## 4. No jogo
 
@@ -44,7 +45,7 @@
 ## 5. Registros
 
 - **Suporte:** folha de fichário com pautas azuis e adesivos coloridos (`papel = caderno_clarice`), disquete com etiqueta escrita à mão. Na ligação, só a voz e o chiado da linha.
-- **Já escritos:** `dados/documentos/bilhete_clarice.tres` (ainda com o texto antigo, "Hoje à noite vou tentar entrar no sistema": precisa virar o pedido para procurá-la no Bloco de salas: ver as [pendências de produção](../../pendencias_de_producao.md) e o disquete `dados/itens/disquete_clarice.tres`. Transmissões: `clarice_biblioteca_01.tres` e `clarice_biblioteca_02.tres` (Biblioteca, balcão e acervo) e `clarice_01.tres` a `clarice_04.tres` (Bloco de salas). Quatro conversas no Bloco de salas em `dados/dialogos/clarice_bloco_*.json`. As conversas `clarice_primeiro_encontro.json` e `clarice_de_novo.json` foram escritas para ela no computador do bunker e ficaram sem uso: ela não está lá, e a cena do bunker agora mostra o Henrique (ver as [pendências de produção](../../pendencias_de_producao.md)).
+- **Já escritos:** `dados/documentos/bilhete_clarice.tres` (o bilhete no terminal da Biblioteca, que pede para procurá-la no Bloco de salas) e o disquete (o item `dados/itens/disquete_clarice.tres`, com o texto em `dados/documentos/disquete_clarice.tres`). Transmissões: `clarice_biblioteca_01.tres` e `clarice_biblioteca_02.tres` (Biblioteca, balcão e acervo) e `clarice_01.tres` a `clarice_04.tres` (Bloco de salas). Quatro conversas no Bloco de salas em `dados/dialogos/clarice_bloco_*.json`. As conversas do grupo pelo rádio, com a Diana, o Zane e o Gabriel, em `dados/transmissoes/grupo_*.tres`. As conversas da versão em que ela morava no bunker foram apagadas em 2026-10-26.
 
 ## 6. Direção de arte
 
@@ -54,7 +55,7 @@
 
 ## 7. Arquivos
 
-- **Cena:** `cenas/personagens/clarice_em_pe.tscn` (parada) e `clarice_posto.tscn` (na 103, com a conversa que troca o molho pela chave da grade). `clarice.tscn` é ela sentada na estação de trabalho do bunker, sem uso desde que o Henrique ocupou a estação.
+- **Cena:** `cenas/personagens/clarice_em_pe.tscn` (parada) e `clarice_posto.tscn` (na 103, com a conversa que troca o molho pela chave da grade). `clarice.tscn` é ela sentada na estação de trabalho do bunker, sem uso e sem conversa desde que o Henrique ocupou a estação.
 - **Sprites:** `assets/sprites/personagens/clarice/`
 - **Gerador:** `assets/modelagem/personagens/gerar_clarice.py`
 - **Diálogos:** `dados/dialogos/clarice_*.json`

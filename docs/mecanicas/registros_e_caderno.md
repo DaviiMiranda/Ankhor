@@ -101,9 +101,15 @@ A tela de leitura, a legenda e o inventário (com a aba Anotações) já estão 
 ## 5. Como criar uma transmissão nova
 
 1. Botão direito em `dados/transmissoes/` → *Novo* → *Recurso...* → `Transmissao`.
-2. `falante` aparece em cima da fala (ex.: `CLARICE (rádio)`). Em `falas`, uma entrada por fala, com no máximo **2 linhas** (~85 caracteres).
-3. `vozes` é opcional: um áudio por fala, na mesma ordem. Com voz gravada, a fala espera o áudio acabar. As gravações vão em `assets/audio/vozes/`.
-4. No mapa: arraste `cenas/sistemas/gatilho_transmissao.tscn` para `Objetos`, escolha a `transmissao` e ajuste a forma da área (`Area`). O gatilho só toca com o item `item_necessario` (padrão: `radio`) no inventário.
+2. `falante` aparece em cima da fala (ex.: `CLARICE (rádio)`). Em `falas`, uma entrada por fala, com no máximo **2 linhas**. Na fonte Galmuri7, a caixa de 420 px cabe ~95 caracteres por linha: fique abaixo de ~170 por fala. O que passa de 2 linhas é cortado sem aviso.
+3. **Conversa com mais de uma pessoa:** preencha `falantes` com um nome por fala, na mesma ordem de `falas` (ex.: `CLARICE (rádio)`, `DIANA (rádio)`, `GABRIEL (rádio)`). Fala sem nome em `falantes` usa o `falante`. As conversas do grupo (`grupo_*.tres`) são assim. O Henrique não fala na frequência: o que ele diz chega pela Clarice.
+4. `vozes` é opcional: um áudio por fala, na mesma ordem. Com voz gravada, a fala espera o áudio acabar. As gravações vão em `assets/audio/vozes/`.
+5. No mapa: arraste `cenas/sistemas/gatilho_transmissao.tscn` para `Objetos`, escolha a `transmissao` e ajuste a forma da área (`Area`). O gatilho só toca com o item `item_necessario` (padrão: `radio`) no inventário. Opções do gatilho:
+   - `marca_necessaria`: só toca depois dessa marca de `Progresso`;
+   - `na_sala_inteira`: toca em qualquer ponto da sala, sem precisar entrar na área;
+   - `depois_da_transmissao`: só toca depois que essa transmissão (o `id`) foi pedida, e entra na fila logo atrás dela;
+   - `depois_do_dialogo`: só toca depois que esse diálogo (`.json`) terminou.
+6. Se o Gabriel trocar de sala no meio de uma transmissão, ela recomeça na sala seguinte: o `Radio` guarda as que ainda não terminaram (`Radio.pendentes`), e a anotação só vai para o caderno quando a última fala acaba.
 
 ---
 
@@ -113,4 +119,4 @@ A tela de leitura, a legenda e o inventário (com a aba Anotações) já estão 
 - Salvar caderno e transmissões ao dormir (depende do sistema de save).
 - As ligações da Clarice pelos telefones (vão reaproveitar a legenda do rádio).
 - As falas da Clarice no rádio ainda não têm voz gravada.
-- O sistema de diálogos completo (escolhas, retratos) de [`../dialogos/README.md`](../dialogos/README.md): a legenda do rádio é só a parte de falas em sequência.
+- O sistema de diálogos completo (escolhas, retratos, `scripts/sistemas/dialogos.gd`): a legenda do rádio é só a parte de falas em sequência.

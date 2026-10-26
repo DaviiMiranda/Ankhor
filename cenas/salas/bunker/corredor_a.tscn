@@ -38,6 +38,8 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_porta_fechada.tscn" id="n4"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="n5"]
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="n6"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="g_gatilho_radio"]
+[ext_resource type="Resource" path="res://dados/transmissoes/grupo_bunker_02.tres" id="g_grupo_bunker_02"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -466,3 +468,8 @@ position = Vector2(1300, 160)
 
 [node name="RobosDaSala" type="Node" parent="."]
 script = ExtResource("n6")
+
+[node name="GatilhoGrupoBunker02" parent="." instance=ExtResource("g_gatilho_radio")]
+transmissao = ExtResource("g_grupo_bunker_02")
+na_sala_inteira = true
+depois_do_dialogo = "res://dados/dialogos/henrique_primeiro_encontro.json"

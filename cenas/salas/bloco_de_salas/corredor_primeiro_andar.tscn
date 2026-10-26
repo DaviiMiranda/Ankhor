@@ -40,6 +40,8 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_nicho_armario.tscn" id="m_nicho_armario"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="m_nicho"]
 [ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="m_zona"]
+[ext_resource type="Resource" path="res://dados/transmissoes/grupo_bloco_01.tres" id="g_grupo_bloco_01"]
+[ext_resource type="Resource" path="res://dados/transmissoes/grupo_bloco_02.tres" id="g_grupo_bloco_02"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -569,3 +571,14 @@ fator_ruido = 1.5
 nome_piso = "lajota solta"
 
 [editable path="Ceu"]
+
+[node name="GatilhoGrupoBloco01" parent="." instance=ExtResource("b_gatilho")]
+transmissao = ExtResource("g_grupo_bloco_01")
+marca_necessaria = "claviculario_aberto"
+na_sala_inteira = true
+
+[node name="GatilhoGrupoBloco02" parent="." instance=ExtResource("b_gatilho")]
+transmissao = ExtResource("g_grupo_bloco_02")
+marca_necessaria = "corrente_cortada"
+na_sala_inteira = true
+depois_da_transmissao = "clarice_03"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "grupo_convivencia_03"
+falante = "RÁDIO"
+falas = PackedStringArray("Chhh... Gabriel, espera. Recado do Henrique.", "Ele fala comigo agora?", "Comigo. Ele pediu pra você não descer. Diz que o bunker é perigoso e que é melhor cada um ficar no seu canto.", "Claro que ele disse.", "Zane.", "Que foi? Ele tá trancado lá desde antes de mim, e a primeira coisa que pede é que ninguém desça. Fritou, Clarice.", "E se ele tiver razão? E se lá embaixo for pior?", "Pior que uma praça cheia de robô com holofote?", "...Não sei. Pode ser!", "As dicas dele sempre bateram, Zane. Sempre.", "Bater, bate. Gabriel, a decisão é sua. O elevador tá zerado.", "Já cheguei até aqui. Vou descer.")
+falantes = PackedStringArray("CLARICE (rádio)", "GABRIEL (rádio)", "CLARICE (rádio)", "ZANE (rádio)", "CLARICE (rádio)", "ZANE (rádio)", "DIANA (rádio)", "GABRIEL (rádio)", "DIANA (rádio)", "CLARICE (rádio)", "ZANE (rádio)", "GABRIEL (rádio)")
+titulo_anotacao = "Recado do Henrique"
+anotacao = "Pelo rádio, a Clarice passou um recado do Henrique: não descer ao bunker, cada um no seu canto. O Zane não gostou. A Clarice confia nele: as dicas sempre bateram.
+Vou descer."

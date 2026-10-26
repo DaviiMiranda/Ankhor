@@ -1,5 +1,48 @@
 # Registro de decisões
 
+## 2026-10-26 — As falas saem do Roteiro e vão para o Dialogos.docx
+**Decisão:** dois documentos Word, cada um com uma função:
+- **`docs/historia/dialogos/Dialogos.docx`** (novo): todas as falas do jogo, fase por fase e com os mesmos números de cena do roteiro. Estão lá o prólogo, as conversas em pessoa (com trechos e escolhas), o rádio e o telefone. Também ficam ali as falas novas ainda fora do jogo, com a barra azul, as revisões dessas falas, a lista de conversas de cada ato e um resumo de como cada personagem fala.
+- **`docs/historia/roteiro/Roteiro.docx`** (versão 0.9): só a descrição do que acontece ao longo do jogo (cenas, ações, jogabilidade, caderno e documentos). Cada conversa vira uma linha **FALAS**, com o id e um resumo.
+- **Saem** `docs/dialogos/README.md` (o guia técnico do sistema de diálogos) e `docs/dialogos/template_dialogo.md` (o modelo de JSON). O texto deles continua no histórico do git.
+**Por quê:** pedido do Davi: um documento só com os diálogos, e o roteiro só com a descrição do jogo.
+**Afeta:** os dois `.docx`, `docs/gdd.md`, `docs/README.md`, `docs/historia/roteiro/README.md` e `docs/mecanicas/registros_e_caderno.md` (links). O que toca no jogo continua sendo `dados/dialogos/` e `dados/transmissoes/`: mudar uma fala no Word não muda o jogo.
+
+## 2026-10-26 — Conversas do grupo pelo rádio, gírias e medo do Zane, e as relações que faltavam
+**Decisão:**
+- **História (decidida pelo Davi):**
+  - **O medo do Zane é uma máquina sem conserto:** dar de cara com uma máquina que ele não entende e não consegue consertar. Combina com o defeito dele (acha que toda máquina tem conserto), e a Âncora é essa máquina. Sai da pendência 10.4.
+  - **A frequência do rádio é aberta:** a Clarice, a Diana e o Zane conversam entre si e com o Gabriel, que também responde. O Henrique não fala nela: o que ele diz chega pela Clarice, como já dizia a ficha.
+  - **O grupo descobre pelo rádio que existe alguém de 1750**, no Labirinto, quando o Gabriel conta do acampamento e do diário. O roteiro já registrava isso (decisão de 18/10: "o grupo só descobre o Baltazar no Ato 3, pelo Zane"). Onde ele está e quando o Gabriel o encontra continua pendente.
+  - **O Henrique pede, pela Clarice, que o Gabriel não desça ao bunker** quando o elevador do Centro de Convivência liga. É um caso concreto do que "A virada" já dizia: ele mantém cada um no seu canto.
+  - **Relações novas nas fichas:** Zane e Clarice, rivalidade de tecnologia entre duas épocas da computação ("analógica", com respeito por baixo); Zane e Diana, ele provoca o drama dela ("despluga"); Diana e Gabriel, ela exagera e ele responde seco.
+  - **Gírias do Zane** (ficha, seção 2): *cromado* (muito bom), *zerado* (tudo certo), *analógico* (antiquado), *deu lag* (travou), *despluga* (calma), *fritou* (deu errado).
+- **Dez conversas novas pelo rádio** (`dados/transmissoes/grupo_*.tres`), com duas a quatro vozes cada. **Nenhuma fala que já existia foi mudada.** A Diana passa a falar no jogo pela primeira vez.
+
+| Id | Onde e quando | Quem fala | O que conta |
+|---|---|---|---|
+| `grupo_biblioteca_01` | Salão da Biblioteca, depois de religar a energia | Diana, Clarice, Gabriel | A Diana aparece; com as luzes acesas, a Sentinela muda a ronda |
+| `grupo_bloco_01` | Corredor do 1º andar, depois de abrir o claviculário | Clarice, Diana, Gabriel | O depósito (206) e o Rastreador; o mapa da Diana e o "é o fim" |
+| `grupo_bloco_02` | Corredor do 1º andar, logo depois de `clarice_03` | Zane, Clarice, Diana, Gabriel | O Zane entra na frequência e espera o Gabriel do outro lado da porta |
+| `grupo_labirinto_01` | Labirinto, depois de receber o notebook | Clarice, Zane, Gabriel | O Henrique diz que as câmeras do subsolo não chegam até ele; o Zane acha estranho |
+| `grupo_labirinto_02` | Labirinto, depois do segundo nó | Zane, Gabriel, Clarice, Diana | Alguém de 1750, fora da rede |
+| `grupo_convivencia_01` | Praça central, depois de `zane_convivencia_01` | Zane, Diana, Gabriel, Clarice | As árvores da praça, que a Diana acha que viu plantar |
+| `grupo_convivencia_02` | Cine Andrômeda (opcional) | Clarice, Gabriel, Zane, Diana | O cinema e a dica de juntar os canhotos |
+| `grupo_convivencia_03` | Churrasco Solar, depois de `zane_convivencia_02` | Clarice, Gabriel, Zane, Diana | O recado do Henrique: não descer |
+| `grupo_bunker_01` | Entrada do bunker | Diana, Clarice, Zane, Gabriel | Robôs no bunker; o Henrique vai abrir a porta; "repara no que ele não fala" |
+| `grupo_bunker_02` | Corredor A, depois da conversa com o Henrique | Zane, Gabriel, Clarice, Diana | O que o Henrique faz; ir ao gerador |
+
+- **Mecânica:** a transmissão ganha `falantes` (um nome por fala); o gatilho ganha `na_sala_inteira`, `depois_da_transmissao` e `depois_do_dialogo`; e o `Radio` guarda as transmissões que ainda não terminaram, para a legenda da sala seguinte recomeçar a que foi cortada por uma troca de sala (antes ela se perdia, e a anotação nunca chegava ao caderno). Medido na fonte: cada fala cabe ~170 caracteres em duas linhas, e não mais ~85.
+**Por quê:** pedido do Davi: mais conversas entre os personagens, pelo rádio e com mais de duas pessoas, sem mexer nas que já existem; conferir as personalidades nas fichas; e todos os diálogos documentados no roteiro. Decidiu também o medo do Zane, as gírias e as relações novas.
+**Afeta:** a História Completa (Ato 2, "A virada" e pendência 10.4) e o `História_Completa.docx`; as fichas do Zane, da Clarice, da Diana e do Gabriel e o `resumo.md`; `scripts/sistemas/transmissao.gd`, `radio.gd` e `gatilho_transmissao.gd`, `scripts/interface/legenda_radio.gd`; as salas `biblioteca/salao`, `bloco_de_salas/corredor_primeiro_andar`, `labirinto`, `centro_de_convivencia/praca_central`, `cinema` e `loja_4`, `bunker/entrada` e `corredor_a` (só um gatilho novo em cada); `docs/mecanicas/registros_e_caderno.md`; o `Roteiro.docx`. **Para conferir:** a fala 2 e a 3 de `zane_convivencia_01`, que já existiam, passam de duas linhas e são cortadas na caixa.
+
+## 2026-10-26 — Falas alinhadas com o Enredo: o Zane desconfia do Henrique, e saem as conversas antigas da Clarice
+**Decisão:** duas correções de texto, sem mudar a história (as duas só põem no jogo o que a História Completa já diz):
+- **O Zane, no Labirinto, passa a falar do Henrique.** Na primeira conversa ele conta que a trava que lacra a saída do subsolo também lacra o bunker, que o Henrique está trancado lá "consertando tudo" sem nunca ter mostrado nada, e que tudo o que o grupo sabe passa por ele. Uma escolha nova, "Por que desconfiar do Henrique?", mostra o lado do Gabriel (as dicas funcionaram) e deixa a dúvida aberta: o Zane admite que pode ser "só o jeito dele". Quando os três nós caem, ele diz que a trava do bunker soltou junto e pede que o Gabriel fique de olho no Henrique. Usa o retrato `zane_retrato_desconfiado`, que ainda não aparecia.
+- **Saem as conversas `clarice_primeiro_encontro.json` e `clarice_de_novo.json`**, da versão em que a Clarice morava no bunker e falava dos loops ("você *sempre* lê"). Não apareciam no jogo: a cena `clarice.tscn` (ela sentada numa estação) não está em nenhuma sala. A cena fica, sem conversa, para ser reaproveitada.
+**Por quê:** pedido do Davi, para começar o trabalho de diálogos e documentos corrigindo o que contradizia o Enredo. A ficha do Zane e o Ato 2 já diziam que ele desconfia do Henrique e que os três nós guardam a trava do bunker, mas as falas dele não diziam nada disso.
+**Afeta:** `dados/dialogos/zane_labirinto_primeiro_encontro.json`, `zane_labirinto_de_novo.json` e `zane_labirinto_alcapao.json`; `cenas/personagens/clarice.tscn` (sem conversa); `docs/fases/labirinto.md` e `bunker.md`, `docs/dialogos/README.md` e `template_dialogo.md` (o exemplo agora é o Zane), a ficha da Clarice, `assets/sprites/personagens/clarice/visual.md` e `docs/pendencias_de_producao.md`. A História Completa não muda.
+
 ## 2026-10-26 — Corredor do Tempo, sala opcional do Labirinto contra o relógio, e o primeiro registro do Carlos
 **Decisão:**
 - O Labirinto ganha uma porta com luz âmbar (`HH` no mapa, no meio, entre os nós 1 e 2) para o **Corredor do Tempo**: um corredor com quatro salinhas dos anos 80, cada uma com um mecanismo para alinhar no tempo certo, na ordem que o jogador quiser: **toca-discos**, **relógio de ponteiros** (bater no ritmo), **pêndulo** e **três anéis**.

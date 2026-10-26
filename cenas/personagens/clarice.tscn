@@ -40,8 +40,6 @@ shape = SubResource("Cadeira")
 script = ExtResource("3_conversa")
 texto_acao = "Conversar"
 altura_aviso = 44.0
-primeira_conversa = "res://dados/dialogos/clarice_primeiro_encontro.json"
-conversa_de_novo = "res://dados/dialogos/clarice_de_novo.json"
 
 [node name="Alcance" type="CollisionShape2D" parent="Conversa"]
 position = Vector2(-8, -4)

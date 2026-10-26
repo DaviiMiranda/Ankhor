@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "grupo_bunker_01"
+falante = "RÁDIO"
+falas = PackedStringArray("Chhh... Ele desceu! Clarice, ele desceu mesmo!", "Tô vendo, Diana. Quer dizer, o Henrique tá vendo.", "Gabriel, recado dele: aí embaixo os robôs também patrulham. A sala de dados é trancada, mas ele vai abrir a porta pra você.", "Que gentil. Depois de pedir pra eu não vir.", "Repara em tudo, Gabriel. Nas telas, nos papéis, no que ele não fala.", "Ele é tímido, Zane. Não é suspeito.", "Dá pra ser os dois.", "Gabriel, se alguma coisa der errado, grita! Quer dizer, não grita, que os autômatos escutam. Sussurra!", "Sussurro. Anotado.")
+falantes = PackedStringArray("DIANA (rádio)", "CLARICE (rádio)", "CLARICE (rádio)", "GABRIEL (rádio)", "ZANE (rádio)", "CLARICE (rádio)", "ZANE (rádio)", "DIANA (rádio)", "GABRIEL (rádio)")
+titulo_anotacao = "O bunker"
+anotacao = "Cheguei ao bunker. Os robôs patrulham aqui também. O Henrique está trancado na sala de dados e vai abrir a porta pra mim.
+O Zane pediu para eu reparar no que o Henrique não fala. A Clarice acha que ele só é tímido."

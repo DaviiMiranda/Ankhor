@@ -113,10 +113,10 @@ A porta `HH` (`porta_corredor_tempo.png`, luz âmbar) leva a `cenas/salas/labiri
 
 | Arquivo | Quando |
 |---|---|
-| `zane_labirinto_primeiro_encontro.json` | Primeira vez. Ao terminar, entrega o notebook. Tem escolhas: como invadir, os robôs, e "Me dá esse notebook" |
+| `zane_labirinto_primeiro_encontro.json` | Primeira vez. Ao terminar, entrega o notebook. Conta que a mesma trava lacra a saída e o bunker, e que desconfia do Henrique. Tem escolhas: como invadir, os robôs, "Por que desconfiar do Henrique?" e "Me dá esse notebook" |
 | `zane_labirinto_notebook.json` | Se a primeira conversa terminou mas o notebook não coube no inventário |
-| `zane_labirinto_de_novo.json` | Nas próximas vezes, enquanto faltam nós |
-| `zane_labirinto_alcapao.json` | Depois de os três nós caírem: o Zane revela e abre o alçapão. Ao terminar, marca `labirinto_alcapao_revelado` |
+| `zane_labirinto_de_novo.json` | Nas próximas vezes, enquanto faltam nós. Repete as escolhas, menos a do notebook |
+| `zane_labirinto_alcapao.json` | Depois de os três nós caírem: o Zane revela e abre o alçapão, diz que a trava do bunker soltou junto e pede que o Gabriel fique de olho no Henrique. Ao terminar, marca `labirinto_alcapao_revelado` |
 | `zane_labirinto_alcapao_de_novo.json` | Depois de o alçapão aberto: "Desce logo, eu vou atrás" |
 
 ### O esconderijo do Baltazar (a sala que só a lanterna revela)

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "grupo_bloco_02"
+falante = "RÁDIO"
+falas = PackedStringArray("Chhh... Atenção, frequência! O sensor da porta corta-fogo do bloco acusou aberta. Foi o Gabriel?", "Foi. Sem senha, sem sistema. Um alicate e um pouco de cérebro, Zane.", "Alicate. Que analógico. Cromado, mas analógico.", "O do telefone? Você também tá nessa frequência?", "Eu sou essa frequência. Quem você acha que mantém ela no ar?", "Ele mantém. E não deixa ninguém esquecer.", "Do outro lado dessa porta é comigo. Vem que eu te acho. Tem trabalho pra você.", "E você manda ele sozinho pro meio dos autômatos?!", "Despluga, Diana. Ele passou por dois andares de robô. Tá zerado.", "Zerado. Claro.")
+falantes = PackedStringArray("ZANE (rádio)", "CLARICE (rádio)", "ZANE (rádio)", "GABRIEL (rádio)", "ZANE (rádio)", "CLARICE (rádio)", "ZANE (rádio)", "DIANA (rádio)", "ZANE (rádio)", "GABRIEL (rádio)")
+titulo_anotacao = "Zane, na frequência"
+anotacao = "O Zane, o do telefone, também está na frequência: é ele quem a mantém no ar. Do outro lado da porta corta-fogo, ele me espera.
+Fala umas palavras estranhas: \"cromado\", \"zerado\", \"despluga\". Chama a Clarice de analógica."

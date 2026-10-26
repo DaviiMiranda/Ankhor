@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "grupo_convivencia_02"
+falante = "RÁDIO"
+falas = PackedStringArray("Chhh... O Henrique disse que você entrou num cinema. Num cinema, meu filho. Com robô rondando.", "Tá passando \"A Última Transmissão\". Sessão das sete e meia.", "Título apropriado. Eu não confiaria.", "Eu nunca fui num cinema sozinha. Minha mãe não deixava.", "Se tiver papel por aí, junta. Cinema guarda canhoto como eu guardo senha.", "E pipoca de mil anos. Passo.", "Só não senta! Se sentar, você dorme, e se dormir...", "...é o fim. A gente sabe, Diana.")
+falantes = PackedStringArray("CLARICE (rádio)", "GABRIEL (rádio)", "ZANE (rádio)", "DIANA (rádio)", "CLARICE (rádio)", "GABRIEL (rádio)", "DIANA (rádio)", "CLARICE (rádio)")
+titulo_anotacao = "O cinema"
+anotacao = "O Cine Andrômeda ainda mostra \"sem sinal\". A Clarice disse para juntar os papéis do cinema: cinema guarda canhoto como ela guarda senha."

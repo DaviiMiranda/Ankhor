@@ -20,6 +20,8 @@ var _duracao := 0.0
 func _ready() -> void:
 	Radio.transmissao_pedida.connect(_ao_pedir)
 	caixa.hide()
+	for transmissao in Radio.pendentes.duplicate():
+		_ao_pedir(transmissao)
 
 
 func _process(delta: float) -> void:
@@ -50,7 +52,6 @@ func _proxima_transmissao() -> void:
 		return
 	_atual = _fila.pop_front()
 	_indice = 0
-	falante.text = _atual.falante
 	caixa.show()
 	clique.play()
 	chiado.play()
@@ -58,6 +59,7 @@ func _proxima_transmissao() -> void:
 
 
 func _mostrar_fala() -> void:
+	falante.text = _atual.falante_da_fala(_indice)
 	fala.text = _atual.falas[_indice]
 	fala.visible_characters = 0
 	_tempo = 0.0
@@ -72,4 +74,5 @@ func _mostrar_fala() -> void:
 func _terminar() -> void:
 	clique.play()
 	Caderno.anotar(_atual.id, _atual.titulo_anotacao, _atual.anotacao)
+	Radio.concluir(_atual)
 	_proxima_transmissao()

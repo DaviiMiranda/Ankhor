@@ -59,6 +59,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/letreiro_holografico.tscn" id="fut_letreiro"]
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/biblioteca/biblioteca_fundo_moderna_luz.png" id="fut_fundo_luz"]
 [ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="fut_vcm"]
+[ext_resource type="Resource" path="res://dados/transmissoes/grupo_biblioteca_01.tres" id="g_grupo_biblioteca_01"]
 [ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
 [ext_resource type="Resource" path="res://dados/colecoes/biblioteca.tres" id="col_dados"]
 
@@ -806,3 +807,9 @@ position = Vector2(877.0, 30.0)
 offset_right = 72.0
 offset_bottom = 14.0
 text = "ALA LESTE"
+
+[node name="GatilhoGrupoBiblioteca01" parent="." instance=ExtResource("r_gatilho")]
+transmissao = ExtResource("g_grupo_biblioteca_01")
+marca_necessaria = "energia"
+na_sala_inteira = true
+depois_da_transmissao = "clarice_biblioteca_01"

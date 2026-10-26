@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "grupo_bunker_02"
+falante = "RÁDIO"
+falas = PackedStringArray("Chhh... E aí? Viu ele? O que ele faz lá dentro?", "Conta robô. Anota o horário de cada um em cada câmera.", "Tanto tempo pra \"consertar tudo\", e ele conta robô.", "É graças a essa contagem que o Gabriel chegou vivo aí, Zane.", "Ele ficou nervoso quando o assunto foi a Âncora.", "Nervoso como?", "Como quem estudou pra prova e jura que não estudou.", "Coitado! Sozinho esse tempo todo, eu também ia ficar nervosa!", "Vai pro gerador, Gabriel, no setor B. Sem energia, nem o Zane quebra a senha.", "Ei. \"Nem o Zane\"? Eu quebro qualquer coisa. Com energia.")
+falantes = PackedStringArray("ZANE (rádio)", "GABRIEL (rádio)", "ZANE (rádio)", "CLARICE (rádio)", "GABRIEL (rádio)", "ZANE (rádio)", "GABRIEL (rádio)", "DIANA (rádio)", "CLARICE (rádio)", "ZANE (rádio)")
+titulo_anotacao = "Depois do Henrique"
+anotacao = "Contei pelo rádio o que vi: o Henrique conta robôs e fica nervoso com a Âncora. O Zane desconfia mais. A Diana tem pena dele.
+Próximo passo: religar o gerador, no setor B, para o Zane quebrar a senha."

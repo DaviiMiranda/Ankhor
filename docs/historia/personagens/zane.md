@@ -16,9 +16,19 @@
 
 - **Essência:** filho de um mundo já cheio de máquinas, que sabe tudo de tecnologia e nada de sobreviver.
 - **Traços:** confiante, direto, irreverente, elétrico, e mais assustado do que admite.
-- **Como fala:** rápido, com gírias de um futuro que ninguém reconhece. Interrompe os outros.
+- **Como fala:** rápido, com gírias de um futuro que ninguém reconhece. Interrompe os outros. As gírias dele (use sem exagero, no máximo uma ou duas por conversa, e sempre de um jeito que o contexto explique):
+
+| Gíria | O que quer dizer | Exemplo |
+|---|---|---|
+| **cromado** | muito bom, impressionante | "Três de três? Cromado!" |
+| **zerado** | tudo certo, resolvido | "O elevador tá zerado." |
+| **analógico** | de antes da rede, antiquado. É como provoca a Clarice, quase com carinho | "Alicate. Que analógico." |
+| **deu lag** | travou, hesitou, demorou | "Deu lag, Gabriel? O nó não cai sozinho." |
+| **despluga** | calma, se acalma | "Despluga, Diana. Tá tudo bem." |
+| **fritou** | quebrou, deu muito errado | "Se a Sentinela te vê, fritou." |
+
 - **O que quer:** resolver tudo aquilo e descobrir o que o Henrique esconde.
-- **O que teme:** pendente. O medo antigo (a IA) saiu: em 3026 a IA é uma ferramenta, sem consciência (Enredo Principal, seção 2.1).
+- **O que teme:** uma **máquina sem conserto**: dar de cara com uma máquina que ele não entende e não consegue consertar. Para quem cresceu achando que toda máquina tem conserto, é o chão sumindo. A Âncora é essa máquina. (O medo antigo, a IA, saiu: em 3026 a IA é uma ferramenta, sem consciência. Enredo Principal, seção 2.1.)
 - **Defeito:** confia demais na tecnologia: acha que toda máquina tem conserto.
 - **Arco:** pendente (Enredo Principal, seção 10.4). O arco antigo, ficar em 3026 para domar a IA, saiu.
 
@@ -28,6 +38,8 @@
 |---|---|
 | [Gabriel](gabriel.md) | A voz do telefone que abre a saída da Biblioteca. Da oficina do Labirinto, mantém Gabriel em contato com todo mundo, e precisa dele para invadir o bunker |
 | [Henrique](henrique.md) | Desconfia dele. Passa dias tentando invadir o bunker para ver o que o Henrique faz lá |
+| [Clarice](clarice.md) | Rivalidade de tecnologia, duas épocas da computação: ele chama a Clarice de "analógica" e o disquete de pré-histórico; ela acha que ele não sabe fazer nada sem uma máquina. Por baixo, respeito: foi por causa dela que ele deixou o rádio no balcão da Biblioteca |
+| [Diana](diana.md) | Ela leva tudo a sério demais e chama os robôs de "autômatos"; ele acha graça no drama e a provoca ("despluga, Diana"). Ela se irrita, e ele, sem admitir, fica mais calmo quando ela se acalma |
 | [Baltazar](baltazar.md) | Os dois extremos do tempo: fé contra tecnologia, e ainda assim os dois mais curiosos do grupo |
 
 ## 4. No jogo
@@ -41,7 +53,7 @@
 ## 5. Registros
 
 - **Suporte:** áudio com interface holográfica: tela ciano com forma de onda e falhas de sinal. Ainda não existe no jogo.
-- **Já escritos:** a ligação do fim da Biblioteca, `dados/transmissoes/zane_01.tres`; as conversas da oficina, `dados/dialogos/zane_labirinto_primeiro_encontro.json`, `zane_labirinto_notebook.json`, `zane_labirinto_de_novo.json`, `zane_labirinto_alcapao.json` (revela o alçapão) e `zane_labirinto_alcapao_de_novo.json`; e o chamado pelo rádio quando o terceiro nó cai, `dados/transmissoes/zane_labirinto_01.tres`.
+- **Já escritos:** a ligação do fim da Biblioteca, `dados/transmissoes/zane_01.tres`; as conversas da oficina, `dados/dialogos/zane_labirinto_primeiro_encontro.json`, `zane_labirinto_notebook.json`, `zane_labirinto_de_novo.json`, `zane_labirinto_alcapao.json` (revela o alçapão) e `zane_labirinto_alcapao_de_novo.json`; e o chamado pelo rádio quando o terceiro nó cai, `dados/transmissoes/zane_labirinto_01.tres`. Nas conversas do grupo pelo rádio (`dados/transmissoes/grupo_*.tres`), do fim do Bloco de salas ao Bunker.
 
 ## 6. Direção de arte
 
@@ -64,4 +76,4 @@
 - Os óculos do Zane ainda não estão no visual dele (`assets/sprites/personagens/zane/visual.md` e `gerar_zane.py`).
 - O que fazia no ponto quando foi puxado (Enredo Principal, seção 10.4).
 - A cena e as conversas dele na sala de dados do bunker, que hoje só mostram o Henrique ([pendências de produção](../../pendencias_de_producao.md)).
-- O que teme e o final dele (seção 10.4). Opções em conversa: ficar em 3026 para guardar a Âncora, ficar para se juntar aos Faroleiros, ou voltar para 2123.
+- O final dele (seção 10.4). Opções em conversa: ficar em 3026 para guardar a Âncora, ficar para se juntar aos Faroleiros, ou voltar para 2123.

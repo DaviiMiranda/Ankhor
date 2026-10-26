@@ -35,7 +35,7 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 
 **Henrique (2019).** Introvertido, perfeccionista, ansioso e gentil. Fala pausado e técnico, e se corrige no meio da frase. Pesquisava viagem no tempo; em 2026 é a lenda do aluno que sumiu na Biblioteca, e a pesquisa dele virou a cadeira de Modelagem e Simulação. **Foi o primeiro a chegar.** Fica sozinho numa sala trancada do bunker e, com acesso às câmeras, **ajuda a Clarice e a Diana pelo rádio**. **Engana o grupo**: trabalha para o Carlos, que prometeu levá-lo para antes da morte da mãe e o usa para atrasar o grupo. Diz que está consertando tudo, mas usa a IA só na própria pesquisa. **Arco:** da mentira à verdade, quando o grupo descobre.
 
-**Zane (2123).** Confiante, direto, irreverente e elétrico, com gírias de um futuro que ninguém reconhece. Confia demais na tecnologia. Da oficina do Labirinto, **faz a comunicação de todos**. Desconfia do Henrique e passa dias tentando invadir o bunker, até conseguir com Gabriel. **Medo e arco:** pendentes.
+**Zane (2123).** Confiante, direto, irreverente e elétrico, com gírias de um futuro que ninguém reconhece. Confia demais na tecnologia. Da oficina do Labirinto, **faz a comunicação de todos**. Desconfia do Henrique e passa dias tentando invadir o bunker, até conseguir com Gabriel. Provoca a Clarice ("analógica") e a Diana ("despluga"). **Medo:** uma máquina sem conserto, que ele não entende. **Arco:** pendente.
 
 ---
 

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "grupo_labirinto_01"
+falante = "RÁDIO"
+falas = PackedStringArray("Chhh... Zane. Você deu o seu notebook pro estudante e mandou ele fazer o serviço?", "Eu delego. É diferente.", "É igual, meu filho.", "E o Henrique? Ele não vê os robôs daqui de baixo?", "Diz que não. As câmeras do subsolo não chegam até ele. Aí embaixo vocês tão por conta própria.", "Não chegam. Sei.", "Lá vem você.", "Não falei nada. Só acho estranho: o campus inteiro chega até ele. Menos aqui.", "Gabriel, a rota deles é um grafo. Anota onde cada um vira. O resto é paciência.", "Paciência eu tenho. Perna, nem tanto.")
+falantes = PackedStringArray("CLARICE (rádio)", "ZANE (rádio)", "CLARICE (rádio)", "GABRIEL (rádio)", "CLARICE (rádio)", "ZANE (rádio)", "CLARICE (rádio)", "ZANE (rádio)", "CLARICE (rádio)", "GABRIEL (rádio)")
+titulo_anotacao = "Sem câmeras no subsolo"
+anotacao = "O Henrique diz que as câmeras do subsolo não chegam até ele: aqui embaixo ninguém me avisa das rondas. O Zane achou estranho, porque o resto do campus chega.
+A Clarice: anotar onde cada robô vira."

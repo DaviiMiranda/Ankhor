@@ -3,7 +3,7 @@
 	"inicio": "abertura",
 	"anotacao": {
 		"titulo": "Zane, na oficina do Labirinto",
-		"texto": "O Zane montou uma oficina no canto do Labirinto, cheia de peças e telas holográficas.\n\nA saída do subsolo está lacrada pelo sistema. A trava lê três nós de controle espalhados pelo labirinto, em salões com uma entrada só. O Zane não consegue invadir de longe: a rede do subsolo é fechada.\n\nEle me deu o notebook dele. Chego perto do terminal de cada nó e invado. Nos nós o notebook não gasta bateria.\n\nQuando os três caírem, volto ao Zane para ele mostrar por onde sair. Os robôs patrulham o labirinto inteiro: a Sentinela vê longe, o Rastreador ouve tudo."
+		"texto": "O Zane montou uma oficina no canto do Labirinto, cheia de peças e telas holográficas.\n\nA saída do subsolo está lacrada pelo sistema, e o bunker do Henrique também: a mesma trava lê três nós de controle espalhados pelo labirinto, em salões com uma entrada só. O Zane não consegue invadir de longe: a rede do subsolo é fechada.\n\nO Zane desconfia do Henrique. Diz que ele está trancado no bunker \"consertando tudo\" e nunca mostrou nada, e que tudo o que o grupo sabe passa por ele.\n\nEle me deu o notebook dele. Chego perto do terminal de cada nó e invado. Nos nós o notebook não gasta bateria.\n\nQuando os três caírem, volto ao Zane para ele mostrar por onde sair. Os robôs patrulham o labirinto inteiro: a Sentinela vê longe, o Rastreador ouve tudo."
 	},
 	"trechos": {
 		"abertura": {
@@ -31,7 +31,22 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_confiante",
-					"texto": "Lacrada. Mas a trava lê três nós de controle, espalhados pelo labirinto. Invadiu os três, ela solta. Se eu pudesse ir lá, abria em dois minutos."
+					"texto": "Lacrada. E não é só a saída: a trava do bunker passa pela mesma rede. Ela lê três nós de controle, espalhados pelo labirinto. Invadiu os três, solta tudo."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_surpreso",
+					"texto": "O bunker? Onde o Henrique fica?"
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "Esse. Tá trancado lá desde antes de eu chegar, \"consertando tudo\". Consertando o quê? Nunca me mostrou uma linha."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "E repara: tudo o que a gente sabe passa por ele. As câmeras, as rondas, até que isso aqui é 3026. Eu quero ver com os meus olhos o que ele faz lá."
 				},
 				{
 					"quem": "Zane",
@@ -47,6 +62,10 @@
 				{
 					"texto": "E os robôs?",
 					"vai_para": "robos"
+				},
+				{
+					"texto": "Por que desconfiar do Henrique?",
+					"vai_para": "henrique"
 				},
 				{
 					"texto": "Tá bom. Me dá esse notebook.",
@@ -89,6 +108,31 @@
 			],
 			"vai_para": "menu"
 		},
+		"henrique": {
+			"falas": [
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "As dicas dele me trouxeram até aqui. Funcionaram."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "Funcionar, funcionam. Toda ronda que ele passa bate certinho."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_frustrado",
+					"texto": "Mas ele nunca pede ajuda, nunca chama ninguém pra lá. Ninguém conserta nada sozinho e calado desse jeito. Ninguém."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Sei lá. Pode ser só o jeito dele. É por isso que eu quero ver."
+				}
+			],
+			"vai_para": "menu"
+		},
 		"menu": {
 			"falas": [],
 			"escolhas": [
@@ -99,6 +143,10 @@
 				{
 					"texto": "E os robôs?",
 					"vai_para": "robos"
+				},
+				{
+					"texto": "Por que desconfiar do Henrique?",
+					"vai_para": "henrique"
 				},
 				{
 					"texto": "Tá bom. Me dá esse notebook.",

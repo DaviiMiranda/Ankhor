@@ -27,11 +27,13 @@
 | Com | Dinâmica |
 |---|---|
 | [Clarice](clarice.md) | O drama contra o deboche: a Clarice não leva nada a sério e a Diana leva tudo a sério demais. Dividem a 103 do Bloco de salas e brigam o tempo todo, mas acabam amigas |
-| [Henrique](henrique.md) | Falam pelo rádio: ele as ajuda com o que vê nas câmeras |
+| [Henrique](henrique.md) | Falam pelo rádio: ele as ajuda com o que vê nas câmeras. Ela tem pena dele, sozinho e trancado |
+| [Zane](zane.md) | Ela leva tudo a sério demais e chama os robôs de "autômatos"; ele acha graça no drama e a provoca ("despluga, Diana"). Ela se irrita, mas é com ele que mais conversa pelo rádio |
+| [Gabriel](gabriel.md) | Ela exagera, ele responde seco. Chegou só três dias antes dele, mas fala como veterana: se preocupa com ele em voz alta, com exclamação |
 
 ## 4. No jogo
 
-- **Onde aparece:** no **Bloco de salas**, na sala 103, com a Clarice. Veio da Biblioteca e apareceu na 103 depois da Clarice, que a acolheu. Desde então as duas tentam descobrir o que aconteceu. Por enquanto só é citada pela Clarice: ainda não tem visual nem cena.
+- **Onde aparece:** no **Bloco de salas**, na sala 103, com a Clarice. Veio da Biblioteca e apareceu na 103 depois da Clarice, que a acolheu. Desde então as duas tentam descobrir o que aconteceu. Em pessoa, ainda não tem visual nem cena. **Fala pelo rádio** desde a Biblioteca, nas conversas do grupo (`dados/transmissoes/grupo_*.tres`).
 - **Esconderijo:** a **sala 103** do Bloco de salas, com a Clarice.
 - **Como chega ao jogador:** pela Clarice, em pessoa na 103 (quando tiver visual) e pela frequência de rádio do grupo.
 - **Função na jogabilidade:** o **mapa à mão** dela revela **arestas escondidas no grafo do campus** (atalhos e passagens secretas). Ver [`../../computacao/grafos_e_navegacao.md`](../../computacao/grafos_e_navegacao.md).
@@ -40,7 +42,7 @@
 ## 5. Registros
 
 - **Suporte:** relatório de obra datilografado e o mapa desenhado à mão em papel vegetal, com carimbo da construtora e tinta preta falhada. O texto é exagerado e cheio de exclamações, porque é ela quem escreve. O papel ainda não foi desenhado no jogo.
-- **Já escritos:** nenhum.
+- **Já escritos:** nenhum documento. Pelo rádio, fala nas conversas do grupo `grupo_biblioteca_01`, `grupo_bloco_01` e `_02`, `grupo_labirinto_02`, `grupo_convivencia_01` a `_03` e `grupo_bunker_01` e `_02` (em `dados/transmissoes/`).
 
 ## 6. Direção de arte
 

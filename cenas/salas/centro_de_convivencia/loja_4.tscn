@@ -25,6 +25,8 @@
 [ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r23"]
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r24"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r25"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="g_gatilho_radio"]
+[ext_resource type="Resource" path="res://dados/transmissoes/grupo_convivencia_03.tres" id="g_grupo_convivencia_03"]
 
 [node name="Loja4" instance=ExtResource("r1")]
 id = "conv_loja_4"
@@ -211,3 +213,9 @@ folga_obstaculos = 10.0
 [node name="MusicaFase" parent="." instance=ExtResource("r25")]
 
 [editable path="Ceu"]
+
+[node name="GatilhoGrupoConvivencia03" parent="." instance=ExtResource("g_gatilho_radio")]
+transmissao = ExtResource("g_grupo_convivencia_03")
+marca_necessaria = "convivencia_energia"
+na_sala_inteira = true
+depois_da_transmissao = "zane_convivencia_02"

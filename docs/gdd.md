@@ -11,7 +11,7 @@
 > - 📜 **[Enredo Principal](historia/História_Completa.md)** | **[Índice da História](historia/README.md)** | **[Modelo de Documento](historia/template_documento.md)**
 > - 👥 **[Personagens](historia/personagens/)** ([Gabriel](historia/personagens/gabriel.md), [Robôs](historia/personagens/robos.md), [Modelo de ficha](historia/template_personagem.md))
 > - 🗺️ **[Design de Fases](fases/README.md)** | **[Template de Fase](fases/template_fase.md)**
-> - 💬 **[Sistema de Diálogos](dialogos/README.md)** | **[Template de Diálogo](dialogos/template_dialogo.md)**
+> - 💬 **[Diálogos do jogo](historia/dialogos/Dialogos.docx)** (todas as falas, fase por fase, em Word) | **[Roteiro](historia/roteiro/Roteiro.docx)** (o que acontece em cada cena)
 
 *Versão com o protagonista acordando mil anos no futuro. Os lugares da Unifor são usados apenas como cenário; pessoas, pesquisa e acontecimentos são fictícios.*
 
