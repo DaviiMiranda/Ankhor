@@ -22,6 +22,8 @@
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_blindada.wav" id="r20"]
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r21"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_bunker.tscn" id="m_musica"]
+[ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
+[ext_resource type="Resource" path="res://dados/colecoes/bunker.tres" id="col_dados"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -271,3 +273,8 @@ autoplay = true
 bus = &"Efeitos"
 
 [node name="MusicaBunker" parent="." instance=ExtResource("m_musica")]
+
+[node name="ChipOculos2" parent="Objetos" instance=ExtResource("col_cena")]
+position = Vector2(240, 360)
+colecao = ExtResource("col_dados")
+numero = 2

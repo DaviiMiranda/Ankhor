@@ -1,5 +1,15 @@
 # Registro de decisões
 
+## 2026-10-26 — Coleções da Diana (jaqueta, no Centro de Convivência) e do Zane (óculos, no Bunker)
+**Decisão:** as duas coleções que faltavam, no mesmo esquema das outras:
+- **Centro de Convivência, "Botões da jaqueta":** três botões de couro marrom-caramelo com aro dourado, na Loja Universitária, na Gráfica e no hall do cinema (as três salas do mezanino opcional). Recompensa: a **jaqueta da Diana** (marrom-caramelo de gola larga, bolsos, punhos, aberta sobre a camiseta listrada, como no visual dela) sobre a colcha da cama do Gabriel.
+- **Bunker, "Chips dos óculos":** três chips hexagonais (o hexágono da jaqueta do Zane) com trilha ciano-verde, no dormitório, no refeitório e no depósito. Recompensa: os **óculos do Zane** (visor de lente verde acesa, os três chips brilhando na armação) em pé no criado-mudo.
+- **A mesa já não tem lugar** (os papéis lidos ocupam o tampo e a faixa livre tem farol, disquetes e tricórnio): por isso a jaqueta vai para a cama e os óculos para o criado-mudo.
+- **O quadro branco estourava com cinco coleções** (a última linha passava da bandeja): o espaçamento entre as linhas foi apertado e tudo cabe de novo, mas já sem folga para uma sexta.
+- Os textos não afirmam nada de história: "dos que fecham uma jaqueta de gola larga" e "do tipo que se encaixa na armação de um visor".
+**Por quê:** pedido do Davi: faltava a jaqueta da Diana (no Centro de Convivência) e os óculos do Zane (no Bunker). Conferido no Godot 4.7.2: as seis peças aparecem em chão livre e as duas recompensas aparecem no quarto com as coleções completas.
+**Afeta:** `docs/mecanicas/colecionaveis.md`, `visor_3d.md` e `README.md`, `docs/fases/bunker.md` e `centro_de_convivencia.md`; `dados/colecoes/` e `dados/itens/` (um de cada por coleção); `scripts/visor/quadro_do_visor.gd`; as salas `loja_uni`, `grafica`, `cinema`, `dormitorio`, `refeitorio` e `deposito`; `cenas/visor/sala_visor.tscn`, `jaqueta_da_cama.tscn` e `oculos_do_criado.tscn`; os geradores `gerar_botao_jaqueta.py`, `gerar_chip_oculos.py`, `gerar_jaqueta_diana.py` e `gerar_oculos_zane.py` e o que eles criam.
+
 ## 2026-10-26 — Mais duas coleções: disquetes da Clarice no Bloco de salas e pingentes do chapéu do Baltazar no Labirinto
 **Decisão:** o sistema de colecionáveis (`docs/mecanicas/colecionaveis.md`) ganha duas coleções, no mesmo esquema dos pingentes de farol da Biblioteca (3 peças no chão, tela "Novo item" com a contagem, sem ir para a mochila, uma linha no quadro branco do quarto e uma recompensa 3D no quarto do Gabriel):
 - **Bloco de salas, "Disquetes da Clarice":** três disquetes pretos com os adesivos rosa e amarelo dela (para não se confundir com o disquete azul das senhas), nas salas 105, 106 e 202, fora do caminho obrigatório. Recompensa: uma pilha de três disquetes na **mesa** do Gabriel, ao lado do farol.

@@ -22,6 +22,8 @@
 [ext_resource type="PackedScene" path="res://cenas/visor/farol_da_mesa.tscn" id="f_farol"]
 [ext_resource type="PackedScene" path="res://cenas/visor/disquetes_da_mesa.tscn" id="f_disquetes"]
 [ext_resource type="PackedScene" path="res://cenas/visor/chapeu_do_notebook.tscn" id="f_chapeu"]
+[ext_resource type="PackedScene" path="res://cenas/visor/jaqueta_da_cama.tscn" id="f_jaqueta"]
+[ext_resource type="PackedScene" path="res://cenas/visor/oculos_do_criado.tscn" id="f_oculos"]
 
 [sub_resource type="Environment" id="Ambiente"]
 background_mode = 1
@@ -361,6 +363,13 @@ transform = Transform3D(0.9848078, 0, 0.17364818, 0, 1, 0, -0.17364818, 0, 0.984
 
 [node name="ChapeuDoNotebook" parent="Imagem/Mundo" instance=ExtResource("f_chapeu")]
 transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, -2.3, 0.78, 0.23)
+
+[node name="JaquetaDaCama" parent="Imagem/Mundo" instance=ExtResource("f_jaqueta")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.0, 0.543, 0.15)
+
+[node name="OculosDoCriado" parent="Imagem/Mundo" instance=ExtResource("f_oculos")]
+position = Vector3(2.13, 0.53, 1.27)
+rotation = Vector3(0, 1.5707964, 0)
 
 [node name="Dica" type="Label" parent="."]
 layout_mode = 1

@@ -109,6 +109,7 @@ O Henrique explica no diálogo que o setor B está lacrado pelo sistema e que o 
 | Salas antigas e arsenal | as cenas saem de `assets/modelagem/salas/bunker/montar_salas_bunker.py`; a arte das salas antigas, de `assets/modelagem/cenario/gerar_salas_antigas.py` (em `assets/sprites/cenario/bunker/salas_antigas/`) |
 | Marcas dos Faroleiros | `assets/sprites/cenario/objetos/marca_farol_inteiro.png` e `marca_farol_apagado.png`, geradas por `assets/modelagem/cenario/gerar_marcas_faroleiros.py` |
 | Clarice, sentada (sem uso) | `cenas/personagens/clarice.tscn`: ficou da versão em que ela morava aqui. As conversas daquela versão foram apagadas em 2026-10-26 |
+| Chips hexagonais (3, colecionáveis) | `ChipOculos1` a `3` no `dormitorio`, no `refeitorio` e no `deposito`. Opcionais: ao juntar os três, o quarto do Gabriel ganha os óculos do Zane no criado-mudo (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
 | Sons | `assets/modelagem/audio/gerar_efeitos_bunker.py` |
 | Música | `assets/modelagem/audio/gerar_trilha_bunker.py`, tocada por `cenas/sistemas/musica_bunker.tscn` |
 

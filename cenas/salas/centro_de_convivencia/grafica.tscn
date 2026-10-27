@@ -28,6 +28,8 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r26"]
 [ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r27"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r28"]
+[ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
+[ext_resource type="Resource" path="res://dados/colecoes/centro_de_convivencia.tres" id="col_dados"]
 
 [node name="Grafica" instance=ExtResource("r1")]
 id = "conv_grafica"
@@ -146,5 +148,10 @@ fator_ruido = 1.0
 nome_piso = "concreto polido"
 
 [node name="MusicaFase" parent="." instance=ExtResource("r28")]
+
+[node name="BotaoJaqueta2" parent="Objetos" instance=ExtResource("col_cena")]
+position = Vector2(310, 180)
+colecao = ExtResource("col_dados")
+numero = 2
 
 [editable path="Ceu"]

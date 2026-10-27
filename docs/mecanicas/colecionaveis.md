@@ -2,13 +2,15 @@
 
 Cada fase esconde uma **coleção**: algumas peças espalhadas pelas salas, que o jogador acha por exploração, sem nenhuma pista no caminho principal. Quando junta todas, o **quarto do Gabriel** (o visor 3D da sala segura, ver [`visor_3d.md`](visor_3d.md)) ganha uma coisa nova. É uma recompensa só para quem procurou: não abre porta, não dá item e não muda a história.
 
-Hoje existem três coleções, todas de **3 peças**:
+Hoje existem cinco coleções, todas de **3 peças**:
 
 | Fase | Coleção (`id`) | Peça | Recompensa no quarto |
 |---|---|---|---|
 | Biblioteca | `biblioteca` | **Pingente de farol** | Um **farol** aceso na mesa do Gabriel |
 | Bloco de salas | `bloco_de_salas` | **Disquete colorido** (a cara dos disquetes da Clarice) | Uma **pilha de disquetes** na mesa, ao lado do farol |
 | Labirinto | `labirinto` | **Pingente de chapéu** (as borlas do tricórnio do Baltazar) | O **tricórnio** na mesa, sobre o teclado do notebook, com os três pingentes nas pontas |
+| Centro de Convivência | `centro_de_convivencia` | **Botão de jaqueta** (da jaqueta da Diana) | A **jaqueta** dela jogada na cama, com a camiseta listrada aparecendo |
+| Bunker | `bunker` | **Chip hexagonal** (dos óculos do Zane) | Os **óculos** dele acesos no criado-mudo, com os três chips na armação |
 
 ## 1. As coleções
 
@@ -65,11 +67,43 @@ Até o primeiro encontro terminar (a marca `conheceu_baltazar`, que o diálogo `
 
 As peças 1 e 2 são as letras `1` e `2` do mapa e a peça 3 é a letra `3` no desenho do esconderijo (`MODELO_ESCONDERIJO`), ambas em `assets/modelagem/salas/labirinto/gerar_labirinto.py` (ver a legenda em [`../fases/labirinto.md`](../fases/labirinto.md)). Quem coloca as três no mundo é `scripts/salas/labirinto.gd` (`_colocar_colecionavel`).
 
+### 1.4 Centro de Convivência: botões da jaqueta da Diana
+
+| | |
+|---|---|
+| **Peça** | Botão de jaqueta: botão grande de couro marrom-caramelo com aro dourado e quatro furos, a cor e a cara da jaqueta dela (`assets/sprites/personagens/diana/visual.md`; a jaqueta é o objeto-símbolo dela, [`diana.md`](../historia/personagens/diana.md)). O texto não diz por que os botões estão soltos |
+| **Recompensa** | A **jaqueta** marrom-caramelo de gola larga, com bolsos e punhos, aberta sobre a camiseta listrada, jogada sobre a colcha da cama do Gabriel |
+
+As três ficam no **mezanino**, a parte opcional da fase, em salas que não têm nada a ver com o caminho da Célula de Energia:
+
+| Nº | Sala | Onde |
+|---|---|---|
+| 1 | Loja Universitária (`loja_uni`) | Entre o balcão do caixa e o cesto de promoção (410, 176) |
+| 2 | Gráfica Quântica (`grafica`) | No espaço entre a estante de resmas e a copiadora (310, 180) |
+| 3 | Cine Andrômeda (`cinema`), hall | Perto do cordão de fila e do abajur de chão (410, 200) |
+
+São `BotaoJaqueta1` a `BotaoJaqueta3` nas cenas dessas salas.
+
+### 1.5 Bunker: chips dos óculos do Zane
+
+| | |
+|---|---|
+| **Peça** | Chip hexagonal: o hexágono do peito da jaqueta do Zane, em corpo escuro com borda e trilha ciano-verde, a cor da interface dele (`assets/sprites/personagens/zane/visual.md`; os óculos são o objeto-símbolo dele, [`zane.md`](../historia/personagens/zane.md)). O texto diz só que se encaixa na armação de um visor |
+| **Recompensa** | Os **óculos** do Zane (armação grafite, lente verde acesa e os três chips hexagonais brilhando) em cima do criado-mudo, ao lado do despertador, com uma luz ciano fraca |
+
+| Nº | Sala | Onde |
+|---|---|---|
+| 1 | Dormitório (`dormitorio`) | No corredor entre as fileiras de beliches (170, 280) |
+| 2 | Refeitório (`refeitorio`) | No corredor do meio, entre as duas fileiras de mesas (240, 360) |
+| 3 | Depósito (`deposito`, setor B) | Entre as estantes de metal, na fileira de cima (240, 190). O Rastreador patrulha o corredor do setor B |
+
+São `ChipOculos1` a `ChipOculos3` nas cenas dessas salas.
+
 ## 2. O que o jogador vê
 
 1. Ao pegar, abre a tela **Novo item** (a mesma dos itens da mochila), com o desenho da peça, a descrição e a contagem: **1 de 3**, **2 de 3**, **3 de 3**. No terceiro, a tela acrescenta "Os três estão com você." A peça **não vai para a mochila**: fica guardada só na coleção.
-2. No **quadro branco** do quarto, uma linha por coleção mostra o progresso: *Pingentes de farol: 2 de 3*, *Disquetes da Clarice: 0 de 3*, *Pingentes do chapéu: 1 de 3*.
-3. Com as três peças de uma coleção, a recompensa aparece no quarto. Com menos, o quarto fica como estava. As três coleções são independentes.
+2. No **quadro branco** do quarto, uma linha por coleção mostra o progresso: *Pingentes de farol: 2 de 3*, *Disquetes da Clarice: 0 de 3*, *Pingentes do chapéu: 1 de 3*, *Botões da jaqueta* e *Chips dos óculos*. Com cinco coleções o quadro ficou cheio: o espaçamento entre as linhas (`ENTRELINHA` em `quadro_do_visor.gd`) foi apertado para tudo caber. Uma sexta linha já não cabe sem mais ajuste.
+3. Com as três peças de uma coleção, a recompensa aparece no quarto. Com menos, o quarto fica como estava. As coleções são independentes.
 
 ## 3. Como funciona
 
@@ -109,6 +143,10 @@ Ao interagir, ele chama `Colecionaveis.coletar` e `ItemNovo.mostrar_novo(colecao
 - **Farol** (`FarolDaMesa`, `cenas/visor/farol_da_mesa.tscn`, `scripts/visor/farol_da_mesa.gd`): um `Node3D` com o modelo e uma `OmniLight3D` âmbar. No `_ready`, fica **visível só se `Colecionaveis.completa(colecao)`**; invisível, também desliga a luz e o `_process`. A luz pulsa entre `energia_minima` e `energia_maxima` em `periodo_pulso` segundos, com uma onda $\frac{1 - \cos(2\pi t / T)}{2}$ (começa e termina devagar, como as luzes do jogo). Está em cima da escrivaninha, na ponta da frente (longe dos papéis, do notebook e da luminária), virado para a cadeira.
 - **Disquetes** (`DisquetesDaMesa`, `cenas/visor/disquetes_da_mesa.tscn`) e **tricórnio** (`ChapeuDoNotebook`, `cenas/visor/chapeu_do_notebook.tscn`): `Node3D` com o script `RecompensaDoQuarto` (`scripts/visor/recompensa_do_quarto.gd`), que só faz o `visible` valer `Colecionaveis.completa(colecao)`. Sem pulso e sem luz própria: a escrivaninha já é iluminada pela luminária. Os três objetos ficam na **escrivaninha**, na faixa livre da frente, porque os papéis lidos cobrem o resto do tampo: o farol em z 0,3, os **disquetes** logo na frente dele (x -1,95, z 0,44, girados 10°) e o **tricórnio** sobre o teclado do notebook (x -2,29, y 0,78, z 0,3), a 55% do tamanho do modelo para caber nos 24 cm do teclado sem encostar na tela. Ele fica menor que um chapéu de verdade: é um enfeite, como o farol de 18 cm.
 
+- **Jaqueta** (`JaquetaDaCama`, `cenas/visor/jaqueta_da_cama.tscn`) e **óculos** (`OculosDoCriado`, `cenas/visor/oculos_do_criado.tscn`): também com o `RecompensaDoQuarto`. A jaqueta fica **sobre a colcha** (a colcha está a 0,545 m do chão; a 0,5 a jaqueta sumia dentro dela), a 75% do tamanho do modelo, com a gola para o lado da cabeceira. Os óculos ficam em pé no canto livre do **criado-mudo** (x 2,13, y 0,53, z 1,27), virados para o quarto, com uma `OmniLight3D` ciano fraca.
+
+A **mesa não tem mais lugar**: os papéis lidos cobrem o tampo e a faixa livre da frente já tem o farol, os disquetes e o tricórnio. Por isso a jaqueta e os óculos foram para a cama e o criado-mudo.
+
 Os **modelos** saem do Blender sem abrir a janela (como rodar e as medidas estão no começo de cada arquivo):
 
 | Modelo | Gerador |
@@ -116,8 +154,10 @@ Os **modelos** saem do Blender sem abrir a janela (como rodar e as medidas estã
 | `assets/modelos/farol_mesa.glb` | `assets/modelagem/cenario/gerar_farol_mesa.py` |
 | `assets/modelos/disquetes_mesa.glb` | `assets/modelagem/cenario/gerar_disquetes_mesa.py` |
 | `assets/modelos/chapeu_baltazar.glb` | `assets/modelagem/cenario/gerar_chapeu_baltazar.py` |
+| `assets/modelos/jaqueta_diana.glb` | `assets/modelagem/cenario/gerar_jaqueta_diana.py` |
+| `assets/modelos/oculos_zane.glb` | `assets/modelagem/cenario/gerar_oculos_zane.py` |
 
-O **desenho em pixel** das peças (ícone e chão) sai de `assets/modelagem/itens/gerar_pingente_farol.py`, `gerar_disquete_colecionavel.py` e `gerar_pingente_chapeu.py`.
+O **desenho em pixel** das peças (ícone e chão) sai de `assets/modelagem/itens/gerar_pingente_farol.py`, `gerar_disquete_colecionavel.py`, `gerar_pingente_chapeu.py`, `gerar_botao_jaqueta.py` e `gerar_chip_oculos.py`.
 
 ## 4. Como pôr uma coleção nova (outra fase)
 
@@ -129,6 +169,6 @@ O **desenho em pixel** das peças (ícone e chão) sai de `assets/modelagem/iten
 ## 5. Pendências
 
 - **De quem são os pingentes de farol** e por que estão espalhados pela Biblioteca. O Enredo Principal ainda não decidiu onde os Faroleiros estão hoje nem se aparecem no jogo (seção "Pendências" dele). Até lá, o texto não afirma nada. O mesmo vale para os disquetes (por que estão fora do posto da Clarice) e para os pingentes do chapéu (como foram parar no subsolo).
-- **Mais coleções** (Convivência, Bunker, D-Tec): cada uma pede uma peça e uma recompensa no quarto. A faixa livre da mesa acabou (farol, disquetes e tricórnio); sobram o criado-mudo, a estante, o móvel da TV, a cama, o chão e as paredes.
+- **Mais coleções** (D-Tec): pede uma peça e uma recompensa no quarto. Sobram a estante, o móvel da TV, o chão e as paredes; a mesa, a cama e o criado-mudo estão ocupados. O quadro branco já está no limite.
 - A recompensa só aparece no **visor**. Não há conquista nem contador na pausa do inventário.
 - As **posições** das peças e o tamanho/posição dos modelos no quarto são primeira versão, para ajustar jogando (nada foi testado dentro do Godot ainda).

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/item.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/botao_jaqueta.png" id="2_icone"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/botao_jaqueta_chao.png" id="3_chao"]
+
+[resource]
+script = ExtResource("1_item")
+id = "botao_jaqueta"
+nome = "Botão de jaqueta"
+descricao = "Um botão grande de couro marrom-caramelo, com aro dourado e quatro furos. Dos que fecham uma jaqueta de gola larga."
+icone = ExtResource("2_icone")
+sprite_chao = ExtResource("3_chao")
+brilho_no_chao = 1.4

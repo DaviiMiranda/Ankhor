@@ -25,6 +25,8 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r23"]
 [ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r24"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r25"]
+[ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
+[ext_resource type="Resource" path="res://dados/colecoes/centro_de_convivencia.tres" id="col_dados"]
 
 [node name="LojaUni" instance=ExtResource("r1")]
 id = "conv_loja_uni"
@@ -132,5 +134,10 @@ fator_ruido = 0.5
 nome_piso = "carpete macio"
 
 [node name="MusicaFase" parent="." instance=ExtResource("r25")]
+
+[node name="BotaoJaqueta1" parent="Objetos" instance=ExtResource("col_cena")]
+position = Vector2(410, 176)
+colecao = ExtResource("col_dados")
+numero = 1
 
 [editable path="Ceu"]
