@@ -28,6 +28,7 @@ Nada disso é texto novo de história: os cartões e os papéis mostram os títu
 | No mural ou nos papéis da cama | **WASD** (ou setas) escolhe o papel (fica com borda ciano), **E** abre para ler, **Esc** afasta a câmera |
 | Lendo | **E** vira a página, **setas** folheiam, **Esc** fecha (a mesma tela de leitura dos documentos do jogo) |
 | No quadro | **Esc** afasta a câmera |
+| Numa recompensa de coleção (farol, disquetes, tricórnio, jaqueta, óculos) | **WASD** (ou setas) e o **mouse** giram a peça, **Esc** afasta a câmera. Detalhes na seção 3.1 |
 
 O menu da TV tem **Salvar jogo** e **Voltar** (que tira os óculos). Em cima ele mostra a data e a hora do último save, ou "Nenhum jogo salvo". Ao salvar, toca o som de salvar, aparece **Jogo salvo** (ou **Não foi possível salvar**) e o quadro branco já mostra a hora nova. Dá para salvar quantas vezes quiser.
 
@@ -63,6 +64,17 @@ TV, mural, mesa e quadro são todos um **`FocoVisor`** (`scripts/visor/foco_viso
 A `SalaVisor` (`scripts/visor/sala_visor.gd`) só cuida do jogador, da câmera e de repassar as teclas. Para pôr um quinto lugar no quarto (a estante, por exemplo), crie uma cena com um script que herda de `FocoVisor` e ponha no quarto: o aviso, a câmera e as teclas já funcionam.
 
 O mural e a mesa montam os papéis com o `PapelDoVisor` (`scripts/visor/papel_do_visor.gd`): a folha com a textura de papel do jogo, o título em `Label3D` com a fonte Galmuri7 e a borda ciano de quando está escolhido. Cada papel tem uma posição e um giro sorteados com o **id** dele como semente, então fica sempre no mesmo lugar, mas parece jogado.
+
+### 3.1 Examinar as recompensas das coleções
+
+As cinco recompensas do quarto ([`colecionaveis.md`](colecionaveis.md)) também são `FocoVisor`, pelo `RecompensaDoQuarto` (`scripts/visor/recompensa_do_quarto.gd`): o farol, os disquetes, o tricórnio, a jaqueta e os óculos. O aviso é **[E] Examinar: <nome>**. Só existem no quarto virtual: a sala segura 2D não tem examinar.
+
+- **Só quem completou a coleção pode examinar.** Sem as três peças a recompensa fica invisível e **nem entra no grupo dos focos**, então não tem aviso.
+- **A peça é levantada e gira.** Ao chegar, ela sobe 8 cm (`altura_ao_examinar`) e o jogador a gira: **WASD** ou setas (140°/s, `graus_por_segundo`) ou o **mouse** (`sensibilidade_do_mouse`). Ao afastar, ela desce e volta suavemente à pose de antes (0,3 s). Uma luz branca fraca acende só enquanto se examina, para a peça aparecer bem mesmo no canto escuro do quarto.
+- **Um painel mostra o nome e a descrição** (`Painel` em `sala_visor.tscn`, preenchido por `FocoVisor.titulo_focado` e `descricao_focada`). Nada além da peça ganha painel: TV, mural, mesa e quadro devolvem texto vazio. O texto vem da `Colecao` (`nome_da_recompensa` e `descricao_da_recompensa`, em `dados/colecoes/`) e só descreve o que se vê, sem afirmar nada de história.
+- **De onde a câmera olha** é a `direcao_da_camera` de cada peça (de onde sai a câmera, em relação à peça; só a direção conta, o tamanho não). A distância vem do tamanho real do modelo e de `ocupacao`.
+
+A conta do giro está na seção 5 ("Girar a peça").
 
 **Limites:** o mural mostra as **24** anotações mais recentes (6 × 4) e a cama os **25** primeiros documentos lidos (5 × 5, a propriedade `linhas` do `MesaDoVisor`). O jogo tem 24 documentos hoje.
 
@@ -107,6 +119,18 @@ O aviso **[E] ...** aparece para o lugar que estiver ao alcance e mais à frente
 $$\hat{o} \cdot \hat{t} = \cos\theta \geq 0{,}8 \quad\Rightarrow\quad \theta \leq 36{,}9°$$
 
 Entre os que passam, ganha o de maior $\cos\theta$ (o mais no meio da visão). É o mesmo cálculo do campo de visão dos robôs ([`../computacao/geometria_e_shaders.md`](../computacao/geometria_e_shaders.md)), agora em 3D.
+
+### Girar a peça (rotação no espaço do mundo)
+
+O giro é guardado como uma base $G$ (matriz de rotação 3 × 3) **no espaço do mundo**, não no do modelo. Cada passo gira em torno de dois eixos fixos da tela: o **vertical** do mundo $\hat{u}$ (ângulo $\alpha$, do A/D e do mouse na horizontal) e o **eixo da direita da câmera** $\hat{d}$ (ângulo $\beta$, do W/S e do mouse na vertical), com $\hat{d} = \hat{u} \times \hat{f}$ para $\hat{f}$ a direção de onde a câmera olha:
+
+$$G \leftarrow R(\hat{u}, \alpha)\, R(\hat{d}, \beta)\, G$$
+
+Assim, A/D e W/S giram a peça para o lado que o jogador espera, **qualquer que seja o jeito em que a peça está virada no quarto** (os óculos estão girados 90°, por exemplo). Girar só em torno dos eixos do próprio modelo faria o W/S girar para um lado diferente em cada peça. $G$ é reortonormalizada a cada passo, para os erros de arredondamento não deformarem o modelo.
+
+O centro do giro é o centro da **caixa dos vértices** do modelo, calculada ao carregar, e não a origem dele (que está no pé, no chão). Por isso a peça gira em torno de si mesma e não "orbita". A mesma caixa dá o tamanho do enquadramento: a diagonal $\sqrt{w^2 + h^2 + p^2}$ é o maior alcance da peça em qualquer posição, então ela cabe na tela mesmo girando.
+
+Ao afastar, a volta é um **slerp** (interpolação esférica) entre a identidade e o giro atual, em 0,3 s, a mesma ideia do deslize da câmera.
 
 ### Onde a câmera para (campo de visão)
 
@@ -171,6 +195,7 @@ As formas de colisão (chão, paredes, móvel da TV, estante, escrivaninha, cade
 | Menu da TV | `cenas/visor/menu_visor.tscn`, `scripts/visor/menu_visor.gd`, tema `cenas/interface/tema_tela_crt.tres` |
 | Modelo 3D | `assets/modelos/sala_visor.glb`, de `assets/modelagem/cenario/gerar_sala_visor.py` |
 | Texturas e pôsteres | `assets/sprites/cenario/visor/`, de `assets/modelagem/cenario/gerar_texturas_quarto.py`; aplicadas por `scripts/visor/texturas_do_quarto.gd` (a parede agora repete a cada 1 m, com riscos e furos de prego) |
+| Examinar as recompensas (giro, painel de nome e descrição) | `scripts/visor/recompensa_do_quarto.gd` (e `farol_da_mesa.gd`, que herda dele), `Painel` em `cenas/visor/sala_visor.tscn`, textos em `dados/colecoes/` |
 | Estrelas cadentes e luzes rápidas | `cenas/visor/estrelas_cadentes.tscn`, `scripts/visor/estrelas_cadentes.gd` |
 | Farol da mesa (recompensa dos pingentes) | `cenas/visor/farol_da_mesa.tscn`, `scripts/visor/farol_da_mesa.gd`, modelo `assets/modelos/farol_mesa.glb` de `assets/modelagem/cenario/gerar_farol_mesa.py` |
 | Jaqueta da cadeira e óculos da mesa (recompensas dos botões e dos chips) | `cenas/visor/jaqueta_da_cadeira.tscn` e `oculos_da_mesa.tscn`, modelos `jaqueta_diana.glb` e `oculos_zane.glb` de `gerar_jaqueta_diana.py` e `gerar_oculos_zane.py` |
@@ -181,5 +206,7 @@ As formas de colisão (chão, paredes, móvel da TV, estante, escrivaninha, cade
 
 - **O quarto como a mente do Gabriel** foi decidido pelo Davi (ver `docs/decisoes.md`), mas ainda não está na [História Completa](../historia/História_Completa.md). Os óculos do Zane como máquina de salvar também continuam sem explicação na história (ver [`sala_segura.md`](sala_segura.md), Pendências).
 - **Um quarto por save** é a ideia para o futuro: hoje o quarto já mostra o que está no save, mas mudar de aparência com o progresso (coisas novas aparecendo conforme as fases) ainda não existe.
+- **Examinar só existe no quarto virtual.** A sala segura 2D e as fases não têm examinar. As coleções que ainda não fecharam não têm o que examinar.
+- **A peça gira atravessando o que está perto** (o farol e o tricórnio ficam a poucos centímetros um do outro na mesa). Se incomodar, esconder as outras recompensas enquanto se examina é uma linha em `RecompensaDoQuarto.focar`.
 - **Apontar com o mouse** na TV, no mural e na mesa não existe: é tudo por teclado.
 - Controle (gamepad) não anda nem olha no visor.

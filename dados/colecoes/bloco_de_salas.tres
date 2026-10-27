@@ -10,3 +10,5 @@ nome = "Disquetes da Clarice"
 item = ExtResource("2_item")
 total = 3
 texto_completa = "Os três estão com você."
+nome_da_recompensa = "Disquetes da Clarice"
+descricao_da_recompensa = "Três disquetes pretos de 3,5 polegadas, jogados um sobre o outro. As etiquetas têm adesivos rosa e amarelo e uma linha de caneta. Parece coisa da Clarice."

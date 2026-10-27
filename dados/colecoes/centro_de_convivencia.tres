@@ -10,3 +10,5 @@ nome = "Botões da jaqueta"
 item = ExtResource("2_item")
 total = 3
 texto_completa = "Os três estão com você."
+nome_da_recompensa = "Jaqueta da Diana"
+descricao_da_recompensa = "Uma jaqueta marrom-caramelo de gola larga, com bolsos e punhos dobrados, aberta sobre uma camiseta listrada em amarelo, laranja e creme. Os três botões de couro fecham a frente."

@@ -20,6 +20,9 @@ var _camera_ao_andar: Transform3D
 @onready var tela_documento: CanvasLayer = $TelaDocumento
 @onready var escuro: ColorRect = $Escuro
 @onready var dica: Label = $Dica
+@onready var painel: PanelContainer = $Painel
+@onready var titulo: Label = $Painel/Texto/Titulo
+@onready var descricao: Label = $Painel/Texto/Descricao
 
 
 func _ready() -> void:
@@ -67,7 +70,7 @@ func _entrada_andando(evento: InputEvent) -> void:
 func _entrada_focado(evento: InputEvent) -> void:
 	if evento.is_action_pressed("pausar"):
 		_voltar_a_andar()
-	elif evento is InputEventKey:
+	elif evento is InputEventKey or evento is InputEventMouseMotion:
 		_foco.receber(evento)
 	else:
 		return
@@ -177,10 +180,18 @@ func _sair() -> void:
 
 func _mudar_estado(novo: Estado) -> void:
 	_estado = novo
+	painel.visible = false
 	match novo:
 		Estado.ANDANDO:
 			dica.text = DICA_ANDANDO
 		Estado.FOCADO:
 			dica.text = _foco.dica_focado
+			_mostrar_texto_do_foco()
 		_:
 			dica.text = ""
+
+
+func _mostrar_texto_do_foco() -> void:
+	titulo.text = _foco.titulo_focado()
+	descricao.text = _foco.descricao_focada()
+	painel.visible = not descricao.text.is_empty()
