@@ -1,5 +1,14 @@
 # Registro de decisões
 
+## 2026-10-27 — Quarto do visor: papéis na cama, óculos na mesa e jaqueta na cadeira
+**Decisão:** nova arrumação do quarto virtual do Gabriel, a pedido do Davi:
+- **Os papéis lidos saem da escrivaninha e vão para a cama**, espalhados sobre a colcha (o foco continua o mesmo: WASD escolhe, E lê, Esc afasta). A cama comporta **5 × 5** papéis, então os 24 documentos do jogo aparecem todos (a mesa mostrava só 15).
+- **Os óculos do Zane vão para a escrivaninha**, no tampo agora livre, virados para o quarto.
+- **A jaqueta da Diana vai para a cadeira**, pendurada no encosto, com uma luz âmbar fraca para a cor caramelo aparecer.
+- O criado-mudo fica vazio.
+**Por quê:** pedido do Davi. Conferido no Godot 4.7.2 com o jogo todo coletado: os 24 papéis na cama, os óculos acesos no tampo e a jaqueta no encosto.
+**Afeta:** `cenas/visor/sala_visor.tscn`, `scripts/visor/mesa_do_visor.gd` (`linhas` virou propriedade), `jaqueta_da_cama.tscn` e `oculos_do_criado.tscn` (renomeadas para `jaqueta_da_cadeira.tscn` e `oculos_da_mesa.tscn`), `docs/mecanicas/colecionaveis.md` e `visor_3d.md`.
+
 ## 2026-10-27 — Safe room na sala de teste, com tudo coletado
 **Decisão:** a `sala_teste` ganhou uma porta no canto direito (no lugar da parede lisa) para uma **safe room de teste** (`cenas/salas/sala_segura_teste.tscn`, herdeira do `modelo_safe_room`). Ao entrar, o nó `TudoColetado` (`scripts/salas/tudo_coletado.gd`) deixa o jogo como se o jogador tivesse pegado tudo:
 - **Mochila:** todos os itens de `dados/itens/` que não são peça de coleção (12, a mochila inteira), os gadgets equipados, cápsulas e pedras no máximo e a lanterna com carga cheia.
