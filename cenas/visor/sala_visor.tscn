@@ -357,10 +357,10 @@ rotation = Vector3(-1.0471976, 1.5707964, 0)
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -2.0, 0.76, 0.3)
 
 [node name="DisquetesDaMesa" parent="Imagem/Mundo" instance=ExtResource("f_disquetes")]
-transform = Transform3D(0.9848078, 0, 0.17364818, 0, 1, 0, -0.17364818, 0, 0.9848078, -1.95, 0.76, 0.44)
+transform = Transform3D(0.9848078, 0, 0.17364818, 0, 1, 0, -0.17364818, 0, 0.9848078, -1.93, 0.76, 0.41)
 
 [node name="ChapeuDoNotebook" parent="Imagem/Mundo" instance=ExtResource("f_chapeu")]
-transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, -2.29, 0.78, 0.3)
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, -2.3, 0.78, 0.23)
 
 [node name="Dica" type="Label" parent="."]
 layout_mode = 1
