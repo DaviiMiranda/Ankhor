@@ -20,8 +20,8 @@
 [ext_resource type="Script" path="res://scripts/visor/texturas_do_quarto.gd" id="s_texturas"]
 [ext_resource type="PackedScene" path="res://cenas/visor/estrelas_cadentes.tscn" id="c_cadentes"]
 [ext_resource type="PackedScene" path="res://cenas/visor/farol_da_mesa.tscn" id="f_farol"]
-[ext_resource type="PackedScene" path="res://cenas/visor/disquetes_do_criado.tscn" id="f_disquetes"]
-[ext_resource type="PackedScene" path="res://cenas/visor/chapeu_da_estante.tscn" id="f_chapeu"]
+[ext_resource type="PackedScene" path="res://cenas/visor/disquetes_da_mesa.tscn" id="f_disquetes"]
+[ext_resource type="PackedScene" path="res://cenas/visor/chapeu_do_notebook.tscn" id="f_chapeu"]
 
 [sub_resource type="Environment" id="Ambiente"]
 background_mode = 1
@@ -356,11 +356,11 @@ rotation = Vector3(-1.0471976, 1.5707964, 0)
 [node name="FarolDaMesa" parent="Imagem/Mundo" instance=ExtResource("f_farol")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -2.0, 0.76, 0.3)
 
-[node name="DisquetesDoCriado" parent="Imagem/Mundo" instance=ExtResource("f_disquetes")]
-transform = Transform3D(0.9063078, 0, 0.42261827, 0, 1, 0, -0.42261827, 0, 0.9063078, 2.15, 0.53, 1.25)
+[node name="DisquetesDaMesa" parent="Imagem/Mundo" instance=ExtResource("f_disquetes")]
+transform = Transform3D(0.9848078, 0, 0.17364818, 0, 1, 0, -0.17364818, 0, 0.9848078, -1.95, 0.76, 0.44)
 
-[node name="ChapeuDaEstante" parent="Imagem/Mundo" instance=ExtResource("f_chapeu")]
-transform = Transform3D(0.8802, 0, 0.18710, 0, 0.9, 0, -0.18710, 0, 0.8802, -1.95, 1.9, -2.34)
+[node name="ChapeuDoNotebook" parent="Imagem/Mundo" instance=ExtResource("f_chapeu")]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, -2.29, 0.78, 0.3)
 
 [node name="Dica" type="Label" parent="."]
 layout_mode = 1

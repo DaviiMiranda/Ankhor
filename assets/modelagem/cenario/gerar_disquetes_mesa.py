@@ -1,5 +1,5 @@
-# gerar_disquetes_criado.py — modela no Blender a PILHA DE DISQUETES que
-# aparece no criado-mudo do Gabriel, no quarto do visor 3D, quando ele junta os
+# gerar_disquetes_mesa.py — modela no Blender a PILHA DE DISQUETES que
+# aparece na mesa do Gabriel, no quarto do visor 3D, quando ele junta os
 # três disquetes do Bloco de salas (docs/mecanicas/colecionaveis.md).
 #
 # São três disquetes de 3,5" (9 x 9,4 cm, 3 mm de espessura) jogados um sobre o
@@ -10,10 +10,10 @@
 #
 # Como rodar (sem abrir a janela do Blender):
 #
-#   blender -b --factory-startup --python assets/modelagem/cenario/gerar_disquetes_criado.py
+#   blender -b --factory-startup --python assets/modelagem/cenario/gerar_disquetes_mesa.py
 #
 # O que sai:
-#   assets/modelos/disquetes_criado.glb   o modelo em glTF binário, com o pé no
+#   assets/modelos/disquetes_mesa.glb   o modelo em glTF binário, com o pé no
 #                                         chão (y = 0) e centrado em x e z
 #
 # EIXOS: o Blender usa Z para cima e o Godot usa Y; o exportador troca sozinho
@@ -27,7 +27,7 @@ import bpy
 
 PASTA_SCRIPT = os.path.dirname(os.path.abspath(__file__))
 PASTA_PROJETO = os.path.normpath(os.path.join(PASTA_SCRIPT, "..", "..", ".."))
-SAIDA = os.path.join(PASTA_PROJETO, "assets", "modelos", "disquetes_criado.glb")
+SAIDA = os.path.join(PASTA_PROJETO, "assets", "modelos", "disquetes_mesa.glb")
 
 LADO = 0.090
 PROFUNDIDADE = 0.094

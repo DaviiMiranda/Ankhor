@@ -7,8 +7,8 @@ Hoje existem três coleções, todas de **3 peças**:
 | Fase | Coleção (`id`) | Peça | Recompensa no quarto |
 |---|---|---|---|
 | Biblioteca | `biblioteca` | **Pingente de farol** | Um **farol** aceso na mesa do Gabriel |
-| Bloco de salas | `bloco_de_salas` | **Disquete colorido** (a cara dos disquetes da Clarice) | Uma **pilha de disquetes** no criado-mudo |
-| Labirinto | `labirinto` | **Pingente de chapéu** (as borlas do tricórnio do Baltazar) | O **tricórnio** em cima da estante, com os três pingentes nas pontas |
+| Bloco de salas | `bloco_de_salas` | **Disquete colorido** (a cara dos disquetes da Clarice) | Uma **pilha de disquetes** na mesa, ao lado do farol |
+| Labirinto | `labirinto` | **Pingente de chapéu** (as borlas do tricórnio do Baltazar) | O **tricórnio** na mesa, sobre o teclado do notebook, com os três pingentes nas pontas |
 
 ## 1. As coleções
 
@@ -34,7 +34,7 @@ As posições são `position` dos nós `PingenteFarol1`, `PingenteFarol2` e `Pin
 | | |
 |---|---|
 | **Peça** | Disquete de 3,5" **preto**, com os adesivos rosa e amarelo da Clarice e uma linha de caneta na etiqueta (o disquete azul das senhas, da Biblioteca, continua sendo outro item). O texto diz só "Parece coisa da Clarice": não diz por que estão espalhados |
-| **Recompensa** | Uma pilha de três disquetes jogados no **criado-mudo**, ao lado do despertador |
+| **Recompensa** | Uma pilha de três disquetes jogados na **mesa**, na frente do farol, perto da beira |
 
 Ficam em salas que **não estão no caminho obrigatório** do bloco (nada a ver com a cadeia de chaves e códigos):
 
@@ -51,7 +51,7 @@ As posições são `position` dos nós `DisqueteClarice1`, `DisqueteClarice2` e 
 | | |
 |---|---|
 | **Peça** | Pingente de chapéu: uma borla de fio vinho (a cor do Baltazar) presa a uma argola de latão, dessas que enfeitam as abas de um tricórnio. O chapéu é o objeto-símbolo do Baltazar (ficha em [`baltazar.md`](../historia/personagens/baltazar.md)). O texto não diz por que os pingentes estão soltos pelo subsolo |
-| **Recompensa** | O **tricórnio** do Baltazar em cima da estante, com os três pingentes pendurados nas pontas das abas |
+| **Recompensa** | O **tricórnio** do Baltazar deitado sobre o teclado do notebook, com os três pingentes nas pontas das abas |
 
 Aqui **a terceira peça tem uma trava**:
 
@@ -107,14 +107,14 @@ Ao interagir, ele chama `Colecionaveis.coletar` e `ItemNovo.mostrar_novo(colecao
 ### 3.4 As recompensas no quarto
 
 - **Farol** (`FarolDaMesa`, `cenas/visor/farol_da_mesa.tscn`, `scripts/visor/farol_da_mesa.gd`): um `Node3D` com o modelo e uma `OmniLight3D` âmbar. No `_ready`, fica **visível só se `Colecionaveis.completa(colecao)`**; invisível, também desliga a luz e o `_process`. A luz pulsa entre `energia_minima` e `energia_maxima` em `periodo_pulso` segundos, com uma onda $\frac{1 - \cos(2\pi t / T)}{2}$ (começa e termina devagar, como as luzes do jogo). Está em cima da escrivaninha, na ponta da frente (longe dos papéis, do notebook e da luminária), virado para a cadeira.
-- **Disquetes** (`DisquetesDoCriado`, `cenas/visor/disquetes_do_criado.tscn`) e **tricórnio** (`ChapeuDaEstante`, `cenas/visor/chapeu_da_estante.tscn`): `Node3D` com o script `RecompensaDoQuarto` (`scripts/visor/recompensa_do_quarto.gd`), que só faz o `visible` valer `Colecionaveis.completa(colecao)`. Sem pulso: a pilha de disquetes não tem luz; o chapéu leva uma luz quente bem fraca (`Luz`), porque o topo da estante fica longe das lâmpadas do quarto, e ela apaga junto com o nó. Os disquetes estão no canto livre do **criado-mudo** (x 2,15, y 0,53, z 1,25, girados 25°); o chapéu, em cima da **estante** (y 1,9), a 90% do tamanho do modelo e girado 12°, para as borlas não passarem da borda.
+- **Disquetes** (`DisquetesDaMesa`, `cenas/visor/disquetes_da_mesa.tscn`) e **tricórnio** (`ChapeuDoNotebook`, `cenas/visor/chapeu_do_notebook.tscn`): `Node3D` com o script `RecompensaDoQuarto` (`scripts/visor/recompensa_do_quarto.gd`), que só faz o `visible` valer `Colecionaveis.completa(colecao)`. Sem pulso e sem luz própria: a escrivaninha já é iluminada pela luminária. Os três objetos ficam na **escrivaninha**, na faixa livre da frente, porque os papéis lidos cobrem o resto do tampo: o farol em z 0,3, os **disquetes** logo na frente dele (x -1,95, z 0,44, girados 10°) e o **tricórnio** sobre o teclado do notebook (x -2,29, y 0,78, z 0,3), a 55% do tamanho do modelo para caber nos 24 cm do teclado sem encostar na tela. Ele fica menor que um chapéu de verdade: é um enfeite, como o farol de 18 cm.
 
 Os **modelos** saem do Blender sem abrir a janela (como rodar e as medidas estão no começo de cada arquivo):
 
 | Modelo | Gerador |
 |---|---|
 | `assets/modelos/farol_mesa.glb` | `assets/modelagem/cenario/gerar_farol_mesa.py` |
-| `assets/modelos/disquetes_criado.glb` | `assets/modelagem/cenario/gerar_disquetes_criado.py` |
+| `assets/modelos/disquetes_mesa.glb` | `assets/modelagem/cenario/gerar_disquetes_mesa.py` |
 | `assets/modelos/chapeu_baltazar.glb` | `assets/modelagem/cenario/gerar_chapeu_baltazar.py` |
 
 O **desenho em pixel** das peças (ícone e chão) sai de `assets/modelagem/itens/gerar_pingente_farol.py`, `gerar_disquete_colecionavel.py` e `gerar_pingente_chapeu.py`.
@@ -129,6 +129,6 @@ O **desenho em pixel** das peças (ícone e chão) sai de `assets/modelagem/iten
 ## 5. Pendências
 
 - **De quem são os pingentes de farol** e por que estão espalhados pela Biblioteca. O Enredo Principal ainda não decidiu onde os Faroleiros estão hoje nem se aparecem no jogo (seção "Pendências" dele). Até lá, o texto não afirma nada. O mesmo vale para os disquetes (por que estão fora do posto da Clarice) e para os pingentes do chapéu (como foram parar no subsolo).
-- **Mais coleções** (Convivência, Bunker, D-Tec): cada uma pede uma peça e uma recompensa no quarto. O quarto já tem a mesa, o criado-mudo e a estante ocupados; sobram o móvel da TV, a cama, o chão e as paredes.
+- **Mais coleções** (Convivência, Bunker, D-Tec): cada uma pede uma peça e uma recompensa no quarto. A faixa livre da mesa acabou (farol, disquetes e tricórnio); sobram o criado-mudo, a estante, o móvel da TV, a cama, o chão e as paredes.
 - A recompensa só aparece no **visor**. Não há conquista nem contador na pausa do inventário.
 - As **posições** das peças e o tamanho/posição dos modelos no quarto são primeira versão, para ajustar jogando (nada foi testado dentro do Godot ainda).

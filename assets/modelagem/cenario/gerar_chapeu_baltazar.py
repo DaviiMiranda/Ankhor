@@ -1,5 +1,5 @@
 # gerar_chapeu_baltazar.py — modela no Blender o TRICÓRNIO DO BALTAZAR, que
-# aparece em cima da estante do Gabriel, no quarto do visor 3D, quando ele junta
+# aparece sobre o notebook, na mesa do Gabriel, no quarto do visor 3D, quando ele junta
 # os três pingentes do Labirinto (docs/mecanicas/colecionaveis.md).
 #
 # É o objeto-símbolo do Baltazar (docs/historia/personagens/baltazar.md): um
