@@ -10,12 +10,12 @@ const PAPEIS := {
 	"carta_faroleiro": [preload("res://assets/sprites/interface/papel_carta_faroleiro.png"), Color("3b2614")],
 }
 const COLUNAS := 5
-const LINHAS := 3
 const TAMANHO_PAPEL := Vector2(0.2, 0.126)
 const PIXEL_DO_TEXTO := 0.0024
 const DESVIO := 0.02
 const GIRO_MAXIMO := 12.0
 
+@export var linhas := 3
 @export var area_dos_papeis := Vector2(0.96, 0.33)
 @export var centro_dos_papeis := Vector2.ZERO
 
@@ -74,7 +74,7 @@ func _montar() -> void:
 	add_child(tampo)
 	var plano := _plano_do_tampo()
 	tampo.global_transform = Transform3D(plano, global_position + plano * Vector3(centro_dos_papeis.x, centro_dos_papeis.y, 0.001))
-	var lidos := documentos_lidos().slice(0, COLUNAS * LINHAS)
+	var lidos := documentos_lidos().slice(0, COLUNAS * linhas)
 	for i in lidos.size():
 		_criar_papel(tampo, i, lidos[i])
 
@@ -87,13 +87,13 @@ func _plano_do_tampo() -> Basis:
 func _criar_papel(tampo: Node3D, indice: int, documento: Documento) -> void:
 	var sorteio := RandomNumberGenerator.new()
 	sorteio.seed = hash(documento.id)
-	var passo := area_dos_papeis / Vector2(COLUNAS, LINHAS)
+	var passo := area_dos_papeis / Vector2(COLUNAS, linhas)
 	var coluna := indice % COLUNAS
-	var linha := indice / COLUNAS
+	var linha_do_papel := indice / COLUNAS
 	var papel := PapelDoVisor.new()
 	papel.position = Vector3(
 		(coluna - (COLUNAS - 1) / 2.0) * passo.x + sorteio.randf_range(-DESVIO, DESVIO),
-		((LINHAS - 1) / 2.0 - linha) * passo.y + sorteio.randf_range(-DESVIO, DESVIO),
+		((linhas - 1) / 2.0 - linha_do_papel) * passo.y + sorteio.randf_range(-DESVIO, DESVIO),
 		0.002 + indice * 0.0015)
 	papel.rotation.z = deg_to_rad(sorteio.randf_range(-GIRO_MAXIMO, GIRO_MAXIMO))
 	papel.documento = documento

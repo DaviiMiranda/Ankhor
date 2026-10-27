@@ -7,7 +7,26 @@
 - Os textos ficam na `Colecao` (`nome_da_recompensa` e `descricao_da_recompensa`) e só descrevem o que se vê, sem afirmar nada de história (como os textos das peças).
 - Técnica: `RecompensaDoQuarto` passou a ser um `FocoVisor` (e o `FarolDaMesa` herda dele). O `FocoVisor` ganhou `titulo_focado()` e `descricao_focada()`, e a `SalaVisor` repassa o movimento do mouse para o foco e mostra o painel. A conta do giro está em `docs/mecanicas/visor_3d.md`.
 **Por quê:** pedido do Davi: poder examinar os itens especiais que aparecem no quarto depois de coletar os colecionáveis. Conferido no Godot 4.7.2 (rodando a cena do quarto com as cinco coleções completas): as cinco peças recebem o aviso, a câmera chega, o giro funciona e a peça volta ao lugar ao afastar.
-**Afeta:** `scripts/visor/recompensa_do_quarto.gd`, `farol_da_mesa.gd`, `foco_visor.gd` e `sala_visor.gd`; `scripts/sistemas/colecao.gd` e `dados/colecoes/*.tres` (nome e descrição); `cenas/visor/sala_visor.tscn` (painel, direção da câmera da jaqueta e dos óculos); `docs/mecanicas/visor_3d.md`, `colecionaveis.md` e `README.md`. A história não mudou.
+**Afeta:** `scripts/visor/recompensa_do_quarto.gd`, `farol_da_mesa.gd`, `foco_visor.gd` e `sala_visor.gd`; `scripts/sistemas/colecao.gd` e `dados/colecoes/*.tres` (nome e descrição); `cenas/visor/sala_visor.tscn` (o painel de nome e descrição); `docs/mecanicas/visor_3d.md`, `colecionaveis.md` e `README.md`. A história não mudou.
+
+## 2026-10-27 — Quarto do visor: papéis na cama, óculos na mesa e jaqueta na cadeira
+**Decisão:** nova arrumação do quarto virtual do Gabriel, a pedido do Davi:
+- **Os papéis lidos saem da escrivaninha e vão para a cama**, espalhados sobre a colcha (o foco continua o mesmo: WASD escolhe, E lê, Esc afasta). A cama comporta **5 × 5** papéis, então os 24 documentos do jogo aparecem todos (a mesa mostrava só 15).
+- **Os óculos do Zane vão para a escrivaninha**, no tampo agora livre, virados para o quarto.
+- **A jaqueta da Diana vai para a cadeira**, pendurada no encosto, com uma luz âmbar fraca para a cor caramelo aparecer.
+- O criado-mudo fica vazio.
+**Por quê:** pedido do Davi. Conferido no Godot 4.7.2 com o jogo todo coletado: os 24 papéis na cama, os óculos acesos no tampo e a jaqueta no encosto.
+**Afeta:** `cenas/visor/sala_visor.tscn`, `scripts/visor/mesa_do_visor.gd` (`linhas` virou propriedade), `jaqueta_da_cama.tscn` e `oculos_do_criado.tscn` (renomeadas para `jaqueta_da_cadeira.tscn` e `oculos_da_mesa.tscn`), `docs/mecanicas/colecionaveis.md` e `visor_3d.md`.
+
+## 2026-10-27 — Safe room na sala de teste, com tudo coletado
+**Decisão:** a `sala_teste` ganhou uma porta no canto direito (no lugar da parede lisa) para uma **safe room de teste** (`cenas/salas/sala_segura_teste.tscn`, herdeira do `modelo_safe_room`). Ao entrar, o nó `TudoColetado` (`scripts/salas/tudo_coletado.gd`) deixa o jogo como se o jogador tivesse pegado tudo:
+- **Mochila:** todos os itens de `dados/itens/` que não são peça de coleção (12, a mochila inteira), os gadgets equipados, cápsulas e pedras no máximo e a lanterna com carga cheia.
+- **Coleções:** todas as peças de todas as coleções (`Colecionaveis`).
+- **Caderno:** todos os documentos, transmissões do rádio e anotações de diálogo, já como lidos (sem avisos na tela). O rádio também marca todas as transmissões como ouvidas.
+- **Fica de fora:** marcas de progresso (`Progresso`), portas destrancadas e diálogos vistos, para a sala de teste não mudar o estado das fases.
+Usar a máquina de salvar dessa sala grava esse estado, e o quarto do visor mostra tudo: as cinco recompensas e o quadro branco cheio.
+**Por quê:** pedido do Davi, para testar o quarto virtual (e o que mais depende de itens) sem jogar o jogo inteiro. Conferido no Godot 4.7.2: 12 itens, 5 coleções de 3 de 3, 24 de 24 documentos e 21 de 21 transmissões; ida e volta da porta funcionam.
+**Afeta:** `cenas/salas/sala_teste.tscn`, `cenas/salas/sala_segura_teste.tscn` e `scripts/salas/tudo_coletado.gd` (novos).
 
 ## 2026-10-26 — Coleções da Diana (jaqueta, no Centro de Convivência) e do Zane (óculos, no Bunker)
 **Decisão:** as duas coleções que faltavam, no mesmo esquema das outras:

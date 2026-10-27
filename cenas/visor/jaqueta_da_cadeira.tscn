@@ -4,8 +4,14 @@
 [ext_resource type="PackedScene" path="res://assets/modelos/jaqueta_diana.glb" id="2_modelo"]
 [ext_resource type="Resource" path="res://dados/colecoes/centro_de_convivencia.tres" id="3_colecao"]
 
-[node name="JaquetaDaCama" type="Node3D"]
+[node name="JaquetaDaCadeira" type="Node3D"]
 script = ExtResource("1_recompensa")
 colecao = ExtResource("3_colecao")
 
 [node name="Modelo" parent="." instance=ExtResource("2_modelo")]
+
+[node name="Luz" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+light_color = Color(1, 0.72, 0.42, 1)
+light_energy = 0.4
+omni_range = 1.0

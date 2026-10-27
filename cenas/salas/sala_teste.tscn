@@ -1,10 +1,10 @@
 [gd_scene format=3]
 
 [ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="modelo"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lisa.tscn" id="parede_lisa"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="parede_porta"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="porta"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="pilar"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/sinal_sala_segura.tscn" id="sinal_sala_segura"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="chao_lajotas"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="i_item"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="i_pilha"]
@@ -55,11 +55,14 @@ position = Vector2(0, 0)
 [node name="Parede07" parent="Paredes" instance=ExtResource("parede_porta")]
 position = Vector2(480, 0)
 
-[node name="Parede08" parent="Paredes" instance=ExtResource("parede_lisa")]
+[node name="Parede08" parent="Paredes" instance=ExtResource("parede_porta")]
 position = Vector2(560, 0)
 
 [node name="PilarDireita" parent="Paredes" instance=ExtResource("pilar")]
 position = Vector2(624, 0)
+
+[node name="SinalSalaSegura" parent="Paredes" instance=ExtResource("sinal_sala_segura")]
+position = Vector2(601, 6)
 
 [node name="Chao1" parent="Chao" instance=ExtResource("chao_lajotas")]
 position = Vector2(0, 0)
@@ -234,3 +237,9 @@ porta_destino = "labirinto_teste"
 trancada = true
 dificuldade_hack = 2
 minigame_hack = 2
+
+[node name="PortaSalaSegura" parent="." instance=ExtResource("porta")]
+position = Vector2(601, 124)
+id = "sala_segura_teste"
+cena_destino = "res://cenas/salas/sala_segura_teste.tscn"
+porta_destino = "safe_room_saida"
