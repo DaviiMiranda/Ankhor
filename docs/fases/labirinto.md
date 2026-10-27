@@ -59,6 +59,7 @@ Legenda do mapa:
 | `h` `i` `j` | holograma de ondas, de barras, de código |
 | `F` | a **parede falsa** do esconderijo do Baltazar (2 blocos, `FF`). Para o mapa é parede: o esconderijo fica fora do grafo |
 | `B` | o Baltazar |
+| `1` `2` `3` | os **pingentes do chapéu** do Baltazar (colecionáveis, [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)). `1` e `2` ficam em becos sem saída do labirinto (o `2`, no corredor logo abaixo da parede falsa) e `3` fica dentro do esconderijo, sem aparecer até o primeiro encontro com o Baltazar terminar |
 | `y` `e` `n` `l` `v` | altar de velas, chapa com estrelas riscadas (larga: `ee`), ninho de panos (largo: `nn`), pilha de livros, tocos de vela |
 
 Para mudar o mapa: altere o `.tres` à mão (mantendo o formato) ou mude `SEMENTE`, `FRACAO_CICLOS`, `INICIO`, `SALAS`, `MODELOS`, `ESCONDERIJO` e `MODELO_ESCONDERIJO` no gerador e rode `python assets/modelagem/salas/labirinto/gerar_labirinto.py` (com `PREVIA=<pasta>` ele salva uma imagem do mapa inteiro). O gerador falha com uma mensagem se o modelo de uma sala não bate com o tamanho dela, se o início ficar fora da faixa `CAMINHO_ATE_A_OFICINA` (de 3 a 8 salinhas de caminho até a oficina) ou se não couberem os robôs.
@@ -127,6 +128,7 @@ Uma quinta sala, **fora do grafo**: o miolo fica em `esconderijo` no mapa (8 × 
 - **Abrir.** Com a marca visível (força acima de 0,5), perto, `E` ("Afastar o painel"): o painel sai, fica encostado no corredor ao lado (`painel_encostado.png`) e a passagem libera. Ao ser vista pela primeira vez, a parede marca `esconderijo_baltazar_descoberto`: daí em diante o `E` funciona mesmo de lanterna apagada (e sempre de dentro).
 - **Fecha sozinha.** Como as portas das salas, 1,2 s depois de o Gabriel sair da passagem. Robôs **não** abrem a parede falsa.
 - **Dentro:** o Baltazar (`cenas/personagens/baltazar_no_esconderijo.tscn`) logo acima da passagem, com velas do lado, e a bagunça: altar, ninho, livros, caixas, o robô desmontado, a chapa com estrelas e peças e papéis espalhados pelo chão (`quantidade_pecas_no_esconderijo`). As velas são `cenas/cenario/luzes/luz_vela.tscn` (luz quente que treme).
+- **Pingente do chapéu (peça 3).** No chão, ao lado do ninho, no pé do cartaz de estrelas. Fica invisível e sem aviso até a marca `conheceu_baltazar` (fim do primeiro encontro); depois aparece e dá para pegar. Faz parte da coleção do Labirinto.
 - **Conversas** em `dados/dialogos/`: `baltazar_labirinto_primeiro_encontro.json` começa sozinha quando o Gabriel chega perto dele (gatilho de 64 px) e marca `conheceu_baltazar`; tem escolhas (o acampamento da Biblioteca, a bagunça, o convite para sair) e anota no caderno. Depois, falar com ele (`E`) toca `baltazar_labirinto_de_novo.json`, com a dica do diário sobre os olhos dos robôs.
 
 ---

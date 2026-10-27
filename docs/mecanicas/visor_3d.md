@@ -10,7 +10,11 @@ O quarto guarda o jogo até ali. Tudo o que aparece nele vem do estado do jogo n
 | **Mural de cortiça**, em cima da cama | um cartão para cada anotação do caderno, presos com alfinete e ligados por um fio vermelho, na ordem em que foram anotados | `Caderno.anotacoes` |
 | **Escrivaninha**, embaixo da janela | os documentos que o Gabriel já leu, jogados em cima da mesa, cada um no papel dele (caderno, pergaminho...) | os documentos de `dados/documentos/` que já têm anotação no caderno |
 | **Farol**, na ponta da frente da escrivaninha | um farol aceso em 3D, só depois de juntar os três pingentes de farol da Biblioteca (ver [`colecionaveis.md`](colecionaveis.md)) | `Colecionaveis` |
-| **Quadro branco**, ao lado da TV | os números do jogo: fase, documentos lidos, transmissões ouvidas, anotações, portas destrancadas, itens na mochila, o progresso de cada coleção (*Pingentes de farol: 2 de 3*) e o último save | `Caderno`, `Radio`, `Porta`, `Inventario`, `Colecionaveis`, `Salvamento` |
+| **Disquetes**, na escrivaninha, na frente do farol | uma pilha de três disquetes coloridos, só depois de juntar os três disquetes do Bloco de salas | `Colecionaveis` |
+| **Tricórnio**, sobre o teclado do notebook, na escrivaninha | o chapéu do Baltazar com os três pingentes nas pontas, só depois de juntar os três pingentes do Labirinto (um deles só aparece depois do primeiro encontro com o Baltazar) | `Colecionaveis` |
+| **Jaqueta**, sobre a colcha da cama | a jaqueta da Diana, só depois de juntar os três botões do Centro de Convivência | `Colecionaveis` |
+| **Óculos**, no criado-mudo, ao lado do despertador | os óculos do Zane com os três chips acesos, só depois de juntar os três chips do Bunker | `Colecionaveis` |
+| **Quadro branco**, ao lado da TV | os números do jogo: fase, documentos lidos, transmissões ouvidas, anotações, portas destrancadas, itens na mochila, o progresso de cada coleção (*Pingentes de farol: 2 de 3*, *Disquetes da Clarice*, *Pingentes do chapéu*, *Botões da jaqueta*, *Chips dos óculos*) e o último save | `Caderno`, `Radio`, `Porta`, `Inventario`, `Colecionaveis`, `Salvamento` |
 
 Nada disso é texto novo de história: os cartões e os papéis mostram os títulos que já existem, e o texto completo é o mesmo que o jogador leu no caminho. Ao tirar os óculos, ele volta para a sala segura 2D, no mesmo lugar, e toca a animação de devolver os óculos ao pedestal.
 
@@ -169,6 +173,8 @@ As formas de colisão (chão, paredes, móvel da TV, estante, escrivaninha, cade
 | Texturas e pôsteres | `assets/sprites/cenario/visor/`, de `assets/modelagem/cenario/gerar_texturas_quarto.py`; aplicadas por `scripts/visor/texturas_do_quarto.gd` (a parede agora repete a cada 1 m, com riscos e furos de prego) |
 | Estrelas cadentes e luzes rápidas | `cenas/visor/estrelas_cadentes.tscn`, `scripts/visor/estrelas_cadentes.gd` |
 | Farol da mesa (recompensa dos pingentes) | `cenas/visor/farol_da_mesa.tscn`, `scripts/visor/farol_da_mesa.gd`, modelo `assets/modelos/farol_mesa.glb` de `assets/modelagem/cenario/gerar_farol_mesa.py` |
+| Jaqueta da cama e óculos do criado-mudo (recompensas dos botões e dos chips) | `cenas/visor/jaqueta_da_cama.tscn` e `oculos_do_criado.tscn`, modelos `jaqueta_diana.glb` e `oculos_zane.glb` de `gerar_jaqueta_diana.py` e `gerar_oculos_zane.py` |
+| Disquetes da mesa e tricórnio do notebook (recompensas dos disquetes e dos pingentes do chapéu) | `cenas/visor/disquetes_da_mesa.tscn` e `chapeu_do_notebook.tscn`, `scripts/visor/recompensa_do_quarto.gd`, modelos `assets/modelos/disquetes_mesa.glb` e `chapeu_baltazar.glb` de `gerar_disquetes_mesa.py` e `gerar_chapeu_baltazar.py` (em `assets/modelagem/cenario/`) |
 | Data do último save | `Salvamento.data_salva()` em `scripts/sistemas/salvamento.gd` |
 
 ## 8. Pendências

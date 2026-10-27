@@ -30,6 +30,8 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r28"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="g_gatilho_radio"]
 [ext_resource type="Resource" path="res://dados/transmissoes/grupo_convivencia_02.tres" id="g_grupo_convivencia_02"]
+[ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
+[ext_resource type="Resource" path="res://dados/colecoes/centro_de_convivencia.tres" id="col_dados"]
 
 [node name="Cinema" instance=ExtResource("r1")]
 id = "conv_cinema"
@@ -162,6 +164,11 @@ fator_ruido = 0.5
 nome_piso = "carpete de veludo"
 
 [node name="MusicaFase" parent="." instance=ExtResource("r28")]
+
+[node name="BotaoJaqueta3" parent="Objetos" instance=ExtResource("col_cena")]
+position = Vector2(410, 200)
+colecao = ExtResource("col_dados")
+numero = 3
 
 [editable path="Ceu"]
 

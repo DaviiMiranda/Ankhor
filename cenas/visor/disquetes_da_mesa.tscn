@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/visor/recompensa_do_quarto.gd" id="1_recompensa"]
+[ext_resource type="PackedScene" path="res://assets/modelos/disquetes_mesa.glb" id="2_modelo"]
+[ext_resource type="Resource" path="res://dados/colecoes/bloco_de_salas.tres" id="3_colecao"]
+
+[node name="DisquetesDaMesa" type="Node3D"]
+script = ExtResource("1_recompensa")
+colecao = ExtResource("3_colecao")
+
+[node name="Modelo" parent="." instance=ExtResource("2_modelo")]

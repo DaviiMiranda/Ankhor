@@ -7,6 +7,7 @@ const PASTA_TRANSMISSOES := "res://dados/transmissoes/"
 const TINTA_TITULO := Color("c02a2a")
 const TINTA := Color("2a3a9a")
 const PIXEL_DO_TEXTO := 0.0028
+const ENTRELINHA := -4.5
 const MARGEM := Vector2(0.07, 0.06)
 const TITULO := "ATÉ AQUI"
 const SEM_SAVE := "nenhum"
@@ -47,6 +48,7 @@ func _rotulo(tamanho_da_fonte: int, tinta: Color) -> Label3D:
 	rotulo.pixel_size = PIXEL_DO_TEXTO
 	rotulo.modulate = tinta
 	rotulo.outline_size = 0
+	rotulo.line_spacing = ENTRELINHA
 	rotulo.double_sided = false
 	rotulo.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
 	rotulo.alpha_cut = Label3D.ALPHA_CUT_DISCARD

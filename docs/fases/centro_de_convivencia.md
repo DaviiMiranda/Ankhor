@@ -187,6 +187,8 @@ python assets/modelagem/salas/centro_de_convivencia/montar_convivencia.py
 
 O Davi desenhou a planta de um segundo andar: um **anel em volta do vazio da praça**, com o **hall** (onde o jogador chega pela escada) no meio de cima, a **Gráfica** e a **loja de roupas da universidade** de um lado, o **cinema** do outro, **corrimão nas bordas** e o andar de baixo escuro, que não aparece. É uma área opcional, para explorar com a ameaça de uma Sentinela.
 
+Os **botões da jaqueta** da Diana (3, colecionáveis) ficam aqui: `BotaoJaqueta1` na `loja_uni`, `2` na `grafica` e `3` no hall do `cinema`. Ao juntar os três, o quarto do Gabriel ganha a jaqueta dela na cama (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)).
+
 ### 7.1 Como se chega
 
 - **A escada da praça** fica na coluna 14, ao lado da entrada (`porta praca_escada`, com a placa MEZANINO), e leva ao hall do mezanino (`mezanino_escada`, com a placa PRAÇA). O som é `escada.wav`.

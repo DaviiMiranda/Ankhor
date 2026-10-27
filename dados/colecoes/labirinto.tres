@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Colecao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/colecao.gd" id="1_colecao"]
+[ext_resource type="Resource" path="res://dados/itens/pingente_chapeu.tres" id="2_item"]
+
+[resource]
+script = ExtResource("1_colecao")
+id = "labirinto"
+nome = "Pingentes do chapéu"
+item = ExtResource("2_item")
+total = 3
+texto_completa = "Os três estão com você."

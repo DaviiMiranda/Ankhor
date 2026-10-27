@@ -27,6 +27,8 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_oculos_vr_musgo.tscn" id="fut_estante_oculos_vr_musgo"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/oculos_no_chao.tscn" id="fut_oculos_no_chao"]
 [ext_resource type="PackedScene" path="res://cenas/itens/aviso_no_mundo.tscn" id="fut_aviso"]
+[ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
+[ext_resource type="Resource" path="res://dados/colecoes/bloco_de_salas.tres" id="col_dados"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -373,5 +375,10 @@ position = Vector2(280, 126)
 texto_acao = "Olhar o professor"
 altura_aviso = 70.0
 texto = "Um robô professor na doca de recarga. Raízes e musgo já chegaram até ele. A tela do rosto está escura."
+
+[node name="DisqueteClarice3" parent="Objetos" instance=ExtResource("col_cena")]
+position = Vector2(200, 322)
+colecao = ExtResource("col_dados")
+numero = 3
 
 [editable path="Ceu"]

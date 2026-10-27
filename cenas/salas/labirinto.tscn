@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="g_gatilho_radio"]
 [ext_resource type="Resource" path="res://dados/transmissoes/grupo_labirinto_01.tres" id="g_grupo_labirinto_01"]
 [ext_resource type="Resource" path="res://dados/transmissoes/grupo_labirinto_02.tres" id="g_grupo_labirinto_02"]
+[ext_resource type="Resource" path="res://dados/colecoes/labirinto.tres" id="col_labirinto"]
 
 [sub_resource type="ShaderMaterial" id="Vinheta"]
 shader = ExtResource("16_vinheta")
@@ -41,6 +42,7 @@ shader = ExtResource("16_vinheta")
 [node name="Labirinto" type="Node2D"]
 script = ExtResource("1_labirinto")
 mapa = ExtResource("2_mapa")
+colecao = ExtResource("col_labirinto")
 topos = Array[Texture2D]([ExtResource("4_topo0"), ExtResource("5_topo1"), ExtResource("6_topo2")])
 frentes = Array[Texture2D]([ExtResource("7_frente0"), ExtResource("8_frente1"), ExtResource("9_frente2"), ExtResource("10_frente3")])
 textura_porta = ExtResource("11_porta")
