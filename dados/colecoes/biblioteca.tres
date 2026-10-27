@@ -10,3 +10,5 @@ nome = "Pingentes de farol"
 item = ExtResource("2_item")
 total = 3
 texto_completa = "Os três estão com você."
+nome_da_recompensa = "Farol de mesa"
+descricao_da_recompensa = "Um farol pequeno, de metal, do tamanho de um enfeite de mesa. A lanterna acesa no topo e os três raios para cima têm o mesmo âmbar dos pingentes que você achou. A luz pulsa devagar."

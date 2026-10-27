@@ -104,6 +104,7 @@ São `ChipOculos1` a `ChipOculos3` nas cenas dessas salas.
 1. Ao pegar, abre a tela **Novo item** (a mesma dos itens da mochila), com o desenho da peça, a descrição e a contagem: **1 de 3**, **2 de 3**, **3 de 3**. No terceiro, a tela acrescenta "Os três estão com você." A peça **não vai para a mochila**: fica guardada só na coleção.
 2. No **quadro branco** do quarto, uma linha por coleção mostra o progresso: *Pingentes de farol: 2 de 3*, *Disquetes da Clarice: 0 de 3*, *Pingentes do chapéu: 1 de 3*, *Botões da jaqueta* e *Chips dos óculos*. Com cinco coleções o quadro ficou cheio: o espaçamento entre as linhas (`ENTRELINHA` em `quadro_do_visor.gd`) foi apertado para tudo caber. Uma sexta linha já não cabe sem mais ajuste.
 3. Com as três peças de uma coleção, a recompensa aparece no quarto. Com menos, o quarto fica como estava. As coleções são independentes.
+4. No quarto, dá para **examinar** cada recompensa: olhando para ela, **[E] Examinar: <nome>** leva a câmera até a peça, que sobe um pouco e gira com **WASD** (ou setas) ou o **mouse**, com um painel de nome e descrição. **Esc** afasta. Detalhes em [`visor_3d.md`](visor_3d.md), seção 3.1.
 
 ## 3. Como funciona
 
@@ -118,6 +119,8 @@ Uma coleção é um recurso `Colecao` (`scripts/sistemas/colecao.gd`), um arquiv
 | `item` | Um `Item` só para mostrar a peça na tela Novo item (nome, descrição, ícone e sprite de chão). Ele **não** entra no inventário |
 | `total` | Quantas peças tem |
 | `texto_completa` | Frase extra na tela Novo item quando a coleção fecha |
+| `nome_da_recompensa` | Título do painel ao examinar a recompensa no quarto (*Farol de mesa*) e do aviso **[E] Examinar** |
+| `descricao_da_recompensa` | Texto do painel ao examinar. Só descreve o que se vê, sem afirmar nada de história |
 
 ### 3.2 O estado
 
@@ -145,6 +148,8 @@ Ao interagir, ele chama `Colecionaveis.coletar` e `ItemNovo.mostrar_novo(colecao
 
 - **Jaqueta** (`JaquetaDaCama`, `cenas/visor/jaqueta_da_cama.tscn`) e **óculos** (`OculosDoCriado`, `cenas/visor/oculos_do_criado.tscn`): também com o `RecompensaDoQuarto`. A jaqueta fica **sobre a colcha** (a colcha está a 0,545 m do chão; a 0,5 a jaqueta sumia dentro dela), a 75% do tamanho do modelo, com a gola para o lado da cabeceira. Os óculos ficam em pé no canto livre do **criado-mudo** (x 2,13, y 0,53, z 1,27), virados para o quarto, com uma `OmniLight3D` ciano fraca.
 
+Todas as cinco recompensas são **examináveis**: `RecompensaDoQuarto` é um `FocoVisor` (o `FarolDaMesa` herda dele e só acrescenta o pulso da luz). Para ajustar de onde a câmera olha, mude `direcao_da_camera` da instância em `sala_visor.tscn`; o tamanho do enquadramento sai do modelo sozinho (`ocupacao` só muda o quanto a peça enche a tela).
+
 A **mesa não tem mais lugar**: os papéis lidos cobrem o tampo e a faixa livre da frente já tem o farol, os disquetes e o tricórnio. Por isso a jaqueta e os óculos foram para a cama e o criado-mudo.
 
 Os **modelos** saem do Blender sem abrir a janela (como rodar e as medidas estão no começo de cada arquivo):
@@ -164,7 +169,8 @@ O **desenho em pixel** das peças (ícone e chão) sai de `assets/modelagem/iten
 1. Crie o `Item` da peça em `dados/itens/` (nome, descrição, ícone 16 × 16 e `sprite_chao`).
 2. Crie a `Colecao` em `dados/colecoes/` (um `.tres` com o `id` da fase, o `nome`, o `item`, o `total`).
 3. Ponha `colecionavel_no_mundo.tscn` nas salas da fase, com `colecao` e `numero` de 1 até `total`. Para travar uma peça atrás de um acontecimento, preencha `marca_necessaria`. (Num mapa gerado, como o do Labirinto, a sala cria as peças pelas letras do mapa.)
-4. Crie a recompensa no quarto: uma cena com o script `RecompensaDoQuarto` (um `Node3D` com `colecao` e o modelo), posta em `sala_visor.tscn`. O quadro branco já ganha a linha sozinho.
+4. Preencha `nome_da_recompensa` e `descricao_da_recompensa` na `Colecao`.
+5. Crie a recompensa no quarto: uma cena com o script `RecompensaDoQuarto` (um `Node3D` com `colecao` e o modelo, que **precisa se chamar `Modelo`**), posta em `sala_visor.tscn` com a `direcao_da_camera`. Ela já nasce examinável. O quadro branco já ganha a linha sozinho.
 
 ## 5. Pendências
 

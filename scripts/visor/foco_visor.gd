@@ -34,6 +34,14 @@ func camera_diante(campo_de_visao: float, proporcao: float) -> Transform3D:
 	return Transform3D(Basis(), centro() + frente() * distancia).looking_at(centro(), cima())
 
 
+func titulo_focado() -> String:
+	return ""
+
+
+func descricao_focada() -> String:
+	return ""
+
+
 func focar() -> void:
 	pass
 

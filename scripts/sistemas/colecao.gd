@@ -6,6 +6,8 @@ extends Resource
 @export var item: Item
 @export var total: int = 3
 @export_multiline var texto_completa: String = ""
+@export var nome_da_recompensa: String = ""
+@export_multiline var descricao_da_recompensa: String = ""
 
 
 func item_com_progresso(quantidade: int) -> Item:

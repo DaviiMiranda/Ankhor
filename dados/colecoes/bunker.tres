@@ -10,3 +10,5 @@ nome = "Chips dos óculos"
 item = ExtResource("2_item")
 total = 3
 texto_completa = "Os três estão com você."
+nome_da_recompensa = "Óculos do Zane"
+descricao_da_recompensa = "Um visor de armação grafite, com a lente verde acesa. Os três chips hexagonais estão encaixados na armação e brilham em ciano-verde."

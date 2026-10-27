@@ -99,6 +99,18 @@ size = Vector3(0.44, 0.3, 0.44)
 [sub_resource type="BoxShape3D" id="CaixaPequena"]
 size = Vector3(0.4, 0.26, 0.34)
 
+[sub_resource type="StyleBoxFlat" id="FundoDoTexto"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.02, 0.03, 0.05, 0.82)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.85, 0.95, 0.55)
+
 [node name="SalaVisor" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -366,10 +378,13 @@ transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, -2.3, 0.78, 0.23)
 
 [node name="JaquetaDaCama" parent="Imagem/Mundo" instance=ExtResource("f_jaqueta")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.0, 0.543, 0.15)
+direcao_da_camera = Vector3(-1, 0.9, 0)
+ocupacao = 0.65
 
 [node name="OculosDoCriado" parent="Imagem/Mundo" instance=ExtResource("f_oculos")]
 position = Vector3(2.13, 0.53, 1.27)
 rotation = Vector3(0, 1.5707964, 0)
+direcao_da_camera = Vector3(-1, 0.5, 0)
 
 [node name="Dica" type="Label" parent="."]
 layout_mode = 1
@@ -385,6 +400,38 @@ theme_override_colors/font_color = Color(0.85, 0.95, 1, 0.9)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 horizontal_alignment = 1
+
+[node name="Painel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -92.0
+offset_right = 220.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("FundoDoTexto")
+
+[node name="Texto" type="VBoxContainer" parent="Painel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 3
+
+[node name="Titulo" type="Label" parent="Painel/Texto"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99, 0.95, 0.82, 1)
+theme_override_font_sizes/font_size = 16
+
+[node name="Descricao" type="Label" parent="Painel/Texto"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84, 0.88, 0.9, 1)
+autowrap_mode = 3
 
 [node name="Escuro" type="ColorRect" parent="."]
 layout_mode = 1

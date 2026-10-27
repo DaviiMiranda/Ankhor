@@ -10,3 +10,5 @@ nome = "Pingentes do chapéu"
 item = ExtResource("2_item")
 total = 3
 texto_completa = "Os três estão com você."
+nome_da_recompensa = "Tricórnio do Baltazar"
+descricao_da_recompensa = "Um chapéu de feltro gasto, de copa baixa e três abas dobradas para cima. Na ponta de cada aba, uma borla de fio vinho presa a uma argola de latão."

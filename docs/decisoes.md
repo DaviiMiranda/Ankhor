@@ -1,5 +1,14 @@
 # Registro de decisões
 
+## 2026-10-27 — Examinar as recompensas das coleções, no quarto virtual
+**Decisão:** no quarto do Gabriel (o visor 3D da sala segura), as cinco recompensas das coleções (farol, disquetes, tricórnio, jaqueta e óculos) podem ser **examinadas**:
+- Olhando para a peça aparece **[E] Examinar: <nome>**. O E leva a câmera até ela (o mesmo deslize do mural e da mesa), a peça sobe 8 cm e o jogador a **gira** com WASD (ou setas) ou com o mouse. Um painel embaixo mostra o nome e a descrição, e uma luz fraca acende só durante o exame. **Esc** afasta a câmera e a peça volta à pose de antes.
+- **Só existe no quarto virtual** (pedido do Davi: "por enquanto"). A sala segura 2D e as fases não examinam nada. Uma coleção incompleta não tem recompensa, então não tem o que examinar.
+- Os textos ficam na `Colecao` (`nome_da_recompensa` e `descricao_da_recompensa`) e só descrevem o que se vê, sem afirmar nada de história (como os textos das peças).
+- Técnica: `RecompensaDoQuarto` passou a ser um `FocoVisor` (e o `FarolDaMesa` herda dele). O `FocoVisor` ganhou `titulo_focado()` e `descricao_focada()`, e a `SalaVisor` repassa o movimento do mouse para o foco e mostra o painel. A conta do giro está em `docs/mecanicas/visor_3d.md`.
+**Por quê:** pedido do Davi: poder examinar os itens especiais que aparecem no quarto depois de coletar os colecionáveis. Conferido no Godot 4.7.2 (rodando a cena do quarto com as cinco coleções completas): as cinco peças recebem o aviso, a câmera chega, o giro funciona e a peça volta ao lugar ao afastar.
+**Afeta:** `scripts/visor/recompensa_do_quarto.gd`, `farol_da_mesa.gd`, `foco_visor.gd` e `sala_visor.gd`; `scripts/sistemas/colecao.gd` e `dados/colecoes/*.tres` (nome e descrição); `cenas/visor/sala_visor.tscn` (painel, direção da câmera da jaqueta e dos óculos); `docs/mecanicas/visor_3d.md`, `colecionaveis.md` e `README.md`. A história não mudou.
+
 ## 2026-10-26 — Coleções da Diana (jaqueta, no Centro de Convivência) e do Zane (óculos, no Bunker)
 **Decisão:** as duas coleções que faltavam, no mesmo esquema das outras:
 - **Centro de Convivência, "Botões da jaqueta":** três botões de couro marrom-caramelo com aro dourado, na Loja Universitária, na Gráfica e no hall do cinema (as três salas do mezanino opcional). Recompensa: a **jaqueta da Diana** (marrom-caramelo de gola larga, bolsos, punhos, aberta sobre a camiseta listrada, como no visual dela) sobre a colcha da cama do Gabriel.
