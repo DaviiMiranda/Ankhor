@@ -86,6 +86,9 @@
 #   F  parede falsa (2 blocos; parece parede, só a lanterna revela)
 #   B  o Baltazar      y  altar improvisado (com velas)   e  estrelas riscadas na parede (largo)
 #   n  ninho de panos (largo)   l  pilha de livros   v  tocos de vela no chão
+#   Os pingentes do chapéu do Baltazar (colecionáveis, docs/mecanicas/colecionaveis.md):
+#   1  e  2  ficam em becos sem saída do labirinto; 3  fica no esconderijo e só
+#   aparece depois do primeiro encontro com o Baltazar.
 # Todos os marcadores ficam na fileira de CIMA da salinha: a de baixo fica
 # atrás do topo da parede de baixo (ver "Por que corredores de 2 blocos").
 # Os checkpoints ficam dentro das salas (nos modelos). Os robôs nascem
@@ -140,6 +143,7 @@ TIPOS_DE_ROBO = ("V", "R", "V", "V", "R", "V")
 DISTANCIA_MINIMA_DO_INICIO = 10
 SEPARACAO_ENTRE_ROBOS = 5
 QUANTIDADE_PILHAS = 5
+QUANTIDADE_PINGENTES_NOS_BECOS = 2
 QUANTIDADE_LAMPADAS = 14
 
 # Onde o Gabriel começa (uma salinha, com a lanterna ao lado): fora da
@@ -214,7 +218,7 @@ ESCONDERIJO = {"x": 5, "y": 0, "w": 3, "h": 2, "entrada_x": 6}
 # entra dá de cara com ele, já iluminado, dentro do raio de visão.
 MODELO_ESCONDERIJO = (
     "y.ee.lkl",
-    "nn......",
+    "nn3.....",
     "..v.B.xx",
     "l.......",
     "........",
@@ -394,6 +398,12 @@ def montar_mapa(rng):
     becos.sort(key=lambda c: -dist[c])
     for c in becos[::max(1, len(becos) // QUANTIDADE_PILHAS)][:QUANTIDADE_PILHAS]:
         marcar(c, "P", 2, 1)
+
+    sobras = [c for c in becos if c not in usadas]
+    assert len(sobras) >= QUANTIDADE_PINGENTES_NOS_BECOS, "faltam becos para os pingentes"
+    passo = len(sobras) // QUANTIDADE_PINGENTES_NOS_BECOS
+    for i in range(QUANTIDADE_PINGENTES_NOS_BECOS):
+        marcar(sobras[i * passo], str(i + 1), 1, 1)
 
     cruzamentos = [c for c in dist if len(vizinhos(abertas, c)) >= 3 and c not in usadas]
     rng.shuffle(cruzamentos)
@@ -694,7 +704,8 @@ def previa(linhas, sprites):
     cores = {"G": (60, 200, 255), "C": (80, 255, 120), "V": (255, 60, 60), "R": (255, 140, 40),
              "P": (240, 240, 80), "L": (255, 220, 150), "S": (80, 255, 120), "T": (200, 200, 255),
              "Z": (255, 255, 60), "N": (255, 60, 255), "A": (255, 255, 255),
-             "B": (150, 30, 60), "F": (255, 180, 60)}
+             "B": (150, 30, 60), "F": (255, 180, 60),
+             "1": (255, 90, 160), "2": (255, 90, 160), "3": (255, 90, 160)}
     for letra in "bcmxrkauhij":
         cores[letra] = (60, 160, 200)
     for letra in "yenlv":

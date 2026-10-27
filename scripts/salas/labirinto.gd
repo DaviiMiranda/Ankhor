@@ -14,6 +14,7 @@ const CENA_PORTA := preload("res://cenas/sistemas/porta_da_sala.tscn")
 const CENA_PORTA_SALA_SEGURA := preload("res://cenas/sistemas/porta.tscn")
 const CENA_PAREDE_FALSA := preload("res://cenas/sistemas/parede_falsa.tscn")
 const CENA_BALTAZAR := preload("res://cenas/personagens/baltazar_no_esconderijo.tscn")
+const CENA_COLECIONAVEL := preload("res://cenas/itens/colecionavel_no_mundo.tscn")
 const LANTERNA := preload("res://dados/itens/lanterna.tres")
 const PROPS := {
 	"b": preload("res://cenas/cenario/dtec/objetos/bancada_eletronica.tscn"),
@@ -60,6 +61,8 @@ const LUZ_EM_TUDO := 1 | 2
 @export var componentes: Array[Texture2D] = []
 @export var quantidade_componentes: int = 26
 @export var quantidade_pecas_no_esconderijo: int = 12
+@export var colecao: Colecao
+@export var marca_do_pingente_escondido: String = "conheceu_baltazar"
 @export var semente: int = 26
 @export var transmissao_da_rede: Transmissao
 @export_file("*.tscn") var cena_da_saida: String = ""
@@ -334,6 +337,10 @@ func _colocar_marcadores() -> void:
 					var zane := CENA_ZANE.instantiate()
 					zane.name = "Zane"
 					_colocar(zane, posicao)
+				"1", "2":
+					_colocar_colecionavel(int(mapa.letra(celula)), posicao, "")
+				"3":
+					_colocar_colecionavel(3, posicao, marca_do_pingente_escondido)
 				"B":
 					var baltazar := CENA_BALTAZAR.instantiate()
 					baltazar.name = "Baltazar"
@@ -351,6 +358,17 @@ func _colocar_marcadores() -> void:
 					_colocar_robo(mapa.letra(celula), posicao, numero)
 				_:
 					_colocar_prop(celula)
+
+
+func _colocar_colecionavel(numero: int, posicao: Vector2, marca: String) -> void:
+	if colecao == null:
+		return
+	var peca: ColecionavelNoMundo = CENA_COLECIONAVEL.instantiate()
+	peca.name = "Pingente%d" % numero
+	peca.colecao = colecao
+	peca.numero = numero
+	peca.marca_necessaria = marca
+	_colocar(peca, posicao)
 
 
 func _colocar_saida(posicao: Vector2) -> void:
