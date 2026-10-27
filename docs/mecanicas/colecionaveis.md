@@ -9,8 +9,8 @@ Hoje existem cinco coleções, todas de **3 peças**:
 | Biblioteca | `biblioteca` | **Pingente de farol** | Um **farol** aceso na mesa do Gabriel |
 | Bloco de salas | `bloco_de_salas` | **Disquete colorido** (a cara dos disquetes da Clarice) | Uma **pilha de disquetes** na mesa, ao lado do farol |
 | Labirinto | `labirinto` | **Pingente de chapéu** (as borlas do tricórnio do Baltazar) | O **tricórnio** na mesa, sobre o teclado do notebook, com os três pingentes nas pontas |
-| Centro de Convivência | `centro_de_convivencia` | **Botão de jaqueta** (da jaqueta da Diana) | A **jaqueta** dela jogada na cama, com a camiseta listrada aparecendo |
-| Bunker | `bunker` | **Chip hexagonal** (dos óculos do Zane) | Os **óculos** dele acesos no criado-mudo, com os três chips na armação |
+| Centro de Convivência | `centro_de_convivencia` | **Botão de jaqueta** (da jaqueta da Diana) | A **jaqueta** dela pendurada no encosto da cadeira, com a camiseta listrada aparecendo |
+| Bunker | `bunker` | **Chip hexagonal** (dos óculos do Zane) | Os **óculos** dele acesos na escrivaninha, com os três chips na armação |
 
 ## 1. As coleções
 
@@ -72,7 +72,7 @@ As peças 1 e 2 são as letras `1` e `2` do mapa e a peça 3 é a letra `3` no d
 | | |
 |---|---|
 | **Peça** | Botão de jaqueta: botão grande de couro marrom-caramelo com aro dourado e quatro furos, a cor e a cara da jaqueta dela (`assets/sprites/personagens/diana/visual.md`; a jaqueta é o objeto-símbolo dela, [`diana.md`](../historia/personagens/diana.md)). O texto não diz por que os botões estão soltos |
-| **Recompensa** | A **jaqueta** marrom-caramelo de gola larga, com bolsos e punhos, aberta sobre a camiseta listrada, jogada sobre a colcha da cama do Gabriel |
+| **Recompensa** | A **jaqueta** marrom-caramelo de gola larga, com bolsos e punhos, aberta sobre a camiseta listrada, pendurada no encosto da cadeira da escrivaninha |
 
 As três ficam no **mezanino**, a parte opcional da fase, em salas que não têm nada a ver com o caminho da Célula de Energia:
 
@@ -89,7 +89,7 @@ São `BotaoJaqueta1` a `BotaoJaqueta3` nas cenas dessas salas.
 | | |
 |---|---|
 | **Peça** | Chip hexagonal: o hexágono do peito da jaqueta do Zane, em corpo escuro com borda e trilha ciano-verde, a cor da interface dele (`assets/sprites/personagens/zane/visual.md`; os óculos são o objeto-símbolo dele, [`zane.md`](../historia/personagens/zane.md)). O texto diz só que se encaixa na armação de um visor |
-| **Recompensa** | Os **óculos** do Zane (armação grafite, lente verde acesa e os três chips hexagonais brilhando) em cima do criado-mudo, ao lado do despertador, com uma luz ciano fraca |
+| **Recompensa** | Os **óculos** do Zane (armação grafite, lente verde acesa e os três chips hexagonais brilhando) em cima da escrivaninha, entre a caneca e o farol, com uma luz ciano fraca |
 
 | Nº | Sala | Onde |
 |---|---|---|
@@ -143,9 +143,9 @@ Ao interagir, ele chama `Colecionaveis.coletar` e `ItemNovo.mostrar_novo(colecao
 - **Farol** (`FarolDaMesa`, `cenas/visor/farol_da_mesa.tscn`, `scripts/visor/farol_da_mesa.gd`): um `Node3D` com o modelo e uma `OmniLight3D` âmbar. No `_ready`, fica **visível só se `Colecionaveis.completa(colecao)`**; invisível, também desliga a luz e o `_process`. A luz pulsa entre `energia_minima` e `energia_maxima` em `periodo_pulso` segundos, com uma onda $\frac{1 - \cos(2\pi t / T)}{2}$ (começa e termina devagar, como as luzes do jogo). Está em cima da escrivaninha, na ponta da frente (longe dos papéis, do notebook e da luminária), virado para a cadeira.
 - **Disquetes** (`DisquetesDaMesa`, `cenas/visor/disquetes_da_mesa.tscn`) e **tricórnio** (`ChapeuDoNotebook`, `cenas/visor/chapeu_do_notebook.tscn`): `Node3D` com o script `RecompensaDoQuarto` (`scripts/visor/recompensa_do_quarto.gd`), que só faz o `visible` valer `Colecionaveis.completa(colecao)`. Sem pulso e sem luz própria: a escrivaninha já é iluminada pela luminária. Os três objetos ficam na **escrivaninha**, na faixa livre da frente, porque os papéis lidos cobrem o resto do tampo: o farol em z 0,3, os **disquetes** logo na frente dele (x -1,95, z 0,44, girados 10°) e o **tricórnio** sobre o teclado do notebook (x -2,29, y 0,78, z 0,3), a 55% do tamanho do modelo para caber nos 24 cm do teclado sem encostar na tela. Ele fica menor que um chapéu de verdade: é um enfeite, como o farol de 18 cm.
 
-- **Jaqueta** (`JaquetaDaCama`, `cenas/visor/jaqueta_da_cama.tscn`) e **óculos** (`OculosDoCriado`, `cenas/visor/oculos_do_criado.tscn`): também com o `RecompensaDoQuarto`. A jaqueta fica **sobre a colcha** (a colcha está a 0,545 m do chão; a 0,5 a jaqueta sumia dentro dela), a 75% do tamanho do modelo, com a gola para o lado da cabeceira. Os óculos ficam em pé no canto livre do **criado-mudo** (x 2,13, y 0,53, z 1,27), virados para o quarto, com uma `OmniLight3D` ciano fraca.
+- **Jaqueta** (`JaquetaDaCadeira`, `cenas/visor/jaqueta_da_cadeira.tscn`) e **óculos** (`OculosDaMesa`, `cenas/visor/oculos_da_mesa.tscn`): também com o `RecompensaDoQuarto`. A jaqueta fica **de pé contra o encosto** da cadeira (x -1,27, y 0,85), a 55% do tamanho do modelo, com a gola para cima e uma `OmniLight3D` âmbar fraca na frente (sem ela a face voltada para o quarto ficava azul-esverdeada, e o caramelo da Diana sumia). Os óculos ficam na frente livre do tampo (x -2,1, z -0,2), virados para o quarto, com uma `OmniLight3D` ciano fraca.
 
-A **mesa não tem mais lugar**: os papéis lidos cobrem o tampo e a faixa livre da frente já tem o farol, os disquetes e o tricórnio. Por isso a jaqueta e os óculos foram para a cama e o criado-mudo.
+Os **papéis lidos** saíram da escrivaninha e foram para a **cama** (o `MesaDoVisor`, com 5 × 5 lugares), o que deixou o tampo livre para os óculos e a cadeira para a jaqueta. O criado-mudo ficou vazio.
 
 Os **modelos** saem do Blender sem abrir a janela (como rodar e as medidas estão no começo de cada arquivo):
 
@@ -169,6 +169,6 @@ O **desenho em pixel** das peças (ícone e chão) sai de `assets/modelagem/iten
 ## 5. Pendências
 
 - **De quem são os pingentes de farol** e por que estão espalhados pela Biblioteca. O Enredo Principal ainda não decidiu onde os Faroleiros estão hoje nem se aparecem no jogo (seção "Pendências" dele). Até lá, o texto não afirma nada. O mesmo vale para os disquetes (por que estão fora do posto da Clarice) e para os pingentes do chapéu (como foram parar no subsolo).
-- **Mais coleções** (D-Tec): pede uma peça e uma recompensa no quarto. Sobram a estante, o móvel da TV, o chão e as paredes; a mesa, a cama e o criado-mudo estão ocupados. O quadro branco já está no limite.
+- **Mais coleções** (D-Tec): pede uma peça e uma recompensa no quarto. Sobram a estante, o móvel da TV, o chão e as paredes; a mesa, a cadeira e a cama estão ocupadas. O quadro branco já está no limite.
 - A recompensa só aparece no **visor**. Não há conquista nem contador na pausa do inventário.
 - As **posições** das peças e o tamanho/posição dos modelos no quarto são primeira versão, para ajustar jogando (nada foi testado dentro do Godot ainda).

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" path="res://assets/modelos/oculos_zane.glb" id="2_modelo"]
 [ext_resource type="Resource" path="res://dados/colecoes/bunker.tres" id="3_colecao"]
 
-[node name="OculosDoCriado" type="Node3D"]
+[node name="OculosDaMesa" type="Node3D"]
 script = ExtResource("1_recompensa")
 colecao = ExtResource("3_colecao")
 
