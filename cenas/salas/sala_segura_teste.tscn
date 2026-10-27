@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_safe_room.tscn" id="r1"]
+[ext_resource type="Script" path="res://scripts/salas/tudo_coletado.gd" id="r2"]
+
+[node name="SalaSeguraTeste" instance=ExtResource("r1")]
+id = "sala_segura_teste"
+
+[node name="PortaSaida" parent="."]
+cena_destino = "res://cenas/salas/sala_teste.tscn"
+porta_destino = "sala_segura_teste"
+
+[node name="TudoColetado" type="Node" parent="." index="0"]
+script = ExtResource("r2")

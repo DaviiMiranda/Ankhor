@@ -1,5 +1,15 @@
 # Registro de decisões
 
+## 2026-10-27 — Safe room na sala de teste, com tudo coletado
+**Decisão:** a `sala_teste` ganhou uma porta no canto direito (no lugar da parede lisa) para uma **safe room de teste** (`cenas/salas/sala_segura_teste.tscn`, herdeira do `modelo_safe_room`). Ao entrar, o nó `TudoColetado` (`scripts/salas/tudo_coletado.gd`) deixa o jogo como se o jogador tivesse pegado tudo:
+- **Mochila:** todos os itens de `dados/itens/` que não são peça de coleção (12, a mochila inteira), os gadgets equipados, cápsulas e pedras no máximo e a lanterna com carga cheia.
+- **Coleções:** todas as peças de todas as coleções (`Colecionaveis`).
+- **Caderno:** todos os documentos, transmissões do rádio e anotações de diálogo, já como lidos (sem avisos na tela). O rádio também marca todas as transmissões como ouvidas.
+- **Fica de fora:** marcas de progresso (`Progresso`), portas destrancadas e diálogos vistos, para a sala de teste não mudar o estado das fases.
+Usar a máquina de salvar dessa sala grava esse estado, e o quarto do visor mostra tudo: as cinco recompensas e o quadro branco cheio.
+**Por quê:** pedido do Davi, para testar o quarto virtual (e o que mais depende de itens) sem jogar o jogo inteiro. Conferido no Godot 4.7.2: 12 itens, 5 coleções de 3 de 3, 24 de 24 documentos e 21 de 21 transmissões; ida e volta da porta funcionam.
+**Afeta:** `cenas/salas/sala_teste.tscn`, `cenas/salas/sala_segura_teste.tscn` e `scripts/salas/tudo_coletado.gd` (novos).
+
 ## 2026-10-26 — Coleções da Diana (jaqueta, no Centro de Convivência) e do Zane (óculos, no Bunker)
 **Decisão:** as duas coleções que faltavam, no mesmo esquema das outras:
 - **Centro de Convivência, "Botões da jaqueta":** três botões de couro marrom-caramelo com aro dourado, na Loja Universitária, na Gráfica e no hall do cinema (as três salas do mezanino opcional). Recompensa: a **jaqueta da Diana** (marrom-caramelo de gola larga, bolsos, punhos, aberta sobre a camiseta listrada, como no visual dela) sobre a colcha da cama do Gabriel.
