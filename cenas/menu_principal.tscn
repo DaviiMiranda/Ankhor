@@ -180,8 +180,18 @@ text = "Fases"
 layout_mode = 2
 text = "Opções"
 
-[node name="BotaoSair" type="Button" parent="Monitor/Menu"]
+[node name="LinhaFinal" type="HBoxContainer" parent="Monitor/Menu"]
 layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="BotaoCreditos" type="Button" parent="Monitor/Menu/LinhaFinal"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Créditos"
+
+[node name="BotaoSair" type="Button" parent="Monitor/Menu/LinhaFinal"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Sair"
 
 [node name="Fases" type="VBoxContainer" parent="Monitor"]
@@ -326,6 +336,73 @@ layout_mode = 2
 text = "Pausar: Esc / P"
 
 [node name="BotaoVoltarControles" type="Button" parent="Monitor/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Voltar"
+
+[node name="Creditos" type="VBoxContainer" parent="Monitor"]
+visible = false
+offset_left = 95.0
+offset_top = 30.0
+offset_right = 228.0
+offset_bottom = 128.0
+theme = SubResource("Theme_tela")
+theme_override_constants/separation = 0
+
+[node name="Titulo" type="Label" parent="Monitor/Creditos"]
+layout_mode = 2
+text = "CRÉDITOS"
+horizontal_alignment = 1
+
+[node name="Rolagem" type="ScrollContainer" parent="Monitor/Creditos"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Lista" type="VBoxContainer" parent="Monitor/Creditos/Rolagem"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="TituloDesenvolvedores" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.85, 1, 1)
+text = "Desenvolvedores"
+
+[node name="DesenvolvedorDavi" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+text = "Davi Miranda"
+
+[node name="DesenvolvedorEmanuel" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+text = "Emanuel Alves"
+
+[node name="DesenvolvedorGuilherme" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+text = "Guilherme Nogueira"
+
+[node name="DesenvolvedorNoah" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+text = "Noah Urano"
+
+[node name="TituloTrilhaSonora" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.85, 1, 1)
+text = "Trilha sonora"
+
+[node name="TrilhaYuri" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+text = "Yuri Kuhl"
+
+[node name="BotaoVoltarCreditos" type="Button" parent="Monitor/Creditos/Rolagem/Lista"]
 layout_mode = 2
 text = "Voltar"
 

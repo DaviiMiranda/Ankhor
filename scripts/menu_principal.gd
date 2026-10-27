@@ -21,7 +21,9 @@ const COR_TESTE := Color(1.0, 0.85, 0.2)
 @onready var botao_novo_jogo: Button = $Monitor/Menu/BotaoNovoJogo
 @onready var botao_continuar: Button = $Monitor/Menu/BotaoContinuar
 @onready var botao_opcoes: Button = $Monitor/Menu/BotaoOpcoes
-@onready var botao_sair: Button = $Monitor/Menu/BotaoSair
+@onready var botao_sair: Button = $Monitor/Menu/LinhaFinal/BotaoSair
+@onready var linha_final: HBoxContainer = $Monitor/Menu/LinhaFinal
+@onready var botao_creditos: Button = $Monitor/Menu/LinhaFinal/BotaoCreditos
 @onready var musica: AudioStreamPlayer = $Musica
 @onready var som_passar: AudioStreamPlayer = $SomPassar
 @onready var som_clique: AudioStreamPlayer = $SomClique
@@ -41,6 +43,10 @@ const COR_TESTE := Color(1.0, 0.85, 0.2)
 @onready var rolagem_controles: ScrollContainer = $Monitor/Controles/Rolagem
 @onready var botoes_controles: VBoxContainer = $Monitor/Controles/Rolagem/Lista
 @onready var botao_voltar_controles: Button = $Monitor/Controles/Rolagem/Lista/BotaoVoltarControles
+@onready var painel_creditos: VBoxContainer = $Monitor/Creditos
+@onready var rolagem_creditos: ScrollContainer = $Monitor/Creditos/Rolagem
+@onready var botoes_creditos: VBoxContainer = $Monitor/Creditos/Rolagem/Lista
+@onready var botao_voltar_creditos: Button = $Monitor/Creditos/Rolagem/Lista/BotaoVoltarCreditos
 @onready var efeito_crt_rect: ColorRect = $Monitor/EfeitoCRT
 
 var _ruido := FastNoiseLite.new()
@@ -53,11 +59,13 @@ func _ready() -> void:
 	botao_fases.pressed.connect(_mostrar_fases.bind(true))
 	botao_continuar.pressed.connect(_ao_apertar_continuar)
 	botao_opcoes.pressed.connect(_ao_apertar_opcoes)
+	botao_creditos.pressed.connect(_mostrar_creditos.bind(true))
 	botao_sair.pressed.connect(_ao_apertar_sair)
 
 	botao_voltar_opcoes.pressed.connect(_mostrar_opcoes.bind(false))
 	botao_controles.pressed.connect(_mostrar_controles.bind(true))
 	botao_voltar_controles.pressed.connect(_mostrar_controles.bind(false))
+	botao_voltar_creditos.pressed.connect(_mostrar_creditos.bind(false))
 
 	botao_tela_cheia.pressed.connect(_ao_alternar_tela_cheia)
 	botao_efeito_crt.pressed.connect(_ao_alternar_efeito_crt)
@@ -75,17 +83,20 @@ func _ready() -> void:
 	lista_fases.hide()
 	painel_opcoes.hide()
 	painel_controles.hide()
+	painel_creditos.hide()
 
 	_ligar_sons(menu)
+	_ligar_sons(linha_final)
 	_ligar_sons(botoes_fases)
 	_ligar_sons(botoes_opcoes)
 	_ligar_sons(botoes_controles)
+	_ligar_sons(botoes_creditos)
 
 	Tela.modo_alterado.connect(func(_tc: bool) -> void: _atualizar_textos_opcoes())
 	Configuracoes.mudou.connect(_ao_mudar_configuracoes)
 	_ao_mudar_configuracoes()
 
-	for rolagem in [rolagem_fases, rolagem_opcoes, rolagem_controles]:
+	for rolagem in [rolagem_fases, rolagem_opcoes, rolagem_controles, rolagem_creditos]:
 		rolagem.get_v_scroll_bar().custom_minimum_size.x = 4.0
 
 	botao_novo_jogo.grab_focus()
@@ -104,7 +115,10 @@ func _process(delta: float) -> void:
 func _unhandled_input(evento: InputEvent) -> void:
 	if not evento.is_action_pressed("ui_cancel"):
 		return
-	if painel_controles.visible:
+	if painel_creditos.visible:
+		_mostrar_creditos(false)
+		get_viewport().set_input_as_handled()
+	elif painel_controles.visible:
 		_mostrar_controles(false)
 		get_viewport().set_input_as_handled()
 	elif painel_opcoes.visible:
@@ -175,6 +189,18 @@ func _mostrar_controles(mostrar: bool) -> void:
 	else:
 		botao_voltar_controles.grab_focus()
 		rolagem_controles.set_deferred("scroll_vertical", 0)
+	set_deferred("_tocar_ao_passar", true)
+
+
+func _mostrar_creditos(mostrar: bool) -> void:
+	menu.visible = not mostrar
+	painel_creditos.visible = mostrar
+	_tocar_ao_passar = false
+	if not mostrar:
+		botao_creditos.grab_focus()
+	else:
+		botao_voltar_creditos.grab_focus()
+		rolagem_creditos.set_deferred("scroll_vertical", 0)
 	set_deferred("_tocar_ao_passar", true)
 
 
