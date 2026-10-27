@@ -379,7 +379,7 @@ text = "Davi Miranda"
 [node name="DesenvolvedorEmanuel" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
 layout_mode = 2
 focus_mode = 2
-text = "Emanuel"
+text = "Emanuel Alves"
 
 [node name="DesenvolvedorGuilherme" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
 layout_mode = 2
