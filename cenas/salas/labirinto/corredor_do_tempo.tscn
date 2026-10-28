@@ -95,7 +95,7 @@ offset_right = 393.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.94, 0.7, 0.3, 1)
 theme_override_styles/normal = SubResource("Placa")
-text = "RELÓGIO"
+text = "FILMES"
 horizontal_alignment = 1
 
 [node name="Placa3" type="Label" parent="Paredes"]
@@ -177,11 +177,11 @@ cena_destino = "res://cenas/salas/labirinto/sala_do_disco.tscn"
 porta_destino = "disco_corredor"
 som_abrir = ExtResource("s_som_porta")
 
-[node name="Porta_relogio" parent="." instance=ExtResource("s_porta")]
+[node name="Porta_filmes" parent="." instance=ExtResource("s_porta")]
 position = Vector2(361, 124)
-id = "corredor_tempo_relogio"
-cena_destino = "res://cenas/salas/labirinto/sala_do_relogio.tscn"
-porta_destino = "relogio_corredor"
+id = "corredor_tempo_filmes"
+cena_destino = "res://cenas/salas/labirinto/sala_dos_filmes.tscn"
+porta_destino = "filmes_corredor"
 som_abrir = ExtResource("s_som_porta")
 
 [node name="Porta_pendulo" parent="." instance=ExtResource("s_porta")]

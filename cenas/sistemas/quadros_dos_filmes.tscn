@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/sistemas/mecanismo_do_tempo.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scripts/sistemas/quadros_dos_filmes.gd" id="2_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/quadro_filme_1.png" id="3_parte1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/quadro_filme_2.png" id="4_parte2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/quadro_filme_3.png" id="5_parte3"]
+
+[node name="QuadrosDosFilmes" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+id = "filmes"
+titulo = "DE VOLTA PARA O FUTURO"
+instrucao = "E: parar o contador no ano de lançamento do filme"
+texto_acao = "Mexer nos quadros"
+quadros = Array[Texture2D]([ExtResource("3_parte1"), ExtResource("4_parte2"), ExtResource("5_parte3")])
