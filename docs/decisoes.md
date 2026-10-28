@@ -1,5 +1,15 @@
 # Registro de decisões
 
+## 2026-10-27 — Diana passa a estudar Direito
+**Decisão:** a Diana deixa de ser estagiária de arquitetura e passa a ser **estudante de Direito**, expressiva e agitada, **sem ligação de trabalho com a obra**.
+- Antes de ser puxada, estava numa **aula chata de Direito**, à noite, no campus ainda em obras, e saiu da sala para escapar do tédio.
+- O lote de material que sumiu sob a responsabilidade dela **deixa de fazer parte da história dela**.
+- Ela mantém o **mapa à mão** das galerias de 1978 (a mecânica das arestas escondidas e a peça dela para a Âncora não mudam): agora ela as conhece porque **cresceu cortando caminho pelo canteiro**.
+- A fala passa a misturar o vocabulário do tribunal ("Protesto!") com drama de novela. O que ela quer: provar à família e à turma que escolher o Direito não foi um erro.
+- Três falas de rádio mudaram de palavra: "Da obra" virou "Do Direito" (`grupo_biblioteca_01`), "minha planta" virou "meu mapa" (`grupo_bloco_01`) e as mudas do pátio passaram a ser do "campus novo" (`grupo_convivencia_01`).
+**Por quê:** pedido do Davi. A ideia de ela ter vindo de uma aula chata e de ser mais ligada ao Direito combina mais com o jeito expressivo e agitado dela.
+**Afeta:** Enredo Principal (tabela das peças da Âncora e linha de 1978), `docs/historia/personagens/diana.md` e `resumo.md`, `docs/README.md`, `assets/sprites/personagens/diana/visual.md` e as três transmissões acima. **Não alterado:** o `Dialogos.docx` (o Davi está editando) e o entendimento antigo de "estagiária" no registro de 2026-10-16, que fica como histórico.
+
 ## 2026-10-27 — Examinar as recompensas das coleções, no quarto virtual
 **Decisão:** no quarto do Gabriel (o visor 3D da sala segura), as cinco recompensas das coleções (farol, disquetes, tricórnio, jaqueta e óculos) podem ser **examinadas**:
 - Olhando para a peça aparece **[E] Examinar: <nome>**. O E leva a câmera até ela (o mesmo deslize do mural e da mesa), a peça sobe 8 cm e o jogador a **gira** com WASD (ou setas) ou com o mouse. Um painel embaixo mostra o nome e a descrição, e uma luz fraca acende só durante o exame. **Esc** afasta a câmera e a peça volta à pose de antes.

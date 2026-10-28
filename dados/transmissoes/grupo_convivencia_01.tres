@@ -6,8 +6,8 @@
 script = ExtResource("1_transmissao")
 id = "grupo_convivencia_01"
 falante = "RÁDIO"
-falas = PackedStringArray("Chhh... Frequência aberta. A Diana quer falar com você e não me deixa em paz.", "Não é verdade! É só... é aquela praça grande? Com árvores?", "Árvores maiores que o prédio. Furando a cúpula.", "Na obra, a gente plantou umas mudas num pátio. Desse tamanhinho. Será que são as mesmas?", "Se forem, cresceram bem.", "Mil anos de rega. Cromado.", "Diana, deixa o menino. Duas Sentinelas, lembra?", "Eu sei! Eu só queria que alguma coisa aqui ainda fosse... nossa.", "Vou passar por baixo delas. Com cuidado.")
+falas = PackedStringArray("Chhh... Frequência aberta. A Diana quer falar com você e não me deixa em paz.", "Não é verdade! É só... é aquela praça grande? Com árvores?", "Árvores maiores que o prédio. Furando a cúpula.", "No campus novo, plantaram umas mudas num pátio. Desse tamanhinho. Será que são as mesmas?", "Se forem, cresceram bem.", "Mil anos de rega. Cromado.", "Diana, deixa o menino. Duas Sentinelas, lembra?", "Eu sei! Eu só queria que alguma coisa aqui ainda fosse... nossa.", "Vou passar por baixo delas. Com cuidado.")
 falantes = PackedStringArray("ZANE (rádio)", "DIANA (rádio)", "GABRIEL (rádio)", "DIANA (rádio)", "GABRIEL (rádio)", "ZANE (rádio)", "CLARICE (rádio)", "DIANA (rádio)", "GABRIEL (rádio)")
 titulo_anotacao = "As árvores da praça"
-anotacao = "A Diana acha que as árvores da praça podem ser as mudas que plantaram no pátio da obra, em 1978. Hoje passam da cúpula.
+anotacao = "A Diana acha que as árvores da praça podem ser as mudas que plantaram no pátio do campus novo, em 1978. Hoje passam da cúpula.
 Servem de cobertura contra as Sentinelas."

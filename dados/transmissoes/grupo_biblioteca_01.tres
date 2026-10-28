@@ -6,7 +6,7 @@
 script = ExtResource("1_transmissao")
 id = "grupo_biblioteca_01"
 falante = "RÁDIO"
-falas = PackedStringArray("Chhh... Clarice! As luzes da Biblioteca acenderam! O Henrique disse que acenderam, todas de uma vez!", "Diana. O botão. Você tá apertando o botão do rádio.", "Ai, meu Deus. Ele ouviu? Ele ouviu tudo?", "Ouvi. Quem é você?", "Diana! Da obra. Quer dizer, de 1978. Você acendeu as luzes? Tá louco? Agora eles te enxergam!", "Ela exagera. Mas não tá errada: com a luz acesa, a Sentinela do salão muda a ronda.", "Ótimo. Acendi a luz pra eles me acharem melhor.", "É o preço. O terminal só liga com energia. Lê o disquete e anda pelas sombras.", "E toma cuidado! Pronto, falei. Soltando o botão. Soltei!")
+falas = PackedStringArray("Chhh... Clarice! As luzes da Biblioteca acenderam! O Henrique disse que acenderam, todas de uma vez!", "Diana. O botão. Você tá apertando o botão do rádio.", "Ai, meu Deus. Ele ouviu? Ele ouviu tudo?", "Ouvi. Quem é você?", "Diana! Do Direito. Quer dizer, de 1978. Você acendeu as luzes? Tá louco? Agora eles te enxergam!", "Ela exagera. Mas não tá errada: com a luz acesa, a Sentinela do salão muda a ronda.", "Ótimo. Acendi a luz pra eles me acharem melhor.", "É o preço. O terminal só liga com energia. Lê o disquete e anda pelas sombras.", "E toma cuidado! Pronto, falei. Soltando o botão. Soltei!")
 falantes = PackedStringArray("DIANA (rádio)", "CLARICE (rádio)", "DIANA (rádio)", "GABRIEL (rádio)", "DIANA (rádio)", "CLARICE (rádio)", "GABRIEL (rádio)", "CLARICE (rádio)", "DIANA (rádio)")
 titulo_anotacao = "Diana, no rádio"
 anotacao = "Uma segunda voz no rádio: a Diana, de 1978, que está com a Clarice. Fala alto e acha que tudo é o fim.
