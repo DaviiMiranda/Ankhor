@@ -21,11 +21,11 @@ Um corredor do subsolo onde quem construiu a Âncora testava a calibração da m
 | Sala | Mecanismo | O que fazer | Acertos | Fica mais difícil a cada acerto |
 |---|---|---|---|---|
 | Disco | Toca-discos | o disco gira com uma faixa verde; `E` quando a faixa passa sob a agulha | 3 | gira 35% mais rápido e a faixa encolhe 25% |
-| Filmes | Três quadros de *De Volta para o Futuro* (partes I, II e III) | embaixo de cada quadro, um visor de anos rola de 1980 a 1995 e volta; `E` quando ele mostra o **ano de lançamento** do filme (1985, 1989, 1990), um quadro por vez. As **etiquetas das fitas VHS**, na mesa da sala, dão os anos (ler custa tempo do relógio) | 3 (um por quadro) | o visor fica 30% mais rápido e recomeça num ano sorteado |
+| Filmes | Três quadros de *De Volta para o Futuro* (partes I, II e III) | as setas escolhem um quadro e `E` o seleciona; depois as setas escolhem um entre **cinco anos** (1985, 1987, 1989, 1990, 1991: três certos e dois falsos) e `E` confirma. `Esc` volta à escolha do quadro. **Errar repete aquele mesmo quadro** (só desconta os 5 s, não zera os já travados); acertar trava o quadro em verde e o cursor vai ao próximo. As **etiquetas das fitas VHS**, na mesa da sala, dão os anos (ler custa tempo do relógio) | 3 (um por quadro) | o ano já usado sai das opções |
 | Pêndulo | Pêndulo | o peso balança; `E` quando ele está dentro da faixa verde do arco | 3 | balança 20% mais rápido, a faixa encolhe 20% e muda de lugar |
 | Anéis | Três anéis concêntricos | cada anel gira numa velocidade e sentido; `E` quando a fenda do anel aceso passa pela trava vermelha. Travado, ele fica verde e acende o próximo | 3 (um por anel) | o próximo anel é menor e mais rápido. Errar destrava todos |
 
-A matemática de cada um (movimento harmônico, diferença de ângulos, contador modular) está em [`../computacao/oscilacao_e_ritmo.md`](../computacao/oscilacao_e_ritmo.md).
+A matemática de cada um (movimento harmônico, diferença de ângulos, arranjos) está em [`../computacao/oscilacao_e_ritmo.md`](../computacao/oscilacao_e_ritmo.md).
 
 ## O relógio e a ansiedade
 
@@ -58,4 +58,4 @@ A matemática de cada um (movimento harmônico, diferença de ângulos, contador
 
 ### Criar outro mecanismo
 
-Estenda `MecanismoDoTempo` e implemente `_preparar()`, `_avancar(delta)`, `_acertou()`, `_ao_acertar()`, `_ao_errar()` e `_desenhar(centro)` (desenho com `desenho.draw_*`, num quadro de 180 × 98). Crie uma cena herdada de `mecanismo_do_tempo.tscn` trocando o script, com um `id` novo, e aumente `MECANISMOS` no relógio.
+Estenda `MecanismoDoTempo` e implemente `_preparar()`, `_avancar(delta)`, `_acertou()`, `_ao_acertar()`, `_ao_errar()` e `_desenhar(centro)` (desenho com `desenho.draw_*`, num quadro de 180 × 98). Opcionais: `_tratar_entrada(evento)` para outras teclas além de `E` e `Esc` (devolve `true` se usou a tecla; os quadros dos filmes usam para as setas), e `_erro_zera_acertos()` devolvendo `false` para um erro não apagar o que já foi acertado. Crie uma cena herdada de `mecanismo_do_tempo.tscn` trocando o script, com um `id` novo, e aumente `MECANISMOS` no relógio.

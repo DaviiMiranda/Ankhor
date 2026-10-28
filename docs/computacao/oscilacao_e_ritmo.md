@@ -1,6 +1,6 @@
-# Oscilação, ângulos e contagem modular — o Corredor do Tempo
+# Oscilação, ângulos e arranjos — o Corredor do Tempo
 
-Os quatro mecanismos do Corredor do Tempo (Labirinto) são problemas de **tempo**: alguma coisa se repete de forma periódica, e o jogador precisa apertar `E` no instante em que ela passa por um alvo. Cada um usa uma ideia de matemática diferente. A mecânica está em [`../mecanicas/corredor_do_tempo.md`](../mecanicas/corredor_do_tempo.md).
+Três dos quatro mecanismos do Corredor do Tempo (Labirinto) são problemas de **tempo**: alguma coisa se move de forma periódica, e o jogador precisa apertar `E` no instante em que ela passa por um alvo. O quarto, os quadros dos filmes, é um problema de **contagem**: dar o ano certo a cada quadro, com o relógio correndo. Cada um usa uma ideia de matemática diferente. A mecânica está em [`../mecanicas/corredor_do_tempo.md`](../mecanicas/corredor_do_tempo.md).
 
 ---
 
@@ -38,18 +38,23 @@ O que torna o pêndulo diferente do disco é a **velocidade variável**: $\dot\t
 
 O peso é desenhado em $\text{pivô} + \ell\,(\cos\alpha, \sin\alpha)$ com $\alpha = \pi/2 - \theta$ (no Godot o eixo $y$ aponta para baixo, então $\pi/2$ é "pendurado").
 
-## 3. Contador modular (quadros de De Volta para o Futuro)
+## 3. Arranjos (quadros de De Volta para o Futuro)
 
-Embaixo de cada quadro, um visor de anos rola como o painel de tempo do carro do filme: 1980, 1981, …, 1995, e volta para 1980. Cada ano fica $\Delta$ segundos no visor. O ano mostrado no instante $t$ é
+São três quadros e cinco anos para escolher: **1985, 1987, 1989, 1990 e 1991**. Três estão certos (os lançamentos das partes I, II e III) e dois são falsos. Cada ano serve a um quadro só.
 
-$$\text{ano}(t) = 1980 + \left(\left\lfloor \frac{t - t_0}{\Delta} \right\rfloor \bmod 16\right)$$
+**Quantas respostas existem?** Dar um ano diferente a cada quadro é um **arranjo simples** de 5 elementos tomados 3 a 3:
 
-A divisão inteira conta quantos "passos" o contador já deu; o **resto da divisão por 16** faz o contador dar a volta, como as horas de um relógio, que voltam a 1 depois de 12 (aritmética modular). No código: `PRIMEIRO_ANO + posmod(floori((_tempo - _inicio) / _segundos_por_ano), 16)`. O `posmod` é o resto que nunca dá negativo.
+$$A(5, 3) = \frac{5!}{(5-3)!} = 5 \cdot 4 \cdot 3 = 60$$
 
-O acerto é exato: $\text{ano}(t) = $ ano de lançamento do filme (1985, 1989 e 1990, um quadro por vez). A janela para apertar é o tempo que esse ano fica no visor, $\Delta$. No pior caso, o jogador espera uma volta inteira, $16\Delta$, até o ano certo aparecer de novo.
+Só uma das 60 está certa. Se o jogo só dissesse "certo" ou "errado" depois de os três anos estarem escolhidos, chutar teria 1 chance em 60.
 
-- **Dificuldade crescente:** a cada acerto, $\Delta$ é dividido por 1,3: de 0,38 s para 0,29 s e 0,22 s. O contador do terceiro quadro dá a volta em 3,6 s.
-- **Sem decorar a posição:** a cada quadro novo (e a cada erro), o contador recomeça num ano sorteado. Para isso, o início é deslocado por um número inteiro de passos: $t_0 = t - k\,\Delta$, com $k$ sorteado entre 0 e 15. Assim $\text{ano}(t) = 1980 + k$ no mesmo instante.
+**Por que a dica por quadro muda tudo:** o painel confere **um quadro por vez**, e o ano que já acertou sai das opções. Assim, o primeiro quadro tem 5 anos possíveis, o segundo 4 e o terceiro 3. A conta deixa de ser um **produto** e vira uma **soma**:
+
+$$\underbrace{5 \cdot 4 \cdot 3 = 60}_{\text{conferir tudo junto}} \qquad \text{contra} \qquad \underbrace{5 + 4 + 3 = 12}_{\text{conferir um por vez}}$$
+
+No pior caso são 12 tentativas, das quais 9 erradas (4 + 3 + 2), ou seja, 45 s de castigo. Chutando sem repetir ano, o ano certo está numa posição qualquer entre as $n$ opções, então a média é $(n+1)/2$ tentativas por quadro: $3 + 2{,}5 + 2 = 7{,}5$ tentativas, umas 4,5 erradas (cerca de 22 s). Quem lê as etiquetas das fitas na mesa acerta de primeira, mas gasta o tempo da leitura. É a mesma ideia de por que uma senha não deve dizer qual letra está errada: conferir as partes separadamente transforma a multiplicação em soma.
+
+No código, `_ano_usado(opcao)` diz se o ano já foi dado a um quadro travado, e o cursor pula esses anos. Ele anda em círculo pelas opções com `posmod(i + passo, 5)`, o resto da divisão que nunca dá negativo: da última opção, a seta para a direita volta à primeira.
 
 ## 4. O relógio do corredor e a ansiedade
 
