@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/sistemas/mecanismo_do_tempo.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scripts/sistemas/telefone_de_disco.gd" id="2_script"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/relogio_tique.wav" id="3_pulso"]
+
+[node name="TelefoneDeDisco" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+id = "telefone"
+titulo = "TELEFONE"
+instrucao = "Lados: escolher o número     E: discar"
+texto_acao = "Usar o telefone"
+
+[node name="SomPulso" type="AudioStreamPlayer" parent="Tela"]
+stream = ExtResource("3_pulso")
+volume_db = -6.0
+pitch_scale = 2.2
+bus = &"Efeitos"

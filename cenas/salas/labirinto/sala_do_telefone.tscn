@@ -1,0 +1,89 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r_modelo"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/pilar_bunker.tscn" id="p_pilar"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/labirinto/chao/taco.tscn" id="c_chao"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="s_porta"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_blindada.wav" id="s_som_porta"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/relogio_do_corredor.tscn" id="s_relogio"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/telefone_de_disco.tscn" id="s_mecanismo"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/labirinto/paredes/telefone_porta.tscn" id="p_0"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/labirinto/paredes/telefone_listas.tscn" id="p_1"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/labirinto/paredes/telefone_selo.tscn" id="p_2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/labirinto/paredes/telefone_lambri.tscn" id="p_3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/labirinto/objetos/mesa_telefone.tscn" id="o_0"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/labirinto/objetos/orelhao.tscn" id="o_1"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="l_0"]
+[ext_resource type="PackedScene" path="res://cenas/itens/documento_no_mundo.tscn" id="d_selo"]
+[ext_resource type="Resource" path="res://dados/documentos/selo_centenario_telefone.tres" id="d_documento"]
+
+[node name="SalaDoTelefone" instance=ExtResource("r_modelo")]
+id = "labirinto_sala_do_telefone"
+largura = 320
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("p_0")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("p_1")]
+position = Vector2(80, 0)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("p_2")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("p_3")]
+position = Vector2(240, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("p_pilar")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("p_pilar")]
+position = Vector2(304, 0)
+
+[node name="Chao1" parent="Chao" instance=ExtResource("c_chao")]
+position = Vector2(0, 0)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("c_chao")]
+position = Vector2(128, 0)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("c_chao")]
+position = Vector2(256, 0)
+
+[node name="MesaTelefone" parent="Objetos" instance=ExtResource("o_0")]
+position = Vector2(130, 142)
+
+[node name="Orelhao" parent="Objetos" instance=ExtResource("o_1")]
+position = Vector2(268, 142)
+
+[node name="Mecanismo" parent="Objetos" instance=ExtResource("s_mecanismo")]
+position = Vector2(130, 154)
+
+[node name="Selo" parent="Objetos" instance=ExtResource("d_selo")]
+position = Vector2(200, 124)
+texto_acao = "Olhar o selo"
+documento = ExtResource("d_documento")
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("l_0")]
+position = Vector2(130, 100)
+energy = 0.7
+
+[node name="Luz2" parent="Luzes" instance=ExtResource("l_0")]
+position = Vector2(200, 70)
+energy = 0.4
+color = Color(1, 0.8, 0.5, 1)
+
+[node name="Luz3" parent="Luzes" instance=ExtResource("l_0")]
+position = Vector2(268, 96)
+energy = 0.55
+color = Color(1, 0.75, 0.45, 1)
+
+[node name="Escuridao" parent="."]
+color = Color(0.3, 0.24, 0.18, 1)
+
+[node name="PortaCorredor" parent="." instance=ExtResource("s_porta")]
+position = Vector2(41, 124)
+id = "telefone_corredor"
+cena_destino = "res://cenas/salas/labirinto/corredor_do_tempo.tscn"
+porta_destino = "corredor_tempo_telefone"
+som_abrir = ExtResource("s_som_porta")
+
+[node name="RelogioDoCorredor" parent="." instance=ExtResource("s_relogio")]

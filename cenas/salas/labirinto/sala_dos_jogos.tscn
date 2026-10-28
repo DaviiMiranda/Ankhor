@@ -1,0 +1,92 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r_modelo"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/pilar_bunker.tscn" id="p_pilar"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/labirinto/chao/carpete_fliperama.tscn" id="c_chao"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="s_porta"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_blindada.wav" id="s_som_porta"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/relogio_do_corredor.tscn" id="s_relogio"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/genius_dos_jogos.tscn" id="s_mecanismo"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/labirinto/paredes/jogos_porta.tscn" id="p_0"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/labirinto/paredes/jogos_neon.tscn" id="p_1"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/labirinto/paredes/jogos_cartaz.tscn" id="p_2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/labirinto/objetos/mesa_genius.tscn" id="o_0"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/fliperama.tscn" id="o_1"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/praca/objetos/fliperama.tscn" id="o_2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="l_0"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="l_1"]
+
+[node name="SalaDosJogos" instance=ExtResource("r_modelo")]
+id = "labirinto_sala_dos_jogos"
+largura = 320
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("p_0")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("p_1")]
+position = Vector2(80, 0)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("p_2")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("p_1")]
+position = Vector2(240, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("p_pilar")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("p_pilar")]
+position = Vector2(304, 0)
+
+[node name="Chao1" parent="Chao" instance=ExtResource("c_chao")]
+position = Vector2(0, 0)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("c_chao")]
+position = Vector2(128, 0)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("c_chao")]
+position = Vector2(256, 0)
+
+[node name="MesaGenius" parent="Objetos" instance=ExtResource("o_0")]
+position = Vector2(160, 146)
+
+[node name="Fliperama1" parent="Objetos" instance=ExtResource("o_1")]
+position = Vector2(244, 136)
+
+[node name="Fliperama2" parent="Objetos" instance=ExtResource("o_2")]
+position = Vector2(284, 136)
+
+[node name="Mecanismo" parent="Objetos" instance=ExtResource("s_mecanismo")]
+position = Vector2(160, 158)
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("l_0")]
+position = Vector2(120, 30)
+energy = 0.7
+color = Color(1, 0.35, 0.8, 1)
+
+[node name="Luz2" parent="Luzes" instance=ExtResource("l_0")]
+position = Vector2(240, 96)
+energy = 0.6
+color = Color(0.3, 0.9, 1, 1)
+
+[node name="Luz3" parent="Luzes" instance=ExtResource("l_1")]
+position = Vector2(264, 110)
+energy = 0.5
+color = Color(0.7, 0.5, 1, 1)
+
+[node name="Luz4" parent="Luzes" instance=ExtResource("l_1")]
+position = Vector2(160, 118)
+energy = 0.7
+color = Color(1, 0.55, 0.9, 1)
+
+[node name="Escuridao" parent="."]
+color = Color(0.16, 0.12, 0.22, 1)
+
+[node name="PortaCorredor" parent="." instance=ExtResource("s_porta")]
+position = Vector2(41, 124)
+id = "jogos_corredor"
+cena_destino = "res://cenas/salas/labirinto/corredor_do_tempo.tscn"
+porta_destino = "corredor_tempo_jogos"
+som_abrir = ExtResource("s_som_porta")
+
+[node name="RelogioDoCorredor" parent="." instance=ExtResource("s_relogio")]

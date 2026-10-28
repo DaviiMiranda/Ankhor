@@ -85,7 +85,7 @@ offset_right = 233.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.94, 0.7, 0.3, 1)
 theme_override_styles/normal = SubResource("Placa")
-text = "DISCO"
+text = "JOGOS"
 horizontal_alignment = 1
 
 [node name="Placa2" type="Label" parent="Paredes"]
@@ -105,7 +105,7 @@ offset_right = 553.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.94, 0.7, 0.3, 1)
 theme_override_styles/normal = SubResource("Placa")
-text = "PÊNDULO"
+text = "MICROS"
 horizontal_alignment = 1
 
 [node name="Placa4" type="Label" parent="Paredes"]
@@ -115,7 +115,7 @@ offset_right = 713.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.94, 0.7, 0.3, 1)
 theme_override_styles/normal = SubResource("Placa")
-text = "ANÉIS"
+text = "TELEFONE"
 horizontal_alignment = 1
 
 [node name="Chao1" parent="Chao" instance=ExtResource("c_chao")]
@@ -170,11 +170,11 @@ porta_destino = "labirinto_corredor_tempo"
 aviso_bloqueada = "Trancada. Só abre quando o relógio parar."
 som_abrir = ExtResource("s_som_porta")
 
-[node name="Porta_disco" parent="." instance=ExtResource("s_porta")]
+[node name="Porta_jogos" parent="." instance=ExtResource("s_porta")]
 position = Vector2(201, 124)
-id = "corredor_tempo_disco"
-cena_destino = "res://cenas/salas/labirinto/sala_do_disco.tscn"
-porta_destino = "disco_corredor"
+id = "corredor_tempo_jogos"
+cena_destino = "res://cenas/salas/labirinto/sala_dos_jogos.tscn"
+porta_destino = "jogos_corredor"
 som_abrir = ExtResource("s_som_porta")
 
 [node name="Porta_filmes" parent="." instance=ExtResource("s_porta")]
@@ -184,18 +184,18 @@ cena_destino = "res://cenas/salas/labirinto/sala_dos_filmes.tscn"
 porta_destino = "filmes_corredor"
 som_abrir = ExtResource("s_som_porta")
 
-[node name="Porta_pendulo" parent="." instance=ExtResource("s_porta")]
+[node name="Porta_micros" parent="." instance=ExtResource("s_porta")]
 position = Vector2(521, 124)
-id = "corredor_tempo_pendulo"
-cena_destino = "res://cenas/salas/labirinto/sala_do_pendulo.tscn"
-porta_destino = "pendulo_corredor"
+id = "corredor_tempo_micros"
+cena_destino = "res://cenas/salas/labirinto/sala_dos_micros.tscn"
+porta_destino = "micros_corredor"
 som_abrir = ExtResource("s_som_porta")
 
-[node name="Porta_aneis" parent="." instance=ExtResource("s_porta")]
+[node name="Porta_telefone" parent="." instance=ExtResource("s_porta")]
 position = Vector2(681, 124)
-id = "corredor_tempo_aneis"
-cena_destino = "res://cenas/salas/labirinto/sala_dos_aneis.tscn"
-porta_destino = "aneis_corredor"
+id = "corredor_tempo_telefone"
+cena_destino = "res://cenas/salas/labirinto/sala_do_telefone.tscn"
+porta_destino = "telefone_corredor"
 som_abrir = ExtResource("s_som_porta")
 
 [node name="Zumbido" type="AudioStreamPlayer" parent="."]
