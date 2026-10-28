@@ -3,7 +3,7 @@
 	"inicio": "abertura",
 	"anotacao": {
 		"titulo": "Zane, na oficina do Labirinto",
-		"texto": "O Zane montou uma oficina no canto do Labirinto, cheia de peças e telas holográficas.\n\nA saída do subsolo está lacrada pelo sistema, e o bunker do Henrique também: a mesma trava lê três nós de controle espalhados pelo labirinto, em salões com uma entrada só. O Zane não consegue invadir de longe: a rede do subsolo é fechada.\n\nO Zane desconfia do Henrique. Diz que ele está trancado no bunker \"consertando tudo\" e nunca mostrou nada, e que tudo o que o grupo sabe passa por ele.\n\nEle me deu o notebook dele. Chego perto do terminal de cada nó e invado. Nos nós o notebook não gasta bateria.\n\nQuando os três caírem, volto ao Zane para ele mostrar por onde sair. Os robôs patrulham o labirinto inteiro: a Sentinela vê longe, o Rastreador ouve tudo."
+		"texto": "O Zane montou uma oficina no canto do Labirinto, cheia de peças e telas holográficas.\n\nA saída do subsolo está lacrada pelo sistema, e o bunker do Henrique também: a mesma trava lê três nós de controle espalhados pelo labirinto, em salões com uma entrada só. O Zane não consegue invadir de longe: a rede do subsolo é fechada.\n\nO Zane desconfia do Henrique. Diz que ele está trancado no bunker \"consertando tudo\" e nunca mostrou nada, e que tudo o que o grupo sabe passa por ele.\n\nEle me deu o notebook dele. Chego perto do terminal de cada nó e invado. Nos nós o notebook não gasta bateria.\n\nO Zane falou de duas coisas fora do mapa: uma parede no corredor de cima que esquenta como se tivesse gente atrás (apontar a lanterna para ela) e uma porta âmbar entre os nós, uma sala de teste opcional, com cronômetro.\n\nQuando os três caírem, volto ao Zane para ele mostrar por onde sair. Os robôs patrulham o labirinto inteiro: a Sentinela vê longe, o Rastreador ouve tudo."
 	},
 	"trechos": {
 		"abertura": {
@@ -170,6 +170,36 @@
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_confiante",
 					"texto": "Quando o terceiro cair, volta aqui: eu te mostro por onde sair. E não é pela porta que você tá pensando."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "Ah, e duas coisas que não batem com o meu mapa. Uma parede no corredor de cima esquenta toda noite, como se tivesse gente do outro lado."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "E se for robô?"
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Robô é frio. Aquilo é quente que nem gente. Quando passar por lá, aponta a lanterna pra parede. Luz mostra o que o concreto esconde."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_empolgado",
+					"texto": "A outra é uma porta com luz âmbar, no meio do caminho entre os nós. Não dá em nó nenhum. O pouco que eu leio do sistema diz: sala de teste, mecanismo antigo e um cronômetro ligado."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Puzzle contra o relógio num labirinto cheio de robô. Adoro."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Opcional! Mas ninguém monta sala de teste à toa. Quem testou alguma coisa ali deixou rastro. Se der tempo, vai."
 				}
 			]
 		}

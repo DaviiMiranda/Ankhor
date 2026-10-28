@@ -24,6 +24,10 @@
 					"vai_para": "henrique"
 				},
 				{
+					"texto": "E aquelas duas salas?",
+					"vai_para": "salas"
+				},
+				{
 					"texto": "Até mais, Zane.",
 					"vai_para": "tchau"
 				}
@@ -89,6 +93,21 @@
 			],
 			"vai_para": "oficina_menu"
 		},
+		"salas": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "A parede do corredor de cima continua quente. Aponta a lanterna pra ela quando passar: luz mostra o que o concreto esconde."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "E a porta âmbar, entre os nós, é a sala de teste com cronômetro. Opcional. Só entra com tempo e cabeça fresca."
+				}
+			],
+			"vai_para": "oficina_menu"
+		},
 		"oficina_menu": {
 			"falas": [],
 			"escolhas": [
@@ -103,6 +122,10 @@
 				{
 					"texto": "Por que desconfiar do Henrique?",
 					"vai_para": "henrique"
+				},
+				{
+					"texto": "E aquelas duas salas?",
+					"vai_para": "salas"
 				},
 				{
 					"texto": "Até mais, Zane.",
