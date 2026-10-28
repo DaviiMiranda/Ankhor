@@ -1,6 +1,6 @@
-# Oscilação, ângulos e ritmo — o Corredor do Tempo
+# Oscilação, ângulos e contagem modular — o Corredor do Tempo
 
-Os quatro mecanismos do Corredor do Tempo (Labirinto) são problemas de **tempo**: alguma coisa se move de forma periódica, e o jogador precisa apertar `E` no instante em que ela passa por um alvo. Cada um usa uma ideia de matemática diferente. A mecânica está em [`../mecanicas/corredor_do_tempo.md`](../mecanicas/corredor_do_tempo.md).
+Os quatro mecanismos do Corredor do Tempo (Labirinto) são problemas de **tempo**: alguma coisa se repete de forma periódica, e o jogador precisa apertar `E` no instante em que ela passa por um alvo. Cada um usa uma ideia de matemática diferente. A mecânica está em [`../mecanicas/corredor_do_tempo.md`](../mecanicas/corredor_do_tempo.md).
 
 ---
 
@@ -38,19 +38,18 @@ O que torna o pêndulo diferente do disco é a **velocidade variável**: $\dot\t
 
 O peso é desenhado em $\text{pivô} + \ell\,(\cos\alpha, \sin\alpha)$ com $\alpha = \pi/2 - \theta$ (no Godot o eixo $y$ aponta para baixo, então $\pi/2$ é "pendurado").
 
-## 3. Fase de um ritmo (relógio de ponteiros)
+## 3. Contador modular (quadros de De Volta para o Futuro)
 
-O relógio bate com período $T$. A posição no ritmo é a **fase** $f = (t - t_0)/T$: a parte inteira é o número da batida, a parte fracionária é quanto falta para a próxima. Uma tecla no instante $t$ acerta se estiver perto da batida mais próxima:
+Embaixo de cada quadro, um visor de anos rola como o painel de tempo do carro do filme: 1980, 1981, …, 1995, e volta para 1980. Cada ano fica $\Delta$ segundos no visor. O ano mostrado no instante $t$ é
 
-$$|\,f - \operatorname{round}(f)\,| \cdot T \le 0{,}12\ \text{s}$$
+$$\text{ano}(t) = 1980 + \left(\left\lfloor \frac{t - t_0}{\Delta} \right\rfloor \bmod 16\right)$$
 
-e se essa batida ainda não foi usada (não vale apertar duas vezes na mesma).
+A divisão inteira conta quantos "passos" o contador já deu; o **resto da divisão por 16** faz o contador dar a volta, como as horas de um relógio, que voltam a 1 depois de 12 (aritmética modular). No código: `PRIMEIRO_ANO + posmod(floori((_tempo - _inicio) / _segundos_por_ano), 16)`. O `posmod` é o resto que nunca dá negativo.
 
-**Mudar o andamento sem dar um salto:** a cada acerto o período encolhe ($T' = 0{,}93\,T$). Se só trocasse $T$, a fase mudaria de repente e a próxima batida "pularia". Para manter a fase no mesmo valor $f$, o início do ritmo é recalculado:
+O acerto é exato: $\text{ano}(t) = $ ano de lançamento do filme (1985, 1989 e 1990, um quadro por vez). A janela para apertar é o tempo que esse ano fica no visor, $\Delta$. No pior caso, o jogador espera uma volta inteira, $16\Delta$, até o ano certo aparecer de novo.
 
-$$t_0' = t - f\,T'$$
-
-Assim $f' = (t - t_0')/T' = f$: o ritmo acelera a partir do ponto em que está, como um músico que apressa o andamento.
+- **Dificuldade crescente:** a cada acerto, $\Delta$ é dividido por 1,3: de 0,38 s para 0,29 s e 0,22 s. O contador do terceiro quadro dá a volta em 3,6 s.
+- **Sem decorar a posição:** a cada quadro novo (e a cada erro), o contador recomeça num ano sorteado. Para isso, o início é deslocado por um número inteiro de passos: $t_0 = t - k\,\Delta$, com $k$ sorteado entre 0 e 15. Assim $\text{ano}(t) = 1980 + k$ no mesmo instante.
 
 ## 4. O relógio do corredor e a ansiedade
 
