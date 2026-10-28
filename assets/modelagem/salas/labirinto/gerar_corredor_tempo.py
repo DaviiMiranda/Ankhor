@@ -1,13 +1,11 @@
-# gerar_corredor_tempo.py — gera os objetos do Corredor do Tempo que ainda
-# não existiam no jogo (o resto reaproveita a vitrola, o relógio de pêndulo
-# e as paredes da sala dos anos 80 do Bunker).
+# gerar_corredor_tempo.py — gera os três quadros da sala dos filmes do
+# Corredor do Tempo (as paredes da sala são as da sala dos anos 80 do Bunker;
+# as outras salinhas saem de gerar_salas_da_epoca.py).
 #
 # Como rodar (Python 3 + numpy):
 #   python assets/modelagem/salas/labirinto/gerar_corredor_tempo.py
 #
 # O que sai, em assets/sprites/cenario/objetos/:
-#   maquina_aneis.png    36 x 44: um gabinete de metal com três anéis
-#                        concêntricos no painel e a trava vermelha em cima
 #   quadro_filme_1.png   22 x 30: quadro da coleção do Carlos, De Volta para o
 #   quadro_filme_2.png   Futuro partes I, II e III. Desenhos próprios (não são
 #   quadro_filme_3.png   os cartazes): I, a torre do relógio com o raio e o
@@ -19,10 +17,6 @@
 # Mesma paleta e ferramentas (Imagem, RAMPAS, pontilhado de Bayer) do
 # gerar_biblioteca.py.
 #
-# - ANÉIS: cada anel é a coroa r_dentro <= r <= r_fora, com r a distância
-#   ao centro (hypot). A fenda é a fatia em que o ângulo atan2(dy, dx) fica
-#   a menos de meia largura do ângulo da fenda; a diferença de ângulos é
-#   tirada pelo arco tangente de (sen, cos) para dar a volta certa em ±pi.
 # - CÉUS DOS QUADROS: degradê vertical, o valor da rampa caindo com y
 #   (0,75 - 0,6 · y/altura); o pontilhado de Bayer do pintar() faz a
 #   transição entre as cores sem faixas.
@@ -32,7 +26,6 @@
 import importlib.util
 import os
 
-import numpy as np
 
 PASTA_SCRIPT = os.path.dirname(os.path.abspath(__file__))
 PASTA_PROJETO = os.path.normpath(os.path.join(PASTA_SCRIPT, "..", "..", "..", ".."))
@@ -43,11 +36,9 @@ _spec = importlib.util.spec_from_file_location(
     os.path.join(PASTA_PROJETO, "assets", "modelagem", "salas", "biblioteca", "gerar_biblioteca.py"))
 bib = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(bib)
-Imagem, RAMPAS = bib.Imagem, bib.RAMPAS
+Imagem = bib.Imagem
 
-LARANJA = bib.hexa("#2a1206", "#5a2a0c", "#9a4a14", "#d8742a", "#f2a24e")
 CREME = bib.hexa("#4a4436", "#8a8268", "#c8bea0", "#ece2c6")
-VERMELHO = bib.hexa("#1e0a0a", "#4a1212", "#7e1c1a", "#c0392b")
 NOITE = bib.hexa("#07091a", "#0f1430", "#1a2250", "#2c3874")
 ANOITECER = bib.hexa("#1a0a24", "#3a1248", "#6a1e6a", "#b0367e", "#f06aa0")
 POR_DO_SOL = bib.hexa("#3a1408", "#7a2c0c", "#c2541a", "#ec8a2e", "#f8c46a")
@@ -59,27 +50,6 @@ SOMBRA = bib.hexa("#120a10")[0]
 
 LARGURA_QUADRO, ALTURA_QUADRO = 22, 30
 FAIXA = 25
-
-
-def maquina_aneis():
-    img = Imagem(36, 44)
-    X, Y = img.X, img.Y
-    img.pintar(img.ret(2, 6, 34, 44), "metal", 0.42 - 0.2 * (Y / 44))
-    img.pintar(img.ret(2, 6, 34, 7), "metal", 0.7)
-    img.pintar(img.ret(4, 40, 32, 44), "metal", 0.12)
-    cx, cy = 18.0, 22.0
-    r = np.hypot(X + 0.5 - cx, Y + 0.5 - cy)
-    img.pintar(r <= 13.5, "metal", 0.06)
-    angulo = np.arctan2(Y + 0.5 - cy, X + 0.5 - cx)
-    for (dentro, fora), fenda, valor in (((10.5, 12.5), 0.6, 0.65), ((7.0, 9.0), 2.4, 0.55), ((3.5, 5.5), -1.9, 0.6)):
-        diferenca = np.abs(np.arctan2(np.sin(angulo - fenda), np.cos(angulo - fenda)))
-        coroa = (r >= dentro) & (r <= fora) & (diferenca > 0.35)
-        img.pintar(coroa, LARANJA, valor)
-    img.cor(img.ret(16, 2, 20, 8), VERMELHO[3])
-    img.cor(img.ret(17, 8, 19, 10), VERMELHO[2])
-    img.cor(img.ret(6, 36, 9, 38), bib.hexa("#7cf09a")[0])
-    img.cor(img.ret(27, 36, 30, 38), VERMELHO[3])
-    return img
 
 
 def moldura(img, ceu):
@@ -144,8 +114,7 @@ def quadro_parte_3():
 
 
 def main():
-    print("Gerando os objetos do Corredor do Tempo")
-    maquina_aneis().salvar("maquina_aneis.png", PASTA_OBJETOS)
+    print("Gerando os quadros da sala dos filmes")
     for parte, desenho in enumerate((quadro_parte_1, quadro_parte_2, quadro_parte_3), start=1):
         img = desenho()
         numero_da_parte(img, parte)

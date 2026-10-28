@@ -12,6 +12,8 @@
 #   tempo_alinhado.wav   1,2 s: duas notas subindo, o mecanismo travou no lugar
 #   tempo_trava.wav      0,6 s: a porta do corredor trancando atrás do Gabriel
 #   tempo_vencido.wav    2,0 s: os quatro sinos juntos, um acorde maior
+#   genius_verde.wav, genius_vermelho.wav, genius_amarelo.wav, genius_azul.wav
+#                        0,42 s cada: os quatro tons do Genius (sala dos jogos)
 #
 # Ferramentas (envelope, filtro pela FFT, reverberação, salvar) do
 # gerar_efeitos_gabriel.py e o metal inarmônico do gerar_efeitos_labirinto.py.
@@ -26,6 +28,9 @@
 #   com harmônicos ímpares (onda quase quadrada, tanh de uma senoide).
 # - ACORDE: Dó, Mi, Sol e Dó de cima (razões 1; 5/4; 3/2; 2) — a afinação
 #   justa, com os quatro sinos entrando um depois do outro a cada 90 ms.
+# - GENIUS: as frequências do brinquedo original (415, 310, 252 e 209 Hz),
+#   com onda quase quadrada (tanh de 2,5 · seno), que dá o timbre de "bipe"
+#   eletrônico dos anos 80, com ataque rápido e corte suave no fim.
 
 import importlib.util
 import os
@@ -111,6 +116,17 @@ def tempo_vencido():
     return normalizar(sala(som, segundos=0.8, mistura=0.25), -5.0)
 
 
+TONS_GENIUS = {"verde": 415.3, "vermelho": 311.1, "amarelo": 252.0, "azul": 209.0}
+
+
+def genius(f):
+    t = tempo(0.42)
+    corpo = np.tanh(2.5 * np.sin(2 * np.pi * f * t))
+    fim = np.clip((0.42 - t) / 0.06, 0.0, 1.0)
+    ataque = np.clip(t / 0.005, 0.0, 1.0)
+    return normalizar(corpo * fim * ataque, -9.0)
+
+
 def main():
     print("[efeitos do Corredor do Tempo]")
     salvar(os.path.join(PASTA_OBJETOS, "relogio_tique.wav"), relogio_tique())
@@ -119,6 +135,8 @@ def main():
     salvar(os.path.join(PASTA_OBJETOS, "tempo_alinhado.wav"), tempo_alinhado())
     salvar(os.path.join(PASTA_OBJETOS, "tempo_trava.wav"), tempo_trava())
     salvar(os.path.join(PASTA_OBJETOS, "tempo_vencido.wav"), tempo_vencido())
+    for cor, f in TONS_GENIUS.items():
+        salvar(os.path.join(PASTA_OBJETOS, f"genius_{cor}.wav"), genius(f))
 
 
 if __name__ == "__main__":

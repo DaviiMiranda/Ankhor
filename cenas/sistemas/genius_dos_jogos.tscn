@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/sistemas/mecanismo_do_tempo.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scripts/sistemas/genius_dos_jogos.gd" id="2_script"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/genius_verde.wav" id="3_verde"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/genius_vermelho.wav" id="4_vermelho"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/genius_azul.wav" id="5_azul"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/genius_amarelo.wav" id="6_amarelo"]
+
+[node name="GeniusDosJogos" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+id = "jogos"
+titulo = "GENIUS"
+instrucao = "Setas: repetir a sequência de cores"
+texto_acao = "Jogar Genius"
+sons = Array[AudioStream]([ExtResource("3_verde"), ExtResource("4_vermelho"), ExtResource("5_azul"), ExtResource("6_amarelo")])
+
+[node name="SomCor" type="AudioStreamPlayer" parent="Tela"]
+bus = &"Efeitos"

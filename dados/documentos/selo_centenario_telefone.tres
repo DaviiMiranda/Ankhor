@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "selo_centenario_telefone"
+titulo = "Selo emoldurado"
+autor = ""
+papel = "carta"
+paginas = PackedStringArray("Um selo dos Correios numa moldura dourada: um telefone antigo, de madeira, com o fone pendurado do lado.
+
+Embaixo, em letras pequenas: CENTENÁRIO DO TELEFONE.
+
+O carimbo por cima diz 1976.")
+anotacao = "Um selo do centenário do telefone, carimbado em 1976.
+
+Cem anos antes."
