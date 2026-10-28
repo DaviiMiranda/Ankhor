@@ -3,8 +3,6 @@
 [ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r_modelo"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/bunker/salas_antigas/paredes/antiga_80_porta.tscn" id="p_porta"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/bunker/salas_antigas/paredes/antiga_80_papel.tscn" id="p_papel"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/salas_antigas/paredes/antiga_80_quadro.tscn" id="p_quadro"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/salas_antigas/paredes/antiga_80_estante.tscn" id="p_estante"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/pilar_bunker.tscn" id="p_pilar"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/bunker/salas_antigas/chao/carpete.tscn" id="c_carpete"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="l_lampada"]
@@ -12,13 +10,17 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="s_porta"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_blindada.wav" id="s_som_porta"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/relogio_do_corredor.tscn" id="s_relogio"]
-[ext_resource type="PackedScene" path="res://cenas/sistemas/relogio_de_ponteiros.tscn" id="s_mecanismo"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/mesa_anos80.tscn" id="o_0"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/salas_antigas/objetos/abajur_80.tscn" id="o_1"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/relogio_parede.tscn" id="o_relogio_parede"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/quadros_dos_filmes.tscn" id="s_mecanismo"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/quadro_filme_1.png" id="q_parte1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/quadro_filme_2.png" id="q_parte2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/quadro_filme_3.png" id="q_parte3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/mesa_anos80.tscn" id="o_mesa"]
+[ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="o_papel"]
+[ext_resource type="Resource" path="res://dados/documentos/etiquetas_fitas_carlos.tres" id="o_documento"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_bilhete.png" id="o_textura"]
 
-[node name="SalaDoRelogio" instance=ExtResource("r_modelo")]
-id = "labirinto_sala_do_relogio"
+[node name="SalaDosFilmes" instance=ExtResource("r_modelo")]
+id = "labirinto_sala_dos_filmes"
 largura = 320
 
 [node name="Parede01" parent="Paredes" instance=ExtResource("p_porta")]
@@ -27,7 +29,7 @@ position = Vector2(0, 0)
 [node name="Parede02" parent="Paredes" instance=ExtResource("p_papel")]
 position = Vector2(80, 0)
 
-[node name="Parede03" parent="Paredes" instance=ExtResource("p_estante")]
+[node name="Parede03" parent="Paredes" instance=ExtResource("p_papel")]
 position = Vector2(160, 0)
 
 [node name="Parede04" parent="Paredes" instance=ExtResource("p_papel")]
@@ -39,8 +41,20 @@ position = Vector2(0, 0)
 [node name="PilarDireita" parent="Paredes" instance=ExtResource("p_pilar")]
 position = Vector2(304, 0)
 
-[node name="RelogioParede" parent="Paredes" instance=ExtResource("o_relogio_parede")]
-position = Vector2(109, 44)
+[node name="QuadroParte1" type="Sprite2D" parent="Paredes"]
+position = Vector2(112, 36)
+texture = ExtResource("q_parte1")
+centered = false
+
+[node name="QuadroParte2" type="Sprite2D" parent="Paredes"]
+position = Vector2(150, 36)
+texture = ExtResource("q_parte2")
+centered = false
+
+[node name="QuadroParte3" type="Sprite2D" parent="Paredes"]
+position = Vector2(188, 36)
+texture = ExtResource("q_parte3")
+centered = false
 
 [node name="Chao1" parent="Chao" instance=ExtResource("c_carpete")]
 position = Vector2(0, 0)
@@ -51,21 +65,24 @@ position = Vector2(128, 0)
 [node name="Chao3" parent="Chao" instance=ExtResource("c_carpete")]
 position = Vector2(256, 0)
 
-[node name="Mesa" parent="Objetos" instance=ExtResource("o_0")]
-position = Vector2(200, 140)
+[node name="Mesa" parent="Objetos" instance=ExtResource("o_mesa")]
+position = Vector2(262, 134)
 
-[node name="Abajur" parent="Objetos" instance=ExtResource("o_1")]
-position = Vector2(270, 140)
+[node name="EtiquetasFitas" parent="Objetos" instance=ExtResource("o_papel")]
+position = Vector2(262, 140)
+texto_acao = "Ler as etiquetas das fitas"
+documento = ExtResource("o_documento")
+textura = ExtResource("o_textura")
 
 [node name="Mecanismo" parent="Objetos" instance=ExtResource("s_mecanismo")]
-position = Vector2(200, 156)
+position = Vector2(161, 152)
 
 [node name="Luz1" parent="Luzes" instance=ExtResource("l_lampada")]
-position = Vector2(270, 110)
+position = Vector2(161, 90)
 energy = 0.6
 
 [node name="Luz2" parent="Luzes" instance=ExtResource("l_fria")]
-position = Vector2(200, 50)
+position = Vector2(262, 50)
 energy = 0.45
 color = Color(1, 0.75, 0.45, 1)
 
@@ -74,9 +91,9 @@ color = Color(0.3, 0.26, 0.24, 1)
 
 [node name="PortaCorredor" parent="." instance=ExtResource("s_porta")]
 position = Vector2(41, 124)
-id = "relogio_corredor"
+id = "filmes_corredor"
 cena_destino = "res://cenas/salas/labirinto/corredor_do_tempo.tscn"
-porta_destino = "corredor_tempo_relogio"
+porta_destino = "corredor_tempo_filmes"
 som_abrir = ExtResource("s_som_porta")
 
 [node name="RelogioDoCorredor" parent="." instance=ExtResource("s_relogio")]

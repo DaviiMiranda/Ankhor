@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caale1fs5fkep"
-path="res://.godot/imported/relogio_parede.png-191d6344c45001057966a31536d7ddee.ctex"
+uid="uid://dw0krpq5rfpow"
+path="res://.godot/imported/quadro_filme_3.png-c65b854f9aad81d5847720f5248fecdb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/cenario/objetos/relogio_parede.png"
-dest_files=["res://.godot/imported/relogio_parede.png-191d6344c45001057966a31536d7ddee.ctex"]
+source_file="res://assets/sprites/cenario/objetos/quadro_filme_3.png"
+dest_files=["res://.godot/imported/quadro_filme_3.png-c65b854f9aad81d5847720f5248fecdb.ctex"]
 
 [params]
 

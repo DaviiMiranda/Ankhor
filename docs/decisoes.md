@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-10-28 — No Corredor do Tempo, os quadros de De Volta para o Futuro substituem o relógio de ponteiros
+**Decisão:** a sala do relógio do Corredor do Tempo (Labirinto) vira a **sala dos filmes**. Na parede há três quadros da coleção do Carlos, *De Volta para o Futuro* partes I, II e III (desenhos próprios em pixel art, não os cartazes: a torre do relógio com o raio, a cidade de 2015 com o skate voador, a locomotiva no deserto de 1885).
+- **Como se joga:** no painel, o jogador escolhe um quadro com as setas e `E`, e depois o ano de lançamento entre **cinco opções**: 1985, 1987, 1989, 1990 e 1991 (três certas, 1985, 1989 e 1990, e duas falsas). `Esc` volta à escolha do quadro.
+- **Errar** desconta 5 s, como nos outros mecanismos, mas **repete só aquele quadro**: os já travados continuam travados. **Acertar** trava o quadro em verde, tira o ano das opções e leva o cursor ao próximo quadro.
+- Na mesa da sala, as **etiquetas das fitas VHS** dão os anos para quem não sabe (ler custa tempo). A placa do corredor passa a ser **FILMES**, e a Folha de calibração fala em "os três filmes" no lugar do relógio. O relógio de ponteiros e o relógio de parede saem do jogo. O resto da entrada de 2026-10-26 continua valendo.
+**Por quê:** pedido do Davi: um puzzle com os três filmes em que se escolhe o pôster e depois o ano, com cinco anos e três certos; errando, repete aquele pôster; acertando, vai para o próximo. Combina com a obsessão do Carlos pelos anos 80.
+**Afeta:** `scripts/sistemas/quadros_dos_filmes.gd` e `cenas/sistemas/quadros_dos_filmes.tscn` (novos, no lugar de `relogio_de_ponteiros`), `scripts/sistemas/mecanismo_do_tempo.gd` (ganchos `_tratar_entrada` e `_erro_zera_acertos`), `cenas/salas/labirinto/sala_dos_filmes.tscn` (era `sala_do_relogio.tscn`), `corredor_do_tempo.tscn` (placa e porta), `dados/documentos/etiquetas_fitas_carlos.tres` (novo), `folha_calibracao_carlos.tres`, `gerar_corredor_tempo.py` (quadros no lugar do relógio de parede); `docs/mecanicas/corredor_do_tempo.md`, `docs/computacao/oscilacao_e_ritmo.md` e `README.md`, `docs/fases/labirinto.md`, `docs/historia/História_Completa.md` (seção 4.3) e `personagens/carlos.md`.
+
 ## 2026-10-27 — Novas falas do Dialogos.docx levadas para o jogo
 **Decisão:** as falas novas do `Dialogos.docx` (cenas 1.3, 1.5, 1.7, 2.1, 2.2 e 2.4) entram no jogo, inclusive as que estavam só como rascunho:
 - **Rádio e telefone com resposta do Gabriel** (decidido em 26/10): `clarice_biblioteca_01`, `grupo_biblioteca_01`, `zane_01` e `clarice_01` passam a ter o campo `falantes`.

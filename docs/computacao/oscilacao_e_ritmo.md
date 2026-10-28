@@ -1,6 +1,6 @@
-# Oscilação, ângulos e ritmo — o Corredor do Tempo
+# Oscilação, ângulos e arranjos — o Corredor do Tempo
 
-Os quatro mecanismos do Corredor do Tempo (Labirinto) são problemas de **tempo**: alguma coisa se move de forma periódica, e o jogador precisa apertar `E` no instante em que ela passa por um alvo. Cada um usa uma ideia de matemática diferente. A mecânica está em [`../mecanicas/corredor_do_tempo.md`](../mecanicas/corredor_do_tempo.md).
+Três dos quatro mecanismos do Corredor do Tempo (Labirinto) são problemas de **tempo**: alguma coisa se move de forma periódica, e o jogador precisa apertar `E` no instante em que ela passa por um alvo. O quarto, os quadros dos filmes, é um problema de **contagem**: dar o ano certo a cada quadro, com o relógio correndo. Cada um usa uma ideia de matemática diferente. A mecânica está em [`../mecanicas/corredor_do_tempo.md`](../mecanicas/corredor_do_tempo.md).
 
 ---
 
@@ -38,19 +38,23 @@ O que torna o pêndulo diferente do disco é a **velocidade variável**: $\dot\t
 
 O peso é desenhado em $\text{pivô} + \ell\,(\cos\alpha, \sin\alpha)$ com $\alpha = \pi/2 - \theta$ (no Godot o eixo $y$ aponta para baixo, então $\pi/2$ é "pendurado").
 
-## 3. Fase de um ritmo (relógio de ponteiros)
+## 3. Arranjos (quadros de De Volta para o Futuro)
 
-O relógio bate com período $T$. A posição no ritmo é a **fase** $f = (t - t_0)/T$: a parte inteira é o número da batida, a parte fracionária é quanto falta para a próxima. Uma tecla no instante $t$ acerta se estiver perto da batida mais próxima:
+São três quadros e cinco anos para escolher: **1985, 1987, 1989, 1990 e 1991**. Três estão certos (os lançamentos das partes I, II e III) e dois são falsos. Cada ano serve a um quadro só.
 
-$$|\,f - \operatorname{round}(f)\,| \cdot T \le 0{,}12\ \text{s}$$
+**Quantas respostas existem?** Dar um ano diferente a cada quadro é um **arranjo simples** de 5 elementos tomados 3 a 3:
 
-e se essa batida ainda não foi usada (não vale apertar duas vezes na mesma).
+$$A(5, 3) = \frac{5!}{(5-3)!} = 5 \cdot 4 \cdot 3 = 60$$
 
-**Mudar o andamento sem dar um salto:** a cada acerto o período encolhe ($T' = 0{,}93\,T$). Se só trocasse $T$, a fase mudaria de repente e a próxima batida "pularia". Para manter a fase no mesmo valor $f$, o início do ritmo é recalculado:
+Só uma das 60 está certa. Se o jogo só dissesse "certo" ou "errado" depois de os três anos estarem escolhidos, chutar teria 1 chance em 60.
 
-$$t_0' = t - f\,T'$$
+**Por que a dica por quadro muda tudo:** o painel confere **um quadro por vez**, e o ano que já acertou sai das opções. Assim, o primeiro quadro tem 5 anos possíveis, o segundo 4 e o terceiro 3. A conta deixa de ser um **produto** e vira uma **soma**:
 
-Assim $f' = (t - t_0')/T' = f$: o ritmo acelera a partir do ponto em que está, como um músico que apressa o andamento.
+$$\underbrace{5 \cdot 4 \cdot 3 = 60}_{\text{conferir tudo junto}} \qquad \text{contra} \qquad \underbrace{5 + 4 + 3 = 12}_{\text{conferir um por vez}}$$
+
+No pior caso são 12 tentativas, das quais 9 erradas (4 + 3 + 2), ou seja, 45 s de castigo. Chutando sem repetir ano, o ano certo está numa posição qualquer entre as $n$ opções, então a média é $(n+1)/2$ tentativas por quadro: $3 + 2{,}5 + 2 = 7{,}5$ tentativas, umas 4,5 erradas (cerca de 22 s). Quem lê as etiquetas das fitas na mesa acerta de primeira, mas gasta o tempo da leitura. É a mesma ideia de por que uma senha não deve dizer qual letra está errada: conferir as partes separadamente transforma a multiplicação em soma.
+
+No código, `_ano_usado(opcao)` diz se o ano já foi dado a um quadro travado, e o cursor pula esses anos. Ele anda em círculo pelas opções com `posmod(i + passo, 5)`, o resto da divisão que nunca dá negativo: da última opção, a seta para a direita volta à primeira.
 
 ## 4. O relógio do corredor e a ansiedade
 

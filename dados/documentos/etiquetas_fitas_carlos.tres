@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "etiquetas_fitas_carlos"
+titulo = "Etiquetas de três fitas VHS"
+autor = ""
+papel = "carta"
+paginas = PackedStringArray("Três fitas de vídeo em cima da mesa, uma do lado da outra. As etiquetas foram escritas à mão:
+
+DE VOLTA PARA O FUTURO — 1985
+DE VOLTA PARA O FUTURO II — 1989
+DE VOLTA PARA O FUTURO III — 1990
+
+A primeira está gasta de tanto rebobinar.")
+anotacao = "As fitas dos três De Volta para o Futuro: 1985, 1989 e 1990.
+
+A primeira está gasta de tanto ver."
