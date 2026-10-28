@@ -1,6 +1,6 @@
 # Clarice — visual
 
-Aluna de processamento de dados puxada de uma madrugada de 1990. Está em 3026 há alguns dias, escondida no bunker embaixo do núcleo da Âncora. Quem ela é está na ficha [`docs/historia/personagens/clarice.md`](../../../../docs/historia/personagens/clarice.md), que faz parte do Enredo Principal (a lei do projeto).
+Aluna de processamento de dados puxada de uma madrugada de 1990. Está em 3026 há alguns dias, escondida no bunker embaixo do núcleo da Âncora. Quem ela é está na ficha [`docs/historia/personagens/clarice.docx`](../../../../docs/historia/personagens/clarice.docx), que faz parte do Enredo Principal (a lei do projeto).
 
 ![Folha de referência](clarice_referencia.png)
 

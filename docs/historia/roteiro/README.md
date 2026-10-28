@@ -18,7 +18,7 @@ A narrativa e os roteiros do jogo estão distribuídos nos seguintes módulos in
   - Modelo para novos documentos e relíquias: [`../template_documento.md`](../template_documento.md)
 - 👥 **Personagens:** [`../personagens/`](../personagens/)
   - Uma ficha por personagem; a lista está na seção 4.2 do [Enredo Principal](../História_Completa.md)
-  - Modelo para novas fichas: [`../template_personagem.md`](../template_personagem.md)
+  - Modelo para novas fichas: [`../template_personagem.docx`](../template_personagem.docx)
 - 💬 **Diálogos (Word):** [`../dialogos/Dialogos.docx`](../dialogos/Dialogos.docx). Todas as falas do jogo, fase por fase, com os mesmos números de cena do roteiro, as falas novas em rascunho (barra azul) e as revisões das falas. O que toca no jogo continua sendo `dados/dialogos/` (conversas) e `dados/transmissoes/` (rádio e telefone).
 
 ---

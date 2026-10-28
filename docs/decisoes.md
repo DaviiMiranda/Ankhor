@@ -1,5 +1,15 @@
 # Registro de decisões
 
+## 2026-10-28 — As fichas dos personagens passam a ser Word (.docx)
+**Decisão:** cada ficha de `docs/historia/personagens/` vira um `.docx` (`gabriel.docx`, `clarice.docx`, `zane.docx`, `henrique.docx`, `baltazar.docx`, `diana.docx`, `carlos.docx`, `robos.docx` e `resumo.docx`), e os `.md` saem. O modelo de ficha também vira `docs/historia/template_personagem.docx`. O conteúdo é o mesmo dos `.md`, organizado sempre do mesmo jeito:
+- **Capa** com o nome, a época e o papel, num traço com a cor de identificação do personagem. A Diana ainda não tem cor e usa o azul-petróleo do projeto; os robôs usam o vermelho, que no Enredo é a cor do Carlos e dos robôs.
+- **Ficha rápida**: época, essência, objeto-símbolo, cor e status.
+- **Caixa "Lei do projeto"**, logo abaixo.
+- **As seções numeradas** de sempre. As listas de "Rótulo: texto" (Quem é, Personalidade, No jogo, Registros, Direção de arte, Arquivos) viram tabelas de duas colunas, e as tabelas (Relações, gírias do Zane, estados do Gabriel, robôs) ganham cabeçalho escuro.
+- Cabeçalho "ANKHOR · Fichas dos personagens" e rodapé com o nome do personagem e a página, no visual do Roteiro.
+**Por quê:** pedido do Davi: fichas em Word, mais estruturadas e organizadas, no lugar dos `.md`.
+**Afeta:** os links para as fichas (História Completa, em `.md` e `.docx`, documentos das fases e das mecânicas, `docs/README.md`, `docs/gdd.md`, os `visual.md` dos sprites e os comentários dos geradores em `assets/modelagem/`). O `CLAUDE.md` e o agente `roteirista` dizem como ler e editar uma ficha em Word. As entradas antigas deste registro continuam citando os `.md`, como histórico.
+
 ## 2026-10-28 — Corredor do Tempo: jogos, micros e telefone no lugar do disco, do pêndulo e dos anéis, e cada sala com cara própria
 **Decisão:** as outras três salinhas do Corredor do Tempo (Labirinto) também viram puzzles sobre coisas dos anos 80, cada um com uma mecânica diferente da dos filmes, e cada sala ganha arte própria:
 - **JOGOS** (era o disco): o **Genius**. O brinquedo mostra uma sequência de cores com som e o jogador repete com as setas; rodadas de 3, 4 e 5 cores, cada uma mais rápida. A sala é um fliperama no escuro: neon magenta e ciano, cartaz de alienígena de 8 bits, carpete com confete neon e dois fliperamas.

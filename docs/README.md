@@ -68,17 +68,17 @@ docs/
     ├── História_Completa.md        # A LEI DO PROJETO: história, mundo, personagens e pendências
     ├── README.md                  # Índice da pasta: comece pelo Enredo Principal
     ├── template_documento.md      # Modelo para escrever bilhetes, diários e relatórios
-    ├── template_personagem.md     # Modelo de ficha para um personagem novo
+    ├── template_personagem.docx     # Modelo de ficha para um personagem novo
     ├── personagens/               # Uma ficha por personagem (parte do Enredo Principal)
-    │   ├── resumo.md              # Resumo de todos os personagens, para consulta rápida
-    │   ├── gabriel.md             # O protagonista: estados, estamina, inventário
-    │   ├── baltazar.md            # ~1750, antepassado de Gabriel
-    │   ├── diana.md               # 1978, estudante de Direito
-    │   ├── clarice.md             # 1990, aluna de processamento de dados
-    │   ├── henrique.md            # 2019, o pesquisador
-    │   ├── carlos.md              # 3026, o antagonista
-    │   ├── zane.md                # 2123, faz as comunicações do bunker
-    │   └── robos.md               # Os robôs inimigos: sensores, FSM e patrulhas
+    │   ├── resumo.docx              # Resumo de todos os personagens, para consulta rápida
+    │   ├── gabriel.docx             # O protagonista: estados, estamina, inventário
+    │   ├── baltazar.docx            # ~1750, antepassado de Gabriel
+    │   ├── diana.docx               # 1978, estudante de Direito
+    │   ├── clarice.docx             # 1990, aluna de processamento de dados
+    │   ├── henrique.docx            # 2019, o pesquisador
+    │   ├── carlos.docx              # 3026, o antagonista
+    │   ├── zane.docx                # 2123, faz as comunicações do bunker
+    │   └── robos.docx               # Os robôs inimigos: sensores, FSM e patrulhas
     ├── dialogos/
     │   └── Dialogos.docx          # Todas as falas do jogo, fase por fase (Word)
     └── roteiro/                   # Roteirização cinematográfica e cutscenes

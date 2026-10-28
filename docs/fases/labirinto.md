@@ -147,7 +147,7 @@ O Gabriel anda a 45 px/s e corre a 81 px/s: consegue fugir correndo, mas correr 
 
 Eram 3 robôs na grade de 96 salinhas; na grade de 198 salinhas são 6. Os robôs nascem a pelo menos 10 salinhas de caminho do início, a pelo menos 5 da porta da oficina e a pelo menos 5 de distância entre si (em `gerar_labirinto.py`: `TIPOS_DE_ROBO`, `DISTANCIA_MINIMA_DO_INICIO`, `DISTANCIA_MINIMA_DA_OFICINA`, `SEPARACAO_ENTRE_ROBOS`).
 
-A IA (máquina de estados, cone por produto escalar, BFS do som, A\*, Markov) está em [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md) e [`../historia/personagens/robos.md`](../historia/personagens/robos.md).
+A IA (máquina de estados, cone por produto escalar, BFS do som, A\*, Markov) está em [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md) e [`../historia/personagens/robos.docx`](../historia/personagens/robos.docx).
 
 ---
 

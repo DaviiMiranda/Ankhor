@@ -167,7 +167,7 @@ def terminal():
     metal com a tela inclinada no alto. A tela está escura e rachada, com
     o bilhete da Clarice colado por cima (uma folha clara com um pedaço de
     fita). Na frente, a fenda da unidade de disquete que a Clarice
-    adaptou (docs/historia/personagens/clarice.md). Musgo sobe pelo pé."""
+    adaptou (docs/historia/personagens/clarice.docx). Musgo sobe pelo pé."""
     img = Imagem(30, 46)
     X, Y = img.X, img.Y
     fino = ruido(img.w, img.h, 2, 2, 321)

@@ -1,6 +1,6 @@
 # Diana — visual
 
-Estudante de Direito de uns 20 anos, de 1978. Quem ela é está na ficha [`docs/historia/personagens/diana.md`](../../../../docs/historia/personagens/diana.md), que faz parte do Enredo Principal (a lei do projeto).
+Estudante de Direito de uns 20 anos, de 1978. Quem ela é está na ficha [`docs/historia/personagens/diana.docx`](../../../../docs/historia/personagens/diana.docx), que faz parte do Enredo Principal (a lei do projeto).
 
 ![Folha de referência](diana_referencia.png)
 
@@ -12,7 +12,7 @@ O visual segue o desenho que a equipe fez dela (`assets/modelagem/personagens/di
 - **Óculos grandes** de armação laranja, com lentes alaranjadas, e **argolas douradas**.
 - **Jaqueta** marrom-caramelo de gola larga, com bolsos no peito e no quadril e os punhos dobrados, aberta sobre uma **camiseta listrada** em amarelo, laranja e creme, com um cinto preto de fivela dourada.
 - **Calça jeans boca de sino**, azul, e **botas de plataforma** marrons.
-- **Cor de identificação:** a ficha ainda não define uma (a tabela do `resumo.md` está com "—"). A jaqueta e os óculos puxam para o laranja e o marrom.
+- **Cor de identificação:** a ficha ainda não define uma (a tabela do `resumo.docx` está com "—"). A jaqueta e os óculos puxam para o laranja e o marrom.
 - **Postura:** a ficha pede uma estudante sempre em movimento e nervosa. Os ombros ficam um pouco altos, os cotovelos dobrados e o passo é curto e rápido.
 
 A direção de arte da ficha pede uma estudante dos anos 70 com a jaqueta e uma pasta de fichário. O visual desenhado já é de estudante; a pasta ainda não aparece.

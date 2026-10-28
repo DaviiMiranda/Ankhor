@@ -1,6 +1,6 @@
 # Carlos — visual
 
-O antagonista: cientista de 3026 que criou a Âncora, ficou na Terra quando o pouco que sobrou da humanidade foi embora e controla os robôs. É obcecado pelos **anos 80** e quer fugir para lá. Quem ele é está na ficha [`docs/historia/personagens/carlos.md`](../../../../docs/historia/personagens/carlos.md), que faz parte do Enredo Principal (a lei do projeto).
+O antagonista: cientista de 3026 que criou a Âncora, ficou na Terra quando o pouco que sobrou da humanidade foi embora e controla os robôs. É obcecado pelos **anos 80** e quer fugir para lá. Quem ele é está na ficha [`docs/historia/personagens/carlos.docx`](../../../../docs/historia/personagens/carlos.docx), que faz parte do Enredo Principal (a lei do projeto).
 
 ![Folha de referência](carlos_referencia.png)
 

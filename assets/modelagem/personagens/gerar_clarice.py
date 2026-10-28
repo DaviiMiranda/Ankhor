@@ -30,7 +30,7 @@
 #                            (digitando e virada) e os retratos
 #   assets/modelagem/personagens/clarice.blend   o modelo, para abrir e mexer
 #
-# Quem é (docs/historia/personagens/clarice.md): aluna de processamento de dados,
+# Quem é (docs/historia/personagens/clarice.docx): aluna de processamento de dados,
 # puxada de uma madrugada de 1990 na Biblioteca. Está em 3026 há alguns
 # dias, escondida no bunker perto do núcleo da Âncora, e foi a primeira a
 # ver que as rotas dos robôs formam um grafo. Sarcástica, rápida, gíria
