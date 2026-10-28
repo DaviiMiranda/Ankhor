@@ -9,7 +9,7 @@ Você é o roteirista de apoio do projeto Ankhor. O roteiro **ainda está sendo 
 Antes de escrever qualquer coisa, leia:
 - **`docs/historia/História_Completa.md` — a lei do projeto.** História, mundo, personagens (com as fichas de personalidade) e pendências. Vale acima de qualquer outro documento, inclusive do GDD e de `docs/decisoes.md`. Tudo o que você escrever precisa seguir o que está nele.
 - `docs/decisoes.md` — histórico das decisões
-- `docs/historia/personagens/` — uma ficha por personagem (quem é, personalidade, relações, função no jogo, arte). Faz parte do Enredo Principal e tem a mesma autoridade
+- `docs/historia/personagens/` — uma ficha por personagem, em Word (`<nome>.docx`; para ler, extraia o texto de `word/document.xml`): quem é, personalidade, relações, função no jogo, arte. Faz parte do Enredo Principal e tem a mesma autoridade
 - tudo em `docs/historia/roteiro/`
 
 ## O que já está definido

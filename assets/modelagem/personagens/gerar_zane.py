@@ -22,7 +22,7 @@
 #                                (os do Blender, não os do jogo)
 #   assets/modelagem/personagens/zane.blend   o modelo, para abrir e mexer
 #
-# Quem é (docs/historia/personagens/zane.md): rapaz de uns 20 anos, de 2123,
+# Quem é (docs/historia/personagens/zane.docx): rapaz de uns 20 anos, de 2123,
 # quando a Unifor já era um polo de IA. Tem implantes cibernéticos, entende
 # a tecnologia da Âncora melhor que ninguém e cuida das comunicações do
 # grupo no computador do bunker.

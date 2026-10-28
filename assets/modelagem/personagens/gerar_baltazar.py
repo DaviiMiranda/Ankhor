@@ -18,7 +18,7 @@
 #   baltazar_referencia.png          frente, 3/4, lado e costas, e os retratos
 #   assets/modelagem/personagens/baltazar.blend   o modelo
 #
-# Quem é (docs/historia/personagens/baltazar.md): rapaz de uns 20 anos, filho
+# Quem é (docs/historia/personagens/baltazar.docx): rapaz de uns 20 anos, filho
 # de colonos portugueses no Ceará de ~1750, de família de sítio, sem nada de
 # nobre. Antepassado do Gabriel. Viu pela luneta uma luz sobre a mata, foi
 # investigar e foi puxado. Homem de fé com olhos de cientista: cerimonioso,

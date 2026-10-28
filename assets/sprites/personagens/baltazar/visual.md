@@ -1,6 +1,6 @@
 # Baltazar — visual
 
-Rapaz de uns 20 anos do Ceará colonial (~1750), filho de colonos de sítio e antepassado do Gabriel. Quem ele é está na ficha [`docs/historia/personagens/baltazar.md`](../../../../docs/historia/personagens/baltazar.md), que faz parte do Enredo Principal (a lei do projeto).
+Rapaz de uns 20 anos do Ceará colonial (~1750), filho de colonos de sítio e antepassado do Gabriel. Quem ele é está na ficha [`docs/historia/personagens/baltazar.docx`](../../../../docs/historia/personagens/baltazar.docx), que faz parte do Enredo Principal (a lei do projeto).
 
 ![Folha de referência](baltazar_referencia.png)
 

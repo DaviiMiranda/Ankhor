@@ -17,7 +17,7 @@
 #   carlos_referencia.png          frente, 3/4, lado e costas, e os retratos
 #   assets/modelagem/personagens/carlos.blend   o modelo
 #
-# Quem é (docs/historia/personagens/carlos.md): o antagonista. Cientista
+# Quem é (docs/historia/personagens/carlos.docx): o antagonista. Cientista
 # que já vivia em 3026 e criou a Âncora. Quando o pouco que sobrou da
 # humanidade foi embora da Terra, ele ficou, obcecado pelos anos 80, para
 # fugir para lá. Controla os robôs.

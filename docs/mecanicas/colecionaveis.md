@@ -52,7 +52,7 @@ As posições são `position` dos nós `DisqueteClarice1`, `DisqueteClarice2` e 
 
 | | |
 |---|---|
-| **Peça** | Pingente de chapéu: uma borla de fio vinho (a cor do Baltazar) presa a uma argola de latão, dessas que enfeitam as abas de um tricórnio. O chapéu é o objeto-símbolo do Baltazar (ficha em [`baltazar.md`](../historia/personagens/baltazar.md)). O texto não diz por que os pingentes estão soltos pelo subsolo |
+| **Peça** | Pingente de chapéu: uma borla de fio vinho (a cor do Baltazar) presa a uma argola de latão, dessas que enfeitam as abas de um tricórnio. O chapéu é o objeto-símbolo do Baltazar (ficha em [`baltazar.docx`](../historia/personagens/baltazar.docx)). O texto não diz por que os pingentes estão soltos pelo subsolo |
 | **Recompensa** | O **tricórnio** do Baltazar deitado sobre o teclado do notebook, com os três pingentes nas pontas das abas |
 
 Aqui **a terceira peça tem uma trava**:
@@ -71,7 +71,7 @@ As peças 1 e 2 são as letras `1` e `2` do mapa e a peça 3 é a letra `3` no d
 
 | | |
 |---|---|
-| **Peça** | Botão de jaqueta: botão grande de couro marrom-caramelo com aro dourado e quatro furos, a cor e a cara da jaqueta dela (`assets/sprites/personagens/diana/visual.md`; a jaqueta é o objeto-símbolo dela, [`diana.md`](../historia/personagens/diana.md)). O texto não diz por que os botões estão soltos |
+| **Peça** | Botão de jaqueta: botão grande de couro marrom-caramelo com aro dourado e quatro furos, a cor e a cara da jaqueta dela (`assets/sprites/personagens/diana/visual.md`; a jaqueta é o objeto-símbolo dela, [`diana.docx`](../historia/personagens/diana.docx)). O texto não diz por que os botões estão soltos |
 | **Recompensa** | A **jaqueta** marrom-caramelo de gola larga, com bolsos e punhos, aberta sobre a camiseta listrada, pendurada no encosto da cadeira da escrivaninha |
 
 As três ficam no **mezanino**, a parte opcional da fase, em salas que não têm nada a ver com o caminho da Célula de Energia:
@@ -88,7 +88,7 @@ São `BotaoJaqueta1` a `BotaoJaqueta3` nas cenas dessas salas.
 
 | | |
 |---|---|
-| **Peça** | Chip hexagonal: o hexágono do peito da jaqueta do Zane, em corpo escuro com borda e trilha ciano-verde, a cor da interface dele (`assets/sprites/personagens/zane/visual.md`; os óculos são o objeto-símbolo dele, [`zane.md`](../historia/personagens/zane.md)). O texto diz só que se encaixa na armação de um visor |
+| **Peça** | Chip hexagonal: o hexágono do peito da jaqueta do Zane, em corpo escuro com borda e trilha ciano-verde, a cor da interface dele (`assets/sprites/personagens/zane/visual.md`; os óculos são o objeto-símbolo dele, [`zane.docx`](../historia/personagens/zane.docx)). O texto diz só que se encaixa na armação de um visor |
 | **Recompensa** | Os **óculos** do Zane (armação grafite, lente verde acesa e os três chips hexagonais brilhando) em cima da escrivaninha, entre a caneca e o farol, com uma luz ciano fraca |
 
 | Nº | Sala | Onde |

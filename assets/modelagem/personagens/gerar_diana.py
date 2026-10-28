@@ -22,7 +22,7 @@
 #                                 (os do Blender, não os do jogo)
 #   assets/modelagem/personagens/diana.blend   o modelo, para abrir e mexer
 #
-# Quem é (docs/historia/personagens/diana.md): estudante de arquitetura e
+# Quem é (docs/historia/personagens/diana.docx): estudante de arquitetura e
 # estagiária na obra do campus em 1978, com uns 20 anos. Dramática, ansiosa,
 # impulsiva e intensa; fala rápido e exagerado. O visual segue o desenho que
 # a equipe fez dela (diana_referencia/andar.jpg e expressoes.jpg):
