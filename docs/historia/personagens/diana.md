@@ -9,7 +9,7 @@
 
 - **Época de origem:** 1978, quando o campus ainda estava em obras.
 - **Quem é:** estudante de **Direito**, com cerca de 20 anos. Cresceu no bairro em volta e viu o mato virar universidade. Não tem ligação de trabalho com a obra.
-- **História:** estava numa **aula chata de Direito**, à noite, no campus ainda em obras, e saiu da sala para escapar do tédio. Entrou sozinha no matagal atrás de uma luz e foi puxada pela fenda. Chama os robôs de "autômatos". Cresceu cortando caminho pelo canteiro e conhece as galerias e passagens da construção de 1978, que não aparecem nos mapas de 3026. Faz um **mapa à mão** delas.
+- **História:** estava numa **aula chata de Direito Penal**, com uma professora que a entediava, quase caindo na mesa, quando do nada apareceu na Biblioteca de 3026. Chama os robôs de "autômatos". Cresceu cortando caminho pelo canteiro e conhece as galerias e passagens da construção de 1978, que não aparecem nos mapas de 3026. Faz um **mapa à mão** delas.
 - **Objeto-símbolo:** a **jaqueta** dela, dos anos 70. Clarice e Zane também usam jaqueta, então a dela se distingue pela cor e pela silhueta, a definir quando ela ganhar visual.
 
 ## 2. Personalidade

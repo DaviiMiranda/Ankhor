@@ -6,7 +6,8 @@
 script = ExtResource("1_transmissao")
 id = "zane_01"
 falante = "ZANE (telefone)"
-falas = PackedStringArray("Alô? Alô! Finalmente. Sabe quantas vezes eu chamei esse balcão? Perdi a conta.", "Não desliga. O sistema acusou a grade da ala leste subindo. Foi você, né?", "Achou o disquete da Clarice? Ela guarda senha em tudo. Pré-histórico, mas funciona.", "A porta do fim da ala leste é eletrônica. Segura aí... Pronto. Destranquei.", "Eu sou o Zane. Agora sai da Biblioteca. E não fica embaixo das luzes, sério. Fui!")
-titulo_anotacao = "Zane, 2123"
+falas = PackedStringArray("Alô? Alô! Finalmente. Sabe quantas vezes eu chamei esse balcão? Perdi a conta.", "Não desliga. O sistema acusou a grade da ala leste subindo. Foi você, né?", "Alô, meu nome é Gabriel. Olha, você pode me explicar o que é tudo isso? Que lugar é esse? Como isso acon—", "Calma, calma! É pergunta demais pra uma linha só. Infelizmente não dá pra explicar tudo por aqui: a Clarice te explica quando você chegar até ela.", "Achou o disquete da Clarice? Ela guarda senha em tudo. Pré-histórico, mas funciona.", "Achei, sim. Fazia tempo que não via um desses.", "Eu só vi em museu. No meu tempo só restam lembranças disso.", "Como assim, seu tempo?", "Ih, escapou. Isso é papo longo e a linha tá ruim: depois você junta as peças.", "A porta do fim da ala leste é eletrônica. Segura aí... Pronto. Destranquei.", "Eu sou o Zane. Agora sai da Biblioteca. E não fica embaixo das luzes, sério. Fui!", "Espera! Ah, tinha que ser. Desligou. Todo mundo aqui explica pela metade.")
+falantes = PackedStringArray("ZANE (telefone)", "ZANE (telefone)", "GABRIEL (telefone)", "ZANE (telefone)", "ZANE (telefone)", "GABRIEL (telefone)", "ZANE (telefone)", "GABRIEL (telefone)", "ZANE (telefone)", "ZANE (telefone)", "ZANE (telefone)", "GABRIEL")
+titulo_anotacao = "Zane"
 anotacao = "Um tal de Zane ligou para o telefone do balcão. Fala de algum computador e destrancou pelo sistema a porta de saída da ala leste.
 Disse para não ficar embaixo das luzes."

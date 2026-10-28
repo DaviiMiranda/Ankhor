@@ -1,8 +1,19 @@
 # Registro de decisões
 
+## 2026-10-27 — Novas falas do Dialogos.docx levadas para o jogo
+**Decisão:** as falas novas do `Dialogos.docx` (cenas 1.3, 1.5, 1.7, 2.1, 2.2 e 2.4) entram no jogo, inclusive as que estavam só como rascunho:
+- **Rádio e telefone com resposta do Gabriel** (decidido em 26/10): `clarice_biblioteca_01`, `grupo_biblioteca_01`, `zane_01` e `clarice_01` passam a ter o campo `falantes`.
+- **Cena 1.3:** a Clarice abre com "Ei, tem alguém aí?", o Gabriel desconfia de pegadinha e ela responde com o Silvio Santos. A fala "Eu fico na escuta" saiu.
+- **Cena 1.5:** a Diana diz que estava na aula de Direito Penal. Saiu o "Soltei!".
+- **Cena 1.7:** o Gabriel responde ao Zane e ouve o "Ih, escapou". A fala "Foi você, né?" do Zane foi mantida, mesmo fora do docx. O título da anotação do Caderno passou de "Zane, 2123" para "Zane", para o ano continuar como indício.
+- **Cena 2.2 (`clarice_bloco_pede_molho`):** as duas escolhas saíram, então a conversa sempre segue para o ramo "lugar". Acrescentei uma fala do Gabriel ("Que lugar é esse? Parece abandonado há séculos.") para a Clarice ter a que responder. A Diana aparece na conversa, com os retratos `dramatica` e `ansiosa`.
+- **Cena 2.4:** a Clarice diz que o Zane tenta achar o Henrique.
+**Por quê:** pedido do Davi, depois de editar o docx.
+**Afeta:** `dados/transmissoes/` (os quatro arquivos acima) e `dados/dialogos/clarice_bloco_pede_molho.json` e `clarice_bloco_devolve_chave.json`. O docx não foi alterado: as notas do Anexo (por exemplo "ainda não foram levadas para o jogo") e a linha da Diana em "Como cada personagem fala" (ainda diz "vocabulário da obra e da prancheta") precisam ser atualizadas à mão.
+
 ## 2026-10-27 — Diana passa a estudar Direito
 **Decisão:** a Diana deixa de ser estagiária de arquitetura e passa a ser **estudante de Direito**, expressiva e agitada, **sem ligação de trabalho com a obra**.
-- Antes de ser puxada, estava numa **aula chata de Direito**, à noite, no campus ainda em obras, e saiu da sala para escapar do tédio.
+- Antes de ser puxada, estava numa **aula chata de Direito Penal**, quase caindo na mesa, e do nada apareceu na Biblioteca de 3026.
 - O lote de material que sumiu sob a responsabilidade dela **deixa de fazer parte da história dela**.
 - Ela mantém o **mapa à mão** das galerias de 1978 (a mecânica das arestas escondidas e a peça dela para a Âncora não mudam): agora ela as conhece porque **cresceu cortando caminho pelo canteiro**.
 - A fala passa a misturar o vocabulário do tribunal ("Protesto!") com drama de novela. O que ela quer: provar à família e à turma que escolher o Direito não foi um erro.

@@ -169,7 +169,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 | Ano | Quem | O que fazia ali |
 |---|---|---|
 | ~1750 | Baltazar | Viu uma luz estranha pela luneta, no sítio da família, e foi investigar |
-| 1978 | Diana | Estudante de Direito: estava numa aula chata, à noite, no campus ainda em obras, e saiu da sala para escapar do tédio |
+| 1978 | Diana | Estudante de Direito: estava numa aula chata de Direito Penal, quase caindo na mesa, quando do nada apareceu na Biblioteca de 3026 |
 | 1990 | Clarice | Rodava um programa num terminal da Biblioteca, de madrugada |
 | 2019 | Henrique | Estudava à noite na Biblioteca, na pesquisa dele sobre viagem no tempo |
 | 2026 | Gabriel | Dormiu na Biblioteca com o caderno aberto |
