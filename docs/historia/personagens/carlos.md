@@ -38,7 +38,7 @@
 
 | Registro | Onde | O que conta |
 |---|---|---|
-| **Folha de calibração** (`dados/documentos/folha_calibracao_carlos.tres`) | Corredor do Tempo, no Labirinto (opcional: aparece depois de alinhar os quatro mecanismos) | O "teste 214" da calibração da Âncora com o disco, os filmes, o pêndulo e os anéis. A máquina errou de novo, abriu a fenda na Biblioteca e puxou alguém que ele nem foi ver. Já foi um Faroleiro; a única luz que lhe interessa é a de um rádio ligado numa tarde dos anos 80. **Assina só "C."** |
+| **Folha de calibração** (`dados/documentos/folha_calibracao_carlos.tres`) | Corredor do Tempo, no Labirinto (opcional: aparece depois de alinhar os quatro mecanismos) | O "teste 214" da calibração da Âncora com o Genius, os filmes, o micro e o telefone. A máquina errou de novo, abriu a fenda na Biblioteca e puxou alguém que ele nem foi ver. Já foi um Faroleiro; a única luz que lhe interessa é a de um rádio ligado numa tarde dos anos 80. **Assina só "C."** |
 
 O tom da folha é seco e curto, de caderno de laboratório. Não fixa como ele fala em voz alta (pendente), nem por que saiu dos Faroleiros ou há quantos anos está sozinho.
 
