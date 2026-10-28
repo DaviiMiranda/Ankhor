@@ -1,5 +1,15 @@
 # Registro de decisões
 
+## 2026-10-28 — O Zane avisa, no Labirinto, das duas salas fora do mapa
+**Decisão:** no fim da primeira conversa na oficina, quando entrega o notebook, o Zane fala de duas coisas que "não batem com o mapa" dele:
+- **Uma parede no corredor de cima que esquenta toda noite, "como se tivesse gente do outro lado".** É o esconderijo do Baltazar. O Zane não sabe quem está lá: diz só que robô é frio, e que vale apontar a lanterna para a parede ("luz mostra o que o concreto esconde"), que é como o painel solto aparece.
+- **A porta âmbar entre os nós.** É o Corredor do Tempo: ele lê no sistema "sala de teste, mecanismo antigo e um cronômetro ligado", diz que é opcional e que "ninguém monta sala de teste à toa".
+- Nas visitas seguintes, a escolha "E aquelas duas salas?" repete a dica.
+
+O encontro com o Baltazar continua opcional (pendência 10.4): o aviso só aponta o caminho.
+**Por quê:** pedido do Davi: o Zane precisa mencionar ao Gabriel, no Labirinto, as duas salas escondidas, a do Baltazar e a dos puzzles.
+**Afeta:** `dados/dialogos/zane_labirinto_primeiro_encontro.json` e `zane_labirinto_de_novo.json`; `docs/fases/labirinto.md`; a História Completa (md e docx, Ato 2, Labirinto); o `Dialogos.docx` (0.2) e o `Roteiro.docx` (0.10).
+
 ## 2026-10-28 — Corredor do Tempo: jogos, micros e telefone no lugar do disco, do pêndulo e dos anéis, e cada sala com cara própria
 **Decisão:** as outras três salinhas do Corredor do Tempo (Labirinto) também viram puzzles sobre coisas dos anos 80, cada um com uma mecânica diferente da dos filmes, e cada sala ganha arte própria:
 - **JOGOS** (era o disco): o **Genius**. O brinquedo mostra uma sequência de cores com som e o jogador repete com as setas; rodadas de 3, 4 e 5 cores, cada uma mais rápida. A sala é um fliperama no escuro: neon magenta e ciano, cartaz de alienígena de 8 bits, carpete com confete neon e dois fliperamas.
