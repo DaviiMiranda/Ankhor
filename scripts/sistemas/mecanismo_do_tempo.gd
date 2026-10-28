@@ -89,6 +89,9 @@ func _process(delta: float) -> void:
 func _unhandled_input(evento: InputEvent) -> void:
 	if not _aberto or not (evento is InputEventKey or evento is InputEventJoypadButton):
 		return
+	if not _travado and _tratar_entrada(evento):
+		get_viewport().set_input_as_handled()
+		return
 	if evento.is_action_pressed("ui_cancel"):
 		_fechar()
 	elif not _travado and (evento.is_action_pressed("interagir") or evento.is_action_pressed("ui_accept")):
@@ -106,7 +109,8 @@ func _tentar() -> void:
 			return
 		_ao_acertar()
 	else:
-		_acertos = 0
+		if _erro_zera_acertos():
+			_acertos = 0
 		_piscar(COR_ERRO)
 		som_erro.play()
 		_relogio().penalizar(segundos_de_castigo)
@@ -155,6 +159,14 @@ func _avancar(_delta: float) -> void:
 
 func _acertou() -> bool:
 	return false
+
+
+func _tratar_entrada(_evento: InputEvent) -> bool:
+	return false
+
+
+func _erro_zera_acertos() -> bool:
+	return true
 
 
 func _ao_acertar() -> void:

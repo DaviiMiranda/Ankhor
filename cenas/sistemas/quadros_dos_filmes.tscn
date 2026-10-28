@@ -10,6 +10,6 @@
 script = ExtResource("2_script")
 id = "filmes"
 titulo = "DE VOLTA PARA O FUTURO"
-instrucao = "E: parar o contador no ano de lançamento do filme"
+instrucao = "Escolha um quadro e depois o ano de lançamento do filme"
 texto_acao = "Mexer nos quadros"
 quadros = Array[Texture2D]([ExtResource("3_parte1"), ExtResource("4_parte2"), ExtResource("5_parte3")])
