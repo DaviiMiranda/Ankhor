@@ -84,7 +84,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 | Quem | O que traz |
 |---|---|
 | Baltazar (1750) | As estrelas: o céu é o único relógio que não muda, e é por ele que se acerta a data de volta de cada um |
-| Diana (1978) | As plantas: estagiária de arquitetura na obra, conhece as galerias de 1978, que não aparecem nos mapas de 3026, e descobre por elas onde fica o núcleo e as passagens até lá |
+| Diana (1978) | O mapa das galerias: estudante de Direito que cresceu cortando caminho pela obra, conhece as galerias de 1978, que não aparecem nos mapas de 3026, e descobre por elas onde fica o núcleo e as passagens até lá |
 | Clarice (1990) | Código: faz os terminais da Âncora funcionarem. Mapeou as rondas dos robôs como um grafo e sabe o que cada chave abre |
 | Henrique (2019) | A teoria por trás das equações |
 | Zane (2123) | A tecnologia mais próxima da Âncora |
@@ -169,7 +169,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 | Ano | Quem | O que fazia ali |
 |---|---|---|
 | ~1750 | Baltazar | Viu uma luz estranha pela luneta, no sítio da família, e foi investigar |
-| 1978 | Diana | Estagiária de arquitetura na obra do campus: vigiava a obra à noite depois que um lote de material sumiu sob a responsabilidade dela |
+| 1978 | Diana | Estudante de Direito: estava numa aula chata de Direito Penal, quase caindo na mesa, quando do nada apareceu na Biblioteca de 3026 |
 | 1990 | Clarice | Rodava um programa num terminal da Biblioteca, de madrugada |
 | 2019 | Henrique | Estudava à noite na Biblioteca, na pesquisa dele sobre viagem no tempo |
 | 2026 | Gabriel | Dormiu na Biblioteca com o caderno aberto |

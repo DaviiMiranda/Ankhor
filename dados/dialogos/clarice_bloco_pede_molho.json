@@ -27,25 +27,111 @@
 					"quem": "Clarice",
 					"retrato": "clarice/clarice_retrato_sorrindo",
 					"texto": "De verdade e de mau humor. Clarice: a do rádio, do bilhete e do disquete. Você achou, pelo jeito."
-				}
-			],
-			"escolhas": [
-				{
-					"texto": "O que aconteceu com este lugar?",
-					"vai_para": "lugar"
 				},
 				{
-					"texto": "Preciso sair daqui.",
-					"vai_para": "molho"
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "Que lugar é esse? Parece abandonado há séculos."
 				}
-			]
+			],
+			"vai_para": "lugar"
 		},
 		"lugar": {
 			"falas": [
 				{
 					"quem": "Clarice",
 					"retrato": "clarice/clarice_retrato_normal",
-					"texto": "Mil anos, meu filho. Mil. O Henrique garante que, de alguma forma, isso aqui é 3026. Eu fiz a conta três vezes: fecha."
+					"texto": "Praticamente mil anos. Mil. Na verdade, pra mim foi mais. Agora, você é de que ano? O Henrique garante que, de alguma forma, isso aqui é 3026. Eu fiz a conta três vezes: fecha."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_surpreso",
+					"texto": "Quê? Viagem no tempo? Isso é real? Eu sou de 2026. O seu eu já sei, li no bilhete."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Eu sei, calma, se é que dá pra ficar. Você é do futuro pra mim e pra Diana, que nem o Zane."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Sei que parece surreal, mas basicamente cinco pessoas, contando com você, vieram parar aqui, só que não ao mesmo tempo."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Eu já estou aqui há seis dias, e o Zane, há nove."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Tem também o Henrique, que é a nossa esperança: ainda não nos vimos pessoalmente, mas ele nos ajudou bastante. E a, digamos, agitada Diana."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Surreal é pouco. Como a gente vai voltar? Vocês estão construindo um DeLorean, por acaso?"
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_sorrindo",
+					"texto": "Haha, quem dera. Esses filmes ainda são assistidos na sua época? Você assistiu o terceiro filme? Que azar eu ser puxada antes de assistir, eu ia nesse fim de semana."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Sim, filmaço, mas prefiro o segundo. Vamos focar primeiro em sair daqui vivos, que eu te conto tudo."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Ahh, quero saber. Enfim."
+				},
+				{
+					"quem": "Diana",
+					"retrato": "diana/diana_retrato_dramatica",
+					"texto": "Oiii! Eu estava procurando meu brinco naquela bagunça, esse lugar tá péssimo. É verdade que você é de 2026? Que loucura! Tem carro voador mesmo?"
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Não, mas até que tem coisas bem legais. Espera aí, todos nós somos da Unifor? E acho que temos a mesma idade, certo?"
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Sim, estava pensando nisso, será que tem algo a ver com isso tudo? O Zane não fala muito, ele está lá em um labirinto tentando descobrir algo."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Qual o ano dele?"
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_normal",
+					"texto": "Não sei, mas é século 22. Ele diz pra não falarmos muito do futuro pro outro, pra não mexermos na linha do tempo quando voltarem, algo assim."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_normal",
+					"texto": "Entendi, então você vai ficar sem saber do filme. Quem sabe negociamos a sinopse."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_sorrindo",
+					"texto": "Vou pensar no seu caso."
+				},
+				{
+					"quem": "Diana",
+					"retrato": "diana/diana_retrato_ansiosa",
+					"texto": "Vou esperar ansiosamente 7 anos pra ver o primeiro filme, mas parece legal. Me fala só até a metade, vai!"
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_seria",
+					"texto": "Já deu, Diana. Falei demais."
 				},
 				{
 					"quem": "Gabriel",

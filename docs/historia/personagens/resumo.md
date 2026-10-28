@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Gabriel Magalhães](gabriel.md) | 2026 | Estudante da Unifor. **O protagonista**, o último a chegar | Um estudante comum que prefere observar a agir, até não ter mais escolha | Vermelho |
 | [Baltazar Magalhães](baltazar.md) | ~1750 | Filho de colonos portugueses, com uma luneta. **Antepassado de Gabriel** | Um homem de fé com olhos de cientista, preso entre o milagre e a explicação | Vinho |
-| [Diana](diana.md) | 1978 | Estagiária de arquitetura na obra do campus, criada no bairro | Uma estagiária que entrou num canteiro de obras de homens para provar que podia, e vive cada minuto como se fosse o último | — |
+| [Diana](diana.md) | 1978 | Estudante de Direito, criada no bairro em volta do campus | Uma estudante de Direito que discute com tudo e com todos, e vive cada minuto como se fosse o último | — |
 | [Clarice](clarice.md) | 1990 | Aluna de processamento de dados | Uma mente brilhante que usa o sarcasmo como armadura | Verde-azulado |
 | [Henrique](henrique.md) | 2019 | Aluno de iniciação científica, **o pesquisador** | Um gênio quieto que desconfia ter causado tudo. **Mente para o grupo** | Laranja-queimado |
 | [Zane](zane.md) | 2123 | Jovem com implantes cibernéticos. **Faz as comunicações** da oficina do Labirinto | Filho de um mundo cheio de máquinas, que sabe tudo de tecnologia e nada de sobreviver | Amarelo-ácido |
@@ -29,7 +29,7 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 
 **Baltazar Magalhães (~1750).** Cerimonioso, devoto e encantado com tudo. Fala português arcaico, chama todos de "Vossa Mercê" e solta latim quando está aflito. Acha que 3026 é o Juízo Final. Teimoso. **Arco:** do "Juízo Final" à compreensão. Quando descobre que Gabriel é seu descendente, fica protetor ("meu neto de mil anos"). No fim, quer ficar em 3026, mas **precisa voltar**, ou a família de Gabriel não existe. Está escondido numa sala da Biblioteca desde que chegou.
 
-**Diana (1978).** Dramática, ansiosa, impulsiva e intensa. Fala rápido e com exclamações ("Pronto, é o fim!"), misturando o vocabulário da obra com drama de novela. Estagiária de arquitetura: um lote de material sumiu sob a responsabilidade dela, e ela vigiava a obra para provar que não errou. Conhece as galerias da obra de 1978. Quer provar que não foi um erro escolher a arquitetura. Age antes de pensar. **Arco:** aprender a controlar o medo. Apareceu na 103 depois da Clarice, que a acolheu.
+**Diana (1978).** Dramática, ansiosa, impulsiva e intensa. Fala rápido e com exclamações ("Pronto, é o fim!"), misturando o vocabulário do tribunal com drama de novela. Estudante de Direito: estava numa aula chata de Direito Penal, quase dormindo, quando foi puxada. Cresceu cortando caminho pelo canteiro e conhece as galerias da obra de 1978. Quer provar que não foi um erro escolher o Direito. Age antes de pensar. **Arco:** aprender a controlar o medo. Apareceu na 103 depois da Clarice, que a acolheu.
 
 **Clarice (1990).** Rápida, independente e debochada, com gírias dos anos 90 ("Isso é totalmente surreal", "Não confie nas luzes"). Explica tudo como um problema de lógica. Não pede ajuda. Tem medo de ser esquecida. Foi da Biblioteca para o Bloco de salas e ficou na sala 103, onde acolheu a Diana. É a voz do rádio que guia Gabriel desde a Biblioteca, com o que o Henrique vê nas câmeras. **Arco:** de quem resolve tudo sozinha a quem confia no grupo.
 
@@ -53,7 +53,7 @@ Todos os puxados pela fenda têm **cerca de 20 anos**, estão **vivos** e têm l
 |---|---|---|
 | Gabriel | — | O caderno, como o lugar onde as partes de todos se juntam |
 | Baltazar | Escondido numa sala secreta do Labirinto, que só a lanterna revela, com medo e isolado | As estrelas, que acertam a data de volta de cada um |
-| Diana | Sala 103 do Bloco de salas, com a Clarice | As plantas: pelas galerias da obra de 1978, onde fica o núcleo e as passagens até lá |
+| Diana | Sala 103 do Bloco de salas, com a Clarice | O mapa das galerias da obra de 1978, onde fica o núcleo e as passagens até lá |
 | Clarice | Sala 103 do Bloco de salas, atrás de uma barricada, com a Diana: guia Gabriel pelo rádio (Biblioteca e Bloco) com o que o Henrique vê | Código: faz os terminais da Âncora funcionarem. Mapeou as rondas e sabe o que cada chave abre |
 | Henrique | Bunker, sozinho, numa sala de dados trancada, com as câmeras: ajuda a Clarice e a Diana pelo rádio | A teoria por trás das equações |
 | Zane | Oficina do Labirinto: faz a comunicação de todos. Entra no bunker depois, com Gabriel | A tecnologia mais próxima da Âncora |
