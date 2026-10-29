@@ -23,7 +23,7 @@ Todos em `assets/sprites/personagens/baltazar/`, gerados por `assets/modelagem/p
 | `baltazar_<vista>.png` | 96 × 112 | parado, em cada vista: `lado`, `frente`, `tres_quartos`, `costas`, `tres_quartos_costas` |
 | `baltazar_andar_<vista>.png` | 12 quadros de 96 × 112 | caminhada (dois passos), um arquivo por vista |
 | `baltazar_parado_<vista>.png` | 8 quadros de 96 × 112 | respirando, um arquivo por vista |
-| `baltazar_retrato_normal.png` | 80 × 80 | a seriedade cerimoniosa (mostrado em 40 × 40). **Ainda é o antigo, do Blender**: a folha nova não tem o `normal` |
+| `baltazar_retrato_normal.png` | 80 × 80 | cópia do `orgulhoso` (mostrado em 40 × 40): a folha desenhada não tem rosto `normal`, então o `pixelar_retratos.py` copia o orgulhoso para este nome |
 | `baltazar_retrato_encantado.png` | 80 × 80 | sorriso e olhos brilhando: tudo em 3026 é um milagre |
 | `baltazar_retrato_aflito.png` | 80 × 80 | olhos arregalados e suor na testa: a hora do latim |
 | `baltazar_retrato_rezando.png` | 80 × 80 | olhos fechados, calmo |

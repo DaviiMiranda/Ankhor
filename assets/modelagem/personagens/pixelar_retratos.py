@@ -109,6 +109,9 @@ CONFIG = {
             "teimoso": (1210, 70, 1575, 893),
             "orgulhoso": (1600, 70, 1965, 893),
         },
+        # A folha não tem rosto "normal": o normal é uma cópia do orgulhoso.
+        # Sem isto, as falas com "normal" mostravam o retrato antigo do Blender.
+        "copias": {"normal": "orgulhoso"},
         "janela": {"y": 20, "lado": 440, "fundo": (38, 41, 53)},
     },
 }
@@ -178,6 +181,10 @@ def gerar(personagem):
         Image.fromarray(rgba, "RGBA").save(os.path.join(pasta, f"{personagem}_retrato_{nome}.png"))
         saida[nome] = rgba
         print(f"{personagem}: retrato {nome}")
+    for nome, original in cfg.get("copias", {}).items():
+        Image.fromarray(saida[original], "RGBA").save(os.path.join(pasta, f"{personagem}_retrato_{nome}.png"))
+        saida[nome] = saida[original]
+        print(f"{personagem}: retrato {nome} (cópia do {original})")
     return saida
 
 
