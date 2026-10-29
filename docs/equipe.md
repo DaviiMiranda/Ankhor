@@ -9,9 +9,9 @@ Quatro pessoas, quatro papéis. Duas cuidam do **código** e duas são **roteiri
 | # | Papel | Área principal | Pessoa |
 |---|---|---|---|
 | 1 | **Programador de sistemas e artista** | Sistemas de computação, IA dos inimigos e produção de toda a arte | **Davi Miranda** |
-| 2 | **Programador de jogabilidade** | Tudo que o jogador controla e vê na interface | [preencher] |
+| 2 | **Programador de jogabilidade** | Tudo que o jogador controla e vê na interface | **Noah** |
 | 3 | **Roteirista e diretor de arte** | Personagens, mundo e a história contada pela imagem: decide *o que* a arte mostra | **Emanuel Melo** |
-| 4 | **Roteirista e designer de fases** | Trama, mistério, textos, e a história contada pelo espaço e pelo som | [preencher] |
+| 4 | **Roteirista e designer de fases** | Trama, mistério, textos, e a história contada pelo espaço e pelo som | **Guilherme** |
 
 **Líder do projeto e único revisor com autoridade para aprovar PRs:** Davi Miranda, junto com o papel 1. Quando o próprio Davi abre um PR, ele revisa as mudanças e pode mesclá-lo sem aprovação de outro integrante.
 
