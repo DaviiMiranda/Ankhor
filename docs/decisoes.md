@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-10-29 — O esconderijo do Baltazar e o Corredor do Tempo no Dialogos, no Roteiro e no História_Completa.docx
+**Decisão:** os documentos em Word alcançam o que já estava no jogo e no `.md`, sem mudar a história:
+- **`Dialogos.docx` (0.3):** cena 3.3, o esconderijo do Baltazar, com as duas conversas dele no Labirinto (`baltazar_labirinto_primeiro_encontro`, com trechos e escolhas, e `_de_novo`), e cena 3.4, o Corredor do Tempo, que não tem falas. O alçapão passa a ser a cena 3.5. As linhas 0.2 e 0.3 da tabela de versões estavam com a descrição em branco e foram preenchidas.
+- **`Roteiro.docx` (0.11):** as mesmas cenas 3.3 e 3.4 (ações, jogabilidade, linhas FALAS, caderno, documentos), a sequência do Ato 3, a tabela de conversas e a de documentos (a Folha de calibração, as etiquetas das fitas VHS e o selo do telefone). Também ficaram em dia o elenco e os itens do Baltazar e do Carlos no Anexo B.
+- **`História_Completa.docx`:** agora tem o mesmo texto do `.md`. Entraram o esconderijo do Baltazar no Labirinto, a Folha de calibração do Carlos, a Diana estudante de Direito, o anel para depois do primeiro encontro, o aviso do Zane e as pendências atualizadas.
+**Por quê:** pedido do Davi, depois de ver que os PRs #157 e #158 só tinham mudado o `.md` e os dados do jogo.
+**Afeta:** `docs/historia/dialogos/Dialogos.docx`, `docs/historia/roteiro/Roteiro.docx` e `docs/historia/História_Completa.docx`.
+
 ## 2026-10-28 — As fichas dos personagens passam a ser Word (.docx)
 **Decisão:** cada ficha de `docs/historia/personagens/` vira um `.docx` (`gabriel.docx`, `clarice.docx`, `zane.docx`, `henrique.docx`, `baltazar.docx`, `diana.docx`, `carlos.docx`, `robos.docx` e `resumo.docx`), e os `.md` saem. O modelo de ficha também vira `docs/historia/template_personagem.docx`. O conteúdo é o mesmo dos `.md`, organizado sempre do mesmo jeito:
 - **Capa** com o nome, a época e o papel, num traço com a cor de identificação do personagem. A Diana ainda não tem cor e usa o azul-petróleo do projeto; os robôs usam o vermelho, que no Enredo é a cor do Carlos e dos robôs.
@@ -9,6 +17,15 @@
 - Cabeçalho "ANKHOR · Fichas dos personagens" e rodapé com o nome do personagem e a página, no visual do Roteiro.
 **Por quê:** pedido do Davi: fichas em Word, mais estruturadas e organizadas, no lugar dos `.md`.
 **Afeta:** os links para as fichas (História Completa, em `.md` e `.docx`, documentos das fases e das mecânicas, `docs/README.md`, `docs/gdd.md`, os `visual.md` dos sprites e os comentários dos geradores em `assets/modelagem/`). O `CLAUDE.md` e o agente `roteirista` dizem como ler e editar uma ficha em Word. As entradas antigas deste registro continuam citando os `.md`, como histórico.
+## 2026-10-28 — O Zane avisa, no Labirinto, das duas salas fora do mapa
+**Decisão:** no fim da primeira conversa na oficina, quando entrega o notebook, o Zane fala de duas coisas que "não batem com o mapa" dele:
+- **Uma parede no corredor de cima que esquenta toda noite, "como se tivesse gente do outro lado".** É o esconderijo do Baltazar. O Zane não sabe quem está lá: diz só que robô é frio, e que vale apontar a lanterna para a parede ("luz mostra o que o concreto esconde"), que é como o painel solto aparece.
+- **A porta âmbar entre os nós.** É o Corredor do Tempo: ele lê no sistema "sala de teste, mecanismo antigo e um cronômetro ligado", diz que é opcional e que "ninguém monta sala de teste à toa".
+- Nas visitas seguintes, a escolha "E aquelas duas salas?" repete a dica.
+
+O encontro com o Baltazar continua opcional (pendência 10.4): o aviso só aponta o caminho.
+**Por quê:** pedido do Davi: o Zane precisa mencionar ao Gabriel, no Labirinto, as duas salas escondidas, a do Baltazar e a dos puzzles.
+**Afeta:** `dados/dialogos/zane_labirinto_primeiro_encontro.json` e `zane_labirinto_de_novo.json`; `docs/fases/labirinto.md`; a História Completa (md e docx, Ato 2, Labirinto); o `Dialogos.docx` (0.2) e o `Roteiro.docx` (0.10).
 
 ## 2026-10-28 — Corredor do Tempo: jogos, micros e telefone no lugar do disco, do pêndulo e dos anéis, e cada sala com cara própria
 **Decisão:** as outras três salinhas do Corredor do Tempo (Labirinto) também viram puzzles sobre coisas dos anos 80, cada um com uma mecânica diferente da dos filmes, e cada sala ganha arte própria:
