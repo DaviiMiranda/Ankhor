@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-10-29 — O esconderijo do Baltazar e o Corredor do Tempo no Dialogos, no Roteiro e no História_Completa.docx
+**Decisão:** os documentos em Word alcançam o que já estava no jogo e no `.md`, sem mudar a história:
+- **`Dialogos.docx` (0.3):** cena 3.3, o esconderijo do Baltazar, com as duas conversas dele no Labirinto (`baltazar_labirinto_primeiro_encontro`, com trechos e escolhas, e `_de_novo`), e cena 3.4, o Corredor do Tempo, que não tem falas. O alçapão passa a ser a cena 3.5. As linhas 0.2 e 0.3 da tabela de versões estavam com a descrição em branco e foram preenchidas.
+- **`Roteiro.docx` (0.11):** as mesmas cenas 3.3 e 3.4 (ações, jogabilidade, linhas FALAS, caderno, documentos), a sequência do Ato 3, a tabela de conversas e a de documentos (a Folha de calibração, as etiquetas das fitas VHS e o selo do telefone). Também ficaram em dia o elenco e os itens do Baltazar e do Carlos no Anexo B.
+- **`História_Completa.docx`:** agora tem o mesmo texto do `.md`. Entraram o esconderijo do Baltazar no Labirinto, a Folha de calibração do Carlos, a Diana estudante de Direito, o anel para depois do primeiro encontro, o aviso do Zane e as pendências atualizadas.
+**Por quê:** pedido do Davi, depois de ver que os PRs #157 e #158 só tinham mudado o `.md` e os dados do jogo.
+**Afeta:** `docs/historia/dialogos/Dialogos.docx`, `docs/historia/roteiro/Roteiro.docx` e `docs/historia/História_Completa.docx`.
+
 ## 2026-10-28 — As fichas dos personagens passam a ser Word (.docx)
 **Decisão:** cada ficha de `docs/historia/personagens/` vira um `.docx` (`gabriel.docx`, `clarice.docx`, `zane.docx`, `henrique.docx`, `baltazar.docx`, `diana.docx`, `carlos.docx`, `robos.docx` e `resumo.docx`), e os `.md` saem. O modelo de ficha também vira `docs/historia/template_personagem.docx`. O conteúdo é o mesmo dos `.md`, organizado sempre do mesmo jeito:
 - **Capa** com o nome, a época e o papel, num traço com a cor de identificação do personagem. A Diana ainda não tem cor e usa o azul-petróleo do projeto; os robôs usam o vermelho, que no Enredo é a cor do Carlos e dos robôs.
