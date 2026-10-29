@@ -38,7 +38,7 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 - Patrulham **também o bunker** (seção 6).
 - Fora da rotina, quando ouvem ou veem um humano, saem do protocolo e caçam. Por que caçam (para capturar ou para eliminar) está pendente (seção 10.2).
 - São agressivos: se pegam Gabriel, é **game over** e o jogo volta ao último checkpoint (ver [`../mecanicas/vida_e_checkpoint.md`](../mecanicas/vida_e_checkpoint.md)).
-- Cada tipo tem um sentido dominante (som, visão, luz). Os dois já implementados são a **Sentinela** (visão) e o **Rastreador** (audição). Ver [`personagens/robos.md`](personagens/robos.md).
+- Cada tipo tem um sentido dominante (som, visão, luz). Os dois já implementados são a **Sentinela** (visão) e o **Rastreador** (audição). Ver [`personagens/robos.docx`](personagens/robos.docx).
 - Gabriel não é um combatente: **fugir e se esconder é a regra**, defender-se é a exceção.
 
 ### 2.4 Os Faroleiros e o símbolo deles
@@ -108,18 +108,18 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 
 | Época | Personagem |
 |---|---|
-| ~1750 | [Baltazar Magalhães](personagens/baltazar.md) |
-| 1978 | [Diana](personagens/diana.md) |
-| 1990 | [Clarice](personagens/clarice.md) |
-| 2019 | [Henrique](personagens/henrique.md), o pesquisador |
-| 2026 | [Gabriel Magalhães](personagens/gabriel.md) (protagonista) |
-| 2123 | [Zane](personagens/zane.md) |
-| 3026 | [Carlos](personagens/carlos.md) (antagonista) |
-| 3026 | [Os robôs](personagens/robos.md) (inimigos) |
+| ~1750 | [Baltazar Magalhães](personagens/baltazar.docx) |
+| 1978 | [Diana](personagens/diana.docx) |
+| 1990 | [Clarice](personagens/clarice.docx) |
+| 2019 | [Henrique](personagens/henrique.docx), o pesquisador |
+| 2026 | [Gabriel Magalhães](personagens/gabriel.docx) (protagonista) |
+| 2123 | [Zane](personagens/zane.docx) |
+| 3026 | [Carlos](personagens/carlos.docx) (antagonista) |
+| 3026 | [Os robôs](personagens/robos.docx) (inimigos) |
 
 ### 4.3 O Carlos, o antagonista
 
-O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e controla os robôs. Era um **Faroleiro**: saiu da resistência e se isolou na Unifor, sozinho durante anos, para ir viver nos anos 80. Quem ele é está na [ficha dele](personagens/carlos.md).
+O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e controla os robôs. Era um **Faroleiro**: saiu da resistência e se isolou na Unifor, sozinho durante anos, para ir viver nos anos 80. Quem ele é está na [ficha dele](personagens/carlos.docx).
 
 - **Ele e o Henrique:** quando o Henrique caiu, o primeiro de todos, o Carlos prometeu levá-lo de volta **para antes da morte da mãe dele** e assim ganhou a confiança do Henrique. Na verdade, só o usa: o Henrique serve para **atrasar os outros** enquanto o Carlos conserta a Âncora. O Carlos não se importa com os puxados (seção 8, "A virada").
 - **O primeiro registro dele:** a **Folha de calibração**, no Corredor do Tempo do Labirinto (opcional). Ali ele testava a calibração da Âncora com objetos dos anos 80 (um Genius, os três quadros de *De Volta para o Futuro*, um micro e um telefone de disco). Na folha ele conta que a máquina errou de novo, abriu a fenda na Biblioteca e puxou alguém que ele **nem foi ver**; diz que já foi um Faroleiro e que só quer o mundo dos anos 80. **Assina só "C."**: o jogador ainda não sabe o nome dele (quando descobre continua pendente, seção 10.2).

@@ -159,7 +159,7 @@ Para a apresentação da disciplina: as salas são **vértices** e as portas sã
 - **Salas sem robôs:** cabine, balcão, terminais e manutenção. São respiros entre as partes tensas.
 - Ser pego dá game over e volta ao último checkpoint.
 
-Os dois robôs já existem no jogo, no Labirinto. Ver [`../historia/personagens/robos.md`](../historia/personagens/robos.md).
+Os dois robôs já existem no jogo, no Labirinto. Ver [`../historia/personagens/robos.docx`](../historia/personagens/robos.docx).
 
 ---
 

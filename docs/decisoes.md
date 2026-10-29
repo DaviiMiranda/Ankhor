@@ -1,5 +1,14 @@
 # Registro de decisões
 
+## 2026-10-28 — As fichas dos personagens passam a ser Word (.docx)
+**Decisão:** cada ficha de `docs/historia/personagens/` vira um `.docx` (`gabriel.docx`, `clarice.docx`, `zane.docx`, `henrique.docx`, `baltazar.docx`, `diana.docx`, `carlos.docx`, `robos.docx` e `resumo.docx`), e os `.md` saem. O modelo de ficha também vira `docs/historia/template_personagem.docx`. O conteúdo é o mesmo dos `.md`, organizado sempre do mesmo jeito:
+- **Capa** com o nome, a época e o papel, num traço com a cor de identificação do personagem. A Diana ainda não tem cor e usa o azul-petróleo do projeto; os robôs usam o vermelho, que no Enredo é a cor do Carlos e dos robôs.
+- **Ficha rápida**: época, essência, objeto-símbolo, cor e status.
+- **Caixa "Lei do projeto"**, logo abaixo.
+- **As seções numeradas** de sempre. As listas de "Rótulo: texto" (Quem é, Personalidade, No jogo, Registros, Direção de arte, Arquivos) viram tabelas de duas colunas, e as tabelas (Relações, gírias do Zane, estados do Gabriel, robôs) ganham cabeçalho escuro.
+- Cabeçalho "ANKHOR · Fichas dos personagens" e rodapé com o nome do personagem e a página, no visual do Roteiro.
+**Por quê:** pedido do Davi: fichas em Word, mais estruturadas e organizadas, no lugar dos `.md`.
+**Afeta:** os links para as fichas (História Completa, em `.md` e `.docx`, documentos das fases e das mecânicas, `docs/README.md`, `docs/gdd.md`, os `visual.md` dos sprites e os comentários dos geradores em `assets/modelagem/`). O `CLAUDE.md` e o agente `roteirista` dizem como ler e editar uma ficha em Word. As entradas antigas deste registro continuam citando os `.md`, como histórico.
 ## 2026-10-28 — O Zane avisa, no Labirinto, das duas salas fora do mapa
 **Decisão:** no fim da primeira conversa na oficina, quando entrega o notebook, o Zane fala de duas coisas que "não batem com o mapa" dele:
 - **Uma parede no corredor de cima que esquenta toda noite, "como se tivesse gente do outro lado".** É o esconderijo do Baltazar. O Zane não sabe quem está lá: diz só que robô é frio, e que vale apontar a lanterna para a parede ("luz mostra o que o concreto esconde"), que é como o painel solto aparece.

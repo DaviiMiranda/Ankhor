@@ -2,7 +2,7 @@
 # aparece sobre o notebook, na mesa do Gabriel, no quarto do visor 3D, quando ele junta
 # os três pingentes do Labirinto (docs/mecanicas/colecionaveis.md).
 #
-# É o objeto-símbolo do Baltazar (docs/historia/personagens/baltazar.md): um
+# É o objeto-símbolo do Baltazar (docs/historia/personagens/baltazar.docx): um
 # chapéu de feltro de copa baixa e três abas dobradas para cima, formando o
 # triângulo, com um galão de latão na borda das abas. Nas três pontas do
 # triângulo, os três PINGENTES: argola de latão, colarinho e a borla de fio

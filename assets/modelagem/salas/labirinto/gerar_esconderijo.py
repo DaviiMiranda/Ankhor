@@ -58,7 +58,7 @@ Imagem, salvar_png, ruido = bib.Imagem, bib.salvar_png, bib.ruido
 BLOCO = 32
 ALTURA_PAREDE = 40
 
-# Vinho, a cor do Baltazar (ver docs/historia/personagens/baltazar.md, seção 6).
+# Vinho, a cor do Baltazar (ver docs/historia/personagens/baltazar.docx, seção 6).
 VINHO = bib.hexa("#1e0a10", "#3a1220", "#5c1e30", "#7e2c40", "#a04458")
 
 # O Cruzeiro do Sul no painel: (x, y) de cada estrela e o tamanho do "+".
