@@ -36,9 +36,23 @@ Retratos de 80 × 80, mostrados em 40 × 40 na caixa de diálogo.
 | `gabriel_andar_<vista>.png` | 12 | caminhada (dois passos), um arquivo por vista |
 | `gabriel_parado_<vista>.png` | 8 | respiração |
 | `gabriel_oculos_lado.png` | 12 | só de lado: pega os óculos do Zane da máquina de salvar e põe no rosto (de trás para a frente, tira). Feita por `gerar_gabriel_oculos.py` |
-| `gabriel_retrato_<nome>.png` | 1 | `normal`, `preocupado` e `surpreso` |
+| `gabriel_retrato_<nome>.png` | 1 | `normal`, `preocupado`, `surpreso`, `assustado`, `sorrindo`, `aliviado`, `determinado`, `desconfiado`, `pensativo`, `triste`, `bravo`, `envergonhado` e `cansado` |
 
 Vistas: `lado`, `frente`, `tres_quartos`, `costas`, `tres_quartos_costas`.
 
+## Retratos
+Os retratos são **desenhados**, como os dos outros personagens, e saem do
+`assets/modelagem/personagens/pixelar_retratos.py`
+(`python assets/modelagem/personagens/pixelar_retratos.py gabriel`):
+
+- dez emoções da folha `gabriel_referencia/expressoes_novas.jpg` (assustado, sorrindo,
+  aliviado, determinado, desconfiado, pensativo, triste, bravo, envergonhado, cansado);
+- `normal`, `preocupado` e `surpreso` da folha antiga `gabriel_referencia/expressoes.webp`,
+  porque a nova não tem essas três. Se chegar uma folha com elas, é só trocar no `CONFIG`.
+
+O corpo (sprites em pé) continua saindo do modelo 3D (`gerar_gabriel.py`). **Rodar o
+`gerar_gabriel.py` de novo sobrescreve o `normal`, o `preocupado` e o `surpreso` com os
+retratos antigos do Blender**: depois dele, rode o `pixelar_retratos.py gabriel`.
+
 ## Referências
-`gabriel_referencia.png`: frente, 3/4, lado e costas, e os retratos.
+`gabriel_referencia.png`: frente, 3/4, lado e costas, e os retratos antigos do Blender.
