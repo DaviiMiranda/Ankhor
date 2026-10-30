@@ -3,7 +3,7 @@
 	"inicio": "abertura",
 	"anotacao": {
 		"titulo": "Clarice, na 103",
-		"texto": "A Clarice está na 103, atrás de uma barricada, mapeando a ronda dos robôs.\n\nPerdeu o molho de chaves na areia da 102 quando o robô a ouviu. Sem o molho ninguém sobe: a grade da escada está no cadeado.\n\nSe eu levar o molho, ela diz qual chave abre o quê. Ela chama de permuta, não de pedido de ajuda."
+		"texto": "A Clarice está na 103, atrás de uma barricada, mapeando a ronda dos robôs.\n\nPerdeu o molho de chaves na areia da 102 quando o robô a ouviu. Sem o molho ninguém sobe: a grade da escada está no cadeado.\n\nSe eu levar o molho, ela diz qual chave abre o quê. Ela chama de permuta, não de pedido de ajuda.\n\nA Diana sai escondida da 103 para investigar quem construiu tudo isso. A Clarice não deixa ninguém sair."
 	},
 	"trechos": {
 		"abertura": {
@@ -92,6 +92,26 @@
 					"quem": "Diana",
 					"retrato": "diana/diana_retrato_dramatica",
 					"texto": "Oiii! Eu estava procurando meu brinco naquela bagunça, esse lugar tá péssimo. É verdade que você é de 2026? Que loucura! Tem carro voador mesmo?"
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_seria",
+					"texto": "Brinco. Sei. Ela pulou a barricada de novo pra fuçar as galerias da obra. Eu falei: ninguém sai da 103."
+				},
+				{
+					"quem": "Diana",
+					"retrato": "diana/diana_retrato_dramatica",
+					"texto": "Protesto! Eu fui investigar! Alguém construiu tudo isso aqui, e eu vou descobrir quem."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_seria",
+					"texto": "Investiga daqui de dentro. Com a barricada fechada."
+				},
+				{
+					"quem": "Diana",
+					"retrato": "diana/diana_retrato_ansiosa",
+					"texto": "Tá, tá. Mas e aí, tem carro voador ou não?"
 				},
 				{
 					"quem": "Gabriel",
