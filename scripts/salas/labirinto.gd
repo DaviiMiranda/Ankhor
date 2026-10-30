@@ -13,7 +13,6 @@ const CENA_ALCAPAO := preload("res://cenas/sistemas/alcapao.tscn")
 const CENA_PORTA := preload("res://cenas/sistemas/porta_da_sala.tscn")
 const CENA_PORTA_SALA_SEGURA := preload("res://cenas/sistemas/porta.tscn")
 const CENA_PAREDE_FALSA := preload("res://cenas/sistemas/parede_falsa.tscn")
-const CENA_BALTAZAR := preload("res://cenas/personagens/baltazar_no_esconderijo.tscn")
 const CENA_COLECIONAVEL := preload("res://cenas/itens/colecionavel_no_mundo.tscn")
 const LANTERNA := preload("res://dados/itens/lanterna.tres")
 const PROPS := {
@@ -62,7 +61,7 @@ const LUZ_EM_TUDO := 1 | 2
 @export var quantidade_componentes: int = 26
 @export var quantidade_pecas_no_esconderijo: int = 12
 @export var colecao: Colecao
-@export var marca_do_pingente_escondido: String = "conheceu_baltazar"
+@export var marca_do_pingente_escondido: String = "esconderijo_baltazar_descoberto"
 @export var semente: int = 26
 @export var transmissao_da_rede: Transmissao
 @export_file("*.tscn") var cena_da_saida: String = ""
@@ -341,10 +340,6 @@ func _colocar_marcadores() -> void:
 					_colocar_colecionavel(int(mapa.letra(celula)), posicao, "")
 				"3":
 					_colocar_colecionavel(3, posicao, marca_do_pingente_escondido)
-				"B":
-					var baltazar := CENA_BALTAZAR.instantiate()
-					baltazar.name = "Baltazar"
-					_colocar(baltazar, posicao)
 				"F":
 					if _comeca_sequencia(celula, "F"):
 						_colocar_parede_falsa(celula)

@@ -58,8 +58,8 @@ Legenda do mapa:
 | `r` `k` `a` `u` | rack, caixas de peças, braço robótico, cadeira |
 | `h` `i` `j` | holograma de ondas, de barras, de código |
 | `F` | a **parede falsa** do esconderijo do Baltazar (2 blocos, `FF`). Para o mapa é parede: o esconderijo fica fora do grafo |
-| `B` | o Baltazar |
-| `1` `2` `3` | os **pingentes do chapéu** do Baltazar (colecionáveis, [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)). `1` e `2` ficam em becos sem saída do labirinto (o `2`, no corredor logo abaixo da parede falsa) e `3` fica dentro do esconderijo, sem aparecer até o primeiro encontro com o Baltazar terminar |
+| `B` | onde o Baltazar ficava. Hoje é só chão: ele não aparece mais em pessoa (decisão de 2026-10-30) |
+| `1` `2` `3` | os **pingentes do chapéu** do Baltazar (colecionáveis, [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)). `1` e `2` ficam em becos sem saída do labirinto (o `2`, no corredor logo abaixo da parede falsa) e `3` fica dentro da sala dele, sem aparecer até a lanterna revelar a parede falsa |
 | `y` `e` `n` `l` `v` | altar de velas, chapa com estrelas riscadas (larga: `ee`), ninho de panos (largo: `nn`), pilha de livros, tocos de vela |
 
 Para mudar o mapa: altere o `.tres` à mão (mantendo o formato) ou mude `SEMENTE`, `FRACAO_CICLOS`, `INICIO`, `SALAS`, `MODELOS`, `ESCONDERIJO` e `MODELO_ESCONDERIJO` no gerador e rode `python assets/modelagem/salas/labirinto/gerar_labirinto.py` (com `PREVIA=<pasta>` ele salva uma imagem do mapa inteiro). O gerador falha com uma mensagem se o modelo de uma sala não bate com o tamanho dela, se o início ficar fora da faixa `CAMINHO_ATE_A_OFICINA` (de 3 a 8 salinhas de caminho até a oficina) ou se não couberem os robôs.
@@ -114,22 +114,22 @@ A porta `HH` (`porta_corredor_tempo.png`, luz âmbar) leva a `cenas/salas/labiri
 
 | Arquivo | Quando |
 |---|---|
-| `zane_labirinto_primeiro_encontro.json` | Primeira vez. Ao terminar, entrega o notebook. Conta que a mesma trava lacra a saída e o bunker, e que desconfia do Henrique. Tem escolhas: como invadir, os robôs, "Por que desconfiar do Henrique?" e "Me dá esse notebook". No fim, avisa de **duas salas fora do mapa**: uma parede do corredor de cima que "esquenta como gente" (o esconderijo do Baltazar: apontar a lanterna para ela) e a porta âmbar entre os nós (o Corredor do Tempo, opcional, com cronômetro). O Zane não sabe quem está atrás da parede |
+| `zane_labirinto_primeiro_encontro.json` | Primeira vez. Ao terminar, entrega o notebook. Conta que a mesma trava lacra a saída e o bunker, e que desconfia do Henrique. Tem escolhas: como invadir, os robôs, "Por que desconfiar do Henrique?" e "Me dá esse notebook". No fim, avisa de **duas salas fora do mapa**: um vão atrás de uma parede do corredor de cima que não está em planta nenhuma (a sala do Baltazar: apontar a lanterna para ela) e a porta âmbar entre os nós (o Corredor do Tempo, opcional, com cronômetro). O Zane não sabe de quem é a sala |
 | `zane_labirinto_notebook.json` | Se a primeira conversa terminou mas o notebook não coube no inventário |
 | `zane_labirinto_de_novo.json` | Nas próximas vezes, enquanto faltam nós. Repete as escolhas, menos a do notebook, e ganha "E aquelas duas salas?", que repete a dica da parede e da porta âmbar |
 | `zane_labirinto_alcapao.json` | Depois de os três nós caírem: o Zane revela e abre o alçapão, diz que a trava do bunker soltou junto e pede que o Gabriel fique de olho no Henrique. Ao terminar, marca `labirinto_alcapao_revelado` |
 | `zane_labirinto_alcapao_de_novo.json` | Depois de o alçapão aberto: "Desce logo, eu vou atrás" |
 
-### O esconderijo do Baltazar (a sala que só a lanterna revela)
-Uma quinta sala, **fora do grafo**: o miolo fica em `esconderijo` no mapa (8 × 5 blocos, nas fileiras novas de cima) e a entrada é a parede falsa `FF`, na parede de cima do corredor de cima, logo acima das colunas 19 e 20. Como `F` conta como parede para o A\*, a BFS e as salinhas, **nenhum robô acha caminho até lá** e o som não chega: é por isso que o Baltazar sobreviveu ali. O encontro é opcional (pendência no Enredo, seção 10.4).
+### A sala do Baltazar (a sala que só a lanterna revela)
+Uma quinta sala, **fora do grafo**: o miolo fica em `esconderijo` no mapa (8 × 5 blocos, nas fileiras novas de cima) e a entrada é a parede falsa `FF`, na parede de cima do corredor de cima, logo acima das colunas 19 e 20. Como `F` conta como parede para o A\*, a BFS e as salinhas, **nenhum robô acha caminho até lá** e o som não chega: é por isso que o Baltazar sobreviveu ali. **Ele não está mais lá** (decisão de 2026-10-30): a sala é um dos rastros dele, e o que houve com ele fica em aberto (Enredo, seção 5).
 
 - **Por fora, parece parede.** Os dois blocos `FF` são desenhados como qualquer bloco (topo e frente), e o miolo da sala é coberto por topos de parede (a "tampa"), então o canto parece concreto maciço. A tampa some quando a passagem abre ou quando o Gabriel está dentro.
 - **Só a lanterna revela.** `ParedeFalsa` (`scripts/sistemas/parede_falsa.gd`, cena `cenas/sistemas/parede_falsa.tscn`) desenha por cima da frente o `painel_solto.png` (as emendas do painel, o Cruzeiro do Sul e a cruz), com opacidade igual à força da lanterna naquele ponto. A força é calculada como o cone de luz do feixe, com **produto escalar**: o cosseno entre a direção para onde o Gabriel olha e a direção da mão dele até o meio da parede. Cheia até 20°, some até 32° (`smoothstep`, os mesmos ângulos da textura `luz_cone.png`), e cai com a distância até 120 px. Um raio contra as paredes (camada 8) impede que a luz "atravesse" outra parede. Sem lanterna acesa, a força é zero.
 - **Abrir.** Com a marca visível (força acima de 0,5), perto, `E` ("Afastar o painel"): o painel sai, fica encostado no corredor ao lado (`painel_encostado.png`) e a passagem libera. Ao ser vista pela primeira vez, a parede marca `esconderijo_baltazar_descoberto`: daí em diante o `E` funciona mesmo de lanterna apagada (e sempre de dentro).
 - **Fecha sozinha.** Como as portas das salas, 1,2 s depois de o Gabriel sair da passagem. Robôs **não** abrem a parede falsa.
-- **Dentro:** o Baltazar (`cenas/personagens/baltazar_no_esconderijo.tscn`) logo acima da passagem, com velas do lado, e a bagunça: altar, ninho, livros, caixas, o robô desmontado, a chapa com estrelas e peças e papéis espalhados pelo chão (`quantidade_pecas_no_esconderijo`). As velas são `cenas/cenario/luzes/luz_vela.tscn` (luz quente que treme).
-- **Pingente do chapéu (peça 3).** No chão, ao lado do ninho, no pé do cartaz de estrelas. Fica invisível e sem aviso até a marca `conheceu_baltazar` (fim do primeiro encontro); depois aparece e dá para pegar. Faz parte da coleção do Labirinto.
-- **Conversas** em `dados/dialogos/`: `baltazar_labirinto_primeiro_encontro.json` começa sozinha quando o Gabriel chega perto dele (gatilho de 64 px) e marca `conheceu_baltazar`; tem escolhas (o acampamento da Biblioteca, a bagunça, o convite para sair) e anota no caderno. Depois, falar com ele (`E`) toca `baltazar_labirinto_de_novo.json`, com a dica do diário sobre os olhos dos robôs.
+- **Dentro:** a sala vazia, com a bagunça de quem morou ali: altar, ninho, livros, caixas, o robô desmontado, a chapa com estrelas e peças e papéis espalhados pelo chão (`quantidade_pecas_no_esconderijo`). As velas são `cenas/cenario/luzes/luz_vela.tscn` (luz quente que treme). A cena do Baltazar em pessoa e as duas conversas dele saíram do jogo.
+- **Pingente do chapéu (peça 3).** No chão, ao lado do ninho, no pé do cartaz de estrelas. Fica invisível e sem aviso até a marca `esconderijo_baltazar_descoberto` (a lanterna revelou a parede falsa); depois aparece e dá para pegar. Faz parte da coleção do Labirinto. A marca fica em `marca_do_pingente_escondido`, no `labirinto.gd`.
+- **Falta:** a carta do Baltazar que fica nesta sala (Enredo, seção 5). Ainda não escrita: falta decidir a quem ele escreve.
 
 ---
 
