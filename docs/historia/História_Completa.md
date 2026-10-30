@@ -3,14 +3,14 @@
 > [!IMPORTANT]
 > **Este documento é a lei do projeto**, junto com as fichas de [`personagens/`](personagens/) (uma por personagem), que fazem parte dele. Tudo o que diz respeito à história, ao mundo e aos personagens de **Ankhor** vale como está escrito aqui e nas fichas, **acima de qualquer outro documento**: GDD, fases, diálogos, arte, textos em `dados/` e o próprio `decisoes.md`. Em caso de dúvida em qualquer parte do jogo (o que uma fase conta, como um personagem fala, o que um objeto significa), consulte este documento e a ficha do personagem. Se outra parte do projeto contradisser o que está aqui, **a outra parte está errada** e deve ser corrigida.
 
-> **Status:** reescrito em 2026-10-06, quando a história mudou de rumo: saíram os loops e a revelação de "Gabriel é o paradoxo", e a fenda passou a ser **um acaso** para quem cai nela. Em 2026-10-07 entrou o antagonista, o **Carlos**. Em 2026-10-15 entraram os ***Homo sideralis*** (quem foi embora), os **Faroleiros** (quem ficou) e o conteúdo da mentira do **Henrique**.
+> **Status:** reescrito em 2026-10-06, quando a história mudou de rumo: saíram os loops e a revelação de "Gabriel é o paradoxo", e a fenda passou a ser **um acaso** para quem cai nela. Em 2026-10-07 entrou o antagonista, o **Carlos**. Em 2026-10-15 entraram os ***Homo sideralis*** (quem foi embora), os **Faroleiros** (quem ficou) e o conteúdo da mentira do **Henrique**. Em 2026-10-30, o **Baltazar** deixou de aparecer em pessoa (só os rastros dele) e entrou o nome da partida dos *Homo sideralis*: a **Grande Separação**.
 > **Como mudar:** só por decisão do grupo. Toda mudança de história entra **no mesmo PR** neste documento e em [`../decisoes.md`](../decisoes.md) (que guarda o histórico de quando e por que mudou). Tudo o que ainda não foi decidido fica na **seção 10 ("Pendências")**, no fim, e não no meio da narrativa: o que está fora das pendências está decidido.
 
 ---
 
 ## 1. A história em um parágrafo
 
-Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Biblioteca da Unifor e acorda no ano de **3026**, no mesmo lugar, agora uma ruína tomada pela natureza. A sociedade e o planeta ficaram tão ruins que a humanidade se dividiu: os ***Homo sideralis***, uma espécie humana evoluída, feita para o espaço, foram embora para outro planeta, e os poucos *sapiens* que ficaram formaram uma resistência que defende a Terra, os **Faroleiros**. Um deles se afastou do grupo e se isolou na Unifor: **Carlos**, um cientista obcecado pelos **anos 80**, que construiu uma máquina no **D-Tec**, a parte de tecnologia da Unifor, no Bloco M: a **Âncora**, para ir viver naquela época. A Âncora é imprecisa: a cada tentativa do Carlos, abre uma **fenda** no tempo no chão da Biblioteca e puxa quem estiver naquele ponto, em alguma época. Para quem cai, **é um acaso**: o Carlos não escolhe ninguém. Gabriel não é o único: outros jovens de épocas diferentes caíram ali com dias de diferença, e cada um está tentando sobreviver num canto do campus. Os robôs, controlados pelo Carlos, caçam qualquer humano que aparecer. Gabriel precisa encontrar os outros, descobrir o que aconteceu e achar um jeito de todos voltarem para suas épocas. No caminho descobre que um deles é seu antepassado, que outro mente para o grupo a serviço do Carlos, e que por trás de tudo existe alguém.
+Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Biblioteca da Unifor e acorda no ano de **3026**, no mesmo lugar, agora uma ruína tomada pela natureza. A sociedade e o planeta ficaram tão ruins que a humanidade se dividiu, na **Grande Separação**: os ***Homo sideralis***, uma espécie humana evoluída, feita para o espaço, foram embora para outro planeta, e os poucos *sapiens* que ficaram formaram uma resistência que defende a Terra, os **Faroleiros**. Um deles brigou com o grupo e se isolou na Unifor, abandonada havia muito tempo: **Carlos**, um cientista obcecado pelos **anos 80**, que construiu uma máquina no **D-Tec**, a parte de tecnologia da Unifor, no Bloco M: a **Âncora**, para ir viver naquela época. A Âncora é imprecisa: a cada tentativa do Carlos, abre uma **fenda** no tempo no chão da Biblioteca e puxa quem estiver naquele ponto, em alguma época. Para quem cai, **é um acaso**: o Carlos não escolhe ninguém. Gabriel não é o único: outros jovens de épocas diferentes caíram ali com dias de diferença, e cada um está tentando sobreviver num canto do campus. Os robôs, controlados pelo Carlos, caçam qualquer humano que aparecer. Gabriel precisa encontrar os outros, descobrir o que aconteceu e achar um jeito de todos voltarem para suas épocas. No caminho segue os rastros de um antepassado que passou por ali antes dele e desapareceu, descobre que um dos outros mente para o grupo a serviço do Carlos, e que por trás de tudo existe alguém.
 
 ---
 
@@ -19,9 +19,10 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 ### 2.1 A Terra em 3026
 
 - **A Terra ficou muito ruim**: a sociedade e o planeta. Quase não restam humanos na Terra.
-- **Os *Homo sideralis* foram embora.** Ao longo dos séculos, parte da humanidade evoluiu numa espécie nova, os ***Homo sideralis*** ("o homem das estrelas"): aceitam melhor os implantes cibernéticos e vivem melhor no espaço e em planetas com outra temperatura ou outra gravidade. Foram eles que **partiram para outro planeta**, há **menos de 100 anos**.
+- **Os *Homo sideralis* foram embora.** Ao longo dos séculos, parte da humanidade evoluiu numa espécie nova, os ***Homo sideralis*** ("o homem das estrelas"): aceitam melhor os implantes cibernéticos e vivem melhor no espaço e em planetas com outra temperatura ou outra gravidade. Foram eles que **partiram para outro planeta**, há **menos de 100 anos**. Essa partida se chama **Grande Separação**: separou famílias e amigos, que nunca mais se viram.
 - **Os Faroleiros ficaram.** Os humanos ainda não evoluídos, os *sapiens*, não partiram. Os que ficaram formaram uma resistência que **defende o planeta**: os **Faroleiros**. Ainda existem, **longe do campus**. O símbolo deles está na seção 2.4.
-- **O Carlos era um Faroleiro.** Saiu do grupo e se isolou na Unifor, sozinho, durante anos, para usar a Âncora e ir viver nos anos 80 (seção 4.3).
+- **Quanto mais no futuro, mais frias as relações.** Do passado para o futuro, as relações entre as pessoas esfriam: em 2123 já são mornas, mediadas por máquinas (é daí que vem o jeito do Zane), e em 3026, depois da Grande Separação, são geladas. Os **Faroleiros** são a exceção: mantêm a luz acesa, e as cartas deles são quentes.
+- **O Carlos era um Faroleiro.** Há alguns anos teve um **desentendimento** com o grupo (o motivo fica em aberto no jogo) e se isolou na Unifor, abandonada havia muito tempo, para usar a Âncora e ir viver nos anos 80 (seção 4.3).
 - **A IA e a robótica** são muito avançadas, mas a IA **não tem consciência**: é uma ferramenta nas mãos dos humanos. Não existe uma IA que domina a Terra. Os robôs e os sistemas do campus são ferramentas do Carlos.
 
 ### 2.2 O campus em 3026
@@ -83,7 +84,7 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 
 | Quem | O que traz |
 |---|---|
-| Baltazar (1750) | As estrelas: o céu é o único relógio que não muda, e é por ele que se acerta a data de volta de cada um |
+| Baltazar (1750) | As estrelas: o céu é o único relógio que não muda, e é por ele que se acerta a data de volta de cada um. O Baltazar não está lá para entregar: o grupo usa a **chapa com o céu de casa** que ele deixou na sala do Labirinto (seção 5) |
 | Diana (1978) | O mapa das galerias: estudante de Direito que cresceu cortando caminho pela obra, conhece as galerias de 1978, que não aparecem nos mapas de 3026, e descobre por elas onde fica o núcleo e as passagens até lá |
 | Clarice (1990) | Código: faz os terminais da Âncora funcionarem. Mapeou as rondas dos robôs como um grafo e sabe o que cada chave abre |
 | Henrique (2019) | A teoria por trás das equações |
@@ -100,9 +101,9 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 
 - Todos os puxados pela fenda têm **cerca de 20 anos**.
 - Todos têm alguma **ligação com a região da Unifor**, além de terem sido puxados no chão da Biblioteca.
-- Chegaram a 3026 **com 3 dias de intervalo entre uma chegada e a seguinte**. Estão todos **vivos**, cada um sobrevivendo do seu jeito num lugar do campus, e Gabriel **encontra cada um ao longo do jogo**.
-- **Ordem de chegada:** o **Henrique é o primeiro** a chegar, e por isso é quem está há mais tempo em 3026. **Gabriel é o último**. No meio: o **Zane** chegou antes da **Clarice**, e a **Diana** chegou depois da Clarice (apareceu na 103 quando a Clarice já estava lá). Só a posição do **Baltazar** ainda está pendente.
-- **Quantos dias cada um está lá:** como são 3 dias entre uma chegada e a seguinte, quem chega *n* posições antes de Gabriel chegou 3 × *n* dias antes dele. Sem contar o Baltazar: a Diana, 3 dias antes; a Clarice, 6; o Zane, 9; o Henrique, 12. Se o Baltazar entrar no meio da ordem, quem veio antes dele ganha mais 3 dias.
+- Chegaram a 3026 **com 3 dias de intervalo entre uma chegada e a seguinte**. Os que Gabriel encontra estão todos **vivos**, cada um sobrevivendo do seu jeito num lugar do campus, e ele **encontra cada um ao longo do jogo**. O **Baltazar** é a exceção: Gabriel só acha os rastros dele (seção 5).
+- **Ordem de chegada:** o **Henrique é o primeiro** a chegar, e por isso é quem está há mais tempo em 3026. **Gabriel é o último**. No meio: o **Zane** chegou antes da **Clarice**, e a **Diana** chegou depois da Clarice (apareceu na 103 quando a Clarice já estava lá). O **Baltazar** fica fora dessa contagem (seção 5).
+- **Quantos dias cada um está lá:** como são 3 dias entre uma chegada e a seguinte, quem chega *n* posições antes de Gabriel chegou 3 × *n* dias antes dele. Sem contar o Baltazar: a Diana, 3 dias antes; a Clarice, 6; o Zane, 9; o Henrique, 12.
 
 ### 4.2 Fichas
 
@@ -119,9 +120,10 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 
 ### 4.3 O Carlos, o antagonista
 
-O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e controla os robôs. Era um **Faroleiro**: saiu da resistência e se isolou na Unifor, sozinho durante anos, para ir viver nos anos 80. Quem ele é está na [ficha dele](personagens/carlos.docx).
+O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e controla os robôs. Era um **Faroleiro**: há alguns anos teve um **desentendimento** com eles (o motivo fica em aberto no jogo) e se isolou na Unifor, abandonada havia muito tempo, sozinho durante anos, para ir viver nos anos 80. Quem ele é está na [ficha dele](personagens/carlos.docx).
 
 - **Ele e o Henrique:** quando o Henrique caiu, o primeiro de todos, o Carlos prometeu levá-lo de volta **para antes da morte da mãe dele** e assim ganhou a confiança do Henrique. Na verdade, só o usa: o Henrique serve para **atrasar os outros** enquanto o Carlos conserta a Âncora. O Carlos não se importa com os puxados (seção 8, "A virada").
+- **A Grande Separação e a loucura:** a partida dos *Homo sideralis* o separou dos amigos e das pessoas de quem gostava. Os anos sozinho, somados à frieza das relações do tempo dele, o **enlouqueceram**: acha que o passado é sempre melhor. Vive como se estivesse nos anos 80 (montou a **sala de estar dos anos 80** do Bunker, fala sozinho como um **locutor de rádio**, sem gírias, e dá aos robôs nomes de gente da época) e tem **medo do presente**: ficar preso em 3026, frio e sozinho para sempre.
 - **O primeiro registro dele:** a **Folha de calibração**, no Corredor do Tempo do Labirinto (opcional). Ali ele testava a calibração da Âncora com objetos dos anos 80 (um Genius, os três quadros de *De Volta para o Futuro*, um micro e um telefone de disco). Na folha ele conta que a máquina errou de novo, abriu a fenda na Biblioteca e puxou alguém que ele **nem foi ver**; diz que já foi um Faroleiro e que só quer o mundo dos anos 80. **Assina só "C."**: o jogador ainda não sabe o nome dele (quando descobre continua pendente, seção 10.2).
 - Muita coisa sobre o Carlos ainda está pendente (seção 10.2).
 
@@ -131,10 +133,11 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 
 - **Baltazar é antepassado de Gabriel**, umas dez gerações antes dele. O sobrenome **Magalhães** liga a família pelos séculos.
 - **O objeto:** Gabriel começa o jogo com um **anel desgastado** no inventário, que a avó deu para ele. O jogador vê o item desde o começo sem dar importância.
-- **A descoberta acontece jogando**, não numa explicação: no meio do jogo, Gabriel vê o mesmo anel com o Baltazar (novo no dedo dele, gasto no de Gabriel). O jogador compara os dois e entende sozinho.
-- **Gabriel conta para o Baltazar** que é descendente dele.
-- Com isso, mandar todos de volta deixa de ser só ajudar os outros: se o Baltazar não voltar para 1750, a família de Gabriel pode nunca existir.
-- **O Baltazar quer ficar, mas não pode.** Para ele, 3026 é um milagre a estudar, e ele quer ficar. Só que precisa voltar, ou a família de Gabriel não existe. Gabriel tem que convencer o próprio antepassado a ir embora.
+- **O Baltazar nunca aparece em pessoa.** Gabriel só acha os **rastros** dele. O Baltazar seguiu a luz ("Hei de seguir a luz até onde ella nasce") pelo **mesmo caminho que Gabriel faz**, fase por fase, até a **Âncora**, onde a luz nasce. Ali a trilha termina, e ele **desaparece**. O que aconteceu com ele fica **em aberto até o fim do jogo**.
+- **Os rastros pelas fases:** na Biblioteca, o acampamento e o diário; no Bloco de salas, estrelas riscadas numa lousa, no meio das contas de 3026; no Labirinto, a sala onde ele morou, vazia, com uma carta; no Centro de Convivência, uma página perdida do diário e cera de vela num canto escondido da praça; no Bunker, a sala de visitas do século XIX, onde ele dormiu porque ela parecia casa; no D-Tec, o último rastro, perto da Âncora.
+- **A descoberta acontece jogando**, não numa explicação: numa das **cartas**, o Baltazar desenha o anel que leva no dedo. O jogador compara o desenho com o anel gasto do Gabriel no inventário e entende sozinho que é o mesmo.
+- **As cartas:** ele escreve para alguém em 1750, cartas que nunca vão chegar. Mudam de tom pelo caminho: medo, curiosidade, coragem. A quem são endereçadas está pendente (seção 10.4).
+- **A dúvida que fica:** a única prova de que o Baltazar voltou para 1750 é o próprio Gabriel existir. Se ele não voltou, como o Gabriel está ali? O jogo não responde.
 
 ---
 
@@ -146,7 +149,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 |---|---|
 | **Bunker**, embaixo do núcleo da Âncora. Difícil de alcançar e lacrado pelo sistema. **Os robôs patrulham o bunker** | Henrique, **sozinho**, numa sala de dados **trancada**, com as câmeras do campus e o rádio. Diz que está escondido ali tentando consertar tudo. O Carlos nunca vai lá. O Zane chega depois do Labirinto, com Gabriel. No fim do Bunker, o grupo todo se encontra ali pela primeira vez (Ato 3) |
 | **Labirinto**, numa oficina no canto do subsolo da Âncora, perto de onde Gabriel entra | Zane, entre componentes eletrônicos jogados por todo lado e telas holográficas. É a **base dele**: é dali que mantém a frequência do grupo. Desconfia do Henrique e **está há dias tentando invadir o bunker**, sem conseguir de longe. Pede ajuda a Gabriel |
-| **Labirinto**, numa sala secreta atrás de um painel solto na parede, que só aparece com a lanterna apontada para ele | Baltazar, sozinho e com medo. Deixou o acampamento da Biblioteca seguindo a luz, desceu ao subsolo e se escondeu ali. Os robôs nunca acharam a sala |
+| **Labirinto**, numa sala secreta atrás de um painel solto na parede, que só aparece com a lanterna apontada para ele | Baltazar, que **já não está lá**. Morou ali depois de deixar o acampamento da Biblioteca, seguindo a luz; ficaram as velas, a cama de panos, o robô desmontado, a chapa com o céu de casa e uma carta. Os robôs nunca acharam a sala |
 | **Bloco de salas**, na sala 103, atrás de uma barricada | Clarice, que foi para lá depois de chegar à Biblioteca, e Diana, que apareceu depois e foi acolhida por ela. Desde então tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio |
 | **D-Tec**, no laboratório | Carlos, que nunca sai de lá |
 
@@ -156,7 +159,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 - **O rádio do balcão existe por causa da Clarice.** Ela acordou na Biblioteca e passou dias sozinha antes de alguém achá-la. Depois disso, o Zane deixou um rádio sintonizado na frequência no **balcão de atendimento da Biblioteca**, porque é lá que quem cai na fenda acorda, para que o próximo não passasse pelo mesmo.
 - O **Henrique**, sozinho na sala de dados do bunker, vê o campus pelas **câmeras** e passa o que vê **pelo rádio para a Clarice e a Diana**, não direto para Gabriel. Diz que está tentando consertar tudo, e foi ele quem disse ao grupo que estão em 3026 (ele sabe pelo Carlos). Fala pouco e fica na dele. As dicas de patrulha que passa são verdadeiras, e é assim que ganha a confiança do grupo; ao mesmo tempo, **mantém cada um no seu canto**, e tudo o que o grupo sabe passa por ele (seção 8, "A virada").
 - **Clarice e Diana**, da 103, também falam pela frequência e estão em contato com o **Henrique**: ele confere o campus nas câmeras e conta o que vê, e elas juntam isso com o que descobrem. A **Clarice é a voz que guia Gabriel pelo rádio**, desde a Biblioteca e depois no Bloco de salas, com as dicas de patrulha que vêm das câmeras do Henrique, e é ela quem conta a Gabriel que fala com ele.
-- O **Baltazar** teve dificuldade com o rádio e com a tecnologia de 3026, ficou com medo e **se isolou**: não está na frequência. Ouve as vozes nas "caixas que falam" pelos corredores do subsolo e não responde. Gabriel só fala com ele em pessoa.
+- O **Baltazar** nunca esteve na frequência: teve dificuldade com o rádio e com a tecnologia de 3026, ficou com medo e se isolou. Ouvia as vozes nas "caixas que falam" pelos corredores do subsolo e não respondia. Gabriel nunca fala com ele: só lê o que ele deixou.
 
 - Os esconderijos funcionam como pontos de encontro: Gabriel volta a eles para conversar e acompanhar o que cada um descobriu.
 
@@ -177,8 +180,8 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 
 ### 7.2 Ordem dos acontecimentos
 
-1. **Antes do jogo:** a sociedade e o planeta ficam muito ruins. A humanidade se divide, e os *Homo sideralis* vão embora para outro planeta, há menos de 100 anos. Os *sapiens* que ficam formam os **Faroleiros**.
-2. **O Carlos sai dos Faroleiros** e se isola na Unifor. Passa anos sozinho, constrói a Âncora no D-Tec e toma o controle dos robôs.
+1. **Antes do jogo:** a sociedade e o planeta ficam muito ruins. A humanidade se divide na **Grande Separação**: os *Homo sideralis* vão embora para outro planeta, há menos de 100 anos. Os *sapiens* que ficam formam os **Faroleiros**.
+2. **O Carlos sai dos Faroleiros**, há alguns anos, depois de um desentendimento, e se isola na Unifor, abandonada havia muito tempo. Passa anos sozinho, constrói a Âncora no D-Tec e toma o controle dos robôs.
 3. **3026:** o Carlos começa a tentar ir para os anos 80. A cada tentativa, a fenda se abre no chão da Biblioteca.
 4. **O primeiro puxado é o Henrique.** O Carlos promete levá-lo para antes da morte da mãe e passa a usá-lo.
 5. **Os outros pulsos:** com 3 dias de intervalo entre um e outro, a fenda puxa uma pessoa de cada época. Cada uma acorda sozinha, foge dos robôs e acha um canto para sobreviver. Todos chegam antes de Gabriel. O Zane chega antes da Clarice, e a Diana depois da Clarice.
@@ -200,7 +203,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
   - **Prólogo ilustrado** (`seg_prologo`, aprovada): ilustrações sequenciais em pixel art retratando a rotina comum de Gabriel em 2026 (acordar, anel da avó, trajeto na Washington Soares, campus vivo da Unifor, aula de cálculo com o caderno de equações, até cair no sono de madrugada na cabine da Biblioteca antes da fenda se abrir).
   - **O despertar** (`seg_acordar`, pronta, um vídeo curto): Gabriel desperta na cabine de estudo, mil anos depois. A cabine e a biblioteca em volta já têm a tecnologia de 3026: painéis com luz ciano, um holograma aceso sobre o caderno, torres de equipamentos entre as estantes. Ele esfrega os olhos e olha em volta sem entender onde está.
 - Gabriel acha a **lanterna** perto de onde acorda, e **pilhas** pelo salão. O **anel da avó** já está no inventário.
-- **Acampamento de Baltazar** entre as raízes da árvore. Ele não está lá.
+- **Acampamento de Baltazar** entre as raízes da árvore. Ele não está lá: é o primeiro rastro dele (seção 5).
 - **Terminal com o bilhete da Clarice:** pede que, se mais alguém chegou, a procure no Bloco de salas.
 - **Rádio portátil:** no balcão, sintonizado na frequência do grupo (o Zane o deixou ali por causa da Clarice: seção 6.1). A voz da **Clarice** dá a primeira dica de patrulha, com o que o **Henrique** vê pelas câmeras.
 - **Saída:** a porta no fim da ala leste leva ao Bloco de salas.
@@ -211,20 +214,20 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 
 ### Ato 2 — Encontrar os outros (Bloco de salas, Labirinto e Centro de Convivência)
 
-- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Clarice** e da **Diana**, a **sala 103**, atrás de uma barricada. A Clarice foi para lá depois de chegar à Biblioteca; a Diana apareceu depois e foi acolhida por ela. Desde então as duas tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio, e a Clarice conta isso a Gabriel. Gabriel ganha a confiança dela devolvendo o molho de chaves que ela perdeu (para ela, é uma permuta, não um pedido de ajuda); daí em diante a Clarice o guia pelo rádio (o que cada chave abre, por onde os robôs passam, que ela mapeou como um grafo) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar. A saída, a porta corta-fogo do 1º andar, leva à próxima fase, o **Labirinto**.
-- **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): a terceira fase. Subsolo escuro do centro de pesquisa da Âncora, com seis robôs patrulhando corredores que se cruzam. Gabriel entra no subsolo e, a poucos passos, chega à **oficina do Zane**: uma sala cheia de componentes eletrônicos, desorganizada, com telas holográficas, a base do Zane. O Zane quer resolver tudo aquilo e **desconfia do Henrique**: está há dias tentando invadir o bunker, onde o Henrique fica, e não consegue de longe. Então entrega a Gabriel o **notebook** dele e pede que invada **três nós de controle**, em três salões espalhados pelo labirinto (cada salão tem uma entrada só). Os três nós guardam a trava que lacra o bunker. Quando o terceiro cai, o Zane chama Gabriel de volta pelo rádio e, na oficina, mostra a saída: um **alçapão escondido sob uma lona**, cujo duto sobe para a passarela do **Centro de Convivência**. Ao entregar o notebook, o Zane avisa de duas coisas fora do mapa: uma parede no corredor de cima que esquenta como se tivesse gente atrás (é o esconderijo do Baltazar; o Zane não sabe quem está lá) e a porta âmbar do Corredor do Tempo. No meio do labirinto há uma sala opcional, o **Corredor do Tempo**: quatro salinhas onde quem construiu a Âncora testava a calibração com objetos dos anos 80. Gabriel precisa alinhar os quatro mecanismos antes que um relógio zere; quem vence encontra a Folha de calibração, assinada só "C." (seção 4.3).
-- **O esconderijo do Baltazar (Labirinto):** num canto do labirinto, atrás de um **painel solto** na parede, fica o esconderijo do **Baltazar**. O painel parece parede: só aparece com a **lanterna apontada** para ele, riscado com o **Cruzeiro do Sul** e uma **cruz** (as marcas que o Baltazar fez para achar a própria porta). Dentro, uma sala bagunçada: cama de panos, um altar de velas, livros trazidos da Biblioteca, um robô desmontado e uma chapa com o céu de casa riscado a giz. É ali o **primeiro encontro** de Gabriel com ele. O Baltazar se assusta, pergunta se é o fim do mundo, conta que seguiu a luz até o subsolo e **não quer sair**: lá fora andam os robôs, e ali dentro eles não entram. Gabriel diz só o primeiro nome, e o parentesco **ainda não aparece** nesse encontro.
+- **Bloco de salas** ([`../fases/bloco_de_salas.md`](../fases/bloco_de_salas.md)): dois andares, 12 salas de aula, noite. É onde fica o esconderijo da **Clarice** e da **Diana**, a **sala 103**, atrás de uma barricada. A Clarice foi para lá depois de chegar à Biblioteca; a Diana apareceu depois e foi acolhida por ela. A Diana não fica parada: sai da 103 escondida, contra as ordens da Clarice, para investigar, e a Clarice conta isso a Gabriel no primeiro encontro. Desde então as duas tentam descobrir o que aconteceu, com a ajuda do Henrique pelo rádio, e a Clarice conta isso a Gabriel. Gabriel ganha a confiança dela devolvendo o molho de chaves que ela perdeu (para ela, é uma permuta, não um pedido de ajuda); daí em diante a Clarice o guia pelo rádio (o que cada chave abre, por onde os robôs passam, que ela mapeou como um grafo) e fica no posto quando Gabriel sai pela porta corta-fogo do 1º andar. A saída, a porta corta-fogo do 1º andar, leva à próxima fase, o **Labirinto**.
+- **Labirinto** ([`../fases/labirinto.md`](../fases/labirinto.md)): a terceira fase. Subsolo escuro do centro de pesquisa da Âncora, com seis robôs patrulhando corredores que se cruzam. Gabriel entra no subsolo e, a poucos passos, chega à **oficina do Zane**: uma sala cheia de componentes eletrônicos, desorganizada, com telas holográficas, a base do Zane. O Zane quer resolver tudo aquilo e **desconfia do Henrique**: está há dias tentando invadir o bunker, onde o Henrique fica, e não consegue de longe. Então entrega a Gabriel o **notebook** dele e pede que invada **três nós de controle**, em três salões espalhados pelo labirinto (cada salão tem uma entrada só). Os três nós guardam a trava que lacra o bunker. Quando o terceiro cai, o Zane chama Gabriel de volta pelo rádio e, na oficina, mostra a saída: um **alçapão escondido sob uma lona**, cujo duto sobe para a passarela do **Centro de Convivência**. Ao entregar o notebook, o Zane avisa de duas coisas fora do mapa: uma parede no corredor de cima que esconde alguma coisa (é a sala onde o Baltazar morou; o Zane não sabe de quem é) e a porta âmbar do Corredor do Tempo. No meio do labirinto há uma sala opcional, o **Corredor do Tempo**: quatro salinhas onde quem construiu a Âncora testava a calibração com objetos dos anos 80. Gabriel precisa alinhar os quatro mecanismos antes que um relógio zere; quem vence encontra a Folha de calibração, assinada só "C." (seção 4.3).
+- **A sala do Baltazar (Labirinto):** num canto do labirinto, atrás de um **painel solto** na parede, fica a sala onde o **Baltazar** morou. O painel parece parede: só aparece com a **lanterna apontada** para ele, riscado com o **Cruzeiro do Sul** e uma **cruz** (as marcas que o Baltazar fez para achar a própria porta). Dentro, **vazia**: cama de panos, um altar de velas gastas, livros trazidos da Biblioteca, um robô desmontado, uma chapa com o céu de casa riscado a giz e uma **carta**. Ele não está lá: é um dos rastros dele (seção 5).
 - **Centro de Convivência** ([`../fases/centro_de_convivencia.md`](../fases/centro_de_convivencia.md)): a quarta fase, entre o Labirinto e o Bunker. Gabriel atravessa o pátio aberto sob o luar, sem nenhum personagem em pessoa no local, sendo guiado pelo **Zane pelo rádio**. Ele encontra a Sala Segura no Posto de Manutenção, busca a **Célula de Energia** na câmara da Cantina (contornando os cacos de vidro e o Rastreador), resolve o **Puzzle de Coloração de Grafos** no comutador da Gráfica Rápida (o que acende os holofotes perimetrais do pátio) e abre a comporta da **Rampa do Subsolo** que desce para o **Bunker**.
 - **Rádio e telefone:** a Clarice fala pelo rádio na Biblioteca e no Bloco de salas, e o Zane mantém a frequência da oficina, ligando pelos telefones velhos e guiando Gabriel pelo rádio no Labirinto e no Centro de Convivência. A frequência é aberta: a Diana, a Clarice e o Zane conversam entre si e com Gabriel. O Henrique não fala nela: o que ele diz chega pela Clarice (seção 6.1).
-- **Alguém de 1750:** no Labirinto, Gabriel conta pelo rádio do acampamento e do diário que achou na Biblioteca. Ninguém na frequência é de 1750: o grupo descobre que há mais alguém no campus, sozinho e fora da rede. Esse alguém é o Baltazar, escondido numa sala secreta do próprio Labirinto (Ato 2); se e como o grupo o traz para junto fica pendente (seção 10.4).
-- **O anel:** Gabriel conhece o Baltazar no Labirinto, mas o parentesco fica para depois: em algum ponto, ele compara os dois anéis e descobre (seção 10.5).
+- **Alguém de 1750:** no Labirinto, Gabriel conta pelo rádio do acampamento e do diário que achou na Biblioteca. Ninguém na frequência é de 1750: o grupo descobre que há mais alguém no campus, sozinho e fora da rede. Esse alguém é o Baltazar, que o grupo nunca encontra: só os rastros dele (seção 5).
+- **O anel:** numa carta do Baltazar, Gabriel acha o desenho do anel e descobre o parentesco (seção 5). Em que fase fica essa carta está pendente (seção 10.5).
 
 ### Ato 3 — O esconderijo (Bunker)
 
 **Quinta fase.** [`../fases/bunker.md`](../fases/bunker.md).
 
 - O bunker de pesquisa embaixo do núcleo da Âncora ("ÂNCORA-03"), com dois setores. É difícil de alcançar, e **os robôs patrulham aqui também**.
-- **As salas antigas:** no bunker há **duas** salas montadas como **interiores de casa**: a **sala de visitas de um casarão do fim do século XIX** e a **sala de estar de uma casa dos anos 80**. Mostram a obsessão do Carlos pelo passado, **sem explicar**: o jogo não diz quem as montou nem por quê.
+- **As salas antigas:** no bunker há **duas** salas montadas como **interiores de casa**: a **sala de visitas de um casarão do fim do século XIX** e a **sala de estar de uma casa dos anos 80**. A dos anos 80 foi o **Carlos** quem montou (seção 4.3). Na do século XIX, o **Baltazar** dormiu, porque ela parecia casa, e deixou um rastro (seção 5). O jogo não explica nenhuma das duas em palavras: o jogador entende pelo que vê.
 - **As marcas dos Faroleiros:** nas paredes do bunker há marcas dos Faroleiros pintadas em âmbar (seção 2.4): o farol inteiro perto da sala segura e o farol apagado perto da comporta do núcleo. Os Faroleiros passaram por ali; o jogo não diz quando.
 - **De onde Gabriel chega aqui:** pela rampa técnica do subsolo aberta no fim do **Centro de Convivência**.
 - **O Gabriel já encontrou o Zane em pessoa no Labirinto**. O **Henrique** fica **sozinho** numa sala de dados **trancada**, com o acesso às câmeras do campus, e é quem Gabriel encontra em pessoa aqui. Gabriel o reconhece pela lenda: é o aluno que sumiu em 2019 (seção 7.2). O Carlos nunca vai ao bunker.
@@ -249,7 +252,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 - A reta final passa pela **comporta do núcleo**, no setor B do bunker.
 - Com as partes de todos reunidas, Gabriel e os outros tentam consertar a Âncora e mandar cada um para a sua noite.
 - **O Zane:** o final dele está pendente (seção 10.4). O final antigo (ficar em 3026 para domar a IA) saiu, porque a IA não tem consciência.
-- **O Baltazar volta para 1750**, mesmo querendo ficar: Gabriel precisa convencê-lo (seção 5).
+- **O Baltazar:** a trilha dele termina na Âncora, onde a luz nasce. O que aconteceu com ele fica em aberto (seção 5).
 - **O Carlos:** como o grupo o enfrenta, sem lutar, está pendente (seção 10.2).
 - Como isso acontece e como o jogo termina está nas pendências (seção 10.6).
 
@@ -269,6 +272,7 @@ Para qualquer texto do jogo ou da documentação:
 | ***Homo sideralis*** (a espécie que foi embora; em itálico, com *sideralis* em minúscula) | "alienígenas", "os evoluídos" como termo oficial |
 | ***sapiens*** (os humanos não evoluídos, como o Carlos, os Faroleiros e todos os puxados) | — |
 | **Faroleiros** (a resistência que ficou na Terra) | "a resistência" como nome próprio |
+| **Grande Separação** (a partida dos *Homo sideralis* para outro planeta, que dividiu a humanidade) | "o êxodo", "a partida" como nome próprio |
 | **Robôs** (os inimigos) | "Insones", "Bibliotecária", "Calouros", "Vigia" (premissa antiga) |
 | **Lanterna a pilha** e **luzes de emergência** | "fungos", "pote de fungos" |
 | **Antecessores** (quem caiu antes de Gabriel) | "viajantes" ou "vítimas" como termo oficial |
@@ -298,8 +302,8 @@ O que falta fazer em arte, mecânica e fases (e não muda a história) fica em [
 - Como ele consegue o conhecimento que falta para a Âncora funcionar? (A IA é uma ferramenta sem consciência e pode ser parte da resposta.)
 - Quantas ferramentas de IA ele usa, e o que cada uma faz (os robôs, a Âncora, os sistemas do D-Tec)?
 - Por que os robôs caçam os humanos: para capturar e levar ao Bloco M, ou para eliminar quem atrapalha?
-- Qual a idade dele, como fala, o que teme, qual o defeito e qual o arco?
-- Por que ele saiu dos Faroleiros, e há quantos anos está sozinho?
+- Qual a idade dele, qual o defeito e qual o arco?
+- Qual foi o desentendimento com os Faroleiros (no jogo fica em aberto), e há quantos anos ele está sozinho?
 - Quando o jogador descobre que ele existe?
 - Como o grupo o enfrenta sem lutar (Gabriel não é combatente)? O D-Tec é o último lugar do jogo?
 
@@ -315,7 +319,7 @@ Já decidido (seção 8, "A virada"): ele trabalha para o Carlos por causa da pr
 ### 10.4 Os outros personagens
 
 - **Zane:** o que fazia no ponto quando foi puxado? Qual é o final dele (ficar em 3026 para guardar a Âncora, ficar para se juntar aos Faroleiros, ou voltar para 2123)? As falas dele no bunker (a chamada pelo rádio e o encontro) são rascunho.
-- **Baltazar:** em que posição da ordem de chegada ele está? (Já decidido: o Henrique é o primeiro, o Zane vem antes da Clarice, a Diana depois da Clarice, e Gabriel é o último; não precisa seguir a ordem dos anos. Cada chegada vem 3 dias depois da anterior, então a posição dele muda quantos dias cada um está lá.) Já decidido: o esconderijo dele é a sala secreta do Labirinto, e o primeiro encontro é lá. Hoje a sala é secreta, então o encontro é **opcional**: ele precisa ser obrigatório, já que o Baltazar traz as estrelas para consertar a Âncora? Como ele sai do esconderijo e se junta ao grupo? E a sala de obras raras da Biblioteca, barrada por dentro, que era a candidata ao esconderijo dele: quem (ou o quê) está do outro lado agora?
+- **Baltazar:** a quem ele escreve as cartas, em 1750? (Já decidido: não aparece em pessoa, só pelos rastros, e desaparece na Âncora; o parentesco aparece pelo anel desenhado numa carta.) E a sala de obras raras da Biblioteca, barrada por dentro, que era a candidata ao esconderijo dele: quem (ou o quê) está do outro lado agora?
 - **Clarice e Diana:** já decidido que se juntam ao grupo no encontro do fim do Bunker (Ato 3). Como chegam até lá, e o que fazem depois?
 - **Gabriel:** enquanto o Baltazar está fora de 1750, o Gabriel começa a falhar (piscar, se desfazer), como a foto em *De Volta para o Futuro*? (Se sim, vira um shader, bom para a apresentação de Computação Gráfica.)
 
@@ -324,7 +328,7 @@ Já decidido (seção 8, "A virada"): ele trabalha para o Carlos por causa da pr
 Já decidido: **Biblioteca → Bloco de salas → Labirinto → Centro de Convivência → Bunker → Laboratório (D-Tec)**.
 
 - Por onde Gabriel chega do Bloco de salas ao subsolo do Labirinto?
-- Em que momento Gabriel descobre o parentesco com o Baltazar? (O primeiro encontro já é no Labirinto, Ato 2.)
+- Em que fase fica a carta com o anel desenhado, o momento em que Gabriel descobre o parentesco com o Baltazar?
 - O que os sonhos mostram, agora que não há loops (memória de cada um, o passado do campus, outra coisa)?
 
 ### 10.6 A volta e o fim
