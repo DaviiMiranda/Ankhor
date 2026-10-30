@@ -1,5 +1,14 @@
 # Registro de decisões
 
+## 2026-10-30 — No jogo: o Baltazar sai do Labirinto e o Zane fala frio
+**Decisão:** leva para o jogo o que a entrada abaixo decidiu na história.
+- **O Baltazar sai do Labirinto em pessoa.** O `labirinto.gd` não coloca mais a cena dele (a letra `B` do mapa virou só chão). Saem `cenas/personagens/baltazar_no_esconderijo.tscn` e as duas conversas (`baltazar_labirinto_primeiro_encontro.json` e `_de_novo.json`). A sala dele continua igual, agora vazia.
+- **O pingente do chapéu (peça 3)** passa a aparecer quando a lanterna revela a parede falsa (`esconderijo_baltazar_descoberto`), no lugar do fim do encontro (`conheceu_baltazar`).
+- **A pista do Zane sobre a sala:** a parede que "esquenta como se tivesse gente" vira um vão que não está em planta nenhuma ("Robô não atravessa parede. Alguém fechou esse vão de propósito.").
+- **As falas do Zane no tom frio:** 37 falas em 14 arquivos, sem mudar o que ele informa. Sai a empolgação ("Olha só: gente de carne e osso!", "Boa!", "Fui!") e entram números e frases secas ("Chamei esse balcão quarenta e três vezes", "Cem por cento de acerto. Nada mal."). Os retratos empolgados viram normal, concentrado ou desconfiado. As duas falas de `zane_convivencia_01`, que eram cortadas na caixa do rádio, foram encurtadas.
+**Por quê:** pedido do Davi, para o jogo seguir as fichas novas.
+**Afeta:** `scripts/salas/labirinto.gd`; as conversas e transmissões do Zane em `dados/`; `docs/fases/labirinto.md`, `docs/mecanicas/colecionaveis.md`, `docs/historia/dialogos/Dialogos.docx` e as fichas do Baltazar e do Zane. **Ainda falta:** as cartas e os rastros do Baltazar em cada fase (falta decidir a quem ele escreve) e os "autos" da Diana. **Para conferir:** a quarta fala de `clarice_biblioteca_01` passa de duas linhas e é cortada na caixa do rádio.
+
 ## 2026-10-30 — Personagens mais fundos: o Baltazar só em rastros, a Grande Separação, e a Clarice, a Diana, o Zane e o Carlos redefinidos
 **Decisão (de história, do Davi):**
 - **A Grande Separação** é o nome oficial da partida dos *Homo sideralis* para outro planeta, que dividiu a humanidade e separou famílias e amigos. Entra no Enredo (seções 1, 2.1, 7.2) e no vocabulário oficial.

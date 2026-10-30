@@ -61,9 +61,9 @@ Aqui **a terceira peça tem uma trava**:
 |---|---|---|
 | 1 | Beco sem saída na ponta esquerda do labirinto, na parte de baixo do mapa (bloco 1, 31) | Sempre |
 | 2 | Beco sem saída do corredor de cima, **perto da parede falsa** (bloco 13, 7) | Sempre |
-| 3 | **Dentro do esconderijo do Baltazar**, no pé do cartaz de estrelas (bloco 18, 2) | **Só depois do primeiro encontro** com o Baltazar |
+| 3 | **Dentro da sala do Baltazar**, no pé do cartaz de estrelas (bloco 18, 2) | **Só depois de a lanterna revelar a parede falsa** |
 
-Até o primeiro encontro terminar (a marca `conheceu_baltazar`, que o diálogo `baltazar_labirinto_primeiro_encontro.json` grava ao acabar), o pingente 3 **não aparece**: não tem desenho, nem brilho, nem aviso **[E]**. Quando a conversa fecha, ele surge no chão. Quem entra na sala, vê o Baltazar e sai sem falar com ele não consegue pegá-lo. Como o pingente 2 fica no corredor logo abaixo da parede falsa, ele serve de pista de que há algo por ali.
+Até a lanterna revelar a parede falsa (a marca `esconderijo_baltazar_descoberto`), o pingente 3 **não aparece**: não tem desenho, nem brilho, nem aviso **[E]**. Antes, ele esperava o primeiro encontro com o Baltazar, que saiu do jogo em 2026-10-30. Como o pingente 2 fica no corredor logo abaixo da parede falsa, ele serve de pista de que há algo por ali.
 
 As peças 1 e 2 são as letras `1` e `2` do mapa e a peça 3 é a letra `3` no desenho do esconderijo (`MODELO_ESCONDERIJO`), ambas em `assets/modelagem/salas/labirinto/gerar_labirinto.py` (ver a legenda em [`../fases/labirinto.md`](../fases/labirinto.md)). Quem coloca as três no mundo é `scripts/salas/labirinto.gd` (`_colocar_colecionavel`).
 

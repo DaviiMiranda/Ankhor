@@ -6,6 +6,6 @@
 script = ExtResource("1_transmissao")
 id = "zane_bunker_01"
 falante = "ZANE (rádio)"
-falas = PackedStringArray("Chhh... Gabriel? A luz voltou aqui também! Foi você no gerador?", "Com energia, o sistema do setor B baixou a guarda. Vem pra sala de dados: tá todo mundo aqui.")
+falas = PackedStringArray("Chhh... Gabriel. A luz voltou aqui também. Foi você no gerador.", "Com energia, o sistema do setor B baixou a guarda. Vem pra sala de dados: tá todo mundo aqui.")
 titulo_anotacao = "A energia voltou ao bunker"
 anotacao = "Religuei o quadro do gerador com o cabo do carretel. O elevador e o arsenal ganharam energia. O Zane chamou pelo rádio: está todo mundo na sala de dados."
