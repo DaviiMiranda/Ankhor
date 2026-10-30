@@ -109,7 +109,47 @@ CONFIG = {
             "teimoso": (1210, 70, 1575, 893),
             "orgulhoso": (1600, 70, 1965, 893),
         },
+        # A folha não tem rosto "normal": o normal é uma cópia do orgulhoso.
+        # Sem isto, as falas com "normal" mostravam o retrato antigo do Blender.
+        "copias": {"normal": "orgulhoso"},
         "janela": {"y": 20, "lado": 440, "fundo": (38, 41, 53)},
+    },
+    # Gabriel: as dez emoções da folha nova (molduras com borda dupla; a
+    # janela pega da franja ao moletom sem encostar na borda de baixo) e, da
+    # folha antiga sem moldura, as três que a nova não tem. Os quadrados da
+    # folha antiga foram medidos para a cabeça ficar do mesmo tamanho e na
+    # mesma altura que na nova.
+    "gabriel": {
+        "folhas": [
+            {
+                "folha": "gabriel_referencia/expressoes_novas.jpg",
+                "recuo": 25,
+                "janela": {"y": 0, "lado": 350, "fundo": (95, 103, 116)},
+                "retratos": {
+                    "assustado": (50, 29, 400, 437),
+                    "sorrindo": (433, 29, 792, 437),
+                    "aliviado": (825, 29, 1175, 437),
+                    "determinado": (1208, 29, 1567, 437),
+                    "desconfiado": (1600, 29, 1950, 437),
+                    "pensativo": (42, 587, 408, 995),
+                    "triste": (442, 587, 800, 995),
+                    "bravo": (817, 587, 1183, 995),
+                    "envergonhado": (1217, 587, 1575, 995),
+                    "cansado": (1592, 587, 1959, 995),
+                },
+            },
+            {
+                "folha": "gabriel_referencia/expressoes.webp",
+                "recuo": 0,
+                # O fundo cinza-claro deixava uma franja clara no contorno.
+                "tolerancia": 40,
+                "retratos": {
+                    "normal": (37, 12, 225, 200),
+                    "preocupado": (547, 12, 735, 200),
+                    "surpreso": (799, 12, 987, 200),
+                },
+            },
+        ],
     },
 }
 
@@ -158,16 +198,23 @@ def reduzir_retrato(rgb, tolerancia, fundo_opaco):
     return base.reduzir(rgb, mascara, TAM, TAM)
 
 
+def folhas_de(cfg):
+    # Um personagem pode ter os rostos espalhados em mais de uma folha
+    # ("folhas", cada uma com as próprias molduras, recuo e janela). A paleta
+    # continua uma só, calculada com os rostos de todas as folhas juntos.
+    return cfg.get("folhas", [cfg])
+
+
 def gerar(personagem):
     cfg = CONFIG[personagem]
-    img = Image.open(os.path.join(PASTA_SCRIPT, cfg["folha"])).convert("RGB")
-    janela = cfg.get("janela")
     figuras = {}
-    for nome, caixa in cfg["retratos"].items():
-        rgb = recortar(img, caixa, cfg["recuo"], janela)
-        rgb = apagar_marcas(rgb, cfg.get("apagar", {}).get(nome, []), cor_do_fundo(rgb))
-        figuras[nome] = reduzir_retrato(rgb, cfg.get("tolerancia", TOLERANCIA),
-                                        cfg.get("fundo_opaco", False))
+    for folha in folhas_de(cfg):
+        img = Image.open(os.path.join(PASTA_SCRIPT, folha["folha"])).convert("RGB")
+        for nome, caixa in folha["retratos"].items():
+            rgb = recortar(img, caixa, folha["recuo"], folha.get("janela"))
+            rgb = apagar_marcas(rgb, folha.get("apagar", {}).get(nome, []), cor_do_fundo(rgb))
+            figuras[nome] = reduzir_retrato(rgb, folha.get("tolerancia", TOLERANCIA),
+                                            folha.get("fundo_opaco", False))
     paleta = base.paleta_de(list(figuras.values()), MAX_CORES)
     pasta = os.path.join(PASTA_SPRITES, personagem)
     os.makedirs(pasta, exist_ok=True)
@@ -178,6 +225,10 @@ def gerar(personagem):
         Image.fromarray(rgba, "RGBA").save(os.path.join(pasta, f"{personagem}_retrato_{nome}.png"))
         saida[nome] = rgba
         print(f"{personagem}: retrato {nome}")
+    for nome, original in cfg.get("copias", {}).items():
+        Image.fromarray(saida[original], "RGBA").save(os.path.join(pasta, f"{personagem}_retrato_{nome}.png"))
+        saida[nome] = saida[original]
+        print(f"{personagem}: retrato {nome} (cópia do {original})")
     return saida
 
 

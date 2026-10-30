@@ -1,5 +1,14 @@
 # Registro de decisões
 
+## 2026-10-29 — Retratos desenhados para o Gabriel, e o normal do Baltazar no desenho novo
+**Decisão:** os retratos da caixa de diálogo do Gabriel deixam de ser os do modelo 3D e passam a ser **desenhados**, no estilo dos retratos da Diana, do Zane, do Henrique e do Baltazar. Isso desfaz em parte a entrada de 2026-10-15: **o corpo continua o do modelo 3D** e só os retratos mudam.
+- Da folha nova (`gabriel_referencia/expressoes_novas.jpg`) saem dez emoções: assustado, sorrindo, aliviado, determinado, desconfiado, pensativo, triste, bravo, envergonhado e cansado. Ficam guardadas para os próximos diálogos.
+- `normal`, `preocupado` e `surpreso`, as três que os diálogos já usam, não estão na folha nova e saem da folha desenhada antiga (`gabriel_referencia/expressoes.webp`), com o mesmo moletom vermelho.
+- O `baltazar_retrato_normal` ainda era o do Blender, porque a folha do Baltazar não tem rosto normal. Agora é uma cópia do `orgulhoso`.
+- O `pixelar_retratos.py` ganha `folhas` (um personagem com rostos em mais de uma folha) e `copias` (um retrato igual a outro).
+**Por quê:** o Davi viu retratos antigos aparecendo em alguns diálogos e mandou a folha nova do Gabriel.
+**Afeta:** `assets/sprites/personagens/gabriel/` (13 retratos), `baltazar_retrato_normal.png`, `assets/modelagem/personagens/pixelar_retratos.py` e os `visual.md` dos dois. Os nomes que os diálogos usam não mudam. Rodar `gerar_gabriel.py` ou `gerar_baltazar.py` de novo traz de volta os retratos do Blender; depois deles, rode `pixelar_retratos.py`.
+
 ## 2026-10-29 — O esconderijo do Baltazar e o Corredor do Tempo no Dialogos, no Roteiro e no História_Completa.docx
 **Decisão:** os documentos em Word alcançam o que já estava no jogo e no `.md`, sem mudar a história:
 - **`Dialogos.docx` (0.3):** cena 3.3, o esconderijo do Baltazar, com as duas conversas dele no Labirinto (`baltazar_labirinto_primeiro_encontro`, com trechos e escolhas, e `_de_novo`), e cena 3.4, o Corredor do Tempo, que não tem falas. O alçapão passa a ser a cena 3.5. As linhas 0.2 e 0.3 da tabela de versões estavam com a descrição em branco e foram preenchidas.
