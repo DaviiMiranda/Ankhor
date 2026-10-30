@@ -3,15 +3,15 @@
 	"inicio": "abertura",
 	"anotacao": {
 		"titulo": "Zane, na oficina do Labirinto",
-		"texto": "O Zane montou uma oficina no canto do Labirinto, cheia de peças e telas holográficas.\n\nA saída do subsolo está lacrada pelo sistema, e o bunker do Henrique também: a mesma trava lê três nós de controle espalhados pelo labirinto, em salões com uma entrada só. O Zane não consegue invadir de longe: a rede do subsolo é fechada.\n\nO Zane desconfia do Henrique. Diz que ele está trancado no bunker \"consertando tudo\" e nunca mostrou nada, e que tudo o que o grupo sabe passa por ele.\n\nEle me deu o notebook dele. Chego perto do terminal de cada nó e invado. Nos nós o notebook não gasta bateria.\n\nO Zane falou de duas coisas fora do mapa: uma parede no corredor de cima que esquenta como se tivesse gente atrás (apontar a lanterna para ela) e uma porta âmbar entre os nós, uma sala de teste opcional, com cronômetro.\n\nQuando os três caírem, volto ao Zane para ele mostrar por onde sair. Os robôs patrulham o labirinto inteiro: a Sentinela vê longe, o Rastreador ouve tudo."
+		"texto": "O Zane montou uma oficina no canto do Labirinto, cheia de peças e telas holográficas.\n\nA saída do subsolo está lacrada pelo sistema, e o bunker do Henrique também: a mesma trava lê três nós de controle espalhados pelo labirinto, em salões com uma entrada só. O Zane não consegue invadir de longe: a rede do subsolo é fechada.\n\nO Zane desconfia do Henrique. Diz que ele está trancado no bunker \"consertando tudo\" e nunca mostrou nada, e que tudo o que o grupo sabe passa por ele.\n\nEle me deu o notebook dele. Chego perto do terminal de cada nó e invado. Nos nós o notebook não gasta bateria.\n\nO Zane falou de duas coisas fora do mapa: uma parede no corredor de cima com um vão atrás que não está em planta nenhuma (apontar a lanterna para ela) e uma porta âmbar entre os nós, uma sala de teste opcional, com cronômetro.\n\nQuando os três caírem, volto ao Zane para ele mostrar por onde sair. Os robôs patrulham o labirinto inteiro: a Sentinela vê longe, o Rastreador ouve tudo."
 	},
 	"trechos": {
 		"abertura": {
 			"falas": [
 				{
 					"quem": "Zane",
-					"retrato": "zane/zane_retrato_confiante",
-					"texto": "Olha só: gente de carne e osso! Eu sabia que o sinal ia te puxar pra cá. Zane. A voz do telefone, lembra?"
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Gente de carne e osso. O sinal do seu rádio te trouxe pra cá, como eu calculei. Zane. A voz do telefone."
 				},
 				{
 					"quem": "Gabriel",
@@ -21,7 +21,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_normal",
-					"texto": "Destranquei! De longe é fácil. Aqui embaixo é outra história: a rede do subsolo é fechada, de fora eu não passo nem com reza."
+					"texto": "Destranquei. De longe é fácil. Aqui embaixo é outra história: a rede do subsolo é fechada. De fora, zero acesso."
 				},
 				{
 					"quem": "Gabriel",
@@ -78,7 +78,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_confiante",
-					"texto": "Toma o meu notebook de pesquisa. Chega perto do terminal do nó, equipa e aciona: abre um joguinho de invasão. Acertou, o nó cai."
+					"texto": "Toma o meu notebook de pesquisa. Chega perto do terminal do nó, equipa e aciona: abre a invasão. Acertou, o nó cai."
 				},
 				{
 					"quem": "Zane",
@@ -122,13 +122,13 @@
 				},
 				{
 					"quem": "Zane",
-					"retrato": "zane/zane_retrato_frustrado",
-					"texto": "Mas ele nunca pede ajuda, nunca chama ninguém pra lá. Ninguém conserta nada sozinho e calado desse jeito. Ninguém."
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "Mas ele nunca pede ajuda, nunca chama ninguém pra lá. Conserto sem dado compartilhado não é conserto. Não fecha."
 				},
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_normal",
-					"texto": "Sei lá. Pode ser só o jeito dele. É por isso que eu quero ver."
+					"texto": "Pode ser só o jeito dele. Probabilidade baixa. É por isso que eu quero ver."
 				}
 			],
 			"vai_para": "menu"
@@ -159,7 +159,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_confiante",
-					"texto": "Boa! Toma. E ó: cuidado com ele, tá? É o único que eu tenho."
+					"texto": "Toma. É o único que eu tenho. Devolve inteiro."
 				},
 				{
 					"quem": "Gabriel",
@@ -174,7 +174,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_desconfiado",
-					"texto": "Ah, e duas coisas que não batem com o meu mapa. Uma parede no corredor de cima esquenta toda noite, como se tivesse gente do outro lado."
+					"texto": "Mais duas coisas que não batem com o meu mapa. Atrás de uma parede no corredor de cima tem um vão de oito por cinco que não está em planta nenhuma."
 				},
 				{
 					"quem": "Gabriel",
@@ -184,11 +184,11 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_normal",
-					"texto": "Robô é frio. Aquilo é quente que nem gente. Quando passar por lá, aponta a lanterna pra parede. Luz mostra o que o concreto esconde."
+					"texto": "Robô não atravessa parede. Alguém fechou esse vão de propósito. Quando passar por lá, aponta a lanterna pra parede: luz mostra o que o concreto esconde."
 				},
 				{
 					"quem": "Zane",
-					"retrato": "zane/zane_retrato_empolgado",
+					"retrato": "zane/zane_retrato_concentrado",
 					"texto": "A outra é uma porta com luz âmbar, no meio do caminho entre os nós. Não dá em nó nenhum. O pouco que eu leio do sistema diz: sala de teste, mecanismo antigo e um cronômetro ligado."
 				},
 				{
@@ -199,7 +199,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_confiante",
-					"texto": "Opcional! Mas ninguém monta sala de teste à toa. Quem testou alguma coisa ali deixou rastro. Se der tempo, vai."
+					"texto": "Opcional. Mas ninguém monta sala de teste à toa: quem testou alguma coisa ali deixou rastro. Se der tempo, vai."
 				}
 			]
 		}

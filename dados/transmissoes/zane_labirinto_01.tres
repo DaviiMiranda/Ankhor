@@ -6,6 +6,6 @@
 script = ExtResource("1_transmissao")
 id = "zane_labirinto_01"
 falante = "ZANE (rádio)"
-falas = PackedStringArray("Chhh... Gabriel? Três de três! O sistema do subsolo acabou de me dar acesso.", "Volta aqui na oficina. Tenho que te mostrar por onde sair, e não é por porta nenhuma.", "Vem sem barulho: os robôs ainda estão por aí.")
+falas = PackedStringArray("Chhh... Gabriel. Três de três. O sistema do subsolo acabou de me dar acesso.", "Volta aqui na oficina. Tenho que te mostrar por onde sair, e não é por porta nenhuma.", "Vem sem barulho: os robôs ainda estão por aí.")
 titulo_anotacao = "Zane me chamou de volta"
 anotacao = "O terceiro nó caiu. O Zane pediu que eu volte à oficina dele: vai me mostrar a saída."

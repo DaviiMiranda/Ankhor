@@ -11,7 +11,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_confiante",
-					"texto": "Três de três! Eu senti daqui: o sistema do subsolo inteiro piscou e a trava soltou. Você é bom nisso, hein?"
+					"texto": "Três de três. O sistema do subsolo inteiro piscou e a trava soltou. Cem por cento de acerto. Nada mal."
 				},
 				{
 					"quem": "Gabriel",
@@ -30,8 +30,8 @@
 				},
 				{
 					"quem": "Zane",
-					"retrato": "zane/zane_retrato_assustado",
-					"texto": "Debaixo daquela lona, do meu lado! Eu passei esse tempo todo em cima de uma saída e só mapeei agora que a trava soltou. Nem me fala."
+					"retrato": "zane/zane_retrato_frustrado",
+					"texto": "Debaixo daquela lona, do meu lado. Passei esse tempo todo em cima de uma saída e só mapeei agora que a trava soltou. Erro meu."
 				},
 				{
 					"quem": "Zane",
@@ -41,7 +41,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_desconfiado",
-					"texto": "E a trava do bunker soltou junto. Vai na frente, eu te guio pelo rádio. E fica de olho no Henrique, tá?"
+					"texto": "E a trava do bunker soltou junto. Vai na frente, eu te guio pelo rádio. E fica de olho no Henrique."
 				}
 			]
 		}

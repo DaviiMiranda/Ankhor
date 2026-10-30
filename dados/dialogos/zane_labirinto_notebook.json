@@ -6,8 +6,8 @@
 			"falas": [
 				{
 					"quem": "Zane",
-					"retrato": "zane/zane_retrato_assustado",
-					"texto": "Ei, o notebook! Você ia sem ele? Toma. Cuidado com ele, é o único que eu tenho."
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "O notebook. Você ia sem ele. Toma. É o único que eu tenho."
 				}
 			]
 		}

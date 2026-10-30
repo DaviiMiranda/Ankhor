@@ -7,7 +7,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_normal",
-					"texto": "Voltou inteiro? Ainda tem nó pra cair. O terminal fica no meio de cada salão."
+					"texto": "Voltou. Ainda tem nó pra cair. O terminal fica no meio de cada salão."
 				}
 			],
 			"escolhas": [
@@ -38,7 +38,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_confiante",
-					"texto": "Toma o meu notebook de pesquisa. Chega perto do terminal do nó, equipa e aciona: abre um joguinho de invasão. Acertou, o nó cai."
+					"texto": "Toma o meu notebook de pesquisa. Chega perto do terminal do nó, equipa e aciona: abre a invasão. Acertou, o nó cai."
 				},
 				{
 					"quem": "Zane",
@@ -82,13 +82,13 @@
 				},
 				{
 					"quem": "Zane",
-					"retrato": "zane/zane_retrato_frustrado",
-					"texto": "Mas ele nunca pede ajuda, nunca chama ninguém pra lá. Ninguém conserta nada sozinho e calado desse jeito. Ninguém."
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "Mas ele nunca pede ajuda, nunca chama ninguém pra lá. Conserto sem dado compartilhado não é conserto. Não fecha."
 				},
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_normal",
-					"texto": "Sei lá. Pode ser só o jeito dele. É por isso que eu quero ver."
+					"texto": "Pode ser só o jeito dele. Probabilidade baixa. É por isso que eu quero ver."
 				}
 			],
 			"vai_para": "oficina_menu"
@@ -98,7 +98,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_desconfiado",
-					"texto": "A parede do corredor de cima continua quente. Aponta a lanterna pra ela quando passar: luz mostra o que o concreto esconde."
+					"texto": "A parede do corredor de cima continua sem bater com a planta. Aponta a lanterna pra ela quando passar: luz mostra o que o concreto esconde."
 				},
 				{
 					"quem": "Zane",
@@ -138,7 +138,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_confiante",
-					"texto": "Vai com calma. E apaga a lanterna na hora certa!"
+					"texto": "Vai. E apaga a lanterna na hora certa."
 				}
 			]
 		}
