@@ -129,15 +129,6 @@ texto = "COMEÇAR"
 position = Vector3(0, 1.1, -3)
 texto = "TIRAR O VISOR"
 
-[node name="Aviso" type="Label3D" parent="Imagem/Mundo"]
-position = Vector3(0, 0.76, -3)
-pixel_size = 0.0105
-modulate = Color(1, 0.75, 0.6, 1)
-texture_filter = 0
-font = ExtResource("4_fonte")
-font_size = 8
-outline_size = 0
-
 [node name="PainelComoJogar" type="MeshInstance3D" parent="Imagem/Mundo"]
 position = Vector3(-1.75, 1.42, -3)
 rotation = Vector3(0, 0.528, 0)
@@ -158,10 +149,11 @@ outline_size = 0
 position = Vector3(-0.73, -0.14, 0.01)
 pixel_size = 0.0105
 modulate = Color(0.9, 0.84, 0.8, 1)
-text = "Mouse: olhar e mirar
-E ou clique: usar
+text = "Mouse: olhar
 WASD: andar
-Esc: tirar o visor"
+E ou clique: lanterna
+Esc: tirar o visor
+Se os passos pararem, não se mexa."
 texture_filter = 0
 font = ExtResource("4_fonte")
 font_size = 8
@@ -190,7 +182,7 @@ outline_size = 0
 position = Vector3(-0.73, -0.14, 0.01)
 pixel_size = 0.0105
 modulate = Color(0.9, 0.84, 0.8, 1)
-text = "Meia-noite. Uma sala escura. Só você na plateia.
+text = "Uma nave apertada, só você a bordo. Algo saiu do filme e só existe onde há luz.
 Contém sustos. Se ficar ruim demais, tire o visor."
 texture_filter = 0
 font = ExtResource("4_fonte")
