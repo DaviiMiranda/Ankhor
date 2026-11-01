@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/visor/botao_do_menu_vr.gd" id="1_botao"]
+[ext_resource type="FontVariation" path="res://cenas/interface/fonte_jogo.tres" id="2_fonte"]
+
+[sub_resource type="QuadMesh" id="Placa"]
+size = Vector2(1.5, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="MaterialPlaca"]
+shading_mode = 0
+albedo_color = Color(0.09, 0.02, 0.03, 1)
+
+[node name="BotaoDoMenuVr" type="Node3D"]
+script = ExtResource("1_botao")
+
+[node name="Fundo" type="MeshInstance3D" parent="."]
+mesh = SubResource("Placa")
+material_override = SubResource("MaterialPlaca")
+
+[node name="Rotulo" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
+pixel_size = 0.0105
+texture_filter = 0
+font = ExtResource("2_fonte")
+font_size = 16
+outline_size = 0

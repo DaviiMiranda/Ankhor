@@ -17,7 +17,7 @@ func esta_aberto() -> bool:
 	return _visor != null
 
 
-func abrir(cena: String, posicao: Vector2) -> void:
+func abrir(cena: String, posicao: Vector2, cena_do_visor: String = "") -> void:
 	if esta_aberto():
 		return
 	cena_do_save = cena
@@ -25,7 +25,7 @@ func abrir(cena: String, posicao: Vector2) -> void:
 	salvou = false
 	_modo_do_mouse = Input.mouse_mode
 	_sala = get_tree().current_scene
-	_visor = (load(CENA) as PackedScene).instantiate()
+	_visor = (load(CENA if cena_do_visor.is_empty() else cena_do_visor) as PackedScene).instantiate()
 	_trocar_cena.call_deferred(_sala, _visor)
 
 
