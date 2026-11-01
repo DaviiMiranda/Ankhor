@@ -223,4 +223,4 @@ A cena aberta é `cenas/visor/menu_filme_vr.tscn` (script `scripts/visor/menu_fi
 
 **Esc ou Tirar o visor** escurecem a tela e chamam `Visor.fechar`, e a cabine toca a animação de devolver o visor, como na sala segura.
 
-**O que ainda falta:** o jogo. O botão **Começar** só mostra o aviso de que a sessão não abriu (`AVISO_SEM_SESSAO`, em `_usar_mirado`): é ali que o jogo vai entrar. O texto dos painéis e o nome **Hora Morta** são provisórios. O nome está no título da cena, na ação `texto_acao` de `cabine_vr_filme.tscn` e no cartaz (`CARTAZES_VR`, em `gerar_interiores_andar2.py`).
+**Começar** escurece a tela e chama `Visor.trocar`, que troca a cena aberta sem sair do visor. O jogo está em [`hora_morta.md`](hora_morta.md). O texto dos painéis e o nome **Hora Morta** são provisórios. O nome está no título da cena, na ação `texto_acao` de `cabine_vr_filme.tscn` e no cartaz (`CARTAZES_VR`, em `gerar_interiores_andar2.py`).

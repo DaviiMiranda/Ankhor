@@ -1,5 +1,18 @@
 # Registro de decisões
 
+## 2026-11-01 — Hora Morta: nave de terror com a regra da luz e a Varredura
+
+**Decisão:** o mini game da Sala VR se passa numa nave apertada, com corredores com janelas para o espaço, e o jogador foge numa nave menor. A inspiração é *Alien*, com dois diferenciais:
+
+- **A criatura só existe onde há luz:** ela é uma imagem do filme. No escuro, só se ouvem os passos, e ela não encosta em ninguém.
+- **A Varredura:** a nave gira, a luz de uma estrela entra pelas janelas, os passos param e a criatura aparece perto. O jogador precisa ficar totalmente parado, ou perde.
+
+Começamos só pelo **corredor das janelas 1**, para testar se a ideia assusta antes de fazer o resto da nave. Perder leva de volta ao menu do visor, sem nenhum custo no jogo principal.
+
+**Por quê:** pedido do Davi. A história não muda, porque é um filme em cartaz.
+
+**Afeta:** `cenas/visor/hora_morta/`, `scripts/visor/hora_morta/`, `scripts/sistemas/visor.gd` (`Visor.trocar`), `scripts/visor/menu_filme_vr.gd`, `cenas/visor/menu_filme_vr.tscn`, `shaders/ceu_do_espaco.gdshader`, `shaders/filme_queimando.gdshader`, `docs/mecanicas/hora_morta.md`.
+
 ## 2026-11-01 — Sala VR no cinema, com o menu 3D de um jogo de terror
 
 **Decisão:** o Cine Andrômeda ganha uma sala nova, a **Sala VR** (`sala_vr`), com porta comum no saguão, no lugar do relógio. Há cinco filmes em cartaz, cada um com uma cabine, e só o de terror funciona. Ao pôr o visor dele, o jogo vira 3D, com a mesma troca da sala segura, e abre o **menu principal desse jogo**, com explicações e os botões **Começar** e **Tirar o visor**. O VR existe só dentro da história: o jogador continua no monitor, com mouse e teclado.
