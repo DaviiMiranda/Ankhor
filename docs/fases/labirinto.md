@@ -23,7 +23,7 @@ Um labirinto de corredores de concreto no escuro. O Gabriel começa **fora da of
 4. Volta aos poucos passos da oficina (fugindo dos robôs, que continuam patrulhando) e fala com o Zane de novo: outra conversa, em que ele revela o alçapão sob a lona e o abre.
 5. Aperta `E` no alçapão ("Descer"): o Gabriel some no escuro e a fase termina.
 
-**Opcional:** no corredor de cima, um trecho da parede é falso. Com a lanterna apontada para ele aparecem os riscos (o Cruzeiro do Sul e uma cruz); perto, `E` ("Afastar o painel") abre a passagem para o **esconderijo do Baltazar**, onde acontece o primeiro encontro dos dois (seção 3).
+**Opcional:** no corredor de cima, um trecho da parede é falso. Com a lanterna apontada para ele aparecem os riscos (o Cruzeiro do Sul e uma cruz); perto, `E` ("Afastar o painel") abre a passagem para a **sala onde o Baltazar morou**, vazia: ele não aparece em pessoa, e a sala é um dos rastros dele (seção 3).
 
 ---
 

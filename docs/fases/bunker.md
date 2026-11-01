@@ -14,7 +14,7 @@
 - **Quem vive aqui:** o **Henrique**, **sozinho**, numa sala de dados **trancada** (a central de dados), com acesso às câmeras do campus e ao rádio. Diz que está ali tentando consertar tudo. A cena mostra o Henrique na estação, de costas, olhando as câmeras (Enredo Principal, seção 8, Ato 3).
 - **O Carlos nunca vem ao bunker.**
 - **Os robôs patrulham o bunker:** uma **Sentinela** no Corredor A e um **Rastreador** no Corredor B (o alagado). Os cantos protegidos são a sala de dados do Henrique e a **sala segura**; nos corredores, os **nichos** (o vão do posto de máscaras de gás) escondem quem fica parado no escuro.
-- **As salas antigas:** **duas** salas do setor B são montadas como interiores de casa: a **sala de visitas de um casarão do fim do século XIX** (B-02) e a **sala de estar de uma casa dos anos 80** (B-07). Mostram a obsessão do Carlos pelo passado **sem explicar**: o jogo não diz quem as montou nem por quê, e nenhum personagem comenta. O que conta que é um cenário: o papel de parede para antes do teto e aparece a laje de concreto do bunker; atrás do vidro da janela do casarão tem concreto, não rua.
+- **As salas antigas:** **duas** salas do setor B são montadas como interiores de casa: a **sala de visitas de um casarão do fim do século XIX** (B-02) e a **sala de estar de uma casa dos anos 80** (B-07). A dos anos 80 foi o **Carlos** quem montou, e na do século XIX o **Baltazar** dormiu, porque ela parecia casa (Enredo, seções 4.3 e 5; o rastro dele ali ainda não está no jogo). O jogo não explica nenhuma das duas **em palavras**, e nenhum personagem comenta: o jogador entende pelo que vê. O que conta que é um cenário: o papel de parede para antes do teto e aparece a laje de concreto do bunker; atrás do vidro da janela do casarão tem concreto, não rua.
 - **As marcas dos Faroleiros:** as antigas pichações assinadas "C." saíram (o "NÃO CONFIE NAS LUZES" é o bordão da Clarice, e ela nunca morou aqui). No lugar, duas marcas dos Faroleiros pintadas em âmbar (Enredo, seção 2.4): o **farol inteiro** (lugar seguro) perto da sala segura, no Corredor A, e o **farol apagado** (perigo) perto da comporta do núcleo, no Corredor B. A pichação "ROTAS = GRAFO" da sala de dados, sem assinatura, ficou.
 - **O encontro:** no fim da fase, o grupo todo se encontra pela primeira vez na sala de dados: Gabriel, o Henrique, o Zane, a Clarice e a Diana (seção 3). A cena é **provisória**: as falas são rascunho e como a Clarice e a Diana chegam ao bunker está em aberto (Enredo, seção 10.4).
 
@@ -85,12 +85,12 @@ O Henrique explica no diálogo que o setor B está lacrado pelo sistema e que o 
 
 1. **Chegada** pela entrada (checkpoint). No Corredor A, a Sentinela.
 2. **A sala de dados:** achar o Henrique e conversar com ele (a conversa anota "Henrique, na sala de dados" no caderno). Gabriel o reconhece pela lenda do campus: o aluno que sumiu na Biblioteca em 2019 (Enredo, seção 7.2). Na conversa, o Henrique diz que está tentando consertar tudo; a mentira dele não aparece aqui (Enredo, seção 8, "A virada").
-3. **O setor B:** descer pela escada (checkpoint), passar pelo Rastreador e chegar ao gerador. As duas salas antigas ficam no caminho, sem explicação.
+3. **O setor B:** descer pela escada (checkpoint), passar pelo Rastreador e chegar ao gerador. As duas salas antigas ficam no caminho, sem que ninguém comente.
 4. **Religar o bunker:** no **quadro de religação** do gerador, levar energia aos sete pontos (gerador, os dois corredores, o elevador, a comporta, o arsenal e a sala de dados) usando só o cabo do carretel, **23 m**. Só existe um jeito: a **árvore geradora mínima** (Kruskal, [`../computacao/arvore_geradora_minima.md`](../computacao/arvore_geradora_minima.md)). Com a energia, o **elevador** vira atalho da entrada ao Corredor B, o **arsenal** abre, e o **Zane chama pelo rádio** (`zane_bunker_01`): "vem pra sala de dados: tá todo mundo aqui".
 5. **O encontro:** na sala de dados, o diálogo `bunker_encontro` começa sozinho. O Zane conta que quebrou a senha do setor B; é a primeira vez do grupo todo numa sala só. No fim, a comporta do núcleo destrava.
 6. **Saída:** a comporta do núcleo, no fim do Corredor B, leva à 6ª fase, o **Laboratório (D-Tec)**.
 
-**Em aberto (decisão do grupo):** as falas do encontro e da chamada do Zane são **rascunho** (o Davi vai refinar as do Zane); como a Clarice e a Diana chegam ao bunker; se o Baltazar entra nesse encontro (hoje não entra: onde e quando Gabriel o encontra está pendente, Enredo, seção 10.5).
+**Em aberto (decisão do grupo):** as falas do encontro e da chamada do Zane são **rascunho** (o Davi vai refinar as do Zane); como a Clarice e a Diana chegam ao bunker. O Baltazar não entra nesse encontro: ele não aparece em pessoa (Enredo, seção 5).
 
 ---
 

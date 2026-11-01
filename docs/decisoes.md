@@ -1,5 +1,10 @@
 # Registro de decisões
 
+## 2026-11-01 — Documentos alinhados com o Baltazar só em rastros
+**Decisão:** nenhuma decisão nova. Só correção de documentos que ainda descreviam a versão antiga. Sai o Baltazar em pessoa do `Dialogos.docx` (a cena 3.3 e as duas conversas, que já não existem no jogo) e do `Roteiro.docx` (a cena 3.3 agora é a sala vazia). Saem também a "parede quente" e as salas antigas "sem explicação". No Roteiro, o Baltazar deixa de ter posição na ordem de chegada.
+**Por quê:** pedido do Davi. Esses trechos ficaram para trás nas entradas de 2026-10-30.
+**Afeta:** `docs/fases/labirinto.md` e `bunker.md`, `docs/mecanicas/README.md` e `visor_3d.md`, `docs/pendencias_de_producao.md`, `docs/gdd.md`, `docs/historia/roteiro/README.md`, `docs/historia/dialogos/Dialogos.docx`, `docs/historia/roteiro/Roteiro.docx` e o agente `roteirista`.
+
 ## 2026-10-30 — No jogo: o Baltazar sai do Labirinto e o Zane fala frio
 **Decisão:** leva para o jogo o que a entrada abaixo decidiu na história.
 - **O Baltazar sai do Labirinto em pessoa.** O `labirinto.gd` não coloca mais a cena dele (a letra `B` do mapa virou só chão). Saem `cenas/personagens/baltazar_no_esconderijo.tscn` e as duas conversas (`baltazar_labirinto_primeiro_encontro.json` e `_de_novo.json`). A sala dele continua igual, agora vazia.
