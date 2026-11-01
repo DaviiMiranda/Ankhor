@@ -581,7 +581,8 @@ aviso_bloqueada = "Escada de emergência interditada: fiação exposta e avisos 
 [node name="GatilhoTransmissao1" parent="Objetos" instance=ExtResource("r35")]
 position = Vector2(1000, 300)
 transmissao = ExtResource("r34")
-requer_marca = "convivencia_energia"
+marca_necessaria = "convivencia_energia"
+na_sala_inteira = true
 
 [node name="Area" parent="Objetos/GatilhoTransmissao1" index="0"]
 shape = SubResource("AreaTransmissao1")

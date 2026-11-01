@@ -137,7 +137,9 @@ PRACA = {
     "documentos": [("carta_para_lia", 470, 482, "Ler a carta perto da mesa")],
     "nichos": [(440, 192), (1560, 192)],
     "sinais_sala_segura": [(base.LOJAS_PRACA["loja_1"] * PECA + 40, base.y_base(base.LOJAS_PRACA["loja_1"]) - 108)],
-    "transmissoes": [("zane_convivencia_02", 1000, 300, "convivencia_energia")],
+    # zane_convivencia_02 vale na sala inteira: a Pizzaria e o Churrasco ficam do
+    # mesmo lado da praça, e um gatilho só no centro podia não ser atravessado.
+    "transmissoes": [("zane_convivencia_02", 1000, 300, "convivencia_energia", True)],
     "luzes": [
         *[("luz_fria", base.LOJAS_PRACA[loja] * PECA + X_PORTA, base.y_base(base.LOJAS_PRACA[loja]) + 34,
            f"color = {COR_NEON_LUZ[base.COR_LOJA[loja]]}", "energy = 0.6", "scale = Vector2(2.8, 1.7)")
@@ -179,6 +181,9 @@ LOJA_1 = {
     ],
     "itens": [("pilha", 190, 190), ("clarao", 350, 190)],
     "documentos": [("ordem_manutencao_convivencia", 125, 152, "Ler a ordem de serviço")],
+    # A estufa de lanches: o painel destaca as iniciais do nome da casa (T e O)
+    # e o combo são os dois lanches com essas iniciais (Torrada e Omelete).
+    "paineis": [{"nome": "EstufaDeLanches", "cena": "painel_iniciais", "x": 350, "y": 156, "premio": ("pilha", 2)}],
     "checkpoint": ("conv_posto_seguro", 235, 190),
     "luzes": [
         ("luz_lampada", 235, 157, "energy = 0.85"),

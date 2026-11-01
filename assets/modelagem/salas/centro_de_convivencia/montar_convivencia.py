@@ -492,14 +492,16 @@ def montar_sala(sala, objetos):
         m.instancia(f"Porta_{porta['id']}", ".", "res://cenas/sistemas/porta.tscn", props)
 
     rodape.append('[editable path="Ceu"]')
-    for idx, (trans_id, gx, gy, marca_req) in enumerate(sala.get("transmissoes", [])):
+    for idx, (trans_id, gx, gy, marca_req, *na_sala_inteira) in enumerate(sala.get("transmissoes", [])):
         sub_id = f"AreaTransmissao{idx + 1}"
         sub_recursos.append(f'[sub_resource type="CircleShape2D" id="{sub_id}"]\nradius = 65.0')
         res_tr = m.recurso("Resource", f"res://dados/transmissoes/{trans_id}.tres")
         nome_g = f"GatilhoTransmissao{idx + 1}"
         props_g = [f"position = Vector2({gx}, {gy})", f'transmissao = ExtResource("{res_tr}")']
         if marca_req:
-            props_g.append(f'requer_marca = "{marca_req}"')
+            props_g.append(f'marca_necessaria = "{marca_req}"')
+        if na_sala_inteira:
+            props_g.append("na_sala_inteira = true")
         m.instancia(nome_g, "Objetos", "res://cenas/sistemas/gatilho_transmissao.tscn", props_g)
         m.no(f'[node name="Area" parent="Objetos/{nome_g}" index="0"]', [f'shape = SubResource("{sub_id}")'])
         rodape.append(f'[editable path="Objetos/{nome_g}"]')
