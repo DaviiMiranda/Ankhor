@@ -48,7 +48,7 @@ Estas duas partes estavam no Enredo Principal (seções 9 e 10) até 2026-10-15.
 |---|---|---|
 | **Narrativa ambiental** | Marcas no cenário, relíquias de épocas diferentes, os tracinhos nas lousas, os riscos de estrelas na árvore | [`fases/`](../../fases/) |
 | **Documentos** | Diários, bilhetes, disquetes. Cada época tem um papel próprio. As pistas úteis viram anotações no **Caderno do Gabriel** | [`mecanicas/registros_e_caderno.md`](../../mecanicas/registros_e_caderno.md) e o modelo [`template_documento.md`](../template_documento.md) |
-| **Inventário** | O anel da avó, e a comparação com o anel do Baltazar | [`mecanicas/itens_e_inventario.md`](../../mecanicas/itens_e_inventario.md) |
+| **Inventário** | O anel da avó, e a comparação com o anel que o Baltazar desenhou numa carta | [`mecanicas/itens_e_inventario.md`](../../mecanicas/itens_e_inventario.md) |
 | **Rádio** | Clarice ao vivo, na frequência do grupo, com o que o Henrique vê nas câmeras, sem pausar o jogo | [`mecanicas/registros_e_caderno.md`](../../mecanicas/registros_e_caderno.md) |
 | **Ligações e diálogos** | Zane por telefone; todos em pessoa nos esconderijos, com retratos e escolhas | [`Dialogos.docx`](../dialogos/Dialogos.docx) |
 | **Sonhos** | O sono continua como mecânica; o que os sonhos mostram está pendente (Enredo, seção 10.5) | [`mecanicas/sono_e_sonhos.md`](../../mecanicas/sono_e_sonhos.md) |
