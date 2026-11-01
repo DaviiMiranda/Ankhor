@@ -1,5 +1,16 @@
 # Registro de decisões
 
+## 2026-11-01 — Estufa de lanches na Tapioca Orbital e correções na história do Centro de Convivência
+
+**Decisão:**
+- **Puzzle novo na Tapioca Orbital (opcional):** a estufa de lanches mostra TAPIOCA ORBITAL com as iniciais destacadas, duas vagas e cinco lanches (Pastel, Omelete, Bolo, Torrada e Cuscuz). A resposta é Torrada e Omelete, nessa ordem. O prêmio são 2 pilhas. Detalhes em `docs/fases/centro_de_convivencia.md`, seção 8.6.
+- **`zane_convivencia_02` só toca com a energia ligada.** O gatilho da praça usava uma propriedade que não existe (`requer_marca`), e o Godot a ignora sem avisar: o Zane comemorava o comutador antes de o jogador resolver o puzzle. Agora usa `marca_necessaria` e vale na praça inteira, porque a Pizzaria e o Churrasco ficam do mesmo lado e o jogador podia não passar pelo centro.
+- **O recado do Henrique passa a tocar sempre.** Ele depende da fala acima, que agora toca ao voltar à praça, antes de o Gabriel chegar ao Churrasco Solar.
+- **Fala do Zane:** em `zane_convivencia_01`, "que é sala segura" virou "sem robôs". A Tapioca não salva; a sala segura da fase é a porta verde da passarela.
+- **O Enredo acompanha o jogo.** As seções do Centro de Convivência e do Bunker ainda usavam os nomes antigos (pátio, Posto de Manutenção, Cantina, Gráfica Rápida e Rampa do Subsolo). Agora usam os da entrada de 2026-10-16 e o elevador de carga. Nada muda na história.
+**Por quê:** pedido do Davi. Conferido no Godot 4.7.2 (ver o PR).
+**Afeta:** `cenas/sistemas/painel_iniciais.tscn` e `scripts/sistemas/painel_iniciais.gd` (novos), `assets/modelagem/itens/gerar_lanches_tapioca.py` (novo), `assets/sprites/itens/lanche_*.png`, as cenas `loja_1` e `praca_central`, `salas_convivencia.py` e `montar_convivencia.py`, `dados/transmissoes/zane_convivencia_01.tres`, `docs/fases/centro_de_convivencia.md` e `bunker.md`, `docs/historia/História_Completa.md` e `.docx`, `Dialogos.docx` e `Roteiro.docx`.
+
 ## 2026-11-01 — Recortes de jornal do Carlos (colecionável) e mural só com a história
 
 **Decisão:** mais uma coleção, ligada aos Faroleiros e ao passado do mundo:

@@ -1,6 +1,6 @@
 # Fase — Centro de Convivência (a Praça de Alimentação)
 
-> **Status:** Jogável (13 salas: a praça com 4 restaurantes, o segundo andar com 3 lojas e a sala segura; puzzle de Coloração de Grafos e mais cinco puzzles opcionais (seção 8), Célula de Energia, letreiros e holofotes que acendem com a energia, transmissões do Zane pelo rádio)  
+> **Status:** Jogável (13 salas: a praça com 4 restaurantes, o segundo andar com 3 lojas e a sala segura; puzzle de Coloração de Grafos e mais seis puzzles opcionais (seção 8), Célula de Energia, letreiros e holofotes que acendem com a energia, transmissões do Zane pelo rádio)  
 > **Área:** o Centro de Convivência da Unifor, em 3026: uma praça de alimentação sob uma cúpula de vidro quebrada  
 > **Ordem na história:** **quarta fase**, depois do Labirinto ([`labirinto.md`](labirinto.md)) e antes do Bunker ([`bunker.md`](bunker.md)).  
 > **Como se chega:** Pelo duto do alçapão da oficina do Zane no fim do Labirinto, saindo em `passarela_acesso`.  
@@ -20,7 +20,7 @@
   - **Tecnologia de 3026:** mesas com projetor de cardápio em holograma, guarda-sóis de luz, totens de pedido, postes de luz âmbar, árvores que cresceram sob a cúpula e brilham em verde-água.
   - Quando o puzzle da cozinha é resolvido (marca `convivencia_energia`), a energia volta: os **letreiros e as vitrines acendem** e os **holofotes da cúpula** ligam (as Sentinelas mudam de rota).
 - **Comunicação:**
-  - Não há nenhum personagem em pessoa nesta fase. Todo o contato e orientação vêm do **Zane pelo rádio** (`zane_convivencia_01` e `zane_convivencia_02`).
+  - Não há nenhum personagem em pessoa nesta fase. Todo o contato e orientação vêm do **rádio**: o **Zane** (`zane_convivencia_01` e `zane_convivencia_02`) e as conversas do grupo (`grupo_convivencia_01`, `02` e `03`).
 
 ---
 
@@ -59,7 +59,7 @@ O **segundo andar** (opcional, seção 7) é outro pedaço do grafo, pendurado n
 | `passarela_acesso` | Passarela Superior (chegada, checkpoint, rádio) e a porta de vidro verde da **sala segura**, com a luz verde em cima | 640 × 180 px | chapa de aço | `praca_central`, `sala_segura` | — | Nenhuma |
 | `sala_segura` | **Sala segura** do modelo: os óculos do Zane para salvar, o piano ([`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)) | 320 × 180 px | tapete | `passarela_acesso` | — | Nenhuma (robô não entra) |
 | `praca_central` | Praça Central, em arco, com 4 restaurantes, a entrada e a escada do mezanino | 2000 × 560 px | pedra e musgo | passarela, as 4 lojas e a escada | Mesas, árvores, 2 nichos de manutenção | 2 **Sentinelas** (rotas em volta das mesas) |
-| `loja_1` | **Tapioca Orbital**: cafeteria protegida (sem robôs, com checkpoint), com a Ordem de Serviço | 400 × 240 px | madeira clara | `praca_central` | — | Nenhuma |
+| `loja_1` | **Tapioca Orbital**: cafeteria protegida (sem robôs, com checkpoint), com a Ordem de Serviço e a **estufa de lanches** (seção 8.6) | 400 × 240 px | madeira clara | `praca_central` | — | Nenhuma |
 | `loja_2` | **Self Nebulosa**: restaurante de bufê, com a faixa de louça quebrada e o **cofre do bufê** (seção 8.1) | 640 × 280 px | xadrez brilhante | `praca_central`, `camara_fria` | Nicho de serviço | 1 **Rastreador** |
 | `camara_fria` | Câmara fria do Self Nebulosa: onde está a **Célula de Energia** | 400 × 240 px | grade de aço e gelo | `loja_2` | — | Nenhuma |
 | `loja_3` | **Pizzaria Quasar**: cozinha com o forno de plasma e o **quadro de comutação** (o puzzle) | 480 × 260 px | ladrilho vermelho | `praca_central` | — | Nenhuma |
@@ -86,7 +86,7 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 2. **Travessia da Praça (`praca_central`):**
    - Gabriel entra pelo portão do meio. As Sentinelas rondam em volta do conjunto de mesas, por corredores livres (`rota`). Mesas, árvores e postes cortam a linha de visão, e os 2 nichos de manutenção (nas fachadas) escondem quem fica parado no escuro. Há 3 pedras para distração.
 3. **Abrigo e Pista da Célula (`loja_1`):**
-   - Na Tapioca Orbital há um **checkpoint**, uma pilha, uma cápsula de clarão e a **Ordem de Serviço** (`ordem_manutencao_convivencia`), que diz que a célula reserva foi levada para o gerador da **câmara fria do Self Nebulosa**.
+   - Na Tapioca Orbital há um **checkpoint**, uma pilha, uma cápsula de clarão, a **estufa de lanches** (puzzle opcional, seção 8.6) e a **Ordem de Serviço** (`ordem_manutencao_convivencia`), que diz que a célula reserva foi levada para o gerador da **câmara fria do Self Nebulosa**.
 4. **Infiltração no Self Nebulosa (`loja_2` e `camara_fria`):**
    - No salão, um **Rastreador** patrulha perto de uma faixa de **cacos de louça e vidro** (`ZonaDePiso` com `fator_ruido = 2.0`).
    - O jogador contorna pelas passadeiras das pontas (`fator_ruido = 0.6`) ou distrai o Rastreador com pedras para entrar na câmara fria e pegar a **Célula de Energia** (`celula_energia.tres`) e 1 pilha.
@@ -95,10 +95,11 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
    - Ao sincronizar as fases, a marca `convivencia_energia` é ativada.
 6. **Letreiros acesos e Saída pelo Elevador (`praca_central` e `loja_4`):**
    - Com `convivencia_energia`, os letreiros e as vitrines da praça acendem e os **holofotes da cúpula** ligam (`revela_quem_passa = true`); as Sentinelas mudam de rota (`rota_energia`).
-   - O **Zane** avisa pelo rádio (`zane_convivencia_02`) que o elevador destravou, mas as luzes ligaram.
+   - Assim que o Gabriel volta à praça, o **Zane** avisa pelo rádio (`zane_convivencia_02`) que o elevador destravou, mas as luzes ligaram.
+   - Ao entrar no Churrasco Solar, toca o recado do Henrique, pela Clarice, pedindo para não descer (`grupo_convivencia_03`). Gabriel decide descer.
    - Na `loja_4`, a porta do elevador de carga se recolhe e a porta leva a `fim_da_convivencia.tscn`, abrindo a entrada do **Bunker**.
 7. **Segundo andar (opcional):** a escada ao lado da entrada da praça sobe para o mezanino, que tem uma Sentinela de ronda, mais pedras e pilhas, três lojas para explorar e dois nichos. Não é preciso para terminar a fase (seção 7).
-8. **Puzzles opcionais:** o cofre do bufê (Self Nebulosa), o quadro do bar (Churrasco Solar), a trava do plotter (Gráfica), a arara (Loja Universitária) e o cofre do cinema dão pilhas e cápsulas de clarão. Nenhum é preciso para terminar a fase (seção 8).
+8. **Puzzles opcionais:** a estufa de lanches (Tapioca Orbital), o cofre do bufê (Self Nebulosa), o quadro do bar (Churrasco Solar), a trava do plotter (Gráfica), a arara (Loja Universitária) e o cofre do cinema dão pilhas e cápsulas de clarão. Nenhum é preciso para terminar a fase (seção 8).
 
 ---
 
@@ -109,7 +110,7 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 | **Célula de Energia** | `dados/itens/celula_energia.tres` | `camara_fria` |
 | **Pilhas (8)** | `cenas/itens/pilha_no_chao.tscn` | `passarela_acesso`, `loja_1`, `camara_fria`, `segundo_andar`, `loja_uni`, `grafica`, `cinema`, `cinema_cabine` |
 | **Cápsulas de Clarão (2)** | `dados/itens/clarao.tres` | `loja_1` e o prêmio do cofre do `cinema` |
-| **Prêmios dos puzzles da seção 8** | caem no chão ao resolver (`Recompensa`) | 1 clarão no cofre do bufê (`loja_2`), 2 pilhas no quadro do bar (`loja_4`), 1 clarão na trava do plotter (`grafica`), 2 pilhas na arara (`loja_uni`) |
+| **Prêmios dos puzzles da seção 8** | caem no chão ao resolver (`Recompensa`) | 1 clarão no cofre do bufê (`loja_2`), 2 pilhas no quadro do bar (`loja_4`), 1 clarão na trava do plotter (`grafica`), 2 pilhas na arara (`loja_uni`), 2 pilhas na estufa de lanches (`loja_1`) |
 | **Pedras (10)** | `dados/itens/pedra.tres` | `praca_central` (3), `segundo_andar` (2), `grafica` (2), `loja_uni` (1), `cinema` (2) |
 | **Panfleto da Semana Universitária (2024)** | `dados/documentos/panfleto_universitario.tres` | `loja_3` |
 | **Ordem de Serviço (3026)** | `dados/documentos/ordem_manutencao_convivencia.tres` | `loja_1` |
@@ -126,7 +127,10 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 | **Carta para a Lia** (alguém que ficou escreve para quem foi embora) | `dados/documentos/carta_para_lia.tres` | `praca_central`, embaixo da mesa de baixo à esquerda (470, 482) |
 | **Carta do Tião, Faroleiro** (o campus em volta, as máquinas que repetem o caminho) | `dados/documentos/carta_faroleiro_tiao.tres` | `segundo_andar`, no canto esquerdo do corredor, fora da ronda da Sentinela |
 | **Zane no rádio (chegada)** | `dados/transmissoes/zane_convivencia_01.tres` | `passarela_acesso` |
-| **Zane no rádio (luzes acesas)** | `dados/transmissoes/zane_convivencia_02.tres` | `praca_central` (requer `convivencia_energia`) |
+| **Zane no rádio (luzes acesas)** | `dados/transmissoes/zane_convivencia_02.tres` | `praca_central`, na sala inteira (requer `convivencia_energia`) |
+| **Grupo no rádio (árvores da praça)** | `dados/transmissoes/grupo_convivencia_01.tres` | `praca_central`, na sala inteira (depois de `zane_convivencia_01`) |
+| **Grupo no rádio (cinema)** | `dados/transmissoes/grupo_convivencia_02.tres` | `cinema` |
+| **Recado do Henrique, pela Clarice** | `dados/transmissoes/grupo_convivencia_03.tres` | `loja_4`, na sala inteira (requer `convivencia_energia` e depois de `zane_convivencia_02`) |
 
 ---
 
@@ -151,7 +155,8 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 | Base comum (geometria do arco, cores de neon, texto em pixel) | `assets/modelagem/cenario/gerar_praca_base.py` |
 | Célula de Energia (item) | `assets/modelagem/cenario/gerar_convivencia.py` |
 | Puzzle de Coloração de Grafos | `cenas/sistemas/painel_comutacao.tscn`, script `scripts/sistemas/painel_comutacao.gd` |
-| Puzzles da seção 8 | `cenas/sistemas/painel_bits.tscn` e `painel_ordenacao.tscn` (scripts em `scripts/sistemas/`), `cofre.tscn` e `quadro_energia.tscn`; o prêmio que cai no chão é `scripts/sistemas/recompensa.gd`. Na descrição das salas, as listas `paineis` e `cofres` |
+| Puzzles da seção 8 | `cenas/sistemas/painel_bits.tscn`, `painel_ordenacao.tscn` e `painel_iniciais.tscn` (scripts em `scripts/sistemas/`), `cofre.tscn` e `quadro_energia.tscn`; o prêmio que cai no chão é `scripts/sistemas/recompensa.gd`. Na descrição das salas, as listas `paineis` e `cofres` |
+| Ícones dos lanches da estufa | `assets/modelagem/itens/gerar_lanches_tapioca.py` |
 | Sala segura | `cenas/salas/centro_de_convivencia/sala_segura.tscn`; a porta verde é a peça `PORTA:verde` do fundo da passarela (`gerar_interiores.py`), e o sinal entra pela lista `sinais_sala_segura` |
 | Fase no menu | `dados/fases/04_convivencia.tres` |
 
@@ -270,4 +275,13 @@ Pedido do Davi (2026-10-21): enriquecer a fase com um puzzle nas salas que não 
 ### 8.5 Os prêmios e a persistência
 
 - O prêmio cai no chão como um `ItemNoChao` (clarão) ou uma `PilhaNoChao`, pelo `Recompensa.soltar` (`scripts/sistemas/recompensa.gd`), o mesmo do cofre do cinema.
-- Cada puzzle grava uma marca no `Progresso` (`cofre_bufe_aberto`, `churrasco_quadro_ligado`, `plotter_destravado`, `arara_loja_uni_ordenada`). Ao voltar à sala, o puzzle continua resolvido e o prêmio que não foi pego reaparece; o que já foi pego não volta.
+- Cada puzzle grava uma marca no `Progresso` (`cofre_bufe_aberto`, `churrasco_quadro_ligado`, `plotter_destravado`, `arara_loja_uni_ordenada`, `combo_tapioca_montado`). Ao voltar à sala, o puzzle continua resolvido e o prêmio que não foi pego reaparece; o que já foi pego não volta.
+
+### 8.6 Tapioca Orbital: a estufa de lanches
+
+- **O painel** fica na estufa de salgados, no fundo da loja (`painel_iniciais.tscn`). No alto, o nome **TAPIOCA ORBITAL**, com as iniciais **T** e **O** em amarelo, e uma vaga embaixo de cada palavra. Na fileira de baixo, 5 lanches, cada um com o seu desenho: **Pastel, Omelete, Bolo, Torrada e Cuscuz**.
+- **A pista** é a frase do painel: "O combo da casa tem o nome da casa". Os lados escolhem o lanche e E põe na próxima vaga (ou tira, se ele já estiver numa vaga).
+- **A solução é Torrada na primeira vaga e Omelete na segunda:** cada lanche tem a inicial da palavra acima dele. A ordem conta.
+- **Errar não tem castigo:** o painel avisa, as duas vagas esvaziam e o jogador tenta de novo.
+- Prêmio: 2 pilhas, da gaveta da estufa.
+- **Para outro nome:** o painel compara a primeira letra de cada palavra de `nome_da_casa` com a do lanche na vaga. Uma palavra a mais no nome é uma vaga a mais.
