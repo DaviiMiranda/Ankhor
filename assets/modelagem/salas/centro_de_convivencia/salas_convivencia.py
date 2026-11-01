@@ -136,7 +136,6 @@ PRACA = {
     "itens": [("pedra", 520, 400), ("pedra", 1000, 480), ("pedra", 1460, 400)],
     "documentos": [("carta_para_lia", 470, 482, "Ler a carta perto da mesa")],
     "nichos": [(440, 192), (1560, 192)],
-    "sinais_sala_segura": [(base.LOJAS_PRACA["loja_1"] * PECA + 40, base.y_base(base.LOJAS_PRACA["loja_1"]) - 108)],
     # zane_convivencia_02 vale na sala inteira: a Pizzaria e o Churrasco ficam do
     # mesmo lado da praça, e um gatilho só no centro podia não ser atravessado.
     "transmissoes": [("zane_convivencia_02", 1000, 300, "convivencia_energia", True)],
