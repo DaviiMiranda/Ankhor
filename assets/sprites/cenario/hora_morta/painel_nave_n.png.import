@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3gd4ne5swyre"
-path="res://.godot/imported/parede_nave.png-ec982456d3271c671b8d5c5b90aad81c.ctex"
+uid="uid://dom2etdy4qgg3"
+path="res://.godot/imported/painel_nave_n.png-b89ca0eac1aecca9bb8f101c40a49d94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/cenario/hora_morta/parede_nave.png"
-dest_files=["res://.godot/imported/parede_nave.png-ec982456d3271c671b8d5c5b90aad81c.ctex"]
+source_file="res://assets/sprites/cenario/hora_morta/painel_nave_n.png"
+dest_files=["res://.godot/imported/painel_nave_n.png-b89ca0eac1aecca9bb8f101c40a49d94.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

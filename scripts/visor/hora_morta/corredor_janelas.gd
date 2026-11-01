@@ -14,6 +14,7 @@ const TEXTO_FIM := "FIM DO TRECHO"
 @export var segundos_da_dica: float = 7.0
 @export var cosseno_da_lanterna: float = 0.9
 @export var alcance_da_lanterna: float = 7.0
+@export var campo_de_visao: float = 72.0
 @export_range(0.25, 1.0) var resolucao_do_3d: float = 1.0
 
 var _jogando := false
@@ -41,6 +42,7 @@ var _ate_outra_varredura := -1.0
 func _ready() -> void:
 	_ajustar_resolucao()
 	get_window().size_changed.connect(_ajustar_resolucao)
+	jogador.camera.fov = campo_de_visao
 	lanterna.reparent(jogador.camera, false)
 	lanterna.visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -146,8 +148,7 @@ func _ao_comecar_varredura() -> void:
 	criatura.existir(false)
 	zumbido.stop()
 	som_do_estalo.play()
-	for lampada in casco.lampadas:
-		lampada.cortar_energia()
+	casco.cortar_energia()
 
 
 func _ao_comecar_vigia() -> void:
@@ -162,8 +163,7 @@ func _lado_do_olhar() -> float:
 func _ao_terminar_varredura() -> void:
 	aviso.visible = false
 	zumbido.play()
-	for lampada in casco.lampadas:
-		lampada.religar()
+	casco.religar()
 	criatura.voltar_a_ronda(jogador.global_position.z)
 	_ate_outra_varredura = randf_range(segundos_ate_outra_varredura_min, segundos_ate_outra_varredura_max)
 

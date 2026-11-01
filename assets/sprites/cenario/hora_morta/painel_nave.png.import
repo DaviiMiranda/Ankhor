@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2s7847isb5ox"
-path="res://.godot/imported/teto_nave.png-66215ce164b42e522db335bcb2bb64bd.ctex"
+uid="uid://kriqbb680w0e"
+path="res://.godot/imported/painel_nave.png-314fb9a6d3954f4025925f9ffdc8b1aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/cenario/hora_morta/teto_nave.png"
-dest_files=["res://.godot/imported/teto_nave.png-66215ce164b42e522db335bcb2bb64bd.ctex"]
+source_file="res://assets/sprites/cenario/hora_morta/painel_nave.png"
+dest_files=["res://.godot/imported/painel_nave.png-314fb9a6d3954f4025925f9ffdc8b1aa.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

@@ -14,7 +14,7 @@ const YAW_NORMAL := PI / 2.0
 @export var ceu: ShaderMaterial
 @export var ambiente: Environment
 @export var luz_ambiente_calma: float = 0.3
-@export var luz_ambiente_no_clarao: float = 1.15
+@export var luz_ambiente_no_clarao: float = 2.4
 @export var jogador: JogadorVisor
 @export var segundos_de_aviso: float = 2.0
 @export var segundos_de_vigia: float = 7.0

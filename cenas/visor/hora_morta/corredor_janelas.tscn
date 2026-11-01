@@ -27,9 +27,11 @@ ambient_light_source = 2
 ambient_light_color = Color(0.2, 0.26, 0.38, 1)
 ambient_light_energy = 0.3
 reflected_light_source = 1
+tonemap_mode = 3
+tonemap_white = 3.0
 glow_enabled = true
-glow_intensity = 0.6
-glow_bloom = 0.06
+glow_intensity = 0.7
+glow_bloom = 0.1
 fog_enabled = true
 fog_light_color = Color(0.015, 0.02, 0.03, 1)
 fog_density = 0.04
@@ -88,11 +90,11 @@ directional_shadow_max_distance = 30.0
 [node name="Lanterna" type="SpotLight3D" parent="Imagem/Mundo"]
 light_color = Color(1, 0.93, 0.78, 1)
 light_energy = 5.0
-spot_range = 8.0
+spot_range = 9.0
 spot_angle = 24.0
 
 [node name="PlacaDaPorta" type="Label3D" parent="Imagem/Mundo"]
-position = Vector3(0, 1.98, -11.88)
+position = Vector3(0, 2.24, -11.97)
 pixel_size = 0.0105
 modulate = Color(0.95, 0.42, 0.25, 1)
 text = "CINEMA DE BORDO"

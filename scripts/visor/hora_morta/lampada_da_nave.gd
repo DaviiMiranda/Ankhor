@@ -4,13 +4,14 @@ extends OmniLight3D
 enum Estado { ACESA, QUEBRADA, MORTA }
 
 const ALCANCE_NO_CORREDOR := 1.7
+const BRILHO_DO_VIDRO := 2.2
 const SEGUNDOS_APAGADA_MIN := 2.5
 const SEGUNDOS_APAGADA_MAX := 7.0
 const SEGUNDOS_PISCANDO_MIN := 0.06
 const SEGUNDOS_PISCANDO_MAX := 0.22
 
 var estado := Estado.ACESA
-var material_do_vidro: StandardMaterial3D
+var materiais_do_vidro: Array[StandardMaterial3D] = []
 var _com_energia := true
 var _piscando := false
 var _ate_mudar := 0.0
@@ -52,5 +53,5 @@ func religar() -> void:
 func _atualizar() -> void:
 	var acesa := _com_energia and (estado == Estado.ACESA or (estado == Estado.QUEBRADA and _piscando))
 	visible = acesa
-	if material_do_vidro:
-		material_do_vidro.emission_energy_multiplier = 2.4 if acesa else 0.0
+	for material in materiais_do_vidro:
+		material.emission_energy_multiplier = BRILHO_DO_VIDRO if acesa else 0.0
