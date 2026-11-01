@@ -8,6 +8,7 @@ id = "ordem_disjuntores"
 titulo = "Aviso colado na porta"
 autor = "Quadro de energia"
 papel = "caderno_gabriel"
+conta_historia = false
 paginas = PackedStringArray("QUEDA DE ENERGIA: RELIGAR NESTA ORDEM
 
 3 - iluminação de emergência

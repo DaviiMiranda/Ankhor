@@ -18,6 +18,7 @@ Os antecessores (as pessoas puxadas pela fenda antes do Gabriel, [`../historia/p
 | `caderno_gabriel` | O caderno do Gabriel | grafite |
 | `carta` | Cartas de desconhecidos de 3026: papel liso e cru, dobrado em três | azul-escuro |
 | `carta_faroleiro` | Cartas dos Faroleiros: o mesmo papel, com o farol âmbar carimbado no canto | marrom-escuro |
+| `jornal` | Recortes de jornal e boletins que o Carlos guardou: papel-jornal cinza-amarelado, rasgado, com uma foto em cima | cinza-escuro (a nota na margem é em vermelho) |
 
 - Ao fechar, a **anotação** do documento entra no caderno (uma vez só) e o HUD avisa: *"Nova anotação: Baltazar, 1750   [N] ver"*.
 
@@ -97,6 +98,11 @@ A tela de leitura, a legenda e o inventário (com a aba Anotações) já estão 
 5. No mapa: arraste `cenas/itens/documento_no_mundo.tscn` para `Objetos`, na posição do objeto (a origem é o pé), escolha o `documento` e troque o `texto_acao` (ex.: `Ler o bilhete`). Se o objeto for alto, aumente `altura_aviso`.
 
 **Papel novo:** desenhe a função em `gerar_interface.py` (248 × 156 px, as pautas nas medidas explicadas no topo do script), adicione em `PAPEIS` lá e em `PAPEIS` de `scripts/interface/tela_documento.gd` (textura e cor da tinta), e na lista do `@export_enum` de `documento.gd`.
+
+**Campos extras do `Documento`:**
+- `conta_historia` (padrão `true`): `false` para documentos só de puzzle (senhas, ordens, cardápios). Eles ficam no caderno e na cama do quarto do visor, mas **não vão para o mural**.
+- `imagem` e `legenda`: uma foto em cima do texto. A leitura ganha uma **primeira página** com a foto (220 × 74) e a legenda (até 3 linhas).
+- `nota_na_margem`: uma **última página** em vermelho, com a nota de caneta de quem guardou o documento (usada pelos recortes de jornal, que são do Carlos).
 
 ## 5. Como criar uma transmissão nova
 

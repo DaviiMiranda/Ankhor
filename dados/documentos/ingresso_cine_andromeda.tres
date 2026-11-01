@@ -8,6 +8,7 @@ id = "ingresso_cine_andromeda"
 titulo = "Canhoto de ingresso do Cine Andrômeda"
 autor = "Cine Andrômeda"
 papel = "caderno_gabriel"
+conta_historia = false
 paginas = PackedStringArray("CINE ANDRÔMEDA
 
 SALA 1 — SESSÃO DAS 19h30

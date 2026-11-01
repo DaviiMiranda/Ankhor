@@ -12,9 +12,9 @@ func _ready() -> void:
 		return
 	_pegar_itens()
 	_completar_colecoes()
-	_anotar_documentos()
 	_anotar_transmissoes()
 	_anotar_dialogos()
+	_anotar_documentos()
 
 
 func _pegar_itens() -> void:

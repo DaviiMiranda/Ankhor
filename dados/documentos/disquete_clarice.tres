@@ -8,6 +8,7 @@ id = "disquete_clarice"
 titulo = "SENHAS.TXT (disquete da Clarice)"
 autor = "Clarice, 1990"
 papel = "caderno_clarice"
+conta_historia = false
 paginas = PackedStringArray("Se você não é a Clarice, larga isso.
 Mentira. Pode ler, eu deixei pra isso.
 

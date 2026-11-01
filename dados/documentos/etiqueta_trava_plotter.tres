@@ -8,6 +8,7 @@ id = "etiqueta_trava_plotter"
 titulo = "Etiqueta da trava do plotter (3026)"
 autor = "Gráfica Quântica — manutenção"
 papel = "caderno_gabriel"
+conta_historia = false
 paginas = PackedStringArray("PLOTTER QX-9 — TRAVA DA GAVETA DE INSUMOS
 
 A gaveta trava sozinha quando a fila para no meio de uma ordem.

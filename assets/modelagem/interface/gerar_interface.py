@@ -367,6 +367,8 @@ TINTA_MARROM = bib.hexa("#3a2210")[0]
 # seção 2.4): a luz quente de uma chama.
 PAPEL_CRU = bib.hexa("#6f6a5c", "#8f8a78", "#ada690", "#c4bca3", "#d5ceb6", "#e0d9c3")
 AMBAR_FAROL = bib.hexa("#5a2e08", "#94520f", "#c97a1c", "#eba23a", "#ffcb6b")
+PAPEL_JORNAL = bib.hexa("#5f5b50", "#807b6c", "#a29d8b", "#bdb8a5", "#cfcab6", "#dcd7c3")
+TINTA_JORNAL = bib.hexa("#2a2722")[0]
 
 
 def pautas():
@@ -532,7 +534,29 @@ def papel_carta(com_farol, semente):
     return img
 
 
+def papel_jornal():
+    """Recorte de jornal: papel-jornal cinza-amarelado, rasgado em volta, com um
+    vinco no meio e um filete de tinta embaixo do título (y = 21). A área da
+    foto (x de 14 a 234, y de 22 a 96) e a do texto ficam lisas: a foto e o
+    texto são postos por cima pela tela de leitura (tela_documento.tscn)."""
+    img = Imagem(LARGURA_PAPEL, ALTURA_PAPEL)
+    X, Y = img.X, img.Y
+    folha = borda_rasgada(img, 3, 71)
+    fino = ruido(img.w, img.h, 2, 2, 72)
+    fibras = ruido(img.w, img.h, 7, 1, 73)
+    manchas = ruido(img.w, img.h, 34, 26, 74)
+    borda = perto_da_borda(folha, 8)
+    v = 0.8 + 0.07 * manchas + 0.05 * fino + 0.03 * fibras - 0.4 * (1 - borda)
+    v = v - 0.1 * (Y == ALTURA_PAPEL // 2) + 0.05 * (Y == ALTURA_PAPEL // 2 + 1)
+    img.pintar(folha, PAPEL_JORNAL, v)
+    filete = folha & (Y == 21) & (X >= 12) & (X < LARGURA_PAPEL - 12)
+    img.cor(filete, TINTA_JORNAL)
+    img.contornar(PAPEL_JORNAL[0])
+    return img
+
+
 PAPEIS = {
+    "papel_jornal": papel_jornal,
     "papel_pergaminho": papel_pergaminho,
     "papel_caderno_clarice": papel_caderno_clarice,
     "papel_caderno_gabriel": papel_caderno_gabriel,

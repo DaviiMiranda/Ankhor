@@ -28,6 +28,9 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/mesa_holografica.tscn" id="fut_mesa_holografica"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_doca_bibliotecario.tscn" id="fut_parede_doca_bibliotecario"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/letreiro_holografico.tscn" id="fut_letreiro"]
+[ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
+[ext_resource type="Resource" path="res://dados/colecoes/recortes.tres" id="col_recortes"]
+[ext_resource type="Resource" path="res://dados/documentos/recorte_1_conflito.tres" id="doc_recorte"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -224,3 +227,9 @@ position = Vector2(100, 41)
 offset_right = 39.0
 offset_bottom = 12.0
 text = "SILÊNCIO"
+
+[node name="RecorteDeJornal1" parent="Objetos" instance=ExtResource("col_cena")]
+position = Vector2(150, 215)
+colecao = ExtResource("col_recortes")
+numero = 1
+documento = ExtResource("doc_recorte")

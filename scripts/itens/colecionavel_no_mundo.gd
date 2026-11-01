@@ -8,6 +8,7 @@ extends Interagivel
 		_mostrar_desenho()
 @export var numero: int = 1
 @export var marca_necessaria: String = ""
+@export var documento: Documento
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var destaque: Node2D = $DestaqueColetavel
@@ -32,6 +33,8 @@ func pode_interagir() -> bool:
 
 func interagir() -> void:
 	Colecionaveis.coletar(colecao, numero)
+	if documento != null:
+		Caderno.ler(documento)
 	ItemNovo.mostrar_novo(colecao.item_com_progresso(Colecionaveis.quantidade(colecao.id)))
 	queue_free()
 

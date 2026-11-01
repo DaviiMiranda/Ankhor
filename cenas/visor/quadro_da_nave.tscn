@@ -1,0 +1,28 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/visor/quadro_de_parede.gd" id="1_quadro"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/visor/quadro_nave.png" id="2_pintura"]
+[ext_resource type="Resource" path="res://dados/colecoes/recortes.tres" id="3_colecao"]
+
+[sub_resource type="StandardMaterial3D" id="Madeira"]
+albedo_color = Color(0.23, 0.15, 0.09, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="Moldura"]
+material = SubResource("Madeira")
+size = Vector3(1.0, 0.64, 0.04)
+
+[node name="QuadroDaNave" type="Node3D"]
+script = ExtResource("1_quadro")
+colecao = ExtResource("3_colecao")
+tamanho = Vector2(1, 0.64)
+
+[node name="Moldura" type="MeshInstance3D" parent="."]
+mesh = SubResource("Moldura")
+
+[node name="Pintura" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0215)
+pixel_size = 0.0048
+shaded = true
+texture_filter = 0
+texture = ExtResource("2_pintura")

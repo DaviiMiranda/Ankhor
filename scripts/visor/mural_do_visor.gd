@@ -5,7 +5,7 @@ const PAPEL := preload("res://assets/sprites/interface/papel_caderno_gabriel.png
 const TINTA := Color("2e2e36")
 const COR_DO_FIO := Color(0.78, 0.1, 0.12)
 const COLUNAS := 6
-const LINHAS := 4
+const LINHAS := 5
 const TAMANHO_CARTAO := Vector2(0.28, 0.19)
 const PIXEL_DO_TEXTO := 0.0037
 const RAIO_DO_ALFINETE := 0.012
@@ -15,6 +15,7 @@ const VAZIO := "Nada anotado ainda"
 
 var _cartoes: Array[PapelDoVisor] = []
 var _selecionado := 0
+var _documentos: Dictionary = {}
 
 
 func _ready() -> void:
@@ -56,13 +57,27 @@ static func documento_da_anotacao(anotacao: Dictionary) -> Documento:
 
 
 func _montar() -> void:
-	var anotacoes := Caderno.anotacoes.slice(-COLUNAS * LINHAS)
+	for documento in MesaDoVisor.todos_os_documentos():
+		_documentos[documento.id] = documento
+	var anotacoes := Caderno.anotacoes.filter(_e_de_historia).slice(-COLUNAS * LINHAS)
 	if anotacoes.is_empty():
 		_criar_cartao(0, VAZIO, null, 0)
 	for i in anotacoes.size():
 		var anotacao: Dictionary = anotacoes[i]
-		_criar_cartao(i, anotacao["titulo"], documento_da_anotacao(anotacao), hash(anotacao["id"]))
+		_criar_cartao(i, anotacao["titulo"], _documento_do_cartao(anotacao), hash(anotacao["id"]))
 	_esticar_fio()
+
+
+func _e_de_historia(anotacao: Dictionary) -> bool:
+	var documento: Documento = _documentos.get(anotacao["id"])
+	return documento == null or documento.conta_historia
+
+
+func _documento_do_cartao(anotacao: Dictionary) -> Documento:
+	var original: Documento = _documentos.get(anotacao["id"])
+	if original != null and original.imagem != null:
+		return original
+	return documento_da_anotacao(anotacao)
 
 
 func _criar_cartao(indice: int, titulo: String, documento: Documento, semente: int) -> void:

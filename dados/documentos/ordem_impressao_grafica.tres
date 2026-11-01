@@ -8,6 +8,7 @@ id = "ordem_impressao_grafica"
 titulo = "Ordem de Impressão (3026)"
 autor = "Gráfica Quântica — fila automática"
 papel = "caderno_gabriel"
+conta_historia = false
 paginas = PackedStringArray("ORDEM DE IMPRESSÃO N.º 4.127 — PRIORIDADE: MANUTENÇÃO
 
 Item: 4.000 avisos \"ÁREA INTERDITADA — USE O ACESSO PRINCIPAL\".

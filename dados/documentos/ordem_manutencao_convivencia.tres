@@ -8,6 +8,7 @@ id = "ordem_manutencao_convivencia"
 titulo = "Ordem de Manutenção Técnica (3026)"
 autor = "Manutenção da Praça de Alimentação"
 papel = "caderno_gabriel"
+conta_historia = false
 paginas = PackedStringArray("ORDEM DE SERVIÇO — PRAÇA DE ALIMENTAÇÃO
 
 1. O elevador de carga do Churrasco Solar (acesso ao Bunker) depende do Quadro de Comutação da cozinha da Pizzaria Quasar.

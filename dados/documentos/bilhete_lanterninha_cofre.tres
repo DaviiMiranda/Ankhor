@@ -8,6 +8,7 @@ id = "bilhete_lanterninha_cofre"
 titulo = "Bilhete do lanterninha"
 autor = "Tadeu, lanterninha do Cine Andrômeda"
 papel = "caderno_gabriel"
+conta_historia = false
 paginas = PackedStringArray("Pessoal da sexta,
 
 Deixei as minhas coisas no cofre da cabine de projeção. É a porta cinza ao lado da tela, na sala 1, e está aberta.

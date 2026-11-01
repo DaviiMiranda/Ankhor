@@ -129,6 +129,7 @@ Uma quinta sala, **fora do grafo**: o miolo fica em `esconderijo` no mapa (8 × 
 - **Fecha sozinha.** Como as portas das salas, 1,2 s depois de o Gabriel sair da passagem. Robôs **não** abrem a parede falsa.
 - **Dentro:** a sala vazia, com a bagunça de quem morou ali: altar, ninho, livros, caixas, o robô desmontado, a chapa com estrelas e peças e papéis espalhados pelo chão (`quantidade_pecas_no_esconderijo`). As velas são `cenas/cenario/luzes/luz_vela.tscn` (luz quente que treme). A cena do Baltazar em pessoa e as duas conversas dele saíram do jogo.
 - **Pingente do chapéu (peça 3).** No chão, ao lado do ninho, no pé do cartaz de estrelas. Fica invisível e sem aviso até a marca `esconderijo_baltazar_descoberto` (a lanterna revelou a parede falsa); depois aparece e dá para pegar. Faz parte da coleção do Labirinto. A marca fica em `marca_do_pingente_escondido`, no `labirinto.gd`.
+- **Recorte de jornal (peça 3 dos recortes).** Num beco sem saída do labirinto (a letra `J` do mapa), à vista. É o boletim feito à mão de quem ficou, com a nota assinada "C." (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)).
 - **Falta:** a carta do Baltazar que fica nesta sala (Enredo, seção 5). Ainda não escrita: falta decidir a quem ele escreve.
 
 ---

@@ -8,6 +8,7 @@ id = "cardapio_self_nebulosa"
 titulo = "Cardápio do dia do Self Nebulosa (3026)"
 autor = "Self Nebulosa"
 papel = "caderno_gabriel"
+conta_historia = false
 paginas = PackedStringArray("SELF NEBULOSA — CARDÁPIO DO DIA
 
 PRATO DO DIA

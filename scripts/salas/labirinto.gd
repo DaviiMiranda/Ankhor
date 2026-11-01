@@ -61,6 +61,8 @@ const LUZ_EM_TUDO := 1 | 2
 @export var quantidade_componentes: int = 26
 @export var quantidade_pecas_no_esconderijo: int = 12
 @export var colecao: Colecao
+@export var colecao_recortes: Colecao
+@export var recorte: Documento
 @export var marca_do_pingente_escondido: String = "esconderijo_baltazar_descoberto"
 @export var semente: int = 26
 @export var transmissao_da_rede: Transmissao
@@ -340,6 +342,8 @@ func _colocar_marcadores() -> void:
 					_colocar_colecionavel(int(mapa.letra(celula)), posicao, "")
 				"3":
 					_colocar_colecionavel(3, posicao, marca_do_pingente_escondido)
+				"J":
+					_colocar_recorte(posicao)
 				"F":
 					if _comeca_sequencia(celula, "F"):
 						_colocar_parede_falsa(celula)
@@ -363,6 +367,17 @@ func _colocar_colecionavel(numero: int, posicao: Vector2, marca: String) -> void
 	peca.colecao = colecao
 	peca.numero = numero
 	peca.marca_necessaria = marca
+	_colocar(peca, posicao)
+
+
+func _colocar_recorte(posicao: Vector2) -> void:
+	if colecao_recortes == null:
+		return
+	var peca: ColecionavelNoMundo = CENA_COLECIONAVEL.instantiate()
+	peca.name = "RecorteDeJornal3"
+	peca.colecao = colecao_recortes
+	peca.numero = 3
+	peca.documento = recorte
 	_colocar(peca, posicao)
 
 

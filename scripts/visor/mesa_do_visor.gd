@@ -8,6 +8,7 @@ const PAPEIS := {
 	"caderno_gabriel": [preload("res://assets/sprites/interface/papel_caderno_gabriel.png"), Color("2e2e36")],
 	"carta": [preload("res://assets/sprites/interface/papel_carta.png"), Color("26283a")],
 	"carta_faroleiro": [preload("res://assets/sprites/interface/papel_carta_faroleiro.png"), Color("3b2614")],
+	"jornal": [preload("res://assets/sprites/interface/papel_jornal.png"), Color("2a2722")],
 }
 const COLUNAS := 5
 const TAMANHO_PAPEL := Vector2(0.2, 0.126)

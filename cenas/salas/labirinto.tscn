@@ -35,6 +35,8 @@
 [ext_resource type="Resource" path="res://dados/transmissoes/grupo_labirinto_01.tres" id="g_grupo_labirinto_01"]
 [ext_resource type="Resource" path="res://dados/transmissoes/grupo_labirinto_02.tres" id="g_grupo_labirinto_02"]
 [ext_resource type="Resource" path="res://dados/colecoes/labirinto.tres" id="col_labirinto"]
+[ext_resource type="Resource" path="res://dados/colecoes/recortes.tres" id="col_recortes"]
+[ext_resource type="Resource" path="res://dados/documentos/recorte_3_quem_ficou.tres" id="doc_recorte"]
 
 [sub_resource type="ShaderMaterial" id="Vinheta"]
 shader = ExtResource("16_vinheta")
@@ -43,6 +45,8 @@ shader = ExtResource("16_vinheta")
 script = ExtResource("1_labirinto")
 mapa = ExtResource("2_mapa")
 colecao = ExtResource("col_labirinto")
+colecao_recortes = ExtResource("col_recortes")
+recorte = ExtResource("doc_recorte")
 topos = Array[Texture2D]([ExtResource("4_topo0"), ExtResource("5_topo1"), ExtResource("6_topo2")])
 frentes = Array[Texture2D]([ExtResource("7_frente0"), ExtResource("8_frente1"), ExtResource("9_frente2"), ExtResource("10_frente3")])
 textura_porta = ExtResource("11_porta")
