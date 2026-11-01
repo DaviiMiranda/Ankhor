@@ -8,6 +8,7 @@ id = "checklist_churrasco_solar"
 titulo = "Checklist de abertura do Churrasco Solar (3026)"
 autor = "Churrasco Solar"
 papel = "caderno_gabriel"
+conta_historia = false
 paginas = PackedStringArray("CHECKLIST DE ABERTURA — QUADRO DO BAR
 
 Ligue os disjuntores nesta ordem, senão o quadro desarma tudo:

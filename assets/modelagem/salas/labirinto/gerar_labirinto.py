@@ -89,6 +89,8 @@
 #   Os pingentes do chapéu do Baltazar (colecionáveis, docs/mecanicas/colecionaveis.md):
 #   1  e  2  ficam em becos sem saída do labirinto; 3  fica no esconderijo e só
 #   aparece depois do primeiro encontro com o Baltazar.
+#   J  o terceiro recorte de jornal (colecionável, docs/mecanicas/colecionaveis.md):
+#   fica num beco sem saída do labirinto, entre os becos que sobraram.
 # Todos os marcadores ficam na fileira de CIMA da salinha: a de baixo fica
 # atrás do topo da parede de baixo (ver "Por que corredores de 2 blocos").
 # Os checkpoints ficam dentro das salas (nos modelos). Os robôs nascem
@@ -404,6 +406,10 @@ def montar_mapa(rng):
     passo = len(sobras) // QUANTIDADE_PINGENTES_NOS_BECOS
     for i in range(QUANTIDADE_PINGENTES_NOS_BECOS):
         marcar(sobras[i * passo], str(i + 1), 1, 1)
+
+    restantes = [c for c in sobras if c not in usadas]
+    assert restantes, "falta um beco para o recorte de jornal"
+    marcar(restantes[len(restantes) // 2], "J", 1, 1)
 
     cruzamentos = [c for c in dist if len(vizinhos(abertas, c)) >= 3 and c not in usadas]
     rng.shuffle(cruzamentos)

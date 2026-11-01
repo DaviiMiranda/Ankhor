@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+[ext_resource type="Texture2D" path="res://assets/sprites/interface/recorte_2.png" id="2_imagem"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "recorte_2_partida"
+titulo = "Transferência: embarque aberto"
+autor = "Boletim do Conselho"
+papel = "jornal"
+imagem = ExtResource("2_imagem")
+legenda = "Plataforma 4, antes do primeiro embarque. A fila é curta."
+nota_na_margem = "Fui ver a fila de longe.
+Não entrei nela."
+paginas = PackedStringArray("O Conselho informa que os embarques para o novo mundo seguem o calendário. Embarcam os Homo sideralis aprovados no exame de adaptação.
+
+A ordem de chamada será afixada nas plataformas.", "A manutenção das cidades será encerrada por etapas, conforme os embarques.
+
+Quem não for chamado deve aguardar em casa.
+
+As razões da decisão constam de documento reservado.")
+anotacao = "Boletim do Conselho: os embarques para o novo mundo começaram, só para os Homo sideralis. As cidades da Terra deixam de ser mantidas, por etapas. As razões são \"documento reservado\".
+
+Na margem, em vermelho: \"Fui ver a fila de longe. Não entrei nela.\""

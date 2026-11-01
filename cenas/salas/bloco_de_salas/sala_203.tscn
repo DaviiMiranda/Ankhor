@@ -25,6 +25,9 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lateral_porta.tscn" id="m_servico"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_doca_professor.tscn" id="fut_parede_doca_professor"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_oculos_vr.tscn" id="fut_estante_oculos_vr"]
+[ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
+[ext_resource type="Resource" path="res://dados/colecoes/recortes.tres" id="col_recortes"]
+[ext_resource type="Resource" path="res://dados/documentos/recorte_2_partida.tres" id="doc_recorte"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -314,3 +317,9 @@ altura_aviso = 70.0
 texto = "Mais um robô professor, parado na doca. Desligado, como os outros."
 
 [editable path="Ceu"]
+
+[node name="RecorteDeJornal2" parent="Objetos" instance=ExtResource("col_cena")]
+position = Vector2(190, 210)
+colecao = ExtResource("col_recortes")
+numero = 2
+documento = ExtResource("doc_recorte")

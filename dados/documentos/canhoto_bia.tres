@@ -8,6 +8,7 @@ id = "canhoto_bia"
 titulo = "Canhoto da Bia"
 autor = "Cine Andrômeda"
 papel = "caderno_gabriel"
+conta_historia = false
 paginas = PackedStringArray("CINE ANDRÔMEDA — SALA 1
 SESSÃO DE SEXTA, 21h00
 

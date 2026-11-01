@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+[ext_resource type="Texture2D" path="res://assets/sprites/interface/recorte_3.png" id="2_imagem"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "recorte_3_quem_ficou"
+titulo = "Quem ficou se reúne esta noite"
+autor = "Boletim de quem ficou"
+papel = "jornal"
+imagem = ExtResource("2_imagem")
+legenda = "A primeira reunião. Poucas cadeiras, uma lanterna no meio e um farol rabiscado na parede."
+nota_na_margem = "Aqui eu ainda era um deles.
+- C."
+paginas = PackedStringArray("Somos poucos. Menos do que a gente imaginava quando a última fila saiu.
+
+Não tem Conselho, não tem lei. Tem uma lanterna acesa e um farol desenhado na parede.", "Depois da Grande Separação, o que sobrou da gente precisa de um jeito de sobreviver junto.
+
+Ficar. Cuidar. Esperar.
+
+Quem quiser, traga uma cadeira.")
+anotacao = "Boletim feito à mão por quem ficou na Terra depois da Grande Separação: poucos, sem Conselho, reunidos em volta de uma lanterna. O farol da parede é o dos Faroleiros.
+
+Na margem, em vermelho: \"Aqui eu ainda era um deles. - C.\""

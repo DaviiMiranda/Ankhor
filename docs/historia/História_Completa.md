@@ -21,6 +21,7 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 - **A Terra ficou muito ruim**: a sociedade e o planeta. Quase não restam humanos na Terra.
 - **Os *Homo sideralis* foram embora.** Ao longo dos séculos, parte da humanidade evoluiu numa espécie nova, os ***Homo sideralis*** ("o homem das estrelas"): aceitam melhor os implantes cibernéticos e vivem melhor no espaço e em planetas com outra temperatura ou outra gravidade. Foram eles que **partiram para outro planeta**, há **menos de 100 anos**. Essa partida se chama **Grande Separação**: separou famílias e amigos, que nunca mais se viram.
 - **Os Faroleiros ficaram.** Os humanos ainda não evoluídos, os *sapiens*, não partiram. Os que ficaram formaram uma resistência que **defende o planeta**: os **Faroleiros**. Ainda existem, **longe do campus**. O símbolo deles está na seção 2.4.
+- **Havia um Conselho.** Antes da Grande Separação, as cidades eram governadas por um **Conselho**. O que ele era e quem o formava ficam em aberto: o jogo só o mostra nos recortes de jornal que o Carlos guardou (seção 4.3).
 - **Quanto mais no futuro, mais frias as relações.** Do passado para o futuro, as relações entre as pessoas esfriam: em 2123 já são mornas, mediadas por máquinas (é daí que vem o jeito do Zane), e em 3026, depois da Grande Separação, são geladas. Os **Faroleiros** são a exceção: mantêm a luz acesa, e as cartas deles são quentes.
 - **O Carlos era um Faroleiro.** Há alguns anos teve um **desentendimento** com o grupo (o motivo fica em aberto no jogo) e se isolou na Unifor, abandonada havia muito tempo, para usar a Âncora e ir viver nos anos 80 (seção 4.3).
 - **A IA e a robótica** são muito avançadas, mas a IA **não tem consciência**: é uma ferramenta nas mãos dos humanos. Não existe uma IA que domina a Terra. Os robôs e os sistemas do campus são ferramentas do Carlos.
@@ -124,7 +125,8 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 
 - **Ele e o Henrique:** quando o Henrique caiu, o primeiro de todos, o Carlos prometeu levá-lo de volta **para antes da morte da mãe dele** e assim ganhou a confiança do Henrique. Na verdade, só o usa: o Henrique serve para **atrasar os outros** enquanto o Carlos conserta a Âncora. O Carlos não se importa com os puxados (seção 8, "A virada").
 - **A Grande Separação e a loucura:** a partida dos *Homo sideralis* o separou dos amigos e das pessoas de quem gostava. Os anos sozinho, somados à frieza das relações do tempo dele, o **enlouqueceram**: acha que o passado é sempre melhor. Vive como se estivesse nos anos 80 (montou a **sala de estar dos anos 80** do Bunker, fala sozinho como um **locutor de rádio**, sem gírias, e dá aos robôs nomes de gente da época) e tem **medo do presente**: ficar preso em 3026, frio e sozinho para sempre.
-- **O primeiro registro dele:** a **Folha de calibração**, no Corredor do Tempo do Labirinto (opcional). Ali ele testava a calibração da Âncora com objetos dos anos 80 (um Genius, os três quadros de *De Volta para o Futuro*, um micro e um telefone de disco). Na folha ele conta que a máquina errou de novo, abriu a fenda na Biblioteca e puxou alguém que ele **nem foi ver**; diz que já foi um Faroleiro e que só quer o mundo dos anos 80. **Assina só "C."**: o jogador ainda não sabe o nome dele (quando descobre continua pendente, seção 10.2).
+- **O primeiro registro assinado dele:** a **Folha de calibração**, no Corredor do Tempo do Labirinto (opcional). Ali ele testava a calibração da Âncora com objetos dos anos 80 (um Genius, os três quadros de *De Volta para o Futuro*, um micro e um telefone de disco). Na folha ele conta que a máquina errou de novo, abriu a fenda na Biblioteca e puxou alguém que ele **nem foi ver**; diz que já foi um Faroleiro e que só quer o mundo dos anos 80. **Assina só "C."**: o jogador ainda não sabe o nome dele (quando descobre continua pendente, seção 10.2).
+- **Os recortes de jornal:** o Carlos guardou recortes de jornal e boletins do tempo da Grande Separação e escreveu na margem de cada um, **de caneta vermelha** (o vermelho é a cor dele). Hoje estão espalhados pelo campus, um em cada uma das três primeiras fases, como colecionável (`docs/mecanicas/colecionaveis.md`). Cada um tem uma foto e um texto, e os detalhes ficam em aberto (datas rasgadas, motivos "reservados"): **(1)** na **Biblioteca**, um jornal do começo do conflito: os *Homo sideralis* pedem voz no Conselho e a cidade se divide em dois lados; **(2)** no **Bloco de salas**, o boletim do Conselho sobre o embarque para o novo mundo, só para os *Homo sideralis*, com a manutenção das cidades da Terra encerrada por etapas, sem dizer por quê; **(3)** no **Labirinto**, o boletim feito à mão de quem ficou, reunido em volta de uma lanterna sob um farol desenhado (o começo dos Faroleiros). As notas dos dois primeiros não são assinadas ("Ainda dava para voltar atrás. Ninguém quis."; "Fui ver a fila de longe. Não entrei nela."). A do terceiro assina **"C."**, a mesma assinatura da Folha de calibração ("Aqui eu ainda era um deles."), e o jogador ainda não sabe quem é. Ao juntar os três, o quarto do Gabriel ganha a **gravura de uma nave imensa** cruzando o escuro, que não diz de onde saiu nem para onde vai.
 - Muita coisa sobre o Carlos ainda está pendente (seção 10.2).
 
 ---
@@ -291,6 +293,7 @@ O que falta fazer em arte, mecânica e fases (e não muda a história) fica em [
 ### 10.1 O mundo de 3026
 
 - Há quantos anos exatamente os *Homo sideralis* partiram (sabemos que foi há menos de 100), e para onde foram?
+- O que era o Conselho que governava as cidades antes da Grande Separação, e quem o formava? Quando foram escritos os recortes de jornal, e em que cidade?
 - Onde estão os Faroleiros hoje? Eles aparecem no jogo (em pessoa, por rádio, ou só pelas marcas no cenário)? Sabem do Carlos e da Âncora?
 - Como a Unifor virou um centro de pesquisa em física do tempo?
 - Por que a fenda se abre sempre no chão da Biblioteca?
@@ -302,6 +305,7 @@ O que falta fazer em arte, mecânica e fases (e não muda a história) fica em [
 - Como ele consegue o conhecimento que falta para a Âncora funcionar? (A IA é uma ferramenta sem consciência e pode ser parte da resposta.)
 - Quantas ferramentas de IA ele usa, e o que cada uma faz (os robôs, a Âncora, os sistemas do D-Tec)?
 - Por que os robôs caçam os humanos: para capturar e levar ao Bloco M, ou para eliminar quem atrapalha?
+- Por que o Carlos guardou os recortes de jornal e escreveu na margem de cada um? Como e quando foram parar espalhados pelo campus?
 - Qual a idade dele, qual o defeito e qual o arco?
 - Qual foi o desentendimento com os Faroleiros (no jogo fica em aberto), e há quantos anos ele está sozinho?
 - Quando o jogador descobre que ele existe?

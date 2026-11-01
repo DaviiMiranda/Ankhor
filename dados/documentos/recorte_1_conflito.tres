@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Documento" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/documento.gd" id="1_documento"]
+[ext_resource type="Texture2D" path="res://assets/sprites/interface/recorte_1.png" id="2_imagem"]
+
+[resource]
+script = ExtResource("1_documento")
+id = "recorte_1_conflito"
+titulo = "Nova espécie pede voz; a rua racha"
+autor = "O Correio do Litoral"
+papel = "jornal"
+imagem = ExtResource("2_imagem")
+legenda = "Avenida da Câmara, ontem. De um lado, quem aceita os implantes. Do outro, quem não."
+nota_na_margem = "Ainda dava para voltar atrás.
+Ninguém quis."
+paginas = PackedStringArray("O Conselho recebeu o pedido dos Homo sideralis: a espécie que aceita bem os implantes e vive melhor longe da Terra quer leis feitas para o seu corpo.
+
+Os sapiens responderam com uma passeata. Nenhum dos lados cedeu.", "Em bairros inteiros já se fala em dois lados. Tem loja que só atende um deles, escola que escolheu o seu, rua que ninguém atravessa.
+
+\"Ninguém quer guerra\", disse a presidente do Conselho, e encerrou a sessão.")
+anotacao = "Recorte de jornal, sem data: os Homo sideralis pedem voz no Conselho e a cidade se divide em dois lados.
+
+Alguém guardou o recorte e escreveu na margem, de caneta vermelha."

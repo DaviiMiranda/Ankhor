@@ -8,6 +8,7 @@ id = "aviso_loja_universitaria"
 titulo = "Aviso da Loja Universitária (2025)"
 autor = "Loja Universitária — Centro de Convivência"
 papel = "caderno_gabriel"
+conta_historia = false
 paginas = PackedStringArray("LOJA UNIVERSITÁRIA — AVISO AOS ALUNOS
 
 Moletons da Calourada: lote novo, do P ao GG.

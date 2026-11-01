@@ -134,6 +134,7 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 | Cápsula de clarão | 204 (já está lá) | Defesa |
 | Pedras | 102 (3, já estão lá) e 202 (1) | Distração |
 | Disquetes coloridos (3) | 105 (canto esquerdo), 106 (lado esquerdo) e 202 (meio da sala) | Opcionais, fora do caminho obrigatório: ao juntar os três, o quarto do Gabriel ganha uma pilha de disquetes na mesa dele, ao lado do farol. Não ficam na mochila (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
+| Recorte de jornal 2 (colecionável) | Sala 203, no chão perto das mesas de leitura (190, 210) | Opcional: o boletim do Conselho sobre o embarque para o novo mundo (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
 | Pilhas | 103 (2), 105 (2), 206 (1) | Lanterna |
 | Rádio | Corredor do térreo, na chegada | Só aparece se o Gabriel ainda não tem (quem começa pelo menu Fases). Sem ele, as transmissões não tocam |
 

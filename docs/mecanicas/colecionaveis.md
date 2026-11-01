@@ -2,7 +2,7 @@
 
 Cada fase esconde uma **coleção**: algumas peças espalhadas pelas salas, que o jogador acha por exploração, sem nenhuma pista no caminho principal. Quando junta todas, o **quarto do Gabriel** (o visor 3D da sala segura, ver [`visor_3d.md`](visor_3d.md)) ganha uma coisa nova. É uma recompensa só para quem procurou: não abre porta, não dá item e não muda a história.
 
-Hoje existem cinco coleções, todas de **3 peças**:
+Hoje existem seis coleções, todas de **3 peças**:
 
 | Fase | Coleção (`id`) | Peça | Recompensa no quarto |
 |---|---|---|---|
@@ -11,6 +11,7 @@ Hoje existem cinco coleções, todas de **3 peças**:
 | Labirinto | `labirinto` | **Pingente de chapéu** (as borlas do tricórnio do Baltazar) | O **tricórnio** na mesa, sobre o teclado do notebook, com os três pingentes nas pontas |
 | Centro de Convivência | `centro_de_convivencia` | **Botão de jaqueta** (da jaqueta da Diana) | A **jaqueta** dela pendurada no encosto da cadeira, com a camiseta listrada aparecendo |
 | Bunker | `bunker` | **Chip hexagonal** (dos óculos do Zane) | Os **óculos** dele acesos na escrivaninha, com os três chips na armação |
+| Biblioteca, Bloco de salas e Labirinto (uma peça em cada) | `recortes` | **Recorte de jornal** (guardado pelo Carlos, com notas de caneta vermelha) | A **gravura de uma nave** imensa no espaço, emoldurada na parede da direita do quarto |
 
 ## 1. As coleções
 
@@ -99,10 +100,28 @@ São `BotaoJaqueta1` a `BotaoJaqueta3` nas cenas dessas salas.
 
 São `ChipOculos1` a `ChipOculos3` nas cenas dessas salas.
 
+### 1.6 Recortes de jornal (Biblioteca, Bloco de salas e Labirinto)
+
+| | |
+|---|---|
+| **Peça** | Recorte de jornal amarelado, de borda rasgada (`recorte_jornal.png`). **Não é só um colecionável: é um documento que se lê.** Ao pegar, abre a tela de leitura (papel `jornal`) e, ao fechar, a tela **Novo item** |
+| **Quem guardou** | O **Carlos** (História Completa, seção 4.3). Cada recorte tem uma **nota na margem, de caneta vermelha** (a cor dele). As duas primeiras não têm assinatura, a terceira assina "C." |
+| **Recompensa** | A **gravura da nave**, na parede da direita do quarto (acima do criado-mudo). É um `FocoVisor`: dá para olhar de perto, com nome e descrição |
+
+Cada recorte tem **uma foto** (`assets/sprites/interface/recorte_<n>.png`, 220 × 74, pontilhada) e **dois trechos de texto**, e a leitura tem quatro páginas: **1.** a foto e a legenda; **2 e 3.** a matéria; **4.** a nota na margem, em vermelho. Os detalhes ficam em aberto de propósito (datas rasgadas, "documento reservado"): os três só afirmam o que a História Completa já decide (seções 2.1 e 4.3).
+
+| Nº | Fase / sala | Onde | O que conta |
+|---|---|---|---|
+| 1 | Biblioteca, balcão (`balcao`) | No chão, entre o balcão e o entulho (150, 215) | *O Correio do Litoral*: "Nova espécie pede voz; a rua racha". O começo do conflito e a divisão em dois lados |
+| 2 | Bloco de salas, sala 203 | No chão, perto das mesas de leitura (190, 210) | *Boletim do Conselho*: "Transferência: embarque aberto". A partida dos *Homo sideralis* e a manutenção das cidades encerrada por etapas, sem dizer por quê |
+| 3 | Labirinto, num beco sem saída | A letra `J` do mapa (`gerar_labirinto.py`) | *Boletim de quem ficou*: "Quem ficou se reúne esta noite". O grupo que ficou, em volta de uma lanterna: o começo dos Faroleiros |
+
+São `RecorteDeJornal1` (`balcao.tscn`), `RecorteDeJornal2` (`sala_203.tscn`) e `RecorteDeJornal3` (criado pelo `labirinto.gd`). Cada um é um `ColecionavelNoMundo` com o campo `documento` preenchido (`dados/documentos/recorte_<n>_*.tres`).
+
 ## 2. O que o jogador vê
 
 1. Ao pegar, abre a tela **Novo item** (a mesma dos itens da mochila), com o desenho da peça, a descrição e a contagem: **1 de 3**, **2 de 3**, **3 de 3**. No terceiro, a tela acrescenta "Os três estão com você." A peça **não vai para a mochila**: fica guardada só na coleção.
-2. No **quadro branco** do quarto, uma linha por coleção mostra o progresso: *Pingentes de farol: 2 de 3*, *Disquetes da Clarice: 0 de 3*, *Pingentes do chapéu: 1 de 3*, *Botões da jaqueta* e *Chips dos óculos*. Com cinco coleções o quadro ficou cheio: o espaçamento entre as linhas (`ENTRELINHA` em `quadro_do_visor.gd`) foi apertado para tudo caber. Uma sexta linha já não cabe sem mais ajuste.
+2. No **quadro branco** do quarto, uma linha por coleção mostra o progresso: *Pingentes de farol: 2 de 3*, *Disquetes da Clarice: 0 de 3*, *Pingentes do chapéu: 1 de 3*, *Botões da jaqueta* e *Chips dos óculos*. Com cinco coleções o quadro ficou cheio: o espaçamento entre as linhas (`ENTRELINHA` em `quadro_do_visor.gd`) foi apertado para tudo caber. Uma sexta linha já não cabe sem mais ajuste: por isso os **Recortes de jornal** ficam de fora do quadro (o progresso deles aparece só na tela Novo item).
 3. Com as três peças de uma coleção, a recompensa aparece no quarto. Com menos, o quarto fica como estava. As coleções são independentes.
 4. No quarto, dá para **examinar** cada recompensa: olhando para ela, **[E] Examinar: <nome>** leva a câmera até a peça, que sobe um pouco e gira com **WASD** (ou setas) ou o **mouse**, com um painel de nome e descrição. **Esc** afasta. Detalhes em [`visor_3d.md`](visor_3d.md), seção 3.1.
 
@@ -147,6 +166,7 @@ Ao interagir, ele chama `Colecionaveis.coletar` e `ItemNovo.mostrar_novo(colecao
 - **Disquetes** (`DisquetesDaMesa`, `cenas/visor/disquetes_da_mesa.tscn`) e **tricórnio** (`ChapeuDoNotebook`, `cenas/visor/chapeu_do_notebook.tscn`): `Node3D` com o script `RecompensaDoQuarto` (`scripts/visor/recompensa_do_quarto.gd`), que só faz o `visible` valer `Colecionaveis.completa(colecao)`. Sem pulso e sem luz própria: a escrivaninha já é iluminada pela luminária. Os três objetos ficam na **escrivaninha**, na faixa livre da frente, porque os papéis lidos cobrem o resto do tampo: o farol em z 0,3, os **disquetes** logo na frente dele (x -1,95, z 0,44, girados 10°) e o **tricórnio** sobre o teclado do notebook (x -2,29, y 0,78, z 0,3), a 55% do tamanho do modelo para caber nos 24 cm do teclado sem encostar na tela. Ele fica menor que um chapéu de verdade: é um enfeite, como o farol de 18 cm.
 
 - **Jaqueta** (`JaquetaDaCadeira`, `cenas/visor/jaqueta_da_cadeira.tscn`) e **óculos** (`OculosDaMesa`, `cenas/visor/oculos_da_mesa.tscn`): também com o `RecompensaDoQuarto`. A jaqueta fica **de pé contra o encosto** da cadeira (x -1,27, y 0,85), a 55% do tamanho do modelo, com a gola para cima e uma `OmniLight3D` âmbar fraca na frente (sem ela a face voltada para o quarto ficava azul-esverdeada, e o caramelo da Diana sumia). Os óculos ficam na frente livre do tampo (x -2,1, z -0,2), virados para o quarto, com uma `OmniLight3D` ciano fraca.
+- **Gravura da nave** (`QuadroDaNave`, `cenas/visor/quadro_da_nave.tscn`, `scripts/visor/quadro_de_parede.gd`): um `QuadroDeParede` (um `FocoVisor`) com uma moldura de madeira e um `Sprite3D` com `quadro_nave.png`. Fica **visível só se `Colecionaveis.completa(colecao)`**; sem isso, nem entra no grupo dos focos. Está na parede da direita (x 2,46, y 1,5, z 1,72), de frente para o quarto. A imagem (192 × 120) sai de `assets/modelagem/cenario/gerar_quadro_nave.py`: uma nave comprida de lado, com janelas acesas, três motores de rastro ciano, nebulosa e um planeta minguante.
 
 Todas as cinco recompensas são **examináveis**: `RecompensaDoQuarto` é um `FocoVisor` (o `FarolDaMesa` herda dele e só acrescenta o pulso da luz). Para ajustar de onde a câmera olha, mude `direcao_da_camera` da instância em `sala_visor.tscn`; o tamanho do enquadramento sai do modelo sozinho (`ocupacao` só muda o quanto a peça enche a tela).
 
@@ -176,5 +196,6 @@ O **desenho em pixel** das peças (ícone e chão) sai de `assets/modelagem/iten
 
 - **De quem são os pingentes de farol** e por que estão espalhados pela Biblioteca. O Enredo Principal ainda não decidiu onde os Faroleiros estão hoje nem se aparecem no jogo (seção "Pendências" dele). Até lá, o texto não afirma nada. O mesmo vale para os disquetes (por que estão fora do posto da Clarice) e para os pingentes do chapéu (como foram parar no subsolo).
 - **Mais coleções** (D-Tec): pede uma peça e uma recompensa no quarto. Sobram a estante, o móvel da TV, o chão e as paredes; a mesa, a cadeira e a cama estão ocupadas. O quadro branco já está no limite.
+- **Por que o Carlos guardou os recortes** e como foram parar espalhados pelo campus: pendência da História Completa (seção 10.2). O texto não afirma nada além da nota de caneta vermelha.
 - A recompensa só aparece no **visor**. Não há conquista nem contador na pausa do inventário.
 - As **posições** das peças e o tamanho/posição dos modelos no quarto são primeira versão, para ajustar jogando (nada foi testado dentro do Godot ainda).

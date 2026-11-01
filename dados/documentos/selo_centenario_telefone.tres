@@ -8,6 +8,7 @@ id = "selo_centenario_telefone"
 titulo = "Selo emoldurado"
 autor = ""
 papel = "carta"
+conta_historia = false
 paginas = PackedStringArray("Um selo dos Correios numa moldura dourada: um telefone antigo, de madeira, com o fone pendurado do lado.
 
 Embaixo, em letras pequenas: CENTENÁRIO DO TELEFONE.

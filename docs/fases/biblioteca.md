@@ -144,6 +144,7 @@ Para a apresentação da disciplina: as salas são **vértices** e as portas sã
 | Pilhas (4) | Salão (2, no lado escuro), sala 4, sala 5, ala leste | Recarregar a lanterna |
 | Código da grade | Sala 8 (disquete) | Abrir a grade da ala leste |
 | Pingentes de farol (3) | Salão (2, fundo sul), sala 8 (canto esquerdo), sala 4 (corredores de baixo) | Opcionais: ao juntar os três, o quarto do Gabriel ganha um farol na mesa. Não ficam na mochila (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
+| Recorte de jornal 1 (colecionável) | Balcão, no chão entre o balcão e o entulho (150, 215) | Opcional: um jornal do começo do conflito entre *sapiens* e *Homo sideralis*. Com os três recortes (Biblioteca, Bloco de salas e Labirinto), o quarto do Gabriel ganha a gravura de uma nave (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
 
 ---
 

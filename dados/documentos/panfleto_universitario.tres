@@ -8,6 +8,7 @@ id = "panfleto_universitario"
 titulo = "Panfleto da Semana Universitária (2024)"
 autor = "Centro de Convivência — Unifor"
 papel = "caderno_gabriel"
+conta_historia = false
 paginas = PackedStringArray("SEMANA CULTURAL E UNIVERSITÁRIA — 2024
 
 12h00 — Apresentação acústica na praça das mesas

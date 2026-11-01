@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" path="res://cenas/visor/chapeu_do_notebook.tscn" id="f_chapeu"]
 [ext_resource type="PackedScene" path="res://cenas/visor/jaqueta_da_cadeira.tscn" id="f_jaqueta"]
 [ext_resource type="PackedScene" path="res://cenas/visor/oculos_da_mesa.tscn" id="f_oculos"]
+[ext_resource type="PackedScene" path="res://cenas/visor/quadro_da_nave.tscn" id="f_quadro_nave"]
 
 [sub_resource type="Environment" id="Ambiente"]
 background_mode = 1
@@ -366,9 +367,9 @@ position = Vector3(1.55, 1.425, -2.457)
 [node name="PapeisDaCama" parent="Imagem/Mundo" instance=ExtResource("7_mesa")]
 position = Vector3(2.0, 0.55, 0.3)
 rotation = Vector3(-1.0471976, -1.5707964, 0)
-tamanho = Vector2(0.95, 0.7)
-linhas = 5
-area_dos_papeis = Vector2(0.85, 0.6)
+tamanho = Vector2(0.95, 0.85)
+linhas = 6
+area_dos_papeis = Vector2(0.85, 0.72)
 
 [node name="FarolDaMesa" parent="Imagem/Mundo" instance=ExtResource("f_farol")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -2.0, 0.76, 0.3)
@@ -385,6 +386,9 @@ transform = Transform3D(0, 0.55, 0, 0, 0, -0.55, -0.55, 0, 0, -1.27, 0.85, -0.1)
 [node name="OculosDaMesa" parent="Imagem/Mundo" instance=ExtResource("f_oculos")]
 position = Vector3(-2.1, 0.76, -0.2)
 rotation = Vector3(0, -1.5707964, 0)
+
+[node name="QuadroDaNave" parent="Imagem/Mundo" instance=ExtResource("f_quadro_nave")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46, 1.5, 1.72)
 
 [node name="Dica" type="Label" parent="."]
 layout_mode = 1

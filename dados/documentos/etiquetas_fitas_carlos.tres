@@ -8,6 +8,7 @@ id = "etiquetas_fitas_carlos"
 titulo = "Etiquetas de três fitas VHS"
 autor = ""
 papel = "carta"
+conta_historia = false
 paginas = PackedStringArray("Três fitas de vídeo em cima da mesa, uma do lado da outra. As etiquetas foram escritas à mão:
 
 DE VOLTA PARA O FUTURO — 1985
