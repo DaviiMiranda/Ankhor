@@ -4,7 +4,7 @@ Hora Morta é o mini game de terror em 3D da Sala VR do cinema ([`../fases/centr
 
 O nome é provisório. A inspiração é *Alien*: uma nave apertada, uma única criatura que não dá para matar e uma fuga numa nave menor. A criatura, as regras e o clima são nossos.
 
-**O que existe hoje:** um trecho, o **corredor das janelas 1**, para testar se a ideia assusta. O resto da nave está na seção 6.
+**O que existe hoje:** um trecho, o **corredor das janelas 1**, para testar se a ideia assusta. O resto da nave está na seção 7.
 
 ## 1. A regra da luz
 
@@ -40,13 +40,21 @@ $$m_{t} = \max(0,\ m_{t-1} - 8\,\Delta t) + |\vec{v}_{\text{mouse}}|$$
 
 A silhueta é uma imagem chapada (`Sprite3D` que sempre vira para a câmera), com um quadro de película queimado no lugar do rosto. Ela anda só 7 vezes por segundo (`quadros_por_segundo`), mesmo o jogo rodando a 60: a posição real muda o tempo todo, mas a que aparece na tela só muda nesses quadros, com um pequeno tremor. Parece um filme com quadros faltando.
 
-## 4. Matemática e computação
+## 4. O visual da nave
+
+O corredor segue uma imagem de referência escolhida pelo Davi: seção chanfrada, janelões arredondados, luz fria de um lado e quente do outro, canos à mostra, chão de chapa e grade e faixas de LED nos cantos do piso. É mais realista que o resto do jogo de propósito, porque é um filme, e a criatura pixelada e chapada se destaca justamente por isso.
+
+- **Geometria:** o casco é montado por código, vão a vão, com malhas feitas à mão (`SurfaceTool`). A parede da janela é uma faixa de triângulos entre o contorno do buraco e a borda do vão.
+- **Texturas:** cada uma nasce de um mapa de altura, que também gera o mapa de normais. A normal de cada pixel vem da inclinação da altura, $\hat{n} \propto (-\partial_x h,\ -\partial_y h,\ 1)$, e por isso a luz parece pegar nos rebites e nas emendas. O ruído é periódico (filtrado por Fourier), então a textura repete sem emenda.
+- **Faixas de LED:** só brilham, não contam como luz para a regra da seção 1. Servem para o jogador achar o caminho no escuro, e apagam na Varredura.
+
+## 5. Matemática e computação
 
 **Estar na lanterna (produto escalar).** Com $\hat{o}$ = direção do olhar e $\hat{t}$ = direção até a criatura, ela está na luz se $\hat{o} \cdot \hat{t} \geq 0{,}9$ (`cosseno_da_lanterna`), o que dá cerca de 26°, e a menos de 7 m.
 
-**Estrelas (`shaders/ceu_do_espaco.gdshader`).** O céu é dividido em cubinhos, e uma função de sorteio acende só cerca de 0,25% deles. O sorteio depende só do cubinho, então as estrelas não piscam. Uma matriz de rotação em torno de Y gira as estrelas com a nave.
+**Céu (`shaders/ceu_do_espaco.gdshader`).** O céu é dividido em cubinhos, e uma função de sorteio acende só uma pequena parte deles. O sorteio depende só do cubinho, então as estrelas não piscam. Uma matriz de rotação em torno de Y gira o céu com a nave. O planeta usa o produto escalar entre o olhar e o centro dele, e a borda iluminada desenha um crescente.
 
-**Sombra das janelas.** A estrela é uma luz direcional com sombra, e cada parede é um bloco de verdade em volta do vão. Por isso a luz chega no chão no formato da janela, e a mancha desliza quando a luz gira em Y.
+**Sombra das janelas.** A estrela é uma luz direcional com sombra, e a parede tem um buraco de verdade no lugar da janela. Por isso a luz chega no chão no formato da janela, e a mancha desliza quando a luz gira em Y.
 
 **Derrota (`shaders/filme_queimando.gdshader`).** A película queima do centro para fora. A borda irregular é uma soma de senos do ângulo, somada à distância até o centro.
 
@@ -54,7 +62,7 @@ A silhueta é uma imagem chapada (`Sprite3D` que sempre vira para a câmera), co
 
 **Áudio 3D.** Os passos são um `AudioStreamPlayer3D`. O `SubViewport` do mundo precisa de `audio_listener_enable_3d`, senão o som não sai de lado nenhum. No teste automático, com o jogador de lado para a criatura, um canal ficou cerca de 6 dB mais alto que o outro.
 
-## 5. Onde está no projeto
+## 6. Onde está no projeto
 
 | O quê | Onde |
 |---|---|
@@ -66,7 +74,7 @@ A silhueta é uma imagem chapada (`Sprite3D` que sempre vira para a câmera), co
 | Trocar a cena dentro do visor | `Visor.trocar`, em `scripts/sistemas/visor.gd` |
 | Texturas e criatura | `assets/modelagem/cenario/gerar_nave_hora_morta.py`, `assets/modelagem/personagens/gerar_criatura_hora_morta.py` |
 
-## 6. O que falta
+## 7. O que falta
 
 **Sons provisórios.** Reaproveitados do jogo, até termos os definitivos: passos (`sentinela_passo.wav`, mais grave), estalo da nave (`estalo_laje.wav`) e ataque (`clarao_disparo.wav`).
 

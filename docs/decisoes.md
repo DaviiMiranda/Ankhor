@@ -7,6 +7,8 @@
 - **A criatura só existe onde há luz:** ela é uma imagem do filme. No escuro, só se ouvem os passos, e ela não encosta em ninguém.
 - **A Varredura:** a nave gira, a luz de uma estrela entra pelas janelas, os passos param e a criatura aparece perto. O jogador precisa ficar totalmente parado, ou perde.
 
+O visual segue uma imagem de referência escolhida pelo Davi, com metal gasto, luz fria e quente e janelões para o espaço. É mais realista que o pixel art do resto do jogo, porque é um filme: a regra de pixel art continua valendo fora do visor.
+
 Começamos só pelo **corredor das janelas 1**, para testar se a ideia assusta antes de fazer o resto da nave. Perder leva de volta ao menu do visor, sem nenhum custo no jogo principal.
 
 **Por quê:** pedido do Davi. A história não muda, porque é um filme em cartaz.
