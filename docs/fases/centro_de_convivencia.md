@@ -1,6 +1,6 @@
 # Fase — Centro de Convivência (a Praça de Alimentação)
 
-> **Status:** Jogável (13 salas: a praça com 4 restaurantes, o segundo andar com 3 lojas e a sala segura; puzzle de Coloração de Grafos e mais seis puzzles opcionais (seção 8), Célula de Energia, letreiros e holofotes que acendem com a energia, transmissões do Zane pelo rádio)  
+> **Status:** Jogável (14 salas: a praça com 4 restaurantes, o segundo andar com 3 lojas e a sala segura; puzzle de Coloração de Grafos e mais seis puzzles opcionais (seção 8), Célula de Energia, letreiros e holofotes que acendem com a energia, transmissões do Zane pelo rádio)  
 > **Área:** o Centro de Convivência da Unifor, em 3026: uma praça de alimentação sob uma cúpula de vidro quebrada  
 > **Ordem na história:** **quarta fase**, depois do Labirinto ([`labirinto.md`](labirinto.md)) e antes do Bunker ([`bunker.md`](bunker.md)).  
 > **Como se chega:** Pelo duto do alçapão da oficina do Zane no fim do Labirinto, saindo em `passarela_acesso`.  
@@ -70,6 +70,7 @@ O **segundo andar** (opcional, seção 7) é outro pedaço do grafo, pendurado n
 | `cinema` | **Cine Andrômeda**: o **hall** (bilheteria, bomboniere, fliperamas, sofá e cordões de fila), com o arco **SALA 1** na ponta direita, que é a porta da sala de projeção | 640 × 320 px | carpete de veludo | `segundo_andar`, `cinema_sala` | Nicho atrás da cortina | Nenhuma |
 | `cinema_sala` | **Sala 1** do cinema: a tela que chia e três fileiras de poltronas, **A, B e C** (a A é a mais perto da tela), numeradas de 1 a 16; uma porta cinza ao lado da tela leva à cabine do cofre | 480 × 320 px | carpete escuro com luzes de balizamento | `cinema`, `cinema_cabine` | Nenhum | Nenhuma |
 | `cinema_cabine` | **Cabine de projeção** do cinema: a salinha com o projetor, a mesa do lanterninha e o **cofre** (puzzle da seção 7.5) | 400 × 220 px | concreto e tapete de veludo | `cinema_sala` | — | Nenhuma |
+| `sala_vr` | **Sala VR** do cinema: cinco filmes em cartaz, cada um com a sua cabine; só o de terror funciona e abre o menu 3D (seção 7.7) | 480 × 180 px | carpete escuro | `cinema` | — | Nenhuma |
 
 ---
 
@@ -151,6 +152,7 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 | Som da escada | `assets/modelagem/audio/gerar_efeitos_escada.py` |
 | Sprites dos papéis no chão (documentos) | `assets/modelagem/cenario/gerar_papeis.py`, `cenas/itens/papel_no_mundo.tscn` e `scripts/itens/papel_no_mundo.gd` |
 | Cofre do cinema (cena, script e como reutilizar) | `cenas/sistemas/cofre.tscn`, `scripts/sistemas/cofre.gd` e [`../mecanicas/cofre_e_codigos.md`](../mecanicas/cofre_e_codigos.md) |
+| Cabines da Sala VR | `cenas/sistemas/cabine_vr_filme.tscn` e `cabine_vr_sem_sinal.tscn`, sprites de `assets/modelagem/cenario/gerar_cabine_vr.py`; os cartazes são `v_cartaz` em `gerar_interiores_andar2.py` |
 | Porta de vidro dos restaurantes | `assets/modelagem/cenario/gerar_porta_restaurante.py` e o som em `assets/modelagem/audio/gerar_efeitos_porta_restaurante.py` |
 | Base comum (geometria do arco, cores de neon, texto em pixel) | `assets/modelagem/cenario/gerar_praca_base.py` |
 | Célula de Energia (item) | `assets/modelagem/cenario/gerar_convivencia.py` |
@@ -169,6 +171,7 @@ python assets/modelagem/cenario/gerar_restaurantes.py
 python assets/modelagem/cenario/gerar_praca_objetos.py
 python assets/modelagem/cenario/gerar_andar2.py
 python assets/modelagem/cenario/gerar_andar2_objetos.py
+python assets/modelagem/cenario/gerar_cabine_vr.py
 python assets/modelagem/audio/gerar_efeitos_porta_restaurante.py
 python assets/modelagem/audio/gerar_efeitos_escada.py
 python assets/modelagem/salas/centro_de_convivencia/montar_convivencia.py
@@ -239,6 +242,24 @@ Como o sistema funciona e como montar outros cofres: [`../mecanicas/cofre_e_codi
 ### 7.6 Os papéis no chão
 
 Os documentos da fase (o bilhete e os canhotos do cinema, o aviso da loja, a ordem da gráfica, a ordem de serviço e o panfleto) aparecem como **sprites pequenos no chão**, com o brilho dos itens colecionáveis, e não mais como áreas invisíveis. Cada tipo tem o seu desenho (`assets/modelagem/cenario/gerar_papeis.py`): o **bilhete** é uma folha dobrada com linhas à mão, o **canhoto** é uma tira com o picotado à esquerda e uma faixa de cor à direita (**ciano** do Léo, **magenta** da Bia, **âmbar** do Caio e **violeta** o canhoto sem nome), e o **aviso**, a **ordem** e o **panfleto** são folhas com o cabeçalho na cor da loja. Cena: `cenas/itens/papel_no_mundo.tscn` (herda de `documento_no_mundo.tscn` e põe o sprite e o brilho).
+
+---
+
+### 7.7 A Sala VR do cinema
+
+O saguão ganhou um segundo arco, **SALA VR**, no lugar do relógio, com uma porta comum (`cinema_sala_vr`). A sala é opcional e não tem robôs. Ela tem 180 px de altura, para a câmera não descer e os títulos dos cartazes ficarem sempre na tela.
+
+Cada filme tem um cartaz na parede e uma cabine embaixo, o pedestal com um visor:
+
+| Filme | O que acontece |
+|---|---|
+| Capitão Cometa | "O visor acende e mostra: ARQUIVO CORROMPIDO." |
+| Amor em Órbita | "Sem sinal. As lentes nem acendem." |
+| Marte em Festa | "Toca três segundos de música e trava." |
+| Jangada Estelar | "Alguém arrancou o cabo deste visor." |
+| **Hora Morta** (terror, na ponta direita) | O Gabriel põe o visor, com a mesma animação da sala segura, e entra no menu 3D do jogo ([`../mecanicas/visor_3d.md`](../mecanicas/visor_3d.md), seção 9) |
+
+O jogo de terror em si ainda não existe: o botão **Começar** do menu só avisa que a sessão não abriu. **Hora Morta** é um nome provisório.
 
 ---
 

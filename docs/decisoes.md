@@ -1,5 +1,17 @@
 # Registro de decisões
 
+## 2026-11-01 — Sala VR no cinema, com o menu 3D de um jogo de terror
+
+**Decisão:** o Cine Andrômeda ganha uma sala nova, a **Sala VR** (`sala_vr`), com porta comum no saguão, no lugar do relógio. Há cinco filmes em cartaz, cada um com uma cabine, e só o de terror funciona. Ao pôr o visor dele, o jogo vira 3D, com a mesma troca da sala segura, e abre o **menu principal desse jogo**, com explicações e os botões **Começar** e **Tirar o visor**. O VR existe só dentro da história: o jogador continua no monitor, com mouse e teclado.
+
+- **Só o menu por enquanto:** o jogo de terror ainda vai ser pensado, e **Começar** só avisa que a sessão não abriu.
+- **Não é a sala segura:** a cabine usa a mesma animação, mas não salva, e o visor é do próprio cinema, não os óculos do Zane. Assim, a pendência da história sobre os óculos não muda.
+- **Nome provisório:** o jogo se chama **Hora Morta** até o grupo escolher. Os outros filmes em cartaz e os textos do menu também podem mudar.
+
+**Por quê:** pedido do Davi, para ter um mini game de terror em 3D aproveitando o visor do quarto. A história não muda: é um filme em cartaz.
+
+**Afeta:** `scripts/sistemas/visor.gd` e `maquina_de_salvar.gd` (a cena do visor passa a ser escolhida), `cenas/salas/centro_de_convivencia/cinema.tscn` e `sala_vr.tscn`, `cenas/sistemas/cabine_vr_*.tscn`, `cenas/visor/menu_filme_vr.tscn` e `botao_do_menu_vr.tscn`, `assets/modelagem/cenario/gerar_cabine_vr.py` e `gerar_interiores_andar2.py`, `assets/modelagem/salas/centro_de_convivencia/salas_convivencia.py`, `docs/fases/centro_de_convivencia.md` (seção 7.7) e `docs/mecanicas/visor_3d.md` (seção 9).
+
 ## 2026-11-01 — Estufa de lanches na Tapioca Orbital e correções na história do Centro de Convivência
 
 **Decisão:**
