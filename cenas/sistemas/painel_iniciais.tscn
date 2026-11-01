@@ -1,0 +1,97 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/painel_iniciais.gd" id="1_painel"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/painel_tecla.wav" id="2_clique"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/disjuntor.wav" id="3_pronto"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_emperrada.wav" id="4_erro"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/lanche_pastel.png" id="5_pastel"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/lanche_omelete.png" id="6_omelete"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/lanche_bolo.png" id="7_bolo"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/lanche_torrada.png" id="8_torrada"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/lanche_cuscuz.png" id="9_cuscuz"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_alcance"]
+radius = 22.0
+
+[node name="PainelIniciais" type="Area2D"]
+process_mode = 3
+script = ExtResource("1_painel")
+lanches = PackedStringArray("PASTEL", "OMELETE", "BOLO", "TORRADA", "CUSCUZ")
+icones = [ExtResource("5_pastel"), ExtResource("6_omelete"), ExtResource("7_bolo"), ExtResource("8_torrada"), ExtResource("9_cuscuz")]
+texto_acao = "Mexer na estufa de lanches"
+altura_aviso = 66.0
+
+[node name="Alcance" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_alcance")
+
+[node name="Tela" type="CanvasLayer" parent="."]
+layer = 9
+offset = Vector2(160, 90)
+visible = false
+
+[node name="Fundo" type="ColorRect" parent="Tela"]
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 480.0
+offset_bottom = 270.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Painel" type="ColorRect" parent="Tela"]
+offset_left = -5.0
+offset_top = 10.0
+offset_right = 325.0
+offset_bottom = 170.0
+mouse_filter = 2
+color = Color(0.12, 0.14, 0.22, 1)
+
+[node name="Pedido" type="Label" parent="Tela/Painel"]
+offset_top = 4.0
+offset_right = 330.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0.62, 0.68, 0.8, 1)
+text = "O COMBO DA CASA TEM O NOME DA CASA"
+horizontal_alignment = 1
+
+[node name="NomeEVagas" type="HBoxContainer" parent="Tela/Painel"]
+offset_left = 10.0
+offset_top = 18.0
+offset_right = 320.0
+offset_bottom = 92.0
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Lanches" type="HBoxContainer" parent="Tela/Painel"]
+offset_left = 10.0
+offset_top = 96.0
+offset_right = 320.0
+offset_bottom = 140.0
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Visor" type="Label" parent="Tela/Painel"]
+offset_top = 143.0
+offset_right = 330.0
+offset_bottom = 157.0
+text = "ESCOLHA OS LANCHES"
+horizontal_alignment = 1
+
+[node name="Dica" type="Label" parent="Tela"]
+offset_top = 174.0
+offset_right = 320.0
+offset_bottom = 188.0
+theme_override_colors/font_color = Color(0.95, 0.88, 0.7, 1)
+horizontal_alignment = 1
+
+[node name="SomClique" type="AudioStreamPlayer" parent="Tela"]
+stream = ExtResource("2_clique")
+bus = &"Efeitos"
+
+[node name="SomErro" type="AudioStreamPlayer" parent="Tela"]
+stream = ExtResource("4_erro")
+bus = &"Efeitos"
+
+[node name="SomPronto" type="AudioStreamPlayer" parent="Tela"]
+stream = ExtResource("3_pronto")
+bus = &"Efeitos"

@@ -73,7 +73,7 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`) com o som da porta b
 
 | Porta (`id`) | Onde | Aviso de hoje | Ideia |
 |---|---|---|---|
-| `escada_superficie` | entrada | "A escotilha lá em cima emperrou." | Por onde o Gabriel chega, por enquanto vindo da rampa do Centro de Convivência |
+| `escada_superficie` | entrada | "A escotilha lá em cima emperrou." | Por onde o Gabriel chega, por enquanto vindo do elevador de carga do Centro de Convivência |
 | `laboratorio` | corredor B | "Lacrada pelo sistema. O Zane está tentando abrir." | Pesquisa da Âncora: conteúdo de história, pendente |
 | `arquivo` | corredor B | idem | Registros da Âncora: conteúdo de história, pendente |
 
