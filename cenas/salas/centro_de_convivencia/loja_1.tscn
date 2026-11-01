@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/painel_iniciais.tscn" id="r21"]
 
 [node name="Loja1" instance=ExtResource("r1")]
 id = "conv_loja_1"
@@ -83,6 +84,11 @@ position = Vector2(125, 152)
 texto_acao = "Ler a ordem de serviço"
 documento = ExtResource("r13")
 textura = ExtResource("r14")
+
+[node name="EstufaDeLanches" parent="Objetos" instance=ExtResource("r21")]
+position = Vector2(350, 156)
+cena_premio = ExtResource("r10")
+quantidade_premio = 2
 
 [node name="Checkpoint" parent="Objetos" instance=ExtResource("r16")]
 position = Vector2(235, 190)
