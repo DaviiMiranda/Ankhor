@@ -156,6 +156,12 @@ id = "cinema_sala"
 cena_destino = "res://cenas/salas/centro_de_convivencia/cinema_sala.tscn"
 porta_destino = "sala_cinema"
 
+[node name="Porta_cinema_sala_vr" parent="." instance=ExtResource("r26")]
+position = Vector2(521, 124)
+id = "cinema_sala_vr"
+cena_destino = "res://cenas/salas/centro_de_convivencia/sala_vr.tscn"
+porta_destino = "sala_vr_cinema"
+
 [node name="ZonaPiso1" type="Node2D" parent="."]
 position = Vector2(0, 112)
 script = ExtResource("r27")

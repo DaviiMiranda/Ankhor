@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/sistemas/maquina_de_salvar.tscn" id="1_maquina"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/cabine_vr.png" id="2_base"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/cabine_vr_luz.png" id="3_luz"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/visor_cinema.png" id="4_visor"]
+
+[node name="CabineVrFilme" instance=ExtResource("1_maquina")]
+texto_acao = "Pôr o visor: Hora Morta"
+cena_do_visor = "res://cenas/visor/menu_filme_vr.tscn"
+
+[node name="Base" parent="." index="0"]
+texture = ExtResource("2_base")
+
+[node name="CamadaLuz" parent="." index="1"]
+texture = ExtResource("3_luz")
+
+[node name="OculosDoZane" parent="." index="2"]
+scale = Vector2(1, 1)
+texture = ExtResource("4_visor")
+
+[node name="Luz" parent="." index="4"]
+color = Color(1, 0.35, 0.25, 1)

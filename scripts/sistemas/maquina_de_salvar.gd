@@ -15,6 +15,7 @@ const DISTANCIA_CHEGADA := 1.5
 @export var deslocamento_retorno := Vector2(0, 14)
 @export var segundos_escurecendo: float = 0.9
 @export var segundos_por_quadro: float = 0.1
+@export_file("*.tscn") var cena_do_visor: String = ""
 
 var _salvando := false
 var _salvou := false
@@ -116,7 +117,7 @@ func _usar_o_visor() -> void:
 	if escuro:
 		acender.tween_property(escuro, "color:a", 1.0, segundos_escurecendo)
 	await acender.finished
-	Visor.abrir(_cena(), global_position + deslocamento_retorno)
+	Visor.abrir(_cena(), global_position + deslocamento_retorno, cena_do_visor)
 	_salvou = await Visor.fechado
 	if escuro:
 		var clarear := create_tween()

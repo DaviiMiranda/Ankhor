@@ -446,9 +446,9 @@ def c_cardapio(semente=2):
     return img
 
 
-def c_arco_sala(semente=3):
-    """A entrada da sala de projeção: arco de latão com a luz violeta, o vão
-    escuro e o letreiro SALA 1."""
+def c_arco_sala(semente=3, rotulo="SALA 1"):
+    """A entrada de uma sala do cinema: arco de latão com a luz violeta, o vão
+    escuro e o letreiro com o nome da sala."""
     img = parede("cinema", semente)
     X, Y = img.X, img.Y
     img.pintar(img.ret(10, 24, 70, 112), "neon_ambar", 0.28 + 0.14 * (Y == 24) + 0.08 * (X == 10))
@@ -461,7 +461,7 @@ def c_arco_sala(semente=3):
         x_a = 14 if lado == 0 else 56
         img.pintar(img.ret(x_a, 28, x_a + 10, 112), "veludo", 0.26 + 0.2 * (0.5 + 0.5 * np.sin(X * 0.9)))
     img.pintar(img.ret(24, 14, 56, 22), "grafite", 0.06)
-    base.escrever(img, 40 - base.largura_do_texto("SALA 1", 8) // 2, 14, "SALA 1", "neon_violeta", 0.92, 8)
+    base.escrever(img, 40 - base.largura_do_texto(rotulo, 8) // 2, 14, rotulo, "neon_violeta", 0.92, 8)
     return img
 
 
@@ -493,6 +493,58 @@ def s_painel(semente=5):
 
 def s_lisa(semente=6):
     return parede("sala_cinema", semente)
+
+
+# Os filmes em cartaz na Sala VR: (linhas do título, rampa de fundo, rampa do
+# título, desenho do cartaz). Só o último funciona (gerar_cabine_vr.py).
+CARTAZES_VR = {
+    "cometa": (("CAPITÃO", "COMETA"), "neon_azul", "neon_ambar"),
+    "orbita": (("AMOR EM", "ÓRBITA"), "neon_magenta", "neon_ambar"),
+    "marte": (("MARTE", "EM FESTA"), "neon_ambar", "neon_limao"),
+    "jangada": (("JANGADA", "ESTELAR"), "ciano", "neon_limao"),
+    "terror": (("HORA", "MORTA"), "neon_vermelho", "neon_vermelho"),
+}
+
+
+def v_cartaz(semente, filme):
+    """O cartaz de um filme em VR, em moldura de latão: o título em cima, o
+    desenho do filme embaixo. O de terror quase não tem fundo: é escuro, com dois
+    olhos abertos sobre a fileira de poltronas."""
+    img = parede("sala_cinema", semente)
+    X, Y = img.X, img.Y
+    linhas, fundo, tinta = CARTAZES_VR[filme]
+    x0, y0, x1, y1 = 14, 16, 66, 90
+    img.pintar(img.ret(x0 - 2, y0 - 2, x1 + 2, y1 + 2), "neon_ambar", 0.3 + 0.15 * (Y == y0 - 2))
+    quadro = img.ret(x0, y0, x1, y1)
+    if filme == "terror":
+        img.pintar(quadro, "grafite", 0.03)
+    else:
+        img.pintar(quadro, fundo, 0.14 + 0.2 * (1 - (Y - y0) / float(y1 - y0)))
+    tom_do_titulo = 0.62 if filme == "terror" else 0.92
+    for k, linha in enumerate(linhas):
+        base.escrever(img, 40 - base.largura_do_texto(linha, 8) // 2, y0 + 2 + 11 * k, linha, tinta, tom_do_titulo, 8)
+    if filme == "cometa":
+        img.pintar(img.caminho([(24, 54), (36, 62), (46, 70)], 2.4) & quadro, "neon_ambar", 0.5, achatar=False)
+        img.pintar(img.elipse(49, 73, 6, 6), "papel_branco", 0.88)
+    elif filme == "orbita":
+        img.pintar(img.elipse(40, 66, 11, 11), "neon_magenta", 0.62 + 0.2 * (X < 40))
+        img.pintar(img.elipse(40, 66, 20, 4) & ~img.elipse(40, 66, 16, 2) & ((Y > 66) | ~img.elipse(40, 66, 11, 11)), "papel_branco", 0.8)
+    elif filme == "marte":
+        img.pintar(img.elipse(40, 70, 15, 15), "neon_vermelho", 0.55 + 0.2 * (Y < 68))
+        for x, y in ((22, 50), (58, 54), (30, 58), (52, 48)):
+            img.pintar(img.ret(x, y, x + 2, y + 2), "neon_limao", 0.9, achatar=False)
+    elif filme == "jangada":
+        img.pintar(img.poligono([(40, 48), (40, 74), (56, 74)]), "papel_branco", 0.85)
+        img.pintar(img.ret(26, 75, 58, 78), "madeira_fut", 0.4)
+        img.pintar(img.ret(x0, 79, x1, y1), "ciano", 0.3 + 0.2 * ((X // 6) % 2 == 0))
+    else:
+        for x in (29, 45):
+            img.pintar(img.elipse(x + 3, 58, 4, 2), "neon_vermelho", 0.62, achatar=False)
+            img.pintar(img.ret(x + 3, 57, x + 4, 60), "grafite", 0.03)
+        for x in range(x0 + 1, x1 - 7, 9):
+            img.pintar(img.ret(x, 76, x + 7, y1), "veludo", 0.12)
+            img.pintar(img.ret(x, 76, x + 7, 77), "neon_vermelho", 0.3, achatar=False)
+    return img
 
 
 def tela_larga(largura=240, altura=112):
@@ -726,9 +778,11 @@ SALAS = {
         "PORTA:limao", ("g_escaninhos", 1), ("g_painel", 5), ("g_tintas", 3), ("g_cartazes", 2), ("g_rolos", 4), ("g_nicho", 6)]},
     "cinema": {"tema": "cinema", "largura": 640, "altura": 320, "pecas": [
         "PORTA:violeta", ("c_cartazes", 1), ("c_cardapio", 2), ("c_planta", 7), ("c_cartazes_b", 9), ("c_nicho", 4),
-        ("c_relogio", 8), ("c_arco_sala", 3)]},
+        ("c_arco_vr", 8), ("c_arco_sala", 3)]},
     "sala_cinema": {"tema": "sala_cinema", "largura": 480, "altura": 320, "pecas": [
         "PORTA:violeta|SAÍDA", ("s_painel", 5), "TELA", "TELA", "TELA", "PORTA:ciano|CABINE"]},
+    "sala_vr": {"tema": "sala_cinema", "largura": 480, "altura": 180, "pecas": [
+        "PORTA:violeta|SAÍDA", ("v_cometa", 21), ("v_orbita", 22), ("v_marte", 23), ("v_jangada", 24), ("v_terror", 25)]},
     "cabine": {"tema": "cabine", "largura": 400, "altura": 220, "pecas": [
         "PORTA:ciano", ("p_janela", 1), ("p_horarios", 2), ("p_rolos", 3), ("p_uniforme", 4)]},
 }
@@ -738,13 +792,16 @@ FUNCOES = {
     "g_escaninhos": g_escaninhos, "g_painel": g_painel, "g_tintas": g_tintas, "g_cartazes": g_cartazes, "g_rolos": g_rolos,
     "g_nicho": g_nicho, "c_cartazes": c_cartazes, "c_cardapio": c_cardapio, "c_nicho": c_nicho, "c_arco_sala": c_arco_sala,
     "c_planta": c_planta, "c_relogio": c_relogio, "c_cartazes_b": lambda semente: c_cartazes(semente, 1),
+    "c_arco_vr": lambda semente: c_arco_sala(semente, "SALA VR"),
     "s_painel": s_painel, "p_janela": p_janela, "p_horarios": p_horarios, "p_rolos": p_rolos, "p_uniforme": p_uniforme,
+    **{f"v_{filme}": (lambda semente, filme=filme: v_cartaz(semente, filme)) for filme in CARTAZES_VR},
 }
 
 PISOS = {
     "loja_uni": piso_loja_uni, "grafica": piso_grafica, "cabine": piso_cabine,
     "cinema": lambda largura, altura: piso_cinema(largura, altura, largura),
     "sala_cinema": lambda largura, altura: piso_cinema(largura, altura, 0, luzes=(180, 380)),
+    "sala_vr": lambda largura, altura: piso_cinema(largura, altura, 0),
 }
 
 

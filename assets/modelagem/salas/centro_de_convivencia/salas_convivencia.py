@@ -497,6 +497,7 @@ CINEMA = {
     "portas": [
         porta_interna("cinema_mezanino", 0, "violeta", "segundo_andar", "mezanino_cinema"),
         {"id": "cinema_sala", "x": 7 * PECA + X_PORTA, "y": Y_PORTA_INTERNA, "destino": "cinema_sala", "porta_destino": "sala_cinema"},
+        {"id": "cinema_sala_vr", "x": 6 * PECA + X_PORTA, "y": Y_PORTA_INTERNA, "destino": "sala_vr", "porta_destino": "sala_vr_cinema"},
     ],
     "objetos": [
         ("balcao_pipoca", 190, 158), ("bilheteria_balcao", 120, 216), ("cordao_fila", 250, 214), ("cordao_fila", 320, 214, True),
@@ -571,4 +572,33 @@ CINEMA_CABINE = {
     "escuridao": (0.26, 0.22, 0.32, 1),
 }
 
-SALAS = [PASSARELA, PRACA, LOJA_1, LOJA_2, CAMARA_FRIA, LOJA_3, LOJA_4, MEZANINO, LOJA_UNI, GRAFICA, CINEMA, CINEMA_SALA, CINEMA_CABINE]
+# A Sala VR do cinema: uma cabine embaixo de cada cartaz. Só a do filme de terror
+# funciona e abre o menu 3D (docs/mecanicas/visor_3d.md, seção 9). O filme em
+# cartaz nas outras quatro só dá um aviso.
+FILMES_SEM_SINAL_VR = (
+    ("CabineCapitaoCometa", 1, "Capitão Cometa", "O visor acende e mostra: ARQUIVO CORROMPIDO."),
+    ("CabineAmorEmOrbita", 2, "Amor em Órbita", "Sem sinal. As lentes nem acendem."),
+    ("CabineMarteEmFesta", 3, "Marte em Festa", "Toca três segundos de música e trava."),
+    ("CabineJangadaEstelar", 4, "Jangada Estelar", "Alguém arrancou o cabo deste visor."),
+)
+Y_CABINE_VR = 142
+
+SALA_VR = {
+    "id": "sala_vr", "largura": 480, "altura": 180, "fundo": "fundo_sala_vr", "gabriel": "(60, 160)",
+    "portas": [porta_interna("sala_vr_cinema", 0, "violeta", "cinema", "cinema_sala_vr")],
+    "paineis": [
+        *[{"nome": nome, "cena": "cabine_vr_sem_sinal", "x": coluna * PECA + 40, "y": Y_CABINE_VR,
+           "campos": [f'texto_acao = "Pôr o visor: {filme}"', f'texto = "{aviso}"']}
+          for nome, coluna, filme, aviso in FILMES_SEM_SINAL_VR],
+        {"nome": "CabineHoraMorta", "cena": "cabine_vr_filme", "x": 5 * PECA + 40, "y": Y_CABINE_VR},
+    ],
+    "luzes": [
+        ("luz_fria", 60, 110, "color = Color(0.7, 0.5, 1, 1)", "energy = 0.4"),
+        ("luz_fria", 240, 120, "color = Color(0.7, 0.5, 1, 1)", "energy = 0.45", "scale = Vector2(7, 3)"),
+        ("luz_fria", 440, 110, "color = Color(1, 0.4, 0.3, 1)", "energy = 0.7", "scale = Vector2(3, 2.4)"),
+    ],
+    "zonas_piso": [(0, 112, 480, 68, 0.5, "carpete de veludo")],
+    "escuridao": (0.34, 0.3, 0.4, 1),
+}
+
+SALAS = [PASSARELA, PRACA, LOJA_1, LOJA_2, CAMARA_FRIA, LOJA_3, LOJA_4, MEZANINO, LOJA_UNI, GRAFICA, CINEMA, CINEMA_SALA, CINEMA_CABINE, SALA_VR]

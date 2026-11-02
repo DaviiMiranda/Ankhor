@@ -212,3 +212,15 @@ As formas de colisão (chão, paredes, móvel da TV, estante, escrivaninha, cade
 - **A peça gira atravessando o que está perto** (o farol e o tricórnio ficam a poucos centímetros um do outro na mesa). Se incomodar, esconder as outras recompensas enquanto se examina é uma linha em `RecompensaDoQuarto.focar`.
 - **Apontar com o mouse** na TV, no mural e na mesa não existe: é tudo por teclado.
 - Controle (gamepad) não anda nem olha no visor.
+
+## 9. O menu 3D da Sala VR
+
+A troca entre 2D e 3D não serve só para o quarto. A cabine do filme de terror, na Sala VR do cinema ([`../fases/centro_de_convivencia.md`](../fases/centro_de_convivencia.md), seção 7.7), usa a mesma `MaquinaDeSalvar`, com outro desenho e o campo **`cena_do_visor`** preenchido. O `Visor.abrir` recebe essa cena como terceiro argumento; vazio, abre o quarto, como sempre. Essa cabine **não salva**: `Visor.salvar` só é chamado pela TV do quarto.
+
+A cena aberta é `cenas/visor/menu_filme_vr.tscn` (script `scripts/visor/menu_filme_vr.gd`): o menu principal do jogo de terror, em volta do jogador, dentro de uma sala de cinema escura. O título fica na frente da tela, os botões **Começar** e **Tirar o visor** no meio e, dos lados, os painéis **Como jogar** e **A sessão**, virados para o jogador. Ele fica parado (o `JogadorVisor` com `velocidade = 0`) e só olha em volta com o mouse.
+
+**Escolher é mirar, como num visor de verdade.** O ponto no centro da tela é a mira. O botão mirado fica vermelho e E ou o clique o usa. A conta é o mesmo produto escalar do quarto, agora com a altura incluída: com $\hat{o}$ = direção do olhar e $\hat{t}$ = direção até o botão, ganha o de maior $\hat{o} \cdot \hat{t}$, desde que seja pelo menos $0{,}978$ (`cosseno_da_mira`), ou seja, $\theta \leq 12°$. Os botões estão a 3 m e têm centros a 0,5 m um do outro, o que dá cerca de 9,5° entre eles: a mira nunca pega os dois, e sempre fica com o mais perto do centro.
+
+**Esc ou Tirar o visor** escurecem a tela e chamam `Visor.fechar`, e a cabine toca a animação de devolver o visor, como na sala segura.
+
+**O que ainda falta:** o jogo. O botão **Começar** só mostra o aviso de que a sessão não abriu (`AVISO_SEM_SESSAO`, em `_usar_mirado`): é ali que o jogo vai entrar. O texto dos painéis e o nome **Hora Morta** são provisórios. O nome está no título da cena, na ação `texto_acao` de `cabine_vr_filme.tscn` e no cartaz (`CARTAZES_VR`, em `gerar_interiores_andar2.py`).
