@@ -1,13 +1,10 @@
 extends Control
 
 const CENA_DO_JOGO := "res://cenas/visor/hora_morta/fase_nave.tscn"
-const COLUNAS_DE_POLTRONAS := 13
-const FILEIRAS_EM_Z: Array[float] = [-5.0, -3.6, -2.2, 1.4, 2.8]
-const COR_DA_POLTRONA := Color(0.34, 0.12, 0.15)
 
 @export var cosseno_da_mira: float = 0.978
 @export var segundos_escurecendo: float = 0.6
-@export var energia_da_tela: float = 2.2
+@export var velocidade_do_giro: float = 0.004
 @export_range(0.25, 1.0) var resolucao_do_3d: float = 1.0
 
 var _saindo := false
@@ -18,8 +15,7 @@ var _tempo := 0.0
 @onready var imagem: SubViewportContainer = $Imagem
 @onready var mundo: SubViewport = $Imagem/Mundo
 @onready var jogador: JogadorVisor = $Imagem/Mundo/JogadorVisor
-@onready var poltronas: Node3D = $Imagem/Mundo/Poltronas
-@onready var luz_da_tela: OmniLight3D = $Imagem/Mundo/LuzDaTela
+@onready var ambiente: WorldEnvironment = $Imagem/Mundo/Ambiente
 @onready var titulo: Label3D = $Imagem/Mundo/Titulo
 @onready var botao_comecar: BotaoDoMenuVr = $Imagem/Mundo/BotaoComecar
 @onready var botao_sair: BotaoDoMenuVr = $Imagem/Mundo/BotaoSair
@@ -31,7 +27,6 @@ var _tempo := 0.0
 func _ready() -> void:
 	_ajustar_resolucao()
 	get_window().size_changed.connect(_ajustar_resolucao)
-	_montar_poltronas()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	jogador.controlando = false
 	escuro.color.a = 1.0
@@ -43,7 +38,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_tempo += delta
 	var tremor := 0.85 + 0.15 * sin(_tempo * 7.0) * sin(_tempo * 2.3)
-	luz_da_tela.light_energy = energia_da_tela * tremor
+	(ambiente.environment.sky.sky_material as ShaderMaterial).set_shader_parameter("giro", _tempo * velocidade_do_giro)
 	titulo.modulate.a = tremor
 	if _pronto and not _saindo:
 		_mirar(botao_mirado())
@@ -129,25 +124,3 @@ func _ajustar_resolucao() -> void:
 	mundo.size = Vector2i(desenhada)
 	imagem.size = desenhada
 	imagem.scale = na_tela / desenhada
-
-
-func _montar_poltronas() -> void:
-	var material := StandardMaterial3D.new()
-	material.albedo_color = COR_DA_POLTRONA
-	var assento := BoxMesh.new()
-	assento.size = Vector3(0.74, 0.45, 0.6)
-	var encosto := BoxMesh.new()
-	encosto.size = Vector3(0.74, 0.95, 0.14)
-	for z in FILEIRAS_EM_Z:
-		for coluna in COLUNAS_DE_POLTRONAS:
-			var x := float(coluna) - float(COLUNAS_DE_POLTRONAS - 1) / 2.0
-			_peca_de_poltrona(assento, material, Vector3(x, 0.225, z))
-			_peca_de_poltrona(encosto, material, Vector3(x, 0.475, z + 0.3))
-
-
-func _peca_de_poltrona(malha: Mesh, material: Material, lugar: Vector3) -> void:
-	var peca := MeshInstance3D.new()
-	peca.mesh = malha
-	peca.material_override = material
-	peca.position = lugar
-	poltronas.add_child(peca)

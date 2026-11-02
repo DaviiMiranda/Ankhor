@@ -1,20 +1,19 @@
 extends Control
 
-const CENA_DO_MENU := "res://cenas/visor/menu_filme_vr.tscn"
-const TEXTO_DERROTA := "A SESSÃO ACABOU"
-const TEXTO_VITORIA := "VOCÊ ESCAPOU"
+const CENA_DE_PARABENS := "res://cenas/visor/hora_morta/tela_de_parabens.tscn"
+const TEXTO_DERROTA := "ELA TE PEGOU"
 const PONTO_INICIAL_DA_CRIATURA := "c1_b"
 const PONTO_DA_CRIATURA_NA_FUGA := "maq"
 const AREAS_VIZINHAS := {
 	"Alojamento": ["C1"],
-	"C1": ["Alojamento", "Cinema"],
-	"Cinema": ["C1", "C2", "C3", "C4", "Cabine"],
-	"C2": ["Cinema", "Hangar"],
-	"C3": ["Cinema", "Deposito"],
-	"C4": ["Cinema", "Maquinas"],
+	"C1": ["Alojamento", "Reunioes"],
+	"Reunioes": ["C1", "C2", "C3", "C4", "Cabine"],
+	"C2": ["Reunioes", "Hangar"],
+	"C3": ["Reunioes", "Deposito"],
+	"C4": ["Reunioes", "Maquinas"],
 	"Deposito": ["C3", "Maquinas"],
 	"Maquinas": ["C4", "Deposito"],
-	"Cabine": ["Cinema"],
+	"Cabine": ["Reunioes"],
 	"Hangar": ["C2"],
 }
 
@@ -432,9 +431,7 @@ func _vencer() -> void:
 	barra.visible = false
 	var saida := create_tween()
 	saida.tween_property(escuro, "color:a", 1.0, segundos_escurecendo * 2.0)
-	saida.tween_callback(_escurecer_com_texto.bind(TEXTO_VITORIA))
-	saida.tween_interval(segundos_de_texto_final * 1.5)
-	saida.tween_callback(Visor.trocar.bind(CENA_DO_MENU))
+	saida.tween_callback(Visor.trocar.bind(CENA_DE_PARABENS))
 
 
 func _tirar_o_visor() -> void:

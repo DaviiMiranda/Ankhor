@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/clarao_disparo.wav" id="11_ataque"]
 [ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/corredor.tscn" id="12_corredor"]
 [ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/sala_alojamento.tscn" id="13_alojamento"]
-[ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/sala_cinema.tscn" id="14_cinema"]
+[ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/sala_reunioes.tscn" id="14_reunioes"]
 [ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/sala_deposito.tscn" id="15_deposito"]
 [ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/sala_maquinas.tscn" id="16_maquinas"]
 [ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/sala_cabine.tscn" id="17_cabine"]
@@ -98,9 +98,9 @@ acende_com_a_energia = false
 estados = Array[int]([0, 1, 0, 2, 0, 1])
 armarios = Array[Vector4]([Vector4(-0.8, 1.5, 1.1, 7.0), Vector4(-0.81, 1.3, 0.8, 3.2), Vector4(-0.8, 1.5, 1.3, -3.4), Vector4(-0.81, 1.3, 0.9, -7.6)])
 
-[node name="Cinema" parent="Imagem/Mundo/Areas" instance=ExtResource("14_cinema")]
+[node name="Reunioes" parent="Imagem/Mundo/Areas" instance=ExtResource("14_reunioes")]
 position = Vector3(0, 0, -19.3)
-tamanho = Vector3(16, 4.4, 14)
+tamanho = Vector3(16, 3.2, 14)
 portas_norte = PackedFloat32Array(0)
 portas_sul = PackedFloat32Array(0)
 portas_leste = PackedFloat32Array(0)
@@ -165,11 +165,11 @@ portas_sul = PackedFloat32Array(0)
 [node name="Alojamento" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
 position = Vector3(0, 0, 12.15)
 
-[node name="C1Cinema" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+[node name="C1Reunioes" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
 position = Vector3(0, 0, -12.15)
-texto_da_placa = "CINEMA DE BORDO"
+texto_da_placa = "SALA DE REUNIÕES"
 
-[node name="CinemaC2" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+[node name="ReunioesC2" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
 position = Vector3(0, 0, -26.45)
 texto_da_placa = "HANGAR"
 
@@ -178,7 +178,7 @@ position = Vector3(0, 0, -50.75)
 trancada = true
 texto_da_placa = "HANGAR"
 
-[node name="CinemaC3" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+[node name="ReunioesC3" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
 position = Vector3(-8.15, 0, -15.8)
 rotation = Vector3(0, 1.5707964, 0)
 texto_da_placa = "DEPÓSITO"
@@ -187,7 +187,7 @@ texto_da_placa = "DEPÓSITO"
 position = Vector3(-16.45, 0, -15.8)
 rotation = Vector3(0, 1.5707964, 0)
 
-[node name="CinemaC4" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+[node name="ReunioesC4" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
 position = Vector3(-8.15, 0, -22.8)
 rotation = Vector3(0, 1.5707964, 0)
 texto_da_placa = "MÁQUINAS"

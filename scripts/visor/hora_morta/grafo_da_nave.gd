@@ -3,8 +3,8 @@ extends RefCounted
 
 const PONTOS := {
 	"c1_a": Vector3(0.0, 0.0, 11.0), "c1_m": Vector3(0.0, 0.0, 0.0), "c1_b": Vector3(0.0, 0.0, -11.0),
-	"cin_s": Vector3(0.0, 0.0, -13.8), "cin_c": Vector3(0.0, 0.0, -19.3), "cin_n": Vector3(0.0, 0.0, -24.8),
-	"cin_o3": Vector3(-6.8, 0.0, -15.8), "cin_o4": Vector3(-6.8, 0.0, -22.8), "cin_l": Vector3(6.8, 0.0, -19.3),
+	"reu_s": Vector3(0.0, 0.0, -13.8), "reu_c": Vector3(0.0, 0.0, -19.3), "reu_n": Vector3(0.0, 0.0, -24.8),
+	"reu_o3": Vector3(-6.8, 0.0, -15.8), "reu_o4": Vector3(-6.8, 0.0, -22.8), "reu_l": Vector3(6.8, 0.0, -19.3),
 	"c3_a": Vector3(-9.3, 0.0, -15.8), "c3_b": Vector3(-15.3, 0.0, -15.8), "dep": Vector3(-19.5, 0.0, -15.8),
 	"c4_a": Vector3(-9.3, 0.0, -22.8), "c4_b": Vector3(-15.3, 0.0, -22.8), "maq": Vector3(-19.5, 0.0, -22.8),
 	"cab": Vector3(10.5, 0.0, -19.3),
@@ -12,10 +12,10 @@ const PONTOS := {
 	"han_s": Vector3(0.0, 0.0, -52.5), "han_c": Vector3(0.0, 0.0, -55.0),
 }
 const ARESTAS: Array[Array] = [
-	["c1_a", "c1_m"], ["c1_m", "c1_b"], ["c1_b", "cin_s"], ["cin_s", "cin_c"], ["cin_c", "cin_n"],
-	["cin_n", "c2_a"], ["c2_a", "c2_m"], ["c2_m", "c2_b"], ["c2_b", "han_s"], ["han_s", "han_c"],
-	["cin_c", "cin_o3"], ["cin_c", "cin_o4"], ["cin_c", "cin_l"], ["cin_l", "cab"],
-	["cin_o3", "c3_a"], ["c3_a", "c3_b"], ["c3_b", "dep"], ["dep", "maq"], ["maq", "c4_b"], ["c4_b", "c4_a"], ["c4_a", "cin_o4"],
+	["c1_a", "c1_m"], ["c1_m", "c1_b"], ["c1_b", "reu_s"], ["reu_s", "reu_c"], ["reu_c", "reu_n"],
+	["reu_n", "c2_a"], ["c2_a", "c2_m"], ["c2_m", "c2_b"], ["c2_b", "han_s"], ["han_s", "han_c"],
+	["reu_c", "reu_o3"], ["reu_c", "reu_o4"], ["reu_c", "reu_l"], ["reu_l", "cab"],
+	["reu_o3", "c3_a"], ["c3_a", "c3_b"], ["c3_b", "dep"], ["dep", "maq"], ["maq", "c4_b"], ["c4_b", "c4_a"], ["c4_a", "reu_o4"],
 ]
 const PESO_DE_VOLTAR := 0.25
 

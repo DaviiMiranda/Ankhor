@@ -13,6 +13,7 @@ const MEIA_LARGURA_DA_JANELA := 1.3
 const MEIA_ALTURA_DA_JANELA := 0.725
 const CENTRO_DA_JANELA_Y := 1.325
 const RAIO_DA_JANELA := 0.38
+const JANELA_PADRAO := Vector4(MEIA_LARGURA_DA_JANELA, MEIA_ALTURA_DA_JANELA, CENTRO_DA_JANELA_Y, RAIO_DA_JANELA)
 const LARGURA_DA_MOLDURA := 0.1
 const SALIENCIA_DA_MOLDURA := 0.07
 const FUNDO_DA_JANELA := 0.26
@@ -163,18 +164,20 @@ func _trecho(inicio: Vector3, direcao: Vector3, de: float, ate: float, y0: float
 	forma(tamanho, (a + b) / 2.0 + Vector3.UP * (y0 + y1) / 2.0)
 
 
-func janela_em_x(x: float, z: float, comprimento_do_vao: float, y_base: float, y_topo: float) -> void:
-	var furo := _contorno_da_janela(0.0)
-	var borda := _borda_em_volta(comprimento_do_vao / 2.0, y_topo - CENTRO_DA_JANELA_Y, CENTRO_DA_JANELA_Y - y_base)
-	faixa(_na_parede(borda, x, z), _na_parede(furo, x, z), material("parede"))
-	var moldura := _contorno_da_janela(LARGURA_DA_MOLDURA)
+func janela_em_x(x: float, z: float, comprimento_do_vao: float, y_base: float, y_topo: float, medidas: Vector4 = JANELA_PADRAO) -> void:
+	var centro_y := medidas.z
+	var furo := _contorno_da_janela(0.0, medidas)
+	var borda := _borda_em_volta(comprimento_do_vao / 2.0, y_topo - centro_y, centro_y - y_base, medidas)
+	faixa(_na_parede(borda, x, z, centro_y), _na_parede(furo, x, z, centro_y), material("parede"))
+	var moldura := _contorno_da_janela(LARGURA_DA_MOLDURA, medidas)
 	var x_da_frente := x - SALIENCIA_DA_MOLDURA
 	var x_do_fundo := x + FUNDO_DA_JANELA
-	faixa(_na_parede(moldura, x, z), _na_parede(moldura, x_da_frente, z), material("moldura"))
-	faixa(_na_parede(moldura, x_da_frente, z), _na_parede(furo, x_da_frente, z), material("moldura"))
-	faixa(_na_parede(furo, x_da_frente, z), _na_parede(furo, x_do_fundo, z), material("reflexo"))
-	poligono(_na_parede(furo, x_do_fundo, z), material("vidro"), false)
-	_ferragens_da_janela(x, z)
+	faixa(_na_parede(moldura, x, z, centro_y), _na_parede(moldura, x_da_frente, z, centro_y), material("moldura"))
+	faixa(_na_parede(moldura, x_da_frente, z, centro_y), _na_parede(furo, x_da_frente, z, centro_y), material("moldura"))
+	faixa(_na_parede(furo, x_da_frente, z, centro_y), _na_parede(furo, x_do_fundo, z, centro_y), material("reflexo"))
+	poligono(_na_parede(furo, x_do_fundo, z, centro_y), material("vidro"), false)
+	if medidas == JANELA_PADRAO:
+		_ferragens_da_janela(x, z)
 	forma(Vector3(ESPESSURA_DA_COLISAO, y_topo - y_base, comprimento_do_vao), Vector3(x, (y_base + y_topo) / 2.0, z))
 
 
@@ -189,10 +192,10 @@ func _ferragens_da_janela(x: float, z: float) -> void:
 	bloco(Vector3(0.09, 0.022, 0.28), Vector3(x - 0.05, 0.42, z + 0.2), material("corrimao"))
 
 
-func _contorno_da_janela(folga: float) -> PackedVector2Array:
-	var mz := MEIA_LARGURA_DA_JANELA + folga
-	var my := MEIA_ALTURA_DA_JANELA + folga
-	var raio := RAIO_DA_JANELA + folga
+func _contorno_da_janela(folga: float, medidas: Vector4) -> PackedVector2Array:
+	var mz := medidas.x + folga
+	var my := medidas.y + folga
+	var raio := medidas.w + folga
 	var pontos := PackedVector2Array()
 	var centros: Array[Vector2] = [Vector2(mz - raio, my - raio), Vector2(-mz + raio, my - raio), Vector2(-mz + raio, -my + raio), Vector2(mz - raio, -my + raio)]
 	for canto in 4:
@@ -202,9 +205,9 @@ func _contorno_da_janela(folga: float) -> PackedVector2Array:
 	return pontos
 
 
-func _borda_em_volta(mz: float, cima: float, baixo: float) -> PackedVector2Array:
-	var reta_z := MEIA_LARGURA_DA_JANELA - RAIO_DA_JANELA
-	var reta_y := MEIA_ALTURA_DA_JANELA - RAIO_DA_JANELA
+func _borda_em_volta(mz: float, cima: float, baixo: float, medidas: Vector4) -> PackedVector2Array:
+	var reta_z := medidas.x - medidas.w
+	var reta_y := medidas.y - medidas.w
 	var cantos: Array = [
 		[Vector2(mz, reta_y), Vector2(mz, cima), Vector2(reta_z, cima)],
 		[Vector2(-reta_z, cima), Vector2(-mz, cima), Vector2(-mz, reta_y)],
@@ -222,10 +225,10 @@ func _borda_em_volta(mz: float, cima: float, baixo: float) -> PackedVector2Array
 	return pontos
 
 
-func _na_parede(contorno: PackedVector2Array, x: float, z: float) -> PackedVector3Array:
+func _na_parede(contorno: PackedVector2Array, x: float, z: float, centro_y: float) -> PackedVector3Array:
 	var pontos := PackedVector3Array()
 	for ponto in contorno:
-		pontos.append(Vector3(x, CENTRO_DA_JANELA_Y + ponto.y, z + ponto.x))
+		pontos.append(Vector3(x, centro_y + ponto.y, z + ponto.x))
 	return pontos
 
 
@@ -318,12 +321,12 @@ func bloco_solido(tamanho: Vector3, lugar: Vector3, acabamento: Material) -> Mes
 	return bloco(tamanho, lugar, acabamento)
 
 
-func tubo(raio: float, comprimento: float, lugar: Vector3, acabamento: Material, eixo: Vector3) -> void:
+func tubo(raio: float, comprimento: float, lugar: Vector3, acabamento: Material, eixo: Vector3, segmentos: int = 8) -> void:
 	var malha := CylinderMesh.new()
 	malha.top_radius = raio
 	malha.bottom_radius = raio
 	malha.height = comprimento
-	malha.radial_segments = 8
+	malha.radial_segments = segmentos
 	malha.rings = 1
 	var novo := MeshInstance3D.new()
 	novo.mesh = malha

@@ -1,6 +1,6 @@
 # Hora Morta
 
-Hora Morta é o mini game de terror em 3D da Sala VR do cinema ([`../fases/centro_de_convivencia.md`](../fases/centro_de_convivencia.md), seção 7.7). Abre pelo botão **Começar** do menu ([`visor_3d.md`](visor_3d.md), seção 9). É um filme dentro do jogo: não muda a história e não salva. Perder só leva o jogador de volta ao alojamento da nave.
+Hora Morta é o mini game de terror em 3D da Sala VR do cinema ([`../fases/centro_de_convivencia.md`](../fases/centro_de_convivencia.md), seção 7.7). Abre pelo botão **Começar** do menu ([`visor_3d.md`](visor_3d.md), seção 9). É um jogo dentro do jogo, baseado numa teoria sobre a Nave 67: não salva e não muda a história principal. Perder só leva o jogador de volta ao alojamento da nave.
 
 O nome é provisório. A inspiração é *Alien*: uma nave apertada, uma única criatura que não dá para matar e uma fuga numa nave menor. A criatura, as regras e o clima são nossos.
 
@@ -9,20 +9,20 @@ O nome é provisório. A inspiração é *Alien*: uma nave apertada, uma única 
 ```text
                       [Cabine do comandante]
                                 |
-[Alojamento] == C1 == [Cinema de bordo] == C2 == [Hangar]
+[Alojamento] == C1 == [Sala de reuniões] == C2 == [Hangar]
                          |          |
                          C3         C4
                          |          |
                     [Depósito] -- [Sala de máquinas]
 ```
 
-No mapa real, a cabine fica a leste do cinema, e o hangar segue em linha reta depois do C2. O anel entre o cinema, o depósito e a sala de máquinas permite fugir por outro lado quando a criatura vem por um deles.
+No mapa real, a cabine fica a leste da sala de reuniões, e o hangar segue em linha reta depois do C2. O anel entre a sala de reuniões, o depósito e a sala de máquinas permite fugir por outro lado quando a criatura vem por um deles.
 
 | Área | Função |
 |---|---|
 | **Alojamento** | Início e volta depois de morrer. A criatura não entra. |
 | **C1 e C2** | Corredores com janelas, onde acontece a Varredura |
-| **Cinema de bordo** | Centro do mapa, escuro, com poltronas e uma tela vermelha sobre a porta do C2 |
+| **Sala de reuniões** | Centro do mapa, escura, com uma mesa longa no meio, que obriga a dar a volta, cadeiras e um holograma |
 | **C3 e C4** | Corredores de serviço, mais estreitos e sem janelas |
 | **Depósito** | Três armários, e um deles, sorteado a cada partida, guarda o fusível |
 | **Sala de máquinas** | O quadro de energia. O zumbido dos geradores atrapalha ouvir os passos. |
@@ -34,9 +34,9 @@ No mapa real, a cabine fica a leste do cinema, e o hangar segue em linha reta de
 1. A porta do hangar está trancada e pede a chave do comandante.
 2. A porta da cabine está sem energia.
 3. O fusível está em um dos armários do depósito. Vasculhar leva 3 segundos e atrai a criatura.
-4. O fusível vai no quadro da sala de máquinas (2 segundos). A cabine abre, mas o C4, o cinema e a cabine acendem, e o caminho fica mais perigoso.
+4. O fusível vai no quadro da sala de máquinas (2 segundos). A cabine abre, mas o C4, a sala de reuniões e a cabine acendem, e o caminho fica mais perigoso.
 5. Pegar a chave (1 segundo) dispara o alarme: todas as luzes acendem em vermelho, e a criatura persegue o jogador em qualquer lugar da nave.
-6. Abrir o hangar leva 4 segundos, e entrar na nave menor, mais 1,5 segundo. Ao decolar, o jogo volta ao menu do visor.
+6. Abrir o hangar leva 4 segundos, e entrar na nave menor, mais 1,5 segundo. Ao decolar, aparece a tela de parabéns, com a história da Nave 67, e depois o jogador tira o visor e volta à Sala VR.
 
 O objetivo no canto da tela muda conforme o que o jogador já tentou, e nada obriga a seguir essa ordem.
 
@@ -46,7 +46,7 @@ O objetivo no canto da tela muda conforme o que o jogador já tentou, e nada obr
 
 ## 2. A regra da luz
 
-**A criatura é uma imagem do filme e só existe onde há luz.** No escuro ela continua andando, e dá para ouvir os passos, mas não dá para vê-la e ela não encosta em ninguém. O jogador fica seguro no escuro, mas quase não enxerga, e acender a lanterna para achar o caminho o expõe.
+**A criatura é uma imagem, como uma película estragada, e só existe onde há luz.** No escuro ela continua andando, e dá para ouvir os passos, mas não dá para vê-la e ela não encosta em ninguém. O jogador fica seguro no escuro, mas quase não enxerga, e acender a lanterna para achar o caminho o expõe.
 
 | Situação | O que acontece |
 |---|---|
@@ -77,11 +77,11 @@ $$m_{t} = \max(0,\ m_{t-1} - 8\,\Delta t) + |\vec{v}_{\text{mouse}}|$$
 
 ## 4. O que faz a criatura ser estranha
 
-A silhueta é uma imagem chapada (`Sprite3D` que sempre vira para a câmera), com um quadro de película queimado no lugar do rosto. Ela anda só 7 vezes por segundo (`quadros_por_segundo`), mesmo o jogo rodando a 60: a posição real muda o tempo todo, mas a que aparece na tela só muda nesses quadros, com um pequeno tremor. Parece um filme com quadros faltando. Por ser uma imagem, ela atravessa portas e móveis.
+A silhueta é uma imagem chapada (`Sprite3D` que sempre vira para a câmera), com um quadro de película queimado no lugar do rosto. Ela anda só 7 vezes por segundo (`quadros_por_segundo`), mesmo o jogo rodando a 60: a posição real muda o tempo todo, mas a que aparece na tela só muda nesses quadros, com um pequeno tremor. Parece uma película com quadros faltando. Por ser uma imagem, ela atravessa portas e móveis.
 
 ## 5. O visual da nave
 
-Toda a nave segue uma imagem de referência escolhida pelo Davi: seção chanfrada, janelões arredondados, luz fria de um lado e quente do outro, canos à mostra, chão de chapa e grade e faixas de LED nos cantos do piso. É mais realista que o resto do jogo de propósito, porque é um filme, e a criatura pixelada e chapada se destaca justamente por isso.
+Toda a nave segue uma imagem de referência escolhida pelo Davi: seção chanfrada, janelões arredondados, luz fria de um lado e quente do outro, canos à mostra, chão de chapa e grade e faixas de LED nos cantos do piso. É mais realista que o resto do jogo de propósito, porque é um jogo dentro do jogo, e a criatura pixelada e chapada se destaca justamente por isso.
 
 - **Geometria:** as áreas são montadas por código a partir de um kit de peças (`KitDaNave`), com malhas feitas à mão (`SurfaceTool`). A parede da janela é uma faixa de triângulos entre o contorno do buraco e a borda do vão.
 - **Texturas:** cada uma nasce de um mapa de altura, que também gera o mapa de normais. A normal de cada pixel vem da inclinação da altura, $\hat{n} \propto (-\partial_x h,\ -\partial_y h,\ 1)$, e por isso a luz parece pegar nos rebites e nas emendas. O ruído é periódico (filtrado por Fourier), então a textura repete sem emenda.
@@ -122,6 +122,9 @@ Toda a nave segue uma imagem de referência escolhida pelo Davi: seção chanfra
 | Grafo, A\* e Markov | `scripts/visor/hora_morta/grafo_da_nave.gd` |
 | Criatura | `cenas/visor/hora_morta/criatura_da_projecao.tscn`, `scripts/visor/hora_morta/criatura_da_projecao.gd` |
 | Varredura | `scripts/visor/hora_morta/varredura.gd` |
+| Sala de reuniões | `cenas/visor/hora_morta/areas/sala_reunioes.tscn`, `scripts/visor/hora_morta/sala_reunioes.gd` |
+| Cabine do menu | `cenas/visor/hora_morta/areas/cabine_da_nave_pequena.tscn`, `scripts/visor/hora_morta/cabine_da_nave_pequena.gd` |
+| Tela de parabéns | `cenas/visor/hora_morta/tela_de_parabens.tscn`, `scripts/visor/hora_morta/tela_de_parabens.gd` |
 | Trocar a cena dentro do visor | `Visor.trocar`, em `scripts/sistemas/visor.gd` |
 | Texturas e criatura | `assets/modelagem/cenario/gerar_nave_hora_morta.py`, `assets/modelagem/personagens/gerar_criatura_hora_morta.py` |
 

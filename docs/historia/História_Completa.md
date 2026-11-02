@@ -24,6 +24,7 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 - **Havia um Conselho.** Antes da Grande Separação, as cidades eram governadas por um **Conselho**. O que ele era e quem o formava ficam em aberto: o jogo só o mostra nos recortes de jornal que o Carlos guardou (seção 4.3).
 - **Quanto mais no futuro, mais frias as relações.** Do passado para o futuro, as relações entre as pessoas esfriam: em 2123 já são mornas, mediadas por máquinas (é daí que vem o jeito do Zane), e em 3026, depois da Grande Separação, são geladas. Os **Faroleiros** são a exceção: mantêm a luz acesa, e as cartas deles são quentes.
 - **O Carlos era um Faroleiro.** Há alguns anos teve um **desentendimento** com o grupo (o motivo fica em aberto no jogo) e se isolou na Unifor, abandonada havia muito tempo, para usar a Âncora e ir viver nos anos 80 (seção 4.3).
+- **A Nave 67 é um grande mistério.** Ela partiu para um planeta, e lá a tripulação desapareceu. Um único homem conseguiu fugir numa nave menor, mas não resistiu ao caminho de volta, e ninguém sabe o que aconteceu. O jogo de terror *Hora Morta*, na Sala VR do Cine Andrômeda, é baseado numa teoria sobre esse caso, e a nave do jogo é a própria Nave 67.
 - **A IA e a robótica** são muito avançadas, mas a IA **não tem consciência**: é uma ferramenta nas mãos dos humanos. Não existe uma IA que domina a Terra. Os robôs e os sistemas do campus são ferramentas do Carlos.
 
 ### 2.2 O campus em 3026
@@ -296,6 +297,7 @@ O que falta fazer em arte, mecânica e fases (e não muda a história) fica em [
 - O que era o Conselho que governava as cidades antes da Grande Separação, e quem o formava? Quando foram escritos os recortes de jornal, e em que cidade?
 - Onde estão os Faroleiros hoje? Eles aparecem no jogo (em pessoa, por rádio, ou só pelas marcas no cenário)? Sabem do Carlos e da Âncora?
 - Como a Unifor virou um centro de pesquisa em física do tempo?
+- Quando a Nave 67 partiu, para que planeta e por quê? O caso tem alguma ligação com a Grande Separação?
 - Por que a fenda se abre sempre no chão da Biblioteca?
 - Por que a rede do subsolo é fechada para o Zane, a ponto de ele não conseguir invadi-la de longe?
 - Por que a sala 205 do Bloco de salas está intacta?
