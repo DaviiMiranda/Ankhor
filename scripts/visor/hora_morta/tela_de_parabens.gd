@@ -1,7 +1,5 @@
 extends Control
 
-const CENA_DO_MENU := "res://cenas/visor/menu_filme_vr.tscn"
-
 @export var segundos_escurecendo: float = 0.8
 @export var segundos_por_paragrafo: float = 1.6
 @export var pausa_entre_paragrafos: float = 0.5
@@ -34,7 +32,7 @@ func _unhandled_input(evento: InputEvent) -> void:
 		escolheu = true
 	if escolheu:
 		get_viewport().set_input_as_handled()
-		_voltar_ao_menu()
+		_tirar_o_visor()
 
 
 func _mostrar_aos_poucos() -> void:
@@ -54,9 +52,9 @@ func _liberar_saida() -> void:
 	_pode_sair = true
 
 
-func _voltar_ao_menu() -> void:
+func _tirar_o_visor() -> void:
 	_saindo = true
 	som_clique.play()
 	var saida := create_tween()
 	saida.tween_property(escuro, "color:a", 1.0, segundos_escurecendo)
-	saida.tween_callback(Visor.trocar.bind(CENA_DO_MENU))
+	saida.tween_callback(Visor.fechar)
