@@ -9,7 +9,9 @@
 
 O visual segue uma imagem de referência escolhida pelo Davi, com metal gasto, luz fria e quente e janelões para o espaço. É mais realista que o pixel art do resto do jogo, porque é um filme: a regra de pixel art continua valendo fora do visor.
 
-Começamos só pelo **corredor das janelas 1**, para testar se a ideia assusta antes de fazer o resto da nave. Perder leva de volta ao menu do visor, sem nenhum custo no jogo principal.
+A fase tem 6 salas ligadas por 4 corredores, e o objetivo é pegar a chave do hangar: ela está na cabine do comandante, que precisa de energia, que precisa de um fusível do depósito. Pegar a chave dispara o alarme e a fuga até a nave menor. Morrer leva de volta ao alojamento da nave, mantendo o que já foi pego, sem nenhum custo no jogo principal. Os rolos de filme da ideia inicial saíram do plano.
+
+A fase foi mesclada sem uma rodada completa de teste, a pedido do Davi. Falta jogar do começo ao fim e ajustar a dificuldade.
 
 **Por quê:** pedido do Davi. A história não muda, porque é um filme em cartaz.
 
