@@ -1,8 +1,7 @@
 extends Control
 
-const CENA_DO_MENU := "res://cenas/visor/menu_filme_vr.tscn"
+const CENA_DE_PARABENS := "res://cenas/visor/hora_morta/tela_de_parabens.tscn"
 const TEXTO_DERROTA := "A SESSÃO ACABOU"
-const TEXTO_VITORIA := "VOCÊ ESCAPOU"
 const PONTO_INICIAL_DA_CRIATURA := "c1_b"
 const PONTO_DA_CRIATURA_NA_FUGA := "maq"
 const AREAS_VIZINHAS := {
@@ -432,9 +431,7 @@ func _vencer() -> void:
 	barra.visible = false
 	var saida := create_tween()
 	saida.tween_property(escuro, "color:a", 1.0, segundos_escurecendo * 2.0)
-	saida.tween_callback(_escurecer_com_texto.bind(TEXTO_VITORIA))
-	saida.tween_interval(segundos_de_texto_final * 1.5)
-	saida.tween_callback(Visor.trocar.bind(CENA_DO_MENU))
+	saida.tween_callback(Visor.trocar.bind(CENA_DE_PARABENS))
 
 
 func _tirar_o_visor() -> void:
