@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/visor/hora_morta/sala_deposito.gd" id="1_sala"]
+
+[node name="Deposito" type="Node3D"]
+script = ExtResource("1_sala")

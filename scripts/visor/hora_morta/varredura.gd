@@ -29,6 +29,7 @@ const YAW_NORMAL := PI / 2.0
 @export var velocidade_tolerada: float = 0.05
 
 var etapa := Etapa.PARADA
+var exigir_parado := true
 var _tempo := 0.0
 var _giro := 0.0
 var _mouse_acumulado := 0.0
@@ -61,6 +62,11 @@ func comecar() -> void:
 	comecou.emit()
 
 
+func interromper() -> void:
+	_mudar_para(Etapa.PARADA)
+	_aplicar_luz(0.0, 0.0)
+
+
 func registrar_giro_do_mouse(movimento: Vector2) -> void:
 	if etapa == Etapa.VIGIA:
 		_mouse_acumulado += movimento.length()
@@ -87,7 +93,7 @@ func _avancar(delta: float) -> void:
 func _vigiar(delta: float) -> void:
 	_mouse_acumulado = maxf(0.0, _mouse_acumulado - mouse_que_se_perdoa_por_segundo * delta)
 	var andando := Vector2(jogador.velocity.x, jogador.velocity.z).length() > velocidade_tolerada
-	if andando or _mouse_acumulado > tolerancia_do_mouse:
+	if exigir_parado and (andando or _mouse_acumulado > tolerancia_do_mouse):
 		_mudar_para(Etapa.PARADA)
 		jogador_se_mexeu.emit()
 	elif _tempo >= segundos_de_vigia:

@@ -1,6 +1,6 @@
 extends Control
 
-const CENA_DO_JOGO := "res://cenas/visor/hora_morta/corredor_janelas.tscn"
+const CENA_DO_JOGO := "res://cenas/visor/hora_morta/fase_nave.tscn"
 const COLUNAS_DE_POLTRONAS := 13
 const FILEIRAS_EM_Z: Array[float] = [-5.0, -3.6, -2.2, 1.4, 2.8]
 const COR_DA_POLTRONA := Color(0.34, 0.12, 0.15)

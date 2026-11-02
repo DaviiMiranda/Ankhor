@@ -151,7 +151,8 @@ pixel_size = 0.0105
 modulate = Color(0.9, 0.84, 0.8, 1)
 text = "Mouse: olhar
 WASD: andar
-E ou clique: lanterna
+Clique: lanterna
+E: usar
 Esc: tirar o visor
 Se os passos pararem, não se mexa."
 texture_filter = 0

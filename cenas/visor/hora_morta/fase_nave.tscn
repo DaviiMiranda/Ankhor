@@ -1,0 +1,416 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/visor/hora_morta/fase_nave.gd" id="1_fase"]
+[ext_resource type="PackedScene" path="res://cenas/visor/jogador_visor.tscn" id="2_jogador"]
+[ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/criatura_da_projecao.tscn" id="4_criatura"]
+[ext_resource type="Script" path="res://scripts/visor/hora_morta/varredura.gd" id="5_varredura"]
+[ext_resource type="Shader" path="res://shaders/ceu_do_espaco.gdshader" id="6_ceu"]
+[ext_resource type="Shader" path="res://shaders/filme_queimando.gdshader" id="7_queima"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambiente/zumbido_60hz.wav" id="8_zumbido"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/lanterna_clique.wav" id="9_lanterna"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/estalo_laje.wav" id="10_estalo"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/clarao_disparo.wav" id="11_ataque"]
+[ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/corredor.tscn" id="12_corredor"]
+[ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/sala_alojamento.tscn" id="13_alojamento"]
+[ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/sala_cinema.tscn" id="14_cinema"]
+[ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/sala_deposito.tscn" id="15_deposito"]
+[ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/sala_maquinas.tscn" id="16_maquinas"]
+[ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/sala_cabine.tscn" id="17_cabine"]
+[ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/areas/sala_hangar.tscn" id="18_hangar"]
+[ext_resource type="PackedScene" path="res://cenas/visor/hora_morta/porta_da_nave.tscn" id="19_porta"]
+[ext_resource type="Script" path="res://scripts/visor/hora_morta/objetivos_da_nave.gd" id="20_objetivos"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/sirene.wav" id="21_sirene"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/disjuntor.wav" id="22_achar"]
+
+[sub_resource type="ShaderMaterial" id="MaterialDoCeu"]
+shader = ExtResource("6_ceu")
+
+[sub_resource type="Sky" id="Ceu"]
+sky_material = SubResource("MaterialDoCeu")
+radiance_size = 0
+
+[sub_resource type="Environment" id="Ambiente"]
+background_mode = 2
+sky = SubResource("Ceu")
+ambient_light_source = 2
+ambient_light_color = Color(0.2, 0.26, 0.38, 1)
+ambient_light_energy = 0.3
+reflected_light_source = 1
+tonemap_mode = 3
+tonemap_white = 3.0
+glow_enabled = true
+glow_intensity = 0.7
+glow_bloom = 0.1
+fog_enabled = true
+fog_light_color = Color(0.015, 0.02, 0.03, 1)
+fog_density = 0.04
+fog_sky_affect = 0.0
+
+[sub_resource type="ShaderMaterial" id="MaterialDaQueima"]
+shader = ExtResource("7_queima")
+
+[node name="FaseNave" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_fase")
+
+[node name="Imagem" type="SubViewportContainer" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+
+[node name="Mundo" type="SubViewport" parent="Imagem"]
+handle_input_locally = false
+audio_listener_enable_3d = true
+msaa_3d = 1
+gui_disable_input = true
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Ambiente" type="WorldEnvironment" parent="Imagem/Mundo"]
+environment = SubResource("Ambiente")
+
+[node name="Areas" type="Node3D" parent="Imagem/Mundo"]
+
+[node name="Alojamento" parent="Imagem/Mundo/Areas" instance=ExtResource("13_alojamento")]
+position = Vector3(0, 0, 15.3)
+tamanho = Vector3(6, 2.7, 6)
+portas_norte = PackedFloat32Array(0)
+segura = true
+
+[node name="C1" parent="Imagem/Mundo/Areas" instance=ExtResource("12_corredor")]
+position = Vector3(0, 0, 0)
+vaos = 6
+meia_largura = 1.15
+tem_janelas = true
+acende_com_a_energia = false
+estados = Array[int]([0, 1, 0, 2, 0, 1])
+armarios = Array[Vector4]([Vector4(-0.8, 1.5, 1.1, 7.0), Vector4(-0.81, 1.3, 0.8, 3.2), Vector4(-0.8, 1.5, 1.3, -3.4), Vector4(-0.81, 1.3, 0.9, -7.6)])
+
+[node name="Cinema" parent="Imagem/Mundo/Areas" instance=ExtResource("14_cinema")]
+position = Vector3(0, 0, -19.3)
+tamanho = Vector3(16, 4.4, 14)
+portas_norte = PackedFloat32Array(0)
+portas_sul = PackedFloat32Array(0)
+portas_leste = PackedFloat32Array(0)
+portas_oeste = PackedFloat32Array(-3.5, 3.5)
+acende_com_a_energia = true
+
+[node name="C2" parent="Imagem/Mundo/Areas" instance=ExtResource("12_corredor")]
+position = Vector3(0, 0, -38.6)
+vaos = 6
+meia_largura = 1.15
+tem_janelas = true
+acende_com_a_energia = false
+estados = Array[int]([2, 1, 0, 2, 1, 0])
+armarios = Array[Vector4]([Vector4(-0.8, 1.4, 1.2, 8.8), Vector4(-0.81, 1.5, 0.9, 0.6), Vector4(-0.8, 1.3, 1.1, -7.0)])
+texto_da_placa = "CONVÉS 4"
+
+[node name="C3" parent="Imagem/Mundo/Areas" instance=ExtResource("12_corredor")]
+position = Vector3(-12.3, 0, -15.8)
+rotation = Vector3(0, 1.5707964, 0)
+vaos = 2
+meia_largura = 0.85
+tem_janelas = false
+acende_com_a_energia = false
+estados = Array[int]([2, 1])
+texto_da_placa = "SERVIÇO"
+
+[node name="C4" parent="Imagem/Mundo/Areas" instance=ExtResource("12_corredor")]
+position = Vector3(-12.3, 0, -22.8)
+rotation = Vector3(0, 1.5707964, 0)
+vaos = 2
+meia_largura = 0.85
+tem_janelas = false
+acende_com_a_energia = true
+estados = Array[int]([2, 2])
+texto_da_placa = "SERVIÇO"
+
+[node name="Deposito" parent="Imagem/Mundo/Areas" instance=ExtResource("15_deposito")]
+position = Vector3(-20.6, 0, -15.725)
+tamanho = Vector3(8, 2.7, 6.85)
+portas_norte = PackedFloat32Array(0)
+portas_leste = PackedFloat32Array(-0.075)
+
+[node name="Maquinas" parent="Imagem/Mundo/Areas" instance=ExtResource("16_maquinas")]
+position = Vector3(-20.6, 0, -22.875)
+tamanho = Vector3(8, 2.7, 6.85)
+portas_sul = PackedFloat32Array(0)
+portas_leste = PackedFloat32Array(0.075)
+
+[node name="Cabine" parent="Imagem/Mundo/Areas" instance=ExtResource("17_cabine")]
+position = Vector3(11.3, 0, -19.3)
+tamanho = Vector3(6, 2.7, 6)
+portas_oeste = PackedFloat32Array(0)
+acende_com_a_energia = true
+
+[node name="Hangar" parent="Imagem/Mundo/Areas" instance=ExtResource("18_hangar")]
+position = Vector3(0, 0, -57.9)
+tamanho = Vector3(16, 5, 14)
+portas_sul = PackedFloat32Array(0)
+
+[node name="Portas" type="Node3D" parent="Imagem/Mundo"]
+
+[node name="Alojamento" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+position = Vector3(0, 0, 12.15)
+
+[node name="C1Cinema" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+position = Vector3(0, 0, -12.15)
+texto_da_placa = "CINEMA DE BORDO"
+
+[node name="CinemaC2" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+position = Vector3(0, 0, -26.45)
+texto_da_placa = "HANGAR"
+
+[node name="Hangar" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+position = Vector3(0, 0, -50.75)
+trancada = true
+texto_da_placa = "HANGAR"
+
+[node name="CinemaC3" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+position = Vector3(-8.15, 0, -15.8)
+rotation = Vector3(0, 1.5707964, 0)
+texto_da_placa = "DEPÓSITO"
+
+[node name="C3Deposito" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+position = Vector3(-16.45, 0, -15.8)
+rotation = Vector3(0, 1.5707964, 0)
+
+[node name="CinemaC4" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+position = Vector3(-8.15, 0, -22.8)
+rotation = Vector3(0, 1.5707964, 0)
+texto_da_placa = "MÁQUINAS"
+
+[node name="C4Maquinas" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+position = Vector3(-16.45, 0, -22.8)
+rotation = Vector3(0, 1.5707964, 0)
+
+[node name="DepositoMaquinas" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+position = Vector3(-20.6, 0, -19.3)
+
+[node name="Cabine" parent="Imagem/Mundo/Portas" instance=ExtResource("19_porta")]
+position = Vector3(8.15, 0, -19.3)
+rotation = Vector3(0, 1.5707964, 0)
+trancada = true
+texto_da_placa = "COMANDANTE"
+
+[node name="JogadorVisor" parent="Imagem/Mundo" instance=ExtResource("2_jogador")]
+position = Vector3(0, 0.02, 15.3)
+
+[node name="Criatura" parent="Imagem/Mundo" instance=ExtResource("4_criatura")]
+
+[node name="LuzDaEstrela" type="DirectionalLight3D" parent="Imagem/Mundo"]
+light_color = Color(1, 0.86, 0.66, 1)
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_max_distance = 30.0
+
+[node name="Lanterna" type="SpotLight3D" parent="Imagem/Mundo"]
+light_color = Color(1, 0.93, 0.78, 1)
+light_energy = 5.0
+spot_range = 9.0
+spot_angle = 24.0
+
+[node name="Varredura" type="Node" parent="." node_paths=PackedStringArray("luz", "jogador")]
+script = ExtResource("5_varredura")
+luz = NodePath("../Imagem/Mundo/LuzDaEstrela")
+ceu = SubResource("MaterialDoCeu")
+ambiente = SubResource("Ambiente")
+jogador = NodePath("../Imagem/Mundo/JogadorVisor")
+
+[node name="Objetivos" type="Node" parent="." node_paths=PackedStringArray("porta_do_hangar", "porta_da_cabine", "deposito", "maquinas", "cabine", "hangar")]
+script = ExtResource("20_objetivos")
+porta_do_hangar = NodePath("../Imagem/Mundo/Portas/Hangar")
+porta_da_cabine = NodePath("../Imagem/Mundo/Portas/Cabine")
+deposito = NodePath("../Imagem/Mundo/Areas/Deposito")
+maquinas = NodePath("../Imagem/Mundo/Areas/Maquinas")
+cabine = NodePath("../Imagem/Mundo/Areas/Cabine")
+hangar = NodePath("../Imagem/Mundo/Areas/Hangar")
+
+[node name="Mira" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.6)
+
+[node name="Objetivo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = -12.0
+offset_bottom = 22.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 0.95, 0.9)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+
+[node name="Acao" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 14.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.75, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+
+[node name="Barra" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 32.0
+offset_right = 40.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Preenchimento" type="ColorRect" parent="Barra"]
+layout_mode = 0
+offset_right = 0.0
+offset_bottom = 4.0
+mouse_filter = 2
+color = Color(1, 0.72, 0.3, 1)
+
+[node name="Mensagem" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.92, 0.75, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+
+[node name="Dica" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.9, 0.9, 0.95, 0.9)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "WASD: andar. Clique: lanterna. E: usar. Esc: tirar o visor"
+horizontal_alignment = 1
+
+[node name="Aviso" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 60.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "NÃO SE MEXA"
+horizontal_alignment = 1
+
+[node name="Queima" type="ColorRect" parent="."]
+material = SubResource("MaterialDaQueima")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Escuro" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextoFinal" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.2, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Zumbido" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_zumbido")
+volume_db = -18.0
+autoplay = true
+bus = &"Efeitos"
+
+[node name="Sirene" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_sirene")
+volume_db = -10.0
+bus = &"Efeitos"
+
+[node name="SomDaLanterna" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_lanterna")
+bus = &"Efeitos"
+
+[node name="SomDoEstalo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_estalo")
+bus = &"Efeitos"
+
+[node name="SomDoAtaque" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ataque")
+bus = &"Efeitos"
+
+[node name="SomDeAchar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_achar")
+volume_db = -8.0
+bus = &"Efeitos"
