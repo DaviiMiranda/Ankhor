@@ -1,6 +1,6 @@
 extends Control
 
-const AVISO_SEM_SESSAO := "A sessão ainda não abriu. Volte mais tarde."
+const CENA_DO_JOGO := "res://cenas/visor/hora_morta/fase_nave.tscn"
 const COLUNAS_DE_POLTRONAS := 13
 const FILEIRAS_EM_Z: Array[float] = [-5.0, -3.6, -2.2, 1.4, 2.8]
 const COR_DA_POLTRONA := Color(0.34, 0.12, 0.15)
@@ -21,7 +21,6 @@ var _tempo := 0.0
 @onready var poltronas: Node3D = $Imagem/Mundo/Poltronas
 @onready var luz_da_tela: OmniLight3D = $Imagem/Mundo/LuzDaTela
 @onready var titulo: Label3D = $Imagem/Mundo/Titulo
-@onready var aviso: Label3D = $Imagem/Mundo/Aviso
 @onready var botao_comecar: BotaoDoMenuVr = $Imagem/Mundo/BotaoComecar
 @onready var botao_sair: BotaoDoMenuVr = $Imagem/Mundo/BotaoSair
 @onready var escuro: ColorRect = $Escuro
@@ -96,7 +95,7 @@ func _usar_mirado() -> void:
 		return
 	som_clique.play()
 	if _mirado == botao_comecar:
-		aviso.text = AVISO_SEM_SESSAO
+		_comecar()
 	elif _mirado == botao_sair:
 		_sair()
 
@@ -106,12 +105,20 @@ func _liberar() -> void:
 	_pronto = true
 
 
+func _comecar() -> void:
+	_escurecer_e(Visor.trocar.bind(CENA_DO_JOGO))
+
+
 func _sair() -> void:
+	_escurecer_e(Visor.fechar)
+
+
+func _escurecer_e(depois: Callable) -> void:
 	_saindo = true
 	jogador.controlando = false
 	var saida := create_tween()
 	saida.tween_property(escuro, "color:a", 1.0, segundos_escurecendo)
-	saida.tween_callback(Visor.fechar)
+	saida.tween_callback(depois)
 
 
 func _ajustar_resolucao() -> void:

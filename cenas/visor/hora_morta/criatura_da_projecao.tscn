@@ -1,0 +1,25 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/visor/hora_morta/criatura_da_projecao.gd" id="1_criatura"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/criatura_hora_morta/criatura_andar.png" id="2_imagem"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/sentinela_passo.wav" id="3_passo"]
+
+[node name="Criatura" type="Node3D"]
+script = ExtResource("1_criatura")
+
+[node name="Imagem" type="Sprite3D" parent="."]
+position = Vector3(0, 1.05, 0)
+pixel_size = 0.0165
+billboard = 2
+shaded = false
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("2_imagem")
+hframes = 4
+
+[node name="Passos" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_passo")
+volume_db = 4.0
+unit_size = 3.0
+max_distance = 30.0
+bus = &"Efeitos"

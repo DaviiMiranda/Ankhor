@@ -259,7 +259,7 @@ Cada filme tem um cartaz na parede e uma cabine embaixo, o pedestal com um visor
 | Jangada Estelar | "Alguém arrancou o cabo deste visor." |
 | **Hora Morta** (terror, na ponta direita) | O Gabriel põe o visor, com a mesma animação da sala segura, e entra no menu 3D do jogo ([`../mecanicas/visor_3d.md`](../mecanicas/visor_3d.md), seção 9) |
 
-O jogo de terror em si ainda não existe: o botão **Começar** do menu só avisa que a sessão não abriu. **Hora Morta** é um nome provisório.
+O botão **Começar** do menu abre o jogo, uma nave com 6 salas e 4 corredores ([`../mecanicas/hora_morta.md`](../mecanicas/hora_morta.md)). **Hora Morta** é um nome provisório.
 
 ---
 

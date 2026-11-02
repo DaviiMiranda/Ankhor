@@ -37,10 +37,23 @@ func salvar() -> bool:
 	return deu_certo
 
 
+func trocar(cena_do_visor: String) -> void:
+	if not esta_aberto():
+		return
+	_substituir_visor.call_deferred((load(cena_do_visor) as PackedScene).instantiate())
+
+
 func fechar() -> void:
 	if not esta_aberto():
 		return
 	_voltar_para_a_sala.call_deferred()
+
+
+func _substituir_visor(novo: Node) -> void:
+	var antigo := _visor
+	_visor = novo
+	_trocar_cena(antigo, novo)
+	antigo.queue_free()
 
 
 func _voltar_para_a_sala() -> void:

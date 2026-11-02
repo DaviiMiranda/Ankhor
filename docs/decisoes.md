@@ -1,5 +1,22 @@
 # Registro de decisões
 
+## 2026-11-01 — Hora Morta: nave de terror com a regra da luz e a Varredura
+
+**Decisão:** o mini game da Sala VR se passa numa nave apertada, com corredores com janelas para o espaço, e o jogador foge numa nave menor. A inspiração é *Alien*, com dois diferenciais:
+
+- **A criatura só existe onde há luz:** ela é uma imagem do filme. No escuro, só se ouvem os passos, e ela não encosta em ninguém.
+- **A Varredura:** a nave gira, a luz de uma estrela entra pelas janelas, os passos param e a criatura aparece perto. O jogador precisa ficar totalmente parado, ou perde.
+
+O visual segue uma imagem de referência escolhida pelo Davi, com metal gasto, luz fria e quente e janelões para o espaço. É mais realista que o pixel art do resto do jogo, porque é um filme: a regra de pixel art continua valendo fora do visor.
+
+A fase tem 6 salas ligadas por 4 corredores, e o objetivo é pegar a chave do hangar: ela está na cabine do comandante, que precisa de energia, que precisa de um fusível do depósito. Pegar a chave dispara o alarme e a fuga até a nave menor. Morrer leva de volta ao alojamento da nave, mantendo o que já foi pego, sem nenhum custo no jogo principal. Os rolos de filme da ideia inicial saíram do plano.
+
+A fase foi mesclada sem uma rodada completa de teste, a pedido do Davi. Falta jogar do começo ao fim e ajustar a dificuldade.
+
+**Por quê:** pedido do Davi. A história não muda, porque é um filme em cartaz.
+
+**Afeta:** `cenas/visor/hora_morta/`, `scripts/visor/hora_morta/`, `scripts/sistemas/visor.gd` (`Visor.trocar`), `scripts/visor/menu_filme_vr.gd`, `cenas/visor/menu_filme_vr.tscn`, `shaders/ceu_do_espaco.gdshader`, `shaders/filme_queimando.gdshader`, `docs/mecanicas/hora_morta.md`.
+
 ## 2026-11-01 — Sala VR no cinema, com o menu 3D de um jogo de terror
 
 **Decisão:** o Cine Andrômeda ganha uma sala nova, a **Sala VR** (`sala_vr`), com porta comum no saguão, no lugar do relógio. Há cinco filmes em cartaz, cada um com uma cabine, e só o de terror funciona. Ao pôr o visor dele, o jogo vira 3D, com a mesma troca da sala segura, e abre o **menu principal desse jogo**, com explicações e os botões **Começar** e **Tirar o visor**. O VR existe só dentro da história: o jogador continua no monitor, com mouse e teclado.
