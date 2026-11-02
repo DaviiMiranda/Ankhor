@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-02 — Tela de parabéns de Hora Morta e o mistério da Nave 67
+
+**Decisão:** ao vencer Hora Morta, o jogador vê uma tela de parabéns com a história por trás do filme: ele é baseado numa teoria sobre a **Nave 67**. Ela foi para um planeta e lá a tripulação desapareceu; um homem fugiu numa nave menor, mas não resistiu ao caminho, e o caso continua um grande mistério.
+
+**Por quê:** pedido do Davi. É um dado novo do mundo, por isso entrou no Enredo. A data, o planeta e uma possível ligação com a Grande Separação ficam nas pendências.
+
+**Afeta:** `docs/historia/História_Completa.md` (seções 2.1 e 10.1), `cenas/visor/hora_morta/tela_de_parabens.tscn`, `scripts/visor/hora_morta/tela_de_parabens.gd`, `scripts/visor/hora_morta/fase_nave.gd`, `docs/mecanicas/hora_morta.md`.
+
 ## 2026-11-01 — Hora Morta: nave de terror com a regra da luz e a Varredura
 
 **Decisão:** o mini game da Sala VR se passa numa nave apertada, com corredores com janelas para o espaço, e o jogador foge numa nave menor. A inspiração é *Alien*, com dois diferenciais:

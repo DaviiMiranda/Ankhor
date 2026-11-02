@@ -36,7 +36,7 @@ No mapa real, a cabine fica a leste do cinema, e o hangar segue em linha reta de
 3. O fusível está em um dos armários do depósito. Vasculhar leva 3 segundos e atrai a criatura.
 4. O fusível vai no quadro da sala de máquinas (2 segundos). A cabine abre, mas o C4, o cinema e a cabine acendem, e o caminho fica mais perigoso.
 5. Pegar a chave (1 segundo) dispara o alarme: todas as luzes acendem em vermelho, e a criatura persegue o jogador em qualquer lugar da nave.
-6. Abrir o hangar leva 4 segundos, e entrar na nave menor, mais 1,5 segundo. Ao decolar, o jogo volta ao menu do visor.
+6. Abrir o hangar leva 4 segundos, e entrar na nave menor, mais 1,5 segundo. Ao decolar, aparece a tela de parabéns, com a história da Nave 67, e depois o jogo volta ao menu do visor.
 
 O objetivo no canto da tela muda conforme o que o jogador já tentou, e nada obriga a seguir essa ordem.
 
@@ -122,6 +122,7 @@ Toda a nave segue uma imagem de referência escolhida pelo Davi: seção chanfra
 | Grafo, A\* e Markov | `scripts/visor/hora_morta/grafo_da_nave.gd` |
 | Criatura | `cenas/visor/hora_morta/criatura_da_projecao.tscn`, `scripts/visor/hora_morta/criatura_da_projecao.gd` |
 | Varredura | `scripts/visor/hora_morta/varredura.gd` |
+| Tela de parabéns | `cenas/visor/hora_morta/tela_de_parabens.tscn`, `scripts/visor/hora_morta/tela_de_parabens.gd` |
 | Trocar a cena dentro do visor | `Visor.trocar`, em `scripts/sistemas/visor.gd` |
 | Texturas e criatura | `assets/modelagem/cenario/gerar_nave_hora_morta.py`, `assets/modelagem/personagens/gerar_criatura_hora_morta.py` |
 
