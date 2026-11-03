@@ -8,6 +8,7 @@ signal ansiedade_mudou(valor: float, maxima: float)
 
 const COR_ESCONDIDO := Color(0.45, 0.45, 0.6)
 const LARGURA_QUADRO := 96.0
+const SETORES_OLHAR := 8
 const MAOS := preload("res://scripts/personagens/maos_do_gabriel.gd").MAOS
 const CENA_ANSIEDADE := preload("res://cenas/sistemas/ansiedade.tscn")
 const PEITO_NO_QUADRO := {
@@ -22,9 +23,16 @@ const PEITO_NO_QUADRO := {
 @export var fator_profundidade: float = 0.65
 @export var multiplicador_correr: float = 1.8
 @export var multiplicador_exaustao: float = 0.4
-@export var aceleracao: float = 400.0
-@export var desaceleracao: float = 550.0
 @export var forca_empurrao: float = 170.0
+
+@export_group("Conducao")
+@export var aceleracao_inicial: float = 640.0
+@export var aceleracao_final: float = 300.0
+@export var aceleracao_corrida: float = 240.0
+@export var desaceleracao: float = 760.0
+@export var taxa_virada: float = 1600.0
+@export var margem_virada_graus: float = 8.0
+@export var segundos_para_virar: float = 0.06
 
 @export_group("Sprites")
 @export var sprite_lado: Texture2D
@@ -41,6 +49,13 @@ const PEITO_NO_QUADRO := {
 @export var andar_tres_quartos_costas: Texture2D
 @export var quadros_andar: int = 12
 @export var px_por_quadro: float = 2.8
+@export var px_por_quadro_correndo: float = 2.5
+@export var quadros_por_segundo_assentando: float = 36.0
+@export var balanco_andar: float = 0.5
+@export var balanco_correr: float = 1.0
+@export var inclinacao_correndo: float = 0.07
+@export var inclinacao_freando: float = 0.12
+@export var rapidez_inclinacao: float = 20.0
 
 @export_group("Parado")
 @export var parado_lado: Texture2D
@@ -61,7 +76,9 @@ var vista := "lado"
 var direcao_olhar := Vector2.RIGHT
 var _empurrao := Vector2.ZERO
 var _velocidade_propria := Vector2.ZERO
-var _distancia := 0.0
+var _setor_olhar := 0
+var _tempo_mudando_olhar := 0.0
+var _fase_passada := 0.0
 var _tempo_parado := 0.0
 var _passos := 0
 var _tira_da_mao := "imovel"
@@ -150,18 +167,49 @@ func _physics_process(delta: float) -> void:
 		velocidade *= multiplicador_exaustao
 
 	var alvo := Vector2(direcao.x, direcao.y * fator_profundidade) * velocidade
-	var taxa := aceleracao if direcao != Vector2.ZERO else desaceleracao
-	_velocidade_propria = _velocidade_propria.move_toward(alvo, taxa * delta)
+	_velocidade_propria = _conduzir(alvo, delta)
 	velocity = _velocidade_propria + _empurrao
 	_empurrao = _empurrao.move_toward(Vector2.ZERO, forca_empurrao * 4.0 * delta)
 	move_and_slide()
 
-	_virar(direcao)
+	_virar_com_folga(direcao, delta)
 	if not tira_especial:
 		_animar(get_real_velocity().length() * delta, delta)
+		_ajustar_corpo(direcao, delta)
 
 	_piscar()
 	ansiedade.atualizar(global_position, delta)
+
+
+func _conduzir(alvo: Vector2, delta: float) -> Vector2:
+	if alvo == Vector2.ZERO:
+		return _velocidade_propria.move_toward(Vector2.ZERO, desaceleracao * delta)
+	var eixo := alvo.normalized()
+	var ao_longo := _velocidade_propria.dot(eixo)
+	var de_lado := _velocidade_propria - eixo * ao_longo
+	de_lado = de_lado.move_toward(Vector2.ZERO, taxa_virada * delta)
+	var taxa := _taxa_ao_longo(ao_longo, alvo.length())
+	return eixo * move_toward(ao_longo, alvo.length(), taxa * delta) + de_lado
+
+
+func _taxa_ao_longo(atual: float, final: float) -> float:
+	if atual < 0.0:
+		return taxa_virada
+	if atual > final:
+		return desaceleracao
+	if correndo and atual >= final / multiplicador_correr:
+		return aceleracao_corrida
+	return lerpf(aceleracao_inicial, aceleracao_final, atual / final)
+
+
+func fracao_de_corrida() -> float:
+	var plano := Vector2(_velocidade_propria.x, _velocidade_propria.y / fator_profundidade)
+	var maxima := velocidade_andar * multiplicador_correr
+	return clampf(inverse_lerp(velocidade_andar, maxima, plano.length()), 0.0, 1.0)
+
+
+func pulso_da_passada() -> float:
+	return sin(2.0 * TAU * _fase_passada / quadros_andar)
 
 
 func esconder(sim: bool) -> void:
@@ -174,7 +222,7 @@ func posicao_do_peito() -> Vector2:
 	var x := pixel.x + 0.5
 	if sprite.flip_h:
 		x = LARGURA_QUADRO - x
-	return sprite.position + (Vector2(x, pixel.y + 0.5) + sprite.offset) * sprite.scale
+	return sprite.transform * (Vector2(x, pixel.y + 0.5) + sprite.offset)
 
 
 func posicao_da_mao() -> Vector2:
@@ -186,7 +234,7 @@ func ponto_do_quadro(pixel: Vector2) -> Vector2:
 	var x := pixel.x
 	if sprite.flip_h:
 		x = LARGURA_QUADRO - x
-	return sprite.position + (Vector2(x, pixel.y) + sprite.offset) * sprite.scale
+	return sprite.transform * (Vector2(x, pixel.y) + sprite.offset)
 
 
 func olhar_para(direcao: Vector2) -> void:
@@ -195,6 +243,8 @@ func olhar_para(direcao: Vector2) -> void:
 
 func tocar_tira(tira: Texture2D, quadros: int) -> void:
 	tira_especial = true
+	sprite.position = Vector2.ZERO
+	sprite.skew = 0.0
 	_mostrar(tira, quadros, 0)
 
 
@@ -249,16 +299,52 @@ func _virar(direcao: Vector2) -> void:
 	if direcao == Vector2.ZERO:
 		return
 	direcao_olhar = direcao.normalized()
-	if direcao.x == 0.0:
-		vista = "frente" if direcao.y > 0.0 else "costas"
-	elif direcao.y > 0.0:
+	_setor_olhar = posmod(roundi(direcao.angle() / TAU * SETORES_OLHAR), SETORES_OLHAR)
+	var sentido := Vector2.RIGHT.rotated(_angulo_do_setor()).round()
+	if sentido.x == 0.0:
+		vista = "frente" if sentido.y > 0.0 else "costas"
+	elif sentido.y > 0.0:
 		vista = "tres_quartos"
-	elif direcao.y < 0.0:
+	elif sentido.y < 0.0:
 		vista = "tres_quartos_costas"
 	else:
 		vista = "lado"
-	if direcao.x != 0.0:
-		sprite.flip_h = direcao.x < 0.0
+	if sentido.x != 0.0:
+		sprite.flip_h = sentido.x < 0.0
+
+
+func _virar_com_folga(direcao: Vector2, delta: float) -> void:
+	if direcao == Vector2.ZERO:
+		_tempo_mudando_olhar = 0.0
+	elif _continua_no_setor(direcao):
+		_tempo_mudando_olhar = 0.0
+		direcao_olhar = direcao.normalized()
+	else:
+		_tempo_mudando_olhar += delta
+		if _tempo_mudando_olhar >= segundos_para_virar or direcao.dot(direcao_olhar) < 0.0:
+			_tempo_mudando_olhar = 0.0
+			_virar(direcao)
+
+
+func _continua_no_setor(direcao: Vector2) -> bool:
+	var limite := TAU / SETORES_OLHAR / 2.0 + deg_to_rad(margem_virada_graus)
+	return absf(angle_difference(_angulo_do_setor(), direcao.angle())) <= limite
+
+
+func _angulo_do_setor() -> float:
+	return _setor_olhar * TAU / SETORES_OLHAR
+
+
+func _ajustar_corpo(direcao: Vector2, delta: float) -> void:
+	var peso_andando := clampf(_velocidade_propria.length() / velocidade_andar, 0.0, 1.0)
+	var balanco := lerpf(balanco_andar, balanco_correr, fracao_de_corrida()) * peso_andando
+	var pes_juntos := absf(cos(TAU * _fase_passada / quadros_andar))
+	sprite.position.y = -snappedf(balanco * pes_juntos, 0.5)
+	var rapidez := _velocidade_propria.x / (velocidade_andar * multiplicador_correr)
+	var inclinacao := rapidez * inclinacao_correndo
+	if direcao.x * _velocidade_propria.x <= 0.0:
+		inclinacao = -rapidez * inclinacao_freando
+	sprite.skew = lerpf(sprite.skew, inclinacao, 1.0 - exp(-rapidez_inclinacao * delta))
 
 
 func _animar(andou: float, delta: float) -> void:
@@ -273,27 +359,31 @@ func _animar(andou: float, delta: float) -> void:
 			"tres_quartos_costas": sprite_tres_quartos_costas}
 	if andou > 0.01 and andando[vista]:
 		_tempo_parado = 0.0
-		_distancia += andou
+		_fase_passada += andou / lerpf(px_por_quadro, px_por_quadro_correndo, fracao_de_corrida())
 		_tira_da_mao = "andar"
-		_mostrar(andando[vista], quadros_andar, int(_distancia / px_por_quadro) % quadros_andar)
+		_mostrar(andando[vista], quadros_andar, int(_fase_passada) % quadros_andar)
 		_contar_passos()
+	elif andando[vista] and int(_fase_passada) % (quadros_andar / 2) != 0:
+		_fase_passada += quadros_por_segundo_assentando * delta
+		_tira_da_mao = "andar"
+		_mostrar(andando[vista], quadros_andar, int(_fase_passada) % quadros_andar)
 	elif respirando[vista]:
-		_distancia = 0.0
+		_fase_passada = 0.0
 		_passos = 0
 		_tempo_parado += delta
 		_tira_da_mao = "parado"
 		_mostrar(respirando[vista], quadros_parado,
 				int(_tempo_parado / segundos_por_quadro_parado) % quadros_parado)
 	elif imovel[vista]:
-		_distancia = 0.0
+		_fase_passada = 0.0
 		_passos = 0
 		_tira_da_mao = "imovel"
 		_mostrar(imovel[vista], 1, 0)
 
 
 func _contar_passos() -> void:
-	var px_por_passo := px_por_quadro * quadros_andar / 2.0
-	var passos := int((_distancia + px_por_passo / 2.0) / px_por_passo)
+	var quadros_por_passo := quadros_andar / 2.0
+	var passos := int((_fase_passada + quadros_por_passo / 2.0) / quadros_por_passo)
 	if passos > _passos:
 		_passos = passos
 		passo_dado.emit(correndo)

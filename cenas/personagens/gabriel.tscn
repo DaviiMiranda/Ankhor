@@ -18,6 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://c4r4wpja27qd1" path="res://assets/sprites/personagens/gabriel/gabriel_parado_tres_quartos_costas.png" id="16_parado_tres_quartos_costas"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/passos.tscn" id="17_passos"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/fadiga.tscn" id="18_fadiga"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/gabriel/gabriel_ofegante.wav" id="19_ofegante"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/poeira_dos_pes.tscn" id="20_poeira"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/camera_conduzida.tscn" id="21_camera"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pes"]
 size = Vector2(12, 4)
@@ -57,5 +60,11 @@ position = Vector2(0, -24)
 [node name="Passos" parent="." instance=ExtResource("17_passos")]
  
 [node name="Fadiga" parent="." instance=ExtResource("18_fadiga")]
+som_ofegante = ExtResource("19_ofegante")
+
+[node name="PoeiraDosPes" parent="." instance=ExtResource("20_poeira")]
+
+[node name="CameraConduzida" parent="." instance=ExtResource("21_camera")]
 
 [connection signal="passo_dado" from="." to="Passos" method="tocar"]
+[connection signal="passo_dado" from="." to="PoeiraDosPes" method="soltar"]
