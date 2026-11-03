@@ -6,7 +6,7 @@
 #
 # O que sai:
 #   assets/sprites/personagens/gabriel/gabriel_correr_<vista>.png
-#       12 quadros de 96 x 112 lado a lado, um arquivo por vista, na paleta dele.
+#       24 quadros de 96 x 112 lado a lado, um arquivo por vista, na paleta dele.
 #   scripts/personagens/maos_correndo_gabriel.gd
 #       onde fica, em cada quadro, a mão que segura a lanterna.
 #
@@ -14,10 +14,11 @@
 # A ANIMAÇÃO
 # ---------------------------------------------------------------------------
 #
-# Mesma ideia da caminhada (comum.pose_andar), com a mesma fase φ: cada quadro
-# avança 30°, os pés se cruzam nos quadros 0 e 6 e as pisadas caem nos quadros 3
-# e 9. Por isso o jogo troca da tira de andar para a de correr no mesmo quadro,
-# sem salto. O que muda é o tamanho do gesto:
+# Mesma ideia da caminhada (comum.pose_andar), com a mesma fase φ, mas o dobro de
+# quadros: cada quadro avança 15°, os pés se cruzam nos quadros 0 e 12 e as pisadas
+# caem nos quadros 6 e 18. Um quadro da caminhada vale dois daqui, então o jogo
+# troca de uma tira para a outra no mesmo ponto do ciclo, sem salto. O que muda é
+# o tamanho do gesto:
 #
 #   coxa      = C0 - C · sen(φ) - E · max(0, -cos φ)^1,5
 #               vai mais para a frente que para trás; o último termo adianta a
@@ -72,6 +73,7 @@ exec(compile(_fonte, "gerar_gabriel.py", "exec"), gg)
 PASTA_GABRIEL = os.path.join(c.PASTA_SPRITES, "gabriel")
 SAIDA_TABELA = os.path.join(c.PASTA_PROJETO, "scripts", "personagens", "maos_correndo_gabriel.gd")
 
+QUADROS_CORRER = 24                 # o dobro da caminhada (comum.QUADROS_ANDAR)
 COXA_MEIO, COXA, COXA_APOIO = -9, 35, 20
 JOELHO_BASE, JOELHO_AR, JOELHO_APOIO = 12, 78, 32
 OMBRO, COTOVELO, COTOVELO_FRENTE, ATRASO_COTOVELO = 36, 66, 18, 35
@@ -168,14 +170,14 @@ def main():
 
     tiras = {vista: [] for vista, _ in c.VISTAS_JOGO}
     maos = {vista: [] for vista, _ in c.VISTAS_JOGO}
-    for q in range(c.QUADROS_ANDAR):
-        pose_correr(parado, 360 * q / c.QUADROS_ANDAR)
+    for q in range(QUADROS_CORRER):
+        pose_correr(parado, 360 * q / QUADROS_CORRER)
         for vista, angulo in c.VISTAS_JOGO:
             img, ind, _ = renderizar(cam, raiz, materiais, angulo)
             tiras[vista].append(c.contorno(img, ind, materiais))
             bpy.context.view_layer.update()
             maos[vista].append(posicao_da_mao(cam, bracos[vista]))
-        print(f"[correr] quadro {q + 1}/{c.QUADROS_ANDAR}")
+        print(f"[correr] quadro {q + 1}/{QUADROS_CORRER}")
 
     paleta = paleta_do_gabriel()
     for vista, quadros in tiras.items():

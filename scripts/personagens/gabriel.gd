@@ -63,6 +63,7 @@ const PEITO_NO_QUADRO := {
 @export var correr_tres_quartos: Texture2D
 @export var correr_costas: Texture2D
 @export var correr_tres_quartos_costas: Texture2D
+@export var quadros_correr: int = 24
 @export var fracao_para_tira_de_correr: float = 0.3
 
 @export_group("Parado")
@@ -389,11 +390,12 @@ func _mostrar_passada(tira_de_andar: Texture2D) -> void:
 			"tres_quartos_costas": correr_tres_quartos_costas}
 	var tira: Texture2D = correndo_tiras[vista]
 	if tira == null or fracao_de_corrida() <= fracao_para_tira_de_correr:
-		tira = tira_de_andar
 		_tira_da_mao = "andar"
+		_mostrar(tira_de_andar, quadros_andar, int(_fase_passada) % quadros_andar)
 	else:
 		_tira_da_mao = "correr"
-	_mostrar(tira, quadros_andar, int(_fase_passada) % quadros_andar)
+		var quadro := int(_fase_passada * quadros_correr / quadros_andar) % quadros_correr
+		_mostrar(tira, quadros_correr, quadro)
 
 
 func _contar_passos() -> void:
