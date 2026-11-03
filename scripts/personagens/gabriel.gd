@@ -50,7 +50,7 @@ const PEITO_NO_QUADRO := {
 @export var andar_tres_quartos_costas: Texture2D
 @export var quadros_andar: int = 12
 @export var px_por_quadro: float = 2.8
-@export var px_por_quadro_correndo: float = 2.5
+@export var px_por_quadro_correndo: float = 5.0
 @export var quadros_por_segundo_assentando: float = 36.0
 @export var balanco_andar: float = 0.5
 @export var inclinacao_andando: float = 0.03

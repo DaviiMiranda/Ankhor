@@ -1,5 +1,15 @@
 # Registro de decisões
 
+## 2026-11-03 — Pernas do Gabriel mais calmas na corrida
+
+**Decisão:** `px_por_quadro_correndo` passou de 2,5 para 5,0. A corrida caiu de 7,2 para 3,6 passos por segundo, a mesma cadência da caminhada, e o pé no chão quase acompanha o piso (a tira de correr pede cerca de 5,4 px por quadro). A velocidade de corrida não mudou.
+
+Isto substitui os "12% mais passos por segundo" da entrada abaixo. O som dos passos e a poeira seguem a passada, então também caem pela metade, e os robôs recebem metade dos avisos de passo por segundo. Cada passo continua com o mesmo alcance de som.
+
+**Por quê:** pedido do Davi: as pernas estavam rápidas demais na corrida.
+
+**Afeta:** `scripts/personagens/gabriel.gd`, `docs/mecanicas/movimentacao_e_terreno.md`.
+
 ## 2026-11-03 — Condução do Gabriel: movimento mais fluido, sem patinar
 
 **Decisão:** o movimento do Gabriel foi refeito para responder melhor, com uma regra: ele não pode parecer que patina. A velocidade agora é separada na parte ao longo da direção pedida e na parte de lado, e a de lado morre rápido. A frenagem ficou mais curta, a corrida ganhou um arranque e os pés seguem a distância andada. Entraram também a histerese na vista, os pés se juntando ao parar, o balanço e a inclinação do corpo, a câmera com antecipação e sem tremor, a poeira nos pés ao correr e a respiração em dois níveis. A corrida ganhou uma animação própria, com os braços balançando bem mais. A câmera não balança na corrida: o balanço foi testado e retirado a pedido do Davi.
