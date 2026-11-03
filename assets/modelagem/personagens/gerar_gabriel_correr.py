@@ -26,7 +26,10 @@
 #               dobra muito quando a perna volta pelo ar (o calcanhar sobe) e um
 #               pouco ao aguentar o peso, como uma mola
 #   ombro     = A · sen(φ), ao contrário da perna do mesmo lado
-#   cotovelo  = -(B + D · max(0, -sen φ)), sempre dobrado, mais ainda à frente
+#   cotovelo  = -(B + D · (1 - sen(φ - ATRASO)) / 2), sempre dobrado, mais ainda
+#               à frente. A onda não tem quina (um max(0, ...) mudaria de direção
+#               de repente) e vem atrasada em relação ao ombro: o antebraço segue
+#               o braço em vez de mexer junto, e é isso que deixa o gesto suave
 #   tronco    = inclinado para a frente, torcendo com os braços; a cabeça desfaz
 #               parte disso, porque ele olha para onde corre
 #
@@ -71,8 +74,8 @@ SAIDA_TABELA = os.path.join(c.PASTA_PROJETO, "scripts", "personagens", "maos_cor
 
 COXA_MEIO, COXA, COXA_APOIO = -9, 35, 20
 JOELHO_BASE, JOELHO_AR, JOELHO_APOIO = 12, 78, 32
-OMBRO, COTOVELO, COTOVELO_FRENTE = 52, 78, 24
-INCLINACAO_TRONCO, TORCAO_TRONCO = 13, 7
+OMBRO, COTOVELO, COTOVELO_FRENTE, ATRASO_COTOVELO = 36, 66, 18, 35
+INCLINACAO_TRONCO, TORCAO_TRONCO = 13, 5
 CABECA_LEVANTA, CABECA_DESTORCE = -10, 4
 PE_NO_AR = 28                       # a ponta do pé cai quando a perna volta pelo ar
 COXA_M, CANELA_M, SOLA_M = 0.41, 0.37, 0.10
@@ -114,8 +117,9 @@ def pose_correr(parado, fase):
         alturas.append(altura_da_perna(rot_coxa, rot_joelho))
     for braco, desloc in (("BracoDir", 0), ("BracoEsq", 180)):
         seno = math.sin(math.radians(fase + desloc))
+        atrasado = math.sin(math.radians(fase + desloc - ATRASO_COTOVELO))
         girar(parado, f"{braco}Ombro", OMBRO * seno)
-        girar(parado, f"{braco}Cotovelo", -(COTOVELO + COTOVELO_FRENTE * max(0.0, -seno)))
+        girar(parado, f"{braco}Cotovelo", -(COTOVELO + COTOVELO_FRENTE * (1 - atrasado) / 2))
     seno = math.sin(math.radians(fase))
     girar(parado, "Tronco", INCLINACAO_TRONCO, -TORCAO_TRONCO * seno)
     girar(parado, "Cabeca", CABECA_LEVANTA, CABECA_DESTORCE * seno)
