@@ -9,6 +9,32 @@ Gabriel possui dois estados primários de movimentação em vista lateral 2.5D. 
 | **Andar** | `WASD` ou Setas | Normal (100%) | Zero | Baixo (ouvido apenas na mesma sala) |
 | **Correr** | `Shift` + Direção | Rápido (180%) | Constante (~4s contínuos) | **Alto** (propaga até 2 salas no grafo) |
 
+### 1.1 Condução (como o movimento responde)
+
+A regra é que o Gabriel **nunca patina**: os pés têm de bater com o chão e o corpo não pode ir para um lado olhando para o outro. Os valores ficam no Inspetor do Gabriel, grupo *Conducao* e *Caminhada*.
+
+- **A velocidade é separada em duas partes** a cada quadro, em relação à direção pedida (`_conduzir` em `gabriel.gd`): a parte *ao longo* da direção e a parte *de lado* (projeção por produto escalar). A parte de lado é o que parece patinação, então ela morre rápido (`taxa_virada`). Numa inversão, a parte contrária também.
+- **Arranque:** forte no começo e mais suave perto da velocidade final (`aceleracao_inicial` para `aceleracao_final`), cerca de 0,13 s.
+- **Corrida:** do passo à corrida a aceleração é menor (`aceleracao_corrida`), cerca de 0,2 s: ele pega embalo.
+- **Frenagem:** curta de propósito (`desaceleracao`). Andando ele escorrega cerca de 2 px; correndo, cerca de 7 px.
+- **Pés:** a animação avança pela distância realmente andada (`_fase_passada`), então os pés acompanham o chão em qualquer velocidade. Correndo a passada é um pouco mais curta (`px_por_quadro_correndo`), o que aumenta a cadência. Pé mais rápido que o chão parece esforço; pé mais lento é que parece patinar.
+- **Ao parar:** a animação corre até os pés se juntarem (quadros 0 ou 6 da tira) antes de ir para a respiração, em vez de pular de pose.
+- **Animação de corrida:** é uma tira própria (`gabriel_correr_<vista>.png`, 12 quadros), com o tronco inclinado, os cotovelos dobrados e os braços balançando bem mais. Ela entra quando o Gabriel passa de 30% do caminho entre andar e correr (`fracao_para_tira_de_correr`). A fase é a mesma da caminhada, então a troca acontece no mesmo quadro, sem salto. Vem de `assets/modelagem/personagens/gerar_gabriel_correr.py`, que também grava a mão da lanterna em `scripts/personagens/maos_correndo_gabriel.gd`.
+- **Corpo:** andando, um balanço vertical de até 0,5 px (`balanco_andar`), que some na corrida porque a tira já traz o sobe e desce. E uma inclinação pelos pés (`skew` do sprite): um pouco para a frente em movimento, para trás freando. A lanterna acompanha, porque `ponto_do_quadro` usa a transformação do sprite.
+- **Vista:** a direção é arredondada para um de 8 setores de 45°, com margem (`margem_virada_graus`) e uma espera curta (`segundos_para_virar`). Assim o analógico não faz o sprite piscar entre vistas, e soltar uma diagonal não o deixa olhando para o lado errado porque uma tecla subiu antes da outra. Virar mais de 90° é imediato.
+
+### 1.2 Câmera
+
+`cenas/sistemas/camera_conduzida.tscn` é filha do Gabriel e cuida da `Camera2D` que a sala coloca nele. Sala nova não precisa fazer nada.
+
+- **Antecipação:** a câmera mira `velocidade × segundos_a_frente` à frente, suavizado. A suavização da `Camera2D` atrasa cerca de `velocidade / 6`, então o saldo é de uns 0,15 s de caminho à frente: o jogador vê mais para onde vai.
+- **Sem tremor:** a câmera atualiza no passo de física, junto com o Gabriel, e `snap_2d_transforms_to_pixel` no `project.godot` arredonda tudo para pixels inteiros da janela.
+
+### 1.3 Poeira e respiração
+
+- `cenas/sistemas/poeira_dos_pes.tscn` solta alguns grãos a cada pisada de corrida, pelo sinal `passo_dado`.
+- A respiração usa `gabriel_ofegante.wav` em dois níveis (`fadiga.gd`): fraca abaixo de 30% de estamina e forte em exaustão. Só a exaustão emite o sinal `ofegante`.
+
 ---
 
 ## 2. Dinâmica de Estamina

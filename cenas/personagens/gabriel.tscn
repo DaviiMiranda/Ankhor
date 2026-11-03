@@ -18,6 +18,14 @@
 [ext_resource type="Texture2D" uid="uid://c4r4wpja27qd1" path="res://assets/sprites/personagens/gabriel/gabriel_parado_tres_quartos_costas.png" id="16_parado_tres_quartos_costas"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/passos.tscn" id="17_passos"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/fadiga.tscn" id="18_fadiga"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/gabriel/gabriel_ofegante.wav" id="19_ofegante"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/poeira_dos_pes.tscn" id="20_poeira"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/camera_conduzida.tscn" id="21_camera"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/gabriel/gabriel_correr_lado.png" id="22_correr_lado"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/gabriel/gabriel_correr_frente.png" id="23_correr_frente"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/gabriel/gabriel_correr_tres_quartos.png" id="24_correr_tres_quartos"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/gabriel/gabriel_correr_costas.png" id="25_correr_costas"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/gabriel/gabriel_correr_tres_quartos_costas.png" id="26_correr_tres_quartos_costas"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pes"]
 size = Vector2(12, 4)
@@ -35,6 +43,11 @@ andar_frente = ExtResource("7_andar_frente")
 andar_tres_quartos = ExtResource("8_andar_tres_quartos")
 andar_costas = ExtResource("9_andar_costas")
 andar_tres_quartos_costas = ExtResource("15_andar_tres_quartos_costas")
+correr_lado = ExtResource("22_correr_lado")
+correr_frente = ExtResource("23_correr_frente")
+correr_tres_quartos = ExtResource("24_correr_tres_quartos")
+correr_costas = ExtResource("25_correr_costas")
+correr_tres_quartos_costas = ExtResource("26_correr_tres_quartos_costas")
 parado_lado = ExtResource("10_parado_lado")
 parado_frente = ExtResource("11_parado_frente")
 parado_tres_quartos = ExtResource("12_parado_tres_quartos")
@@ -57,5 +70,11 @@ position = Vector2(0, -24)
 [node name="Passos" parent="." instance=ExtResource("17_passos")]
  
 [node name="Fadiga" parent="." instance=ExtResource("18_fadiga")]
+som_ofegante = ExtResource("19_ofegante")
+
+[node name="PoeiraDosPes" parent="." instance=ExtResource("20_poeira")]
+
+[node name="CameraConduzida" parent="." instance=ExtResource("21_camera")]
 
 [connection signal="passo_dado" from="." to="Passos" method="tocar"]
+[connection signal="passo_dado" from="." to="PoeiraDosPes" method="soltar"]

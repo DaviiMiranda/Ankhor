@@ -13,6 +13,10 @@ signal ofegante
 @export var duracao_exaustao: float = 3.0
 @export var intervalo_som_ofegante: float = 1.0
 @export var som_ofegante: AudioStream
+@export var fracao_cansado: float = 0.3
+@export var intervalo_som_cansado: float = 1.0
+@export var volume_exausto_db: float = -6.0
+@export var volume_cansado_db: float = -16.0
 
 var estamina := 100.0
 var tempo_exaustao := 0.0
@@ -34,10 +38,16 @@ func _physics_process(delta: float) -> void:
 		if tempo_exaustao == 0.0:
 			exaustao_terminada.emit()
 			mudou.emit(estamina, estamina_maxima)
+	elif esta_cansado():
+		_respirar_cansado(delta)
 
 
 func esta_exausto() -> bool:
 	return tempo_exaustao > 0.0
+
+
+func esta_cansado() -> bool:
+	return estamina < estamina_maxima * fracao_cansado
 
 
 func pode_correr() -> bool:
@@ -77,5 +87,17 @@ func _tocar_som_ofegante(delta: float) -> void:
 	if _tempo_ultimo_ofegante >= intervalo_som_ofegante:
 		_tempo_ultimo_ofegante = 0.0
 		ofegante.emit()
-		if reprodutor_ofegante and reprodutor_ofegante.stream:
-			reprodutor_ofegante.play()
+		_tocar_respiracao(volume_exausto_db)
+
+
+func _respirar_cansado(delta: float) -> void:
+	_tempo_ultimo_ofegante += delta
+	if _tempo_ultimo_ofegante >= intervalo_som_cansado:
+		_tempo_ultimo_ofegante = 0.0
+		_tocar_respiracao(volume_cansado_db)
+
+
+func _tocar_respiracao(volume_db: float) -> void:
+	if reprodutor_ofegante and reprodutor_ofegante.stream:
+		reprodutor_ofegante.volume_db = volume_db
+		reprodutor_ofegante.play()
