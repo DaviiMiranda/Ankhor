@@ -37,7 +37,7 @@ A **trilha sonora oficial** não é composta por script, e sim um arquivo enviad
 
 | Arquivo | Origem | Como é |
 |---|---|---|
-| `musica/oficial/trilha_sonora_oficial_ankhor.ogg` | `trilha_sonora_oficial_ANKHOR.ogg`, enviada pelo Davi (autoria e licença em [`creditos.md`](creditos.md)) | 127,6 s, mono, 48 kHz, Ogg Vorbis, em loop. **Toca em loop no menu principal** (`cenas/menu_principal.tscn`, nó `Musica`, barramento Música, −4 dB: o arquivo é 2 dB mais baixo que a trilha anterior do menu) |
+| `musica/oficial/trilha_sonora_oficial_ankhor.ogg` | `trilha_sonora_oficial_ANKHOR.ogg`, enviada pelo Davi (autoria e licença em [`creditos.md`](creditos.md)) | 125,6 s (sem os 2 s iniciais), mono, 48 kHz, Ogg Vorbis, em loop. **Toca em loop no menu principal** (`cenas/menu_principal.tscn`, nó `Musica`, barramento Música, −4 dB: o arquivo é 2 dB mais baixo que a trilha anterior do menu) |
 
 > O arquivo original veio em **Opus** (dentro de um `.ogg`), que o Godot não lê: ele marca o arquivo como inválido e a música não toca. Por isso o arquivo do projeto foi convertido para **Ogg Vorbis** com `ffmpeg -i trilha_sonora_oficial_ANKHOR.ogg -c:a libvorbis -q:a 5 trilha_sonora_oficial_ankhor.ogg`. Se o Davi mandar uma versão nova da trilha, faça a mesma conversão antes de colocar na pasta.
 
