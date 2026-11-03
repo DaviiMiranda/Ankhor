@@ -1,5 +1,19 @@
 # Registro de decisões
 
+## 2026-11-03 — Pernas do Gabriel mais calmas na corrida
+
+**Decisão:** `px_por_quadro_correndo` passou de 2,5 para 5,0. A corrida caiu de 7,2 para 3,6 passos por segundo, a mesma cadência da caminhada, e o pé no chão quase acompanha o piso (a tira de correr pede cerca de 5,4 px por quadro). A velocidade de corrida não mudou.
+
+A tira de corrida também passou de 12 para 24 quadros, nas cinco vistas: os quadros antigos continuam iguais, e entre cada par entrou um novo. O ciclo dura o mesmo tempo, então a corrida passa de cerca de 22 para cerca de 43 quadros por segundo, com a pose mudando menos a cada quadro. A caminhada segue com 12.
+
+O desenho também mudou, porque ainda parecia travado. As duas pernas agora usam os mesmos ângulos, o que tira a manqueira: a cabeça descia 8 px em um passo e 5 px no outro, e agora desce 5 px nos dois. O quadril passou a seguir uma onda suave, a média e a frequência dos passos na série de Fourier da altura, em vez do `max` das duas pernas, que dava um tranco a cada passo. Em troca, o pé pode ficar até 1,2 px fora do chão no sprite.
+
+Isto substitui os "12% mais passos por segundo" da entrada abaixo. O som dos passos e a poeira seguem a passada, então também caem pela metade, e os robôs recebem metade dos avisos de passo por segundo. Cada passo continua com o mesmo alcance de som.
+
+**Por quê:** pedido do Davi: as pernas estavam rápidas demais na corrida e, depois da redução da cadência, ainda faltava suavidade, por isso os quadros a mais e o desenho corrigido. A medição no Godot mostrou que nenhum quadro é pulado e que o personagem não treme na tela: o problema estava na tira.
+
+**Afeta:** `assets/modelagem/personagens/gerar_gabriel_correr.py`, `assets/sprites/personagens/gabriel/gabriel_correr_*.png`, `scripts/personagens/maos_correndo_gabriel.gd`, `scripts/personagens/gabriel.gd`, `docs/mecanicas/movimentacao_e_terreno.md`.
+
 ## 2026-11-03 — Condução do Gabriel: movimento mais fluido, sem patinar
 
 **Decisão:** o movimento do Gabriel foi refeito para responder melhor, com uma regra: ele não pode parecer que patina. A velocidade agora é separada na parte ao longo da direção pedida e na parte de lado, e a de lado morre rápido. A frenagem ficou mais curta, a corrida ganhou um arranque e os pés seguem a distância andada. Entraram também a histerese na vista, os pés se juntando ao parar, o balanço e a inclinação do corpo, a câmera com antecipação e sem tremor, a poeira nos pés ao correr e a respiração em dois níveis. A corrida ganhou uma animação própria, com os braços balançando bem mais. A câmera não balança na corrida: o balanço foi testado e retirado a pedido do Davi.
