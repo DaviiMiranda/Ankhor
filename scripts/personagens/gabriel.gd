@@ -10,6 +10,7 @@ const COR_ESCONDIDO := Color(0.45, 0.45, 0.6)
 const LARGURA_QUADRO := 96.0
 const SETORES_OLHAR := 8
 const MAOS := preload("res://scripts/personagens/maos_do_gabriel.gd").MAOS
+const MAOS_CORRENDO := preload("res://scripts/personagens/maos_correndo_gabriel.gd").MAOS_CORRENDO
 const CENA_ANSIEDADE := preload("res://cenas/sistemas/ansiedade.tscn")
 const PEITO_NO_QUADRO := {
 	"lado": Vector2(54, 40),
@@ -52,10 +53,17 @@ const PEITO_NO_QUADRO := {
 @export var px_por_quadro_correndo: float = 2.5
 @export var quadros_por_segundo_assentando: float = 36.0
 @export var balanco_andar: float = 0.5
-@export var balanco_correr: float = 1.0
-@export var inclinacao_correndo: float = 0.07
+@export var inclinacao_andando: float = 0.03
 @export var inclinacao_freando: float = 0.12
 @export var rapidez_inclinacao: float = 20.0
+
+@export_group("Corrida")
+@export var correr_lado: Texture2D
+@export var correr_frente: Texture2D
+@export var correr_tres_quartos: Texture2D
+@export var correr_costas: Texture2D
+@export var correr_tres_quartos_costas: Texture2D
+@export var fracao_para_tira_de_correr: float = 0.3
 
 @export_group("Parado")
 @export var parado_lado: Texture2D
@@ -208,10 +216,6 @@ func fracao_de_corrida() -> float:
 	return clampf(inverse_lerp(velocidade_andar, maxima, plano.length()), 0.0, 1.0)
 
 
-func pulso_da_passada() -> float:
-	return sin(2.0 * TAU * _fase_passada / quadros_andar)
-
-
 func esconder(sim: bool) -> void:
 	escondido = sim
 	sprite.self_modulate = COR_ESCONDIDO if sim else Color.WHITE
@@ -226,7 +230,7 @@ func posicao_do_peito() -> Vector2:
 
 
 func posicao_da_mao() -> Vector2:
-	var quadros: Array = MAOS[vista][_tira_da_mao]
+	var quadros: Array = MAOS_CORRENDO[vista] if _tira_da_mao == "correr" else MAOS[vista][_tira_da_mao]
 	return ponto_do_quadro(quadros[mini(sprite.frame, quadros.size() - 1)])
 
 
@@ -337,11 +341,11 @@ func _angulo_do_setor() -> float:
 
 func _ajustar_corpo(direcao: Vector2, delta: float) -> void:
 	var peso_andando := clampf(_velocidade_propria.length() / velocidade_andar, 0.0, 1.0)
-	var balanco := lerpf(balanco_andar, balanco_correr, fracao_de_corrida()) * peso_andando
+	var balanco := balanco_andar * peso_andando * (1.0 - fracao_de_corrida())
 	var pes_juntos := absf(cos(TAU * _fase_passada / quadros_andar))
 	sprite.position.y = -snappedf(balanco * pes_juntos, 0.5)
 	var rapidez := _velocidade_propria.x / (velocidade_andar * multiplicador_correr)
-	var inclinacao := rapidez * inclinacao_correndo
+	var inclinacao := rapidez * inclinacao_andando
 	if direcao.x * _velocidade_propria.x <= 0.0:
 		inclinacao = -rapidez * inclinacao_freando
 	sprite.skew = lerpf(sprite.skew, inclinacao, 1.0 - exp(-rapidez_inclinacao * delta))
@@ -360,13 +364,11 @@ func _animar(andou: float, delta: float) -> void:
 	if andou > 0.01 and andando[vista]:
 		_tempo_parado = 0.0
 		_fase_passada += andou / lerpf(px_por_quadro, px_por_quadro_correndo, fracao_de_corrida())
-		_tira_da_mao = "andar"
-		_mostrar(andando[vista], quadros_andar, int(_fase_passada) % quadros_andar)
+		_mostrar_passada(andando[vista])
 		_contar_passos()
 	elif andando[vista] and int(_fase_passada) % (quadros_andar / 2) != 0:
 		_fase_passada += quadros_por_segundo_assentando * delta
-		_tira_da_mao = "andar"
-		_mostrar(andando[vista], quadros_andar, int(_fase_passada) % quadros_andar)
+		_mostrar_passada(andando[vista])
 	elif respirando[vista]:
 		_fase_passada = 0.0
 		_passos = 0
@@ -379,6 +381,19 @@ func _animar(andou: float, delta: float) -> void:
 		_passos = 0
 		_tira_da_mao = "imovel"
 		_mostrar(imovel[vista], 1, 0)
+
+
+func _mostrar_passada(tira_de_andar: Texture2D) -> void:
+	var correndo_tiras := {"lado": correr_lado, "frente": correr_frente,
+			"tres_quartos": correr_tres_quartos, "costas": correr_costas,
+			"tres_quartos_costas": correr_tres_quartos_costas}
+	var tira: Texture2D = correndo_tiras[vista]
+	if tira == null or fracao_de_corrida() <= fracao_para_tira_de_correr:
+		tira = tira_de_andar
+		_tira_da_mao = "andar"
+	else:
+		_tira_da_mao = "correr"
+	_mostrar(tira, quadros_andar, int(_fase_passada) % quadros_andar)
 
 
 func _contar_passos() -> void:

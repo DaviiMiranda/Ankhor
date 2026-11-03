@@ -3,7 +3,6 @@ extends Node
 
 @export var segundos_a_frente: float = 0.32
 @export var rapidez_antecipacao: float = 2.5
-@export var balanco_correndo: float = 0.75
 
 var _posicao_base := Vector2.ZERO
 
@@ -22,4 +21,3 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var alvo := _posicao_base + _gabriel.get_real_velocity() * segundos_a_frente
 	_camera.position = _camera.position.lerp(alvo, 1.0 - exp(-rapidez_antecipacao * delta))
-	_camera.offset.y = balanco_correndo * _gabriel.fracao_de_corrida() * _gabriel.pulso_da_passada()

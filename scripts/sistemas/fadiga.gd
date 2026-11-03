@@ -14,7 +14,7 @@ signal ofegante
 @export var intervalo_som_ofegante: float = 1.0
 @export var som_ofegante: AudioStream
 @export var fracao_cansado: float = 0.3
-@export var intervalo_som_cansado: float = 1.6
+@export var intervalo_som_cansado: float = 1.0
 @export var volume_exausto_db: float = -6.0
 @export var volume_cansado_db: float = -16.0
 

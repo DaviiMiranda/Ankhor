@@ -2,13 +2,13 @@
 
 ## 2026-11-03 — Condução do Gabriel: movimento mais fluido, sem patinar
 
-**Decisão:** o movimento do Gabriel foi refeito para responder melhor, com uma regra: ele não pode parecer que patina. A velocidade agora é separada na parte ao longo da direção pedida e na parte de lado, e a de lado morre rápido. A frenagem ficou mais curta, a corrida ganhou um arranque e os pés seguem a distância andada. Entraram também a histerese na vista, os pés se juntando ao parar, o balanço e a inclinação do corpo, a câmera com antecipação e sem tremor, a poeira nos pés ao correr e a respiração em dois níveis.
+**Decisão:** o movimento do Gabriel foi refeito para responder melhor, com uma regra: ele não pode parecer que patina. A velocidade agora é separada na parte ao longo da direção pedida e na parte de lado, e a de lado morre rápido. A frenagem ficou mais curta, a corrida ganhou um arranque e os pés seguem a distância andada. Entraram também a histerese na vista, os pés se juntando ao parar, o balanço e a inclinação do corpo, a câmera com antecipação e sem tremor, a poeira nos pés ao correr e a respiração em dois níveis. A corrida ganhou uma animação própria, com os braços balançando bem mais. A câmera não balança na corrida: o balanço foi testado e retirado a pedido do Davi.
 
 A respiração ofegante estava documentada, mas o som nunca tinha sido ligado na cena do Gabriel: agora toca. O sinal `ofegante` continua só na exaustão, e nada na furtividade mudou de propósito. A corrida dá cerca de 12% mais passos por segundo, e cada passo continua com o mesmo alcance de som.
 
 **Por quê:** pedido do Davi, que também escolheu deixar de fora a colisão por quinas e o andar lento no analógico.
 
-**Afeta:** `scripts/personagens/gabriel.gd`, `scripts/sistemas/fadiga.gd`, `scripts/sistemas/camera_conduzida.gd`, `scripts/sistemas/poeira_dos_pes.gd`, `cenas/personagens/gabriel.tscn`, `cenas/sistemas/camera_conduzida.tscn`, `cenas/sistemas/poeira_dos_pes.tscn`, `project.godot`, `docs/mecanicas/movimentacao_e_terreno.md`.
+**Afeta:** `assets/modelagem/personagens/gerar_gabriel_correr.py`, `assets/sprites/personagens/gabriel/gabriel_correr_*.png`, `scripts/personagens/maos_correndo_gabriel.gd`, `scripts/personagens/gabriel.gd`, `scripts/sistemas/fadiga.gd`, `scripts/sistemas/camera_conduzida.gd`, `scripts/sistemas/poeira_dos_pes.gd`, `cenas/personagens/gabriel.tscn`, `cenas/sistemas/camera_conduzida.tscn`, `cenas/sistemas/poeira_dos_pes.tscn`, `project.godot`, `docs/mecanicas/movimentacao_e_terreno.md`.
 
 ## 2026-11-02 — Tela de parabéns de Hora Morta e o mistério da Nave 67
 
