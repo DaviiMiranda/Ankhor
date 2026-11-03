@@ -34,14 +34,29 @@
 #   tronco    = inclinado para a frente, torcendo com os braços; a cabeça desfaz
 #               parte disso, porque ele olha para onde corre
 #
-# A altura do quadril não é uma onda escolhida à mão: sai da perna mais esticada.
-# A distância vertical do quadril até a sola de uma perna é
+# As duas pernas usam os mesmos ângulos, meio ciclo defasados. Na pose parada elas
+# são um pouco diferentes (coxas -3° e 3°, joelhos 4° e 2°); somar a corrida em cima
+# disso faz um passo afundar mais que o outro, e ele manca. Por isso aqui o ângulo é
+# absoluto, a partir da média das duas (JOELHO_REPOUSO).
+#
+# A altura do quadril sai da perna mais esticada. A distância vertical do quadril
+# até a sola de uma perna é
 #
 #   h = L1 · cos(a) + L2 · cos(a + b) + SOLA
 #
-# (a = giro da coxa, b = giro do joelho). O quadril fica em max(h da direita,
-# h da esquerda), então um pé sempre encosta no chão sem atravessá-lo. Somado a
-# isso há um pequeno salto (VOO · sen²(2φ)) entre as pisadas.
+# (a = giro da coxa, b = giro do joelho). A altura crua seria
+#
+#   H(φ) = max(h da direita, h da esquerda) + VOO · sen²(2φ)
+#
+# mas o max tem uma quina a cada passo: o corpo desce e volta de repente, e é isso
+# que parece travado. Então fica só o começo da série de Fourier de H, a média e a
+# onda na frequência dos passos, sem quina nenhuma:
+#
+#   H̃(φ) = M + A · cos(2φ) + B · sen(2φ)
+#   M = média de H     A = 2 · média de H · cos(2φ)     B = 2 · média de H · sen(2φ)
+#
+# O pé pode ficar um pouco acima ou abaixo do chão (H - H̃, o script imprime o
+# máximo), bem menos visível que o tranco.
 #
 # A mão não é medida na imagem, como em medir_maos_gabriel.py: correndo, as duas
 # mãos cruzam o corpo, e a "mão mais à direita" trocaria de lado no meio do ciclo,
@@ -76,6 +91,7 @@ SAIDA_TABELA = os.path.join(c.PASTA_PROJETO, "scripts", "personagens", "maos_cor
 QUADROS_CORRER = 24                 # o dobro da caminhada (comum.QUADROS_ANDAR)
 COXA_MEIO, COXA, COXA_APOIO = -9, 35, 20
 JOELHO_BASE, JOELHO_AR, JOELHO_APOIO = 12, 78, 32
+JOELHO_REPOUSO = 3                  # média dos joelhos na pose parada; a das coxas é 0
 OMBRO, COTOVELO, COTOVELO_FRENTE, ATRASO_COTOVELO = 36, 66, 18, 35
 INCLINACAO_TRONCO, TORCAO_TRONCO = 13, 5
 CABECA_LEVANTA, CABECA_DESTORCE = -10, 4
@@ -102,21 +118,50 @@ def altura_da_perna(a_graus, b_graus):
     return COXA_M * math.cos(a) + CANELA_M * math.cos(a + math.radians(b_graus)) + SOLA_M
 
 
+def angulos_da_perna(fase):
+    phi = math.radians(fase)
+    no_ar = max(0.0, math.cos(phi))
+    no_apoio = max(0.0, -math.cos(phi))
+    coxa = COXA_MEIO - COXA * math.sin(phi) - COXA_APOIO * no_apoio ** 1.5
+    joelho = JOELHO_REPOUSO + JOELHO_BASE + JOELHO_AR * no_ar ** 1.2 + JOELHO_APOIO * no_apoio ** 1.5
+    return coxa, joelho, no_ar
+
+
+def altura_crua(fase):
+    alturas = [altura_da_perna(*angulos_da_perna(fase + desloc)[:2]) for desloc in (0, 180)]
+    return max(alturas) + VOO_M * math.sin(math.radians(2 * fase)) ** 2
+
+
+def onda_do_quadril(amostras=720):
+    fases = [360 * i / amostras for i in range(amostras)]
+    alturas = [altura_crua(fase) for fase in fases]
+    media = sum(alturas) / amostras
+    a = 2 * sum(h * math.cos(math.radians(2 * f)) for h, f in zip(alturas, fases)) / amostras
+    b = 2 * sum(h * math.sin(math.radians(2 * f)) for h, f in zip(alturas, fases)) / amostras
+    return media, a, b
+
+
+ONDA_QUADRIL = onda_do_quadril()
+
+
+def altura_suave(fase):
+    media, a, b = ONDA_QUADRIL
+    dobro = math.radians(2 * fase)
+    return media + a * math.cos(dobro) + b * math.sin(dobro)
+
+
+def girar_absoluto(parado, nome, x):
+    rot, _ = parado[nome]
+    bpy.data.objects[nome].rotation_euler = (math.radians(x), rot[1], rot[2])
+
+
 def pose_correr(parado, fase):
-    alturas = []
     for perna, desloc in (("PernaDir", 0), ("PernaEsq", 180)):
-        phi = math.radians(fase + desloc)
-        no_ar = max(0.0, math.cos(phi))
-        no_apoio = max(0.0, -math.cos(phi))
-        coxa = COXA_MEIO - COXA * math.sin(phi) - COXA_APOIO * no_apoio ** 1.5
-        joelho = JOELHO_BASE + JOELHO_AR * no_ar ** 1.2 + JOELHO_APOIO * no_apoio ** 1.5
-        girar(parado, f"{perna}Quadril", coxa)
-        girar(parado, f"{perna}Joelho", joelho)
+        coxa, joelho, no_ar = angulos_da_perna(fase + desloc)
+        girar_absoluto(parado, f"{perna}Quadril", coxa)
+        girar_absoluto(parado, f"{perna}Joelho", joelho)
         # O tornozelo desfaz coxa e joelho (pé reto) e deixa a ponta cair no ar.
-        girar(parado, f"{perna}Tornozelo", -coxa - joelho + PE_NO_AR * no_ar)
-        rot_coxa = math.degrees(parado[f"{perna}Quadril"][0][0]) + coxa
-        rot_joelho = math.degrees(parado[f"{perna}Joelho"][0][0]) + joelho
-        alturas.append(altura_da_perna(rot_coxa, rot_joelho))
+        girar_absoluto(parado, f"{perna}Tornozelo", -coxa - joelho + PE_NO_AR * no_ar)
     for braco, desloc in (("BracoDir", 0), ("BracoEsq", 180)):
         seno = math.sin(math.radians(fase + desloc))
         atrasado = math.sin(math.radians(fase + desloc - ATRASO_COTOVELO))
@@ -126,8 +171,7 @@ def pose_correr(parado, fase):
     girar(parado, "Tronco", INCLINACAO_TRONCO, -TORCAO_TRONCO * seno)
     girar(parado, "Cabeca", CABECA_LEVANTA, CABECA_DESTORCE * seno)
     _, pos = parado["Quadril"]
-    voo = VOO_M * math.sin(math.radians(2 * fase)) ** 2
-    bpy.data.objects["Quadril"].location = (pos[0], pos[1], max(alturas) + voo)
+    bpy.data.objects["Quadril"].location = (pos[0], pos[1], altura_suave(fase))
     bpy.context.view_layer.update()
 
 
@@ -167,6 +211,8 @@ def main():
 
     bracos = {vista: braco_da_lanterna(cam, raiz, materiais, angulo) for vista, angulo in c.VISTAS_JOGO}
     print("[correr] mão da lanterna:", bracos)
+    folga = max(abs(altura_crua(f) - altura_suave(f)) for f in range(360))
+    print(f"[correr] pé longe do chão, no máximo: {folga * c.PX_POR_M_JOGO_2X:.1f} px")
 
     tiras = {vista: [] for vista, _ in c.VISTAS_JOGO}
     maos = {vista: [] for vista, _ in c.VISTAS_JOGO}
