@@ -27,6 +27,8 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r25"]
 [ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
 [ext_resource type="Resource" path="res://dados/colecoes/centro_de_convivencia.tres" id="col_dados"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="gd_item"]
+[ext_resource type="Resource" path="res://dados/itens/espelho.tres" id="gd_espelho"]
 
 [node name="LojaUni" instance=ExtResource("r1")]
 id = "conv_loja_uni"
@@ -139,5 +141,9 @@ nome_piso = "carpete macio"
 position = Vector2(410, 176)
 colecao = ExtResource("col_dados")
 numero = 1
+
+[node name="Espelho" parent="Objetos" instance=ExtResource("gd_item")]
+position = Vector2(506, 218)
+item = ExtResource("gd_espelho")
 
 [editable path="Ceu"]

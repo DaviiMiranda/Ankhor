@@ -53,9 +53,6 @@ position = Vector2(52, 198)
 [node name="CaixasRolos2" parent="Objetos" instance=ExtResource("r7")]
 position = Vector2(362, 208)
 
-[node name="Pilha1" parent="Objetos" instance=ExtResource("r8")]
-position = Vector2(262, 196)
-
 [node name="Documento1" parent="Objetos" instance=ExtResource("r11")]
 position = Vector2(160, 196)
 texto_acao = "Ler o canhoto"

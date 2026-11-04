@@ -160,10 +160,6 @@ espelhado = true
 position = Vector2(180, 320)
 item = ExtResource("r14")
 
-[node name="Clarao2" parent="Objetos" instance=ExtResource("r15")]
-position = Vector2(230, 320)
-item = ExtResource("r14")
-
 [node name="Pilha1" parent="Objetos" instance=ExtResource("r16")]
 position = Vector2(340, 250)
 

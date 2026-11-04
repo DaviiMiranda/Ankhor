@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/biblioteca/letreiro_holografico.tscn" id="fut_letreiro"]
 [ext_resource type="Texture2D" path="res://assets/sprites/salas/biblioteca/biblioteca_fundo_moderna_luz.png" id="fut_fundo_luz"]
 [ext_resource type="Script" path="res://scripts/sistemas/visivel_com_marca.gd" id="fut_vcm"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/esconderijo_cabine.tscn" id="gd_esconderijo"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -329,5 +330,11 @@ position = Vector2(415.0, 30.0)
 offset_right = 48.0
 offset_bottom = 14.0
 text = "SAÍDA"
+
+[node name="EsconderijoCabineLeste" parent="Objetos" instance=ExtResource("gd_esconderijo")]
+position = Vector2(350, 134)
+
+[node name="EsconderijoCabineFundo" parent="Objetos" instance=ExtResource("gd_esconderijo")]
+position = Vector2(340, 364)
 
 [editable path="Ceu"]

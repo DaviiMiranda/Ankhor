@@ -62,6 +62,7 @@
 [ext_resource type="Resource" path="res://dados/transmissoes/grupo_biblioteca_01.tres" id="g_grupo_biblioteca_01"]
 [ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
 [ext_resource type="Resource" path="res://dados/colecoes/biblioteca.tres" id="col_dados"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/esconderijo_cabine.tscn" id="gd_esconderijo"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
@@ -813,3 +814,9 @@ transmissao = ExtResource("g_grupo_biblioteca_01")
 marca_necessaria = "energia"
 na_sala_inteira = true
 depois_da_transmissao = "clarice_biblioteca_01"
+
+[node name="EsconderijoCabineSul" parent="Objetos" instance=ExtResource("gd_esconderijo")]
+position = Vector2(860, 276)
+
+[node name="EsconderijoCabineFundo" parent="Objetos" instance=ExtResource("gd_esconderijo")]
+position = Vector2(300, 408)

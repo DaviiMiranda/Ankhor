@@ -336,6 +336,7 @@ porta_destino = "bloco_102"
 [node name="Molho" parent="Objetos" instance=ExtResource("r16")]
 position = Vector2(326, 390)
 item = ExtResource("b_molho")
+segundos_segurar = 2.0
 
 [node name="Brecha" parent="." instance=ExtResource("r2")]
 position = Vector2(28, 272)

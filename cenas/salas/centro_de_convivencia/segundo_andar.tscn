@@ -487,9 +487,6 @@ item = ExtResource("r20")
 position = Vector2(1440, 244)
 item = ExtResource("r20")
 
-[node name="Pilha1" parent="Objetos" instance=ExtResource("r22")]
-position = Vector2(1880, 392)
-
 [node name="Documento1" parent="Objetos" instance=ExtResource("r25")]
 position = Vector2(200, 342)
 texto_acao = "Ler a carta"

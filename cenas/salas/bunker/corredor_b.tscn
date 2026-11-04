@@ -34,6 +34,7 @@
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="n5"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="n6"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/robo_escafandro.tscn" id="robo_escafandro"]
+[ext_resource type="Script" path="res://scripts/sistemas/zona_de_gas.gd" id="gd_gas"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -62,7 +63,7 @@ position = Vector2(320, 0)
 [node name="Parede06" parent="Paredes" instance=ExtResource("r7")]
 position = Vector2(400, 0)
 
-[node name="Parede07" parent="Paredes" instance=ExtResource("r8")]
+[node name="Parede07" parent="Paredes" instance=ExtResource("r10")]
 position = Vector2(480, 0)
 
 [node name="Parede08" parent="Paredes" instance=ExtResource("r5")]
@@ -101,7 +102,7 @@ position = Vector2(1360, 0)
 [node name="Parede19" parent="Paredes" instance=ExtResource("n3")]
 position = Vector2(1440, 0)
 
-[node name="Parede20" parent="Paredes" instance=ExtResource("r10")]
+[node name="Parede20" parent="Paredes" instance=ExtResource("r8")]
 position = Vector2(1520, 0)
 
 [node name="Parede21" parent="Paredes" instance=ExtResource("r5")]
@@ -151,7 +152,7 @@ offset_right = 553.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.86, 0.74, 0.34, 1)
 theme_override_styles/normal = SubResource("Placa")
-text = "GERADOR"
+text = "ARQUIVO"
 horizontal_alignment = 1
 
 [node name="PlacaDeposito" type="Label" parent="Paredes"]
@@ -181,7 +182,7 @@ offset_right = 1593.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.86, 0.74, 0.34, 1)
 theme_override_styles/normal = SubResource("Placa")
-text = "ARQUIVO"
+text = "GERADOR"
 horizontal_alignment = 1
 
 [node name="PlacaNucleo" type="Label" parent="Paredes"]
@@ -319,7 +320,7 @@ porta_destino = "corredor_a_escada"
 som_abrir = ExtResource("r25")
 
 [node name="Porta_corredor_b_gerador" parent="." instance=ExtResource("r24")]
-position = Vector2(521, 124)
+position = Vector2(1561, 124)
 id = "corredor_b_gerador"
 cena_destino = "res://cenas/salas/bunker/gerador.tscn"
 porta_destino = "gerador"
@@ -339,7 +340,7 @@ bloqueada = true
 aviso_bloqueada = "Lacrada pelo sistema. O Zane está tentando abrir."
 
 [node name="Porta_arquivo" parent="." instance=ExtResource("r24")]
-position = Vector2(1561, 124)
+position = Vector2(521, 124)
 id = "arquivo"
 bloqueada = true
 aviso_bloqueada = "Lacrada pelo sistema. O Zane está tentando abrir."
@@ -435,3 +436,10 @@ script = ExtResource("n5")
 [node name="Checkpoint" parent="Objetos" instance=ExtResource("n6")]
 position = Vector2(290, 150)
 id = "bunker_setor_b"
+
+[node name="ZonaDeGas" type="ColorRect" parent="."]
+offset_left = 360.0
+offset_right = 1860.0
+offset_bottom = 180.0
+script = ExtResource("gd_gas")
+fontes = PackedVector2Array(14, 7, 28, 7, 42, 7, 56, 7, 70, 7, 84, 7)

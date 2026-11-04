@@ -342,6 +342,7 @@ centered = false
 [node name="DescerBuraco" parent="." instance=ExtResource("r2")]
 position = Vector2(200, 440)
 id = "bloco_buraco_204"
+robo_atravessa = false
 cena_destino = "res://cenas/salas/bloco_de_salas/sala_104.tscn"
 porta_destino = "bloco_buraco_104"
 direcao_entrar = Vector2(0, 1)
