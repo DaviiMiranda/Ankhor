@@ -17,9 +17,12 @@ Estes itens estavam nas pendências do Enredo até 2026-10-15 e saíram de lá q
 
 - **Diana:** o visual existe (sprites e retratos em `assets/sprites/personagens/diana/`), mas a cena da sala 103 ainda mostra só a Clarice.
 - **Henrique:** se o acesso às câmeras do campus vira uma mecânica (ver o campus, avisar de ronda nova).
-- **Gadgets:** em que fase cada gadget aparece e se cada um vem de um personagem.
+- **Gadgets:** decidido em 2026-11-04 para as cinco primeiras fases ([`mecanicas/mecanicas_de_fase.md`](mecanicas/mecanicas_de_fase.md)). Falta o D-Tec.
+- **Falas em rascunho (2026-11-04):** as 2 falas da Clarice sobre o walkman, as 2 do Zane sobre o pulso e o Nó 3, e a transmissão `diana_convivencia_01`.
 
 ## Fases e cenários
+
+- **`montar_convivencia.py` desatualizado:** as cenas têm trabalho que não está na descrição das salas (coleções e robôs de 2026-11-04). Rodar o montador inteiro desfaz esse trabalho. Falta levar essas mudanças para `salas_convivencia.py`.
 
 - **Bunker:** o que destrava o setor B (senhas nos disquetes, religar o gerador) e se os robôs entram também no setor B. As **salas antigas** já existem (a dos anos 80 é do Carlos; a do século XIX é onde o Baltazar dormiu): falta pôr nela o rastro dele.
 - **Cenários mais futuristas.** Pedido do Davi: os cenários precisam mostrar mais a tecnologia de 3026 (telas, máquinas, a estrutura do centro de pesquisa e do D-Tec), misturada às ruínas e à vegetação. A Biblioteca e o Bloco de salas já estão assim. Falta decidir quanto do resto do campus tem esse visual e onde ele aparece mais.

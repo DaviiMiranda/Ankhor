@@ -1,5 +1,34 @@
 # Registro de decisões
 
+## 2026-11-04 — Mecânica, item e desafio novos por fase (menos o D-Tec)
+
+**Decisão:** cada fase ganha uma ação nova, um item com custo e um desafio que junta os dois. O detalhe está em [`mecanicas/mecanicas_de_fase.md`](mecanicas/mecanicas_de_fase.md).
+
+| Fase | Mecânica | Item | Desafio |
+|---|---|---|---|
+| Biblioteca | Cabine com microgame de respiração | Nenhum | Voltar pelo salão iluminado |
+| Bloco de salas | Segurar `E` em ações demoradas | Walkman da Clarice | Cortar a corrente em 5 s, com barulho |
+| Labirinto | Sonar por BFS | Módulo de pulso do Zane | Nó 3 sem pausa; nichos nos becos |
+| Centro de Convivência | A Célula como carga | Mapa da Diana e caco de espelho | Levar a Célula pela praça ou pela galeria nova |
+| Bunker | Gás no setor B, por difusão | Máscara de gás | Passar pelo Escafandro com a máscara |
+
+**Na base, para todas as fases:** Rastreador, Caçador e Mariposa perseguem mais rápido do que o Gabriel anda (72, 68 e 70 px/s); o robô atravessa a porta atrás do Gabriel; os painéis podem não pausar; a chave usada sai da mochila; a pilha vai para o gadget mais fraco entre lanterna, walkman e notebook.
+
+**Por quê:** pedido do Davi. Com o Gabriel mais rápido que todos os robôs, a porta encerrando qualquer perseguição e todo puzzle pausando o jogo, a tensão acabava cedo, e quase todo item novo depois do notebook era uma chave.
+
+**Escolhas feitas sem resposta do grupo, para revisar:**
+- **História:** a Clarice empresta o walkman, a Diana deixa o mapa na Tapioca Orbital e há gás no setor B. Entraram no Enredo, com falas em rascunho (2 da Clarice, 2 do Zane e a transmissão `diana_convivencia_01`).
+- **Espelho:** ficou no Centro de Convivência e rebate o farol da Sentinela. Não age sobre a lupa do Carlos, porque o D-Tec ficou de fora.
+- **Gerador do Bunker:** trocou de lugar com o arquivo no Corredor B (x 1561), para o gás fazer diferença no caminho.
+
+**Fora desta rodada:** reescrever a rota dos robôs, a arena sem pausa, o Enxame e a recompensa do espelho no D-Tec. A perseguição entre salas também não vale lá. Mas os números de velocidade ficam na cena do robô, então o Caçador e o Rastreador do D-Tec também ficaram mais rápidos, e o módulo de pulso e a pilha nova valem para quem chega lá com o notebook.
+
+**Falta:** teste de jogo de todos os números; arte final (itens, portinhola e galeria são placeholders); o Zane explicar os robôs novos.
+
+**Cuidado:** `montar_convivencia.py` está desatualizado em relação às cenas (coleções e os robôs de 2026-11-04 foram postos à mão). Rodá-lo inteiro desfaz esse trabalho. A galeria nasceu dele, mas as outras salas foram editadas à mão, com a descrição atualizada junto.
+
+**Afeta:** `scripts/sistemas/` (`perseguicao_entre_salas`, `acao_demorada`, `itens_largados`, `zumbido_da_carga`, `esconderijo_cabine`, `zona_de_gas`, `porta_da_galeria`), `scripts/itens/` (`walkman`, `walkman_no_chao`, `pulso_sonar`, `espelho`, `mascara_gas`), `shaders/gas.gdshader`, `dados/itens/`, `project.godot` (tecla `largar`, `G`), as salas das cinco fases, `docs/historia/História_Completa.md` e `.docx`, `docs/historia/dialogos/Dialogos.docx`, `docs/mecanicas/`, `docs/fases/`, `docs/computacao/difusao_do_gas.md`.
+
 ## 2026-11-04 — Robôs novos: Ronda e Caçador a partir do Labirinto, Mariposa e Escafandro no bunker
 
 **Decisão:** entram quatro tipos de robô. Cada um é uma cena com os próprios números, sobre o mesmo `robo.gd`.
