@@ -30,6 +30,14 @@
 [ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
 [ext_resource type="Resource" path="res://dados/colecoes/bloco_de_salas.tres" id="col_dados"]
 
+[ext_resource type="PackedScene" path="res://cenas/sistemas/quadro_energia.tscn" id="pz_quadro"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/mancha_luar.tscn" id="pz_mancha"]
+[ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="pz_clarao"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/mancha_luar_estrela.png" id="pz_estrela"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/mancha_luar_raiz.png" id="pz_raiz"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/mancha_luar_lua.png" id="pz_lua"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/mancha_luar_folha.png" id="pz_folha"]
+
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
 
@@ -380,5 +388,81 @@ texto = "Um robô professor na doca de recarga. Raízes e musgo já chegaram at�
 position = Vector2(200, 322)
 colecao = ExtResource("col_dados")
 numero = 3
+
+[node name="ManchaEstrela" parent="Chao" instance=ExtResource("pz_mancha")]
+position = Vector2(46, 364)
+texture = ExtResource("pz_estrela")
+
+[node name="ManchaRaiz" parent="Chao" instance=ExtResource("pz_mancha")]
+position = Vector2(172, 404)
+texture = ExtResource("pz_raiz")
+
+[node name="ManchaLua" parent="Chao" instance=ExtResource("pz_mancha")]
+position = Vector2(330, 256)
+texture = ExtResource("pz_lua")
+
+[node name="ManchaFolha" parent="Chao" instance=ExtResource("pz_mancha")]
+position = Vector2(442, 402)
+texture = ExtResource("pz_folha")
+
+[node name="LuzManchaEstrela" parent="Luzes" instance=ExtResource("r20")]
+position = Vector2(46, 354)
+color = Color(0.5, 0.6, 0.95, 1)
+energy = 0.5
+
+[node name="OlharManchaEstrela" parent="Objetos" instance=ExtResource("fut_aviso")]
+position = Vector2(46, 368)
+texto_acao = "Olhar o luar"
+altura_aviso = 18.0
+texto = "O luar passa pelo buraco do teto e desenha uma estrela no chão."
+
+[node name="LuzManchaRaiz" parent="Luzes" instance=ExtResource("r20")]
+position = Vector2(172, 394)
+color = Color(0.5, 0.6, 0.95, 1)
+energy = 0.5
+
+[node name="OlharManchaRaiz" parent="Objetos" instance=ExtResource("fut_aviso")]
+position = Vector2(172, 408)
+texto_acao = "Olhar o luar"
+altura_aviso = 18.0
+texto = "O luar passa pelo buraco do teto e desenha uma raiz no chão."
+
+[node name="LuzManchaLua" parent="Luzes" instance=ExtResource("r20")]
+position = Vector2(330, 246)
+color = Color(0.5, 0.6, 0.95, 1)
+energy = 0.5
+
+[node name="OlharManchaLua" parent="Objetos" instance=ExtResource("fut_aviso")]
+position = Vector2(330, 260)
+texto_acao = "Olhar o luar"
+altura_aviso = 18.0
+texto = "O luar passa pelo buraco do teto e desenha uma lua no chão."
+
+[node name="LuzManchaFolha" parent="Luzes" instance=ExtResource("r20")]
+position = Vector2(442, 392)
+color = Color(0.5, 0.6, 0.95, 1)
+energy = 0.5
+
+[node name="OlharManchaFolha" parent="Objetos" instance=ExtResource("fut_aviso")]
+position = Vector2(442, 406)
+texto_acao = "Olhar o luar"
+altura_aviso = 18.0
+texto = "O luar passa pelo buraco do teto e desenha uma folha no chão."
+
+[node name="TravaDoRack" parent="Objetos" instance=ExtResource("pz_quadro")]
+position = Vector2(418, 276)
+texto_acao = "Mexer na trava do rack"
+altura_aviso = 60.0
+com_caixa = false
+titulo = "SIGA O LUAR: DA JANELA À PORTA"
+marca = "rack_202_aberto"
+ordem = PackedInt32Array(4, 3, 1, 2)
+nomes = PackedStringArray("LUA", "FOLHA", "RAIZ", "ESTRELA")
+dica_controles = "Setas: escolher     E: apertar     Esc: fechar"
+texto_desarmou = "A trava estalou e voltou ao começo."
+texto_pronto = "A trava soltou."
+aviso_ligado = "A trava do rack soltou. Uma cápsula de clarão caiu entre os óculos."
+aviso_ja_ligado = "O rack já está aberto."
+item_premio = ExtResource("pz_clarao")
 
 [editable path="Ceu"]
