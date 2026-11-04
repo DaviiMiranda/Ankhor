@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" path="res://cenas/interface/painel_anotacoes.tscn" id="5_anotacoes"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/papel_folhear.wav" id="6_som_aba"]
 [ext_resource type="PackedScene" path="res://cenas/interface/painel_objetivo.tscn" id="7_objetivo"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/gadget_equipar.wav" id="8_som_equipar"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/gadget_desequipar.wav" id="9_som_desequipar"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
 font_size = 8
@@ -197,5 +199,15 @@ bus = &"Efeitos"
 
 [node name="SomAba" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_som_aba")
+volume_db = -8.0
+bus = &"Efeitos"
+
+[node name="SomEquipar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_som_equipar")
+volume_db = -8.0
+bus = &"Efeitos"
+
+[node name="SomDesequipar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_som_desequipar")
 volume_db = -8.0
 bus = &"Efeitos"

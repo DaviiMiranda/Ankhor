@@ -17,9 +17,13 @@ signal ofegante
 @export var intervalo_som_cansado: float = 1.0
 @export var volume_exausto_db: float = -6.0
 @export var volume_cansado_db: float = -16.0
+@export var intervalo_som_em_fuga: float = 1.1
+@export var volume_em_fuga_db: float = -9.0
+@export var variacao_tom_em_fuga: float = 0.08
 
 var estamina := 100.0
 var tempo_exaustao := 0.0
+var em_fuga := false
 var _tempo_ultimo_ofegante := 0.0
 
 @onready var reprodutor_ofegante: AudioStreamPlayer2D = $SomOfegante
@@ -38,6 +42,8 @@ func _physics_process(delta: float) -> void:
 		if tempo_exaustao == 0.0:
 			exaustao_terminada.emit()
 			mudou.emit(estamina, estamina_maxima)
+	elif em_fuga:
+		_respirar_em_fuga(delta)
 	elif esta_cansado():
 		_respirar_cansado(delta)
 
@@ -97,7 +103,15 @@ func _respirar_cansado(delta: float) -> void:
 		_tocar_respiracao(volume_cansado_db)
 
 
-func _tocar_respiracao(volume_db: float) -> void:
+func _respirar_em_fuga(delta: float) -> void:
+	_tempo_ultimo_ofegante += delta
+	if _tempo_ultimo_ofegante >= intervalo_som_em_fuga:
+		_tempo_ultimo_ofegante = 0.0
+		_tocar_respiracao(volume_em_fuga_db, 1.0 + randf_range(-variacao_tom_em_fuga, variacao_tom_em_fuga))
+
+
+func _tocar_respiracao(volume_db: float, tom: float = 1.0) -> void:
 	if reprodutor_ofegante and reprodutor_ofegante.stream:
 		reprodutor_ofegante.volume_db = volume_db
+		reprodutor_ofegante.pitch_scale = tom
 		reprodutor_ofegante.play()

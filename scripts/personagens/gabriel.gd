@@ -5,6 +5,7 @@ signal passo_dado(correndo: bool)
 signal fadiga_mudou(estamina: float, maxima: float)
 signal exaustao_mudou(esta_exausto: bool)
 signal ansiedade_mudou(valor: float, maxima: float)
+signal tira_especial_mudou
 
 const COR_ESCONDIDO := Color(0.45, 0.45, 0.6)
 const LARGURA_QUADRO := 96.0
@@ -25,6 +26,7 @@ const PEITO_NO_QUADRO := {
 @export var multiplicador_correr: float = 1.8
 @export var multiplicador_exaustao: float = 0.4
 @export var forca_empurrao: float = 170.0
+@export var segundos_ofegando_depois_da_fuga: float = 3.0
 
 @export_group("Conducao")
 @export var aceleracao_inicial: float = 640.0
@@ -92,6 +94,7 @@ var _tempo_parado := 0.0
 var _passos := 0
 var _tira_da_mao := "imovel"
 var _mascara_colisao := 0
+var _segundos_ofegando := 0.0
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var no_gadgets: Node2D = $Gadgets
@@ -205,6 +208,25 @@ func _physics_process(delta: float) -> void:
 
 	_piscar()
 	ansiedade.atualizar(global_position, delta)
+	_atualizar_respiracao_de_fuga(delta)
+
+
+func _atualizar_respiracao_de_fuga(delta: float) -> void:
+	if fadiga == null:
+		return
+	if _algum_robo_perseguindo():
+		_segundos_ofegando = segundos_ofegando_depois_da_fuga
+	else:
+		_segundos_ofegando = maxf(_segundos_ofegando - delta, 0.0)
+	fadiga.em_fuga = _segundos_ofegando > 0.0 and not escondido
+
+
+func _algum_robo_perseguindo() -> bool:
+	for no in get_tree().get_nodes_in_group("robos"):
+		var robo := no as Robo
+		if robo and robo.esta_perseguindo():
+			return true
+	return false
 
 
 func _conduzir(alvo: Vector2, delta: float) -> Vector2:
@@ -268,6 +290,16 @@ func tocar_tira(tira: Texture2D, quadros: int) -> void:
 	sprite.position = Vector2.ZERO
 	sprite.skew = 0.0
 	_mostrar(tira, quadros, 0)
+	tira_especial_mudou.emit()
+
+
+func pode_mexer_na_mochila() -> bool:
+	return jogador_controla and not tira_especial
+
+
+func comecar_gesto_da_mochila() -> void:
+	_velocidade_propria = Vector2.ZERO
+	tocar_tira(GestoMochila.TIRAS[vista], GestoMochila.QUADROS)
 
 
 func mostrar_quadro_tira(quadro: int) -> void:
@@ -276,6 +308,7 @@ func mostrar_quadro_tira(quadro: int) -> void:
 
 func terminar_tira() -> void:
 	tira_especial = false
+	tira_especial_mudou.emit()
 
 
 func andar_sozinho(direcao: Vector2) -> void:

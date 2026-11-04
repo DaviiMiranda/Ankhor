@@ -26,6 +26,9 @@ func _ready() -> void:
 	if not _estado.has("aceso"):
 		_estado["aceso"] = false
 	_atualizar_luz()
+	var dono := _dono()
+	if dono:
+		dono.tira_especial_mudou.connect(_apontar)
 
 
 func usar() -> void:
@@ -39,6 +42,10 @@ func ao_desequipar() -> void:
 	_estado["aceso"] = false
 
 
+func _dono() -> Gabriel:
+	return get_parent().get_parent() as Gabriel
+
+
 func _process(delta: float) -> void:
 	_tempo += delta
 	if _estado["aceso"]:
@@ -50,7 +57,7 @@ func _process(delta: float) -> void:
 
 
 func _apontar() -> void:
-	var dono := get_parent().get_parent() as Gabriel
+	var dono := _dono()
 	if dono:
 		var angulo := dono.direcao_olhar.angle()
 		var mao := to_local(dono.to_global(dono.posicao_da_mao()))
@@ -58,7 +65,7 @@ func _apontar() -> void:
 		corpo.position = mao
 		corpo.rotation = angulo
 		corpo.flip_v = dono.direcao_olhar.x < 0.0
-		corpo.visible = not dono.vista.ends_with("costas")
+		corpo.visible = not dono.vista.ends_with("costas") and not dono.tira_especial
 		corpo.self_modulate = dono.sprite.self_modulate
 		corpo.modulate.a = dono.sprite.modulate.a
 		feixe_paredes.position = lente
