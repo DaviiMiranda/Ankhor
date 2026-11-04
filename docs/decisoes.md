@@ -1,5 +1,20 @@
 # Registro de decisões
 
+## 2026-11-04 — Puzzles opcionais nas salas 105 e 202 do Bloco de salas
+
+**Decisão:** duas salas de respiro ganham um puzzle opcional cada, fora da cadeia principal da fase, com um prêmio que cai no chão ao resolver.
+
+- **Sala 105, remontar o professor:** quatro peças espalhadas pela sala, cada uma com uma etiqueta que diz o que precisa vir antes. A ordem é bateria, núcleo, sensor e voz. Prêmio: 2 pilhas.
+- **Sala 202, os desenhos do luar:** o luar desenha quatro símbolos no chão, e a trava do rack de óculos pede que eles sejam apertados da janela até a porta. A ordem é estrela, raiz, lua e folha. Prêmio: 1 cápsula de clarão.
+
+As peças da 105 são marcas, e não itens: a mochila tem 12 espaços, e quatro itens a mais poderiam deixar o jogador sem lugar para o alicate, que é obrigatório. Nos dois puzzles, errar a ordem não faz barulho. O rosto do professor só acende e apaga; ele não fala nem acorda, e nenhum texto novo mexe na história.
+
+**Por quê:** pedido do Davi: pôr puzzles em locais do Bloco de salas que ainda não tinham. O da 105 também conta como conteúdo de computação (ordenação topológica).
+
+**Falta:** teste de jogo com pessoas. A lógica, o alcance das peças e dos prêmios e a aparência na tela foram conferidos no Godot 4.7.2 por script.
+
+**Afeta:** `scripts/sistemas/quadro_energia.gd`, `cenas/sistemas/quadro_energia.tscn` (campos novos; a Biblioteca e o bar continuam iguais), `scripts/itens/peca_no_chao.gd`, `cenas/itens/peca_no_chao.tscn`, `cenas/cenario/objetos/mancha_luar.tscn`, `cenas/salas/bloco_de_salas/sala_105.tscn`, `sala_202.tscn`, `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` e `docs/fases/bloco_de_salas.md` (seções 2.2, 3.3, 5.6, 5.7 e 9).
+
 ## 2026-11-04 — Robôs novos: Ronda e Caçador a partir do Labirinto, Mariposa e Escafandro no bunker
 
 **Decisão:** entram quatro tipos de robô. Cada um é uma cena com os próprios números, sobre o mesmo `robo.gd`.
