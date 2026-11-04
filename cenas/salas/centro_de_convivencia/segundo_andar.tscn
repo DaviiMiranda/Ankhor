@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r27"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/escada.wav" id="r28"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r29"]
-[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r30"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_ronda.tscn" id="r30"]
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r31"]
 [ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r32"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r33"]
@@ -581,7 +581,7 @@ id = "mezanino_cinema"
 cena_destino = "res://cenas/salas/centro_de_convivencia/cinema.tscn"
 porta_destino = "cinema_mezanino"
 
-[node name="Sentinela1" parent="Objetos" instance=ExtResource("r30")]
+[node name="Ronda1" parent="Objetos" instance=ExtResource("r30")]
 position = Vector2(280, 280)
 rota = NodePath("../../RotaSentinela1")
 bipa_antes_de_virar = true

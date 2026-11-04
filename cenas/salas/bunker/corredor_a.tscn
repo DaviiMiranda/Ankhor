@@ -40,6 +40,7 @@
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="n6"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="g_gatilho_radio"]
 [ext_resource type="Resource" path="res://dados/transmissoes/grupo_bunker_02.tres" id="g_grupo_bunker_02"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_mariposa.tscn" id="robo_mariposa"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -465,6 +466,24 @@ position = Vector2(2200, 150)
 
 [node name="Ponto4" type="Marker2D" parent="RotaSentinela"]
 position = Vector2(1300, 160)
+
+[node name="Mariposa" parent="Objetos" instance=ExtResource("robo_mariposa")]
+position = Vector2(2380, 152)
+rota = NodePath("../../RotaMariposa")
+
+[node name="RotaMariposa" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaMariposa"]
+position = Vector2(1000, 150)
+
+[node name="Ponto2" type="Marker2D" parent="RotaMariposa"]
+position = Vector2(1700, 162)
+
+[node name="Ponto3" type="Marker2D" parent="RotaMariposa"]
+position = Vector2(2400, 150)
+
+[node name="Ponto4" type="Marker2D" parent="RotaMariposa"]
+position = Vector2(1700, 162)
 
 [node name="RobosDaSala" type="Node" parent="."]
 script = ExtResource("n6")

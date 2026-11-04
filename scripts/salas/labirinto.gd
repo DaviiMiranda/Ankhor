@@ -2,6 +2,11 @@ extends Sala
 
 const CENA_SENTINELA := preload("res://cenas/personagens/robo_sentinela.tscn")
 const CENA_RASTREADOR := preload("res://cenas/personagens/robo_rastreador.tscn")
+const CENA_RONDA := preload("res://cenas/personagens/robo_ronda.tscn")
+const CENA_CACADOR := preload("res://cenas/personagens/robo_cacador.tscn")
+const CENAS_DE_ROBO := {"V": CENA_SENTINELA, "R": CENA_RASTREADOR, "O": CENA_RONDA, "K": CENA_CACADOR}
+const SALINHAS_DA_RONDA := 12
+const SALINHAS_POR_PONTO_DA_RONDA := 3
 const CENA_CHECKPOINT := preload("res://cenas/sistemas/checkpoint.tscn")
 const CENA_LAMPADA := preload("res://cenas/cenario/objetos/lampada.tscn")
 const CENA_PILHA := preload("res://cenas/itens/pilha_no_chao.tscn")
@@ -352,7 +357,7 @@ func _colocar_marcadores() -> void:
 				"N":
 					if _comeca_sequencia(celula, "N"):
 						_colocar_no(_posicao_da_sequencia(celula, "N"))
-				"V", "R":
+				"V", "R", "O", "K":
 					numero += 1
 					_colocar_robo(mapa.letra(celula), posicao, numero)
 				_:
@@ -498,12 +503,33 @@ func _colocar_portas() -> void:
 
 
 func _colocar_robo(letra: String, posicao: Vector2, numero: int) -> void:
-	var robo: Robo = (CENA_SENTINELA if letra == "V" else CENA_RASTREADOR).instantiate()
+	var robo: Robo = (CENAS_DE_ROBO[letra] as PackedScene).instantiate()
 	robo.name = "%s%d" % [robo.nome_tipo, numero]
 	_colocar(robo, posicao)
+	if letra == "O":
+		_dar_rota_de_ronda(robo, numero)
 	robo.configurar(grade, semente * 100 + numero)
 	robo.jogador_detectado.connect(_ao_robo_detectar)
 	robo.jogador_perdido.connect(_ao_robo_perder)
+
+
+func _dar_rota_de_ronda(robo: Robo, numero: int) -> void:
+	var rota := Node2D.new()
+	rota.name = "Rota%s" % robo.name
+	objetos.add_child(rota)
+	var sorteio := RandomNumberGenerator.new()
+	sorteio.seed = semente * 100 + numero
+	var atual := grade.salinha(robo.global_position)
+	var anterior := Vector2i(-1, -1)
+	for passo in SALINHAS_DA_RONDA:
+		var proxima := grade.proxima_salinha(atual, anterior, sorteio)
+		anterior = atual
+		atual = proxima
+		if passo % SALINHAS_POR_PONTO_DA_RONDA == 0:
+			var ponto := Marker2D.new()
+			rota.add_child(ponto)
+			ponto.global_position = grade.centro_salinha(atual)
+	robo.rota = robo.get_path_to(rota)
 
 
 func _ao_robo_detectar(robo: Robo) -> void:

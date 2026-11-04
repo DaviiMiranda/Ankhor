@@ -76,7 +76,7 @@
 #      (D e S só existem no mapa de teste: a saída da fase é o alçapão A)
 #   Q  porta da sala segura   H  porta do Corredor do Tempo   (2 blocos de parede cada)
 #   A  alçapão escondido na oficina (a saída da fase; o Zane o revela)
-#   C  checkpoint      P  pilha          L  lâmpada               V  Sentinela   R  Rastreador
+#   C  checkpoint      P  pilha          L  lâmpada               V  Sentinela   R  Rastreador   O  Ronda   K  Caçador
 #   Z  o Zane          N  nó de controle (hackeável; 2 blocos de largura)
 #   Objetos das salas (minúsculas):
 #   b  bancada   c  console   m  mesa com computador   x  robô desmontado   (largos: 2 blocos)
@@ -141,7 +141,7 @@ SEMENTE = 3026
 FRACAO_CICLOS = 0.18
 # Quantos robôs e de que tipo (V = Sentinela, R = Rastreador). Eram 3 numa
 # grade de 96 salinhas; a grade nova tem 198, então o dobro.
-TIPOS_DE_ROBO = ("V", "R", "V", "V", "R", "V")
+TIPOS_DE_ROBO = ("V", "R", "O", "V", "R", "K")
 DISTANCIA_MINIMA_DO_INICIO = 10
 SEPARACAO_ENTRE_ROBOS = 5
 QUANTIDADE_PILHAS = 5
@@ -707,7 +707,7 @@ def previa(linhas, sprites):
                         sala.colar(sprites[nome], x, y + BLOCO - ALTURA_PAREDE)
                 else:
                     sala.colar(sprites["frente"][(bx * 7 + by * 3) % 4], x, y + BLOCO - ALTURA_PAREDE)
-    cores = {"G": (60, 200, 255), "C": (80, 255, 120), "V": (255, 60, 60), "R": (255, 140, 40),
+    cores = {"G": (60, 200, 255), "C": (80, 255, 120), "V": (255, 60, 60), "R": (255, 140, 40), "O": (255, 60, 60), "K": (255, 60, 60),
              "P": (240, 240, 80), "L": (255, 220, 150), "S": (80, 255, 120), "T": (200, 200, 255),
              "Z": (255, 255, 60), "N": (255, 60, 255), "A": (255, 255, 255),
              "B": (150, 30, 60), "F": (255, 180, 60),
