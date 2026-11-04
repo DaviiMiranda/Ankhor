@@ -104,6 +104,12 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 
 ---
 
+## 3.3 O que mudou em 2026-11-04
+
+A Célula de Energia virou carga: pesa, zumbe e impede de correr. O Mapa da Diana, na Tapioca Orbital, revela a **galeria** (`galeria.tscn`), que liga o Self Nebulosa, a Pizzaria Quasar e o Churrasco Solar por baixo da praça, com um Rastreador e sem esconderijo. O caco de espelho, opcional, fica na Loja Universitária. O cofre do bufê e o quadro do bar não pausam mais o jogo. As pilhas caíram de 8 para 6 (saíram a do mezanino e a da cabine do cinema). Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 5.
+
+---
+
 ## 4. Itens, Documentos e Transmissões
 
 | Recurso | Arquivo | Onde fica |

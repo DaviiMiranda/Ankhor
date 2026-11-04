@@ -180,6 +180,10 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 - **Como funciona:** a porta de saída tem uma corrente com cadeado; o alicate é a "chave".
 - **Mecânica:** porta com `chave` (o alicate é um item como a chave da manutenção). O primeiro uso só corta a corrente (som e aviso, e o rádio da Clarice se despede); o segundo atravessa a porta e termina a fase.
 
+### 5.4.1 O que mudou em 2026-11-04
+
+Cortar a corrente pede segurar `E` por 5 s, com barulho; achar o molho na areia, 2 s. A Clarice empresta o walkman junto com a chave da fita azul. Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 3.
+
 ### 5.5 O atalho (204 → 104)
 
 - **Como funciona:** o buraco no chão da 204 é uma passagem de mão única: o Gabriel desce e cai entre as mesas da 104, logo embaixo, com o som da queda. É uma `Porta` que leva a um ponto de chegada sem volta.

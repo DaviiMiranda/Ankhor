@@ -32,6 +32,14 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 - Liga e desliga com a tecla do espaço. A bateria dura 4 minutos acesa; troca-se com **pilhas** achadas no mapa (`E` perto da pilha).
 - Regras completas em [`iluminacao_e_lanterna.md`](iluminacao_e_lanterna.md).
 
+### Gadgets das fases
+
+Walkman, máscara de gás e caco de espelho são gadgets novos, e o módulo de pulso amplia o notebook: regras em [`mecanicas_de_fase.md`](mecanicas_de_fase.md). Quando os 3 espaços estão ocupados, o item novo vai só para a grade e é preciso equipar pelo inventário.
+
+- **Largar no chão:** `Inventario.largar(item, cena, posicao)` tira o item da grade e guarda em `Inventario.largados` (salvo no arquivo). `ItensLargados` recria o item ao entrar na sala. Use `cena_largado` no `Item` para um objeto próprio, como o walkman; sem isso, vira um `ItemNoChao` com `reaparece`.
+- **Carga pesada:** `carga_pesada` no `Item` impede de correr, faz barulho e libera a tecla `G` para largar.
+- **Chave usada:** ao destrancar, a `Porta` tira a chave do inventário.
+
 ### Gadgets em teste (sala de teste)
 
 Os três estão na sala de teste (menu Fases → Teste, só pelo editor) e ainda não entraram em nenhuma fase. Os números estão no Inspetor da cena de cada um e são um primeiro chute para o grupo ajustar jogando.

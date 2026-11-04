@@ -30,6 +30,7 @@ graph TD
 
 ## 📂 Detalhamento dos Módulos
 
+- **[`mecanicas_de_fase.md`](mecanicas_de_fase.md):** O que cada fase acrescenta: a cabine, o walkman, o sonar, a Célula como carga, a galeria, o espelho, o gás e a máscara, mais a base (robô que atravessa a porta, puzzle sem pausa, segurar `E`).
 - **[`movimentacao_e_terreno.md`](movimentacao_e_terreno.md):** Controles de locomoção, corrida, gestão de estamina, ruído de passos e navegação vertical/obstáculos.
 - **[`furtividade_e_esconderijos.md`](furtividade_e_esconderijos.md):** Tipos de esconderijos (armários, cabines, raízes), microgames de tensão (respiração, imobilidade) e distrações.
 - **[`iluminacao_e_lanterna.md`](iluminacao_e_lanterna.md):** A lanterna a pilha, o dilema ver/ser visto, as luzes de emergência e as cápsulas de clarão (previstas).

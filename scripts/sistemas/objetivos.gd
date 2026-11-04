@@ -88,7 +88,7 @@ static func passo_atual(fase: Dictionary) -> String:
 
 
 static func _feito(passo: Dictionary) -> bool:
-	if passo.has("ou_item") and Inventario.tem(passo["ou_item"]):
+	if passo.has("ou_item") and (Inventario.tem(passo["ou_item"]) or Inventario.largados.has(passo["ou_item"])):
 		return true
 	for marca in passo["marcas"]:
 		if not Progresso.tem(marca):

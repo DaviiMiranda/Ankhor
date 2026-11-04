@@ -21,6 +21,10 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r20"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/painel_iniciais.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="gd_item"]
+[ext_resource type="Resource" path="res://dados/itens/mapa_diana.tres" id="gd_mapa"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="gd_gatilho"]
+[ext_resource type="Resource" path="res://dados/transmissoes/diana_convivencia_01.tres" id="gd_diana"]
 
 [node name="Loja1" instance=ExtResource("r1")]
 id = "conv_loja_1"
@@ -120,5 +124,14 @@ cena_destino = "res://cenas/salas/centro_de_convivencia/praca_central.tscn"
 porta_destino = "praca_loja_1"
 
 [node name="MusicaFase" parent="." instance=ExtResource("r20")]
+
+[node name="MapaDiana" parent="Objetos" instance=ExtResource("gd_item")]
+position = Vector2(160, 178)
+item = ExtResource("gd_mapa")
+
+[node name="GatilhoDiana" parent="Objetos" instance=ExtResource("gd_gatilho")]
+position = Vector2(200, 170)
+transmissao = ExtResource("gd_diana")
+na_sala_inteira = true
 
 [editable path="Ceu"]

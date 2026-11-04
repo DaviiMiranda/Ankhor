@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/item.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/mascara_gas.png" id="2_icone"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/mascara_gas_chao.png" id="3_chao"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/mascara_gas_detalhe.png" id="4_detalhe"]
+[ext_resource type="PackedScene" path="res://cenas/itens/mascara_gas.tscn" id="5_gadget"]
+
+[resource]
+script = ExtResource("1_item")
+id = "mascara_gas"
+nome = "Máscara de gás"
+descricao = "Máscara do posto do bunker. Protege do gás. Cada filtro dura 45 segundos, e cabem 3. A respiração pelo filtro se ouve de longe."
+icone = ExtResource("2_icone")
+sprite_chao = ExtResource("3_chao")
+imagem_detalhe = ExtResource("4_detalhe")
+equipavel = true
+cena_gadget = ExtResource("5_gadget")
+maximo_unidades = 3

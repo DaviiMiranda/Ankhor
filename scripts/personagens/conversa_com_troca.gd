@@ -7,6 +7,7 @@ extends Interagivel
 @export_file("*.json") var conversa_depois: String = ""
 @export var item_pedido: String = ""
 @export var item_dado: Item
+@export var item_extra: Item
 @export var marca_troca: String = ""
 
 
@@ -31,4 +32,6 @@ func _trocar(_caminho: String) -> void:
 	Inventario.remover(item_pedido)
 	if item_dado:
 		Inventario.adicionar(item_dado)
+	if item_extra:
+		Inventario.adicionar(item_extra)
 	Progresso.marcar(marca_troca)

@@ -542,6 +542,8 @@ aviso_destrancada = "O alicate morde o elo. A corrente cai no chão."
 marca_ao_destrancar = "corrente_cortada"
 atravessa_ao_destrancar = false
 som_destrancar = ExtResource("b_som_corrente")
+segundos_segurar = 5.0
+ruido_ao_segurar = 40
 
 [node name="Nicho1280" parent="Objetos" instance=ExtResource("m_nicho")]
 position = Vector2(1320, 128)

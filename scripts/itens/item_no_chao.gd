@@ -7,6 +7,7 @@ extends Interagivel
 		item = valor
 		_mostrar_desenho()
 @export var marca_ao_pegar: String = ""
+@export var reaparece := false
 
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -19,13 +20,14 @@ func _ready() -> void:
 	texto_acao = ""
 	if item:
 		$DestaqueColetavel.intensidade = item.brilho_no_chao
-	if Inventario.pegos.has(_id_unico()) or _ja_tem_item_unico():
+	if not reaparece and (Inventario.pegos.has(_id_unico()) or _ja_tem_item_unico()):
 		queue_free()
 
 
 func interagir() -> void:
 	if Inventario.adicionar(item):
-		Inventario.pegos[_id_unico()] = true
+		if not reaparece:
+			Inventario.pegos[_id_unico()] = true
 		Progresso.marcar(marca_ao_pegar)
 		queue_free()
 

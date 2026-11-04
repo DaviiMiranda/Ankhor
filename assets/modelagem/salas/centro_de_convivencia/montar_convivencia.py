@@ -422,6 +422,12 @@ def montar_sala(sala, objetos):
             m.instancia(m.nome("Documento"), "Objetos", "res://cenas/itens/documento_no_mundo.tscn",
                         [f"position = Vector2({x}, {y})", f'texto_acao = "{acao}"', f'documento = ExtResource("{id_doc}")', "altura_aviso = 52.0"])
 
+    for galeria in sala.get("galerias", []):
+        m.instancia(f"Porta_{galeria['id']}", "Chao", "res://cenas/sistemas/porta_da_galeria.tscn",
+                    [f"position = Vector2({galeria['x']}, 124)", f'id = "{galeria["id"]}"',
+                     'cena_destino = "res://cenas/salas/centro_de_convivencia/galeria.tscn"',
+                     f'porta_destino = "{galeria["porta_destino"]}"'])
+
     for (x, y) in sala.get("nichos", []):
         m.instancia(m.nome("Nicho"), "Objetos", "res://cenas/sistemas/nicho_esconderijo.tscn", [f"position = Vector2({x}, {y})"])
 
@@ -429,7 +435,8 @@ def montar_sala(sala, objetos):
         id_item = m.recurso("Resource", f"res://dados/itens/{item}.tres")
         m.instancia(m.nome("Cofre"), "Objetos", "res://cenas/sistemas/cofre.tscn",
                     [f"position = Vector2({x}, {y})", f'codigo = "{codigo}"', f'marca = "{marca_cofre}"',
-                     f'item_ao_abrir = ExtResource("{id_item}")', f"quantidade = {quantidade}", f'aviso_aberto = "{aviso}"'])
+                     f'item_ao_abrir = ExtResource("{id_item}")', f"quantidade = {quantidade}", f'aviso_aberto = "{aviso}"',
+                     *(["pausa_o_jogo = false"] if sala.get("cofres_sem_pausa") else [])])
 
     # Os puzzles das salas (painel de bits, arara de ordenar, quadro de
     # disjuntores): a cena do sistema, a posição, os campos do Inspetor e o
@@ -545,6 +552,58 @@ def montar_sala(sala, objetos):
     print(f"  sala: cenas/salas/centro_de_convivencia/{id_sala}.tscn ({largura} x {altura})")
 
 
+def montar_galeria():
+    """A galeria da obra de 1978: um corredor comprido e escuro por baixo da
+    praça, montado com o kit do bunker (concreto e canos). Liga o Self Nebulosa,
+    a Pizzaria Quasar e o Churrasco Solar, com um Rastreador e sem esconderijo."""
+    largura = 2000
+    m = Montagem()
+    m.cena("res://cenas/salas/modelo_sala.tscn")
+    m.no('[node name="Ceu" parent="."]', ["visible = false"])
+    portas = [(161, "SELF", "galeria_loja_2", "loja_2", "loja_2_galeria"),
+              (1121, "QUASAR", "galeria_loja_3", "loja_3", "loja_3_galeria"),
+              (1841, "SOLAR", "galeria_loja_4", "loja_4", "loja_4_galeria")]
+    pecas_de_porta = {x - X_PORTA for (x, *_) in portas}
+    variedade = ["bunker_lisa", "bunker_rachada", "bunker_lisa", "bunker_canos"]
+    for i, x in enumerate(range(0, largura, PECA)):
+        peca = "bunker_porta" if x in pecas_de_porta else variedade[i % len(variedade)]
+        m.instancia(f"Parede{i:02d}", "Paredes", f"res://cenas/cenario/bunker/paredes/{peca}.tscn", [f"position = Vector2({x}, 0)"])
+    m.instancia("PilarEsquerda", "Paredes", "res://cenas/cenario/bunker/paredes/pilar_bunker.tscn", ["position = Vector2(0, 0)"])
+    m.instancia("PilarDireita", "Paredes", "res://cenas/cenario/bunker/paredes/pilar_bunker.tscn", [f"position = Vector2({largura - 16}, 0)"])
+    for (x, placa, *_) in portas:
+        m.no(f'[node name="Placa{placa.capitalize()}" type="Label" parent="Paredes"]',
+             [f"offset_left = {x - 32}.0", "offset_top = 26.0", f"offset_right = {x + 32}.0", "offset_bottom = 40.0",
+              "theme_override_colors/font_color = Color(0.85, 0.3, 0.24, 1)", f'text = "{placa}"', "horizontal_alignment = 1"])
+    for i, x in enumerate(range(0, largura, 128)):
+        m.instancia(f"Chao{i:02d}", "Chao", "res://cenas/cenario/bunker/chao/chao_bunker.tscn", [f"position = Vector2({x}, 0)"])
+    for (i, (x, y)) in enumerate([(420, 160), (760, 132), (1320, 166), (1620, 134)]):
+        m.instancia(f"Entulho{i + 1}", "Objetos", "res://cenas/cenario/objetos/entulho.tscn", [f"position = Vector2({x}, {y})"])
+    m.instancia("Pilha", "Objetos", "res://cenas/itens/pilha_no_chao.tscn", ["position = Vector2(640, 168)"])
+    for (i, x) in enumerate([300, 900, 1500]):
+        m.instancia(f"Luz{i + 1}", "Luzes", "res://cenas/cenario/luzes/luz_emergencia.tscn", [f"position = Vector2({x}, 30)", "energy = 0.45"])
+    m.no('[node name="Escuridao" parent="."]', ["color = Color(0.16, 0.16, 0.21, 1)"])
+    m.instancia("RaioDeVisao", ".", "res://cenas/sistemas/raio_de_visao.tscn", ["raio_livre = 72.0", "raio_escuro = 124.0"])
+    for (x, placa, id_porta, destino, porta_destino) in portas:
+        m.instancia(f"Porta_{id_porta}", ".", "res://cenas/sistemas/porta.tscn",
+                    [f"position = Vector2({x}, 124)", f'id = "{id_porta}"',
+                     f'cena_destino = "res://cenas/salas/centro_de_convivencia/{destino}.tscn"', f'porta_destino = "{porta_destino}"'])
+    m.instancia("Rastreador", "Objetos", "res://cenas/personagens/robo_rastreador.tscn",
+                ["position = Vector2(1100, 150)", 'rota = NodePath("../../RotaRastreador")'])
+    m.no('[node name="RotaRastreador" type="Node2D" parent="."]', [])
+    for i, x in enumerate([620, 1500]):
+        m.no(f'[node name="Ponto{i + 1}" type="Marker2D" parent="RotaRastreador"]', [f"position = Vector2({x}, 150)"])
+    scr_robos = m.recurso("Script", "res://scripts/salas/robos_da_sala.gd")
+    m.no('[node name="RobosDaSala" type="Node" parent="."]', [f'script = ExtResource("{scr_robos}")'])
+    scr_zona = m.recurso("Script", "res://scripts/sistemas/zona_de_piso.gd")
+    m.no('[node name="ZonaEntulho" type="Node2D" parent="."]', ["position = Vector2(0, 112)", f'script = ExtResource("{scr_zona}")',
+                                                               f"tamanho = Vector2({largura}, 68)", "fator_ruido = 1.5", 'nome_piso = "entulho"'])
+    m.instancia("MusicaFase", ".", "res://cenas/sistemas/musica_fase.tscn", [])
+    raiz = '[node name="Galeria" instance=ExtResource("r1")]'
+    escrever(os.path.join(PASTA_SALAS, "galeria.tscn"),
+             m.texto(raiz, ['id = "conv_galeria"', f"largura = {largura}"], [], ['[editable path="Ceu"]']))
+    print("  sala: cenas/salas/centro_de_convivencia/galeria.tscn")
+
+
 def montar_fim_convivencia():
     texto = """[gd_scene format=3]
 
@@ -581,6 +640,7 @@ def main():
     objetos = montar_objetos()
     for sala in salas_convivencia.SALAS:
         montar_sala(sala, objetos)
+    montar_galeria()
     montar_fim_convivencia()
 
 

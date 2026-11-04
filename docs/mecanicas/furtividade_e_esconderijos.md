@@ -12,7 +12,7 @@ Quando um robô está patrulhando ou perseguindo Gabriel, a principal forma de q
 | **Macas com Cortinas Desfiadas** | Enfermarias e Clínicas | Controle de batimento cardíaco / respiração | Médio-Alto |
 | **Nicho de parede** (bebedouro ou armários) | Corredores do Bloco de salas | Ficar imóvel, sem `E`: parado no nicho com a lanterna apagada | Médio (contato ainda denuncia) |
 
-**Já no jogo:** o nicho de parede (2026-10-12). Ficar parado por 0,4 s dentro dele, com a lanterna apagada, esconde o Gabriel da visão dos robôs; andar ou acender a luz revela. Ver `docs/fases/bloco_de_salas.md`, seção 12.8. O Bunker usa o vão do posto de máscaras de gás (`bunker_nicho`, ver `docs/fases/bunker.md`), e o Laboratório usa o mesmo esconderijo com outra peça de parede, o vão da estação de emergência (`dtec_nicho`, ver `docs/fases/dtec.md`).
+**Já no jogo:** a cabine de estudo da Biblioteca, com o microgame de respiração (2026-11-04, [`mecanicas_de_fase.md`](mecanicas_de_fase.md), seção 2). O nicho de parede (2026-10-12). Ficar parado por 0,4 s dentro dele, com a lanterna apagada, esconde o Gabriel da visão dos robôs; andar ou acender a luz revela. Ver `docs/fases/bloco_de_salas.md`, seção 12.8. O Bunker usa o vão do posto de máscaras de gás (`bunker_nicho`, ver `docs/fases/bunker.md`), e o Laboratório usa o mesmo esconderijo com outra peça de parede, o vão da estação de emergência (`dtec_nicho`, ver `docs/fases/dtec.md`).
 
 ---
 

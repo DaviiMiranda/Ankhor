@@ -164,6 +164,10 @@ Os dois robôs já existem no jogo, no Labirinto. Ver [`../historia/personagens/
 
 ---
 
+**Cabines (2026-11-04):** duas no salão e duas na ala leste servem de esconderijo com microgame de respiração ([`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 2).
+
+---
+
 ## 5. Sala segura e sonho
 
 - **Sala segura:** o plano era a **sala de manutenção (5)**. Em 2026-10-20 a sala segura virou uma **cena própria** (`sala_segura.tscn`, feita do modelo `modelo_safe_room.tscn`): fechada, calma, os robôs não entram, e a **máquina dos óculos do Zane** salva o jogo ([`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)). A porta de entrada fica no corredor de serviço e, desde 2026-10-21, leva em cima a **luz verde da sala segura** (o sinal que se repete em todas as fases).

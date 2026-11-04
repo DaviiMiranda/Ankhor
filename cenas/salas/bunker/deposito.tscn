@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/tambor.tscn" id="r14"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r15"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r16"]
-[ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r17"]
+[ext_resource type="Resource" path="res://dados/itens/mascara_gas.tres" id="r17"]
 [ext_resource type="Resource" path="res://dados/itens/pedra.tres" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r20"]
@@ -225,7 +225,7 @@ position = Vector2(340, 300)
 [node name="Pilha1" parent="Objetos" instance=ExtResource("r15")]
 position = Vector2(90, 413)
 
-[node name="Clarao1" parent="Objetos" instance=ExtResource("r16")]
+[node name="FiltroDaMascara" parent="Objetos" instance=ExtResource("r16")]
 position = Vector2(330, 172)
 item = ExtResource("r17")
 

@@ -23,7 +23,7 @@ func _ready() -> void:
 		stream.set("loop", true)
 	volume_db = -80.0
 	play()
-	_conectar_robos.call_deferred()
+	conectar_robos.call_deferred()
 	_buscar_musica_ambiente.call_deferred()
 
 
@@ -40,7 +40,7 @@ func _buscar_musica_ambiente() -> void:
 				break
 
 
-func _conectar_robos() -> void:
+func conectar_robos() -> void:
 	for no in get_tree().get_nodes_in_group("robos"):
 		var robo := no as Robo
 		if robo:

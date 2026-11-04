@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/item.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/mapa_diana.png" id="2_icone"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/mapa_diana_chao.png" id="3_chao"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/mapa_diana_detalhe.png" id="4_detalhe"]
+
+[resource]
+script = ExtResource("1_item")
+id = "mapa_diana"
+nome = "Mapa da Diana"
+descricao = "O mapa à mão das galerias da obra de 1978, que não estão em nenhuma planta de 3026. Com ele, dá para ver as portinholas: o X de giz vermelho é a marca da Diana."
+icone = ExtResource("2_icone")
+sprite_chao = ExtResource("3_chao")
+imagem_detalhe = ExtResource("4_detalhe")

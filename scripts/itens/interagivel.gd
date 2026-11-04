@@ -6,6 +6,8 @@ const GRUPO_PERTO := "interagiveis_perto"
 
 @export var texto_acao: String = "Interagir"
 @export var altura_aviso: float = 18.0
+@export var segundos_segurar: float = 0.0
+@export var ruido_ao_segurar: int = 0
 
 
 func _ready() -> void:
@@ -21,6 +23,10 @@ func pode_interagir() -> bool:
 
 func interagir() -> void:
 	pass
+
+
+func segundos_de_espera() -> float:
+	return segundos_segurar
 
 
 func _ao_entrar(corpo: Node2D) -> void:

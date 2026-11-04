@@ -26,6 +26,7 @@
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r24"]
 [ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r25"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r26"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta_da_galeria.tscn" id="gd_galeria"]
 
 [node name="Loja2" instance=ExtResource("r1")]
 id = "conv_loja_2"
@@ -118,6 +119,7 @@ marca = "cofre_bufe_aberto"
 item_ao_abrir = ExtResource("r18")
 quantidade = 1
 aviso_aberto = "O cofre do bufê abriu: caiu uma cápsula de clarão."
+pausa_o_jogo = false
 
 [node name="Luz1" parent="Luzes" instance=ExtResource("r20")]
 position = Vector2(160, 90)
@@ -195,5 +197,11 @@ fator_ruido = 0.6
 nome_piso = "passadeira de borracha"
 
 [node name="MusicaFase" parent="." instance=ExtResource("r26")]
+
+[node name="Porta_loja_2_galeria" parent="Chao" instance=ExtResource("gd_galeria")]
+position = Vector2(92, 124)
+id = "loja_2_galeria"
+cena_destino = "res://cenas/salas/centro_de_convivencia/galeria.tscn"
+porta_destino = "galeria_loja_2"
 
 [editable path="Ceu"]

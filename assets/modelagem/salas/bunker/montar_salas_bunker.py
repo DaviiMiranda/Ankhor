@@ -209,7 +209,7 @@ SALAS = [
         "chao": f"{BUNKER}/chao/chao_bunker.tscn", "fundo": f"{BUNKER}/chao/chao_bunker_fundo.tscn",
         "objetos": [(do_bunker("estante_metal"), 120, 220), (do_bunker("estante_metal"), 280, 220, True),
                     (do_bunker("mesa_metal"), 200, 300), (do_bunker("caixas"), 340, 320), (do_bunker("caixas"), 60, 330, True)],
-        "itens": [("clarao", 180, 320), ("clarao", 230, 320), ("pilha", 340, 250)],
+        "itens": [("clarao", 180, 320), ("pilha", 340, 250)],
         "luzes": [("luz_tubo", 200, 34, "energy = 0.7"), ("luz_tubo", 200, 260, "energy = 0.6")],
         "escuridao": (0.24, 0.25, 0.24, 1),
     },

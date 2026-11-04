@@ -13,8 +13,9 @@ Robôs ainda usam o hack por tempo (2,5 s). Só as portas têm minigame por enqu
 O Labirinto usa o mesmo notebook e os mesmos minigames em **nós de controle** (`cenas/sistemas/no_hackeavel.tscn`, script `no_hackeavel.gd`, que herda de `Porta`): terminais de console dentro de salões de uma entrada só. Diferenças em relação à porta:
 
 - **Não gasta bateria** do notebook (`gasto_hack = 0`): a fase não pode travar por falta de carga, e o jogador pode errar à vontade (o perigo é o robô, não a bateria). O notebook funciona mesmo com a bateria zerada.
-- O jogo continua pausado enquanto o minigame está aberto.
+- O jogo continua pausado enquanto o minigame está aberto, menos no Nó 3.
 - Cada nó tem uma luz que passa do vermelho ao verde quando é invadido.
+- **O Nó 3 não pausa** (`hack_sem_pausa`): os robôs seguem andando, levar dano interrompe o minigame e, ao cair, o nó faz barulho (`ruido_ao_invadir`).
 - A dificuldade sobe do primeiro ao terceiro nó: **fácil, médio, difícil** (tipo aleatório).
 - `rede_do_labirinto.gd` conta os nós (marcas `labirinto_no_1`, `_2`, `_3`), avisa "Nó N de 3 invadido" e, no terceiro, marca `labirinto_rede_invadida`, avisa "Volte ao Zane" e toca a transmissão `zane_labirinto_01`. A saída (o alçapão da oficina) só abre depois de a conversa seguinte com o Zane.
 

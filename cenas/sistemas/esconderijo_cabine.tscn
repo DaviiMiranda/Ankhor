@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/esconderijo_cabine.gd" id="1_cabine"]
+
+[sub_resource type="CircleShape2D" id="Alcance"]
+radius = 26.0
+
+[node name="EsconderijoCabine" type="Area2D"]
+script = ExtResource("1_cabine")
+texto_acao = "Esconder na cabine"
+altura_aviso = 70.0
+
+[node name="Alcance" type="CollisionShape2D" parent="."]
+shape = SubResource("Alcance")

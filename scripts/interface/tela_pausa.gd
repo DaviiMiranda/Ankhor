@@ -60,7 +60,7 @@ func _notification(o_que: int) -> void:
 
 
 func _pode_pausar() -> bool:
-	return is_node_ready() and not get_tree().paused and get_tree().current_scene is Sala
+	return is_node_ready() and not get_tree().paused and not Hackeamento.tela_em_tempo_real and get_tree().current_scene is Sala
 
 
 func abrir() -> void:

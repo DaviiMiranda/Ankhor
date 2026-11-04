@@ -24,6 +24,8 @@ const COR_TEXTO := Color("d8dee6")
 @export var aviso_faltam_marcas: String = ""
 @export var etiquetas: PackedStringArray = PackedStringArray()
 
+@export var pausa_o_jogo := true
+
 var _aberto := false
 var _ligados: Array[int] = []
 var _cursor := 0
@@ -96,7 +98,7 @@ func _montar_alavancas() -> void:
 func _abrir() -> void:
 	_aberto = true
 	tela.visible = true
-	get_tree().paused = true
+	_travar_o_jogo()
 	_cursor = 0
 	dica.text = dica_controles
 	_mostrar()
@@ -105,7 +107,31 @@ func _abrir() -> void:
 func _fechar() -> void:
 	_aberto = false
 	tela.visible = false
-	get_tree().paused = false
+	_soltar_o_jogo()
+
+
+func _travar_o_jogo() -> void:
+	if pausa_o_jogo:
+		get_tree().paused = true
+		return
+	Hackeamento.tela_em_tempo_real = true
+	(get_tree().get_first_node_in_group("jogador") as Gabriel).andar_sozinho(Vector2.ZERO)
+	Vida.dano_recebido.connect(_ao_receber_dano_aberto, CONNECT_ONE_SHOT)
+
+
+func _soltar_o_jogo() -> void:
+	if pausa_o_jogo:
+		get_tree().paused = false
+		return
+	Hackeamento.tela_em_tempo_real = false
+	if Vida.dano_recebido.is_connected(_ao_receber_dano_aberto):
+		Vida.dano_recebido.disconnect(_ao_receber_dano_aberto)
+	(get_tree().get_first_node_in_group("jogador") as Gabriel).devolver_controle()
+
+
+func _ao_receber_dano_aberto(_origem: Vector2) -> void:
+	if _aberto:
+		_fechar()
 
 
 func _unhandled_input(evento: InputEvent) -> void:

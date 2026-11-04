@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r14"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r15"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta_da_galeria.tscn" id="gd_galeria"]
 
 [node name="Loja3" instance=ExtResource("r1")]
 id = "conv_loja_3"
@@ -90,5 +91,11 @@ cena_destino = "res://cenas/salas/centro_de_convivencia/praca_central.tscn"
 porta_destino = "praca_loja_3"
 
 [node name="MusicaFase" parent="." instance=ExtResource("r16")]
+
+[node name="Porta_loja_3_galeria" parent="Chao" instance=ExtResource("gd_galeria")]
+position = Vector2(392, 124)
+id = "loja_3_galeria"
+cena_destino = "res://cenas/salas/centro_de_convivencia/galeria.tscn"
+porta_destino = "galeria_loja_3"
 
 [editable path="Ceu"]

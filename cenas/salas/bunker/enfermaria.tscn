@@ -20,6 +20,8 @@
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_blindada.wav" id="r18"]
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_bunker.tscn" id="m_musica"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="gd_item"]
+[ext_resource type="Resource" path="res://dados/itens/mascara_gas.tres" id="gd_mascara"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -250,3 +252,7 @@ autoplay = true
 bus = &"Efeitos"
 
 [node name="MusicaBunker" parent="." instance=ExtResource("m_musica")]
+
+[node name="MascaraDeGas" parent="Objetos" instance=ExtResource("gd_item")]
+position = Vector2(300, 413)
+item = ExtResource("gd_mascara")

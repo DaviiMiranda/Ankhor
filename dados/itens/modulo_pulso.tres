@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/item.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/modulo_pulso.png" id="2_icone"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/modulo_pulso_chao.png" id="3_chao"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/modulo_pulso_detalhe.png" id="4_detalhe"]
+
+[resource]
+script = ExtResource("1_item")
+id = "modulo_pulso"
+nome = "Módulo de pulso"
+descricao = "O módulo de sonar que o Zane encaixou no notebook. Sem nada para invadir por perto, o botão do notebook solta um pulso: mostra corredores e robôs por um instante. Gasta bateria e faz barulho."
+icone = ExtResource("2_icone")
+sprite_chao = ExtResource("3_chao")
+imagem_detalhe = ExtResource("4_detalhe")

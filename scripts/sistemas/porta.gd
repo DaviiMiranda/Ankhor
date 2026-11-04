@@ -32,6 +32,8 @@ static var _espiar_em := ""
 @export var aviso_bloqueada: String = "A porta não abre."
 @export var som_abrir: AudioStream = SOM_ABRIR
 @export var som_destrancar: AudioStream
+@export var robo_atravessa := true
+@export var hack_sem_pausa := false
 
 var _atravessando := false
 var _folha: FolhaPorta
@@ -64,6 +66,12 @@ func _ready() -> void:
 			_comecar_espiada.call_deferred()
 		else:
 			_sair_pela_porta.call_deferred()
+
+
+func segundos_de_espera() -> float:
+	if trancada and not chave.is_empty() and Inventario.tem(chave):
+		return segundos_segurar
+	return 0.0
 
 
 func pode_interagir() -> bool:
@@ -109,6 +117,8 @@ func espiar() -> void:
 
 func destrancar() -> void:
 	trancada = false
+	if not chave.is_empty():
+		Inventario.remover(chave)
 	if not id.is_empty():
 		_destrancadas[id] = true
 	Inventario.aviso.emit(aviso_destrancada)
@@ -156,7 +166,13 @@ func _tocar(stream: AudioStream) -> void:
 	som.play()
 
 
+func tocar_abertura() -> void:
+	_tocar(_som_de_abrir())
+	_abrir_folha()
+
+
 func _trocar_de_cena() -> void:
+	PerseguicaoEntreSalas.anotar(get_tree(), self)
 	_chegada = porta_destino
 	_espiar_em = porta_destino if _vai_espiar else ""
 	get_tree().change_scene_to_file(cena_destino)
@@ -166,6 +182,7 @@ func _sair_pela_porta() -> void:
 	var gabriel := _gabriel()
 	if gabriel == null:
 		return
+	PerseguicaoEntreSalas.chamar(self)
 	_atravessando = true
 	_fechar_folha()
 	gabriel.global_position = global_position

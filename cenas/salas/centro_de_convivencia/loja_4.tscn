@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r25"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="g_gatilho_radio"]
 [ext_resource type="Resource" path="res://dados/transmissoes/grupo_convivencia_03.tres" id="g_grupo_convivencia_03"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta_da_galeria.tscn" id="gd_galeria"]
 
 [node name="Loja4" instance=ExtResource("r1")]
 id = "conv_loja_4"
@@ -108,6 +109,7 @@ marca = "churrasco_quadro_ligado"
 ordem = PackedInt32Array(2, 4, 1, 3)
 nomes = PackedStringArray("GELAD", "EXAUST", "NEON", "GRELHA")
 ruido_ao_desarmar = 14
+pausa_o_jogo = false
 aviso_ligado = "Quadro do bar ligado. A gaveta de reserva destravou: duas pilhas."
 aviso_ja_ligado = "O quadro do bar já está ligado."
 cena_premio = ExtResource("r15")
@@ -211,6 +213,12 @@ script = ExtResource("r24")
 folga_obstaculos = 10.0
 
 [node name="MusicaFase" parent="." instance=ExtResource("r25")]
+
+[node name="Porta_loja_4_galeria" parent="Chao" instance=ExtResource("gd_galeria")]
+position = Vector2(252, 124)
+id = "loja_4_galeria"
+cena_destino = "res://cenas/salas/centro_de_convivencia/galeria.tscn"
+porta_destino = "galeria_loja_4"
 
 [editable path="Ceu"]
 

@@ -39,6 +39,8 @@ A regra é que o Gabriel **nunca patina**: os pés têm de bater com o chão e o
 
 ## 2. Dinâmica de Estamina
 
+> **Fugir custa estamina (2026-11-04):** Rastreador, Mariposa e Caçador perseguem a 72, 70 e 68 px/s, mais rápido do que o Gabriel anda (60) e mais devagar do que ele corre (108). Carregando a Célula de Energia, ele não corre ([`mecanicas_de_fase.md`](mecanicas_de_fase.md)).
+
 - Gabriel é um estudante comum: sua estamina se esgota rapidamente durante a corrida (~8 segundos contínuos).
 - **Ansiedade:** robôs próximos aumentam a ansiedade de Gabriel. Quanto mais perto o robô mais próximo, mais rápido a barra cresce; quando todos se afastam, ela diminui gradualmente. A ansiedade aumenta o consumo de estamina durante a corrida em até 80%. A barra fica sempre visível abaixo da estamina.
 - **Pressão externa:** um sistema pode impor um piso à ansiedade com `Ansiedade.definir_pressao(valor)`; a barra não desce abaixo dele. O relógio do Corredor do Tempo (Labirinto) usa isso: quanto menos tempo resta, maior o piso ([`corredor_do_tempo.md`](corredor_do_tempo.md)).

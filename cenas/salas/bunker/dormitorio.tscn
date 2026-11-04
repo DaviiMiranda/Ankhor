@@ -23,6 +23,8 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_bunker.tscn" id="m_musica"]
 [ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
 [ext_resource type="Resource" path="res://dados/colecoes/bunker.tres" id="col_dados"]
+[ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="gd_item"]
+[ext_resource type="Resource" path="res://dados/itens/mascara_gas.tres" id="gd_mascara"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -285,3 +287,7 @@ bus = &"Efeitos"
 position = Vector2(170, 280)
 colecao = ExtResource("col_dados")
 numero = 1
+
+[node name="FiltroDaMascara" parent="Objetos" instance=ExtResource("gd_item")]
+position = Vector2(300, 485)
+item = ExtResource("gd_mascara")

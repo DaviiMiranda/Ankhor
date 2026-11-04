@@ -94,6 +94,12 @@ O Henrique explica no diálogo que o setor B está lacrado pelo sistema e que o 
 
 ---
 
+## 3.1 O que mudou em 2026-11-04
+
+O Corredor B está tomado por gás até a energia voltar. O **gerador trocou de lugar com o arquivo**: agora fica em x 1561 (a tabela e o mapa da seção 2 valem com essa troca). A máscara fica na enfermaria, com filtros no dormitório e no depósito. O arsenal tem 1 cápsula de clarão, e o depósito, nenhuma. Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 6.
+
+---
+
 ## 4. Onde está no projeto
 
 | O quê | Onde |

@@ -1,7 +1,8 @@
 class_name PilhaNoChao
 extends Interagivel
 
-const ID_LANTERNA := "lanterna"
+const GADGETS_COM_PILHA := ["lanterna", "walkman", "notebook"]
+const LIMITE_PARA_TROCAR := 0.95
 const SOM_TROCA := preload("res://assets/audio/efeitos/objetos/pilha_troca.wav")
 
 
@@ -15,17 +16,29 @@ func _ready() -> void:
 
 
 func pode_interagir() -> bool:
-	if not Inventario.tem(ID_LANTERNA):
-		return false
-	return Inventario.estado_de(ID_LANTERNA).get("carga", 1.0) < 0.95
+	return not _gadget_mais_fraco().is_empty()
 
 
 func interagir() -> void:
-	Inventario.estado_de(ID_LANTERNA)["carga"] = 1.0
+	var id := _gadget_mais_fraco()
+	Inventario.estado_de(id)["carga"] = 1.0
 	Inventario.pegos[_id_unico()] = true
-	Inventario.aviso.emit("Pilha trocada: lanterna carregada")
+	Inventario.aviso.emit("Pilha trocada: lanterna carregada" if id == "lanterna" else "Pilha trocada: %s carregado" % id)
 	_tocar_som()
 	queue_free()
+
+
+func _gadget_mais_fraco() -> String:
+	var melhor := ""
+	var menor := LIMITE_PARA_TROCAR
+	for id in GADGETS_COM_PILHA:
+		if not Inventario.tem(id):
+			continue
+		var carga: float = Inventario.estado_de(id).get("carga", 1.0)
+		if carga < menor:
+			menor = carga
+			melhor = id
+	return melhor
 
 
 func _tocar_som() -> void:
