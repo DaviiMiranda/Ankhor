@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="1_porta"]
+[ext_resource type="Script" path="res://scripts/sistemas/porta_da_galeria.gd" id="2_galeria"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/grade_galeria.png" id="3_grade"]
+
+[node name="PortaDaGaleria" instance=ExtResource("1_porta")]
+script = ExtResource("2_galeria")
+texto_acao = "Entrar na galeria"
+
+[node name="Grade" type="Sprite2D" parent="." index="0"]
+position = Vector2(0, -12)
+texture = ExtResource("3_grade")
+centered = false
+offset = Vector2(-14, -36)

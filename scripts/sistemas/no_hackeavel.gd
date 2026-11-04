@@ -5,6 +5,7 @@ const COR_TRANCADO := Color(1.0, 0.3, 0.25)
 const COR_INVADIDO := Color(0.35, 1.0, 0.6)
 
 @export var gasto_hack: float = 0.0
+@export var ruido_ao_invadir: int = 0
 
 @onready var luz: PointLight2D = get_node_or_null("Luz")
 
@@ -21,6 +22,8 @@ func pode_interagir() -> bool:
 func destrancar() -> void:
 	super()
 	_atualizar_luz()
+	if ruido_ao_invadir > 0:
+		Robo.fazer_barulho(get_tree(), global_position, ruido_ao_invadir)
 
 
 func _atualizar_luz() -> void:

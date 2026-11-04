@@ -146,6 +146,7 @@ func _conflitos_atuais() -> Array[String]:
 func _concluir() -> void:
 	dica.text = "Fases sincronizadas sem ressonância!"
 	Progresso.marcar(marca)
+	Inventario.remover(item_requerido)
 	await get_tree().create_timer(0.9, true).timeout
 	_fechar()
 	Inventario.aviso.emit(aviso_ligado)

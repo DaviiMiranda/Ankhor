@@ -11,6 +11,10 @@ const CENA_CHECKPOINT := preload("res://cenas/sistemas/checkpoint.tscn")
 const CENA_LAMPADA := preload("res://cenas/cenario/objetos/lampada.tscn")
 const CENA_PILHA := preload("res://cenas/itens/pilha_no_chao.tscn")
 const CENA_ITEM := preload("res://cenas/itens/item_no_chao.tscn")
+const CENA_NICHO := preload("res://cenas/sistemas/nicho_esconderijo.tscn")
+const CENA_CAIXAS := preload("res://cenas/cenario/dtec/objetos/caixas_lab.tscn")
+const NUMERO_DO_NO_SEM_PAUSA := 3
+const RUIDO_DO_NO_SEM_PAUSA := 24
 const CENA_SAIDA := preload("res://cenas/sistemas/saida_fase.tscn")
 const CENA_NO := preload("res://cenas/sistemas/no_hackeavel.tscn")
 const CENA_ZANE := preload("res://cenas/personagens/zane_na_oficina.tscn")
@@ -333,6 +337,7 @@ func _colocar_marcadores() -> void:
 					var pilha := CENA_PILHA.instantiate()
 					pilha.name = "Pilha_%d_%d" % [x, y]
 					_colocar(pilha, posicao)
+					_colocar_nicho(x, y, posicao)
 				"L":
 					var lampada := CENA_LAMPADA.instantiate()
 					lampada.name = "Lampada_%d_%d" % [x, y]
@@ -362,6 +367,16 @@ func _colocar_marcadores() -> void:
 					_colocar_robo(mapa.letra(celula), posicao, numero)
 				_:
 					_colocar_prop(celula)
+
+
+func _colocar_nicho(x: int, y: int, posicao: Vector2) -> void:
+	var caixas: Node2D = CENA_CAIXAS.instantiate()
+	caixas.name = "CaixasDoNicho_%d_%d" % [x, y]
+	_colocar(caixas, posicao + Vector2(-14, -10))
+	var nicho: NichoEsconderijo = CENA_NICHO.instantiate()
+	nicho.name = "Nicho_%d_%d" % [x, y]
+	nicho.aviso = "Parado atrás das caixas, no escuro, os robôs não me veem."
+	_colocar(nicho, posicao + Vector2(-14, 2))
 
 
 func _colocar_colecionavel(numero: int, posicao: Vector2, marca: String) -> void:
@@ -432,6 +447,9 @@ func _colocar_no(posicao: Vector2) -> void:
 	no.id = "%s%d" % [RedeDoLabirinto.PREFIXO_DA_MARCA, _numero_do_no]
 	no.marca_ao_destrancar = no.id
 	no.dificuldade_hack = DIFICULDADES_DOS_NOS[mini(_numero_do_no - 1, DIFICULDADES_DOS_NOS.size() - 1)]
+	if _numero_do_no == NUMERO_DO_NO_SEM_PAUSA:
+		no.hack_sem_pausa = true
+		no.ruido_ao_invadir = RUIDO_DO_NO_SEM_PAUSA
 	_colocar(no, posicao)
 
 

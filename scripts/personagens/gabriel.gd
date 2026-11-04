@@ -97,6 +97,7 @@ var _mascara_colisao := 0
 @onready var no_gadgets: Node2D = $Gadgets
 @onready var fadiga: Fadiga = $Fadiga
 var ansiedade: Ansiedade
+var acao_demorada: AcaoDemorada
 
 
 func _ready() -> void:
@@ -105,6 +106,10 @@ func _ready() -> void:
 	ansiedade = CENA_ANSIEDADE.instantiate() as Ansiedade
 	add_child(ansiedade)
 	ansiedade.mudou.connect(_ao_mudar_ansiedade)
+	acao_demorada = AcaoDemorada.new()
+	add_child(acao_demorada)
+	add_child(ItensLargados.new())
+	add_child(ZumbidoDaCarga.new())
 	Inventario.mudou.connect(_atualizar_gadgets)
 	Vida.dano_recebido.connect(_ao_receber_dano)
 	if fadiga:
@@ -120,11 +125,23 @@ func _unhandled_input(evento: InputEvent) -> void:
 	if evento.is_action_pressed("interagir"):
 		var alvo := Interagivel.mais_perto(get_tree(), global_position)
 		if alvo:
-			alvo.interagir()
+			if alvo.segundos_de_espera() > 0.0:
+				acao_demorada.comecar(alvo)
+			else:
+				alvo.interagir()
 			get_viewport().set_input_as_handled()
+	if evento.is_action_pressed("largar"):
+		_largar_carga()
 	for i in Inventario.ESPACOS_GADGET:
 		if evento.is_action_pressed("gadget_%d" % (i + 1)):
 			usar_gadget(i)
+
+
+func _largar_carga() -> void:
+	var item := Inventario.item_pesado()
+	if item:
+		ItensLargados.soltar(get_tree(), item, global_position)
+		Inventario.aviso.emit("%s no chão. E para pegar de novo." % item.nome)
 
 
 func usar_gadget(espaco: int) -> void:
@@ -163,7 +180,7 @@ func _physics_process(delta: float) -> void:
 
 	correndo = false
 	var velocidade := velocidade_andar
-	var pode_correr := fadiga.pode_correr() if fadiga else true
+	var pode_correr := (fadiga.pode_correr() if fadiga else true) and not Inventario.carregando_peso()
 	if jogador_controla and Input.is_action_pressed("correr") and direcao != Vector2.ZERO and pode_correr:
 		velocidade *= multiplicador_correr
 		correndo = true

@@ -14,6 +14,7 @@ var gadgets: Array = []
 var estado: Dictionary = {}
 var pegos: Dictionary = {}
 var vistos: Dictionary = {}
+var largados: Dictionary = {}
 
 
 func _ready() -> void:
@@ -31,10 +32,12 @@ func limpar() -> void:
 	estado = {}
 	pegos = {}
 	vistos = {}
+	largados = {}
 	mudou.emit()
 
 
 func adicionar(item: Item) -> bool:
+	largados.erase(item.id)
 	if item.maximo_unidades > 0 and tem(item.id):
 		return _somar_unidade(item)
 	for linha in LINHAS:
@@ -65,6 +68,23 @@ func remover(id: String) -> void:
 					gadgets[espaco] = null
 				mudou.emit()
 				return
+
+
+func largar(item: Item, cena: String, posicao: Vector2) -> void:
+	remover(item.id)
+	largados[item.id] = {"cena": cena, "posicao": posicao}
+
+
+func item_pesado() -> Item:
+	for linha in grade:
+		for item in linha:
+			if item != null and item.carga_pesada:
+				return item
+	return null
+
+
+func carregando_peso() -> bool:
+	return item_pesado() != null
 
 
 func item_em(linha: int, coluna: int) -> Item:

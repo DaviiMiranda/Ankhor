@@ -5,16 +5,22 @@ const LARGURA_BARRA := 16.0
 const COR_FUNDO := Color(0.05, 0.08, 0.1)
 const COR_PROGRESSO := Color(0.45, 0.9, 1.0)
 const TELA_HACKEAMENTO := preload("res://cenas/interface/tela_hackeamento.tscn")
+const SOM_PULSO := preload("res://assets/audio/efeitos/objetos/sonar_pulso.wav")
+const ID_MODULO := "modulo_pulso"
 
 @export var alcance: float = 44.0
 @export var segundos_hack: float = 2.5
 @export var gasto_por_hack: float = 0.25
 @export var segundos_robo_desligado: float = 8.0
+@export var gasto_por_pulso: float = 0.1
+@export var alcance_do_pulso: float = 450.0
+@export var ruido_do_pulso: int = 10
 
 var item: Item
 var _estado: Dictionary
 var _alvo: Node2D
 var _progresso := 0.0
+var _janela: TelaHackeamento
 
 @onready var tela: PointLight2D = $Tela
 @onready var som: AudioStreamPlayer = $Som
@@ -33,6 +39,9 @@ func usar() -> void:
 	if _alvo:
 		return
 	var alvo := _procurar_alvo()
+	if alvo == null and Inventario.tem(ID_MODULO):
+		_pulsar()
+		return
 	if _estado["carga"] < _gasto_de(alvo) - 0.001:
 		Inventario.aviso.emit("Notebook sem bateria")
 		return
@@ -40,6 +49,28 @@ func usar() -> void:
 		Inventario.aviso.emit("Nada para hackear. Robôs, só por trás")
 		return
 	_comecar(alvo)
+
+
+func _pulsar() -> void:
+	var grade := PerseguicaoEntreSalas.grade_da_sala(get_tree().current_scene as Sala)
+	if grade == null:
+		Inventario.aviso.emit("Sem rede para o pulso nesta sala")
+		return
+	if _estado["carga"] < gasto_por_pulso - 0.001:
+		Inventario.aviso.emit("Notebook sem bateria")
+		return
+	_estado["carga"] = maxf(_estado["carga"] - gasto_por_pulso, 0.0)
+	var dono := _dono()
+	var pulso := PulsoSonar.new()
+	get_tree().current_scene.add_child(pulso)
+	pulso.iniciar(grade, dono.global_position, alcance_do_pulso)
+	var toque := AudioStreamPlayer.new()
+	toque.stream = SOM_PULSO
+	toque.bus = &"Efeitos"
+	toque.finished.connect(toque.queue_free)
+	pulso.add_child(toque)
+	toque.play()
+	Robo.fazer_barulho(get_tree(), dono.global_position, ruido_do_pulso)
 
 
 func ao_desequipar() -> void:
@@ -91,7 +122,8 @@ func _abrir_minigame(porta: Porta) -> void:
 	get_tree().current_scene.add_child(janela)
 	janela.concluido.connect(_ao_terminar_minigame.bind(porta))
 	janela.cancelado.connect(_ao_cancelar_minigame)
-	janela.abrir(porta.dificuldade_hack, porta.minigame_hack)
+	_janela = janela
+	janela.abrir(porta.dificuldade_hack, porta.minigame_hack, not porta.hack_sem_pausa)
 
 
 func _ao_terminar_minigame(sucesso: bool, porta: Porta) -> void:
@@ -127,6 +159,8 @@ func _concluir() -> void:
 func _ao_receber_dano(_origem: Vector2) -> void:
 	if _alvo:
 		som.stop()
+		if is_instance_valid(_janela):
+			_janela.interromper()
 		Inventario.aviso.emit("Hack interrompido")
 		_parar()
 

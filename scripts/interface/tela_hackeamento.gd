@@ -12,11 +12,13 @@ const CENAS := {
 var aberto := false
 var _minigame: MinigameHack
 var _pausava_antes := false
+var _pausou := false
 
 @onready var palco: Control = $Palco
 @onready var titulo: Label = $Titulo
 @onready var instrucao: Label = $Instrucao
 @onready var dica: Label = $Dica
+@onready var fundo: ColorRect = $Fundo
 
 
 func _ready() -> void:
@@ -24,7 +26,7 @@ func _ready() -> void:
 	visible = false
 
 
-func abrir(nivel: Hackeamento.Dificuldade, tipo: Hackeamento.Tipo = Hackeamento.Tipo.ALEATORIO) -> void:
+func abrir(nivel: Hackeamento.Dificuldade, tipo: Hackeamento.Tipo = Hackeamento.Tipo.ALEATORIO, pausar := true) -> void:
 	if aberto:
 		return
 	if tipo == Hackeamento.Tipo.ALEATORIO:
@@ -36,8 +38,14 @@ func abrir(nivel: Hackeamento.Dificuldade, tipo: Hackeamento.Tipo = Hackeamento.
 	titulo.text = "%s  [%s]" % [_minigame.titulo, Hackeamento.NOMES_DIFICULDADE[nivel]]
 	instrucao.text = _minigame.instrucao
 	dica.text = "Esc: cancelar"
-	_pausava_antes = get_tree().paused
-	get_tree().paused = true
+	_pausou = pausar
+	if pausar:
+		_pausava_antes = get_tree().paused
+		get_tree().paused = true
+	else:
+		Hackeamento.tela_em_tempo_real = true
+		fundo.color.a = 0.35
+		dica.text = "Os robôs continuam andando.   Esc: cancelar"
 	aberto = true
 	visible = true
 
@@ -60,8 +68,16 @@ func _ao_terminar(sucesso: bool) -> void:
 	concluido.emit(sucesso)
 
 
+func interromper() -> void:
+	if aberto:
+		_fechar()
+
+
 func _fechar() -> void:
 	aberto = false
 	visible = false
-	get_tree().paused = _pausava_antes
+	if _pausou:
+		get_tree().paused = _pausava_antes
+	else:
+		Hackeamento.tela_em_tempo_real = false
 	queue_free()

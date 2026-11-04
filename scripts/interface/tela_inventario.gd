@@ -87,7 +87,7 @@ func _unhandled_input(evento: InputEvent) -> void:
 
 
 func _tratar_atalho(aba: Aba) -> void:
-	if not aberto and get_tree().paused:
+	if not aberto and (get_tree().paused or Hackeamento.tela_em_tempo_real):
 		return
 	_alternar(aba)
 	get_viewport().set_input_as_handled()

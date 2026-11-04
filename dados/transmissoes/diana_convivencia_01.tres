@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Transmissao" format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/transmissao.gd" id="1_transmissao"]
+
+[resource]
+script = ExtResource("1_transmissao")
+id = "diana_convivencia_01"
+falante = "RÁDIO"
+falas = PackedStringArray("Chhh... Estudante! Você tá na Tapioca? Diz que você tá na Tapioca!", "Cheguei agora. Por quê?", "Eu andei por aí, e deixei um mapa perto do balcão! Fui eu que desenhei!", "Mapa do quê?", "Das galerias da obra! Eu cortava caminho por elas em 78. Não estão em planta nenhuma de hoje. Marquei as portinholas com um X de giz.", "E os robôs?", "Um autômato achou a galeria, e lá é estreito, escuro, e não tem onde se esconder. Pronto, é o fim! Mas é um caminho.")
+falantes = PackedStringArray("DIANA (rádio)", "GABRIEL (rádio)", "DIANA (rádio)", "GABRIEL (rádio)", "DIANA (rádio)", "GABRIEL (rádio)", "DIANA (rádio)")
+titulo_anotacao = "As galerias da Diana"
+anotacao = "A Diana desenhou um mapa das galerias da obra de 1978 e deixou perto do balcão da Tapioca Orbital. As portinholas têm um X de giz: uma no Self Nebulosa, uma na Pizzaria Quasar e uma no Churrasco Solar.
+A galeria é escura e não tem onde se esconder, e há um robô lá dentro."

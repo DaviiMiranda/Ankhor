@@ -84,6 +84,11 @@
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_normal",
 					"texto": "Nos nós não gasta bateria: o terminal alimenta o notebook. Pode errar à vontade, só não erra perto de robô."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "O terceiro nó é o pior: enquanto você invade, os robôs não param. E quando ele cair, a rede grita. Abre o caminho de volta antes."
 				}
 			],
 			"vai_para": "menu"
@@ -160,6 +165,11 @@
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_confiante",
 					"texto": "Toma. É o único que eu tenho. Devolve inteiro."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Encaixei um módulo de pulso nele. Sem nó por perto, o botão manda um pulso: corredor e robô aparecem por dois segundos. Gasta bateria e faz barulho. O Rastreador ouve."
 				},
 				{
 					"quem": "Gabriel",

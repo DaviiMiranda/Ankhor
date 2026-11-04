@@ -91,6 +91,8 @@ var _indice_rota := -1
 var _bipou := false
 var _som_bipe: AudioStreamPlayer2D
 var _segundos_distraido := 0.0
+var _visitante := false
+var _saida_do_visitante := Vector2.ZERO
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var olhos: Sprite2D = $Olhos
@@ -177,6 +179,9 @@ func _patrulhar() -> void:
 	_mudar_estado(Estado.PATRULHA)
 	_bipou = false
 	_segundos_distraido = 0.0
+	if _visitante:
+		_ir_para(_saida_do_visitante)
+		return
 	var pontos := _pontos_da_rota()
 	if not pontos.is_empty():
 		_indice_rota = posmod(_indice_rota + 1, pontos.size())
@@ -186,6 +191,38 @@ func _patrulhar() -> void:
 	_salinha_anterior = _salinha
 	_salinha = proxima
 	_ir_para(grade.centro_salinha(proxima))
+
+
+func chegar_de_fora(nova_grade: GradeLabirinto, saida: Vector2) -> void:
+	_visitante = true
+	_saida_do_visitante = saida
+	configurar(nova_grade, Time.get_ticks_msec())
+	_perseguir()
+
+
+func chegar_pela_porta(ponto: Vector2) -> void:
+	global_position = ponto
+	_caminho.clear()
+	_segundos_distraido = 0.0
+	_perseguir()
+
+
+func esta_perseguindo() -> bool:
+	return estado == Estado.PERSEGUINDO or estado == Estado.ATACOU
+
+
+func ve_o_gabriel() -> bool:
+	return _ve_o_jogador()
+
+
+func denunciar() -> void:
+	if grade != null and estado != Estado.ATORDOADO:
+		_perseguir()
+
+
+static func fazer_barulho(arvore: SceneTree, origem: Vector2, alcance: float) -> void:
+	for no in arvore.get_nodes_in_group("robos"):
+		(no as Robo).ouvir_barulho(origem, alcance)
 
 
 func atordoar(segundos: float) -> void:
@@ -297,6 +334,9 @@ func _ir_para(alvo: Vector2) -> void:
 func _ao_chegar() -> void:
 	match estado:
 		Estado.PATRULHA:
+			if _visitante:
+				_sair_da_sala()
+				return
 			if _pontos_da_rota().is_empty():
 				if _tempo_desde_chegada > 0.4:
 					_patrulhar()
@@ -313,6 +353,11 @@ func _ao_chegar() -> void:
 		Estado.PROCURANDO:
 			if _tempo_desde_chegada > segundos_procurando:
 				_desistir()
+
+
+func _sair_da_sala() -> void:
+	remove_from_group("robos")
+	queue_free()
 
 
 func _velocidade() -> float:
@@ -398,7 +443,8 @@ func _linha_livre(ate: Vector2) -> bool:
 
 
 static func luz_do_jogador_acesa() -> bool:
-	return Inventario.estado_de("lanterna").get("aceso", false) or Inventario.estado_de("notebook").get("aceso", false)
+	return Inventario.estado_de("lanterna").get("aceso", false) or Inventario.estado_de("notebook").get("aceso", false) \
+			or Inventario.estado_de("espelho").get("aceso", false)
 
 
 func _jogador_iluminado() -> bool:

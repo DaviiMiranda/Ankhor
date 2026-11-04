@@ -2,6 +2,7 @@ class_name ZaneOficina
 extends ConversaNpc
 
 const NOTEBOOK := preload("res://dados/itens/notebook.tres")
+const MODULO_PULSO := preload("res://dados/itens/modulo_pulso.tres")
 const MARCA_NOTEBOOK_ENTREGUE := "labirinto_notebook_entregue"
 const MARCA_ALCAPAO_REVELADO := "labirinto_alcapao_revelado"
 
@@ -37,6 +38,7 @@ func _entregar_ao_terminar() -> void:
 func _entregar_notebook(_caminho: String) -> void:
 	if Inventario.tem(NOTEBOOK.id) or Inventario.adicionar(NOTEBOOK):
 		Progresso.marcar(MARCA_NOTEBOOK_ENTREGUE)
+		Inventario.adicionar(MODULO_PULSO)
 		Inventario.aviso.emit("Notebook do Zane recebido")
 	else:
 		Inventario.aviso.emit("Inventário cheio: libere um espaço e fale com o Zane")

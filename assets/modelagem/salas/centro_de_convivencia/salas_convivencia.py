@@ -178,7 +178,9 @@ LOJA_1 = {
         ("mesa_cafe", 110, 204), ("banqueta", 80, 212), ("banqueta", 140, 212),
         ("mesa_cafe", 300, 218), ("banqueta", 270, 226), ("banqueta", 330, 226, True),
     ],
-    "itens": [("pilha", 190, 190), ("clarao", 350, 190)],
+    "itens": [("pilha", 190, 190), ("clarao", 350, 190), ("mapa_diana", 160, 178)],
+    # A Diana conta do mapa pelo rádio assim que o Gabriel entra na Tapioca.
+    "transmissoes": [("diana_convivencia_01", 200, 170, "", True)],
     "documentos": [("ordem_manutencao_convivencia", 125, 152, "Ler a ordem de serviço")],
     # A estufa de lanches: o painel destaca as iniciais do nome da casa (T e O)
     # e o combo são os dois lanches com essas iniciais (Torrada e Omelete).
@@ -204,6 +206,10 @@ LOJA_2 = {
         porta_interna("loja_2_praca", 0, "verde", "praca_central", "praca_loja_2"),
         porta_interna("loja_2_camara", 6, "ciano", "camara_fria", "camara_loja_2"),
     ],
+    # As portinholas da galeria de 1978 só existem para quem tem o mapa da Diana.
+    "galerias": [{"id": "loja_2_galeria", "x": 92, "porta_destino": "galeria_loja_2"}],
+    # O cofre fica ao lado do Rastreador: o painel não pausa o jogo.
+    "cofres_sem_pausa": True,
     "objetos": [
         ("bufe", 258, 154), ("rack_bandejas", 150, 154), ("lixeira_reciclagem", 600, 150),
         ("mesa_vidro", 200, 240), ("cadeira_fut", 160, 248), ("cadeira_fut", 242, 248, True),
@@ -250,6 +256,7 @@ CAMARA_FRIA = {
 LOJA_3 = {
     "id": "loja_3", "largura": 480, "altura": 260, "fundo": "fundo_loja_3", "gabriel": "(80, 160)",
     "portas": [porta_interna("loja_3_praca", 0, "vermelho", "praca_central", "praca_loja_3")],
+    "galerias": [{"id": "loja_3_galeria", "x": 392, "porta_destino": "galeria_loja_3"}],
     "objetos": [
         ("forno_plasma", 122, 150), ("bancada_inox", 250, 150), ("mesa_pizza", 170, 222), ("mesa_pizza", 340, 232),
         ("caixas_pizza", 440, 152),
@@ -279,6 +286,7 @@ LOJA_4 = {
          "aviso": "Elevador de carga sem alimentação. O quadro de comutação da cozinha da Pizzaria Quasar está desligado."},
     ],
     "comporta": {"textura": "elevador_carga", "x": 7 * PECA + 8, "y": 28},
+    "galerias": [{"id": "loja_4_galeria", "x": 252, "porta_destino": "galeria_loja_4"}],
     "objetos": [
         ("grelha_solar", 175, 170), ("balcao_bar", 350, 178),
         ("banqueta_alta", 290, 200), ("banqueta_alta", 335, 200), ("banqueta_alta", 380, 200), ("banqueta_alta", 425, 200),
@@ -293,7 +301,7 @@ LOJA_4 = {
         "campos": [
             'texto_acao = "Abrir o quadro do bar"', 'titulo = "QUADRO DO BAR"', 'marca = "churrasco_quadro_ligado"',
             f"ordem = PackedInt32Array({ORDEM_DO_QUADRO_DO_BAR})",
-            'nomes = PackedStringArray("GELAD", "EXAUST", "NEON", "GRELHA")', "ruido_ao_desarmar = 14",
+            'nomes = PackedStringArray("GELAD", "EXAUST", "NEON", "GRELHA")', "ruido_ao_desarmar = 14", "pausa_o_jogo = false",
             'aviso_ligado = "Quadro do bar ligado. A gaveta de reserva destravou: duas pilhas."',
             'aviso_ja_ligado = "O quadro do bar já está ligado."',
         ],
@@ -393,7 +401,7 @@ MEZANINO = {
     ],
     "letreiros": [letreiro_do_mezanino(loja) for loja in ("grafica", "loja_uni", "cinema")] + [("letreiro_mezanino", 880, 2)],
     "objetos": OBJETOS_MEZANINO,
-    "itens": [("pedra", 330, base.y_base(4) + 88), ("pedra", 1440, base.y_base(18) + 84), ("pilha", 1880, base.y_base(23) + 72)],
+    "itens": [("pedra", 330, base.y_base(4) + 88), ("pedra", 1440, base.y_base(18) + 84)],
     "documentos": [("carta_faroleiro_tiao", *no_corredor(2, 70), "Ler a carta")],
     "nichos": [(440, base.y_base(5) + 16), (1560, base.y_base(19) + 16)],
     "luzes": [
@@ -430,7 +438,7 @@ LOJA_UNI = {
         ("mesa_dobrados", 160, 208), ("arara_b", 262, 214), ("estante_moletons", 372, 216), ("cesto_promocao", 452, 208),
         ("espelho_standing", 526, 206),
     ],
-    "itens": [("pilha", 110, 228), ("pedra", 330, 232)],
+    "itens": [("pilha", 110, 228), ("pedra", 330, 232), ("espelho", 506, 218)],
     "documentos": [("aviso_loja_universitaria", 330, 170, "Ler o aviso do balcão")],
     "paineis": [{
         "nome": "AraraInteligente", "cena": "painel_ordenacao", "x": 215, "y": 160, "premio": ("pilha", 2),
@@ -562,7 +570,7 @@ CINEMA_CABINE = {
     "documentos": [("canhoto_caio", 160, 196, "Ler o canhoto")],
     "cofres": [(340, 152, CODIGO_DO_COFRE_DO_CINEMA, "clarao", 1, "cofre_cinema_aberto",
                 "O cofre abriu: caiu uma cápsula de clarão.")],
-    "itens": [("pilha", 262, 196)],
+    "itens": [],
     "luzes": [
         ("luz_lampada", 200, 90, "energy = 0.7"),
         ("luz_fria", 130, 100, "color = Color(0.7, 0.5, 1, 1)", "energy = 0.5"),

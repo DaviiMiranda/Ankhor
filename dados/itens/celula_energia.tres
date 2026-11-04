@@ -9,7 +9,8 @@
 script = ExtResource("1_item")
 id = "celula_energia"
 nome = "Célula de energia"
-descricao = "Célula industrial de alta densidade, tirada da câmara fria do Self Nebulosa. Alimenta o quadro de comutação da cozinha da Pizzaria Quasar."
+descricao = "Célula industrial de alta densidade, tirada da câmara fria do Self Nebulosa. Alimenta o quadro de comutação da cozinha da Pizzaria Quasar. Pesa: não dá para correr com ela, e o zumbido atrai robôs. G larga no chão."
 icone = ExtResource("2_icone")
 sprite_chao = ExtResource("3_chao")
 imagem_detalhe = ExtResource("4_detalhe")
+carga_pesada = true

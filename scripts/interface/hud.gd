@@ -78,10 +78,11 @@ func _atualizar_aviso() -> void:
 	var alvo: Interagivel = null
 	if jogador:
 		alvo = Interagivel.mais_perto(get_tree(), jogador.global_position)
-	aviso.visible = alvo != null
-	if alvo == null:
+	aviso.visible = alvo != null and not Hackeamento.tela_em_tempo_real
+	if not aviso.visible:
 		return
-	aviso.text = ("[E] " + alvo.texto_acao).strip_edges()
+	var tecla := "[Segure E] " if alvo.segundos_de_espera() > 0.0 else "[E] "
+	aviso.text = (tecla + alvo.texto_acao).strip_edges()
 	aviso.reset_size()
 	var topo := alvo.get_global_transform_with_canvas() * Vector2(0.0, -alvo.altura_aviso)
 	var tela := get_viewport().get_visible_rect().size
