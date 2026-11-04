@@ -1,5 +1,24 @@
 # Registro de decisões
 
+## 2026-11-04 — Gesto da mochila, respiração em fuga e polimento do inventário
+
+**Decisão:** quatro itens de `docs/sugestao-melhoramento-futuro.md` entram no jogo:
+
+- **Gesto da mochila:** ao abrir o inventário, o Gabriel tira a mochila de um ombro e a traz para a frente, nas cinco vistas. Ao fechar, o gesto toca ao contrário.
+- **Respiração em fuga:** o Gabriel ofega enquanto um robô o persegue e por mais 3 s depois.
+- **Sons de equipar e desequipar:** um estalo curto para cada ação.
+- **Efeitos ao escolher um item:** o ícone cresce e volta, a moldura acende e o texto aparece em fade.
+
+**Escolhas feitas sem resposta do grupo, para revisar:**
+- **O mundo pausa no primeiro quadro do gesto.** Os robôs param enquanto o Gabriel mexe na mochila. O gesto custa 0,42 s de espera para abrir, mas nunca custa uma vida. Deixar o mundo correndo durante o gesto daria mais tensão, e também faria o jogador morrer por abrir o inventário.
+- **Escondido, ele prende a respiração.** O som para dentro do nicho, mesmo com um robô por perto.
+- **O som é o mesmo `gabriel_ofegante.wav` da fadiga**, em volume médio e com o tom variando. Se o grupo quiser uma respiração própria, é trocar o arquivo.
+- **A lanterna sai da mão durante qualquer tira especial**, o que inclui pôr os óculos na sala segura. Antes ela ficava parada no ar enquanto a mão ia para outro lugar.
+
+**Por quê:** pedido do Davi. **Conferido** no Godot 4.7.2 por script, com a lanterna equipada, um robô na sala e capturas de tela. A altura e o volume dos sons novos não foram ouvidos: foram só medidos pelo gerador.
+
+**Afeta:** `scripts/interface/tela_inventario.gd`, `espaco_item.gd`, `cenas/interface/tela_inventario.tscn`, `scripts/personagens/gabriel.gd`, `gesto_mochila.gd`, `scripts/itens/lanterna.gd`, `scripts/sistemas/fadiga.gd`, os sprites `gabriel_mochila_*.png`, os geradores `gerar_gabriel_mochila.py` e `gerar_efeitos_inventario.py`, `docs/mecanicas/itens_e_inventario.md`, `movimentacao_e_terreno.md` e `assets/audio/README.md`.
+
 ## 2026-11-04 — Mecânica, item e desafio novos por fase (menos o D-Tec)
 
 **Decisão:** cada fase ganha uma ação nova, um item com custo e um desafio que junta os dois. O detalhe está em [`mecanicas/mecanicas_de_fase.md`](mecanicas/mecanicas_de_fase.md).

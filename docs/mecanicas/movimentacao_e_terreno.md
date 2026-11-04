@@ -33,7 +33,8 @@ A regra é que o Gabriel **nunca patina**: os pés têm de bater com o chão e o
 ### 1.3 Poeira e respiração
 
 - `cenas/sistemas/poeira_dos_pes.tscn` solta alguns grãos a cada pisada de corrida, pelo sinal `passo_dado`.
-- A respiração usa `gabriel_ofegante.wav` em dois níveis (`fadiga.gd`): fraca abaixo de 30% de estamina e forte em exaustão. Só a exaustão emite o sinal `ofegante`.
+- A respiração usa `gabriel_ofegante.wav` em três níveis (`fadiga.gd`): fraca abaixo de 30% de estamina, média em fuga e forte em exaustão. Só a exaustão emite o sinal `ofegante`.
+- **Em fuga** quer dizer: algum robô está perseguindo (`Robo.esta_perseguindo`) ou parou de perseguir há menos de 3 s, para o Gabriel recuperar o fôlego depois de escapar. O tom varia um pouco a cada respiração. **Escondido, ele prende a respiração:** o som para enquanto `escondido` for verdadeiro. A respiração é só som: os robôs não a ouvem.
 
 ---
 
