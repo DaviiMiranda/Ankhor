@@ -17,6 +17,8 @@
 #   assets/sprites/cenario/objetos/buraco_chao.png     o buraco no chão da sala 204
 #   assets/sprites/cenario/objetos/sirene.png          a sirene vermelha do corredor do térreo
 #   assets/sprites/cenario/objetos/caixas_queda.png    o monte de caixas e espuma embaixo do buraco, na 104
+#   assets/sprites/cenario/objetos/peca_professor_*.png as 4 peças do professor robô, no chão da 105
+#   assets/sprites/cenario/objetos/mancha_luar_*.png    as 4 manchas de luar com desenho, no chão da 202
 #
 # Medidas que precisam bater com o kit (gerar_kit.py):
 #   - a grade da escada cobre o vão de parede_escada_sobe.png: 53 x 82 px,
@@ -343,6 +345,130 @@ def caixas_queda():
     d.salvar(PASTA_OBJETOS, "caixas_queda.png")
 
 
+def peca_bateria():
+    """Bateria do professor robô, no chão: um bloco de metal com o polo âmbar."""
+    d = Desenho(12, 8)
+    d.caixa(0, 1, 9, 7, METAL, METAL_CLARO, METAL_ESCURO)
+    d.ret(10, 3, 11, 5, OURO)
+    d.ret(3, 3, 6, 3, OURO_CLARO)
+    d.salvar(PASTA_OBJETOS, "peca_professor_bateria.png")
+
+
+def peca_nucleo():
+    """Núcleo do professor robô: uma esfera escura com a luz fraca no meio."""
+    d = Desenho(11, 9)
+    cx, cy = 5, 4
+    for y in range(9):
+        for x in range(11):
+            distancia = math.hypot(x - cx, (y - cy) * 1.2)
+            if distancia <= 5.0:
+                d.px(x, y, CONTORNO)
+            if distancia <= 4.0:
+                d.px(x, y, METAL_ESCURO if y >= cy else METAL)
+            if distancia <= 1.5:
+                d.px(x, y, FITA_AZUL_CLARA)
+    d.salvar(PASTA_OBJETOS, "peca_professor_nucleo.png")
+
+
+def peca_sensor():
+    """Sensor da cabeça: a caixa do rosto com a lente apagada e um cabo solto."""
+    d = Desenho(13, 9)
+    d.caixa(0, 0, 9, 8, METAL_ESCURO, METAL, CONTORNO)
+    d.ret(3, 3, 6, 5, BURACO)
+    d.px(4, 3, FITA_AZUL)
+    d.ret(10, 6, 12, 6, LARANJA_CABO)
+    d.px(12, 7, LARANJA_CABO_CLARO)
+    d.salvar(PASTA_OBJETOS, "peca_professor_sensor.png")
+
+
+def peca_voz():
+    """Módulo de voz: uma placa verde com a grade de um alto-falante."""
+    d = Desenho(11, 7)
+    d.caixa(0, 0, 10, 6, cor("#2f5a44"), cor("#4a8066"), cor("#1c382a"))
+    for x in (3, 5, 7):
+        d.ret(x, 2, x, 4, CONTORNO)
+    d.px(1, 5, OURO_CLARO)
+    d.salvar(PASTA_OBJETOS, "peca_professor_voz.png")
+
+
+def _ponto_em_poligono(x, y, vertices):
+    """Regra do número ímpar de cruzamentos: um raio horizontal saindo de
+    (x, y) cruza as arestas de um polígono um número ímpar de vezes se, e só
+    se, o ponto está dentro dele."""
+    dentro = False
+    j = len(vertices) - 1
+    for i, (xi, yi) in enumerate(vertices):
+        xj, yj = vertices[j]
+        if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / (yj - yi) + xi:
+            dentro = not dentro
+        j = i
+    return dentro
+
+
+def _no_desenho_lua(x, y):
+    """Lua crescente: o círculo grande menos um círculo deslocado para a direita."""
+    return math.hypot(x, y) <= 9.0 and math.hypot(x - 5.0, y + 1.0) > 7.5
+
+
+def _no_desenho_estrela(x, y):
+    """Estrela de 5 pontas: os vértices alternam entre o raio 10 e o raio 4, a
+    cada 36 graus, começando pela ponta de cima."""
+    vertices = []
+    for i in range(10):
+        raio = 10.0 if i % 2 == 0 else 4.0
+        angulo = math.radians(-90 + 36 * i)
+        vertices.append((raio * math.cos(angulo), raio * math.sin(angulo)))
+    return _ponto_em_poligono(x, y, vertices)
+
+
+def _no_desenho_folha(x, y):
+    """Folha deitada na diagonal: gira o ponto 40 graus e testa a interseção de
+    dois círculos (uma lente com as pontas finas), com o talo saindo de baixo
+    e a nervura do meio apagada."""
+    angulo = math.radians(40)
+    u = x * math.cos(angulo) + y * math.sin(angulo)
+    v = -x * math.sin(angulo) + y * math.cos(angulo)
+    lente = math.hypot(u - 7.0, v) <= 13.0 and math.hypot(u + 7.0, v) <= 13.0
+    nervura = abs(u) < 0.6 and -7.0 < v < 8.0
+    talo = abs(u) < 1.0 and 10.0 <= v <= 13.0
+    return (lente and not nervura) or talo
+
+
+def _no_desenho_raiz(x, y):
+    """Raiz: um tronco descendo que se abre em galhos. Cada galho é um segmento
+    grosso de reta: o ponto faz parte dele se a distância até o segmento for
+    menor que a grossura."""
+    galhos = (((0, -10), (0, 2), 2.0), ((0, 0), (-8, 7), 1.5), ((0, 0), (8, 7), 1.5),
+              ((0, 2), (-2, 10), 1.2), ((0, 2), (3, 10), 1.2), ((-5, 4), (-10, 3), 1.0),
+              ((5, 4), (10, 2), 1.0))
+    for (ax, ay), (bx, by), grossura in galhos:
+        dx, dy = bx - ax, by - ay
+        t = max(0.0, min(1.0, ((x - ax) * dx + (y - ay) * dy) / (dx * dx + dy * dy)))
+        if math.hypot(x - ax - t * dx, y - ay - t * dy) <= grossura:
+            return True
+    return False
+
+
+def mancha_luar(nome, no_desenho):
+    """Mancha de luar no chão, em cima de um desenho: uma elipse clara em
+    pontilhado (a luz que passa pelo teto) com o símbolo aceso no meio.
+    Fica achatada em y, na mesma perspectiva do chão (fator 0,7). A cena usa
+    mistura aditiva, então o transparente não soma nada."""
+    largura, altura = 52, 32
+    cx, cy = largura / 2.0, altura / 2.0
+    d = Desenho(largura, altura)
+    for y in range(altura):
+        for x in range(largura):
+            distancia = math.hypot((x - cx) / 25.0, (y - cy) / 15.0)
+            if distancia > 1.0:
+                continue
+            if no_desenho(x - cx, (y - cy) / 0.7):
+                d.px(x, y, (190, 210, 255, 255))
+            elif distancia <= 0.72 or (x + y) % 2 == 0:
+                d.px(x, y, (70, 88, 140, 150))
+    d.salvar(PASTA_OBJETOS, "mancha_luar_%s.png" % nome)
+
+
 if __name__ == "__main__":
     print("Gerando os objetos do Bloco de salas:")
     molho_de_chaves()
@@ -355,3 +481,11 @@ if __name__ == "__main__":
     buraco_chao()
     sirene()
     caixas_queda()
+    peca_bateria()
+    peca_nucleo()
+    peca_sensor()
+    peca_voz()
+    mancha_luar("lua", _no_desenho_lua)
+    mancha_luar("folha", _no_desenho_folha)
+    mancha_luar("raiz", _no_desenho_raiz)
+    mancha_luar("estrela", _no_desenho_estrela)

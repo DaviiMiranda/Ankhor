@@ -72,11 +72,11 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 | 102 | Chave da escada | O **molho de chaves da Clarice**, caído na areia. 3 pedras | Atrás das carteiras tombadas | O Rastreador passa na porta |
 | 103 | **Posto da Clarice e da Diana** (protegido, mas não salva) | A Clarice (a Diana ainda não tem visual), o acampamento, 2 pilhas | Não precisa: a barricada protege | Nenhuma |
 | 104 | Distração e fim do atalho | Os terminais acesos. Um deles tem o **teste de alarme** do bloco, que dispara a **sirene do fim do corredor** (perto da escada). No teto, o buraco que vem da 204 | Debaixo das mesas | Nenhuma |
-| 105 | Respiro | 2 robôs desmontados, 2 pilhas | Atrás dos robôs desmontados | Nenhuma (os robôs desmontados não ligam) |
+| 105 | Respiro e puzzle opcional | 2 robôs desmontados, 2 pilhas. **Remontar o professor** (seção 5.6): 4 peças espalhadas | Atrás dos robôs desmontados | Nenhuma (os robôs desmontados não ligam) |
 | 106 | Respiro | A árvore e o luar | Atrás da árvore | Nenhuma |
 | Corredor 1º andar | Eixo do andar de cima | Luar pelos buracos do teto: faixas de luz e de sombra no chão. Mato e areia no oeste (passos abafados, ×0,5), lajota solta no leste (×1,5) | Na sombra das árvores do corredor | **Sentinela** (visão) |
 | 201 | Pista do código | Duas lousas; a da esquerda tem os tracinhos (2º número) | Entre as fileiras | Nenhuma |
-| 202 | Respiro | As duas árvores. 1 pedra | Atrás das árvores | Nenhuma |
+| 202 | Respiro e puzzle opcional | As duas árvores. 1 pedra. **Os desenhos do luar** (seção 5.7): 4 manchas no chão e a trava do rack | Atrás das árvores | Nenhuma |
 | 203 | Cadeado de segredo | O **claviculário** (armário de chaves) com cadeado de 3 números e o **quadro de avisos** com a pista | Debaixo das mesas | Nenhuma |
 | 204 | Atalho | O buraco no chão (desce para a 104). 1 cápsula de clarão | Atrás do entulho | Nenhuma |
 | 205 | Pista do código e mistério | Lousa com tracinhos (3º número). A sala "intacta demais" continua sem explicação (seção 8) | Entre as fileiras | Nenhuma |
@@ -131,11 +131,11 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 | Código do claviculário (**738**) | Tracinhos das lousas da 101 (7), 201 (3) e 205 (8) | Abrir o claviculário (203) |
 | Chave do depósito | Claviculário (203) | Abrir a 206 |
 | Alicate corta-corrente | 206 | Cortar a corrente da porta corta-fogo |
-| Cápsula de clarão | 204 (já está lá) | Defesa |
+| Cápsula de clarão | 204 (já está lá) e 202 (prêmio do rack, seção 5.7) | Defesa |
 | Pedras | 102 (3, já estão lá) e 202 (1) | Distração |
 | Disquetes coloridos (3) | 105 (canto esquerdo), 106 (lado esquerdo) e 202 (meio da sala) | Opcionais, fora do caminho obrigatório: ao juntar os três, o quarto do Gabriel ganha uma pilha de disquetes na mesa dele, ao lado do farol. Não ficam na mochila (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
 | Recorte de jornal 2 (colecionável) | Sala 203, no chão perto das mesas de leitura (190, 210) | Opcional: o boletim do Conselho sobre o embarque para o novo mundo (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
-| Pilhas | 103 (2), 105 (2), 206 (1) | Lanterna |
+| Pilhas | 103 (2), 105 (2, mais 2 de prêmio do professor, seção 5.6), 206 (1) | Lanterna |
 | Rádio | Corredor do térreo, na chegada | Só aparece se o Gabriel ainda não tem (quem começa pelo menu Fases). Sem ele, as transmissões não tocam |
 
 ---
@@ -188,6 +188,21 @@ Cortar a corrente pede segurar `E` por 5 s, com barulho; achar o molho na areia,
 
 - **Como funciona:** o buraco no chão da 204 é uma passagem de mão única: o Gabriel desce e cai entre as mesas da 104, logo embaixo, com o som da queda. É uma `Porta` que leva a um ponto de chegada sem volta.
 - **Para que serve:** encurtar a volta ao posto da Clarice (salvar) e fugir da Sentinela depois da virada.
+
+### 5.6 Remontar o professor (105, opcional)
+
+- **Como funciona:** quatro peças do professor robô estão no chão da sala: a **bateria** (canto esquerdo), o **núcleo** (junto ao robô desmontado de cima), o **sensor** (junto ao robô desmontado do meio) e o **módulo de voz** (canto de baixo, à direita). Cada uma tem uma etiqueta, lida ao pegar. O painel trincado avisa que as etiquetas dão a ordem de montagem. Quem tenta montar sem as quatro recebe a contagem ("você achou 2 de 4").
+- **Mecânica:** `PecaNoChao` guarda uma marca, e não um item: as peças não ocupam a mochila de 12 espaços, que precisa ter lugar para o alicate. O corpo do professor é um `QuadroEnergia` sem a caixa (`com_caixa = false`), que só abre com as quatro marcas. A etiqueta da peça escolhida aparece embaixo do painel, para o jogador não precisar decorar. Errar a ordem só faz as peças saltarem, sem barulho.
+- **Solução:** **bateria, núcleo, sensor, voz**. Os encaixes aparecem como SENSOR, BATERIA, VOZ, NÚCLEO.
+- **Prêmio:** 2 pilhas caem do peito do professor. O rosto acende e apaga: ele não acorda.
+- **Computação:** as etiquetas são arestas de um grafo de dependências, e montar é fazer uma ordenação topológica, a mesma ideia do quadro do bar do Centro de Convivência.
+
+### 5.7 Os desenhos do luar (202, opcional)
+
+- **Como funciona:** o luar que passa pelo teto desenha quatro símbolos no chão, longe uns dos outros: **estrela**, **raiz**, **lua** e **folha**. Olhar uma mancha diz o nome do desenho. A trava do rack de óculos tem um botão para cada símbolo e diz, no título: "SIGA O LUAR: DA JANELA À PORTA". A janela fica na ponta oeste da parede, e a porta, na leste.
+- **Mecânica:** um `QuadroEnergia` sem a caixa, com os nomes dos símbolos. As manchas são `mancha_luar.tscn`, sprites com mistura aditiva dentro de `Chao`. A sala mostra só parte do chão de cada vez, então o jogador precisa andar por ela para ver as quatro. Errar só volta ao começo, sem barulho. As manchas não revelam o Gabriel, porque a sala não tem robô.
+- **Solução:** a ordem das manchas de oeste para leste: **estrela (x 46), raiz (x 172), lua (x 330), folha (x 442)**.
+- **Prêmio:** 1 cápsula de clarão.
 
 ---
 
@@ -244,6 +259,7 @@ A sala "intacta demais" entra no puzzle só como uma das lousas. **Por que ela e
 | Itens novos | `dados/itens/molho_de_chaves.tres`, `chave_grade.tres`, `chave_deposito.tres`, `alicate.tres` |
 | Arte nova | `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` (ícones, claviculário, grade, corrente, buraco, sirene) e `gerar_kit.py` (lousas `parede_lousa_0`, `_3`, `_7`, `_8`) |
 | Sons novos | `assets/modelagem/audio/gerar_efeitos_bloco_de_salas.py`: sirene (em loop), queda e corrente cortada |
+| Puzzles opcionais da 105 e da 202 | `cenas/itens/peca_no_chao.tscn` (`peca_no_chao.gd`), `cenas/cenario/objetos/mancha_luar.tscn` e campos novos em `quadro_energia.gd`: `com_caixa`, `marcas_necessarias`, `aviso_faltam_marcas`, `etiquetas`, `dica_controles`, `texto_desarmou` e `texto_pronto`. Marcas: `peca_105_bateria`, `peca_105_nucleo`, `peca_105_sensor`, `peca_105_voz`, `professor_105_remontado` e `rack_202_aberto`. A arte vem de `gerar_objetos_bloco_de_salas.py` |
 | Melhorias da seção 12 | Ver a tabela da seção 12.8 |
 
 ---

@@ -25,6 +25,13 @@
 [ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
 [ext_resource type="Resource" path="res://dados/colecoes/bloco_de_salas.tres" id="col_dados"]
 
+[ext_resource type="PackedScene" path="res://cenas/sistemas/quadro_energia.tscn" id="pz_quadro"]
+[ext_resource type="PackedScene" path="res://cenas/itens/peca_no_chao.tscn" id="pz_peca"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/peca_professor_bateria.png" id="pz_bateria"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/peca_professor_nucleo.png" id="pz_nucleo"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/peca_professor_sensor.png" id="pz_sensor"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/peca_professor_voz.png" id="pz_voz"]
+
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.12, 0.13, 0.14, 1)
 
@@ -340,5 +347,59 @@ texto = "A doca está vazia. O robô que ficava aqui está desmontado no chão."
 position = Vector2(76, 178)
 colecao = ExtResource("col_dados")
 numero = 1
+
+[node name="PainelManual" parent="Objetos" instance=ExtResource("fut_aviso")]
+position = Vector2(200, 126)
+texto_acao = "Olhar o painel"
+altura_aviso = 70.0
+texto = "O painel trincou, mas ainda mostra um manual: cada peça do professor tem uma etiqueta dizendo a ordem de montagem."
+
+[node name="PecaBateria" parent="Objetos" instance=ExtResource("pz_peca")]
+position = Vector2(46, 272)
+texto_acao = "Pegar a bateria"
+marca = "peca_105_bateria"
+aviso_ao_pegar = "A bateria do professor. Etiqueta: INSTALAR ANTES DE TUDO."
+textura = ExtResource("pz_bateria")
+
+[node name="PecaNucleo" parent="Objetos" instance=ExtResource("pz_peca")]
+position = Vector2(274, 186)
+texto_acao = "Pegar o núcleo"
+marca = "peca_105_nucleo"
+aviso_ao_pegar = "O núcleo do professor. Etiqueta: PRECISA DA BATERIA."
+textura = ExtResource("pz_nucleo")
+
+[node name="PecaSensor" parent="Objetos" instance=ExtResource("pz_peca")]
+position = Vector2(226, 346)
+texto_acao = "Pegar o sensor"
+marca = "peca_105_sensor"
+aviso_ao_pegar = "O sensor da cabeça. Etiqueta: SEM O NÚCLEO, NÃO ENXERGA."
+textura = ExtResource("pz_sensor")
+
+[node name="PecaVoz" parent="Objetos" instance=ExtResource("pz_peca")]
+position = Vector2(350, 446)
+texto_acao = "Pegar o módulo de voz"
+marca = "peca_105_voz"
+aviso_ao_pegar = "O módulo de voz. Etiqueta: POR ÚLTIMO. SEM O SENSOR, FALA SOZINHO."
+textura = ExtResource("pz_voz")
+
+[node name="RemontarProfessor" parent="Objetos" instance=ExtResource("pz_quadro")]
+position = Vector2(330, 314)
+texto_acao = "Remontar o professor"
+altura_aviso = 30.0
+com_caixa = false
+titulo = "ENCAIXES DO PROFESSOR"
+marca = "professor_105_remontado"
+ordem = PackedInt32Array(2, 4, 1, 3)
+nomes = PackedStringArray("SENSOR", "BATERIA", "VOZ", "NÚCLEO")
+etiquetas = PackedStringArray("SENSOR: SEM O NÚCLEO, NÃO ENXERGA.", "BATERIA: INSTALAR ANTES DE TUDO.", "VOZ: POR ÚLTIMO. SEM O SENSOR, FALA SOZINHO.", "NÚCLEO: PRECISA DA BATERIA.")
+marcas_necessarias = PackedStringArray("peca_105_bateria", "peca_105_nucleo", "peca_105_sensor", "peca_105_voz")
+aviso_faltam_marcas = "Faltam peças: você achou %d de %d. Estão espalhadas pela sala."
+dica_controles = "Setas: escolher     E: encaixar     Esc: fechar"
+texto_desarmou = "Não encaixou. As peças saltaram dos encaixes."
+texto_pronto = "O rosto do professor acende e apaga."
+aviso_ligado = "O rosto acendeu por um instante e apagou. Um compartimento abriu no peito: duas pilhas."
+aviso_ja_ligado = "O professor está montado, mas não acorda."
+cena_premio = ExtResource("r16")
+quantidade_premio = 2
 
 [editable path="Ceu"]

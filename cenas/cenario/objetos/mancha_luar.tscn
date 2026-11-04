@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[sub_resource type="CanvasItemMaterial" id="Aditivo"]
+blend_mode = 1
+light_mode = 1
+
+[node name="ManchaLuar" type="Sprite2D"]
+material = SubResource("Aditivo")

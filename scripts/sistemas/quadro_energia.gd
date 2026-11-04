@@ -16,6 +16,13 @@ const COR_TEXTO := Color("d8dee6")
 @export var item_premio: Item
 @export var cena_premio: PackedScene
 @export var quantidade_premio: int = 1
+@export var com_caixa: bool = true
+@export var dica_controles: String = "Setas: escolher     E: ligar     Esc: fechar"
+@export var texto_desarmou: String = "Desarmou! Todos os disjuntores caíram."
+@export var texto_pronto: String = "Energia restabelecida."
+@export var marcas_necessarias: PackedStringArray = PackedStringArray()
+@export var aviso_faltam_marcas: String = ""
+@export var etiquetas: PackedStringArray = PackedStringArray()
 
 @export var pausa_o_jogo := true
 
@@ -30,6 +37,7 @@ var _numeros: Array[Label] = []
 @onready var fila: HBoxContainer = $Tela/Painel/Alavancas
 @onready var rotulo_titulo: Label = $Tela/Painel/Titulo
 @onready var dica: Label = $Tela/Dica
+@onready var etiqueta: Label = $Tela/Etiqueta
 @onready var som_clique: AudioStreamPlayer = $Tela/SomClique
 @onready var som_desarme: AudioStreamPlayer = $Tela/SomDesarme
 
@@ -38,6 +46,7 @@ func _ready() -> void:
 	super()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	tela.visible = false
+	$Sprite2D.visible = com_caixa
 	if not titulo.is_empty():
 		rotulo_titulo.text = titulo
 	if not nomes.is_empty():
@@ -55,7 +64,19 @@ func interagir() -> void:
 	if Progresso.tem(marca):
 		Inventario.aviso.emit(aviso_ja_ligado)
 		return
+	var encontradas := _marcas_encontradas()
+	if encontradas < marcas_necessarias.size():
+		Inventario.aviso.emit(aviso_faltam_marcas % [encontradas, marcas_necessarias.size()])
+		return
 	_abrir()
+
+
+func _marcas_encontradas() -> int:
+	var total := 0
+	for marca_necessaria in marcas_necessarias:
+		if Progresso.tem(marca_necessaria):
+			total += 1
+	return total
 
 
 func _montar_alavancas() -> void:
@@ -79,7 +100,7 @@ func _abrir() -> void:
 	tela.visible = true
 	_travar_o_jogo()
 	_cursor = 0
-	dica.text = "Setas: escolher     E: ligar     Esc: fechar"
+	dica.text = dica_controles
 	_mostrar()
 
 
@@ -137,7 +158,7 @@ func _ligar(indice: int) -> void:
 		_ligados.clear()
 		som_desarme.play()
 		_fazer_barulho()
-		dica.text = "Desarmou! Todos os disjuntores caíram."
+		dica.text = texto_desarmou
 		_mostrar()
 		return
 	_ligados.append(indice)
@@ -147,7 +168,7 @@ func _ligar(indice: int) -> void:
 
 
 func _concluir() -> void:
-	dica.text = "Energia restabelecida."
+	dica.text = texto_pronto
 	Progresso.marcar(marca)
 	_soltar_premio()
 	await get_tree().create_timer(0.8, true).timeout
@@ -159,6 +180,7 @@ func _mostrar() -> void:
 	for i in _alavancas.size():
 		_alavancas[i].color = COR_LIGADO if _ligados.has(i) else COR_DESLIGADO
 		_numeros[i].add_theme_color_override("font_color", COR_ESCOLHIDO if i == _cursor else COR_TEXTO)
+	etiqueta.text = etiquetas[_cursor] if _cursor < etiquetas.size() else ""
 
 
 func _alargar_painel() -> void:
