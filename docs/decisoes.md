@@ -4,13 +4,13 @@
 
 **Decisão:** quatro itens de `docs/sugestao-melhoramento-futuro.md` entram no jogo:
 
-- **Gesto da mochila:** ao abrir o inventário, o Gabriel tira a mochila de um ombro e a traz para a frente, nas cinco vistas. Ao fechar, o gesto toca ao contrário.
+- **Gesto da mochila:** ao abrir o inventário, o Gabriel tira a mochila de um ombro, a traz para a frente e puxa o zíper, em 24 quadros e nas cinco vistas. A janela só abre no fim do gesto. Ao fechar, o gesto toca ao contrário.
 - **Respiração em fuga:** o Gabriel ofega enquanto um robô o persegue e por mais 3 s depois.
 - **Sons de equipar e desequipar:** um estalo curto para cada ação.
 - **Efeitos ao escolher um item:** o ícone cresce e volta, a moldura acende e o texto aparece em fade.
 
 **Escolhas feitas sem resposta do grupo, para revisar:**
-- **O mundo pausa no primeiro quadro do gesto.** Os robôs param enquanto o Gabriel mexe na mochila. O gesto custa 0,42 s de espera para abrir, mas nunca custa uma vida. Deixar o mundo correndo durante o gesto daria mais tensão, e também faria o jogador morrer por abrir o inventário.
+- **O mundo pausa no primeiro quadro do gesto.** Os robôs param enquanto o Gabriel mexe na mochila. O gesto custa 1 s de espera para abrir e 0,6 s para fechar, mas nunca custa uma vida. Deixar o mundo correndo durante o gesto daria mais tensão, e também faria o jogador morrer por abrir o inventário.
 - **Escondido, ele prende a respiração.** O som para dentro do nicho, mesmo com um robô por perto.
 - **O som é o mesmo `gabriel_ofegante.wav` da fadiga**, em volume médio e com o tom variando. Se o grupo quiser uma respiração própria, é trocar o arquivo.
 - **A lanterna sai da mão durante qualquer tira especial**, o que inclui pôr os óculos na sala segura. Antes ela ficava parada no ar enquanto a mão ia para outro lugar.

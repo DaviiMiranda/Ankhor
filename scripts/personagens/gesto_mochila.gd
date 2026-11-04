@@ -1,7 +1,7 @@
 class_name GestoMochila
 extends RefCounted
 
-const QUADROS := 10
+const QUADROS := 24
 const TIRAS := {
 	"lado": preload("res://assets/sprites/personagens/gabriel/gabriel_mochila_lado.png"),
 	"frente": preload("res://assets/sprites/personagens/gabriel/gabriel_mochila_frente.png"),

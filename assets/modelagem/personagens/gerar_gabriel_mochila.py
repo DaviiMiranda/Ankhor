@@ -10,7 +10,7 @@
 #
 #   blender -b --factory-startup --python .../gerar_gabriel_mochila.py -- lado
 #
-# O que sai (10 quadros de 96 x 112 lado a lado, na paleta dele):
+# O que sai (24 quadros de 96 x 112 lado a lado, na paleta dele):
 #   assets/sprites/personagens/gabriel/gabriel_mochila_lado.png
 #   assets/sprites/personagens/gabriel/gabriel_mochila_frente.png
 #   assets/sprites/personagens/gabriel/gabriel_mochila_tres_quartos.png
@@ -24,15 +24,27 @@
 # A ANIMAÇÃO
 # ---------------------------------------------------------------------------
 #
-# Cada quadro é uma pose: os ângulos (em graus, somados à pose parada dele) dos
+# Cada pose-chave guarda os ângulos (em graus, somados à pose parada dele) dos
 # dois braços, do tronco e da cabeça, mais o ângulo da mochila em volta do corpo.
 # Girar em torno do eixo X com ângulo NEGATIVO leva o braço para a frente e para
-# cima (a mesma convenção do comum.py). Os quadros:
+# cima (a mesma convenção do comum.py). As poses-chave:
 #
 #    0 parado (igual ao sprite parado)     5-6 a mochila passa pelo lado do corpo
 #    1-2 a mão direita sobe até a alça     7 a mochila chega à barriga
 #    3 a alça sai do ombro                 8 a outra mão segura, a cabeça abaixa
-#    4 a mochila começa a girar            9 a mão puxa o zíper
+#    4 a mochila começa a girar            9-11 a mão vai ao zíper e o puxa
+#
+# Os quadros entre as poses-chave saem da interpolação de Catmull-Rom. Entre as
+# chaves p1 e p2, com t de 0 a 1 e os vizinhos p0 e p3:
+#
+#     p(t) = 0,5 · [ 2·p1 + (p2 - p0)·t + (2·p0 - 5·p1 + 4·p2 - p3)·t²
+#                    + (3·p1 - p0 - 3·p2 + p3)·t³ ]
+#
+# A curva passa exatamente pelas chaves, e a velocidade em cada chave é a mesma
+# dos dois lados, (p2 - p0) / 2. Por isso o movimento não para e recomeça a cada
+# pose, como aconteceria numa interpolação linear. O quadro 0 continua igual à
+# pose parada, e o último é a última chave. Como a curva pode passar um pouco das
+# chaves, θ é limitado a 0°-180°.
 #
 # O trajeto da mochila é um círculo em volta do eixo vertical do corpo, com
 # ângulo θ de 0° (nas costas) a 180° (na barriga):
@@ -75,6 +87,7 @@ FOLGA_DO_LADO = 0.19    # quanto ela se afasta ao passar por fora do braço
 DESCIDA_NA_BARRIGA = 0.07  # na frente ela fica mais baixa: pende da alça
 
 # (ombro dir, cotovelo dir, ombro esq, cotovelo esq, tronco, cabeça, θ da mochila, alça solta)
+QUADROS = 24
 POSES = [
     (0,   0,    0,   0,    0,  0,   0, False),
     (-12, -78,  0,   0,    1,  0,   0, False),
@@ -86,7 +99,28 @@ POSES = [
     (-14, -48, -28, -66,   7, 10, 180, True),
     (-24, -58, -32, -72,   8, 14, 180, True),
     (-30, -70, -32, -72,   9, 17, 180, True),
+    (-38, -88, -32, -72,   9, 18, 180, True),
+    (-29, -64, -33, -74,   9, 18, 180, True),
 ]
+
+
+def catmull_rom(p0, p1, p2, p3, t):
+    return 0.5 * (2 * p1 + (p2 - p0) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t ** 2
+                  + (3 * p1 - p0 - 3 * p2 + p3) * t ** 3)
+
+
+def pose_do_quadro(quadro):
+    """A pose de um quadro da tira, entre duas poses-chave. Nas pontas da lista,
+    a chave vizinha que falta é a própria ponta."""
+    ultima = len(POSES) - 1
+    posicao = quadro / (QUADROS - 1) * ultima
+    i = min(int(posicao), ultima - 1)
+    t = posicao - i
+    vizinhas = [POSES[max(i - 1, 0)], POSES[i], POSES[i + 1], POSES[min(i + 2, ultima)]]
+    angulos = [catmull_rom(*(v[campo] for v in vizinhas), t) for campo in range(7)]
+    angulos[6] = min(max(angulos[6], 0.0), 180.0)
+    alca_solta = POSES[i + 1][7] if t >= 0.5 else POSES[i][7]
+    return (*angulos, alca_solta)
 
 
 def paleta_do_gabriel():
@@ -161,11 +195,11 @@ def main():
     paleta = paleta_do_gabriel()
     for vista, angulo in vistas_pedidas():
         quadros = []
-        for i, pose in enumerate(POSES):
-            aplicar_pose(parado, pivo, pose)
+        for i in range(QUADROS):
+            aplicar_pose(parado, pivo, pose_do_quadro(i))
             img, ind, _ = c.renderizar_vista(cam, raiz, materiais, angulo, c.QUADRO_JOGO_2X, c.PX_POR_M_JOGO_2X, c.PE_JOGO_2X)
             quadros.append(c.contorno(img, ind, materiais))
-            print(f"[mochila] {vista}: quadro {i + 1}/{len(POSES)}")
+            print(f"[mochila] {vista}: quadro {i + 1}/{QUADROS}")
         tira = np.concatenate(c.aplicar_paleta(quadros, paleta), axis=1)
         c.salvar_png(tira, os.path.join(PASTA_SPRITES_GABRIEL, f"gabriel_mochila_{vista}.png"))
     print("[mochila] pronto")

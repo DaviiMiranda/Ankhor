@@ -11,8 +11,8 @@ const DICAS := {
 	Aba.ANOTACOES: "Q: próxima aba   Setas: escolher e folhear   Tab: fechar",
 	Aba.OBJETIVO: "Q: próxima aba   Tab: fechar",
 }
-const SEGUNDOS_ABRINDO_MOCHILA := 0.42
-const SEGUNDOS_FECHANDO_MOCHILA := 0.28
+const SEGUNDOS_ABRINDO_MOCHILA := 1.0
+const SEGUNDOS_FECHANDO_MOCHILA := 0.6
 const SEGUNDOS_FADE_JANELA := 0.1
 const SEGUNDOS_FADE_TEXTO := 0.12
 const QUADRO_FINAL_DO_GESTO := GestoMochila.QUADROS - 0.01
@@ -161,7 +161,6 @@ func _abrir(abrir: bool) -> void:
 func _entrar() -> void:
 	get_tree().paused = true
 	som_fechar.stop()
-	som_abrir.play()
 	fundo.modulate.a = 0.0
 	janela.modulate.a = 0.0
 	visible = true
@@ -172,6 +171,7 @@ func _entrar() -> void:
 		segundos = SEGUNDOS_ABRINDO_MOCHILA
 		_gabriel_no_gesto.comecar_gesto_da_mochila()
 		animacao.tween_method(_mostrar_quadro_do_gesto, 0.0, QUADRO_FINAL_DO_GESTO, segundos)
+	animacao.tween_callback(som_abrir.play).set_delay(maxf(segundos - som_abrir.stream.get_length(), 0.0))
 	animacao.tween_property(fundo, "modulate:a", 1.0, SEGUNDOS_FADE_JANELA).set_delay(segundos)
 	animacao.tween_property(janela, "modulate:a", 1.0, SEGUNDOS_FADE_JANELA).set_delay(segundos)
 	await animacao.finished
