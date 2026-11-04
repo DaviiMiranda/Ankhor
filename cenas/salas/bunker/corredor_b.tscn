@@ -31,7 +31,6 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/marca_farol_apagado.png" id="n1"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="n2"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_nicho.tscn" id="n3"]
-[ext_resource type="PackedScene" path="res://cenas/personagens/robo_rastreador.tscn" id="n4"]
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="n5"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="n6"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/robo_escafandro.tscn" id="robo_escafandro"]
@@ -412,41 +411,23 @@ cena_destino = "res://cenas/salas/bunker/sala_antiga_80.tscn"
 porta_destino = "sala_antiga_80_corredor"
 som_abrir = ExtResource("r25")
 
-[node name="Rastreador" parent="Objetos" instance=ExtResource("n4")]
-position = Vector2(1300, 152)
-rota = NodePath("../../RotaRastreador")
-
-[node name="RotaRastreador" type="Node2D" parent="."]
-
-[node name="Ponto1" type="Marker2D" parent="RotaRastreador"]
-position = Vector2(500, 152)
-
-[node name="Ponto2" type="Marker2D" parent="RotaRastreador"]
-position = Vector2(1200, 160)
-
-[node name="Ponto3" type="Marker2D" parent="RotaRastreador"]
-position = Vector2(2100, 150)
-
-[node name="Ponto4" type="Marker2D" parent="RotaRastreador"]
-position = Vector2(1200, 160)
-
 [node name="Escafandro" parent="Objetos" instance=ExtResource("robo_escafandro")]
-position = Vector2(1880, 152)
+position = Vector2(1300, 152)
 rota = NodePath("../../RotaEscafandro")
 
 [node name="RotaEscafandro" type="Node2D" parent="."]
 
 [node name="Ponto1" type="Marker2D" parent="RotaEscafandro"]
-position = Vector2(700, 150)
+position = Vector2(500, 152)
 
 [node name="Ponto2" type="Marker2D" parent="RotaEscafandro"]
-position = Vector2(1250, 160)
+position = Vector2(1200, 160)
 
 [node name="Ponto3" type="Marker2D" parent="RotaEscafandro"]
-position = Vector2(1900, 150)
+position = Vector2(2100, 150)
 
 [node name="Ponto4" type="Marker2D" parent="RotaEscafandro"]
-position = Vector2(1250, 160)
+position = Vector2(1200, 160)
 
 [node name="RobosDaSala" type="Node" parent="."]
 script = ExtResource("n5")

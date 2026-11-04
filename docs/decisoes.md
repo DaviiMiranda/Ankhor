@@ -8,10 +8,10 @@
 |---|---|---|---|
 | **Ronda** | Patrulha Programada | Labirinto (no lugar de uma Sentinela), mezanino do Centro de Convivência (no lugar da Sentinela), corredor sul do D-Tec (a mais) | Repete a mesma rota e bipa antes de virar |
 | **Caçador** | Perseguidor Persistente | Labirinto (no lugar de uma Sentinela), Churrasco Solar (no lugar da Sentinela), corredor norte do D-Tec (a mais) | Sabe onde o Gabriel está por 8 s, mesmo sem vê-lo, a não ser que ele se esconda |
-| **Mariposa** | Sensor Fotossensível | Corredor A do bunker (a mais) | Vê 40 px no escuro e 280 px com a lanterna acesa |
-| **Escafandro** | Sensor Acústico | Corredor B do bunker (a mais) | Quase cego (36 px), com audição ×2,2 |
+| **Mariposa** | Sensor Fotossensível | Corredor A do bunker (no lugar da Sentinela) | Vê 40 px no escuro e 280 px com a lanterna acesa |
+| **Escafandro** | Sensor Acústico | Corredor B do bunker (no lugar do Rastreador) | Quase cego (36 px), com audição ×2,2 |
 
-A Ronda e o Caçador vieram da branch `feat/variantes-robos`. O **Enxame** ficou de fora: continua nessa branch. A Praça Central segue com as duas Sentinelas de que o Zane fala pelo rádio.
+No bunker só existem esses dois: a Sentinela e o Rastreador saíram, e a Mariposa e o Escafandro herdaram os trechos que eles patrulhavam. A Ronda e o Caçador vieram da branch `feat/variantes-robos`. O **Enxame** ficou de fora: continua nessa branch. A Praça Central segue com as duas Sentinelas de que o Zane fala pelo rádio.
 
 **Por quê:** pedido do Davi. A Mariposa e o Escafandro foram criados para o bunker: a luz combina com os tubos que piscam no Corredor A, e o som, com a água do Corredor B.
 
