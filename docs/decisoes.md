@@ -1,5 +1,24 @@
 # Registro de decisões
 
+## 2026-11-04 — Robôs novos: Ronda e Caçador a partir do Labirinto, Mariposa e Escafandro no bunker
+
+**Decisão:** entram quatro tipos de robô. Cada um é uma cena com os próprios números, sobre o mesmo `robo.gd`.
+
+| Robô | Tipo na ficha | Onde | O que faz |
+|---|---|---|---|
+| **Ronda** | Patrulha Programada | Labirinto (no lugar de uma Sentinela), mezanino do Centro de Convivência (no lugar da Sentinela), corredor sul do D-Tec (a mais) | Repete a mesma rota e bipa antes de virar |
+| **Caçador** | Perseguidor Persistente | Labirinto (no lugar de uma Sentinela), Churrasco Solar (no lugar da Sentinela), corredor norte do D-Tec (a mais) | Sabe onde o Gabriel está por 8 s, mesmo sem vê-lo, a não ser que ele se esconda |
+| **Mariposa** | Sensor Fotossensível | Corredor A do bunker (a mais) | Vê 40 px no escuro e 280 px com a lanterna acesa |
+| **Escafandro** | Sensor Acústico | Corredor B do bunker (a mais) | Quase cego (36 px), com audição ×2,2 |
+
+A Ronda e o Caçador vieram da branch `feat/variantes-robos`. O **Enxame** ficou de fora: continua nessa branch. A Praça Central segue com as duas Sentinelas de que o Zane fala pelo rádio.
+
+**Por quê:** pedido do Davi. A Mariposa e o Escafandro foram criados para o bunker: a luz combina com os tubos que piscam no Corredor A, e o som, com a água do Corredor B.
+
+**Falta:** o Zane ainda só explica a Sentinela e o Rastreador nas conversas do Labirinto. Os números vieram da conta, comparando com os robôs que já existem, e ainda precisam de teste de jogo.
+
+**Afeta:** `assets/modelagem/personagens/gerar_robos.py`, `assets/modelagem/audio/gerar_efeitos_labirinto.py`, `assets/modelagem/salas/labirinto/gerar_labirinto.py`, `dados/labirinto/mapa_labirinto.tres`, `cenas/personagens/robo_ronda.tscn`, `robo_cacador.tscn`, `robo_mariposa.tscn`, `robo_escafandro.tscn`, `scripts/personagens/robo.gd`, `scripts/salas/labirinto.gd`, `cenas/salas/centro_de_convivencia/loja_4.tscn`, `segundo_andar.tscn`, `cenas/salas/bunker/corredor_a.tscn`, `corredor_b.tscn`, `cenas/salas/dtec/corredor_norte.tscn`, `corredor_sul.tscn`, `docs/historia/História_Completa.md`, `docs/historia/personagens/robos.docx`, `docs/fases/`, `docs/computacao/ia_e_perseguicao.md`.
+
 ## 2026-11-03 — Pernas do Gabriel mais calmas na corrida
 
 **Decisão:** `px_por_quadro_correndo` passou de 2,5 para 5,0. A corrida caiu de 7,2 para 3,6 passos por segundo, a mesma cadência da caminhada, e o pé no chão quase acompanha o piso (a tira de correr pede cerca de 5,4 px por quadro). A velocidade de corrida não mudou.

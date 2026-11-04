@@ -13,7 +13,7 @@
 - **Som:** a trilha do bunker (grave e opressiva, em Dó frígio, com a fita da Clarice ao longe) em todas as salas, por baixo do zumbido do transformador e do ar parado do duto, goteiras no setor B e o motor do gerador.
 - **Quem vive aqui:** o **Henrique**, **sozinho**, numa sala de dados **trancada** (a central de dados), com acesso às câmeras do campus e ao rádio. Diz que está ali tentando consertar tudo. A cena mostra o Henrique na estação, de costas, olhando as câmeras (Enredo Principal, seção 8, Ato 3).
 - **O Carlos nunca vem ao bunker.**
-- **Os robôs patrulham o bunker:** uma **Sentinela** no Corredor A e um **Rastreador** no Corredor B (o alagado). Os cantos protegidos são a sala de dados do Henrique e a **sala segura**; nos corredores, os **nichos** (o vão do posto de máscaras de gás) escondem quem fica parado no escuro.
+- **Os robôs patrulham o bunker:** uma **Sentinela** e uma **Mariposa** no Corredor A, um **Rastreador** e um **Escafandro** no Corredor B (o alagado). Mariposa e Escafandro só existem aqui. A **Mariposa** quase não enxerga no escuro (40 px), mas com a lanterna acesa vê a 280 px e corre a 48 px/s: dá para passar ao lado dela com a lanterna apagada. O **Escafandro** é quase cego (36 px) e ouve de longe (audição ×2,2): anda devagar e, quando ouve, vai a 40 px/s até o barulho. Os cantos protegidos são a sala de dados do Henrique e a **sala segura**; nos corredores, os **nichos** (o vão do posto de máscaras de gás) escondem quem fica parado no escuro.
 - **As salas antigas:** **duas** salas do setor B são montadas como interiores de casa: a **sala de visitas de um casarão do fim do século XIX** (B-02) e a **sala de estar de uma casa dos anos 80** (B-07). A dos anos 80 foi o **Carlos** quem montou, e na do século XIX o **Baltazar** dormiu, porque ela parecia casa (Enredo, seções 4.3 e 5; o rastro dele ali ainda não está no jogo). O jogo não explica nenhuma das duas **em palavras**, e nenhum personagem comenta: o jogador entende pelo que vê. O que conta que é um cenário: o papel de parede para antes do teto e aparece a laje de concreto do bunker; atrás do vidro da janela do casarão tem concreto, não rua.
 - **As marcas dos Faroleiros:** as antigas pichações assinadas "C." saíram (o "NÃO CONFIE NAS LUZES" é o bordão da Clarice, e ela nunca morou aqui). No lugar, duas marcas dos Faroleiros pintadas em âmbar (Enredo, seção 2.4): o **farol inteiro** (lugar seguro) perto da sala segura, no Corredor A, e o **farol apagado** (perigo) perto da comporta do núcleo, no Corredor B. A pichação "ROTAS = GRAFO" da sala de dados, sem assinatura, ficou.
 - **O encontro:** no fim da fase, o grupo todo se encontra pela primeira vez na sala de dados: Gabriel, o Henrique, o Zane, a Clarice e a Diana (seção 3). A cena é **provisória**: as falas são rascunho e como a Clarice e a Diana chegam ao bunker está em aberto (Enredo, seção 10.4).
@@ -28,7 +28,7 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`) com o som da porta b
                  ENTRADA ── (escotilha: lacrada)
                     │       ELEVADOR (sem energia; depois, atalho para o Corredor B)
                     │
-  CORREDOR A ── SALA SEGURA (DESCANSO, ao lado da entrada)    (Sentinela)
+  CORREDOR A ── SALA SEGURA (DESCANSO, ao lado da entrada)    (Sentinela, Mariposa)
               ── dormitório
    (setor A)  ── refeitório
               ── enfermaria
@@ -36,7 +36,7 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`) com o som da porta b
               ── ARSENAL (trava elétrica: abre com a energia)
                     │ escada
                     │
-  CORREDOR B ── B-02: sala antiga do século XIX                (Rastreador)
+  CORREDOR B ── B-02: sala antiga do século XIX                (Rastreador, Escafandro)
    (setor B)  ── gerador (o quadro de religação)
               ── depósito
               ── LABORATÓRIO (lacrado)
@@ -48,8 +48,8 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`) com o som da porta b
 | Cena (`cenas/salas/bunker/`) | Largura | O que tem | Itens |
 |---|---|---|---|
 | `entrada` | 480 × 560 | Escada da superfície, descontaminação (chuveiros e faixas de perigo), armários, posto de guarda (mesa, cadeira, lampião), planta de evacuação, o elevador (porta fechada, sem energia) e a porta para o setor A. Checkpoint `bunker_chegada` | — |
-| `corredor_a` | 2560 × 180 | O corredor principal: portas com placas, janela para a sala dos servidores, canos, quadros elétricos, **três nichos**, a marca do farol inteiro e a escada para o setor B. **Sentinela** de x 600 a 2200 | — |
-| `corredor_b` | 2240 × 180 | Nível de baixo: água no chão, luz vermelha, infiltração nas paredes, as portas B-02 e B-07, duas portas lacradas, **dois nichos**, a marca do farol apagado e a **comporta do núcleo**. **Rastreador** de x 500 a 2100. Checkpoint `bunker_setor_b` ao pé da escada | — |
+| `corredor_a` | 2560 × 180 | O corredor principal: portas com placas, janela para a sala dos servidores, canos, quadros elétricos, **três nichos**, a marca do farol inteiro e a escada para o setor B. **Sentinela** de x 600 a 2200 e **Mariposa** de x 1000 a 2400 | — |
+| `corredor_b` | 2240 × 180 | Nível de baixo: água no chão, luz vermelha, infiltração nas paredes, as portas B-02 e B-07, duas portas lacradas, **dois nichos**, a marca do farol apagado e a **comporta do núcleo**. **Rastreador** de x 500 a 2100 e **Escafandro** de x 700 a 1900. Checkpoint `bunker_setor_b` ao pé da escada | — |
 | `sala_segura` | 320 × 180 | A **sala segura** do modelo (os óculos do Zane para salvar, o piano), com a luz de um verde-oliva. A porta é a DESCANSO no corredor A, ao lado da entrada, com a **luz verde** em cima ([`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)) | — |
 | `dormitorio` | 480 × 560 | Fileiras de beliches (três por fileira), armários, caixas | 1 pilha |
 | `refeitorio` | 480 × 560 | Fileiras de mesas compridas de aço, prateleiras de latas, planta do bunker | 1 cápsula de clarão |
@@ -83,9 +83,9 @@ O Henrique explica no diálogo que o setor B está lacrado pelo sistema e que o 
 
 ## 3. Objetivos e Progressão
 
-1. **Chegada** pela entrada (checkpoint). No Corredor A, a Sentinela.
+1. **Chegada** pela entrada (checkpoint). No Corredor A, a Sentinela e a Mariposa.
 2. **A sala de dados:** achar o Henrique e conversar com ele (a conversa anota "Henrique, na sala de dados" no caderno). Gabriel o reconhece pela lenda do campus: o aluno que sumiu na Biblioteca em 2019 (Enredo, seção 7.2). Na conversa, o Henrique diz que está tentando consertar tudo; a mentira dele não aparece aqui (Enredo, seção 8, "A virada").
-3. **O setor B:** descer pela escada (checkpoint), passar pelo Rastreador e chegar ao gerador. As duas salas antigas ficam no caminho, sem que ninguém comente.
+3. **O setor B:** descer pela escada (checkpoint), passar pelo Rastreador e pelo Escafandro e chegar ao gerador. As duas salas antigas ficam no caminho, sem que ninguém comente.
 4. **Religar o bunker:** no **quadro de religação** do gerador, levar energia aos sete pontos (gerador, os dois corredores, o elevador, a comporta, o arsenal e a sala de dados) usando só o cabo do carretel, **23 m**. Só existe um jeito: a **árvore geradora mínima** (Kruskal, [`../computacao/arvore_geradora_minima.md`](../computacao/arvore_geradora_minima.md)). Com a energia, o **elevador** vira atalho da entrada ao Corredor B, o **arsenal** abre, e o **Zane chama pelo rádio** (`zane_bunker_01`): "vem pra sala de dados: tá todo mundo aqui".
 5. **O encontro:** na sala de dados, o diálogo `bunker_encontro` começa sozinho. O Zane conta que quebrou a senha do setor B; é a primeira vez do grupo todo numa sala só. No fim, a comporta do núcleo destrava.
 6. **Saída:** a comporta do núcleo, no fim do Corredor B, leva à 6ª fase, o **Laboratório (D-Tec)**.
