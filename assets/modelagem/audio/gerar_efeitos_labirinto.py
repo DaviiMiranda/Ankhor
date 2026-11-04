@@ -7,6 +7,10 @@
 # Gera:
 #   assets/audio/efeitos/robos/sentinela_passo.wav    pisada pesada de metal
 #   assets/audio/efeitos/robos/rastreador_passo.wav   garras correndo no concreto
+#   assets/audio/efeitos/robos/ronda_passo.wav        pisão seco e carcaça oca chacoalhando
+#   assets/audio/efeitos/robos/cacador_passo.wav      punho e pé batendo, com ronco de escapamento
+#   assets/audio/efeitos/robos/mariposa_passo.wav     tique da ponta da perna e asas tremendo
+#   assets/audio/efeitos/robos/escafandro_passo.wav   bota de chumbo na água rasa
 #   assets/audio/efeitos/robos/robo_zumbido.wav       2 s em loop: o motor ligado
 #   assets/audio/efeitos/robos/robo_alerta.wav        o guincho de quando vê o Gabriel
 #   assets/audio/efeitos/gabriel/gabriel_dano.wav     a pancada de quando é pego
@@ -176,6 +180,60 @@ def pilha_troca():
     return normalizar(s, -8.0)
 
 
+def ronda_passo():
+    """Marcha da Ronda: um pisão médio e seco (pé de plástico duro sobre
+    metal) e, colado nele, o chacoalhar da carcaça oca: ruído de banda
+    média que some rápido, como uma caixa de computador batendo."""
+    t = tempo(0.45)
+    n = len(t)
+    baque = np.sin(2 * np.pi * np.cumsum(90 * (1 + 0.6 * np.exp(-t / 0.02))) / TAXA) * envelope(t, 0, 0.05)
+    carcaca = filtrar(ruido(n), corte_baixo=600, corte_alto=2200) * envelope(t, 0.008, 0.035, 0.001)
+    carcaca /= np.max(np.abs(carcaca))
+    servo = 0.15 * np.tanh(3 * np.sin(2 * np.pi * np.cumsum(380 + 200 * t) / TAXA)) * envelope(t, 0.03, 0.08, 0.01)
+    return normalizar(sala(baque + 0.5 * carcaca + servo, mistura=0.2), -6.0)
+
+
+def cacador_passo():
+    """Caçador: o punho e depois o pé batem no chão (dois baques graves, o
+    segundo mais fraco), com o tinido da junta e o ronco do escapamento."""
+    t = tempo(0.8)
+    n = len(t)
+    s = np.zeros(n)
+    for inicio, forca in ((0.0, 1.0), (0.11, 0.6)):
+        queda = np.exp(-np.maximum(t - inicio, 0) / 0.025)
+        s += forca * np.sin(2 * np.pi * np.cumsum(48 * (1 + 0.9 * queda)) / TAXA) * envelope(t, inicio, 0.11)
+        s += forca * 0.4 * filtrar(ruido(n), corte_alto=260) * envelope(t, inicio, 0.05)
+    s += metal(t, 330, 0.02, ((1.0, 1.0, 0.10), (2.76, 0.5, 0.06)), 0.25)
+    ronco = filtrar(ruido(n), corte_baixo=60, corte_alto=180)
+    ronco /= np.max(np.abs(ronco))
+    s += 0.25 * ronco * envelope(t, 0.05, 0.2, 0.05)
+    return normalizar(sala(s, mistura=0.25), -3.0)
+
+
+def mariposa_passo():
+    """Mariposa: a ponta fina da perna tocando o chão, um tique agudo e fraco,
+    e as asas tremendo logo depois, um chiado que pulsa 70 vezes por segundo."""
+    t = tempo(0.22)
+    n = len(t)
+    ponta = metal(t, 2400, 0.0, ((1.0, 1.0, 0.008), (1.7, 0.4, 0.005)))
+    asa = filtrar(ruido(n), corte_baixo=900, corte_alto=2600) * envelope(t, 0.01, 0.09, 0.01)
+    asa /= np.max(np.abs(asa))
+    tremor = 0.5 * (1 + np.sin(2 * np.pi * 70 * t))
+    return normalizar(sala(ponta + 0.22 * asa * tremor, mistura=0.15), -12.0)
+
+
+def escafandro_passo():
+    """Escafandro: a bota de chumbo caindo na água rasa, um baque grave, o
+    respingo logo depois e o tinido do capacete de latão."""
+    t = tempo(0.7)
+    n = len(t)
+    baque = np.sin(2 * np.pi * np.cumsum(60 * (1 + 0.8 * np.exp(-t / 0.02))) / TAXA) * envelope(t, 0, 0.09)
+    respingo = filtrar(ruido(n), corte_baixo=500, corte_alto=3500) * envelope(t, 0.015, 0.12, 0.01)
+    respingo /= np.max(np.abs(respingo))
+    tinido = metal(t, 210, 0.01, ((1.0, 1.0, 0.12), (2.4, 0.4, 0.07)), 0.3)
+    return normalizar(sala(baque + 0.45 * respingo + tinido, mistura=0.3), -4.0)
+
+
 def main():
     print("[efeitos do labirinto]")
     for pasta, nome, funcao in (("robos", "sentinela_passo", sentinela_passo),
@@ -186,7 +244,11 @@ def main():
                                 ("interface", "morte", morte),
                                 ("interface", "checkpoint", checkpoint),
                                 ("objetos", "lanterna_clique", lanterna_clique),
-                                ("objetos", "pilha_troca", pilha_troca)):
+                                ("objetos", "pilha_troca", pilha_troca),
+                                ("robos", "ronda_passo", ronda_passo),
+                                ("robos", "cacador_passo", cacador_passo),
+                                ("robos", "mariposa_passo", mariposa_passo),
+                                ("robos", "escafandro_passo", escafandro_passo)):
         salvar(os.path.join(PASTA_AUDIO, pasta, f"{nome}.wav"), funcao())
 
 
