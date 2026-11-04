@@ -47,7 +47,7 @@ Legenda do mapa:
 | `C` | checkpoint (um na oficina e um dentro de cada salão de nó: 4) |
 | `P` | pilha (5, em becos sem saída) |
 | `L` | lampião de emergência (14 em cruzamentos, mais 2 dentro das salas) |
-| `V` | Sentinela · `R` Rastreador (6 no total, nascem longe do início) |
+| `V` | Sentinela · `R` Rastreador · `O` Ronda · `K` Caçador (6 no total, nascem longe do início) |
 | `A` | o alçapão da saída, na oficina (escondido até o Zane revelar) |
 | `D` · `S` | porta de saída (na parede de cima) e gatilho: só existem no mapa de teste (`labirinto_teste`), não neste mapa |
 | `Q` | a porta da **sala segura** (2 blocos de parede, `QQ`), na parede de cima da câmara onde o Gabriel começa. O gerador marca as duas letras logo acima do início |
@@ -138,13 +138,18 @@ Uma quinta sala, **fora do grafo**: o miolo fica em `esconderijo` no mapa (8 × 
 
 | | Sentinela | Rastreador |
 |---|---|---|
-| Quantos | 4 | 2 |
+| Quantos | 2 | 2 |
 | Aparência | 2,1 m, curvada, braços longos, um olho-farol vermelho | quadrúpede baixo, três olhos, antenas parabólicas |
 | Sentido forte | **Visão**: cone de 60° até 170 px (×1,7 com a lanterna acesa); o farol mostra para onde ela olha | **Audição**: ouve passos pelos corredores (×1,8); visão curta (80 px) e larga (100°) |
 | Velocidade (patrulha / perseguição) | 18 / 36 px/s | 24 / 50 px/s |
 | Como escapar | apagar a lanterna e sair do cone | andar sem correr (passos baixos), principalmente perto dele |
 
-O Gabriel anda a 45 px/s e corre a 81 px/s: consegue fugir correndo, mas correr faz barulho e o Rastreador escuta de longe.
+O Labirinto é a primeira fase com a **Ronda** e o **Caçador**, um de cada, nos lugares de duas Sentinelas:
+
+- **Ronda:** monitor de tubo na cabeça, sirene e cassetete. Patrulha 20 px/s, perseguição 38 px/s, visão de 130 px. Repete sempre a mesma rota e bipa antes de virar (a rota sai de `_dar_rota_de_ronda`, em `labirinto.gd`: 4 pontos em 12 salinhas). Para escapar, decorar o caminho.
+- **Caçador:** curvado como um gorila, anda apoiado nos punhos. Patrulha 20 px/s, perseguição 46 px/s, visão de 120 px. Depois de ver o Gabriel, continua sabendo onde ele está por 8 s, mesmo sem vê-lo (`rastreia_sem_ver`). Para escapar, sair de perto até o tempo acabar ou se esconder: escondido, ele não acompanha.
+
+O Gabriel anda a 60 px/s e corre a 108 px/s: consegue fugir correndo, mas correr faz barulho e o Rastreador escuta de longe.
 
 Eram 3 robôs na grade de 96 salinhas; na grade de 198 salinhas são 6. Os robôs nascem a pelo menos 10 salinhas de caminho do início, a pelo menos 5 da porta da oficina e a pelo menos 5 de distância entre si (em `gerar_labirinto.py`: `TIPOS_DE_ROBO`, `DISTANCIA_MINIMA_DO_INICIO`, `DISTANCIA_MINIMA_DA_OFICINA`, `SEPARACAO_ENTRE_ROBOS`).
 

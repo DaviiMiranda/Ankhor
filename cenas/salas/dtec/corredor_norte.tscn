@@ -38,6 +38,7 @@
 [ext_resource type="Script" path="res://scripts/sistemas/vigia_da_rede.gd" id="r36"]
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r37"]
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r38"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_cacador.tscn" id="robo_cacador"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.06, 0.12, 0.2, 1)
@@ -458,6 +459,24 @@ position = Vector2(1641, 160)
 [node name="VigiaDaRede" type="Node" parent="."]
 script = ExtResource("r36")
 robo = NodePath("../Objetos/Sentinela")
+
+[node name="Cacador" parent="Objetos" instance=ExtResource("robo_cacador")]
+position = Vector2(2180, 152)
+rota = NodePath("../../RotaCacador")
+
+[node name="RotaCacador" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaCacador"]
+position = Vector2(900, 150)
+
+[node name="Ponto2" type="Marker2D" parent="RotaCacador"]
+position = Vector2(1700, 160)
+
+[node name="Ponto3" type="Marker2D" parent="RotaCacador"]
+position = Vector2(2200, 150)
+
+[node name="Ponto4" type="Marker2D" parent="RotaCacador"]
+position = Vector2(1700, 160)
 
 [node name="RobosDaSala" type="Node" parent="."]
 script = ExtResource("r37")

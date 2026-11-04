@@ -43,10 +43,10 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 |---|---|---|---|
 | `recepcao` | 640 × 400 | Letreiro DTEC, balcão da recepção, catracas, mesa, plantas, a saída lacrada | 1 pilha |
 | `emergencia` | 480 × 180 | **Onde o Gabriel chega:** a escada que desce para o bunker (a peça `bunker_escada_desce`, do kit do bunker), extintor, cilindros, luz de emergência. Checkpoint `dtec_chegada` | lanterna (só aparece se o Gabriel ainda não tem, ao começar pelo menu), 1 pilha |
-| `corredor_norte` | 2400 × 180 | Cinco portas com placa, janelas dos laboratórios, quadro, extintores, painel e a porta larga do Lab Central, fechada pela grade. **Quatro nichos** e uma **Sentinela** que vai e volta de x 560 a 2240 | 1 pilha, 1 cápsula de clarão |
+| `corredor_norte` | 2400 × 180 | Cinco portas com placa, janelas dos laboratórios, quadro, extintores, painel e a porta larga do Lab Central, fechada pela grade. **Quatro nichos**, uma **Sentinela** que vai e volta de x 560 a 2240 e um **Caçador** de x 900 a 2200 | 1 pilha, 1 cápsula de clarão |
 | `lab_central` | 960 × 560 | **A arena do Carlos** (seção 3.1, parte 3): a Âncora no centro, o Carlos no console do fundo com a lupa, os dois consoles hackeáveis na frente, racks, cilindros, telões e janelas. Um Rastreador de ronda e o checkpoint `dtec_arena` na entrada norte | 1 cápsula de clarão |
 | `diretoria` | 480 × 360 | A mesa com as relíquias dos anos 80 (monitor de tubo verde, telefone bege, disquetes), a marca dos Faroleiros com os raios riscados em vermelho na parede, armário, rack, planta. Luz verde do monitor. Sem texto | 1 pilha |
-| `corredor_sul` | 2400 × 180 | O outro lado: seis portas (a Emergência e a DESCANSO logo no começo), telão, terminal e a porta larga do Lab Central, fechada pela grade. **Quatro nichos** e um **Rastreador** que vai e volta de x 900 a 2300 | 1 pilha, 2 pedras |
+| `corredor_sul` | 2400 × 180 | O outro lado: seis portas (a Emergência e a DESCANSO logo no começo), telão, terminal e a porta larga do Lab Central, fechada pela grade. **Quatro nichos**, um **Rastreador** que vai e volta de x 900 a 2300 e uma **Ronda** de x 1000 a 2100 | 1 pilha, 2 pedras |
 | `corredor_servico` | 960 × 180 | A passagem de serviço que liga as pontas dos dois corredores (no lugar do depósito e do arquivo): canos, cabos no chão, racks e caixas. Um nicho e o checkpoint `dtec_servico` | 1 pedra |
 | `sala_segura` | 320 × 180 | A **sala segura** do modelo (os óculos do Zane para salvar, o piano), com luz mais fria. A porta é a DESCANSO no corredor sul, ao lado da Emergência (onde o Gabriel chega), com a **luz verde** em cima ([`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)) | — |
 | `lab_eletronica` | 480 × 560 | Três bancadas de eletrônica (osciloscópio, solda, placas), armário, cilindros | 1 pilha, 1 cápsula de clarão |
@@ -66,7 +66,7 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 
 ## 3. Objetivos e Progressão
 
-- **Hoje:** chegar pela Emergência, atravessar os corredores com a Sentinela e o Rastreador (nichos para se esconder, checkpoints na Emergência e no corredor de serviço), pegar o notebook na Informática, ler a rede no telão da Sala de Controle e cortar os três relés do gargalo (Eletrônica, Servidores e Robótica) para a grade do Lab Central abrir. No Lab Central, invadir os dois consoles sem ser pego pela lupa do Carlos e chegar ao núcleo da Âncora, que encerra a versão de teste.
+- **Hoje:** chegar pela Emergência, atravessar os corredores com a Sentinela e o Caçador, o Rastreador e a Ronda (nichos para se esconder, checkpoints na Emergência e no corredor de serviço), pegar o notebook na Informática, ler a rede no telão da Sala de Controle e cortar os três relés do gargalo (Eletrônica, Servidores e Robótica) para a grade do Lab Central abrir. No Lab Central, invadir os dois consoles sem ser pego pela lupa do Carlos e chegar ao núcleo da Âncora, que encerra a versão de teste.
 - **Falta (depende do Enredo):** a cena final no núcleo, as falas do Carlos e os registros dele (seção 3.1, "O que depende de decisão do grupo").
 
 ### 3.1 Level design novo: "A Última Tentativa"

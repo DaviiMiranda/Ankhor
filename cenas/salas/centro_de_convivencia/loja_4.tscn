@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/praca/objetos/elevador_carga.png" id="r20"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/grade_seguranca.tscn" id="r21"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r22"]
-[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r23"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_cacador.tscn" id="r23"]
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r24"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r25"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="g_gatilho_radio"]
@@ -171,7 +171,7 @@ aviso_bloqueada = "Elevador de carga sem alimentação. O quadro de comutação 
 cena_destino = "res://cenas/salas/centro_de_convivencia/fim_da_convivencia.tscn"
 porta_destino = ""
 
-[node name="Sentinela1" parent="Objetos" instance=ExtResource("r23")]
+[node name="Cacador1" parent="Objetos" instance=ExtResource("r23")]
 position = Vector2(400, 250)
 rota = NodePath("../../RotaSentinela1")
 rota_com_marca = NodePath("../../RotaSentinela1Energia")

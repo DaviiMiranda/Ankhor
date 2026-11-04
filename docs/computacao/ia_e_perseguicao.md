@@ -87,7 +87,9 @@ Cada passo do Gabriel emite o sinal `passo_dado(correndo)`. Cada robô faz uma *
 
 $$\text{limite} = \begin{cases} 14 \times f & \text{correndo} \\ 5 \times f & \text{andando} \end{cases}$$
 
-com $f$ = fator de audição do robô (Sentinela 0,5; Rastreador 1,8). Se a célula do robô é alcançada, ele ouviu e vai **investigar** o lugar.
+com $f$ = fator de audição do robô (Sentinela 0,5; Ronda 0,8; Caçador 1,0; Rastreador 1,8; Mariposa 0,3; Escafandro 2,2). Se a célula do robô é alcançada, ele ouviu e vai **investigar** o lugar.
+
+O **Caçador** muda um detalhe da perseguição: com `rastreia_sem_ver`, o destino do A\* continua sendo a posição real do Gabriel durante os `segundos_memoria` (8 s), mesmo sem linha de visão, a não ser que ele esteja escondido. Os outros robôs vão até o último lugar onde o viram.
 
 Onde há uma `ZonaDePiso` (os corredores do Bloco de salas), o limite também é multiplicado pelo fator do piso em que o Gabriel pisa: $\lfloor A_0 \cdot f_{\text{piso}} \cdot f \rfloor$, com areia 0,5, lajota 1,0 e lajota solta 1,5 (`docs/fases/bloco_de_salas.md`, seção 12.7). Parado num nicho, o Gabriel não é **visto** (o teste de visão retorna falso), mas a audição e o contato continuam valendo.
 

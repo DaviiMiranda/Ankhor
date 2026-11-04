@@ -49,6 +49,7 @@ const SOM_BIPE := preload("res://assets/audio/efeitos/robos/robo_bipe.wav")
 @export var segundos_olhando_em_volta: float = 2.5
 @export var segundos_procurando: float = 4.0
 @export var segundos_depois_do_ataque: float = 1.3
+@export var rastreia_sem_ver := false
 
 @export_group("Sprites")
 @export var andar_lado: Texture2D
@@ -146,6 +147,8 @@ func _decidir(delta: float) -> void:
 				_tempo_sem_ver = 0.0
 			else:
 				_tempo_sem_ver += delta
+				if _pode_rastrear_sem_ver():
+					_ultima_vista = _gabriel.global_position
 				if _tempo_sem_ver > segundos_memoria:
 					_procurar()
 			_tempo_novo_caminho -= delta
@@ -236,6 +239,10 @@ func _perseguir() -> void:
 	if not ja_perseguia:
 		som_alerta.play()
 		jogador_detectado.emit(self)
+
+
+func _pode_rastrear_sem_ver() -> bool:
+	return rastreia_sem_ver and Vida.esta_viva() and not _gabriel.escondido
 
 
 func _procurar() -> void:

@@ -63,8 +63,8 @@ O **segundo andar** (opcional, seção 7) é outro pedaço do grafo, pendurado n
 | `loja_2` | **Self Nebulosa**: restaurante de bufê, com a faixa de louça quebrada e o **cofre do bufê** (seção 8.1) | 640 × 280 px | xadrez brilhante | `praca_central`, `camara_fria` | Nicho de serviço | 1 **Rastreador** |
 | `camara_fria` | Câmara fria do Self Nebulosa: onde está a **Célula de Energia** | 400 × 240 px | grade de aço e gelo | `loja_2` | — | Nenhuma |
 | `loja_3` | **Pizzaria Quasar**: cozinha com o forno de plasma e o **quadro de comutação** (o puzzle) | 480 × 260 px | ladrilho vermelho | `praca_central` | — | Nenhuma |
-| `loja_4` | **Churrasco Solar**: bar com a grelha solar, o **quadro do bar** (seção 8.2) e o **elevador de carga** (a saída) | 640 × 360 px | piso escuro com frisos | `praca_central`, elevador | Nicho de serviço | 1 **Sentinela** |
-| `segundo_andar` | **Mezanino** (opcional): o anel em volta do vazio, com corrimão de vidro | 2000 × 640 px | placas de aço e passadeira | escada da praça, `grafica`, `loja_uni`, `cinema` | 2 nichos de manutenção | 1 **Sentinela** (ronda de ida e volta) |
+| `loja_4` | **Churrasco Solar**: bar com a grelha solar, o **quadro do bar** (seção 8.2) e o **elevador de carga** (a saída) | 640 × 360 px | piso escuro com frisos | `praca_central`, elevador | Nicho de serviço | 1 **Caçador** |
+| `segundo_andar` | **Mezanino** (opcional): o anel em volta do vazio, com corrimão de vidro | 2000 × 640 px | placas de aço e passadeira | escada da praça, `grafica`, `loja_uni`, `cinema` | 2 nichos de manutenção | 1 **Ronda** (ronda de ida e volta) |
 | `loja_uni` | **Loja Universitária**: moletons, a **arara inteligente** (seção 8.4), o brasão e o provador | 560 × 240 px | carpete azul | `segundo_andar` | Provador (nicho) | Nenhuma |
 | `grafica` | **Gráfica Quântica**: plotters, copiadoras, a ordem de impressão parada e a **trava do plotter** (seção 8.3) | 560 × 240 px | concreto polido | `segundo_andar` | Nicho dos fundos | Nenhuma |
 | `cinema` | **Cine Andrômeda**: o **hall** (bilheteria, bomboniere, fliperamas, sofá e cordões de fila), com o arco **SALA 1** na ponta direita, que é a porta da sala de projeção | 640 × 320 px | carpete de veludo | `segundo_andar`, `cinema_sala` | Nicho atrás da cortina | Nenhuma |
@@ -99,7 +99,7 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
    - Assim que o Gabriel volta à praça, o **Zane** avisa pelo rádio (`zane_convivencia_02`) que o elevador destravou, mas as luzes ligaram.
    - Ao entrar no Churrasco Solar, toca o recado do Henrique, pela Clarice, pedindo para não descer (`grupo_convivencia_03`). Gabriel decide descer.
    - Na `loja_4`, a porta do elevador de carga se recolhe e a porta leva a `fim_da_convivencia.tscn`, abrindo a entrada do **Bunker**.
-7. **Segundo andar (opcional):** a escada ao lado da entrada da praça sobe para o mezanino, que tem uma Sentinela de ronda, mais pedras e pilhas, três lojas para explorar e dois nichos. Não é preciso para terminar a fase (seção 7).
+7. **Segundo andar (opcional):** a escada ao lado da entrada da praça sobe para o mezanino, que tem uma Ronda, mais pedras e pilhas, três lojas para explorar e dois nichos. Não é preciso para terminar a fase (seção 7).
 8. **Puzzles opcionais:** a estufa de lanches (Tapioca Orbital), o cofre do bufê (Self Nebulosa), o quadro do bar (Churrasco Solar), a trava do plotter (Gráfica), a arara (Loja Universitária) e o cofre do cinema dão pilhas e cápsulas de clarão. Nenhum é preciso para terminar a fase (seção 8).
 
 ---
@@ -126,7 +126,7 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 | **Etiqueta da trava do plotter** | `dados/documentos/etiqueta_trava_plotter.tres` | `grafica`, ao lado do plotter |
 | **Carta da Neide, Faroleira** (quem são os Faroleiros e as marcas deles) | `dados/documentos/carta_faroleiro_neide.tres` | `passarela_acesso`, entre o rádio e o vaso |
 | **Carta para a Lia** (alguém que ficou escreve para quem foi embora) | `dados/documentos/carta_para_lia.tres` | `praca_central`, embaixo da mesa de baixo à esquerda (470, 482) |
-| **Carta do Tião, Faroleiro** (o campus em volta, as máquinas que repetem o caminho) | `dados/documentos/carta_faroleiro_tiao.tres` | `segundo_andar`, no canto esquerdo do corredor, fora da ronda da Sentinela |
+| **Carta do Tião, Faroleiro** (o campus em volta, as máquinas que repetem o caminho) | `dados/documentos/carta_faroleiro_tiao.tres` | `segundo_andar`, no canto esquerdo do corredor, fora do caminho da Ronda |
 | **Zane no rádio (chegada)** | `dados/transmissoes/zane_convivencia_01.tres` | `passarela_acesso` |
 | **Zane no rádio (luzes acesas)** | `dados/transmissoes/zane_convivencia_02.tres` | `praca_central`, na sala inteira (requer `convivencia_energia`) |
 | **Grupo no rádio (árvores da praça)** | `dados/transmissoes/grupo_convivencia_01.tres` | `praca_central`, na sala inteira (depois de `zane_convivencia_01`) |
@@ -208,7 +208,7 @@ Os **botões da jaqueta** da Diana (3, colecionáveis) ficam aqui: `BotaoJaqueta
 - **Colisões:** as caixas por coluna da parede de trás (`LimitesArco`, como na praça) mais uma caixa por coluna na beirada (`Beirada<c>`, do `y_frente - 4` para baixo). O Gabriel e os robôs andam só na faixa.
 - **O corrimão** é um sprite à parte (`corrimao_andar2.png`) na camada `Frente`, desenhado por cima do Gabriel (ele anda sempre atrás dele): passa-mão de aço com uma linha de luz ciano, painéis de vidro em pontilhado (para ver o Gabriel através), postes de 40 em 40 px, painéis quebrados aqui e ali e, a cada degrau da beirada, um poste alto que cobre o desnível. A luz do corrimão entra no mesmo mapa de luz do fundo.
 - **O vazio** abaixo da beirada é quase preto, com uma névoa azulada que sobe e uns pontinhos de neon bem longe (o térreo, que o jogador não vê).
-- **Ameaça:** uma **Sentinela** faz ronda de ida e volta pelo corredor, um ponto por coluna (`y_base + 56`). Os nichos das colunas 5 e 19, as lojas e a escada são os refúgios.
+- **Ameaça:** a **Ronda** vai e volta pelo corredor, um ponto por coluna (`y_base + 56`). Os nichos das colunas 5 e 19, as lojas e a escada são os refúgios.
 - **Energia:** com a marca `convivencia_energia`, os neons, os letreiros e o corrimão do mezanino acendem, como na praça.
 
 ### 7.3 As lojas
