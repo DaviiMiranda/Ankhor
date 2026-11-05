@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/visor/tela_carregando_vr.gd" id="1_tela"]
 [ext_resource type="Shader" path="res://shaders/silhueta_oculos_vr.gdshader" id="2_silhueta"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/visor_ligando.wav" id="3_ligando"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trilho"]
 bg_color = Color(0.05, 0.07, 0.08, 1)
@@ -87,3 +88,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="SomLigando" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ligando")
+volume_db = -4.0
+bus = &"Efeitos"

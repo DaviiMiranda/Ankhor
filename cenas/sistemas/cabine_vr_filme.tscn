@@ -8,7 +8,6 @@
 [node name="CabineVrFilme" instance=ExtResource("1_maquina")]
 texto_acao = "Pôr o visor: Hora Morta"
 cena_do_visor = "res://cenas/visor/menu_filme_vr.tscn"
-marca_da_primeira_vez = "visor_do_cinema_carregado"
 
 [node name="Base" parent="." index="0"]
 texture = ExtResource("2_base")
