@@ -14,6 +14,7 @@
 #   objetos/cadeira_vr_lente.png       24 x 30  só a lente ciano (camada de luz, sem sombreamento)
 #   objetos/cadeira_vr_ambar_lente.png 24 x 30  só a lente âmbar
 #   objetos/cadeira_vr_caida.png       30 x 16  a cadeira tombada, óculos no chão
+#   objetos/cadeira_vr_deitada.png     30 x 16  a cadeira caída de costas, base no ar
 #   objetos/estante_oculos_vr.png      64 x 84  rack de óculos para os alunos (3 prateleiras)
 #   objetos/estante_oculos_vr_musgo.png 64 x 84 o mesmo rack, tomado de musgo
 #   objetos/estante_oculos_vr_lente.png 64 x 84 as lentes acesas e o letreiro do rack
@@ -206,6 +207,28 @@ def cadeira_vr_caida():
     img.pintar(img.ret(0, 12, 2, 15), VIDRO, 0.2)
     img.cor(img.caminho([(0.5, 12), (1.5, 14.5)], 0.4), rgba(CASCO[6], 255))
     bib.musgo_por_cima(img, 0.12, 161)
+    img.contornar()
+    return img
+
+
+def cadeira_vr_deitada():
+    """A mesma cadeira caída de costas, outra pose para a sala não repetir a
+    silhueta: o encosto deitado no chão, o assento em pé na ponta dele, o
+    pedestal apontando para a direita, com a base redonda no ar, e os óculos
+    pendurados pelo cabo, encostados no chão."""
+    img = Imagem(30, 16)
+    img.pintar(img.ret(3, 11, 17, 15), CASCO, gradiente(img, 3, 17, 0.5, 0.35))
+    img.pintar(img.ret(3, 11, 17, 12), CASCO, 0.75)
+    img.pintar(img.ret(6, 13, 15, 14), VIDRO, 0.45)
+    img.pintar(img.ret(17, 4, 21, 15), CASCO, gradiente(img, 17, 21, 0.5, 0.4))
+    img.pintar(img.ret(17, 4, 18, 15), CASCO, 0.78)
+    img.pintar(img.ret(21, 6, 26, 9), "metal", 0.4)
+    img.pintar(img.ret(21, 6, 26, 7), "metal", 0.65)
+    img.pintar(img.elipse(27, 7.5, 1.8, 5), CASCO, 0.3)
+    img.cor(img.caminho([(4, 11), (2, 8), (0.5, 12)], 0.4), rgba(CASCO[2], 255))
+    img.pintar(img.ret(0, 12, 3, 15), CASCO, 0.42)
+    img.pintar(img.ret(0, 13, 2, 14), VIDRO, 0.2)
+    bib.musgo_por_cima(img, 0.12, 163)
     img.contornar()
     return img
 
@@ -704,6 +727,9 @@ def main():
     caida = cadeira_vr_caida()
     caida.salvar("cadeira_vr_caida.png", PASTA_OBJETOS)
     objetos.append((caida, None))
+    deitada = cadeira_vr_deitada()
+    deitada.salvar("cadeira_vr_deitada.png", PASTA_OBJETOS)
+    objetos.append((deitada, None))
     rack, rack_lente = rack_oculos()
     rack.salvar("estante_oculos_vr.png", PASTA_OBJETOS)
     rack_lente.salvar("estante_oculos_vr_lente.png", PASTA_OBJETOS)

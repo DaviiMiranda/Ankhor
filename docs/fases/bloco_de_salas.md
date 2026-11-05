@@ -37,7 +37,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 | `sala_201` | Auditório: doze fileiras de cadeiras VR com dezenas de lentes acesas, dois painéis de ensino, um professor robô na doca ao lado do palco e dois painéis de óculos | tapete |
 | `sala_202` | Duas árvores furando o chão, cadeiras VR em volta, luar por cima; um rack de óculos com musgo e um professor robô na doca com raízes | mato e lajota |
 | `sala_203` | Sala dos professores: oito mesas com cadeiras VR de friso âmbar, um rack de óculos, a doca de um professor robô e o quadro de avisos | tapete e lajota |
-| `sala_204` | O chão cedeu: monte de entulho no meio, cadeiras VR tombadas, óculos pelo chão e um professor robô sem a cabeça na doca (1 cápsula de clarão) | lajota e areia |
+| `sala_204` | O chão cedeu: um monte grande de entulho no meio, com laje tombada e pedras em volta, cadeiras VR caídas em duas poses, óculos pelo chão e um professor robô sem a cabeça na doca (1 cápsula de clarão) | lajota com manchas de terra |
 | `sala_205` | Intacta demais: seis fileiras perfeitamente alinhadas, todas as lentes acesas, sem entulho, a mais clara; o painel e a doca do professor robô sem uma marca de uso. Estranha | lajota |
 | `sala_206` | Depósito: corredores de estantes (metade virou rack de óculos VR), cadeiras tombadas, peças do professor robô desmontado, um lampião (1 pilha) | lajota e areia |
 
@@ -257,7 +257,7 @@ A sala "intacta demais" entra no puzzle só como uma das lousas. **Por que ela e
 | Transmissões que esperam uma marca | `gatilho_transmissao.gd` com `marca_necessaria` (novo) |
 | Fim da fase | `cenas/salas/bloco_de_salas/fim_do_bloco.tscn`: a `SaidaFase` com `sair_ao_carregar` (novo), que mostra "Você saiu do bloco" e leva ao Labirinto (`cenas/salas/labirinto.tscn`) |
 | Itens novos | `dados/itens/molho_de_chaves.tres`, `chave_grade.tres`, `chave_deposito.tres`, `alicate.tres` |
-| Arte nova | `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` (ícones, claviculário, grade, corrente, buraco, sirene) e `gerar_kit.py` (lousas `parede_lousa_0`, `_3`, `_7`, `_8`) |
+| Arte nova | `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` (ícones, claviculário, grade, corrente, buraco, sirene) e `gerar_kit.py` (lousas `parede_lousa_0`, `_3`, `_7`, `_8`). Escombros variados e manchas de terra: `gerar_escombros.py` |
 | Sons novos | `assets/modelagem/audio/gerar_efeitos_bloco_de_salas.py`: sirene (em loop), queda e corrente cortada |
 | Puzzles opcionais da 105 e da 202 | `cenas/itens/peca_no_chao.tscn` (`peca_no_chao.gd`), `cenas/cenario/objetos/mancha_luar.tscn` e campos novos em `quadro_energia.gd`: `com_caixa`, `marcas_necessarias`, `aviso_faltam_marcas`, `etiquetas`, `dica_controles`, `texto_desarmou` e `texto_pronto`. Marcas: `peca_105_bateria`, `peca_105_nucleo`, `peca_105_sensor`, `peca_105_voz`, `professor_105_remontado` e `rack_202_aberto`. A arte vem de `gerar_objetos_bloco_de_salas.py` |
 | Melhorias da seção 12 | Ver a tabela da seção 12.8 |
