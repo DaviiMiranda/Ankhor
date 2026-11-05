@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r13"]
 [ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r14"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_porta.tscn" id="r16"]
 
 [node name="Galeria" instance=ExtResource("r1")]
 id = "conv_galeria"
@@ -29,7 +30,7 @@ position = Vector2(0, 0)
 [node name="Parede01" parent="Paredes" instance=ExtResource("r3")]
 position = Vector2(80, 0)
 
-[node name="Parede02" parent="Paredes" instance=ExtResource("r2")]
+[node name="Parede02" parent="Paredes" instance=ExtResource("r16")]
 position = Vector2(160, 0)
 
 [node name="Parede03" parent="Paredes" instance=ExtResource("r4")]
@@ -65,7 +66,7 @@ position = Vector2(960, 0)
 [node name="Parede13" parent="Paredes" instance=ExtResource("r3")]
 position = Vector2(1040, 0)
 
-[node name="Parede14" parent="Paredes" instance=ExtResource("r2")]
+[node name="Parede14" parent="Paredes" instance=ExtResource("r16")]
 position = Vector2(1120, 0)
 
 [node name="Parede15" parent="Paredes" instance=ExtResource("r4")]
@@ -92,7 +93,7 @@ position = Vector2(1680, 0)
 [node name="Parede22" parent="Paredes" instance=ExtResource("r2")]
 position = Vector2(1760, 0)
 
-[node name="Parede23" parent="Paredes" instance=ExtResource("r4")]
+[node name="Parede23" parent="Paredes" instance=ExtResource("r16")]
 position = Vector2(1840, 0)
 
 [node name="Parede24" parent="Paredes" instance=ExtResource("r2")]
@@ -105,27 +106,27 @@ position = Vector2(0, 0)
 position = Vector2(1984, 0)
 
 [node name="PlacaSelf" type="Label" parent="Paredes"]
-offset_left = 129.0
+offset_left = 169.0
 offset_top = 26.0
-offset_right = 193.0
+offset_right = 233.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.85, 0.3, 0.24, 1)
 text = "SELF"
 horizontal_alignment = 1
 
 [node name="PlacaQuasar" type="Label" parent="Paredes"]
-offset_left = 1089.0
+offset_left = 1129.0
 offset_top = 26.0
-offset_right = 1153.0
+offset_right = 1193.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.85, 0.3, 0.24, 1)
 text = "QUASAR"
 horizontal_alignment = 1
 
 [node name="PlacaSolar" type="Label" parent="Paredes"]
-offset_left = 1809.0
+offset_left = 1849.0
 offset_top = 26.0
-offset_right = 1873.0
+offset_right = 1913.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.85, 0.3, 0.24, 1)
 text = "SOLAR"
@@ -214,34 +215,37 @@ raio_livre = 72.0
 raio_escuro = 124.0
 
 [node name="Porta_galeria_loja_2" parent="." instance=ExtResource("r11")]
-position = Vector2(161, 124)
+position = Vector2(201, 124)
 id = "galeria_loja_2"
 cena_destino = "res://cenas/salas/centro_de_convivencia/loja_2.tscn"
 porta_destino = "loja_2_galeria"
 
 [node name="Porta_galeria_loja_3" parent="." instance=ExtResource("r11")]
-position = Vector2(1121, 124)
+position = Vector2(1161, 124)
 id = "galeria_loja_3"
 cena_destino = "res://cenas/salas/centro_de_convivencia/loja_3.tscn"
 porta_destino = "loja_3_galeria"
 
 [node name="Porta_galeria_loja_4" parent="." instance=ExtResource("r11")]
-position = Vector2(1841, 124)
+position = Vector2(1881, 124)
 id = "galeria_loja_4"
 cena_destino = "res://cenas/salas/centro_de_convivencia/loja_4.tscn"
 porta_destino = "loja_4_galeria"
 
 [node name="Rastreador" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(1100, 150)
+position = Vector2(560, 150)
 rota = NodePath("../../RotaRastreador")
+velocidade_patrulha = 20.0
+velocidade_investigando = 36.0
+velocidade_perseguicao = 64.0
 
 [node name="RotaRastreador" type="Node2D" parent="."]
 
 [node name="Ponto1" type="Marker2D" parent="RotaRastreador"]
-position = Vector2(620, 150)
+position = Vector2(380, 150)
 
 [node name="Ponto2" type="Marker2D" parent="RotaRastreador"]
-position = Vector2(1500, 150)
+position = Vector2(940, 150)
 
 [node name="RobosDaSala" type="Node" parent="."]
 script = ExtResource("r13")
