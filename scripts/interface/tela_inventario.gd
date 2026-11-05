@@ -11,13 +11,23 @@ const DICAS := {
 	Aba.ANOTACOES: "Q: próxima aba   Setas: escolher e folhear   Tab: fechar",
 	Aba.OBJETIVO: "Q: próxima aba   Tab: fechar",
 }
+const SEGUNDOS_ABRINDO_MOCHILA := 1.0
+const SEGUNDOS_FECHANDO_MOCHILA := 0.6
+const SEGUNDOS_FADE_JANELA := 0.1
+const SEGUNDOS_FADE_TEXTO := 0.12
+const QUADRO_FINAL_DO_GESTO := GestoMochila.QUADROS - 0.01
 
 var aberto := false
 var _aba := Aba.ITENS
 var _cursor := Vector2i(0, 0)
 var _espacos_grade: Array[EspacoItem] = []
 var _espacos_gadget: Array[EspacoItem] = []
+var _em_transicao := false
+var _gabriel_no_gesto: Gabriel
+var _fade_textos: Tween
 
+@onready var fundo: ColorRect = $Fundo
+@onready var janela: Control = $Janela
 @onready var aba_itens: Label = $Janela/Abas/AbaItens
 @onready var aba_anotacoes: Label = $Janela/Abas/AbaAnotacoes
 @onready var aba_objetivo: Label = $Janela/Abas/AbaObjetivo
@@ -35,6 +45,8 @@ var _espacos_gadget: Array[EspacoItem] = []
 @onready var som_abrir: AudioStreamPlayer = $SomAbrir
 @onready var som_fechar: AudioStreamPlayer = $SomFechar
 @onready var som_aba: AudioStreamPlayer = $SomAba
+@onready var som_equipar: AudioStreamPlayer = $SomEquipar
+@onready var som_desequipar: AudioStreamPlayer = $SomDesequipar
 
 
 func _ready() -> void:
@@ -65,6 +77,9 @@ func _criar_espacos() -> void:
 
 func _unhandled_input(evento: InputEvent) -> void:
 	if ItemNovo.aberto:
+		return
+	if _em_transicao:
+		get_viewport().set_input_as_handled()
 		return
 	if evento.is_action_pressed("inventario"):
 		_tratar_atalho(Aba.ITENS)
@@ -134,15 +149,58 @@ func _examinar() -> void:
 
 func _abrir(abrir: bool) -> void:
 	aberto = abrir
-	visible = abrir
-	get_tree().paused = abrir
-	if abrir:
-		som_fechar.stop()
-		som_abrir.play()
-	else:
-		som_abrir.stop()
-		som_fechar.play()
+	_em_transicao = true
 	_atualizar()
+	if abrir:
+		await _entrar()
+	else:
+		await _sair()
+	_em_transicao = false
+
+
+func _entrar() -> void:
+	get_tree().paused = true
+	som_fechar.stop()
+	fundo.modulate.a = 0.0
+	janela.modulate.a = 0.0
+	visible = true
+	_gabriel_no_gesto = _gabriel_livre()
+	var segundos := 0.0
+	var animacao := create_tween().set_parallel()
+	if _gabriel_no_gesto:
+		segundos = SEGUNDOS_ABRINDO_MOCHILA
+		_gabriel_no_gesto.comecar_gesto_da_mochila()
+		animacao.tween_method(_mostrar_quadro_do_gesto, 0.0, QUADRO_FINAL_DO_GESTO, segundos)
+	animacao.tween_callback(som_abrir.play).set_delay(maxf(segundos - som_abrir.stream.get_length(), 0.0))
+	animacao.tween_property(fundo, "modulate:a", 1.0, SEGUNDOS_FADE_JANELA).set_delay(segundos)
+	animacao.tween_property(janela, "modulate:a", 1.0, SEGUNDOS_FADE_JANELA).set_delay(segundos)
+	await animacao.finished
+
+
+func _sair() -> void:
+	som_abrir.stop()
+	som_fechar.play()
+	var segundos := SEGUNDOS_FECHANDO_MOCHILA if _gabriel_no_gesto else 0.0
+	var animacao := create_tween().set_parallel()
+	animacao.tween_property(janela, "modulate:a", 0.0, SEGUNDOS_FADE_JANELA)
+	animacao.tween_property(fundo, "modulate:a", 0.0, SEGUNDOS_FADE_JANELA)
+	if _gabriel_no_gesto:
+		animacao.tween_method(_mostrar_quadro_do_gesto, QUADRO_FINAL_DO_GESTO, 0.0, segundos).set_delay(SEGUNDOS_FADE_JANELA)
+	await animacao.finished
+	visible = false
+	if _gabriel_no_gesto:
+		_gabriel_no_gesto.terminar_tira()
+		_gabriel_no_gesto = null
+	get_tree().paused = false
+
+
+func _gabriel_livre() -> Gabriel:
+	var gabriel := get_tree().get_first_node_in_group("jogador") as Gabriel
+	return gabriel if gabriel and gabriel.pode_mexer_na_mochila() else null
+
+
+func _mostrar_quadro_do_gesto(quadro: float) -> void:
+	_gabriel_no_gesto.mostrar_quadro_tira(int(quadro))
 
 
 func _mostrar_aba(aba: Aba) -> void:
@@ -187,19 +245,39 @@ func _ao_clicar_aba(evento: InputEvent, aba: Aba) -> void:
 
 
 func _escolher(posicao: Vector2i) -> void:
+	var outro_espaco := posicao != _cursor
 	_cursor = posicao
 	_atualizar()
+	if outro_espaco:
+		_destacar_selecao()
+
+
+func _destacar_selecao() -> void:
+	_espacos_grade[_cursor.y * Inventario.COLUNAS + _cursor.x].destacar()
+	if _fade_textos:
+		_fade_textos.kill()
+	_fade_textos = create_tween().set_parallel()
+	for texto in [nome, descricao, situacao, dica_examinar]:
+		texto.modulate.a = 0.0
+		_fade_textos.tween_property(texto, "modulate:a", 1.0, SEGUNDOS_FADE_TEXTO)
 
 
 func _equipar_no_espaco(espaco: int) -> void:
 	var item := Inventario.item_em(_cursor.y, _cursor.x)
 	if item and item.equipavel:
 		if Inventario.espaco_do_gadget(item) == espaco:
-			Inventario.desequipar(espaco)
+			_desequipar(espaco)
 		else:
 			Inventario.equipar(item, espaco)
+			som_equipar.play()
+			_espacos_gadget[espaco].destacar()
 	elif item == null and Inventario.gadgets[espaco] != null:
-		Inventario.desequipar(espaco)
+		_desequipar(espaco)
+
+
+func _desequipar(espaco: int) -> void:
+	Inventario.desequipar(espaco)
+	som_desequipar.play()
 
 
 func _atualizar() -> void:
