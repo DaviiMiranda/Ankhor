@@ -14,9 +14,6 @@ signal ofegante
 @export var intervalo_som_ofegante: float = 1.0
 @export var som_ofegante: AudioStream
 @export var fracao_cansado: float = 0.3
-@export var intervalo_som_cansado: float = 1.0
-@export var volume_exausto_db: float = -6.0
-@export var volume_cansado_db: float = -16.0
 @export var intervalo_som_em_fuga: float = 1.1
 @export var volume_em_fuga_db: float = -9.0
 @export var variacao_tom_em_fuga: float = 0.08
@@ -25,6 +22,7 @@ var estamina := 100.0
 var tempo_exaustao := 0.0
 var em_fuga := false
 var _tempo_ultimo_ofegante := 0.0
+var _tempo_ultima_respiracao := 0.0
 
 @onready var reprodutor_ofegante: AudioStreamPlayer2D = $SomOfegante
 
@@ -38,14 +36,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if esta_exausto():
 		tempo_exaustao = maxf(tempo_exaustao - delta, 0.0)
-		_tocar_som_ofegante(delta)
+		_avisar_ofegante(delta)
 		if tempo_exaustao == 0.0:
 			exaustao_terminada.emit()
 			mudou.emit(estamina, estamina_maxima)
-	elif em_fuga:
+	if em_fuga:
 		_respirar_em_fuga(delta)
-	elif esta_cansado():
-		_respirar_cansado(delta)
 
 
 func esta_exausto() -> bool:
@@ -85,28 +81,21 @@ func reiniciar() -> void:
 	estamina = estamina_maxima
 	tempo_exaustao = 0.0
 	_tempo_ultimo_ofegante = 0.0
+	_tempo_ultima_respiracao = 0.0
 	mudou.emit(estamina, estamina_maxima)
 
 
-func _tocar_som_ofegante(delta: float) -> void:
+func _avisar_ofegante(delta: float) -> void:
 	_tempo_ultimo_ofegante += delta
 	if _tempo_ultimo_ofegante >= intervalo_som_ofegante:
 		_tempo_ultimo_ofegante = 0.0
 		ofegante.emit()
-		_tocar_respiracao(volume_exausto_db)
-
-
-func _respirar_cansado(delta: float) -> void:
-	_tempo_ultimo_ofegante += delta
-	if _tempo_ultimo_ofegante >= intervalo_som_cansado:
-		_tempo_ultimo_ofegante = 0.0
-		_tocar_respiracao(volume_cansado_db)
 
 
 func _respirar_em_fuga(delta: float) -> void:
-	_tempo_ultimo_ofegante += delta
-	if _tempo_ultimo_ofegante >= intervalo_som_em_fuga:
-		_tempo_ultimo_ofegante = 0.0
+	_tempo_ultima_respiracao += delta
+	if _tempo_ultima_respiracao >= intervalo_som_em_fuga:
+		_tempo_ultima_respiracao = 0.0
 		_tocar_respiracao(volume_em_fuga_db, 1.0 + randf_range(-variacao_tom_em_fuga, variacao_tom_em_fuga))
 
 
