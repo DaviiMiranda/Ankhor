@@ -33,7 +33,7 @@ A regra é que o Gabriel **nunca patina**: os pés têm de bater com o chão e o
 ### 1.3 Poeira e respiração
 
 - `cenas/sistemas/poeira_dos_pes.tscn` solta alguns grãos a cada pisada de corrida, pelo sinal `passo_dado`.
-- A respiração usa `gabriel_ofegante.wav` em três níveis (`fadiga.gd`): fraca abaixo de 30% de estamina, média em fuga e forte em exaustão. Só a exaustão emite o sinal `ofegante`.
+- A respiração usa `gabriel_ofegante.wav` (`fadiga.gd`) e só toca **em fuga**. O cansaço não tem som desde 2026-11-05: nem abaixo de 30% de estamina, nem na exaustão. A exaustão continua emitindo o sinal `ofegante`, sem som.
 - **Em fuga** quer dizer: algum robô está perseguindo (`Robo.esta_perseguindo`) ou parou de perseguir há menos de 3 s, para o Gabriel recuperar o fôlego depois de escapar. O tom varia um pouco a cada respiração. **Escondido, ele prende a respiração:** o som para enquanto `escondido` for verdadeiro. A respiração é só som: os robôs não a ouvem.
 
 ---
@@ -46,7 +46,7 @@ A regra é que o Gabriel **nunca patina**: os pés têm de bater com o chão e o
 - **Ansiedade:** robôs próximos aumentam a ansiedade de Gabriel. Quanto mais perto o robô mais próximo, mais rápido a barra cresce; quando todos se afastam, ela diminui gradualmente. A ansiedade aumenta o consumo de estamina durante a corrida em até 80%. A barra fica sempre visível abaixo da estamina.
 - **Pressão externa:** um sistema pode impor um piso à ansiedade com `Ansiedade.definir_pressao(valor)`; a barra não desce abaixo dele. O relógio do Corredor do Tempo (Labirinto) usa isso: quanto menos tempo resta, maior o piso ([`corredor_do_tempo.md`](corredor_do_tempo.md)).
 - Com ansiedade, a imagem ganha oscilação, separação de cores e uma vinheta avermelhada; os efeitos ficam mais fortes junto com a barra e desaparecem quando Gabriel se acalma.
-- Quando a barra de estamina zera, Gabriel entra em estado de **Exaustão**: não pode correr por 3 segundos, move-se com 40% da velocidade de caminhada e emite suspiros ofegantes audíveis via sinal `ofegante` e efeito sonoro, aumentando o risco de detecção por robôs.
+- Quando a barra de estamina zera, Gabriel entra em estado de **Exaustão**: não pode correr por 3 segundos, move-se com 40% da velocidade de caminhada e emite o sinal `ofegante` (sem som; nenhum sistema escuta esse sinal hoje).
 - Depois da exaustão, ele só volta a correr quando a estamina chega a 30% (`fracao_para_voltar_a_correr`), mesmo com a tecla de correr segura. Sem isso, segurar o Shift numa fuga prendia o Gabriel num ciclo de exaustão sem fim.
 - A estamina se regenera gradualmente: em repouso (parado), recupera-se em ~4 segundos; andando, recupera-se em ~8 segundos.
 - **Implementação técnica:**

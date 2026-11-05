@@ -174,11 +174,14 @@ cena_destino = "res://cenas/salas/centro_de_convivencia/fim_da_convivencia.tscn"
 porta_destino = ""
 
 [node name="Cacador1" parent="Objetos" instance=ExtResource("r23")]
-position = Vector2(400, 250)
+position = Vector2(540, 330)
 rota = NodePath("../../RotaSentinela1")
 rota_com_marca = NodePath("../../RotaSentinela1Energia")
 marca_da_rota = "convivencia_energia"
 bipa_antes_de_virar = true
+velocidade_patrulha = 16.0
+velocidade_investigando = 26.0
+velocidade_perseguicao = 50.0
 
 [node name="RotaSentinela1" type="Node2D" parent="."]
 

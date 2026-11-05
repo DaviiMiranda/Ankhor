@@ -11,6 +11,14 @@
 
 **Afeta:** `scripts/sistemas/fadiga.gd`, `scripts/interface/hud.gd`, `scripts/sistemas/zumbido_da_carga.gd`, `docs/mecanicas/mecanicas_de_fase.md` e `movimentacao_e_terreno.md`.
 
+## 2026-11-05 — Sem som de respiração no cansaço
+
+**Decisão:** o Gabriel não respira mais alto quando está cansado. Saíram os dois sons de cansaço da fadiga: o fraco, abaixo de 30% de estamina, e o forte, na exaustão. A respiração **em fuga** (registro de 2026-11-04, logo abaixo) continua, agora também durante a exaustão. A exaustão ainda emite o sinal `ofegante`, sem som.
+
+**Por quê:** pedido do Davi. **Conferido** no Godot 4.7.2 por script: abaixo de 30% e na exaustão não toca nada, em fuga toca, e o sinal `ofegante` continua saindo na exaustão.
+
+**Afeta:** `scripts/sistemas/fadiga.gd` e `docs/mecanicas/movimentacao_e_terreno.md`.
+
 ## 2026-11-05 — Transmissão do rádio continua ao trocar de sala
 
 **Decisão:** a transmissão cortada por uma troca de sala **continua** na sala seguinte, na mesma fala e na mesma letra, sem o clique de início. Antes ela voltava para a primeira fala (registro do rádio com várias vozes, mais abaixo neste arquivo).
