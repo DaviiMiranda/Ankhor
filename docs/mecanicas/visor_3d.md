@@ -47,6 +47,15 @@ A sala segura **não é recarregada**. O autoload `Visor` (`scripts/sistemas/vis
 
 A `MaquinaDeSalvar` fica esperando esse sinal (`await Visor.fechado`). Quando ele chega, ela clareia a tela e toca a animação de tirar os óculos de trás para a frente, como antes.
 
+### 2.1 A tela de carregamento da primeira vez
+
+Na **primeira vez** que o jogador põe os óculos na sala segura, entre a tela escurecer e o quarto aparecer, fica **3 segundos** a tela **CARREGANDO MODO REALIDADE VIRTUAL** (`cenas/visor/tela_carregando_vr.tscn`, script `scripts/visor/tela_carregando_vr.gd`): fundo escuro, o título em ciano (a cor da luz dos óculos do Zane), uma barra que enche, a porcentagem e uma linha que muda com a barra (*Ligando o visor*, *Calibrando as lentes*, *Montando o ambiente*, *Pronto*).
+
+- **Só na primeira vez:** ao terminar, a tela marca `visor_carregado` no `Progresso`, que vai para o save. Nas próximas vezes, e depois de carregar um save que já passou por ela, o quarto abre direto. Um jogo novo limpa o `Progresso`, então ela volta a aparecer uma vez.
+- **Ela carrega o quarto de verdade:** enquanto a barra enche, o `ResourceLoader` carrega a cena 3D em segundo plano (`load_threaded_request`). Sem isso, o jogo parava uns 2 s na tela preta depois do carregamento, na primeira vez. Se o carregamento demorar mais que os 3 s, a barra para em 99% até terminar.
+- **Quem chama** é a `MaquinaDeSalvar` (`_carregar_na_primeira_vez`), antes do `Visor.abrir`. A tela só existe onde a máquina tem `tela_de_carregamento` preenchida: o pedestal do `modelo_safe_room.tscn` (então vale para as seis salas seguras). A cabine do filme VR (`cabine_vr_filme.tscn`) não tem.
+- **Ajustes** no nó raiz da cena: `segundos` (3), `segundos_aparecendo` (o fade de entrada) e `segundos_cheia` (quanto a barra fica cheia antes de sumir). Os textos estão em `ETAPAS` no script.
+
 Por que não recarregar a sala: não precisa passar a posição do Gabriel nem um "estou voltando do visor" entre cenas, e nada da sala se perde (itens no chão, portas, música). Cuidados que isso exigiu:
 
 - A `SalaSegura` liga o sinal que remove robôs em `_enter_tree` (antes era em `_ready`, que não roda de novo quando a sala volta à árvore).
@@ -189,6 +198,7 @@ As formas de colisão (chão, paredes, móvel da TV, estante, escrivaninha, cade
 | O quê | Onde |
 |---|---|
 | Troca 2D ↔ 3D e salvar (autoload `Visor`) | `scripts/sistemas/visor.gd` |
+| Tela de carregamento da primeira vez | `cenas/visor/tela_carregando_vr.tscn`, `scripts/visor/tela_carregando_vr.gd`, chamada pela `MaquinaDeSalvar` |
 | Quarto (câmera, luzes, colisões, janela, pôsteres) | `cenas/visor/sala_visor.tscn`, `scripts/visor/sala_visor.gd` |
 | Jogador em primeira pessoa | `cenas/visor/jogador_visor.tscn`, `scripts/visor/jogador_visor.gd` |
 | Os lugares para focar | `scripts/visor/foco_visor.gd` (base), `cenas/visor/tela_do_visor.tscn`, `mural_do_visor.tscn`, `mesa_do_visor.tscn`, `quadro_do_visor.tscn` e os scripts com o mesmo nome |

@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-05 — Tela de carregamento do VR na primeira vez
+
+**Decisão:** na **primeira vez** que o jogador põe os óculos do Zane na sala segura, antes do quarto 3D aparece por **3 segundos** a tela **CARREGANDO MODO REALIDADE VIRTUAL**, com uma barra de progresso, a porcentagem e uma linha de etapa (*Ligando o visor*, *Calibrando as lentes*, *Montando o ambiente*, *Pronto*). Nas vezes seguintes o quarto abre direto. "Primeira vez" é por jogo: fica no `Progresso` (marca `visor_carregado`) e vai para o save. Enquanto a barra enche, o quarto é carregado em segundo plano, o que tira a parada de uns 2 s que havia na primeira entrada. A cabine do filme VR, no Centro de Convivência, não tem a tela. Os textos das etapas não dizem nada de história.
+
+**Por quê:** pedido do Davi. **Conferido** no Godot 4.7.2 por script, na sala segura da Biblioteca: a tela aparece na primeira vez e dura 3 s (4%, 46%, 92% e "Pronto 100%"), o quarto abre logo depois, e na segunda vez ela não aparece.
+
+**Afeta:** `cenas/visor/tela_carregando_vr.tscn` e `scripts/visor/tela_carregando_vr.gd` (novos), `scripts/sistemas/maquina_de_salvar.gd`, `cenas/salas/modelo_safe_room.tscn`, `docs/mecanicas/visor_3d.md` e `sala_segura.md`.
+
 ## 2026-11-05 — Corrida depois da exaustão e aviso da carga
 
 **Decisão:** duas correções no que um testador relatou como "a corrida parou de funcionar no Centro de Convivência, mesmo depois de salvar e carregar":
