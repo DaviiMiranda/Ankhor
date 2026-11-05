@@ -16,7 +16,6 @@
 [ext_resource type="Script" path="res://scripts/cenario/luz_pulsante.gd" id="r14"]
 [ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="r15"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_mural.tscn" id="r16"]
-[ext_resource type="PackedScene" path="res://cenas/visor/tela_carregando_vr.tscn" id="r17"]
 
 [node name="ModeloSafeRoom" instance=ExtResource("r1")]
 script = ExtResource("r2")
@@ -78,7 +77,6 @@ id = "safe_room_saida"
 
 [node name="MaquinaDeSalvar" parent="Objetos" instance=ExtResource("r12")]
 position = Vector2(206, 142)
-tela_de_carregamento = ExtResource("r17")
 
 [node name="CadeiraVR" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(160, 150)

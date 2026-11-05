@@ -49,11 +49,11 @@ A `MaquinaDeSalvar` fica esperando esse sinal (`await Visor.fechado`). Quando el
 
 ### 2.1 A tela de carregamento da primeira vez
 
-Na **primeira vez** que o jogador põe os óculos na sala segura, entre a tela escurecer e o quarto aparecer, fica **3 segundos** a tela **CARREGANDO MODO REALIDADE VIRTUAL** (`cenas/visor/tela_carregando_vr.tscn`, script `scripts/visor/tela_carregando_vr.gd`): fundo escuro, o título em ciano (a cor da luz dos óculos do Zane), uma barra que enche, a porcentagem e uma linha que muda com a barra (*Ligando o visor*, *Calibrando as lentes*, *Montando o ambiente*, *Pronto*).
+Na **primeira vez** que o jogador põe os óculos na sala segura (e, à parte, na primeira vez que põe o visor do cinema, na Sala VR do Centro de Convivência), entre a tela escurecer e o 3D aparecer, fica **3 segundos** a tela **CARREGANDO MODO REALIDADE VIRTUAL** (`cenas/visor/tela_carregando_vr.tscn`, script `scripts/visor/tela_carregando_vr.gd`): fundo escuro, o título em ciano (a cor da luz dos óculos do Zane), uma barra que enche, a porcentagem e uma linha que muda com a barra (*Ligando o visor*, *Calibrando as lentes*, *Montando o ambiente*, *Pronto*). Tudo isso aparece **por dentro de um visor**: em volta, a silhueta arredondada dos óculos VR (duas lentes unidas, com o encaixe do nariz embaixo e uma linha ciano na borda). A silhueta é o shader `shaders/silhueta_oculos_vr.gdshader`, num `ColorRect` por cima da tela (a conta está comentada no shader; o formato se ajusta pelos parâmetros dele).
 
-- **Só na primeira vez:** ao terminar, a tela marca `visor_carregado` no `Progresso`, que vai para o save. Nas próximas vezes, e depois de carregar um save que já passou por ela, o quarto abre direto. Um jogo novo limpa o `Progresso`, então ela volta a aparecer uma vez.
+- **Só na primeira vez:** ao terminar, a tela marca `visor_carregado` (sala segura) ou `visor_do_cinema_carregado` (cinema) no `Progresso`, que vai para o save. A marca é a propriedade `marca_da_primeira_vez` da máquina. Nas próximas vezes, e depois de carregar um save que já passou por ela, o quarto abre direto. Um jogo novo limpa o `Progresso`, então ela volta a aparecer uma vez.
 - **Ela carrega o quarto de verdade:** enquanto a barra enche, o `ResourceLoader` carrega a cena 3D em segundo plano (`load_threaded_request`). Sem isso, o jogo parava uns 2 s na tela preta depois do carregamento, na primeira vez. Se o carregamento demorar mais que os 3 s, a barra para em 99% até terminar.
-- **Quem chama** é a `MaquinaDeSalvar` (`_carregar_na_primeira_vez`), antes do `Visor.abrir`. A tela só existe onde a máquina tem `tela_de_carregamento` preenchida: o pedestal do `modelo_safe_room.tscn` (então vale para as seis salas seguras). A cabine do filme VR (`cabine_vr_filme.tscn`) não tem.
+- **Quem chama** é a `MaquinaDeSalvar` (`_carregar_na_primeira_vez`), antes do `Visor.abrir`. A tela é o padrão de todo visor: está em `tela_de_carregamento` na cena-base `maquina_de_salvar.tscn`, então vale para as seis salas seguras e para a cabine do filme VR (`cabine_vr_filme.tscn`, que herda dela). Um visor novo feito a partir da máquina já ganha a tela; para tirar, esvazie `tela_de_carregamento` na instância.
 - **Ajustes** no nó raiz da cena: `segundos` (3), `segundos_aparecendo` (o fade de entrada) e `segundos_cheia` (quanto a barra fica cheia antes de sumir). Os textos estão em `ETAPAS` no script.
 
 Por que não recarregar a sala: não precisa passar a posição do Gabriel nem um "estou voltando do visor" entre cenas, e nada da sala se perde (itens no chão, portas, música). Cuidados que isso exigiu:
@@ -198,7 +198,7 @@ As formas de colisão (chão, paredes, móvel da TV, estante, escrivaninha, cade
 | O quê | Onde |
 |---|---|
 | Troca 2D ↔ 3D e salvar (autoload `Visor`) | `scripts/sistemas/visor.gd` |
-| Tela de carregamento da primeira vez | `cenas/visor/tela_carregando_vr.tscn`, `scripts/visor/tela_carregando_vr.gd`, chamada pela `MaquinaDeSalvar` |
+| Tela de carregamento da primeira vez | `cenas/visor/tela_carregando_vr.tscn`, `scripts/visor/tela_carregando_vr.gd`, `shaders/silhueta_oculos_vr.gdshader`, chamada pela `MaquinaDeSalvar` |
 | Quarto (câmera, luzes, colisões, janela, pôsteres) | `cenas/visor/sala_visor.tscn`, `scripts/visor/sala_visor.gd` |
 | Jogador em primeira pessoa | `cenas/visor/jogador_visor.tscn`, `scripts/visor/jogador_visor.gd` |
 | Os lugares para focar | `scripts/visor/foco_visor.gd` (base), `cenas/visor/tela_do_visor.tscn`, `mural_do_visor.tscn`, `mesa_do_visor.tscn`, `quadro_do_visor.tscn` e os scripts com o mesmo nome |

@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/visor/tela_carregando_vr.gd" id="1_tela"]
+[ext_resource type="Shader" path="res://shaders/silhueta_oculos_vr.gdshader" id="2_silhueta"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trilho"]
 bg_color = Color(0.05, 0.07, 0.08, 1)
@@ -18,6 +19,9 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.05, 0.07, 0.08, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_silhueta"]
+shader = ExtResource("2_silhueta")
+
 [node name="TelaCarregandoVr" type="CanvasLayer"]
 layer = 15
 script = ExtResource("1_tela")
@@ -29,7 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.02, 0.025, 0.03, 1)
+color = Color(0.03, 0.045, 0.055, 1)
 
 [node name="Centro" type="CenterContainer" parent="Fundo"]
 layout_mode = 1
@@ -73,3 +77,13 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.72, 0.82, 0.9, 1)
 text = "0%"
 horizontal_alignment = 2
+
+[node name="Silhueta" type="ColorRect" parent="Fundo"]
+material = SubResource("ShaderMaterial_silhueta")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
