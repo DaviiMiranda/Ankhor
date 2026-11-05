@@ -47,12 +47,13 @@ A regra é que o Gabriel **nunca patina**: os pés têm de bater com o chão e o
 - **Pressão externa:** um sistema pode impor um piso à ansiedade com `Ansiedade.definir_pressao(valor)`; a barra não desce abaixo dele. O relógio do Corredor do Tempo (Labirinto) usa isso: quanto menos tempo resta, maior o piso ([`corredor_do_tempo.md`](corredor_do_tempo.md)).
 - Com ansiedade, a imagem ganha oscilação, separação de cores e uma vinheta avermelhada; os efeitos ficam mais fortes junto com a barra e desaparecem quando Gabriel se acalma.
 - Quando a barra de estamina zera, Gabriel entra em estado de **Exaustão**: não pode correr por 3 segundos, move-se com 40% da velocidade de caminhada e emite o sinal `ofegante` (sem som; nenhum sistema escuta esse sinal hoje).
+- Depois da exaustão, ele só volta a correr quando a estamina chega a 30% (`fracao_para_voltar_a_correr`), mesmo com a tecla de correr segura. Sem isso, segurar o Shift numa fuga prendia o Gabriel num ciclo de exaustão sem fim.
 - A estamina se regenera gradualmente: em repouso (parado), recupera-se em ~4 segundos; andando, recupera-se em ~8 segundos.
 - **Implementação técnica:**
   - Cena modular: `cenas/sistemas/fadiga.tscn` instanciada em `cenas/personagens/gabriel.tscn`.
   - Script: `scripts/sistemas/fadiga.gd` (`class_name Fadiga`).
   - Sinais: `mudou(atual, maxima)`, `exaustao_iniciada`, `exaustao_terminada`, `ofegante`.
-  - Interface: o HUD monitora o jogador pelo grupo `jogador` e mantém a barra de estamina abaixo da vida sempre visível. Em exaustão, a barra muda para a cor de alerta.
+  - Interface: o HUD monitora o jogador pelo grupo `jogador` e mantém a barra de estamina abaixo da vida sempre visível. Em exaustão, a barra muda para a cor de alerta. Carregando a Célula, ela fica cinza e o rótulo vira `CARGA: SEM CORRER [G]`.
   - Ansiedade: `cenas/sistemas/ansiedade.tscn` e `scripts/sistemas/ansiedade.gd` medem a distância até o robô mais próximo. O HUD exibe a barra e aplica o efeito visual por `shaders/ansiedade.gdshader`.
 
 ---
