@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-05 — Transmissão do rádio continua ao trocar de sala
+
+**Decisão:** a transmissão cortada por uma troca de sala **continua** na sala seguinte, na mesma fala e na mesma letra, sem o clique de início. Antes ela voltava para a primeira fala (registro do rádio com várias vozes, mais abaixo neste arquivo).
+
+**Por quê:** pedido do Davi. Em conversas longas, cada porta repetia tudo desde o começo. **Conferido** no Godot 4.7.2 por script, trocando entre o Balcão e o Acervo. A voz gravada continua do mesmo ponto no código, mas nenhuma transmissão tem voz ainda, então isso não foi testado.
+
+**Afeta:** `scripts/sistemas/radio.gd`, `scripts/interface/legenda_radio.gd` e `docs/mecanicas/registros_e_caderno.md`.
+
 ## 2026-11-04 — Gesto da mochila, respiração em fuga e polimento do inventário
 
 **Decisão:** quatro itens de `docs/sugestao-melhoramento-futuro.md` entram no jogo:

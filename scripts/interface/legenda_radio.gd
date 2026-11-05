@@ -24,6 +24,11 @@ func _ready() -> void:
 		_ao_pedir(transmissao)
 
 
+func _exit_tree() -> void:
+	if _atual:
+		Radio.guardar_andamento(_atual, _indice, _tempo)
+
+
 func _process(delta: float) -> void:
 	if _atual == null:
 		return
@@ -51,23 +56,25 @@ func _proxima_transmissao() -> void:
 		chiado.stop()
 		return
 	_atual = _fila.pop_front()
-	_indice = 0
+	_indice = Radio.fala_em_andamento
 	caixa.show()
-	clique.play()
+	if not Radio.tem_andamento():
+		clique.play()
 	chiado.play()
-	_mostrar_fala()
+	_mostrar_fala(Radio.tempo_em_andamento)
 
 
-func _mostrar_fala() -> void:
+func _mostrar_fala(a_partir_de: float = 0.0) -> void:
 	falante.text = _atual.falante_da_fala(_indice)
 	fala.text = _atual.falas[_indice]
-	fala.visible_characters = 0
-	_tempo = 0.0
+	_tempo = a_partir_de
+	fala.visible_characters = int(_tempo * letras_por_segundo)
 	_duracao = fala.text.length() / letras_por_segundo + pausa_depois_da_fala
 	voz.stop()
 	if _indice < _atual.vozes.size() and _atual.vozes[_indice]:
 		voz.stream = _atual.vozes[_indice]
-		voz.play()
+		if _tempo < voz.stream.get_length():
+			voz.play(_tempo)
 		_duracao = maxf(_duracao, voz.stream.get_length() + 0.4)
 
 

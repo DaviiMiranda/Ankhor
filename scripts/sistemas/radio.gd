@@ -4,6 +4,8 @@ signal transmissao_pedida(transmissao: Transmissao)
 
 var ouvidas: Dictionary = {}
 var pendentes: Array[Transmissao] = []
+var fala_em_andamento := 0
+var tempo_em_andamento := 0.0
 
 
 func _ready() -> void:
@@ -13,6 +15,7 @@ func _ready() -> void:
 func limpar() -> void:
 	ouvidas = {}
 	pendentes = []
+	_zerar_andamento()
 
 
 func transmitir(transmissao: Transmissao) -> void:
@@ -25,7 +28,23 @@ func transmitir(transmissao: Transmissao) -> void:
 
 func concluir(transmissao: Transmissao) -> void:
 	pendentes.erase(transmissao)
+	_zerar_andamento()
+
+
+func guardar_andamento(transmissao: Transmissao, fala: int, tempo: float) -> void:
+	if pendentes.has(transmissao):
+		fala_em_andamento = fala
+		tempo_em_andamento = tempo
+
+
+func tem_andamento() -> bool:
+	return fala_em_andamento > 0 or tempo_em_andamento > 0.0
 
 
 func ja_ouviu(id: String) -> bool:
 	return ouvidas.has(id)
+
+
+func _zerar_andamento() -> void:
+	fala_em_andamento = 0
+	tempo_em_andamento = 0.0
