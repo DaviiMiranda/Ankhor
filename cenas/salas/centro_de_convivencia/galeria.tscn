@@ -232,16 +232,19 @@ cena_destino = "res://cenas/salas/centro_de_convivencia/loja_4.tscn"
 porta_destino = "loja_4_galeria"
 
 [node name="Rastreador" parent="Objetos" instance=ExtResource("r12")]
-position = Vector2(1100, 150)
+position = Vector2(560, 150)
 rota = NodePath("../../RotaRastreador")
+velocidade_patrulha = 20.0
+velocidade_investigando = 36.0
+velocidade_perseguicao = 64.0
 
 [node name="RotaRastreador" type="Node2D" parent="."]
 
 [node name="Ponto1" type="Marker2D" parent="RotaRastreador"]
-position = Vector2(620, 150)
+position = Vector2(380, 150)
 
 [node name="Ponto2" type="Marker2D" parent="RotaRastreador"]
-position = Vector2(1500, 150)
+position = Vector2(940, 150)
 
 [node name="RobosDaSala" type="Node" parent="."]
 script = ExtResource("r13")

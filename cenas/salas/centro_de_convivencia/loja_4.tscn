@@ -179,6 +179,9 @@ rota = NodePath("../../RotaSentinela1")
 rota_com_marca = NodePath("../../RotaSentinela1Energia")
 marca_da_rota = "convivencia_energia"
 bipa_antes_de_virar = true
+velocidade_patrulha = 16.0
+velocidade_investigando = 26.0
+velocidade_perseguicao = 50.0
 
 [node name="RotaSentinela1" type="Node2D" parent="."]
 
