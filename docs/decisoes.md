@@ -1,5 +1,16 @@
 # Registro de decisões
 
+## 2026-11-05 — Corrida depois da exaustão e aviso da carga
+
+**Decisão:** duas correções no que um testador relatou como "a corrida parou de funcionar no Centro de Convivência, mesmo depois de salvar e carregar":
+
+- **Depois da exaustão, só volta a correr com 30% de estamina** (`fracao_para_voltar_a_correr` na `Fadiga`). Antes, quem segurava o Shift durante a fuga ficava preso: a exaustão acabava, a estamina subia um quadro, a corrida gastava de novo e a exaustão recomeçava, sem fim, enquanto a tecla estivesse apertada. Agora o ciclo é: 3 s exausto, uns 2,5 s andando enquanto a estamina enche até 30%, e a corrida volta, mesmo com a tecla segura.
+- **A carga aparece na HUD.** Com a Célula de Energia na mochila, a barra de estamina fica cinza e o rótulo vira `CARGA: SEM CORRER [G]`. Cada vez que o jogador aperta correr com ela, aparece o aviso de que não dá e de que `G` larga. Antes a barra ficava cheia e normal, e o aviso só aparecia uma vez por sessão.
+
+**Por quê:** a parte que sobrevive a salvar e carregar só pode ser a Célula, porque o inventário é salvo e ela é o único item que impede de correr (a estamina nasce cheia em toda sala). O relato do testador não diz se ele estava com ela; a hipótese não foi confirmada com o save dele. **Conferido** no Godot 4.7.2 por script, na câmara fria: correndo com o Shift seguro até exaurir, e com a Célula na mochila.
+
+**Afeta:** `scripts/sistemas/fadiga.gd`, `scripts/interface/hud.gd`, `scripts/sistemas/zumbido_da_carga.gd`, `docs/mecanicas/mecanicas_de_fase.md` e `movimentacao_e_terreno.md`.
+
 ## 2026-11-05 — Transmissão do rádio continua ao trocar de sala
 
 **Decisão:** a transmissão cortada por uma troca de sala **continua** na sala seguinte, na mesma fala e na mesma letra, sem o clique de início. Antes ela voltava para a primeira fala (registro do rádio com várias vozes, mais abaixo neste arquivo).

@@ -11,6 +11,7 @@ signal ofegante
 @export var regeneracao_parado_por_segundo: float = 25.0
 @export var regeneracao_andando_por_segundo: float = 12.5
 @export var duracao_exaustao: float = 3.0
+@export var fracao_para_voltar_a_correr: float = 0.3
 @export var intervalo_som_ofegante: float = 1.0
 @export var som_ofegante: AudioStream
 @export var fracao_cansado: float = 0.3
@@ -24,6 +25,7 @@ signal ofegante
 var estamina := 100.0
 var tempo_exaustao := 0.0
 var em_fuga := false
+var recuperando_folego := false
 var _tempo_ultimo_ofegante := 0.0
 
 @onready var reprodutor_ofegante: AudioStreamPlayer2D = $SomOfegante
@@ -57,7 +59,7 @@ func esta_cansado() -> bool:
 
 
 func pode_correr() -> bool:
-	return not esta_exausto() and estamina > 0.0
+	return not esta_exausto() and not recuperando_folego and estamina > 0.0
 
 
 func consumir(delta: float, multiplicador: float = 1.0) -> void:
@@ -67,6 +69,7 @@ func consumir(delta: float, multiplicador: float = 1.0) -> void:
 	mudou.emit(estamina, estamina_maxima)
 	if estamina == 0.0:
 		tempo_exaustao = duracao_exaustao
+		recuperando_folego = true
 		_tempo_ultimo_ofegante = intervalo_som_ofegante
 		exaustao_iniciada.emit()
 
@@ -78,12 +81,15 @@ func regenerar(delta: float, parado: bool) -> void:
 		return
 	var taxa := regeneracao_parado_por_segundo if parado else regeneracao_andando_por_segundo
 	estamina = minf(estamina + taxa * delta, estamina_maxima)
+	if estamina >= estamina_maxima * fracao_para_voltar_a_correr:
+		recuperando_folego = false
 	mudou.emit(estamina, estamina_maxima)
 
 
 func reiniciar() -> void:
 	estamina = estamina_maxima
 	tempo_exaustao = 0.0
+	recuperando_folego = false
 	_tempo_ultimo_ofegante = 0.0
 	mudou.emit(estamina, estamina_maxima)
 

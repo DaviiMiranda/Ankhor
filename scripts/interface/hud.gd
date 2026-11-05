@@ -4,6 +4,11 @@ const CENA_ESPACO := preload("res://cenas/interface/espaco_item.tscn")
 const CORACAO_CHEIO := preload("res://assets/sprites/interface/coracao_cheio.png")
 const CORACAO_VAZIO := preload("res://assets/sprites/interface/coracao_vazio.png")
 const SHADER_ANSIEDADE := preload("res://shaders/ansiedade.gdshader")
+const COR_ESTAMINA := Color(0.9, 0.8, 0.55, 1.0)
+const COR_EXAUSTO := Color(0.85, 0.25, 0.2, 1.0)
+const COR_CARGA := Color(0.45, 0.45, 0.5, 1.0)
+const ROTULO_ESTAMINA := "ESTAMINA"
+const ROTULO_CARGA := "CARGA: SEM CORRER [G]"
 
 @export var duracao_mensagem: float = 3.5
 @export var segundos_por_caractere: float = 0.05
@@ -16,6 +21,7 @@ var _jogador_conectado: Gabriel = null
 var _barra_estamina_fundo: ColorRect
 var _barra_estamina_preenchimento: ColorRect
 var _rotulo_estamina: Label
+var _exausto := false
 var _barra_ansiedade_fundo: ColorRect
 var _barra_ansiedade_preenchimento: ColorRect
 var _rotulo_ansiedade: Label
@@ -50,6 +56,8 @@ func _ready() -> void:
 	_atualizar_coracoes(Vida.vida)
 	_configurar_barra_estamina()
 	_configurar_barra_ansiedade()
+	Inventario.mudou.connect(_pintar_barra_estamina)
+	_pintar_barra_estamina()
 	flash_dano.color.a = 0.0
 	mensagem.modulate.a = 0.0
 	aviso.hide()
@@ -143,14 +151,14 @@ func _configurar_barra_estamina() -> void:
 
 	_barra_estamina_preenchimento = ColorRect.new()
 	_barra_estamina_preenchimento.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_barra_estamina_preenchimento.color = Color(0.9, 0.8, 0.55, 1.0)
+	_barra_estamina_preenchimento.color = COR_ESTAMINA
 	_barra_estamina_preenchimento.position = Vector2(2.0, 2.0)
 	_barra_estamina_preenchimento.size = Vector2(64.0, 4.0)
 	_barra_estamina_fundo.add_child(_barra_estamina_preenchimento)
 
 	_rotulo_estamina = Label.new()
 	_rotulo_estamina.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_rotulo_estamina.text = "ESTAMINA"
+	_rotulo_estamina.text = ROTULO_ESTAMINA
 	_rotulo_estamina.position = Vector2(80.0, 26.0)
 	_rotulo_estamina.add_theme_font_size_override("font_size", 8)
 	add_child(_rotulo_estamina)
@@ -210,12 +218,21 @@ func _ao_mudar_estamina(atual: float, maxima: float) -> void:
 
 
 func _ao_mudar_exaustao(esta_exausto: bool) -> void:
+	_exausto = esta_exausto
+	_pintar_barra_estamina()
+
+
+func _pintar_barra_estamina() -> void:
 	if _barra_estamina_preenchimento == null:
 		return
-	if esta_exausto:
-		_barra_estamina_preenchimento.color = Color(0.85, 0.25, 0.2, 1.0)
+	var carregando := Inventario.carregando_peso()
+	if _exausto:
+		_barra_estamina_preenchimento.color = COR_EXAUSTO
+	elif carregando:
+		_barra_estamina_preenchimento.color = COR_CARGA
 	else:
-		_barra_estamina_preenchimento.color = Color(0.9, 0.8, 0.55, 1.0)
+		_barra_estamina_preenchimento.color = COR_ESTAMINA
+	_rotulo_estamina.text = ROTULO_CARGA if carregando else ROTULO_ESTAMINA
 
 
 func _ao_mudar_ansiedade(atual: float, maxima: float) -> void:
