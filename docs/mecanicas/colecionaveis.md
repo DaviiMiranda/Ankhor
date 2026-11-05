@@ -106,7 +106,7 @@ São `ChipOculos1` a `ChipOculos3` nas cenas dessas salas.
 |---|---|
 | **Peça** | Recorte de jornal amarelado, de borda rasgada (`recorte_jornal.png`). **Não é só um colecionável: é um documento que se lê.** Ao pegar, abre a tela de leitura (papel `jornal`) e, ao fechar, a tela **Novo item** |
 | **Quem guardou** | O **Carlos** (História Completa, seção 4.3). Cada recorte tem uma **nota na margem, de caneta vermelha** (a cor dele). As duas primeiras não têm assinatura, a terceira assina "C." |
-| **Recompensa** | A **gravura da nave**, na parede da direita do quarto (acima do criado-mudo). É um `FocoVisor`: dá para olhar de perto, com nome e descrição |
+| **Recompensa** | A **gravura da nave**, na parede da direita do quarto (acima do criado-mudo). É um `FocoVisor`: dá para olhar de perto, com nome e descrição. A descrição traz a mensagem cifrada do Carlos (seção 3.5) |
 
 Cada recorte tem **uma foto** (`assets/sprites/interface/recorte_<n>.png`, 220 × 74, pontilhada) e **dois trechos de texto**, e a leitura tem quatro páginas: **1.** a foto e a legenda; **2 e 3.** a matéria; **4.** a nota na margem, em vermelho. Os detalhes ficam em aberto de propósito (datas rasgadas, "documento reservado"): os três só afirmam o que a História Completa já decide (seções 2.1 e 4.3).
 
@@ -139,7 +139,7 @@ Uma coleção é um recurso `Colecao` (`scripts/sistemas/colecao.gd`), um arquiv
 | `total` | Quantas peças tem |
 | `texto_completa` | Frase extra na tela Novo item quando a coleção fecha |
 | `nome_da_recompensa` | Título do painel ao examinar a recompensa no quarto (*Farol de mesa*) e do aviso **[E] Examinar** |
-| `descricao_da_recompensa` | Texto do painel ao examinar. Só descreve o que se vê, sem afirmar nada de história |
+| `descricao_da_recompensa` | Texto do painel ao examinar. Só descreve o que se vê, sem afirmar nada de história. A exceção é a mensagem cifrada da gravura da nave (seção 3.5): ela aparece como se vê, cifrada |
 
 ### 3.2 O estado
 
@@ -183,6 +183,22 @@ Os **modelos** saem do Blender sem abrir a janela (como rodar e as medidas estã
 | `assets/modelos/oculos_zane.glb` | `assets/modelagem/cenario/gerar_oculos_zane.py` |
 
 O **desenho em pixel** das peças (ícone e chão) sai de `assets/modelagem/itens/gerar_pingente_farol.py`, `gerar_disquete_colecionavel.py`, `gerar_pingente_chapeu.py`, `gerar_botao_jaqueta.py` e `gerar_chip_oculos.py`.
+
+### 3.5 A mensagem cifrada da gravura
+
+A descrição da gravura (`descricao_da_recompensa` em `dados/colecoes/recortes.tres`) termina com uma mensagem de caneta vermelha, em **cifra de César com deslocamento 3**:
+
+| | |
+|---|---|
+| **Cifrada** | `TXHP HX DPDYD HPEDUFRX. VR R SDVVDGR H VHJXUR FRQWUD LQFHUWHCDV. - C.` |
+| **Decifrada** | "Quem eu amava embarcou. Só o passado é seguro contra incertezas." |
+| **A pista** | A assinatura fica sem cifrar: C é a 3ª letra do alfabeto. Os três motores da nave repetem o número |
+
+A cifra troca cada letra pela terceira seguinte, dando a volta no fim do alfabeto. Numerando A = 0, ..., Z = 25:
+
+$$c = (p + 3) \bmod 26 \qquad p = (c - 3) \bmod 26$$
+
+Ela só atua nas letras de A a Z: o texto é escrito em maiúsculas e sem acento, e os espaços e a pontuação ficam como estão. O jogo não pede a resposta nem dá prêmio por ela: decifrar é só um extra para quem quiser. Para mudar a frase, cifre de novo e atualize também o Enredo (seção 4.3) e `docs/decisoes.md`.
 
 ## 4. Como pôr uma coleção nova (outra fase)
 

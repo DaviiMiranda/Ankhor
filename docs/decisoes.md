@@ -1,5 +1,20 @@
 # Registro de decisões
 
+## 2026-11-04 — Mensagem cifrada na gravura da nave
+
+**Decisão:** a gravura da nave, recompensa dos recortes de jornal, ganha uma mensagem em **cifra de César com deslocamento 3**, de caneta vermelha e assinada "C.":
+
+- **Cifrada:** `TXHP HX DPDYD HPEDUFRX. VR R SDVVDGR H VHJXUR FRQWUD LQFHUWHCDV. - C.`
+- **Decifrada:** "Quem eu amava embarcou. Só o passado é seguro contra incertezas."
+
+A chave não é dita: a pista é a assinatura (C é a 3ª letra do alfabeto) e os três motores da nave. Texto sem acento, em maiúsculas, só as letras deslocadas.
+
+**Entra na história:** o Carlos amava alguém que embarcou na Grande Separação. Quem é fica em aberto (nova pendência na seção 10.2 do Enredo). A assinatura continua só "C.", porque a gravura pode aparecer já no Labirinto e o jogador ainda não sabe o nome dele. Pelo mesmo motivo, a mensagem não toca na mentira do Henrique.
+
+**Por quê:** pedido do Davi, para a gravura contar mais sobre a história e premiar quem decifrar. A frase foi escolhida por ele.
+
+**Afeta:** `dados/colecoes/recortes.tres`, `docs/historia/História_Completa.md` e `.docx`, `docs/mecanicas/colecionaveis.md`.
+
 ## 2026-11-04 — Mecânica, item e desafio novos por fase (menos o D-Tec)
 
 **Decisão:** cada fase ganha uma ação nova, um item com custo e um desafio que junta os dois. O detalhe está em [`mecanicas/mecanicas_de_fase.md`](mecanicas/mecanicas_de_fase.md).
