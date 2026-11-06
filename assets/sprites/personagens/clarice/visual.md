@@ -24,13 +24,7 @@ Renderizada junto com ela, no mesmo sprite:
 
 ## Sprites
 
-Todos em `assets/sprites/personagens/clarice/`. Os **retratos** e as vistas **de frente, de costas, de lado e de 3/4 de costas** (parada, andando e respirando) são pixel art feita a partir das referências em `assets/modelagem/personagens/clarice_referencia/`, pelo `pixelar_clarice.py` (só Python, Pillow e NumPy):
-
-```bash
-python assets/modelagem/personagens/pixelar_clarice.py
-```
-
-O resto (a estação de trabalho e o 3/4 de frente) ainda sai de `assets/modelagem/personagens/gerar_clarice.py` (Blender, sem abrir a janela). Rodar o `gerar_clarice.py` sobrescreve os sprites novos: rode o `pixelar_clarice.py` logo depois.
+Todos em `assets/sprites/personagens/clarice/`. **Desde 2026-11-06**, o corpo dela (todas as vistas, parada, andando e respirando) voltou a ser o renderizado pelo `assets/modelagem/personagens/gerar_clarice.py` (Blender, sem abrir a janela), no mesmo estilo do Gabriel, do Zane e da Diana. Os desenhados à mão pelo `pixelar_clarice.py` saíram do jogo (continuam no histórico do git). Os **retratos** continuam os do `pixelar_clarice.py` (os renderizados não têm "triste" nem "envergonhada"): não rode o `pixelar_clarice.py` inteiro, ou o corpo desenhado volta. A corrida de lado (`clarice_correr_lado.png`) sai do `gerar_correr.py`.
 
 | Arquivo | Tamanho | O que é |
 |---|---|---|
