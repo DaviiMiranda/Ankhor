@@ -1,5 +1,42 @@
 # Registro de decisões
 
+## 2026-11-06 — O robô fica lento durante o hack do Zane, e o braço ganha o espaço 4
+
+**Decisão:**
+- **Robô lento durante o hack:** do momento em que o Zane estende o braço até ele recolher, o robô alvo anda a **30% da velocidade** (patrulha, investigação e perseguição). Dá tempo de terminar o minigame. Depois volta ao normal; se a invasão deu certo, ele continua desligado por 15 s, como antes.
+- **Espaço 4:** o braço de hack sai dos espaços de gadget 1 a 3 e ganha um **quarto espaço no HUD**, só dele, ativado com a tecla **`4`**. O espaço só aparece quando o braço está na mochila (com o Zane); o Gabriel continua com três. Mostra a recarga e acende durante a invasão.
+
+**Por quê:** pedido do Davi, para dar tempo de fazer o hack e deixar o braço numa tecla própria.
+**Afeta:** `scripts/personagens/robo.gd` (`fator_de_velocidade`), `scripts/itens/braco_hack.gd` (`lentidao_do_robo` e o estado no HUD), `scripts/itens/item.gd` (`vai_no_espaco_do_braco`), `dados/itens/braco_hack.tres`, `scripts/sistemas/inventario.gd` (`braco`, `TECLA_DO_BRACO`), `scripts/personagens/gabriel.gd`, `scripts/interface/hud.gd` e `tela_inventario.gd`, `project.godot` (ação `gadget_4`), o diálogo `zane_escritorio_seguranca.json`, `docs/mecanicas/zane_jogavel.md` e `docs/fases/labirinto.md`.
+
+## 2026-11-06 — A passagem do Zane vira uma mini fase de escritório: recepção e três salas
+
+**Decisão:** o duto de serviço por onde o Zane vai salvar o Gabriel não é mais um corredor com duas travas. Ele desemboca numa **ala de escritório escondida**, com cenário próprio (forro de placas, parede creme com lambri, carpete azul, piso vinílico, móveis bege dos anos 80), entre o duto e a câmara selada:
+- **Recepção** (960 x 360, o salão principal): várias fileiras de **cadeiras de espera**, o balcão (atrás dele dá para se esconder), o painel de senhas parado em 019 e a **porta restrita** do fundo, com **três lâmpadas**, uma por sala. Uma **Ronda** dá a volta nas cadeiras.
+- **Arquivo:** um **Rastreador** (ouve, não enxerga longe) entre fileiras de arquivos de aço. Puzzle: o **arquivo deslizante**, ordenar cinco pastas por ano (`painel_ordenacao`).
+- **Sala de reuniões:** uma **Mariposa** (vê de longe a luz acesa) e a mesa comprida. Puzzle: o **código `1985`** no painel, com a pista no quadro branco ("O ano basta.", de caneta vermelha).
+- **Sala de segurança:** uma **Sentinela** parada na frente do quadro de chaves. Puzzle: o **painel de chaves** em binário (alvo 19); a saída pensada é **hackear a Sentinela** com o braço do Zane para chegar ao painel.
+- Cada puzzle acende uma lâmpada. Com as três, o Zane fala e a porta restrita leva à câmara selada.
+- Os móveis grandes (arquivos, cadeiras, balcão, mesas) **tapam a visão dos robôs** e o caminho deles (camada 8, a das paredes): servem de cobertura.
+- O kit do Zane (lanterna infinita, flashes e braço) passa a ser emprestado **na primeira sala** e devolvido **só na câmara selada**: os flashes gastos não voltam ao trocar de sala.
+
+**Por quê:** pedido do Davi: uma mini fase com outro visual, em formato de escritório, com um salão principal de recepção e outras três salas.
+**Para conferir em jogo:** a rota da Ronda entre as cadeiras, a Sentinela da segurança (se dá para hackeá-la sem ser visto, a 150-170 px), a Mariposa no escuro da sala de reuniões e a claridade de cada sala (`Escuridao`).
+**Afeta:** `docs/historia/História_Completa.md` (Ato 2, o caminho do Zane); `assets/modelagem/cenario/gerar_escritorio.py` e `assets/modelagem/salas/labirinto/montar_escritorio.py` (novos); os sprites em `assets/sprites/cenario/escritorio/`; as cenas do kit em `cenas/cenario/escritorio/` e as salas em `cenas/salas/labirinto/escritorio/` (novas); `scripts/salas/sala_do_zane.gd` e `recepcao_do_escritorio.gd` (novos, no lugar de `passagem_do_zane.gd`); `camara_selada.gd`, `perfil_zane.gd`, `inventario.gd` (`limpar` também esquece o kit emprestado); `gerar_camaras.py` (só gera a câmara); `passagem_do_zane.tscn` e os diálogos `zane_passagem_inicio` e `zane_passagem_segundo_trecho` saem; quatro diálogos `zane_escritorio_*` novos, `zane_passagem_fim` e `camara_zane_resgate` revistos; `docs/fases/labirinto.md` (seção 5.1) e `docs/mecanicas/zane_jogavel.md`. **`História_Completa.docx` ainda não foi atualizado.**
+
+## 2026-11-06 — O Zane jogável ganha corrida própria, kit e hack à distância; a cápsula de clarão vira Flash
+
+**Decisão:**
+- **Corrida do Zane:** a corrida dele estava quebrada (usava a tira de caminhada, de 12 quadros, no lugar da de corrida, de 24). Agora tem uma tira própria de **48 quadros** por vista, **mais ereta** que a do Gabriel (o tronco quase não inclina, a cabeça fica erguida) e com passo largo e saltado.
+- **Kit do Zane:** ele entra na passagem com a **lanterna infinita**, **2 flashes** e o **braço de hack**. O kit é emprestado: a mochila do Gabriel é guardada e volta quando a cena acaba.
+- **Sem ansiedade e mais estamina:** o Zane não tem a mecânica de ansiedade (a barra e o efeito somem) e a estamina dele é **200**, o dobro da do Gabriel.
+- **Hack à distância:** com `3`, o Zane estende o braço de metal na direção do robô mais perto (até 170 px, em linha reta) e abre o minigame de hack em tempo real. Se der certo, o robô desliga por 15 s; se falhar, ele ouve. A dificuldade depende do robô.
+- **Andando devagar e só 3 tentativas:** enquanto hackeia, o Zane anda a 30% da velocidade (sem correr), com a direção travada no robô. Cada robô aguenta 2 falhas: na **3ª** ele bloqueia o acesso e não dá mais para hackeá-lo. Como o minigame de sequência usa WASD (as teclas de andar), o hack à distância usa sempre o de sincronia, que usa só o `E`.
+- **Flash:** o item "Cápsula de clarão" passa a se chamar **Flash** em todo o jogo e nos docs. O id interno continua `clarao` (`dados/itens/clarao.tres`).
+
+**Por quê:** pedido do Davi, focando na fase do Zane.
+**Para conferir em jogo:** o Zane começa com **2 flashes** (o máximo do item). Se for para ser só 1, é `maximo_unidades` ou o kit em `perfil_zane.gd`.
+**Afeta:** `scripts/personagens/gabriel.gd` (tabelas de mão e `lanterna_infinita`), `perfil_zane.gd` e `maos_do_zane.gd` (novos), `scripts/sistemas/inventario.gd` (`emprestar_kit` e `devolver_kit`), `ansiedade.gd`, `scripts/interface/hud.gd`, `scripts/itens/lanterna.gd`, `braco_hack.gd` (novo) e `clarao.gd`, `dados/itens/braco_hack.tres` e `clarao.tres`, `cenas/itens/braco_hack.tscn`, `scripts/salas/passagem_do_zane.gd`, os sprites `zane_correr_*` e `zane_hack_*`, os geradores `gerar_zane_movimentos.py` e `gerar_braco_hack.py` e `docs/mecanicas/zane_jogavel.md` (novo).
 ## 2026-11-06 — As portas das fases ficam na própria sala de teste
 
 **Decisão:** a pedido do Davi, as seis portas (Convivência com modo combate, Bloco de salas, Labirinto, Bunker, D-Tec e a câmara selada do Zane) passaram para a `sala_teste`, a partir de onde o jogador nasce. A porta "FASES (TESTE)" e o corredor `sala_teste_fases` saíram. Quem dava todos os itens era o corredor (`TudoColetado`); agora a própria `PortaDeTeste` faz isso antes de trocar de cena, então os itens soltos da sala de teste continuam para testar à mão. A sala ficou 160 px mais larga.

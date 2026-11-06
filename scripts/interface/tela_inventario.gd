@@ -307,6 +307,8 @@ func _atualizar() -> void:
 			var selecionado := Vector2i(coluna, linha) == _cursor
 			var equipado := Inventario.espaco_do_gadget(item) if item else -1
 			var texto := str(equipado + 1) if equipado != -1 else ""
+			if item and item == Inventario.braco:
+				texto = str(Inventario.TECLA_DO_BRACO)
 			_espacos_grade[i].mostrar(item, selecionado, texto)
 			i += 1
 	for g in Inventario.ESPACOS_GADGET:

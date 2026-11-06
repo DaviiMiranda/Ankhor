@@ -86,6 +86,7 @@ var _tempo_desde_chegada := 0.0
 var _distancia := 0.0
 var _passos := 0
 var _segundos_atordoado := 0.0
+var fator_de_velocidade := 1.0
 var _vista := "lado"
 var _sorteio := RandomNumberGenerator.new()
 var _indice_rota := -1
@@ -370,6 +371,10 @@ func _sair_da_sala() -> void:
 
 
 func _velocidade() -> float:
+	return _velocidade_do_estado() * fator_de_velocidade
+
+
+func _velocidade_do_estado() -> float:
 	match estado:
 		Estado.PERSEGUINDO:
 			return velocidade_perseguicao

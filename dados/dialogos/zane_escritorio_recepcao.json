@@ -1,0 +1,30 @@
+{
+	"id": "zane_escritorio_recepcao",
+	"inicio": "recepcao",
+	"trechos": {
+		"recepcao": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "O duto acaba num escritório. Isso não está em planta nenhuma que eu tenha."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_concentrado",
+					"texto": "Cadeiras de espera, balcão, painel de senhas. Alguém montou uma recepção de mil anos atrás aqui embaixo."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_concentrado",
+					"texto": "A porta do fundo tem três lâmpadas apagadas. Uma por sala: arquivo, reuniões e segurança. Acendo as três e chego no Gabriel."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Uma Ronda dá a volta nas cadeiras e bipa antes de virar. Atrás do balcão, parado e de lanterna apagada, ela não me vê."
+				}
+			]
+		}
+	}
+}

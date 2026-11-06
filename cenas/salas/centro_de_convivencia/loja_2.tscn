@@ -118,7 +118,7 @@ codigo = "619"
 marca = "cofre_bufe_aberto"
 item_ao_abrir = ExtResource("r18")
 quantidade = 1
-aviso_aberto = "O cofre do bufê abriu: caiu uma cápsula de clarão."
+aviso_aberto = "O cofre do bufê abriu: caiu um flash."
 pausa_o_jogo = false
 
 [node name="Luz1" parent="Luzes" instance=ExtResource("r20")]

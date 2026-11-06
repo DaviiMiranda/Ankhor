@@ -1,6 +1,6 @@
 # Fase — Labirinto (subsolo)
 
-> **Status:** Jogável (segunda versão: ampliado, com a oficina do Zane, três nós de controle, o Corredor do Tempo, opcional, e a câmara selada do fim, com o Zane jogável)  
+> **Status:** Jogável (segunda versão: ampliado, com a oficina do Zane, três nós de controle, o Corredor do Tempo, opcional, e a câmara selada do fim, com o Zane jogável na ala do escritório)  
 > **Área:** subsolo escuro do centro de pesquisa da Âncora  
 > **Ordem na história:** **terceira fase**, depois do Bloco de salas e antes do Centro de Convivência ([`centro_de_convivencia.md`](centro_de_convivencia.md)). A saída do Bloco leva a ela; o alçapão da oficina do Zane leva à **câmara selada** (seção 5.1), e a câmara leva à passarela do Centro de Convivência. Também aparece pelo menu **Fases**.
 
@@ -169,26 +169,47 @@ A IA (máquina de estados, cone por produto escalar, BFS do som, A\*, Markov) es
 
 ### 5.1 A câmara selada (o fim da fase)
 
-Uma parte secreta no fim do Labirinto. O alçapão da oficina não leva à passarela: leva a uma câmara sem janela, que o **Carlos** lacrou. O Zane, que mapeou o duto como saída, não sabia dela. Três cenas, geradas por `assets/modelagem/salas/labirinto/gerar_camaras.py` (as paredes e o chão são as peças do bunker):
+Uma parte secreta no fim do Labirinto. O alçapão da oficina não leva à passarela: leva a uma câmara sem janela, que o **Carlos** lacrou. O Zane, que mapeou o duto como saída, não sabia dela. A câmara sai de `assets/modelagem/salas/labirinto/gerar_camaras.py` (as paredes e o chão são as peças do bunker); o caminho do Zane, a **ala do escritório**, sai de `montar_escritorio.py`, na mesma pasta:
 
 | Cena | Quem joga | O que acontece |
 |---|---|---|
-| `cenas/salas/labirinto/camara_selada.tscn` (1ª vez) | Gabriel | A tampa fecha e uma grade desce: ele fica numa cela. Conversa com o Zane pelo rádio (`camara_gabriel_preso.json`): o Zane diz que é armadilha, manda o Gabriel não encostar em nada e vai por outro lado. Ao fim, a tela escurece e a cena troca para a passagem do Zane |
-| `cenas/salas/labirinto/passagem_do_zane.tscn` | **Zane** (jogável) | O duto de serviço, em dois trechos, de 1280 px. Detalhes abaixo |
+| `cenas/salas/labirinto/camara_selada.tscn` (1ª vez) | Gabriel | A tampa fecha e uma grade desce: ele fica numa cela. Conversa com o Zane pelo rádio (`camara_gabriel_preso.json`): o Zane diz que é armadilha, manda o Gabriel não encostar em nada e vai por outro lado. Ao fim, a tela escurece e a cena troca para a recepção do escritório |
+| `cenas/salas/labirinto/escritorio/*.tscn` | **Zane** (jogável) | A ala do escritório: a recepção e três salas. Detalhes abaixo |
 | `camara_selada.tscn` (2ª vez, marca `zane_passagem_concluida`) | Gabriel | O Zane espera do lado de fora da cela e a grade sobe (`camara_zane_resgate.json`). O terminal do fundo acende: `E` toca o **registro do Carlos** (`camara_plano_carlos.json`), em que o grupo descobre a mentira do Henrique. Só depois o duto de volta fica livre (`E`, "Subir"): tela "VOCÊ SAIU DO LABIRINTO" e a passarela do Centro de Convivência |
 
-**A passagem do Zane.** O jogador controla o Zane com o mesmo corpo do Gabriel (`passagem_do_zane.gd` troca as texturas, como o `escolha_personagem.gd`): as mesmas regras de passos, estamina, esconderijo e dano. Sem lanterna e sem notebook, então os puzzles são os painéis da sala, e não o hackeamento.
+**A ala do escritório (a mini fase do Zane).** O duto de serviço desemboca num escritório escondido, montado como um prédio comercial dos anos 80 e abandonado: forro de placas, parede creme com lambri, carpete azul, piso vinílico, móveis bege, telas de tubo. O jogador controla o Zane com o mesmo corpo do Gabriel (`sala_do_zane.gd` aplica a ficha dele, como o `escolha_personagem.gd`): as mesmas regras de passos, esconderijo e dano, mas com lanterna infinita, 2 flashes, o **braço de hack** (invade robôs à distância, tecla `4`, no espaço próprio do HUD), estamina 200 e **sem ansiedade** ([`../mecanicas/zane_jogavel.md`](../mecanicas/zane_jogavel.md)). Sem o notebook do Gabriel, os puzzles são os painéis das salas.
 
-- **Trecho um:** uma **Ronda** (patrulha entre os x 170 e 400; bipa antes de virar). O **painel de chaves** (`painel_bits`, alvo 19 = 10011, cinco chaves; o Zane explica que cada chave vale o dobro da seguinte) solta a primeira trava (marca `camara_trava_1`). Um nicho na parede (x 280) esconde o Zane parado.
-- **Trecho dois:** uma **Sentinela** (patrulha entre os x 640 e 900). Um pôster de "De Volta para o Futuro", com "26/10/1985. O ano basta." escrito de caneta vermelha (a cor do Carlos), dá o **código `1985`** do `painel_codigo`, que solta a segunda trava (`camara_trava_2`). Outro nicho (x 760).
-- **As travas** são grades com colisão (`cenas/sistemas/grade_com_colisao.tscn`): fechadas, bloqueiam o Zane e os robôs; sobem quando a marca aparece. Há um checkpoint no início e outro depois da primeira grade.
-- **O fim:** depois da segunda grade, o gatilho do Zane marca `zane_passagem_concluida` e a porta da câmara destrava.
+```
+              ARQUIVO          REUNIÕES         SEGURANÇA
+            (Rastreador)      (Mariposa)       (Sentinela)
+            ordenar pastas    código 1985      painel de chaves
+                 |                |                 |
+   +--duto--[porta]----------[porta]----------[porta]----------[RESTRITA]--+
+   |  Zane                                                     3 lâmpadas |
+   |        [cadeiras] [cadeiras]     [cadeiras] [cadeiras]     balcão    |
+   |        [cadeiras] [cadeiras]     [cadeiras] [cadeiras]   (esconde)   |
+   |        [cadeiras] [cadeiras]     [cadeiras] [cadeiras]               |
+   |              a Ronda dá a volta nas cadeiras                         |
+   +------------------------------------ RECEPÇÃO -------------------------+
+```
+
+| Sala | Tamanho | Robô | Puzzle | Trava (marca) |
+|---|---|---|---|---|
+| **Recepção** (`recepcao.tscn`) | 960 × 360 | **Ronda**, em volta das 12 longarinas de cadeiras de espera; bipa antes de virar | Nenhum: é o salão que liga as outras. Atrás do balcão há um esconderijo (parado, de lanterna apagada) | Acende uma lâmpada da porta restrita por trava solta |
+| **Arquivo** (`arquivo.tscn`) | 480 × 360 | **Rastreador** (ouve; não corra) | **Arquivo deslizante** (`painel_ordenacao`): cinco pastas, da mais antiga para a mais nova (1979, 1981, 1983, 1985, 1988). Um vão entre os arquivos esconde o Zane | `escritorio_trava_arquivo` |
+| **Reuniões** (`reunioes.tscn`) | 480 × 360 | **Mariposa** (vê de longe a lanterna acesa) | **Código `1985`** no `painel_codigo`. A pista é o quadro branco: "CALIBRAÇÃO — DATA-ALVO: 26/10/1985" e, de caneta vermelha (a cor do Carlos), "O ano basta." | `escritorio_trava_reunioes` |
+| **Segurança** (`seguranca.tscn`) | 480 × 360 | **Sentinela** parada na frente do quadro de chaves | **Painel de chaves** (`painel_bits`, alvo 19 = 10011, cinco chaves). O caminho pensado é hackear a Sentinela de longe com o braço (ela fica lenta durante a invasão e, se der certo, 15 s desligada) e mexer nas chaves | `escritorio_trava_seguranca` |
+
+- **Cobertura:** os móveis grandes (arquivos, longarinas, balcão, mesas, copiadora, console) ficam na camada 1 + 8: tapam a visão dos robôs e entram como obstáculo na grade do A*. Os pequenos (cadeira giratória, planta, lixeira, mesinha) não.
+- **A porta restrita:** `recepcao_do_escritorio.gd` acende uma lâmpada por trava. Com as três, marca `escritorio_tres_travas`; o gatilho na frente da porta toca `zane_passagem_fim.json`, marca `zane_passagem_concluida` e a porta leva à câmara.
+- **Checkpoints:** um na entrada de cada sala. Cada sala tem uma fala do Zane ao entrar (`zane_escritorio_<sala>.json`), que explica o robô e o puzzle.
+- **Arte:** `assets/modelagem/cenario/gerar_escritorio.py` desenha o kit (16 peças de parede, 2 chãos, 15 móveis e as portas de madeira e de aço com a folha abrindo). As cenas do kit ficam em `cenas/cenario/escritorio/`.
 
 **O registro do Carlos.** Só diz o que já é do Enredo (seção "A virada"): o Henrique acredita que vai voltar a antes da morte da mãe, o Carlos só o usa para manter cada um no seu canto enquanto termina de ajustar a Âncora para si. A voz fala como locutor de rádio dos anos 80, sem gírias, e o registro assina só "C.". Depois, o Zane diz que vai para a oficina manter a frequência (por isso, no Centro de Convivência, ele volta a ser só uma voz no rádio) e avisa que o Henrique tem as câmeras do campus.
 
-**Marcas (`Progresso`):** `camara_gabriel_preso`, `zane_passagem_inicio_visto`, `camara_trava_1`, `zane_passagem_segundo_visto`, `camara_trava_2`, `zane_passagem_concluida`, `camara_cela_aberta`, `camara_registro_lido`.
+**Marcas (`Progresso`):** `camara_gabriel_preso`, `zane_escritorio_recepcao_visto` (e `_arquivo_`, `_reunioes_`, `_seguranca_visto`), `escritorio_trava_arquivo`, `escritorio_trava_reunioes`, `escritorio_trava_seguranca`, `escritorio_tres_travas`, `zane_passagem_concluida`, `camara_cela_aberta`, `camara_registro_lido`.
 
-**Para conferir em jogo:** os números da passagem (velocidade e rota das patrulhas, folga entre a Ronda e o painel); a arte é placeholder (terminal feito de retângulos, o duto usa o sprite do alçapão); a música é só a de perseguição que o `RobosDaSala` põe; a cela não tem arte própria (usa a grade de aço).
+**Para conferir em jogo:** a rota da Ronda entre as cadeiras e a folga para chegar às portas; se dá para hackear a Sentinela da segurança sem ser visto; a Mariposa no escuro da sala de reuniões; a claridade de cada sala (`Escuridao`). Na câmara, a arte ainda é placeholder (terminal feito de retângulos, o duto usa o sprite do alçapão, a cela usa a grade de aço); a música do escritório é só a de perseguição que o `RobosDaSala` põe.
 
 ---
 
@@ -219,7 +240,7 @@ Quando um robô vê o Gabriel, a camada de perseguição sobe em 0,8 s; quando t
 - Por que a rede do subsolo é fechada para o Zane (Enredo, seção 10.1). Já decidido: os três nós guardam a trava que lacra o bunker (Enredo, seção 8, Ato 2).
 - Por onde o Gabriel chega do Bloco de salas ao subsolo (hoje a porta corta-fogo abre direto o Labirinto).
 - **Revisar o Bunker:** o registro da câmara faz o grupo descobrir a mentira do Henrique já aqui. O Bunker (`bunker.md`, `bunker_encontro.json` e o pedido do Henrique pela Clarice) ainda trata o Henrique como aliado.
-- Arte própria da câmara selada, e testar o equilíbrio da passagem do Zane (seção 5.1).
+- Arte própria da câmara selada, e testar o equilíbrio da ala do escritório (seção 5.1).
 - Rotina de patrulha por grade horária (coloração de grafos): hoje a patrulha é só a cadeia de Markov.
 - Uma porta de entrada visível no ponto onde o Gabriel começa (hoje ele simplesmente aparece ali) e animação do Zane; ele está parado.
 - Arte final das portas das salas (hoje são retângulos de aço com lâmpada, só para marcar a posição e a animação) e um som de trava ao fechar.

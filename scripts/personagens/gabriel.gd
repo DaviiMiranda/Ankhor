@@ -77,6 +77,11 @@ const PEITO_NO_QUADRO := {
 @export var quadros_parado: int = 8
 @export var segundos_por_quadro_parado: float = 0.3
 
+var tabela_maos: Dictionary = MAOS
+var tabela_maos_correndo: Dictionary = MAOS_CORRENDO
+var lanterna_infinita := false
+var multiplicador_de_velocidade := 1.0
+var olhar_travado := false
 var jogador_controla := true
 var mirando := false
 var direcao_automatica := Vector2.ZERO
@@ -139,6 +144,8 @@ func _unhandled_input(evento: InputEvent) -> void:
 	for i in Inventario.ESPACOS_GADGET:
 		if evento.is_action_pressed("gadget_%d" % (i + 1)):
 			usar_gadget(i)
+	if evento.is_action_pressed("gadget_%d" % Inventario.TECLA_DO_BRACO):
+		_usar_item(Inventario.braco)
 
 
 func _largar_carga() -> void:
@@ -149,7 +156,10 @@ func _largar_carga() -> void:
 
 
 func usar_gadget(espaco: int) -> void:
-	var item: Item = Inventario.gadgets[espaco]
+	_usar_item(Inventario.gadgets[espaco])
+
+
+func _usar_item(item: Item) -> void:
 	if item == null:
 		return
 	var efeito := no_gadgets.get_node_or_null(NodePath(item.id))
@@ -159,7 +169,7 @@ func usar_gadget(espaco: int) -> void:
 
 func _atualizar_gadgets() -> void:
 	var equipados := {}
-	for item in Inventario.gadgets:
+	for item in Inventario.gadgets + [Inventario.braco]:
 		if item != null and item.cena_gadget:
 			equipados[item.id] = item
 	for efeito in no_gadgets.get_children():
@@ -185,8 +195,9 @@ func _physics_process(delta: float) -> void:
 	if mirando:
 		direcao = Vector2.ZERO
 	correndo = false
-	var velocidade := velocidade_andar
-	var pode_correr := (fadiga.pode_correr() if fadiga else true) and not Inventario.carregando_peso()
+	var velocidade := velocidade_andar * multiplicador_de_velocidade
+	var pode_correr := (fadiga.pode_correr() if fadiga else true) and not Inventario.carregando_peso() \
+			and multiplicador_de_velocidade >= 1.0
 	if jogador_controla and Input.is_action_pressed("correr") and direcao != Vector2.ZERO and pode_correr:
 		velocidade *= multiplicador_correr
 		correndo = true
@@ -273,7 +284,7 @@ func posicao_do_peito() -> Vector2:
 
 
 func posicao_da_mao() -> Vector2:
-	var quadros: Array = MAOS_CORRENDO[vista] if _tira_da_mao == "correr" else MAOS[vista][_tira_da_mao]
+	var quadros: Array = tabela_maos_correndo[vista] if _tira_da_mao == "correr" else tabela_maos[vista][_tira_da_mao]
 	return ponto_do_quadro(quadros[mini(sprite.frame, quadros.size() - 1)])
 
 
@@ -372,6 +383,8 @@ func _virar(direcao: Vector2) -> void:
 
 
 func _virar_com_folga(direcao: Vector2, delta: float) -> void:
+	if olhar_travado:
+		return
 	if direcao == Vector2.ZERO:
 		_tempo_mudando_olhar = 0.0
 	elif _continua_no_setor(direcao):
