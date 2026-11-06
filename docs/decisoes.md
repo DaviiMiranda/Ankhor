@@ -1,5 +1,20 @@
 # Registro de decisões
 
+## 2026-11-06 — A passagem do Zane vira uma mini fase de escritório: recepção e três salas
+
+**Decisão:** o duto de serviço por onde o Zane vai salvar o Gabriel não é mais um corredor com duas travas. Ele desemboca numa **ala de escritório escondida**, com cenário próprio (forro de placas, parede creme com lambri, carpete azul, piso vinílico, móveis bege dos anos 80), entre o duto e a câmara selada:
+- **Recepção** (960 x 360, o salão principal): várias fileiras de **cadeiras de espera**, o balcão (atrás dele dá para se esconder), o painel de senhas parado em 019 e a **porta restrita** do fundo, com **três lâmpadas**, uma por sala. Uma **Ronda** dá a volta nas cadeiras.
+- **Arquivo:** um **Rastreador** (ouve, não enxerga longe) entre fileiras de arquivos de aço. Puzzle: o **arquivo deslizante**, ordenar cinco pastas por ano (`painel_ordenacao`).
+- **Sala de reuniões:** uma **Mariposa** (vê de longe a luz acesa) e a mesa comprida. Puzzle: o **código `1985`** no painel, com a pista no quadro branco ("O ano basta.", de caneta vermelha).
+- **Sala de segurança:** uma **Sentinela** parada na frente do quadro de chaves. Puzzle: o **painel de chaves** em binário (alvo 19); a saída pensada é **hackear a Sentinela** com o braço do Zane para chegar ao painel.
+- Cada puzzle acende uma lâmpada. Com as três, o Zane fala e a porta restrita leva à câmara selada.
+- Os móveis grandes (arquivos, cadeiras, balcão, mesas) **tapam a visão dos robôs** e o caminho deles (camada 8, a das paredes): servem de cobertura.
+- O kit do Zane (lanterna infinita, flashes e braço) passa a ser emprestado **na primeira sala** e devolvido **só na câmara selada**: os flashes gastos não voltam ao trocar de sala.
+
+**Por quê:** pedido do Davi: uma mini fase com outro visual, em formato de escritório, com um salão principal de recepção e outras três salas.
+**Para conferir em jogo:** a rota da Ronda entre as cadeiras, a Sentinela da segurança (se dá para hackeá-la sem ser visto, a 150-170 px), a Mariposa no escuro da sala de reuniões e a claridade de cada sala (`Escuridao`).
+**Afeta:** `docs/historia/História_Completa.md` (Ato 2, o caminho do Zane); `assets/modelagem/cenario/gerar_escritorio.py` e `assets/modelagem/salas/labirinto/montar_escritorio.py` (novos); os sprites em `assets/sprites/cenario/escritorio/`; as cenas do kit em `cenas/cenario/escritorio/` e as salas em `cenas/salas/labirinto/escritorio/` (novas); `scripts/salas/sala_do_zane.gd` e `recepcao_do_escritorio.gd` (novos, no lugar de `passagem_do_zane.gd`); `camara_selada.gd`, `perfil_zane.gd`, `inventario.gd` (`limpar` também esquece o kit emprestado); `gerar_camaras.py` (só gera a câmara); `passagem_do_zane.tscn` e os diálogos `zane_passagem_inicio` e `zane_passagem_segundo_trecho` saem; quatro diálogos `zane_escritorio_*` novos, `zane_passagem_fim` e `camara_zane_resgate` revistos; `docs/fases/labirinto.md` (seção 5.1) e `docs/mecanicas/zane_jogavel.md`. **`História_Completa.docx` ainda não foi atualizado.**
+
 ## 2026-11-06 — O Zane jogável ganha corrida própria, kit e hack à distância; a cápsula de clarão vira Flash
 
 **Decisão:**

@@ -1,6 +1,6 @@
 # O Zane jogável
 
-O Zane é jogável em um trecho: a **passagem do Zane**, no fim do Labirinto ([`../fases/labirinto.md`](../fases/labirinto.md), seção 5.1). O corpo é o mesmo do Gabriel (`gabriel.gd`), com a ficha dele aplicada por cima: `scripts/personagens/perfil_zane.gd` (`PerfilZane.aplicar`), chamado por `passagem_do_zane.gd`.
+O Zane é jogável em um trecho: a **ala do escritório**, a mini fase do fim do Labirinto ([`../fases/labirinto.md`](../fases/labirinto.md), seção 5.1). O corpo é o mesmo do Gabriel (`gabriel.gd`), com a ficha dele aplicada por cima: `scripts/personagens/perfil_zane.gd` (`PerfilZane.aplicar`), chamado pelas salas do escritório (`scripts/salas/sala_do_zane.gd`, classe `SalaDoZane`).
 
 ## O que muda em relação ao Gabriel
 
@@ -14,7 +14,7 @@ O Zane é jogável em um trecho: a **passagem do Zane**, no fim do Labirinto ([`
 | Itens | o que ele pegou | **kit próprio**: lanterna, flash (2) e braço de hack |
 | Mãos | `maos_do_gabriel.gd` | `maos_do_zane.gd` (a lanterna fica na mão de metal em quase todas as vistas) |
 
-**O kit é emprestado.** `Inventario.emprestar_kit` guarda a mochila do Gabriel (grade, gadgets, estado e itens vistos) e põe o kit do Zane; `Inventario.devolver_kit` devolve tudo. O `passagem_do_zane.gd` devolve ao sair da cena (inclusive ao morrer e recomeçar do checkpoint, quando a cena recarrega e empresta de novo). Os gadgets ficam nas teclas `1` (lanterna), `2` (flash) e `3` (braço de hack).
+**O kit é emprestado.** `Inventario.emprestar_kit` guarda a mochila do Gabriel (grade, gadgets, estado e itens vistos) e põe o kit do Zane; `Inventario.devolver_kit` devolve tudo. O kit é emprestado **uma vez**, na primeira sala do escritório, e fica emprestado ao trocar de sala e ao morrer e recomeçar do checkpoint (por isso o flash gasto não volta). Quem devolve é a câmara selada, ao abrir (`camara_selada.gd`). `Inventario.limpar` (novo jogo, escolher fase) também esquece o empréstimo. Os gadgets ficam nas teclas `1` (lanterna), `2` (flash) e `3` (braço de hack).
 
 ## O braço de hack
 
