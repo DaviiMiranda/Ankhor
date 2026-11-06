@@ -106,7 +106,7 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 
 ## 3.2 O que mudou em 2026-11-06
 
-O Centro de Convivência ganhou combate: um **robô atirador** na praça, a **arma de impulso** no cofre do cinema (no lugar do flash) e a **esquiva** (`Espaço`), que só vale nesta fase. Detalhes em [`../mecanicas/combate.md`](../mecanicas/combate.md).
+O Centro de Convivência ganhou combate: um **robô atirador** na praça, a **arma de impulso** no cofre do cinema (no lugar do flash). Detalhes em [`../mecanicas/combate.md`](../mecanicas/combate.md).
 
 ---
 

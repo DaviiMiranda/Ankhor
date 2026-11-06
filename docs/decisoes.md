@@ -37,6 +37,43 @@
 **Por quê:** pedido do Davi, focando na fase do Zane.
 **Para conferir em jogo:** o Zane começa com **2 flashes** (o máximo do item). Se for para ser só 1, é `maximo_unidades` ou o kit em `perfil_zane.gd`.
 **Afeta:** `scripts/personagens/gabriel.gd` (tabelas de mão e `lanterna_infinita`), `perfil_zane.gd` e `maos_do_zane.gd` (novos), `scripts/sistemas/inventario.gd` (`emprestar_kit` e `devolver_kit`), `ansiedade.gd`, `scripts/interface/hud.gd`, `scripts/itens/lanterna.gd`, `braco_hack.gd` (novo) e `clarao.gd`, `dados/itens/braco_hack.tres` e `clarao.tres`, `cenas/itens/braco_hack.tscn`, `scripts/salas/passagem_do_zane.gd`, os sprites `zane_correr_*` e `zane_hack_*`, os geradores `gerar_zane_movimentos.py` e `gerar_braco_hack.py` e `docs/mecanicas/zane_jogavel.md` (novo).
+## 2026-11-06 — As portas das fases ficam na própria sala de teste
+
+**Decisão:** a pedido do Davi, as seis portas (Convivência com modo combate, Bloco de salas, Labirinto, Bunker, D-Tec e a câmara selada do Zane) passaram para a `sala_teste`, a partir de onde o jogador nasce. A porta "FASES (TESTE)" e o corredor `sala_teste_fases` saíram. Quem dava todos os itens era o corredor (`TudoColetado`); agora a própria `PortaDeTeste` faz isso antes de trocar de cena, então os itens soltos da sala de teste continuam para testar à mão. A sala ficou 160 px mais larga.
+
+**Afeta:** `cenas/salas/sala_teste.tscn`, `scripts/sistemas/porta_de_teste.gd`, `sala_teste_fases.tscn` (apagada), `docs/mecanicas/combate.md`.
+
+## 2026-11-06 — Sai a esquiva do Gabriel
+
+**Decisão:** a esquiva (tecla `Espaço`), criada no PR #200 só para o Centro de Convivência, foi **removida** a pedido do Davi. Saem a ação `esquivar` do `project.godot`, a lógica no `gabriel.gd`, a propriedade `Sala.esquiva_permitida` (e a marca `esquiva_permitida = true` nas salas do Centro), o som `esquiva.wav` e o gerador dele. Fica o `Vida.proteger()`, que o modo combate ainda usa para dar 2 s de proteção ao renascer. Contra os raios do atirador, o jeito de se proteger agora é sair da linha da mira ou ficar atrás de uma mesa.
+
+**Por quê:** pedido do Davi. A ideia de testar uma esquiva continua nos melhoramentos futuros (`docs/sugestao-melhoramento-futuro.md`).
+
+**Afeta:** `scripts/personagens/gabriel.gd`, `scripts/salas/sala.gd`, `project.godot`, as salas de `cenas/salas/centro_de_convivencia/`, `assets/modelagem/audio/gerar_efeitos_combate.py`, `docs/mecanicas/combate.md`, `movimentacao_e_terreno.md`, `README.md` das mecânicas e `docs/fases/centro_de_convivencia.md`. As entradas antigas deste registro que falam da esquiva descrevem o que existia na época.
+
+## 2026-11-06 — Arma de impulso mirada, balas criadas com pilhas e raio mais rápido
+
+**Decisão:** três ajustes pedidos pelo Davi depois de testar o combate ([`mecanicas/combate.md`](mecanicas/combate.md)):
+- **O raio do robô atirador ficou mais rápido:** de 210 para 310 px/s.
+- **A arma de impulso é mirada, não mais um círculo:** aperta-se a tecla do gadget, o Gabriel para e mostra um **cone de 30° com 150 px de alcance**, com a **mira travada no robô mais próximo**; aperta-se **de novo** para disparar (`Shift` cancela; sem robô perto, aponta-se com `WASD`). Só os robôs dentro do cone são empurrados (antes era um círculo em volta do Gabriel). A primeira versão era "segurar e soltar"; o Davi trocou por "travar e apertar de novo" no mesmo dia.
+- **Balas e aba CRIAÇÃO:** a arma usa **balas** (até 6, começa com 2) que **não recarregam sozinhas**. O inventário ganhou a aba **CRIAÇÃO**, onde `E` cria 1 bala por **3 pilhas** ("baterias", no pedido). Para isso as pilhas passaram a poder ser **guardadas** (até 9): com a arma na mochila, a pilha do chão que não serve para recarregar a lanterna, o walkman ou o notebook é guardada. Sem a arma, nada muda para quem joga as outras fases.
+
+**Por quê:** pedido do Davi. Tratei "baterias" como as **pilhas** do jogo (o item que já existe); se era outra coisa, é só trocar `Criacao.PILHAS_POR_BALA` e o estoque. A mira travada no mais próximo e o `WASD` de reserva (em vez do mouse) seguem o resto do jogo, que é todo no teclado.
+
+**Afeta:** `scripts/itens/arma_impulso.gd` (reescrito), `dados/itens/arma_impulso.tres` (6 balas, 2 iniciais; campo novo `unidades_iniciais` em `item.gd`), `scripts/sistemas/raio_atirado.gd`, `inventario.gd` (estoque de pilhas), `pilha_no_chao.gd`, `gabriel.gd` (`mirando`), `tudo_coletado.gd`, `tela_inventario.gd` e `.tscn`, e os novos `criacao.gd`, `painel_criacao.gd` e `painel_criacao.tscn`. **Conferido** no Godot 4.7.2 por script: o cone empurra quem está dentro e deixa de fora quem está fora, a criação gasta 3 pilhas e dá 1 bala, e a pilha só é guardada com a arma. **O Enredo não foi mexido.**
+
+## 2026-11-06 — Ciborgue mais alto e mais rápido, volta logo, e nichos pelo bunker inteiro
+
+**Decisão:** três ajustes no Ciborgue do bunker (registro "O Ciborgue", mais abaixo neste arquivo):
+
+- **Mais alto:** o modelo é ampliado 1,25 vez, de 1,8 m para uns 2,25 m. Fica uma cabeça acima do Gabriel. A ampliação é no Blender, não no Godot, então o pixel continua do tamanho do dos outros personagens; o quadro do sprite cresceu para 112 × 136.
+- **Um pouco mais rápido:** perseguição de 36 para **40 px/s** (o Gabriel anda a 60). Deixa de ser o mais lento: o Escafandro corre a 38.
+- **Volta logo:** depois de desistir do Gabriel escondido e sair pela porta, volta **5 s** depois (eram 14).
+- **Nichos espalhados:** de 5 para **17**. O Corredor A e o Corredor B ficam com seis cada, e ganham um o dormitório, o refeitório, a enfermaria, o gerador e o depósito. É a mesma peça do vão do posto de máscaras de gás (`bunker_nicho`), no lugar de uma parede lisa, de canos, de armários ou de prateleiras. A entrada, o arsenal e as duas salas antigas ficaram sem: o arsenal e as salas antigas saem do `montar_salas_bunker.py`, e a parede da entrada não tem peça lisa.
+
+**Por quê:** pedido do Davi. Com o Ciborgue voltando mais rápido, o jogador precisa de esconderijo em mais lugares. **Conferido** no Godot 4.7.2 por script: os 17 nichos escondem o Gabriel, e a perseguição, o minijogo, a saída e a volta (em 4,8 s) continuam funcionando.
+
+**Afeta:** `assets/modelagem/personagens/gerar_ciborgue.py` e os sprites `ciborgue_*`, `cenas/personagens/ciborgue_do_carlos.tscn`, `scripts/sistemas/perseguidor_perpetuo.gd`, `scripts/personagens/ciborgue_do_carlos.gd`, as cenas `corredor_a`, `corredor_b`, `dormitorio`, `refeitorio`, `enfermaria`, `gerador` e `deposito` do bunker, `docs/historia/História_Completa.md`, `docs/historia/personagens/robos.docx`, `docs/fases/bunker.md`, `docs/computacao/ia_e_perseguicao.md`.
 
 ## 2026-11-06 — A câmara selada no fim do Labirinto: o Zane salva o Gabriel e o grupo descobre a mentira do Henrique
 

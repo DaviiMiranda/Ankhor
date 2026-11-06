@@ -25,6 +25,8 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_bunker.tscn" id="m_musica"]
 [ext_resource type="PackedScene" path="res://cenas/itens/colecionavel_no_mundo.tscn" id="col_cena"]
 [ext_resource type="Resource" path="res://dados/colecoes/bunker.tres" id="col_dados"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_nicho.tscn" id="esconderijo_peca"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="esconderijo_area"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -49,7 +51,7 @@ position = Vector2(160, 0)
 [node name="Parede04" parent="Paredes" instance=ExtResource("r3")]
 position = Vector2(240, 0)
 
-[node name="Parede05" parent="Paredes" instance=ExtResource("r5")]
+[node name="Parede05" parent="Paredes" instance=ExtResource("esconderijo_peca")]
 position = Vector2(320, 0)
 
 [node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r6")]
@@ -267,3 +269,6 @@ bus = &"Efeitos"
 position = Vector2(240, 190)
 colecao = ExtResource("col_dados")
 numero = 3
+
+[node name="Nicho320" parent="Objetos" instance=ExtResource("esconderijo_area")]
+position = Vector2(360, 128)

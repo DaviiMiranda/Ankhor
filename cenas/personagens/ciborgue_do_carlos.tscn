@@ -16,7 +16,7 @@
 size = Vector2(12, 4)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_garra"]
-radius = 14.0
+radius = 16.0
 
 [sub_resource type="CanvasItemMaterial" id="SemLuz"]
 light_mode = 1
@@ -26,9 +26,9 @@ collision_layer = 4
 collision_mask = 8
 script = ExtResource("1_script")
 nome_tipo = "Ciborgue"
-velocidade_patrulha = 26.0
-velocidade_investigando = 30.0
-velocidade_perseguicao = 36.0
+velocidade_patrulha = 28.0
+velocidade_investigando = 34.0
+velocidade_perseguicao = 40.0
 alcance_visao = 150.0
 angulo_visao = 80.0
 fator_lanterna = 1.0
@@ -41,17 +41,17 @@ olhos_lado = ExtResource("5_olhos_lado")
 olhos_frente = ExtResource("6_olhos_frente")
 olhos_costas = ExtResource("7_olhos_costas")
 quadros = 12
-px_por_quadro = 2.0
-px_por_passo = 12.0
-testa_lado = Vector2(6, -45)
-testa_frente = Vector2(0, -45)
-testa_costas = Vector2(0, -45)
+px_por_quadro = 2.4
+px_por_passo = 15.0
+testa_lado = Vector2(8, -56)
+testa_frente = Vector2(0, -56)
+testa_costas = Vector2(0, -56)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_lado")
 centered = false
 scale = Vector2(0.5, 0.5)
-offset = Vector2(-48, -108)
+offset = Vector2(-56, -132)
 hframes = 12
 
 [node name="Olhos" type="Sprite2D" parent="."]
@@ -59,7 +59,7 @@ material = SubResource("SemLuz")
 texture = ExtResource("5_olhos_lado")
 centered = false
 scale = Vector2(0.5, 0.5)
-offset = Vector2(-48, -108)
+offset = Vector2(-56, -132)
 hframes = 12
 
 [node name="Pes" type="CollisionShape2D" parent="."]
@@ -67,7 +67,7 @@ position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_pes")
 
 [node name="LuzOlho" type="PointLight2D" parent="."]
-position = Vector2(0, -45)
+position = Vector2(0, -56)
 color = Color(1, 0.25, 0.15, 1)
 energy = 0.6
 range_item_cull_mask = 3
