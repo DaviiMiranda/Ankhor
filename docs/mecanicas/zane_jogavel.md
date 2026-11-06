@@ -14,19 +14,20 @@ O Zane é jogável em um trecho: a **ala do escritório**, a mini fase do fim do
 | Itens | o que ele pegou | **kit próprio**: lanterna, flash (2) e braço de hack |
 | Mãos | `maos_do_gabriel.gd` | `maos_do_zane.gd` (a lanterna fica na mão de metal em quase todas as vistas) |
 
-**O kit é emprestado.** `Inventario.emprestar_kit` guarda a mochila do Gabriel (grade, gadgets, estado e itens vistos) e põe o kit do Zane; `Inventario.devolver_kit` devolve tudo. O kit é emprestado **uma vez**, na primeira sala do escritório, e fica emprestado ao trocar de sala e ao morrer e recomeçar do checkpoint (por isso o flash gasto não volta). Quem devolve é a câmara selada, ao abrir (`camara_selada.gd`). `Inventario.limpar` (novo jogo, escolher fase) também esquece o empréstimo. Os gadgets ficam nas teclas `1` (lanterna), `2` (flash) e `3` (braço de hack).
+**O kit é emprestado.** `Inventario.emprestar_kit` guarda a mochila do Gabriel (grade, gadgets, estado e itens vistos) e põe o kit do Zane; `Inventario.devolver_kit` devolve tudo. O kit é emprestado **uma vez**, na primeira sala do escritório, e fica emprestado ao trocar de sala e ao morrer e recomeçar do checkpoint (por isso o flash gasto não volta). Quem devolve é a câmara selada, ao abrir (`camara_selada.gd`). `Inventario.limpar` (novo jogo, escolher fase) também esquece o empréstimo. Os gadgets ficam nas teclas `1` (lanterna) e `2` (flash); o `3` fica livre. O braço de hack tem um **espaço só dele, o 4º**, na tecla `4`: o item tem `vai_no_espaco_do_braco` e vai para `Inventario.braco` em vez dos espaços de gadget. O HUD só mostra esse quarto espaço quando há braço na mochila (o Gabriel continua com três), com a barrinha de recarga e a moldura acesa durante a invasão.
 
 ## O braço de hack
 
-`scripts/itens/braco_hack.gd` (item `dados/itens/braco_hack.tres`). Aperte `3` perto de um robô:
+`scripts/itens/braco_hack.gd` (item `dados/itens/braco_hack.tres`). Aperte `4` perto de um robô:
 
 1. Escolhe o robô **mais perto, a até 170 px e em linha reta** (um raio contra as paredes, camada 8). Sem alvo, avisa.
 2. O Zane **vira para o robô** e **estende o braço de metal** (tira `zane_hack_<vista>.png`, 12 quadros, 0,55 s). Um raio ciano treme da mão até o robô.
 3. Abre o **minigame de hack em tempo real** (sempre o de **sincronia**, que usa só o `E`: o outro usa WASD, que o Zane precisa para andar): os robôs continuam andando e o jogo não pausa. A dificuldade depende do robô: **Ronda** fácil, **Sentinela** e **Mariposa** média, **Rastreador**, **Caçador**, **Escafandro** e **Atirador** difícil.
-4. **Enquanto hackeia, o Zane anda bem devagar** (30% da velocidade, sem correr e sem som de passos) e **a direção fica travada** no robô, com o braço esticado. Se ele se afastar mais de 220 px ou perder a linha reta, a conexão cai (sem penalidade).
-5. **Deu certo:** o robô fica **desligado por 15 s** (`Robo.atordoar`). **Falhou:** o robô **ouve** (`Robo.fazer_barulho`, alcance 14) e o Zane recolhe o braço. Esc cancela, sem barulho nem penalidade.
-6. **Cada robô aguenta 2 falhas.** Na **3ª falha** (mais de 2 erros) o robô **bloqueia o acesso** e não dá mais para hackeá-lo (a contagem fica no próprio robô, `falhas_de_hack`, e vale até a cena recarregar).
-7. O implante **esfria por 6 s** antes do próximo uso. Levar dano no meio da invasão a interrompe, sem contar como falha.
+4. **Enquanto hackeia, o robô fica lento:** a 30% da velocidade (`lentidao_do_robo`, aplicada em `Robo.fator_de_velocidade`), para dar tempo de terminar o minigame. Vale do braço estender até ele recolher; depois o robô volta à velocidade normal.
+5. **E o Zane também anda bem devagar** (30% da velocidade, sem correr e sem som de passos) e **a direção fica travada** no robô, com o braço esticado. Se ele se afastar mais de 220 px ou perder a linha reta, a conexão cai (sem penalidade).
+6. **Deu certo:** o robô fica **desligado por 15 s** (`Robo.atordoar`). **Falhou:** o robô **ouve** (`Robo.fazer_barulho`, alcance 14) e o Zane recolhe o braço. Esc cancela, sem barulho nem penalidade.
+7. **Cada robô aguenta 2 falhas.** Na **3ª falha** (mais de 2 erros) o robô **bloqueia o acesso** e não dá mais para hackeá-lo (a contagem fica no próprio robô, `falhas_de_hack`, e vale até a cena recarregar).
+8. O implante **esfria por 6 s** antes do próximo uso. Levar dano no meio da invasão a interrompe, sem contar como falha.
 
 Diferente do notebook do Gabriel, que só desliga o robô **por trás**, o braço do Zane funciona de frente e de longe, mas expõe mais: o Zane fica lento e à vista enquanto a invasão corre, e cada robô só aguenta 2 falhas.
 

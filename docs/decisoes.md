@@ -1,5 +1,14 @@
 # Registro de decisões
 
+## 2026-11-06 — O robô fica lento durante o hack do Zane, e o braço ganha o espaço 4
+
+**Decisão:**
+- **Robô lento durante o hack:** do momento em que o Zane estende o braço até ele recolher, o robô alvo anda a **30% da velocidade** (patrulha, investigação e perseguição). Dá tempo de terminar o minigame. Depois volta ao normal; se a invasão deu certo, ele continua desligado por 15 s, como antes.
+- **Espaço 4:** o braço de hack sai dos espaços de gadget 1 a 3 e ganha um **quarto espaço no HUD**, só dele, ativado com a tecla **`4`**. O espaço só aparece quando o braço está na mochila (com o Zane); o Gabriel continua com três. Mostra a recarga e acende durante a invasão.
+
+**Por quê:** pedido do Davi, para dar tempo de fazer o hack e deixar o braço numa tecla própria.
+**Afeta:** `scripts/personagens/robo.gd` (`fator_de_velocidade`), `scripts/itens/braco_hack.gd` (`lentidao_do_robo` e o estado no HUD), `scripts/itens/item.gd` (`vai_no_espaco_do_braco`), `dados/itens/braco_hack.tres`, `scripts/sistemas/inventario.gd` (`braco`, `TECLA_DO_BRACO`), `scripts/personagens/gabriel.gd`, `scripts/interface/hud.gd` e `tela_inventario.gd`, `project.godot` (ação `gadget_4`), o diálogo `zane_escritorio_seguranca.json`, `docs/mecanicas/zane_jogavel.md` e `docs/fases/labirinto.md`.
+
 ## 2026-11-06 — A passagem do Zane vira uma mini fase de escritório: recepção e três salas
 
 **Decisão:** o duto de serviço por onde o Zane vai salvar o Gabriel não é mais um corredor com duas travas. Ele desemboca numa **ala de escritório escondida**, com cenário próprio (forro de placas, parede creme com lambri, carpete azul, piso vinílico, móveis bege dos anos 80), entre o duto e a câmara selada:
