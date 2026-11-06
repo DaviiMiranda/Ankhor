@@ -81,6 +81,7 @@ var jogador_controla := true
 var mirando := false
 var direcao_automatica := Vector2.ZERO
 var correr_sozinho := false
+var estamina_infinita := false
 var correndo := false
 var escondido := false
 var tira_especial := false
@@ -192,7 +193,7 @@ func _physics_process(delta: float) -> void:
 	if quer_correr and direcao != Vector2.ZERO and (pode_correr or correr_sozinho):
 		velocidade *= multiplicador_correr
 		correndo = true
-		if fadiga and not correr_sozinho:
+		if fadiga and not correr_sozinho and not estamina_infinita:
 			fadiga.consumir(delta, ansiedade.multiplicador_consumo_estamina())
 	elif fadiga:
 		fadiga.regenerar(delta, direcao == Vector2.ZERO)

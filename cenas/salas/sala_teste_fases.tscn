@@ -202,7 +202,7 @@ cena_destino = "res://cenas/salas/bunker/central_dados.tscn"
 porta_destino = "central_dados"
 com_combate = false
 marcas_ao_entrar = PackedStringArray("bunker_energia")
-marcas_apagadas_ao_entrar = PackedStringArray("bunker_confronto_falado", "bunker_henrique_sumiu", "bunker_comporta_aberta")
+marcas_apagadas_ao_entrar = PackedStringArray("bunker_confronto_falado", "bunker_henrique_sumiu", "bunker_comporta_aberta", "dtec_grupo_separado")
 
 [node name="PlacaFimDoBunker" parent="Paredes" instance=ExtResource("placa")]
 position = Vector2(1160, 56)

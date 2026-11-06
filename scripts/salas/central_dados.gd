@@ -199,7 +199,7 @@ func _correr_para_a_porta() -> void:
 		var pessoa := filho as PersonagemParado
 		if pessoa:
 			var destino: Vector2 = (pessoa.get_parent() as Node2D).to_local(saida + Vector2(i * 10, i * 6))
-			AtorDeCena.andar_ate(pessoa, destino, VELOCIDADE_DA_CORRIDA)
+			AtorDeCena.correr_ate(pessoa, destino, VELOCIDADE_DA_CORRIDA)
 			i += 1
 	_enquadrar(camera.global_position, SEGUNDOS_ENQUADRANDO)
 	gabriel.correr_sozinho = true

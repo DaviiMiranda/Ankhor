@@ -1,53 +1,87 @@
 extends Sala
 
 const CENA_SEGUINTE := "res://cenas/salas/bunker/fim_do_bunker.tscn"
-const VELOCIDADE_DO_GRUPO := 108.0
-const X_DA_COMPORTA := 1481.0
+const ID_CHECKPOINT := "bunker_fuga"
+const X_DA_COMPORTA := 3081.0
 const Y_DA_COMPORTA := 128.0
-const SEGUNDOS_ANTES_DE_CORRER := 0.5
+const VELOCIDADE_DO_GRUPO := 150.0
+const FOLGA_DO_PRIMEIRO := 80.0
+const FOLGA_ENTRE_ELES := 40.0
+const SEGUNDOS_ANTES_DOS_ROBOS := 1.2
 const SEGUNDOS_ENTRANDO := 0.35
 const SEGUNDOS_ESCURECENDO := 0.7
-const SEGUNDOS_ENTRE_PASSOS := 0.3
-const AVISO := "A comporta do núcleo, no fim do corredor. Corre!"
+const SEGUNDOS_PROTEGIDO_NO_FIM := 5.0
+const AVISO := "Corre até a comporta (Shift)! Saia da linha dos tiros."
 
 var _saindo := false
-var _robos_correndo := false
-var _tempo_do_passo := 0.0
+var _andado := {}
+var _correndo := {}
+var _dentro := {}
 
 @onready var gabriel: Gabriel = $Objetos/Gabriel
 @onready var grupo: Node2D = $Objetos/Grupo
 @onready var robos: Node2D = $Objetos/Robos
 @onready var sirene: AudioStreamPlayer = $Sirene
-@onready var passo_de_robo: AudioStreamPlayer = $PassoDeRobo
 
 
 func _ready() -> void:
 	super()
 	if Engine.is_editor_hint():
 		return
-	gabriel.andar_sozinho(Vector2.ZERO)
 	sirene.finished.connect(sirene.play)
+	gabriel.estamina_infinita = true
+	if not Checkpoints.esta_ativo(ID_CHECKPOINT, scene_file_path):
+		Checkpoints.marcar(ID_CHECKPOINT, scene_file_path, gabriel.global_position)
 	_comecar.call_deferred()
 
 
 func _comecar() -> void:
-	await get_tree().create_timer(duracao_entrada * 0.5 + SEGUNDOS_ANTES_DE_CORRER).timeout
 	Inventario.aviso.emit(AVISO)
-	for robo in robos.get_children():
-		(robo as RoboDeCena).correndo = true
+	await get_tree().create_timer(duracao_entrada + SEGUNDOS_ANTES_DOS_ROBOS).timeout
+	for robo in _os_robos():
+		robo.correndo = true
+
+
+func _physics_process(delta: float) -> void:
+	if _saindo:
+		return
+	_mover_grupo(delta)
+	if gabriel.global_position.x >= X_DA_COMPORTA:
+		_sair()
+
+
+func _mover_grupo(delta: float) -> void:
+	var folga := FOLGA_DO_PRIMEIRO
 	for filho in grupo.get_children():
 		var pessoa := filho as PersonagemParado
-		var corrida := AtorDeCena.andar_ate(pessoa, Vector2(X_DA_COMPORTA, pessoa.position.y), VELOCIDADE_DO_GRUPO)
-		corrida.finished.connect(_entrar_na_comporta.bind(pessoa))
-	gabriel.correr_sozinho = true
-	gabriel.andar_sozinho(Vector2.RIGHT)
-	_robos_correndo = true
+		if pessoa and not _dentro.has(pessoa):
+			_mover(pessoa, minf(gabriel.global_position.x + folga, X_DA_COMPORTA), delta)
+		folga += FOLGA_ENTRE_ELES
 
 
-func _physics_process(_delta: float) -> void:
-	if _saindo or gabriel.global_position.x < X_DA_COMPORTA:
-		return
+func _mover(pessoa: PersonagemParado, alvo: float, delta: float) -> void:
+	var antes := pessoa.global_position.x
+	if alvo > antes:
+		pessoa.global_position.x = move_toward(antes, alvo, VELOCIDADE_DO_GRUPO * delta)
+	var andou := pessoa.global_position.x - antes
+	if andou > 0.05:
+		_andado[pessoa] = _andado.get(pessoa, 0.0) + andou
+		_correndo[pessoa] = true
+		AtorDeCena.mostrar_corrida(pessoa, _andado[pessoa])
+	elif _correndo.get(pessoa, false):
+		_correndo[pessoa] = false
+		AtorDeCena.parar(pessoa)
+	if pessoa.global_position.x >= X_DA_COMPORTA - 0.5:
+		_dentro[pessoa] = true
+		_entrar_na_comporta(pessoa)
+
+
+func _sair() -> void:
 	_saindo = true
+	Vida.proteger(SEGUNDOS_PROTEGIDO_NO_FIM)
+	for robo in _os_robos():
+		robo.parar()
+	gabriel.andar_sozinho(Vector2.ZERO)
 	_entrar_na_comporta(gabriel)
 	var escurecer := create_tween()
 	escurecer.tween_interval(SEGUNDOS_ENTRANDO)
@@ -57,15 +91,13 @@ func _physics_process(_delta: float) -> void:
 
 func _entrar_na_comporta(quem: Node2D) -> void:
 	var entrar := create_tween().set_parallel()
-	entrar.tween_property(quem, "position:y", Y_DA_COMPORTA, SEGUNDOS_ENTRANDO)
+	entrar.tween_property(quem, "global_position:y", Y_DA_COMPORTA, SEGUNDOS_ENTRANDO)
 	entrar.tween_property(quem, "modulate:a", 0.0, SEGUNDOS_ENTRANDO)
 
 
-func _process(delta: float) -> void:
-	if not _robos_correndo or _saindo:
-		return
-	_tempo_do_passo -= delta
-	if _tempo_do_passo <= 0.0:
-		_tempo_do_passo = SEGUNDOS_ENTRE_PASSOS
-		passo_de_robo.pitch_scale = randf_range(0.8, 1.15)
-		passo_de_robo.play()
+func _os_robos() -> Array[RoboDeCena]:
+	var lista: Array[RoboDeCena] = []
+	for filho in robos.get_children():
+		if filho is RoboDeCena:
+			lista.append(filho)
+	return lista

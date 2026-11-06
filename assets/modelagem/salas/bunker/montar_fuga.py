@@ -8,20 +8,33 @@
 # O QUE É (Enredo Principal, seção 8, Ato 3)
 #   Depois que o Henrique some e o Carlos fala pelos alto-falantes, o grupo
 #   foge junto dos robôs por um corredor até a comporta do núcleo, que leva ao
-#   Laboratório. Esta cena é esse corredor: uma animação (o jogador não
-#   controla), feita com as peças do kit do bunker, no vermelho do alarme.
+#   Laboratório. Esta cena é esse corredor, JOGÁVEL: o jogador corre com o
+#   Gabriel (estamina infinita aqui) e desvia dos tiros saindo da linha deles.
+#   Feita com as peças do kit do bunker, no vermelho do alarme.
 #
 # QUEM ESTÁ NELA
-#   - o Gabriel (o do modelo de sala), que corre sozinho para a direita;
-#   - o grupo (Zane, Diana e Clarice) na frente dele, na mesma velocidade;
-#   - os robôs atrás: o Ciborgue e mais dois, um pouco mais lentos que o grupo,
-#     para a distância crescer devagar (a fuga dá certo).
-#   O roteiro da cena (quando cada um corre e entra na comporta) está em
-#   scripts/salas/fuga_do_bunker.gd.
+#   - o Gabriel (o do modelo de sala), com o jogador;
+#   - o grupo (Clarice, Diana e Zane), que corre sempre um pouco à frente dele
+#     (scripts/salas/fuga_do_bunker.gd);
+#   - os robôs atrás (scripts/personagens/robo_de_cena.gd): o Ciborgue, que só
+#     persegue, e atiradores (o corpo da Sentinela, como o robô atirador do
+#     Centro de Convivência), que ficam a uma distância, miram e atiram. Alguns
+#     só aparecem quando o Gabriel passa de um ponto do corredor, como se
+#     saíssem de uma porta atrás dele.
+#
+# AS VELOCIDADES (px/s)
+#   Quem só persegue (Ciborgue, Caçador) acompanha a altura do Gabriel a
+#   60 px/s, para encostar nele; os atiradores, a 26, para a mira dar tempo
+#   de desviar.
+#   Gabriel andando 60, correndo 108 em linha reta e uns 76 na diagonal (a
+#   direção é normalizada antes: desviar custa velocidade). Robôs de 82 a 88.
+#   Andando, os robôs o alcançam; correndo reto, ele abre distância; correndo
+#   e desviando o tempo todo, o Ciborgue encosta devagar. O grupo anda até 150, para
+#   nunca ficar para trás.
 #
 # A GEOMETRIA
 #   Peças de parede de 80 px e de chão de 128 px, como nas outras salas. A
-#   comporta é a peça 18 (x = 1440): a porta dela fica em x = 1440 + 41, o
+#   comporta é a peça 38 (x = 3040): a porta dela fica em x = 3040 + 41, o
 #   mesmo deslocamento das portas do bunker (montar_salas_bunker.py), e é o
 #   X_DA_COMPORTA do script. Se mudar a peça de lugar, mude os dois.
 
@@ -34,23 +47,35 @@ DESTINO = os.path.join(PASTA_PROJETO, "cenas", "salas", "bunker", "fuga.tscn")
 BUNKER = "res://cenas/cenario/bunker"
 ROBOS = "res://assets/sprites/personagens/robos"
 PECA, CHAO = 80, 128
-LARGURA = 1600
+LARGURA = 3200
+PECA_DA_COMPORTA = 38
 
-PAREDES = ["bunker_lisa", "bunker_emergencia", "bunker_canos", "bunker_luminaria", "bunker_rachada",
-           "bunker_emergencia", "bunker_porta_lacrada", "bunker_canos", "bunker_lisa", "bunker_emergencia",
-           "bunker_rachada", "bunker_painel", "bunker_canos", "bunker_emergencia", "bunker_lisa",
-           "bunker_porta_lacrada", "bunker_rachada", "bunker_emergencia", "bunker_comporta", "bunker_lisa"]
+# Um trecho de oito peças que se repete; a comporta entra na peça 38.
+TRECHO = ["bunker_lisa", "bunker_emergencia", "bunker_canos", "bunker_porta_lacrada",
+          "bunker_rachada", "bunker_emergencia", "bunker_painel", "bunker_canos"]
+PAREDES = [TRECHO[i % len(TRECHO)] for i in range(LARGURA // PECA)]
+PAREDES[PECA_DA_COMPORTA] = "bunker_comporta"
+PAREDES[PECA_DA_COMPORTA + 1] = "bunker_lisa"
 
-# (nome, cena, x, y): o grupo começa na frente do Gabriel (x = 220).
-GRUPO = [("Clarice", "res://cenas/personagens/clarice_em_pe.tscn", 300, 156),
-         ("Diana", "res://cenas/personagens/diana.tscn", 350, 146),
+# (nome, cena, x, y): o grupo começa na frente do Gabriel (x = 240).
+GRUPO = [("Clarice", "res://cenas/personagens/clarice_em_pe.tscn", 320, 158),
+         ("Diana", "res://cenas/personagens/diana.tscn", 360, 140),
          ("Zane", "res://cenas/personagens/zane.tscn", 400, 152)]
 
-# (nome, tira, quadros, escala, deslocamento, x, y, velocidade, altura da luz)
+# Os corpos dos robôs: (tira, quadros, escala, deslocamento, altura da luz)
+CIBORGUE = ("ciborgue", 12, 0.5, (-56, -132), -56)
+ATIRADOR = ("sentinela", 8, 1.0, (-36, -69), -40)
+CACADOR = ("cacador", 8, 1.0, (-32, -44), -23)
+
+# (nome, corpo, x, y, velocidade, distância que mantém do Gabriel, atira,
+#  aparece quando o Gabriel passa de x; -1 = desde o começo)
 ROBOS_DA_FUGA = [
-    ("Ciborgue", "ciborgue", 12, 0.5, (-56, -132), 120, 150, 104.0, -56),
-    ("Cacador", "cacador", 8, 1.0, (-32, -44), 70, 140, 102.0, -23),
-    ("Rastreador", "rastreador", 8, 1.0, (-32, -37), 30, 162, 103.0, -20),
+    ("Ciborgue", CIBORGUE, 130, 150, 82.0, 0, False, -1),
+    ("Atirador1", ATIRADOR, 80, 136, 86.0, 120, True, -1),
+    ("Atirador2", ATIRADOR, 30, 166, 84.0, 160, True, -1),
+    ("Atirador3", ATIRADOR, 1240, 150, 88.0, 130, True, 1500),
+    ("Cacador", CACADOR, 1900, 160, 86.0, 0, False, 2150),
+    ("Atirador4", ATIRADOR, 2300, 140, 88.0, 140, True, 2550),
 ]
 
 
@@ -79,7 +104,8 @@ def montar():
     script_robo = m.recurso("Script", "res://scripts/personagens/robo_de_cena.gd")
     luz = m.recurso("Texture2D", "res://assets/sprites/cenario/luzes/luz.png")
     sirene = m.recurso("AudioStream", "res://assets/audio/efeitos/objetos/sirene.wav")
-    passo = m.recurso("AudioStream", "res://assets/audio/efeitos/robos/cacador_passo.wav")
+    carga = m.recurso("AudioStream", "res://assets/audio/efeitos/robos/raio_carga.wav")
+    tiro = m.recurso("AudioStream", "res://assets/audio/efeitos/robos/raio_disparo.wav")
     musica = m.recurso("AudioStream", "res://assets/audio/musica/perseguicao/labirinto_tensao.ogg")
 
     for i, peca in enumerate(PAREDES):
@@ -90,21 +116,23 @@ def montar():
     m.instancia("PilarEsquerda", "Paredes", f"{BUNKER}/paredes/pilar_bunker.tscn", ["position = Vector2(0, 0)"])
     m.instancia("PilarDireita", "Paredes", f"{BUNKER}/paredes/pilar_bunker.tscn", [f"position = Vector2({LARGURA - 16}, 0)"])
     for c in range(-(-LARGURA // CHAO)):
-        chao = "chao_bunker_faixa" if c * CHAO >= 1300 else ("chao_bunker_agua" if c % 3 else "chao_bunker")
+        chao = "chao_bunker_faixa" if c * CHAO >= PECA_DA_COMPORTA * PECA - 160 else ("chao_bunker_agua" if c % 3 else "chao_bunker")
         m.instancia(f"Chao{c + 1}", "Chao", f"{BUNKER}/chao/{chao}.tscn", [f"position = Vector2({c * CHAO}, 0)"])
 
-    m.no('[node name="Gabriel" parent="Objetos"]', ["position = Vector2(220, 150)"])
+    m.no('[node name="Gabriel" parent="Objetos"]', ["position = Vector2(240, 150)"])
     m.no('[node name="Grupo" type="Node2D" parent="Objetos"]', ["y_sort_enabled = true"])
     for nome, cena, x, y in GRUPO:
         m.instancia(nome, "Objetos/Grupo", cena, [f"position = Vector2({x}, {y})", 'vista = "lado"'])
 
     m.no('[node name="Robos" type="Node2D" parent="Objetos"]', ["y_sort_enabled = true"])
-    for nome, tira, quadros, escala, (dx, dy), x, y, velocidade, altura_luz in ROBOS_DA_FUGA:
+    for nome, (tira, quadros, escala, (dx, dy), altura_luz), x, y, velocidade, distancia, atira, aparece in ROBOS_DA_FUGA:
         corpo = m.recurso("Texture2D", f"{ROBOS}/{tira}_andar_lado.png")
         olhos = m.recurso("Texture2D", f"{ROBOS}/{tira}_andar_lado_olhos.png")
         m.no(f'[node name="{nome}" type="Node2D" parent="Objetos/Robos"]', [
             f"position = Vector2({x}, {y})", f'script = ExtResource("{script_robo}")',
-            f"quadros = {quadros}", f"velocidade = {velocidade}"])
+            f"quadros = {quadros}", f"velocidade = {velocidade}", f"distancia_do_gabriel = {float(distancia)}",
+            f"aparece_depois_de_x = {float(aparece)}", f"atira = {'true' if atira else 'false'}",
+            f"velocidade_vertical = {26.0 if atira else 60.0}"])
         for parte, textura, material in (("Corpo", corpo, None), ("Olhos", olhos, "SemLuz")):
             props = [f'texture = ExtResource("{textura}")', "centered = false",
                      f"scale = Vector2({escala}, {escala})", f"offset = Vector2({dx}, {dy})", f"hframes = {quadros}"]
@@ -114,12 +142,16 @@ def montar():
         m.no(f'[node name="LuzOlho" type="PointLight2D" parent="Objetos/Robos/{nome}"]', [
             f"position = Vector2(0, {altura_luz})", "color = Color(1, 0.28, 0.15, 1)", "energy = 0.6",
             f'texture = ExtResource("{luz}")', "texture_scale = 0.7"])
+        m.no(f'[node name="LinhaDaMira" type="Line2D" parent="Objetos/Robos/{nome}"]', [
+            'material = SubResource("SemLuz")', "width = 1.0", "default_color = Color(1, 0.25, 0.2, 0.55)"])
+        m.no(f'[node name="SomCarga" type="AudioStreamPlayer2D" parent="Objetos/Robos/{nome}"]', [
+            f'stream = ExtResource("{carga}")', 'bus = &"Efeitos"'])
+        m.no(f'[node name="SomTiro" type="AudioStreamPlayer2D" parent="Objetos/Robos/{nome}"]', [
+            f'stream = ExtResource("{tiro}")', 'bus = &"Efeitos"'])
 
     m.no('[node name="Escuridao" parent="."]', ["color = Color(0.34, 0.2, 0.22, 1)"])
     m.no('[node name="Sirene" type="AudioStreamPlayer" parent="."]', [
         f'stream = ExtResource("{sirene}")', "volume_db = -8.0", "autoplay = true", 'bus = &"Efeitos"'])
-    m.no('[node name="PassoDeRobo" type="AudioStreamPlayer" parent="."]', [
-        f'stream = ExtResource("{passo}")', "volume_db = -6.0", 'bus = &"Efeitos"'])
     m.no('[node name="Musica" type="AudioStreamPlayer" parent="."]', [
         f'stream = ExtResource("{musica}")', "volume_db = -6.0", "autoplay = true", 'bus = &"Musica"'])
 
