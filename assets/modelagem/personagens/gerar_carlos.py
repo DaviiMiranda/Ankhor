@@ -252,4 +252,7 @@ def main():
                   passo=PASSO, respirar=RESPIRAR)
 
 
-main()
+# Só gera quando o script é rodado direto: o gerar_ciborgue.py importa este
+# arquivo para reaproveitar o corpo do Carlos sem refazer os sprites dele.
+if __name__ == "__main__":
+    main()

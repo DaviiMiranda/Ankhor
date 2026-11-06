@@ -32,6 +32,23 @@ Ficar dentro de um esconderijo não é garantia passiva de imunidade. Se um rob�
 ### C. Imobilidade Absoluta (*Dead Silence*)
 - Requer não tocar em nenhum controle de direção ou ação durante a passagem do perseguidor por um período de 3 a 5 segundos.
 
+### D. Respiração Contida (no jogo desde 2026-11-06, com o Ciborgue do bunker)
+- **Quando:** só com o Gabriel **escondido** (parado num nicho, com a lanterna apagada) e o **Ciborgue** parado do lado de fora, a até 56 px. Fora do esconderijo não há minijogo: ele simplesmente pega o Gabriel.
+- **A barra:** acima da cabeça do Gabriel, com uma faixa verde no meio e um marcador. À esquerda é prender o ar demais; à direita, respirar alto (ofegante).
+- **O controle:** **segure `E`** para prender o ar (o marcador vai para a esquerda) e **solte** para respirar (vai para a direita). Sozinho, ele sobe, porque o Gabriel está ofegante; e balança um pouco, para não dar para achar um ritmo fixo. A tecla `E` não aciona nada perto do nicho enquanto o minijogo está aberto.
+- **O ruído:** fora do verde, uma segunda barra vermelha, embaixo, enche; dentro, ela esvazia. Cheia, o Gabriel engasga (tosse), o Ciborgue ouve, tira o Gabriel do esconderijo e o ataca.
+- **A ansiedade e o cansaço pesam:** com ansiedade alta, a faixa verde fica mais estreita e a respiração sobe mais rápido; cansado, a faixa encolhe mais 20%.
+- **Aguentar:** o Ciborgue espera de 7 a 11 s e vai embora. O minijogo termina quando ele se afasta.
+- **Números** (`scripts/sistemas/respiracao_contida.gd`, no Inspetor da cena `respiracao_contida.tscn`):
+
+| | Calmo | Ansioso |
+|---|---|---|
+| Largura da faixa verde | 40% | 26% |
+| Subida sem apertar | 0,12 / s | 0,22 / s |
+| Descida segurando `E` | 0,30 / s | 0,30 / s |
+
+O balanço soma $0{,}15 \cdot \sin(2{,}1t)\,\sin(0{,}63t + 1)$ por segundo. O ruído enche 0,45 por segundo fora da faixa e esvazia 0,25 dentro: saindo do verde sem reagir, o Gabriel tem uns 2 a 3 s até engasgar.
+
 ---
 
 ## 3. Mecânica de Distração por Arremesso

@@ -186,6 +186,7 @@ size = Vector2(80, 188)
 
 [node name="SegundoAndar" instance=ExtResource("r1")]
 id = "conv_segundo_andar"
+esquiva_permitida = true
 largura = 2000
 altura = 640
 chao_frente = 636

@@ -19,6 +19,48 @@
 **Decisão:** a fresta da barricada da sala 103 ("Espiar o corredor") sai do jogo, junto com a lógica de espiar da `Porta`. Isso desfaz a linha "fresta da barricada" da entrada de 2026-10-12. O resto daquela entrada (nichos, fator de piso, mapa de giz, estalos, pedra pelo buraco) continua. `Gabriel.esconder()` fica, porque os nichos e as cabines usam.
 **Por quê:** pedido do Davi, para abrir espaço para uma parte nova no fim do Labirinto.
 **Afeta:** `scripts/sistemas/porta.gd` (sai `espiar()` e tudo o que mexia na câmera e na camada do Gabriel), `cenas/salas/bloco_de_salas/sala_103.tscn`, `cenas/personagens/fresta_da_barricada.tscn` e `scripts/personagens/fresta_da_barricada.gd` (apagados), `docs/fases/bloco_de_salas.md` (seções 12.4 e 12.8).
+## 2026-11-06 — Combate no Centro de Convivência: robô atirador, arma de impulso e esquiva
+
+**Decisão:** a pedido do Davi, três mecânicas novas, **só no Centro de Convivência** (detalhes em [`mecanicas/combate.md`](mecanicas/combate.md)):
+- **Robô atirador** (`Atirador1`), só na Praça Central: mira (0,7 s rastreando, 0,4 s travada, com uma linha vermelha que vira branca) e dispara um raio que tira 1 de vida. Mesas e árvores param o raio.
+- **Arma de impulso**, escondida no **cofre do cinema** (no lugar da cápsula de clarão que ele dava): empurra os robôs para longe e os paralisa por 0,9 s. 4 cargas que recarregam sozinhas.
+- **Esquiva** com `Espaço`: salto curto e invulnerável, só nas salas com `esquiva_permitida` (todas do Centro de Convivência, menos a sala segura e o fim da fase).
+- **Sala de teste:** nova porta "FASES (TESTE)" para a `sala_teste_fases`, com uma porta por fase. A do **Centro de Convivência** liga o **modo combate** (cápsulas e cargas infinitas, e morrer devolve ao meio da praça); Bloco de Salas, Labirinto, Bunker e D-Tec entram só com os itens no máximo. A Biblioteca ficou de fora por serem 4 portas pedidas.
+
+**Por quê:** pedido do Davi, para testar o combate. O Enredo diz que o Gabriel não é combatente e que o confronto com o Carlos é sem luta: a arma só afasta e a esquiva só evita dano, então nada contradiz o Enredo. **O Enredo não foi mexido.** Fica em aberto se a arma e a esquiva entram nas outras fases.
+
+**Efeitos colaterais:** o cofre do cinema deixou de dar cápsula de clarão (o Centro tem 1 cápsula a menos). O `TudoColetado` (safe room de teste e sala de fases) passou a pôr a arma, o clarão e a pedra primeiro e a **pular a Célula de Energia** (carga pesada: impedia de correr). A `sala_teste` ficou 160 px mais larga para caber a porta nova; os itens de 650 e 680 px, que estavam fora da sala, agora dá para pegar.
+
+**Afeta:** `scripts/personagens/robo.gd` (`empurrar`), `gabriel.gd` (esquiva), `scripts/salas/sala.gd` (`esquiva_permitida`), `vida.gd` (`proteger`), `checkpoints.gd`, `scripts/itens/clarao.gd`, `scripts/salas/tudo_coletado.gd`, `project.godot` (ação `esquivar`), as salas de `cenas/salas/centro_de_convivencia/`, `praca_central.tscn`, `cinema_cabine.tscn`, `sala_teste.tscn`, e os novos: `robo_atirador`, `raio_atirado`, `arma_impulso`, `modo_combate.gd`, `porta_de_teste.gd`, `placa_de_porta`, `sala_teste_fases.tscn` e os geradores `gerar_efeitos_combate.py` e `gerar_arma_impulso.py`. **Conferido** no Godot 4.7.2 por script: todas as portas, a mochila, o tiro, o empurrão, a esquiva e o renascimento no meio da praça.
+
+## 2026-11-06 — O Ciborgue: uma cópia do Carlos que caça o bunker inteiro
+
+**Decisão:** entra um robô novo no **bunker**, o **Ciborgue**. É o corpo do Carlos (rosto, jaleco, camiseta dos anos 80, jeans e tênis) com metal por baixo da pele: meio crânio e o queixo de metal, olhos e núcleo do peito no vermelho dos robôs, antebraço esquerdo exposto. Como o Carlos nunca vai ao bunker, mandou essa cópia.
+
+- **Persegue a fase toda:** chega 8 s depois de o Gabriel entrar no bunker e o segue de sala em sala até a comporta do núcleo. Sabe sempre onde ele está, menos quando está escondido. Pela porta, chega depois do tempo que levaria andando (distância / velocidade).
+- **Mais lento que os outros:** 36 px/s em perseguição (o Escafandro corre a 38, a Mariposa a 48, o Gabriel anda a 60).
+- **Invulnerável:** clarão, espelho e hack do notebook não fazem nada. Encostar tira um coração, como os outros.
+- **Esconderijo:** com o Gabriel escondido num nicho, ele espera do lado de fora de 7 a 11 s. Enquanto isso corre o minijogo novo de **respiração contida**: segurar `E` prende o ar, soltar respira, e é preciso manter a respiração na faixa verde do meio. Falhou, ele ouve e pega o Gabriel. Aguentou, ele sai por uma porta e volta 14 s depois.
+- **Não entra** na sala segura nem na sala de dados do Henrique. Ao sair delas, ele chega 6 s depois por outra porta. Depois do checkpoint, chega em 12 s.
+- **O jogo não diz de quem é o rosto.** Quando o jogador descobre que o Carlos existe continua pendente (Enredo, seção 10.2).
+
+**Por quê:** pedido do Davi: "um robô parecido com o Carlos, tipo um ciborgue dele, perseguidor perpétuo da fase toda, mais lento que os outros mas invulnerável", no Bunker, desde a entrada; no esconderijo, "espera do lado de fora e, enquanto está próximo, uma mecânica para manter a respiração numa média, senão o robô ouve e te pega". Completa o tipo "Perseguidor Persistente" planejado na ficha dos robôs, que já previa o controle de respiração. **Conferido** no Godot 4.7.2 por script, no Corredor A: chega em 8 s, alcança e ataca, ignora clarão e hack, espera no nicho, ouve quando a respiração sai do verde, desiste quando ela fica no verde, sai, volta, segue o Gabriel até o dormitório e não entra na sala segura. O minijogo com a tecla de verdade e o equilíbrio da fase inteira **não** foram testados por uma pessoa.
+
+**Afeta:** `scripts/personagens/ciborgue_do_carlos.gd`, `cenas/personagens/ciborgue_do_carlos.tscn`, `scripts/sistemas/perseguidor_perpetuo.gd` (autoload novo em `project.godot`), `scripts/sistemas/respiracao_contida.gd`, `cenas/sistemas/respiracao_contida.tscn`, `scripts/sistemas/porta.gd`, `scripts/sistemas/perseguicao_entre_salas.gd` (ignora o Ciborgue, que tem o próprio sistema), `assets/modelagem/personagens/gerar_ciborgue.py` (e `gerar_carlos.py`, que agora pode ser importado), `assets/sprites/personagens/robos/ciborgue_*`, `docs/historia/História_Completa.md` e `.docx`, `docs/historia/personagens/robos.docx`, `docs/fases/bunker.md`, `docs/mecanicas/furtividade_e_esconderijos.md`, `docs/computacao/ia_e_perseguicao.md`.
+
+## 2026-11-05 — Tela de carregamento ao pôr o visor VR
+
+**Decisão:** **toda vez** que o jogador põe um visor VR, antes do 3D aparece por **3 segundos** a tela **CARREGANDO MODO REALIDADE VIRTUAL**:
+- uma barra de progresso, a porcentagem e uma linha de etapa (*Ligando o visor*, *Calibrando as lentes*, *Montando o ambiente*, *Pronto*);
+- **por dentro de um visor**: em volta, a silhueta arredondada dos óculos VR (duas lentes, encaixe do nariz, borda ciano);
+- **o visor liga como um aparelho velho:** a tela pisca quatro vezes ao acender e, enquanto carrega, o texto e a barra falham de vez em quando;
+- **som de energia ligando** (`visor_ligando.wav`, 3 s, gerado por código): o relé fechando, um estalo a cada piscada, a energia subindo, o zumbido do aparelho e dois bipes no "Pronto". O som e o pisca-pisca andam juntos.
+
+É o **padrão de todo visor**: vale para as seis salas seguras e para a cabine do filme VR (*Hora Morta*), no Centro de Convivência. Enquanto a barra enche, a cena 3D é carregada em segundo plano, o que tira a parada de uns 2 s que havia na primeira entrada. Os textos das etapas não dizem nada de história.
+
+**Por quê:** pedido do Davi. Primeiro a tela era só na primeira vez; ele pediu a silhueta, depois que fosse padrão também no cinema e, por fim, as piscadas, o som e que aparecesse sempre. **Conferido** no Godot 4.7.2 por script, na sala segura da Biblioteca e na cabine do cinema: a tela pisca ao ligar, as falhas aparecem, o som toca, a barra chega a "Pronto 100%" em 3 s, o 3D abre logo depois e a tela volta na segunda vez. O som não foi ouvido, só conferido pela forma de onda.
+
+**Afeta:** `cenas/visor/tela_carregando_vr.tscn`, `scripts/visor/tela_carregando_vr.gd`, `shaders/silhueta_oculos_vr.gdshader`, `assets/modelagem/audio/gerar_efeitos_visor.py` e `assets/audio/efeitos/interface/visor_ligando.wav` (novos), `scripts/sistemas/maquina_de_salvar.gd` e `.tscn`, `assets/audio/README.md`, `docs/mecanicas/visor_3d.md` e `sala_segura.md`.
 
 ## 2026-11-05 — Corrida depois da exaustão e aviso da carga
 

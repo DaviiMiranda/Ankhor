@@ -13,6 +13,7 @@
 
 [node name="SalaVr" instance=ExtResource("r1")]
 id = "conv_sala_vr"
+esquiva_permitida = true
 largura = 480
 
 [node name="Ceu" parent="."]
