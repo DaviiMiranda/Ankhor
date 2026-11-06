@@ -7,7 +7,12 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_normal",
-					"texto": "Porta da câmara. Gabriel, estou do outro lado da parede. Quatro segundos e eu entro."
+					"texto": "Três lâmpadas acesas. A porta do fundo destravou."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Gabriel, estou do outro lado da parede. Quatro segundos e eu entro."
 				}
 			]
 		}

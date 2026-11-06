@@ -93,6 +93,7 @@ func limpar() -> void:
 	pegos = {}
 	vistos = {}
 	largados = {}
+	_reserva = {}
 	mudou.emit()
 
 

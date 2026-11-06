@@ -1,8 +1,9 @@
 """
-Gera as duas cenas da parte secreta do fim do Labirinto:
+Gera a cena da camara selada, a parte secreta do fim do Labirinto:
 
   cenas/salas/labirinto/camara_selada.tscn     (o Gabriel preso; depois, o resgate e o registro)
-  cenas/salas/labirinto/passagem_do_zane.tscn  (o Zane, jogavel, atravessa dois trechos com robos e travas)
+
+O caminho do Zane ate a camara (a ala do escritorio) sai de montar_escritorio.py, nesta pasta.
 
 Uso (a partir da raiz do projeto):  python assets/modelagem/salas/labirinto/gerar_camaras.py
 
@@ -53,12 +54,9 @@ RECURSOS = {
     "script_robos": ("Script", "res://scripts/salas/robos_da_sala.gd"),
     "script_conversa": ("Script", "res://scripts/personagens/conversa_npc.gd"),
     "script_camara": ("Script", "res://scripts/salas/camara_selada.gd"),
-    "script_passagem": ("Script", "res://scripts/salas/passagem_do_zane.gd"),
 }
 
 PAREDES_DA_CAMARA = ["lisa", "canos", "painel", "lisa", "luminaria", "rachada", "canos", "lisa"]
-PAREDES_DA_PASSAGEM = ["lisa", "canos", "luminaria", "nicho_parede", "lisa", "painel", "canos", "lisa",
-                       "armarios", "nicho_parede", "luminaria", "canos", "lisa", "painel", "rachada", "porta"]
 CHAOS = ["chao", "chao", "chao_grade", "chao", "chao_faixa"]
 
 
@@ -162,73 +160,8 @@ def gerar_camara():
     return texto
 
 
-def gerar_passagem():
-    cena = Cena("PassagemDoZane", "script_passagem", 1280, "labirinto_passagem_do_zane")
-    paredes_e_chao(cena, PAREDES_DA_PASSAGEM)
-    clima(cena, [(160, "luz_tubo"), (520, "luz_tubo"), (880, "luz_tubo"), (1160, "luz_emergencia"),
-                 (700, "luz_emergencia")], "Color(0.2, 0.22, 0.3, 1)")
-
-    cena.blocos.append('[node name="Gabriel" parent="Objetos"]\nposition = %s' % v(60, 150))
-
-    cena.no("Caixas1", "Objetos", "caixas", position=v(340, 134))
-    cena.no("Tambor1", "Objetos", "tambor", position=v(570, 168))
-    cena.no("Estante1", "Objetos", "estante", position=v(820, 132))
-    cena.no("RoboDesmontado1", "Objetos", "robo_desmontado", position=v(1060, 170))
-
-    cena.no("Nicho280", "Objetos", "nicho", position=v(280, 128))
-    cena.no("Nicho760", "Objetos", "nicho", position=v(760, 128))
-
-    cena.no("CheckpointInicio", "Objetos", "checkpoint", position=v(130, 168), id=s("passagem_inicio"))
-    cena.no("CheckpointMeio", "Objetos", "checkpoint", position=v(620, 168), id=s("passagem_meio"))
-
-    cena.no("PainelBits", "Objetos", "painel_bits", position=v(420, 132), alvo="19", quantidade_chaves="5",
-            marca=s("camara_trava_1"), titulo=s("TRAVA DO TRECHO UM"), texto_acao=s("Mexer nas chaves"),
-            aviso_liberado=s("A primeira trava soltou."), aviso_ja_liberado=s("A primeira trava já está solta."))
-    cena.no("GradeUm", "Objetos", "grade", position=v(470, 112), marca=s("camara_trava_1"))
-
-    cena.no("Calendario", "Objetos", "aviso", position=v(700, 132), texto_acao=s("Olhar o pôster"),
-            altura_aviso="60.0",
-            texto=s("Um pôster desbotado de \\\"De Volta para o Futuro\\\". Na margem, a caneta vermelha: "
-                    "\\\"26/10/1985. O ano basta.\\\""))
-    cena.no("PainelCodigo", "Objetos", "painel_codigo", position=v(930, 132), codigo=s("1985"),
-            marca_energia=s(""), marca=s("camara_trava_2"), texto_acao=s("Digitar o código"),
-            aviso_aberto=s("Código aceito. A segunda trava soltou."),
-            aviso_ja_aberto=s("A segunda trava já está solta."))
-    cena.no("GradeDois", "Objetos", "grade", position=v(960, 112), marca=s("camara_trava_2"))
-
-    cena.no("Ronda", "Objetos", "ronda", position=v(220, 152), rota='NodePath("../../RotaRonda")')
-    cena.no("Sentinela", "Objetos", "sentinela", position=v(700, 152), rota='NodePath("../../RotaSentinela")',
-            bipa_antes_de_virar="true")
-
-    cena.no("RotaRonda", ".", None, tipo="Node2D")
-    for i, (x, y) in enumerate([(170, 150), (400, 160), (400, 150), (170, 160)]):
-        cena.no("Ponto%d" % (i + 1), "RotaRonda", None, tipo="Marker2D", position=v(x, y))
-    cena.no("RotaSentinela", ".", None, tipo="Node2D")
-    for i, (x, y) in enumerate([(640, 155), (900, 155)]):
-        cena.no("Ponto%d" % (i + 1), "RotaSentinela", None, tipo="Marker2D", position=v(x, y))
-
-    cena.no("RobosDaSala", ".", None, tipo="Node", script=cena.usa("script_robos"))
-
-    cena.no("GatilhoInicio", ".", "gatilho", position=v(90, 150),
-            dialogo=s("res://dados/dialogos/zane_passagem_inicio.json"),
-            marca_ao_terminar=s("zane_passagem_inicio_visto"))
-    cena.no("GatilhoSegundoTrecho", ".", "gatilho", position=v(640, 150),
-            dialogo=s("res://dados/dialogos/zane_passagem_segundo_trecho.json"),
-            marca_necessaria=s("camara_trava_1"), marca_ao_terminar=s("zane_passagem_segundo_visto"))
-    cena.no("GatilhoFim", ".", "gatilho", position=v(1150, 150),
-            dialogo=s("res://dados/dialogos/zane_passagem_fim.json"),
-            marca_necessaria=s("camara_trava_2"), marca_ao_terminar=s("zane_passagem_concluida"))
-
-    cena.no("PortaDaCamara", ".", "porta_sala", position=v(1240, 124), id=s("passagem_camara"),
-            cena_destino=s("res://cenas/salas/labirinto/camara_selada.tscn"),
-            liberada_por=s("zane_passagem_concluida"),
-            aviso_bloqueada=s("A porta da câmara está travada por dentro."),
-            som_abrir=cena.usa("porta_som"))
-    return cena.texto()
-
-
 def main():
-    for nome, texto in (("camara_selada.tscn", gerar_camara()), ("passagem_do_zane.tscn", gerar_passagem())):
+    for nome, texto in (("camara_selada.tscn", gerar_camara()),):
         with open(os.path.join(PASTA, nome), "w", encoding="utf-8", newline="\n") as f:
             f.write(texto)
         print("escrito", nome)

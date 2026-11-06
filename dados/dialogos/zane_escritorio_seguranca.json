@@ -1,0 +1,25 @@
+{
+	"id": "zane_escritorio_seguranca",
+	"inicio": "seguranca",
+	"trechos": {
+		"seguranca": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "Sala de segurança. Uma Sentinela plantada na frente do quadro de chaves. Não tem como chegar lá sem ela me ver."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_concentrado",
+					"texto": "Mas daqui eu alcanço ela. Braço na tecla 3: invado e ela apaga por quinze segundos. Se eu errar três vezes, ela tranca o acesso."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_concentrado",
+					"texto": "O quadro é de chaves: cada uma vale o dobro da seguinte. É soma. Eu faço soma."
+				}
+			]
+		}
+	}
+}

@@ -28,7 +28,8 @@ static func aplicar(jogador: Gabriel) -> void:
 	jogador.ansiedade.desativar()
 	jogador.fadiga.estamina_maxima = ESTAMINA_MAXIMA
 	jogador.fadiga.reiniciar()
-	Inventario.emprestar_kit(KIT)
+	if not Inventario.com_kit_emprestado():
+		Inventario.emprestar_kit(KIT)
 
 
 static func devolver_inventario() -> void:
