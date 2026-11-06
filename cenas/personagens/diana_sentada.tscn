@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/personagens/personagem_parado.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/diana/diana_sentada.png" id="2_sentada"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pes"]
+size = Vector2(22, 4)
+
+[node name="DianaSentada" type="StaticBody2D"]
+script = ExtResource("1_script")
+parado_lado = ExtResource("2_sentada")
+parado_frente = ExtResource("2_sentada")
+parado_tres_quartos = ExtResource("2_sentada")
+parado_costas = ExtResource("2_sentada")
+parado_tres_quartos_costas = ExtResource("2_sentada")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_sentada")
+centered = false
+scale = Vector2(0.5, 0.5)
+offset = Vector2(-46, -108)
+hframes = 8
+
+[node name="Pes" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_pes")
