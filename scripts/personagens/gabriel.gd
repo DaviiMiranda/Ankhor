@@ -163,6 +163,8 @@ func _unhandled_input(evento: InputEvent) -> void:
 	for i in Inventario.ESPACOS_GADGET:
 		if evento.is_action_pressed("gadget_%d" % (i + 1)):
 			usar_gadget(i)
+	if evento.is_action_pressed("gadget_%d" % Inventario.TECLA_DO_BRACO):
+		_usar_item(Inventario.braco)
 
 
 func esquiva_disponivel() -> bool:
@@ -214,7 +216,10 @@ func _largar_carga() -> void:
 
 
 func usar_gadget(espaco: int) -> void:
-	var item: Item = Inventario.gadgets[espaco]
+	_usar_item(Inventario.gadgets[espaco])
+
+
+func _usar_item(item: Item) -> void:
 	if item == null:
 		return
 	var efeito := no_gadgets.get_node_or_null(NodePath(item.id))
@@ -224,7 +229,7 @@ func usar_gadget(espaco: int) -> void:
 
 func _atualizar_gadgets() -> void:
 	var equipados := {}
-	for item in Inventario.gadgets:
+	for item in Inventario.gadgets + [Inventario.braco]:
 		if item != null and item.cena_gadget:
 			equipados[item.id] = item
 	for efeito in no_gadgets.get_children():

@@ -9,8 +9,8 @@
 script = ExtResource("1_item")
 id = "braco_hack"
 nome = "Braço de hack"
-descricao = "Implante do braço de metal do Zane. Ele estende o braço na direção de um robô, a até 170 px e em linha reta, e abre uma invasão à distância. Se a invasão der certo, o robô desliga por 15 segundos. Se falhar, o robô ouve. Esfria por 6 segundos depois de cada uso."
+descricao = "Implante do braço de metal do Zane. Ele estende o braço na direção de um robô, a até 170 px e em linha reta, e abre uma invasão à distância. Se a invasão der certo, o robô desliga por 15 segundos. Se falhar, o robô ouve. Enquanto a invasão corre, o robô fica mais lento. Esfria por 6 segundos depois de cada uso. Fica no espaço 4."
 icone = ExtResource("2_icone")
 sprite_chao = ExtResource("3_chao")
-equipavel = true
+vai_no_espaco_do_braco = true
 cena_gadget = ExtResource("4_gadget")

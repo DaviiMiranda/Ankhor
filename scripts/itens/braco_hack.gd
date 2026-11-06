@@ -36,6 +36,7 @@ const DIFICULDADE_POR_ROBO := {
 @export var segundos_desligado: float = 15.0
 @export var segundos_recarga: float = 6.0
 @export var multiplicador_andando: float = 0.3
+@export var lentidao_do_robo: float = 0.3
 @export var ruido_ao_falhar: int = 14
 
 var item: Item
@@ -110,6 +111,7 @@ func _linha_livre(de: Vector2, ate: Vector2) -> bool:
 func _comecar(alvo: Robo) -> void:
 	var dono := _dono()
 	_alvo = alvo
+	_alvo.fator_de_velocidade = lentidao_do_robo
 	_fase = Fase.ESTENDENDO
 	_progresso = 0.0
 	dono.olhar_travado = false
@@ -123,6 +125,7 @@ func _comecar(alvo: Robo) -> void:
 func _process(delta: float) -> void:
 	_tempo += delta
 	_recarga = maxf(_recarga - delta, 0.0)
+	_mostrar_no_hud()
 	match _fase:
 		Fase.ESTENDENDO:
 			_progresso = minf(_progresso + delta / segundos_estendendo, 1.0)
@@ -199,7 +202,7 @@ func _ao_cancelar_minigame() -> void:
 
 
 func _recolher() -> void:
-	_alvo = null
+	_soltar_alvo()
 	_fase = Fase.RECOLHENDO
 	_recarga = segundos_recarga
 
@@ -215,7 +218,7 @@ func _ao_receber_dano(_origem: Vector2) -> void:
 
 func _terminar() -> void:
 	var dono := _dono()
-	_alvo = null
+	_soltar_alvo()
 	_fase = Fase.OCIOSO
 	_progresso = 0.0
 	if dono:
@@ -223,6 +226,20 @@ func _terminar() -> void:
 		dono.multiplicador_de_velocidade = 1.0
 		dono.olhar_travado = false
 	queue_redraw()
+
+
+func _soltar_alvo() -> void:
+	if is_instance_valid(_alvo):
+		_alvo.fator_de_velocidade = 1.0
+	_alvo = null
+
+
+func _mostrar_no_hud() -> void:
+	if item == null:
+		return
+	var estado := Inventario.estado_de(item.id)
+	estado["carga"] = 1.0 - _recarga / segundos_recarga
+	estado["aceso"] = _fase != Fase.OCIOSO
 
 
 func _draw() -> void:

@@ -8,9 +8,11 @@ signal aviso(texto: String)
 const LINHAS := 3
 const COLUNAS := 4
 const ESPACOS_GADGET := 3
+const TECLA_DO_BRACO := 4
 
 var grade: Array = []
 var gadgets: Array = []
+var braco: Item = null
 var estado: Dictionary = {}
 var pegos: Dictionary = {}
 var vistos: Dictionary = {}
@@ -30,6 +32,7 @@ func emprestar_kit(kit: Array) -> void:
 		_reserva = {
 			"grade": copia_da_grade,
 			"gadgets": gadgets.duplicate(),
+			"braco": braco,
 			"estado": estado.duplicate(true),
 			"vistos": vistos.duplicate(),
 			"largados": largados.duplicate(true),
@@ -48,6 +51,7 @@ func devolver_kit() -> void:
 		return
 	grade = _reserva["grade"]
 	gadgets = _reserva["gadgets"]
+	braco = _reserva["braco"]
 	estado = _reserva["estado"]
 	vistos = _reserva["vistos"]
 	largados = _reserva["largados"]
@@ -67,6 +71,7 @@ func _esvaziar() -> void:
 		grade.append(colunas)
 	gadgets = []
 	gadgets.resize(ESPACOS_GADGET)
+	braco = null
 	estado = {}
 	largados = {}
 
@@ -76,6 +81,8 @@ func _guardar_na_primeira_vaga(item: Item) -> void:
 		for coluna in COLUNAS:
 			if grade[linha][coluna] == null:
 				grade[linha][coluna] = item
+				if item.vai_no_espaco_do_braco:
+					braco = item
 				if item.equipavel and gadgets.find(null) != -1:
 					gadgets[gadgets.find(null)] = item
 				return
@@ -89,6 +96,7 @@ func limpar() -> void:
 		grade.append(colunas)
 	gadgets = []
 	gadgets.resize(ESPACOS_GADGET)
+	braco = null
 	estado = {}
 	pegos = {}
 	vistos = {}
@@ -107,6 +115,8 @@ func adicionar(item: Item) -> bool:
 				grade[linha][coluna] = item
 				if item.maximo_unidades > 0:
 					definir_unidades(item, 1)
+				if item.vai_no_espaco_do_braco:
+					braco = item
 				if item.equipavel and espaco_do_gadget(item) == -1:
 					var livre := gadgets.find(null)
 					if livre != -1:
@@ -127,6 +137,8 @@ func remover(id: String) -> void:
 				var espaco := espaco_do_gadget(item)
 				if espaco != -1:
 					gadgets[espaco] = null
+				if braco == item:
+					braco = null
 				mudou.emit()
 				return
 
