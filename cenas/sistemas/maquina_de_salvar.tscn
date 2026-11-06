@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/maquina_de_salvar_luz.png" id="4_luz_camada"]
 [ext_resource type="Texture2D" path="res://assets/sprites/menu/menu_oculos_zane.png" id="5_oculos"]
 [ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="6_luz"]
+[ext_resource type="PackedScene" path="res://cenas/visor/tela_carregando_vr.tscn" id="7_carregando"]
 
 [sub_resource type="CanvasItemMaterial" id="SemLuz"]
 light_mode = 1
@@ -19,6 +20,7 @@ size = Vector2(26, 7)
 [node name="MaquinaDeSalvar" type="Area2D"]
 script = ExtResource("1_maquina")
 texto_acao = "Pôr os óculos"
+tela_de_carregamento = ExtResource("7_carregando")
 altura_aviso = 36.0
 
 [node name="Base" type="Sprite2D" parent="."]

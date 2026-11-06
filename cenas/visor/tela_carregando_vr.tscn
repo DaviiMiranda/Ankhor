@@ -1,0 +1,95 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/visor/tela_carregando_vr.gd" id="1_tela"]
+[ext_resource type="Shader" path="res://shaders/silhueta_oculos_vr.gdshader" id="2_silhueta"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/visor_ligando.wav" id="3_ligando"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trilho"]
+bg_color = Color(0.05, 0.07, 0.08, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.16, 0.5, 0.42, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_carga"]
+bg_color = Color(0.25, 1, 0.8, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.05, 0.07, 0.08, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_silhueta"]
+shader = ExtResource("2_silhueta")
+
+[node name="TelaCarregandoVr" type="CanvasLayer"]
+layer = 15
+script = ExtResource("1_tela")
+
+[node name="Fundo" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.03, 0.045, 0.055, 1)
+
+[node name="Centro" type="CenterContainer" parent="Fundo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Coluna" type="VBoxContainer" parent="Fundo/Centro"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Titulo" type="Label" parent="Fundo/Centro/Coluna"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 1, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+text = "CARREGANDO MODO REALIDADE VIRTUAL"
+horizontal_alignment = 1
+
+[node name="Barra" type="ProgressBar" parent="Fundo/Centro/Coluna"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_trilho")
+theme_override_styles/fill = SubResource("StyleBoxFlat_carga")
+max_value = 1000.0
+show_percentage = false
+
+[node name="Linha" type="HBoxContainer" parent="Fundo/Centro/Coluna"]
+layout_mode = 2
+
+[node name="Etapa" type="Label" parent="Fundo/Centro/Coluna/Linha"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.45, 0.7, 0.64, 1)
+text = "Ligando o visor"
+
+[node name="Porcentagem" type="Label" parent="Fundo/Centro/Coluna/Linha"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.82, 0.9, 1)
+text = "0%"
+horizontal_alignment = 2
+
+[node name="Silhueta" type="ColorRect" parent="Fundo"]
+material = SubResource("ShaderMaterial_silhueta")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SomLigando" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ligando")
+volume_db = -4.0
+bus = &"Efeitos"
