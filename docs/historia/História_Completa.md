@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > **Este documento é a lei do projeto**, junto com as fichas de [`personagens/`](personagens/) (uma por personagem), que fazem parte dele. Tudo o que diz respeito à história, ao mundo e aos personagens de **Ankhor** vale como está escrito aqui e nas fichas, **acima de qualquer outro documento**: GDD, fases, diálogos, arte, textos em `dados/` e o próprio `decisoes.md`. Em caso de dúvida em qualquer parte do jogo (o que uma fase conta, como um personagem fala, o que um objeto significa), consulte este documento e a ficha do personagem. Se outra parte do projeto contradisser o que está aqui, **a outra parte está errada** e deve ser corrigida.
 
-> **Status:** reescrito em 2026-10-06, quando a história mudou de rumo: saíram os loops e a revelação de "Gabriel é o paradoxo", e a fenda passou a ser **um acaso** para quem cai nela. Em 2026-10-07 entrou o antagonista, o **Carlos**. Em 2026-10-15 entraram os ***Homo sideralis*** (quem foi embora), os **Faroleiros** (quem ficou) e o conteúdo da mentira do **Henrique**. Em 2026-10-30, o **Baltazar** deixou de aparecer em pessoa (só os rastros dele) e entrou o nome da partida dos *Homo sideralis*: a **Grande Separação**. Em 2026-11-06 entrou o **Ciborgue**, a cópia de metal do Carlos que caça no bunker, e o **fim do Bunker**: o confronto com o Henrique, o sumiço dele e a fuga do grupo até o Laboratório.
+> **Status:** reescrito em 2026-10-06, quando a história mudou de rumo: saíram os loops e a revelação de "Gabriel é o paradoxo", e a fenda passou a ser **um acaso** para quem cai nela. Em 2026-10-07 entrou o antagonista, o **Carlos**. Em 2026-10-15 entraram os ***Homo sideralis*** (quem foi embora), os **Faroleiros** (quem ficou) e o conteúdo da mentira do **Henrique**. Em 2026-10-30, o **Baltazar** deixou de aparecer em pessoa (só os rastros dele) e entrou o nome da partida dos *Homo sideralis*: a **Grande Separação**. Em 2026-11-06 entrou o **Ciborgue**, a cópia de metal do Carlos que caça no bunker, e o **fim do Bunker**: o confronto com o Henrique, o sumiço dele e a fuga do grupo até o Laboratório, onde a Diana torce o tornozelo, a Clarice fica com ela e o Zane some por outro caminho.
 > **Como mudar:** só por decisão do grupo. Toda mudança de história entra **no mesmo PR** neste documento e em [`../decisoes.md`](../decisoes.md) (que guarda o histórico de quando e por que mudou). Tudo o que ainda não foi decidido fica na **seção 10 ("Pendências")**, no fim, e não no meio da narrativa: o que está fora das pendências está decidido.
 
 ---
@@ -241,7 +241,7 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
   2. **O confronto:** é o grande embate da história com o Henrique. O Gabriel e o Zane já sabem da mentira pelo registro do Carlos na câmara selada do Labirinto ("A virada"), e **todos questionam o Henrique**. No fim, ele **admite** que está enganando o grupo, mas diz que **precisava**.
   3. **O sumiço:** logo depois, o Henrique **começa a brilhar**, com energia em volta do corpo. Todos se assustam. De repente ele **some, como numa explosão de energia**. No chão, onde ele estava, fica um **dispositivo com o número 2900**.
   4. **A voz do Carlos:** o Carlos fala pelos **alto-falantes** do bunker: quer **todos fora do caminho dele**.
-  5. **A fuga:** **vários robôs** vêm atrás do grupo, e todos **fogem juntos por um corredor** até chegarem ao **Laboratório (D-Tec)**, pela comporta do núcleo. É a primeira vez que o grupo anda junto.
+  5. **A fuga:** **vários robôs** vêm atrás do grupo, **atirando**, e todos **fogem juntos por um corredor longo** até chegarem ao **Laboratório (D-Tec)**, pela comporta do núcleo. O Gabriel desvia dos tiros. É a primeira vez que o grupo anda junto.
 - **Ainda em aberto nessa cena:** o que é o brilho, para onde o Henrique foi, o que é o dispositivo e o que quer dizer o 2900 (seção 10.3); como a Clarice e a Diana chegam ao bunker (seção 10.4). **As falas ficam para o roteirista:** este documento só descreve o que acontece na cena. No jogo, a cena já existe com falas genéricas, provisórias (`dados/dialogos/bunker_encontro.json`, `bunker_sumico.json` e `bunker_fuga.json`), que o roteirista vai reescrever.
 - O **setor B** (laboratório, arquivo e a comporta do núcleo) leva à reta final: a comporta no fim do Corredor B abre o acesso à sexta fase, o **Laboratório (D-Tec)**. Até a energia voltar, o corredor do setor B está tomado por um gás que só sai quando os exaustores ligam. O bunker guarda máscaras de gás.
 
@@ -257,11 +257,12 @@ O jogador aprende aqui as regras do jogo (silêncio, esconderijos, bateria) e qu
 - **O Zane já desconfia dele** desde antes de Gabriel chegar, e é por isso que tenta invadir o bunker (Labirinto, Ato 2).
 - O grupo **descobre a mentira** no fim do **Labirinto** (decisão de 2026-11-06): Gabriel e o Zane ouvem, num terminal da câmara selada, um registro do Carlos que diz que o Henrique só atrasa os outros. Até o fim do Bunker, a Clarice e a Diana ainda confiam nele.
 - **A mentira vem à tona para todos no fim do Bunker** (decisão de 2026-11-06): no encontro da sala de dados, o grupo inteiro questiona o Henrique, e ele **admite** que enganou todo mundo, mas diz que precisava. Logo depois ele some numa explosão de energia (Ato 3).
-- É aí que todos **vão atrás do Carlos**: fogem juntos dos robôs dele até o Laboratório, no D-Tec.
+- É aí que todos **vão atrás do Carlos**: fogem juntos dos robôs dele até o Laboratório, no D-Tec (Ato 4, "A chegada").
 
 ### Ato 4 — Consertar a Âncora e voltar (Núcleo)
 
 - A reta final passa pela **comporta do núcleo**, no setor B do bunker. O grupo chega **junto** ao Laboratório, fugindo dos robôs do Carlos (fim do Ato 3), já sem o Henrique.
+- **A chegada (decisão de 2026-11-06):** o grupo sobe da comporta até a Emergência do D-Tec e, ali, conversa pela primeira vez a salvo: o que aconteceu, onde estão, o Henrique e o número no chão. A **Diana torce o tornozelo** na escada e não consegue seguir, então a **Clarice fica com ela** na Emergência. O **Zane** e o Gabriel saem juntos, mas o Zane **vai por outro caminho e some**. Daí em diante, o **Gabriel continua sozinho** pelo Laboratório. Para onde o Zane foi, e se ele volta, está pendente (seção 10.4). As falas no jogo são genéricas, para o roteirista reescrever.
 - Com as partes de todos reunidas, Gabriel e os outros tentam consertar a Âncora e mandar cada um para a sua noite.
 - **O Zane:** o final dele está pendente (seção 10.4). O final antigo (ficar em 3026 para domar a IA) saiu, porque a IA não tem consciência.
 - **O Baltazar:** a trilha dele termina na Âncora, onde a luz nasce. O que aconteceu com ele fica em aberto (seção 5).
@@ -342,7 +343,8 @@ Também decidido: o Gabriel e o Zane descobrem a mentira no Labirinto; no fim do
 
 - **Zane:** o que fazia no ponto quando foi puxado? Qual é o final dele (ficar em 3026 para guardar a Âncora, ficar para se juntar aos Faroleiros, ou voltar para 2123)? As falas dele no bunker (a chamada pelo rádio e o encontro) são rascunho.
 - **Baltazar:** a quem ele escreve as cartas, em 1750? (Já decidido: não aparece em pessoa, só pelos rastros, e desaparece na Âncora; o parentesco aparece pelo anel desenhado numa carta.) E a sala de obras raras da Biblioteca, barrada por dentro, que era a candidata ao esconderijo dele: quem (ou o quê) está do outro lado agora?
-- **Clarice e Diana:** já decidido que se juntam ao grupo no encontro do fim do Bunker e fogem com ele até o Laboratório (Ato 3). Como chegam ao bunker? Como reagem ao descobrir que o Henrique, que as ajudava pelo rádio, mentia?
+- **Clarice e Diana:** já decidido que se juntam ao grupo no encontro do fim do Bunker, fogem com ele até o Laboratório (Ato 3) e ficam na Emergência do D-Tec, porque a Diana torceu o tornozelo (Ato 4). Como chegam ao bunker? Como reagem ao descobrir que o Henrique, que as ajudava pelo rádio, mentia? Voltam a aparecer no fim?
+- **Zane no Laboratório:** já decidido que ele vai por outro caminho e some (Ato 4, "A chegada"). Para onde ele foi, o que fez, e ele volta (no núcleo, no final)?
 - **Gabriel:** enquanto o Baltazar está fora de 1750, o Gabriel começa a falhar (piscar, se desfazer), como a foto em *De Volta para o Futuro*? (Se sim, vira um shader, bom para a apresentação de Computação Gráfica.)
 
 ### 10.5 A estrutura da história
@@ -352,7 +354,6 @@ Já decidido: **Biblioteca → Bloco de salas → Labirinto → Centro de Conviv
 - Por onde Gabriel chega do Bloco de salas ao subsolo do Labirinto?
 - Em que fase fica a carta com o anel desenhado, o momento em que Gabriel descobre o parentesco com o Baltazar?
 - O que os sonhos mostram, agora que não há loops (memória de cada um, o passado do campus, outra coisa)?
-- **O Laboratório (D-Tec):** o grupo chega junto, fugindo (Ato 3). Lá dentro, ficam juntos em pessoa ou se separam (cada um num canto, falando pelo rádio)? O jogador controla só o Gabriel, ou também os outros, como o Zane na câmara selada?
 
 ### 10.6 A volta e o fim
 

@@ -1,11 +1,27 @@
 # Registro de decisões
 
+## 2026-11-06 — Fuga jogável e mais longa, sprites antigos da Clarice, e a chegada ao Laboratório
+
+**Decisão (história):** o grupo chega junto ao Laboratório. Na Emergência do D-Tec eles conversam; a **Diana torce o tornozelo** na escada, e a **Clarice fica com ela**. O **Zane** sai com o Gabriel, mas **vai por outro caminho e some**, e o **Gabriel continua sozinho**. Para onde o Zane foi e se ele volta ficou pendente (Enredo, 10.4). Na fuga, os robôs **atiram**.
+
+**Decisão (jogo):**
+- **A fuga ficou jogável e duas vezes mais longa** (3200 px, uns 27 s correndo). O jogador corre com o Gabriel, com **estamina infinita** só ali, e **desvia saindo da linha dos tiros** (a esquiva com tecla continua fora). Atiradores com o corpo da Sentinela miram como o robô atirador do Centro de Convivência; o Ciborgue e um Caçador encostam. Velocidades no `montar_fuga.py`. Morrer recomeça a fuga.
+- **A Clarice voltou aos sprites renderizados** pelo `gerar_clarice.py`, no estilo dos outros (os desenhados à mão saíram, pedido do Davi). Os retratos ficaram os atuais.
+- **Corrida do grupo:** o Zane, a Clarice e a Diana ganharam a tira de corrida de lado (24 quadros), gerada pelo `gerar_correr.py` com a mesma corrida do Gabriel. No lugar da caminhada acelerada.
+- **A chegada:** na Emergência, cena com falas genéricas (`dtec_chegada.json`). O `montar_dtec.py` passou a aceitar `script` e `instancias` por sala.
+
+**Por quê:** pedido do Davi.
+
+**Cuidado:** o `montar_dtec.py` está desatualizado em relação a `corredor_norte` e `corredor_sul` (a Ronda e o Caçador foram postos à mão). Rodá-lo apaga esses robôs: só a `emergencia.tscn` foi regenerada.
+
+**Afeta:** `scripts/salas/fuga_do_bunker.gd`, `emergencia_dtec.gd` (novo) e `central_dados.gd`; `scripts/personagens/robo_de_cena.gd`, `ator_de_cena.gd` e `gabriel.gd` (`estamina_infinita`); `cenas/salas/bunker/fuga.tscn`, `cenas/salas/dtec/emergencia.tscn`, `cenas/salas/sala_teste_fases.tscn`; `assets/modelagem/salas/bunker/montar_fuga.py`, `assets/modelagem/salas/dtec/montar_dtec.py`, `assets/modelagem/personagens/gerar_correr.py` (novo); os sprites da Clarice e as tiras `_correr_lado` do Zane, da Clarice e da Diana; `dados/dialogos/dtec_chegada.json`; `docs/historia/História_Completa.md`, `docs/fases/bunker.md`, `docs/fases/dtec.md` e `assets/sprites/personagens/clarice/visual.md`.
+
 ## 2026-11-06 — A cena do fim do Bunker no jogo: confronto, sumiço do Henrique e fuga
 
 **Decisão:** o fim do Bunker decidido no Enredo (entrada abaixo) entrou no jogo como uma **cena animada**, com **falas genéricas** por enquanto (pedido do Davi: com animação e um diálogo genérico rápido):
 - **Sala de dados:** o confronto (`bunker_encontro`), o Henrique brilhando e sumindo num clarão, o dispositivo caindo com close no **2900**, a reação do grupo e a "Voz nos alto-falantes" (`bunker_sumico`), que dispara a sirene e deixa a sala vermelha; os passos dos robôs e o "corre" do Zane (`bunker_fuga`).
 - **A fuga:** uma sala nova, `cenas/salas/bunker/fuga.tscn`: o grupo e o Gabriel correm sozinhos por um corredor vermelho, com o Ciborgue, um Caçador e um Rastreador atrás, até a comporta do núcleo, e de lá ao Laboratório (pelo `fim_do_bunker.tscn`, como antes).
-- **Escolhas de produção:** a fuga é **cena, não jogável** (o menor passo; pode virar jogável depois). A voz do Carlos aparece como "Voz nos alto-falantes", sem nome nem retrato, porque quando o jogador descobre o nome dele está pendente. O dispositivo **fica no chão** (se o grupo o leva está pendente). O grupo **não aparece no D-Tec** (se fica junto lá está pendente).
+- **Escolhas de produção:** a fuga é **cena, não jogável** (o menor passo; virou jogável no mesmo dia, entrada acima). A voz do Carlos aparece como "Voz nos alto-falantes", sem nome nem retrato, porque quando o jogador descobre o nome dele está pendente. O dispositivo **fica no chão** (se o grupo o leva está pendente). O grupo **não aparece no D-Tec** (mudou no mesmo dia: entrada acima).
 - **Porta de teste:** a `sala_teste_fases` ganhou a porta "FIM DO BUNKER" (a sala ficou 160 px mais larga), que leva à porta da sala de dados com a energia ligada e as marcas da cena apagadas, para ver a cena de novo quantas vezes quiser. A `PortaDeTeste` ganhou `marcas_ao_entrar` e `marcas_apagadas_ao_entrar`, e o `Progresso`, `desmarcar`.
 - **Peças reaproveitáveis:** `SumicoDeEnergia` (o brilho e o clarão), `AtorDeCena.andar_ate` (personagem parado que anda em cena), `PersonagemParado.virar`, `RoboDeCena` (robô de enfeite) e `Gabriel.correr_sozinho`.
 
