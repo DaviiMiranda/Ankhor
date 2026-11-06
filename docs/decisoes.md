@@ -9,12 +9,13 @@
 - **A Clarice voltou aos sprites renderizados** pelo `gerar_clarice.py`, no estilo dos outros (os desenhados à mão saíram, pedido do Davi). Os retratos ficaram os atuais.
 - **Corrida do grupo:** o Zane, a Clarice e a Diana ganharam a tira de corrida de lado (24 quadros), gerada pelo `gerar_correr.py` com a mesma corrida do Gabriel. No lugar da caminhada acelerada.
 - **A chegada:** na Emergência, cena com falas genéricas (`dtec_chegada.json`). O `montar_dtec.py` passou a aceitar `script` e `instancias` por sala.
+- **Ajustes pedidos depois, no mesmo dia:** os robôs da fuga **ficam sempre na tela** (correm para alcançar, a câmera olha para trás e eles têm luz no corpo); os tiros ficaram **mais frequentes** (recarga de 0,9 a 1,5 s), mas os atiradores **se revezam**, uma mira por vez; o grupo de robôs anda **em formação, a uma boa distância**: o Ciborgue na frente e os atiradores atrás dele, sem um ficar por cima do outro (o Caçador e o quarto atirador saíram). Na Emergência, a **Diana senta numa cadeira** (sprite novo, `gerar_diana_sentada.py`).
 
 **Por quê:** pedido do Davi.
 
 **Cuidado:** o `montar_dtec.py` está desatualizado em relação a `corredor_norte` e `corredor_sul` (a Ronda e o Caçador foram postos à mão). Rodá-lo apaga esses robôs: só a `emergencia.tscn` foi regenerada.
 
-**Afeta:** `scripts/salas/fuga_do_bunker.gd`, `emergencia_dtec.gd` (novo) e `central_dados.gd`; `scripts/personagens/robo_de_cena.gd`, `ator_de_cena.gd` e `gabriel.gd` (`estamina_infinita`); `cenas/salas/bunker/fuga.tscn`, `cenas/salas/dtec/emergencia.tscn`, `cenas/salas/sala_teste_fases.tscn`; `assets/modelagem/salas/bunker/montar_fuga.py`, `assets/modelagem/salas/dtec/montar_dtec.py`, `assets/modelagem/personagens/gerar_correr.py` (novo); os sprites da Clarice e as tiras `_correr_lado` do Zane, da Clarice e da Diana; `dados/dialogos/dtec_chegada.json`; `docs/historia/História_Completa.md`, `docs/fases/bunker.md`, `docs/fases/dtec.md` e `assets/sprites/personagens/clarice/visual.md`.
+**Afeta:** `scripts/salas/fuga_do_bunker.gd`, `emergencia_dtec.gd` (novo) e `central_dados.gd`; `scripts/personagens/robo_de_cena.gd`, `ator_de_cena.gd` e `gabriel.gd` (`estamina_infinita`); `cenas/salas/bunker/fuga.tscn`, `cenas/salas/dtec/emergencia.tscn`, `cenas/salas/sala_teste_fases.tscn`; `assets/modelagem/salas/bunker/montar_fuga.py`, `assets/modelagem/salas/dtec/montar_dtec.py`, `assets/modelagem/personagens/gerar_correr.py` e `gerar_diana_sentada.py` (novos), `cenas/personagens/diana_sentada.tscn` (nova); os sprites da Clarice e o `diana_sentada.png` e as tiras `_correr_lado` do Zane, da Clarice e da Diana; `dados/dialogos/dtec_chegada.json`; `docs/historia/História_Completa.md`, `docs/fases/bunker.md`, `docs/fases/dtec.md` e `assets/sprites/personagens/clarice/visual.md`.
 
 ## 2026-11-06 — A cena do fim do Bunker no jogo: confronto, sumiço do Henrique e fuga
 
