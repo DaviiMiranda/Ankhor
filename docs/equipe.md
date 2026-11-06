@@ -159,7 +159,7 @@ Sprints de duas semanas. Ajustem a cada início de sprint conforme o que foi dec
 | Sprint | 1. Sistemas e arte | 2. Jogabilidade | 3. Roteiro e direção de arte | 4. Roteiro e fases |
 |---|---|---|---|---|
 | 1 | Grafo com 3 salas de teste, um robô com rotina fixa. Placeholders do Gabriel e do primeiro robô | Movimento, corrida, colisão, câmera | Guia de estilo (com o Davi), ficha do Gabriel, primeira luz 2D | Roteiro da Segunda (Biblioteca): o que o jogador descobre e como. Sala de aula de protótipo |
-| 2 | Som por BFS, perseguição por A\*, máquina de estados. Animações do Gabriel | Esconderijo com um microgame, cápsula de clarão | Ficha do primeiro robô, atmosfera da Biblioteca | Textos e documentos da Biblioteca, montagem da Biblioteca no grafo |
+| 2 | Som por BFS, perseguição por A\*, máquina de estados. Animações do Gabriel | Esconderijo com um microgame, flash | Ficha do primeiro robô, atmosfera da Biblioteca | Textos e documentos da Biblioteca, montagem da Biblioteca no grafo |
 | 3 | Grade horária, cadeia de Markov. Primeiro robô e tiles da Biblioteca | Inventário, pilhas como recurso | Roteiro do primeiro sonho, visual da luz da lanterna | Pistas e esconderijos da Biblioteca, som ambiente |
 | 4 | Ajuste da IA na Biblioteca completa. Arte da versão "sonho" da Biblioteca | Dormir, salvar, transição para o sonho | Diferença visual entre presente e sonho, aprovação da arte | Diálogos do sonho (com o papel 3), polimento da Biblioteca |
 

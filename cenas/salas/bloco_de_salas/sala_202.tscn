@@ -461,7 +461,7 @@ nomes = PackedStringArray("LUA", "FOLHA", "RAIZ", "ESTRELA")
 dica_controles = "Setas: escolher     E: apertar     Esc: fechar"
 texto_desarmou = "A trava estalou e voltou ao começo."
 texto_pronto = "A trava soltou."
-aviso_ligado = "A trava do rack soltou. Uma cápsula de clarão caiu entre os óculos."
+aviso_ligado = "A trava do rack soltou. Um flash caiu entre os óculos."
 aviso_ja_ligado = "O rack já está aberto."
 item_premio = ExtResource("pz_clarao")
 

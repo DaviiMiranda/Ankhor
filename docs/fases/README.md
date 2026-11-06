@@ -17,7 +17,7 @@ Diferente de fases lineares isoladas com telas de carregamento tradicionais, o m
 
 2. **Fluxo de Objetivos:**
    - **Objetivo Principal:** Uma meta clara que motiva o jogador a atravessar a área (ex.: encontrar uma chave, alcançar um terminal, desobstruir uma passagem).
-   - **Objetivos Secundários:** Exploração opcional para coletar recursos adicionais (pilhas, cápsulas de clarão, documentos ou relíquias).
+   - **Objetivos Secundários:** Exploração opcional para coletar recursos adicionais (pilhas, flashes, documentos ou relíquias).
 
 3. **Dinâmica de Inimigos (Robôs):**
    - Cada área possui robôs alocados que operam sob uma rotina inicial ditada pela grade horária.

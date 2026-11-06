@@ -52,7 +52,7 @@ O jogador explora as ruínas em vista lateral, sala por sala e prédio por préd
 
 **Distrair.** Jogar pedras e objetos, derrubar estantes, fazer ruído num lugar para atrair os robôs para longe.
 
-**Defender-se (limitado).** Disparar uma **cápsula de clarão** (um flash descartável) libera um clarão forte por um instante e atordoa o robô por alguns segundos. As cápsulas são escassas — é para escapar, não para vencer.
+**Defender-se (limitado).** Disparar um **flash** (um flash descartável) libera um clarão forte por um instante e atordoa o robô por alguns segundos. Os flashes são escassos — é para escapar, não para vencer.
 
 **Dormir.** Em salas seguras e fechadas, o jogador pode dormir. Dormir **salva o jogo** e leva a um **sonho**: o mesmo lugar no passado antes de tudo. Nos sonhos não há perigo — há conversas, detalhes e senhas que servem no presente.
 
@@ -76,7 +76,7 @@ A progressão entre áreas é por **passagens abertas, mecanismos, puzzles de gr
 ### Sistema de Recompensas
 
 - **Acesso:** novas áreas do campus e atalhos entre elas.
-- **Recursos:** pilhas para a lanterna e cápsulas de clarão, sempre escassos.
+- **Recursos:** pilhas para a lanterna e flashes, sempre escassos.
 - **Verdade:** cada pista, marca na parede e sonho revela uma parte do mistério. A história é a principal recompensa.
 - **Colecionáveis:** relíquias do cotidiano (um crachá, um celular fossilizado, uma caneca da cantina) com a descrição de quem eram seus donos, e páginas do diário que o protagonista vai escrevendo.
 - **Final:** o que o jogador descobriu muda as opções disponíveis no final.
@@ -142,6 +142,6 @@ Um campus contínuo dividido em **seis fases sequenciais**: **Biblioteca → Blo
 - **Os robôs**, cada tipo com seu sensor dominante (som, visão, luz) e padrão de patrulha (`docs/historia/personagens/robos.docx`).
 - **Barulho:** correr, pisar em entulho e derrubar coisas se ouve pelo grafo.
 - **Escuridão:** a lanterna ajuda a ver e ajuda a ser visto; a bateria acaba.
-- **Recursos escassos:** pilhas e cápsulas de clarão nunca sobram.
+- **Recursos escassos:** pilhas e flashes nunca sobram.
 - **O próprio lugar:** pisos que cedem, passagens enterradas, andares alagados, caminhos que só existem por cima.
 - **O tempo da grade:** a mesma sala é segura num horário e perigosa no seguinte, e o jogador só conhece a grade pelo que viu nos sonhos.

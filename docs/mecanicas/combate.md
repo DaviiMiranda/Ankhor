@@ -27,7 +27,7 @@ Um robô novo (`cenas/personagens/robo_atirador.tscn`, script `scripts/personage
 
 ## 2. Arma de impulso (`arma_impulso`)
 
-- **Onde está:** dentro do **cofre do cinema** (`cinema_cabine`, código 7-2-4). O prêmio do cofre, que era uma cápsula de clarão, passou a ser a arma.
+- **Onde está:** dentro do **cofre do cinema** (`cinema_cabine`, código 7-2-4). O prêmio do cofre, que era um flash, passou a ser a arma.
 - **Como usa:** é um gadget; vai para um dos 3 espaços e a tecla do espaço (`1`, `2` ou `3`) dispara.
 - **O que faz:** uma onda de choque em volta do Gabriel (raio 120 px) que **empurra os robôs para longe** e os deixa **paralisados por 0,9 s**. A força cai com a distância: quem está colado é jogado a ~400 px/s, quem está na borda a ~170 px/s. O empurrão é um `_impulso` no `Robo`, que perde velocidade por atrito (420 px/s²), então o robô desliza e para.
 - **Custo:** **4 cargas**, que **recarregam sozinhas** (1 a cada 7 s) enquanto a arma está equipada. Entre dois disparos, 0,45 s. Quem pega a arma pela primeira vez já a recebe com as 4 cargas.
@@ -64,7 +64,7 @@ Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia: arma de 
 
 **O modo combate** (`scripts/sistemas/modo_combate.gd`, só a porta CONVIVÊNCIA liga):
 
-- **Cápsulas de clarão e cargas da arma de impulso são infinitas** (não gastam).
+- **Flashes e cargas da arma de impulso são infinitas** (não gastam).
 - **Morrer devolve ao meio da praça** (o ponto da porta), com 2 s de proteção, em vez de ao último checkpoint. Os checkpoints do cenário não mudam o ponto de volta.
 - **Acaba sozinho** ao voltar ao menu, começar um jogo novo, carregar um save ou sair da fase (tudo que chama `Checkpoints.limpar()`).
 

@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/braco_hack.gd" id="1_braco"]
+
+[node name="BracoHack" type="Node2D"]
+script = ExtResource("1_braco")

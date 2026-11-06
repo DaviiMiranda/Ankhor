@@ -10,9 +10,19 @@ signal mudou(atual: float, maxima: float)
 
 var valor := 0.0
 var pressao := 0.0
+var ativa := true
+
+
+func desativar() -> void:
+	ativa = false
+	valor = 0.0
+	pressao = 0.0
+	mudou.emit(0.0, 1.0)
 
 
 func atualizar(posicao_jogador: Vector2, delta: float) -> void:
+	if not ativa:
+		return
 	var intensidade_perigo := _calcular_intensidade_perigo(posicao_jogador)
 	var valor_anterior := valor
 	if intensidade_perigo > 0.0:
@@ -25,6 +35,8 @@ func atualizar(posicao_jogador: Vector2, delta: float) -> void:
 
 
 func definir_pressao(nova_pressao: float) -> void:
+	if not ativa:
+		return
 	pressao = clampf(nova_pressao, 0.0, 1.0)
 	if valor < pressao:
 		valor = pressao

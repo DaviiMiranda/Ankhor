@@ -49,7 +49,7 @@ stateDiagram-v2
     ROTINA --> PERSEGUINDO: Linha de visão direta (Raycast)
     INVESTIGANDO --> PERSEGUINDO: Jogador avistado
     INVESTIGANDO --> RETORNANDO: Nada encontrado (Timeout)
-    PERSEGUINDO --> ATORDOADO: Cápsula de clarão esmagada
+    PERSEGUINDO --> ATORDOADO: Flash esmagado
     PERSEGUINDO --> INVESTIGANDO: Linha de visão perdida
     ATORDOADO --> INVESTIGANDO: Fim do atordoamento
     RETORNANDO --> ROTINA: Chegou à sala da grade horária
@@ -58,7 +58,7 @@ stateDiagram-v2
 - **ROTINA:** Executa a rota de patrulha atribuída pela grade horária.
 - **INVESTIGANDO:** Move-se até o nó onde o som ou movimento suspeito foi registrado.
 - **PERSEGUINDO:** Move-se na velocidade máxima calculada via $A^*$ em perseguição direta.
-- **ATORDOADO:** Paralisado por 3 a 5 segundos após a detonação de uma cápsula de clarão.
+- **ATORDOADO:** Paralisado por 3 a 5 segundos após a detonação de um flash.
 - **RETORNANDO:** Caminha de volta à sala original prevista pela coloração de horários.
 
 ---
@@ -127,7 +127,7 @@ stateDiagram-v2
 
 Ao entrar em PERSEGUINDO, o robô emite `jogador_detectado` (e toca o guincho); ao desistir, `jogador_perdido`. A sala escuta esses sinais para subir e descer a camada de perseguição da trilha.
 
-O estado RETORNANDO do plano original não foi preciso: ao desistir, o robô recomeça a patrulha de onde está. O ATORDOADO volta quando existir a cápsula de clarão.
+O estado RETORNANDO do plano original não foi preciso: ao desistir, o robô recomeça a patrulha de onde está. O ATORDOADO volta quando existir o flash.
 
 ---
 

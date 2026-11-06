@@ -1,5 +1,18 @@
 # Registro de decisões
 
+## 2026-11-06 — O Zane jogável ganha corrida própria, kit e hack à distância; a cápsula de clarão vira Flash
+
+**Decisão:**
+- **Corrida do Zane:** a corrida dele estava quebrada (usava a tira de caminhada, de 12 quadros, no lugar da de corrida, de 24). Agora tem uma tira própria de **48 quadros** por vista, **mais ereta** que a do Gabriel (o tronco quase não inclina, a cabeça fica erguida) e com passo largo e saltado.
+- **Kit do Zane:** ele entra na passagem com a **lanterna infinita**, **2 flashes** e o **braço de hack**. O kit é emprestado: a mochila do Gabriel é guardada e volta quando a cena acaba.
+- **Sem ansiedade e mais estamina:** o Zane não tem a mecânica de ansiedade (a barra e o efeito somem) e a estamina dele é **200**, o dobro da do Gabriel.
+- **Hack à distância:** com `3`, o Zane estende o braço de metal na direção do robô mais perto (até 170 px, em linha reta) e abre o minigame de hack em tempo real. Se der certo, o robô desliga por 15 s; se falhar, ele ouve. A dificuldade depende do robô.
+- **Flash:** o item "Cápsula de clarão" passa a se chamar **Flash** em todo o jogo e nos docs. O id interno continua `clarao` (`dados/itens/clarao.tres`).
+
+**Por quê:** pedido do Davi, focando na fase do Zane.
+**Para conferir em jogo:** o Zane começa com **2 flashes** (o máximo do item). Se for para ser só 1, é `maximo_unidades` ou o kit em `perfil_zane.gd`.
+**Afeta:** `scripts/personagens/gabriel.gd` (tabelas de mão e `lanterna_infinita`), `perfil_zane.gd` e `maos_do_zane.gd` (novos), `scripts/sistemas/inventario.gd` (`emprestar_kit` e `devolver_kit`), `ansiedade.gd`, `scripts/interface/hud.gd`, `scripts/itens/lanterna.gd`, `braco_hack.gd` (novo) e `clarao.gd`, `dados/itens/braco_hack.tres` e `clarao.tres`, `cenas/itens/braco_hack.tscn`, `scripts/salas/passagem_do_zane.gd`, os sprites `zane_correr_*` e `zane_hack_*`, os geradores `gerar_zane_movimentos.py` e `gerar_braco_hack.py` e `docs/mecanicas/zane_jogavel.md` (novo).
+
 ## 2026-11-06 — A câmara selada no fim do Labirinto: o Zane salva o Gabriel e o grupo descobre a mentira do Henrique
 
 **Decisão:** o alçapão da oficina deixa de levar direto à passarela do Centro de Convivência. Ele leva a uma **câmara selada** (nova), que o Carlos lacrou:

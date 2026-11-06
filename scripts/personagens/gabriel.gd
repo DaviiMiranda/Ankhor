@@ -86,6 +86,9 @@ const PEITO_NO_QUADRO := {
 
 static var _avisou_da_esquiva := false
 
+var tabela_maos: Dictionary = MAOS
+var tabela_maos_correndo: Dictionary = MAOS_CORRENDO
+var lanterna_infinita := false
 var jogador_controla := true
 var direcao_automatica := Vector2.ZERO
 var correndo := false
@@ -339,7 +342,7 @@ func posicao_do_peito() -> Vector2:
 
 
 func posicao_da_mao() -> Vector2:
-	var quadros: Array = MAOS_CORRENDO[vista] if _tira_da_mao == "correr" else MAOS[vista][_tira_da_mao]
+	var quadros: Array = tabela_maos_correndo[vista] if _tira_da_mao == "correr" else tabela_maos[vista][_tira_da_mao]
 	return ponto_do_quadro(quadros[mini(sprite.frame, quadros.size() - 1)])
 
 

@@ -280,7 +280,7 @@ Para qualquer texto do jogo ou da documentação:
 | **Robôs** (os inimigos) | "Insones", "Bibliotecária", "Calouros", "Vigia" (premissa antiga) |
 | **Lanterna a pilha** e **luzes de emergência** | "fungos", "pote de fungos" |
 | **Antecessores** (quem caiu antes de Gabriel) | "viajantes" ou "vítimas" como termo oficial |
-| **Cápsula de clarão** | "granada" |
+| **Flash** | "granada" |
 | **Caderno do Gabriel** | "diário" para o caderno dele (o diário é o do Baltazar) |
 | **Bunker** (embaixo do núcleo da Âncora) | — |
 

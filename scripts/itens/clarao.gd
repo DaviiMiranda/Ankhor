@@ -15,7 +15,7 @@ func usar() -> void:
 	if not ModoCombate.ativo:
 		var restantes := Inventario.unidades(item.id)
 		if restantes <= 0:
-			Inventario.aviso.emit("Acabaram as cápsulas")
+			Inventario.aviso.emit("Acabaram os flashes")
 			return
 		Inventario.definir_unidades(item, restantes - 1)
 	som.play()

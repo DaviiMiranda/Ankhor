@@ -238,6 +238,11 @@ func _pintar_barra_estamina() -> void:
 func _ao_mudar_ansiedade(atual: float, maxima: float) -> void:
 	if maxima <= 0.0 or _barra_ansiedade_preenchimento == null:
 		return
+	if _jogador_conectado and _jogador_conectado.ansiedade and not _jogador_conectado.ansiedade.ativa:
+		_barra_ansiedade_fundo.visible = false
+		_rotulo_ansiedade.visible = false
+		_efeito_ansiedade.visible = false
+		return
 	var proporcao := clampf(atual / maxima, 0.0, 1.0)
 	var cor_calma := Color(0.76, 0.69, 0.48, 1.0)
 	var cor_alerta := Color(0.9, 0.22, 0.16, 1.0)

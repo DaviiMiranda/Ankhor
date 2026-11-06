@@ -41,7 +41,7 @@ Todo `Interagivel` tem `segundos_segurar` e `ruido_ao_segurar`. Com tempo maior 
 
 - **Chave usada sai da mochila:** ao destrancar, a `Porta` tira a chave do inventário. Sem isso, a grade de 12 espaços encheria no meio do jogo.
 - **Pilha serve a três gadgets:** ao pegar uma pilha, ela vai para o que estiver mais fraco entre lanterna, walkman e notebook.
-- **Menos sobras:** o Centro de Convivência perdeu 2 pilhas (mezanino e cabine do cinema) e o Bunker perdeu 2 cápsulas de clarão (arsenal e depósito). O D-Tec não mudou.
+- **Menos sobras:** o Centro de Convivência perdeu 2 pilhas (mezanino e cabine do cinema) e o Bunker perdeu 2 flashes (arsenal e depósito). O D-Tec não mudou.
 
 ---
 
