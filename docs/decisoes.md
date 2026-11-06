@@ -1,5 +1,24 @@
 # Registro de decisões
 
+## 2026-11-06 — A câmara selada no fim do Labirinto: o Zane salva o Gabriel e o grupo descobre a mentira do Henrique
+
+**Decisão:** o alçapão da oficina deixa de levar direto à passarela do Centro de Convivência. Ele leva a uma **câmara selada** (nova), que o Carlos lacrou:
+- O Gabriel cai nela e fica **preso** atrás de uma grade. O Zane vai salvá-lo **em pessoa e jogável**, pelo duto de serviço: dois trechos, uma Ronda e uma Sentinela, duas travas (um painel de chaves em binário e um código de quatro dígitos, `1985`).
+- Depois do resgate, os dois ouvem num terminal o **registro do Carlos**, em que o grupo **descobre a mentira do Henrique** (ele só atrasa os outros). Isso responde, em parte, à pendência 10.3 do Enredo (como e quando o grupo descobre).
+- O Zane sobe de volta para a oficina e continua só no rádio, então o Centro de Convivência segue sem ninguém em pessoa. O Gabriel sobe pelo duto até a passarela.
+- Tudo com o que já existe: painéis, grades, robôs e diálogos, sem mecânica nova.
+
+**Por quê:** pedido do Davi, para fechar o Labirinto com uma parte secreta em que o Zane tem papel e o grupo descobre os planos do Carlos.
+
+**Consequência que ainda falta tratar:** o Bunker (e a cena `bunker_encontro`) trata o Henrique como aliado. Fica em aberto como o grupo reage lá, agora que o Gabriel e o Zane sabem. A Clarice e a Diana, que confiam nele, ainda não sabem de nada.
+
+**Afeta:** `scripts/salas/camara_selada.gd`, `passagem_do_zane.gd`; `scripts/sistemas/grade_com_colisao.gd` (novo) e `alcapao.gd` (`com_tela_de_saida` e `marca_para_usar`); `scripts/salas/labirinto.gd` e `cenas/salas/labirinto.tscn` (o alçapão aponta para a câmara); as cenas `camara_selada.tscn` e `passagem_do_zane.tscn` e o gerador `assets/modelagem/salas/labirinto/gerar_camaras.py`; seis diálogos novos em `dados/dialogos/` (`camara_*` e `zane_passagem_*`); `docs/fases/labirinto.md` (seção 5.1), `centro_de_convivencia.md` e `docs/historia/História_Completa.md` (Ato 2, "A virada" e 10.3). **`História_Completa.docx` ainda não foi atualizado.**
+
+## 2026-11-06 — Sai a fresta de espiar da barricada (Bloco de salas)
+
+**Decisão:** a fresta da barricada da sala 103 ("Espiar o corredor") sai do jogo, junto com a lógica de espiar da `Porta`. Isso desfaz a linha "fresta da barricada" da entrada de 2026-10-12. O resto daquela entrada (nichos, fator de piso, mapa de giz, estalos, pedra pelo buraco) continua. `Gabriel.esconder()` fica, porque os nichos e as cabines usam.
+**Por quê:** pedido do Davi, para abrir espaço para uma parte nova no fim do Labirinto.
+**Afeta:** `scripts/sistemas/porta.gd` (sai `espiar()` e tudo o que mexia na câmera e na camada do Gabriel), `cenas/salas/bloco_de_salas/sala_103.tscn`, `cenas/personagens/fresta_da_barricada.tscn` e `scripts/personagens/fresta_da_barricada.gd` (apagados), `docs/fases/bloco_de_salas.md` (seções 12.4 e 12.8).
 ## 2026-11-06 — Combate no Centro de Convivência: robô atirador, arma de impulso e esquiva
 
 **Decisão:** a pedido do Davi, três mecânicas novas, **só no Centro de Convivência** (detalhes em [`mecanicas/combate.md`](mecanicas/combate.md)):

@@ -1,8 +1,8 @@
 # Fase — Labirinto (subsolo)
 
-> **Status:** Jogável (segunda versão: ampliado, com a oficina do Zane, três nós de controle e o Corredor do Tempo, opcional)  
+> **Status:** Jogável (segunda versão: ampliado, com a oficina do Zane, três nós de controle, o Corredor do Tempo, opcional, e a câmara selada do fim, com o Zane jogável)  
 > **Área:** subsolo escuro do centro de pesquisa da Âncora  
-> **Ordem na história:** **terceira fase**, depois do Bloco de salas e antes do Centro de Convivência ([`centro_de_convivencia.md`](centro_de_convivencia.md)). A saída do Bloco leva a ela; o alçapão da oficina do Zane leva à passarela do Centro de Convivência. Também aparece pelo menu **Fases**.
+> **Ordem na história:** **terceira fase**, depois do Bloco de salas e antes do Centro de Convivência ([`centro_de_convivencia.md`](centro_de_convivencia.md)). A saída do Bloco leva a ela; o alçapão da oficina do Zane leva à **câmara selada** (seção 5.1), e a câmara leva à passarela do Centro de Convivência. Também aparece pelo menu **Fases**.
 
 ---
 
@@ -21,7 +21,7 @@ Um labirinto de corredores de concreto no escuro. O Gabriel começa **fora da of
 2. Procura os três salões. Cada um tem **uma entrada só**, um **console** com a luz vermelha (o nó) e um **checkpoint**. Perto do console, o notebook (tecla do espaço dele) abre o minigame; vencer acende a luz verde.
 3. O aviso "Nó N de 3 invadido" marca o progresso. No terceiro, aparece "Rede invadida. Volte ao Zane" e o Zane chama pelo rádio.
 4. Volta aos poucos passos da oficina (fugindo dos robôs, que continuam patrulhando) e fala com o Zane de novo: outra conversa, em que ele revela o alçapão sob a lona e o abre.
-5. Aperta `E` no alçapão ("Descer"): o Gabriel some no escuro e a fase termina.
+5. Aperta `E` no alçapão ("Descer"): o Gabriel some no escuro e cai na **câmara selada**: a tampa fecha, uma grade desce e ele fica preso. O Zane vem salvá-lo (jogável), com travas e robôs no caminho. Depois do resgate, os dois ouvem o registro do Carlos e o Gabriel sobe pelo duto, até a passarela (seção 5.1).
 
 **Opcional:** no corredor de cima, um trecho da parede é falso. Com a lanterna apontada para ele aparecem os riscos (o Cruzeiro do Sul e uma cruz); perto, `E` ("Afastar o painel") abre a passagem para a **sala onde o Baltazar morou**, vazia: ele não aparece em pessoa, e a sala é um dos rastros dele (seção 3).
 
@@ -162,10 +162,33 @@ A IA (máquina de estados, cone por produto escalar, BFS do som, A\*, Markov) es
 - **Onde:** `A` no modelo da oficina, dois blocos à direita do Zane. Cena `cenas/sistemas/alcapao.tscn`, script `alcapao.gd` (herda de `Interagivel`).
 - **Escondido:** até a marca `labirinto_alcapao_revelado`, o sprite é uma **lona velha** (`alcapao_escondido.png`) e não dá para interagir.
 - **Revelado:** ao fim da conversa `zane_labirinto_alcapao.json` o Zane o abre: o sprite vira o alçapão aberto com escada (`alcapao_aberto.png`), uma luz ciano acende e aparece `[E] Descer`.
-- **Descer:** o Gabriel para e escurece (0,7 s) e entra a tela `SaidaFase` com o texto da fase. O alçapão leva à passarela do Centro de Convivência (`cena_da_saida`, `titulo_da_saida` e `subtitulo_da_saida` na cena do Labirinto).
+- **Descer:** o Gabriel para e escurece (0,7 s) e a cena troca direto para a câmara selada (`cena_da_saida` na cena do Labirinto, com `saida_com_tela = false`: sem a tela `SaidaFase`).
 - **Se morrer e recarregar:** as marcas ficam em `Progresso`; o alçapão volta já aberto, se o Zane o tinha revelado.
 - **Só com o Zane:** ele não abre o alçapão antes de os 3 nós caírem, mesmo que o jogador fale com ele.
-- Ao passar: tela "VOCÊ SAIU DO LABIRINTO · Próxima fase: o Centro de Convivência" e a passarela do Centro de Convivência. Os campos `cena_da_saida`, `titulo_da_saida` e `subtitulo_da_saida` na cena do Labirinto controlam isso.
+- A tela "VOCÊ SAIU DO LABIRINTO · Próxima fase: o Centro de Convivência" agora aparece no fim da câmara selada, no duto de volta (seção 5.1).
+
+### 5.1 A câmara selada (o fim da fase)
+
+Uma parte secreta no fim do Labirinto. O alçapão da oficina não leva à passarela: leva a uma câmara sem janela, que o **Carlos** lacrou. O Zane, que mapeou o duto como saída, não sabia dela. Três cenas, geradas por `assets/modelagem/salas/labirinto/gerar_camaras.py` (as paredes e o chão são as peças do bunker):
+
+| Cena | Quem joga | O que acontece |
+|---|---|---|
+| `cenas/salas/labirinto/camara_selada.tscn` (1ª vez) | Gabriel | A tampa fecha e uma grade desce: ele fica numa cela. Conversa com o Zane pelo rádio (`camara_gabriel_preso.json`): o Zane diz que é armadilha, manda o Gabriel não encostar em nada e vai por outro lado. Ao fim, a tela escurece e a cena troca para a passagem do Zane |
+| `cenas/salas/labirinto/passagem_do_zane.tscn` | **Zane** (jogável) | O duto de serviço, em dois trechos, de 1280 px. Detalhes abaixo |
+| `camara_selada.tscn` (2ª vez, marca `zane_passagem_concluida`) | Gabriel | O Zane espera do lado de fora da cela e a grade sobe (`camara_zane_resgate.json`). O terminal do fundo acende: `E` toca o **registro do Carlos** (`camara_plano_carlos.json`), em que o grupo descobre a mentira do Henrique. Só depois o duto de volta fica livre (`E`, "Subir"): tela "VOCÊ SAIU DO LABIRINTO" e a passarela do Centro de Convivência |
+
+**A passagem do Zane.** O jogador controla o Zane com o mesmo corpo do Gabriel (`passagem_do_zane.gd` troca as texturas, como o `escolha_personagem.gd`): as mesmas regras de passos, estamina, esconderijo e dano. Sem lanterna e sem notebook, então os puzzles são os painéis da sala, e não o hackeamento.
+
+- **Trecho um:** uma **Ronda** (patrulha entre os x 170 e 400; bipa antes de virar). O **painel de chaves** (`painel_bits`, alvo 19 = 10011, cinco chaves; o Zane explica que cada chave vale o dobro da seguinte) solta a primeira trava (marca `camara_trava_1`). Um nicho na parede (x 280) esconde o Zane parado.
+- **Trecho dois:** uma **Sentinela** (patrulha entre os x 640 e 900). Um pôster de "De Volta para o Futuro", com "26/10/1985. O ano basta." escrito de caneta vermelha (a cor do Carlos), dá o **código `1985`** do `painel_codigo`, que solta a segunda trava (`camara_trava_2`). Outro nicho (x 760).
+- **As travas** são grades com colisão (`cenas/sistemas/grade_com_colisao.tscn`): fechadas, bloqueiam o Zane e os robôs; sobem quando a marca aparece. Há um checkpoint no início e outro depois da primeira grade.
+- **O fim:** depois da segunda grade, o gatilho do Zane marca `zane_passagem_concluida` e a porta da câmara destrava.
+
+**O registro do Carlos.** Só diz o que já é do Enredo (seção "A virada"): o Henrique acredita que vai voltar a antes da morte da mãe, o Carlos só o usa para manter cada um no seu canto enquanto termina de ajustar a Âncora para si. A voz fala como locutor de rádio dos anos 80, sem gírias, e o registro assina só "C.". Depois, o Zane diz que vai para a oficina manter a frequência (por isso, no Centro de Convivência, ele volta a ser só uma voz no rádio) e avisa que o Henrique tem as câmeras do campus.
+
+**Marcas (`Progresso`):** `camara_gabriel_preso`, `zane_passagem_inicio_visto`, `camara_trava_1`, `zane_passagem_segundo_visto`, `camara_trava_2`, `zane_passagem_concluida`, `camara_cela_aberta`, `camara_registro_lido`.
+
+**Para conferir em jogo:** os números da passagem (velocidade e rota das patrulhas, folga entre a Ronda e o painel); a arte é placeholder (terminal feito de retângulos, o duto usa o sprite do alçapão); a música é só a de perseguição que o `RobosDaSala` põe; a cela não tem arte própria (usa a grade de aço).
 
 ---
 
@@ -194,7 +217,9 @@ Quando um robô vê o Gabriel, a camada de perseguição sobe em 0,8 s; quando t
 
 - Esconderijos (armários) e distrações (arremesso) do GDD. Já há nichos nos becos com pilha (2026-11-04), o sonar e o Nó 3 sem pausa: [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 4.
 - Por que a rede do subsolo é fechada para o Zane (Enredo, seção 10.1). Já decidido: os três nós guardam a trava que lacra o bunker (Enredo, seção 8, Ato 2).
-- Por onde o Gabriel chega do Bloco de salas ao subsolo (hoje a porta corta-fogo abre direto o Labirinto) e para onde o alçapão leva de verdade (hoje, o Bunker, provisoriamente).
+- Por onde o Gabriel chega do Bloco de salas ao subsolo (hoje a porta corta-fogo abre direto o Labirinto).
+- **Revisar o Bunker:** o registro da câmara faz o grupo descobrir a mentira do Henrique já aqui. O Bunker (`bunker.md`, `bunker_encontro.json` e o pedido do Henrique pela Clarice) ainda trata o Henrique como aliado.
+- Arte própria da câmara selada, e testar o equilíbrio da passagem do Zane (seção 5.1).
 - Rotina de patrulha por grade horária (coloração de grafos): hoje a patrulha é só a cadeia de Markov.
 - Uma porta de entrada visível no ponto onde o Gabriel começa (hoje ele simplesmente aparece ali) e animação do Zane; ele está parado.
 - Arte final das portas das salas (hoje são retângulos de aço com lâmpada, só para marcar a posição e a animação) e um som de trava ao fechar.

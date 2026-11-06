@@ -1,0 +1,64 @@
+{
+	"id": "camara_plano_carlos",
+	"inicio": "registro",
+	"anotacao": {
+		"titulo": "O que o registro diz",
+		"texto": "Na câmara do duto, o terminal tocou uma gravação de quem assina só \"C.\": o Henrique trabalha para ele. O Henrique acredita que vai voltar a antes da morte da mãe, mas o outro só o usa para manter cada um de nós no seu canto enquanto termina de ajustar a Âncora para si. O Zane desconfiava desde o começo. Ele vai manter a frequência e eu desço ao bunker sabendo disso."
+	},
+	"trechos": {
+		"registro": {
+			"falas": [
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_surpreso",
+					"texto": "O terminal acendeu sozinho. Tem uma gravação rodando, com uma voz de locutor de rádio."
+				},
+				{
+					"quem": "Registro de C.",
+					"retrato": "",
+					"texto": "Boa noite, ouvintes. Aqui fala a rádio do subsolo. Mais uma noite sem novidades no campus."
+				},
+				{
+					"quem": "Registro de C.",
+					"retrato": "",
+					"texto": "O rapaz do bunker segue fiel. Acredita que vou devolvê-lo a antes da perda da mãe. Não vou. A Âncora não pergunta de quem é a saudade."
+				},
+				{
+					"quem": "Registro de C.",
+					"retrato": "",
+					"texto": "Basta que ele mantenha cada um no seu canto, com uma planta aqui e um aviso ali, enquanto eu termino de ajustar a máquina. Quando terminar, ela será só minha. Câmbio e desligo."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "O rapaz do bunker é o Henrique. Os números fecham: é o único que sabe de tudo e o único que nunca consertou nada."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_triste",
+					"texto": "Ele passou dica verdadeira pra Clarice. Ela confia nele."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_concentrado",
+					"texto": "Por isso funciona. A dica verdadeira compra a confiança, e a mentira vem na frente dela. Ele não está consertando nada. Está atrasando a gente."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_determinado",
+					"texto": "Então a gente não pode contar com ele pra nada."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Pode descer ao bunker, sabendo. E o Henrique tem as câmeras do campus: o que passar fora da minha frequência, ele pode ouvir."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Vai pelo duto de volta. Eu subo para a oficina e mantenho a frequência. Quando chegar à passarela, eu te guio."
+				}
+			]
+		}
+	}
+}

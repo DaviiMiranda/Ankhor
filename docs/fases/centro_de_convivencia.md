@@ -3,7 +3,7 @@
 > **Status:** Jogável (14 salas: a praça com 4 restaurantes, o segundo andar com 3 lojas e a sala segura; puzzle de Coloração de Grafos e mais seis puzzles opcionais (seção 8), Célula de Energia, letreiros e holofotes que acendem com a energia, transmissões do Zane pelo rádio)  
 > **Área:** o Centro de Convivência da Unifor, em 3026: uma praça de alimentação sob uma cúpula de vidro quebrada  
 > **Ordem na história:** **quarta fase**, depois do Labirinto ([`labirinto.md`](labirinto.md)) e antes do Bunker ([`bunker.md`](bunker.md)).  
-> **Como se chega:** Pelo duto do alçapão da oficina do Zane no fim do Labirinto, saindo em `passarela_acesso`.  
+> **Como se chega:** Pelo duto de volta da câmara selada, no fim do Labirinto (o alçapão da oficina do Zane leva primeiro à câmara; ver [`labirinto.md`](labirinto.md), seção 5.1), saindo em `passarela_acesso`.  
 > **Saída:** O elevador de carga do Churrasco Solar (`loja_4`), que desce para a entrada do Bunker (`fim_da_convivencia`).  
 > **No menu Fases:** Cadastrado em `dados/fases/04_convivencia.tres` ("Convivência").
 
