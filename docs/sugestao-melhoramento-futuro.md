@@ -50,6 +50,35 @@ Registro de melhorias secundárias, polimento visual, sonoro e ajustes de qualid
   - **Toque de computação gráfica / computação:** uso da estrutura de grafos do campus (GDD 2.4) para modelar as conexões bidirecionais entre os nós de salas seguras, aplicando busca em largura (BFS) ou Dijkstra para calcular e validar atalhos acessíveis e garantir que rotas de retorno não quebrem o fluxo da história.
   - **Depende de:** sistema de persistência/savegame em disco, portas de transição inter-fases nas salas seguras e trilha/efeitos sonoros de alívio dedicados.
 
+## Combate e Gadgets
+
+- [ ] **Robô que atira raios:**
+  - Novo tipo de robô, que ataca à distância disparando raios.
+
+- [ ] **Novo gadget: arma de impulso:**
+  - Uma arma de impulso que **afasta os robôs**.
+
+- [ ] **Notebook com mais alcance e sem desabilitar totalmente o robô:**
+  - O notebook passa a **hackear a uma distância maior**.
+  - O hack **não desabilita totalmente** o robô.
+
+## Mecânicas e Fases
+
+- [ ] **Mecânica de espiar na fase 2 inteira:**
+  - A mecânica de espiar pode valer na **fase 2 (Bloco de Salas) inteira**.
+  - **Hoje:** só existe a fresta da barricada da sala 103 (`fresta_da_barricada` e `Porta.espiar()`, ver [`fases/bloco_de_salas.md`](fases/bloco_de_salas.md), seção 12.4).
+
+- [ ] **Fase jogável com o Zane:**
+  - Uma fase em que o jogador controla o **Zane**.
+
+- [ ] **Uma parte do jogo com o Carlos perseguindo o jogador:**
+  - Um trecho em que o **Carlos** persegue o jogador.
+  - **Hoje:** pela ficha dele, o Carlos nunca sai do laboratório, e o Gabriel nunca encosta nele: o confronto é um duelo de percepção (ver [`fases/dtec.md`](fases/dtec.md)). Esse trecho muda isso, então a decisão passa pelo Enredo Principal e por `docs/decisoes.md`.
+
+- [ ] **Testar uma mecânica de esquiva:**
+  - Experimentar uma mecânica de esquiva para o Gabriel.
+  - **Hoje:** não existe esquiva; as ações do jogador são mover, correr, interagir, largar e inventário (ver [`mecanicas/movimentacao_e_terreno.md`](mecanicas/movimentacao_e_terreno.md)).
+
 ## Conteúdo extra
 
 - [ ] **Easter eggs colecionáveis que dão conquistas:**
