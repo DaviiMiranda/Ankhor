@@ -17,7 +17,7 @@ Um robô novo (`cenas/personagens/robo_atirador.tscn`, script `scripts/personage
 4. **Mira travada** (0,4 s): a linha fica branca e grossa e **para de seguir**. É a janela para sair da linha ou esquivar.
 5. **Dispara** um raio (`RaioAtirado`) na direção travada. Depois recarrega por 2,2 s antes de mirar de novo.
 
-**O raio** viaja a 210 px/s, tira **1 de vida** e some ao acertar. **Mesas, árvores e paredes (camada 8) param o raio**, o mesmo que cortam a visão dos robôs: ficar atrás de uma mesa protege. Durante a esquiva o raio **atravessa** o Gabriel sem machucar.
+**O raio** viaja a 310 px/s, tira **1 de vida** e some ao acertar. **Mesas, árvores e paredes (camada 8) param o raio**, o mesmo que cortam a visão dos robôs: ficar atrás de uma mesa protege. Durante a esquiva o raio **atravessa** o Gabriel sem machucar.
 
 **Quando a mira cancela:** o robô fica atordoado (clarão ou arma de impulso), ou o Gabriel se esconde (nicho), ou morre.
 
@@ -27,15 +27,19 @@ Um robô novo (`cenas/personagens/robo_atirador.tscn`, script `scripts/personage
 
 ## 2. Arma de impulso (`arma_impulso`)
 
-- **Onde está:** dentro do **cofre do cinema** (`cinema_cabine`, código 7-2-4). O prêmio do cofre, que era uma cápsula de clarão, passou a ser a arma.
-- **Como usa:** é um gadget; vai para um dos 3 espaços e a tecla do espaço (`1`, `2` ou `3`) dispara.
-- **O que faz:** uma onda de choque em volta do Gabriel (raio 120 px) que **empurra os robôs para longe** e os deixa **paralisados por 0,9 s**. A força cai com a distância: quem está colado é jogado a ~400 px/s, quem está na borda a ~170 px/s. O empurrão é um `_impulso` no `Robo`, que perde velocidade por atrito (420 px/s²), então o robô desliza e para.
-- **Custo:** **4 cargas**, que **recarregam sozinhas** (1 a cada 7 s) enquanto a arma está equipada. Entre dois disparos, 0,45 s. Quem pega a arma pela primeira vez já a recebe com as 4 cargas.
-- **Visual e som:** dois anéis ciano que se abrem no chão, um clarão azul e o estouro grave (`impulso_disparo.wav`).
+- **Onde está:** dentro do **cofre do cinema** (`cinema_cabine`, código 7-2-4). O prêmio do cofre, que era uma cápsula de clarão, passou a ser a arma. Ela já vem com **2 balas**.
+- **Como usa: segurar, apontar e soltar.** É um gadget; vai para um dos 3 espaços. **Segure** a tecla do espaço (`1`, `2` ou `3`): o Gabriel para e aparece um **cone** de 30° no chão. **Aponte** com `WASD` ou as setas (8 direções; sem apertar nada, mira para onde ele olha). **Solte** a tecla para disparar. Se abrir a mochila, morrer ou trocar de gadget no meio, a mira cancela sem gastar bala. Não dá para esquivar mirando.
+- **O que faz:** uma onda de choque dentro do cone, de **30° de abertura e 150 px de alcance** (média distância), medida a partir dos pés do Gabriel. **Empurra os robôs que estão dentro** para longe e os deixa **paralisados por 0,9 s**. A força cai com a distância: quem está colado é jogado a ~400 px/s, quem está na borda a ~170 px/s. Robô fora do cone não sente nada. O empurrão é um `_impulso` no `Robo`, que perde velocidade por atrito (420 px/s²), então o robô desliza e para.
+- **Custo: balas.** Cada disparo gasta **1 bala** (no máximo **6**). As balas **não se recarregam sozinhas**: criam-se na aba **Criação** do inventário, a **3 pilhas por bala** (seção 2.1). Entre dois disparos, 0,45 s.
+- **Visual e som:** o cone ciano translúcido enquanto mira; ao soltar, dois arcos ciano que correm pelo cone, um clarão azul e o estouro grave (`impulso_disparo.wav`).
 
-**Conteúdo de computação:** o empurrão é uma **soma de vetores** (direção do Gabriel ao robô, normalizada, vezes uma velocidade que cai linearmente com a distância) e o atrito é uma **desaceleração constante** (`move_toward`).
+**Conteúdo de computação:** o teste "o robô está no cone?" é um **produto escalar/ângulo entre vetores**: o ângulo entre a direção da mira e o vetor Gabriel→robô tem de ser menor que metade da abertura (15°), e a distância menor que o alcance. O empurrão é uma **soma de vetores** (direção do Gabriel ao robô, normalizada, vezes uma velocidade que cai linearmente com a distância) e o atrito é uma **desaceleração constante** (`move_toward`).
 
----
+### 2.1 Aba Criação e as pilhas
+
+- **Pilhas guardadas.** Com a arma na mochila, uma pilha achada no chão que **não serve para recarregar** nenhum gadget (lanterna, walkman, notebook) é **guardada** (até **9**) em vez de ficar no chão. Se a lanterna precisa, a pilha continua recarregando a lanterna primeiro. Sem a arma, as pilhas funcionam como sempre.
+- **Aba CRIAÇÃO** (`Q` troca de aba): mostra a receita **Bala de impulso: 3 pilhas**, quantas pilhas e balas há e o que falta. `E` cria uma bala. Fica como "Você ainda não tem a arma de impulso" antes de abrir o cofre.
+- **No código:** `Criacao` (`scripts/sistemas/criacao.gd`) decide se dá para criar e cria; `PainelCriacao` desenha a aba; o estoque de pilhas fica em `Inventario.estado` (`pilhas.quantidade`), então vai no save.
 
 ## 3. Esquiva do Gabriel
 
@@ -60,11 +64,11 @@ Para testar tudo isso sem jogar a fase, a **sala de teste** tem uma porta "FASES
 | BUNKER | `entrada` do bunker | idem |
 | D-TEC (LABORATÓRIO) | `emergencia` | idem |
 
-Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia: arma de impulso, clarão e pedra primeiro (assim ficam nos 3 espaços de gadget), depois os outros gadgets e as ferramentas. **A Célula de Energia fica de fora**, porque é carga pesada e impede de correr e de esquivar. A mochila tem 12 espaços e há mais itens do que isso, então as chaves ficam de fora quando falta lugar.
+Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia (com as 9 pilhas e as 6 balas): arma de impulso, clarão e pedra primeiro (assim ficam nos 3 espaços de gadget), depois os outros gadgets e as ferramentas. **A Célula de Energia fica de fora**, porque é carga pesada e impede de correr e de esquivar. A mochila tem 12 espaços e há mais itens do que isso, então as chaves ficam de fora quando falta lugar.
 
 **O modo combate** (`scripts/sistemas/modo_combate.gd`, só a porta CONVIVÊNCIA liga):
 
-- **Cápsulas de clarão e cargas da arma de impulso são infinitas** (não gastam).
+- **Cápsulas de clarão e balas da arma de impulso são infinitas** (não gastam).
 - **Morrer devolve ao meio da praça** (o ponto da porta), com 2 s de proteção, em vez de ao último checkpoint. Os checkpoints do cenário não mudam o ponto de volta.
 - **Acaba sozinho** ao voltar ao menu, começar um jogo novo, carregar um save ou sair da fase (tudo que chama `Checkpoints.limpar()`).
 
@@ -78,6 +82,7 @@ Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia: arma de 
 | Raio | `scripts/sistemas/raio_atirado.gd`, `cenas/sistemas/raio_atirado.tscn` |
 | Empurrão do robô | `Robo.empurrar()` em `scripts/personagens/robo.gd` |
 | Arma de impulso | `scripts/itens/arma_impulso.gd`, `cenas/itens/arma_impulso.tscn`, `dados/itens/arma_impulso.tres` |
+| Criação e pilhas guardadas | `scripts/sistemas/criacao.gd`, `scripts/interface/painel_criacao.gd`, `cenas/interface/painel_criacao.tscn`, `Inventario.pilhas()`, `PilhaNoChao` |
 | Esquiva | `scripts/personagens/gabriel.gd` (`_tentar_esquivar`), `Sala.esquiva_permitida`, ação `esquivar` em `project.godot` |
 | Modo combate | `scripts/sistemas/modo_combate.gd`, `Checkpoints`, `Vida.proteger()` |
 | Sala de fases e portas | `cenas/salas/sala_teste_fases.tscn`, `scripts/sistemas/porta_de_teste.gd`, `cenas/cenario/objetos/placa_de_porta.tscn` |

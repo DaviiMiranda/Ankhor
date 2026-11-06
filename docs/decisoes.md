@@ -1,5 +1,16 @@
 # Registro de decisões
 
+## 2026-11-06 — Arma de impulso mirada, balas criadas com pilhas e raio mais rápido
+
+**Decisão:** três ajustes pedidos pelo Davi depois de testar o combate ([`mecanicas/combate.md`](mecanicas/combate.md)):
+- **O raio do robô atirador ficou mais rápido:** de 210 para 310 px/s.
+- **A arma de impulso é segurada, apontada e solta:** segura-se a tecla do gadget, o Gabriel para e mostra um **cone de 30° com 150 px de alcance**; aponta-se com `WASD`; solta-se para disparar. Só os robôs dentro do cone são empurrados (antes era um círculo em volta do Gabriel).
+- **Balas e aba CRIAÇÃO:** a arma usa **balas** (até 6, começa com 2) que **não recarregam sozinhas**. O inventário ganhou a aba **CRIAÇÃO**, onde `E` cria 1 bala por **3 pilhas** ("baterias", no pedido). Para isso as pilhas passaram a poder ser **guardadas** (até 9): com a arma na mochila, a pilha do chão que não serve para recarregar a lanterna, o walkman ou o notebook é guardada. Sem a arma, nada muda para quem joga as outras fases.
+
+**Por quê:** pedido do Davi. Tratei "baterias" como as **pilhas** do jogo (o item que já existe); se era outra coisa, é só trocar `Criacao.PILHAS_POR_BALA` e o estoque. A mira por `WASD` (em vez do mouse) segue o resto do jogo, que é todo no teclado.
+
+**Afeta:** `scripts/itens/arma_impulso.gd` (reescrito), `dados/itens/arma_impulso.tres` (6 balas, 2 iniciais; campo novo `unidades_iniciais` em `item.gd`), `scripts/sistemas/raio_atirado.gd`, `inventario.gd` (estoque de pilhas), `pilha_no_chao.gd`, `gabriel.gd` (`mirando`), `tudo_coletado.gd`, `tela_inventario.gd` e `.tscn`, e os novos `criacao.gd`, `painel_criacao.gd` e `painel_criacao.tscn`. **Conferido** no Godot 4.7.2 por script: o cone empurra quem está dentro e deixa de fora quem está fora, a criação gasta 3 pilhas e dá 1 bala, e a pilha só é guardada com a arma. **O Enredo não foi mexido.**
+
 ## 2026-11-06 — A câmara selada no fim do Labirinto: o Zane salva o Gabriel e o grupo descobre a mentira do Henrique
 
 **Decisão:** o alçapão da oficina deixa de levar direto à passarela do Centro de Convivência. Ele leva a uma **câmara selada** (nova), que o Carlos lacrou:
