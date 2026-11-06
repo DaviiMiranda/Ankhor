@@ -1,5 +1,11 @@
 # Registro de decisões
 
+## 2026-11-06 — As portas das fases ficam na própria sala de teste
+
+**Decisão:** a pedido do Davi, as seis portas (Convivência com modo combate, Bloco de salas, Labirinto, Bunker, D-Tec e a câmara selada do Zane) passaram para a `sala_teste`, a partir de onde o jogador nasce. A porta "FASES (TESTE)" e o corredor `sala_teste_fases` saíram. Quem dava todos os itens era o corredor (`TudoColetado`); agora a própria `PortaDeTeste` faz isso antes de trocar de cena, então os itens soltos da sala de teste continuam para testar à mão. A sala ficou 160 px mais larga.
+
+**Afeta:** `cenas/salas/sala_teste.tscn`, `scripts/sistemas/porta_de_teste.gd`, `sala_teste_fases.tscn` (apagada), `docs/mecanicas/combate.md`.
+
 ## 2026-11-06 — Ciborgue mais alto e mais rápido, volta logo, e nichos pelo bunker inteiro
 
 **Decisão:** três ajustes no Ciborgue do bunker (registro "O Ciborgue", mais abaixo neste arquivo):
