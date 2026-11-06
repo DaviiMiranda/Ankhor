@@ -336,12 +336,11 @@ Para quebrar a monotonia dos 2560 px de corredor e criar ritmo de tensão e alí
 
 ---
 
-### 12.4 Proposta 3: Dinâmica da Sala Segura (Posto da 103) e Fresta de Espiar
+### 12.4 Proposta 3: Dinâmica da Sala Segura (Posto da 103)
 
-1. **Fresta de Observação da Barricada (`[E] Espiar Corredor`):**
-   - Na barricada de carteiras da 103, há uma fresta entre as madeiras que permite ao Gabriel olhar o corredor do térreo antes de pedir para a Clarice abrir a passagem.
-   - A câmera desliza suavemente para o corredor através da fresta, mostrando a iluminação e se o Rastreador está nas proximidades. Isso evita mortes injustas na saída.
-2. **Mural Tático de Giz:**
+> A proposta da fresta de espiar o corredor saiu do jogo (ver `decisoes.md`, 2026-11-06).
+
+1. **Mural Tático de Giz:**
    - Na lousa da 103, além do acampamento com lampiões, a Clarice desenhou um rascunho de giz da planta baixa do bloco com anotações lógicas ("escada trancada - grade", "sirene no leste", "depósito no 1º"). Serve como mapa visual, dentro do próprio cenário, para o jogador.
 
 ---
@@ -424,7 +423,6 @@ Todas as propostas acima entraram no jogo. Onde a implementação precisou de um
 | Três setores nos corredores | O chão dos dois corredores foi trocado por setor: oeste (salas x01 e x02) de **areia** no térreo e **mato** no 1º andar; centro (x03 e x04) de **lajota e tapete** alternados; leste (x05, x06 e a escada) de **lajota solta** | as peças `Chao1` a `Chao20` dos corredores |
 | Fator de piso no som | Cada setor tem uma `ZonaDePiso` com o fator de ruído: oeste **0,5**, centro **1,0**, leste **1,5**. O alcance do passo é $A = \lfloor A_0 \cdot f_{\text{piso}} \cdot f_{\text{audição}} \rfloor$ (a tabela da seção 12.7). Fora das zonas (dentro das salas) o fator é 1 | `scripts/sistemas/zona_de_piso.gd`; `robo.gd` lê o fator em `_ao_ouvir_passo` |
 | Nichos de cobertura | Dois nichos por corredor (um com bebedouro, outro com armários): no térreo nos x 1280 e 1920, no 1º andar nos mesmos x, longe das faixas de luar. Ficar **parado** no nicho, com a lanterna apagada, por 0,4 s esconde o Gabriel (ele fica azulado): os robôs não o veem. Andar, ou acender a lanterna, revela. Um robô que encoste nele ainda ataca | `parede_nicho_bebedouro.tscn`, `parede_nicho_armario.tscn`, `cenas/sistemas/nicho_esconderijo.tscn` (`nicho_esconderijo.gd`) e `Gabriel.esconder()` |
-| Fresta da barricada (103) | Ao lado da porta da 103, "Espiar o corredor". O jogo abre o corredor com o Gabriel escondido atrás da porta (sem corpo e invisível para os robôs) e a câmera desliza para os dois lados. `E` (ou para baixo) sai para o corredor de verdade; para cima volta para a 103. O que se vê é o corredor que o jogador vai encontrar ao sair | `fresta_da_barricada.tscn` e `Porta.espiar()` |
 | Mural de giz (103) | A lousa da 103 virou o mapa do bloco desenhado pela Clarice (`parede_lousa_mapa`), com as anotações no aviso "Olhar a lousa" | `sala_103.tscn` |
 | Estalos no teto do térreo | Cinco pontos no corredor do térreo (x 600, 1000, 1300, 1800 e 2200) que, de tempos em tempos (12 a 28 s), estalam e soltam poeira de gesso, se o Gabriel estiver a menos de 280 px | `cenas/sistemas/estalo_do_teto.tscn` (`estalo_do_teto.gd`) e o som `estalo_laje.wav` |
 | Pedra pelo buraco (204 → 104) | Uma pedra que cai no buraco da 204 faz barulho na 104: por 18 s o Rastreador do térreo fica **dentro** da 104, investigando onde ela caiu. No corredor ele some nesse tempo (e mais 4 s, o tempo de sair da sala) e depois volta pela porta da 104. Quem descer pelo buraco nesse tempo cai perto dele | `cenas/sistemas/buraco_no_chao.tscn` (`buraco_no_chao.gd`), `robo_atraido_pelo_buraco.gd` no corredor e na 104, e `pedra_arremessada.gd` |

@@ -28,7 +28,6 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="b_checkpoint"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lousa_mapa.tscn" id="m_lousa_mapa"]
 [ext_resource type="PackedScene" path="res://cenas/itens/aviso_no_mundo.tscn" id="m_aviso"]
-[ext_resource type="PackedScene" path="res://cenas/personagens/fresta_da_barricada.tscn" id="m_fresta"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_lousa_holo_mapa.tscn" id="fut_parede_lousa_holo_mapa"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/professor_caido.tscn" id="fut_professor_caido"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/oculos_no_chao.tscn" id="fut_oculos_no_chao"]
@@ -377,10 +376,6 @@ position = Vector2(280, 126)
 texto_acao = "Olhar a lousa"
 altura_aviso = 70.0
 texto = "O bloco desenhado a giz pela Clarice, no vidro do painel apagado: embaixo o térreo, em cima o 1º andar. Um ponto na 103. Um X na 206, com \"DEPÓSITO\". Do lado da escada: \"GRADE - CADEADO\". Na ponta do térreo: \"SIRENE\". E embaixo de tudo: \"A RONDA É UM CICLO. CONTA OS PASSOS.\""
-
-[node name="Fresta" parent="Objetos" instance=ExtResource("m_fresta")]
-position = Vector2(84, 132)
-porta = NodePath("../../Porta_sala_103")
 
 [node name="OculosNoChao1" parent="Objetos" instance=ExtResource("fut_oculos_no_chao")]
 position = Vector2(296, 380)
