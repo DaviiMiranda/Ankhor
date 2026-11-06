@@ -19,6 +19,15 @@
 **Decisão:** a fresta da barricada da sala 103 ("Espiar o corredor") sai do jogo, junto com a lógica de espiar da `Porta`. Isso desfaz a linha "fresta da barricada" da entrada de 2026-10-12. O resto daquela entrada (nichos, fator de piso, mapa de giz, estalos, pedra pelo buraco) continua. `Gabriel.esconder()` fica, porque os nichos e as cabines usam.
 **Por quê:** pedido do Davi, para abrir espaço para uma parte nova no fim do Labirinto.
 **Afeta:** `scripts/sistemas/porta.gd` (sai `espiar()` e tudo o que mexia na câmera e na camada do Gabriel), `cenas/salas/bloco_de_salas/sala_103.tscn`, `cenas/personagens/fresta_da_barricada.tscn` e `scripts/personagens/fresta_da_barricada.gd` (apagados), `docs/fases/bloco_de_salas.md` (seções 12.4 e 12.8).
+
+## 2026-11-06 — Sala de teste só com a porta das fases
+
+**Decisão:** a pedido do Davi, a `sala_teste` perdeu as portas soltas (as seis de hackeamento, a do labirinto de robôs e a da safe room de teste, com o sinal dela). Sobrou só a porta "FASES (TESTE)", que leva à `sala_teste_fases`, onde ficam as portas de cada fase. A `sala_teste_fases` ganhou uma porta "ZANE (CÂMARA SELADA)", que leva à mini fase do Zane (`labirinto/camara_selada.tscn`).
+
+**Por quê:** a sala estava cheia de portas de testes antigos; o corredor de fases já cobre o que se testa no dia a dia.
+
+**Afeta:** `cenas/salas/sala_teste.tscn` e `sala_teste_fases.tscn` (a sala ficou 160 px mais larga para a porta nova). As cenas `labirinto_teste.tscn` e `sala_segura_teste.tscn` continuam no projeto, mas nenhuma porta leva até elas.
+
 ## 2026-11-06 — Combate no Centro de Convivência: robô atirador, arma de impulso e esquiva
 
 **Decisão:** a pedido do Davi, três mecânicas novas, **só no Centro de Convivência** (detalhes em [`mecanicas/combate.md`](mecanicas/combate.md)):
