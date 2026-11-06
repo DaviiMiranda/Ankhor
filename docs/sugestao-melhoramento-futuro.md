@@ -75,6 +75,10 @@ Registro de melhorias secundárias, polimento visual, sonoro e ajustes de qualid
   - Um trecho em que o **Carlos** persegue o jogador.
   - **Hoje:** pela ficha dele, o Carlos nunca sai do laboratório, e o Gabriel nunca encosta nele: o confronto é um duelo de percepção (ver [`fases/dtec.md`](fases/dtec.md)). Esse trecho muda isso, então a decisão passa pelo Enredo Principal e por `docs/decisoes.md`.
 
+- [ ] **Testar uma mecânica de esquiva:**
+  - Experimentar uma mecânica de esquiva para o Gabriel.
+  - **Hoje:** não existe esquiva; as ações do jogador são mover, correr, interagir, largar e inventário (ver [`mecanicas/movimentacao_e_terreno.md`](mecanicas/movimentacao_e_terreno.md)).
+
 ## Conteúdo extra
 
 - [ ] **Easter eggs colecionáveis que dão conquistas:**
