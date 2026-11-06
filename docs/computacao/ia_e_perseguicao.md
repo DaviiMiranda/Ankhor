@@ -128,3 +128,57 @@ stateDiagram-v2
 Ao entrar em PERSEGUINDO, o robô emite `jogador_detectado` (e toca o guincho); ao desistir, `jogador_perdido`. A sala escuta esses sinais para subir e descer a camada de perseguição da trilha.
 
 O estado RETORNANDO do plano original não foi preciso: ao desistir, o robô recomeça a patrulha de onde está. O ATORDOADO volta quando existir a cápsula de clarão.
+
+---
+
+## 6. O Ciborgue: perseguidor perpétuo (Bunker, 2026-11-06)
+
+O tipo "Perseguidor Persistente" levado ao limite: um robô que nunca desiste, mas é o mais lento (36 px/s). Regras de jogo em [`../fases/bunker.md`](../fases/bunker.md), seção 1.1.
+
+### 6.1 Duas partes
+
+- **`CiborgueDoCarlos`** (`scripts/personagens/ciborgue_do_carlos.gd`) **herda do `Robo`**: usa o mesmo A\* na grade da sala, a mesma garra e as mesmas animações. Muda a decisão (`_decidir`) e desliga o que o tornaria vulnerável: `atordoar` não faz nada (clarão e espelho), `pode_ser_hackeado_de` é sempre falso (notebook), e `ouvir_barulho` e `distrair` são ignorados, porque ele já sabe onde o Gabriel está.
+- **`PerseguidorPerpetuo`** (autoload, `scripts/sistemas/perseguidor_perpetuo.gd`): como cada sala é uma cena, o robô some quando a cena troca. O autoload sobrevive à troca e guarda **onde o Ciborgue está fora da tela**: só um número, os segundos que faltam para ele chegar na sala do Gabriel, e por qual porta.
+
+### 6.2 Máquina de estados do Ciborgue
+
+```mermaid
+stateDiagram-v2
+    [*] --> CACANDO: entra pela porta
+    CACANDO --> CACANDO: A* até a posição atual do Gabriel (a cada 0,35 s)
+    CACANDO --> ESPERANDO: o Gabriel se escondeu
+    ESPERANDO --> CACANDO: o Gabriel saiu, ou a respiração falhou
+    ESPERANDO --> INDO_EMBORA: esperou 7 a 11 s
+    INDO_EMBORA --> CACANDO: viu o Gabriel (cone + raio)
+    INDO_EMBORA --> [*]: saiu pela porta (volta 14 s depois)
+```
+
+Em CACANDO ele não precisa ver o Gabriel: a cada quadro o alvo é a posição dele. É a diferença para o Caçador, que só rastreia por 8 s (seção 5). Escondido, o Gabriel some do alvo, e o Ciborgue vai para a frente do esconderijo.
+
+### 6.3 O tempo entre salas
+
+Quando o Gabriel sai pela porta $P$, o autoload calcula em quantos segundos o Ciborgue chega à sala nova, entrando pela porta por onde o Gabriel entrou:
+
+$$t = \frac{d(\text{Ciborgue}, P)}{v} \qquad v = 36 \text{ px/s}$$
+
+Se o Ciborgue ainda não tinha chegado à sala de onde o Gabriel saiu (faltavam $t_0$ segundos, entrando pela porta $E$), ele ainda tem de atravessá-la:
+
+$$t = t_0 + \frac{d(E, P)}{v}$$
+
+O tempo fica entre 1,5 s e 40 s. É a mesma conta que o robô faria andando: o Gabriel ganha distância andando (60 px/s contra 36), mas cada parada devolve essa distância.
+
+### 6.4 Por qual porta ele volta
+
+Quando o Ciborgue volta sem seguir o Gabriel por uma porta (depois de sair da sala, ao sair da sala segura, ou ao voltar do checkpoint), o autoload escolhe a porta da sala que minimiza
+
+$$\big|\, d(\text{porta}, \text{Gabriel}) - 260 \,\big|$$
+
+com uma penalidade grande para portas a menos de 90 px do Gabriel. Assim ele não aparece colado no jogador nem do outro lado de um corredor de 2560 px.
+
+### 6.5 A respiração
+
+O minijogo é um controle de uma variável $n \in [0, 1]$ (a respiração) que tende a subir e que o jogador empurra para baixo segurando `E`:
+
+$$\frac{dn}{dt} = \begin{cases} -0{,}30 & \text{segurando} \\ \text{lerp}(0{,}12;\ 0{,}22;\ a) & \text{soltando} \end{cases} + 0{,}15\,\sin(2{,}1t)\,\sin(0{,}63t+1)$$
+
+onde $a$ é a ansiedade do Gabriel (0 a 1). Fora da faixa verde $|n - 0{,}5| > w/2$, com $w = \text{lerp}(0{,}40;\ 0{,}26;\ a)$, o ruído $r$ cresce 0,45/s; dentro, cai 0,25/s. Com $r = 1$, o Ciborgue ouve. É um controlador liga-desliga feito à mão, como segurar um peixe na faixa num jogo de pesca.

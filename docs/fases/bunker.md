@@ -12,11 +12,26 @@
 - **Luz:** tubos fluorescentes frios que piscam e luzes de emergência vermelhas. O setor B (lá embaixo) está quase todo no vermelho e alagado.
 - **Som:** a trilha do bunker (grave e opressiva, em Dó frígio, com a fita da Clarice ao longe) em todas as salas, por baixo do zumbido do transformador e do ar parado do duto, goteiras no setor B e o motor do gerador.
 - **Quem vive aqui:** o **Henrique**, **sozinho**, numa sala de dados **trancada** (a central de dados), com acesso às câmeras do campus e ao rádio. Diz que está ali tentando consertar tudo. A cena mostra o Henrique na estação, de costas, olhando as câmeras (Enredo Principal, seção 8, Ato 3).
-- **O Carlos nunca vem ao bunker.**
-- **Os robôs patrulham o bunker:** uma **Mariposa** no Corredor A e um **Escafandro** no Corredor B (o alagado). Os dois só existem aqui, e no bunker não há outro tipo de robô. A **Mariposa** quase não enxerga no escuro (40 px), mas com a lanterna acesa vê a 280 px e corre a 48 px/s: dá para passar ao lado dela com a lanterna apagada. O **Escafandro** é quase cego (36 px) e ouve de longe (audição ×2,2): anda devagar e, quando ouve, vai a 40 px/s até o barulho. Os cantos protegidos são a sala de dados do Henrique e a **sala segura**; nos corredores, os **nichos** (o vão do posto de máscaras de gás) escondem quem fica parado no escuro.
+- **O Carlos nunca vem ao bunker.** Manda o **Ciborgue** (ver abaixo).
+- **Os robôs patrulham o bunker:** uma **Mariposa** no Corredor A e um **Escafandro** no Corredor B (o alagado). Os dois só existem aqui. Além deles, o **Ciborgue** caça o Gabriel pela fase inteira (seção 1.1). A **Mariposa** quase não enxerga no escuro (40 px), mas com a lanterna acesa vê a 280 px e corre a 48 px/s: dá para passar ao lado dela com a lanterna apagada. O **Escafandro** é quase cego (36 px) e ouve de longe (audição ×2,2): anda devagar e, quando ouve, vai a 40 px/s até o barulho. Os cantos protegidos são a sala de dados do Henrique e a **sala segura**; nos corredores, os **nichos** (o vão do posto de máscaras de gás) escondem quem fica parado no escuro.
 - **As salas antigas:** **duas** salas do setor B são montadas como interiores de casa: a **sala de visitas de um casarão do fim do século XIX** (B-02) e a **sala de estar de uma casa dos anos 80** (B-07). A dos anos 80 foi o **Carlos** quem montou, e na do século XIX o **Baltazar** dormiu, porque ela parecia casa (Enredo, seções 4.3 e 5; o rastro dele ali ainda não está no jogo). O jogo não explica nenhuma das duas **em palavras**, e nenhum personagem comenta: o jogador entende pelo que vê. O que conta que é um cenário: o papel de parede para antes do teto e aparece a laje de concreto do bunker; atrás do vidro da janela do casarão tem concreto, não rua.
 - **As marcas dos Faroleiros:** as antigas pichações assinadas "C." saíram (o "NÃO CONFIE NAS LUZES" é o bordão da Clarice, e ela nunca morou aqui). No lugar, duas marcas dos Faroleiros pintadas em âmbar (Enredo, seção 2.4): o **farol inteiro** (lugar seguro) perto da sala segura, no Corredor A, e o **farol apagado** (perigo) perto da comporta do núcleo, no Corredor B. A pichação "ROTAS = GRAFO" da sala de dados, sem assinatura, ficou.
 - **O encontro:** no fim da fase, o grupo todo se encontra pela primeira vez na sala de dados: Gabriel, o Henrique, o Zane, a Clarice e a Diana (seção 3). A cena é **provisória**: as falas são rascunho e como a Clarice e a Diana chegam ao bunker está em aberto (Enredo, seção 10.4).
+
+## 1.1 O Ciborgue: o perseguidor de toda a fase
+
+Uma cópia do Carlos, de metal por baixo da pele (Enredo, seção 2.3). Não patrulha: **caça o Gabriel desde a entrada até a comporta do núcleo**, de sala em sala.
+
+- **Chega:** 8 s depois de o Gabriel entrar no bunker, por uma porta da sala. Ao entrar numa sala, aparece o aviso "Passos pesados atrás da porta. É ele."
+- **Sabe sempre onde o Gabriel está**, menos quando ele está escondido num nicho. Anda a 36 px/s: o Gabriel anda a 60, então dá para fugir andando, mas não para parar. Quem para para abrir um armário, pegar um item ou ler um documento é alcançado.
+- **Segue pelas portas:** quando o Gabriel troca de sala, ele aparece na sala nova pela mesma porta, depois do tempo que levaria para andar até ela.
+- **Não se desliga:** clarão, espelho e hack não fazem nada ("Não fez nada com ele."). Encostar tira um coração, como os outros robôs.
+- **Esconder-se no nicho:** ele vai até a frente do nicho e **espera do lado de fora** de 7 a 11 s. Enquanto ele está ali, começa o minijogo de **respiração contida** ([`../mecanicas/furtividade_e_esconderijos.md`](../mecanicas/furtividade_e_esconderijos.md), seção 2.D). Se o Gabriel respirar alto ou prender o ar demais, ele ouve e o pega. Se aguentar, ele sai por uma porta ("Ele saiu. Mas vai voltar.") e **volta 14 s depois**. Saindo do nicho enquanto ele ainda vê, a caçada recomeça.
+- **Onde não entra:** a sala segura e a sala de dados do Henrique. Enquanto o Gabriel está nelas, ele espera; ao sair, chega 6 s depois por outra porta da sala.
+- **Ao voltar do checkpoint** (morte ou carregar o jogo), ele chega 12 s depois.
+- **Os painéis pausam o jogo** (o quadro de religação, os diálogos): ele não anda enquanto o Gabriel resolve.
+
+Como funciona por dentro: [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md), seção 6.
 
 ---
 
@@ -116,6 +131,7 @@ O Corredor B está tomado por gás até a energia voltar. O **gerador trocou de 
 | Marcas dos Faroleiros | `assets/sprites/cenario/objetos/marca_farol_inteiro.png` e `marca_farol_apagado.png`, geradas por `assets/modelagem/cenario/gerar_marcas_faroleiros.py` |
 | Clarice, sentada (sem uso) | `cenas/personagens/clarice.tscn`: ficou da versão em que ela morava aqui. As conversas daquela versão foram apagadas em 2026-10-26 |
 | Chips hexagonais (3, colecionáveis) | `ChipOculos1` a `3` no `dormitorio`, no `refeitorio` e no `deposito`. Opcionais: ao juntar os três, o quarto do Gabriel ganha os óculos do Zane no criado-mudo (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
+| O Ciborgue | `cenas/personagens/ciborgue_do_carlos.tscn`, script `scripts/personagens/ciborgue_do_carlos.gd`; quem o traz de sala em sala é o autoload `PerseguidorPerpetuo` (`scripts/sistemas/perseguidor_perpetuo.gd`); o minijogo, `cenas/sistemas/respiracao_contida.tscn`. Sprites gerados por `assets/modelagem/personagens/gerar_ciborgue.py` |
 | Sons | `assets/modelagem/audio/gerar_efeitos_bunker.py` |
 | Música | `assets/modelagem/audio/gerar_trilha_bunker.py`, tocada por `cenas/sistemas/musica_bunker.tscn` |
 
