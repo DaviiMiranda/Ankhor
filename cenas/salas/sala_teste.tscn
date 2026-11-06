@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="parede_porta"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="porta"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="pilar"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/sinal_sala_segura.tscn" id="sinal_sala_segura"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/placa_de_porta.tscn" id="placa"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="chao_lajotas"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="i_item"]
@@ -72,9 +71,6 @@ position = Vector2(720, 0)
 
 [node name="PilarDireita" parent="Paredes" instance=ExtResource("pilar")]
 position = Vector2(784, 0)
-
-[node name="SinalSalaSegura" parent="Paredes" instance=ExtResource("sinal_sala_segura")]
-position = Vector2(601, 6)
 
 [node name="Chao1" parent="Chao" instance=ExtResource("chao_lajotas")]
 position = Vector2(0, 0)
@@ -193,74 +189,8 @@ position = Vector2(336, 134)
 vista = "tres_quartos"
 olhando_para_esquerda = true
 
-[node name="PortaRobos" parent="." instance=ExtResource("porta")]
-position = Vector2(440, 124)
-id = "sala_teste"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-
 [node name="EscolhaPersonagem" type="Node" parent="."]
 script = ExtResource("s_escolha")
-
-[node name="HackSequenciaFacil" parent="." instance=ExtResource("porta")]
-position = Vector2(40, 124)
-id = "teste_hacksequenciafacil"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-trancada = true
-dificuldade_hack = 0
-minigame_hack = 1
-
-[node name="HackSequenciaMedio" parent="." instance=ExtResource("porta")]
-position = Vector2(120, 124)
-id = "teste_hacksequenciamedio"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-trancada = true
-dificuldade_hack = 1
-minigame_hack = 1
-
-[node name="HackSequenciaDificil" parent="." instance=ExtResource("porta")]
-position = Vector2(200, 124)
-id = "teste_hacksequenciadificil"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-trancada = true
-dificuldade_hack = 2
-minigame_hack = 1
-
-[node name="HackSincroniaFacil" parent="." instance=ExtResource("porta")]
-position = Vector2(280, 124)
-id = "teste_hacksincroniafacil"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-trancada = true
-dificuldade_hack = 0
-minigame_hack = 2
-
-[node name="HackSincroniaMedio" parent="." instance=ExtResource("porta")]
-position = Vector2(360, 124)
-id = "teste_hacksincroniamedio"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-trancada = true
-dificuldade_hack = 1
-minigame_hack = 2
-
-[node name="HackSincroniaDificil" parent="." instance=ExtResource("porta")]
-position = Vector2(520, 124)
-id = "teste_hacksincroniadificil"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-trancada = true
-dificuldade_hack = 2
-minigame_hack = 2
-
-[node name="PortaSalaSegura" parent="." instance=ExtResource("porta")]
-position = Vector2(601, 124)
-id = "sala_segura_teste"
-cena_destino = "res://cenas/salas/sala_segura_teste.tscn"
-porta_destino = "safe_room_saida"
 
 [node name="Walkman" parent="Objetos" instance=ExtResource("i_item")]
 position = Vector2(560, 138)
