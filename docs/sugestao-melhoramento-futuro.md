@@ -50,6 +50,18 @@ Registro de melhorias secundárias, polimento visual, sonoro e ajustes de qualid
   - **Toque de computação gráfica / computação:** uso da estrutura de grafos do campus (GDD 2.4) para modelar as conexões bidirecionais entre os nós de salas seguras, aplicando busca em largura (BFS) ou Dijkstra para calcular e validar atalhos acessíveis e garantir que rotas de retorno não quebrem o fluxo da história.
   - **Depende de:** sistema de persistência/savegame em disco, portas de transição inter-fases nas salas seguras e trilha/efeitos sonoros de alívio dedicados.
 
+## Combate e Gadgets
+
+- [ ] **Robô que atira raios:**
+  - Novo tipo de robô, que ataca à distância disparando raios.
+
+- [ ] **Novo gadget: arma de impulso:**
+  - Uma arma de impulso que **afasta os robôs**.
+
+- [ ] **Notebook com mais alcance e sem desabilitar totalmente o robô:**
+  - O notebook passa a **hackear a uma distância maior**.
+  - O hack **não desabilita totalmente** o robô.
+
 ## Conteúdo extra
 
 - [ ] **Easter eggs colecionáveis que dão conquistas:**
