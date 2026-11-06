@@ -71,6 +71,10 @@ Registro de melhorias secundárias, polimento visual, sonoro e ajustes de qualid
 - [ ] **Fase jogável com o Zane:**
   - Uma fase em que o jogador controla o **Zane**.
 
+- [ ] **Uma parte do jogo com o Carlos perseguindo o jogador:**
+  - Um trecho em que o **Carlos** persegue o jogador.
+  - **Hoje:** pela ficha dele, o Carlos nunca sai do laboratório, e o Gabriel nunca encosta nele: o confronto é um duelo de percepção (ver [`fases/dtec.md`](fases/dtec.md)). Esse trecho muda isso, então a decisão passa pelo Enredo Principal e por `docs/decisoes.md`.
+
 ## Conteúdo extra
 
 - [ ] **Easter eggs colecionáveis que dão conquistas:**
