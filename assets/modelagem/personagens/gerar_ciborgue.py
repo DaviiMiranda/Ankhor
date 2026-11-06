@@ -7,7 +7,7 @@
 #   blender -b --factory-startup --python assets/modelagem/personagens/gerar_ciborgue.py
 #
 # O que sai (em assets/sprites/personagens/robos/):
-#   ciborgue_andar_<vista>.png        caminhada: 12 quadros de 96 x 112
+#   ciborgue_andar_<vista>.png        caminhada: 12 quadros de 112 x 136
 #                                     (resolução dobrada, como o Carlos: o
 #                                     Godot mostra com escala 0,5), vistas
 #                                     lado, frente e costas
@@ -31,6 +31,11 @@
 #   - cabos saindo da nuca para dentro do jaleco e um joelho de metal.
 # Anda duro, como máquina: passo curto, joelho quase reto e braços parados.
 #
+# É mais alto que o Carlos: o modelo inteiro é ampliado (ESCALA), de 1,8 m
+# para uns 2,25 m. Como a ampliação é no modelo e não no Godot, os pixels
+# continuam do mesmo tamanho que os dos outros personagens; só o quadro
+# cresce para caber (QUADRO, em pixels de resolução dobrada).
+#
 # Por que a tira dos olhos? Igual aos robôs (gerar_robos.py): no escuro do
 # bunker o Godot desenha os pixels que brilham por cima, sem luz.
 
@@ -49,6 +54,9 @@ NOME = "ciborgue"
 MAX_CORES = 48
 DETALHE = 3
 VISTAS = (("lado", 90), ("frente", 0), ("costas", 180))
+ESCALA = 1.25
+QUADRO = (112, 136)
+QUADRO_REF = (128, 184)
 
 # Passo de máquina: curto, com o joelho quase reto e os braços parados.
 PASSO = {"coxa": 13, "joelho": 24, "braco": 3, "descida": 0.02}
@@ -138,6 +146,7 @@ def renderizar():
     c.usar_colecao("Ciborgue")
     raiz = carlos.montar(mt)
     pecas_de_maquina(mt)
+    raiz.scale = (ESCALA, ESCALA, ESCALA)
     c.achatar_sombra("Rosto")
     carlos.esconder_boca()
     cam = c.criar_camera()
@@ -150,7 +159,7 @@ def renderizar():
     for q in range(c.QUADROS_ANDAR):
         c.pose_andar(parado, 360 * q / c.QUADROS_ANDAR, **PASSO)
         for vista, angulo in VISTAS:
-            img, ind, _ = c.renderizar_vista(cam, raiz, materiais, angulo, c.QUADRO_JOGO_2X,
+            img, ind, _ = c.renderizar_vista(cam, raiz, materiais, angulo, QUADRO,
                                              c.PX_POR_M_JOGO_2X, c.PE_JOGO_2X)
             corpos[vista].append(c.contorno(img, ind, materiais))
             so_olhos = np.zeros_like(img)
@@ -163,7 +172,7 @@ def renderizar():
 
     referencia = []
     for angulo in (0, 35, 90, 180):
-        img, ind, _ = c.renderizar_vista(cam, raiz, materiais, angulo, c.QUADRO_REF, c.PX_POR_M_REF, c.PE_REF_PX)
+        img, ind, _ = c.renderizar_vista(cam, raiz, materiais, angulo, QUADRO_REF, c.PX_POR_M_REF, c.PE_REF_PX)
         referencia.append(c.contorno(img, ind, materiais))
 
     todas = [q for v in corpos.values() for q in v]

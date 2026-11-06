@@ -6,13 +6,13 @@ const AVISO_CHEGOU := "Passos pesados atrás da porta. É ele."
 const SEGUNDOS_NA_CHEGADA_DA_FASE := 8.0
 const SEGUNDOS_AO_RECOMECAR := 12.0
 const SEGUNDOS_DEPOIS_DO_ABRIGO := 6.0
-const SEGUNDOS_FORA := 14.0
+const SEGUNDOS_FORA := 5.0
 const SEGUNDOS_MINIMOS := 1.5
 const SEGUNDOS_MAXIMOS := 40.0
 const DISTANCIA_DA_PORTA := 22.0
 const DISTANCIA_IDEAL_DA_VOLTA := 260.0
 const DISTANCIA_MINIMA_DO_GABRIEL := 90.0
-const VELOCIDADE_DO_CIBORGUE := 36.0
+const VELOCIDADE_DO_CIBORGUE := 40.0
 
 var desligado := false
 
