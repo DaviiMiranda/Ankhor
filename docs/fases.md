@@ -12,7 +12,7 @@ Tudo que é específico de cada fase e área do **Ankhor** fica documentado na p
 > 6. **Laboratório (D-Tec)** (6ª fase): [`fases/dtec.md`](fases/dtec.md). O laboratório de tecnologia onde fica a máquina central.
 > - Para entender o funcionamento do design de fases, consulte [`fases/README.md`](fases/README.md).
 > - Para criar uma nova fase/área documentada, utilize o modelo [`fases/template_fase.md`](fases/template_fase.md).
-> - **Sala de teste:** `cenas/salas/sala_teste.tscn`, uma sala vazia com os itens e gadgets prontos (lanterna, rádio, pilhas, cápsulas de clarão, pedras e notebook) para testar mecânicas novas. Aparece como **Teste**, em primeiro, no menu Fases só quando o jogo roda pelo editor do Godot; no jogo exportado ela some.
+> - **Sala de teste:** `cenas/salas/sala_teste.tscn`, uma sala vazia com os itens e gadgets prontos (lanterna, rádio, pilhas, flashes, pedras e notebook) para testar mecânicas novas. Aparece como **Teste**, em primeiro, no menu Fases só quando o jogo roda pelo editor do Godot; no jogo exportado ela some.
 
 ---
 

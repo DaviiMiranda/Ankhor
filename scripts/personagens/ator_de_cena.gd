@@ -3,8 +3,8 @@ extends RefCounted
 
 const QUADROS_ANDAR := 12
 const PX_POR_QUADRO_ANDANDO := 2.8
-const QUADROS_CORRER := 24
-const PX_POR_QUADRO_CORRENDO := 5.0
+const LARGURA_DO_QUADRO := 96
+const PX_POR_QUADRO_CORRENDO := {24: 5.0, 48: 5.6}
 
 
 static func andar_ate(personagem: PersonagemParado, destino: Vector2, velocidade: float) -> Tween:
@@ -17,8 +17,8 @@ static func correr_ate(personagem: PersonagemParado, destino: Vector2, velocidad
 
 static func mostrar_corrida(personagem: PersonagemParado, andado: float, para_esquerda := false) -> void:
 	var tira := tira_de_correr(personagem)
-	var quadros := QUADROS_CORRER if tira else QUADROS_ANDAR
-	var px_por_quadro := PX_POR_QUADRO_CORRENDO if tira else PX_POR_QUADRO_ANDANDO
+	var quadros := tira.get_width() / LARGURA_DO_QUADRO if tira else QUADROS_ANDAR
+	var px_por_quadro: float = PX_POR_QUADRO_CORRENDO.get(quadros, 5.0) if tira else PX_POR_QUADRO_ANDANDO
 	personagem.set_process(false)
 	personagem.sprite.texture = tira if tira else tira_de_andar(personagem)
 	personagem.sprite.hframes = quadros

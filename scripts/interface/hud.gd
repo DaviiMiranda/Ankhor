@@ -14,6 +14,7 @@ const ROTULO_CARGA := "CARGA: SEM CORRER [G]"
 @export var segundos_por_caractere: float = 0.05
 
 var _espacos: Array[EspacoItem] = []
+var _espaco_do_braco: EspacoItem
 var _coracoes: Array[TextureRect] = []
 var _tween_mensagem: Tween
 var _tween_dano: Tween
@@ -42,6 +43,9 @@ func _ready() -> void:
 		espaco.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		caixa_gadgets.add_child(espaco)
 		_espacos.append(espaco)
+	_espaco_do_braco = CENA_ESPACO.instantiate() as EspacoItem
+	_espaco_do_braco.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	caixa_gadgets.add_child(_espaco_do_braco)
 	for i in Vida.MAXIMA:
 		var coracao := TextureRect.new()
 		coracao.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -71,14 +75,20 @@ func _process(_delta: float) -> void:
 
 func _atualizar_gadgets() -> void:
 	for i in _espacos.size():
-		var item: Item = Inventario.gadgets[i]
-		var carga := -1.0
-		var aceso := false
-		if item:
-			var estado: Dictionary = Inventario.estado.get(item.id, {})
-			carga = estado.get("carga", -1.0)
-			aceso = estado.get("aceso", false)
-		_espacos[i].mostrar(item, aceso, str(i + 1), carga)
+		_mostrar_no_espaco(_espacos[i], Inventario.gadgets[i], i + 1)
+	_espaco_do_braco.visible = Inventario.braco != null
+	if Inventario.braco:
+		_mostrar_no_espaco(_espaco_do_braco, Inventario.braco, Inventario.TECLA_DO_BRACO)
+
+
+func _mostrar_no_espaco(espaco: EspacoItem, item: Item, tecla: int) -> void:
+	var carga := -1.0
+	var aceso := false
+	if item:
+		var estado: Dictionary = Inventario.estado.get(item.id, {})
+		carga = estado.get("carga", -1.0)
+		aceso = estado.get("aceso", false)
+	espaco.mostrar(item, aceso, str(tecla), carga)
 
 
 func _atualizar_aviso() -> void:
@@ -237,6 +247,11 @@ func _pintar_barra_estamina() -> void:
 
 func _ao_mudar_ansiedade(atual: float, maxima: float) -> void:
 	if maxima <= 0.0 or _barra_ansiedade_preenchimento == null:
+		return
+	if _jogador_conectado and _jogador_conectado.ansiedade and not _jogador_conectado.ansiedade.ativa:
+		_barra_ansiedade_fundo.visible = false
+		_rotulo_ansiedade.visible = false
+		_efeito_ansiedade.visible = false
 		return
 	var proporcao := clampf(atual / maxima, 0.0, 1.0)
 	var cor_calma := Color(0.76, 0.69, 0.48, 1.0)

@@ -48,7 +48,9 @@ func _dono() -> Gabriel:
 
 func _process(delta: float) -> void:
 	_tempo += delta
-	if _estado["aceso"]:
+	var dono := _dono()
+	var infinita := dono != null and dono.lanterna_infinita
+	if _estado["aceso"] and not infinita:
 		_estado["carga"] = maxf(_estado["carga"] - delta / duracao, 0.0)
 		if _estado["carga"] <= 0.0:
 			_estado["aceso"] = false

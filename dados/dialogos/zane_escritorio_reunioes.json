@@ -1,0 +1,25 @@
+{
+	"id": "zane_escritorio_reunioes",
+	"inicio": "reunioes",
+	"trechos": {
+		"reunioes": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_concentrado",
+					"texto": "Sala de reuniões. Uma Mariposa: no escuro ela é quase cega, mas qualquer luz acesa ela vê do outro lado da sala."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Minha lanterna não acaba. O problema é ela estar acesa. Perto dela, apago."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "O painel do fundo pede quatro dígitos. Em sala de reunião sempre sobra alguma coisa escrita no quadro."
+				}
+			]
+		}
+	}
+}

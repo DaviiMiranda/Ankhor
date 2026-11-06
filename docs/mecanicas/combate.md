@@ -27,7 +27,7 @@ Um robô novo (`cenas/personagens/robo_atirador.tscn`, script `scripts/personage
 
 ## 2. Arma de impulso (`arma_impulso`)
 
-- **Onde está:** dentro do **cofre do cinema** (`cinema_cabine`, código 7-2-4). O prêmio do cofre, que era uma cápsula de clarão, passou a ser a arma. Ela já vem com **2 balas**.
+- **Onde está:** dentro do **cofre do cinema** (`cinema_cabine`, código 7-2-4). O prêmio do cofre, que era um flash, passou a ser a arma. Ela já vem com **2 balas**.
 - **Como usa: travar e apertar de novo.** É um gadget; vai para um dos 3 espaços. **Aperte** a tecla do espaço (`1`, `2` ou `3`): o Gabriel para, aparece um **cone** de 30° no chão e a **mira trava no robô mais próximo** (até 150 px), com uma marca em volta dele. A mira **acompanha** o robô enquanto ele anda; se ele sai de alcance ou some, ela passa para o próximo mais perto. **Aperte a mesma tecla de novo** para atirar. `Shift` **cancela** sem gastar bala. Se não houver nenhum robô por perto, a mira fica livre: aponte com `WASD` (8 direções; sem apertar nada, mira para onde o Gabriel olha). Morrer ou trocar de gadget no meio também cancela. 
 - **O que faz:** uma onda de choque dentro do cone, de **30° de abertura e 150 px de alcance** (média distância), medida a partir dos pés do Gabriel. **Empurra os robôs que estão dentro** para longe e os deixa **paralisados por 0,9 s**. A força cai com a distância: quem está colado é jogado a ~400 px/s, quem está na borda a ~170 px/s. Robô fora do cone não sente nada. O empurrão é um `_impulso` no `Robo`, que perde velocidade por atrito (420 px/s²), então o robô desliza e para.
 - **Custo: balas.** Cada disparo gasta **1 bala** (no máximo **6**). As balas **não se recarregam sozinhas**: criam-se na aba **Criação** do inventário, a **3 pilhas por bala** (seção 2.1). Entre dois disparos, 0,45 s.
@@ -43,7 +43,7 @@ Um robô novo (`cenas/personagens/robo_atirador.tscn`, script `scripts/personage
 
 ## 3. Modo combate (a porta de teste)
 
-Para testar tudo isso sem jogar a fase, a **sala de teste** tem uma porta "FASES (TESTE)" que leva à `sala_teste_fases`, com uma porta por fase:
+Para testar tudo isso sem jogar a fase, a **sala de teste** tem, logo onde o jogador nasce, uma porta por fase (cada uma dá antes todos os itens, como o `TudoColetado`):
 
 | Placa | Destino | Observação |
 |---|---|---|
@@ -53,7 +53,7 @@ Para testar tudo isso sem jogar a fase, a **sala de teste** tem uma porta "FASES
 | BUNKER | `entrada` do bunker | idem |
 | D-TEC (LABORATÓRIO) | `emergencia` | idem |
 | ZANE (CÂMARA SELADA) | `labirinto/camara_selada` | A mini fase do Zane |
-| FIM DO BUNKER | `bunker/central_dados`, pela porta da sala | O começo da cena do fim do Bunker: marca `bunker_energia` (o grupo está na sala) e apaga as marcas da cena (`bunker_confronto_falado`, `bunker_henrique_sumiu`, `bunker_comporta_aberta`), então dá para ver de novo quantas vezes quiser. O confronto começa ao chegar perto do grupo |
+| FIM DO BUNKER | `bunker/central_dados`, pela porta da sala | O começo da cena do fim do Bunker: marca `bunker_energia` (o grupo está na sala) e apaga as marcas da cena (`bunker_confronto_falado`, `bunker_henrique_sumiu`, `bunker_comporta_aberta`, `dtec_grupo_separado`), então dá para ver de novo quantas vezes quiser. O confronto começa ao chegar perto do grupo |
 
 As marcas são exports da `PortaDeTeste`: `marcas_ao_entrar` e `marcas_apagadas_ao_entrar` (esta usa `Progresso.desmarcar`). Servem para levar a qualquer ponto de uma fase que dependa de progresso.
 
@@ -61,7 +61,7 @@ Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia (com as 9
 
 **O modo combate** (`scripts/sistemas/modo_combate.gd`, só a porta CONVIVÊNCIA liga):
 
-- **Cápsulas de clarão e balas da arma de impulso são infinitas** (não gastam).
+- **Flashes e balas da arma de impulso são infinitas** (não gastam).
 - **Morrer devolve ao meio da praça** (o ponto da porta), com 2 s de proteção, em vez de ao último checkpoint. Os checkpoints do cenário não mudam o ponto de volta.
 - **Acaba sozinho** ao voltar ao menu, começar um jogo novo, carregar um save ou sair da fase (tudo que chama `Checkpoints.limpar()`).
 
@@ -77,7 +77,7 @@ Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia (com as 9
 | Arma de impulso | `scripts/itens/arma_impulso.gd`, `cenas/itens/arma_impulso.tscn`, `dados/itens/arma_impulso.tres` |
 | Criação e pilhas guardadas | `scripts/sistemas/criacao.gd`, `scripts/interface/painel_criacao.gd`, `cenas/interface/painel_criacao.tscn`, `Inventario.pilhas()`, `PilhaNoChao` |
 | Modo combate | `scripts/sistemas/modo_combate.gd`, `Checkpoints`, `Vida.proteger()` |
-| Sala de fases e portas | `cenas/salas/sala_teste_fases.tscn`, `scripts/sistemas/porta_de_teste.gd`, `cenas/cenario/objetos/placa_de_porta.tscn` |
+| Portas das fases | `cenas/salas/sala_teste.tscn`, `scripts/sistemas/porta_de_teste.gd`, `cenas/cenario/objetos/placa_de_porta.tscn` |
 | Sons e ícones | `assets/modelagem/audio/gerar_efeitos_combate.py`, `assets/modelagem/itens/gerar_arma_impulso.py` |
 
 ## 5. Ainda não feito

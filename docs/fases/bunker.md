@@ -68,12 +68,12 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`) com o som da porta b
 | `corredor_b` | 2240 × 180 | Nível de baixo: água no chão, luz vermelha, infiltração nas paredes, as portas B-02 e B-07, duas portas lacradas, **seis nichos**, a marca do farol apagado e a **comporta do núcleo**. **Escafandro** de x 500 a 2100. Checkpoint `bunker_setor_b` ao pé da escada | — |
 | `sala_segura` | 320 × 180 | A **sala segura** do modelo (os óculos do Zane para salvar, o piano), com a luz de um verde-oliva. A porta é a DESCANSO no corredor A, ao lado da entrada, com a **luz verde** em cima ([`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)) | — |
 | `dormitorio` | 480 × 560 | Fileiras de beliches (três por fileira), armários, caixas | 1 pilha |
-| `refeitorio` | 480 × 560 | Fileiras de mesas compridas de aço, prateleiras de latas, planta do bunker | 1 cápsula de clarão |
+| `refeitorio` | 480 × 560 | Fileiras de mesas compridas de aço, prateleiras de latas, planta do bunker | 1 flash |
 | `enfermaria` | 400 × 480 | Duas fileiras de macas com biombos entre elas, suportes de soro, armários de remédios | 1 pilha |
 | `central_dados` | 560 × 640 | **A sala de dados** do Henrique: corredores de racks de servidores, janela para os servidores, a parede do grafo, a estação (`estacao_dados.png`: três monitores de tubo que mostram as câmeras do campus) e o canto onde ele dorme (colchão, cobertor roxo, latas, lampião). Depois que a energia volta, o **Zane, a Clarice e a Diana** estão ali, e o encontro começa sozinho quando Gabriel chega perto | — |
-| `arsenal` | 400 × 360 | Armários e prateleiras de aço, estantes, mesa e caixas. Abre quando a energia volta | 2 cápsulas de clarão, 1 pilha |
+| `arsenal` | 400 × 360 | Armários e prateleiras de aço, estantes, mesa e caixas. Abre quando a energia volta | 2 flashes, 1 pilha |
 | `gerador` | 480 × 560 | Dois geradores a diesel ligados, tambores de combustível, quadros elétricos e o **quadro de religação** na frente do painel | — |
-| `deposito` | 400 × 480 | Corredores de estantes, caixotes, tambores | 1 pilha, 1 cápsula de clarão, 2 pedras |
+| `deposito` | 400 × 480 | Corredores de estantes, caixotes, tambores | 1 pilha, 1 flash, 2 pedras |
 | `sala_antiga_xix` | 480 × 360 | **B-02.** Papel de parede vinho, lambri de madeira, moldura dourada, duas janelas com cortina e concreto atrás do vidro, assoalho. Relógio de pêndulo, cristaleira, sofá de veludo, mesa redonda com a toalha de renda e o lampião aceso, duas poltronas | — |
 | `sala_antiga_80` | 480 × 360 | **B-07.** Papel de parede bege com losangos marrons e laranja, estante embutida com a TV de tubo, o videocassete, as fitas e os discos, quadro do pôr do sol, carpete. Sofá xadrez, mesinha com o telefone de disco, rack com o toca-discos e as caixas de som, dois abajures de pé | — |
 
@@ -117,7 +117,7 @@ O Henrique explica no diálogo que o setor B está lacrado pelo sistema e que o 
 
 ## 3.1 O que mudou em 2026-11-04
 
-O Corredor B está tomado por gás até a energia voltar. O **gerador trocou de lugar com o arquivo**: agora fica em x 1561 (a tabela e o mapa da seção 2 valem com essa troca). A máscara fica na enfermaria, com filtros no dormitório e no depósito. O arsenal tem 1 cápsula de clarão, e o depósito, nenhuma. Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 6.
+O Corredor B está tomado por gás até a energia voltar. O **gerador trocou de lugar com o arquivo**: agora fica em x 1561 (a tabela e o mapa da seção 2 valem com essa troca). A máscara fica na enfermaria, com filtros no dormitório e no depósito. O arsenal tem 1 flash, e o depósito, nenhuma. Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 6.
 
 ---
 
@@ -135,7 +135,7 @@ O Corredor B está tomado por gás até a energia voltar. O **gerador trocou de 
 | O brilho e o clarão do sumiço | `cenas/sistemas/sumico_de_energia.tscn`, script `scripts/sistemas/sumico_de_energia.gd`: `await sumir(alvo)` faz qualquer `Node2D` brilhar, tremer e sumir num clarão (luz, faíscas, estouro e a tela branca) |
 | O dispositivo com o 2900 | `cenas/cenario/objetos/dispositivo_2900.tscn`; sprites `assets/sprites/cenario/objetos/dispositivo_2900.png` (e `_luz`, os números acesos), gerados por `assets/modelagem/cenario/gerar_dispositivo_2900.py` |
 | A fuga | `cenas/salas/bunker/fuga.tscn`, montada por `assets/modelagem/salas/bunker/montar_fuga.py` (as velocidades e os robôs estão lá); o roteiro em `scripts/salas/fuga_do_bunker.gd` (o grupo à frente, o checkpoint, a estamina infinita, a saída). Os robôs usam `scripts/personagens/robo_de_cena.gd`: andam atrás do Gabriel a uma distância (`distancia_do_gabriel`, e correm se passam da `distancia_maxima`), numa `faixa` de altura (ou seguindo a dele) e, se `atira`, miram e disparam o `RaioAtirado`, revezando com os outros. Não usam o grafo nem a IA dos robôs das salas. A cena está em `PerseguicaoEntreSalas.SALAS_PROTEGIDAS`, para o Ciborgue de verdade não aparecer nela |
-| Corrida do grupo | `assets/sprites/personagens/<zane, clarice, diana>/<nome>_correr_lado.png` (24 quadros), gerados por `assets/modelagem/personagens/gerar_correr.py` (Blender) com a mesma corrida do Gabriel. `AtorDeCena.mostrar_corrida` e `correr_ate` usam a tira `_correr_` quando ela existe |
+| Corrida do grupo | `clarice_correr_lado.png` e `diana_correr_lado.png` (24 quadros), gerados por `assets/modelagem/personagens/gerar_correr.py` (Blender) com a mesma corrida do Gabriel; a do Zane (48 quadros) é a do Zane jogável, do `gerar_zane_movimentos.py`. `AtorDeCena.mostrar_corrida` e `correr_ate` usam a tira `_correr_` quando ela existe, com a passada de cada uma (5 px por quadro nas de 24, 5,6 nas de 48) |
 | Personagens andando em cena | `AtorDeCena.andar_ate(personagem, destino, velocidade)` (`scripts/personagens/ator_de_cena.gd`) faz qualquer `PersonagemParado` andar até um ponto com a tira `_andar_` dele e devolve o `Tween`. `PersonagemParado.virar(vista, para_esquerda)` troca a vista. O Gabriel corre sozinho com `correr_sozinho = true` e `andar_sozinho(direcao)`, sem gastar estamina |
 | Quadro de religação | `cenas/sistemas/painel_religacao.tscn`, script `scripts/sistemas/painel_religacao.gd` (o grafo, o Kruskal e a tela) |
 | Salas antigas e arsenal | as cenas saem de `assets/modelagem/salas/bunker/montar_salas_bunker.py`; a arte das salas antigas, de `assets/modelagem/cenario/gerar_salas_antigas.py` (em `assets/sprites/cenario/bunker/salas_antigas/`) |

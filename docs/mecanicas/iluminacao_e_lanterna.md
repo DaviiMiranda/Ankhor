@@ -41,7 +41,7 @@ Para usar numa sala, instancie `cenas/sistemas/raio_de_visao.tscn` (um `CanvasLa
 
 ---
 
-## 4. Cápsulas de clarão (ainda não feito)
+## 4. Flashes (ainda não feito)
 
 A defesa de emergência do GDD continua prevista, agora sem fungos: um **flash descartável** que, disparado perto de um robô, sobrecarrega o sensor óptico por 3 a 5 segundos (o ponto fraco que o Baltazar descreve no diário). Máximo de 2 por vez. Ainda não implementado.
 

@@ -11,6 +11,7 @@ func _trocar_de_cena() -> void:
 		Progresso.desmarcar(marca)
 	for marca in marcas_ao_entrar:
 		Progresso.marcar(marca)
+	add_child(TudoColetado.new())
 	if com_combate:
 		ModoCombate.ativar()
 	else:

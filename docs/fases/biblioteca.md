@@ -57,7 +57,7 @@ Os arquivos antigos do fundo (`biblioteca_fundo.png`) continuam no projeto; as c
 | **Formato** | Uma cena só, `cenas/salas/biblioteca.tscn`, de 1440 × 420 px (salão, acervo sul e ala leste com a saída) | **Várias salas ligadas por portas** (seção 2) |
 | **Robôs** | Nenhum | Sentinela no salão e Rastreador no acervo sul (seção 4) |
 | **Registros** | Diário do Baltazar, bilhete da Clarice e duas transmissões do rádio (a voz da Clarice), já funcionando | Os mesmos, em salas novas (seção 6) |
-| **Itens** | Lanterna e três pilhas | Também a chave da manutenção e uma cápsula de clarão (seção 3.3) |
+| **Itens** | Lanterna e três pilhas | Também a chave da manutenção e um flash (seção 3.3) |
 
 Detalhes da cena atual: script `scripts/salas/biblioteca.gd`; parte sul com profundidade y-sort de 122 a 416; a **ala leste** (x de 960 a 1440) é a sala de periódicos, com um terceiro buraco no teto, mesas, cabines e um segundo acervo; doze lampiões de emergência e seis luminárias de parede.
 
@@ -87,7 +87,7 @@ O **salão principal (2)** é o centro da fase: quase todo caminho passa por ele
 | 2 | **Salão principal** | A árvore, o **acampamento do Baltazar** e o **diário**. Mesas e estantes caídas | 1, 3, 4, 9, corredor de serviço, grade da ala leste | Atrás das estantes caídas, entre as raízes | **Sentinela** |
 | 3 | **Balcão de atendimento** | Catraca, **telefone**, o **rádio** na base de carregamento da segurança e o **quadro de chaves** com um gancho vazio | 2, 8 | Atrás do balcão | Nenhuma |
 | 4 | **Acervo sul** | Corredores de estantes, uma **pilha** e a **chave da manutenção** num carrinho de devolução de livros | 2 | Os corredores entre as estantes | **Rastreador** |
-| 5 | **Sala de manutenção** | O **quadro de energia**, uma **cápsula de clarão** e uma **pilha**. Fechada e escura: é a **sala segura** | Corredor de serviço | Não precisa: robôs não entram | Nenhuma |
+| 5 | **Sala de manutenção** | O **quadro de energia**, um **flash** e uma **pilha**. Fechada e escura: é a **sala segura** | Corredor de serviço | Não precisa: robôs não entram | Nenhuma |
 | 7 | **Ala leste** (periódicos) | Mesas, cabines, o acervo leste (uma **pilha**) e a **porta de saída** | 2 (pela grade), saída | Corredores do acervo leste | Robôs com rota nova (passo 6) |
 | 8 | **Sala de terminais** | O **terminal** com o **bilhete da Clarice** e um **disquete** dela | 3 | Debaixo das mesas | Nenhuma |
 | 9 | **Obras raras** | Porta **barrada por dentro**. Às vezes se ouve alguém do outro lado | 2 | — | — |
@@ -112,7 +112,7 @@ A sala 6 (mezanino) saiu do planejamento.
    - *O que o jogador aprende:* os robôs têm rotina e avisos; existe alguém do outro lado do rádio.
 4. **O acervo sul (sala 4).** Gabriel procura a **chave da manutenção** num carrinho de devolução de livros, enquanto o **Rastreador**, que escuta, patrulha os corredores. Nos corredores, o rádio dá a segunda fala da Clarice ("Você entrou no acervo. O Henrique tá vendo: o robô daí escuta, não enxerga bem. Então não corre.").
    - *O que o jogador aprende:* **andar em vez de correr**; o barulho atrai robôs de longe.
-5. **A manutenção (sala 5).** A chave abre a porta do corredor de serviço. No **quadro de energia**, Gabriel religa os **disjuntores na ordem certa**, anotada num papel colado do lado de dentro da porta. Aqui também estão uma **cápsula de clarão** e uma pilha. Esta sala é a **sala segura** (seção 5).
+5. **A manutenção (sala 5).** A chave abre a porta do corredor de serviço. No **quadro de energia**, Gabriel religa os **disjuntores na ordem certa**, anotada num papel colado do lado de dentro da porta. Aqui também estão um **flash** e uma pilha. Esta sala é a **sala segura** (seção 5).
    - **Quando a energia volta, três coisas mudam:**
      - a **grade da ala leste** ganha energia, mas pede um **código** no painel;
      - o **terminal** da sala de terminais liga;
@@ -140,7 +140,7 @@ Para a apresentação da disciplina: as salas são **vértices** e as portas sã
 | Lanterna | Sala 1 | Ver no escuro (e ser visto) |
 | Rádio | Sala 3 | Ouvir as dicas da Clarice |
 | Chave da manutenção | Sala 4 | Abrir o corredor de serviço |
-| Cápsula de clarão | Sala 5 | Primeira defesa: atordoar um robô |
+| Flash | Sala 5 | Primeira defesa: atordoar um robô |
 | Pilhas (4) | Salão (2, no lado escuro), sala 4, sala 5, ala leste | Recarregar a lanterna |
 | Código da grade | Sala 8 (disquete) | Abrir a grade da ala leste |
 | Pingentes de farol (3) | Salão (2, fundo sul), sala 8 (canto esquerdo), sala 4 (corredores de baixo) | Opcionais: ao juntar os três, o quarto do Gabriel ganha um farol na mesa. Não ficam na mochila (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |

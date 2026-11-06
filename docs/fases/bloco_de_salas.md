@@ -37,7 +37,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 | `sala_201` | Auditório: doze fileiras de cadeiras VR com dezenas de lentes acesas, dois painéis de ensino, um professor robô na doca ao lado do palco e dois painéis de óculos | tapete |
 | `sala_202` | Duas árvores furando o chão, cadeiras VR em volta, luar por cima; um rack de óculos com musgo e um professor robô na doca com raízes | mato e lajota |
 | `sala_203` | Sala dos professores: oito mesas com cadeiras VR de friso âmbar, um rack de óculos, a doca de um professor robô e o quadro de avisos | tapete e lajota |
-| `sala_204` | O chão cedeu: um monte grande de entulho no meio, com laje tombada e pedras em volta, cadeiras VR caídas em duas poses, óculos pelo chão e um professor robô sem a cabeça na doca (1 cápsula de clarão) | lajota com manchas de terra |
+| `sala_204` | O chão cedeu: um monte grande de entulho no meio, com laje tombada e pedras em volta, cadeiras VR caídas em duas poses, óculos pelo chão e um professor robô sem a cabeça na doca (1 flash) | lajota com manchas de terra |
 | `sala_205` | Intacta demais: seis fileiras perfeitamente alinhadas, todas as lentes acesas, sem entulho, a mais clara; o painel e a doca do professor robô sem uma marca de uso. Estranha | lajota |
 | `sala_206` | Depósito: corredores de estantes (metade virou rack de óculos VR), cadeiras tombadas, peças do professor robô desmontado, um lampião (1 pilha) | lajota e areia |
 
@@ -78,7 +78,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 | 201 | Pista do código | Duas lousas; a da esquerda tem os tracinhos (2º número) | Entre as fileiras | Nenhuma |
 | 202 | Respiro e puzzle opcional | As duas árvores. 1 pedra. **Os desenhos do luar** (seção 5.7): 4 manchas no chão e a trava do rack | Atrás das árvores | Nenhuma |
 | 203 | Cadeado de segredo | O **claviculário** (armário de chaves) com cadeado de 3 números e o **quadro de avisos** com a pista | Debaixo das mesas | Nenhuma |
-| 204 | Atalho | O buraco no chão (desce para a 104). 1 cápsula de clarão | Atrás do entulho | Nenhuma |
+| 204 | Atalho | O buraco no chão (desce para a 104). 1 flash | Atrás do entulho | Nenhuma |
 | 205 | Pista do código e mistério | Lousa com tracinhos (3º número). A sala "intacta demais" continua sem explicação (seção 8) | Entre as fileiras | Nenhuma |
 | 206 | Ferramenta da saída | O **alicate corta-corrente**, 1 pilha. Porta trancada (chave do claviculário) | Os corredores entre as estantes | **Rastreador** (audição) |
 
@@ -131,7 +131,7 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 | Código do claviculário (**738**) | Tracinhos das lousas da 101 (7), 201 (3) e 205 (8) | Abrir o claviculário (203) |
 | Chave do depósito | Claviculário (203) | Abrir a 206 |
 | Alicate corta-corrente | 206 | Cortar a corrente da porta corta-fogo |
-| Cápsula de clarão | 204 (já está lá) e 202 (prêmio do rack, seção 5.7) | Defesa |
+| Flash | 204 (já está lá) e 202 (prêmio do rack, seção 5.7) | Defesa |
 | Pedras | 102 (3, já estão lá) e 202 (1) | Distração |
 | Disquetes coloridos (3) | 105 (canto esquerdo), 106 (lado esquerdo) e 202 (meio da sala) | Opcionais, fora do caminho obrigatório: ao juntar os três, o quarto do Gabriel ganha uma pilha de disquetes na mesa dele, ao lado do farol. Não ficam na mochila (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
 | Recorte de jornal 2 (colecionável) | Sala 203, no chão perto das mesas de leitura (190, 210) | Opcional: o boletim do Conselho sobre o embarque para o novo mundo (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
@@ -202,7 +202,7 @@ Cortar a corrente pede segurar `E` por 5 s, com barulho; achar o molho na areia,
 - **Como funciona:** o luar que passa pelo teto desenha quatro símbolos no chão, longe uns dos outros: **estrela**, **raiz**, **lua** e **folha**. Olhar uma mancha diz o nome do desenho. A trava do rack de óculos tem um botão para cada símbolo e diz, no título: "SIGA O LUAR: DA JANELA À PORTA". A janela fica na ponta oeste da parede, e a porta, na leste.
 - **Mecânica:** um `QuadroEnergia` sem a caixa, com os nomes dos símbolos. As manchas são `mancha_luar.tscn`, sprites com mistura aditiva dentro de `Chao`. A sala mostra só parte do chão de cada vez, então o jogador precisa andar por ela para ver as quatro. Errar só volta ao começo, sem barulho. As manchas não revelam o Gabriel, porque a sala não tem robô.
 - **Solução:** a ordem das manchas de oeste para leste: **estrela (x 46), raiz (x 172), lua (x 330), folha (x 442)**.
-- **Prêmio:** 1 cápsula de clarão.
+- **Prêmio:** 1 flash.
 
 ---
 

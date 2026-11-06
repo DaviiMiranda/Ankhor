@@ -21,7 +21,7 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 - **Cabeçalho com abas:** no alto da janela ficam **ITENS**, **ANOTAÇÕES** e **OBJETIVO**. A aba aberta fica clara e sublinhada. Quando há anotação não lida, a aba mostra um ponto (`ANOTAÇÕES •`). A aba Anotações está explicada em [`registros_e_caderno.md`](registros_e_caderno.md).
 - **Aba Objetivo:** mostra o **objetivo principal da fase** em que o jogador está (o nome da fase, o objetivo em duas ou três frases) e, embaixo, o que fazer **agora**: o primeiro passo que ainda não foi cumprido. Os passos acompanham as marcas de `Progresso` (por exemplo `energia`, `grade_aberta`, `bunker_energia`) e itens do inventário. Fora das fases (sala de teste), mostra só o objetivo geral do jogo. Os textos ficam em `scripts/sistemas/objetivos.gd`: para uma fase nova, acrescente uma entrada em `FASES` (a pasta da fase, o nome, o objetivo, os passos com as marcas e o passo final).
 - **Destaque no cenário:** todo item que dá para pegar (itens no chão e pilhas) tem uma **luz fraca que pulsa** em volta e, de tempos em tempos, um **brilho de pixel** que pisca em cima do desenho, visível até no escuro. Assim o jogador sabe o que é coletável sem precisar de seta ou contorno.
-- **Gadgets:** **3 espaços**, um para cada ferramenta equipável prevista em [`docs/historia/personagens/gabriel.docx`](../historia/personagens/gabriel.docx): lanterna, cápsulas de clarão e objetos de arremesso. Equipar não tira o item da grade; o espaço de gadget é um atalho para ele.
+- **Gadgets:** **3 espaços**, um para cada ferramenta equipável prevista em [`docs/historia/personagens/gabriel.docx`](../historia/personagens/gabriel.docx): lanterna, flashes e objetos de arremesso. Equipar não tira o item da grade; o espaço de gadget é um atalho para ele.
 - **Aviso de `E`:** perto de um item ou de uma pilha, aparece só a tecla `[E]` em cima dele, sem texto. O nome do item aparece depois de pegar ("Você pegou: ...") e a descrição fica no inventário. Documentos continuam com o verbo (`[E] Ler o bilhete`), porque ler é uma ação diferente de pegar. Quem decide o texto é o `texto_acao` do `Interagivel`: vazio mostra só a tecla.
 - Ao pegar um gadget com um espaço livre, ele já é equipado.
 - **Item novo (primeira vez):** ao pegar um item pela primeira vez no jogo, o jogo pausa e abre a **tela de item novo**: a imagem detalhada, o nome e a descrição. `E` ou `Esc` guardam e voltam ao jogo. Detalhes na seção 3.
@@ -49,7 +49,7 @@ Os três estão na sala de teste (menu Fases → Teste, só pelo editor) e ainda
 
 | Gadget | Como usa | O que faz | O custo |
 |---|---|---|---|
-| **Cápsula de clarão** (`clarao`) | Tecla do espaço | Flash que paralisa por 3,5 s os robôs a até 110 px. O tempo é multiplicado pelo `fator_clarao` do robô: Sentinela ×1,5 (enxerga, sofre mais), Rastreador ×0,6 | No máximo **2**. Paralisado, o robô apaga os olhos; depois procura o Gabriel onde está |
+| **Flash** (`clarao`) | Tecla do espaço | Flash que paralisa por 3,5 s os robôs a até 110 px. O tempo é multiplicado pelo `fator_clarao` do robô: Sentinela ×1,5 (enxerga, sofre mais), Rastreador ×0,6 | No máximo **2**. Paralisado, o robô apaga os olhos; depois procura o Gabriel onde está |
 | **Pedra** (`pedra`) | Tecla do espaço | Joga uma pedra ~110 px para onde o Gabriel olha (para antes de uma parede). Ela sai da altura do peito (`Gabriel.posicao_do_peito()`) e cai até o chão em arco. Onde cai, faz barulho: os robôs que ouvem vão investigar | No máximo **5**. Não serve numa perseguição |
 | **Notebook** (`notebook`) | Tecla do espaço, parado perto do alvo (44 px) | Hackeia: **porta trancada** abre ao vencer um minigame (ver [`hackeamento.md`](hackeamento.md)); **robô** fica desligado 8 s. Em robô, uma barra em cima do Gabriel mostra o progresso de 2,5 s | Gasta 25% da bateria (4 hacks). Durante o hack o Gabriel não se mexe e a tela acesa conta como lanterna para o Sentinela. Levar dano interrompe. Robô **só por trás** |
 | **Arma de impulso** (`arma_impulso`) | Apertar a tecla do espaço **trava a mira no robô mais próximo**; apertar **de novo** atira (`Shift` cancela) | Onda de choque num **cone de 30°, 150 px**: **empurra os robôs** e os paralisa por 0,9 s. Fica no cofre do cinema (Centro de Convivência). Ver [`combate.md`](combate.md) | Até **6 balas** (começa com 2), criadas na aba **Criação** a 3 pilhas cada. Não recarrega sozinha |
@@ -89,7 +89,7 @@ grade = [ [pote, null, null, null],     linha 0
 | Base de tudo que interage com `E` (`Interagivel`) | `scripts/itens/interagivel.gd` |
 | Efeito da lanterna equipada (a luz) | `cenas/itens/lanterna.tscn` |
 | Pilha no chão (recarga) | `cenas/itens/pilha_no_chao.tscn` |
-| Cápsula de clarão, pedra, notebook (efeitos) | `cenas/itens/clarao.tscn`, `pedra.tscn` (e `pedra_arremessada.tscn`), `notebook.tscn` |
+| Flash, pedra, notebook (efeitos) | `cenas/itens/clarao.tscn`, `pedra.tscn` (e `pedra_arremessada.tscn`), `notebook.tscn` |
 | Destaque dos coletáveis (luz que pulsa e brilho) | `cenas/itens/destaque_coletavel.tscn` |
 | HUD (espaços de gadget, aviso "[E]", mensagem) | `cenas/interface/hud.tscn` |
 | Tela do inventário (abas Itens e Anotações) | `cenas/interface/tela_inventario.tscn` |
@@ -131,7 +131,7 @@ A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo no
 - **A descrição** é o campo `descricao` do item (o mesmo que aparece no inventário). Cabem 7 linhas; se passar, o Godot avisa no console.
 - **Para testar:** a sala de teste tem um exemplar de cada item do jogo. Os das fases (chaves, molho de chaves, disquete e alicate) ficam em fila no canto direito, depois da porta dos robôs.
 - **Examinar pelo inventário:** `TelaInventario` chama `ItemNovo.examinar(item)`. Nesse modo a tela não despausa o jogo ao fechar (quem pausou foi o inventário), e o inventário ignora as teclas enquanto ela está aberta.
-- **Com imagem detalhada:** todos os 11 itens (lanterna, rádio, cápsula de clarão, pedra, notebook, as chaves da manutenção, da fita azul e do depósito, o molho de chaves, o alicate e o disquete da Clarice). A tela com o ícone ampliado continua existindo para um item novo que ainda não tenha imagem.
+- **Com imagem detalhada:** todos os 11 itens (lanterna, rádio, flash, pedra, notebook, as chaves da manutenção, da fita azul e do depósito, o molho de chaves, o alicate e o disquete da Clarice). A tela com o ícone ampliado continua existindo para um item novo que ainda não tenha imagem.
 
 ### Como colocar a imagem detalhada de um item
 

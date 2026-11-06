@@ -1,12 +1,13 @@
-# gerar_correr.py — anima o ZANE, a CLARICE e a DIANA correndo, de lado.
+# gerar_correr.py — anima a CLARICE e a DIANA correndo, de lado. (A corrida do
+# Zane, em todas as vistas e com 48 quadros, sai do gerar_zane_movimentos.py.)
 #
 # Como rodar (sem abrir a janela do Blender; precisa dos gerar_<nome>.py e do
 # gerar_gabriel_correr.py ao lado):
 #
 #   blender -b --factory-startup --python assets/modelagem/personagens/gerar_correr.py
-#   blender -b --factory-startup --python assets/modelagem/personagens/gerar_correr.py -- zane
+#   blender -b --factory-startup --python assets/modelagem/personagens/gerar_correr.py -- diana
 #
-# Sem nome, faz os três. O que sai:
+# Sem nome, faz as duas. O que sai:
 #   assets/sprites/personagens/<nome>/<nome>_correr_lado.png
 #       24 quadros de 96 x 112 lado a lado, na paleta da caminhada do
 #       personagem (as cores não mudam de uma tira para a outra).
@@ -51,16 +52,12 @@ def carregar(arquivo):
 corrida = carregar("gerar_gabriel_correr.py")
 
 
-def montar_zane(g, mt):
+def montar_diana(g, mt):
     raiz = g["montar"](mt)
     c.achatar_sombra("Rosto")
     g["expressao"](g["EXPRESSOES"][0])
     g["esconder_boca"]()
     return raiz
-
-
-def montar_diana(g, mt):
-    return montar_zane(g, mt)
 
 
 def montar_clarice(g, mt):
@@ -72,7 +69,6 @@ def montar_clarice(g, mt):
 
 
 PERSONAGENS = {
-    "zane": ("gerar_zane.py", "Zane", montar_zane),
     "diana": ("gerar_diana.py", "Diana", montar_diana),
     "clarice": ("gerar_clarice.py", "Clarice", montar_clarice),
 }

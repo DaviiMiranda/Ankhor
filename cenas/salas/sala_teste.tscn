@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="modelo"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="parede_porta"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="porta"]
+[ext_resource type="Script" path="res://scripts/sistemas/porta_de_teste.gd" id="s_porta_teste"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="pilar"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/placa_de_porta.tscn" id="placa"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="chao_lajotas"]
@@ -34,7 +35,7 @@
 
 [node name="SalaTeste" instance=ExtResource("modelo")]
 id = "sala_teste"
-largura = 800
+largura = 1120
 
 [node name="Parede01" parent="Paredes" instance=ExtResource("parede_porta")]
 position = Vector2(0, 0)
@@ -69,8 +70,20 @@ position = Vector2(640, 0)
 [node name="Parede10" parent="Paredes" instance=ExtResource("parede_porta")]
 position = Vector2(720, 0)
 
+[node name="Parede11" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(800, 0)
+
+[node name="Parede12" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(880, 0)
+
+[node name="Parede13" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(960, 0)
+
+[node name="Parede14" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(1040, 0)
+
 [node name="PilarDireita" parent="Paredes" instance=ExtResource("pilar")]
-position = Vector2(784, 0)
+position = Vector2(1104, 0)
 
 [node name="Chao1" parent="Chao" instance=ExtResource("chao_lajotas")]
 position = Vector2(0, 0)
@@ -92,6 +105,12 @@ position = Vector2(640, 0)
 
 [node name="Chao7" parent="Chao" instance=ExtResource("chao_lajotas")]
 position = Vector2(768, 0)
+
+[node name="Chao8" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(896, 0)
+
+[node name="Chao9" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(1024, 0)
 
 [node name="Lanterna" parent="Objetos" instance=ExtResource("i_item")]
 position = Vector2(110, 150)
@@ -212,14 +231,99 @@ item = ExtResource("gd_mascara")
 position = Vector2(680, 138)
 item = ExtResource("gd_espelho")
 
-[node name="PortaFases" parent="." instance=ExtResource("porta")]
-position = Vector2(760, 124)
-id = "sala_teste_fases_porta"
-cena_destino = "res://cenas/salas/sala_teste_fases.tscn"
-porta_destino = "fases_voltar"
+[node name="PortaConvivencia" parent="." instance=ExtResource("porta")]
+position = Vector2(40, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_convivencia"
+cena_destino = "res://cenas/salas/centro_de_convivencia/praca_central.tscn"
+porta_destino = ""
+com_combate = true
 
-[node name="PlacaFases" parent="Paredes" instance=ExtResource("placa")]
-position = Vector2(760, 56)
-texto = "FASES
-(TESTE)"
-cor_do_texto = Color(1, 0.8, 0.4, 1)
+[node name="PlacaConvivencia" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(40, 56)
+texto = "CONVIVÊNCIA
+(COMBATE)"
+cor_do_texto = Color(1.0, 0.8, 0.4, 1)
+
+[node name="PortaBloco" parent="." instance=ExtResource("porta")]
+position = Vector2(200, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_bloco"
+cena_destino = "res://cenas/salas/bloco_de_salas/corredor_terreo.tscn"
+porta_destino = ""
+com_combate = false
+
+[node name="PlacaBloco" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(200, 56)
+texto = "BLOCO DE
+SALAS"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)
+
+[node name="PortaLabirinto" parent="." instance=ExtResource("porta")]
+position = Vector2(360, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_labirinto"
+cena_destino = "res://cenas/salas/labirinto.tscn"
+porta_destino = ""
+com_combate = false
+
+[node name="PlacaLabirinto" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(360, 56)
+texto = "LABIRINTO"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)
+
+[node name="PortaBunker" parent="." instance=ExtResource("porta")]
+position = Vector2(520, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_bunker"
+cena_destino = "res://cenas/salas/bunker/entrada.tscn"
+porta_destino = ""
+com_combate = false
+
+[node name="PlacaBunker" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(520, 56)
+texto = "BUNKER"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)
+
+[node name="PortaDtec" parent="." instance=ExtResource("porta")]
+position = Vector2(680, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_dtec"
+cena_destino = "res://cenas/salas/dtec/emergencia.tscn"
+porta_destino = ""
+com_combate = false
+
+[node name="PlacaDtec" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(680, 56)
+texto = "D-TEC"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)
+
+[node name="PortaZane" parent="." instance=ExtResource("porta")]
+position = Vector2(840, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_zane"
+cena_destino = "res://cenas/salas/labirinto/camara_selada.tscn"
+porta_destino = ""
+com_combate = false
+
+[node name="PlacaZane" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(840, 56)
+texto = "ZANE
+(CÂMARA SELADA)"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)
+
+[node name="PortaFimDoBunker" parent="." instance=ExtResource("porta")]
+position = Vector2(1000, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_fim_do_bunker"
+cena_destino = "res://cenas/salas/bunker/central_dados.tscn"
+porta_destino = "central_dados"
+com_combate = false
+marcas_ao_entrar = PackedStringArray("bunker_energia")
+marcas_apagadas_ao_entrar = PackedStringArray("bunker_confronto_falado", "bunker_henrique_sumiu", "bunker_comporta_aberta", "dtec_grupo_separado")
+
+[node name="PlacaFimDoBunker" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(1000, 56)
+texto = "FIM DO
+BUNKER"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)
