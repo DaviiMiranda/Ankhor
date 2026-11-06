@@ -26,6 +26,10 @@ func esta_invulneravel() -> bool:
 	return _agora() < _invulneravel_ate
 
 
+func proteger(segundos: float) -> void:
+	_invulneravel_ate = maxf(_invulneravel_ate, _agora() + segundos)
+
+
 func receber_dano(quantidade: int, origem: Vector2) -> bool:
 	if not esta_viva() or esta_invulneravel():
 		return false

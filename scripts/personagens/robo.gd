@@ -15,6 +15,7 @@ const DISTANCIA_CHEGOU := 4.0
 const ORIGEM_DA_SOMBRA := Vector2(0, -4)
 const RAIO_LUZ_QUE_REVELA := 56.0
 const SOM_BIPE := preload("res://assets/audio/efeitos/robos/robo_bipe.wav")
+const ATRITO_DO_IMPULSO := 420.0
 
 @export var nome_tipo: String = "Robô"
 
@@ -93,6 +94,7 @@ var _som_bipe: AudioStreamPlayer2D
 var _segundos_distraido := 0.0
 var _visitante := false
 var _saida_do_visitante := Vector2.ZERO
+var _impulso := Vector2.ZERO
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var olhos: Sprite2D = $Olhos
@@ -223,6 +225,13 @@ func denunciar() -> void:
 static func fazer_barulho(arvore: SceneTree, origem: Vector2, alcance: float) -> void:
 	for no in arvore.get_nodes_in_group("robos"):
 		(no as Robo).ouvir_barulho(origem, alcance)
+
+
+func empurrar(direcao: Vector2, velocidade: float, segundos_atordoado: float) -> void:
+	if grade == null:
+		return
+	_impulso = direcao.normalized() * velocidade
+	atordoar(segundos_atordoado)
 
 
 func atordoar(segundos: float) -> void:
@@ -384,14 +393,20 @@ func _andar(delta: float) -> void:
 			_tempo_desde_chegada += delta
 			_olhar_em_volta(delta)
 			_ao_chegar()
-		move_and_slide()
+		_deslizar(delta)
 		return
 	var direcao := global_position.direction_to(_caminho[0])
 	velocity = Vector2(direcao.x, direcao.y * fator_profundidade) * _velocidade()
 	if velocity.length() > 1.0:
 		_virar_para(direcao, delta)
-	move_and_slide()
+	_deslizar(delta)
 	_evitar_ficar_preso(delta)
+
+
+func _deslizar(delta: float) -> void:
+	velocity += _impulso
+	move_and_slide()
+	_impulso = _impulso.move_toward(Vector2.ZERO, ATRITO_DO_IMPULSO * delta)
 
 
 func _para_o_gabriel() -> Vector2:

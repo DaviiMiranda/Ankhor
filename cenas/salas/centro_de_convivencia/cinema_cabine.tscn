@@ -11,7 +11,7 @@
 [ext_resource type="Resource" path="res://dados/documentos/canhoto_caio.tres" id="r9"]
 [ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/papel_canhoto_caio.png" id="r10"]
 [ext_resource type="PackedScene" path="res://cenas/itens/papel_no_mundo.tscn" id="r11"]
-[ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="r12"]
+[ext_resource type="Resource" path="res://dados/itens/arma_impulso.tres" id="r12"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/cofre.tscn" id="r13"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r14"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r15"]
@@ -21,6 +21,7 @@
 
 [node name="CinemaCabine" instance=ExtResource("r1")]
 id = "conv_cinema_cabine"
+esquiva_permitida = true
 largura = 400
 altura = 220
 chao_frente = 216
@@ -65,7 +66,7 @@ codigo = "724"
 marca = "cofre_cinema_aberto"
 item_ao_abrir = ExtResource("r12")
 quantidade = 1
-aviso_aberto = "O cofre abriu: caiu uma cápsula de clarão."
+aviso_aberto = "O cofre abriu: caiu uma arma de impulso."
 
 [node name="Luz1" parent="Luzes" instance=ExtResource("r14")]
 position = Vector2(200, 90)
