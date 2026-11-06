@@ -62,6 +62,15 @@ Registro de melhorias secundárias, polimento visual, sonoro e ajustes de qualid
   - O notebook passa a **hackear a uma distância maior**.
   - O hack **não desabilita totalmente** o robô.
 
+## Mecânicas e Fases
+
+- [ ] **Mecânica de espiar na fase 2 inteira:**
+  - A mecânica de espiar pode valer na **fase 2 (Bloco de Salas) inteira**.
+  - **Hoje:** só existe a fresta da barricada da sala 103 (`fresta_da_barricada` e `Porta.espiar()`, ver [`fases/bloco_de_salas.md`](fases/bloco_de_salas.md), seção 12.4).
+
+- [ ] **Fase jogável com o Zane:**
+  - Uma fase em que o jogador controla o **Zane**.
+
 ## Conteúdo extra
 
 - [ ] **Easter eggs colecionáveis que dão conquistas:**
