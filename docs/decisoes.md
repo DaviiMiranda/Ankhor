@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-06 — Sala de teste só com a porta das fases
+
+**Decisão:** a pedido do Davi, a `sala_teste` perdeu as portas soltas (as seis de hackeamento, a do labirinto de robôs e a da safe room de teste, com o sinal dela). Sobrou só a porta "FASES (TESTE)", que leva à `sala_teste_fases`, onde ficam as portas de cada fase. A porta para a mini fase do Zane entra depois que a branch dele for mesclada.
+
+**Por quê:** a sala estava cheia de portas de testes antigos; o corredor de fases já cobre o que se testa no dia a dia.
+
+**Afeta:** `cenas/salas/sala_teste.tscn`. As cenas `labirinto_teste.tscn` e `sala_segura_teste.tscn` continuam no projeto, mas nenhuma porta leva até elas.
+
 ## 2026-11-06 — Combate no Centro de Convivência: robô atirador, arma de impulso e esquiva
 
 **Decisão:** a pedido do Davi, três mecânicas novas, **só no Centro de Convivência** (detalhes em [`mecanicas/combate.md`](mecanicas/combate.md)):
