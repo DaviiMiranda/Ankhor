@@ -189,7 +189,7 @@ O Carlos fica no console do fundo do Lab Central, com a Âncora entre ele e o Ga
 
 - **Enredo 10.2, como enfrentar o Carlos sem lutar:** esta seção é uma resposta possível do ponto de vista da mecânica. Só entra no Enredo se o grupo aprovar.
 - **Como o Carlos fala** (as falas dos alto-falantes) e **os registros dele** (ficha, seções 2 e 5), e se a diretoria é o lugar onde ele vive.
-- **Quem guia pelo rádio e se os outros estão presentes:** a proposta supõe o Zane, como no Labirinto e no Centro de Convivência (Enredo 3.1 e 10.6).
+- **Quem guia pelo rádio e se os outros estão presentes:** a proposta supõe o Gabriel sozinho, guiado pelo Zane pelo rádio. **Isso mudou em 2026-11-06:** o Enredo (seção 8, Ato 3) decidiu que o grupo todo (menos o Henrique, que sumiu) chega **junto** ao Laboratório, fugindo dos robôs do Carlos. Falta decidir se eles continuam juntos na fase ou se separam, e quem o jogador controla (Enredo, seção 10.5).
 - **Robôs capturam ou eliminam** (Enredo 10.2): se capturam, ser pego na arena pode virar uma cena em vez de game over.
 - **O que acontece com o Carlos e com a Âncora no fim** (Enredo 10.6).
 

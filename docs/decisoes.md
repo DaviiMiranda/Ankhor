@@ -1,5 +1,33 @@
 # Registro de decisões
 
+## 2026-11-06 — A cena do fim do Bunker no jogo: confronto, sumiço do Henrique e fuga
+
+**Decisão:** o fim do Bunker decidido no Enredo (entrada abaixo) entrou no jogo como uma **cena animada**, com **falas genéricas** por enquanto (pedido do Davi: com animação e um diálogo genérico rápido):
+- **Sala de dados:** o confronto (`bunker_encontro`), o Henrique brilhando e sumindo num clarão, o dispositivo caindo com close no **2900**, a reação do grupo e a "Voz nos alto-falantes" (`bunker_sumico`), que dispara a sirene e deixa a sala vermelha; os passos dos robôs e o "corre" do Zane (`bunker_fuga`).
+- **A fuga:** uma sala nova, `cenas/salas/bunker/fuga.tscn`: o grupo e o Gabriel correm sozinhos por um corredor vermelho, com o Ciborgue, um Caçador e um Rastreador atrás, até a comporta do núcleo, e de lá ao Laboratório (pelo `fim_do_bunker.tscn`, como antes).
+- **Escolhas de produção:** a fuga é **cena, não jogável** (o menor passo; pode virar jogável depois). A voz do Carlos aparece como "Voz nos alto-falantes", sem nome nem retrato, porque quando o jogador descobre o nome dele está pendente. O dispositivo **fica no chão** (se o grupo o leva está pendente). O grupo **não aparece no D-Tec** (se fica junto lá está pendente).
+- **Peças reaproveitáveis:** `SumicoDeEnergia` (o brilho e o clarão), `AtorDeCena.andar_ate` (personagem parado que anda em cena), `PersonagemParado.virar`, `RoboDeCena` (robô de enfeite) e `Gabriel.correr_sozinho`.
+
+**Por quê:** pedido do Davi, para a história do Bunker em diante já existir jogando, antes do roteiro final.
+
+**Afeta:** `scripts/salas/central_dados.gd` e `fuga_do_bunker.gd` (novos), `scripts/sistemas/sumico_de_energia.gd` e `cenas/sistemas/sumico_de_energia.tscn` (novos), `scripts/personagens/ator_de_cena.gd` e `robo_de_cena.gd` (novos), `personagem_parado.gd` (`virar`), `gabriel.gd` (`correr_sozinho`), `scripts/sistemas/perseguicao_entre_salas.gd` (a fuga é sala protegida), `objetivos.gd` (texto final do bunker), `cenas/salas/bunker/central_dados.tscn` e `fuga.tscn`, `cenas/cenario/objetos/dispositivo_2900.tscn`, os geradores `assets/modelagem/cenario/gerar_dispositivo_2900.py` e `assets/modelagem/salas/bunker/montar_fuga.py`, os diálogos `bunker_encontro.json`, `bunker_sumico.json` e `bunker_fuga.json`, e `docs/fases/bunker.md`.
+
+## 2026-11-06 — O fim do Bunker: o confronto com o Henrique, o sumiço dele e a fuga até o Laboratório
+
+**Decisão (história):** o fim do Bunker deixa de ser um encontro de quem ainda confia no Henrique e vira o grande embate com ele:
+1. Na sala de dados, o grupo todo (Gabriel, Zane, Clarice, Diana) se reúne com o Henrique e **todos o questionam**. No fim, ele **admite** que está enganando o grupo, mas diz que **precisava**.
+2. O Henrique **começa a brilhar**, com energia em volta do corpo; todos se assustam, e ele **some como numa explosão de energia**. No chão fica um **dispositivo com o número 2900**.
+3. O **Carlos fala pelos alto-falantes** do bunker: quer todos fora do caminho dele. (Ele continua sem ir ao bunker: só a voz chega.)
+4. **Vários robôs** vêm atrás do grupo, e todos **fogem juntos por um corredor** até chegarem ao **Laboratório (D-Tec)**.
+
+Isso responde a pendência "o que muda no Bunker" (Enredo 10.3) e, em parte, "o que acontece com o Henrique no fim" (10.6) e "o que a Clarice e a Diana fazem depois" (10.4). Ficam novas pendências na 10.3 (o que são o brilho, o dispositivo e o 2900; se ele volta; como a parte dele, a teoria, chega ao grupo), na 10.2 (se o Carlos sabe o que aconteceu com o Henrique, ou se foi ele) e na 10.5 (se o grupo fica junto no Laboratório e quem o jogador controla).
+
+**Por quê:** decisão do Davi, ao começar a história das fases do Bunker em diante.
+
+**As falas ficam em aberto para o roteirista:** o Enredo só descreve a cena (pedido do Davi). A cena entrou no jogo no mesmo dia (entrada acima).
+
+**Afeta:** `docs/historia/História_Completa.md` (status, 3.1, 4.3, 6, Ato 3, "A virada", Ato 4 e pendências 10.2 a 10.6), `docs/historia/personagens/henrique.docx`, `docs/fases/bunker.md` e `docs/fases/dtec.md`. **`História_Completa.docx` ainda não foi atualizado.**
+
 ## 2026-11-06 — Sai a esquiva do Gabriel
 
 **Decisão:** a esquiva (tecla `Espaço`), criada no PR #200 só para o Centro de Convivência, foi **removida** a pedido do Davi. Saem a ação `esquivar` do `project.godot`, a lógica no `gabriel.gd`, a propriedade `Sala.esquiva_permitida` (e a marca `esquiva_permitida = true` nas salas do Centro), o som `esquiva.wav` e o gerador dele. Fica o `Vida.proteger()`, que o modo combate ainda usa para dar 2 s de proteção ao renascer. Contra os raios do atirador, o jeito de se proteger agora é sair da linha da mira ou ficar atrás de uma mesa.
