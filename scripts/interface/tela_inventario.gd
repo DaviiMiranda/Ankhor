@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-enum Aba { ITENS, ANOTACOES, OBJETIVO }
+enum Aba { ITENS, CRIACAO, ANOTACOES, OBJETIVO }
 
 const CENA_ESPACO := preload("res://cenas/interface/espaco_item.tscn")
 const COR_ABA_ATIVA := Color(0.95, 0.88, 0.7, 1)
@@ -8,6 +8,7 @@ const COR_ABA_INATIVA := Color(0.55, 0.56, 0.52, 1)
 const MARCA_NOVA := " •"
 const DICAS := {
 	Aba.ITENS: "Q: próxima aba   Setas: escolher   1-3: equipar   Tab: fechar",
+	Aba.CRIACAO: "Q: próxima aba   E: criar   Tab: fechar",
 	Aba.ANOTACOES: "Q: próxima aba   Setas: escolher e folhear   Tab: fechar",
 	Aba.OBJETIVO: "Q: próxima aba   Tab: fechar",
 }
@@ -29,10 +30,12 @@ var _fade_textos: Tween
 @onready var fundo: ColorRect = $Fundo
 @onready var janela: Control = $Janela
 @onready var aba_itens: Label = $Janela/Abas/AbaItens
+@onready var aba_criacao: Label = $Janela/Abas/AbaCriacao
 @onready var aba_anotacoes: Label = $Janela/Abas/AbaAnotacoes
 @onready var aba_objetivo: Label = $Janela/Abas/AbaObjetivo
 @onready var marcador: ColorRect = $Janela/Marcador
 @onready var painel_itens: Control = $Janela/Itens
+@onready var painel_criacao: PainelCriacao = $Janela/Criacao
 @onready var painel_anotacoes: PainelAnotacoes = $Janela/Anotacoes
 @onready var painel_objetivo: PainelObjetivo = $Janela/Objetivo
 @onready var dica: Label = $Janela/Dica
@@ -53,6 +56,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_criar_espacos()
 	aba_itens.gui_input.connect(_ao_clicar_aba.bind(Aba.ITENS))
+	aba_criacao.gui_input.connect(_ao_clicar_aba.bind(Aba.CRIACAO))
 	aba_anotacoes.gui_input.connect(_ao_clicar_aba.bind(Aba.ANOTACOES))
 	aba_objetivo.gui_input.connect(_ao_clicar_aba.bind(Aba.OBJETIVO))
 	Inventario.mudou.connect(_atualizar)
@@ -96,6 +100,8 @@ func _unhandled_input(evento: InputEvent) -> void:
 		som_aba.play()
 	elif _aba == Aba.ITENS:
 		_tratar_itens(evento)
+	elif _aba == Aba.CRIACAO:
+		_tratar_criacao(evento)
 	elif _aba == Aba.ANOTACOES:
 		painel_anotacoes.tratar_entrada(evento)
 	get_viewport().set_input_as_handled()
@@ -139,6 +145,12 @@ func _tratar_itens(evento: InputEvent) -> void:
 			_equipar_no_espaco(i)
 	if evento.is_action_pressed("interagir"):
 		_examinar()
+
+
+func _tratar_criacao(evento: InputEvent) -> void:
+	if evento.is_action_pressed("interagir") and Criacao.criar_bala():
+		som_equipar.play()
+		Inventario.aviso.emit("Bala de impulso criada")
 
 
 func _examinar() -> void:
@@ -206,9 +218,11 @@ func _mostrar_quadro_do_gesto(quadro: float) -> void:
 func _mostrar_aba(aba: Aba) -> void:
 	_aba = aba
 	painel_itens.visible = aba == Aba.ITENS
+	painel_criacao.visible = aba == Aba.CRIACAO
 	painel_anotacoes.visible = aba == Aba.ANOTACOES
 	painel_objetivo.visible = aba == Aba.OBJETIVO
 	painel_objetivo.atualizar()
+	painel_criacao.atualizar()
 	dica.text = DICAS[aba]
 	_atualizar_abas()
 
@@ -224,6 +238,8 @@ func _atualizar_abas() -> void:
 
 func _rotulo_da_aba(aba: Aba) -> Label:
 	match aba:
+		Aba.CRIACAO:
+			return aba_criacao
 		Aba.ANOTACOES:
 			return aba_anotacoes
 		Aba.OBJETIVO:
@@ -283,6 +299,7 @@ func _desequipar(espaco: int) -> void:
 func _atualizar() -> void:
 	if not is_node_ready():
 		return
+	painel_criacao.atualizar()
 	var i := 0
 	for linha in Inventario.LINHAS:
 		for coluna in Inventario.COLUNAS:

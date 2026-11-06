@@ -8,6 +8,8 @@ signal aviso(texto: String)
 const LINHAS := 3
 const COLUNAS := 4
 const ESPACOS_GADGET := 3
+const MAXIMO_PILHAS := 9
+const ID_PILHAS := "pilhas"
 
 var grade: Array = []
 var gadgets: Array = []
@@ -45,7 +47,7 @@ func adicionar(item: Item) -> bool:
 			if grade[linha][coluna] == null:
 				grade[linha][coluna] = item
 				if item.maximo_unidades > 0:
-					definir_unidades(item, 1)
+					definir_unidades(item, item.unidades_iniciais)
 				if item.equipavel and espaco_do_gadget(item) == -1:
 					var livre := gadgets.find(null)
 					if livre != -1:
@@ -132,6 +134,23 @@ func definir_unidades(item: Item, quantas: int) -> void:
 	var estado_item := estado_de(item.id)
 	estado_item["unidades"] = quantas
 	estado_item["carga"] = float(quantas) / item.maximo_unidades
+
+
+func pilhas() -> int:
+	return estado_de(ID_PILHAS).get("quantidade", 0)
+
+
+func definir_pilhas(quantas: int) -> void:
+	estado_de(ID_PILHAS)["quantidade"] = clampi(quantas, 0, MAXIMO_PILHAS)
+	mudou.emit()
+
+
+func guardar_pilha() -> bool:
+	if pilhas() >= MAXIMO_PILHAS:
+		aviso.emit("Pilhas no máximo: %d" % MAXIMO_PILHAS)
+		return false
+	definir_pilhas(pilhas() + 1)
+	return true
 
 
 func _somar_unidade(item: Item) -> bool:

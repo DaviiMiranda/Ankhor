@@ -121,7 +121,6 @@ radius = 65.0
 
 [node name="PracaCentral" instance=ExtResource("r1")]
 id = "conv_praca_central"
-esquiva_permitida = true
 largura = 2000
 altura = 560
 chao_frente = 556

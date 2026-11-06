@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" path="res://cenas/interface/painel_anotacoes.tscn" id="5_anotacoes"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/papel_folhear.wav" id="6_som_aba"]
 [ext_resource type="PackedScene" path="res://cenas/interface/painel_objetivo.tscn" id="7_objetivo"]
+[ext_resource type="PackedScene" path="res://cenas/interface/painel_criacao.tscn" id="10_criacao"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/gadget_equipar.wav" id="8_som_equipar"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/gadget_desequipar.wav" id="9_som_desequipar"]
 
@@ -76,6 +77,11 @@ theme_override_constants/separation = 14
 layout_mode = 2
 mouse_filter = 0
 text = "ITENS"
+
+[node name="AbaCriacao" type="Label" parent="Janela/Abas"]
+layout_mode = 2
+mouse_filter = 0
+text = "CRIAÇÃO"
 
 [node name="AbaAnotacoes" type="Label" parent="Janela/Abas"]
 layout_mode = 2
@@ -172,6 +178,9 @@ offset_top = 126.0
 offset_right = 294.0
 offset_bottom = 140.0
 label_settings = SubResource("LabelSettings_dica")
+
+[node name="Criacao" parent="Janela" instance=ExtResource("10_criacao")]
+visible = false
 
 [node name="Anotacoes" parent="Janela" instance=ExtResource("5_anotacoes")]
 visible = false
