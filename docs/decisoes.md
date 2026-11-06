@@ -1,5 +1,11 @@
 # Registro de decisões
 
+## 2026-11-06 — As portas das fases ficam na própria sala de teste
+
+**Decisão:** a pedido do Davi, as seis portas (Convivência com modo combate, Bloco de salas, Labirinto, Bunker, D-Tec e a câmara selada do Zane) passaram para a `sala_teste`, a partir de onde o jogador nasce. A porta "FASES (TESTE)" e o corredor `sala_teste_fases` saíram. Quem dava todos os itens era o corredor (`TudoColetado`); agora a própria `PortaDeTeste` faz isso antes de trocar de cena, então os itens soltos da sala de teste continuam para testar à mão. A sala ficou 160 px mais larga.
+
+**Afeta:** `cenas/salas/sala_teste.tscn`, `scripts/sistemas/porta_de_teste.gd`, `sala_teste_fases.tscn` (apagada), `docs/mecanicas/combate.md`.
+
 ## 2026-11-06 — Sai a esquiva do Gabriel
 
 **Decisão:** a esquiva (tecla `Espaço`), criada no PR #200 só para o Centro de Convivência, foi **removida** a pedido do Davi. Saem a ação `esquivar` do `project.godot`, a lógica no `gabriel.gd`, a propriedade `Sala.esquiva_permitida` (e a marca `esquiva_permitida = true` nas salas do Centro), o som `esquiva.wav` e o gerador dele. Fica o `Vida.proteger()`, que o modo combate ainda usa para dar 2 s de proteção ao renascer. Contra os raios do atirador, o jeito de se proteger agora é sair da linha da mira ou ficar atrás de uma mesa.

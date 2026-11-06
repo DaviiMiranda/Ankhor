@@ -43,7 +43,7 @@ Um robô novo (`cenas/personagens/robo_atirador.tscn`, script `scripts/personage
 
 ## 3. Modo combate (a porta de teste)
 
-Para testar tudo isso sem jogar a fase, a **sala de teste** tem uma porta "FASES (TESTE)" que leva à `sala_teste_fases`, com uma porta por fase:
+Para testar tudo isso sem jogar a fase, a **sala de teste** tem, logo onde o jogador nasce, uma porta por fase (cada uma dá antes todos os itens, como o `TudoColetado`):
 
 | Placa | Destino | Observação |
 |---|---|---|
@@ -73,7 +73,7 @@ Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia (com as 9
 | Arma de impulso | `scripts/itens/arma_impulso.gd`, `cenas/itens/arma_impulso.tscn`, `dados/itens/arma_impulso.tres` |
 | Criação e pilhas guardadas | `scripts/sistemas/criacao.gd`, `scripts/interface/painel_criacao.gd`, `cenas/interface/painel_criacao.tscn`, `Inventario.pilhas()`, `PilhaNoChao` |
 | Modo combate | `scripts/sistemas/modo_combate.gd`, `Checkpoints`, `Vida.proteger()` |
-| Sala de fases e portas | `cenas/salas/sala_teste_fases.tscn`, `scripts/sistemas/porta_de_teste.gd`, `cenas/cenario/objetos/placa_de_porta.tscn` |
+| Portas das fases | `cenas/salas/sala_teste.tscn`, `scripts/sistemas/porta_de_teste.gd`, `cenas/cenario/objetos/placa_de_porta.tscn` |
 | Sons e ícones | `assets/modelagem/audio/gerar_efeitos_combate.py`, `assets/modelagem/itens/gerar_arma_impulso.py` |
 
 ## 5. Ainda não feito

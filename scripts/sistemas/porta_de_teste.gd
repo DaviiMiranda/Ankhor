@@ -5,6 +5,7 @@ extends Porta
 
 
 func _trocar_de_cena() -> void:
+	add_child(TudoColetado.new())
 	if com_combate:
 		ModoCombate.ativar()
 	else:
