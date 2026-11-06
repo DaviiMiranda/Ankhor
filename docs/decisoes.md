@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-06 — Sai a esquiva do Gabriel
+
+**Decisão:** a esquiva (tecla `Espaço`), criada no PR #200 só para o Centro de Convivência, foi **removida** a pedido do Davi. Saem a ação `esquivar` do `project.godot`, a lógica no `gabriel.gd`, a propriedade `Sala.esquiva_permitida` (e a marca `esquiva_permitida = true` nas salas do Centro), o som `esquiva.wav` e o gerador dele. Fica o `Vida.proteger()`, que o modo combate ainda usa para dar 2 s de proteção ao renascer. Contra os raios do atirador, o jeito de se proteger agora é sair da linha da mira ou ficar atrás de uma mesa.
+
+**Por quê:** pedido do Davi. A ideia de testar uma esquiva continua nos melhoramentos futuros (`docs/sugestao-melhoramento-futuro.md`).
+
+**Afeta:** `scripts/personagens/gabriel.gd`, `scripts/salas/sala.gd`, `project.godot`, as salas de `cenas/salas/centro_de_convivencia/`, `assets/modelagem/audio/gerar_efeitos_combate.py`, `docs/mecanicas/combate.md`, `movimentacao_e_terreno.md`, `README.md` das mecânicas e `docs/fases/centro_de_convivencia.md`. As entradas antigas deste registro que falam da esquiva descrevem o que existia na época.
+
 ## 2026-11-06 — Arma de impulso mirada, balas criadas com pilhas e raio mais rápido
 
 **Decisão:** três ajustes pedidos pelo Davi depois de testar o combate ([`mecanicas/combate.md`](mecanicas/combate.md)):

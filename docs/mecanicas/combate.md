@@ -1,7 +1,7 @@
 # Mecânicas — Combate do Centro de Convivência
 
-> **Status:** em teste. Valem só no **Centro de Convivência**: o robô atirador, a arma de impulso e a esquiva. Os números são um primeiro chute para o grupo ajustar jogando.
-> **O Gabriel continua sem ser combatente** (ver o Enredo Principal): nada aqui mata um robô. A arma só **afasta**, o clarão só **paralisa**, e a esquiva só **evita** o dano.
+> **Status:** em teste. Valem só no **Centro de Convivência**: o robô atirador e a arma de impulso. Os números são um primeiro chute para o grupo ajustar jogando.
+> **O Gabriel continua sem ser combatente** (ver o Enredo Principal): nada aqui mata um robô. A arma só **afasta**, o clarão só **paralisa**.
 
 ---
 
@@ -14,10 +14,10 @@ Um robô novo (`cenas/personagens/robo_atirador.tscn`, script `scripts/personage
 1. Vê o Gabriel e entra em `PERSEGUINDO`, como qualquer robô.
 2. Chega a `distancia_de_tiro` (130 px) e para: a partir daí ele **mira**. Se o Gabriel chegar perto demais (`distancia_ideal`, 95 px) o robô fica parado, em vez de avançar para a garra.
 3. **Mira rastreando** (0,7 s): uma linha vermelha fina sai do peito dele e acompanha o Gabriel. Toca o som de carga.
-4. **Mira travada** (0,4 s): a linha fica branca e grossa e **para de seguir**. É a janela para sair da linha ou esquivar.
+4. **Mira travada** (0,4 s): a linha fica branca e grossa e **para de seguir**. É a janela para sair da linha ou se proteger atrás de uma mesa.
 5. **Dispara** um raio (`RaioAtirado`) na direção travada. Depois recarrega por 2,2 s antes de mirar de novo.
 
-**O raio** viaja a 310 px/s, tira **1 de vida** e some ao acertar. **Mesas, árvores e paredes (camada 8) param o raio**, o mesmo que cortam a visão dos robôs: ficar atrás de uma mesa protege. Durante a esquiva o raio **atravessa** o Gabriel sem machucar.
+**O raio** viaja a 310 px/s, tira **1 de vida** e some ao acertar. **Mesas, árvores e paredes (camada 8) param o raio**, o mesmo que cortam a visão dos robôs: ficar atrás de uma mesa protege. 
 
 **Quando a mira cancela:** o robô fica atordoado (clarão ou arma de impulso), ou o Gabriel se esconde (nicho), ou morre.
 
@@ -28,7 +28,7 @@ Um robô novo (`cenas/personagens/robo_atirador.tscn`, script `scripts/personage
 ## 2. Arma de impulso (`arma_impulso`)
 
 - **Onde está:** dentro do **cofre do cinema** (`cinema_cabine`, código 7-2-4). O prêmio do cofre, que era uma cápsula de clarão, passou a ser a arma. Ela já vem com **2 balas**.
-- **Como usa: travar e apertar de novo.** É um gadget; vai para um dos 3 espaços. **Aperte** a tecla do espaço (`1`, `2` ou `3`): o Gabriel para, aparece um **cone** de 30° no chão e a **mira trava no robô mais próximo** (até 150 px), com uma marca em volta dele. A mira **acompanha** o robô enquanto ele anda; se ele sai de alcance ou some, ela passa para o próximo mais perto. **Aperte a mesma tecla de novo** para atirar. `Shift` **cancela** sem gastar bala. Se não houver nenhum robô por perto, a mira fica livre: aponte com `WASD` (8 direções; sem apertar nada, mira para onde o Gabriel olha). Morrer ou trocar de gadget no meio também cancela. Não dá para esquivar mirando.
+- **Como usa: travar e apertar de novo.** É um gadget; vai para um dos 3 espaços. **Aperte** a tecla do espaço (`1`, `2` ou `3`): o Gabriel para, aparece um **cone** de 30° no chão e a **mira trava no robô mais próximo** (até 150 px), com uma marca em volta dele. A mira **acompanha** o robô enquanto ele anda; se ele sai de alcance ou some, ela passa para o próximo mais perto. **Aperte a mesma tecla de novo** para atirar. `Shift` **cancela** sem gastar bala. Se não houver nenhum robô por perto, a mira fica livre: aponte com `WASD` (8 direções; sem apertar nada, mira para onde o Gabriel olha). Morrer ou trocar de gadget no meio também cancela. 
 - **O que faz:** uma onda de choque dentro do cone, de **30° de abertura e 150 px de alcance** (média distância), medida a partir dos pés do Gabriel. **Empurra os robôs que estão dentro** para longe e os deixa **paralisados por 0,9 s**. A força cai com a distância: quem está colado é jogado a ~400 px/s, quem está na borda a ~170 px/s. Robô fora do cone não sente nada. O empurrão é um `_impulso` no `Robo`, que perde velocidade por atrito (420 px/s²), então o robô desliza e para.
 - **Custo: balas.** Cada disparo gasta **1 bala** (no máximo **6**). As balas **não se recarregam sozinhas**: criam-se na aba **Criação** do inventário, a **3 pilhas por bala** (seção 2.1). Entre dois disparos, 0,45 s.
 - **Visual e som:** o cone ciano translúcido enquanto mira; ao soltar, dois arcos ciano que correm pelo cone, um clarão azul e o estouro grave (`impulso_disparo.wav`).
@@ -41,18 +41,7 @@ Um robô novo (`cenas/personagens/robo_atirador.tscn`, script `scripts/personage
 - **Aba CRIAÇÃO** (`Q` troca de aba): mostra a receita **Bala de impulso: 3 pilhas**, quantas pilhas e balas há e o que falta. `E` cria uma bala. Fica como "Você ainda não tem a arma de impulso" antes de abrir o cofre.
 - **No código:** `Criacao` (`scripts/sistemas/criacao.gd`) decide se dá para criar e cria; `PainelCriacao` desenha a aba; o estoque de pilhas fica em `Inventario.estado` (`pilhas.quantidade`), então vai no save.
 
-## 3. Esquiva do Gabriel
-
-- **Tecla:** `Espaço` (ação `esquivar`).
-- **Só vale no Centro de Convivência.** Cada sala tem a propriedade `esquiva_permitida` (`Sala`); ela é `true` nas salas de `cenas/salas/centro_de_convivencia/`, menos a sala segura e o fim da fase. Nas outras fases a tecla não faz nada. O aviso "Espaço: esquivar" aparece uma vez por sessão de jogo ao entrar numa sala que permite.
-- **Como funciona:** um **salto curto** (0,3 s, uns 54 px) na direção em que o jogador está andando (ou para onde olha, se estiver parado). A velocidade começa em 360 px/s e cai em linha reta até zero. Durante o salto o Gabriel fica **semitransparente e invulnerável** (`Vida.proteger`): robôs, garras e raios não machucam.
-- **Intervalo:** 0,9 s entre duas esquivas.
-- **Não dá para esquivar:** escondido, no meio de uma ação (abrir a mochila), carregando a Célula de Energia, ou morto.
-- **Barulho:** não tem estamina nem barulho extra; os passos continuam valendo.
-
----
-
-## 4. Modo combate (a porta de teste)
+## 3. Modo combate (a porta de teste)
 
 Para testar tudo isso sem jogar a fase, a **sala de teste** tem uma porta "FASES (TESTE)" que leva à `sala_teste_fases`, com uma porta por fase:
 
@@ -64,7 +53,7 @@ Para testar tudo isso sem jogar a fase, a **sala de teste** tem uma porta "FASES
 | BUNKER | `entrada` do bunker | idem |
 | D-TEC (LABORATÓRIO) | `emergencia` | idem |
 
-Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia (com as 9 pilhas e as 6 balas): arma de impulso, clarão e pedra primeiro (assim ficam nos 3 espaços de gadget), depois os outros gadgets e as ferramentas. **A Célula de Energia fica de fora**, porque é carga pesada e impede de correr e de esquivar. A mochila tem 12 espaços e há mais itens do que isso, então as chaves ficam de fora quando falta lugar.
+Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia (com as 9 pilhas e as 6 balas): arma de impulso, clarão e pedra primeiro (assim ficam nos 3 espaços de gadget), depois os outros gadgets e as ferramentas. **A Célula de Energia fica de fora**, porque é carga pesada e impede de correr. A mochila tem 12 espaços e há mais itens do que isso, então as chaves ficam de fora quando falta lugar.
 
 **O modo combate** (`scripts/sistemas/modo_combate.gd`, só a porta CONVIVÊNCIA liga):
 
@@ -74,7 +63,7 @@ Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia (com as 9
 
 ---
 
-## 5. Onde está no projeto
+## 4. Onde está no projeto
 
 | O quê | Arquivo |
 |---|---|
@@ -83,13 +72,12 @@ Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia (com as 9
 | Empurrão do robô | `Robo.empurrar()` em `scripts/personagens/robo.gd` |
 | Arma de impulso | `scripts/itens/arma_impulso.gd`, `cenas/itens/arma_impulso.tscn`, `dados/itens/arma_impulso.tres` |
 | Criação e pilhas guardadas | `scripts/sistemas/criacao.gd`, `scripts/interface/painel_criacao.gd`, `cenas/interface/painel_criacao.tscn`, `Inventario.pilhas()`, `PilhaNoChao` |
-| Esquiva | `scripts/personagens/gabriel.gd` (`_tentar_esquivar`), `Sala.esquiva_permitida`, ação `esquivar` em `project.godot` |
 | Modo combate | `scripts/sistemas/modo_combate.gd`, `Checkpoints`, `Vida.proteger()` |
 | Sala de fases e portas | `cenas/salas/sala_teste_fases.tscn`, `scripts/sistemas/porta_de_teste.gd`, `cenas/cenario/objetos/placa_de_porta.tscn` |
 | Sons e ícones | `assets/modelagem/audio/gerar_efeitos_combate.py`, `assets/modelagem/itens/gerar_arma_impulso.py` |
 
-## 6. Ainda não feito
+## 5. Ainda não feito
 
 - Arte própria do robô atirador (hoje é a Sentinela azul) e imagem detalhada da arma (hoje usa o ícone ampliado).
 - O robô atirador só existe na praça: ainda não há um segundo atirador nem o dele no segundo andar.
-- Decidir se a arma de impulso e a esquiva entram nas outras fases (hoje só no Centro de Convivência, por pedido do Davi).
+- Decidir se a arma de impulso entra nas outras fases (hoje só no Centro de Convivência, por pedido do Davi).
