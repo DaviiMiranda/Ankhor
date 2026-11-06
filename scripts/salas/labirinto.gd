@@ -78,6 +78,7 @@ const LUZ_EM_TUDO := 1 | 2
 @export_file("*.tscn") var cena_da_saida: String = ""
 @export var titulo_da_saida: String = ""
 @export var subtitulo_da_saida: String = ""
+@export var saida_com_tela := true
 
 var grade: GradeLabirinto
 var _perseguindo := {}
@@ -410,6 +411,7 @@ func _colocar_saida(posicao: Vector2) -> void:
 func _colocar_alcapao(posicao: Vector2) -> void:
 	var alcapao: Alcapao = CENA_ALCAPAO.instantiate()
 	alcapao.name = "Alcapao"
+	alcapao.com_tela_de_saida = saida_com_tela
 	if not cena_da_saida.is_empty():
 		alcapao.cena_destino = cena_da_saida
 	if not titulo_da_saida.is_empty():

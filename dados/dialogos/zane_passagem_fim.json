@@ -1,0 +1,15 @@
+{
+	"id": "zane_passagem_fim",
+	"inicio": "fim",
+	"trechos": {
+		"fim": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Porta da câmara. Gabriel, estou do outro lado da parede. Quatro segundos e eu entro."
+				}
+			]
+		}
+	}
+}

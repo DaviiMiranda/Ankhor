@@ -11,7 +11,7 @@
 
 [node name="SalaTesteFases" instance=ExtResource("modelo")]
 id = "sala_teste_fases"
-largura = 880
+largura = 1040
 
 [node name="Escuridao" parent="."]
 color = Color(0.95, 0.97, 1, 1)
@@ -52,11 +52,17 @@ position = Vector2(720, 0)
 [node name="Parede11" parent="Paredes" instance=ExtResource("parede_porta")]
 position = Vector2(800, 0)
 
+[node name="Parede12" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(880, 0)
+
+[node name="Parede13" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(960, 0)
+
 [node name="PilarEsquerda" parent="Paredes" instance=ExtResource("pilar")]
 position = Vector2(0, 0)
 
 [node name="PilarDireita" parent="Paredes" instance=ExtResource("pilar")]
-position = Vector2(864, 0)
+position = Vector2(1024, 0)
 
 [node name="Chao1" parent="Chao" instance=ExtResource("chao_lajotas")]
 position = Vector2(0, 0)
@@ -78,6 +84,12 @@ position = Vector2(640, 0)
 
 [node name="Chao7" parent="Chao" instance=ExtResource("chao_lajotas")]
 position = Vector2(768, 0)
+
+[node name="Chao8" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(896, 0)
+
+[node name="Chao9" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(1024, 0)
 
 [node name="PortaVoltar" parent="." instance=ExtResource("porta")]
 position = Vector2(40, 124)
@@ -157,6 +169,20 @@ com_combate = false
 [node name="PlacaDtec" parent="Paredes" instance=ExtResource("placa")]
 position = Vector2(840, 56)
 texto = "D-TEC"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)
+
+[node name="PortaZane" parent="." instance=ExtResource("porta")]
+position = Vector2(1000, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_zane"
+cena_destino = "res://cenas/salas/labirinto/camara_selada.tscn"
+porta_destino = ""
+com_combate = false
+
+[node name="PlacaZane" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(1000, 56)
+texto = "ZANE
+(CÂMARA SELADA)"
 cor_do_texto = Color(0.7, 1.0, 0.8, 1)
 
 [node name="TudoColetado" type="Node" parent="." index="0"]

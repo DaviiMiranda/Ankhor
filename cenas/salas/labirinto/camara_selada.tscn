@@ -1,0 +1,150 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="Script" path="res://scripts/salas/camara_selada.gd" id="r2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_lisa.tscn" id="r3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_canos.tscn" id="r4"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_painel.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_luminaria.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_rachada.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker_grade.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker_faixa.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/caixas.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/estante_metal.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/robo_desmontado.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/grade_com_colisao.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/zane.tscn" id="r17"]
+[ext_resource type="Script" path="res://scripts/personagens/conversa_npc.gd" id="r18"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/alcapao_aberto.png" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/alcapao.tscn" id="r20"]
+
+[sub_resource type="CircleShape2D" id="Alcance"]
+radius = 22.0
+
+[node name="CamaraSelada" instance=ExtResource("r1")]
+script = ExtResource("r2")
+id = "labirinto_camara_selada"
+largura = 640
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(80, 0)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(240, 0)
+
+[node name="Parede05" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(320, 0)
+
+[node name="Parede06" parent="Paredes" instance=ExtResource("r7")]
+position = Vector2(400, 0)
+
+[node name="Parede07" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(480, 0)
+
+[node name="Parede08" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(560, 0)
+
+[node name="Chao1" parent="Chao" instance=ExtResource("r8")]
+position = Vector2(0, 0)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("r8")]
+position = Vector2(128, 0)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("r9")]
+position = Vector2(256, 0)
+
+[node name="Chao4" parent="Chao" instance=ExtResource("r8")]
+position = Vector2(384, 0)
+
+[node name="Chao5" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(512, 0)
+
+[node name="Chao6" parent="Chao" instance=ExtResource("r8")]
+position = Vector2(640, 0)
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r11")]
+position = Vector2(100, 34)
+
+[node name="Luz2" parent="Luzes" instance=ExtResource("r11")]
+position = Vector2(420, 34)
+
+[node name="Luz3" parent="Luzes" instance=ExtResource("r12")]
+position = Vector2(560, 30)
+
+[node name="Escuridao" parent="."]
+color = Color(0.2, 0.22, 0.3, 1)
+
+[node name="Caixas" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(300, 134)
+
+[node name="Estante" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(380, 132)
+espelhado = true
+
+[node name="RoboDesmontado" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(230, 172)
+
+[node name="Gabriel" parent="Objetos"]
+position = Vector2(60, 150)
+
+[node name="Cela" type="Node2D" parent="."]
+
+[node name="Grade" parent="Cela" instance=ExtResource("r16")]
+position = Vector2(158, 112)
+marca = "camara_cela_aberta"
+
+[node name="Zane" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(250, 164)
+vista = "tres_quartos"
+olhando_para_esquerda = true
+
+[node name="Terminal" type="Area2D" parent="Objetos"]
+position = Vector2(470, 150)
+script = ExtResource("r18")
+texto_acao = "Ouvir o registro"
+altura_aviso = 40.0
+
+[node name="Corpo" type="ColorRect" parent="Objetos/Terminal"]
+offset_left = -9.0
+offset_top = -26.0
+offset_right = 9.0
+offset_bottom = 0.0
+mouse_filter = 2
+color = Color(0.15, 0.17, 0.21, 1)
+
+[node name="Tela" type="ColorRect" parent="Objetos/Terminal"]
+offset_left = -7.0
+offset_top = -22.0
+offset_right = 7.0
+offset_bottom = -10.0
+mouse_filter = 2
+color = Color(0.35, 0.9, 1, 1)
+
+[node name="Alcance" type="CollisionShape2D" parent="Objetos/Terminal"]
+position = Vector2(0, -4)
+shape = SubResource("Alcance")
+
+[node name="Luz" type="PointLight2D" parent="Objetos/Terminal"]
+position = Vector2(0, -16)
+color = Color(0.35, 0.9, 1, 1)
+energy = 0.8
+
+[node name="Duto" parent="Objetos" instance=ExtResource("r20")]
+position = Vector2(580, 150)
+texto_acao = "Subir"
+altura_aviso = 30.0
+cena_destino = "res://cenas/salas/centro_de_convivencia/passarela_acesso.tscn"
+titulo = "VOCÊ SAIU DO LABIRINTO"
+subtitulo = "Próxima fase: o Centro de Convivência"
+marca_para_usar = "camara_registro_lido"
+textura_escondido = ExtResource("r19")
+textura_aberto = ExtResource("r19")
