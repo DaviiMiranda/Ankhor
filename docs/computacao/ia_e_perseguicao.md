@@ -133,7 +133,7 @@ O estado RETORNANDO do plano original não foi preciso: ao desistir, o robô rec
 
 ## 6. O Ciborgue: perseguidor perpétuo (Bunker, 2026-11-06)
 
-O tipo "Perseguidor Persistente" levado ao limite: um robô que nunca desiste, mas é o mais lento (36 px/s). Regras de jogo em [`../fases/bunker.md`](../fases/bunker.md), seção 1.1.
+O tipo "Perseguidor Persistente" levado ao limite: um robô que nunca desiste, mas é lento (40 px/s; só o Escafandro é mais lento). Regras de jogo em [`../fases/bunker.md`](../fases/bunker.md), seção 1.1.
 
 ### 6.1 Duas partes
 
@@ -150,7 +150,7 @@ stateDiagram-v2
     ESPERANDO --> CACANDO: o Gabriel saiu, ou a respiração falhou
     ESPERANDO --> INDO_EMBORA: esperou 7 a 11 s
     INDO_EMBORA --> CACANDO: viu o Gabriel (cone + raio)
-    INDO_EMBORA --> [*]: saiu pela porta (volta 14 s depois)
+    INDO_EMBORA --> [*]: saiu pela porta (volta 5 s depois)
 ```
 
 Em CACANDO ele não precisa ver o Gabriel: a cada quadro o alvo é a posição dele. É a diferença para o Caçador, que só rastreia por 8 s (seção 5). Escondido, o Gabriel some do alvo, e o Ciborgue vai para a frente do esconderijo.
@@ -159,13 +159,13 @@ Em CACANDO ele não precisa ver o Gabriel: a cada quadro o alvo é a posição d
 
 Quando o Gabriel sai pela porta $P$, o autoload calcula em quantos segundos o Ciborgue chega à sala nova, entrando pela porta por onde o Gabriel entrou:
 
-$$t = \frac{d(\text{Ciborgue}, P)}{v} \qquad v = 36 \text{ px/s}$$
+$$t = \frac{d(\text{Ciborgue}, P)}{v} \qquad v = 40 \text{ px/s}$$
 
 Se o Ciborgue ainda não tinha chegado à sala de onde o Gabriel saiu (faltavam $t_0$ segundos, entrando pela porta $E$), ele ainda tem de atravessá-la:
 
 $$t = t_0 + \frac{d(E, P)}{v}$$
 
-O tempo fica entre 1,5 s e 40 s. É a mesma conta que o robô faria andando: o Gabriel ganha distância andando (60 px/s contra 36), mas cada parada devolve essa distância.
+O tempo fica entre 1,5 s e 40 s. É a mesma conta que o robô faria andando: o Gabriel ganha distância andando (60 px/s contra 40), mas cada parada devolve essa distância.
 
 ### 6.4 Por qual porta ele volta
 

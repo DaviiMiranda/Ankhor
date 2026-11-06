@@ -19,6 +19,19 @@
 
 **Afeta:** `scripts/itens/arma_impulso.gd` (reescrito), `dados/itens/arma_impulso.tres` (6 balas, 2 iniciais; campo novo `unidades_iniciais` em `item.gd`), `scripts/sistemas/raio_atirado.gd`, `inventario.gd` (estoque de pilhas), `pilha_no_chao.gd`, `gabriel.gd` (`mirando`), `tudo_coletado.gd`, `tela_inventario.gd` e `.tscn`, e os novos `criacao.gd`, `painel_criacao.gd` e `painel_criacao.tscn`. **Conferido** no Godot 4.7.2 por script: o cone empurra quem está dentro e deixa de fora quem está fora, a criação gasta 3 pilhas e dá 1 bala, e a pilha só é guardada com a arma. **O Enredo não foi mexido.**
 
+## 2026-11-06 — Ciborgue mais alto e mais rápido, volta logo, e nichos pelo bunker inteiro
+
+**Decisão:** três ajustes no Ciborgue do bunker (registro "O Ciborgue", mais abaixo neste arquivo):
+
+- **Mais alto:** o modelo é ampliado 1,25 vez, de 1,8 m para uns 2,25 m. Fica uma cabeça acima do Gabriel. A ampliação é no Blender, não no Godot, então o pixel continua do tamanho do dos outros personagens; o quadro do sprite cresceu para 112 × 136.
+- **Um pouco mais rápido:** perseguição de 36 para **40 px/s** (o Gabriel anda a 60). Deixa de ser o mais lento: o Escafandro corre a 38.
+- **Volta logo:** depois de desistir do Gabriel escondido e sair pela porta, volta **5 s** depois (eram 14).
+- **Nichos espalhados:** de 5 para **17**. O Corredor A e o Corredor B ficam com seis cada, e ganham um o dormitório, o refeitório, a enfermaria, o gerador e o depósito. É a mesma peça do vão do posto de máscaras de gás (`bunker_nicho`), no lugar de uma parede lisa, de canos, de armários ou de prateleiras. A entrada, o arsenal e as duas salas antigas ficaram sem: o arsenal e as salas antigas saem do `montar_salas_bunker.py`, e a parede da entrada não tem peça lisa.
+
+**Por quê:** pedido do Davi. Com o Ciborgue voltando mais rápido, o jogador precisa de esconderijo em mais lugares. **Conferido** no Godot 4.7.2 por script: os 17 nichos escondem o Gabriel, e a perseguição, o minijogo, a saída e a volta (em 4,8 s) continuam funcionando.
+
+**Afeta:** `assets/modelagem/personagens/gerar_ciborgue.py` e os sprites `ciborgue_*`, `cenas/personagens/ciborgue_do_carlos.tscn`, `scripts/sistemas/perseguidor_perpetuo.gd`, `scripts/personagens/ciborgue_do_carlos.gd`, as cenas `corredor_a`, `corredor_b`, `dormitorio`, `refeitorio`, `enfermaria`, `gerador` e `deposito` do bunker, `docs/historia/História_Completa.md`, `docs/historia/personagens/robos.docx`, `docs/fases/bunker.md`, `docs/computacao/ia_e_perseguicao.md`.
+
 ## 2026-11-06 — A câmara selada no fim do Labirinto: o Zane salva o Gabriel e o grupo descobre a mentira do Henrique
 
 **Decisão:** o alçapão da oficina deixa de levar direto à passarela do Centro de Convivência. Ele leva a uma **câmara selada** (nova), que o Carlos lacrou:

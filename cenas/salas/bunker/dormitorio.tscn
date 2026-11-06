@@ -25,6 +25,8 @@
 [ext_resource type="Resource" path="res://dados/colecoes/bunker.tres" id="col_dados"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="gd_item"]
 [ext_resource type="Resource" path="res://dados/itens/mascara_gas.tres" id="gd_mascara"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_nicho.tscn" id="esconderijo_peca"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="esconderijo_area"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -52,7 +54,7 @@ position = Vector2(240, 0)
 [node name="Parede05" parent="Paredes" instance=ExtResource("r5")]
 position = Vector2(320, 0)
 
-[node name="Parede06" parent="Paredes" instance=ExtResource("r3")]
+[node name="Parede06" parent="Paredes" instance=ExtResource("esconderijo_peca")]
 position = Vector2(400, 0)
 
 [node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r6")]
@@ -291,3 +293,6 @@ numero = 1
 [node name="FiltroDaMascara" parent="Objetos" instance=ExtResource("gd_item")]
 position = Vector2(300, 485)
 item = ExtResource("gd_mascara")
+
+[node name="Nicho400" parent="Objetos" instance=ExtResource("esconderijo_area")]
+position = Vector2(440, 128)

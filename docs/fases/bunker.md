@@ -20,13 +20,14 @@
 
 ## 1.1 O Ciborgue: o perseguidor de toda a fase
 
-Uma cópia do Carlos, de metal por baixo da pele (Enredo, seção 2.3). Não patrulha: **caça o Gabriel desde a entrada até a comporta do núcleo**, de sala em sala.
+Uma cópia do Carlos, de metal por baixo da pele e mais alta que ele, uns 2,25 m (Enredo, seção 2.3). Não patrulha: **caça o Gabriel desde a entrada até a comporta do núcleo**, de sala em sala.
 
 - **Chega:** 8 s depois de o Gabriel entrar no bunker, por uma porta da sala. Ao entrar numa sala, aparece o aviso "Passos pesados atrás da porta. É ele."
-- **Sabe sempre onde o Gabriel está**, menos quando ele está escondido num nicho. Anda a 36 px/s: o Gabriel anda a 60, então dá para fugir andando, mas não para parar. Quem para para abrir um armário, pegar um item ou ler um documento é alcançado.
+- **Sabe sempre onde o Gabriel está**, menos quando ele está escondido num nicho. Anda a 40 px/s: o Gabriel anda a 60, então dá para fugir andando, mas não para parar. Quem para para abrir um armário, pegar um item ou ler um documento é alcançado.
 - **Segue pelas portas:** quando o Gabriel troca de sala, ele aparece na sala nova pela mesma porta, depois do tempo que levaria para andar até ela.
 - **Não se desliga:** clarão, espelho e hack não fazem nada ("Não fez nada com ele."). Encostar tira um coração, como os outros robôs.
-- **Esconder-se no nicho:** ele vai até a frente do nicho e **espera do lado de fora** de 7 a 11 s. Enquanto ele está ali, começa o minijogo de **respiração contida** ([`../mecanicas/furtividade_e_esconderijos.md`](../mecanicas/furtividade_e_esconderijos.md), seção 2.D). Se o Gabriel respirar alto ou prender o ar demais, ele ouve e o pega. Se aguentar, ele sai por uma porta ("Ele saiu. Mas vai voltar.") e **volta 14 s depois**. Saindo do nicho enquanto ele ainda vê, a caçada recomeça.
+- **Esconder-se no nicho:** ele vai até a frente do nicho e **espera do lado de fora** de 7 a 11 s. Enquanto ele está ali, começa o minijogo de **respiração contida** ([`../mecanicas/furtividade_e_esconderijos.md`](../mecanicas/furtividade_e_esconderijos.md), seção 2.D). Se o Gabriel respirar alto ou prender o ar demais, ele ouve e o pega. Se aguentar, ele sai por uma porta ("Ele saiu. Mas vai voltar.") e **volta 5 s depois**. Saindo do nicho enquanto ele ainda vê, a caçada recomeça.
+- **Onde se esconder:** 17 nichos pela fase: seis no Corredor A (x 280, 680, 1160, 1480, 1960 e 2200), seis no Corredor B (x 280, 760, 1080, 1480, 1720 e 2200) e um em cada sala do caminho: dormitório, refeitório, enfermaria, gerador e depósito. A entrada, o arsenal e as duas salas antigas não têm.
 - **Onde não entra:** a sala segura e a sala de dados do Henrique. Enquanto o Gabriel está nelas, ele espera; ao sair, chega 6 s depois por outra porta da sala.
 - **Ao voltar do checkpoint** (morte ou carregar o jogo), ele chega 12 s depois.
 - **Os painéis pausam o jogo** (o quadro de religação, os diálogos): ele não anda enquanto o Gabriel resolve.
@@ -63,8 +64,8 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`) com o som da porta b
 | Cena (`cenas/salas/bunker/`) | Largura | O que tem | Itens |
 |---|---|---|---|
 | `entrada` | 480 × 560 | Escada da superfície, descontaminação (chuveiros e faixas de perigo), armários, posto de guarda (mesa, cadeira, lampião), planta de evacuação, o elevador (porta fechada, sem energia) e a porta para o setor A. Checkpoint `bunker_chegada` | — |
-| `corredor_a` | 2560 × 180 | O corredor principal: portas com placas, janela para a sala dos servidores, canos, quadros elétricos, **três nichos**, a marca do farol inteiro e a escada para o setor B. **Mariposa** de x 600 a 2400 | — |
-| `corredor_b` | 2240 × 180 | Nível de baixo: água no chão, luz vermelha, infiltração nas paredes, as portas B-02 e B-07, duas portas lacradas, **dois nichos**, a marca do farol apagado e a **comporta do núcleo**. **Escafandro** de x 500 a 2100. Checkpoint `bunker_setor_b` ao pé da escada | — |
+| `corredor_a` | 2560 × 180 | O corredor principal: portas com placas, janela para a sala dos servidores, canos, quadros elétricos, **seis nichos**, a marca do farol inteiro e a escada para o setor B. **Mariposa** de x 600 a 2400 | — |
+| `corredor_b` | 2240 × 180 | Nível de baixo: água no chão, luz vermelha, infiltração nas paredes, as portas B-02 e B-07, duas portas lacradas, **seis nichos**, a marca do farol apagado e a **comporta do núcleo**. **Escafandro** de x 500 a 2100. Checkpoint `bunker_setor_b` ao pé da escada | — |
 | `sala_segura` | 320 × 180 | A **sala segura** do modelo (os óculos do Zane para salvar, o piano), com a luz de um verde-oliva. A porta é a DESCANSO no corredor A, ao lado da entrada, com a **luz verde** em cima ([`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)) | — |
 | `dormitorio` | 480 × 560 | Fileiras de beliches (três por fileira), armários, caixas | 1 pilha |
 | `refeitorio` | 480 × 560 | Fileiras de mesas compridas de aço, prateleiras de latas, planta do bunker | 1 cápsula de clarão |

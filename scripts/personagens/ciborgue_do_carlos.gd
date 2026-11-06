@@ -17,7 +17,7 @@ static var _avisou_imune := false
 @export_group("Esconderijo")
 @export var segundos_esperando_minimo: float = 7.0
 @export var segundos_esperando_maximo: float = 11.0
-@export var distancia_da_espera: float = 28.0
+@export var distancia_da_espera: float = 30.0
 @export var distancia_da_respiracao: float = 56.0
 
 var modo: Modo = Modo.CACANDO
