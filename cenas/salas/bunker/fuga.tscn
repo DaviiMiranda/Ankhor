@@ -1,0 +1,285 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="Script" path="res://scripts/salas/fuga_do_bunker.gd" id="r2"]
+[ext_resource type="Script" path="res://scripts/personagens/robo_de_cena.gd" id="r3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/luzes/luz.png" id="r4"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/sirene.wav" id="r5"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/cacador_passo.wav" id="r6"]
+[ext_resource type="AudioStream" path="res://assets/audio/musica/perseguicao/labirinto_tensao.ogg" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_lisa.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_emergencia.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_canos.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_luminaria.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_rachada.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_porta_lacrada.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_painel.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_comporta.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/pilar_bunker.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker_agua.tscn" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker_faixa.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/clarice_em_pe.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/diana.tscn" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/zane.tscn" id="r23"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/ciborgue_andar_lado.png" id="r24"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/ciborgue_andar_lado_olhos.png" id="r25"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/cacador_andar_lado.png" id="r26"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/cacador_andar_lado_olhos.png" id="r27"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/rastreador_andar_lado.png" id="r28"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/rastreador_andar_lado_olhos.png" id="r29"]
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
+[node name="Fuga" instance=ExtResource("r1")]
+script = ExtResource("r2")
+id = "bunker_fuga"
+largura = 1600
+duracao_entrada = 0.6
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("r8")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(80, 0)
+
+[node name="Giroflex02" parent="Luzes" instance=ExtResource("r10")]
+position = Vector2(120, 30)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("r11")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(240, 0)
+
+[node name="Parede05" parent="Paredes" instance=ExtResource("r13")]
+position = Vector2(320, 0)
+
+[node name="Parede06" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(400, 0)
+
+[node name="Giroflex06" parent="Luzes" instance=ExtResource("r10")]
+position = Vector2(440, 30)
+
+[node name="Parede07" parent="Paredes" instance=ExtResource("r14")]
+position = Vector2(480, 0)
+
+[node name="Parede08" parent="Paredes" instance=ExtResource("r11")]
+position = Vector2(560, 0)
+
+[node name="Parede09" parent="Paredes" instance=ExtResource("r8")]
+position = Vector2(640, 0)
+
+[node name="Parede10" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(720, 0)
+
+[node name="Giroflex10" parent="Luzes" instance=ExtResource("r10")]
+position = Vector2(760, 30)
+
+[node name="Parede11" parent="Paredes" instance=ExtResource("r13")]
+position = Vector2(800, 0)
+
+[node name="Parede12" parent="Paredes" instance=ExtResource("r15")]
+position = Vector2(880, 0)
+
+[node name="Parede13" parent="Paredes" instance=ExtResource("r11")]
+position = Vector2(960, 0)
+
+[node name="Parede14" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(1040, 0)
+
+[node name="Giroflex14" parent="Luzes" instance=ExtResource("r10")]
+position = Vector2(1080, 30)
+
+[node name="Parede15" parent="Paredes" instance=ExtResource("r8")]
+position = Vector2(1120, 0)
+
+[node name="Parede16" parent="Paredes" instance=ExtResource("r14")]
+position = Vector2(1200, 0)
+
+[node name="Parede17" parent="Paredes" instance=ExtResource("r13")]
+position = Vector2(1280, 0)
+
+[node name="Parede18" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(1360, 0)
+
+[node name="Giroflex18" parent="Luzes" instance=ExtResource("r10")]
+position = Vector2(1400, 30)
+
+[node name="Parede19" parent="Paredes" instance=ExtResource("r16")]
+position = Vector2(1440, 0)
+
+[node name="Parede20" parent="Paredes" instance=ExtResource("r8")]
+position = Vector2(1520, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r17")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("r17")]
+position = Vector2(1584, 0)
+
+[node name="Chao1" parent="Chao" instance=ExtResource("r18")]
+position = Vector2(0, 0)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(128, 0)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(256, 0)
+
+[node name="Chao4" parent="Chao" instance=ExtResource("r18")]
+position = Vector2(384, 0)
+
+[node name="Chao5" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(512, 0)
+
+[node name="Chao6" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(640, 0)
+
+[node name="Chao7" parent="Chao" instance=ExtResource("r18")]
+position = Vector2(768, 0)
+
+[node name="Chao8" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(896, 0)
+
+[node name="Chao9" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(1024, 0)
+
+[node name="Chao10" parent="Chao" instance=ExtResource("r18")]
+position = Vector2(1152, 0)
+
+[node name="Chao11" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(1280, 0)
+
+[node name="Chao12" parent="Chao" instance=ExtResource("r20")]
+position = Vector2(1408, 0)
+
+[node name="Chao13" parent="Chao" instance=ExtResource("r20")]
+position = Vector2(1536, 0)
+
+[node name="Gabriel" parent="Objetos"]
+position = Vector2(220, 150)
+
+[node name="Grupo" type="Node2D" parent="Objetos"]
+y_sort_enabled = true
+
+[node name="Clarice" parent="Objetos/Grupo" instance=ExtResource("r21")]
+position = Vector2(300, 156)
+vista = "lado"
+
+[node name="Diana" parent="Objetos/Grupo" instance=ExtResource("r22")]
+position = Vector2(350, 146)
+vista = "lado"
+
+[node name="Zane" parent="Objetos/Grupo" instance=ExtResource("r23")]
+position = Vector2(400, 152)
+vista = "lado"
+
+[node name="Robos" type="Node2D" parent="Objetos"]
+y_sort_enabled = true
+
+[node name="Ciborgue" type="Node2D" parent="Objetos/Robos"]
+position = Vector2(120, 150)
+script = ExtResource("r3")
+quadros = 12
+velocidade = 104.0
+
+[node name="Corpo" type="Sprite2D" parent="Objetos/Robos/Ciborgue"]
+texture = ExtResource("r24")
+centered = false
+scale = Vector2(0.5, 0.5)
+offset = Vector2(-56, -132)
+hframes = 12
+
+[node name="Olhos" type="Sprite2D" parent="Objetos/Robos/Ciborgue"]
+material = SubResource("SemLuz")
+texture = ExtResource("r25")
+centered = false
+scale = Vector2(0.5, 0.5)
+offset = Vector2(-56, -132)
+hframes = 12
+
+[node name="LuzOlho" type="PointLight2D" parent="Objetos/Robos/Ciborgue"]
+position = Vector2(0, -56)
+color = Color(1, 0.28, 0.15, 1)
+energy = 0.6
+texture = ExtResource("r4")
+texture_scale = 0.7
+
+[node name="Cacador" type="Node2D" parent="Objetos/Robos"]
+position = Vector2(70, 140)
+script = ExtResource("r3")
+quadros = 8
+velocidade = 102.0
+
+[node name="Corpo" type="Sprite2D" parent="Objetos/Robos/Cacador"]
+texture = ExtResource("r26")
+centered = false
+scale = Vector2(1.0, 1.0)
+offset = Vector2(-32, -44)
+hframes = 8
+
+[node name="Olhos" type="Sprite2D" parent="Objetos/Robos/Cacador"]
+material = SubResource("SemLuz")
+texture = ExtResource("r27")
+centered = false
+scale = Vector2(1.0, 1.0)
+offset = Vector2(-32, -44)
+hframes = 8
+
+[node name="LuzOlho" type="PointLight2D" parent="Objetos/Robos/Cacador"]
+position = Vector2(0, -23)
+color = Color(1, 0.28, 0.15, 1)
+energy = 0.6
+texture = ExtResource("r4")
+texture_scale = 0.7
+
+[node name="Rastreador" type="Node2D" parent="Objetos/Robos"]
+position = Vector2(30, 162)
+script = ExtResource("r3")
+quadros = 8
+velocidade = 103.0
+
+[node name="Corpo" type="Sprite2D" parent="Objetos/Robos/Rastreador"]
+texture = ExtResource("r28")
+centered = false
+scale = Vector2(1.0, 1.0)
+offset = Vector2(-32, -37)
+hframes = 8
+
+[node name="Olhos" type="Sprite2D" parent="Objetos/Robos/Rastreador"]
+material = SubResource("SemLuz")
+texture = ExtResource("r29")
+centered = false
+scale = Vector2(1.0, 1.0)
+offset = Vector2(-32, -37)
+hframes = 8
+
+[node name="LuzOlho" type="PointLight2D" parent="Objetos/Robos/Rastreador"]
+position = Vector2(0, -20)
+color = Color(1, 0.28, 0.15, 1)
+energy = 0.6
+texture = ExtResource("r4")
+texture_scale = 0.7
+
+[node name="Escuridao" parent="."]
+color = Color(0.34, 0.2, 0.22, 1)
+
+[node name="Sirene" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("r5")
+volume_db = -8.0
+autoplay = true
+bus = &"Efeitos"
+
+[node name="PassoDeRobo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("r6")
+volume_db = -6.0
+bus = &"Efeitos"
+
+[node name="Musica" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("r7")
+volume_db = -6.0
+autoplay = true
+bus = &"Musica"

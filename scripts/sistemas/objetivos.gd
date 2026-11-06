@@ -58,7 +58,7 @@ const FASES: Array[Dictionary] = [
 			{"marcas": ["bunker_energia"], "texto": "Descer ao setor B e religar a energia no quadro do gerador, com os 23 m de cabo."},
 			{"marcas": ["bunker_comporta_aberta"], "texto": "Ir até a sala de dados: o grupo está lá."},
 		],
-		"final": "Passar pela comporta do núcleo, no fim do Corredor B.",
+		"final": "Fugir com o grupo até a comporta do núcleo, no fim do corredor.",
 	},
 	{
 		"pasta": "/dtec/",

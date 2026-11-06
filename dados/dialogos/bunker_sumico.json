@@ -1,0 +1,37 @@
+{
+	"id": "bunker_sumico",
+	"inicio": "sumico",
+	"anotacao": {
+		"titulo": "O Henrique sumiu",
+		"texto": "O Henrique começou a brilhar e sumiu na nossa frente, numa explosão de luz. No chão, onde ele estava, ficou um dispositivo. No visor: 2900.\n\nDepois veio uma voz pelos alto-falantes."
+	},
+	"trechos": {
+		"sumico": {
+			"falas": [
+				{
+					"quem": "Diana",
+					"retrato": "diana/diana_retrato_assustada",
+					"texto": "Ele... sumiu?"
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_assustado",
+					"texto": "Isso caiu onde ele tava. Tem um número no visor."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_surpreso",
+					"texto": "2900."
+				},
+				{
+					"quem": "Voz nos alto-falantes",
+					"texto": "Muito bem, pessoal. Fim da transmissão."
+				},
+				{
+					"quem": "Voz nos alto-falantes",
+					"texto": "Eu quero todos vocês fora do meu caminho."
+				}
+			]
+		}
+	}
+}

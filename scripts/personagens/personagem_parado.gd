@@ -19,11 +19,17 @@ var _tempo_parado := 0.0
 
 
 func _ready() -> void:
+	virar(vista, olhando_para_esquerda)
+	_tempo_parado = randf() * quadros_parado * segundos_por_quadro_parado
+
+
+func virar(nova_vista: String, para_esquerda: bool) -> void:
+	vista = nova_vista
+	olhando_para_esquerda = para_esquerda
 	sprite.frame = 0
 	sprite.texture = _tira_da_vista()
 	sprite.hframes = quadros_parado
-	sprite.flip_h = olhando_para_esquerda
-	_tempo_parado = randf() * quadros_parado * segundos_por_quadro_parado
+	sprite.flip_h = para_esquerda
 
 
 func _process(delta: float) -> void:

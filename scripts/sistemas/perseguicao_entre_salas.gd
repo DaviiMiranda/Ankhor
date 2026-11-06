@@ -10,6 +10,7 @@ const SALAS_PROTEGIDAS := [
 	"res://cenas/salas/bloco_de_salas/sala_103.tscn",
 	"res://cenas/salas/centro_de_convivencia/loja_1.tscn",
 	"res://cenas/salas/bunker/central_dados.tscn",
+	"res://cenas/salas/bunker/fuga.tscn",
 	"res://cenas/salas/labirinto/corredor_do_tempo.tscn",
 ]
 
