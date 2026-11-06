@@ -15,6 +15,20 @@
 
 **Afeta:** `scripts/personagens/ciborgue_do_carlos.gd`, `cenas/personagens/ciborgue_do_carlos.tscn`, `scripts/sistemas/perseguidor_perpetuo.gd` (autoload novo em `project.godot`), `scripts/sistemas/respiracao_contida.gd`, `cenas/sistemas/respiracao_contida.tscn`, `scripts/sistemas/porta.gd`, `scripts/sistemas/perseguicao_entre_salas.gd` (ignora o Ciborgue, que tem o próprio sistema), `assets/modelagem/personagens/gerar_ciborgue.py` (e `gerar_carlos.py`, que agora pode ser importado), `assets/sprites/personagens/robos/ciborgue_*`, `docs/historia/História_Completa.md` e `.docx`, `docs/historia/personagens/robos.docx`, `docs/fases/bunker.md`, `docs/mecanicas/furtividade_e_esconderijos.md`, `docs/computacao/ia_e_perseguicao.md`.
 
+## 2026-11-05 — Tela de carregamento ao pôr o visor VR
+
+**Decisão:** **toda vez** que o jogador põe um visor VR, antes do 3D aparece por **3 segundos** a tela **CARREGANDO MODO REALIDADE VIRTUAL**:
+- uma barra de progresso, a porcentagem e uma linha de etapa (*Ligando o visor*, *Calibrando as lentes*, *Montando o ambiente*, *Pronto*);
+- **por dentro de um visor**: em volta, a silhueta arredondada dos óculos VR (duas lentes, encaixe do nariz, borda ciano);
+- **o visor liga como um aparelho velho:** a tela pisca quatro vezes ao acender e, enquanto carrega, o texto e a barra falham de vez em quando;
+- **som de energia ligando** (`visor_ligando.wav`, 3 s, gerado por código): o relé fechando, um estalo a cada piscada, a energia subindo, o zumbido do aparelho e dois bipes no "Pronto". O som e o pisca-pisca andam juntos.
+
+É o **padrão de todo visor**: vale para as seis salas seguras e para a cabine do filme VR (*Hora Morta*), no Centro de Convivência. Enquanto a barra enche, a cena 3D é carregada em segundo plano, o que tira a parada de uns 2 s que havia na primeira entrada. Os textos das etapas não dizem nada de história.
+
+**Por quê:** pedido do Davi. Primeiro a tela era só na primeira vez; ele pediu a silhueta, depois que fosse padrão também no cinema e, por fim, as piscadas, o som e que aparecesse sempre. **Conferido** no Godot 4.7.2 por script, na sala segura da Biblioteca e na cabine do cinema: a tela pisca ao ligar, as falhas aparecem, o som toca, a barra chega a "Pronto 100%" em 3 s, o 3D abre logo depois e a tela volta na segunda vez. O som não foi ouvido, só conferido pela forma de onda.
+
+**Afeta:** `cenas/visor/tela_carregando_vr.tscn`, `scripts/visor/tela_carregando_vr.gd`, `shaders/silhueta_oculos_vr.gdshader`, `assets/modelagem/audio/gerar_efeitos_visor.py` e `assets/audio/efeitos/interface/visor_ligando.wav` (novos), `scripts/sistemas/maquina_de_salvar.gd` e `.tscn`, `assets/audio/README.md`, `docs/mecanicas/visor_3d.md` e `sala_segura.md`.
+
 ## 2026-11-05 — Corrida depois da exaustão e aviso da carga
 
 **Decisão:** duas correções no que um testador relatou como "a corrida parou de funcionar no Centro de Convivência, mesmo depois de salvar e carregar":

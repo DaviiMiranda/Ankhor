@@ -76,6 +76,7 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `efeitos/objetos/porta_blindada.wav`, `porta_emperrada.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | Porta de aço de correr (trava, pistão, batida) e a maçaneta de uma porta lacrada |
 | `efeitos/objetos/teclado.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | 3 s em loop: a Clarice digitando |
 | `efeitos/interface/dialogo_bip.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | O bipe das letras na caixa de diálogo (o tom muda com quem fala) |
+| `efeitos/interface/visor_ligando.wav` | `assets/modelagem/audio/gerar_efeitos_visor.py` | 3 s: o visor VR ligando (relé, estalos das piscadas, energia subindo, zumbido de 120 Hz e dois bipes de pronto). Toca na tela de carregamento do visor (`cenas/visor/tela_carregando_vr.tscn`) |
 | `efeitos/interface/papel_folhear.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 0,35 s: uma folha virando. Toca ao abrir, folhear e fechar documentos e o caderno |
 
 Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py`, `gerar_trilha_gameplay.py`, `gerar_trilha_bunker.py`, `gerar_trilha_sala_segura.py`, `gerar_trilha_labirinto.py` ou `gerar_trilha_perseguicao.py` (precisa de numpy e ffmpeg). Os efeitos saem de `gerar_efeitos_gabriel.py` (só numpy).
