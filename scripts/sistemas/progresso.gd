@@ -20,5 +20,9 @@ func marcar(marca: String) -> void:
 	mudou.emit(marca)
 
 
+func desmarcar(marca: String) -> void:
+	marcas.erase(marca)
+
+
 func tem(marca: String) -> bool:
 	return marcas.has(marca)

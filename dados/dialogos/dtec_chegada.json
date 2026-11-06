@@ -1,0 +1,74 @@
+{
+	"id": "dtec_chegada",
+	"inicio": "chegada",
+	"anotacao": {
+		"titulo": "Chegamos ao D-Tec",
+		"texto": "Fugimos juntos pela comporta do núcleo e subimos até o D-Tec. A Diana torceu o tornozelo na escada, e a Clarice ficou com ela na Emergência.\n\nO Zane foi por outro caminho. Eu sigo pelo corredor, sozinho."
+	},
+	"trechos": {
+		"chegada": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_assustado",
+					"texto": "Todo mundo inteiro? Ninguém ficou pra trás?"
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_seria",
+					"texto": "Tô aqui. Aqueles robôs atiravam na gente, meu filho. Atiravam."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_cansado",
+					"texto": "Onde a gente tá?"
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_concentrado",
+					"texto": "D-Tec. Em cima do núcleo. Se a máquina tá em algum lugar, é aqui."
+				},
+				{
+					"quem": "Diana",
+					"retrato": "diana/diana_retrato_assustada",
+					"texto": "Ai! Ai, ai, ai... meu tornozelo."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_seria",
+					"texto": "Deixa eu ver. Tá inchando. Você torceu na escada."
+				},
+				{
+					"quem": "Diana",
+					"retrato": "diana/diana_retrato_determinada",
+					"texto": "Eu consigo andar. Eu acho."
+				},
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_seria",
+					"texto": "Consegue não. Eu fico com ela aqui. Vão vocês dois."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "E o Henrique? Aquele número no chão..."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Depois. Primeiro a gente sai do alcance daquela voz."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Eu vou pelo outro lado. Dois caminhos, o dobro de chance. Você vai pelo corredor."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_determinado",
+					"texto": "Tá. Cuidado."
+				}
+			]
+		}
+	}
+}

@@ -85,6 +85,8 @@ var olhar_travado := false
 var jogador_controla := true
 var mirando := false
 var direcao_automatica := Vector2.ZERO
+var correr_sozinho := false
+var estamina_infinita := false
 var correndo := false
 var escondido := false
 var tira_especial := false
@@ -198,10 +200,11 @@ func _physics_process(delta: float) -> void:
 	var velocidade := velocidade_andar * multiplicador_de_velocidade
 	var pode_correr := (fadiga.pode_correr() if fadiga else true) and not Inventario.carregando_peso() \
 			and multiplicador_de_velocidade >= 1.0
-	if jogador_controla and Input.is_action_pressed("correr") and direcao != Vector2.ZERO and pode_correr:
+	var quer_correr := correr_sozinho or (jogador_controla and Input.is_action_pressed("correr"))
+	if quer_correr and direcao != Vector2.ZERO and (pode_correr or correr_sozinho):
 		velocidade *= multiplicador_correr
 		correndo = true
-		if fadiga:
+		if fadiga and not correr_sozinho and not estamina_infinita:
 			fadiga.consumir(delta, ansiedade.multiplicador_consumo_estamina())
 	elif fadiga:
 		fadiga.regenerar(delta, direcao == Vector2.ZERO)
@@ -335,6 +338,7 @@ func andar_sozinho(direcao: Vector2) -> void:
 
 func devolver_controle() -> void:
 	jogador_controla = true
+	correr_sozinho = false
 	direcao_automatica = Vector2.ZERO
 	collision_mask = _mascara_colisao
 

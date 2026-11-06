@@ -32,6 +32,13 @@
 [ext_resource type="PackedScene" path="res://cenas/personagens/clarice_em_pe.tscn" id="n3"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/diana.tscn" id="n4"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_dialogo.tscn" id="n5"]
+[ext_resource type="Script" path="res://scripts/salas/central_dados.gd" id="c1"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/dispositivo_2900.tscn" id="c2"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/sumico_de_energia.tscn" id="c3"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/sirene.wav" id="c4"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/pedra_impacto.wav" id="c5"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/robo_alerta.wav" id="c6"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/cacador_passo.wav" id="c7"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -39,6 +46,7 @@ border_width_bottom = 1
 border_color = Color(0.3, 0.33, 0.38, 1)
 
 [node name="CentralDados" instance=ExtResource("r1")]
+script = ExtResource("c1")
 id = "bunker_central_dados"
 largura = 560
 altura = 640
@@ -472,5 +480,31 @@ olhando_para_esquerda = true
 position = Vector2(400, 220)
 dialogo = "res://dados/dialogos/bunker_encontro.json"
 marca_necessaria = "bunker_energia"
-marca_ao_terminar = "bunker_comporta_aberta"
-aviso_ao_terminar = "A comporta do núcleo, no fim do Corredor B, está destravada."
+marca_ao_terminar = "bunker_confronto_falado"
+
+[node name="Dispositivo" parent="Objetos" instance=ExtResource("c2")]
+visible = false
+position = Vector2(454, 140)
+
+[node name="SumicoDeEnergia" parent="Efeitos" instance=ExtResource("c3")]
+
+[node name="Sirene" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("c4")
+volume_db = -8.0
+bus = &"Efeitos"
+
+[node name="SomQueda" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("c5")
+volume_db = -4.0
+pitch_scale = 1.4
+bus = &"Efeitos"
+
+[node name="AlertaDosRobos" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("c6")
+volume_db = -6.0
+bus = &"Efeitos"
+
+[node name="PassoDeRobo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("c7")
+bus = &"Efeitos"

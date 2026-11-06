@@ -52,6 +52,10 @@ Para testar tudo isso sem jogar a fase, a **sala de teste** tem, logo onde o jog
 | LABIRINTO | `labirinto` | idem |
 | BUNKER | `entrada` do bunker | idem |
 | D-TEC (LABORATÓRIO) | `emergencia` | idem |
+| ZANE (CÂMARA SELADA) | `labirinto/camara_selada` | A mini fase do Zane |
+| FIM DO BUNKER | `bunker/central_dados`, pela porta da sala | O começo da cena do fim do Bunker: marca `bunker_energia` (o grupo está na sala) e apaga as marcas da cena (`bunker_confronto_falado`, `bunker_henrique_sumiu`, `bunker_comporta_aberta`, `dtec_grupo_separado`), então dá para ver de novo quantas vezes quiser. O confronto começa ao chegar perto do grupo |
+
+As marcas são exports da `PortaDeTeste`: `marcas_ao_entrar` e `marcas_apagadas_ao_entrar` (esta usa `Progresso.desmarcar`). Servem para levar a qualquer ponto de uma fase que dependa de progresso.
 
 Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia (com as 9 pilhas e as 6 balas): arma de impulso, clarão e pedra primeiro (assim ficam nos 3 espaços de gadget), depois os outros gadgets e as ferramentas. **A Célula de Energia fica de fora**, porque é carga pesada e impede de correr. A mochila tem 12 espaços e há mais itens do que isso, então as chaves ficam de fora quando falta lugar.
 

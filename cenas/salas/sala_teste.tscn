@@ -35,7 +35,7 @@
 
 [node name="SalaTeste" instance=ExtResource("modelo")]
 id = "sala_teste"
-largura = 960
+largura = 1120
 
 [node name="Parede01" parent="Paredes" instance=ExtResource("parede_porta")]
 position = Vector2(0, 0)
@@ -76,8 +76,14 @@ position = Vector2(800, 0)
 [node name="Parede12" parent="Paredes" instance=ExtResource("parede_porta")]
 position = Vector2(880, 0)
 
+[node name="Parede13" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(960, 0)
+
+[node name="Parede14" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(1040, 0)
+
 [node name="PilarDireita" parent="Paredes" instance=ExtResource("pilar")]
-position = Vector2(944, 0)
+position = Vector2(1104, 0)
 
 [node name="Chao1" parent="Chao" instance=ExtResource("chao_lajotas")]
 position = Vector2(0, 0)
@@ -102,6 +108,9 @@ position = Vector2(768, 0)
 
 [node name="Chao8" parent="Chao" instance=ExtResource("chao_lajotas")]
 position = Vector2(896, 0)
+
+[node name="Chao9" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(1024, 0)
 
 [node name="Lanterna" parent="Objetos" instance=ExtResource("i_item")]
 position = Vector2(110, 150)
@@ -301,4 +310,20 @@ com_combate = false
 position = Vector2(840, 56)
 texto = "ZANE
 (CÂMARA SELADA)"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)
+
+[node name="PortaFimDoBunker" parent="." instance=ExtResource("porta")]
+position = Vector2(1000, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_fim_do_bunker"
+cena_destino = "res://cenas/salas/bunker/central_dados.tscn"
+porta_destino = "central_dados"
+com_combate = false
+marcas_ao_entrar = PackedStringArray("bunker_energia")
+marcas_apagadas_ao_entrar = PackedStringArray("bunker_confronto_falado", "bunker_henrique_sumiu", "bunker_comporta_aberta", "dtec_grupo_separado")
+
+[node name="PlacaFimDoBunker" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(1000, 56)
+texto = "FIM DO
+BUNKER"
 cor_do_texto = Color(0.7, 1.0, 0.8, 1)

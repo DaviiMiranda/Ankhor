@@ -1,0 +1,521 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="Script" path="res://scripts/salas/fuga_do_bunker.gd" id="r2"]
+[ext_resource type="Script" path="res://scripts/personagens/robo_de_cena.gd" id="r3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/luzes/luz.png" id="r4"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/sirene.wav" id="r5"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/raio_carga.wav" id="r6"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/raio_disparo.wav" id="r7"]
+[ext_resource type="AudioStream" path="res://assets/audio/musica/perseguicao/labirinto_tensao.ogg" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_lisa.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_emergencia.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_canos.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_porta_lacrada.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_rachada.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_painel.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_comporta.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/pilar_bunker.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker_agua.tscn" id="r19"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/chao/chao_bunker_faixa.tscn" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/clarice_em_pe.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/diana.tscn" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/zane.tscn" id="r23"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/ciborgue_andar_lado.png" id="r24"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/ciborgue_andar_lado_olhos.png" id="r25"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/sentinela_andar_lado.png" id="r26"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/sentinela_andar_lado_olhos.png" id="r27"]
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
+[node name="Fuga" instance=ExtResource("r1")]
+script = ExtResource("r2")
+id = "bunker_fuga"
+largura = 3200
+duracao_entrada = 0.6
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(80, 0)
+
+[node name="Giroflex02" parent="Luzes" instance=ExtResource("r11")]
+position = Vector2(120, 30)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("r13")]
+position = Vector2(240, 0)
+
+[node name="Parede05" parent="Paredes" instance=ExtResource("r14")]
+position = Vector2(320, 0)
+
+[node name="Parede06" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(400, 0)
+
+[node name="Giroflex06" parent="Luzes" instance=ExtResource("r11")]
+position = Vector2(440, 30)
+
+[node name="Parede07" parent="Paredes" instance=ExtResource("r15")]
+position = Vector2(480, 0)
+
+[node name="Parede08" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(560, 0)
+
+[node name="Parede09" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(640, 0)
+
+[node name="Parede10" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(720, 0)
+
+[node name="Giroflex10" parent="Luzes" instance=ExtResource("r11")]
+position = Vector2(760, 30)
+
+[node name="Parede11" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(800, 0)
+
+[node name="Parede12" parent="Paredes" instance=ExtResource("r13")]
+position = Vector2(880, 0)
+
+[node name="Parede13" parent="Paredes" instance=ExtResource("r14")]
+position = Vector2(960, 0)
+
+[node name="Parede14" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(1040, 0)
+
+[node name="Giroflex14" parent="Luzes" instance=ExtResource("r11")]
+position = Vector2(1080, 30)
+
+[node name="Parede15" parent="Paredes" instance=ExtResource("r15")]
+position = Vector2(1120, 0)
+
+[node name="Parede16" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(1200, 0)
+
+[node name="Parede17" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(1280, 0)
+
+[node name="Parede18" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(1360, 0)
+
+[node name="Giroflex18" parent="Luzes" instance=ExtResource("r11")]
+position = Vector2(1400, 30)
+
+[node name="Parede19" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(1440, 0)
+
+[node name="Parede20" parent="Paredes" instance=ExtResource("r13")]
+position = Vector2(1520, 0)
+
+[node name="Parede21" parent="Paredes" instance=ExtResource("r14")]
+position = Vector2(1600, 0)
+
+[node name="Parede22" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(1680, 0)
+
+[node name="Giroflex22" parent="Luzes" instance=ExtResource("r11")]
+position = Vector2(1720, 30)
+
+[node name="Parede23" parent="Paredes" instance=ExtResource("r15")]
+position = Vector2(1760, 0)
+
+[node name="Parede24" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(1840, 0)
+
+[node name="Parede25" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(1920, 0)
+
+[node name="Parede26" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(2000, 0)
+
+[node name="Giroflex26" parent="Luzes" instance=ExtResource("r11")]
+position = Vector2(2040, 30)
+
+[node name="Parede27" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(2080, 0)
+
+[node name="Parede28" parent="Paredes" instance=ExtResource("r13")]
+position = Vector2(2160, 0)
+
+[node name="Parede29" parent="Paredes" instance=ExtResource("r14")]
+position = Vector2(2240, 0)
+
+[node name="Parede30" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(2320, 0)
+
+[node name="Giroflex30" parent="Luzes" instance=ExtResource("r11")]
+position = Vector2(2360, 30)
+
+[node name="Parede31" parent="Paredes" instance=ExtResource("r15")]
+position = Vector2(2400, 0)
+
+[node name="Parede32" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(2480, 0)
+
+[node name="Parede33" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(2560, 0)
+
+[node name="Parede34" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(2640, 0)
+
+[node name="Giroflex34" parent="Luzes" instance=ExtResource("r11")]
+position = Vector2(2680, 30)
+
+[node name="Parede35" parent="Paredes" instance=ExtResource("r12")]
+position = Vector2(2720, 0)
+
+[node name="Parede36" parent="Paredes" instance=ExtResource("r13")]
+position = Vector2(2800, 0)
+
+[node name="Parede37" parent="Paredes" instance=ExtResource("r14")]
+position = Vector2(2880, 0)
+
+[node name="Parede38" parent="Paredes" instance=ExtResource("r10")]
+position = Vector2(2960, 0)
+
+[node name="Giroflex38" parent="Luzes" instance=ExtResource("r11")]
+position = Vector2(3000, 30)
+
+[node name="Parede39" parent="Paredes" instance=ExtResource("r16")]
+position = Vector2(3040, 0)
+
+[node name="Parede40" parent="Paredes" instance=ExtResource("r9")]
+position = Vector2(3120, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r17")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("r17")]
+position = Vector2(3184, 0)
+
+[node name="Chao1" parent="Chao" instance=ExtResource("r18")]
+position = Vector2(0, 0)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(128, 0)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(256, 0)
+
+[node name="Chao4" parent="Chao" instance=ExtResource("r18")]
+position = Vector2(384, 0)
+
+[node name="Chao5" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(512, 0)
+
+[node name="Chao6" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(640, 0)
+
+[node name="Chao7" parent="Chao" instance=ExtResource("r18")]
+position = Vector2(768, 0)
+
+[node name="Chao8" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(896, 0)
+
+[node name="Chao9" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(1024, 0)
+
+[node name="Chao10" parent="Chao" instance=ExtResource("r18")]
+position = Vector2(1152, 0)
+
+[node name="Chao11" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(1280, 0)
+
+[node name="Chao12" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(1408, 0)
+
+[node name="Chao13" parent="Chao" instance=ExtResource("r18")]
+position = Vector2(1536, 0)
+
+[node name="Chao14" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(1664, 0)
+
+[node name="Chao15" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(1792, 0)
+
+[node name="Chao16" parent="Chao" instance=ExtResource("r18")]
+position = Vector2(1920, 0)
+
+[node name="Chao17" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(2048, 0)
+
+[node name="Chao18" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(2176, 0)
+
+[node name="Chao19" parent="Chao" instance=ExtResource("r18")]
+position = Vector2(2304, 0)
+
+[node name="Chao20" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(2432, 0)
+
+[node name="Chao21" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(2560, 0)
+
+[node name="Chao22" parent="Chao" instance=ExtResource("r18")]
+position = Vector2(2688, 0)
+
+[node name="Chao23" parent="Chao" instance=ExtResource("r19")]
+position = Vector2(2816, 0)
+
+[node name="Chao24" parent="Chao" instance=ExtResource("r20")]
+position = Vector2(2944, 0)
+
+[node name="Chao25" parent="Chao" instance=ExtResource("r20")]
+position = Vector2(3072, 0)
+
+[node name="Gabriel" parent="Objetos"]
+position = Vector2(240, 150)
+
+[node name="Grupo" type="Node2D" parent="Objetos"]
+y_sort_enabled = true
+
+[node name="Clarice" parent="Objetos/Grupo" instance=ExtResource("r21")]
+position = Vector2(320, 158)
+vista = "lado"
+
+[node name="Diana" parent="Objetos/Grupo" instance=ExtResource("r22")]
+position = Vector2(360, 140)
+vista = "lado"
+
+[node name="Zane" parent="Objetos/Grupo" instance=ExtResource("r23")]
+position = Vector2(400, 152)
+vista = "lado"
+
+[node name="Robos" type="Node2D" parent="Objetos"]
+y_sort_enabled = true
+
+[node name="Ciborgue" type="Node2D" parent="Objetos/Robos"]
+position = Vector2(150, 150)
+script = ExtResource("r3")
+quadros = 12
+velocidade = 82.0
+distancia_do_gabriel = 85.0
+distancia_maxima = 92.0
+faixa = -1.0
+aparece_depois_de_x = -1.0
+atira = false
+velocidade_vertical = 60.0
+
+[node name="Corpo" type="Sprite2D" parent="Objetos/Robos/Ciborgue"]
+texture = ExtResource("r24")
+centered = false
+scale = Vector2(0.5, 0.5)
+offset = Vector2(-56, -132)
+hframes = 12
+
+[node name="Olhos" type="Sprite2D" parent="Objetos/Robos/Ciborgue"]
+material = SubResource("SemLuz")
+texture = ExtResource("r25")
+centered = false
+scale = Vector2(0.5, 0.5)
+offset = Vector2(-56, -132)
+hframes = 12
+
+[node name="LuzOlho" type="PointLight2D" parent="Objetos/Robos/Ciborgue"]
+position = Vector2(0, -56)
+color = Color(1, 0.28, 0.15, 1)
+energy = 0.6
+texture = ExtResource("r4")
+texture_scale = 0.7
+
+[node name="LuzDoCorpo" type="PointLight2D" parent="Objetos/Robos/Ciborgue"]
+position = Vector2(0, -28)
+color = Color(1, 0.4, 0.35, 1)
+energy = 0.8
+texture = ExtResource("r4")
+texture_scale = 1.1
+
+[node name="LinhaDaMira" type="Line2D" parent="Objetos/Robos/Ciborgue"]
+material = SubResource("SemLuz")
+width = 1.0
+default_color = Color(1, 0.25, 0.2, 0.55)
+
+[node name="SomCarga" type="AudioStreamPlayer2D" parent="Objetos/Robos/Ciborgue"]
+stream = ExtResource("r6")
+bus = &"Efeitos"
+
+[node name="SomTiro" type="AudioStreamPlayer2D" parent="Objetos/Robos/Ciborgue"]
+stream = ExtResource("r7")
+bus = &"Efeitos"
+
+[node name="Atirador1" type="Node2D" parent="Objetos/Robos"]
+position = Vector2(115, 132)
+script = ExtResource("r3")
+quadros = 8
+velocidade = 86.0
+distancia_do_gabriel = 122.0
+distancia_maxima = 129.0
+faixa = 132.0
+aparece_depois_de_x = -1.0
+atira = true
+velocidade_vertical = 26.0
+
+[node name="Corpo" type="Sprite2D" parent="Objetos/Robos/Atirador1"]
+texture = ExtResource("r26")
+centered = false
+scale = Vector2(1.0, 1.0)
+offset = Vector2(-36, -69)
+hframes = 8
+
+[node name="Olhos" type="Sprite2D" parent="Objetos/Robos/Atirador1"]
+material = SubResource("SemLuz")
+texture = ExtResource("r27")
+centered = false
+scale = Vector2(1.0, 1.0)
+offset = Vector2(-36, -69)
+hframes = 8
+
+[node name="LuzOlho" type="PointLight2D" parent="Objetos/Robos/Atirador1"]
+position = Vector2(0, -40)
+color = Color(1, 0.28, 0.15, 1)
+energy = 0.6
+texture = ExtResource("r4")
+texture_scale = 0.7
+
+[node name="LuzDoCorpo" type="PointLight2D" parent="Objetos/Robos/Atirador1"]
+position = Vector2(0, -20)
+color = Color(1, 0.4, 0.35, 1)
+energy = 0.8
+texture = ExtResource("r4")
+texture_scale = 1.1
+
+[node name="LinhaDaMira" type="Line2D" parent="Objetos/Robos/Atirador1"]
+material = SubResource("SemLuz")
+width = 1.0
+default_color = Color(1, 0.25, 0.2, 0.55)
+
+[node name="SomCarga" type="AudioStreamPlayer2D" parent="Objetos/Robos/Atirador1"]
+stream = ExtResource("r6")
+bus = &"Efeitos"
+
+[node name="SomTiro" type="AudioStreamPlayer2D" parent="Objetos/Robos/Atirador1"]
+stream = ExtResource("r7")
+bus = &"Efeitos"
+
+[node name="Atirador2" type="Node2D" parent="Objetos/Robos"]
+position = Vector2(78, 168)
+script = ExtResource("r3")
+quadros = 8
+velocidade = 84.0
+distancia_do_gabriel = 159.0
+distancia_maxima = 166.0
+faixa = 168.0
+aparece_depois_de_x = -1.0
+atira = true
+velocidade_vertical = 26.0
+
+[node name="Corpo" type="Sprite2D" parent="Objetos/Robos/Atirador2"]
+texture = ExtResource("r26")
+centered = false
+scale = Vector2(1.0, 1.0)
+offset = Vector2(-36, -69)
+hframes = 8
+
+[node name="Olhos" type="Sprite2D" parent="Objetos/Robos/Atirador2"]
+material = SubResource("SemLuz")
+texture = ExtResource("r27")
+centered = false
+scale = Vector2(1.0, 1.0)
+offset = Vector2(-36, -69)
+hframes = 8
+
+[node name="LuzOlho" type="PointLight2D" parent="Objetos/Robos/Atirador2"]
+position = Vector2(0, -40)
+color = Color(1, 0.28, 0.15, 1)
+energy = 0.6
+texture = ExtResource("r4")
+texture_scale = 0.7
+
+[node name="LuzDoCorpo" type="PointLight2D" parent="Objetos/Robos/Atirador2"]
+position = Vector2(0, -20)
+color = Color(1, 0.4, 0.35, 1)
+energy = 0.8
+texture = ExtResource("r4")
+texture_scale = 1.1
+
+[node name="LinhaDaMira" type="Line2D" parent="Objetos/Robos/Atirador2"]
+material = SubResource("SemLuz")
+width = 1.0
+default_color = Color(1, 0.25, 0.2, 0.55)
+
+[node name="SomCarga" type="AudioStreamPlayer2D" parent="Objetos/Robos/Atirador2"]
+stream = ExtResource("r6")
+bus = &"Efeitos"
+
+[node name="SomTiro" type="AudioStreamPlayer2D" parent="Objetos/Robos/Atirador2"]
+stream = ExtResource("r7")
+bus = &"Efeitos"
+
+[node name="Atirador3" type="Node2D" parent="Objetos/Robos"]
+position = Vector2(0, 150)
+script = ExtResource("r3")
+quadros = 8
+velocidade = 88.0
+distancia_do_gabriel = 196.0
+distancia_maxima = 203.0
+faixa = 150.0
+aparece_depois_de_x = 1500.0
+atira = true
+velocidade_vertical = 26.0
+
+[node name="Corpo" type="Sprite2D" parent="Objetos/Robos/Atirador3"]
+texture = ExtResource("r26")
+centered = false
+scale = Vector2(1.0, 1.0)
+offset = Vector2(-36, -69)
+hframes = 8
+
+[node name="Olhos" type="Sprite2D" parent="Objetos/Robos/Atirador3"]
+material = SubResource("SemLuz")
+texture = ExtResource("r27")
+centered = false
+scale = Vector2(1.0, 1.0)
+offset = Vector2(-36, -69)
+hframes = 8
+
+[node name="LuzOlho" type="PointLight2D" parent="Objetos/Robos/Atirador3"]
+position = Vector2(0, -40)
+color = Color(1, 0.28, 0.15, 1)
+energy = 0.6
+texture = ExtResource("r4")
+texture_scale = 0.7
+
+[node name="LuzDoCorpo" type="PointLight2D" parent="Objetos/Robos/Atirador3"]
+position = Vector2(0, -20)
+color = Color(1, 0.4, 0.35, 1)
+energy = 0.8
+texture = ExtResource("r4")
+texture_scale = 1.1
+
+[node name="LinhaDaMira" type="Line2D" parent="Objetos/Robos/Atirador3"]
+material = SubResource("SemLuz")
+width = 1.0
+default_color = Color(1, 0.25, 0.2, 0.55)
+
+[node name="SomCarga" type="AudioStreamPlayer2D" parent="Objetos/Robos/Atirador3"]
+stream = ExtResource("r6")
+bus = &"Efeitos"
+
+[node name="SomTiro" type="AudioStreamPlayer2D" parent="Objetos/Robos/Atirador3"]
+stream = ExtResource("r7")
+bus = &"Efeitos"
+
+[node name="Escuridao" parent="."]
+color = Color(0.34, 0.2, 0.22, 1)
+
+[node name="Sirene" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("r5")
+volume_db = -8.0
+autoplay = true
+bus = &"Efeitos"
+
+[node name="Musica" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("r8")
+volume_db = -6.0
+autoplay = true
+bus = &"Musica"

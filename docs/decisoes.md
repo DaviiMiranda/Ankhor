@@ -1,5 +1,50 @@
 # Registro de decisões
 
+## 2026-11-06 — Fuga jogável e mais longa, sprites antigos da Clarice, e a chegada ao Laboratório
+
+**Decisão (história):** o grupo chega junto ao Laboratório. Na Emergência do D-Tec eles conversam; a **Diana torce o tornozelo** na escada, e a **Clarice fica com ela**. O **Zane** sai com o Gabriel, mas **vai por outro caminho e some**, e o **Gabriel continua sozinho**. Para onde o Zane foi e se ele volta ficou pendente (Enredo, 10.4). Na fuga, os robôs **atiram**.
+
+**Decisão (jogo):**
+- **A fuga ficou jogável e duas vezes mais longa** (3200 px, uns 27 s correndo). O jogador corre com o Gabriel, com **estamina infinita** só ali, e **desvia saindo da linha dos tiros** (a esquiva com tecla continua fora). Atiradores com o corpo da Sentinela miram como o robô atirador do Centro de Convivência; o Ciborgue e um Caçador encostam. Velocidades no `montar_fuga.py`. Morrer recomeça a fuga.
+- **A Clarice voltou aos sprites renderizados** pelo `gerar_clarice.py`, no estilo dos outros (os desenhados à mão saíram, pedido do Davi). Os retratos ficaram os atuais.
+- **Corrida do grupo:** a Clarice e a Diana ganharam a tira de corrida de lado (24 quadros), gerada pelo `gerar_correr.py` com a mesma corrida do Gabriel; o Zane usa a corrida do Zane jogável (48 quadros, que chegou na main no mesmo dia). No lugar da caminhada acelerada.
+- **A chegada:** na Emergência, cena com falas genéricas (`dtec_chegada.json`). O `montar_dtec.py` passou a aceitar `script` e `instancias` por sala.
+- **Ajustes pedidos depois, no mesmo dia:** os robôs da fuga **ficam sempre na tela** (correm para alcançar, a câmera olha para trás e eles têm luz no corpo); os tiros ficaram **mais frequentes** (recarga de 0,9 a 1,5 s), mas os atiradores **se revezam**, uma mira por vez; o grupo de robôs anda **em formação, a uma boa distância**: o Ciborgue na frente e os atiradores atrás dele, sem um ficar por cima do outro (o Caçador e o quarto atirador saíram). Na Emergência, a **Diana senta numa cadeira** (sprite novo, `gerar_diana_sentada.py`).
+
+**Por quê:** pedido do Davi.
+
+**Cuidado:** o `montar_dtec.py` está desatualizado em relação a `corredor_norte` e `corredor_sul` (a Ronda e o Caçador foram postos à mão). Rodá-lo apaga esses robôs: só a `emergencia.tscn` foi regenerada.
+
+**Afeta:** `scripts/salas/fuga_do_bunker.gd`, `emergencia_dtec.gd` (novo) e `central_dados.gd`; `scripts/personagens/robo_de_cena.gd`, `ator_de_cena.gd` e `gabriel.gd` (`estamina_infinita`); `cenas/salas/bunker/fuga.tscn`, `cenas/salas/dtec/emergencia.tscn`, `cenas/salas/sala_teste.tscn`; `assets/modelagem/salas/bunker/montar_fuga.py`, `assets/modelagem/salas/dtec/montar_dtec.py`, `assets/modelagem/personagens/gerar_correr.py` e `gerar_diana_sentada.py` (novos), `cenas/personagens/diana_sentada.tscn` (nova); os sprites da Clarice e o `diana_sentada.png` e as tiras `_correr_lado` do Zane, da Clarice e da Diana; `dados/dialogos/dtec_chegada.json`; `docs/historia/História_Completa.md`, `docs/fases/bunker.md`, `docs/fases/dtec.md` e `assets/sprites/personagens/clarice/visual.md`.
+
+## 2026-11-06 — A cena do fim do Bunker no jogo: confronto, sumiço do Henrique e fuga
+
+**Decisão:** o fim do Bunker decidido no Enredo (entrada abaixo) entrou no jogo como uma **cena animada**, com **falas genéricas** por enquanto (pedido do Davi: com animação e um diálogo genérico rápido):
+- **Sala de dados:** o confronto (`bunker_encontro`), o Henrique brilhando e sumindo num clarão, o dispositivo caindo com close no **2900**, a reação do grupo e a "Voz nos alto-falantes" (`bunker_sumico`), que dispara a sirene e deixa a sala vermelha; os passos dos robôs e o "corre" do Zane (`bunker_fuga`).
+- **A fuga:** uma sala nova, `cenas/salas/bunker/fuga.tscn`: o grupo e o Gabriel correm sozinhos por um corredor vermelho, com o Ciborgue, um Caçador e um Rastreador atrás, até a comporta do núcleo, e de lá ao Laboratório (pelo `fim_do_bunker.tscn`, como antes).
+- **Escolhas de produção:** a fuga é **cena, não jogável** (o menor passo; virou jogável no mesmo dia, entrada acima). A voz do Carlos aparece como "Voz nos alto-falantes", sem nome nem retrato, porque quando o jogador descobre o nome dele está pendente. O dispositivo **fica no chão** (se o grupo o leva está pendente). O grupo **não aparece no D-Tec** (mudou no mesmo dia: entrada acima).
+- **Porta de teste:** a sala de teste ganhou a porta "FIM DO BUNKER" (a sala ficou 160 px mais larga; as portas das fases saíram da `sala_teste_fases` e foram para a `sala_teste` na main, no mesmo dia), que leva à porta da sala de dados com a energia ligada e as marcas da cena apagadas, para ver a cena de novo quantas vezes quiser. A `PortaDeTeste` ganhou `marcas_ao_entrar` e `marcas_apagadas_ao_entrar`, e o `Progresso`, `desmarcar`.
+- **Peças reaproveitáveis:** `SumicoDeEnergia` (o brilho e o clarão), `AtorDeCena.andar_ate` (personagem parado que anda em cena), `PersonagemParado.virar`, `RoboDeCena` (robô de enfeite) e `Gabriel.correr_sozinho`.
+
+**Por quê:** pedido do Davi, para a história do Bunker em diante já existir jogando, antes do roteiro final.
+
+**Afeta:** `scripts/salas/central_dados.gd` e `fuga_do_bunker.gd` (novos), `scripts/sistemas/sumico_de_energia.gd` e `cenas/sistemas/sumico_de_energia.tscn` (novos), `scripts/personagens/ator_de_cena.gd` e `robo_de_cena.gd` (novos), `personagem_parado.gd` (`virar`), `gabriel.gd` (`correr_sozinho`), `scripts/sistemas/perseguicao_entre_salas.gd` (a fuga é sala protegida), `objetivos.gd` (texto final do bunker), `porta_de_teste.gd` e `progresso.gd` (as marcas da porta de teste), `cenas/salas/sala_teste.tscn`, `cenas/salas/bunker/central_dados.tscn` e `fuga.tscn`, `cenas/cenario/objetos/dispositivo_2900.tscn`, os geradores `assets/modelagem/cenario/gerar_dispositivo_2900.py` e `assets/modelagem/salas/bunker/montar_fuga.py`, os diálogos `bunker_encontro.json`, `bunker_sumico.json` e `bunker_fuga.json`, `docs/fases/bunker.md` e `docs/mecanicas/combate.md`.
+
+## 2026-11-06 — O fim do Bunker: o confronto com o Henrique, o sumiço dele e a fuga até o Laboratório
+
+**Decisão (história):** o fim do Bunker deixa de ser um encontro de quem ainda confia no Henrique e vira o grande embate com ele:
+1. Na sala de dados, o grupo todo (Gabriel, Zane, Clarice, Diana) se reúne com o Henrique e **todos o questionam**. No fim, ele **admite** que está enganando o grupo, mas diz que **precisava**.
+2. O Henrique **começa a brilhar**, com energia em volta do corpo; todos se assustam, e ele **some como numa explosão de energia**. No chão fica um **dispositivo com o número 2900**.
+3. O **Carlos fala pelos alto-falantes** do bunker: quer todos fora do caminho dele. (Ele continua sem ir ao bunker: só a voz chega.)
+4. **Vários robôs** vêm atrás do grupo, e todos **fogem juntos por um corredor** até chegarem ao **Laboratório (D-Tec)**.
+
+Isso responde a pendência "o que muda no Bunker" (Enredo 10.3) e, em parte, "o que acontece com o Henrique no fim" (10.6) e "o que a Clarice e a Diana fazem depois" (10.4). Ficam novas pendências na 10.3 (o que são o brilho, o dispositivo e o 2900; se ele volta; como a parte dele, a teoria, chega ao grupo), na 10.2 (se o Carlos sabe o que aconteceu com o Henrique, ou se foi ele) e na 10.5 (se o grupo fica junto no Laboratório e quem o jogador controla).
+
+**Por quê:** decisão do Davi, ao começar a história das fases do Bunker em diante.
+
+**As falas ficam em aberto para o roteirista:** o Enredo só descreve a cena (pedido do Davi). A cena entrou no jogo no mesmo dia (entrada acima).
+
+**Afeta:** `docs/historia/História_Completa.md` (status, 3.1, 4.3, 6, Ato 3, "A virada", Ato 4 e pendências 10.2 a 10.6), `docs/historia/personagens/henrique.docx`, `docs/fases/bunker.md` e `docs/fases/dtec.md`. **`História_Completa.docx` ainda não foi atualizado.**
 ## 2026-11-06 — O robô fica lento durante o hack do Zane, e o braço ganha o espaço 4
 
 **Decisão:**
