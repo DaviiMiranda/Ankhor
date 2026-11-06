@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_transmissao.tscn" id="r35"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r36"]
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r37"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_atirador.tscn" id="r_atirador"]
 [ext_resource type="Script" path="res://scripts/sistemas/zona_de_piso.gd" id="r38"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_fase.tscn" id="r39"]
 [ext_resource type="Resource" path="res://dados/transmissoes/grupo_convivencia_01.tres" id="g_grupo_convivencia_01"]
@@ -120,6 +121,7 @@ radius = 65.0
 
 [node name="PracaCentral" instance=ExtResource("r1")]
 id = "conv_praca_central"
+esquiva_permitida = true
 largura = 2000
 altura = 560
 chao_frente = 556
@@ -658,6 +660,19 @@ position = Vector2(1060, 540)
 
 [node name="Ponto5" type="Marker2D" parent="RotaSentinela2Energia"]
 position = Vector2(1060, 262)
+
+[node name="Atirador1" parent="Objetos" instance=ExtResource("r_atirador")]
+position = Vector2(1000, 230)
+rota = NodePath("../../RotaAtirador1")
+bipa_antes_de_virar = true
+
+[node name="RotaAtirador1" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaAtirador1"]
+position = Vector2(1000, 200)
+
+[node name="Ponto2" type="Marker2D" parent="RotaAtirador1"]
+position = Vector2(1000, 540)
 
 [node name="RobosDaSala" type="Node" parent="."]
 script = ExtResource("r37")

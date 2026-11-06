@@ -17,6 +17,7 @@
 
 [node name="CamaraFria" instance=ExtResource("r1")]
 id = "conv_camara_fria"
+esquiva_permitida = true
 largura = 400
 altura = 240
 chao_frente = 236

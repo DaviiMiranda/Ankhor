@@ -58,7 +58,7 @@ O **segundo andar** (opcional, seção 7) é outro pedaço do grafo, pendurado n
 |---|---|---|---|---|---|---|
 | `passarela_acesso` | Passarela Superior (chegada, checkpoint, rádio) e a porta de vidro verde da **sala segura**, com a luz verde em cima | 640 × 180 px | chapa de aço | `praca_central`, `sala_segura` | — | Nenhuma |
 | `sala_segura` | **Sala segura** do modelo: os óculos do Zane para salvar, o piano ([`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)) | 320 × 180 px | tapete | `passarela_acesso` | — | Nenhuma (robô não entra) |
-| `praca_central` | Praça Central, em arco, com 4 restaurantes, a entrada e a escada do mezanino | 2000 × 560 px | pedra e musgo | passarela, as 4 lojas e a escada | Mesas, árvores, 2 nichos de manutenção | 2 **Sentinelas** (rotas em volta das mesas) |
+| `praca_central` | Praça Central, em arco, com 4 restaurantes, a entrada e a escada do mezanino | 2000 × 560 px | pedra e musgo | passarela, as 4 lojas e a escada | Mesas, árvores, 2 nichos de manutenção | 2 **Sentinelas** (rotas em volta das mesas) e 1 **Atirador** (ronda pelo corredor do meio) |
 | `loja_1` | **Tapioca Orbital**: cafeteria protegida (sem robôs, com checkpoint), com a Ordem de Serviço e a **estufa de lanches** (seção 8.6) | 400 × 240 px | madeira clara | `praca_central` | — | Nenhuma |
 | `loja_2` | **Self Nebulosa**: restaurante de bufê, com a faixa de louça quebrada e o **cofre do bufê** (seção 8.1) | 640 × 280 px | xadrez brilhante | `praca_central`, `camara_fria` | Nicho de serviço | 1 **Rastreador** |
 | `camara_fria` | Câmara fria do Self Nebulosa: onde está a **Célula de Energia** | 400 × 240 px | grade de aço e gelo | `loja_2` | — | Nenhuma |
@@ -104,6 +104,12 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 
 ---
 
+## 3.2 O que mudou em 2026-11-06
+
+O Centro de Convivência ganhou combate: um **robô atirador** na praça, a **arma de impulso** no cofre do cinema (no lugar da cápsula de clarão) e a **esquiva** (`Espaço`), que só vale nesta fase. Detalhes em [`../mecanicas/combate.md`](../mecanicas/combate.md).
+
+---
+
 ## 3.3 O que mudou em 2026-11-04
 
 A Célula de Energia virou carga: pesa, zumbe e impede de correr. O Mapa da Diana, na Tapioca Orbital, revela a **galeria** (`galeria.tscn`), que liga o Self Nebulosa, a Pizzaria Quasar e o Churrasco Solar por baixo da praça, com um Rastreador e sem esconderijo. O caco de espelho, opcional, fica na Loja Universitária. O cofre do bufê e o quadro do bar não pausam mais o jogo. As pilhas caíram de 8 para 6 (saíram a do mezanino e a da cabine do cinema). Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 5.
@@ -116,7 +122,8 @@ A Célula de Energia virou carga: pesa, zumbe e impede de correr. O Mapa da Dian
 |---|---|---|
 | **Célula de Energia** | `dados/itens/celula_energia.tres` | `camara_fria` |
 | **Pilhas (8)** | `cenas/itens/pilha_no_chao.tscn` | `passarela_acesso`, `loja_1`, `camara_fria`, `segundo_andar`, `loja_uni`, `grafica`, `cinema`, `cinema_cabine` |
-| **Cápsulas de Clarão (2)** | `dados/itens/clarao.tres` | `loja_1` e o prêmio do cofre do `cinema` |
+| **Cápsula de Clarão (1)** | `dados/itens/clarao.tres` | `loja_1` |
+| **Arma de impulso** | `dados/itens/arma_impulso.tres` | prêmio do cofre do `cinema` (cai no chão ao abrir). Ver [`../mecanicas/combate.md`](../mecanicas/combate.md) |
 | **Prêmios dos puzzles da seção 8** | caem no chão ao resolver (`Recompensa`) | 1 clarão no cofre do bufê (`loja_2`), 2 pilhas no quadro do bar (`loja_4`), 1 clarão na trava do plotter (`grafica`), 2 pilhas na arara (`loja_uni`), 2 pilhas na estufa de lanches (`loja_1`) |
 | **Pedras (10)** | `dados/itens/pedra.tres` | `praca_central` (3), `segundo_andar` (2), `grafica` (2), `loja_uni` (1), `cinema` (2) |
 | **Panfleto da Semana Universitária (2024)** | `dados/documentos/panfleto_universitario.tres` | `loja_3` |

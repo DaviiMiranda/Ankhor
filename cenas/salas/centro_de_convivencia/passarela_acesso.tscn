@@ -27,6 +27,7 @@ radius = 65.0
 
 [node name="PassarelaAcesso" instance=ExtResource("r1")]
 id = "conv_passarela_acesso"
+esquiva_permitida = true
 largura = 640
 
 [node name="Ceu" parent="."]

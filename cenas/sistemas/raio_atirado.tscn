@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/sistemas/raio_atirado.gd" id="1_raio"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="2_luz"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_raio"]
+radius = 6.0
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
+[node name="RaioAtirado" type="Area2D"]
+collision_layer = 0
+collision_mask = 9
+material = SubResource("SemLuz")
+script = ExtResource("1_raio")
+
+[node name="Forma" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_raio")
+
+[node name="Luz" type="PointLight2D" parent="."]
+position = Vector2(0, -26)
+color = Color(0.3, 0.8, 1, 1)
+energy = 1.1
+texture = ExtResource("2_luz")
+texture_scale = 0.9

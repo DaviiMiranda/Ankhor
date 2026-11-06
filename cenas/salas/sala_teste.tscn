@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="porta"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="pilar"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/sinal_sala_segura.tscn" id="sinal_sala_segura"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/placa_de_porta.tscn" id="placa"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="chao_lajotas"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="i_item"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="i_pilha"]
@@ -34,7 +35,7 @@
 
 [node name="SalaTeste" instance=ExtResource("modelo")]
 id = "sala_teste"
-largura = 640
+largura = 800
 
 [node name="Parede01" parent="Paredes" instance=ExtResource("parede_porta")]
 position = Vector2(0, 0)
@@ -63,8 +64,14 @@ position = Vector2(480, 0)
 [node name="Parede08" parent="Paredes" instance=ExtResource("parede_porta")]
 position = Vector2(560, 0)
 
+[node name="Parede09" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(640, 0)
+
+[node name="Parede10" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(720, 0)
+
 [node name="PilarDireita" parent="Paredes" instance=ExtResource("pilar")]
-position = Vector2(624, 0)
+position = Vector2(784, 0)
 
 [node name="SinalSalaSegura" parent="Paredes" instance=ExtResource("sinal_sala_segura")]
 position = Vector2(601, 6)
@@ -83,6 +90,12 @@ position = Vector2(384, 0)
 
 [node name="Chao5" parent="Chao" instance=ExtResource("chao_lajotas")]
 position = Vector2(512, 0)
+
+[node name="Chao6" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(640, 0)
+
+[node name="Chao7" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(768, 0)
 
 [node name="Lanterna" parent="Objetos" instance=ExtResource("i_item")]
 position = Vector2(110, 150)
@@ -268,3 +281,15 @@ item = ExtResource("gd_mascara")
 [node name="Espelho" parent="Objetos" instance=ExtResource("i_item")]
 position = Vector2(680, 138)
 item = ExtResource("gd_espelho")
+
+[node name="PortaFases" parent="." instance=ExtResource("porta")]
+position = Vector2(760, 124)
+id = "sala_teste_fases_porta"
+cena_destino = "res://cenas/salas/sala_teste_fases.tscn"
+porta_destino = "fases_voltar"
+
+[node name="PlacaFases" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(760, 56)
+texto = "FASES
+(TESTE)"
+cor_do_texto = Color(1, 0.8, 0.4, 1)

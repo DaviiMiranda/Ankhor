@@ -4,6 +4,7 @@ extends Node2D
 
 @export var id: String = ""
 @export var duracao_entrada: float = 1.0
+@export var esquiva_permitida: bool = false
 
 @export_group("Tamanho")
 @export var largura: int = 960:
