@@ -25,6 +25,8 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/musica_bunker.tscn" id="m_musica"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/painel_religacao.tscn" id="n1"]
 [ext_resource type="Resource" path="res://dados/transmissoes/zane_bunker_01.tres" id="n2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/paredes/bunker_nicho.tscn" id="esconderijo_peca"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/nicho_esconderijo.tscn" id="esconderijo_area"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.09, 0.1, 0.12, 1)
@@ -52,7 +54,7 @@ position = Vector2(240, 0)
 [node name="Parede05" parent="Paredes" instance=ExtResource("r6")]
 position = Vector2(320, 0)
 
-[node name="Parede06" parent="Paredes" instance=ExtResource("r3")]
+[node name="Parede06" parent="Paredes" instance=ExtResource("esconderijo_peca")]
 position = Vector2(400, 0)
 
 [node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r7")]
@@ -294,3 +296,6 @@ bus = &"Efeitos"
 [node name="PainelReligacao" parent="Objetos" instance=ExtResource("n1")]
 position = Vector2(200, 132)
 transmissao = ExtResource("n2")
+
+[node name="Nicho400" parent="Objetos" instance=ExtResource("esconderijo_area")]
+position = Vector2(440, 128)

@@ -59,7 +59,7 @@ position = Vector2(80, 0)
 [node name="Parede03" parent="Paredes" instance=ExtResource("r3")]
 position = Vector2(160, 0)
 
-[node name="Parede04" parent="Paredes" instance=ExtResource("r2")]
+[node name="Parede04" parent="Paredes" instance=ExtResource("n3")]
 position = Vector2(240, 0)
 
 [node name="Parede05" parent="Paredes" instance=ExtResource("r5")]
@@ -122,7 +122,7 @@ position = Vector2(1760, 0)
 [node name="Parede24" parent="Paredes" instance=ExtResource("n4")]
 position = Vector2(1840, 0)
 
-[node name="Parede25" parent="Paredes" instance=ExtResource("r12")]
+[node name="Parede25" parent="Paredes" instance=ExtResource("n3")]
 position = Vector2(1920, 0)
 
 [node name="Parede26" parent="Paredes" instance=ExtResource("r8")]
@@ -131,7 +131,7 @@ position = Vector2(2000, 0)
 [node name="Parede27" parent="Paredes" instance=ExtResource("r5")]
 position = Vector2(2080, 0)
 
-[node name="Parede28" parent="Paredes" instance=ExtResource("r2")]
+[node name="Parede28" parent="Paredes" instance=ExtResource("n3")]
 position = Vector2(2160, 0)
 
 [node name="Parede29" parent="Paredes" instance=ExtResource("r13")]
@@ -473,3 +473,12 @@ script = ExtResource("n6")
 transmissao = ExtResource("g_grupo_bunker_02")
 na_sala_inteira = true
 depois_do_dialogo = "res://dados/dialogos/henrique_primeiro_encontro.json"
+
+[node name="Nicho240" parent="Objetos" instance=ExtResource("n2")]
+position = Vector2(280, 128)
+
+[node name="Nicho1920" parent="Objetos" instance=ExtResource("n2")]
+position = Vector2(1960, 128)
+
+[node name="Nicho2160" parent="Objetos" instance=ExtResource("n2")]
+position = Vector2(2200, 128)
