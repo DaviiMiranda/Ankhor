@@ -47,6 +47,25 @@ A sala segura **não é recarregada**. O autoload `Visor` (`scripts/sistemas/vis
 
 A `MaquinaDeSalvar` fica esperando esse sinal (`await Visor.fechado`). Quando ele chega, ela clareia a tela e toca a animação de tirar os óculos de trás para a frente, como antes.
 
+### 2.1 A tela de carregamento do visor
+
+**Toda vez** que o jogador põe um visor (os óculos da sala segura ou o visor do cinema, na Sala VR do Centro de Convivência), entre a tela escurecer e o 3D aparecer, fica **3 segundos** a tela **CARREGANDO MODO REALIDADE VIRTUAL** (`cenas/visor/tela_carregando_vr.tscn`, script `scripts/visor/tela_carregando_vr.gd`): fundo escuro, o título em ciano (a cor da luz dos óculos do Zane), uma barra que enche, a porcentagem e uma linha que muda com a barra (*Ligando o visor*, *Calibrando as lentes*, *Montando o ambiente*, *Pronto*). Tudo isso aparece **por dentro de um visor**: em volta, a silhueta arredondada dos óculos VR (duas lentes unidas, com o encaixe do nariz embaixo e uma linha ciano na borda). A silhueta é o shader `shaders/silhueta_oculos_vr.gdshader`, num `ColorRect` por cima da tela (a conta está comentada no shader; o formato se ajusta pelos parâmetros dele).
+
+O visor **liga como um aparelho velho**:
+
+| Quando | Imagem | Som (`efeitos/interface/visor_ligando.wav`) |
+|---|---|---|
+| 0 s | tudo escuro | o relé fecha: clique metálico e um baque grave |
+| 0,10 a 0,43 s | a tela inteira (com a silhueta) **pisca** quatro vezes, em brilhos diferentes, até ficar acesa | um estalo elétrico e um zumbido curto a cada vez que acende; começa a subida da energia |
+| 0,43 a 2,65 s | a barra enche; de vez em quando (a cada 0,35 a 0,9 s, sorteado) o texto e a barra **falham**: o brilho cai para 35% por 0,05 s | a energia termina de subir (um tom de 60 Hz a 900 Hz) e fica o zumbido de 120 Hz do aparelho ligado |
+| 2,65 s | a barra chega a 100%: *Pronto* | dois bipes subindo |
+| 2,88 a 3,0 s | a tela apaga e entra o 3D | o zumbido some |
+
+- **O pisca-pisca e o som andam juntos.** Os trechos do pisca-pisca estão em `PISCADAS_AO_LIGAR` no script e, iguais, em `PISCADAS` no gerador do som (`assets/modelagem/audio/gerar_efeitos_visor.py`). Se mudar um, mude o outro e rode o gerador de novo.
+- **Ela carrega o 3D de verdade:** enquanto a barra enche, o `ResourceLoader` carrega a cena 3D em segundo plano (`load_threaded_request`). Sem isso, o jogo parava uns 2 s na tela preta na primeira entrada. Se o carregamento demorar mais que os 3 s, a barra para em 99% até terminar.
+- **Quem chama** é a `MaquinaDeSalvar` (`_mostrar_carregamento`), antes do `Visor.abrir`. A tela é o padrão de todo visor: está em `tela_de_carregamento` na cena-base `maquina_de_salvar.tscn`, então vale para as seis salas seguras e para a cabine do filme VR (`cabine_vr_filme.tscn`, que herda dela). Um visor novo feito a partir da máquina já ganha a tela; para tirar, esvazie `tela_de_carregamento` na instância.
+- **Ajustes** no nó raiz da cena: `segundos` (3), `segundos_cheia` (quanto a barra fica cheia antes de sumir), `segundos_apagando`, e as falhas (`intervalo_das_falhas`, `segundos_de_falha`, `brilho_na_falha`). Os textos estão em `ETAPAS` no script. Mudar `segundos` muda a tela, mas não o som (ele tem 3 s fixos).
+
 Por que não recarregar a sala: não precisa passar a posição do Gabriel nem um "estou voltando do visor" entre cenas, e nada da sala se perde (itens no chão, portas, música). Cuidados que isso exigiu:
 
 - A `SalaSegura` liga o sinal que remove robôs em `_enter_tree` (antes era em `_ready`, que não roda de novo quando a sala volta à árvore).
@@ -189,6 +208,7 @@ As formas de colisão (chão, paredes, móvel da TV, estante, escrivaninha, cade
 | O quê | Onde |
 |---|---|
 | Troca 2D ↔ 3D e salvar (autoload `Visor`) | `scripts/sistemas/visor.gd` |
+| Tela de carregamento do visor | `cenas/visor/tela_carregando_vr.tscn`, `scripts/visor/tela_carregando_vr.gd`, `shaders/silhueta_oculos_vr.gdshader`, som de `assets/modelagem/audio/gerar_efeitos_visor.py`, chamada pela `MaquinaDeSalvar` |
 | Quarto (câmera, luzes, colisões, janela, pôsteres) | `cenas/visor/sala_visor.tscn`, `scripts/visor/sala_visor.gd` |
 | Jogador em primeira pessoa | `cenas/visor/jogador_visor.tscn`, `scripts/visor/jogador_visor.gd` |
 | Os lugares para focar | `scripts/visor/foco_visor.gd` (base), `cenas/visor/tela_do_visor.tscn`, `mural_do_visor.tscn`, `mesa_do_visor.tscn`, `quadro_do_visor.tscn` e os scripts com o mesmo nome |

@@ -31,6 +31,7 @@ Salvamento="*res://scripts/sistemas/salvamento.gd"
 Visor="*res://scripts/sistemas/visor.gd"
 Configuracoes="*res://scripts/sistemas/configuracoes.gd"
 Dialogos="*res://scripts/sistemas/dialogos.gd"
+PerseguidorPerpetuo="*res://scripts/sistemas/perseguidor_perpetuo.gd"
 Pausa="*res://cenas/interface/tela_pausa.tscn"
 ItemNovo="*res://cenas/interface/tela_item_novo.tscn"
 

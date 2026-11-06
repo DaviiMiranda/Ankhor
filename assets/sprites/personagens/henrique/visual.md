@@ -22,16 +22,17 @@ Todos em `assets/sprites/personagens/henrique/`, gerados por `assets/modelagem/p
 | `henrique_<vista>.png` | 96 × 112 | parado, em cada vista: `lado`, `frente`, `tres_quartos`, `costas`, `tres_quartos_costas` |
 | `henrique_andar_<vista>.png` | 12 quadros de 96 × 112 | caminhada (dois passos), um arquivo por vista |
 | `henrique_parado_<vista>.png` | 8 quadros de 96 × 112 | respirando, um arquivo por vista |
-| `henrique_retrato_normal.png` | 80 × 80 | o rosto fechado de quem pensa, com um sorriso mínimo (mostrado em 40 × 40) |
-| `henrique_retrato_nervoso.png` | 80 × 80 | olhos arregalados, uma gota de suor e a boca tensa: a ansiedade de quem desconfia ter causado tudo |
+| `henrique_retrato_normal.png` | 80 × 80 | o rosto fechado de quem pensa, com um sorriso mínimo e olheiras (mostrado em 40 × 40) |
+| `henrique_retrato_nervoso.png` | 80 × 80 | olhos arregalados, uma gota de suor e a boca tensa e os dentes à mostra: a ansiedade de quem desconfia ter causado tudo |
 | `henrique_retrato_timido.png` | 80 × 80 | bochechas coradas e o olhar baixo |
 | `henrique_retrato_cansado.png` | 80 × 80 | olheiras e pálpebras caídas |
 | `henrique_retrato_pensativo.png` | 80 × 80 | a mão no queixo, olhando para cima |
 | `henrique_retrato_triste.png` | 80 × 80 | olhos fechados e a boca curvada para baixo |
 | `henrique_retrato_culpado.png` | 80 × 80 | olha de lado e morde o lábio: usar só depois que o grupo descobre a mentira |
-| `henrique_referencia.png` | — | frente, 3/4, lado e costas, e os retratos antigos (os três primeiros) |
+| `henrique_retrato_surpreso.png` | 80 × 80 | olhos arregalados e a boca aberta, sem suor: levou um susto |
+| `henrique_referencia.png` | — | frente, 3/4, lado e costas, e os retratos antigos do Blender (não os do jogo) |
 
-Os **retratos** não vêm mais do `gerar_henrique.py`: saem do `assets/modelagem/personagens/pixelar_retratos.py` (`python assets/modelagem/personagens/pixelar_retratos.py henrique`), a partir da folha desenhada em `assets/modelagem/personagens/henrique_referencia/expressoes.jpg`. Rodar o `gerar_henrique.py` de novo sobrescreve os retratos novos com os antigos do Blender. Nos retratos dele o fundo **não é transparente** (é um cinza-azulado liso): o cabelo escuro some sobre o fundo da caixa de diálogo, que é quase da mesma cor. O Henrique dos retratos tem cabelo castanho-escuro e óculos redondos; confira se os sprites de corpo combinam.
+Os **retratos** não vêm mais do `gerar_henrique.py`: saem do `assets/modelagem/personagens/pixelar_retratos.py` (`python assets/modelagem/personagens/pixelar_retratos.py henrique`), a partir da folha desenhada em `assets/modelagem/personagens/henrique_referencia/expressoes.jpg`. Rodar o `gerar_henrique.py` de novo sobrescreve os retratos novos com os antigos do Blender. Nos retratos dele o fundo **não é transparente** (é um cinza-azulado liso): o cabelo escuro some sobre o fundo da caixa de diálogo, que é quase da mesma cor. Os retratos (folha nova de 8 rostos) mostram o Henrique **sem óculos**, de olheiras fundas, barba por fazer e camisa de flanela xadrez laranja-escura sobre a camiseta cinza. A ficha dele e os sprites de corpo ainda têm óculos redondos: confira e decida se os óculos saem de vez.
 
 - **Escala:** a mesma de todos os personagens (1,75 m do Gabriel = 48 px na tela). Ele tem 1,76 m, mas curvado.
 - **Resolução dobrada:** como o Gabriel, a cena usa `scale = Vector2(0.5, 0.5)` e `offset = Vector2(-46, -108)`.

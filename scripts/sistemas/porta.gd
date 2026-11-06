@@ -173,6 +173,7 @@ func tocar_abertura() -> void:
 
 func _trocar_de_cena() -> void:
 	PerseguicaoEntreSalas.anotar(get_tree(), self)
+	PerseguidorPerpetuo.gabriel_saiu_pela(self)
 	_chegada = porta_destino
 	_espiar_em = porta_destino if _vai_espiar else ""
 	get_tree().change_scene_to_file(cena_destino)

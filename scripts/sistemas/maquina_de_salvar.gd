@@ -16,6 +16,7 @@ const DISTANCIA_CHEGADA := 1.5
 @export var segundos_escurecendo: float = 0.9
 @export var segundos_por_quadro: float = 0.1
 @export_file("*.tscn") var cena_do_visor: String = ""
+@export var tela_de_carregamento: PackedScene
 
 var _salvando := false
 var _salvou := false
@@ -117,12 +118,25 @@ func _usar_o_visor() -> void:
 	if escuro:
 		acender.tween_property(escuro, "color:a", 1.0, segundos_escurecendo)
 	await acender.finished
+	var carregamento := await _mostrar_carregamento()
 	Visor.abrir(_cena(), global_position + deslocamento_retorno, cena_do_visor)
+	if carregamento:
+		carregamento.queue_free()
 	_salvou = await Visor.fechado
 	if escuro:
 		var clarear := create_tween()
 		clarear.tween_property(escuro, "color:a", 0.0, segundos_escurecendo)
 		await clarear.finished
+
+
+func _mostrar_carregamento() -> TelaCarregandoVr:
+	if tela_de_carregamento == null:
+		return null
+	var tela := tela_de_carregamento.instantiate() as TelaCarregandoVr
+	tela.cena_a_carregar = Visor.CENA if cena_do_visor.is_empty() else cena_do_visor
+	add_child(tela)
+	await tela.terminou
+	return tela
 
 
 func _terminar(gabriel: Gabriel) -> void:
