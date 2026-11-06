@@ -1,5 +1,20 @@
 # Registro de decisões
 
+## 2026-11-06 — O Ciborgue: uma cópia do Carlos que caça o bunker inteiro
+
+**Decisão:** entra um robô novo no **bunker**, o **Ciborgue**. É o corpo do Carlos (rosto, jaleco, camiseta dos anos 80, jeans e tênis) com metal por baixo da pele: meio crânio e o queixo de metal, olhos e núcleo do peito no vermelho dos robôs, antebraço esquerdo exposto. Como o Carlos nunca vai ao bunker, mandou essa cópia.
+
+- **Persegue a fase toda:** chega 8 s depois de o Gabriel entrar no bunker e o segue de sala em sala até a comporta do núcleo. Sabe sempre onde ele está, menos quando está escondido. Pela porta, chega depois do tempo que levaria andando (distância / velocidade).
+- **Mais lento que os outros:** 36 px/s em perseguição (o Escafandro corre a 38, a Mariposa a 48, o Gabriel anda a 60).
+- **Invulnerável:** clarão, espelho e hack do notebook não fazem nada. Encostar tira um coração, como os outros.
+- **Esconderijo:** com o Gabriel escondido num nicho, ele espera do lado de fora de 7 a 11 s. Enquanto isso corre o minijogo novo de **respiração contida**: segurar `E` prende o ar, soltar respira, e é preciso manter a respiração na faixa verde do meio. Falhou, ele ouve e pega o Gabriel. Aguentou, ele sai por uma porta e volta 14 s depois.
+- **Não entra** na sala segura nem na sala de dados do Henrique. Ao sair delas, ele chega 6 s depois por outra porta. Depois do checkpoint, chega em 12 s.
+- **O jogo não diz de quem é o rosto.** Quando o jogador descobre que o Carlos existe continua pendente (Enredo, seção 10.2).
+
+**Por quê:** pedido do Davi: "um robô parecido com o Carlos, tipo um ciborgue dele, perseguidor perpétuo da fase toda, mais lento que os outros mas invulnerável", no Bunker, desde a entrada; no esconderijo, "espera do lado de fora e, enquanto está próximo, uma mecânica para manter a respiração numa média, senão o robô ouve e te pega". Completa o tipo "Perseguidor Persistente" planejado na ficha dos robôs, que já previa o controle de respiração. **Conferido** no Godot 4.7.2 por script, no Corredor A: chega em 8 s, alcança e ataca, ignora clarão e hack, espera no nicho, ouve quando a respiração sai do verde, desiste quando ela fica no verde, sai, volta, segue o Gabriel até o dormitório e não entra na sala segura. O minijogo com a tecla de verdade e o equilíbrio da fase inteira **não** foram testados por uma pessoa.
+
+**Afeta:** `scripts/personagens/ciborgue_do_carlos.gd`, `cenas/personagens/ciborgue_do_carlos.tscn`, `scripts/sistemas/perseguidor_perpetuo.gd` (autoload novo em `project.godot`), `scripts/sistemas/respiracao_contida.gd`, `cenas/sistemas/respiracao_contida.tscn`, `scripts/sistemas/porta.gd`, `scripts/sistemas/perseguicao_entre_salas.gd` (ignora o Ciborgue, que tem o próprio sistema), `assets/modelagem/personagens/gerar_ciborgue.py` (e `gerar_carlos.py`, que agora pode ser importado), `assets/sprites/personagens/robos/ciborgue_*`, `docs/historia/História_Completa.md` e `.docx`, `docs/historia/personagens/robos.docx`, `docs/fases/bunker.md`, `docs/mecanicas/furtividade_e_esconderijos.md`, `docs/computacao/ia_e_perseguicao.md`.
+
 ## 2026-11-05 — Corrida depois da exaustão e aviso da carga
 
 **Decisão:** duas correções no que um testador relatou como "a corrida parou de funcionar no Centro de Convivência, mesmo depois de salvar e carregar":
