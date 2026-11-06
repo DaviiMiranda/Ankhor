@@ -66,8 +66,13 @@ Em vez disso, para cada tarefa:
 2. **Faça todas as mudanças e commits dentro dessa pasta.** A pasta principal não é tocada.
 3. **Push e PR** para a `main`: `git push -u origin <branch>` e `gh pr create`.
 4. **Se a mudança precisa do Godot** (gerar `.import`, testar a cena), peça ao usuário para abrir o projeto nessa pasta, e commite os `.import` gerados.
-5. **Mescle quando o usuário pedir**, com squash: `gh pr merge <número> --squash`.
-6. **Limpe depois do merge**, a partir da pasta principal:
+5. **Mescle quando o usuário pedir**, com squash: `gh pr merge <número> --squash`. Confira que o PR ficou `MERGED` (`gh pr view <número> --json state`) antes de seguir: se o merge falhar (conflito), **não limpe nada**, porque apagar a branch de um PR aberto o fecha.
+6. **Depois de todo merge, dê pull na pasta principal**, para ela não ficar atrasada em relação à `main`:
+   ```bash
+   git pull --ff-only
+   ```
+   Rode isso na pasta principal (ela fica na `main`). O `--ff-only` só avança, nunca cria commit de merge. Se o pull for bloqueado por mudanças locais da pessoa (ex.: `project.godot` mexido pelo Godot), **não descarte nada**: avise o usuário e pergunte se pode guardar a mudança (`git stash`) antes de puxar.
+7. **Limpe depois do merge**, a partir da pasta principal:
    ```bash
    git push origin --delete <branch>
    git worktree remove ../<pasta>-<tarefa>
