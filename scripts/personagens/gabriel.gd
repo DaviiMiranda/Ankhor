@@ -87,6 +87,7 @@ const PEITO_NO_QUADRO := {
 static var _avisou_da_esquiva := false
 
 var jogador_controla := true
+var mirando := false
 var direcao_automatica := Vector2.ZERO
 var correndo := false
 var escondido := false
@@ -185,7 +186,7 @@ func _avisar_da_esquiva() -> void:
 
 func _tentar_esquivar() -> void:
 	var pode := esquiva_disponivel() and not esta_esquivando() and _tempo_desde_esquiva >= segundos_entre_esquivas
-	if not pode or escondido or tira_especial or Inventario.carregando_peso() or not Vida.esta_viva():
+	if not pode or mirando or escondido or tira_especial or Inventario.carregando_peso() or not Vida.esta_viva():
 		return
 	var entrada := Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
 	_direcao_da_esquiva = entrada.normalized() if entrada != Vector2.ZERO else direcao_olhar
@@ -242,6 +243,8 @@ func _physics_process(delta: float) -> void:
 	if jogador_controla:
 		direcao = Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
 
+	if mirando:
+		direcao = Vector2.ZERO
 	correndo = false
 	var velocidade := velocidade_andar
 	var pode_correr := (fadiga.pode_correr() if fadiga else true) and not Inventario.carregando_peso()

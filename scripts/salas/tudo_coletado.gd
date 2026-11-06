@@ -35,6 +35,7 @@ func _pegar_itens() -> void:
 	for item in itens:
 		_pegar(item)
 	Inventario.estado_de(ID_LANTERNA)["carga"] = 1.0
+	Inventario.definir_pilhas(Inventario.MAXIMO_PILHAS)
 	Inventario.mudou.emit()
 
 

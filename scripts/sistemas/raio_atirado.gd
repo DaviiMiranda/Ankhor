@@ -6,8 +6,8 @@ const COR_NUCLEO := Color(0.85, 1.0, 1.0)
 const COR_BRILHO := Color(0.3, 0.8, 1.0)
 const COMPRIMENTO := 14.0
 
-@export var velocidade: float = 210.0
-@export var segundos_de_vida: float = 2.5
+@export var velocidade: float = 310.0
+@export var segundos_de_vida: float = 1.6
 
 var _direcao := Vector2.RIGHT
 var _origem_do_dano := Vector2.ZERO
