@@ -1,5 +1,19 @@
 # Registro de decisões
 
+## 2026-11-06 — Combate no Centro de Convivência: robô atirador, arma de impulso e esquiva
+
+**Decisão:** a pedido do Davi, três mecânicas novas, **só no Centro de Convivência** (detalhes em [`mecanicas/combate.md`](mecanicas/combate.md)):
+- **Robô atirador** (`Atirador1`), só na Praça Central: mira (0,7 s rastreando, 0,4 s travada, com uma linha vermelha que vira branca) e dispara um raio que tira 1 de vida. Mesas e árvores param o raio.
+- **Arma de impulso**, escondida no **cofre do cinema** (no lugar da cápsula de clarão que ele dava): empurra os robôs para longe e os paralisa por 0,9 s. 4 cargas que recarregam sozinhas.
+- **Esquiva** com `Espaço`: salto curto e invulnerável, só nas salas com `esquiva_permitida` (todas do Centro de Convivência, menos a sala segura e o fim da fase).
+- **Sala de teste:** nova porta "FASES (TESTE)" para a `sala_teste_fases`, com uma porta por fase. A do **Centro de Convivência** liga o **modo combate** (cápsulas e cargas infinitas, e morrer devolve ao meio da praça); Bloco de Salas, Labirinto, Bunker e D-Tec entram só com os itens no máximo. A Biblioteca ficou de fora por serem 4 portas pedidas.
+
+**Por quê:** pedido do Davi, para testar o combate. O Enredo diz que o Gabriel não é combatente e que o confronto com o Carlos é sem luta: a arma só afasta e a esquiva só evita dano, então nada contradiz o Enredo. **O Enredo não foi mexido.** Fica em aberto se a arma e a esquiva entram nas outras fases.
+
+**Efeitos colaterais:** o cofre do cinema deixou de dar cápsula de clarão (o Centro tem 1 cápsula a menos). O `TudoColetado` (safe room de teste e sala de fases) passou a pôr a arma, o clarão e a pedra primeiro e a **pular a Célula de Energia** (carga pesada: impedia de correr). A `sala_teste` ficou 160 px mais larga para caber a porta nova; os itens de 650 e 680 px, que estavam fora da sala, agora dá para pegar.
+
+**Afeta:** `scripts/personagens/robo.gd` (`empurrar`), `gabriel.gd` (esquiva), `scripts/salas/sala.gd` (`esquiva_permitida`), `vida.gd` (`proteger`), `checkpoints.gd`, `scripts/itens/clarao.gd`, `scripts/salas/tudo_coletado.gd`, `project.godot` (ação `esquivar`), as salas de `cenas/salas/centro_de_convivencia/`, `praca_central.tscn`, `cinema_cabine.tscn`, `sala_teste.tscn`, e os novos: `robo_atirador`, `raio_atirado`, `arma_impulso`, `modo_combate.gd`, `porta_de_teste.gd`, `placa_de_porta`, `sala_teste_fases.tscn` e os geradores `gerar_efeitos_combate.py` e `gerar_arma_impulso.py`. **Conferido** no Godot 4.7.2 por script: todas as portas, a mochila, o tiro, o empurrão, a esquiva e o renascimento no meio da praça.
+
 ## 2026-11-05 — Corrida depois da exaustão e aviso da carga
 
 **Decisão:** duas correções no que um testador relatou como "a corrida parou de funcionar no Centro de Convivência, mesmo depois de salvar e carregar":

@@ -8,6 +8,7 @@ Gabriel possui dois estados primários de movimentação em vista lateral 2.5D. 
 |---|---|---|---|---|
 | **Andar** | `WASD` ou Setas | Normal (100%) | Zero | Baixo (ouvido apenas na mesma sala) |
 | **Correr** | `Shift` + Direção | Rápido (180%) | Constante (~4s contínuos) | **Alto** (propaga até 2 salas no grafo) |
+| **Esquivar** (só no Centro de Convivência) | `Espaço` | Salto de 0,3 s (~54 px), invulnerável | Nenhum (intervalo de 0,9 s) | Os passos de sempre. Ver [`combate.md`](combate.md) |
 
 ### 1.1 Condução (como o movimento responde)
 
