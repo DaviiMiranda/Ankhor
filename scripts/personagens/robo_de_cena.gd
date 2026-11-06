@@ -8,20 +8,26 @@ const COR_MIRA := Color(1.0, 0.25, 0.2, 0.55)
 const COR_MIRA_TRAVADA := Color(1.0, 0.95, 0.9, 0.95)
 const ALCANCE_DA_MIRA := 300.0
 const ALCANCE_DO_TOQUE := Vector2(16, 12)
+const SEGUNDOS_ENTRE_TIROS := 0.8
+
+static var _proximo_tiro_livre := 0.0
 
 @export var quadros: int = 8
 @export var px_por_quadro: float = 4.0
 @export var velocidade: float = 92.0
 @export var velocidade_vertical: float = 26.0
+@export var faixa: float = -1.0
 @export var distancia_do_gabriel: float = 0.0
+@export var distancia_maxima: float = 75.0
+@export var velocidade_de_alcance: float = 130.0
 @export var aparece_depois_de_x: float = -1.0
 
 @export_group("Tiro")
 @export var atira := false
-@export var segundos_mirando: float = 0.6
+@export var segundos_mirando: float = 0.5
 @export var segundos_travado: float = 0.35
-@export var recarga_minima: float = 1.8
-@export var recarga_maxima: float = 2.8
+@export var recarga_minima: float = 0.9
+@export var recarga_maxima: float = 1.5
 
 var correndo := false
 var _andado := 0.0
@@ -59,6 +65,7 @@ func _physics_process(delta: float) -> void:
 		if _gabriel.global_position.x < aparece_depois_de_x:
 			return
 		visible = true
+		global_position.x = _gabriel.global_position.x - distancia_maxima - 20.0
 	_andar(delta)
 	if atira:
 		_atualizar_tiro(delta)
@@ -67,9 +74,11 @@ func _physics_process(delta: float) -> void:
 func _andar(delta: float) -> void:
 	var alvo := _gabriel.global_position.x - distancia_do_gabriel
 	var antes := global_position.x
+	var ficou_para_tras := _gabriel.global_position.x - antes > distancia_maxima
 	if alvo > antes:
-		global_position.x = move_toward(antes, alvo, velocidade * delta)
-	global_position.y = move_toward(global_position.y, _gabriel.global_position.y, velocidade_vertical * delta)
+		global_position.x = move_toward(antes, alvo, (velocidade_de_alcance if ficou_para_tras else velocidade) * delta)
+	var altura := faixa if faixa >= 0.0 else _gabriel.global_position.y
+	global_position.y = move_toward(global_position.y, altura, velocidade_vertical * delta)
 	_andado += global_position.x - antes
 	var quadro := int(_andado / px_por_quadro) % quadros
 	corpo.frame = quadro
@@ -85,12 +94,13 @@ func _atualizar_tiro(delta: float) -> void:
 	else:
 		_recarga -= delta
 		var na_frente := _gabriel.global_position.x - global_position.x
-		if _recarga <= 0.0 and na_frente > 0.0 and na_frente < ALCANCE_DA_MIRA:
+		if _recarga <= 0.0 and na_frente > 0.0 and na_frente < ALCANCE_DA_MIRA and _agora() >= _proximo_tiro_livre:
 			_comecar_a_mirar()
 	_desenhar_mira()
 
 
 func _comecar_a_mirar() -> void:
+	_proximo_tiro_livre = _agora() + segundos_mirando + segundos_travado + SEGUNDOS_ENTRE_TIROS
 	_mirando = true
 	_tempo_mirando = 0.0
 	som_carga.play()
@@ -131,3 +141,7 @@ func _desenhar_mira() -> void:
 	linha_da_mira.clear_points()
 	linha_da_mira.add_point(ALTURA_DO_PEITO)
 	linha_da_mira.add_point(ALTURA_DO_PEITO + _direcao * ALCANCE_DA_MIRA)
+
+
+func _agora() -> float:
+	return Time.get_ticks_msec() / 1000.0

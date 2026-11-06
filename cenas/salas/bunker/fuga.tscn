@@ -27,8 +27,6 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/ciborgue_andar_lado_olhos.png" id="r25"]
 [ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/sentinela_andar_lado.png" id="r26"]
 [ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/sentinela_andar_lado_olhos.png" id="r27"]
-[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/cacador_andar_lado.png" id="r28"]
-[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/cacador_andar_lado_olhos.png" id="r29"]
 
 [sub_resource type="CanvasItemMaterial" id="SemLuz"]
 light_mode = 1
@@ -292,11 +290,13 @@ vista = "lado"
 y_sort_enabled = true
 
 [node name="Ciborgue" type="Node2D" parent="Objetos/Robos"]
-position = Vector2(130, 150)
+position = Vector2(150, 150)
 script = ExtResource("r3")
 quadros = 12
 velocidade = 82.0
-distancia_do_gabriel = 0.0
+distancia_do_gabriel = 85.0
+distancia_maxima = 92.0
+faixa = -1.0
 aparece_depois_de_x = -1.0
 atira = false
 velocidade_vertical = 60.0
@@ -323,6 +323,13 @@ energy = 0.6
 texture = ExtResource("r4")
 texture_scale = 0.7
 
+[node name="LuzDoCorpo" type="PointLight2D" parent="Objetos/Robos/Ciborgue"]
+position = Vector2(0, -28)
+color = Color(1, 0.4, 0.35, 1)
+energy = 0.8
+texture = ExtResource("r4")
+texture_scale = 1.1
+
 [node name="LinhaDaMira" type="Line2D" parent="Objetos/Robos/Ciborgue"]
 material = SubResource("SemLuz")
 width = 1.0
@@ -337,11 +344,13 @@ stream = ExtResource("r7")
 bus = &"Efeitos"
 
 [node name="Atirador1" type="Node2D" parent="Objetos/Robos"]
-position = Vector2(80, 136)
+position = Vector2(115, 132)
 script = ExtResource("r3")
 quadros = 8
 velocidade = 86.0
-distancia_do_gabriel = 120.0
+distancia_do_gabriel = 122.0
+distancia_maxima = 129.0
+faixa = 132.0
 aparece_depois_de_x = -1.0
 atira = true
 velocidade_vertical = 26.0
@@ -368,6 +377,13 @@ energy = 0.6
 texture = ExtResource("r4")
 texture_scale = 0.7
 
+[node name="LuzDoCorpo" type="PointLight2D" parent="Objetos/Robos/Atirador1"]
+position = Vector2(0, -20)
+color = Color(1, 0.4, 0.35, 1)
+energy = 0.8
+texture = ExtResource("r4")
+texture_scale = 1.1
+
 [node name="LinhaDaMira" type="Line2D" parent="Objetos/Robos/Atirador1"]
 material = SubResource("SemLuz")
 width = 1.0
@@ -382,11 +398,13 @@ stream = ExtResource("r7")
 bus = &"Efeitos"
 
 [node name="Atirador2" type="Node2D" parent="Objetos/Robos"]
-position = Vector2(30, 166)
+position = Vector2(78, 168)
 script = ExtResource("r3")
 quadros = 8
 velocidade = 84.0
-distancia_do_gabriel = 160.0
+distancia_do_gabriel = 159.0
+distancia_maxima = 166.0
+faixa = 168.0
 aparece_depois_de_x = -1.0
 atira = true
 velocidade_vertical = 26.0
@@ -413,6 +431,13 @@ energy = 0.6
 texture = ExtResource("r4")
 texture_scale = 0.7
 
+[node name="LuzDoCorpo" type="PointLight2D" parent="Objetos/Robos/Atirador2"]
+position = Vector2(0, -20)
+color = Color(1, 0.4, 0.35, 1)
+energy = 0.8
+texture = ExtResource("r4")
+texture_scale = 1.1
+
 [node name="LinhaDaMira" type="Line2D" parent="Objetos/Robos/Atirador2"]
 material = SubResource("SemLuz")
 width = 1.0
@@ -427,11 +452,13 @@ stream = ExtResource("r7")
 bus = &"Efeitos"
 
 [node name="Atirador3" type="Node2D" parent="Objetos/Robos"]
-position = Vector2(1240, 150)
+position = Vector2(0, 150)
 script = ExtResource("r3")
 quadros = 8
 velocidade = 88.0
-distancia_do_gabriel = 130.0
+distancia_do_gabriel = 196.0
+distancia_maxima = 203.0
+faixa = 150.0
 aparece_depois_de_x = 1500.0
 atira = true
 velocidade_vertical = 26.0
@@ -458,6 +485,13 @@ energy = 0.6
 texture = ExtResource("r4")
 texture_scale = 0.7
 
+[node name="LuzDoCorpo" type="PointLight2D" parent="Objetos/Robos/Atirador3"]
+position = Vector2(0, -20)
+color = Color(1, 0.4, 0.35, 1)
+energy = 0.8
+texture = ExtResource("r4")
+texture_scale = 1.1
+
 [node name="LinhaDaMira" type="Line2D" parent="Objetos/Robos/Atirador3"]
 material = SubResource("SemLuz")
 width = 1.0
@@ -468,96 +502,6 @@ stream = ExtResource("r6")
 bus = &"Efeitos"
 
 [node name="SomTiro" type="AudioStreamPlayer2D" parent="Objetos/Robos/Atirador3"]
-stream = ExtResource("r7")
-bus = &"Efeitos"
-
-[node name="Cacador" type="Node2D" parent="Objetos/Robos"]
-position = Vector2(1900, 160)
-script = ExtResource("r3")
-quadros = 8
-velocidade = 86.0
-distancia_do_gabriel = 0.0
-aparece_depois_de_x = 2150.0
-atira = false
-velocidade_vertical = 60.0
-
-[node name="Corpo" type="Sprite2D" parent="Objetos/Robos/Cacador"]
-texture = ExtResource("r28")
-centered = false
-scale = Vector2(1.0, 1.0)
-offset = Vector2(-32, -44)
-hframes = 8
-
-[node name="Olhos" type="Sprite2D" parent="Objetos/Robos/Cacador"]
-material = SubResource("SemLuz")
-texture = ExtResource("r29")
-centered = false
-scale = Vector2(1.0, 1.0)
-offset = Vector2(-32, -44)
-hframes = 8
-
-[node name="LuzOlho" type="PointLight2D" parent="Objetos/Robos/Cacador"]
-position = Vector2(0, -23)
-color = Color(1, 0.28, 0.15, 1)
-energy = 0.6
-texture = ExtResource("r4")
-texture_scale = 0.7
-
-[node name="LinhaDaMira" type="Line2D" parent="Objetos/Robos/Cacador"]
-material = SubResource("SemLuz")
-width = 1.0
-default_color = Color(1, 0.25, 0.2, 0.55)
-
-[node name="SomCarga" type="AudioStreamPlayer2D" parent="Objetos/Robos/Cacador"]
-stream = ExtResource("r6")
-bus = &"Efeitos"
-
-[node name="SomTiro" type="AudioStreamPlayer2D" parent="Objetos/Robos/Cacador"]
-stream = ExtResource("r7")
-bus = &"Efeitos"
-
-[node name="Atirador4" type="Node2D" parent="Objetos/Robos"]
-position = Vector2(2300, 140)
-script = ExtResource("r3")
-quadros = 8
-velocidade = 88.0
-distancia_do_gabriel = 140.0
-aparece_depois_de_x = 2550.0
-atira = true
-velocidade_vertical = 26.0
-
-[node name="Corpo" type="Sprite2D" parent="Objetos/Robos/Atirador4"]
-texture = ExtResource("r26")
-centered = false
-scale = Vector2(1.0, 1.0)
-offset = Vector2(-36, -69)
-hframes = 8
-
-[node name="Olhos" type="Sprite2D" parent="Objetos/Robos/Atirador4"]
-material = SubResource("SemLuz")
-texture = ExtResource("r27")
-centered = false
-scale = Vector2(1.0, 1.0)
-offset = Vector2(-36, -69)
-hframes = 8
-
-[node name="LuzOlho" type="PointLight2D" parent="Objetos/Robos/Atirador4"]
-position = Vector2(0, -40)
-color = Color(1, 0.28, 0.15, 1)
-energy = 0.6
-texture = ExtResource("r4")
-texture_scale = 0.7
-
-[node name="LinhaDaMira" type="Line2D" parent="Objetos/Robos/Atirador4"]
-material = SubResource("SemLuz")
-width = 1.0
-default_color = Color(1, 0.25, 0.2, 0.55)
-
-[node name="SomCarga" type="AudioStreamPlayer2D" parent="Objetos/Robos/Atirador4"]
-stream = ExtResource("r6")
-bus = &"Efeitos"
-
-[node name="SomTiro" type="AudioStreamPlayer2D" parent="Objetos/Robos/Atirador4"]
 stream = ExtResource("r7")
 bus = &"Efeitos"
 

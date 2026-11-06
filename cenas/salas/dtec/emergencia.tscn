@@ -24,7 +24,8 @@
 [ext_resource type="PackedScene" path="res://cenas/personagens/zane.tscn" id="r22"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/clarice_em_pe.tscn" id="r23"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/diana.tscn" id="r24"]
-[ext_resource type="Script" path="res://scripts/salas/emergencia_dtec.gd" id="r25"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/diana_sentada.tscn" id="r25"]
+[ext_resource type="Script" path="res://scripts/salas/emergencia_dtec.gd" id="r26"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.06, 0.12, 0.2, 1)
@@ -32,7 +33,7 @@ border_width_bottom = 1
 border_color = Color(0.24, 0.4, 0.6, 1)
 
 [node name="Emergencia" instance=ExtResource("r1")]
-script = ExtResource("r25")
+script = ExtResource("r26")
 id = "dtec_emergencia"
 largura = 480
 
@@ -143,3 +144,7 @@ vista = "tres_quartos"
 [node name="Diana" parent="Objetos" instance=ExtResource("r24")]
 position = Vector2(88, 162)
 vista = "tres_quartos"
+
+[node name="DianaSentada" parent="Objetos" instance=ExtResource("r25")]
+position = Vector2(98, 136)
+visible = false

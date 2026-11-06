@@ -65,17 +65,39 @@ GRUPO = [("Clarice", "res://cenas/personagens/clarice_em_pe.tscn", 320, 158),
 # Os corpos dos robôs: (tira, quadros, escala, deslocamento, altura da luz)
 CIBORGUE = ("ciborgue", 12, 0.5, (-56, -132), -56)
 ATIRADOR = ("sentinela", 8, 1.0, (-36, -69), -40)
-CACADOR = ("cacador", 8, 1.0, (-32, -44), -23)
 
-# (nome, corpo, x, y, velocidade, distância que mantém do Gabriel, atira,
-#  aparece quando o Gabriel passa de x; -1 = desde o começo)
+# A FORMAÇÃO (pedido do Davi): o grupo de robôs fica a uma boa distância do
+# Gabriel, sem encostar. O Ciborgue, o robô do Carlos, vem na frente (85 px
+# atrás do Gabriel), e os atiradores (os robôs grandes) vêm atrás dele, cada
+# um a uma distância própria e numa faixa de altura própria, a uns 37 px um do
+# outro (a largura do corpo da Sentinela): nenhum fica por cima do outro. A
+# ameaça são os tiros; o toque (RoboDeCena) só acontece se alguém mudar as
+# distâncias.
+#
+# (nome, corpo, x, y, velocidade, distância que mantém do Gabriel, distância
+#  máxima antes de correr para alcançar, faixa de altura (-1 = segue a altura
+#  do Gabriel), atira, aparece quando o Gabriel passa de x; -1 = desde o
+#  começo). Quem aparece no meio entra pela borda esquerda da tela.
+#
+# SEMPRE NA TELA
+#   Na fuga, a câmera olha 90 px para trás (fuga_do_bunker.gd): mostra uns 215
+#   px atrás do Gabriel quando ele corre, e o último atirador (até 203) cabe. Se um robô fica para trás da própria
+#   distância máxima (RoboDeCena.distancia_maxima), ele corre a 130 até
+#   voltar: correr reto ainda deixa o Gabriel a salvo do toque, mas os robôs
+#   não somem da tela, e a formação não se desfaz.
+#   Cada robô tem uma luz vermelha no corpo, para ser visto no escuro.
+#
+# OS TIROS
+#   Cada atirador recarrega de 0,9 a 1,5 s, mira 0,5 s (a linha vermelha segue
+#   o Gabriel) e trava 0,35 s (a linha fica branca) antes do raio. Eles se
+#   revezam: só um mira por vez, e o próximo só começa 0,8 s depois do tiro
+#   (RoboDeCena.SEGUNDOS_ENTRE_TIROS). Dá um tiro a cada 1,6 s, mais ou menos,
+#   e nunca duas linhas cruzadas ao mesmo tempo.
 ROBOS_DA_FUGA = [
-    ("Ciborgue", CIBORGUE, 130, 150, 82.0, 0, False, -1),
-    ("Atirador1", ATIRADOR, 80, 136, 86.0, 120, True, -1),
-    ("Atirador2", ATIRADOR, 30, 166, 84.0, 160, True, -1),
-    ("Atirador3", ATIRADOR, 1240, 150, 88.0, 130, True, 1500),
-    ("Cacador", CACADOR, 1900, 160, 86.0, 0, False, 2150),
-    ("Atirador4", ATIRADOR, 2300, 140, 88.0, 140, True, 2550),
+    ("Ciborgue", CIBORGUE, 150, 150, 82.0, 85, 92, -1, False, -1),
+    ("Atirador1", ATIRADOR, 115, 132, 86.0, 122, 129, 132, True, -1),
+    ("Atirador2", ATIRADOR, 78, 168, 84.0, 159, 166, 168, True, -1),
+    ("Atirador3", ATIRADOR, 0, 150, 88.0, 196, 203, 150, True, 1500),
 ]
 
 
@@ -125,12 +147,13 @@ def montar():
         m.instancia(nome, "Objetos/Grupo", cena, [f"position = Vector2({x}, {y})", 'vista = "lado"'])
 
     m.no('[node name="Robos" type="Node2D" parent="Objetos"]', ["y_sort_enabled = true"])
-    for nome, (tira, quadros, escala, (dx, dy), altura_luz), x, y, velocidade, distancia, atira, aparece in ROBOS_DA_FUGA:
+    for nome, (tira, quadros, escala, (dx, dy), altura_luz), x, y, velocidade, distancia, maxima, faixa, atira, aparece in ROBOS_DA_FUGA:
         corpo = m.recurso("Texture2D", f"{ROBOS}/{tira}_andar_lado.png")
         olhos = m.recurso("Texture2D", f"{ROBOS}/{tira}_andar_lado_olhos.png")
         m.no(f'[node name="{nome}" type="Node2D" parent="Objetos/Robos"]', [
             f"position = Vector2({x}, {y})", f'script = ExtResource("{script_robo}")',
             f"quadros = {quadros}", f"velocidade = {velocidade}", f"distancia_do_gabriel = {float(distancia)}",
+            f"distancia_maxima = {float(maxima)}", f"faixa = {float(faixa)}",
             f"aparece_depois_de_x = {float(aparece)}", f"atira = {'true' if atira else 'false'}",
             f"velocidade_vertical = {26.0 if atira else 60.0}"])
         for parte, textura, material in (("Corpo", corpo, None), ("Olhos", olhos, "SemLuz")):
@@ -142,6 +165,9 @@ def montar():
         m.no(f'[node name="LuzOlho" type="PointLight2D" parent="Objetos/Robos/{nome}"]', [
             f"position = Vector2(0, {altura_luz})", "color = Color(1, 0.28, 0.15, 1)", "energy = 0.6",
             f'texture = ExtResource("{luz}")', "texture_scale = 0.7"])
+        m.no(f'[node name="LuzDoCorpo" type="PointLight2D" parent="Objetos/Robos/{nome}"]', [
+            f"position = Vector2(0, {altura_luz // 2})", "color = Color(1, 0.4, 0.35, 1)", "energy = 0.8",
+            f'texture = ExtResource("{luz}")', "texture_scale = 1.1"])
         m.no(f'[node name="LinhaDaMira" type="Line2D" parent="Objetos/Robos/{nome}"]', [
             'material = SubResource("SemLuz")', "width = 1.0", "default_color = Color(1, 0.25, 0.2, 0.55)"])
         m.no(f'[node name="SomCarga" type="AudioStreamPlayer2D" parent="Objetos/Robos/{nome}"]', [

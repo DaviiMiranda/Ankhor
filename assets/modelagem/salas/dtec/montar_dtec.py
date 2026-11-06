@@ -605,7 +605,8 @@ SALAS = [
         "script": "res://scripts/salas/emergencia_dtec.gd",
         "instancias": [("Zane", "res://cenas/personagens/zane.tscn", 180, 146, 'vista = "tres_quartos"', "olhando_para_esquerda = true"),
                        ("Clarice", "res://cenas/personagens/clarice_em_pe.tscn", 150, 166, 'vista = "tres_quartos"'),
-                       ("Diana", "res://cenas/personagens/diana.tscn", 88, 162, 'vista = "tres_quartos"')],
+                       ("Diana", "res://cenas/personagens/diana.tscn", 88, 162, 'vista = "tres_quartos"'),
+                       ("DianaSentada", "res://cenas/personagens/diana_sentada.tscn", 98, 136, "visible = false")],
     },
     {
         "id": "corredor_servico", "largura": 960, "altura": 180,

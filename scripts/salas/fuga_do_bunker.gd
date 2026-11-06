@@ -5,8 +5,9 @@ const ID_CHECKPOINT := "bunker_fuga"
 const X_DA_COMPORTA := 3081.0
 const Y_DA_COMPORTA := 128.0
 const VELOCIDADE_DO_GRUPO := 150.0
-const FOLGA_DO_PRIMEIRO := 80.0
-const FOLGA_ENTRE_ELES := 40.0
+const FOLGA_DO_PRIMEIRO := 40.0
+const FOLGA_ENTRE_ELES := 25.0
+const CAMERA_OLHANDO_PARA_TRAS := Vector2(-90, 0)
 const SEGUNDOS_ANTES_DOS_ROBOS := 1.2
 const SEGUNDOS_ENTRANDO := 0.35
 const SEGUNDOS_ESCURECENDO := 0.7
@@ -22,6 +23,7 @@ var _dentro := {}
 @onready var grupo: Node2D = $Objetos/Grupo
 @onready var robos: Node2D = $Objetos/Robos
 @onready var sirene: AudioStreamPlayer = $Sirene
+@onready var camera: Camera2D = $Objetos/Gabriel/Camera2D
 
 
 func _ready() -> void:
@@ -30,6 +32,7 @@ func _ready() -> void:
 		return
 	sirene.finished.connect(sirene.play)
 	gabriel.estamina_infinita = true
+	camera.offset = CAMERA_OLHANDO_PARA_TRAS
 	if not Checkpoints.esta_ativo(ID_CHECKPOINT, scene_file_path):
 		Checkpoints.marcar(ID_CHECKPOINT, scene_file_path, gabriel.global_position)
 	_comecar.call_deferred()
