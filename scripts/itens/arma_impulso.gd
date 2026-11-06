@@ -3,10 +3,17 @@ extends Node2D
 const COR_ONDA := Color(0.35, 0.92, 1.0)
 const COR_MIRA := Color(0.35, 0.92, 1.0, 0.16)
 const COR_BORDA_DA_MIRA := Color(0.35, 0.92, 1.0, 0.75)
+const COR_TRAVADA := Color(1.0, 0.95, 0.75, 0.95)
+const AVISO_TRAVADA := "Mira travada. Aperte de novo para atirar. Shift cancela"
+const AVISO_LIVRE := "Nenhum robô por perto: aponte com WASD. Aperte de novo para atirar. Shift cancela"
 const ALTURA_DO_CHAO := Vector2(0, -2)
 const PASSOS_DO_ARCO := 14
 
+static var _avisou_travada := false
+static var _avisou_livre := false
+
 @export var alcance: float = 150.0
+@export var alcance_da_trava: float = 150.0
 @export_range(1.0, 120.0) var abertura_graus: float = 30.0
 @export var velocidade_maxima: float = 400.0
 @export var velocidade_minima: float = 170.0
@@ -18,6 +25,7 @@ const PASSOS_DO_ARCO := 14
 var item: Item
 
 var _gabriel: Gabriel
+var _alvo: Robo
 var _mirando := false
 var _direcao_da_mira := Vector2.RIGHT
 var _direcao_da_onda := Vector2.RIGHT
@@ -48,7 +56,10 @@ func _process(delta: float) -> void:
 
 
 func usar() -> void:
-	if _mirando or _tempo_desde_disparo < segundos_entre_disparos:
+	if _mirando:
+		_soltar()
+		return
+	if _tempo_desde_disparo < segundos_entre_disparos:
 		return
 	if not ModoCombate.ativo and Inventario.unidades(item.id) <= 0:
 		Inventario.aviso.emit("Sem balas: crie mais no inventário (3 pilhas cada)")
@@ -56,20 +67,56 @@ func usar() -> void:
 	_gabriel.mirando = true
 	_mirando = true
 	_direcao_da_mira = _gabriel.direcao_olhar.normalized()
+	_alvo = null
+	_manter_alvo()
+	_avisar()
+
+
+func _avisar() -> void:
+	if _alvo != null and not _avisou_travada:
+		_avisou_travada = true
+		Inventario.aviso.emit(AVISO_TRAVADA)
+	elif _alvo == null and not _avisou_livre:
+		_avisou_livre = true
+		Inventario.aviso.emit(AVISO_LIVRE)
 
 
 func _apontar() -> void:
-	if not Input.is_action_pressed(_acao_do_espaco()) or not Vida.esta_viva():
-		_soltar()
+	if Input.is_action_just_pressed("correr") or not Vida.esta_viva():
+		_parar_de_mirar()
 		return
-	var entrada := Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
-	if entrada != Vector2.ZERO:
-		_direcao_da_mira = entrada.normalized()
+	_manter_alvo()
+	if _alvo != null:
+		_direcao_da_mira = _gabriel.global_position.direction_to(_alvo.global_position)
+	else:
+		var entrada := Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
+		if entrada != Vector2.ZERO:
+			_direcao_da_mira = entrada.normalized()
 	_gabriel.olhar_para(_direcao_da_mira)
 
 
-func _acao_do_espaco() -> String:
-	return "gadget_%d" % (Inventario.espaco_do_gadget(item) + 1)
+func _manter_alvo() -> void:
+	if _alvo != null and not _alvo_ainda_vale():
+		_alvo = null
+	if _alvo == null:
+		_alvo = _robo_mais_perto()
+
+
+func _alvo_ainda_vale() -> bool:
+	if not is_instance_valid(_alvo) or not _alvo.is_inside_tree():
+		return false
+	return _gabriel.global_position.distance_to(_alvo.global_position) <= alcance_da_trava * 1.3
+
+
+func _robo_mais_perto() -> Robo:
+	var melhor: Robo = null
+	var menor := alcance_da_trava
+	for no in get_tree().get_nodes_in_group("robos"):
+		var distancia := _gabriel.global_position.distance_to((no as Robo).global_position)
+		if distancia <= menor:
+			menor = distancia
+			melhor = no as Robo
+	return melhor
 
 
 func _soltar() -> void:
@@ -90,6 +137,7 @@ func _parar_de_mirar() -> void:
 	if _mirando and is_instance_valid(_gabriel):
 		_gabriel.mirando = false
 	_mirando = false
+	_alvo = null
 
 
 func _afastar_robos() -> void:
@@ -115,6 +163,7 @@ func _piscar() -> void:
 func _draw() -> void:
 	if _mirando:
 		_desenhar_cone(_direcao_da_mira)
+		_desenhar_trava()
 	if _tempo_da_onda >= 0.0:
 		_desenhar_onda()
 
@@ -129,6 +178,17 @@ func _pontos_do_arco(direcao: Vector2, raio: float) -> PackedVector2Array:
 	return pontos
 
 
+func _desenhar_trava() -> void:
+	if _alvo == null or not is_instance_valid(_alvo):
+		return
+	var centro := to_local(_alvo.global_position) + ALTURA_DO_CHAO
+	var pulso := 1.0 + 0.15 * sin(Time.get_ticks_msec() / 90.0)
+	draw_arc(centro, 11.0 * pulso, 0.0, TAU, 24, COR_TRAVADA, 1.0)
+	for i in 4:
+		var ponta := Vector2.from_angle(i * TAU / 4.0 + PI / 4.0)
+		draw_line(centro + ponta * 9.0 * pulso, centro + ponta * 15.0 * pulso, COR_TRAVADA, 1.0)
+
+
 func _desenhar_cone(direcao: Vector2) -> void:
 	var arco := _pontos_do_arco(direcao, alcance)
 	var origem := to_local(_gabriel.global_position) + ALTURA_DO_CHAO
@@ -136,7 +196,7 @@ func _desenhar_cone(direcao: Vector2) -> void:
 	contorno.append_array(arco)
 	draw_colored_polygon(contorno, COR_MIRA)
 	contorno.append(origem)
-	draw_polyline(contorno, COR_BORDA_DA_MIRA, 1.0)
+	draw_polyline(contorno, COR_TRAVADA if _alvo != null else COR_BORDA_DA_MIRA, 1.0)
 
 
 func _desenhar_onda() -> void:
