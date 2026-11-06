@@ -21,12 +21,14 @@ O Zane é jogável em um trecho: a **passagem do Zane**, no fim do Labirinto ([`
 `scripts/itens/braco_hack.gd` (item `dados/itens/braco_hack.tres`). Aperte `3` perto de um robô:
 
 1. Escolhe o robô **mais perto, a até 170 px e em linha reta** (um raio contra as paredes, camada 8). Sem alvo, avisa.
-2. O Zane para, **vira para o robô** e **estende o braço de metal** (tira `zane_hack_<vista>.png`, 12 quadros, 0,55 s). Um raio ciano treme da mão até o robô.
-3. Abre o **minigame de hack em tempo real**: os robôs continuam andando e o jogo não pausa. A dificuldade depende do robô: **Ronda** fácil, **Sentinela** e **Mariposa** média, **Rastreador**, **Caçador**, **Escafandro** e **Atirador** difícil.
-4. **Deu certo:** o robô fica **desligado por 15 s** (`Robo.atordoar`). **Falhou:** o robô **ouve** (`Robo.fazer_barulho`, alcance 14) e o Zane recolhe o braço. Esc cancela, sem barulho.
-5. O implante **esfria por 6 s** antes do próximo uso. Levar dano no meio da invasão a interrompe.
+2. O Zane **vira para o robô** e **estende o braço de metal** (tira `zane_hack_<vista>.png`, 12 quadros, 0,55 s). Um raio ciano treme da mão até o robô.
+3. Abre o **minigame de hack em tempo real** (sempre o de **sincronia**, que usa só o `E`: o outro usa WASD, que o Zane precisa para andar): os robôs continuam andando e o jogo não pausa. A dificuldade depende do robô: **Ronda** fácil, **Sentinela** e **Mariposa** média, **Rastreador**, **Caçador**, **Escafandro** e **Atirador** difícil.
+4. **Enquanto hackeia, o Zane anda bem devagar** (30% da velocidade, sem correr e sem som de passos) e **a direção fica travada** no robô, com o braço esticado. Se ele se afastar mais de 220 px ou perder a linha reta, a conexão cai (sem penalidade).
+5. **Deu certo:** o robô fica **desligado por 15 s** (`Robo.atordoar`). **Falhou:** o robô **ouve** (`Robo.fazer_barulho`, alcance 14) e o Zane recolhe o braço. Esc cancela, sem barulho nem penalidade.
+6. **Cada robô aguenta 2 falhas.** Na **3ª falha** (mais de 2 erros) o robô **bloqueia o acesso** e não dá mais para hackeá-lo (a contagem fica no próprio robô, `falhas_de_hack`, e vale até a cena recarregar).
+7. O implante **esfria por 6 s** antes do próximo uso. Levar dano no meio da invasão a interrompe, sem contar como falha.
 
-Diferente do notebook do Gabriel, que só desliga o robô **por trás**, o braço do Zane funciona de frente e de longe, mas expõe mais: o Zane fica parado e visível enquanto a invasão corre.
+Diferente do notebook do Gabriel, que só desliga o robô **por trás**, o braço do Zane funciona de frente e de longe, mas expõe mais: o Zane fica lento e à vista enquanto a invasão corre, e cada robô só aguenta 2 falhas.
 
 ## Como os sprites são feitos
 

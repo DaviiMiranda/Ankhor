@@ -6,6 +6,9 @@ const TELA_HACKEAMENTO := preload("res://cenas/interface/tela_hackeamento.tscn")
 const MAOS_HACK: Dictionary = preload("res://scripts/personagens/maos_do_zane.gd").MAOS_HACK
 const QUADROS := 12
 const CAMADA_PAREDES := 8
+const FALHAS_PARA_BLOQUEAR := 3
+const META_FALHAS := &"falhas_de_hack"
+const FOLGA_DO_ALCANCE := 50.0
 const ALTURA_DO_ALVO := Vector2(0, -26)
 const COR_RAIO := Color(0.35, 0.95, 0.85)
 const COR_NUCLEO := Color(0.85, 1.0, 0.95)
@@ -32,6 +35,7 @@ const DIFICULDADE_POR_ROBO := {
 @export var segundos_recolhendo: float = 0.4
 @export var segundos_desligado: float = 15.0
 @export var segundos_recarga: float = 6.0
+@export var multiplicador_andando: float = 0.3
 @export var ruido_ao_falhar: int = 14
 
 var item: Item
@@ -55,7 +59,8 @@ func usar() -> void:
 		return
 	var alvo := _procurar_alvo()
 	if alvo == null:
-		Inventario.aviso.emit("Nenhum robô ao alcance, em linha reta")
+		var aviso := "Esse robô bloqueou o acesso" if _ha_robo_bloqueado_perto() else "Nenhum robô ao alcance, em linha reta"
+		Inventario.aviso.emit(aviso)
 		return
 	_comecar(alvo)
 
@@ -75,13 +80,26 @@ func _procurar_alvo() -> Robo:
 	var menor := alcance
 	for no in get_tree().get_nodes_in_group("robos"):
 		var robo := no as Robo
-		if robo == null or not robo.visible:
+		if robo == null or not robo.visible or _falhas_de(robo) >= FALHAS_PARA_BLOQUEAR:
 			continue
 		var distancia := dono.global_position.distance_to(robo.global_position)
 		if distancia < menor and _linha_livre(dono.global_position, robo.global_position):
 			menor = distancia
 			melhor = robo
 	return melhor
+
+
+func _ha_robo_bloqueado_perto() -> bool:
+	var dono := _dono()
+	for no in get_tree().get_nodes_in_group("robos"):
+		var robo := no as Robo
+		if robo and _falhas_de(robo) >= FALHAS_PARA_BLOQUEAR and dono.global_position.distance_to(robo.global_position) < alcance:
+			return true
+	return false
+
+
+func _falhas_de(robo: Robo) -> int:
+	return robo.get_meta(META_FALHAS, 0)
 
 
 func _linha_livre(de: Vector2, ate: Vector2) -> bool:
@@ -94,8 +112,10 @@ func _comecar(alvo: Robo) -> void:
 	_alvo = alvo
 	_fase = Fase.ESTENDENDO
 	_progresso = 0.0
-	dono.andar_sozinho(Vector2.ZERO)
+	dono.olhar_travado = false
 	dono.olhar_para(dono.global_position.direction_to(alvo.global_position))
+	dono.olhar_travado = true
+	dono.multiplicador_de_velocidade = multiplicador_andando
 	dono.tocar_tira(TIRAS[dono.vista], QUADROS)
 	dono.mostrar_quadro_tira(0)
 
@@ -109,12 +129,31 @@ func _process(delta: float) -> void:
 			_mostrar_quadro()
 			if _progresso >= 1.0:
 				_abrir_minigame()
+		Fase.INVADINDO:
+			_conferir_conexao()
 		Fase.RECOLHENDO:
 			_progresso = maxf(_progresso - delta / segundos_recolhendo, 0.0)
 			_mostrar_quadro()
 			if _progresso <= 0.0:
 				_terminar()
 	queue_redraw()
+
+
+func _conferir_conexao() -> void:
+	var dono := _dono()
+	if not is_instance_valid(_alvo):
+		_soltar("Hack cancelado")
+		return
+	var longe := dono.global_position.distance_to(_alvo.global_position) > alcance + FOLGA_DO_ALCANCE
+	if longe or not _linha_livre(dono.global_position, _alvo.global_position):
+		_soltar("Conexão perdida")
+
+
+func _soltar(aviso: String) -> void:
+	if is_instance_valid(_janela):
+		_janela.interromper()
+	Inventario.aviso.emit(aviso)
+	_recolher()
 
 
 func _mostrar_quadro() -> void:
@@ -129,7 +168,7 @@ func _abrir_minigame() -> void:
 	janela.cancelado.connect(_ao_cancelar_minigame)
 	_janela = janela
 	var nivel: Hackeamento.Dificuldade = DIFICULDADE_POR_ROBO.get(_alvo.nome_tipo, Hackeamento.Dificuldade.MEDIO)
-	janela.abrir(nivel, Hackeamento.Tipo.ALEATORIO, false)
+	janela.abrir(nivel, Hackeamento.Tipo.SINCRONIA, false)
 
 
 func _ao_terminar_minigame(sucesso: bool) -> void:
@@ -137,9 +176,21 @@ func _ao_terminar_minigame(sucesso: bool) -> void:
 		_alvo.atordoar(segundos_desligado)
 		Inventario.aviso.emit("%s desligado por %d segundos" % [_alvo.nome_tipo, int(segundos_desligado)])
 	else:
-		Inventario.aviso.emit("Hack falhou: o robô ouviu")
-		Robo.fazer_barulho(get_tree(), _dono().global_position, ruido_ao_falhar)
+		_registrar_falha()
 	_recolher()
+
+
+func _registrar_falha() -> void:
+	Robo.fazer_barulho(get_tree(), _dono().global_position, ruido_ao_falhar)
+	if not is_instance_valid(_alvo):
+		Inventario.aviso.emit("Hack falhou: o robô ouviu")
+		return
+	var falhas := _falhas_de(_alvo) + 1
+	_alvo.set_meta(META_FALHAS, falhas)
+	if falhas >= FALHAS_PARA_BLOQUEAR:
+		Inventario.aviso.emit("Hack falhou pela %dª vez: o robô bloqueou o acesso" % falhas)
+	else:
+		Inventario.aviso.emit("Hack falhou (%d de %d): o robô ouviu" % [falhas, FALHAS_PARA_BLOQUEAR])
 
 
 func _ao_cancelar_minigame() -> void:
@@ -169,7 +220,8 @@ func _terminar() -> void:
 	_progresso = 0.0
 	if dono:
 		dono.terminar_tira()
-		dono.devolver_controle()
+		dono.multiplicador_de_velocidade = 1.0
+		dono.olhar_travado = false
 	queue_redraw()
 
 

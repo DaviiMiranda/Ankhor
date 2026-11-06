@@ -7,6 +7,7 @@
 - **Kit do Zane:** ele entra na passagem com a **lanterna infinita**, **2 flashes** e o **braço de hack**. O kit é emprestado: a mochila do Gabriel é guardada e volta quando a cena acaba.
 - **Sem ansiedade e mais estamina:** o Zane não tem a mecânica de ansiedade (a barra e o efeito somem) e a estamina dele é **200**, o dobro da do Gabriel.
 - **Hack à distância:** com `3`, o Zane estende o braço de metal na direção do robô mais perto (até 170 px, em linha reta) e abre o minigame de hack em tempo real. Se der certo, o robô desliga por 15 s; se falhar, ele ouve. A dificuldade depende do robô.
+- **Andando devagar e só 3 tentativas:** enquanto hackeia, o Zane anda a 30% da velocidade (sem correr), com a direção travada no robô. Cada robô aguenta 2 falhas: na **3ª** ele bloqueia o acesso e não dá mais para hackeá-lo. Como o minigame de sequência usa WASD (as teclas de andar), o hack à distância usa sempre o de sincronia, que usa só o `E`.
 - **Flash:** o item "Cápsula de clarão" passa a se chamar **Flash** em todo o jogo e nos docs. O id interno continua `clarao` (`dados/itens/clarao.tres`).
 
 **Por quê:** pedido do Davi, focando na fase do Zane.

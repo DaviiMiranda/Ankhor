@@ -89,6 +89,8 @@ static var _avisou_da_esquiva := false
 var tabela_maos: Dictionary = MAOS
 var tabela_maos_correndo: Dictionary = MAOS_CORRENDO
 var lanterna_infinita := false
+var multiplicador_de_velocidade := 1.0
+var olhar_travado := false
 var jogador_controla := true
 var direcao_automatica := Vector2.ZERO
 var correndo := false
@@ -246,8 +248,9 @@ func _physics_process(delta: float) -> void:
 		direcao = Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
 
 	correndo = false
-	var velocidade := velocidade_andar
-	var pode_correr := (fadiga.pode_correr() if fadiga else true) and not Inventario.carregando_peso()
+	var velocidade := velocidade_andar * multiplicador_de_velocidade
+	var pode_correr := (fadiga.pode_correr() if fadiga else true) and not Inventario.carregando_peso() \
+			and multiplicador_de_velocidade >= 1.0
 	if jogador_controla and Input.is_action_pressed("correr") and direcao != Vector2.ZERO and pode_correr:
 		velocidade *= multiplicador_correr
 		correndo = true
@@ -444,6 +447,8 @@ func _virar(direcao: Vector2) -> void:
 
 
 func _virar_com_folga(direcao: Vector2, delta: float) -> void:
+	if olhar_travado:
+		return
 	if direcao == Vector2.ZERO:
 		_tempo_mudando_olhar = 0.0
 	elif _continua_no_setor(direcao):
