@@ -1,0 +1,54 @@
+{
+	"id": "camara_gabriel_preso",
+	"inicio": "preso",
+	"anotacao": {
+		"titulo": "Preso no duto",
+		"texto": "O alçapão da oficina não levava à passarela. Levava a uma câmara sem janela, e a grade desceu atrás de mim. O Zane disse que o duto não estava em planta nenhuma e que parece armadilha. Ele vem por outro lado. Eu devo ficar quieto."
+	},
+	"trechos": {
+		"preso": {
+			"falas": [
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_assustado",
+					"texto": "A tampa fechou sozinha, e essa grade desceu atrás de mim. Zane? Você me ouve?"
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_concentrado",
+					"texto": "Ouço, com quarenta por cento de chiado. Onde você está? Esse duto não existe na minha planta."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "Numa sala pequena, sem janela. Tem um terminal apagado no fundo e a grade na minha frente. Não passo."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "Alguém lacrou aquilo de propósito e deixou a gente achar. Não foi pane. Foi armadilha, noventa e cinco por cento."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_assustado",
+					"texto": "Então eu fico aqui parado esperando?"
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_concentrado",
+					"texto": "Fica. Não encosta em nada. O duto de serviço corre por trás dessa sala. Eu desço e abro por dentro."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_preocupado",
+					"texto": "E se tiver robô no caminho?"
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Se tiver, eu descubro antes de você. Fica vivo."
+				}
+			]
+		}
+	}
+}

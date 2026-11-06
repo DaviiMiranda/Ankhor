@@ -10,6 +10,8 @@ const SEGUNDOS_DESCENDO := 0.7
 @export var subtitulo: String = "Próxima fase: o Bunker"
 @export var textura_escondido: Texture2D
 @export var textura_aberto: Texture2D
+@export var com_tela_de_saida := true
+@export var marca_para_usar: String = MARCA_REVELADO
 
 var _descendo := false
 
@@ -26,7 +28,7 @@ func _ready() -> void:
 
 
 func pode_interagir() -> bool:
-	return Progresso.tem(MARCA_REVELADO) and not _descendo
+	return Progresso.tem(marca_para_usar) and not _descendo
 
 
 func interagir() -> void:
@@ -42,6 +44,9 @@ func interagir() -> void:
 
 
 func _terminar_fase() -> void:
+	if not com_tela_de_saida:
+		get_tree().change_scene_to_file(cena_destino)
+		return
 	var saida: SaidaFase = CENA_SAIDA.instantiate()
 	saida.sair_ao_carregar = true
 	if not cena_destino.is_empty():
@@ -52,12 +57,12 @@ func _terminar_fase() -> void:
 
 
 func _ao_marcar(marca: String) -> void:
-	if marca == MARCA_REVELADO:
+	if marca == marca_para_usar:
 		_atualizar()
 
 
 func _atualizar() -> void:
-	var revelado := Progresso.tem(MARCA_REVELADO)
+	var revelado := Progresso.tem(marca_para_usar)
 	sprite.texture = textura_aberto if revelado else textura_escondido
 	if luz:
 		luz.visible = revelado

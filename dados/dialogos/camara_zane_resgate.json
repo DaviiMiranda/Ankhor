@@ -1,0 +1,25 @@
+{
+	"id": "camara_zane_resgate",
+	"inicio": "resgate",
+	"trechos": {
+		"resgate": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_confiante",
+					"texto": "Sessenta e três segundos entre a porta e você, duas travas, dois robôs. Aproveitamento aceitável."
+				},
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_aliviado",
+					"texto": "Zane! Achei que ia amanhecer aqui dentro."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Eu tinha calculado a chance de abandonar. Dava pior do que vir. Afasta da grade."
+				}
+			]
+		}
+	}
+}
