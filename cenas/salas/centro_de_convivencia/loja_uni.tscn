@@ -32,7 +32,6 @@
 
 [node name="LojaUni" instance=ExtResource("r1")]
 id = "conv_loja_uni"
-esquiva_permitida = true
 largura = 560
 altura = 240
 chao_frente = 236

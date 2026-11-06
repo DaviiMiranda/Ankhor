@@ -9,9 +9,10 @@
 script = ExtResource("1_item")
 id = "arma_impulso"
 nome = "Arma de impulso"
-descricao = "Estava trancada no cofre do cinema. Solta uma onda de choque que joga os robôs para longe e os deixa tontos por um instante. Tem 4 cargas e recarrega sozinha, devagar."
+descricao = "Aperte a tecla (1-3) para travar a mira no robô mais perto e de novo para atirar: cone de 30° que empurra os robôs. Balas: aba Criação, 3 pilhas."
 icone = ExtResource("2_icone")
 sprite_chao = ExtResource("3_chao")
 equipavel = true
 cena_gadget = ExtResource("4_gadget")
-maximo_unidades = 4
+maximo_unidades = 6
+unidades_iniciais = 2

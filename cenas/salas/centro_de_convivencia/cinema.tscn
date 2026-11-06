@@ -35,7 +35,6 @@
 
 [node name="Cinema" instance=ExtResource("r1")]
 id = "conv_cinema"
-esquiva_permitida = true
 largura = 640
 altura = 320
 chao_frente = 316

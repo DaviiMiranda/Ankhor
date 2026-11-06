@@ -13,8 +13,6 @@ const SETORES_OLHAR := 8
 const MAOS := preload("res://scripts/personagens/maos_do_gabriel.gd").MAOS
 const MAOS_CORRENDO := preload("res://scripts/personagens/maos_correndo_gabriel.gd").MAOS_CORRENDO
 const CENA_ANSIEDADE := preload("res://cenas/sistemas/ansiedade.tscn")
-const SOM_ESQUIVA := preload("res://assets/audio/efeitos/gabriel/esquiva.wav")
-const AVISO_ESQUIVA := "Espaço: esquivar"
 const PEITO_NO_QUADRO := {
 	"lado": Vector2(54, 40),
 	"frente": Vector2(47, 40),
@@ -29,11 +27,6 @@ const PEITO_NO_QUADRO := {
 @export var multiplicador_exaustao: float = 0.4
 @export var forca_empurrao: float = 170.0
 @export var segundos_ofegando_depois_da_fuga: float = 3.0
-
-@export_group("Esquiva")
-@export var velocidade_esquiva: float = 360.0
-@export var segundos_esquiva: float = 0.3
-@export var segundos_entre_esquivas: float = 0.9
 
 @export_group("Conducao")
 @export var aceleracao_inicial: float = 640.0
@@ -84,9 +77,8 @@ const PEITO_NO_QUADRO := {
 @export var quadros_parado: int = 8
 @export var segundos_por_quadro_parado: float = 0.3
 
-static var _avisou_da_esquiva := false
-
 var jogador_controla := true
+var mirando := false
 var direcao_automatica := Vector2.ZERO
 var correndo := false
 var escondido := false
@@ -104,10 +96,6 @@ var _passos := 0
 var _tira_da_mao := "imovel"
 var _mascara_colisao := 0
 var _segundos_ofegando := 0.0
-var _tempo_na_esquiva := -1.0
-var _direcao_da_esquiva := Vector2.RIGHT
-var _tempo_desde_esquiva := 99.0
-var _som_esquiva: AudioStreamPlayer
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var no_gadgets: Node2D = $Gadgets
@@ -126,10 +114,6 @@ func _ready() -> void:
 	add_child(acao_demorada)
 	add_child(ItensLargados.new())
 	add_child(ZumbidoDaCarga.new())
-	_som_esquiva = AudioStreamPlayer.new()
-	_som_esquiva.stream = SOM_ESQUIVA
-	_som_esquiva.bus = &"Efeitos"
-	add_child(_som_esquiva)
 	Inventario.mudou.connect(_atualizar_gadgets)
 	Vida.dano_recebido.connect(_ao_receber_dano)
 	if fadiga:
@@ -137,7 +121,6 @@ func _ready() -> void:
 		fadiga.exaustao_iniciada.connect(_ao_iniciar_exaustao)
 		fadiga.exaustao_terminada.connect(_ao_terminar_exaustao)
 	_atualizar_gadgets()
-	_avisar_da_esquiva.call_deferred()
 
 
 func _unhandled_input(evento: InputEvent) -> void:
@@ -153,52 +136,9 @@ func _unhandled_input(evento: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 	if evento.is_action_pressed("largar"):
 		_largar_carga()
-	if evento.is_action_pressed("esquivar"):
-		_tentar_esquivar()
 	for i in Inventario.ESPACOS_GADGET:
 		if evento.is_action_pressed("gadget_%d" % (i + 1)):
 			usar_gadget(i)
-
-
-func esquiva_disponivel() -> bool:
-	var sala := _sala_atual()
-	return sala != null and sala.esquiva_permitida
-
-
-func esta_esquivando() -> bool:
-	return _tempo_na_esquiva >= 0.0
-
-
-func _sala_atual() -> Sala:
-	var no := get_parent()
-	while no != null and not no is Sala:
-		no = no.get_parent()
-	return no as Sala
-
-
-func _avisar_da_esquiva() -> void:
-	if esquiva_disponivel() and not _avisou_da_esquiva:
-		_avisou_da_esquiva = true
-		await get_tree().create_timer(2.0).timeout
-		Inventario.aviso.emit(AVISO_ESQUIVA)
-
-
-func _tentar_esquivar() -> void:
-	var pode := esquiva_disponivel() and not esta_esquivando() and _tempo_desde_esquiva >= segundos_entre_esquivas
-	if not pode or escondido or tira_especial or Inventario.carregando_peso() or not Vida.esta_viva():
-		return
-	var entrada := Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
-	_direcao_da_esquiva = entrada.normalized() if entrada != Vector2.ZERO else direcao_olhar
-	_tempo_na_esquiva = 0.0
-	_tempo_desde_esquiva = 0.0
-	Vida.proteger(segundos_esquiva + 0.05)
-	_som_esquiva.play()
-
-
-func _velocidade_da_esquiva() -> Vector2:
-	var restante := 1.0 - _tempo_na_esquiva / segundos_esquiva
-	var rapidez := velocidade_esquiva * restante
-	return Vector2(_direcao_da_esquiva.x, _direcao_da_esquiva.y * fator_profundidade) * rapidez
 
 
 func _largar_carga() -> void:
@@ -242,6 +182,8 @@ func _physics_process(delta: float) -> void:
 	if jogador_controla:
 		direcao = Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
 
+	if mirando:
+		direcao = Vector2.ZERO
 	correndo = false
 	var velocidade := velocidade_andar
 	var pode_correr := (fadiga.pode_correr() if fadiga else true) and not Inventario.carregando_peso()
@@ -257,15 +199,7 @@ func _physics_process(delta: float) -> void:
 		velocidade *= multiplicador_exaustao
 
 	var alvo := Vector2(direcao.x, direcao.y * fator_profundidade) * velocidade
-	_tempo_desde_esquiva += delta
-	if esta_esquivando():
-		_tempo_na_esquiva += delta
-		if _tempo_na_esquiva >= segundos_esquiva:
-			_tempo_na_esquiva = -1.0
-	if esta_esquivando():
-		_velocidade_propria = _velocidade_da_esquiva()
-	else:
-		_velocidade_propria = _conduzir(alvo, delta)
+	_velocidade_propria = _conduzir(alvo, delta)
 	velocity = _velocidade_propria + _empurrao
 	_empurrao = _empurrao.move_toward(Vector2.ZERO, forca_empurrao * 4.0 * delta)
 	move_and_slide()
@@ -415,9 +349,6 @@ func _ao_terminar_exaustao() -> void:
 
 
 func _piscar() -> void:
-	if esta_esquivando():
-		sprite.modulate.a = 0.45
-		return
 	var apagado := Vida.esta_invulneravel() and int(Time.get_ticks_msec() / 90.0) % 2 == 0
 	sprite.modulate.a = 0.3 if apagado else 1.0
 

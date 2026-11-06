@@ -1,6 +1,6 @@
 # gerar_efeitos_combate.py — compõe por código os sons do combate do Centro
 # de Convivência (docs/mecanicas/combate.md): a arma de impulso, o robô
-# atirador (a carga do raio e o disparo) e a esquiva do Gabriel.
+# atirador (a carga do raio e o disparo).
 #
 # Como rodar (Python 3 + numpy):
 #   python assets/modelagem/audio/gerar_efeitos_combate.py
@@ -9,7 +9,6 @@
 #   assets/audio/efeitos/objetos/impulso_disparo.wav   o estouro grave da arma
 #   assets/audio/efeitos/robos/raio_carga.wav          1,1 s de tom subindo
 #   assets/audio/efeitos/robos/raio_disparo.wav        o estalo elétrico do raio
-#   assets/audio/efeitos/gabriel/esquiva.wav           o "vush" da esquiva
 #
 # As ferramentas (envelope, filtro pela FFT, normalizar, salvar) vêm do
 # gerar_efeitos_gabriel.py, importado como módulo. A matemática delas está
@@ -85,24 +84,8 @@ def raio_disparo():
     return normalizar(som, -4)
 
 
-def esquiva():
-    """O "vush" da esquiva: ruído passado por uma faixa de frequências que
-    sobe e depois cai (o corpo cortando o ar), 0,28 s, sem tom definido.
-
-    A faixa muda no tempo, então o ruído é cortado em 3 pedaços, cada um
-    filtrado numa faixa (graves, médios, agudos), e eles entram um por vez
-    com envelopes sobrepostos."""
-    t = tempo(0.28)
-    ruido = rng.standard_normal(len(t))
-    grave = filtrar(ruido, corte_baixo=200, corte_alto=700) * envelope(t, 0.0, 0.05, ataque=0.015)
-    medio = filtrar(ruido, corte_baixo=700, corte_alto=2200) * envelope(t, 0.06, 0.06, ataque=0.03)
-    agudo = filtrar(ruido, corte_baixo=2200, corte_alto=6000) * envelope(t, 0.1, 0.05, ataque=0.04)
-    return normalizar(0.8 * grave + 1.0 * medio + 0.7 * agudo, -9)
-
-
 if __name__ == "__main__":
     print("Gerando os sons do combate:")
     salvar(os.path.join(PASTA_EFEITOS, "objetos", "impulso_disparo.wav"), impulso_disparo())
     salvar(os.path.join(PASTA_EFEITOS, "robos", "raio_carga.wav"), raio_carga())
     salvar(os.path.join(PASTA_EFEITOS, "robos", "raio_disparo.wav"), raio_disparo())
-    salvar(os.path.join(PASTA_EFEITOS, "gabriel", "esquiva.wav"), esquiva())

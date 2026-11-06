@@ -4,7 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="2_luz"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/impulso_disparo.wav" id="3_som"]
 
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
 [node name="ArmaImpulso" type="Node2D"]
+material = SubResource("SemLuz")
 script = ExtResource("1_arma")
 
 [node name="Flash" type="PointLight2D" parent="."]
