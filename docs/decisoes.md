@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-07 — Novo ícone do jogo: o "A" metálico com circuitos
+
+**Decisão:** o ícone do jogo (janela, projeto e `.exe`) passa a ser o **"A" metálico azul com circuitos luminosos** que o Davi mandou, no lugar do "A" em pixel art de antes. Os cantos ficam arredondados e transparentes, como no ícone anterior.
+
+**Por quê:** pedido do Davi.
+
+**Afeta:** `assets/icone/ankhor_icone.png` (512×512) e `assets/icone/ankhor_icone.ico` (16 a 256 px), que substituem os anteriores. Os caminhos no `project.godot` e no `export_presets.cfg` não mudam. Na próxima vez que o Godot abrir o projeto, ele reimporta o PNG sozinho. O `.exe` só mostra o ícone novo depois de exportar de novo.
+
 ## 2026-11-07 — Fase do Zane: o ano do código não aparece mais desenhado no quadro das Reuniões
 
 **Decisão:** o quadro branco da sala de Reuniões tinha o **"1985" em vermelho, circulado e bem grande**, desenhado no próprio sprite: dava a resposta de longe, sem ler nada. Os quatro dígitos viraram um **rabisco vermelho ilegível dentro do mesmo círculo**. A pista continua inteira em "Ler o quadro" (`E`): "DATA-ALVO: 26/10/1985" e "O ano basta."
