@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-07 — Despertar em três ilustrações
+
+**Decisão:** o despertar de Gabriel deixa de usar vídeo e será contado em três ilustrações em pixel art, no estilo do prólogo: a cabine transformada, Gabriel despertando e o olhar dele para a Biblioteca. Até as imagens ficarem prontas, a cena mostra provisoriamente a ilustração da cabine do prólogo; mantém a transição para a sala e a opção de pular.
+
+**Por quê:** pedido para substituir o vídeo por quadros que serão produzidos no Nano Banana, mantendo o conteúdo já decidido para o despertar.
+
+**Afeta:** `cenas/cutscenes/seg_acordar.tscn`, `docs/historia/História_Completa.md`, `docs/historia/roteiro/cutscenes/seg_acordar.md` e `README.md`; o vídeo `assets/video/cutscenes/seg_acordar.ogv` e seu `.uid` foram removidos.
+
 ## 2026-11-07 — Receitas com chips
 
 **Decisão:** na aba Criação, uma bala de impulso custa **1 chip e 3 pilhas**; um flash custa **1 chip e 1 pilha**. As setas escolhem a receita e `E` fabrica. As pilhas excedentes podem ser guardadas antes de obter a arma, mas recarregam primeiro o gadget com menos carga. Criar bala exige a arma; criar o primeiro flash exige espaço na mochila (o último chip consumido libera uma vaga). Mantêm-se os limites de 6 balas e 2 flashes.

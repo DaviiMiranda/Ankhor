@@ -206,7 +206,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 
 - **Cutscenes de abertura:**
   - **Prólogo ilustrado** (`seg_prologo`, aprovada): ilustrações sequenciais em pixel art retratando a rotina comum de Gabriel em 2026 (acordar, anel da avó, trajeto na Washington Soares, campus vivo da Unifor, aula de cálculo com o caderno de equações, até cair no sono de madrugada na cabine da Biblioteca antes da fenda se abrir).
-  - **O despertar** (`seg_acordar`, pronta, um vídeo curto): Gabriel desperta na cabine de estudo, mil anos depois. A cabine e a biblioteca em volta já têm a tecnologia de 3026: painéis com luz ciano, um holograma aceso sobre o caderno, torres de equipamentos entre as estantes. Ele esfrega os olhos e olha em volta sem entender onde está.
+  - **O despertar** (`seg_acordar`, três ilustrações em produção): Gabriel desperta na cabine de estudo, mil anos depois. A cabine e a biblioteca em volta já têm a tecnologia de 3026: painéis com luz ciano, um holograma aceso sobre o caderno, torres de equipamentos entre as estantes. Ele esfrega os olhos e olha em volta sem entender onde está.
 - Gabriel acha a **lanterna** perto de onde acorda, e **pilhas** pelo salão. O **anel da avó** já está no inventário.
 - **Acampamento de Baltazar** entre as raízes da árvore. Ele não está lá: é o primeiro rastro dele (seção 5).
 - **Terminal com o bilhete da Clarice:** pede que, se mais alguém chegou, a procure no Bloco de salas.

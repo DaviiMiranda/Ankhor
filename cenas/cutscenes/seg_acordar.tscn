@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" uid="uid://xirxth2cwt5s" path="res://scripts/cutscenes/cutscene.gd" id="1_cutscene"]
-[ext_resource type="VideoStreamTheora" path="res://assets/video/cutscenes/seg_acordar.ogv" id="2_video"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cutscenes/seg_prologo/cena_07_cabine_noite.png" id="2_provisorio"]
 [ext_resource type="PackedScene" path="res://cenas/salas/biblioteca/cabine.tscn" id="7_biblioteca"]
 
 [sub_resource type="Animation" id="Animation_principal"]
@@ -30,15 +30,9 @@ script = ExtResource("1_cutscene")
 id = "seg_acordar"
 proxima_cena = ExtResource("7_biblioteca")
 
-[node name="Video" type="VideoStreamPlayer" parent="."]
-texture_filter = 2
-offset_right = 640.0
-offset_bottom = 360.0
-mouse_filter = 2
-stream = ExtResource("2_video")
-autoplay = true
-expand = true
-bus = &"Efeitos"
+[node name="ImagemProvisoria" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+texture = ExtResource("2_provisorio")
 
 [node name="Escuro" type="ColorRect" parent="."]
 offset_left = -10.0
