@@ -1,0 +1,441 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interface/tela_menu_notebook.gd" id="1_menu"]
+[ext_resource type="Shader" path="res://shaders/tela_crt.gdshader" id="3_crt"]
+[ext_resource type="AudioStream" path="res://assets/audio/musica/oficial/trilha_sonora_oficial_ankhor.ogg" id="7_trilha"]
+[ext_resource type="PackedScene" path="res://cenas/cutscenes/seg_prologo.tscn" id="8_novo_jogo"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/menu_passar.wav" id="9_passar"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/interface/menu_clique.wav" id="10_clique"]
+[ext_resource type="Script" path="res://scripts/sistemas/fase.gd" id="f_script"]
+[ext_resource type="Resource" path="res://dados/fases/01_biblioteca.tres" id="f_1"]
+[ext_resource type="Resource" path="res://dados/fases/02_blocos_de_aula.tres" id="f_2"]
+[ext_resource type="Resource" path="res://dados/fases/03_labirinto.tres" id="f_3"]
+[ext_resource type="Resource" path="res://dados/fases/04_convivencia.tres" id="f_4"]
+[ext_resource type="Resource" path="res://dados/fases/08_bunker.tres" id="f_8"]
+[ext_resource type="Resource" path="res://dados/fases/09_dtec.tres" id="f_9"]
+
+[sub_resource type="Gradient" id="Gradient_luz"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_luz"]
+gradient = SubResource("Gradient_luz")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crt"]
+shader = ExtResource("3_crt")
+shader_parameter/forca_linhas = 0.18
+shader_parameter/forca_vinheta = 0.6
+shader_parameter/raio_cantos = 0.07
+shader_parameter/proporcao = 1.3737
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_botao"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_destaque"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.17, 0.27, 0.39, 0.85)
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.22, 0.3, 0.4, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_barra_fundo"]
+content_margin_left = 1.0
+content_margin_top = 0.0
+content_margin_right = 1.0
+content_margin_bottom = 0.0
+bg_color = Color(0.05, 0.12, 0.2, 0.5)
+border_width_left = 1
+border_color = Color(0.18, 0.3, 0.45, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_barra_alca"]
+bg_color = Color(0.45, 0.68, 0.95, 0.8)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_barra_alca_destaque"]
+bg_color = Color(0.8, 0.92, 1, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_barra_alca_pressionada"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="Theme" id="Theme_tela"]
+default_font_size = 8
+Label/constants/line_spacing = 0
+Button/colors/font_color = Color(0.68, 0.79, 0.87, 1)
+Button/colors/font_disabled_color = Color(0.25, 0.29, 0.34, 1)
+Button/colors/font_focus_color = Color(0.95, 0.99, 1, 1)
+Button/colors/font_hover_color = Color(0.95, 0.99, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/disabled = SubResource("StyleBoxEmpty_botao")
+Button/styles/focus = SubResource("StyleBoxFlat_destaque")
+Button/styles/hover = SubResource("StyleBoxEmpty_botao")
+Button/styles/normal = SubResource("StyleBoxEmpty_botao")
+Button/styles/pressed = SubResource("StyleBoxFlat_destaque")
+Label/colors/font_color = Color(0.72, 0.82, 0.9, 1)
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_barra_alca")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_barra_alca_destaque")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_barra_alca_pressionada")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_barra_fundo")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_barra_fundo")
+
+[node name="MenuPrincipal" type="Node2D"]
+scale = Vector2(1, 1)
+script = ExtResource("1_menu")
+energia_luz = 0.12
+oscilacao_luz = 0.06
+cena_novo_jogo = ExtResource("8_novo_jogo")
+fases = Array[ExtResource("f_script")]([ExtResource("f_1"), ExtResource("f_2"), ExtResource("f_3"), ExtResource("f_4"), ExtResource("f_8"), ExtResource("f_9")])
+
+[node name="Monitor" type="Node2D" parent="."]
+
+[node name="Menu" type="VBoxContainer" parent="Monitor"]
+offset_left = 95.0
+offset_top = 30.0
+offset_right = 228.0
+offset_bottom = 128.0
+theme = SubResource("Theme_tela")
+theme_override_constants/separation = 0
+
+[node name="Titulo" type="Label" parent="Monitor/Menu"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.98, 0.98, 1)
+theme_override_colors/font_shadow_color = Color(0.55, 0.85, 1, 0.3)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "ANKHOR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotaoNovoJogo" type="Button" parent="Monitor/Menu"]
+layout_mode = 2
+text = "Novo jogo"
+
+[node name="BotaoContinuar" type="Button" parent="Monitor/Menu"]
+layout_mode = 2
+text = "Continuar"
+
+[node name="BotaoFases" type="Button" parent="Monitor/Menu"]
+layout_mode = 2
+text = "Fases"
+
+[node name="BotaoOpcoes" type="Button" parent="Monitor/Menu"]
+layout_mode = 2
+text = "Opções"
+
+[node name="LinhaFinal" type="HBoxContainer" parent="Monitor/Menu"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="BotaoCreditos" type="Button" parent="Monitor/Menu/LinhaFinal"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Créditos"
+
+[node name="BotaoSair" type="Button" parent="Monitor/Menu/LinhaFinal"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sair"
+
+[node name="Fases" type="VBoxContainer" parent="Monitor"]
+offset_left = 95.0
+offset_top = 30.0
+offset_right = 228.0
+offset_bottom = 128.0
+theme = SubResource("Theme_tela")
+theme_override_constants/separation = 0
+
+[node name="Titulo" type="Label" parent="Monitor/Fases"]
+layout_mode = 2
+text = "FASES"
+horizontal_alignment = 1
+
+[node name="Rolagem" type="ScrollContainer" parent="Monitor/Fases"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Lista" type="VBoxContainer" parent="Monitor/Fases/Rolagem"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Carregar" type="VBoxContainer" parent="Monitor"]
+visible = false
+offset_left = 95.0
+offset_top = 30.0
+offset_right = 228.0
+offset_bottom = 128.0
+theme = SubResource("Theme_tela")
+theme_override_constants/separation = 0
+
+[node name="Titulo" type="Label" parent="Monitor/Carregar"]
+layout_mode = 2
+text = "CARREGAR"
+horizontal_alignment = 1
+
+[node name="Rolagem" type="ScrollContainer" parent="Monitor/Carregar"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Lista" type="VBoxContainer" parent="Monitor/Carregar/Rolagem"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="BotaoVoltarCarregar" type="Button" parent="Monitor/Carregar/Rolagem/Lista"]
+layout_mode = 2
+text = "Voltar"
+
+[node name="Detalhe" type="Label" parent="Monitor/Carregar"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.85, 0.95, 1)
+horizontal_alignment = 1
+
+[node name="Opcoes" type="VBoxContainer" parent="Monitor"]
+visible = false
+offset_left = 95.0
+offset_top = 30.0
+offset_right = 228.0
+offset_bottom = 128.0
+theme = SubResource("Theme_tela")
+theme_override_constants/separation = 0
+
+[node name="Titulo" type="Label" parent="Monitor/Opcoes"]
+layout_mode = 2
+text = "OPÇÕES"
+horizontal_alignment = 1
+
+[node name="Rolagem" type="ScrollContainer" parent="Monitor/Opcoes"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Lista" type="VBoxContainer" parent="Monitor/Opcoes/Rolagem"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="BotaoTelaCheia" type="Button" parent="Monitor/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Tela cheia: Sim"
+
+[node name="BotaoEfeitoCrt" type="Button" parent="Monitor/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Efeito CRT: Sim"
+
+[node name="BotaoVolumeMaster" type="Button" parent="Monitor/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Volume geral: 100%"
+
+[node name="BotaoVolumeMusica" type="Button" parent="Monitor/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Música: 100%"
+
+[node name="BotaoVolumeSfx" type="Button" parent="Monitor/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Efeitos: 100%"
+
+[node name="BotaoControles" type="Button" parent="Monitor/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Ver controles"
+
+[node name="BotaoVoltarOpcoes" type="Button" parent="Monitor/Opcoes/Rolagem/Lista"]
+layout_mode = 2
+text = "Voltar"
+
+[node name="Controles" type="VBoxContainer" parent="Monitor"]
+visible = false
+offset_left = 95.0
+offset_top = 30.0
+offset_right = 228.0
+offset_bottom = 128.0
+theme = SubResource("Theme_tela")
+theme_override_constants/separation = 0
+
+[node name="Titulo" type="Label" parent="Monitor/Controles"]
+layout_mode = 2
+text = "CONTROLES"
+horizontal_alignment = 1
+
+[node name="Rolagem" type="ScrollContainer" parent="Monitor/Controles"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Lista" type="VBoxContainer" parent="Monitor/Controles/Rolagem"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ControleMover" type="Label" parent="Monitor/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Mover: W A S D / Setas"
+
+[node name="ControleCorrer" type="Label" parent="Monitor/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Correr: Shift"
+
+[node name="ControleInteragir" type="Label" parent="Monitor/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Interagir: E"
+
+[node name="ControleInventario" type="Label" parent="Monitor/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Inventário: Tab / I"
+
+[node name="ControleCaderno" type="Label" parent="Monitor/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Anotações: N"
+
+[node name="ControleTrocarAba" type="Label" parent="Monitor/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Trocar aba no inventário: Q"
+
+[node name="ControleGadgets" type="Label" parent="Monitor/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Gadgets: 1, 2, 3"
+
+[node name="ControleLargar" type="Label" parent="Monitor/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Largar carga pesada: G"
+
+[node name="ControleTela" type="Label" parent="Monitor/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Tela cheia: F11"
+
+[node name="ControlePausa" type="Label" parent="Monitor/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Pausar: Esc / P"
+
+[node name="BotaoVoltarControles" type="Button" parent="Monitor/Controles/Rolagem/Lista"]
+layout_mode = 2
+text = "Voltar"
+
+[node name="Creditos" type="VBoxContainer" parent="Monitor"]
+visible = false
+offset_left = 95.0
+offset_top = 30.0
+offset_right = 228.0
+offset_bottom = 128.0
+theme = SubResource("Theme_tela")
+theme_override_constants/separation = 0
+
+[node name="Titulo" type="Label" parent="Monitor/Creditos"]
+layout_mode = 2
+text = "CRÉDITOS"
+horizontal_alignment = 1
+
+[node name="Rolagem" type="ScrollContainer" parent="Monitor/Creditos"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Lista" type="VBoxContainer" parent="Monitor/Creditos/Rolagem"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="TituloDesenvolvedores" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.85, 1, 1)
+text = "Desenvolvedores"
+
+[node name="DesenvolvedorDavi" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+text = "Davi Miranda"
+
+[node name="DesenvolvedorEmanuel" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+text = "Emanuel Alves"
+
+[node name="DesenvolvedorGuilherme" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+text = "Guilherme Nogueira"
+
+[node name="DesenvolvedorNoah" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+text = "Noah Urano"
+
+[node name="TituloTrilhaSonora" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.85, 1, 1)
+text = "Trilha sonora"
+
+[node name="TrilhaYuri" type="Label" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+focus_mode = 2
+text = "Yuri Kuhl"
+
+[node name="BotaoVoltarCreditos" type="Button" parent="Monitor/Creditos/Rolagem/Lista"]
+layout_mode = 2
+text = "Voltar"
+
+[node name="EfeitoCRT" type="ColorRect" parent="Monitor"]
+material = SubResource("ShaderMaterial_crt")
+offset_left = 93.0
+offset_top = 31.0
+offset_right = 229.0
+offset_bottom = 130.0
+mouse_filter = 2
+
+[node name="Luz" type="PointLight2D" parent="Monitor"]
+position = Vector2(160, 80)
+color = Color(0.45, 0.65, 1, 1)
+energy = 0.12
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_luz")
+texture_scale = 2.4
+
+[node name="Musica" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_trilha")
+volume_db = -4.0
+autoplay = true
+bus = &"Musica"
+
+[node name="SomPassar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_passar")
+volume_db = -4.0
+bus = &"Efeitos"
+
+[node name="SomClique" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_clique")
+volume_db = -4.0
+bus = &"Efeitos"

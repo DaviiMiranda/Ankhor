@@ -1,0 +1,187 @@
+"""Monta o menu no Blender a partir da escrivaninha original do quarto VR.
+
+Uso: blender -b --factory-startup --python assets/modelagem/menu/gerar_menu_notebook.py
+Gera um GLB independente, um .blend editável e uma prévia iluminada.
+"""
+
+import ast
+import math
+from pathlib import Path
+
+import bpy
+from mathutils import Vector
+
+
+RAIZ = Path(__file__).resolve().parents[3]
+PASTA = Path(__file__).resolve().parent
+TEXTURAS = RAIZ / "assets/sprites/cenario/visor"
+MODELO = RAIZ / "assets/modelos/menu_notebook.glb"
+CAMERA = (-1.15, 1.24, -0.2)
+ALVO = (-2.38, 1.16, -0.2)
+FOV_VERTICAL = 44.0
+
+
+def carregar_oficina():
+    # Carrega apenas as definições: nunca executa o main nem regrava o quarto VR.
+    caminho = RAIZ / "assets/modelagem/cenario/gerar_sala_visor.py"
+    arvore = ast.parse(caminho.read_text(encoding="utf-8-sig"))
+    principal = next(no for no in arvore.body if isinstance(no, ast.FunctionDef) and no.name == "main")
+    arvore.body = [no for no in arvore.body if not isinstance(no, ast.Expr)]
+    oficina = {"__file__": str(caminho), "__name__": "oficina_do_menu"}
+    exec(compile(arvore, str(caminho), "exec"), oficina)
+    oficina["limpar_cena"]()
+    materiais = next(no for no in principal.body if isinstance(no, ast.Assign))
+    exec(compile(ast.Module(body=[materiais], type_ignores=[]), str(caminho), "exec"), oficina)
+    return oficina
+
+
+def deslocar(objeto, deslocamento):
+    objeto.location += Vector((deslocamento[0], -deslocamento[2], deslocamento[1]))
+
+
+def montar_geometria(oficina):
+    materiais = oficina["m"]
+    for nome in ("escrivaninha", "notebook", "janela"):
+        oficina[nome](materiais)
+
+    # Escala uniforme em torno da base: a tela ganha espaço sem deformar o aparelho.
+    origem = Vector(oficina["para_blender"](-2.29, 0.76, 0.28))
+    translacao = Vector(oficina["para_blender"](0.22, 0.0, -0.48))
+    for nome in ("Notebook", "TampaNotebook", "TelaNotebook"):
+        objeto = bpy.data.objects[nome]
+        for vertice in objeto.data.vertices:
+            mundo = objeto.matrix_world @ vertice.co
+            mundo = origem + (mundo - origem) * 1.6 + translacao
+            vertice.co = objeto.matrix_world.inverted() @ mundo
+
+    for nome in ("Luminaria", "Lampada"):
+        deslocar(bpy.data.objects[nome], (0.0, 0.0, 0.4))
+    deslocar(bpy.data.objects["Caneca"], (0.16, 0.0, 0.61))
+
+    caixa = oficina["caixa"]
+    caixa("ParedeDoMenu", (-2.56, 1.45, -0.2), (0.1, 2.9, 3.4), materiais["parede"])
+    caixa("PisoDoMenu", (-1.85, -0.04, -0.2), (1.5, 0.08, 3.4), materiais["chao"])
+
+    # A mesma ilustração do prólogo usada pela janela do safe room.
+    janela = oficina["material"]("PaisagemDaJanela", "#ffffff", brilho="#ffffff", forca_brilho=0.8)
+    oficina["quad"]("PaisagemDaJanela", (-2.475, 1.102, 0.304), (-2.475, 1.102, -0.704),
+                    (-2.475, 2.098, -0.704), (-2.475, 2.098, 0.304), janela)
+
+    # O GLB leva somente a geometria. A tela recebe o menu vivo no Godot.
+    MODELO.parent.mkdir(parents=True, exist_ok=True)
+    bpy.ops.export_scene.gltf(filepath=str(MODELO), export_format="GLB", export_apply=True)
+
+
+def aplicar_texturas_de_previa():
+    texturas = {
+        "Tampo": ("tampo_mesa", 0.7), "Madeira": ("madeira", 0.4),
+        "MadeiraEscura": ("madeira_escura", 0.4), "Parede": ("parede", 1.0),
+        "Chao": ("piso_madeira", 0.8), "Cortina": ("cortina", 0.25),
+        "Paginas": ("paginas", 0.05), "Teclado": ("teclado_notebook", None),
+        "PaisagemDaJanela": ("janela_prologo", None),
+    }
+    for nome, (arquivo, metros) in texturas.items():
+        material = bpy.data.materials.get(nome)
+        if material is None:
+            continue
+        nos = material.node_tree.nodes
+        ligacoes = material.node_tree.links
+        imagem = nos.new("ShaderNodeTexImage")
+        imagem.image = bpy.data.images.load(str(TEXTURAS / (arquivo + ".png")))
+        imagem.interpolation = "Closest"
+        if metros:
+            coordenadas = nos.new("ShaderNodeNewGeometry")
+            escala = nos.new("ShaderNodeVectorMath")
+            escala.operation = "SCALE"
+            escala.inputs[3].default_value = 1.0 / metros
+            ligacoes.new(coordenadas.outputs["Position"], escala.inputs[0])
+            ligacoes.new(escala.outputs["Vector"], imagem.inputs["Vector"])
+            imagem.projection = "BOX"
+        ligacoes.new(imagem.outputs["Color"], nos.get("Principled BSDF").inputs["Base Color"])
+        if nome == "PaisagemDaJanela":
+            ligacoes.new(imagem.outputs["Color"], nos.get("Principled BSDF").inputs["Emission Color"])
+
+
+def criar_luz(nome, posicao, energia, cor, tamanho, alvo):
+    dados = bpy.data.lights.new(nome, "AREA")
+    dados.energy = energia
+    dados.color = cor
+    dados.shape = "DISK"
+    dados.size = tamanho
+    objeto = bpy.data.objects.new(nome, dados)
+    bpy.context.collection.objects.link(objeto)
+    objeto.location = Vector((posicao[0], -posicao[2], posicao[1]))
+    destino = Vector((alvo[0], -alvo[2], alvo[1]))
+    objeto.rotation_euler = (destino - objeto.location).to_track_quat("-Z", "Y").to_euler()
+
+
+def escrever_previa(oficina):
+    # Os textos são só uma prévia editável no Blender; não entram no GLB.
+    tela = bpy.data.objects["TelaNotebook"]
+    pontos = [tela.matrix_world @ vertice.co for vertice in tela.data.vertices]
+    esquerda_baixo, direita_baixo, direita_cima, esquerda_cima = pontos
+    direita = (direita_baixo - esquerda_baixo).normalized()
+    cima = (esquerda_cima - esquerda_baixo).normalized()
+    normal = direita.cross(cima).normalized()
+    from mathutils import Matrix
+    orientacao = Matrix((direita, cima, normal)).transposed().to_quaternion()
+    material = oficina["material"]("TextoDaPrevia", "#abcad9", brilho="#abcad9", forca_brilho=0.6)
+    fonte = bpy.data.fonts.load(str(RAIZ / "assets/fontes/galmuri_7.ttf"))
+    for i, texto in enumerate(("ANKHOR", "Novo jogo", "Continuar", "Fases", "Opções", "Créditos       Sair")):
+        dados = bpy.data.curves.new("TextoDoMenu", "FONT")
+        dados.body = texto
+        dados.font = fonte
+        dados.size = 0.046 if i == 0 else 0.025
+        objeto = bpy.data.objects.new("Previa_" + str(i), dados)
+        bpy.context.collection.objects.link(objeto)
+        objeto.location = esquerda_cima + direita * 0.035 - cima * (0.065 + i * 0.038) + normal * 0.001
+        objeto.rotation_mode = "QUATERNION"
+        objeto.rotation_quaternion = orientacao
+        dados.materials.append(material)
+
+
+def preparar_camera_e_luzes():
+    cena = bpy.context.scene
+    cena.render.engine = "CYCLES"
+    cena.cycles.samples = 48
+    cena.cycles.use_denoising = True
+    cena.render.resolution_x = 1600
+    cena.render.resolution_y = 900
+    cena.render.resolution_percentage = 100
+    cena.view_settings.view_transform = "AgX"
+    cena.world.color = (0.09, 0.11, 0.15)
+    criar_luz("LuzDoPorDoSol", (-2.2, 1.8, -0.35), 20, (1.0, 0.58, 0.3), 0.8, (-1.8, 0.8, -0.1))
+    criar_luz("LuzDaLuminaria", (-2.31, 1.1, 0.4), 12, (1.0, 0.77, 0.48), 0.12, (-2.1, 0.77, 0.1))
+    criar_luz("ReflexoDaTela", (-2.25, 1.0, -0.2), 4, (0.38, 0.7, 1.0), 0.3, (-1.8, 0.75, -0.2))
+    criar_luz("Preenchimento", (-0.8, 1.8, -0.6), 9, (0.52, 0.66, 1.0), 2.0, (-2.4, 1.1, -0.2))
+    dados = bpy.data.cameras.new("CameraDoMenu")
+    dados.sensor_fit = "VERTICAL"
+    dados.lens = dados.sensor_height / (2.0 * math.tan(math.radians(FOV_VERTICAL) / 2.0))
+    camera = bpy.data.objects.new("CameraDoMenu", dados)
+    bpy.context.collection.objects.link(camera)
+    camera.location = Vector((CAMERA[0], -CAMERA[2], CAMERA[1]))
+    alvo = Vector((ALVO[0], -ALVO[2], ALVO[1]))
+    camera.rotation_euler = (alvo - camera.location).to_track_quat("-Z", "Y").to_euler()
+    cena.camera = camera
+    # Abre diretamente na composição final quando o arquivo é aberto no Blender.
+    for area in bpy.context.screen.areas:
+        if area.type == "VIEW_3D":
+            area.spaces.active.region_3d.view_perspective = "CAMERA"
+    cena.render.image_settings.file_format = "PNG"
+    cena.render.filepath = str(PASTA / "menu_notebook_previa.png")
+
+
+def main():
+    oficina = carregar_oficina()
+    montar_geometria(oficina)
+    aplicar_texturas_de_previa()
+    escrever_previa(oficina)
+    preparar_camera_e_luzes()
+    bpy.ops.file.pack_all()
+    bpy.ops.wm.save_as_mainfile(filepath=str(PASTA / "menu_notebook.blend"))
+    bpy.ops.render.render(write_still=True)
+    print("Menu exportado:", MODELO)
+
+
+if __name__ == "__main__":
+    main()

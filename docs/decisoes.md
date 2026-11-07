@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-07 — Menu 3D na escrivaninha do Gabriel
+
+**Decisão:** um novo menu em 3D usa a escrivaninha do quarto do visor da sala segura, com o notebook como tela interativa e a janela do pôr do sol ao fundo. O modelo é montado no Blender a partir das mesmas peças do quarto; o notebook tem escala uniforme de 1,6 e fica na frente do peitoril. Livros, luminária, caneca, porta-lápis, cortina e cacto completam o enquadramento. As texturas continuam em pixel art. As ações do menu atual (campanha, seis espaços de save, fases, opções, controles, créditos e sons) são reaproveitadas. A cena nova fica separada por escolha do Davi; a cena principal atual continua sendo a entrada do jogo.
+
+**Por quê:** pedido do Davi: modelar no Blender um novo menu igual à mesa do Gabriel no safe room VR, usando o notebook e a janela ao fundo.
+
+**Afeta:** `assets/modelagem/menu/gerar_menu_notebook.py`, `menu_notebook.blend` e as duas prévias; `assets/modelos/menu_notebook.glb`; `cenas/interface/menu_notebook.tscn` e `tela_menu_notebook.tscn`; `scripts/interface/menu_notebook.gd` e `tela_menu_notebook.gd`; `docs/mecanicas/menu_notebook.md`. O quarto VR e o Enredo permanecem como estão.
+
 ## 2026-11-07 — O Gabriel mira com a arma de pulso em todas as direções
 
 **Decisão:** o braço com a arma de pulso, que só existia de lado, agora aparece **nas 8 direções da mira** (de lado, de frente, de costas e os dois três quartos; a esquerda é o sprite espelhado). A arma passou a ser **modelada em 3D** no Blender, presa ao antebraço, em vez de desenhada à mão: assim ela gira com o corpo e sai certa em cada vista. Cada vista tem dois quadros, `mirando` e `atirando`; o clarão do tiro sai do bocal da arma em cada uma. Se a mira girar no meio, a tira troca para a vista nova. O quadro "normal" (braço caído) deixou de existir: não era usado. De costas, a arma quase não aparece, porque o braço aponta para longe da câmera.

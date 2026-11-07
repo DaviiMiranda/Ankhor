@@ -1,0 +1,112 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interface/menu_notebook.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://assets/modelos/menu_notebook.glb" id="2_modelo"]
+[ext_resource type="Script" path="res://scripts/visor/texturas_do_quarto.gd" id="3_texturas"]
+[ext_resource type="PackedScene" path="res://cenas/interface/tela_menu_notebook.tscn" id="4_menu"]
+[ext_resource type="PackedScene" path="res://cenas/interface/rotulo_versao.tscn" id="5_versao"]
+
+[sub_resource type="Environment" id="Ambiente"]
+background_mode = 1
+background_color = Color(0.025, 0.035, 0.055, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.62, 0.7, 0.85, 1)
+ambient_light_energy = 0.32
+tonemap_mode = 0
+
+[node name="MenuNotebook" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="Imagem" type="SubViewportContainer" parent="."]
+layout_mode = 0
+mouse_filter = 2
+stretch = true
+
+[node name="Mundo" type="SubViewport" parent="Imagem"]
+handle_input_locally = false
+msaa_3d = 1
+gui_disable_input = true
+own_world_3d = true
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Ambiente" type="WorldEnvironment" parent="Imagem/Mundo"]
+environment = SubResource("Ambiente")
+
+[node name="Modelo" parent="Imagem/Mundo" instance=ExtResource("2_modelo")]
+
+[node name="Texturas" type="Node" parent="Imagem/Mundo" node_paths=PackedStringArray("modelo")]
+script = ExtResource("3_texturas")
+modelo = NodePath("../Modelo")
+
+[node name="Camera" type="Camera3D" parent="Imagem/Mundo"]
+position = Vector3(-1.15, 1.24, -0.2)
+current = true
+fov = 44.0
+near = 0.05
+
+[node name="LuzDaJanela" type="OmniLight3D" parent="Imagem/Mundo"]
+position = Vector3(-2.15, 1.75, -0.35)
+light_color = Color(1, 0.68, 0.4, 1)
+light_energy = 0.5
+omni_range = 2.7
+
+[node name="LuzDaLuminaria" type="OmniLight3D" parent="Imagem/Mundo"]
+position = Vector3(-2.3, 1.09, 0.4)
+light_color = Color(1, 0.82, 0.57, 1)
+light_energy = 0.4
+omni_range = 1.4
+
+[node name="LuzDoNotebook" type="OmniLight3D" parent="Imagem/Mundo"]
+position = Vector3(-2.05, 1.0, -0.2)
+light_color = Color(0.45, 0.7, 1, 1)
+light_energy = 0.2
+omni_range = 1.0
+
+[node name="TelaMenu" type="SubViewport" parent="."]
+handle_input_locally = true
+size = Vector2i(256, 160)
+render_target_update_mode = 4
+
+[node name="Fundo" type="ColorRect" parent="TelaMenu"]
+offset_right = 256.0
+offset_bottom = 160.0
+mouse_filter = 2
+color = Color(0.025, 0.055, 0.09, 1)
+
+[node name="Menu" parent="TelaMenu" instance=ExtResource("4_menu")]
+
+[node name="Rodape" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dica" type="Label" parent="Rodape"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -18.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.72, 0.76, 0.8, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+text = "MOUSE / SETAS  selecionar     ENTER  confirmar     ESC  voltar"
+horizontal_alignment = 1
+
+[node name="RotuloVersao" parent="Rodape" instance=ExtResource("5_versao")]
