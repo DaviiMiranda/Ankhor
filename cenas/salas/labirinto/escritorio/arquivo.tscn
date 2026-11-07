@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/painel_ordenacao.tscn" id="r25"]
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r26"]
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r27"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/sirene.tscn" id="r28"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.36, 0.28, 0.12, 1)
@@ -252,7 +253,7 @@ position = Vector2(41, 150)
 dialogo = "res://dados/dialogos/zane_escritorio_arquivo.json"
 marca_ao_terminar = "zane_escritorio_arquivo_visto"
 
-[node name="ArquivoDeslizante" parent="Objetos" instance=ExtResource("r25")]
+[node name="ArquivoDeslizante" parent="Objetos" node_paths=PackedStringArray("sirene") instance=ExtResource("r25")]
 position = Vector2(440, 128)
 ordem_certa = PackedStringArray("1979", "1981", "1983", "1985", "1988")
 ordem_inicial = PackedInt32Array(3, 0, 4, 2, 1)
@@ -262,6 +263,16 @@ pedido = "PASTAS DA MAIS ANTIGA PARA A MAIS NOVA"
 texto_acao = "Organizar as pastas"
 aviso_ordenado = "As pastas estão em ordem. Lá na recepção, uma lâmpada acendeu."
 aviso_ja_ordenado = "As pastas já estão em ordem."
+tentativas_maximas = 3
+trocas_por_tentativa = 10
+sirene = NodePath("../../Sirene")
+aviso_alarme = "Alarme! O arquivo travou. O Rastreador está vindo para cá."
+aviso_travado = "O arquivo está travado enquanto o alarme toca."
+
+[node name="Sirene" parent="." instance=ExtResource("r28")]
+position = Vector2(440, 146)
+segundos_tocando = 20.0
+teletransportar_robos = false
 
 [node name="Zumbido" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("r26")

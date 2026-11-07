@@ -102,6 +102,22 @@ static func caminho_de_agora() -> Dictionary:
 	return caminho_ativo(reles_cortados())
 
 
+static func nos_energizados(cortados: Array[String]) -> Dictionary:
+	var energizados := {}
+	var fila: Array[String] = []
+	for gerador in GERADORES:
+		energizados[gerador] = true
+		fila.append(gerador)
+	while not fila.is_empty():
+		var atual: String = fila.pop_front()
+		for vizinho in vizinhos(atual):
+			if vizinho in cortados or energizados.has(vizinho):
+				continue
+			energizados[vizinho] = true
+			fila.append(vizinho)
+	return energizados
+
+
 static func caminho_em_texto(caminho: PackedStringArray) -> String:
 	var nomes := PackedStringArray()
 	for no in caminho:
