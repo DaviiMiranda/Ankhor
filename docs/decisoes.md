@@ -8,6 +8,22 @@
 
 **Afeta:** `assets/icone/ankhor_icone.png` (512×512) e `assets/icone/ankhor_icone.ico` (16 a 256 px), que substituem os anteriores. Os caminhos no `project.godot` e no `export_presets.cfg` não mudam. Na próxima vez que o Godot abrir o projeto, ele reimporta o PNG sozinho. O `.exe` só mostra o ícone novo depois de exportar de novo.
 
+## 2026-11-07 — O Gabriel mira com a arma de pulso em todas as direções
+
+**Decisão:** o braço com a arma de pulso, que só existia de lado, agora aparece **nas 8 direções da mira** (de lado, de frente, de costas e os dois três quartos; a esquerda é o sprite espelhado). A arma passou a ser **modelada em 3D** no Blender, presa ao antebraço, em vez de desenhada à mão: assim ela gira com o corpo e sai certa em cada vista. Cada vista tem dois quadros, `mirando` e `atirando`; o clarão do tiro sai do bocal da arma em cada uma. Se a mira girar no meio, a tira troca para a vista nova. O quadro "normal" (braço caído) deixou de existir: não era usado. De costas, a arma quase não aparece, porque o braço aponta para longe da câmera.
+
+**Por quê:** pedido do Davi. A versão de lado era só um começo.
+
+**Afeta:** `assets/modelagem/personagens/gerar_gabriel_arma.py` (reescrito: modelo 3D, cinco vistas), os sprites `gabriel_arma_<vista>.png` (cinco, no lugar do `gabriel_arma_lado.png` de 3 quadros), `scripts/personagens/quadros_arma_gabriel.gd` (agora `BOCAIS[vista]`), `scripts/itens/arma_impulso.gd` e a documentação do Gabriel e do combate. **Conferido** no Godot 4.7.2 por script, nas 8 direções: o braço aparece ao mirar e ao atirar, volta ao normal depois, e troca de vista se a mira girar. **O Enredo não foi mexido.**
+
+## 2026-11-07 — Respiração mais difícil no bunker
+
+**Decisão:** a faixa segura da respiração contida fica mais estreita, o marcador se move e oscila mais rápido, e o ruído acumula mais depressa e se recupera mais devagar. Ansiedade e cansaço continuam afetando a dificuldade; o tempo de espera do Ciborgue e a pausa dos painéis não mudam. Os valores estão em [`mecanicas/furtividade_e_esconderijos.md`](mecanicas/furtividade_e_esconderijos.md), seção 2.D.
+
+**Por quê:** pedido para aumentar a dificuldade de se esconder do robô no bunker. O equilíbrio precisa de teste humano com o controle.
+
+**Afeta:** `scripts/sistemas/respiracao_contida.gd`, `docs/mecanicas/furtividade_e_esconderijos.md`.
+
 ## 2026-11-07 — Tempo de jogo da campanha e seis espaços de save
 
 **Decisão:** o jogo passa a contar o **tempo de jogo** da campanha, sem a pausa, e a ter **seis espaços de save**, como no *Resident Evil*.
@@ -20,6 +36,16 @@
 **Por quê:** pedido do Davi, para o jogador poder guardar mais de um ponto da campanha e ver quanto tempo já jogou.
 
 **Afeta:** `scripts/sistemas/tempo_de_jogo.gd` (autoload novo `TempoDeJogo`, em `project.godot`), `scripts/sistemas/salvamento.gd`, `scripts/sistemas/fase.gd` (`nome_da_cena`, também usado pelo quadro do quarto, que deixa de mostrar "?" no Labirinto), `scripts/sistemas/visor.gd`, `cenas/visor/menu_visor.tscn` e `scripts/visor/menu_visor.gd`, `scripts/visor/sala_visor.gd`, `foco_visor.gd`, `tela_do_visor.gd` e `quadro_do_visor.gd`, `cenas/menu_principal.tscn` e `scripts/menu_principal.gd` (painel Carregar), `cenas/interface/tela_pausa.tscn` e `scripts/interface/tela_pausa.gd`, `docs/mecanicas/salvamento_e_tempo_de_jogo.md` (novo), `sala_segura.md` e `visor_3d.md`. Não toca na história.
+
+## 2026-11-07 — A arma de impulso aparece no braço do Gabriel
+
+**Decisão:** ao mirar e ao atirar com a arma de impulso, o Gabriel **estende o braço com uma arma de pulso no antebraço** (canhão curto azulado com cabos e núcleo ciano, a partir da imagem de referência gerada no Nano Banana, reduzida para caber no braço). Mirando, o braço fica estendido com as luzes acesas; ao atirar, o bocal solta uma rajada pequena por 0,25 s e o braço volta à pose normal (ou antes, se o Gabriel andar). O clarão azul agora sai do bocal da arma. **Só na vista de lado**: nas outras vistas (frente, costas, três quartos) o sprite continua o de sempre e o cone e a onda mostram a direção. Ainda não há a arma nas caminhadas e na respiração.
+
+**Mais dois ajustes no mesmo PR:** (1) o **ícone da mochila**, o **sprite do chão** e a **imagem detalhada** (a da tela "Novo item", feita a partir da imagem do Nano Banana com `preparar_detalhe.py`) agora mostram a arma de pulso, no lugar da pistola antiga; (2) o tiro deixa os robôs que o cone acerta **bem mais lentos por 15 s** (35% da velocidade, azulados enquanto dura), além do empurrão e dos 0,9 s de paralisia que já tinha. A descrição do item diz isso.
+
+**Por quê:** pedido do Davi, para a arma ter um visual próprio no jogo.
+
+**Afeta:** `scripts/itens/arma_impulso.gd`, `scripts/personagens/robo.gd` (`deixar_lento`), `dados/itens/arma_impulso.tres`, `assets/modelagem/itens/gerar_arma_impulso.py` e os sprites do item (`arma_impulso.png`, `_chao.png`, novo `_detalhe.png`), o novo `assets/sprites/personagens/gabriel/gabriel_arma_lado.png` (3 quadros: normal, mirando, atirando), `scripts/personagens/quadros_arma_gabriel.gd` (onde fica o bocal em cada quadro) e `assets/modelagem/personagens/gerar_gabriel_arma.py`. **Conferido** no Godot 4.7.2 por script: o robô no cone fica a 35% da velocidade (de 18 para 6,3 px/s) e volta ao normal aos 15 s; a tela "Novo item" mostra a imagem nova; o braço aparece ao mirar e ao atirar, volta ao normal depois, e mirando para baixo o sprite não muda. **O Enredo não foi mexido.**
 
 ## 2026-11-07 — Zane: estamina 160, efeitos no braço de hack e o casaco no lugar da mochila
 

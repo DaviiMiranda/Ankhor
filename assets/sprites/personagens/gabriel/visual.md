@@ -36,6 +36,7 @@ Retratos de 80 × 80, mostrados em 40 × 40 na caixa de diálogo.
 | `gabriel_andar_<vista>.png` | 12 | caminhada (dois passos), um arquivo por vista |
 | `gabriel_parado_<vista>.png` | 8 | respiração |
 | `gabriel_oculos_lado.png` | 12 | só de lado: pega os óculos do Zane da máquina de salvar e põe no rosto (de trás para a frente, tira). Feita por `gerar_gabriel_oculos.py` |
+| `gabriel_arma_<vista>.png` | 2 | mirando com a arma de pulso, uma tira por vista: `mirando` (braço estendido para a frente, luzes acesas) e `atirando` (com a rajada no bocal). A arma é **modelada no Blender** (peças presas ao antebraço, com a paleta do Gabriel mais os tons da arma), então sai certa em todas as vistas; para a esquerda o Godot espelha. Feita por `gerar_gabriel_arma.py`, que também grava `scripts/personagens/quadros_arma_gabriel.gd` (onde fica o bocal em cada vista e quadro). Usada pelo `arma_impulso.gd` |
 | `gabriel_retrato_<nome>.png` | 1 | `normal`, `preocupado`, `surpreso`, `assustado`, `sorrindo`, `aliviado`, `determinado`, `desconfiado`, `pensativo`, `triste`, `bravo`, `envergonhado` e `cansado` |
 
 Vistas: `lado`, `frente`, `tres_quartos`, `costas`, `tres_quartos_costas`.

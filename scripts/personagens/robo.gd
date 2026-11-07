@@ -8,6 +8,7 @@ signal estado_mudou(robo: Robo, novo_estado: Estado)
 enum Estado { PATRULHA, INVESTIGANDO, PERSEGUINDO, PROCURANDO, ATACOU, ATORDOADO }
 
 const CAMADA_PAREDES := 8
+const COR_LENTO := Color(0.6, 0.9, 1.0)
 const ALCANCE_SOM_CORRENDO := 14
 const ALCANCE_SOM_ANDANDO := 5
 const INTERVALO_NOVO_CAMINHO := 0.35
@@ -87,6 +88,8 @@ var _distancia := 0.0
 var _passos := 0
 var _segundos_atordoado := 0.0
 var fator_de_velocidade := 1.0
+var _fator_lento := 1.0
+var _segundos_lento := 0.0
 var _vista := "lado"
 var _sorteio := RandomNumberGenerator.new()
 var _indice_rota := -1
@@ -134,6 +137,7 @@ func _physics_process(delta: float) -> void:
 	if grade == null:
 		return
 	_tempo_no_estado += delta
+	_passar_lentidao(delta)
 	_decidir(delta)
 	_andar(delta)
 	_tentar_atacar()
@@ -233,6 +237,25 @@ func empurrar(direcao: Vector2, velocidade: float, segundos_atordoado: float) ->
 		return
 	_impulso = direcao.normalized() * velocidade
 	atordoar(segundos_atordoado)
+
+
+func deixar_lento(fator: float, segundos: float) -> void:
+	_fator_lento = fator
+	_segundos_lento = segundos
+	sprite.self_modulate = COR_LENTO
+
+
+func esta_lento() -> bool:
+	return _segundos_lento > 0.0
+
+
+func _passar_lentidao(delta: float) -> void:
+	if _segundos_lento <= 0.0:
+		return
+	_segundos_lento -= delta
+	if _segundos_lento <= 0.0:
+		_fator_lento = 1.0
+		sprite.self_modulate = Color.WHITE
 
 
 func atordoar(segundos: float) -> void:
@@ -371,7 +394,7 @@ func _sair_da_sala() -> void:
 
 
 func _velocidade() -> float:
-	return _velocidade_do_estado() * fator_de_velocidade
+	return _velocidade_do_estado() * fator_de_velocidade * _fator_lento
 
 
 func _velocidade_do_estado() -> float:
