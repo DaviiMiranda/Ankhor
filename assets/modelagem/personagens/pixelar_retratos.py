@@ -115,39 +115,36 @@ CONFIG = {
         "copias": {"normal": "orgulhoso"},
         "janela": {"y": 20, "lado": 440, "fundo": (38, 41, 53)},
     },
-    # Gabriel: as dez emoções da folha nova (molduras com borda dupla; a
-    # janela pega da franja ao moletom sem encostar na borda de baixo) e, da
-    # folha antiga sem moldura, as três que a nova não tem. Os quadrados da
-    # folha antiga foram medidos para a cabeça ficar do mesmo tamanho e na
-    # mesma altura que na nova.
+    # Gabriel: as oito emoções da folha mais nova (sem moldura, cabeça e capuz
+    # em quadrados iguais) e, da folha anterior (molduras com borda dupla), as
+    # cinco que a nova não tem. A paleta é uma só para as duas folhas.
     "gabriel": {
         "folhas": [
+            {
+                "folha": "gabriel_referencia/expressoes_oito.webp",
+                "recuo": 0,
+                "tolerancia": 30,
+                "retratos": {
+                    "normal": (0, 25, 336, 361),
+                    "preocupado": (344, 25, 680, 361),
+                    "surpreso": (688, 25, 1024, 361),
+                    "assustado": (1032, 25, 1368, 361),
+                    "determinado": (0, 409, 336, 745),
+                    "aliviado": (344, 409, 680, 745),
+                    "bravo": (688, 409, 1024, 745),
+                    "triste": (1032, 409, 1368, 745),
+                },
+            },
             {
                 "folha": "gabriel_referencia/expressoes_novas.jpg",
                 "recuo": 25,
                 "janela": {"y": 0, "lado": 350, "fundo": (95, 103, 116)},
                 "retratos": {
-                    "assustado": (50, 29, 400, 437),
                     "sorrindo": (433, 29, 792, 437),
-                    "aliviado": (825, 29, 1175, 437),
-                    "determinado": (1208, 29, 1567, 437),
                     "desconfiado": (1600, 29, 1950, 437),
                     "pensativo": (42, 587, 408, 995),
-                    "triste": (442, 587, 800, 995),
-                    "bravo": (817, 587, 1183, 995),
                     "envergonhado": (1217, 587, 1575, 995),
                     "cansado": (1592, 587, 1959, 995),
-                },
-            },
-            {
-                "folha": "gabriel_referencia/expressoes.webp",
-                "recuo": 0,
-                # O fundo cinza-claro deixava uma franja clara no contorno.
-                "tolerancia": 40,
-                "retratos": {
-                    "normal": (37, 12, 225, 200),
-                    "preocupado": (547, 12, 735, 200),
-                    "surpreso": (799, 12, 987, 200),
                 },
             },
         ],

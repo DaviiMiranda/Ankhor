@@ -45,10 +45,13 @@ Os retratos são **desenhados**, como os dos outros personagens, e saem do
 `assets/modelagem/personagens/pixelar_retratos.py`
 (`python assets/modelagem/personagens/pixelar_retratos.py gabriel`):
 
-- dez emoções da folha `gabriel_referencia/expressoes_novas.jpg` (assustado, sorrindo,
-  aliviado, determinado, desconfiado, pensativo, triste, bravo, envergonhado, cansado);
-- `normal`, `preocupado` e `surpreso` da folha antiga `gabriel_referencia/expressoes.webp`,
-  porque a nova não tem essas três. Se chegar uma folha com elas, é só trocar no `CONFIG`.
+- oito emoções da folha `gabriel_referencia/expressoes_oito.webp` (normal, preocupado,
+  surpreso, assustado, determinado, aliviado, bravo, triste): são as que as falas do jogo
+  usam, e são o estilo atual dos retratos;
+- cinco emoções da folha anterior `gabriel_referencia/expressoes_novas.jpg` (sorrindo,
+  desconfiado, pensativo, envergonhado, cansado), que a folha nova não tem. O estilo delas é
+  mais antigo (cabeça maior, cores mais vivas). O `cansado` é usado numa fala; as outras
+  ainda não. Se chegar uma folha com elas, é só trocar no `CONFIG`.
 
 O corpo (sprites em pé) continua saindo do modelo 3D (`gerar_gabriel.py`). **Rodar o
 `gerar_gabriel.py` de novo sobrescreve o `normal`, o `preocupado` e o `surpreso` com os
