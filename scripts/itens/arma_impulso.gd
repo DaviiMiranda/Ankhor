@@ -27,6 +27,8 @@ static var _avisou_livre := false
 @export var segundos_da_onda: float = 0.3
 @export var energia_flash: float = 2.6
 @export var segundos_do_braco_no_disparo: float = 0.25
+@export_range(0.05, 1.0) var fator_de_lentidao: float = 0.35
+@export var segundos_de_lentidao: float = 15.0
 
 var item: Item
 
@@ -197,6 +199,7 @@ func _afastar_robos() -> void:
 		var forca := 1.0 - distancia / alcance
 		var direcao := para.normalized() if distancia > 1.0 else _direcao_da_onda
 		robo.empurrar(direcao, lerpf(velocidade_minima, velocidade_maxima, forca), segundos_atordoado)
+		robo.deixar_lento(fator_de_lentidao, segundos_de_lentidao)
 
 
 func _piscar() -> void:

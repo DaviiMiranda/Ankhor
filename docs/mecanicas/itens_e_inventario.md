@@ -151,7 +151,7 @@ A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo no
 | `alicate` | `--furo 1062,524` |
 | `chave_deposito` | `--passo 4 --furo 1000,150 --furo 780,320` (o cone de luz de cima e o furo da cabeça; com o passo padrão o fundo comia a parte escura da chave) |
 | `pedra` | `--apagar 880,688,1110,720` (a faixa preta de "chão" que o gerador desenhou embaixo dela) |
-| `chave_manutencao`, `clarao`, `notebook`, `disquete_clarice` | nenhuma |
+| `chave_manutencao`, `clarao`, `notebook`, `disquete_clarice`, `arma_impulso` | nenhuma |
 | `radio` | feito com a versão anterior do script (commit `0399b1a` do PR #107), que tirava a sombra num fundo de uma cor só |
 
 ### Conteúdo de computação

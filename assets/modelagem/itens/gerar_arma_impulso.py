@@ -6,11 +6,13 @@
 #
 # Gera:
 #   assets/sprites/itens/arma_impulso.png        ícone da mochila, 16 x 16
-#   assets/sprites/itens/arma_impulso_chao.png   sprite do chão, 11 x 6
+#   assets/sprites/itens/arma_impulso_chao.png   sprite do chão, 14 x 7
 #
-# O desenho é uma pistola curta e quadrada: carcaça de aço azulado, cabo
-# escuro e um bocal em anel com o núcleo ciano aceso (a cor do impulso, a
-# mesma da onda no jogo). Cada pixel é pintado pelo seu caractere da grade.
+# O desenho é a arma de pulso: um canhão curto de aço azulado preso ao
+# antebraço, com o cano em cima, o tubo de baixo em anel e o núcleo ciano aceso
+# no bocal (a cor do impulso, a mesma da onda no jogo). É o mesmo desenho da
+# imagem detalhada (arma_impulso_detalhe.png) e do sprite do braço do Gabriel
+# (gerar_gabriel_arma.py). Cada pixel é pintado pelo seu caractere da grade.
 
 import os
 
@@ -34,28 +36,29 @@ ICONE = [
     "................",
     "................",
     "................",
-    "..kkkkkkkkkk....",
-    ".kmllllllllmkkk.",
-    ".kmmmmmmmmmkcwk.",
-    ".kddddmmmmmkwck.",
-    ".kkkkdmmmmmkcwk.",
-    "....kdmkkkkkkkk.",
-    "....kdmk........",
-    "....kddk........",
-    "....kdok........",
-    "....kdok........",
-    "....kkkk........",
+    ".....kkkkkkkkkk.",
+    ".....kllllllllck",
+    ".kkkkkmmmmmmmmwk",
+    "kllllllkkkkkkkck",
+    "kmmccmmmmmmmmmkk",
+    "kmmmmmmmkllllkdk",
+    "kddddddkkmmmmmkk",
+    "kdcdcdckkmcmmkdk",
+    ".kdddddkkddddkkk",
+    "..kkkkkkkkkkkkk.",
+    "................",
     "................",
     "................",
 ]
 
 CHAO = [
-    "..kkkkkkk..",
-    ".kmllllmkkk",
-    ".kmmmmmkcwk",
-    ".kddmmmkwck",
-    "..kdmkkkkk.",
-    "..kkkk.....",
+    "......kkkkkkkk",
+    "...kkkklllllck",
+    "..klllmmmmmmwk",
+    ".kmmmmkkkkkkck",
+    ".kdccdkkllllkk",
+    ".kddddkkmcmmkk",
+    "..kkkkkkkkkkk.",
 ]
 
 
