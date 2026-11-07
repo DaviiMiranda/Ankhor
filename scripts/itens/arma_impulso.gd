@@ -8,6 +8,11 @@ const AVISO_TRAVADA := "Mira travada. Aperte de novo para atirar. Shift cancela"
 const AVISO_LIVRE := "Nenhum robô por perto: aponte com WASD. Aperte de novo para atirar. Shift cancela"
 const ALTURA_DO_CHAO := Vector2(0, -2)
 const PASSOS_DO_ARCO := 14
+const TIRA_DO_BRACO := preload("res://assets/sprites/personagens/gabriel/gabriel_arma_lado.png")
+const BOCAIS := preload("res://scripts/personagens/quadros_arma_gabriel.gd").QUADROS
+const QUADRO_MIRANDO := 1
+const QUADRO_ATIRANDO := 2
+const POSICAO_DO_FLASH := Vector2(0, -22)
 
 static var _avisou_travada := false
 static var _avisou_livre := false
@@ -21,6 +26,7 @@ static var _avisou_livre := false
 @export var segundos_entre_disparos: float = 0.45
 @export var segundos_da_onda: float = 0.3
 @export var energia_flash: float = 2.6
+@export var segundos_do_braco_no_disparo: float = 0.25
 
 var item: Item
 
@@ -31,6 +37,8 @@ var _direcao_da_mira := Vector2.RIGHT
 var _direcao_da_onda := Vector2.RIGHT
 var _tempo_da_onda := -1.0
 var _tempo_desde_disparo := 99.0
+var _braco_no_ar := false
+var _segundos_do_braco := 0.0
 
 @onready var flash: PointLight2D = $Flash
 @onready var som: AudioStreamPlayer = $Som
@@ -48,6 +56,8 @@ func _process(delta: float) -> void:
 	_tempo_desde_disparo += delta
 	if _mirando:
 		_apontar()
+	elif _braco_no_ar:
+		_segurar_braco_do_disparo(delta)
 	if _tempo_da_onda >= 0.0:
 		_tempo_da_onda += delta
 		if _tempo_da_onda > segundos_da_onda:
@@ -93,6 +103,35 @@ func _apontar() -> void:
 		if entrada != Vector2.ZERO:
 			_direcao_da_mira = entrada.normalized()
 	_gabriel.olhar_para(_direcao_da_mira)
+	_mostrar_braco(QUADRO_MIRANDO)
+
+
+func _segurar_braco_do_disparo(delta: float) -> void:
+	_segundos_do_braco -= delta
+	if _segundos_do_braco <= 0.0 or _gabriel.get_real_velocity().length() > 1.0:
+		_baixar_braco()
+
+
+func _mostrar_braco(quadro: int) -> void:
+	if _gabriel.vista != "lado":
+		_baixar_braco()
+		return
+	if not _braco_no_ar:
+		if _gabriel.tira_especial:
+			return
+		_gabriel.tocar_tira(TIRA_DO_BRACO, BOCAIS.size())
+		_braco_no_ar = true
+	_gabriel.mostrar_quadro_tira(quadro)
+	flash.global_position = _gabriel.to_global(_gabriel.ponto_do_quadro(BOCAIS[quadro]))
+
+
+func _baixar_braco() -> void:
+	flash.position = POSICAO_DO_FLASH
+	if not _braco_no_ar:
+		return
+	_braco_no_ar = false
+	if is_instance_valid(_gabriel):
+		_gabriel.terminar_tira()
 
 
 func _manter_alvo() -> void:
@@ -120,8 +159,9 @@ func _robo_mais_perto() -> Robo:
 
 
 func _soltar() -> void:
-	_parar_de_mirar()
+	_parar_de_mirar(false)
 	if not Vida.esta_viva():
+		_baixar_braco()
 		return
 	if not ModoCombate.ativo:
 		Inventario.definir_unidades(item, maxi(Inventario.unidades(item.id) - 1, 0))
@@ -131,13 +171,17 @@ func _soltar() -> void:
 	som.play()
 	_piscar()
 	_afastar_robos()
+	_segundos_do_braco = segundos_do_braco_no_disparo
+	_mostrar_braco(QUADRO_ATIRANDO)
 
 
-func _parar_de_mirar() -> void:
+func _parar_de_mirar(baixar_o_braco := true) -> void:
 	if _mirando and is_instance_valid(_gabriel):
 		_gabriel.mirando = false
 	_mirando = false
 	_alvo = null
+	if baixar_o_braco:
+		_baixar_braco()
 
 
 func _afastar_robos() -> void:

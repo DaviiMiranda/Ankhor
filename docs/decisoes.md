@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-07 — A arma de impulso aparece no braço do Gabriel
+
+**Decisão:** ao mirar e ao atirar com a arma de impulso, o Gabriel **estende o braço com uma arma de pulso no antebraço** (canhão curto azulado com cabos e núcleo ciano, a partir da imagem de referência gerada no Nano Banana, reduzida para caber no braço). Mirando, o braço fica estendido com as luzes acesas; ao atirar, o bocal solta uma rajada pequena por 0,25 s e o braço volta à pose normal (ou antes, se o Gabriel andar). O clarão azul agora sai do bocal da arma. **Só na vista de lado**: nas outras vistas (frente, costas, três quartos) o sprite continua o de sempre e o cone e a onda mostram a direção. Ainda não há a arma nas caminhadas e na respiração, e o ícone da mochila continua a pistola antiga.
+
+**Por quê:** pedido do Davi, para a arma ter um visual próprio no jogo.
+
+**Afeta:** `scripts/itens/arma_impulso.gd`, o novo `assets/sprites/personagens/gabriel/gabriel_arma_lado.png` (3 quadros: normal, mirando, atirando), `scripts/personagens/quadros_arma_gabriel.gd` (onde fica o bocal em cada quadro) e `assets/modelagem/personagens/gerar_gabriel_arma.py`. **Conferido** no Godot 4.7.2 por script: o braço aparece ao mirar e ao atirar, volta ao normal depois, e mirando para baixo o sprite não muda. **O Enredo não foi mexido.**
+
 ## 2026-11-07 — Zane: estamina 160, efeitos no braço de hack e o casaco no lugar da mochila
 
 **Decisão:**
