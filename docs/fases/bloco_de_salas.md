@@ -182,7 +182,7 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 
 ### 5.4.1 O que mudou em 2026-11-04
 
-Cortar a corrente pede segurar `E` por 5 s, com barulho; achar o molho na areia, 2 s. A Clarice empresta o walkman junto com a chave da fita azul. Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 3.
+Cortar a corrente pede segurar `E` por 5 s, com barulho; achar o molho na areia, 2 s. Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 3.
 
 ### 5.5 O atalho (204 → 104)
 

@@ -5,7 +5,7 @@ Cada fase ensina **uma ação nova**, entrega **um item com custo** e cobra as d
 | Fase | Mecânica nova | Item novo | Desafio novo |
 |---|---|---|---|
 | Biblioteca | Esconder-se na cabine, com microgame de respiração | Nenhum: a fase já entrega lanterna, rádio e clarão | Voltar pelo salão iluminado usando as cabines como abrigo |
-| Bloco de salas | Ações demoradas e barulhentas (segurar `E`) | Walkman da Clarice | Cortar a corrente leva 5 s, no trecho da Sentinela |
+| Bloco de salas | Ações demoradas e barulhentas (segurar `E`) | Nenhum | Cortar a corrente leva 5 s, no trecho da Sentinela |
 | Labirinto | Sonar: a onda mostra corredores e robôs | Módulo de pulso do Zane | O Nó 3 não pausa, e o salão é um beco sem saída |
 | Centro de Convivência | Carga: a Célula pesa, zumbe e impede de correr | Mapa da Diana | Levar a Célula pela praça ou pela galeria |
 | Bunker | Gás no setor B | Máscara de gás | Passar pelo Escafandro com a máscara, cuja respiração ele ouve |
@@ -40,7 +40,7 @@ Todo `Interagivel` tem `segundos_segurar` e `ruido_ao_segurar`. Com tempo maior 
 ### 1.5 Recursos
 
 - **Chave usada sai da mochila:** ao destrancar, a `Porta` tira a chave do inventário. Sem isso, a grade de 12 espaços encheria no meio do jogo.
-- **Pilha serve a três gadgets:** ao pegar uma pilha, ela vai para o que estiver mais fraco entre lanterna, walkman e notebook.
+- **Pilha serve a dois gadgets:** ao pegar uma pilha, ela vai para o que estiver mais fraco entre lanterna e notebook.
 - **Menos sobras:** o Centro de Convivência perdeu 2 pilhas (mezanino e cabine do cinema) e o Bunker perdeu 2 flashes (arsenal e depósito). O D-Tec não mudou.
 
 ---
@@ -55,10 +55,9 @@ Todo `Interagivel` tem `segundos_segurar` e `ruido_ao_segurar`. Com tempo maior 
 
 ---
 
-## 3. Bloco de salas: o walkman e as ações demoradas
+## 3. Bloco de salas: as ações demoradas
 
-- **Walkman** (`dados/itens/walkman.tres`): a Clarice empresta ao devolver o molho. A tecla do gadget larga o walkman no chão, e ele toca por 15 s. A cada segundo faz um barulho de alcance 20 células, então os robôs que ouvem vão até lá e ficam enquanto toca. Cada uso gasta 25% da carga. Para usar de novo é preciso buscá-lo (`[E]`), e ele fica na sala até lá. Ao mudar de fase, volta sozinho para a mochila.
-- **A corrente da porta corta-fogo:** segurar `E` por 5 s, com barulho de alcance 40 a cada segundo. Como a Sentinela passa por ali depois do alicate, é preciso preparar a distração antes.
+- **A corrente da porta corta-fogo:** segurar `E` por 5 s, com barulho de alcance 40 a cada segundo. Como a Sentinela passa por ali depois do alicate, é preciso esperar a Sentinela passar antes de começar.
 - **O molho na areia:** segurar `E` por 2 s, sem barulho.
 
 ---

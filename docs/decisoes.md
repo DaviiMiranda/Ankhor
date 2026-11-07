@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-07 — Sai o walkman
+
+**Decisão:** o item **walkman da Clarice** (gadget que, largado no chão, tocava por 15 s e atraía os robôs) foi removido do jogo. A Clarice continua devolvendo a chave da fita azul ao receber o molho, mas já não empresta nada. O walkman que ela usa no visual (fone no pescoço, aparelho no cós) fica, porque é parte da aparência dela.
+
+**Por quê:** pedido do Davi.
+
+**Afeta:** saíram `scripts/itens/walkman.gd`, `walkman_no_chao.gd`, `cenas/itens/walkman.tscn`, `walkman_no_chao.tscn`, `dados/itens/walkman.tres`, os três sprites `walkman*.png` e `walkman_fita.wav`. Foram limpos `clarice_posto.tscn` (sem `item_extra`), `sala_teste.tscn`, `pilha_no_chao.gd` (a pilha agora serve a lanterna e ao notebook), o diálogo `clarice_bloco_devolve_chave.json` (duas falas e um trecho da anotação), os geradores de ícone e de som, a seção 3 de `docs/mecanicas/mecanicas_de_fase.md` e as docs de mecânicas, fases e computação. No Enredo (`História_Completa.md` e `.docx`) saiu a frase do empréstimo, e em `docs/historia/dialogos/Dialogos.docx` saíram as duas falas da Clarice. Um save antigo com o walkman na mochila ignora o item (o `Salvamento` pula item sem arquivo). A corrente da porta corta-fogo continua em 5 s: sem o walkman, a Sentinela se evita esperando ela passar. As entradas antigas que citam o walkman ficam como histórico.
+
 ## 2026-11-07 — Sai o caco de espelho
 
 **Decisão:** o item **caco de espelho** (gadget da Loja Universitária que rebatia o farol da Sentinela) foi removido do jogo. O espelho de pé da loja continua, só como cenário.

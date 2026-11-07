@@ -38,7 +38,7 @@ Um robô novo (`cenas/personagens/robo_atirador.tscn`, script `scripts/personage
 
 ### 2.1 Aba Criação e as pilhas
 
-- **Pilhas guardadas.** Com a arma na mochila, uma pilha achada no chão que **não serve para recarregar** nenhum gadget (lanterna, walkman, notebook) é **guardada** (até **9**) em vez de ficar no chão. Se a lanterna precisa, a pilha continua recarregando a lanterna primeiro. Sem a arma, as pilhas funcionam como sempre.
+- **Pilhas guardadas.** Com a arma na mochila, uma pilha achada no chão que **não serve para recarregar** nenhum gadget (lanterna, notebook) é **guardada** (até **9**) em vez de ficar no chão. Se a lanterna precisa, a pilha continua recarregando a lanterna primeiro. Sem a arma, as pilhas funcionam como sempre.
 - **Aba CRIAÇÃO** (`Q` troca de aba): mostra a receita **Bala de impulso: 3 pilhas**, quantas pilhas e balas há e o que falta. `E` cria uma bala. Fica como "Você ainda não tem a arma de impulso" antes de abrir o cofre.
 - **No código:** `Criacao` (`scripts/sistemas/criacao.gd`) decide se dá para criar e cria; `PainelCriacao` desenha a aba; o estoque de pilhas fica em `Inventario.estado` (`pilhas.quantidade`), então vai no save.
 

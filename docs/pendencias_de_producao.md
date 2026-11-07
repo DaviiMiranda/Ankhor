@@ -18,7 +18,7 @@ Estes itens estavam nas pendências do Enredo até 2026-10-15 e saíram de lá q
 - **Diana:** o visual existe (sprites e retratos em `assets/sprites/personagens/diana/`), mas a cena da sala 103 ainda mostra só a Clarice.
 - **Henrique:** se o acesso às câmeras do campus vira uma mecânica (ver o campus, avisar de ronda nova).
 - **Gadgets:** decidido em 2026-11-04 para as cinco primeiras fases ([`mecanicas/mecanicas_de_fase.md`](mecanicas/mecanicas_de_fase.md)). Falta o D-Tec.
-- **Falas em rascunho (2026-11-04):** as 2 falas da Clarice sobre o walkman, as 2 do Zane sobre o pulso e o Nó 3, e a transmissão `diana_convivencia_01`.
+- **Falas em rascunho (2026-11-04):** as 2 do Zane sobre o pulso e o Nó 3, e a transmissão `diana_convivencia_01`.
 
 ## Fases e cenários
 
