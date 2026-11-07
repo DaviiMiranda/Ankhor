@@ -83,6 +83,21 @@ CONFIG = {
             "surpreso": (1024, 391, 1369, 736),
         },
     },
+    "clarice": {
+        "folha": "clarice_referencia/expressoes_oito.webp",
+        "recuo": 0,
+        "tolerancia": 30,
+        "retratos": {
+            "normal": (5, 16, 345, 356),
+            "sorrindo": (343, 16, 683, 356),
+            "seria": (681, 16, 1021, 356),
+            "ironica": (1019, 16, 1359, 356),
+            "surpresa": (5, 388, 345, 728),
+            "preocupada": (343, 388, 683, 728),
+            "triste": (681, 388, 1021, 728),
+            "envergonhada": (1019, 388, 1359, 728),
+        },
+    },
     "zane": {
         "folha": "zane_referencia/expressoes.jpg",
         "recuo": 17,
