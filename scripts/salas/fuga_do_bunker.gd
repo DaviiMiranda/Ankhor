@@ -4,6 +4,7 @@ const CENA_SEGUINTE := "res://cenas/salas/bunker/fim_do_bunker.tscn"
 const ID_CHECKPOINT := "bunker_fuga"
 const X_DA_COMPORTA := 3081.0
 const Y_DA_COMPORTA := 128.0
+const FOLGA_DA_SAIDA := 16.0
 const VELOCIDADE_DO_GRUPO := 150.0
 const FOLGA_DO_PRIMEIRO := 40.0
 const FOLGA_ENTRE_ELES := 25.0
@@ -33,6 +34,8 @@ func _ready() -> void:
 	sirene.finished.connect(sirene.play)
 	gabriel.estamina_infinita = true
 	camera.offset = CAMERA_OLHANDO_PARA_TRAS
+	for pessoa in grupo.get_children():
+		(pessoa as CollisionObject2D).collision_layer = 0
 	if not Checkpoints.esta_ativo(ID_CHECKPOINT, scene_file_path):
 		Checkpoints.marcar(ID_CHECKPOINT, scene_file_path, gabriel.global_position)
 	_comecar.call_deferred()
@@ -49,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	if _saindo:
 		return
 	_mover_grupo(delta)
-	if gabriel.global_position.x >= X_DA_COMPORTA:
+	if gabriel.global_position.x >= X_DA_COMPORTA - FOLGA_DA_SAIDA:
 		_sair()
 
 
@@ -76,7 +79,7 @@ func _mover(pessoa: PersonagemParado, alvo: float, delta: float) -> void:
 		AtorDeCena.parar(pessoa)
 	if pessoa.global_position.x >= X_DA_COMPORTA - 0.5:
 		_dentro[pessoa] = true
-		_entrar_na_comporta(pessoa)
+		_entrar_na_comporta(pessoa).finished.connect(pessoa.queue_free)
 
 
 func _sair() -> void:
@@ -92,10 +95,11 @@ func _sair() -> void:
 	escurecer.tween_callback(get_tree().change_scene_to_file.bind(CENA_SEGUINTE))
 
 
-func _entrar_na_comporta(quem: Node2D) -> void:
+func _entrar_na_comporta(quem: Node2D) -> Tween:
 	var entrar := create_tween().set_parallel()
 	entrar.tween_property(quem, "global_position:y", Y_DA_COMPORTA, SEGUNDOS_ENTRANDO)
 	entrar.tween_property(quem, "modulate:a", 0.0, SEGUNDOS_ENTRANDO)
+	return entrar
 
 
 func _os_robos() -> Array[RoboDeCena]:

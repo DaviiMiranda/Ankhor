@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-07 — Fuga do bunker: o Gabriel não trava mais na comporta
+
+**Problema (relato de teste):** na fuga, o jogo "travava" e só os tiros continuavam. Quem chegava à comporta pela parte de cima do corredor (para onde se costuma ir para desviar) batia nos corpos do Zane, da Clarice e da Diana, que já tinham sumido com o fade mas continuavam com colisão na frente da comporta. O Gabriel parava antes do ponto de saída, e como o grupo e os robôs andam em relação a ele, tudo parecia parado, menos os atiradores.
+
+**Correção:** na fuga, o grupo não colide com o Gabriel (só corre na frente dele); quem entra na comporta sai da cena depois do fade; e a saída dispara 16 px antes da comporta (`FOLGA_DA_SAIDA`). Conferido por script: correndo colado em cima, colado embaixo e no meio, o Gabriel chega ao Laboratório.
+
+**Afeta:** `scripts/salas/fuga_do_bunker.gd`, `docs/fases/bunker.md`.
+
 ## 2026-11-06 — Fuga jogável e mais longa, sprites antigos da Clarice, e a chegada ao Laboratório
 
 **Decisão (história):** o grupo chega junto ao Laboratório. Na Emergência do D-Tec eles conversam; a **Diana torce o tornozelo** na escada, e a **Clarice fica com ela**. O **Zane** sai com o Gabriel, mas **vai por outro caminho e some**, e o **Gabriel continua sozinho**. Para onde o Zane foi e se ele volta ficou pendente (Enredo, 10.4). Na fuga, os robôs **atiram**.
