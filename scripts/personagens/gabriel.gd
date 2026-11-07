@@ -79,6 +79,7 @@ const PEITO_NO_QUADRO := {
 
 var tabela_maos: Dictionary = MAOS
 var tabela_maos_correndo: Dictionary = MAOS_CORRENDO
+var tiras_do_gesto_da_mochila: Dictionary = GestoMochila.TIRAS
 var lanterna_infinita := false
 var multiplicador_de_velocidade := 1.0
 var olhar_travado := false
@@ -316,7 +317,7 @@ func pode_mexer_na_mochila() -> bool:
 
 func comecar_gesto_da_mochila() -> void:
 	_velocidade_propria = Vector2.ZERO
-	tocar_tira(GestoMochila.TIRAS[vista], GestoMochila.QUADROS)
+	tocar_tira(tiras_do_gesto_da_mochila[vista], GestoMochila.QUADROS)
 
 
 func mostrar_quadro_tira(quadro: int) -> void:

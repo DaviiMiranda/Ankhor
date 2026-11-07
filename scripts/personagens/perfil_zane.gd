@@ -9,6 +9,13 @@ const KIT: Array[Item] = [
 ]
 const VISTAS: Array[String] = ["lado", "frente", "tres_quartos", "costas", "tres_quartos_costas"]
 const PASTA_SPRITES := "res://assets/sprites/personagens/zane/zane_%s.png"
+const TIRAS_DO_CASACO := {
+	"lado": preload("res://assets/sprites/personagens/zane/zane_casaco_lado.png"),
+	"frente": preload("res://assets/sprites/personagens/zane/zane_casaco_frente.png"),
+	"tres_quartos": preload("res://assets/sprites/personagens/zane/zane_casaco_tres_quartos.png"),
+	"costas": preload("res://assets/sprites/personagens/zane/zane_casaco_costas.png"),
+	"tres_quartos_costas": preload("res://assets/sprites/personagens/zane/zane_casaco_tres_quartos_costas.png"),
+}
 const ESTAMINA_MAXIMA := 160.0
 const QUADROS_CORRER := 48
 const PX_POR_QUADRO_CORRENDO := 5.6
@@ -24,6 +31,7 @@ static func aplicar(jogador: Gabriel) -> void:
 	jogador.px_por_quadro_correndo = PX_POR_QUADRO_CORRENDO
 	jogador.tabela_maos = MAOS.MAOS
 	jogador.tabela_maos_correndo = MAOS.MAOS_CORRENDO
+	jogador.tiras_do_gesto_da_mochila = TIRAS_DO_CASACO
 	jogador.lanterna_infinita = true
 	jogador.ansiedade.desativar()
 	jogador.fadiga.estamina_maxima = ESTAMINA_MAXIMA
