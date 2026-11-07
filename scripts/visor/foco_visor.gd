@@ -50,5 +50,9 @@ func soltar() -> void:
 	pass
 
 
+func voltar() -> bool:
+	return false
+
+
 func receber(_evento: InputEvent) -> void:
 	pass

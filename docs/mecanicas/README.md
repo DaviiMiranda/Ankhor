@@ -36,6 +36,7 @@ graph TD
 - **[`furtividade_e_esconderijos.md`](furtividade_e_esconderijos.md):** Tipos de esconderijos (armários, cabines, raízes), microgames de tensão (respiração, imobilidade) e distrações.
 - **[`iluminacao_e_lanterna.md`](iluminacao_e_lanterna.md):** A lanterna a pilha, o dilema ver/ser visto, as luzes de emergência e os flashes (previstas).
 - **[`vida_e_checkpoint.md`](vida_e_checkpoint.md):** 3 corações, dano dos robôs, tela de morte e checkpoints.
+- **[`salvamento_e_tempo_de_jogo.md`](salvamento_e_tempo_de_jogo.md):** Os seis espaços de save (gravar por cima ou num livre) e o tempo de jogo da campanha, sem a pausa.
 - **[`itens_e_inventario.md`](itens_e_inventario.md):** Pegar, guardar, equipar e usar itens: inventário em grade (matriz), espaços de gadget e a lanterna.
 - **[`cofre_e_codigos.md`](cofre_e_codigos.md):** Cofres com código de dígitos, em que o jogador junta as pistas da sala e testa as combinações (o primeiro está no cinema do Centro de Convivência).
 - **[`hackeamento.md`](hackeamento.md):** Minigames do notebook para abrir portas trancadas (Sequência e Sincronia), em três dificuldades.

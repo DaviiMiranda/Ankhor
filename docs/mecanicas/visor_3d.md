@@ -31,7 +31,12 @@ Nada disso é texto novo de história: os cartões e os papéis mostram os títu
 | No quadro | **Esc** afasta a câmera |
 | Numa recompensa de coleção (farol, disquetes, tricórnio, jaqueta, óculos) | **WASD** (ou setas) e o **mouse** giram a peça, **Esc** afasta a câmera. Detalhes na seção 3.1 |
 
-O menu da TV tem **Salvar jogo** e **Voltar** (que tira os óculos). Em cima ele mostra a data e a hora do último save, ou "Nenhum jogo salvo". Ao salvar, toca o som de salvar, aparece **Jogo salvo** (ou **Não foi possível salvar**) e o quadro branco já mostra a hora nova. Dá para salvar quantas vezes quiser.
+O menu da TV mostra os **seis espaços de save**, um por linha, como no *Resident Evil*: o número, o **tempo de jogo** daquele save e a fase (`3  01:02:05  Biblioteca`), ou **Vazio**. Embaixo aparece a data e a hora do espaço escolhido. No fim da lista, **Voltar** tira os óculos. O cursor começa no espaço do último save carregado ou feito; num jogo novo, no primeiro espaço vazio.
+
+- **Espaço vazio:** salva direto.
+- **Espaço ocupado:** pergunta **Gravar por cima do espaço 3?** com **Sim, gravar por cima** e **Não** (o cursor começa no Não). **Esc** cancela a pergunta, sem afastar a câmera.
+
+Ao salvar, toca o som de salvar, aparece **Jogo salvo no espaço 3** (ou **Não foi possível salvar**), a linha do espaço já mostra o tempo novo e o quadro branco mostra a hora nova. Dá para salvar quantas vezes quiser, em quantos espaços quiser. Detalhes dos espaços e do tempo de jogo em [`salvamento_e_tempo_de_jogo.md`](salvamento_e_tempo_de_jogo.md).
 
 Salvar faz o mesmo que antes: a vida volta a 3 e o pedestal vira o checkpoint da fase. **Entrar no visor e sair sem salvar não muda nada.** O HUD da sala segura só mostra "Jogo salvo" na volta se o jogador salvou.
 
@@ -42,7 +47,7 @@ A pausa (Esc) não abre dentro do visor: lá o Esc serve para afastar ou tirar o
 A sala segura **não é recarregada**. O autoload `Visor` (`scripts/sistemas/visor.gd`):
 
 1. **`abrir(cena, posição)`**, chamado pela `MaquinaDeSalvar` com a tela já escura: tira a sala 2D da árvore de cenas (`remove_child`), **sem apagar**, e põe a cena 3D no lugar. A sala fica guardada na memória, com o Gabriel parado de óculos no rosto, a máquina no meio da animação e tudo o mais como estava.
-2. **`salvar()`**, chamado pelo menu da TV: limpa a vida, marca o checkpoint e grava o arquivo (`Salvamento.salvar`) com a cena e a posição que a máquina passou.
+2. **`salvar(espaco)`**, chamado pelo menu da TV: limpa a vida, marca o checkpoint e grava o espaço escolhido (`Salvamento.salvar`) com a cena e a posição que a máquina passou.
 3. **`fechar()`**, ao tirar os óculos: apaga a cena 3D, devolve a sala 2D à árvore e emite **`fechado(salvou)`**.
 
 A `MaquinaDeSalvar` fica esperando esse sinal (`await Visor.fechado`). Quando ele chega, ela clareia a tela e toca a animação de tirar os óculos de trás para a frente, como antes.
