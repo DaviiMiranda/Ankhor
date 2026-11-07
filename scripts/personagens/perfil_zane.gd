@@ -9,7 +9,7 @@ const KIT: Array[Item] = [
 ]
 const VISTAS: Array[String] = ["lado", "frente", "tres_quartos", "costas", "tres_quartos_costas"]
 const PASTA_SPRITES := "res://assets/sprites/personagens/zane/zane_%s.png"
-const ESTAMINA_MAXIMA := 200.0
+const ESTAMINA_MAXIMA := 160.0
 const QUADROS_CORRER := 48
 const PX_POR_QUADRO_CORRENDO := 5.6
 

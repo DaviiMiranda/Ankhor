@@ -8,7 +8,7 @@ O Zane é jogável em um trecho: a **ala do escritório**, a mini fase do fim do
 |---|---|---|
 | Sprites | `gabriel/` | `zane/`: parado, caminhada, **corrida** e **hack** |
 | Corrida | curvado, 24 quadros | **ereto**, passo largo e saltado, **48 quadros** |
-| Estamina | 100 | **200** (mesmo gasto e mesma regeneração: corre o dobro do tempo) |
+| Estamina | 100 | **160** (mesmo gasto e mesma regeneração: corre 60% mais tempo) |
 | Ansiedade | sim | **não tem**: a barra e o efeito somem da tela (`Ansiedade.desativar()`) |
 | Lanterna | pilha de 240 s | **infinita** (`Gabriel.lanterna_infinita`) |
 | Itens | o que ele pegou | **kit próprio**: lanterna, flash (2) e braço de hack |
