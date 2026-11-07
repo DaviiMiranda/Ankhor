@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-07 — Despertar em três ilustrações
+
+**Decisão:** o despertar de Gabriel deixa de usar vídeo e será contado em três ilustrações em pixel art, no estilo do prólogo: a cabine transformada, Gabriel despertando e o olhar dele para a Biblioteca. Até as imagens ficarem prontas, a cena mostra provisoriamente a ilustração da cabine do prólogo; mantém a transição para a sala e a opção de pular.
+
+**Por quê:** pedido para substituir o vídeo por quadros que serão produzidos no Nano Banana, mantendo o conteúdo já decidido para o despertar.
+
+**Afeta:** `cenas/cutscenes/seg_acordar.tscn`, `docs/historia/História_Completa.md`, `docs/historia/roteiro/cutscenes/seg_acordar.md` e `README.md`; o vídeo `assets/video/cutscenes/seg_acordar.ogv` e seu `.uid` foram removidos.
+
 ## 2026-11-07 — Respiração mais difícil no bunker
 
 **Decisão:** a faixa segura da respiração contida fica mais estreita, o marcador se move e oscila mais rápido, e o ruído acumula mais depressa e se recupera mais devagar. Ansiedade e cansaço continuam afetando a dificuldade; o tempo de espera do Ciborgue e a pausa dos painéis não mudam. Os valores estão em [`mecanicas/furtividade_e_esconderijos.md`](mecanicas/furtividade_e_esconderijos.md), seção 2.D.
