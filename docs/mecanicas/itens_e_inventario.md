@@ -43,20 +43,23 @@ Walkman, máscara de gás e caco de espelho são gadgets novos, e o módulo de p
 - **Carga pesada:** `carga_pesada` no `Item` impede de correr, faz barulho e libera a tecla `G` para largar.
 - **Chave usada:** ao destrancar, a `Porta` tira a chave do inventário.
 
+### Chips eletrônicos
+
+**Chips** são recursos coletáveis, com até 5 unidades por espaço, usados na aba Criação: 1 chip e 1 pilha por flash, ou 1 chip e 3 pilhas por bala de impulso. Por compatibilidade com cenas e saves antigos, o arquivo e o id internos ainda se chamam `pedra`; a arte mostra uma placa de microcontrolador; o chip dos óculos continua uma peça de coleção separada. O item deixou de ser equipável e não pode ser arremessado. Assim, a distração pelo buraco da sala 204 está indisponível.
+
 ### Gadgets em teste (sala de teste)
 
-Os três estão na sala de teste (menu Fases → Teste, só pelo editor) e ainda não entraram em nenhuma fase. Os números estão no Inspetor da cena de cada um e são um primeiro chute para o grupo ajustar jogando.
+Os gadgets podem ser testados na sala de teste (menu Fases → Teste). Os números ficam no Inspetor da cena de cada um e podem ser ajustados após os testes.
 
 | Gadget | Como usa | O que faz | O custo |
 |---|---|---|---|
 | **Flash** (`clarao`) | Tecla do espaço | Flash que paralisa por 3,5 s os robôs a até 110 px. O tempo é multiplicado pelo `fator_clarao` do robô: Sentinela ×1,5 (enxerga, sofre mais), Rastreador ×0,6 | No máximo **2**. Paralisado, o robô apaga os olhos; depois procura o Gabriel onde está |
-| **Pedra** (`pedra`) | Tecla do espaço | Joga uma pedra ~110 px para onde o Gabriel olha (para antes de uma parede). Ela sai da altura do peito (`Gabriel.posicao_do_peito()`) e cai até o chão em arco. Onde cai, faz barulho: os robôs que ouvem vão investigar | No máximo **5**. Não serve numa perseguição |
 | **Notebook** (`notebook`) | Tecla do espaço, parado perto do alvo (44 px) | Hackeia: **porta trancada** abre ao vencer um minigame (ver [`hackeamento.md`](hackeamento.md)); **robô** fica desligado 8 s. Em robô, uma barra em cima do Gabriel mostra o progresso de 2,5 s | Gasta 25% da bateria (4 hacks). Durante o hack o Gabriel não se mexe e a tela acesa conta como lanterna para o Sentinela. Levar dano interrompe. Robô **só por trás** |
-| **Arma de impulso** (`arma_impulso`) | Apertar a tecla do espaço **trava a mira no robô mais próximo**; apertar **de novo** atira (`Shift` cancela) | Onda de choque num **cone de 30°, 150 px**: **empurra os robôs** e os paralisa por 0,9 s. Fica no cofre do cinema (Centro de Convivência). Ver [`combate.md`](combate.md) | Até **6 balas** (começa com 2), criadas na aba **Criação** a 3 pilhas cada. Não recarrega sozinha |
+| **Arma de impulso** (`arma_impulso`) | Apertar a tecla do espaço **trava a mira no robô mais próximo**; apertar **de novo** atira (`Shift` cancela) | Onda de choque num **cone de 30°, 150 px**: **empurra os robôs** e os paralisa por 0,9 s. Fica no cofre do cinema (Centro de Convivência). Ver [`combate.md`](combate.md) | Até **6 balas** (começa com 2), criadas na aba **Criação** a 1 chip e 3 pilhas cada. Não recarrega sozinha |
 
 - **Itens que empilham:** um item com `maximo_unidades` maior que 0 ocupa um espaço só; pegar outro soma 1 até o máximo (cheio, fica no chão com o aviso "no máximo N"). A barrinha do espaço mostra quantas unidades sobram e o número no canto de baixo à direita mostra a quantidade.
 - **Acabou:** quando um gadget chega a zero (unidades, ou bateria da lanterna e do notebook), o ícone fica escuro e aparece um **0 vermelho** no canto do espaço, no HUD e no inventário.
-- **Conteúdo de computação:** o barulho da pedra é a mesma **BFS** do som dos passos (`Robo.ouvir_barulho`); o "só por trás" do notebook é **produto escalar** entre a direção do olhar do robô e a direção até o Gabriel (negativo = atrás). Detalhes em [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md).
+- **Conteúdo de computação:** o som dos passos usa **BFS** (`Robo.ouvir_barulho`); o "só por trás" do notebook é **produto escalar** entre a direção do olhar do robô e a direção até o Gabriel (negativo = atrás). Detalhes em [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md).
 - **Paralisado** é o estado `ATORDOADO` da máquina de estados do robô: não anda, não vê, não ouve, não ataca.
 
 ---
@@ -89,7 +92,7 @@ grade = [ [pote, null, null, null],     linha 0
 | Base de tudo que interage com `E` (`Interagivel`) | `scripts/itens/interagivel.gd` |
 | Efeito da lanterna equipada (a luz) | `cenas/itens/lanterna.tscn` |
 | Pilha no chão (recarga) | `cenas/itens/pilha_no_chao.tscn` |
-| Flash, pedra, notebook (efeitos) | `cenas/itens/clarao.tscn`, `pedra.tscn` (e `pedra_arremessada.tscn`), `notebook.tscn` |
+| Flash e notebook (efeitos) | `cenas/itens/clarao.tscn`, `notebook.tscn` |
 | Destaque dos coletáveis (luz que pulsa e brilho) | `cenas/itens/destaque_coletavel.tscn` |
 | HUD (espaços de gadget, aviso "[E]", mensagem) | `cenas/interface/hud.tscn` |
 | Tela do inventário (abas Itens e Anotações) | `cenas/interface/tela_inventario.tscn` |
@@ -124,14 +127,14 @@ Para destacar outra coisa coletável, instancie `cenas/itens/destaque_coletavel.
 
 A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo novo), o jogo pausa e mostra a imagem grande do item, o nome e a descrição. É como o Resident Evil faz ao pegar um objeto.
 
-- **Quem dispara:** `Inventario.adicionar()` registra o `id` em `Inventario.vistos` e emite o sinal `item_novo`. Pegar mais uma unidade de um item que empilha (pedra, clarão) não dispara de novo.
+- **Quem dispara:** `Inventario.adicionar()` registra o `id` em `Inventario.vistos` e emite o sinal `item_novo`. Pegar mais uma unidade de um item que empilha (chips, clarão) não dispara de novo.
 - **Quem mostra:** `cenas/interface/tela_item_novo.tscn`, um autoload chamado `ItemNovo`. Fica acima de todas as telas (camada 10). Se já houver outra tela aberta (menu de pausa, documento), ela espera fechar. Vários itens ao mesmo tempo entram numa fila.
 - **Fechar:** `E` ou `Esc`, só depois de 0,45 s.
 - **Sem imagem detalhada:** o item mostra o ícone de 16 × 16 ampliado em escala inteira, com a mesma descrição. Nenhum item fica sem a tela.
 - **A descrição** é o campo `descricao` do item (o mesmo que aparece no inventário). Cabem 7 linhas; se passar, o Godot avisa no console.
 - **Para testar:** a sala de teste tem um exemplar de cada item do jogo. Os das fases (chaves, molho de chaves, disquete e alicate) ficam em fila no canto direito, depois da porta dos robôs.
 - **Examinar pelo inventário:** `TelaInventario` chama `ItemNovo.examinar(item)`. Nesse modo a tela não despausa o jogo ao fechar (quem pausou foi o inventário), e o inventário ignora as teclas enquanto ela está aberta.
-- **Com imagem detalhada:** todos os 11 itens (lanterna, rádio, flash, pedra, notebook, as chaves da manutenção, da fita azul e do depósito, o molho de chaves, o alicate e o disquete da Clarice). A tela com o ícone ampliado continua existindo para um item novo que ainda não tenha imagem.
+- **Com imagem detalhada:** os itens com arte detalhada (lanterna, rádio, flash, notebook, as chaves da manutenção, da fita azul e do depósito, o molho de chaves, o alicate e o disquete da Clarice). A tela com o ícone ampliado continua existindo para um item novo que ainda não tenha imagem.
 
 ### Como colocar a imagem detalhada de um item
 

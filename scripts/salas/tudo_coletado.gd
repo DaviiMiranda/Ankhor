@@ -5,7 +5,7 @@ const PASTA_ITENS := "res://dados/itens/"
 const PASTA_TRANSMISSOES := "res://dados/transmissoes/"
 const PASTA_DIALOGOS := "res://dados/dialogos/"
 const ID_LANTERNA := "lanterna"
-const PRIORIDADE_DOS_GADGETS := ["arma_impulso", "clarao", "pedra"]
+const PRIORIDADE_DOS_GADGETS := ["arma_impulso", "clarao"]
 const PRIORIDADE_DAS_FERRAMENTAS := ["radio", "modulo_pulso", "mapa_diana", "alicate"]
 
 
