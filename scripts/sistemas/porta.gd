@@ -5,6 +5,7 @@ const SOM_ABRIR := preload("res://assets/audio/efeitos/objetos/porta_abrir.wav")
 const SOM_EMPERRADA := preload("res://assets/audio/efeitos/objetos/porta_emperrada.wav")
 const LARGURA_PECA_PAREDE := 80.0
 const TOLERANCIA_FOLHA := 12.0
+const SEGUNDOS_PROTEGIDO_AO_ATRAVESSAR := 2.0
 
 static var _chegada := ""
 static var _destrancadas := {}
@@ -158,6 +159,7 @@ func tocar_abertura() -> void:
 func _trocar_de_cena() -> void:
 	PerseguicaoEntreSalas.anotar(get_tree(), self)
 	PerseguidorPerpetuo.gabriel_saiu_pela(self)
+	Vida.proteger(SEGUNDOS_PROTEGIDO_AO_ATRAVESSAR)
 	_chegada = porta_destino
 	get_tree().change_scene_to_file(cena_destino)
 
@@ -168,6 +170,7 @@ func _sair_pela_porta() -> void:
 		return
 	PerseguicaoEntreSalas.chamar(self)
 	_atravessando = true
+	Vida.proteger(SEGUNDOS_PROTEGIDO_AO_ATRAVESSAR)
 	_fechar_folha()
 	gabriel.global_position = global_position
 	var camera := gabriel.get_node_or_null("Camera2D") as Camera2D

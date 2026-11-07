@@ -13,6 +13,18 @@
 
 **Afeta:** `scripts/sistemas/tempo_de_jogo.gd` (autoload novo `TempoDeJogo`, em `project.godot`), `scripts/sistemas/salvamento.gd`, `scripts/sistemas/fase.gd` (`nome_da_cena`, também usado pelo quadro do quarto, que deixa de mostrar "?" no Labirinto), `scripts/sistemas/visor.gd`, `cenas/visor/menu_visor.tscn` e `scripts/visor/menu_visor.gd`, `scripts/visor/sala_visor.gd`, `foco_visor.gd`, `tela_do_visor.gd` e `quadro_do_visor.gd`, `cenas/menu_principal.tscn` e `scripts/menu_principal.gd` (painel Carregar), `cenas/interface/tela_pausa.tscn` e `scripts/interface/tela_pausa.gd`, `docs/mecanicas/salvamento_e_tempo_de_jogo.md` (novo), `sala_segura.md` e `visor_3d.md`. Não toca na história.
 
+## 2026-11-07 — Zane: estamina 160, efeitos no braço de hack e o casaco no lugar da mochila
+
+**Decisão:**
+- **Estamina:** a do Zane cai de 200 para **160** (o Gabriel tem 100).
+- **Energia no hack:** enquanto o braço estende e a invasão corre, a mão de metal brilha em ciano com faíscas e uma luz no braço, e o robô alvo fica ciano, pulsando e cheio de faíscas.
+- **Braço quente:** enquanto o implante esfria (6 s), a mão fica em brasa, com luz vermelha no braço e fumaça, apagando junto com a recarga.
+- **Inventário:** o Zane abre a jaqueta com as duas mãos, mostrando o forro com bolsos e linhas de luz, no lugar da animação da mochila (que era a do Gabriel, com o corpo do Gabriel).
+- A descrição do braço de hack no inventário não diz mais o alcance em pixels.
+
+**Por quê:** pedido do Davi.
+**Afeta:** `scripts/personagens/perfil_zane.gd`, `scripts/itens/braco_hack.gd` e `cenas/itens/braco_hack.tscn`, `dados/itens/braco_hack.tres`, `scripts/personagens/gabriel.gd` (`tiras_do_gesto_da_mochila`), `assets/modelagem/personagens/gerar_zane_casaco.py` (novo) e os sprites `zane_casaco_<vista>.png`, `docs/mecanicas/zane_jogavel.md`, `docs/fases/labirinto.md`.
+
 ## 2026-11-07 — Fuga do bunker: o Gabriel não trava mais na comporta
 
 **Problema (relato de teste):** na fuga, o jogo "travava" e só os tiros continuavam. Quem chegava à comporta pela parte de cima do corredor (para onde se costuma ir para desviar) batia nos corpos do Zane, da Clarice e da Diana, que já tinham sumido com o fade mas continuavam com colisão na frente da comporta. O Gabriel parava antes do ponto de saída, e como o grupo e os robôs andam em relação a ele, tudo parecia parado, menos os atiradores.
