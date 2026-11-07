@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-07 — Respiração mais difícil no bunker
+
+**Decisão:** a faixa segura da respiração contida fica mais estreita, o marcador se move e oscila mais rápido, e o ruído acumula mais depressa e se recupera mais devagar. Ansiedade e cansaço continuam afetando a dificuldade; o tempo de espera do Ciborgue e a pausa dos painéis não mudam. Os valores estão em [`mecanicas/furtividade_e_esconderijos.md`](mecanicas/furtividade_e_esconderijos.md), seção 2.D.
+
+**Por quê:** pedido para aumentar a dificuldade de se esconder do robô no bunker. O equilíbrio precisa de teste humano com o controle.
+
+**Afeta:** `scripts/sistemas/respiracao_contida.gd`, `docs/mecanicas/furtividade_e_esconderijos.md`.
+
 ## 2026-11-07 — Tempo de jogo da campanha e seis espaços de save
 
 **Decisão:** o jogo passa a contar o **tempo de jogo** da campanha, sem a pausa, e a ter **seis espaços de save**, como no *Resident Evil*.

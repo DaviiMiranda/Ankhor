@@ -15,21 +15,21 @@ const COR_RUIDO := Color(1.0, 0.3, 0.25)
 
 static var _ja_ensinou := false
 
-@export var largura_faixa_calmo: float = 0.4
-@export var largura_faixa_ansioso: float = 0.26
+@export var largura_faixa_calmo: float = 0.28
+@export var largura_faixa_ansioso: float = 0.18
 @export var fator_faixa_cansado: float = 0.8
-@export var subida_calmo: float = 0.12
-@export var subida_ansioso: float = 0.22
-@export var descida: float = 0.3
-@export var tremor: float = 0.15
-@export var ruido_fora_da_faixa: float = 0.45
-@export var ruido_recuperado: float = 0.25
+@export var subida_calmo: float = 0.18
+@export var subida_ansioso: float = 0.28
+@export var descida: float = 0.38
+@export var tremor: float = 0.2
+@export var ruido_fora_da_faixa: float = 0.65
+@export var ruido_recuperado: float = 0.18
 
 var nivel := 0.5
 var ruido := 0.0
 
 var _gabriel: Gabriel
-var _largura := 0.4
+var _largura := 0.28
 var _tempo := 0.0
 var _som_ofegante: AudioStreamPlayer
 
