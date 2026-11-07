@@ -198,7 +198,9 @@ func _restaurar_inventario(arquivo: ConfigFile) -> void:
 			Inventario.grade[l][c] = _item_de(linhas[l][c])
 	var ids_gadgets: Array = arquivo.get_value("inventario", "gadgets", [])
 	for i in mini(ids_gadgets.size(), Inventario.ESPACOS_GADGET):
-		Inventario.gadgets[i] = _item_de(ids_gadgets[i])
+		var item := _item_de(ids_gadgets[i])
+		if item != null and item.equipavel:
+			Inventario.gadgets[i] = item
 	Inventario.estado = arquivo.get_value("inventario", "estado", {})
 	Inventario.pegos = arquivo.get_value("inventario", "pegos", {})
 	Inventario.vistos = arquivo.get_value("inventario", "vistos", {})
