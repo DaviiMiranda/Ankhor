@@ -69,7 +69,8 @@ func _entrada_andando(evento: InputEvent) -> void:
 
 func _entrada_focado(evento: InputEvent) -> void:
 	if evento.is_action_pressed("pausar"):
-		_voltar_a_andar()
+		if not _foco.voltar():
+			_voltar_a_andar()
 	elif evento is InputEventKey or evento is InputEventMouseMotion:
 		_foco.receber(evento)
 	else:
@@ -162,8 +163,8 @@ func _ler(documento: Documento) -> void:
 	tela_documento.abrir(documento)
 
 
-func _salvar() -> void:
-	tela.menu.mostrar_resultado(Visor.salvar())
+func _salvar(espaco: int) -> void:
+	tela.menu.mostrar_resultado(espaco, Visor.salvar(espaco))
 
 
 func _sair() -> void:

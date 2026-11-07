@@ -2,7 +2,6 @@ class_name QuadroDoVisor
 extends FocoVisor
 
 const FONTE := preload("res://cenas/interface/fonte_jogo.tres")
-const PASTA_FASES := "res://dados/fases/"
 const PASTA_TRANSMISSOES := "res://dados/transmissoes/"
 const TINTA_TITULO := Color("c02a2a")
 const TINTA := Color("2a3a9a")
@@ -66,11 +65,8 @@ func _escrever(rotulo: Label3D, texto: String, do_alto: float) -> void:
 
 
 func _nome_da_fase(cena: String) -> String:
-	for arquivo in ResourceLoader.list_directory(PASTA_FASES):
-		var fase := load(PASTA_FASES + arquivo) as Fase
-		if fase and fase.pronta() and fase.cena.get_base_dir() == cena.get_base_dir():
-			return fase.nome
-	return FASE_DESCONHECIDA
+	var nome := Fase.nome_da_cena(cena)
+	return FASE_DESCONHECIDA if nome.is_empty() else nome
 
 
 func _contar(pasta: String) -> int:

@@ -6,6 +6,7 @@ signal opcoes_pedidas
 
 const FASE_TESTE := preload("res://dados/fases/teste.tres")
 const COR_TESTE := Color(1.0, 0.85, 0.2)
+const SEM_DATA := "Espaço livre"
 
 @export var cena_novo_jogo: PackedScene
 @export var fases: Array[Fase] = []
@@ -27,6 +28,12 @@ const COR_TESTE := Color(1.0, 0.85, 0.2)
 @onready var musica: AudioStreamPlayer = $Musica
 @onready var som_passar: AudioStreamPlayer = $SomPassar
 @onready var som_clique: AudioStreamPlayer = $SomClique
+
+@onready var painel_carregar: VBoxContainer = $Monitor/Carregar
+@onready var rolagem_carregar: ScrollContainer = $Monitor/Carregar/Rolagem
+@onready var botoes_carregar: VBoxContainer = $Monitor/Carregar/Rolagem/Lista
+@onready var botao_voltar_carregar: Button = $Monitor/Carregar/Rolagem/Lista/BotaoVoltarCarregar
+@onready var detalhe_carregar: Label = $Monitor/Carregar/Detalhe
 
 @onready var painel_opcoes: VBoxContainer = $Monitor/Opcoes
 @onready var rolagem_opcoes: ScrollContainer = $Monitor/Opcoes/Rolagem
@@ -52,12 +59,15 @@ const COR_TESTE := Color(1.0, 0.85, 0.2)
 var _ruido := FastNoiseLite.new()
 var _tempo := 0.0
 var _tocar_ao_passar := false
+var _botoes_dos_espacos: Array[Button] = []
 
 
 func _ready() -> void:
+	TempoDeJogo.parar()
 	botao_novo_jogo.pressed.connect(_ao_apertar_novo_jogo)
 	botao_fases.pressed.connect(_mostrar_fases.bind(true))
-	botao_continuar.pressed.connect(_ao_apertar_continuar)
+	botao_continuar.pressed.connect(_mostrar_carregar.bind(true))
+	botao_voltar_carregar.pressed.connect(_mostrar_carregar.bind(false))
 	botao_opcoes.pressed.connect(_ao_apertar_opcoes)
 	botao_creditos.pressed.connect(_mostrar_creditos.bind(true))
 	botao_sair.pressed.connect(_ao_apertar_sair)
@@ -80,7 +90,9 @@ func _ready() -> void:
 
 	botao_continuar.disabled = not Salvamento.existe()
 	_montar_lista_fases()
+	_montar_lista_carregar()
 	lista_fases.hide()
+	painel_carregar.hide()
 	painel_opcoes.hide()
 	painel_controles.hide()
 	painel_creditos.hide()
@@ -88,6 +100,7 @@ func _ready() -> void:
 	_ligar_sons(menu)
 	_ligar_sons(linha_final)
 	_ligar_sons(botoes_fases)
+	_ligar_sons(botoes_carregar)
 	_ligar_sons(botoes_opcoes)
 	_ligar_sons(botoes_controles)
 	_ligar_sons(botoes_creditos)
@@ -96,7 +109,7 @@ func _ready() -> void:
 	Configuracoes.mudou.connect(_ao_mudar_configuracoes)
 	_ao_mudar_configuracoes()
 
-	for rolagem in [rolagem_fases, rolagem_opcoes, rolagem_controles, rolagem_creditos]:
+	for rolagem in [rolagem_fases, rolagem_carregar, rolagem_opcoes, rolagem_controles, rolagem_creditos]:
 		rolagem.get_v_scroll_bar().custom_minimum_size.x = 4.0
 
 	botao_novo_jogo.grab_focus()
@@ -127,6 +140,9 @@ func _unhandled_input(evento: InputEvent) -> void:
 	elif lista_fases.visible:
 		_mostrar_fases(false)
 		get_viewport().set_input_as_handled()
+	elif painel_carregar.visible:
+		_mostrar_carregar(false)
+		get_viewport().set_input_as_handled()
 
 
 func _montar_lista_fases() -> void:
@@ -147,6 +163,32 @@ func _montar_lista_fases() -> void:
 	botoes_fases.add_child(voltar)
 
 
+func _montar_lista_carregar() -> void:
+	for espaco in Salvamento.espacos():
+		var botao := Button.new()
+		botao.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		botao.clip_text = true
+		botao.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		botao.pressed.connect(_carregar.bind(espaco))
+		botao.focus_entered.connect(_mostrar_data_do_espaco.bind(espaco))
+		botoes_carregar.add_child(botao)
+		botoes_carregar.move_child(botao, botao_voltar_carregar.get_index())
+		_botoes_dos_espacos.append(botao)
+	botao_voltar_carregar.focus_entered.connect(_mostrar_data_do_espaco.bind(0))
+	_atualizar_lista_carregar()
+
+
+func _atualizar_lista_carregar() -> void:
+	for i in _botoes_dos_espacos.size():
+		_botoes_dos_espacos[i].text = Salvamento.texto_do_espaco(i + 1)
+		_botoes_dos_espacos[i].disabled = not Salvamento.ocupado(i + 1)
+
+
+func _mostrar_data_do_espaco(espaco: int) -> void:
+	var data := Salvamento.data_salva(espaco) if espaco != 0 else ""
+	detalhe_carregar.text = SEM_DATA if espaco != 0 and data.is_empty() else data
+
+
 func _pintar(botao: Button, cor: Color) -> void:
 	for estilo in ["font_color", "font_hover_color", "font_focus_color", "font_pressed_color", "font_hover_pressed_color"]:
 		botao.add_theme_color_override(estilo, cor)
@@ -164,6 +206,21 @@ func _mostrar_fases(mostrar: bool) -> void:
 				filho.grab_focus()
 				break
 		rolagem_fases.set_deferred("scroll_vertical", 0)
+	set_deferred("_tocar_ao_passar", true)
+
+
+func _mostrar_carregar(mostrar: bool) -> void:
+	menu.visible = not mostrar
+	painel_carregar.visible = mostrar
+	_tocar_ao_passar = false
+	if not mostrar:
+		botao_continuar.grab_focus()
+	else:
+		_atualizar_lista_carregar()
+		var mais_recente := Salvamento.espaco_mais_recente()
+		var foco := _botoes_dos_espacos[mais_recente - 1] if mais_recente != 0 else botao_voltar_carregar
+		foco.grab_focus()
+		rolagem_carregar.set_deferred("scroll_vertical", 0)
 	set_deferred("_tocar_ao_passar", true)
 
 
@@ -274,6 +331,8 @@ func _comecar_do_zero() -> void:
 	Checkpoints.limpar()
 	Progresso.limpar()
 	Colecionaveis.limpar()
+	Salvamento.esquecer_ultimo_espaco()
+	TempoDeJogo.comecar()
 
 
 func _jogar_fase(fase: Fase) -> void:
@@ -292,12 +351,18 @@ func _ao_apertar_novo_jogo() -> void:
 		print("Menu: ainda não há cena de novo jogo configurada.")
 
 
-func _ao_apertar_continuar() -> void:
+func _carregar(espaco: int) -> void:
 	continuar_pedido.emit()
 	await _esperar_clique()
-	if not Salvamento.carregar():
-		botao_continuar.disabled = true
+	if Salvamento.carregar(espaco):
+		return
+	_atualizar_lista_carregar()
+	botao_continuar.disabled = not Salvamento.existe()
+	if botao_continuar.disabled:
+		_mostrar_carregar(false)
 		botao_novo_jogo.grab_focus()
+	else:
+		botao_voltar_carregar.grab_focus()
 
 
 func _ao_apertar_opcoes() -> void:
