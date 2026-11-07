@@ -2,7 +2,7 @@
 
 ## 2026-11-07 — Chips eletrônicos no lugar da pedra
 
-**Decisão:** o item coletável Pedra deixa de ser um gadget de arremesso e passa a ser **Chips**, recursos eletrônicos destinados à fabricação de flashes e outros itens. Os pontos de coleta existentes passam a oferecer chips. Por enquanto, mantém-se o limite de 5 unidades e usa-se provisoriamente a imagem do chip dos óculos; a arte própria ainda falta. A fabricação de flashes e sua receita ainda não foram implementadas ou definidas. O arremesso de pedra e a distração pelo buraco da sala 204 ficam indisponíveis com esse item.
+**Decisão:** o item coletável Pedra deixa de ser um gadget de arremesso e passa a ser **Chips**, recursos eletrônicos destinados à fabricação de flashes e outros itens. Os pontos de coleta existentes passam a oferecer chips. Por enquanto, mantém-se o limite de 5 unidades e o visual é uma placa de microcontrolador verde com chip preto e trilhas de cobre, a partir da imagem fornecida pelo usuário. O ícone de 16 × 16 e o sprite do chão foram desenhados para combinar com ela. A fabricação de flashes e sua receita ainda não foram implementadas ou definidas. O arremesso de pedra e a distração pelo buraco da sala 204 ficam indisponíveis com esse item.
 
 **Compatibilidade:** o arquivo e o identificador internos `pedra` são mantidos para preservar os pontos de coleta e o conteúdo de saves existentes; uma pedra equipada em um save deixa de ocupar o espaço de gadget ao carregá-lo. O chip dos óculos continua sendo uma peça de coleção separada.
 

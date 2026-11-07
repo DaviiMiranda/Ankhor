@@ -45,7 +45,7 @@ Walkman, máscara de gás e caco de espelho são gadgets novos, e o módulo de p
 
 ### Chips eletrônicos
 
-**Chips** são recursos coletáveis, com até 5 unidades por espaço, previstos para fabricar flashes e outros itens. A receita de flash ainda não foi definida nem implementada. Por compatibilidade com cenas e saves antigos, o arquivo e o id internos ainda se chamam `pedra`; a imagem do chip dos óculos é provisória e a peça da coleção continua separada. O item deixou de ser equipável e não pode ser arremessado. Assim, a distração pelo buraco da sala 204 está indisponível.
+**Chips** são recursos coletáveis, com até 5 unidades por espaço, previstos para fabricar flashes e outros itens. A receita de flash ainda não foi definida nem implementada. Por compatibilidade com cenas e saves antigos, o arquivo e o id internos ainda se chamam `pedra`; a arte mostra uma placa de microcontrolador; o chip dos óculos continua uma peça de coleção separada. O item deixou de ser equipável e não pode ser arremessado. Assim, a distração pelo buraco da sala 204 está indisponível.
 
 ### Gadgets em teste (sala de teste)
 
