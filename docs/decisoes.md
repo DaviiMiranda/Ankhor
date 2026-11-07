@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-07 — O Gabriel mira com a arma de pulso em todas as direções
+
+**Decisão:** o braço com a arma de pulso, que só existia de lado, agora aparece **nas 8 direções da mira** (de lado, de frente, de costas e os dois três quartos; a esquerda é o sprite espelhado). A arma passou a ser **modelada em 3D** no Blender, presa ao antebraço, em vez de desenhada à mão: assim ela gira com o corpo e sai certa em cada vista. Cada vista tem dois quadros, `mirando` e `atirando`; o clarão do tiro sai do bocal da arma em cada uma. Se a mira girar no meio, a tira troca para a vista nova. O quadro "normal" (braço caído) deixou de existir: não era usado. De costas, a arma quase não aparece, porque o braço aponta para longe da câmera.
+
+**Por quê:** pedido do Davi. A versão de lado era só um começo.
+
+**Afeta:** `assets/modelagem/personagens/gerar_gabriel_arma.py` (reescrito: modelo 3D, cinco vistas), os sprites `gabriel_arma_<vista>.png` (cinco, no lugar do `gabriel_arma_lado.png` de 3 quadros), `scripts/personagens/quadros_arma_gabriel.gd` (agora `BOCAIS[vista]`), `scripts/itens/arma_impulso.gd` e a documentação do Gabriel e do combate. **Conferido** no Godot 4.7.2 por script, nas 8 direções: o braço aparece ao mirar e ao atirar, volta ao normal depois, e troca de vista se a mira girar. **O Enredo não foi mexido.**
+
 ## 2026-11-07 — Respiração mais difícil no bunker
 
 **Decisão:** a faixa segura da respiração contida fica mais estreita, o marcador se move e oscila mais rápido, e o ruído acumula mais depressa e se recupera mais devagar. Ansiedade e cansaço continuam afetando a dificuldade; o tempo de espera do Ciborgue e a pausa dos painéis não mudam. Os valores estão em [`mecanicas/furtividade_e_esconderijos.md`](mecanicas/furtividade_e_esconderijos.md), seção 2.D.
