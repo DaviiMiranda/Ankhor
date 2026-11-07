@@ -39,11 +39,11 @@ As seis herdam do mesmo modelo e mudam só a cor da `Escuridao` e da `LuzAmbient
 
 ## 3. Continuar
 
-O botão **Continuar** do menu principal fica habilitado quando existe um save. Ele carrega o último save: o Gabriel reaparece na sala segura, ao lado da máquina, com tudo o que tinha.
+O botão **Continuar** do menu principal fica habilitado quando existe algum save. Ele abre a lista **CARREGAR** com os seis espaços (os vazios ficam apagados), com o cursor no save mais recente; **E** carrega o escolhido: o Gabriel reaparece na sala segura, ao lado da máquina, com tudo o que tinha e com o tempo de jogo daquele save.
 
-Novo jogo e a lista de fases **não apagam** o save: ele só é sobrescrito na próxima vez que o jogador salvar.
+Novo jogo e a lista de fases **não apagam** nenhum save: cada espaço só muda quando o jogador grava por cima dele. Os espaços e o tempo de jogo estão em [`salvamento_e_tempo_de_jogo.md`](salvamento_e_tempo_de_jogo.md).
 
-### O que o arquivo guarda (`user://salvamento.cfg`, `scripts/sistemas/salvamento.gd`)
+### O que o arquivo guarda (`user://salvamento_1.cfg` a `salvamento_6.cfg`, `scripts/sistemas/salvamento.gd`)
 
 | O quê | De onde vem |
 |---|---|
@@ -54,6 +54,8 @@ Novo jogo e a lista de fases **não apagam** o save: ele só é sobrescrito na p
 | Marcas de progresso (energia, grade aberta, invasões...) | `Progresso` |
 | Portas destrancadas | `Porta` |
 | Diálogos já vistos | `Dialogos` |
+| Peças das coleções | `Colecionaveis` |
+| Tempo de jogo, data e hora do save | `TempoDeJogo`, relógio do sistema |
 
 **Não é guardado:** a posição dos robôs (a fase recarrega do zero, como ao morrer) e estados soltos dentro das salas que não passam por `Progresso`. Se uma sala nova guardar o estado fora desses sistemas, ele se perde ao carregar: use `Progresso.marcar`.
 

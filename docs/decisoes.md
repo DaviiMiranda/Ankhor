@@ -1,5 +1,18 @@
 # Registro de decisões
 
+## 2026-11-07 — Tempo de jogo da campanha e seis espaços de save
+
+**Decisão:** o jogo passa a contar o **tempo de jogo** da campanha, sem a pausa, e a ter **seis espaços de save**, como no *Resident Evil*.
+
+- **Tempo de jogo:** começa do zero no Novo jogo e continua do tempo do save ao carregar. Só para na tela **PAUSADO** e no menu principal; inventário, documentos, cutscenes e o quarto do visor contam. Aparece na pausa (*Tempo de jogo: 01:12:01*) e em cada espaço de save. Fica guardado no save.
+- **Salvar:** a TV do quarto do visor mostra os seis espaços (`3  01:02:05  Biblioteca` ou `Vazio`, com a data do escolhido embaixo). Espaço vazio grava direto; ocupado pergunta **Gravar por cima do espaço 3?** (o cursor começa no Não).
+- **Carregar:** o **Continuar** do menu principal abre a lista **CARREGAR**, com o cursor no save mais recente.
+- O save antigo (`user://salvamento.cfg`) vira o espaço 1 sozinho. A confirmação de voltar ao menu na pausa deixa de dizer que "o jogo ainda não salva".
+
+**Por quê:** pedido do Davi, para o jogador poder guardar mais de um ponto da campanha e ver quanto tempo já jogou.
+
+**Afeta:** `scripts/sistemas/tempo_de_jogo.gd` (autoload novo `TempoDeJogo`, em `project.godot`), `scripts/sistemas/salvamento.gd`, `scripts/sistemas/fase.gd` (`nome_da_cena`, também usado pelo quadro do quarto, que deixa de mostrar "?" no Labirinto), `scripts/sistemas/visor.gd`, `cenas/visor/menu_visor.tscn` e `scripts/visor/menu_visor.gd`, `scripts/visor/sala_visor.gd`, `foco_visor.gd`, `tela_do_visor.gd` e `quadro_do_visor.gd`, `cenas/menu_principal.tscn` e `scripts/menu_principal.gd` (painel Carregar), `cenas/interface/tela_pausa.tscn` e `scripts/interface/tela_pausa.gd`, `docs/mecanicas/salvamento_e_tempo_de_jogo.md` (novo), `sala_segura.md` e `visor_3d.md`. Não toca na história.
+
 ## 2026-11-07 — Fuga do bunker: o Gabriel não trava mais na comporta
 
 **Problema (relato de teste):** na fuga, o jogo "travava" e só os tiros continuavam. Quem chegava à comporta pela parte de cima do corredor (para onde se costuma ir para desviar) batia nos corpos do Zane, da Clarice e da Diana, que já tinham sumido com o fade mas continuavam com colisão na frente da comporta. O Gabriel parava antes do ponto de saída, e como o grupo e os robôs andam em relação a ele, tudo parecia parado, menos os atiradores.
