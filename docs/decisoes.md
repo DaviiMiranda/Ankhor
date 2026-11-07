@@ -1,5 +1,21 @@
 # Registro de decisões
 
+## 2026-11-07 — Fase do Zane: o ano do código não aparece mais desenhado no quadro das Reuniões
+
+**Decisão:** o quadro branco da sala de Reuniões tinha o **"1985" em vermelho, circulado e bem grande**, desenhado no próprio sprite: dava a resposta de longe, sem ler nada. Os quatro dígitos viraram um **rabisco vermelho ilegível dentro do mesmo círculo**. A pista continua inteira em "Ler o quadro" (`E`): "DATA-ALVO: 26/10/1985" e "O ano basta."
+
+**Por quê:** pedido do Davi, depois de ver o número grande na parede.
+
+**Afeta:** `assets/modelagem/cenario/gerar_escritorio.py` (`escritorio_quadro_branco`) e o sprite `escritorio_quadro_branco.png`, regerado (nenhuma outra peça do kit mudou), e `docs/fases/labirinto.md`. O código (`1985`), o texto do aviso e a fala do Zane não mudaram. **O Enredo não foi mexido.**
+
+## 2026-11-07 — Fase do Zane: o arquivo deslizante ganha limite de tentativas e um alarme
+
+**Decisão:** o puzzle da sala do Arquivo deixa de ser livre. Cada **tentativa** tem **10 trocas** (o mínimo é 6); gastas as 10 sem ordenar, as pastas voltam para onde estavam e a tentativa se perde. Com as **3 tentativas** perdidas, a **sirene** toca por **20 s** e o Rastreador (todos os robôs da sala) vai investigar o ponto da sirene, ao lado do painel, e fica por lá até o alarme acabar. O painel trava enquanto o alarme toca e depois volta com as 3 tentativas. As tentativas gastas ficam em `Progresso`, então sair da sala não zera. A fala de entrada do Zane avisa do limite.
+
+**Por quê:** pedido do Davi, para o puzzle ter risco como as outras salas (a Sentinela da segurança, a Mariposa das reuniões). Os números (3 tentativas, 10 trocas, 20 s) saíram da conta e ainda precisam de teste de jogo.
+
+**Afeta:** `scripts/sistemas/painel_ordenacao.gd` (campos novos em `Alarme`, desligados por padrão, então a arara da Loja Universitária não muda), `cenas/sistemas/painel_ordenacao.tscn` (som de erro), `scripts/sistemas/sirene.gd` (`soar()`, `esta_tocando()` e `teletransportar_robos`, que no Bloco de salas continua ligado), `cenas/salas/labirinto/escritorio/arquivo.tscn`, `dados/dialogos/zane_escritorio_arquivo.json` e `docs/fases/labirinto.md`. **O Enredo não foi mexido.**
+
 ## 2026-11-07 — Fase do Zane: a sala não fica mais escura ao entrar
 
 **Problema (relato de teste):** na fase em que se joga com o Zane, toda sala em que ele entrava ficava quase preta.
