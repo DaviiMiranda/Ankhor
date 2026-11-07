@@ -1,5 +1,15 @@
 # Registro de decisões
 
+## 2026-11-07 — Fase do Zane: a sala não fica mais escura ao entrar
+
+**Problema (relato de teste):** na fase em que se joga com o Zane, toda sala em que ele entrava ficava quase preta.
+
+**Causa:** as quatro salas da ala do escritório têm um `GatilhoEntrada`, que abre a fala do Zane no primeiro quadro (ele já nasce dentro da área). O diálogo pausa o jogo, e a cortina preta de entrada (`Transicao/Escuro`, que clareia em `duracao_entrada`) era uma animação que pausa junto: parava em cerca de 97% de preto, até o jogador fechar a fala. As outras fases não tinham fala ao nascer, então não aparecia.
+
+**Correção:** em `Sala._ready`, a animação da cortina agora roda mesmo com o jogo pausado (`Tween.TWEEN_PAUSE_PROCESS`). Vale para toda sala. Conferido no Godot 4.7.2 por script, nas quatro salas: a cortina chega a 0 em 1 s, com o diálogo ainda aberto. A iluminação das salas (`Escuridao`) não foi mexida.
+
+**Afeta:** `scripts/salas/sala.gd`.
+
 ## 2026-11-07 — O Gabriel mira com a arma de pulso em todas as direções
 
 **Decisão:** o braço com a arma de pulso, que só existia de lado, agora aparece **nas 8 direções da mira** (de lado, de frente, de costas e os dois três quartos; a esquerda é o sprite espelhado). A arma passou a ser **modelada em 3D** no Blender, presa ao antebraço, em vez de desenhada à mão: assim ela gira com o corpo e sai certa em cada vista. Cada vista tem dois quadros, `mirando` e `atirando`; o clarão do tiro sai do bocal da arma em cada uma. Se a mira girar no meio, a tira troca para a vista nova. O quadro "normal" (braço caído) deixou de existir: não era usado. De costas, a arma quase não aparece, porque o braço aponta para longe da câmera.
