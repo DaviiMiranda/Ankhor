@@ -45,7 +45,7 @@ Walkman, máscara de gás e caco de espelho são gadgets novos, e o módulo de p
 
 ### Chips eletrônicos
 
-**Chips** são recursos coletáveis, com até 5 unidades por espaço, previstos para fabricar flashes e outros itens. A receita de flash ainda não foi definida nem implementada. Por compatibilidade com cenas e saves antigos, o arquivo e o id internos ainda se chamam `pedra`; a arte mostra uma placa de microcontrolador; o chip dos óculos continua uma peça de coleção separada. O item deixou de ser equipável e não pode ser arremessado. Assim, a distração pelo buraco da sala 204 está indisponível.
+**Chips** são recursos coletáveis, com até 5 unidades por espaço, usados na aba Criação: 1 chip e 1 pilha por flash, ou 1 chip e 3 pilhas por bala de impulso. Por compatibilidade com cenas e saves antigos, o arquivo e o id internos ainda se chamam `pedra`; a arte mostra uma placa de microcontrolador; o chip dos óculos continua uma peça de coleção separada. O item deixou de ser equipável e não pode ser arremessado. Assim, a distração pelo buraco da sala 204 está indisponível.
 
 ### Gadgets em teste (sala de teste)
 
@@ -55,7 +55,7 @@ Os gadgets podem ser testados na sala de teste (menu Fases → Teste). Os númer
 |---|---|---|---|
 | **Flash** (`clarao`) | Tecla do espaço | Flash que paralisa por 3,5 s os robôs a até 110 px. O tempo é multiplicado pelo `fator_clarao` do robô: Sentinela ×1,5 (enxerga, sofre mais), Rastreador ×0,6 | No máximo **2**. Paralisado, o robô apaga os olhos; depois procura o Gabriel onde está |
 | **Notebook** (`notebook`) | Tecla do espaço, parado perto do alvo (44 px) | Hackeia: **porta trancada** abre ao vencer um minigame (ver [`hackeamento.md`](hackeamento.md)); **robô** fica desligado 8 s. Em robô, uma barra em cima do Gabriel mostra o progresso de 2,5 s | Gasta 25% da bateria (4 hacks). Durante o hack o Gabriel não se mexe e a tela acesa conta como lanterna para o Sentinela. Levar dano interrompe. Robô **só por trás** |
-| **Arma de impulso** (`arma_impulso`) | Apertar a tecla do espaço **trava a mira no robô mais próximo**; apertar **de novo** atira (`Shift` cancela) | Onda de choque num **cone de 30°, 150 px**: **empurra os robôs** e os paralisa por 0,9 s. Fica no cofre do cinema (Centro de Convivência). Ver [`combate.md`](combate.md) | Até **6 balas** (começa com 2), criadas na aba **Criação** a 3 pilhas cada. Não recarrega sozinha |
+| **Arma de impulso** (`arma_impulso`) | Apertar a tecla do espaço **trava a mira no robô mais próximo**; apertar **de novo** atira (`Shift` cancela) | Onda de choque num **cone de 30°, 150 px**: **empurra os robôs** e os paralisa por 0,9 s. Fica no cofre do cinema (Centro de Convivência). Ver [`combate.md`](combate.md) | Até **6 balas** (começa com 2), criadas na aba **Criação** a 1 chip e 3 pilhas cada. Não recarrega sozinha |
 
 - **Itens que empilham:** um item com `maximo_unidades` maior que 0 ocupa um espaço só; pegar outro soma 1 até o máximo (cheio, fica no chão com o aviso "no máximo N"). A barrinha do espaço mostra quantas unidades sobram e o número no canto de baixo à direita mostra a quantidade.
 - **Acabou:** quando um gadget chega a zero (unidades, ou bateria da lanterna e do notebook), o ícone fica escuro e aparece um **0 vermelho** no canto do espaço, no HUD e no inventário.

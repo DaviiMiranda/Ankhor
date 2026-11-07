@@ -8,7 +8,7 @@ const COR_ABA_INATIVA := Color(0.55, 0.56, 0.52, 1)
 const MARCA_NOVA := " •"
 const DICAS := {
 	Aba.ITENS: "Q: próxima aba   Setas: escolher   1-3: equipar   Tab: fechar",
-	Aba.CRIACAO: "Q: próxima aba   E: criar   Tab: fechar",
+	Aba.CRIACAO: "Q: aba   Setas: receita   E: criar   Tab: fechar",
 	Aba.ANOTACOES: "Q: próxima aba   Setas: escolher e folhear   Tab: fechar",
 	Aba.OBJETIVO: "Q: próxima aba   Tab: fechar",
 }
@@ -148,9 +148,13 @@ func _tratar_itens(evento: InputEvent) -> void:
 
 
 func _tratar_criacao(evento: InputEvent) -> void:
-	if evento.is_action_pressed("interagir") and Criacao.criar_bala():
+	if evento.is_action_pressed("mover_esquerda") or evento.is_action_pressed("ui_left") \
+			or evento.is_action_pressed("mover_direita") or evento.is_action_pressed("ui_right"):
+		painel_criacao.trocar_receita()
+		som_aba.play()
+	elif evento.is_action_pressed("interagir") and painel_criacao.criar():
 		som_equipar.play()
-		Inventario.aviso.emit("Bala de impulso criada")
+		Inventario.aviso.emit("%s criado" % painel_criacao.nome_da_receita())
 
 
 func _examinar() -> void:

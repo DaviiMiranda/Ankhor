@@ -1,8 +1,14 @@
 # Registro de decisões
 
+## 2026-11-07 — Receitas com chips
+
+**Decisão:** na aba Criação, uma bala de impulso custa **1 chip e 3 pilhas**; um flash custa **1 chip e 1 pilha**. As setas escolhem a receita e `E` fabrica. As pilhas excedentes podem ser guardadas antes de obter a arma, mas recarregam primeiro o gadget com menos carga. Criar bala exige a arma; criar o primeiro flash exige espaço na mochila (o último chip consumido libera uma vaga). Mantêm-se os limites de 6 balas e 2 flashes.
+
+**Afeta:** `scripts/sistemas/criacao.gd`, `scripts/interface/painel_criacao.gd`, `scripts/interface/tela_inventario.gd`, `scripts/itens/pilha_no_chao.gd`, `dados/itens/arma_impulso.tres`, `docs/mecanicas/combate.md` e `docs/mecanicas/itens_e_inventario.md`.
+
 ## 2026-11-07 — Chips eletrônicos no lugar da pedra
 
-**Decisão:** o item coletável Pedra deixa de ser um gadget de arremesso e passa a ser **Chips**, recursos eletrônicos destinados à fabricação de flashes e outros itens. Os pontos de coleta existentes passam a oferecer chips. Por enquanto, mantém-se o limite de 5 unidades e o visual é uma placa de microcontrolador verde com chip preto e trilhas de cobre, a partir da imagem fornecida pelo usuário. O ícone de 16 × 16 e o sprite do chão foram desenhados para combinar com ela. A fabricação de flashes e sua receita ainda não foram implementadas ou definidas. O arremesso de pedra e a distração pelo buraco da sala 204 ficam indisponíveis com esse item.
+**Decisão:** o item coletável Pedra deixa de ser um gadget de arremesso e passa a ser **Chips**, recursos eletrônicos destinados à fabricação de flashes e outros itens. Os pontos de coleta existentes passam a oferecer chips. Por enquanto, mantém-se o limite de 5 unidades e o visual é uma placa de microcontrolador verde com chip preto e trilhas de cobre, a partir da imagem fornecida pelo usuário. O ícone de 16 × 16 e o sprite do chão foram desenhados para combinar com ela. A fabricação foi definida na entrada de receitas com chips acima. O arremesso de pedra e a distração pelo buraco da sala 204 ficam indisponíveis com esse item.
 
 **Compatibilidade:** o arquivo e o identificador internos `pedra` são mantidos para preservar os pontos de coleta e o conteúdo de saves existentes; uma pedra equipada em um save deixa de ocupar o espaço de gadget ao carregá-lo. O chip dos óculos continua sendo uma peça de coleção separada.
 
