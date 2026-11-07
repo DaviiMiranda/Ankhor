@@ -5,6 +5,7 @@
 - O Gabriel tem **3 corações** (canto de cima à esquerda da tela).
 - **Um toque de robô tira 1 coração.** A tela pisca vermelho, toca a pancada e o Gabriel é empurrado para longe do robô.
 - Depois de levar dano, ele fica **1,5 s invulnerável** (o sprite pisca): dá tempo de fugir. O robô que atacou também para por ~1,3 s antes de voltar a perseguir.
+- **Atravessar uma porta** (`Porta`, qualquer uma que troque de sala) deixa o Gabriel **2 s invulnerável** ao chegar (`Porta.SEGUNDOS_PROTEGIDO_AO_ATRAVESSAR`, via `Vida.proteger()`), para um robô que esteja perto da porta não pegá-lo na entrada. O sprite pisca igual ao dano.
 - **Zerou:** o jogo pausa, aparece *VOCÊ FOI PEGO* e, em 3 s, o jogo volta ao **último checkpoint** com a vida cheia (ou ao começo da fase, se não houver checkpoint).
 
 ## 2. Checkpoint
