@@ -6,6 +6,7 @@ const COR_PECA_CERTA := Color("2f5a44")
 const COR_ESCOLHIDA := Color("f0d148")
 const COR_TEXTO := Color("d8dee6")
 const COR_PRONTO := Color("7cf09a")
+const COR_ERRO := Color("ff5a3a")
 
 @export var ordem_certa: PackedStringArray = PackedStringArray(["PP", "P", "M", "G", "GG"])
 @export var ordem_inicial: PackedInt32Array = PackedInt32Array([3, 0, 4, 2, 1])
@@ -18,7 +19,15 @@ const COR_PRONTO := Color("7cf09a")
 @export var cena_premio: PackedScene
 @export var quantidade_premio: int = 1
 
+@export_group("Alarme")
+@export var tentativas_maximas: int = 0
+@export var trocas_por_tentativa: int = 0
+@export var sirene: Sirene
+@export var aviso_alarme: String = "Alarme disparado! Os robôs ouviram."
+@export var aviso_travado: String = "O painel travou enquanto o alarme toca."
+
 var _aberto := false
+var _ocupado := false
 var _pecas: Array[int] = []
 var _inicial: Array[int] = []
 var _cursor := 0
@@ -34,6 +43,7 @@ var _rotulos: Array[Label] = []
 @onready var dica: Label = $Tela/Dica
 @onready var som_troca: AudioStreamPlayer = $Tela/SomTroca
 @onready var som_pronto: AudioStreamPlayer = $Tela/SomPronto
+@onready var som_erro: AudioStreamPlayer = $Tela/SomErro
 
 
 func _ready() -> void:
@@ -57,6 +67,9 @@ func pode_interagir() -> bool:
 func interagir() -> void:
 	if Progresso.tem(marca):
 		Inventario.aviso.emit(aviso_ja_ordenado)
+		return
+	if sirene and sirene.esta_tocando():
+		Inventario.aviso.emit(aviso_travado)
 		return
 	_abrir()
 
@@ -102,6 +115,9 @@ func _fechar() -> void:
 func _unhandled_input(evento: InputEvent) -> void:
 	if not _aberto:
 		return
+	if _ocupado:
+		get_viewport().set_input_as_handled()
+		return
 	if evento.is_action_pressed("ui_cancel"):
 		_fechar()
 	elif evento.is_action_pressed("mover_esquerda") or evento.is_action_pressed("ui_left"):
@@ -126,6 +142,73 @@ func _trocar() -> void:
 	_mostrar()
 	if inversoes(_pecas) == 0:
 		_concluir()
+	elif _tem_limite() and _trocas >= trocas_por_tentativa:
+		_perder_tentativa()
+
+
+func _tem_limite() -> bool:
+	return tentativas_maximas > 0 and trocas_por_tentativa > 0
+
+
+func _marca_da_falha(numero: int) -> String:
+	return "%s_falha_%d" % [marca, numero]
+
+
+func _tentativas_gastas() -> int:
+	var total := 0
+	while Progresso.tem(_marca_da_falha(total + 1)):
+		total += 1
+	return total
+
+
+func _tentativas_restantes() -> int:
+	return maxi(tentativas_maximas - _tentativas_gastas(), 0)
+
+
+func _zerar_tentativas() -> void:
+	var total := _tentativas_gastas()
+	for numero in range(1, total + 1):
+		Progresso.desmarcar(_marca_da_falha(numero))
+
+
+func _perder_tentativa() -> void:
+	_ocupado = true
+	Progresso.marcar(_marca_da_falha(_tentativas_gastas() + 1))
+	var restantes := _tentativas_restantes()
+	som_erro.play()
+	visor.text = "TROCAS ESGOTADAS"
+	visor.add_theme_color_override("font_color", COR_ERRO)
+	if restantes > 0:
+		dica.text = "As pastas voltaram ao início. Tentativas: %d" % restantes
+	else:
+		dica.text = "ALARME!"
+	await get_tree().create_timer(1.3, true).timeout
+	_recomecar()
+	_ocupado = false
+	if restantes <= 0:
+		_disparar_alarme()
+
+
+func _recomecar() -> void:
+	_pecas = _inicial.duplicate()
+	_trocas = 0
+	_cursor = 0
+	dica.text = "Lados: escolher o par     E: trocar     Esc: sair"
+	_mostrar()
+
+
+func _disparar_alarme() -> void:
+	_zerar_tentativas()
+	_fechar()
+	Inventario.aviso.emit(aviso_alarme)
+	if sirene:
+		sirene.soar()
+
+
+func _texto_do_visor() -> String:
+	if not _tem_limite():
+		return "TROCAS: %d" % _trocas
+	return "TROCAS %d/%d   TENTATIVAS %d" % [_trocas, trocas_por_tentativa, _tentativas_restantes()]
 
 
 func _concluir() -> void:
@@ -142,7 +225,7 @@ func _concluir() -> void:
 
 func _mostrar() -> void:
 	if not Progresso.tem(marca):
-		visor.text = "TROCAS: %d" % _trocas
+		visor.text = _texto_do_visor()
 		visor.add_theme_color_override("font_color", COR_TEXTO)
 	for i in _pecas.size():
 		_rotulos[i].text = ordem_certa[_pecas[i]]

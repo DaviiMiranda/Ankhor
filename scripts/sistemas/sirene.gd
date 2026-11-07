@@ -5,6 +5,7 @@ static var disparada := false
 
 @export var segundos_tocando: float = 20.0
 @export var piscadas_por_segundo: float = 2.0
+@export var teletransportar_robos := true
 
 var _restante := 0.0
 
@@ -28,13 +29,22 @@ func _process(delta: float) -> void:
 		stop()
 
 
-func _tocar() -> void:
-	await get_tree().physics_frame
-	await get_tree().physics_frame
+func esta_tocando() -> bool:
+	return _restante > 0.0
+
+
+func soar() -> void:
 	_restante = segundos_tocando
 	play()
 	for no in get_tree().get_nodes_in_group("robos"):
 		var robo := no as Robo
 		if robo and robo.grade:
-			robo.global_position = global_position
+			if teletransportar_robos:
+				robo.global_position = global_position
 			robo.distrair(global_position, segundos_tocando)
+
+
+func _tocar() -> void:
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	soar()
