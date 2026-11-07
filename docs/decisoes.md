@@ -6,6 +6,8 @@
 
 **Por quê:** pedido do Davi: modelar no Blender um novo menu igual à mesa do Gabriel no safe room VR, usando o notebook e a janela ao fundo.
 
+**Refino no mesmo dia:** a pedido do Davi, a câmera se aproxima do notebook (posição `-1.47, 1.23, -0.2`, campo de visão vertical de 40°) e a modelagem ganha teclas individuais com legendas, carcaça e trackpad montados em camadas, dobradiças, webcam, portas e ventilação. Caneca, cacto e bordas dos móveis têm curvas mais detalhadas: o cenário passa de 2.732 para 71.282 triângulos. Texturas próprias de madeira em 1024 px e metal, tecido e parede em 512 px incluem cor, rugosidade e normal, mantendo Nearest com mipmaps. A cena continua separada do menu principal.
+
 **Afeta:** `assets/modelagem/menu/gerar_menu_notebook.py`, `menu_notebook.blend` e as duas prévias; `assets/modelos/menu_notebook.glb`; `cenas/interface/menu_notebook.tscn` e `tela_menu_notebook.tscn`; `scripts/interface/menu_notebook.gd` e `tela_menu_notebook.gd`; `docs/mecanicas/menu_notebook.md`. O quarto VR e o Enredo permanecem como estão.
 
 ## 2026-11-07 — O Gabriel mira com a arma de pulso em todas as direções

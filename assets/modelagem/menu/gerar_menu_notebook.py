@@ -6,6 +6,7 @@ Gera um GLB independente, um .blend editável e uma prévia iluminada.
 
 import ast
 import math
+import sys
 from pathlib import Path
 
 import bpy
@@ -16,9 +17,13 @@ RAIZ = Path(__file__).resolve().parents[3]
 PASTA = Path(__file__).resolve().parent
 TEXTURAS = RAIZ / "assets/sprites/cenario/visor"
 MODELO = RAIZ / "assets/modelos/menu_notebook.glb"
-CAMERA = (-1.15, 1.24, -0.2)
-ALVO = (-2.38, 1.16, -0.2)
-FOV_VERTICAL = 44.0
+CAMERA = (-1.47, 1.23, -0.2)
+ALVO = (-2.30, 1.04, -0.2)
+FOV_VERTICAL = 40.0
+
+sys.path.insert(0, str(PASTA))
+from detalhar_menu_notebook import detalhar
+from texturizar_menu_notebook import aplicar_materiais, gerar_texturas
 
 
 def carregar_oficina():
@@ -67,9 +72,17 @@ def montar_geometria(oficina):
     oficina["quad"]("PaisagemDaJanela", (-2.475, 1.102, 0.304), (-2.475, 1.102, -0.704),
                     (-2.475, 2.098, -0.704), (-2.475, 2.098, 0.304), janela)
 
+    detalhar(oficina)
+
     # O GLB leva somente a geometria. A tela recebe o menu vivo no Godot.
     MODELO.parent.mkdir(parents=True, exist_ok=True)
     bpy.ops.export_scene.gltf(filepath=str(MODELO), export_format="GLB", export_apply=True)
+    triangulos = 0
+    for objeto in bpy.context.scene.objects:
+        if objeto.type == "MESH":
+            objeto.data.calc_loop_triangles()
+            triangulos += len(objeto.data.loop_triangles)
+    print("Triangulos do cenario:", triangulos)
 
 
 def aplicar_texturas_de_previa():
@@ -173,13 +186,16 @@ def preparar_camera_e_luzes():
 
 def main():
     oficina = carregar_oficina()
+    gerar_texturas()
     montar_geometria(oficina)
     aplicar_texturas_de_previa()
+    aplicar_materiais()
     escrever_previa(oficina)
     preparar_camera_e_luzes()
     bpy.ops.file.pack_all()
     bpy.ops.wm.save_as_mainfile(filepath=str(PASTA / "menu_notebook.blend"))
-    bpy.ops.render.render(write_still=True)
+    if "--sem-render" not in sys.argv:
+        bpy.ops.render.render(write_still=True)
     print("Menu exportado:", MODELO)
 
 

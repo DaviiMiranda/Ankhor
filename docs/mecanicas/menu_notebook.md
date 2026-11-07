@@ -6,9 +6,10 @@ sendo a entrada do jogo e esta cena fica separada para avaliação.
 
 O cenário usa a geometria da escrivaninha, do notebook, da luminária, da caneca,
 dos livros, da janela, da cortina e do cacto do quarto VR. O enquadramento é
-fixo, de frente para o notebook, com o pôr do sol do prólogo atrás dele. A
-notebook tem escala uniforme de 1,6 e fica na frente do peitoril para dar
-espaço à interface. Os arquivos originais do quarto não mudam.
+fixo, de frente para o notebook, com o pôr do sol do prólogo atrás dele.
+O notebook é remodelado nas dimensões da versão de escala 1,6 e fica na
+frente do peitoril. A câmera fica em `(-1.47, 1.23, -0.2)`, com campo de visão
+vertical de 40°, mais próxima da tela. Os arquivos originais do quarto não mudam.
 
 ## Arquivos de arte
 
@@ -18,6 +19,9 @@ espaço à interface. Os arquivos originais do quarto não mudam.
   textos de demonstração, sem câmera e sem luzes de prévia.
 - `assets/modelagem/menu/menu_notebook_previa.png`: renderização do Blender.
 - `assets/modelagem/menu/gerar_menu_notebook.py`: gerador reproduzível.
+- `assets/modelagem/menu/detalhar_menu_notebook.py`: peças e curvas do modelo.
+- `assets/modelagem/menu/texturizar_menu_notebook.py`: gerador das texturas.
+- `assets/sprites/menu/notebook/`: texturas próprias desta cena.
 
 Para regenerar, na raiz da pasta de trabalho:
 
@@ -29,6 +33,31 @@ O gerador lê as funções e os materiais de `gerar_sala_visor.py` pela árvore
 sintática, sem executar o `main` dele. Assim reaproveita as mesmas peças sem
 exportar novamente nem sobrescrever `sala_visor.glb`. No `.blend`, as texturas
 ficam empacotadas para que o arquivo continue editável em outro computador.
+
+## Modelagem e materiais de perto
+
+O cenário passa de 2.732 para 71.282 triângulos. As teclas têm geometria
+individual, bordas arredondadas e legendas em malha. O notebook tem carcaça
+em duas peças, junta, deck metálico, trackpad embutido, dobradiças cilíndricas,
+webcam, conectores USB, ventilação, alto-falantes e LED de energia.
+
+As bordas dos móveis recebem chanfros com mais segmentos e normais ponderadas.
+A caneca tem parede interna, borda arredondada e alça tubular. O vaso é uma
+superfície de revolução; o cacto tem gomos e braços curvos. As curvas recebem
+polígonos onde mudam a silhueta, com menos segmentos nos detalhes minúsculos.
+
+A madeira usa mapas de 1024 × 1024; metal, tecido e parede usam 512 × 512.
+Cada material tem cor, rugosidade e normal. Os veios e a granulação variam a
+cor e o brilho; o gradiente do campo de altura gera o relevo da normal.
+São texturas procedurais criadas e salvas pelo Blender, com semente fixa.
+Mantêm filtro Nearest e mipmaps para reduzir cintilação à distância.
+
+`texturas_menu_notebook.gd` herda o aplicador do quarto e substitui somente
+os materiais refinados. As texturas são projetadas em metros no mundo;
+o notebook, a mesa e os objetos compartilham uma escala de detalhe coerente.
+
+Para regenerar apenas os arquivos, sem renderizar a prévia, acrescente
+`-- --sem-render` ao comando do Blender. A prévia completa usa Cycles.
 
 ## Interface e entrada
 
@@ -70,6 +99,7 @@ Conferido no Godot 4.7.2 com renderização OpenGL Compatibility:
 - Abrir Opções, Controles, Créditos e Fases; voltar com Esc.
 - Mover a seleção com setas e confirmar com E.
 - Projeção do mouse e resolução do 3D em 1280 × 720, 1920 × 1080 e 1024 × 768.
+- Os quatro cantos da tela do notebook continuam visíveis nessas resoluções.
 - Novo jogo abre `seg_prologo.tscn`.
 - Importação final limpa e execução sem erros de script.
 
