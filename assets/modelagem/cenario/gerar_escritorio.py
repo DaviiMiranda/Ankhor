@@ -346,8 +346,10 @@ def escritorio_arquivo_parede():
 
 def escritorio_quadro_branco():
     """O quadro branco da sala de reuniões: caixas e setas de caneta azul,
-    uma data e, de caneta VERMELHA (a cor do Carlos), um número circulado.
-    O texto inteiro aparece em jogo pelo aviso "Ler o quadro"."""
+    uma data e, de caneta VERMELHA (a cor do Carlos), um rabisco circulado.
+    O rabisco é ilegível de propósito: o ano do código não pode aparecer
+    desenhado na parede. O texto inteiro só aparece em jogo pelo aviso
+    "Ler o quadro"."""
     img = parede_base(12)
     X, Y = img.X, img.Y
     img.pintar(img.ret(6, 24, 74, 64), "aco", 0.55 + 0.2 * (Y == 24))
@@ -359,8 +361,8 @@ def escritorio_quadro_branco():
     for x in range(14, 24, 2):
         img.pintar(img.ret(x, 33, x + 1, 35), "caneta_azul", 0.4)
     vermelho = bib.hexa("#c8302a")[0]
-    for i, d in enumerate("1985"):
-        digito(img, 40 + i * 6, 46, d, vermelho)
+    for (x0, x1, y) in ((41, 45, 48), (47, 53, 48), (55, 61, 48), (43, 49, 52), (51, 58, 52)):
+        img.cor(img.ret(x0, y, x1, y + 1), vermelho)
     img.cor((np.abs(((X + 0.5 - 51.5) / 15) ** 2 + ((Y + 0.5 - 50) / 7) ** 2 - 1) < 0.14) & quadro, vermelho)
     img.pintar(img.ret(20, 62, 60, 64), "aco", 0.4)
     img.pintar(img.ret(26, 61, 32, 62), "caneta_azul", 0.6)
