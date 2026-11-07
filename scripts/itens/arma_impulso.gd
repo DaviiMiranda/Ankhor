@@ -8,10 +8,17 @@ const AVISO_TRAVADA := "Mira travada. Aperte de novo para atirar. Shift cancela"
 const AVISO_LIVRE := "Nenhum robô por perto: aponte com WASD. Aperte de novo para atirar. Shift cancela"
 const ALTURA_DO_CHAO := Vector2(0, -2)
 const PASSOS_DO_ARCO := 14
-const TIRA_DO_BRACO := preload("res://assets/sprites/personagens/gabriel/gabriel_arma_lado.png")
-const BOCAIS := preload("res://scripts/personagens/quadros_arma_gabriel.gd").QUADROS
-const QUADRO_MIRANDO := 1
-const QUADRO_ATIRANDO := 2
+const TIRAS_DO_BRACO := {
+	"lado": preload("res://assets/sprites/personagens/gabriel/gabriel_arma_lado.png"),
+	"frente": preload("res://assets/sprites/personagens/gabriel/gabriel_arma_frente.png"),
+	"tres_quartos": preload("res://assets/sprites/personagens/gabriel/gabriel_arma_tres_quartos.png"),
+	"costas": preload("res://assets/sprites/personagens/gabriel/gabriel_arma_costas.png"),
+	"tres_quartos_costas": preload("res://assets/sprites/personagens/gabriel/gabriel_arma_tres_quartos_costas.png"),
+}
+const BOCAIS := preload("res://scripts/personagens/quadros_arma_gabriel.gd").BOCAIS
+const QUADROS_DO_BRACO := 2
+const QUADRO_MIRANDO := 0
+const QUADRO_ATIRANDO := 1
 const POSICAO_DO_FLASH := Vector2(0, -22)
 
 static var _avisou_travada := false
@@ -40,6 +47,7 @@ var _direcao_da_onda := Vector2.RIGHT
 var _tempo_da_onda := -1.0
 var _tempo_desde_disparo := 99.0
 var _braco_no_ar := false
+var _vista_do_braco := ""
 var _segundos_do_braco := 0.0
 
 @onready var flash: PointLight2D = $Flash
@@ -115,16 +123,15 @@ func _segurar_braco_do_disparo(delta: float) -> void:
 
 
 func _mostrar_braco(quadro: int) -> void:
-	if _gabriel.vista != "lado":
-		_baixar_braco()
+	var vista := _gabriel.vista
+	if not _braco_no_ar and _gabriel.tira_especial:
 		return
-	if not _braco_no_ar:
-		if _gabriel.tira_especial:
-			return
-		_gabriel.tocar_tira(TIRA_DO_BRACO, BOCAIS.size())
+	if not _braco_no_ar or vista != _vista_do_braco:
+		_gabriel.tocar_tira(TIRAS_DO_BRACO[vista], QUADROS_DO_BRACO)
 		_braco_no_ar = true
+		_vista_do_braco = vista
 	_gabriel.mostrar_quadro_tira(quadro)
-	flash.global_position = _gabriel.to_global(_gabriel.ponto_do_quadro(BOCAIS[quadro]))
+	flash.global_position = _gabriel.to_global(_gabriel.ponto_do_quadro(BOCAIS[vista][quadro]))
 
 
 func _baixar_braco() -> void:

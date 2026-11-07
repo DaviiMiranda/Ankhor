@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/sistemas/painel_ordenacao.gd" id="1_painel"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/painel_tecla.wav" id="2_troca"]
 [ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/disjuntor.wav" id="3_pronto"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_emperrada.wav" id="4_erro"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_alcance"]
 radius = 22.0
@@ -82,4 +83,8 @@ bus = &"Efeitos"
 
 [node name="SomPronto" type="AudioStreamPlayer" parent="Tela"]
 stream = ExtResource("3_pronto")
+bus = &"Efeitos"
+
+[node name="SomErro" type="AudioStreamPlayer" parent="Tela"]
+stream = ExtResource("4_erro")
 bus = &"Efeitos"

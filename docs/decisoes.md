@@ -8,6 +8,62 @@
 
 **Afeta:** `cenas/cutscenes/seg_acordar.tscn`, `docs/historia/História_Completa.md`, `docs/historia/roteiro/cutscenes/seg_acordar.md` e `README.md`; o vídeo `assets/video/cutscenes/seg_acordar.ogv` e seu `.uid` foram removidos.
 
+## 2026-11-07 — Receitas com chips
+
+**Decisão:** na aba Criação, uma bala de impulso custa **1 chip e 3 pilhas**; um flash custa **1 chip e 1 pilha**. As setas escolhem a receita e `E` fabrica. As pilhas excedentes podem ser guardadas antes de obter a arma, mas recarregam primeiro o gadget com menos carga. Criar bala exige a arma; criar o primeiro flash exige espaço na mochila (o último chip consumido libera uma vaga). Mantêm-se os limites de 6 balas e 2 flashes.
+
+**Afeta:** `scripts/sistemas/criacao.gd`, `scripts/interface/painel_criacao.gd`, `scripts/interface/tela_inventario.gd`, `scripts/itens/pilha_no_chao.gd`, `dados/itens/arma_impulso.tres`, `docs/mecanicas/combate.md` e `docs/mecanicas/itens_e_inventario.md`.
+
+## 2026-11-07 — Chips eletrônicos no lugar da pedra
+
+**Decisão:** o item coletável Pedra deixa de ser um gadget de arremesso e passa a ser **Chips**, recursos eletrônicos destinados à fabricação de flashes e outros itens. Os pontos de coleta existentes passam a oferecer chips. Por enquanto, mantém-se o limite de 5 unidades e o visual é uma placa de microcontrolador verde com chip preto e trilhas de cobre, a partir da imagem fornecida pelo usuário. O ícone de 16 × 16 e o sprite do chão foram desenhados para combinar com ela. A fabricação foi definida na entrada de receitas com chips acima. O arremesso de pedra e a distração pelo buraco da sala 204 ficam indisponíveis com esse item.
+
+**Compatibilidade:** o arquivo e o identificador internos `pedra` são mantidos para preservar os pontos de coleta e o conteúdo de saves existentes; uma pedra equipada em um save deixa de ocupar o espaço de gadget ao carregá-lo. O chip dos óculos continua sendo uma peça de coleção separada.
+
+**Afeta:** `dados/itens/pedra.tres`, `dados/dialogos/clarice_bloco_pede_molho_de_novo.json`, `scripts/sistemas/salvamento.gd`, `scripts/salas/tudo_coletado.gd` e `docs/mecanicas/itens_e_inventario.md`. As cenas e artes existentes não foram editadas.
+
+## 2026-11-07 — Novo ícone do jogo: o "A" metálico com circuitos
+
+**Decisão:** o ícone do jogo (janela, projeto e `.exe`) passa a ser o **"A" metálico azul com circuitos luminosos** que o Davi mandou, no lugar do "A" em pixel art de antes. Os cantos ficam arredondados e transparentes, como no ícone anterior.
+
+**Por quê:** pedido do Davi.
+
+**Afeta:** `assets/icone/ankhor_icone.png` (512×512) e `assets/icone/ankhor_icone.ico` (16 a 256 px), que substituem os anteriores. Os caminhos no `project.godot` e no `export_presets.cfg` não mudam. Na próxima vez que o Godot abrir o projeto, ele reimporta o PNG sozinho. O `.exe` só mostra o ícone novo depois de exportar de novo.
+
+## 2026-11-07 — Fase do Zane: o ano do código não aparece mais desenhado no quadro das Reuniões
+
+**Decisão:** o quadro branco da sala de Reuniões tinha o **"1985" em vermelho, circulado e bem grande**, desenhado no próprio sprite: dava a resposta de longe, sem ler nada. Os quatro dígitos viraram um **rabisco vermelho ilegível dentro do mesmo círculo**. A pista continua inteira em "Ler o quadro" (`E`): "DATA-ALVO: 26/10/1985" e "O ano basta."
+
+**Por quê:** pedido do Davi, depois de ver o número grande na parede.
+
+**Afeta:** `assets/modelagem/cenario/gerar_escritorio.py` (`escritorio_quadro_branco`) e o sprite `escritorio_quadro_branco.png`, regerado (nenhuma outra peça do kit mudou), e `docs/fases/labirinto.md`. O código (`1985`), o texto do aviso e a fala do Zane não mudaram. **O Enredo não foi mexido.**
+
+## 2026-11-07 — Fase do Zane: o arquivo deslizante ganha limite de tentativas e um alarme
+
+**Decisão:** o puzzle da sala do Arquivo deixa de ser livre. Cada **tentativa** tem **10 trocas** (o mínimo é 6); gastas as 10 sem ordenar, as pastas voltam para onde estavam e a tentativa se perde. Com as **3 tentativas** perdidas, a **sirene** toca por **20 s** e o Rastreador (todos os robôs da sala) vai investigar o ponto da sirene, ao lado do painel, e fica por lá até o alarme acabar. O painel trava enquanto o alarme toca e depois volta com as 3 tentativas. As tentativas gastas ficam em `Progresso`, então sair da sala não zera. A fala de entrada do Zane avisa do limite.
+
+**Por quê:** pedido do Davi, para o puzzle ter risco como as outras salas (a Sentinela da segurança, a Mariposa das reuniões). Os números (3 tentativas, 10 trocas, 20 s) saíram da conta e ainda precisam de teste de jogo.
+
+**Afeta:** `scripts/sistemas/painel_ordenacao.gd` (campos novos em `Alarme`, desligados por padrão, então a arara da Loja Universitária não muda), `cenas/sistemas/painel_ordenacao.tscn` (som de erro), `scripts/sistemas/sirene.gd` (`soar()`, `esta_tocando()` e `teletransportar_robos`, que no Bloco de salas continua ligado), `cenas/salas/labirinto/escritorio/arquivo.tscn`, `dados/dialogos/zane_escritorio_arquivo.json` e `docs/fases/labirinto.md`. **O Enredo não foi mexido.**
+
+## 2026-11-07 — Fase do Zane: a sala não fica mais escura ao entrar
+
+**Problema (relato de teste):** na fase em que se joga com o Zane, toda sala em que ele entrava ficava quase preta.
+
+**Causa:** as quatro salas da ala do escritório têm um `GatilhoEntrada`, que abre a fala do Zane no primeiro quadro (ele já nasce dentro da área). O diálogo pausa o jogo, e a cortina preta de entrada (`Transicao/Escuro`, que clareia em `duracao_entrada`) era uma animação que pausa junto: parava em cerca de 97% de preto, até o jogador fechar a fala. As outras fases não tinham fala ao nascer, então não aparecia.
+
+**Correção:** em `Sala._ready`, a animação da cortina agora roda mesmo com o jogo pausado (`Tween.TWEEN_PAUSE_PROCESS`). Vale para toda sala. Conferido no Godot 4.7.2 por script, nas quatro salas: a cortina chega a 0 em 1 s, com o diálogo ainda aberto. A iluminação das salas (`Escuridao`) não foi mexida.
+
+**Afeta:** `scripts/salas/sala.gd`.
+
+## 2026-11-07 — O Gabriel mira com a arma de pulso em todas as direções
+
+**Decisão:** o braço com a arma de pulso, que só existia de lado, agora aparece **nas 8 direções da mira** (de lado, de frente, de costas e os dois três quartos; a esquerda é o sprite espelhado). A arma passou a ser **modelada em 3D** no Blender, presa ao antebraço, em vez de desenhada à mão: assim ela gira com o corpo e sai certa em cada vista. Cada vista tem dois quadros, `mirando` e `atirando`; o clarão do tiro sai do bocal da arma em cada uma. Se a mira girar no meio, a tira troca para a vista nova. O quadro "normal" (braço caído) deixou de existir: não era usado. De costas, a arma quase não aparece, porque o braço aponta para longe da câmera.
+
+**Por quê:** pedido do Davi. A versão de lado era só um começo.
+
+**Afeta:** `assets/modelagem/personagens/gerar_gabriel_arma.py` (reescrito: modelo 3D, cinco vistas), os sprites `gabriel_arma_<vista>.png` (cinco, no lugar do `gabriel_arma_lado.png` de 3 quadros), `scripts/personagens/quadros_arma_gabriel.gd` (agora `BOCAIS[vista]`), `scripts/itens/arma_impulso.gd` e a documentação do Gabriel e do combate. **Conferido** no Godot 4.7.2 por script, nas 8 direções: o braço aparece ao mirar e ao atirar, volta ao normal depois, e troca de vista se a mira girar. **O Enredo não foi mexido.**
+
 ## 2026-11-07 — Respiração mais difícil no bunker
 
 **Decisão:** a faixa segura da respiração contida fica mais estreita, o marcador se move e oscila mais rápido, e o ruído acumula mais depressa e se recupera mais devagar. Ansiedade e cansaço continuam afetando a dificuldade; o tempo de espera do Ciborgue e a pausa dos painéis não mudam. Os valores estão em [`mecanicas/furtividade_e_esconderijos.md`](mecanicas/furtividade_e_esconderijos.md), seção 2.D.
