@@ -13,6 +13,16 @@ const ALTURA_DO_ALVO := Vector2(0, -26)
 const COR_RAIO := Color(0.35, 0.95, 0.85)
 const COR_NUCLEO := Color(0.85, 1.0, 0.95)
 const SEGMENTOS_DO_RAIO := 14
+const COR_CALOR := Color(1.0, 0.22, 0.1)
+const COR_BRASA := Color(1.0, 0.68, 0.32)
+const COR_FUMACA := Color(0.62, 0.58, 0.58)
+const COR_ROBO_ENERGIZADO := Color(0.6, 1.3, 1.25)
+const FAISCAS_NA_MAO := 5
+const FAISCAS_NO_ROBO := 8
+const FAISCAS_POR_SEGUNDO := 18.0
+const AREA_DA_MAO := Vector2(2.5, 2.5)
+const AREA_DO_ROBO := Vector2(10.0, 16.0)
+const FIOS_DE_FUMACA := 3
 const TIRAS := {
 	"lado": preload("res://assets/sprites/personagens/zane/zane_hack_lado.png"),
 	"frente": preload("res://assets/sprites/personagens/zane/zane_hack_frente.png"),
@@ -46,6 +56,10 @@ var _janela: TelaHackeamento
 var _progresso := 0.0
 var _recarga := 0.0
 var _tempo := 0.0
+var _cor_original_do_alvo := Color.WHITE
+
+@onready var luz_da_mao: PointLight2D = $LuzDaMao
+@onready var luz_do_robo: PointLight2D = $LuzDoRobo
 
 
 func _ready() -> void:
@@ -111,6 +125,7 @@ func _linha_livre(de: Vector2, ate: Vector2) -> bool:
 func _comecar(alvo: Robo) -> void:
 	var dono := _dono()
 	_alvo = alvo
+	_cor_original_do_alvo = alvo.modulate
 	_alvo.fator_de_velocidade = lentidao_do_robo
 	_fase = Fase.ESTENDENDO
 	_progresso = 0.0
@@ -139,6 +154,7 @@ func _process(delta: float) -> void:
 			_mostrar_quadro()
 			if _progresso <= 0.0:
 				_terminar()
+	_atualizar_brilho()
 	queue_redraw()
 
 
@@ -231,6 +247,7 @@ func _terminar() -> void:
 func _soltar_alvo() -> void:
 	if is_instance_valid(_alvo):
 		_alvo.fator_de_velocidade = 1.0
+		_alvo.modulate = _cor_original_do_alvo
 	_alvo = null
 
 
@@ -242,12 +259,90 @@ func _mostrar_no_hud() -> void:
 	estado["aceso"] = _fase != Fase.OCIOSO
 
 
-func _draw() -> void:
-	if _alvo == null or not is_instance_valid(_alvo) or _fase == Fase.OCIOSO or _fase == Fase.RECOLHENDO:
-		return
+func _calor() -> float:
+	return _recarga / segundos_recarga
+
+
+func _energizado() -> bool:
+	return is_instance_valid(_alvo) and (_fase == Fase.ESTENDENDO or _fase == Fase.INVADINDO)
+
+
+func _posicao_da_mao() -> Vector2:
 	var dono := _dono()
+	if _fase == Fase.OCIOSO:
+		return dono.to_global(dono.posicao_da_mao())
 	var quadros: Array = MAOS_HACK[dono.vista]
-	var mao := to_local(dono.to_global(dono.ponto_do_quadro(quadros[roundi(_progresso * (QUADROS - 1))])))
+	return dono.to_global(dono.ponto_do_quadro(quadros[roundi(_progresso * (QUADROS - 1))]))
+
+
+func _pulso(rapidez: float) -> float:
+	return 0.5 + 0.5 * sin(_tempo * rapidez)
+
+
+func _atualizar_brilho() -> void:
+	if _dono() == null:
+		return
+	luz_da_mao.global_position = _posicao_da_mao()
+	luz_do_robo.energy = 0.0
+	if _energizado():
+		luz_da_mao.color = COR_RAIO
+		luz_da_mao.energy = 0.8 + 0.5 * _pulso(18.0)
+		luz_do_robo.global_position = _alvo.global_position + ALTURA_DO_ALVO
+		luz_do_robo.energy = (0.6 + 0.6 * _pulso(14.0)) * _progresso
+		_alvo.modulate = _cor_original_do_alvo * Color.WHITE.lerp(COR_ROBO_ENERGIZADO, _progresso * _pulso(14.0))
+	elif _calor() > 0.0:
+		luz_da_mao.color = COR_CALOR
+		luz_da_mao.energy = _calor() * (1.0 + 0.25 * _pulso(5.0))
+	else:
+		luz_da_mao.energy = 0.0
+
+
+func _draw() -> void:
+	if _dono() == null:
+		return
+	var mao := to_local(_posicao_da_mao())
+	if _energizado():
+		_desenhar_brilho(mao, COR_RAIO, COR_NUCLEO, 4.0)
+		_desenhar_faiscas(mao, AREA_DA_MAO, 7.0, FAISCAS_NA_MAO, 1)
+		_desenhar_raio(mao)
+		if _fase == Fase.INVADINDO:
+			_desenhar_faiscas(to_local(_alvo.global_position + ALTURA_DO_ALVO), AREA_DO_ROBO, 6.0, FAISCAS_NO_ROBO, 2)
+	elif _calor() > 0.0:
+		_desenhar_calor(mao, _calor())
+
+
+func _desenhar_brilho(centro: Vector2, cor: Color, nucleo: Color, raio: float) -> void:
+	draw_circle(centro, raio * (0.85 + 0.3 * _pulso(18.0)), Color(cor, 0.22))
+	draw_circle(centro, raio * 0.55, Color(cor, 0.45))
+	draw_circle(centro, 1.2, nucleo)
+
+
+func _desenhar_faiscas(centro: Vector2, area: Vector2, comprimento: float, quantas: int, semente: int) -> void:
+	var sorteio := RandomNumberGenerator.new()
+	for i in quantas:
+		sorteio.seed = hash(Vector3i(semente, i, floori(_tempo * FAISCAS_POR_SEGUNDO + i * 0.37)))
+		if sorteio.randf() < 0.3:
+			continue
+		var inicio := centro + Vector2(sorteio.randf_range(-area.x, area.x), sorteio.randf_range(-area.y, area.y))
+		var direcao := Vector2.from_angle(sorteio.randf() * TAU)
+		var fim := inicio + direcao * comprimento * sorteio.randf_range(0.6, 1.0)
+		var meio := (inicio + fim) * 0.5 + direcao.orthogonal() * sorteio.randf_range(-2.5, 2.5)
+		var pontos := PackedVector2Array([inicio, meio, fim])
+		draw_polyline(pontos, COR_RAIO, 1.0)
+		draw_circle(fim, 0.6, COR_NUCLEO)
+
+
+func _desenhar_calor(centro: Vector2, calor: float) -> void:
+	draw_circle(centro, 3.0 + 2.0 * calor, Color(COR_CALOR, 0.3 * calor))
+	draw_circle(centro, 2.0, Color(COR_CALOR, 0.75 * calor))
+	draw_circle(centro, 1.0, Color(COR_BRASA, calor))
+	for i in FIOS_DE_FUMACA:
+		var subida := fposmod(_tempo * 0.7 + float(i) / FIOS_DE_FUMACA, 1.0)
+		var ponto := centro + Vector2(sin(_tempo * 3.0 + i * 2.1) * 1.5, -2.0 - subida * 11.0)
+		draw_circle(ponto, 0.8 + subida * 1.6, Color(COR_FUMACA, (1.0 - subida) * 0.45 * calor))
+
+
+func _desenhar_raio(mao: Vector2) -> void:
 	var alvo := to_local(_alvo.global_position + ALTURA_DO_ALVO)
 	var alcance_do_raio := mao.distance_to(alvo) * _progresso
 	var direcao := mao.direction_to(alvo)

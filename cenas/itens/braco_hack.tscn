@@ -1,6 +1,24 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/itens/braco_hack.gd" id="1_braco"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="2_luz"]
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
 
 [node name="BracoHack" type="Node2D"]
+material = SubResource("SemLuz")
 script = ExtResource("1_braco")
+
+[node name="LuzDaMao" type="PointLight2D" parent="."]
+energy = 0.0
+range_item_cull_mask = 3
+texture = ExtResource("2_luz")
+texture_scale = 0.9
+
+[node name="LuzDoRobo" type="PointLight2D" parent="."]
+color = Color(0.35, 0.95, 0.85, 1)
+energy = 0.0
+range_item_cull_mask = 3
+texture = ExtResource("2_luz")
+texture_scale = 1.4
