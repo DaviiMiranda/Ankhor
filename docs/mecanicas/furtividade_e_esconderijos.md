@@ -43,11 +43,11 @@ Ficar dentro de um esconderijo não é garantia passiva de imunidade. Se um rob�
 
 | | Calmo | Ansioso |
 |---|---|---|
-| Largura da faixa verde | 40% | 26% |
-| Subida sem apertar | 0,12 / s | 0,22 / s |
-| Descida segurando `E` | 0,30 / s | 0,30 / s |
+| Largura da faixa verde | 28% | 18% |
+| Subida sem apertar | 0,18 / s | 0,28 / s |
+| Descida segurando `E` | 0,38 / s | 0,38 / s |
 
-O balanço soma $0{,}15 \cdot \sin(2{,}1t)\,\sin(0{,}63t + 1)$ por segundo. O ruído enche 0,45 por segundo fora da faixa e esvazia 0,25 dentro: saindo do verde sem reagir, o Gabriel tem uns 2 a 3 s até engasgar.
+O balanço soma $0{,}20 \cdot \sin(2{,}1t)\,\sin(0{,}63t + 1)$ por segundo. O ruído enche 0,65 por segundo fora da faixa e esvazia 0,18 dentro: com a barra vazia, ficar fora continuamente causa o engasgo em cerca de 1,54 s.
 
 ---
 
