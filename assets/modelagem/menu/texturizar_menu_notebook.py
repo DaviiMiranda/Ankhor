@@ -70,6 +70,27 @@ def gerar_texturas():
     grao = ruido * 0.003 + mancha
     cor = np.array([0.26, 0.24, 0.235]) + grao[:, :, None]
     conjunto("parede", cor, grao, 0.9 + ruido * 0.008, 5.0)
+    gerar_ceu_noturno()
+
+
+def gerar_ceu_noturno():
+    # Céu independente do prólogo: gradiente azul profundo e estrelas de tamanho discreto.
+    tamanho = 512
+    u, v = np.meshgrid(np.arange(tamanho) / tamanho, np.arange(tamanho) / tamanho)
+    cor = np.zeros((tamanho, tamanho, 3))
+    for canal, (baixo, alto) in enumerate(((0.018, 0.009), (0.029, 0.014), (0.066, 0.038))):
+        cor[:, :, canal] = baixo * (1 - v) + alto * v
+    nuvens = (np.sin(u * 13 + v * 6) * np.sin(v * 17 - u * 5) + 1) * 0.0015
+    cor += nuvens[:, :, None]
+    sorteio = np.random.default_rng(3026)
+    for i in range(100):
+        x, y = sorteio.integers(3, tamanho - 3, size=2)
+        brilho = sorteio.uniform(0.12, 0.42)
+        cor[y, x] = (brilho * 0.75, brilho * 0.85, brilho)
+        if i % 13 == 0:
+            for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                cor[y + dy, x + dx] += brilho * 0.12
+    salvar("ceu_noturno", cor)
 
 
 def aplicar_materiais():

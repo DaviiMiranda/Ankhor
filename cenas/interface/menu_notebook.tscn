@@ -11,7 +11,7 @@ background_mode = 1
 background_color = Color(0.025, 0.035, 0.055, 1)
 ambient_light_source = 3
 ambient_light_color = Color(0.62, 0.7, 0.85, 1)
-ambient_light_energy = 0.32
+ambient_light_energy = 0.0
 tonemap_mode = 0
 
 [node name="MenuNotebook" type="Control"]
@@ -52,23 +52,16 @@ current = true
 fov = 40.0
 near = 0.05
 
-[node name="LuzDaJanela" type="OmniLight3D" parent="Imagem/Mundo"]
-position = Vector3(-2.15, 1.75, -0.35)
-light_color = Color(1, 0.68, 0.4, 1)
-light_energy = 0.5
-omni_range = 2.7
-
-[node name="LuzDaLuminaria" type="OmniLight3D" parent="Imagem/Mundo"]
-position = Vector3(-2.3, 1.09, 0.4)
+[node name="LuzDaLuminaria" type="SpotLight3D" parent="Imagem/Mundo"]
+position = Vector3(-2.29, 1.09, 0.4)
 light_color = Color(1, 0.82, 0.57, 1)
-light_energy = 0.4
-omni_range = 1.4
-
-[node name="LuzDoNotebook" type="OmniLight3D" parent="Imagem/Mundo"]
-position = Vector3(-2.05, 1.0, -0.2)
-light_color = Color(0.45, 0.7, 1, 1)
-light_energy = 0.2
-omni_range = 1.0
+light_energy = 0.85
+spot_range = 1.4
+spot_attenuation = 1.2
+spot_angle = 65.0
+spot_angle_attenuation = 1.6
+shadow_enabled = true
+shadow_blur = 2.0
 
 [node name="TelaMenu" type="SubViewport" parent="."]
 handle_input_locally = true

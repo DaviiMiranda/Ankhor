@@ -67,7 +67,7 @@ def montar_geometria(oficina):
     caixa("ParedeDoMenu", (-2.56, 1.45, -0.2), (0.1, 2.9, 3.4), materiais["parede"])
     caixa("PisoDoMenu", (-1.85, -0.04, -0.2), (1.5, 0.08, 3.4), materiais["chao"])
 
-    # A mesma ilustração do prólogo usada pela janela do safe room.
+    # A janela recebe o céu noturno próprio do menu; o quarto VR conserva sua paisagem.
     janela = oficina["material"]("PaisagemDaJanela", "#ffffff", brilho="#ffffff", forca_brilho=0.8)
     oficina["quad"]("PaisagemDaJanela", (-2.475, 1.102, 0.304), (-2.475, 1.102, -0.704),
                     (-2.475, 2.098, -0.704), (-2.475, 2.098, 0.304), janela)
@@ -91,7 +91,6 @@ def aplicar_texturas_de_previa():
         "MadeiraEscura": ("madeira_escura", 0.4), "Parede": ("parede", 1.0),
         "Chao": ("piso_madeira", 0.8), "Cortina": ("cortina", 0.25),
         "Paginas": ("paginas", 0.05), "Teclado": ("teclado_notebook", None),
-        "PaisagemDaJanela": ("janela_prologo", None),
     }
     for nome, (arquivo, metros) in texturas.items():
         material = bpy.data.materials.get(nome)
@@ -111,8 +110,20 @@ def aplicar_texturas_de_previa():
             ligacoes.new(escala.outputs["Vector"], imagem.inputs["Vector"])
             imagem.projection = "BOX"
         ligacoes.new(imagem.outputs["Color"], nos.get("Principled BSDF").inputs["Base Color"])
-        if nome == "PaisagemDaJanela":
-            ligacoes.new(imagem.outputs["Color"], nos.get("Principled BSDF").inputs["Emission Color"])
+    janela = bpy.data.materials["PaisagemDaJanela"]
+    nos, ligacoes = janela.node_tree.nodes, janela.node_tree.links
+    nos.clear()
+    textura = nos.new("ShaderNodeTexImage")
+    textura.image = bpy.data.images.load(str(RAIZ / "assets/sprites/menu/notebook/ceu_noturno.png"))
+    textura.interpolation = "Closest"
+    emissao = nos.new("ShaderNodeEmission")
+    emissao.inputs["Strength"].default_value = 0.3
+    saida = nos.new("ShaderNodeOutputMaterial")
+    ligacoes.new(textura.outputs["Color"], emissao.inputs["Color"])
+    ligacoes.new(emissao.outputs[0], saida.inputs["Surface"])
+    paisagem = bpy.data.objects["PaisagemDaJanela"]
+    paisagem.visible_diffuse = False
+    paisagem.visible_glossy = False
 
 
 def criar_luz(nome, posicao, energia, cor, tamanho, alvo):
@@ -162,11 +173,9 @@ def preparar_camera_e_luzes():
     cena.render.resolution_y = 900
     cena.render.resolution_percentage = 100
     cena.view_settings.view_transform = "AgX"
-    cena.world.color = (0.09, 0.11, 0.15)
-    criar_luz("LuzDoPorDoSol", (-2.2, 1.8, -0.35), 20, (1.0, 0.58, 0.3), 0.8, (-1.8, 0.8, -0.1))
+    cena.world.use_nodes = True
+    cena.world.node_tree.nodes.get("Background").inputs["Strength"].default_value = 0.0
     criar_luz("LuzDaLuminaria", (-2.31, 1.1, 0.4), 12, (1.0, 0.77, 0.48), 0.12, (-2.1, 0.77, 0.1))
-    criar_luz("ReflexoDaTela", (-2.25, 1.0, -0.2), 4, (0.38, 0.7, 1.0), 0.3, (-1.8, 0.75, -0.2))
-    criar_luz("Preenchimento", (-0.8, 1.8, -0.6), 9, (0.52, 0.66, 1.0), 2.0, (-2.4, 1.1, -0.2))
     dados = bpy.data.cameras.new("CameraDoMenu")
     dados.sensor_fit = "VERTICAL"
     dados.lens = dados.sensor_height / (2.0 * math.tan(math.radians(FOV_VERTICAL) / 2.0))

@@ -19,6 +19,7 @@ var _mouse_sobre_tela := false
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	camera.look_at(alvo_da_camera)
+	$Imagem/Mundo/LuzDaLuminaria.look_at(Vector3(-2.1, 0.76, -0.03))
 	_ajustar_resolucao()
 	get_window().size_changed.connect(_ajustar_resolucao)
 	var tela := modelo.find_child("TelaNotebook", true, false) as MeshInstance3D
@@ -32,7 +33,7 @@ func _ready() -> void:
 	var material_janela := StandardMaterial3D.new()
 	material_janela.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	material_janela.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
-	material_janela.albedo_texture = preload("res://assets/sprites/cenario/visor/janela_prologo.png")
+	material_janela.albedo_texture = preload("res://assets/sprites/menu/notebook/ceu_noturno.png")
 	paisagem.material_override = material_janela
 	$Rodape/RotuloVersao.show()
 
