@@ -1,6 +1,6 @@
 # gerar_itens_de_fase.py — desenha, por código, os itens novos de cada fase
 # (placeholders no estilo do jogo): walkman, módulo de pulso, mapa da Diana,
-# máscara de gás e espelho, mais a portinhola da galeria e as caixas do nicho.
+# máscara de gás, mais a portinhola da galeria e as caixas do nicho.
 #
 # Como rodar (Python 3 + Pillow):
 #   python assets/modelagem/itens/gerar_itens_de_fase.py
@@ -74,13 +74,6 @@ FIGURAS = {
         (7, 9, 9, 12, (120, 120, 112, 255)),
         (5, 14, 11, 15, (120, 120, 112, 255)),
         (7, 13, 9, 14, (72, 84, 62, 255)),
-    ],
-    "espelho": [
-        (4, 2, 12, 12, CONTORNO),
-        (5, 3, 11, 11, (176, 214, 226, 255)),
-        (6, 4, 8, 6, (240, 250, 255, 255)),
-        (8, 7, 10, 10, (118, 160, 178, 255)),
-        (7, 12, 9, 15, (120, 96, 66, 255)),
     ],
 }
 

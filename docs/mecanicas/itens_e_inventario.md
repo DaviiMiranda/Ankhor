@@ -37,7 +37,7 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 
 ### Gadgets das fases
 
-Walkman, máscara de gás e caco de espelho são gadgets novos, e o módulo de pulso amplia o notebook: regras em [`mecanicas_de_fase.md`](mecanicas_de_fase.md). Quando os 3 espaços estão ocupados, o item novo vai só para a grade e é preciso equipar pelo inventário.
+Walkman e máscara de gás são gadgets novos, e o módulo de pulso amplia o notebook: regras em [`mecanicas_de_fase.md`](mecanicas_de_fase.md). Quando os 3 espaços estão ocupados, o item novo vai só para a grade e é preciso equipar pelo inventário.
 
 - **Largar no chão:** `Inventario.largar(item, cena, posicao)` tira o item da grade e guarda em `Inventario.largados` (salvo no arquivo). `ItensLargados` recria o item ao entrar na sala. Use `cena_largado` no `Item` para um objeto próprio, como o walkman; sem isso, vira um `ItemNoChao` com `reaparece`.
 - **Carga pesada:** `carga_pesada` no `Item` impede de correr, faz barulho e libera a tecla `G` para largar.

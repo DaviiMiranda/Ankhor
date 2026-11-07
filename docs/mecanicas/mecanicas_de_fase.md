@@ -7,7 +7,7 @@ Cada fase ensina **uma ação nova**, entrega **um item com custo** e cobra as d
 | Biblioteca | Esconder-se na cabine, com microgame de respiração | Nenhum: a fase já entrega lanterna, rádio e clarão | Voltar pelo salão iluminado usando as cabines como abrigo |
 | Bloco de salas | Ações demoradas e barulhentas (segurar `E`) | Walkman da Clarice | Cortar a corrente leva 5 s, no trecho da Sentinela |
 | Labirinto | Sonar: a onda mostra corredores e robôs | Módulo de pulso do Zane | O Nó 3 não pausa, e o salão é um beco sem saída |
-| Centro de Convivência | Carga: a Célula pesa, zumbe e impede de correr | Mapa da Diana e caco de espelho (opcional) | Levar a Célula pela praça ou pela galeria |
+| Centro de Convivência | Carga: a Célula pesa, zumbe e impede de correr | Mapa da Diana | Levar a Célula pela praça ou pela galeria |
 | Bunker | Gás no setor B | Máscara de gás | Passar pelo Escafandro com a máscara, cuja respiração ele ouve |
 
 ---
@@ -71,13 +71,12 @@ Todo `Interagivel` tem `segundos_segurar` e `ruido_ao_segurar`. Com tempo maior 
 
 ---
 
-## 5. Centro de Convivência: a carga, a galeria e o espelho
+## 5. Centro de Convivência: a carga e a galeria
 
 - **A Célula é carga** (`carga_pesada` em `celula_energia.tres`): com ela na mochila o Gabriel não corre e, a cada 1,5 s, o zumbido faz barulho de alcance 8 (`ZumbidoDaCarga`). A tecla `G` larga no chão. Ela fica onde caiu, mesmo depois de morrer ou trocar de sala (`Inventario.largados`, `ItensLargados`). O comutador consome a Célula.
   - **Como o jogador fica sabendo:** enquanto carrega a Célula, a barra de estamina da HUD fica cinza e o rótulo troca de `ESTAMINA` para `CARGA: SEM CORRER [G]` (`hud.gd`). Cada vez que ele aperta correr com ela na mochila, aparece o aviso de que não dá para correr e de que `G` larga (`ZumbidoDaCarga`). Antes disso, a barra ficava cheia e normal, e um testador achou que a corrida tinha quebrado depois de a estamina zerar (2026-11-05).
 - **Mapa da Diana** (`mapa_diana.tres`): fica perto do balcão da Tapioca Orbital, e a Diana conta dele pelo rádio ao Gabriel entrar. Sem o mapa, as portinholas nem aparecem. Com ele, surgem no Self Nebulosa, na Pizzaria Quasar e no Churrasco Solar (`PortaDaGaleria`).
 - **A galeria** (`cenas/salas/centro_de_convivencia/galeria.tscn`): 2000 px de corredor escuro, chão de entulho (ruído ×1,5), um Rastreador e nenhum esconderijo. Encurta o caminho e evita as Sentinelas, mas quem leva a Célula não consegue correr dele e tem de largá-la.
-- **Caco de espelho** (`espelho.tres`, opcional, na Loja Universitária): a tecla abre uma janela de 0,5 s. Se uma Sentinela estiver vendo o Gabriel e ele estiver de frente para ela, a luz rebate pela reflexão `r = d − 2(d·n)n` e atordoa quem estiver na linha, por 4 s vezes o `fator_clarao`. Fora de hora, conta como luz acesa e deixa o Gabriel mais visível. Espera de 3 s. Só a Sentinela tem farol.
 - **Cofre do bufê e quadro do bar:** agora sem pausa, com o Rastreador e o Caçador por perto.
 
 ---

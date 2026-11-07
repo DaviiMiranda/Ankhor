@@ -486,8 +486,7 @@ func _linha_livre(ate: Vector2) -> bool:
 
 
 static func luz_do_jogador_acesa() -> bool:
-	return Inventario.estado_de("lanterna").get("aceso", false) or Inventario.estado_de("notebook").get("aceso", false) \
-			or Inventario.estado_de("espelho").get("aceso", false)
+	return Inventario.estado_de("lanterna").get("aceso", false) or Inventario.estado_de("notebook").get("aceso", false)
 
 
 func _jogador_iluminado() -> bool:

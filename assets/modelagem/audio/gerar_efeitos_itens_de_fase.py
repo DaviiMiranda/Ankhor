@@ -11,7 +11,6 @@
 #   mascara_respiracao.wav uma inspiração e uma expiração pelo filtro
 #   tosse.wav              uma tosse curta, no ar do gás
 #   gas_sibilo.wav         4 s em loop: gás escapando de um cano
-#   espelho_brilho.wav     o reflexo que rebate o farol
 #
 # - LOOP SEM EMENDA: as frequências têm um número inteiro de ciclos na duração,
 #   então o fim encaixa no começo; o ruído é filtrado pela FFT, que é circular.
@@ -103,13 +102,6 @@ def gas_sibilo():
     salvar("gas_sibilo.wav", ruido_filtrado(len(t), 2500, 8000) * (0.8 + 0.2 * np.sin(2 * np.pi * 0.5 * t)))
 
 
-def espelho_brilho():
-    t = tempo(0.6)
-    parciais = [2100, 3170, 4430, 5910]
-    sinal = sum(np.sin(2 * np.pi * f * t) * np.exp(-(5 + i * 2) * t) for i, f in enumerate(parciais))
-    salvar("espelho_brilho.wav", sinal)
-
-
 def main():
     walkman_fita()
     celula_zumbido()
@@ -117,7 +109,6 @@ def main():
     mascara_respiracao()
     tosse()
     gas_sibilo()
-    espelho_brilho()
     print("efeitos dos itens de fase gerados")
 
 

@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-07 — Sai o caco de espelho
+
+**Decisão:** o item **caco de espelho** (gadget da Loja Universitária que rebatia o farol da Sentinela) foi removido do jogo. O espelho de pé da loja continua, só como cenário.
+
+**Por quê:** pedido do Davi.
+
+**Afeta:** saíram `scripts/itens/espelho.gd`, `cenas/itens/espelho.tscn`, `dados/itens/espelho.tres`, os três sprites `espelho*.png` de `assets/sprites/itens/` e `espelho_brilho.wav`. Foram limpos `robo.gd` (`luz_do_jogador_acesa` não olha mais o espelho), `loja_uni.tscn`, `sala_teste.tscn`, os geradores (`gerar_itens_de_fase.py`, `gerar_efeitos_itens_de_fase.py`, `salas_convivencia.py`) e as docs de mecânicas, fases e computação. As decisões antigas que citam o espelho (2026-11-05, rodada de dificuldade) ficam como histórico.
+
 ## 2026-11-07 — O Gabriel mira com a arma de pulso em todas as direções
 
 **Decisão:** o braço com a arma de pulso, que só existia de lado, agora aparece **nas 8 direções da mira** (de lado, de frente, de costas e os dois três quartos; a esquerda é o sprite espelhado). A arma passou a ser **modelada em 3D** no Blender, presa ao antebraço, em vez de desenhada à mão: assim ela gira com o corpo e sai certa em cada vista. Cada vista tem dois quadros, `mirando` e `atirando`; o clarão do tiro sai do bocal da arma em cada uma. Se a mira girar no meio, a tira troca para a vista nova. O quadro "normal" (braço caído) deixou de existir: não era usado. De costas, a arma quase não aparece, porque o braço aponta para longe da câmera.
@@ -227,7 +235,7 @@ Isso responde a pendência "o que muda no Bunker" (Enredo 10.3) e, em parte, "o 
 
 - **Persegue a fase toda:** chega 8 s depois de o Gabriel entrar no bunker e o segue de sala em sala até a comporta do núcleo. Sabe sempre onde ele está, menos quando está escondido. Pela porta, chega depois do tempo que levaria andando (distância / velocidade).
 - **Mais lento que os outros:** 36 px/s em perseguição (o Escafandro corre a 38, a Mariposa a 48, o Gabriel anda a 60).
-- **Invulnerável:** clarão, espelho e hack do notebook não fazem nada. Encostar tira um coração, como os outros.
+- **Invulnerável:** clarão e hack do notebook não fazem nada. Encostar tira um coração, como os outros.
 - **Esconderijo:** com o Gabriel escondido num nicho, ele espera do lado de fora de 7 a 11 s. Enquanto isso corre o minijogo novo de **respiração contida**: segurar `E` prende o ar, soltar respira, e é preciso manter a respiração na faixa verde do meio. Falhou, ele ouve e pega o Gabriel. Aguentou, ele sai por uma porta e volta 14 s depois.
 - **Não entra** na sala segura nem na sala de dados do Henrique. Ao sair delas, ele chega 6 s depois por outra porta. Depois do checkpoint, chega em 12 s.
 - **O jogo não diz de quem é o rosto.** Quando o jogador descobre que o Carlos existe continua pendente (Enredo, seção 10.2).
