@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const CENA_MENU := "res://cenas/menu_principal.tscn"
+const CENA_MENU := "res://cenas/interface/menu_notebook.tscn"
 const FORMATO_TEMPO := "Tempo de jogo: %s"
 
 var aberta := false

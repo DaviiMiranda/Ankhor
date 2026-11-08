@@ -1,8 +1,8 @@
 # Menu na escrivaninha do Gabriel
 
-Cena independente: `cenas/interface/menu_notebook.tscn`. Abra essa cena no Godot
-4.7.x e use **F6**. Por escolha do Davi, o menu inicial atual continua
-sendo a entrada do jogo e esta cena fica separada para avaliação.
+O menu principal é `cenas/interface/menu_notebook.tscn`. Abra o projeto no Godot
+4.7.x e use **F5** para iniciar por ele; **F6** executa só essa cena. A pausa
+e as saídas de fase também retornam a este menu.
 
 O cenário usa a geometria da escrivaninha, do notebook, da luminária, da caneca,
 dos livros, da janela, da cortina e do cacto do quarto VR. O enquadramento é

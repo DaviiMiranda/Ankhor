@@ -1,7 +1,7 @@
 class_name SaidaFase
 extends Area2D
 
-@export_file("*.tscn") var cena_destino: String = "res://cenas/menu_principal.tscn"
+@export_file("*.tscn") var cena_destino: String = "res://cenas/interface/menu_notebook.tscn"
 @export var espera: float = 3.5
 @export var sair_ao_carregar := false
 
