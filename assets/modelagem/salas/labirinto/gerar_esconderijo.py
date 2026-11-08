@@ -1,5 +1,5 @@
 # gerar_esconderijo.py — gera a ARTE do esconderijo do Baltazar no Labirinto:
-# a parede falsa que só a lanterna revela e a bagunça de quem vive ali.
+# a parede falsa (painel solto à vista) e a bagunça de quem vive ali.
 #
 # Como rodar (Python 3 + numpy):
 #
@@ -22,9 +22,8 @@
 # No Godot, os dois blocos da parede falsa são desenhados como qualquer
 # parede (topo e frente), e o painel_solto.png vai POR CIMA da frente. Ele é
 # quase todo transparente: só tem as emendas do painel e os riscos que o
-# Baltazar fez com uma pedra. A opacidade dele no jogo é a força da
-# lanterna naquele ponto (ver scripts/sistemas/parede_falsa.gd), então sem
-# o feixe apontado a parede parece igual às outras.
+# Baltazar fez com uma pedra. A opacidade dele no jogo é 1 (ver
+# scripts/sistemas/parede_falsa.gd) e some aos poucos quando a parede abre.
 #
 # Os riscos são o Cruzeiro do Sul, a constelação que um rapaz do Ceará de
 # 1750 conhecia de olhar o céu, e uma cruz pequena: o Baltazar marcou a

@@ -82,7 +82,7 @@ PASSARELA = {
     ],
     "sinais_sala_segura": [(4 * PECA + X_PORTA, 4)],
     "objetos": [("vaso_planta", 330, 156), ("banco_curvo", 450, 160)],
-    "itens": [("pilha", 360, 168), ("lanterna", 140, 160), ("radio", 180, 160)],
+    "itens": [("pilha", 360, 168), ("radio", 180, 160)],
     "documentos": [("carta_faroleiro_neide", 270, 166, "Ler a carta")],
     "checkpoint": ("conv_passarela", 60, 140),
     "transmissoes": [("zane_convivencia_01", 220, 152, "")],

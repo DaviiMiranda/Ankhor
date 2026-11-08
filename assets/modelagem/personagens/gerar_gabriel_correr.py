@@ -8,7 +8,7 @@
 #   assets/sprites/personagens/gabriel/gabriel_correr_<vista>.png
 #       24 quadros de 96 x 112 lado a lado, um arquivo por vista, na paleta dele.
 #   scripts/personagens/maos_correndo_gabriel.gd
-#       onde fica, em cada quadro, a mão que segura a lanterna.
+#       onde fica, em cada quadro, a mão que segura o item (o braço de hack sai dela).
 #
 # ---------------------------------------------------------------------------
 # A ANIMAÇÃO
@@ -60,7 +60,7 @@
 #
 # A mão não é medida na imagem, como em medir_maos_gabriel.py: correndo, as duas
 # mãos cruzam o corpo, e a "mão mais à direita" trocaria de lado no meio do ciclo,
-# fazendo a lanterna pular. Em cada vista fica a mão que está mais à direita na
+# fazendo o item pular. Em cada vista fica a mão que está mais à direita na
 # pose parada (a mesma regra da medição), seguida do começo ao fim pelo modelo 3D:
 #
 #   px = u · largura         py = (1 - v) · altura
@@ -189,7 +189,7 @@ def renderizar(cam, raiz, materiais, angulo):
     return c.renderizar_vista(cam, raiz, materiais, angulo, c.QUADRO_JOGO_2X, c.PX_POR_M_JOGO_2X, c.PE_JOGO_2X)
 
 
-def braco_da_lanterna(cam, raiz, materiais, angulo):
+def braco_do_item(cam, raiz, materiais, angulo):
     renderizar(cam, raiz, materiais, angulo)
     bpy.context.view_layer.update()
     return max(("BracoDir", "BracoEsq"), key=lambda braco: posicao_da_mao(cam, braco)[0])
@@ -209,8 +209,8 @@ def main():
     c.criar_luzes()
     parado = c.guardar_pose()
 
-    bracos = {vista: braco_da_lanterna(cam, raiz, materiais, angulo) for vista, angulo in c.VISTAS_JOGO}
-    print("[correr] mão da lanterna:", bracos)
+    bracos = {vista: braco_do_item(cam, raiz, materiais, angulo) for vista, angulo in c.VISTAS_JOGO}
+    print("[correr] mão do item:", bracos)
     folga = max(abs(altura_crua(f) - altura_suave(f)) for f in range(360))
     print(f"[correr] pé longe do chão, no máximo: {folga * c.PX_POR_M_JOGO_2X:.1f} px")
 

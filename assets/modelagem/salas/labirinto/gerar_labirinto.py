@@ -15,7 +15,7 @@
 #   assets/sprites/salas/labirinto/porta_corredor_tempo.png  64 x 40, a porta do Corredor do Tempo (luz âmbar)
 #   assets/sprites/salas/labirinto/marcas_garra.png, poca.png, papel.png   detalhes do chão
 #   assets/sprites/cenario/objetos/checkpoint_apagado.png e checkpoint_aceso.png
-#   assets/sprites/cenario/luzes/luz_cone.png   textura do feixe (lanterna e farol da Sentinela)
+#   assets/sprites/cenario/luzes/luz_cone.png   textura do cone (farol da Sentinela)
 # Com PREVIA=1, também salva previa_labirinto.png nesta pasta (não commitar).
 #
 # ---------------------------------------------------------------------------
@@ -71,7 +71,7 @@
 # CICLOS, e sempre dá para dar a volta num quarteirão para despistar.
 #
 # Os marcadores no mapa (uma letra por bloco):
-#   #  parede          .  chão           G  início do Gabriel   T  lanterna (ao lado do início)
+#   #  parede          .  chão           G  início do Gabriel
 #   D  porta de saída (na parede de cima)                        S  saída (gatilho)
 #      (D e S só existem no mapa de teste: a saída da fase é o alçapão A)
 #   Q  porta da sala segura   H  porta do Corredor do Tempo   (2 blocos de parede cada)
@@ -83,7 +83,7 @@
 #   r  rack      k  caixas    a  braço robótico        u  cadeira
 #   h  holograma de ondas     i  holograma de barras   j  holograma de código
 #   O esconderijo do Baltazar (ver "O ESCONDERIJO DO BALTAZAR", abaixo):
-#   F  parede falsa (2 blocos; parece parede, só a lanterna revela)
+#   F  parede falsa (2 blocos; parece parede, com o painel solto à vista)
 #   B  o Baltazar      y  altar improvisado (com velas)   e  estrelas riscadas na parede (largo)
 #   n  ninho de panos (largo)   l  pilha de livros   v  tocos de vela no chão
 #   Os pingentes do chapéu do Baltazar (colecionáveis, docs/mecanicas/colecionaveis.md):
@@ -148,7 +148,7 @@ QUANTIDADE_PILHAS = 5
 QUANTIDADE_PINGENTES_NOS_BECOS = 2
 QUANTIDADE_LAMPADAS = 14
 
-# Onde o Gabriel começa (uma salinha, com a lanterna ao lado): fora da
+# Onde o Gabriel começa (uma salinha): fora da
 # oficina, mas a poucos passos da porta dela. Esta salinha é uma câmara
 # logo acima do corredor de baixo, a 5 salinhas de caminho da porta. O
 # caminho mais curto até a entrada da oficina tem de ficar nesta faixa
@@ -366,7 +366,6 @@ def montar_mapa(rng):
                     grade[3 * sala["y"] + 1 + j][3 * sala["x"] + 1 + i] = letra
 
     marcar(inicio, "G")
-    marcar(inicio, "T", 2, 1)
 
     # A porta da sala segura ("QQ"): na parede de cima da câmara onde o
     # Gabriel começa, para ser a primeira coisa que ele vê. As duas letras
@@ -653,7 +652,7 @@ def checkpoint(aceso):
 
 
 def luz_cone():
-    """Textura do FEIXE de luz (lanterna do Gabriel e farol da Sentinela).
+    """Textura do CONE de luz (farol da Sentinela).
     A luz sai do centro da imagem e aponta para a direita (+x); no Godot a
     PointLight2D gira para onde o feixe deve apontar.
 
@@ -708,7 +707,7 @@ def previa(linhas, sprites):
                 else:
                     sala.colar(sprites["frente"][(bx * 7 + by * 3) % 4], x, y + BLOCO - ALTURA_PAREDE)
     cores = {"G": (60, 200, 255), "C": (80, 255, 120), "V": (255, 60, 60), "R": (255, 140, 40), "O": (255, 60, 60), "K": (255, 60, 60),
-             "P": (240, 240, 80), "L": (255, 220, 150), "S": (80, 255, 120), "T": (200, 200, 255),
+             "P": (240, 240, 80), "L": (255, 220, 150), "S": (80, 255, 120),
              "Z": (255, 255, 60), "N": (255, 60, 255), "A": (255, 255, 255),
              "B": (150, 30, 60), "F": (255, 180, 60),
              "1": (255, 90, 160), "2": (255, 90, 160), "3": (255, 90, 160)}

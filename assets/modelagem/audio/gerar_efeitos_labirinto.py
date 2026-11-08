@@ -1,5 +1,5 @@
 # gerar_efeitos_labirinto.py — compõe por código os efeitos sonoros do
-# labirinto: os robôs, a vida do Gabriel, o checkpoint e a lanterna.
+# labirinto: os robôs, a vida do Gabriel, o checkpoint e a lanterna do visor de RV.
 #
 # Como rodar (Python 3 + numpy):
 #   python assets/modelagem/audio/gerar_efeitos_labirinto.py
@@ -16,7 +16,7 @@
 #   assets/audio/efeitos/gabriel/gabriel_dano.wav     a pancada de quando é pego
 #   assets/audio/efeitos/interface/morte.wav          a tela de morte
 #   assets/audio/efeitos/interface/checkpoint.wav     o posto de emergência acendendo
-#   assets/audio/efeitos/objetos/lanterna_clique.wav  o botão da lanterna
+#   assets/audio/efeitos/objetos/lanterna_clique.wav  o botão da lanterna do visor de RV
 #   assets/audio/efeitos/objetos/pilha_troca.wav      a tampa abrindo e a pilha encaixando
 #
 # As ferramentas (envelope, filtro pela FFT, salvar) vêm do

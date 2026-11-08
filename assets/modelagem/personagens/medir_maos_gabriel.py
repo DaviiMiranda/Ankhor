@@ -1,5 +1,5 @@
 # medir_maos_gabriel.py — acha, em cada quadro dos sprites do Gabriel, onde está
-# a mão que segura a lanterna, e grava a tabela em
+# a mão que segura o item (o braço de hack sai dela), e grava a tabela em
 # scripts/personagens/maos_do_gabriel.gd (uma constante que o gabriel.gd usa).
 #
 # Como rodar (Python 3 + numpy + Pillow):
@@ -17,7 +17,7 @@
 #
 #     centro = (soma dos x / n, soma dos y / n)
 #
-# A lanterna fica sempre na MESMA mão. O primeiro quadro da tira escolhe a mão
+# O item fica sempre na MESMA mão. O primeiro quadro da tira escolhe a mão
 # (a mancha de maior x, a da direita do quadro) e dali em diante a mão é seguida
 # quadro a quadro: vale a mancha mais perto do ponto previsto, que é o anterior
 # mais a velocidade que a mão vinha tendo,
@@ -29,14 +29,14 @@
 # qual. Sem velocidade (no segundo quadro e depois de um quadro sem mão), valem
 # só as manchas a menos de SALTO_MAXIMO pixels do último ponto achado, e entre
 # elas a de maior x. Antes, a escolha era "a mancha de maior x
-# de cada quadro", e a lanterna saltava para a outra mão sempre que a primeira
+# de cada quadro", e o item saltava para a outra mão sempre que a primeira
 # sumia atrás do corpo (na vista de três quartos o salto passava de 17 pixels).
 #
 # Quadros em que a mão seguida não aparece (atrás do corpo) são preenchidos por
 # interpolação linear entre o último e o próximo quadro com mão, contando a tira
 # como um ciclo (depois do último quadro vem o primeiro).
 #
-# O braço que segura a lanterna balança menos que o outro, então o balanço em x
+# O braço que segura o item balança menos que o outro, então o balanço em x
 # é reduzido a AMORTECIMENTO do original em volta da média da tira:
 #
 #     x = media + AMORTECIMENTO * (x_medido - media)
