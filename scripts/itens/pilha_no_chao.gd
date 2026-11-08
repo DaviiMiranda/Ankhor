@@ -1,7 +1,7 @@
 class_name PilhaNoChao
 extends Interagivel
 
-const GADGETS_COM_PILHA := ["lanterna", "notebook"]
+const GADGETS_COM_PILHA := ["notebook"]
 const LIMITE_PARA_TROCAR := 0.95
 const SOM_TROCA := preload("res://assets/audio/efeitos/objetos/pilha_troca.wav")
 
@@ -30,7 +30,7 @@ func interagir() -> void:
 		Inventario.aviso.emit("Pilha guardada (%d). Use na aba Criação" % Inventario.pilhas())
 	else:
 		Inventario.estado_de(id)["carga"] = 1.0
-		Inventario.aviso.emit("Pilha trocada: lanterna carregada" if id == "lanterna" else "Pilha trocada: %s carregado" % id)
+		Inventario.aviso.emit("Pilha trocada: %s carregado" % id)
 	Inventario.pegos[_id_unico()] = true
 	_tocar_som()
 	queue_free()

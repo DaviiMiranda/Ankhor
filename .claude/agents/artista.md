@@ -28,7 +28,7 @@ Leia o que for relevante para a tarefa:
 
 - **Guia de estilo:** paleta, tamanho dos sprites e padrão de nome de arquivo. Definido pelo papel 3 junto com o Davi antes da primeira arte, e vale para todos (`docs/equipe.md`, "3 → 1").
 - **Shaders** em `shaders/` (`.gdshader`): luzes, poeira e pólen, visual do sonho, a tela CRT do menu.
-- **Iluminação 2D no Godot:** `PointLight2D`, `LightOccluder2D`, `CanvasModulate`. A luz da lanterna é mecânica e visual ao mesmo tempo: a intensidade é controlada pela jogabilidade (papel 2); a aparência é sua.
+- **Iluminação 2D no Godot:** `PointLight2D`, `LightOccluder2D`, `CanvasModulate`. A luz dos robôs e do cenário é mecânica e visual ao mesmo tempo: o alcance é controlado pela jogabilidade (papel 2); a aparência é sua.
 - **Placeholders:** sprites e tiles simples gerados por script ou no próprio Godot até a arte final ficar pronta. Sem assets pagos.
 - **Listas de assets:** o que cada sala e cada robô precisa ter (sprites, animações, tiles, versão presente e versão sonho).
 - **Arte e roteiro juntos:** conferir com `docs/historia/roteiro/` se o que está nas paredes, a aparência de cada robô e a diferença entre presente e sonho contam a história certa. Mudança de história não é com você: sugira ao roteiro.

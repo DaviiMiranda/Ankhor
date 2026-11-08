@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/cilindros.tscn" id="r12"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/planta.tscn" id="r13"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="r14"]
-[ext_resource type="Resource" path="res://dados/itens/lanterna.tres" id="r15"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r16"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r17"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r18"]
@@ -96,10 +95,6 @@ espelhado = true
 [node name="Checkpoint1" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(300, 150)
 id = "dtec_chegada"
-
-[node name="Lanterna1" parent="Objetos" instance=ExtResource("r16")]
-position = Vector2(200, 160)
-item = ExtResource("r15")
 
 [node name="Pilha1" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(420, 165)

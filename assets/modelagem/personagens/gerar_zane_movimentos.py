@@ -1,6 +1,6 @@
 # gerar_zane_movimentos.py — anima o Zane correndo e estendendo o braço para
 # hackear um robô, nas cinco vistas de jogo, e mede onde fica a mão que segura
-# a lanterna em todos os quadros dele (parado, andando, correndo e hackeando).
+# o item em todos os quadros dele (parado, andando, correndo e hackeando).
 #
 # Como rodar (sem abrir a janela do Blender; precisa do gerar_zane.py ao lado):
 #
@@ -56,7 +56,7 @@
 # AS MÃOS
 # ---------------------------------------------------------------------------
 #
-# A lanterna fica na mão que está mais à direita do quadro na pose parada, em cada
+# O item fica na mão que está mais à direita do quadro na pose parada, em cada
 # vista, e essa mesma mão é seguida pelo modelo 3D em todos os quadros:
 #
 #   px = u · largura         py = (1 - v) · altura
@@ -223,7 +223,7 @@ def renderizar(cam, raiz, materiais, angulo):
     return c.renderizar_vista(cam, raiz, materiais, angulo, c.QUADRO_JOGO_2X, c.PX_POR_M_JOGO_2X, c.PE_JOGO_2X)
 
 
-def braco_da_lanterna(cam, raiz, materiais, angulo):
+def braco_do_item(cam, raiz, materiais, angulo):
     renderizar(cam, raiz, materiais, angulo)
     bpy.context.view_layer.update()
     return max(("BracoDir", "BracoEsq"), key=lambda braco: posicao_da_mao(cam, braco)[0])
@@ -271,8 +271,8 @@ def main():
     correndo = {}
     hackeando = {}
     for vista, angulo in vistas_pedidas():
-        braco = braco_da_lanterna(cam, raiz, materiais, angulo)
-        print(f"[zane] {vista}: mão da lanterna = {braco}")
+        braco = braco_do_item(cam, raiz, materiais, angulo)
+        print(f"[zane] {vista}: mão do item = {braco}")
 
         quadros_correr = []
         pontos_correr = []

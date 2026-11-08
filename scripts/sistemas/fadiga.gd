@@ -58,10 +58,10 @@ func pode_correr() -> bool:
 	return not esta_exausto() and not recuperando_folego and estamina > 0.0
 
 
-func consumir(delta: float, multiplicador: float = 1.0) -> void:
+func consumir(delta: float) -> void:
 	if esta_exausto():
 		return
-	estamina = maxf(estamina - consumo_por_segundo * delta * multiplicador, 0.0)
+	estamina = maxf(estamina - consumo_por_segundo * delta, 0.0)
 	mudou.emit(estamina, estamina_maxima)
 	if estamina == 0.0:
 		tempo_exaustao = duracao_exaustao

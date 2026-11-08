@@ -372,7 +372,7 @@ id = "escritorio_recepcao"
 
 [node name="Esconderijo1" parent="Objetos" instance=ExtResource("r32")]
 position = Vector2(784, 202)
-aviso = "Agachado atrás do balcão, parado e de lanterna apagada, os robôs não me veem."
+aviso = "Agachado atrás do balcão, parado e quieto, os robôs não me veem."
 
 [node name="Ronda" parent="Objetos" instance=ExtResource("r33")]
 position = Vector2(168, 172)

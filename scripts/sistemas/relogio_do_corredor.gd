@@ -17,7 +17,6 @@ static var _alinhados := {}
 @export var segundos_criticos: float = 15.0
 @export var intervalo_tique_calmo: float = 1.0
 @export var intervalo_tique_final: float = 0.22
-@export var expoente_pressao: float = 1.6
 
 var _ate_proximo_tique := 0.0
 var _taque := false
@@ -91,7 +90,6 @@ func _process(delta: float) -> void:
 	if not esta_correndo() or _esgotou:
 		return
 	_restante = maxf(_restante - delta, 0.0)
-	_aplicar_pressao(pow(_fracao_passada(), expoente_pressao))
 	_tiquetaquear(delta)
 	_mostrar()
 	if _restante <= 0.0:
@@ -123,7 +121,6 @@ func _vencer() -> void:
 	_restante = -1.0
 	_alinhados.clear()
 	Progresso.marcar(MARCA_VENCIDO)
-	_aplicar_pressao(0.0)
 	som_vencido.play()
 	Inventario.aviso.emit("Os quatro tempos bateram juntos. O relógio parou e a porta do corredor destravou.")
 	vencido.emit()
@@ -132,13 +129,6 @@ func _vencer() -> void:
 func _ao_morrer() -> void:
 	_restante = -1.0
 	_alinhados.clear()
-	_aplicar_pressao(0.0)
-
-
-func _aplicar_pressao(valor: float) -> void:
-	var gabriel := _gabriel()
-	if gabriel and gabriel.ansiedade:
-		gabriel.ansiedade.definir_pressao(valor)
 
 
 func _gabriel() -> Gabriel:

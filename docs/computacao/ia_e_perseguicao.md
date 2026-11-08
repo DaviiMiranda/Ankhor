@@ -76,7 +76,7 @@ Arquivos: `scripts/labirinto/grade_labirinto.gd` (grafo, A\*, BFS, Markov) e `sc
 ### 5.2 Visão: produto escalar + raio
 O robô olha numa direção $\vec{d}$ (vetor unitário). Seja $\vec{v}$ o vetor do robô até o Gabriel e $|\vec{v}|$ a distância. O Gabriel é visto se:
 
-1. $|\vec{v}| \le \text{alcance}$, onde $\text{alcance} = \text{alcance\_visão} \times (1{,}7 \text{ se a lanterna está acesa})$;
+1. $|\vec{v}| \le \text{alcance}$, onde $\text{alcance} = \text{alcance\_visão} \times (1{,}7 \text{ se há luz acesa por perto})$;
 2. está dentro do **cone**: $\vec{d} \cdot \dfrac{\vec{v}}{|\vec{v}|} \ge \cos\left(\dfrac{\theta}{2}\right)$, com $\theta$ = abertura do cone (Sentinela 60°, Rastreador 100°). O produto escalar de dois vetores unitários é o cosseno do ângulo entre eles, então basta comparar com o cosseno da metade da abertura: nada de arco-cosseno;
 3. a **linha de visão está livre**: um raio (*ray casting*) do robô até o Gabriel, testando só a camada de colisão das paredes, não pode bater em nada.
 
@@ -179,6 +179,6 @@ com uma penalidade grande para portas a menos de 90 px do Gabriel. Assim ele nã
 
 O minijogo é um controle de uma variável $n \in [0, 1]$ (a respiração) que tende a subir e que o jogador empurra para baixo segurando `E`:
 
-$$\frac{dn}{dt} = \begin{cases} -0{,}30 & \text{segurando} \\ \text{lerp}(0{,}12;\ 0{,}22;\ a) & \text{soltando} \end{cases} + 0{,}15\,\sin(2{,}1t)\,\sin(0{,}63t+1)$$
+$$\frac{dn}{dt} = \begin{cases} -0{,}38 & \text{segurando} \\ +0{,}18 & \text{soltando} \end{cases} + 0{,}20\,\sin(2{,}1t)\,\sin(0{,}63t+1)$$
 
-onde $a$ é a ansiedade do Gabriel (0 a 1). Fora da faixa verde $|n - 0{,}5| > w/2$, com $w = \text{lerp}(0{,}40;\ 0{,}26;\ a)$, o ruído $r$ cresce 0,45/s; dentro, cai 0,25/s. Com $r = 1$, o Ciborgue ouve. É um controlador liga-desliga feito à mão, como segurar um peixe na faixa num jogo de pesca.
+Fora da faixa verde $|n - 0{,}5| > w/2$, com $w = 0{,}28$ (e $0{,}8\,w$ se o Gabriel está cansado), o ruído $r$ cresce 0,65/s; dentro, cai 0,18/s. Com $r = 1$, o Ciborgue ouve. É um controlador liga-desliga feito à mão, como segurar um peixe na faixa num jogo de pesca.

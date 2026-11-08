@@ -26,7 +26,6 @@
 [ext_resource type="PackedScene" path="res://cenas/interface/hud.tscn" id="i_hud"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_inventario.tscn" id="i_inventario"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="i_item"]
-[ext_resource type="Resource" path="res://dados/itens/lanterna.tres" id="i_lanterna"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="i_pilha"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_morte.tscn" id="i_tela_morte"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_documento.tscn" id="i_tela_documento"]

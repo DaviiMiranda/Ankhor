@@ -3,7 +3,7 @@
 	"inicio": "abertura",
 	"anotacao": {
 		"titulo": "Zane, na oficina do Labirinto",
-		"texto": "O Zane montou uma oficina no canto do Labirinto, cheia de peças e telas holográficas.\n\nA saída do subsolo está lacrada pelo sistema, e o bunker do Henrique também: a mesma trava lê três nós de controle espalhados pelo labirinto, em salões com uma entrada só. O Zane não consegue invadir de longe: a rede do subsolo é fechada.\n\nO Zane desconfia do Henrique. Diz que ele está trancado no bunker \"consertando tudo\" e nunca mostrou nada, e que tudo o que o grupo sabe passa por ele.\n\nEle me deu o notebook dele. Chego perto do terminal de cada nó e invado. Nos nós o notebook não gasta bateria.\n\nO Zane falou de duas coisas fora do mapa: uma parede no corredor de cima com um vão atrás que não está em planta nenhuma (apontar a lanterna para ela) e uma porta âmbar entre os nós, uma sala de teste opcional, com cronômetro.\n\nQuando os três caírem, volto ao Zane para ele mostrar por onde sair. Os robôs patrulham o labirinto inteiro: a Sentinela vê longe, o Rastreador ouve tudo."
+		"texto": "O Zane montou uma oficina no canto do Labirinto, cheia de peças e telas holográficas.\n\nA saída do subsolo está lacrada pelo sistema, e o bunker do Henrique também: a mesma trava lê três nós de controle espalhados pelo labirinto, em salões com uma entrada só. O Zane não consegue invadir de longe: a rede do subsolo é fechada.\n\nO Zane desconfia do Henrique. Diz que ele está trancado no bunker \"consertando tudo\" e nunca mostrou nada, e que tudo o que o grupo sabe passa por ele.\n\nEle me deu o notebook dele. Chego perto do terminal de cada nó e invado. Nos nós o notebook não gasta bateria.\n\nO Zane falou de duas coisas fora do mapa: uma parede no corredor de cima com um vão atrás que não está em planta nenhuma (com uns riscos que não são de obra) e uma porta âmbar entre os nós, uma sala de teste opcional, com cronômetro.\n\nQuando os três caírem, volto ao Zane para ele mostrar por onde sair. Os robôs patrulham o labirinto inteiro: a Sentinela vê longe, o Rastreador ouve tudo."
 	},
 	"trechos": {
 		"abertura": {
@@ -98,7 +98,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_assustado",
-					"texto": "Uns seis, na última contagem. A Sentinela é a alta, de olho vermelho: vê longe, e mais longe ainda com a sua lanterna acesa."
+					"texto": "Uns seis, na última contagem. A Sentinela é a alta, de olho vermelho: vê longe, e mais longe ainda quando você está perto de uma luz acesa ou com o notebook ligado."
 				},
 				{
 					"quem": "Zane",
@@ -108,7 +108,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_confiante",
-					"texto": "Anda devagar, apaga a lanterna quando precisar e usa os cantos. Cada salão tem uma entrada só, então olha antes de entrar."
+					"texto": "Anda devagar, fica longe das luzes acesas e usa os cantos. Cada salão tem uma entrada só, então olha antes de entrar."
 				}
 			],
 			"vai_para": "menu"
@@ -194,7 +194,7 @@
 				{
 					"quem": "Zane",
 					"retrato": "zane/zane_retrato_normal",
-					"texto": "Robô não atravessa parede. Alguém fechou esse vão de propósito. Quando passar por lá, aponta a lanterna pra parede: luz mostra o que o concreto esconde."
+					"texto": "Robô não atravessa parede. Alguém fechou esse vão de propósito. Quando passar por lá, olha bem pra parede: tem uns riscos ali que não são de obra."
 				},
 				{
 					"quem": "Zane",

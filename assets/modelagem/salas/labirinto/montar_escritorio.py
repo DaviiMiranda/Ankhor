@@ -315,8 +315,8 @@ def lampadas_da_porta(peca):
 SCRIPT_ZANE = "res://scripts/salas/sala_do_zane.gd"
 CAMARA = "res://cenas/salas/labirinto/camara_selada.tscn"
 SOM_BLINDADA = "res://assets/audio/efeitos/objetos/porta_blindada.wav"
-AVISO_BALCAO = "Agachado atrás do balcão, parado e de lanterna apagada, os robôs não me veem."
-AVISO_ARQUIVOS = "Parado no vão escuro entre os arquivos, de lanterna apagada, os robôs não me veem."
+AVISO_BALCAO = "Agachado atrás do balcão, parado e quieto, os robôs não me veem."
+AVISO_ARQUIVOS = "Parado no vão escuro entre os arquivos, os robôs não me veem."
 ESCURO = (0.34, 0.33, 0.37, 1)
 
 CADEIRAS = [("cadeiras_espera", x, y) for y in (200, 252, 304) for x in (226, 298, 438, 510)]
