@@ -19,7 +19,10 @@ var _mouse_sobre_tela := false
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	camera.look_at(alvo_da_camera)
-	$Imagem/Mundo/LuzDaLuminaria.look_at(Vector3(-2.1, 0.76, -0.03))
+	var cacto := modelo.find_child("CactoComGomos", true, false) as MeshInstance3D
+	var limites_cacto := cacto.get_aabb()
+	var alvo_luz := cacto.to_global(limites_cacto.position + limites_cacto.size * Vector3(0.5, 0.72, 0.5))
+	$Imagem/Mundo/LuzDaLuminaria.look_at(alvo_luz)
 	_ajustar_resolucao()
 	get_window().size_changed.connect(_ajustar_resolucao)
 	var tela := modelo.find_child("TelaNotebook", true, false) as MeshInstance3D

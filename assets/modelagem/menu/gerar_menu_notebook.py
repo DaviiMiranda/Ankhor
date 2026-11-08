@@ -175,7 +175,7 @@ def preparar_camera_e_luzes():
     cena.view_settings.view_transform = "AgX"
     cena.world.use_nodes = True
     cena.world.node_tree.nodes.get("Background").inputs["Strength"].default_value = 0.0
-    criar_luz("LuzDaLuminaria", (-2.31, 1.1, 0.4), 12, (1.0, 0.77, 0.48), 0.12, (-2.1, 0.77, 0.1))
+    criar_luz("LuzDaLuminaria", (-2.31, 1.1, 0.4), 12, (1.0, 0.77, 0.48), 0.12, (-2.43, 1.22, -0.55))
     dados = bpy.data.cameras.new("CameraDoMenu")
     dados.sensor_fit = "VERTICAL"
     dados.lens = dados.sensor_height / (2.0 * math.tan(math.radians(FOV_VERTICAL) / 2.0))
