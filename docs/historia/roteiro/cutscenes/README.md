@@ -69,4 +69,4 @@ Resoluções, camadas de paralaxe e conexão no Godot (`scripts/cutscenes/cutsce
 | Cutscene | Descrição | Status |
 |---|---|---|
 | [`seg_prologo`](seg_prologo.md) | Prólogo em ilustrações: rotina de Gabriel em 2026, ida à faculdade, aula e o adormecer na cabine da Biblioteca | em produção (cena montada no Godot; faltam os sons) |
-| [`seg_acordar`](seg_acordar.md) | Vídeo: Gabriel acorda na cabine da Biblioteca, mil anos depois, cercado pela tecnologia de 3026 | pronta |
+| [`seg_acordar`](seg_acordar.md) | Três ilustrações: Gabriel acorda na cabine da Biblioteca, mil anos depois, cercado pela tecnologia de 3026 | em produção; imagem provisória no jogo |

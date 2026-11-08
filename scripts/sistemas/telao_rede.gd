@@ -3,7 +3,9 @@ extends Interagivel
 
 const COR_CABO := Color("2a3b52")
 const COR_CABO_ATIVO := Color("62e3ee")
+const COR_CABO_ENERGIZADO := Color("397b87")
 const COR_RELE := Color("8fa3b8")
+const COR_RELE_ENERGIZADO := Color("62e3ee")
 const COR_CORTADO := Color("e0413a")
 const COR_GERADOR := Color("e8d36a")
 const COR_ANCORA := Color("b6fbff")
@@ -67,36 +69,42 @@ func _atualizar_rodape() -> void:
 	var ativo := RedeEnergiaDtec.caminho_de_agora()
 	var cortados := RedeEnergiaDtec.reles_cortados().size()
 	if ativo.caminho.is_empty():
-		rodape.text = "SEM CAMINHO ATÉ A ÂNCORA.  Relés cortados: %d de %d" % [cortados, RedeEnergiaDtec.RELES.size()]
+		rodape.text = "ÂNCORA ISOLADA · GRADE ABERTA · %d relés cortados" % cortados
 		rodape.add_theme_color_override("font_color", COR_CORTADO)
 		return
-	rodape.text = "Caminho ativo (%d m de cabo): %s" % [ativo.custo, RedeEnergiaDtec.caminho_em_texto(ativo.caminho)]
+	rodape.text = "ÂNCORA ALIMENTADA · menor rota: %d m · %d relés cortados" % [ativo.custo, cortados]
 	rodape.add_theme_color_override("font_color", COR_CABO_ATIVO)
 
 
 func _desenhar() -> void:
 	var cortados := RedeEnergiaDtec.reles_cortados()
 	var caminho: PackedStringArray = RedeEnergiaDtec.caminho_ativo(cortados).caminho
+	var energizados := RedeEnergiaDtec.nos_energizados(cortados)
 	var fonte := quadro.get_theme_default_font()
 	for cabo in RedeEnergiaDtec.CABOS:
 		var a: Vector2 = POSICOES[cabo[0]]
 		var b: Vector2 = POSICOES[cabo[1]]
 		var ativo := _cabo_no_caminho(cabo[0], cabo[1], caminho)
-		quadro.draw_line(a, b, COR_CABO_ATIVO if ativo else COR_CABO, 2.0 if ativo else 1.0)
+		var energizado := energizados.has(cabo[0]) and energizados.has(cabo[1])
+		energizado = energizado and cabo[0] not in cortados and cabo[1] not in cortados
+		var cor := COR_CABO_ATIVO if ativo else (COR_CABO_ENERGIZADO if energizado else COR_CABO)
+		quadro.draw_line(a, b, cor, 2.0 if ativo else 1.0)
 		var peso := str(RedeEnergiaDtec.CABOS[cabo])
 		quadro.draw_string(fonte, (a + b) / 2.0 + Vector2(2, -2), peso, HORIZONTAL_ALIGNMENT_LEFT, -1, 8, COR_PESO)
 	for no in POSICOES:
-		_desenhar_no(no, POSICOES[no], no in cortados, no in caminho, fonte)
+		_desenhar_no(no, POSICOES[no], no in cortados, no in caminho, energizados.has(no), fonte)
 
 
-func _desenhar_no(no: String, centro: Vector2, cortado: bool, ativo: bool, fonte: Font) -> void:
+func _desenhar_no(no: String, centro: Vector2, cortado: bool, ativo: bool, energizado: bool, fonte: Font) -> void:
 	var cor := COR_RELE
 	if no in RedeEnergiaDtec.GERADORES:
 		cor = COR_GERADOR
 	elif no == RedeEnergiaDtec.ANCORA:
-		cor = COR_ANCORA
+		cor = COR_ANCORA if energizado else COR_RELE
 	elif cortado:
 		cor = COR_CORTADO
+	elif energizado:
+		cor = COR_RELE_ENERGIZADO
 	var raio := RAIO * (1.6 if no == RedeEnergiaDtec.ANCORA else 1.0)
 	quadro.draw_circle(centro, raio + 2.0, Color(0.05, 0.07, 0.1))
 	quadro.draw_circle(centro, raio, cor)

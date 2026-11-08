@@ -20,14 +20,14 @@ func pode_interagir() -> bool:
 
 
 func _pode_guardar() -> bool:
-	return Inventario.tem(Criacao.ARMA.id) and Inventario.pilhas() < Inventario.MAXIMO_PILHAS
+	return Inventario.pilhas() < Inventario.MAXIMO_PILHAS
 
 
 func interagir() -> void:
 	var id := _gadget_mais_fraco()
 	if id.is_empty():
 		Inventario.guardar_pilha()
-		Inventario.aviso.emit("Pilha guardada (%d). Dá para criar balas no inventário" % Inventario.pilhas())
+		Inventario.aviso.emit("Pilha guardada (%d). Use na aba Criação" % Inventario.pilhas())
 	else:
 		Inventario.estado_de(id)["carga"] = 1.0
 		Inventario.aviso.emit("Pilha trocada: lanterna carregada" if id == "lanterna" else "Pilha trocada: %s carregado" % id)

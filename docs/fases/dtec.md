@@ -130,6 +130,8 @@ O Gabriel chega pela Emergência (checkpoint). Na **Sala de Controle**, o telão
 
 O telão (`cenas/sistemas/telao_rede.tscn`) fica na frente dos dois telões da Sala de Controle: `E` abre o grafo em tela cheia (o jogo pausa), com o caminho ativo em ciano, os relés cortados em vermelho e o comprimento de cada cabo.
 
+O telão também distingue os outros cabos ainda energizados em azul escuro. Assim, o jogador consegue ver rotas alternativas antes de cortar um relé; o rodapé informa se a Âncora ainda recebe energia e quantos relés já foram cortados.
+
 - Cada relé é um `NoHackeavel` (sem gasto de bateria). Cortar um relé faz o Carlos **redistribuir a energia pelo caminho mais curto (Dijkstra)**. O telão mostra o caminho novo, e um robô muda de rota para vigiar o próximo relé desse caminho.
 - **Sem código novo no robô:** `robo.gd` já troca de rota por marca (`rota_com_marca` e `marca_da_rota`). Cada corte só grava uma marca.
 - **O corte mínimo são 3 relés:** Eletrônica, Servidores e Robótica. Cortar um relé errado gasta tempo e faz barulho, e o barulho chama os robôs (BFS do som). O puzzle é ler o grafo e achar o gargalo. Duas das salas do corte são as trancadas: o hack ganha função.
