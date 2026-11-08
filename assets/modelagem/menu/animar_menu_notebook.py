@@ -5,6 +5,7 @@ O script parte do .blend existente para preservar os ajustes feitos a mao.
 """
 
 import math
+import sys
 from pathlib import Path
 
 import bpy
@@ -177,6 +178,10 @@ def exportar_modelo():
 def main():
     if Path(bpy.data.filepath).resolve() != ARQUIVO_BLEND.resolve():
         raise RuntimeError("Abra o menu_notebook.blend antes de executar este script")
+    if "--apenas-exportar" in sys.argv:
+        exportar_modelo()
+        print("Ajustes atuais exportados para", ARQUIVO_GLB)
+        return
     limpar_animacao_anterior()
     animar_cortina()
     criar_vapor(criar_material_fumaca(criar_textura_fumaca()))

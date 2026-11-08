@@ -93,6 +93,14 @@ Para reaplicar as animações depois de ajustar o `.blend`, execute:
 O script encontra a superfície do café na geometria atual; por isso a fumaça
 acompanha mudanças de posição da caneca quando o café é movido junto.
 
+Se as animações já estiverem no `.blend` e a intenção for apenas atualizar o
+jogo com ajustes manuais, salve o arquivo no Blender e use `--apenas-exportar`.
+Esse modo não recria a fumaça nem a cortina:
+
+```powershell
+& 'C:\Program Files\Blender Foundation\Blender 5.2\blender.exe' -b assets/modelagem/menu/menu_notebook.blend --python assets/modelagem/menu/animar_menu_notebook.py -- --apenas-exportar
+```
+
 ## Interface e entrada
 
 `tela_menu_notebook.tscn` contém a interface do menu, com o script
