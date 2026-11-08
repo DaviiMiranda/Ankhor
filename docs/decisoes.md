@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-08 — Transição de Novo jogo pela tela do notebook
+
+**Decisão:** ao apertar **Novo jogo** no menu 3D, a tela do notebook recebe estática e a câmera avança até a área da tela preencher a janela. Só depois dessa aproximação o prólogo começa. Os outros botões mantêm o comportamento atual. A transição dura cerca de 1,5 s e bloqueia novos comandos enquanto toca.
+
+**Por quê:** pedido do Davi para ligar visualmente o menu no notebook à entrada na campanha.
+
+**Afeta:** `cenas/interface/menu_notebook.tscn`, `scripts/interface/menu_notebook.gd`, `scripts/interface/tela_menu_notebook.gd`, `shaders/estatica_notebook.gdshader` e `docs/mecanicas/menu_notebook.md`. Não muda o Enredo.
+
 ## 2026-11-08 — Menu 3D do notebook vira o menu principal
 
 **Decisão:** a cena 3D da escrivaninha do Gabriel, com o menu na tela do notebook, passa a ser a entrada principal do jogo. O menu anterior fica no repositório para referência, mas a pausa e as saídas de fase voltam para o novo menu. As ações de campanha, carregamento, fases, opções, controles, créditos e sons continuam usando a interface existente dentro da tela do notebook.

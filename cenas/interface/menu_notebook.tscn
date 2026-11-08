@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scripts/interface/texturas_menu_notebook.gd" id="3_texturas"]
 [ext_resource type="PackedScene" path="res://cenas/interface/tela_menu_notebook.tscn" id="4_menu"]
 [ext_resource type="PackedScene" path="res://cenas/interface/rotulo_versao.tscn" id="5_versao"]
+[ext_resource type="Shader" path="res://shaders/estatica_notebook.gdshader" id="6_estatica"]
 
 [sub_resource type="Environment" id="Ambiente"]
 background_mode = 1
@@ -13,6 +14,9 @@ ambient_light_source = 3
 ambient_light_color = Color(0.62, 0.7, 0.85, 1)
 ambient_light_energy = 0.0
 tonemap_mode = 0
+
+[sub_resource type="ShaderMaterial" id="MaterialEstatica"]
+shader = ExtResource("6_estatica")
 
 [node name="MenuNotebook" type="Control"]
 layout_mode = 3
@@ -75,6 +79,13 @@ mouse_filter = 2
 color = Color(0.025, 0.055, 0.09, 1)
 
 [node name="Menu" parent="TelaMenu" instance=ExtResource("4_menu")]
+
+[node name="Estatica" type="ColorRect" parent="TelaMenu"]
+visible = false
+offset_right = 256.0
+offset_bottom = 160.0
+mouse_filter = 2
+material = SubResource("MaterialEstatica")
 
 [node name="Rodape" type="Control" parent="."]
 layout_mode = 1
