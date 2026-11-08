@@ -51,6 +51,7 @@ Para testar tudo isso sem jogar a fase, a **sala de teste** tem, logo onde o jog
 | **CONVIVÊNCIA (COMBATE)** | `praca_central`, no meio da praça (1000, 330) | Liga o **modo combate** (abaixo) |
 | BLOCO DE SALAS | `corredor_terreo` | Itens no máximo, sem modo combate |
 | LABIRINTO | `labirinto` | idem |
+| CORREDOR DO TEMPO | `labirinto/corredor_do_tempo` | O puzzle com cronômetro do Labirinto, direto, sem andar até a porta âmbar. Apaga a marca `corredor_tempo_vencido`, então o relógio de 2 min corre de novo toda vez que se entra por aqui. A porta de saída volta ao Labirinto |
 | BUNKER | `entrada` do bunker | idem |
 | D-TEC (LABORATÓRIO) | `emergencia` | idem |
 | ZANE (CÂMARA SELADA) | `labirinto/camara_selada` | A mini fase do Zane |
@@ -58,7 +59,7 @@ Para testar tudo isso sem jogar a fase, a **sala de teste** tem, logo onde o jog
 
 As marcas são exports da `PortaDeTeste`: `marcas_ao_entrar` e `marcas_apagadas_ao_entrar` (esta usa `Progresso.desmarcar`). Servem para levar a qualquer ponto de uma fase que dependa de progresso.
 
-Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia (com as 9 pilhas e as 6 balas): arma de impulso, clarão e pedra primeiro (assim ficam nos 3 espaços de gadget), depois os outros gadgets e as ferramentas. **A Célula de Energia fica de fora**, porque é carga pesada e impede de correr. A mochila tem 12 espaços e há mais itens do que isso, então as chaves ficam de fora quando falta lugar.
+Ao entrar na sala de fases, o nó `TudoColetado` deixa a mochila cheia (com as 9 pilhas e as 6 balas): arma de impulso, clarão e pedra primeiro (assim ficam nos 3 espaços de gadget), depois os outros gadgets e as ferramentas. **A Célula de Energia fica de fora**, porque é carga pesada e impede de correr, e o **braço de hack** também, porque é do Zane (`Item.exclusivo_do_zane`): ele só entra na mochila com o kit emprestado da parte jogável do Zane. A mochila tem 12 espaços e há mais itens do que isso, então as chaves ficam de fora quando falta lugar.
 
 **O modo combate** (`scripts/sistemas/modo_combate.gd`, só a porta CONVIVÊNCIA liga):
 

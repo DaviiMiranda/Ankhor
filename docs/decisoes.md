@@ -1,5 +1,20 @@
 # Registro de decisões
 
+## 2026-11-08 — Braço de hack só do Zane, lanterna sem clarear o próprio Gabriel e porta do Corredor do Tempo na sala de teste
+
+**Decisão:** três correções pedidas pelo Davi depois de testar a fase do Zane.
+
+- **O braço de hack é só do Zane.** O item ganhou `exclusivo_do_zane` (`dados/itens/braco_hack.tres`) e o `TudoColetado`, que as portas da sala de teste usam para encher a mochila do Gabriel, passou a pular esse item. Antes, o Gabriel testava as fases com o implante do Zane no espaço 4 (tecla `4`). Agora o braço só chega pelo kit emprestado (`PerfilZane.aplicar`), na parte jogável do Zane.
+- **A luz da lanterna não clareia mais quem a segura.** Com o Gabriel de frente ou de costas, o cone nascia na mão, dentro da silhueta, e iluminava as pernas, a mochila e a cabeça dele, parecendo estar por cima do personagem. Agora o cone começa onde a luz sai do corpo (nos pés, de frente; acima da cabeça, de costas; quase na mão, de lado). O brilho em volta da lente não mudou.
+- **A lanterna não troca mais de mão ao andar.** A tabela de posição da mão pegava, em cada quadro, a mancha de pele mais à direita; na caminhada em diagonal e de lado, a mão sumia atrás do corpo ou os dois braços se cruzavam, e a lanterna saltava para a outra mão (até 17 px do sprite). O medidor passou a seguir uma mão só pela tira e a reduzir o balanço a 60%.
+- **Porta nova na sala de teste: CORREDOR DO TEMPO**, entre LABIRINTO e BUNKER, direto para o puzzle com cronômetro do Labirinto. Ela apaga a marca `corredor_tempo_vencido`, então o relógio de 2 min corre de novo a cada entrada. As portas de Bunker, D-Tec, Zane e Fim do Bunker foram 80 px para a direita, e a sala ficou 80 px mais larga (de 1120 para 1200).
+
+**Por quê:** pedido do Davi, depois de testar.
+
+**Conferido** no Godot 4.7.2 por script e capturas de tela: a mochila de uma porta de teste não traz o braço e `PerfilZane.aplicar` o coloca no espaço 4; o relógio do corredor começa depois do fade e tranca a saída; a lanterna fica na mesma mão durante um ciclo inteiro de caminhada de lado e em diagonal.
+
+**Afeta:** `scripts/itens/item.gd` (`exclusivo_do_zane`), `dados/itens/braco_hack.tres`, `scripts/salas/tudo_coletado.gd`, `scripts/itens/lanterna.gd`, `assets/modelagem/personagens/medir_maos_gabriel.py` e `scripts/personagens/maos_do_gabriel.gd` (regerado), `cenas/salas/sala_teste.tscn`, `docs/mecanicas/combate.md`, `zane_jogavel.md` e `iluminacao_e_lanterna.md`.
+
 ## 2026-11-07 — Sai o walkman
 
 **Decisão:** o item **walkman da Clarice** (gadget que, largado no chão, tocava por 15 s e atraía os robôs) foi removido do jogo. A Clarice continua devolvendo a chave da fita azul ao receber o molho, mas já não empresta nada. O walkman que ela usa no visual (fone no pescoço, aparelho no cós) fica, porque é parte da aparência dela.

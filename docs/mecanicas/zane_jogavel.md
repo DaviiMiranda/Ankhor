@@ -11,7 +11,7 @@ O Zane é jogável em um trecho: a **ala do escritório**, a mini fase do fim do
 | Estamina | 100 | **160** (mesmo gasto e mesma regeneração: corre 60% mais tempo) |
 | Ansiedade | sim | **não tem**: a barra e o efeito somem da tela (`Ansiedade.desativar()`) |
 | Lanterna | pilha de 240 s | **infinita** (`Gabriel.lanterna_infinita`) |
-| Itens | o que ele pegou | **kit próprio**: lanterna, flash (2) e braço de hack |
+| Itens | o que ele pegou | **kit próprio**: lanterna, flash (2) e braço de hack. O braço é **exclusivo do Zane** (`Item.exclusivo_do_zane`): nenhuma outra parte do jogo o entrega ao Gabriel, nem a sala de teste (`TudoColetado` pula esse item) |
 | Inventário | tira a mochila do ombro e abre | **abre a jaqueta** com as duas mãos: o forro tem bolsos com o que ele carrega (`zane_casaco_<vista>.png`) |
 | Mãos | `maos_do_gabriel.gd` | `maos_do_zane.gd` (a lanterna fica na mão de metal em quase todas as vistas) |
 
