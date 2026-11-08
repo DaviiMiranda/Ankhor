@@ -1,8 +1,8 @@
 extends Control
 
 @export_range(0.5, 1.0) var resolucao_do_3d := 1.0
-@export var alvo_da_camera := Vector3(-2.30, 1.04, -0.2)
-@export var alvo_da_luz := Vector3(-2.383993, 0.915229, -0.652706)
+@export var alvo_da_camera := Vector3(-2.403885, 1.006857, -0.2)
+@export var alvo_da_luz := Vector3(-2.135715, 0.813746, -0.631311)
 
 @onready var imagem: SubViewportContainer = $Imagem
 @onready var mundo: SubViewport = $Imagem/Mundo

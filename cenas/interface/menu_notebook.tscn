@@ -47,7 +47,7 @@ script = ExtResource("3_texturas")
 modelo = NodePath("../Modelo")
 
 [node name="Camera" type="Camera3D" parent="Imagem/Mundo"]
-position = Vector3(-1.47, 1.23, -0.2)
+position = Vector3(-1.429099, 1.23, -0.2)
 current = true
 fov = 40.0
 near = 0.05

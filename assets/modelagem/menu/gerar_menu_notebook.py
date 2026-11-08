@@ -17,8 +17,8 @@ RAIZ = Path(__file__).resolve().parents[3]
 PASTA = Path(__file__).resolve().parent
 TEXTURAS = RAIZ / "assets/sprites/cenario/visor"
 MODELO = RAIZ / "assets/modelos/menu_notebook.glb"
-CAMERA = (-1.47, 1.23, -0.2)
-ALVO = (-2.30, 1.04, -0.2)
+CAMERA = (-1.429099, 1.23, -0.2)
+ALVO = (-2.403885, 1.006857, -0.2)
 FOV_VERTICAL = 40.0
 
 sys.path.insert(0, str(PASTA))
@@ -176,7 +176,7 @@ def preparar_camera_e_luzes():
     cena.world.use_nodes = True
     cena.world.node_tree.nodes.get("Background").inputs["Strength"].default_value = 0.0
     criar_luz("LuzDaLuminaria", (-2.246035, 1.101134, 0.320129), 12,
-              (1.0, 0.77, 0.48), 0.1287, (-2.383993, 0.915229, -0.652706))
+              (1.0, 0.77, 0.48), 0.1287, (-2.135715, 0.813746, -0.631311))
     dados = bpy.data.cameras.new("CameraDoMenu")
     dados.sensor_fit = "VERTICAL"
     dados.lens = dados.sensor_height / (2.0 * math.tan(math.radians(FOV_VERTICAL) / 2.0))

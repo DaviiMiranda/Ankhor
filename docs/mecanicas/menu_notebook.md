@@ -8,7 +8,7 @@ O cenário usa a geometria da escrivaninha, do notebook, da luminária, da canec
 dos livros, da janela, da cortina e do cacto do quarto VR. O enquadramento é
 fixo, de frente para o notebook, com um céu noturno estrelado atrás dele.
 O notebook é remodelado nas dimensões da versão de escala 1,6 e fica na
-frente do peitoril. A câmera fica em `(-1.47, 1.23, -0.2)`, com campo de visão
+frente do peitoril. A câmera fica em `(-1.429099, 1.23, -0.2)`, com campo de visão
 vertical de 40°, mais próxima da tela. Os arquivos originais do quarto não mudam.
 
 ## Arquivos de arte
@@ -69,8 +69,8 @@ O quarto fica com a luz geral apagada. A luminária da mesa é a única luz
 do cenário: luz quente de alcance curto, com sombras, concentrada nos objetos
 próximos. A iluminação ambiente e as luzes auxiliares da janela e do notebook
 foram retiradas. A tela continua legível pelo material sem sombreamento.
-O foco da luminária aponta na direção do cacto. A orientação e a posição da
-luz no Godot acompanham os ajustes salvos no arquivo Blender.
+A orientação e a posição da luz no Godot acompanham os ajustes salvos no
+arquivo Blender.
 
 A janela usa `assets/sprites/menu/notebook/ceu_noturno.png`, gerado no Blender
 com um gradiente azul escuro e estrelas discretas. A paisagem aparece pela
