@@ -1,5 +1,21 @@
 # Registro de decisões
 
+## 2026-11-07 — Sai o walkman
+
+**Decisão:** o item **walkman da Clarice** (gadget que, largado no chão, tocava por 15 s e atraía os robôs) foi removido do jogo. A Clarice continua devolvendo a chave da fita azul ao receber o molho, mas já não empresta nada. O walkman que ela usa no visual (fone no pescoço, aparelho no cós) fica, porque é parte da aparência dela.
+
+**Por quê:** pedido do Davi.
+
+**Afeta:** saíram `scripts/itens/walkman.gd`, `walkman_no_chao.gd`, `cenas/itens/walkman.tscn`, `walkman_no_chao.tscn`, `dados/itens/walkman.tres`, os três sprites `walkman*.png` e `walkman_fita.wav`. Foram limpos `clarice_posto.tscn` (sem `item_extra`), `sala_teste.tscn`, `pilha_no_chao.gd` (a pilha agora serve a lanterna e ao notebook), o diálogo `clarice_bloco_devolve_chave.json` (duas falas e um trecho da anotação), os geradores de ícone e de som, a seção 3 de `docs/mecanicas/mecanicas_de_fase.md` e as docs de mecânicas, fases e computação. No Enredo (`História_Completa.md` e `.docx`) saiu a frase do empréstimo, e em `docs/historia/dialogos/Dialogos.docx` saíram as duas falas da Clarice. Um save antigo com o walkman na mochila ignora o item (o `Salvamento` pula item sem arquivo). A corrente da porta corta-fogo continua em 5 s: sem o walkman, a Sentinela se evita esperando ela passar. As entradas antigas que citam o walkman ficam como histórico.
+
+## 2026-11-07 — Sai o caco de espelho
+
+**Decisão:** o item **caco de espelho** (gadget da Loja Universitária que rebatia o farol da Sentinela) foi removido do jogo. O espelho de pé da loja continua, só como cenário.
+
+**Por quê:** pedido do Davi.
+
+**Afeta:** saíram `scripts/itens/espelho.gd`, `cenas/itens/espelho.tscn`, `dados/itens/espelho.tres`, os três sprites `espelho*.png` de `assets/sprites/itens/` e `espelho_brilho.wav`. Foram limpos `robo.gd` (`luz_do_jogador_acesa` não olha mais o espelho), `loja_uni.tscn`, `sala_teste.tscn`, os geradores (`gerar_itens_de_fase.py`, `gerar_efeitos_itens_de_fase.py`, `salas_convivencia.py`) e as docs de mecânicas, fases e computação. As decisões antigas que citam o espelho (2026-11-05, rodada de dificuldade) ficam como histórico.
+
 ## 2026-11-07 — Despertar em três ilustrações
 
 **Decisão:** o despertar de Gabriel deixa de usar vídeo e será contado em três ilustrações em pixel art, no estilo do prólogo: a cabine transformada, Gabriel despertando e o olhar dele para a Biblioteca. Até as imagens ficarem prontas, a cena mostra provisoriamente a ilustração da cabine do prólogo; mantém a transição para a sala e a opção de pular.
@@ -283,7 +299,7 @@ Isso responde a pendência "o que muda no Bunker" (Enredo 10.3) e, em parte, "o 
 
 - **Persegue a fase toda:** chega 8 s depois de o Gabriel entrar no bunker e o segue de sala em sala até a comporta do núcleo. Sabe sempre onde ele está, menos quando está escondido. Pela porta, chega depois do tempo que levaria andando (distância / velocidade).
 - **Mais lento que os outros:** 36 px/s em perseguição (o Escafandro corre a 38, a Mariposa a 48, o Gabriel anda a 60).
-- **Invulnerável:** clarão, espelho e hack do notebook não fazem nada. Encostar tira um coração, como os outros.
+- **Invulnerável:** clarão e hack do notebook não fazem nada. Encostar tira um coração, como os outros.
 - **Esconderijo:** com o Gabriel escondido num nicho, ele espera do lado de fora de 7 a 11 s. Enquanto isso corre o minijogo novo de **respiração contida**: segurar `E` prende o ar, soltar respira, e é preciso manter a respiração na faixa verde do meio. Falhou, ele ouve e pega o Gabriel. Aguentou, ele sai por uma porta e volta 14 s depois.
 - **Não entra** na sala segura nem na sala de dados do Henrique. Ao sair delas, ele chega 6 s depois por outra porta. Depois do checkpoint, chega em 12 s.
 - **O jogo não diz de quem é o rosto.** Quando o jogador descobre que o Carlos existe continua pendente (Enredo, seção 10.2).

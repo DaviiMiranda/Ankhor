@@ -112,7 +112,7 @@ O Centro de Convivência ganhou combate: um **robô atirador** na praça, a **ar
 
 ## 3.3 O que mudou em 2026-11-04
 
-A Célula de Energia virou carga: pesa, zumbe e impede de correr. O Mapa da Diana, na Tapioca Orbital, revela a **galeria** (`galeria.tscn`), que liga o Self Nebulosa, a Pizzaria Quasar e o Churrasco Solar por baixo da praça, com um Rastreador e sem esconderijo. O caco de espelho, opcional, fica na Loja Universitária. O cofre do bufê e o quadro do bar não pausam mais o jogo. As pilhas caíram de 8 para 6 (saíram a do mezanino e a da cabine do cinema). Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 5.
+A Célula de Energia virou carga: pesa, zumbe e impede de correr. O Mapa da Diana, na Tapioca Orbital, revela a **galeria** (`galeria.tscn`), que liga o Self Nebulosa, a Pizzaria Quasar e o Churrasco Solar por baixo da praça, com um Rastreador e sem esconderijo. O cofre do bufê e o quadro do bar não pausam mais o jogo. As pilhas caíram de 8 para 6 (saíram a do mezanino e a da cabine do cinema). Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 5.
 
 ---
 
@@ -229,7 +229,7 @@ Os **botões da jaqueta** da Diana (3, colecionáveis) ficam aqui: `BotaoJaqueta
 | Loja | Cor | O que tem |
 |---|---|---|
 | **Gráfica Quântica** (`grafica`, coluna 2) | limão | plotter, copiadora, guilhotina, impressora 3D, estante de resmas, mesa de corte; as faixas de segurança no piso; a Ordem de Impressão; 2 pedras, 1 pilha |
-| **Loja Universitária** (`loja_uni`, coluna 7) | azul | araras, manequins de moletom, estante de camisetas, espelho, o brasão da universidade e o provador de cortina (nicho); o aviso da loja; 1 pedra, 1 pilha |
+| **Loja Universitária** (`loja_uni`, coluna 7) | azul | araras, manequins de moletom, estante de camisetas, espelho de pé (cenário), o brasão da universidade e o provador de cortina (nicho); o aviso da loja; 1 pedra, 1 pilha |
 | **Cine Andrômeda** (`cinema`, coluna 22) | violeta | hall com bilheteria, bomboniere, fliperamas, sofá e cordões de fila; a **sala de projeção** (`cinema_sala`), separada do hall e com porta própria (o arco SALA 1), com a tela larga que chia ("sem sinal", animada, com a luz piscando) e três fileiras de poltronas, **A, B e C**, numeradas de 1 a 16, da esquerda para a direita; as letras aparecem em plaquinhas no carpete, na ponta e nos corredores de cada fileira; a **cabine de projeção** atrás da sala, com o cofre do lanterninha, e as pistas dele; 2 pilhas, 2 pedras |
 
 Cada loja tem a sua cor, a mesma da porta de vidro, do letreiro e da luz que a vitrine joga no chão do corredor. As portas de vidro e os letreiros são os mesmos tipos dos restaurantes (seção 5), em três cores novas (azul, limão e violeta).

@@ -1,7 +1,7 @@
 class_name PilhaNoChao
 extends Interagivel
 
-const GADGETS_COM_PILHA := ["lanterna", "walkman", "notebook"]
+const GADGETS_COM_PILHA := ["lanterna", "notebook"]
 const LIMITE_PARA_TROCAR := 0.95
 const SOM_TROCA := preload("res://assets/audio/efeitos/objetos/pilha_troca.wav")
 

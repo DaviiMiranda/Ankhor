@@ -137,7 +137,7 @@ O tipo "Perseguidor Persistente" levado ao limite: um robô que nunca desiste, m
 
 ### 6.1 Duas partes
 
-- **`CiborgueDoCarlos`** (`scripts/personagens/ciborgue_do_carlos.gd`) **herda do `Robo`**: usa o mesmo A\* na grade da sala, a mesma garra e as mesmas animações. Muda a decisão (`_decidir`) e desliga o que o tornaria vulnerável: `atordoar` não faz nada (clarão e espelho), `pode_ser_hackeado_de` é sempre falso (notebook), e `ouvir_barulho` e `distrair` são ignorados, porque ele já sabe onde o Gabriel está.
+- **`CiborgueDoCarlos`** (`scripts/personagens/ciborgue_do_carlos.gd`) **herda do `Robo`**: usa o mesmo A\* na grade da sala, a mesma garra e as mesmas animações. Muda a decisão (`_decidir`) e desliga o que o tornaria vulnerável: `atordoar` não faz nada (clarão), `pode_ser_hackeado_de` é sempre falso (notebook), e `ouvir_barulho` e `distrair` são ignorados, porque ele já sabe onde o Gabriel está.
 - **`PerseguidorPerpetuo`** (autoload, `scripts/sistemas/perseguidor_perpetuo.gd`): como cada sala é uma cena, o robô some quando a cena troca. O autoload sobrevive à troca e guarda **onde o Ciborgue está fora da tela**: só um número, os segundos que faltam para ele chegar na sala do Gabriel, e por qual porta.
 
 ### 6.2 Máquina de estados do Ciborgue
