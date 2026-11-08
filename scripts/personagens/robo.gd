@@ -30,7 +30,7 @@ const ATRITO_DO_IMPULSO := 420.0
 @export_group("Visão")
 @export var alcance_visao: float = 140.0
 @export var angulo_visao: float = 70.0
-@export var fator_lanterna: float = 1.6
+@export var fator_luz: float = 1.6
 @export var alcance_sentir: float = 20.0
 
 @export_group("Audição")
@@ -471,7 +471,7 @@ func _ve_o_jogador() -> bool:
 		return true
 	var alcance := alcance_visao
 	if luz_do_jogador_acesa() or _jogador_iluminado():
-		alcance *= fator_lanterna
+		alcance *= fator_luz
 	if distancia > alcance:
 		return false
 	if direcao_olhar.dot(para / distancia) < cos(deg_to_rad(angulo_visao / 2.0)):
@@ -486,7 +486,7 @@ func _linha_livre(ate: Vector2) -> bool:
 
 
 static func luz_do_jogador_acesa() -> bool:
-	return Inventario.estado_de("lanterna").get("aceso", false) or Inventario.estado_de("notebook").get("aceso", false)
+	return Inventario.estado_de("notebook").get("aceso", false)
 
 
 func _jogador_iluminado() -> bool:

@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/livros.tscn" id="r12"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/entulho.tscn" id="r13"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r14"]
-[ext_resource type="Resource" path="res://dados/itens/lanterna.tres" id="r15"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r16"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_sol.tscn" id="r17"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r18"]
@@ -95,10 +94,6 @@ position = Vector2(230, 168)
 [node name="Entulho" parent="Objetos" instance=ExtResource("r13")]
 position = Vector2(44, 172)
 espelhado = true
-
-[node name="Lanterna" parent="Objetos" instance=ExtResource("r14")]
-position = Vector2(140, 166)
-item = ExtResource("r15")
 
 [node name="PortaSalao" parent="." instance=ExtResource("r16")]
 position = Vector2(281, 124)

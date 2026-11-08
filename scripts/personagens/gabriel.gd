@@ -4,7 +4,6 @@ extends CharacterBody2D
 signal passo_dado(correndo: bool)
 signal fadiga_mudou(estamina: float, maxima: float)
 signal exaustao_mudou(esta_exausto: bool)
-signal ansiedade_mudou(valor: float, maxima: float)
 signal tira_especial_mudou
 
 const COR_ESCONDIDO := Color(0.45, 0.45, 0.6)
@@ -12,7 +11,6 @@ const LARGURA_QUADRO := 96.0
 const SETORES_OLHAR := 8
 const MAOS := preload("res://scripts/personagens/maos_do_gabriel.gd").MAOS
 const MAOS_CORRENDO := preload("res://scripts/personagens/maos_correndo_gabriel.gd").MAOS_CORRENDO
-const CENA_ANSIEDADE := preload("res://cenas/sistemas/ansiedade.tscn")
 const PEITO_NO_QUADRO := {
 	"lado": Vector2(54, 40),
 	"frente": Vector2(47, 40),
@@ -80,7 +78,6 @@ const PEITO_NO_QUADRO := {
 var tabela_maos: Dictionary = MAOS
 var tabela_maos_correndo: Dictionary = MAOS_CORRENDO
 var tiras_do_gesto_da_mochila: Dictionary = GestoMochila.TIRAS
-var lanterna_infinita := false
 var multiplicador_de_velocidade := 1.0
 var olhar_travado := false
 var jogador_controla := true
@@ -108,16 +105,12 @@ var _segundos_ofegando := 0.0
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var no_gadgets: Node2D = $Gadgets
 @onready var fadiga: Fadiga = $Fadiga
-var ansiedade: Ansiedade
 var acao_demorada: AcaoDemorada
 
 
 func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("jogador")
-	ansiedade = CENA_ANSIEDADE.instantiate() as Ansiedade
-	add_child(ansiedade)
-	ansiedade.mudou.connect(_ao_mudar_ansiedade)
 	acao_demorada = AcaoDemorada.new()
 	add_child(acao_demorada)
 	add_child(ItensLargados.new())
@@ -206,7 +199,7 @@ func _physics_process(delta: float) -> void:
 		velocidade *= multiplicador_correr
 		correndo = true
 		if fadiga and not correr_sozinho and not estamina_infinita:
-			fadiga.consumir(delta, ansiedade.multiplicador_consumo_estamina())
+			fadiga.consumir(delta)
 	elif fadiga:
 		fadiga.regenerar(delta, direcao == Vector2.ZERO)
 
@@ -225,7 +218,6 @@ func _physics_process(delta: float) -> void:
 		_ajustar_corpo(direcao, delta)
 
 	_piscar()
-	ansiedade.atualizar(global_position, delta)
 	_atualizar_respiracao_de_fuga(delta)
 
 
@@ -350,10 +342,6 @@ func _ao_receber_dano(origem: Vector2) -> void:
 
 func _ao_mudar_fadiga(atual: float, maxima: float) -> void:
 	fadiga_mudou.emit(atual, maxima)
-
-
-func _ao_mudar_ansiedade(atual: float, maxima: float) -> void:
-	ansiedade_mudou.emit(atual, maxima)
 
 
 func _ao_iniciar_exaustao() -> void:

@@ -15,11 +15,9 @@ const COR_RUIDO := Color(1.0, 0.3, 0.25)
 
 static var _ja_ensinou := false
 
-@export var largura_faixa_calmo: float = 0.28
-@export var largura_faixa_ansioso: float = 0.18
+@export var largura_faixa: float = 0.28
 @export var fator_faixa_cansado: float = 0.8
-@export var subida_calmo: float = 0.18
-@export var subida_ansioso: float = 0.28
+@export var subida: float = 0.18
 @export var descida: float = 0.38
 @export var tremor: float = 0.2
 @export var ruido_fora_da_faixa: float = 0.65
@@ -64,11 +62,10 @@ func _physics_process(delta: float) -> void:
 		return
 	global_position = _gabriel.global_position
 	_tempo += delta
-	var ansiedade := _gabriel.ansiedade.valor if _gabriel.ansiedade else 0.0
-	_largura = lerpf(largura_faixa_calmo, largura_faixa_ansioso, ansiedade)
+	_largura = largura_faixa
 	if _gabriel.fadiga and _gabriel.fadiga.esta_cansado():
 		_largura *= fator_faixa_cansado
-	var passo := -descida if Input.is_action_pressed("interagir") else lerpf(subida_calmo, subida_ansioso, ansiedade)
+	var passo := -descida if Input.is_action_pressed("interagir") else subida
 	nivel = clampf(nivel + (passo + tremor * _oscilacao()) * delta, 0.0, 1.0)
 	var fora := absf(nivel - 0.5) > _largura / 2.0
 	ruido = clampf(ruido + (ruido_fora_da_faixa if fora else -ruido_recuperado) * delta, 0.0, 1.0)

@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="chao_lajotas"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="i_item"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="i_pilha"]
-[ext_resource type="Resource" path="res://dados/itens/lanterna.tres" id="i_lanterna"]
 [ext_resource type="Resource" path="res://dados/itens/radio.tres" id="i_radio"]
 [ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="i_clarao"]
 [ext_resource type="Resource" path="res://dados/itens/pedra.tres" id="i_pedra"]
@@ -116,10 +115,6 @@ position = Vector2(1024, 0)
 
 [node name="Chao10" parent="Chao" instance=ExtResource("chao_lajotas")]
 position = Vector2(1152, 0)
-
-[node name="Lanterna" parent="Objetos" instance=ExtResource("i_item")]
-position = Vector2(110, 150)
-item = ExtResource("i_lanterna")
 
 [node name="Radio" parent="Objetos" instance=ExtResource("i_item")]
 position = Vector2(170, 150)

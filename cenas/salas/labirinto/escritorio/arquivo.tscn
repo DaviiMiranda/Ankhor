@@ -243,7 +243,7 @@ id = "escritorio_arquivo"
 
 [node name="Esconderijo1" parent="Objetos" instance=ExtResource("r22")]
 position = Vector2(250, 236)
-aviso = "Parado no vão escuro entre os arquivos, de lanterna apagada, os robôs não me veem."
+aviso = "Parado no vão escuro entre os arquivos, os robôs não me veem."
 
 [node name="Rastreador" parent="Objetos" instance=ExtResource("r23")]
 position = Vector2(340, 240)
