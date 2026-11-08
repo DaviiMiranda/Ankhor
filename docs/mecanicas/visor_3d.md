@@ -11,7 +11,7 @@ O quarto guarda o jogo até ali. Tudo o que aparece nele vem do estado do jogo n
 | **Cama** | **todos** os documentos que o Gabriel já leu, inclusive os de puzzle, espalhados sobre a colcha, cada um no papel dele (caderno, pergaminho, jornal...) | os documentos de `dados/documentos/` que já têm anotação no caderno |
 | **Farol**, na ponta da frente da escrivaninha | um farol aceso em 3D, só depois de juntar os três pingentes de farol da Biblioteca (ver [`colecionaveis.md`](colecionaveis.md)) | `Colecionaveis` |
 | **Disquetes**, na escrivaninha, na frente do farol | uma pilha de três disquetes coloridos, só depois de juntar os três disquetes do Bloco de salas | `Colecionaveis` |
-| **Tricórnio**, sobre o teclado do notebook, na escrivaninha | o chapéu do Baltazar com os três pingentes nas pontas, só depois de juntar os três pingentes do Labirinto (um deles só aparece depois de a lanterna revelar a parede falsa) | `Colecionaveis` |
+| **Tricórnio**, sobre o teclado do notebook, na escrivaninha | o chapéu do Baltazar com os três pingentes nas pontas, só depois de juntar os três pingentes do Labirinto (um deles só aparece depois de o Gabriel chegar perto da parede falsa) | `Colecionaveis` |
 | **Jaqueta**, pendurada no encosto da cadeira | a jaqueta da Diana, só depois de juntar os três botões do Centro de Convivência | `Colecionaveis` |
 | **Óculos**, em cima da escrivaninha | os óculos do Zane com os três chips acesos, só depois de juntar os três chips do Bunker | `Colecionaveis` |
 | **Gravura da nave**, na parede da direita, acima do criado-mudo | uma gravura emoldurada de uma nave imensa no espaço, só depois de juntar os três recortes de jornal | `Colecionaveis` |

@@ -6,7 +6,7 @@
 > [!TIP]
 > **Documentação Modular Detalhada:**
 > - 🎯 **[Visão Geral e Pilares](visao_geral/conceito.md)** | **[Estilo Artístico 2.5D](visao_geral/estilo_artistico.md)**
-> - ⚙️ **[Mecânicas e Core Loop](mecanicas/README.md)** | **[Furtividade](mecanicas/furtividade_e_esconderijos.md)** | **[Iluminação](mecanicas/iluminacao_e_lanterna.md)** | **[Vida e Checkpoint](mecanicas/vida_e_checkpoint.md)** | **[Sono e Sonhos](mecanicas/sono_e_sonhos.md)**
+> - ⚙️ **[Mecânicas e Core Loop](mecanicas/README.md)** | **[Furtividade](mecanicas/furtividade_e_esconderijos.md)** | **[Iluminação](mecanicas/iluminacao.md)** | **[Vida e Checkpoint](mecanicas/vida_e_checkpoint.md)** | **[Sono e Sonhos](mecanicas/sono_e_sonhos.md)**
 > - 💻 **[Conceitos de Computação](computacao/README.md)** (Grafos, Coloração, BFS, A*, Markov, Shaders)
 > - 📜 **[Enredo Principal](historia/História_Completa.md)** | **[Índice da História](historia/README.md)** | **[Modelo de Documento](historia/template_documento.md)**
 > - 👥 **[Personagens](historia/personagens/)** ([Gabriel](historia/personagens/gabriel.docx), [Robôs](historia/personagens/robos.docx), [Modelo de ficha](historia/template_personagem.docx))
@@ -32,7 +32,7 @@ O que torna o jogo diferente:
 - **Os perseguidores seguem a grade horária** da semana de provas, mil anos depois. Quem descobre a grade sabe onde cada um vai estar.
 - **Dormir é salvar e é voltar ao passado.** Cada sono leva o protagonista, em sonho, à última semana antes de tudo — e é só lá que ele aprende a grade, as senhas e a verdade.
 
-**Visão Artística:** pixel art em vista lateral 2.5D, com camadas de profundidade, no estilo de *Five Nights at Freddy's: Into the Pit*. O jogo retrata a Unifor mil anos no futuro como uma ruína tomada pela natureza: concreto rachado e desabado, árvores crescendo dentro das salas, areia de dunas cobrindo corredores, e objetos do cotidiano de hoje transformados em relíquias. A atmosfera é de mistério, solidão e estranhamento — um terror silencioso, mais de tensão do que de susto, em que o maior choque é perceber quanto tempo passou. Luz natural filtrada pela vegetação contrasta com interiores escuros iluminados só por luzes de emergência que piscam e pela lanterna. Nos sonhos, o mesmo campus aparece cheio, iluminado e normal.
+**Visão Artística:** pixel art em vista lateral 2.5D, com camadas de profundidade, no estilo de *Five Nights at Freddy's: Into the Pit*. O jogo retrata a Unifor mil anos no futuro como uma ruína tomada pela natureza: concreto rachado e desabado, árvores crescendo dentro das salas, areia de dunas cobrindo corredores, e objetos do cotidiano de hoje transformados em relíquias. A atmosfera é de mistério, solidão e estranhamento — um terror silencioso, mais de tensão do que de susto, em que o maior choque é perceber quanto tempo passou. Luz natural filtrada pela vegetação contrasta com interiores escuros iluminados só por luzes de emergência que piscam. Nos sonhos, o mesmo campus aparece cheio, iluminado e normal.
 
 ---
 
@@ -44,7 +44,7 @@ O jogador explora as ruínas em vista lateral, sala por sala e prédio por préd
 
 **Explorar.** Andar, correr (faz barulho), se espremer por frestas, atravessar tetos desabados, vasculhar o que restou, examinar objetos e marcas nas paredes.
 
-**Iluminar.** O campus é escuro. O protagonista usa uma **lanterna a pilha**. Luz ajuda a ver e ajuda a ser visto (os robôs enxergam mais longe), e a bateria acaba: é preciso achar pilhas.
+**Ver e ser visto.** O campus é escuro e só as luzes de emergência do cenário iluminam o caminho. Luz ajuda a ver e ajuda a ser visto: perto de uma luz acesa, os robôs enxergam mais longe.
 
 **Rondas e rotinas.** Cada robô cumpre sua rotina de patrulha programada pelo campus. Fora da rotina, quando ouve ou vê o protagonista, o robô sai do protocolo padrão e caça.
 
@@ -76,7 +76,7 @@ A progressão entre áreas é por **passagens abertas, mecanismos, puzzles de gr
 ### Sistema de Recompensas
 
 - **Acesso:** novas áreas do campus e atalhos entre elas.
-- **Recursos:** pilhas para a lanterna e flashes, sempre escassos.
+- **Recursos:** pilhas (para o notebook e para fabricar balas) e flashes, sempre escassos.
 - **Verdade:** cada pista, marca na parede e sonho revela uma parte do mistério. A história é a principal recompensa.
 - **Colecionáveis:** relíquias do cotidiano (um crachá, um celular fossilizado, uma caneca da cantina) com a descrição de quem eram seus donos, e páginas do diário que o protagonista vai escrevendo.
 - **Final:** o que o jogador descobriu muda as opções disponíveis no final.
@@ -94,7 +94,7 @@ Os conteúdos de computação estão **dentro das mecânicas**, não só no cód
 | **Cadeia de Markov** | Fora da rotina, cada robô escolhe a próxima sala por probabilidade, com chances que crescem a cada dia. É o modelo de movimento dos perseguidores do FNAF, formalizado. |
 | **Máquina de estados** | Cada robô alterna entre *rotina*, *investigando*, *perseguindo*, *atordoado* e *retornando* (`docs/historia/personagens/robos.docx`). |
 | **Estruturas de dados** | Inventário em grade (matriz), fila de eventos da rotina de cada robô, dicionário de flags do mundo (passagens abertas, pistas encontradas, sonhos vistos). |
-| **Matemática / geometria** | Campo de visão dos robôs por produto escalar e linha de visão por *ray casting*; luz da lanterna em cone (a mesma conta do produto escalar) e decaindo com a bateria. |
+| **Matemática / geometria** | Campo de visão dos robôs por produto escalar e linha de visão por *ray casting*; luz do farol da Sentinela em cone (a mesma conta do produto escalar). |
 
 ---
 
@@ -141,7 +141,7 @@ Um campus contínuo dividido em **seis fases sequenciais**: **Biblioteca → Blo
 
 - **Os robôs**, cada tipo com seu sensor dominante (som, visão, luz) e padrão de patrulha (`docs/historia/personagens/robos.docx`).
 - **Barulho:** correr, pisar em entulho e derrubar coisas se ouve pelo grafo.
-- **Escuridão:** a lanterna ajuda a ver e ajuda a ser visto; a bateria acaba.
+- **Escuridão:** o jogador anda pelas poças de luz do cenário, e a luz também ajuda os robôs a ver o Gabriel.
 - **Recursos escassos:** pilhas e flashes nunca sobram.
 - **O próprio lugar:** pisos que cedem, passagens enterradas, andares alagados, caminhos que só existem por cima.
 - **O tempo da grade:** a mesma sala é segura num horário e perigosa no seguinte, e o jogador só conhece a grade pelo que viu nos sonhos.

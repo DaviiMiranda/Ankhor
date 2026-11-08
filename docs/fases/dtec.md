@@ -42,7 +42,7 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 | Cena (`cenas/salas/dtec/`) | Tamanho | O que tem | Itens |
 |---|---|---|---|
 | `recepcao` | 640 × 400 | Letreiro DTEC, balcão da recepção, catracas, mesa, plantas, a saída lacrada | 1 pilha |
-| `emergencia` | 480 × 180 | **Onde o Gabriel chega:** a escada que desce para o bunker (a peça `bunker_escada_desce`, do kit do bunker), extintor, cilindros, luz de emergência. Checkpoint `dtec_chegada`. **A chegada do grupo** (`scripts/salas/emergencia_dtec.gd`, só quem vem da fuga, com a marca `bunker_henrique_sumiu`): o Zane, a Clarice e a Diana estão ali; a Diana torce o tornozelo, a conversa `dtec_chegada` (falas genéricas) começa sozinha; no fim, a Diana vai mancando até uma cadeira ao lado da escada e **senta** (`cenas/personagens/diana_sentada.tscn`, sprite `diana_sentada.png` gerado por `assets/modelagem/personagens/gerar_diana_sentada.py`, com a cadeira no mesmo sprite e a perna machucada esticada), o Zane sai pela porta do corredor e some, e a marca `dtec_grupo_separado` é gravada. Depois disso, a Clarice fica de pé ao lado da Diana sentada. Quem começa a fase pelo menu não vê ninguém | lanterna (só aparece se o Gabriel ainda não tem, ao começar pelo menu), 1 pilha |
+| `emergencia` | 480 × 180 | **Onde o Gabriel chega:** a escada que desce para o bunker (a peça `bunker_escada_desce`, do kit do bunker), extintor, cilindros, luz de emergência. Checkpoint `dtec_chegada`. **A chegada do grupo** (`scripts/salas/emergencia_dtec.gd`, só quem vem da fuga, com a marca `bunker_henrique_sumiu`): o Zane, a Clarice e a Diana estão ali; a Diana torce o tornozelo, a conversa `dtec_chegada` (falas genéricas) começa sozinha; no fim, a Diana vai mancando até uma cadeira ao lado da escada e **senta** (`cenas/personagens/diana_sentada.tscn`, sprite `diana_sentada.png` gerado por `assets/modelagem/personagens/gerar_diana_sentada.py`, com a cadeira no mesmo sprite e a perna machucada esticada), o Zane sai pela porta do corredor e some, e a marca `dtec_grupo_separado` é gravada. Depois disso, a Clarice fica de pé ao lado da Diana sentada. Quem começa a fase pelo menu não vê ninguém | 1 pilha |
 | `corredor_norte` | 2400 × 180 | Cinco portas com placa, janelas dos laboratórios, quadro, extintores, painel e a porta larga do Lab Central, fechada pela grade. **Quatro nichos**, uma **Sentinela** que vai e volta de x 560 a 2240 e um **Caçador** de x 900 a 2200 | 1 pilha, 1 flash |
 | `lab_central` | 960 × 560 | **A arena do Carlos** (seção 3.1, parte 3): a Âncora no centro, o Carlos no console do fundo com a lupa, os dois consoles hackeáveis na frente, racks, cilindros, telões e janelas. Um Rastreador de ronda e o checkpoint `dtec_arena` na entrada norte | 1 flash |
 | `diretoria` | 480 × 360 | A mesa com as relíquias dos anos 80 (monitor de tubo verde, telefone bege, disquetes), a marca dos Faroleiros com os raios riscados em vermelho na parede, armário, rack, planta. Luz verde do monitor. Sem texto | 1 pilha |
@@ -80,7 +80,7 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 3. **A chegada não faz sentido:** o Gabriel vem da comporta do núcleo do bunker (no subsolo) e aparece na recepção, cuja saída está "travada por fora".
 4. **O mapa é um pente:** dois corredores de 2400 px com salas sem saída, ligados só pelo Lab Central. O jogador atravessa a sala do clímax no meio da exploração. As portas lacradas são escolhas falsas.
 5. **O Carlos não aparece na casa dele:** nenhuma relíquia dos anos 80 (a Biblioteca tem). A Sala de Controle, com os telões da Âncora, guarda só uma pilha.
-6. **Itens repetidos:** o notebook (do Zane, desde o Labirinto) e a lanterna (da Biblioteca) aparecem de novo. Só servem para quem começa a fase pelo menu.
+6. **Itens repetidos:** o notebook (do Zane, desde o Labirinto) aparece de novo. Só servem para quem começa a fase pelo menu.
 7. **Nenhum conteúdo de computação**, que a disciplina exige.
 
 #### A ideia
@@ -109,7 +109,7 @@ O Carlos está preparando a **próxima tentativa** (cada uma puxa alguém novo e
 - **O Lab Central começa fechado**, com uma grade (`GradeSeguranca`) nas duas portas. A luz ciano vaza para os corredores, mas o clímax fica guardado para o fim.
 - **O corredor de serviço** liga as pontas dos dois corredores e fecha um **ciclo** no grafo das salas: dá para despistar um robô dando a volta (o A\* ganha caminho alternativo).
 - **Os corredores mantêm o tamanho** e ganham nichos (`NichoEsconderijo`) a cada ~400 px, uma **Sentinela** no norte e um **Rastreador** no sul.
-- **Itens repetidos:** o notebook e a lanterna só aparecem quando a fase começa pelo menu (o item único que o Gabriel já tem não aparece de novo no chão).
+- **Itens repetidos:** o notebook só aparece quando a fase começa pelo menu (o item único que o Gabriel já tem não aparece de novo no chão).
 
 #### Parte 1: Infiltração
 
