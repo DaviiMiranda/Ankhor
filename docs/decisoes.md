@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-08 — Menu 3D do notebook vira o menu principal
+
+**Decisão:** a cena 3D da escrivaninha do Gabriel, com o menu na tela do notebook, passa a ser a entrada principal do jogo. O menu anterior fica no repositório para referência, mas a pausa e as saídas de fase voltam para o novo menu. As ações de campanha, carregamento, fases, opções, controles, créditos e sons continuam usando a interface existente dentro da tela do notebook.
+
+**Por quê:** o Davi aprovou a versão modelada no Blender como novo menu principal e autorizou mesclar o PR.
+
+**Afeta:** `project.godot`, `scripts/interface/tela_pausa.gd`, `scripts/sistemas/saida_fase.gd` e `docs/mecanicas/menu_notebook.md`. A decisão anterior de manter a cena separada fica como histórico, superada por esta.
+
 ## 2026-11-08 — Saem a lanterna e a ansiedade; a parede do Baltazar fica à vista
 
 **Decisão:** a **lanterna** do Gabriel e a barra de **ansiedade** saíram do jogo. A parede falsa do esconderijo do Baltazar, no Labirinto, passou a ser **visível normalmente**: o painel solto, com o Cruzeiro do Sul e a cruz, está sempre à vista, sem precisar do feixe, e `E` o afasta.
@@ -105,6 +113,17 @@
 **Correção:** em `Sala._ready`, a animação da cortina agora roda mesmo com o jogo pausado (`Tween.TWEEN_PAUSE_PROCESS`). Vale para toda sala. Conferido no Godot 4.7.2 por script, nas quatro salas: a cortina chega a 0 em 1 s, com o diálogo ainda aberto. A iluminação das salas (`Escuridao`) não foi mexida.
 
 **Afeta:** `scripts/salas/sala.gd`.
+## 2026-11-07 — Menu 3D na escrivaninha do Gabriel
+
+**Decisão:** um novo menu em 3D usa a escrivaninha do quarto do visor da sala segura, com o notebook como tela interativa e a janela do pôr do sol ao fundo. O modelo é montado no Blender a partir das mesmas peças do quarto; o notebook tem escala uniforme de 1,6 e fica na frente do peitoril. Livros, luminária, caneca, porta-lápis, cortina e cacto completam o enquadramento. As texturas continuam em pixel art. As ações do menu atual (campanha, seis espaços de save, fases, opções, controles, créditos e sons) são reaproveitadas. A cena nova fica separada por escolha do Davi; a cena principal atual continua sendo a entrada do jogo.
+
+**Por quê:** pedido do Davi: modelar no Blender um novo menu igual à mesa do Gabriel no safe room VR, usando o notebook e a janela ao fundo.
+
+**Refino no mesmo dia:** a pedido do Davi, a câmera se aproxima do notebook (posição `-1.47, 1.23, -0.2`, campo de visão vertical de 40°) e a modelagem ganha teclas individuais com legendas, carcaça e trackpad montados em camadas, dobradiças, webcam, portas e ventilação. Caneca, cacto e bordas dos móveis têm curvas mais detalhadas: o cenário passa de 2.732 para 71.282 triângulos. Texturas próprias de madeira em 1024 px e metal, tecido e parede em 512 px incluem cor, rugosidade e normal, mantendo Nearest com mipmaps. A cena continua separada do menu principal.
+
+**Iluminação final:** por pedido do Davi, o quarto do menu fica com a luz geral apagada e somente a luminária iluminando os objetos ao redor. A janela passa a mostrar um céu noturno estrelado, com textura própria. Saem a luz ambiente, a luz do pôr do sol e a luz auxiliar do notebook; a tela permanece legível. Essa mudança vale para o menu separado, sem alterar o quarto VR da campanha.
+
+**Afeta:** `assets/modelagem/menu/gerar_menu_notebook.py`, `menu_notebook.blend` e as duas prévias; `assets/modelos/menu_notebook.glb`; `cenas/interface/menu_notebook.tscn` e `tela_menu_notebook.tscn`; `scripts/interface/menu_notebook.gd` e `tela_menu_notebook.gd`; `docs/mecanicas/menu_notebook.md`. O quarto VR e o Enredo permanecem como estão.
 
 ## 2026-11-07 — O Gabriel mira com a arma de pulso em todas as direções
 
