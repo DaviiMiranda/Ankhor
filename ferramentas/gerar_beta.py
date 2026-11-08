@@ -1,4 +1,4 @@
-# gerar_beta.py — gera uma versão de teste do Ankhor para Windows: exporta o jogo com
+# gerar_beta.py — gera a versão BETA do Ankhor para Windows: exporta o jogo com
 # o Godot (sem abrir a janela do editor), confere o resultado e monta o .zip que
 # vai para os testadores. Passo a passo e regras da versão em docs/producao/beta.md.
 #
@@ -84,7 +84,7 @@ def montar_zip(versao, pasta, exe):
 
 
 def main():
-    analise = argparse.ArgumentParser(description="Gera uma versão de teste do Ankhor para Windows.")
+    analise = argparse.ArgumentParser(description="Gera a versão beta do Ankhor para Windows.")
     analise.add_argument("--godot", default=os.environ.get("GODOT", ""), help="caminho do Godot 4.7.2 (de preferência o _console.exe)")
     argumentos = analise.parse_args()
     if not argumentos.godot or not os.path.exists(argumentos.godot):
