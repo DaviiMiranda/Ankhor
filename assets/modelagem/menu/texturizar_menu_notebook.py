@@ -85,12 +85,12 @@ def gerar_ceu_noturno():
     sorteio = np.random.default_rng(3026)
     for i in range(100):
         x, y = sorteio.integers(3, tamanho - 3, size=2)
-        brilho = sorteio.uniform(0.12, 0.42)
+        brilho = sorteio.uniform(0.16, 0.52)
         cor[y, x] = (brilho * 0.75, brilho * 0.85, brilho)
         if i % 13 == 0:
             for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                cor[y + dy, x + dx] += brilho * 0.12
-    salvar("ceu_noturno", cor)
+                cor[y + dy, x + dx] += brilho * 0.15
+    return salvar("ceu_noturno", cor)
 
 
 def aplicar_materiais():

@@ -71,10 +71,13 @@ próximos. A iluminação ambiente e as luzes auxiliares da janela e do notebook
 foram retiradas. A tela continua legível pelo material sem sombreamento.
 A orientação e a posição da luz no Godot acompanham os ajustes salvos no
 arquivo Blender.
+A haste da luminária foi alongada para manter a base na mesa enquanto a
+lâmpada visível alcança a altura da luz.
 
 A janela usa `assets/sprites/menu/notebook/ceu_noturno.png`, gerado no Blender
 com um gradiente azul escuro e estrelas discretas. A paisagem aparece pela
 janela sem iluminar o quarto. O céu original do prólogo e do quarto VR não muda.
+As estrelas foram levemente clareadas sem alterar o gradiente noturno.
 O arquivo Blender também usa apenas a luminária, com a iluminação do mundo
 zerada e o céu excluído dos raios de iluminação indireta.
 
