@@ -82,7 +82,7 @@ PASSARELA = {
     ],
     "sinais_sala_segura": [(4 * PECA + X_PORTA, 4)],
     "objetos": [("vaso_planta", 330, 156), ("banco_curvo", 450, 160)],
-    "itens": [("pilha", 360, 168), ("lanterna", 140, 160), ("radio", 180, 160)],
+    "itens": [("pilha", 360, 168), ("radio", 180, 160)],
     "documentos": [("carta_faroleiro_neide", 270, 166, "Ler a carta")],
     "checkpoint": ("conv_passarela", 60, 140),
     "transmissoes": [("zane_convivencia_01", 220, 152, "")],
@@ -438,7 +438,7 @@ LOJA_UNI = {
         ("mesa_dobrados", 160, 208), ("arara_b", 262, 214), ("estante_moletons", 372, 216), ("cesto_promocao", 452, 208),
         ("espelho_standing", 526, 206),
     ],
-    "itens": [("pilha", 110, 228), ("pedra", 330, 232), ("espelho", 506, 218)],
+    "itens": [("pilha", 110, 228), ("pedra", 330, 232)],
     "documentos": [("aviso_loja_universitaria", 330, 170, "Ler o aviso do balcão")],
     "paineis": [{
         "nome": "AraraInteligente", "cena": "painel_ordenacao", "x": 215, "y": 160, "premio": ("pilha", 2),

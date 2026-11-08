@@ -4,8 +4,7 @@ extends Node
 const PASTA_ITENS := "res://dados/itens/"
 const PASTA_TRANSMISSOES := "res://dados/transmissoes/"
 const PASTA_DIALOGOS := "res://dados/dialogos/"
-const ID_LANTERNA := "lanterna"
-const PRIORIDADE_DOS_GADGETS := ["arma_impulso", "clarao", "pedra"]
+const PRIORIDADE_DOS_GADGETS := ["arma_impulso", "clarao"]
 const PRIORIDADE_DAS_FERRAMENTAS := ["radio", "modulo_pulso", "mapa_diana", "alicate"]
 
 
@@ -28,13 +27,12 @@ func _pegar_itens() -> void:
 		if not arquivo.ends_with(".tres"):
 			continue
 		var item := load(PASTA_ITENS + arquivo) as Item
-		if item == null or itens_de_colecao.has(item.id) or item.carga_pesada:
+		if item == null or itens_de_colecao.has(item.id) or item.carga_pesada or item.exclusivo_do_zane:
 			continue
 		itens.append(item)
 	itens.sort_custom(func(a: Item, b: Item) -> bool: return _peso(a) < _peso(b))
 	for item in itens:
 		_pegar(item)
-	Inventario.estado_de(ID_LANTERNA)["carga"] = 1.0
 	Inventario.definir_pilhas(Inventario.MAXIMO_PILHAS)
 	Inventario.mudou.emit()
 

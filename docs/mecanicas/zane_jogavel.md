@@ -9,13 +9,11 @@ O Zane é jogável em um trecho: a **ala do escritório**, a mini fase do fim do
 | Sprites | `gabriel/` | `zane/`: parado, caminhada, **corrida**, **hack** e **casaco** |
 | Corrida | curvado, 24 quadros | **ereto**, passo largo e saltado, **48 quadros** |
 | Estamina | 100 | **160** (mesmo gasto e mesma regeneração: corre 60% mais tempo) |
-| Ansiedade | sim | **não tem**: a barra e o efeito somem da tela (`Ansiedade.desativar()`) |
-| Lanterna | pilha de 240 s | **infinita** (`Gabriel.lanterna_infinita`) |
-| Itens | o que ele pegou | **kit próprio**: lanterna, flash (2) e braço de hack |
+| Itens | o que ele pegou | **kit próprio**: flash (2) e braço de hack. O braço é **exclusivo do Zane** (`Item.exclusivo_do_zane`): nenhuma outra parte do jogo o entrega ao Gabriel, nem a sala de teste (`TudoColetado` pula esse item) |
 | Inventário | tira a mochila do ombro e abre | **abre a jaqueta** com as duas mãos: o forro tem bolsos com o que ele carrega (`zane_casaco_<vista>.png`) |
-| Mãos | `maos_do_gabriel.gd` | `maos_do_zane.gd` (a lanterna fica na mão de metal em quase todas as vistas) |
+| Mãos | `maos_do_gabriel.gd` | `maos_do_zane.gd` (o braço de hack sai da mão de metal) |
 
-**O kit é emprestado.** `Inventario.emprestar_kit` guarda a mochila do Gabriel (grade, gadgets, estado e itens vistos) e põe o kit do Zane; `Inventario.devolver_kit` devolve tudo. O kit é emprestado **uma vez**, na primeira sala do escritório, e fica emprestado ao trocar de sala e ao morrer e recomeçar do checkpoint (por isso o flash gasto não volta). Quem devolve é a câmara selada, ao abrir (`camara_selada.gd`). `Inventario.limpar` (novo jogo, escolher fase) também esquece o empréstimo. Os gadgets ficam nas teclas `1` (lanterna) e `2` (flash); o `3` fica livre. O braço de hack tem um **espaço só dele, o 4º**, na tecla `4`: o item tem `vai_no_espaco_do_braco` e vai para `Inventario.braco` em vez dos espaços de gadget. O HUD só mostra esse quarto espaço quando há braço na mochila (o Gabriel continua com três), com a barrinha de recarga e a moldura acesa durante a invasão.
+**O kit é emprestado.** `Inventario.emprestar_kit` guarda a mochila do Gabriel (grade, gadgets, estado e itens vistos) e põe o kit do Zane; `Inventario.devolver_kit` devolve tudo. O kit é emprestado **uma vez**, na primeira sala do escritório, e fica emprestado ao trocar de sala e ao morrer e recomeçar do checkpoint (por isso o flash gasto não volta). Quem devolve é a câmara selada, ao abrir (`camara_selada.gd`). `Inventario.limpar` (novo jogo, escolher fase) também esquece o empréstimo. O flash fica na tecla `1`; a `2` e a `3` ficam livres. O braço de hack tem um **espaço só dele, o 4º**, na tecla `4`: o item tem `vai_no_espaco_do_braco` e vai para `Inventario.braco` em vez dos espaços de gadget. O HUD só mostra esse quarto espaço quando há braço na mochila (o Gabriel continua com três), com a barrinha de recarga e a moldura acesa durante a invasão.
 
 ## O braço de hack
 

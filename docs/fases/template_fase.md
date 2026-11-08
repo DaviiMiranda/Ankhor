@@ -39,14 +39,14 @@ Liste as principais salas ou cômodos que compõem esta fase e suas conexões:
 
 - **Robôs Presentes:** (ex.: Patrulheiro, Sentinela, etc.)
 - **Rotinas Padrão:** Quais salas percorrem enquanto estiverem no estado *Rotina*.
-- **Sentidos em Destaque:** O que o jogador deve evitar nesta área (barulho, luz da lanterna, visão direta).
+- **Sentidos em Destaque:** O que o jogador deve evitar nesta área (barulho, luz acesa, visão direta).
 
 ---
 
 ## 5. Puzzles e Desafios Mecânicos
 
 - **Descrição do Puzzle:** Como funciona o obstáculo.
-- **Mecânica Utilizada:** (ex.: Acústica/BFS, Coloração da Grade, Lanterna, Microgame).
+- **Mecânica Utilizada:** (ex.: Acústica/BFS, Coloração da Grade, Microgame).
 - **Solução:** Como o jogador resolve o problema.
 
 ---

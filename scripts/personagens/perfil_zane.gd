@@ -3,7 +3,6 @@ extends RefCounted
 
 const MAOS := preload("res://scripts/personagens/maos_do_zane.gd")
 const KIT: Array[Item] = [
-	preload("res://dados/itens/lanterna.tres"),
 	preload("res://dados/itens/clarao.tres"),
 	preload("res://dados/itens/braco_hack.tres"),
 ]
@@ -32,8 +31,6 @@ static func aplicar(jogador: Gabriel) -> void:
 	jogador.tabela_maos = MAOS.MAOS
 	jogador.tabela_maos_correndo = MAOS.MAOS_CORRENDO
 	jogador.tiras_do_gesto_da_mochila = TIRAS_DO_CASACO
-	jogador.lanterna_infinita = true
-	jogador.ansiedade.desativar()
 	jogador.fadiga.estamina_maxima = ESTAMINA_MAXIMA
 	jogador.fadiga.reiniciar()
 	if not Inventario.com_kit_emprestado():

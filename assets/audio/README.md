@@ -64,7 +64,7 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `efeitos/robos/robo_zumbido.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | 2 s em loop: o motor do robô ligado (60 Hz, engrenagem, ventoinha) |
 | `efeitos/robos/robo_alerta.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | O guincho de quando o robô vê o Gabriel |
 | `efeitos/gabriel/gabriel_dano.wav`, `efeitos/interface/morte.wav`, `efeitos/interface/checkpoint.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | Pancada ao levar dano; tela de morte; posto de checkpoint acendendo |
-| `efeitos/objetos/lanterna_clique.wav`, `pilha_troca.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | Botão da lanterna; troca de pilha |
+| `efeitos/objetos/lanterna_clique.wav`, `pilha_troca.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | Botão da lanterna do visor de RV (Hora Morta); troca de pilha |
 | `efeitos/interface/menu_passar.wav`, `menu_clique.wav` | `assets/modelagem/audio/gerar_efeitos_menu.py` | Bipe de computador velho ao passar por uma opção do menu; clique do mouse com bipe de confirmação ao escolher |
 | `efeitos/objetos/porta_abrir.wav` | `assets/modelagem/audio/gerar_efeitos_gadgets.py` | 1,4 s: trinco, dobradiça rangendo e a porta batendo. Toca ao atravessar uma porta (`cenas/sistemas/porta.tscn`) |
 | `efeitos/objetos/porta_correr.wav` | `assets/modelagem/audio/gerar_efeitos_porta_correr.py` | 1,3 s: porta de correr de madeira com batente de aço: trinco, rodinhas no trilho, raspar da folha e a batida no batente. Toca nas portas da Biblioteca (vem da `Folha` de `parede_porta_animada.tscn`) |

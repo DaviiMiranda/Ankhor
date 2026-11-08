@@ -35,6 +35,5 @@ O que fere é a densidade, não o desenho: `densidade_em(ponto)` lê a célula d
 |---|---|---|
 | Perseguição entre salas | O tempo de chegada é `distância / velocidade`. O robô entra pela aresta (a porta) que o jogador usou no grafo de salas. | `scripts/sistemas/perseguicao_entre_salas.gd` |
 | Sonar | BFS na grade da sala: `distancias(origem, limite)` dá o número de passos até cada célula, e a célula acende quando `passos · bloco ≤ velocidade · tempo`. É o mesmo cálculo do som dos robôs, agora visível. | `scripts/itens/pulso_sonar.gd` |
-| Espelho | Reflexão vetorial `r = d − 2(d·n)n`, com `d` a direção da luz e `n` a direção do olhar do Gabriel. Só rebate se `d·n < 0`, ou seja, se ele está de frente para a luz. Quem está a até 25° de `r` é atingido (produto escalar). | `scripts/itens/espelho.gd` |
-| Microgame da cabine | Onda triangular `pingpong(fase, 1)`. A largura da faixa é uma interpolação linear pela ansiedade. | `scripts/sistemas/esconderijo_cabine.gd` |
-| Barulho do walkman, da máscara e da Célula | A BFS do som, repetida com o tempo. | `Robo.fazer_barulho` em `scripts/personagens/robo.gd` |
+| Microgame da cabine | Onda triangular `pingpong(fase, 1)`. A largura da faixa é fixa e encolhe 25% se o Gabriel está cansado. | `scripts/sistemas/esconderijo_cabine.gd` |
+| Barulho da máscara e da Célula | A BFS do som, repetida com o tempo. | `Robo.fazer_barulho` em `scripts/personagens/robo.gd` |

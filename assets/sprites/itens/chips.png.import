@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cchdora02j4xn"
-path="res://.godot/imported/walkman.png-d830d7649fab85f3cd03b3aaa96989aa.ctex"
+uid="uid://bui67adlgk00o"
+path="res://.godot/imported/chips.png-19c9b84f669ce6cd2dc222aad7547b6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/itens/walkman.png"
-dest_files=["res://.godot/imported/walkman.png-d830d7649fab85f3cd03b3aaa96989aa.ctex"]
+source_file="res://assets/sprites/itens/chips.png"
+dest_files=["res://.godot/imported/chips.png-19c9b84f669ce6cd2dc222aad7547b6d.ctex"]
 
 [params]
 

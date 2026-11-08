@@ -52,7 +52,7 @@
 #   MARIPOSA — o robô da LUZ, do bunker. 1,7 m, magro, sobre pernas de
 #   pernalta, com dois painéis largos nas costas, como asas fechadas, dois
 #   olhos enormes e antenas para a frente. Quase não enxerga no escuro, mas
-#   vê uma lanterna acesa de longe. Anda na ponta dos pés, tremendo as asas.
+#   vê uma luz acesa de longe. Anda na ponta dos pés, tremendo as asas.
 #
 #   ESCAFANDRO — o robô do SOM, do setor alagado do bunker. 1,4 m, um barril
 #   de lona com botas de chumbo, tanques nas costas e capacete de latão com

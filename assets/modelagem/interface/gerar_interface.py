@@ -9,8 +9,7 @@
 # O que sai:
 #   assets/sprites/itens/<item>.png                16 x 16 px: ícone do item (inventário)
 #   assets/sprites/itens/<item>_chao.png           o item caído no chão, na escala do
-#                                                  cenário (1 px ≈ 3,6 cm: uma lanterna tem ~6 px)
-#   assets/sprites/itens/lanterna_mao.png          14 x 8 px: a lanterna na mão do Gabriel (resolução dobrada)
+#                                                  cenário (1 px ≈ 3,6 cm: uma pilha tem ~6 px)
 #   assets/sprites/interface/espaco.png            20 x 20 px: um espaço vazio da grade
 #   assets/sprites/interface/espaco_selecionado.png  o mesmo, com a borda acesa
 #   assets/sprites/interface/painel.png            24 x 24 px: fundo das janelas, em
@@ -62,14 +61,6 @@ TAMANHO_ESPACO = 20
 TAMANHO_PAINEL = 24
 MARGEM_PAINEL = 6       # patch_margin do NinePatchRect (mude lá se mudar aqui)
 
-# Cores da lanterna, tiradas da imagem detalhada dela
-# (assets/sprites/itens/lanterna_detalhe.png): carcaça de alumínio anodizado
-# azul-acinzentado escuro, com reflexos de aço claros, botão vermelho,
-# lente com o miolo quente e uma alça de pulso de nylon preto.
-ACO = bib.hexa("#0e1118", "#1a202b", "#2a3342", "#3e4a5e", "#5c6b82", "#8d9bb2", "#c4cedd")
-VERMELHO_BOTAO = bib.hexa("#4a1208", "#8a2214", "#d03a22", "#ee6a44")
-NYLON = bib.hexa("#08090c", "#11141a", "#1c2029", "#2a303c")
-
 # Cores do rádio, tiradas da imagem detalhada dele
 # (assets/sprites/itens/radio_detalhe.png): carcaça de plástico verde-oliva
 # com a quina de cima quase menta, detalhes em laranja (anel da antena, aro do
@@ -93,63 +84,6 @@ TELA_NOTEBOOK = bib.hexa("#4f5d6e", "#7f8fa3", "#aebdd0", "#cfdbe8", "#e4edf5")
 # ---------------------------------------------------------------------------
 # Ícones dos itens
 # ---------------------------------------------------------------------------
-
-
-def lanterna():
-    """A lanterna do Gabriel, a mesma da imagem detalhada
-    (lanterna_detalhe.png) e a que ele leva na mão (lanterna_mao): corpo
-    cilíndrico de aço azulado, deitado, com a cabeça larga e a lente redonda à
-    esquerda (aro escuro, miolo quente), o botão vermelho em cima, a pegada
-    xadrez no meio e a alça de pulso de nylon preto fazendo um laço embaixo.
-    Não tem luz acesa no ícone: se ela está ligada, o espaço de gadget mostra."""
-    img = Imagem(TAMANHO_ICONE, TAMANHO_ICONE)
-    X, Y = img.X, img.Y
-    img.pintar(img.caminho([(13, 9), (14, 12), (11, 14), (8, 13), (8, 10)], 0.55), NYLON, 0.6)
-    img.pintar(img.ret(6, 5, 14, 10), ACO, 0.5 - 0.3 * (Y - 5) / 5 + 0.25 * (Y == 5))
-    img.pintar(img.ret(9, 5, 13, 10) & ((X + Y) % 2 == 0), ACO, 0.12)
-    img.pintar(img.ret(13, 5, 15, 10), ACO, 0.6 - 0.35 * (Y - 5) / 5)
-    img.pintar(img.ret(2, 4, 7, 11), ACO, 0.55 - 0.3 * (Y - 4) / 6 + 0.2 * (Y == 4))
-    img.pintar(img.ret(7, 4, 8, 11), ACO, 0.8)
-    img.pintar(img.ret(7, 3, 10, 5), VERMELHO_BOTAO, 0.9)
-    img.pintar(img.ret(7, 4, 10, 5), VERMELHO_BOTAO, 0.4)
-    img.pintar(img.ret(1, 5, 3, 10), "metal", 0.15)
-    img.pintar(img.ret(1, 5, 3, 10) & ~((X == 1) & ((Y == 5) | (Y == 9))), "lampada", 0.7)
-    img.pintar(img.ret(1, 6, 2, 9), "lampada", 1.0)
-    img.contornar(CONTORNO)
-    return img
-
-
-def lanterna_chao():
-    """A mesma lanterna caída no chão, na escala do cenário: um pouco maior
-    que a da mão (7 x 4 px contra 6 x 3) porque aqui o contorno e o corpo
-    aparecem inteiros. Um corpo de aço azulado com o botão vermelho e a lente
-    acesa na ponta direita."""
-    img = Imagem(7, 4)
-    img.pintar(img.ret(1, 1, 5, 2), ACO, 0.65)
-    img.pintar(img.ret(1, 2, 5, 3), ACO, 0.3)
-    img.pintar(img.ret(2, 1, 3, 2), VERMELHO_BOTAO, 0.9)
-    img.pintar(img.ret(5, 1, 6, 3), "lampada", 0.85)
-    img.contornar(CONTORNO)
-    return img
-
-
-def lanterna_mao():
-    """A lanterna como o Gabriel a segura: 14 x 8 px, em resolução dobrada (o
-    jogo mostra com escala 0,5, então ocupa 7 x 4 px no mundo, com o contorno,
-    e o corpo tem ~6 x 3, uns 20 cm na escala do personagem, 1 px ~ 3,6 cm).
-    Corpo cilíndrico de aço azulado à esquerda, a cabeça mais larga e a lente
-    na ponta direita, com o botão vermelho em cima. Está apontada para a
-    direita, com a pegada (o ponto de x = 5) no meio do corpo: o jogo põe esse
-    ponto na mão do Gabriel e gira e espelha o sprite conforme a direção da
-    mira (scripts/itens/lanterna.gd)."""
-    img = Imagem(14, 8)
-    Y = img.Y
-    img.pintar(img.ret(2, 3, 9, 6), ACO, 0.55 - 0.3 * (Y - 3) / 3 + 0.2 * (Y == 3))
-    img.pintar(img.ret(9, 2, 12, 7), ACO, 0.6 - 0.3 * (Y - 2) / 5 + 0.2 * (Y == 2))
-    img.pintar(img.ret(5, 2, 7, 3), VERMELHO_BOTAO, 0.85)
-    img.pintar(img.ret(12, 3, 13, 6), "lampada", 0.9)
-    img.contornar(CONTORNO)
-    return img
 
 
 def pilha():
@@ -325,9 +259,6 @@ def notebook_chao():
 
 # Nome do arquivo -> função que desenha. Um item novo entra aqui.
 ICONES = {
-    "lanterna": lanterna,
-    "lanterna_chao": lanterna_chao,
-    "lanterna_mao": lanterna_mao,
     "pilha": pilha,
     "pilha_chao": pilha_chao,
     "radio": radio,

@@ -597,7 +597,7 @@ SALAS = [
         "portas": [{"peca": 4, "tipo": "porta", "id": "emergencia_corredor", "placa": "CORREDOR",
                     "destino": "corredor_sul", "porta_destino": "sul_emergencia"}],
         "objetos": [("caixas_lab", 40, 160), ("cilindros", 260, 132), ("planta", 450, 150, True)],
-        "itens": [("lanterna", 200, 160), ("pilha", 420, 165)],
+        "itens": [("pilha", 420, 165)],
         "checkpoints": [("dtec_chegada", 300, 150)],
         "luzes": [("luz_emergencia", 120, 30, "energy = 0.7")],
         "escuridao": (0.26, 0.27, 0.33, 1),

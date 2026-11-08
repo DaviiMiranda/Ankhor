@@ -1,5 +1,5 @@
 # medir_maos_gabriel.py — acha, em cada quadro dos sprites do Gabriel, onde está
-# a mão que segura a lanterna, e grava a tabela em
+# a mão que segura o item (o braço de hack sai dela), e grava a tabela em
 # scripts/personagens/maos_do_gabriel.gd (uma constante que o gabriel.gd usa).
 #
 # Como rodar (Python 3 + numpy + Pillow):
@@ -17,10 +17,29 @@
 #
 #     centro = (soma dos x / n, soma dos y / n)
 #
-# Nas vistas em que aparecem duas mãos fica a mancha de maior x (a mão da direita
-# do quadro), e manchas à esquerda da coluna COLUNA_MIN (a outra mão, que some e
-# volta durante a caminhada) são ignoradas, para a lanterna não pular de mão.
-# Se um quadro não tem mão visível, vale a posição do quadro anterior.
+# O item fica sempre na MESMA mão. O primeiro quadro da tira escolhe a mão
+# (a mancha de maior x, a da direita do quadro) e dali em diante a mão é seguida
+# quadro a quadro: vale a mancha mais perto do ponto previsto, que é o anterior
+# mais a velocidade que a mão vinha tendo,
+#
+#     p_previsto = 2 * p_anterior - p_anterior_do_anterior
+#
+# desde que fique a menos de ERRO_MAXIMO_DA_PREVISAO pixels dele. Quando as duas
+# mãos se cruzam (o braço de lá vem para cá), é a velocidade que diz qual é
+# qual. Sem velocidade (no segundo quadro e depois de um quadro sem mão), valem
+# só as manchas a menos de SALTO_MAXIMO pixels do último ponto achado, e entre
+# elas a de maior x. Antes, a escolha era "a mancha de maior x
+# de cada quadro", e o item saltava para a outra mão sempre que a primeira
+# sumia atrás do corpo (na vista de três quartos o salto passava de 17 pixels).
+#
+# Quadros em que a mão seguida não aparece (atrás do corpo) são preenchidos por
+# interpolação linear entre o último e o próximo quadro com mão, contando a tira
+# como um ciclo (depois do último quadro vem o primeiro).
+#
+# O braço que segura o item balança menos que o outro, então o balanço em x
+# é reduzido a AMORTECIMENTO do original em volta da média da tira:
+#
+#     x = media + AMORTECIMENTO * (x_medido - media)
 #
 # O que sai: MAOS[vista][tira][quadro] = Vector2(x, y), com tira "imovel" (1 quadro),
 # "parado" (8) ou "andar" (12), em pixels do quadro (96 x 112), do canto de cima
@@ -42,7 +61,9 @@ PELE = [(185, 130, 96), (119, 86, 70)]
 LIMITE_COR = 18.0
 LINHA_MIN, LINHA_MAX = 56, 90
 MANCHA_MINIMA = 3
-COLUNA_MIN = 44
+SALTO_MAXIMO = 7.0
+ERRO_MAXIMO_DA_PREVISAO = 7.0
+AMORTECIMENTO = 0.6
 
 
 def manchas(mascara):
@@ -66,7 +87,7 @@ def manchas(mascara):
     return achadas
 
 
-def mao_do_quadro(quadro):
+def centros_do_quadro(quadro):
     rgb = quadro[..., :3].astype(np.float64)
     pele = np.zeros(quadro.shape[:2], dtype=bool)
     for cor in PELE:
@@ -75,24 +96,56 @@ def mao_do_quadro(quadro):
     pele[:LINHA_MIN] = False
     pele[LINHA_MAX:] = False
     achadas = [m for m in manchas(pele) if len(m) >= MANCHA_MINIMA]
-    centros = [(sum(p[0] for p in m) / len(m), sum(p[1] for p in m) / len(m)) for m in achadas]
-    centros = [c for c in centros if c[0] >= COLUNA_MIN]
-    if not centros:
-        return None
-    x, y = max(centros)
-    return [round(x + 0.5, 1), round(y + 0.5, 1)]
+    return [(sum(p[0] for p in m) / len(m) + 0.5, sum(p[1] for p in m) / len(m) + 0.5) for m in achadas]
+
+
+def distancia(a, b):
+    return float(np.hypot(a[0] - b[0], a[1] - b[1]))
+
+
+def seguir_a_mao(quadros_de_centros):
+    trilha = []
+    for centros in quadros_de_centros:
+        achados = [p for p in trilha if p]
+        escolhido = None
+        if centros and not achados:
+            escolhido = max(centros)
+        elif centros:
+            if len(trilha) >= 2 and trilha[-1] and trilha[-2]:
+                previsto = (2 * trilha[-1][0] - trilha[-2][0], 2 * trilha[-1][1] - trilha[-2][1])
+                perto = [c for c in centros if distancia(c, previsto) <= ERRO_MAXIMO_DA_PREVISAO]
+                escolhido = min(perto, key=lambda c: distancia(c, previsto)) if perto else None
+            else:
+                perto = [c for c in centros if distancia(c, achados[-1]) <= SALTO_MAXIMO]
+                escolhido = max(perto) if perto else None
+        trilha.append(escolhido)
+    return trilha
+
+
+def preencher_buracos(trilha, padrao):
+    achados = [i for i, p in enumerate(trilha) if p]
+    if not achados:
+        return [padrao for _ in trilha]
+    total = len(trilha)
+    pontos = []
+    for i in range(total):
+        if trilha[i]:
+            pontos.append(trilha[i])
+            continue
+        antes = max(j for j in range(i - total, i) if trilha[j % total])
+        depois = min(j for j in range(i + 1, i + total + 1) if trilha[j % total])
+        a, b = trilha[antes % total], trilha[depois % total]
+        t = (i - antes) / (depois - antes)
+        pontos.append((a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t))
+    return pontos
 
 
 def medir_tira(caminho):
     tira = np.array(Image.open(caminho).convert("RGBA"))
-    pontos = []
-    ultimo = None
-    for i in range(tira.shape[1] // LARGURA):
-        ponto = mao_do_quadro(tira[:, i * LARGURA:(i + 1) * LARGURA])
-        ultimo = ponto or ultimo
-        pontos.append(ultimo)
-    primeiro = next((p for p in pontos if p), [LARGURA / 2, 66])
-    return [p or primeiro for p in pontos]
+    quadros = [centros_do_quadro(tira[:, i * LARGURA:(i + 1) * LARGURA]) for i in range(tira.shape[1] // LARGURA)]
+    pontos = preencher_buracos(seguir_a_mao(quadros), (LARGURA / 2, 66))
+    media = sum(p[0] for p in pontos) / len(pontos)
+    return [[round(media + AMORTECIMENTO * (x - media), 1), round(y, 1)] for x, y in pontos]
 
 
 def main():

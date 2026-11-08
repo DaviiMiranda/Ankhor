@@ -16,7 +16,7 @@
 - Só um checkpoint fica ativo por vez (o último por onde o Gabriel passou).
 - **Ao morrer**, a fase é recarregada inteira (robôs voltam ao lugar de origem) e o Gabriel aparece no último posto.
 - **Sem checkpoint na fase**, morrer recomeça a fase do início.
-- O que **não** é desfeito ao morrer: itens pegos (a lanterna não reaparece, pilhas usadas não voltam), anotações do caderno e transmissões já ouvidas.
+- O que **não** é desfeito ao morrer: itens pegos (pilhas usadas não voltam), anotações do caderno e transmissões já ouvidas.
 - **Entrar numa fase pelo menu** (Novo jogo ou Fases) apaga checkpoint, vida, inventário, caderno e rádio.
 
 > O checkpoint é o "voltar ao último ponto" durante uma fase. O **save em arquivo** é outra coisa: só a máquina de salvar da **sala segura** grava, e o botão Continuar do menu carrega. Ao salvar, a máquina também vira o checkpoint (morrer volta para a sala segura). Ver [`sala_segura.md`](sala_segura.md).
