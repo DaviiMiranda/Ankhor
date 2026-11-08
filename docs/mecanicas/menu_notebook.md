@@ -69,8 +69,8 @@ O quarto fica com a luz geral apagada. A luminária da mesa é a única luz
 do cenário: luz quente de alcance curto, com sombras, concentrada nos objetos
 próximos. A iluminação ambiente e as luzes auxiliares da janela e do notebook
 foram retiradas. A tela continua legível pelo material sem sombreamento.
-O foco da luminária aponta para a parte superior do cacto; a cena do Godot
-calcula esse alvo a partir da posição atual da malha.
+O foco da luminária aponta na direção do cacto. A orientação e a posição da
+luz no Godot acompanham os ajustes salvos no arquivo Blender.
 
 A janela usa `assets/sprites/menu/notebook/ceu_noturno.png`, gerado no Blender
 com um gradiente azul escuro e estrelas discretas. A paisagem aparece pela

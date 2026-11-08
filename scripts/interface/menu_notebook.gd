@@ -2,6 +2,7 @@ extends Control
 
 @export_range(0.5, 1.0) var resolucao_do_3d := 1.0
 @export var alvo_da_camera := Vector3(-2.30, 1.04, -0.2)
+@export var alvo_da_luz := Vector3(-2.383993, 0.915229, -0.652706)
 
 @onready var imagem: SubViewportContainer = $Imagem
 @onready var mundo: SubViewport = $Imagem/Mundo
@@ -19,10 +20,7 @@ var _mouse_sobre_tela := false
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	camera.look_at(alvo_da_camera)
-	var cacto := modelo.find_child("CactoComGomos", true, false) as MeshInstance3D
-	var limites_cacto := cacto.get_aabb()
-	var alvo_luz := cacto.to_global(limites_cacto.position + limites_cacto.size * Vector3(0.5, 0.72, 0.5))
-	$Imagem/Mundo/LuzDaLuminaria.look_at(alvo_luz)
+	$Imagem/Mundo/LuzDaLuminaria.look_at(alvo_da_luz)
 	_ajustar_resolucao()
 	get_window().size_changed.connect(_ajustar_resolucao)
 	var tela := modelo.find_child("TelaNotebook", true, false) as MeshInstance3D
