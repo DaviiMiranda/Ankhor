@@ -1,4 +1,4 @@
-# Fila, pilha, pulsos e arranjos — o Corredor do Tempo
+# Fila, pilha, grafo em grade e arranjos — o Corredor do Tempo
 
 O Corredor do Tempo (Labirinto) tem quatro salinhas, cada uma com uma coisa dos anos 80 que o jogador precisa acertar antes que o relógio zere. Cada uma usa uma ideia diferente de computação ou de matemática. A mecânica está em [`../mecanicas/corredor_do_tempo.md`](../mecanicas/corredor_do_tempo.md).
 
@@ -6,7 +6,7 @@ O Corredor do Tempo (Labirinto) tem quatro salinhas, cada uma com uma coisa dos 
 |---|---|---|
 | Jogos | Genius | **fila** (FIFO) e crescimento exponencial ($4^n$) |
 | Micros | digitar o comando | **pilha** (LIFO) e comparação de cadeias |
-| Telefone | discar 1876 no disco | discagem por **pulsos** e ângulos |
+| Telefone | girar cabos até ligar a central ao telefone | **grafo** em grade, **máscaras de bits** e **busca em largura** (BFS) |
 | Filmes | ano de cada quadro | **arranjos** simples |
 
 ---
@@ -31,17 +31,44 @@ O `Enter` executa: a linha digitada é comparada com o comando esperado (`strip_
 
 As teclas do painel são lidas em `_input`, que roda antes do `_unhandled_input` de todo o resto do jogo. Assim, digitar `N` ou `I` não abre o caderno nem o inventário, e o `E` de `LOAD` não conta como "interagir".
 
-## 3. Discagem por pulsos (telefone)
+## 3. Grafo em grade, bits e BFS (telefone)
 
-O jogador disca no telefone de disco o ano do primeiro telefone, **1876** (a dica é o selo do centenário, carimbado em 1976: cem anos antes).
+O jogador liga a **central** (à esquerda) ao **telefone** (à direita) girando peças de cabo numa grade de 7 × 5. Cada peça só gira 90° para a direita (`E`); o tabuleiro é o mesmo problema de "encanamento" de jogos como *Pipe Mania*.
 
-Num telefone de disco, cada número manda uma quantidade de **pulsos** para a central: o 1 manda 1, o 2 manda 2… e o 0 manda **10**, por isso fica depois do 9 no disco. A central conta os pulsos para saber o número. O jogo imita isso:
+**A peça é um número de 4 bits.** Cada lado da peça é um bit: norte = 1, leste = 2, sul = 4, oeste = 8. A peça é a soma dos lados que ela liga:
 
-- **Onde fica cada furo:** com o batente a $60°$, o furo de um número que manda $p$ pulsos fica a $60° - p \cdot 30°$. O 1 fica logo ao lado do batente, e o 0 dá quase uma volta inteira.
-- **Discar:** o disco gira $p \cdot 30°$ no sentido horário (o furo chega ao batente) e volta sozinho a 10 pulsos por segundo, como os aparelhos de verdade. A cada $30°$ de volta toca um clique: $\lceil \text{giro} / 30° \rceil$ diminuiu, então passou um pulso.
-- **Quanto demora:** a volta de um número com $p$ pulsos leva $p \times 0{,}1$ s. Discar 1876 manda $1 + 8 + 7 + 6 = 22$ pulsos, 2,2 s só de volta. Um número cheio de zeros e noves demoraria muito mais, e com o relógio correndo isso pesa.
+| Peça | Lados | Máscara |
+|---|---|---|
+| reta | norte + sul | $1 + 4 = 5$ |
+| curva | norte + leste | $1 + 2 = 3$ |
+| T | norte + leste + sul | $1 + 2 + 4 = 7$ |
+| cruz | os quatro | $15$ |
+| ponta | norte | $1$ |
+| vazio | nenhum | $0$ |
 
-Errar o ano mostra "NÚMERO INEXISTENTE", desconta 5 s e limpa o que foi discado.
+**Girar é deslocar os bits.** Girar 90° para a direita leva o norte para o leste, o leste para o sul, o sul para o oeste e o oeste para o norte: é um deslocamento circular de 1 bit para a esquerda, dentro de 4 bits:
+
+$$m' = \big((m \ll 1) \mathbin{|} (m \gg 3)\big) \mathbin{\&} 15$$
+
+Ex.: a curva norte+leste ($0011_2 = 3$) vira leste+sul ($0110_2 = 6$). Girar duas vezes dá o lado oposto, e é assim que o código acha "o lado do vizinho que me olha de volta" (`_oposta`). A reta só tem 2 posições distintas ($5 \to 10 \to 5$), e a cruz e o vazio não mudam nunca (o jogo nem gasta o giro nelas).
+
+**A grade é um grafo.** Cada célula é um vértice. Duas células vizinhas estão ligadas (há uma aresta) quando o lado de uma que aponta para a outra **e** o lado da outra que aponta de volta estão ligados, ou seja, as duas pontas de cabo se encontram. Cabo que aponta para a parede ou para uma peça que não encosta nele não liga nada.
+
+**O sinal é uma busca em largura (BFS).** O jogo começa da célula da central (se ela tem lado oeste) e visita os vizinhos ligados, depois os vizinhos desses, e assim por diante, com uma fila (`pop_front` e `append`). As células visitadas são as que ficam **verdes**: é o sinal chegando. Com $V = 35$ células e no máximo 4 arestas por célula, a busca custa $O(V + E)$, e roda a cada giro. A linha está ligada quando o sinal alcança a célula do telefone **e** ela tem o lado leste.
+
+**Como o tabuleiro é sorteado (e por que sempre tem solução).**
+
+1. Sorteia a linha da central e a do telefone.
+2. Sorteia um **caminho sem repetir célula** da central ao telefone com **busca em profundidade com volta atrás** (`_estender`): a cada passo, tenta os 4 lados em ordem aleatória, e se um beco não leva à saída, desfaz o último passo e tenta outro. É o mesmo método que sorteia o labirinto do Labirinto (`docs/fases/labirinto.md`, seção 2).
+3. O caminho precisa ter de **11 a 15 células**. Para a busca não perder tempo, ela **poda**: se o caminho já tem $n$ células e a distância de Manhattan até a saída é $d$ (quantos passos, no mínimo, ainda faltam), então $n + d > 15$ não serve e a busca volta na hora.
+4. Cada célula do caminho recebe a peça que liga o lado de onde o caminho veio ao lado para onde ele vai: **reta** se os dois lados são opostos, **curva** se são vizinhos. As outras células recebem uma peça **enfeite** sorteada (reta, curva, T, cruz, ponta ou vazio) para confundir.
+5. Gira cada peça um número sorteado de vezes (de 0 a 3). Se por azar o tabuleiro já estiver ligado, sorteia os giros de novo.
+
+Como o caminho foi desenhado antes de embaralhar, **sempre há solução**: basta girar cada peça do caminho de volta. Um teste com 20 000 tabuleiros sorteados confirmou 0 sem solução e 0 já ligados, e o pior tempo de geração foi cerca de 2 ms.
+
+**Paridade (curiosidade para a apresentação).** A grade é **bipartida**: pintando as células como um tabuleiro de xadrez, cada passo troca de cor. Por isso, o número de passos de um caminho entre duas células tem sempre a mesma paridade que a distância de Manhattan entre elas: se a central e o telefone ficam em linhas de mesma paridade, o caminho tem 6 passos horizontais mais um número par de passos verticais, e as células do caminho são 11, 13 ou 15 (nunca 12 ou 14); se as paridades diferem, são 12 ou 14. O sorteio respeita isso sozinho, porque só aceita caminhos que realmente chegam à saída.
+
+**Quanto trabalho dá.** Uma curva tem 4 posições, e o número de giros para pô-la certa é 0, 1, 2 ou 3 (média 1,5); uma reta tem 2 posições (0 ou 1, média 0,5). Num caminho típico de 14 células, medido no mesmo teste, são uns **15 giros** (mais o movimento do cursor), umas 30 teclas no total. Sem a dica do sinal verde, o jogador teria de adivinhar a ordem das peças de um espaço de até $4^{35} \approx 1{,}2 \times 10^{21}$ posições; com a BFS desenhada, ele resolve **da central para o telefone, uma peça de cada vez**, e a busca vira linear.
 
 ## 4. Arranjos (filmes: os quadros de De Volta para o Futuro)
 

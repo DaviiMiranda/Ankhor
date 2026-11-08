@@ -133,7 +133,7 @@ func _piscar(cor: Color) -> void:
 
 
 func _mostrar_visor() -> void:
-	visor.text = "ACERTOS %d/%d" % [_acertos, acertos_para_alinhar]
+	visor.text = _texto_do_visor()
 	visor.add_theme_color_override("font_color", COR_TEXTO)
 
 
@@ -167,6 +167,10 @@ func _tratar_entrada(_evento: InputEvent) -> bool:
 
 func _erro_zera_acertos() -> bool:
 	return true
+
+
+func _texto_do_visor() -> String:
+	return "ACERTOS %d/%d" % [_acertos, acertos_para_alinhar]
 
 
 func _ao_acertar() -> void:

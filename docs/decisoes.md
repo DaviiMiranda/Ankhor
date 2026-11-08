@@ -1,5 +1,16 @@
 # Registro de decisões
 
+## 2026-11-08 — Corredor do Tempo: o telefone vira um puzzle de girar cabos
+
+**Decisão:** a salinha do **telefone** do Corredor do Tempo (Labirinto) deixa de ser "discar o ano do primeiro telefone, 1876" e vira um puzzle de **ligar a central ao telefone girando peças de cabo**. O painel mostra uma grade de 7 × 5 peças (reta, curva, T, cruz, ponta e vazio), com a central à esquerda e o telefone à direita. Setas escolhem a peça e `E` gira 90° para a direita. Os cabos que já recebem o sinal da central ficam verdes; quando o sinal chega ao telefone, a linha liga sozinha e o mecanismo alinha. O tabuleiro é sorteado a cada visita à sala (sempre com solução, caminho certo de 11 a 15 peças) e guardado se o jogador sair com `Esc`.
+- **Sem castigo:** girar um cabo não é errar, então esse mecanismo não desconta os 5 s (só o relógio do corredor aperta). Os outros três continuam como estavam.
+- **O selo do centenário** (1976) fica na sala só de enfeite: perdeu a função de dica, e o texto do caderno deixou de dizer "Cem anos antes".
+- Os arquivos `telefone_de_disco` viram `linha_do_telefone` (cena e script). A base `mecanismo_do_tempo.gd` ganha o gancho `_texto_do_visor()`, para o painel mostrar "CABOS COM SINAL: n" no lugar de "ACERTOS 0/1".
+
+**Por quê:** pedido do Davi: o puzzle do telefone da sala do tempo no Labirinto deve ser o de montar um caminho certo de labirinto ligando uma ponta à outra, apenas girando peças de conexão. Também rende mais conteúdo de computação para a disciplina: grafo em grade, máscaras de bits e busca em largura (BFS) para propagar o sinal, e busca em profundidade com poda para sortear o tabuleiro.
+
+**Afeta:** `scripts/sistemas/linha_do_telefone.gd` e `cenas/sistemas/linha_do_telefone.tscn` (no lugar de `telefone_de_disco`), `scripts/sistemas/mecanismo_do_tempo.gd`, `cenas/salas/labirinto/sala_do_telefone.tscn`, `dados/documentos/selo_centenario_telefone.tres`, `docs/mecanicas/corredor_do_tempo.md`, `docs/computacao/corredor_do_tempo.md` e `README.md`. A entrada de 2026-10-28 ("jogos, micros e telefone") continua valendo, menos o trecho do telefone e o de errar descontar 5 s em todas as salas. Não muda o Enredo: a Folha de calibração continua citando "o telefone".
+
 ## 2026-11-08 — Transição de Novo jogo pela tela do notebook
 
 **Decisão:** ao apertar **Novo jogo** no menu 3D, a tela do notebook recebe estática e a câmera avança até a área da tela preencher a janela. Só depois dessa aproximação o prólogo começa. Os outros botões mantêm o comportamento atual. A transição dura cerca de 1,5 s e bloqueia novos comandos enquanto toca.
