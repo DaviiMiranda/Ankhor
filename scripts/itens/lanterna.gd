@@ -1,5 +1,7 @@
 extends Node2D
 
+const CORPO_DO_DONO := Rect2(-8.0, -24.0, 16.0, 44.0)
+
 @export var duracao: float = 240.0
 @export var energia_feixe: float = 1.3
 @export var energia_nas_paredes: float = 1.0
@@ -63,19 +65,34 @@ func _apontar() -> void:
 	if dono:
 		var angulo := dono.direcao_olhar.angle()
 		var mao := to_local(dono.to_global(dono.posicao_da_mao()))
-		var lente := mao + Vector2.from_angle(angulo) * distancia_da_lente
+		var direcao := Vector2.from_angle(angulo)
+		var lente := mao + direcao * distancia_da_lente
+		var saida_do_feixe := lente + direcao * _distancia_ate_sair_do_corpo(lente, direcao)
 		corpo.position = mao
 		corpo.rotation = angulo
 		corpo.flip_v = dono.direcao_olhar.x < 0.0
 		corpo.visible = not dono.vista.ends_with("costas") and not dono.tira_especial
 		corpo.self_modulate = dono.sprite.self_modulate
 		corpo.modulate.a = dono.sprite.modulate.a
-		feixe_paredes.position = lente
+		feixe_paredes.position = saida_do_feixe
 		halo.position = lente
 		feixe.position = Vector2(0, altura_da_sombra)
 		feixe.rotation = angulo
-		feixe.offset = (lente - feixe.position).rotated(-feixe.rotation)
+		feixe.offset = (saida_do_feixe - feixe.position).rotated(-feixe.rotation)
 		feixe_paredes.rotation = angulo
+
+
+func _distancia_ate_sair_do_corpo(ponto: Vector2, direcao: Vector2) -> float:
+	if not CORPO_DO_DONO.has_point(ponto):
+		return 0.0
+	var distancia := INF
+	if direcao.x != 0.0:
+		var borda_x := CORPO_DO_DONO.end.x if direcao.x > 0.0 else CORPO_DO_DONO.position.x
+		distancia = minf(distancia, (borda_x - ponto.x) / direcao.x)
+	if direcao.y != 0.0:
+		var borda_y := CORPO_DO_DONO.end.y if direcao.y > 0.0 else CORPO_DO_DONO.position.y
+		distancia = minf(distancia, (borda_y - ponto.y) / direcao.y)
+	return distancia
 
 
 func _atualizar_luz() -> void:
