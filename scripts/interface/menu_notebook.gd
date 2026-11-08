@@ -3,6 +3,7 @@ extends Control
 @export_range(0.5, 1.0) var resolucao_do_3d := 1.0
 @export var alvo_da_camera := Vector3(-2.403885, 1.006857, -0.2)
 @export var alvo_da_luz := Vector3(-2.281324, 0.750802, -0.551475)
+@export_range(0.6, 2.5) var duracao_aproximacao := 1.3
 
 @onready var imagem: SubViewportContainer = $Imagem
 @onready var mundo: SubViewport = $Imagem/Mundo
@@ -15,6 +16,7 @@ var _direita_tela := Vector3.ZERO
 var _baixo_tela := Vector3.ZERO
 var _plano_tela := Plane()
 var _mouse_sobre_tela := false
+var _transicao_novo_jogo := false
 
 
 func _ready() -> void:
@@ -53,7 +55,34 @@ func _ready() -> void:
 	animador_fumaca.get_animation("FumacaCaneca").loop_mode = Animation.LOOP_LINEAR
 	animador.play("CortinaBrisa")
 	animador_fumaca.play("FumacaCaneca")
+	$TelaMenu/Menu.connect("transicao_novo_jogo_solicitada", _animar_novo_jogo)
 	$Rodape/RotuloVersao.show()
+
+
+func _animar_novo_jogo() -> void:
+	if _transicao_novo_jogo:
+		return
+	_transicao_novo_jogo = true
+	$Rodape/RotuloVersao.hide()
+	var estatica := $TelaMenu/Estatica as ColorRect
+	estatica.modulate.a = 0.0
+	estatica.show()
+	var centro := _origem_tela + (_direita_tela + _baixo_tela) * 0.5
+	var normal := _direita_tela.cross(_baixo_tela).normalized()
+	if normal.dot(camera.global_position - centro) < 0.0:
+		normal = -normal
+	var proporcao := camera.get_viewport().get_visible_rect().size.aspect()
+	var distancia := _direita_tela.length() / (2.0 * tan(deg_to_rad(camera.fov) * 0.5) * proporcao) * 0.92
+	var destino := Transform3D(Basis.IDENTITY, centro + normal * distancia).looking_at(centro, -_baixo_tela.normalized())
+	var animacao := create_tween()
+	animacao.set_parallel(true)
+	animacao.tween_property(camera, "global_position", destino.origin, duracao_aproximacao).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	animacao.tween_property(camera, "quaternion", destino.basis.get_rotation_quaternion(), duracao_aproximacao).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	animacao.tween_property(estatica, "modulate:a", 1.0, 0.16)
+	animacao.tween_property($Rodape, "modulate:a", 0.0, 0.35)
+	animacao.chain().tween_interval(0.15)
+	await animacao.finished
+	$TelaMenu/Menu.emit_signal("transicao_novo_jogo_concluida")
 
 
 func _ajustar_resolucao() -> void:
@@ -99,6 +128,9 @@ func _posicao_na_tela(posicao: Vector2) -> Vector2:
 
 func _input(evento: InputEvent) -> void:
 	if not is_node_ready():
+		return
+	if _transicao_novo_jogo:
+		get_viewport().set_input_as_handled()
 		return
 	if evento is InputEventMouse:
 		var no_notebook := evento.duplicate() as InputEventMouse

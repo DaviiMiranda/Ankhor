@@ -1,5 +1,10 @@
 extends "res://scripts/menu_principal.gd"
 
+signal transicao_novo_jogo_solicitada
+signal transicao_novo_jogo_concluida
+
+var _novo_jogo_iniciado := false
+
 
 func _ready() -> void:
 	super._ready()
@@ -15,6 +20,20 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	pass
+
+
+func _ao_apertar_novo_jogo() -> void:
+	if _novo_jogo_iniciado:
+		return
+	_novo_jogo_iniciado = true
+	novo_jogo_pedido.emit()
+	transicao_novo_jogo_solicitada.emit()
+	await transicao_novo_jogo_concluida
+	_comecar_do_zero()
+	if cena_novo_jogo:
+		get_tree().change_scene_to_packed(cena_novo_jogo)
+	else:
+		print("Menu: ainda não há cena de novo jogo configurada.")
 
 
 func _ao_mudar_configuracoes() -> void:

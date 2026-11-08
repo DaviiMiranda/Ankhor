@@ -4,6 +4,13 @@ O menu principal é `cenas/interface/menu_notebook.tscn`. Abra o projeto no Godo
 4.7.x e use **F5** para iniciar por ele; **F6** executa só essa cena. A pausa
 e as saídas de fase também retornam a este menu.
 
+Ao apertar **Novo jogo**, uma estática de 30 quadros por segundo cobre a tela
+do notebook. A câmera se alinha ao plano da tela e se aproxima durante 1,3 s
+até a tela preencher a janela; após uma pausa breve, o prólogo começa. A
+posição final é calculada a partir dos cantos reais da malha, do campo de
+visão da câmera e da proporção da janela. Os comandos ficam bloqueados durante
+a transição. O tempo de jogo começa quando o prólogo abre.
+
 O cenário usa a geometria da escrivaninha, do notebook, da luminária, da caneca,
 dos livros, da janela, da cortina e do cacto do quarto VR. O enquadramento é
 fixo, de frente para o notebook, com um céu noturno estrelado atrás dele.
