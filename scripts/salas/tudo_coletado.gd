@@ -28,7 +28,7 @@ func _pegar_itens() -> void:
 		if not arquivo.ends_with(".tres"):
 			continue
 		var item := load(PASTA_ITENS + arquivo) as Item
-		if item == null or itens_de_colecao.has(item.id) or item.carga_pesada:
+		if item == null or itens_de_colecao.has(item.id) or item.carga_pesada or item.exclusivo_do_zane:
 			continue
 		itens.append(item)
 	itens.sort_custom(func(a: Item, b: Item) -> bool: return _peso(a) < _peso(b))
