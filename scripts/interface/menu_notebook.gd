@@ -35,6 +35,23 @@ func _ready() -> void:
 	material_janela.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
 	material_janela.albedo_texture = preload("res://assets/sprites/menu/notebook/ceu_noturno.png")
 	paisagem.material_override = material_janela
+	var vapor := modelo.find_child("VaporDaCaneca", true, false) as MeshInstance3D
+	var material_vapor := StandardMaterial3D.new()
+	material_vapor.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material_vapor.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material_vapor.cull_mode = BaseMaterial3D.CULL_DISABLED
+	material_vapor.albedo_color = Color(0.7, 0.78, 0.85, 0.6)
+	material_vapor.albedo_texture = preload("res://assets/sprites/menu/notebook/fumaca.png")
+	vapor.material_override = material_vapor
+	vapor.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	var animador := modelo.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	var animador_fumaca := animador.duplicate() as AnimationPlayer
+	animador_fumaca.name = "AnimadorFumaca"
+	animador.get_parent().add_child(animador_fumaca)
+	animador.get_animation("CortinaBrisa").loop_mode = Animation.LOOP_LINEAR
+	animador_fumaca.get_animation("FumacaCaneca").loop_mode = Animation.LOOP_LINEAR
+	animador.play("CortinaBrisa")
+	animador_fumaca.play("FumacaCaneca")
 	$Rodape/RotuloVersao.show()
 
 

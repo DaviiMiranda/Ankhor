@@ -18,7 +18,11 @@ vertical de 40°, mais próxima da tela. Os arquivos originais do quarto não mu
 - `assets/modelos/menu_notebook.glb`: cenário exportado para o Godot, sem os
   textos de demonstração, sem câmera e sem luzes de prévia.
 - `assets/modelagem/menu/menu_notebook_previa.png`: renderização do Blender.
+- `assets/modelagem/menu/menu_notebook_animacao_previa.png`: quadro da animação
+  com a fumaça saindo da caneca.
 - `assets/modelagem/menu/gerar_menu_notebook.py`: gerador reproduzível.
+- `assets/modelagem/menu/animar_menu_notebook.py`: aplica as animações ao
+  `.blend` já editado e reexporta o GLB, preservando ajustes manuais.
 - `assets/modelagem/menu/detalhar_menu_notebook.py`: peças e curvas do modelo.
 - `assets/modelagem/menu/texturizar_menu_notebook.py`: gerador das texturas.
 - `assets/sprites/menu/notebook/`: texturas próprias desta cena.
@@ -71,6 +75,23 @@ com um gradiente azul escuro e estrelas discretas. A paisagem aparece pela
 janela sem iluminar o quarto. O céu original do prólogo e do quarto VR não muda.
 O arquivo Blender também usa apenas a luminária, com a iluminação do mundo
 zerada e o céu excluído dos raios de iluminação indireta.
+
+## Animações discretas
+
+A cortina tem uma chave de forma que mantém o topo preso e desloca pouco a
+parte inferior, como uma brisa lenta. Três faixas translúcidas sobem da
+posição atual do café, com bordas e pontas suaves. As duas animações duram
+cerca de oito segundos e se repetem no menu. No Blender, use a barra de espaço
+para reproduzir a linha do tempo entre os quadros 1 e 193.
+
+Para reaplicar as animações depois de ajustar o `.blend`, execute:
+
+```powershell
+& 'C:\Program Files\Blender Foundation\Blender 5.2\blender.exe' -b assets/modelagem/menu/menu_notebook.blend --python assets/modelagem/menu/animar_menu_notebook.py
+```
+
+O script encontra a superfície do café na geometria atual; por isso a fumaça
+acompanha mudanças de posição da caneca quando o café é movido junto.
 
 ## Interface e entrada
 
