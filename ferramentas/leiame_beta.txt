@@ -1,4 +1,4 @@
-ANKHOR — versão beta {versao}
+ANKHOR — versão {versao}
 ================================
 
 Obrigado por testar! Esta é uma versão de TESTE de um jogo de faculdade (Computação

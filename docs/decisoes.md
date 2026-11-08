@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-08 — Identificação da versão passa a 2.0
+
+**Decisão:** o jogo passa a mostrar **v2.0** no menu principal. A versão em `project.godot` é `2.0`, e as propriedades do executável Windows usam `2.0.0.0`, como exige o formato de quatro números. O gerador do pacote aceita versões sem o sufixo beta. A primeira beta `0.1.0-beta.1` continua registrada abaixo como histórico.
+
+**Por quê:** pedido do Davi para substituir a identificação beta pela versão 2.0.
+
+**Afeta:** `project.godot`, `export_presets.cfg`, `ferramentas/gerar_beta.py`, `ferramentas/leiame_beta.txt`, `docs/producao/beta.md` e `README.md`.
+
 ## 2026-11-08 — Transição de Novo jogo pela tela do notebook
 
 **Decisão:** ao apertar **Novo jogo** no menu 3D, a tela do notebook recebe estática e a câmera avança até a área da tela preencher a janela. Só depois dessa aproximação o prólogo começa. Os outros botões mantêm o comportamento atual. A transição dura cerca de 1,5 s e bloqueia novos comandos enquanto toca.

@@ -1,17 +1,17 @@
-# Versões beta (builds de teste)
+# Versões de teste do jogo
 
-Como gerar o `.exe` de teste do Ankhor, de onde vem o número da versão e o que fazer antes de mandar para alguém. A primeira beta é a **0.1.0-beta.1**.
+Como gerar o `.exe` de teste do Ankhor, de onde vem o número da versão e o que fazer antes de mandar para alguém. A versão atual é **2.0**; a primeira beta foi a **0.1.0-beta.1**.
 
 ---
 
 ## 1. O número da versão
 
-- **Formato:** `MAIOR.MENOR.CORREÇÃO-beta.N`, por exemplo `0.1.0-beta.1`. O `0` do começo quer dizer "ainda não é o jogo final". O `beta.N` conta quantas betas já saíram dessa versão: a seguinte é `0.1.0-beta.2`, e quando entrar muita coisa nova (uma fase, uma mecânica) sobe o do meio: `0.2.0-beta.1`.
+- **Formato atual:** `MAIOR.MENOR`, como `2.0`. Uma correção pode acrescentar o terceiro número (`2.0.1`). O gerador também aceita o formato antigo com sufixo `-beta.N` para builds históricas.
 - **Onde ela vive:** em um lugar só, `application/config/version` em `project.godot`. O resto sai dela:
   - o canto de baixo do **menu principal** (`cenas/interface/rotulo_versao.tscn`), para o testador dizer qual versão estava jogando;
-  - o nome da pasta e do `.zip` (`Ankhor_0.1.0-beta.1`);
-  - a versão que o Windows mostra nas propriedades do `.exe` (`0.1.0.1`, em `export_presets.cfg`, campos `file_version` e `product_version`).
-- **Ao subir a versão,** mude **os dois lugares**: `config/version` em `project.godot` e os dois campos em `export_presets.cfg` (`0.1.0-beta.2` vira `0.1.0.2`). O `ferramentas/gerar_beta.py` confere e para se estiverem diferentes.
+  - o nome da pasta e do `.zip` (`Ankhor_2.0`);
+  - a versão que o Windows mostra nas propriedades do `.exe` (`2.0.0.0`, em `export_presets.cfg`, campos `file_version` e `product_version`).
+- **Ao subir a versão,** mude **os dois lugares**: `config/version` em `project.godot` e os dois campos em `export_presets.cfg` (`2.0` corresponde a `2.0.0.0`). O `ferramentas/gerar_beta.py` confere e para se estiverem diferentes.
 
 ## 2. O ícone
 
@@ -23,10 +23,10 @@ O Godot precisa dos **modelos de exportação** da mesma versão do editor (4.7.
 
 O preset **Windows Desktop** já está em `export_presets.cfg` (não tem senha nem segredo, por isso entra no git). Ele junta o jogo num `.exe` só (**Embed PCK**), deixa de fora `docs/`, `assets/modelagem/` e `ferramentas/` e inclui os `.json` dos diálogos.
 
-## 4. Gerar a beta
+## 4. Gerar o build de teste
 
-1. **Parta da `main` atualizada,** com tudo o que vai na beta já mesclado, e do jogo **sem mudanças por commitar**: a beta tem que sair de um commit conhecido, e não da pasta de trabalho de alguém.
-2. Suba o número da versão (seção 1), se for uma beta nova.
+1. **Parta da `main` atualizada,** com tudo o que vai no build já mesclado, e do jogo **sem mudanças por commitar**: o pacote tem que sair de um commit conhecido, e não da pasta de trabalho de alguém.
+2. Suba o número da versão (seção 1), se for um build novo.
 3. Rode, a partir da pasta do projeto:
 
    ```bash
@@ -46,17 +46,17 @@ O preset **Windows Desktop** já está em `export_presets.cfg` (não tem senha n
 6. **Marque o commit** (depois do PR da versão mesclado), para saber para sempre o que foi para os testadores:
 
    ```bash
-   git tag -a v0.1.0-beta.1 -m "Primeira beta"
-   git push origin v0.1.0-beta.1
+   git tag -a v2.0 -m "Versão 2.0"
+   git push origin v2.0
    ```
 
 ## 5. Mandar para os testadores
 
 - **Como:** o `.zip` num link do Drive, ou num *release* do GitHub. A pessoa descompacta e abre o `Ankhor.exe`, sem instalar nada.
-- **Junto do jogo,** o `LEIAME.txt` já diz como jogar, o aviso do Windows, o que já se sabe que falta e como mandar o retorno. **Atualize a lista de "o que ainda não está pronto"** em `ferramentas/leiame_beta.txt` antes de cada beta.
+- **Junto do jogo,** o `LEIAME.txt` já diz como jogar, o aviso do Windows, o que já se sabe que falta e como mandar o retorno. **Atualize a lista de "o que ainda não está pronto"** em `ferramentas/leiame_beta.txt` antes de cada build.
 - **O retorno** vem com a versão (canto do menu), onde a pessoa estava, o que fez e, se travou, o arquivo `godot.log`, que o jogo grava sozinho em `%APPDATA%\Godot\app_userdata\Ankhor\logs\`. Junte os relatos numa lista única e passe cada erro para o Trello ou para uma *issue*.
 
-## 6. Limites desta beta
+## 6. Limites desta versão
 
 - **Só Windows 64 bits.** Outras plataformas pedem outro preset e outros modelos de exportação.
 - **O `.exe` não tem assinatura digital** (certificado pago, que não vale para trabalho de faculdade), então o Windows e alguns antivírus desconfiam. Avise os testadores.

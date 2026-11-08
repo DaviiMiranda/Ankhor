@@ -1,4 +1,4 @@
-# gerar_beta.py — gera a versão BETA do Ankhor para Windows: exporta o jogo com
+# gerar_beta.py — gera uma versão de teste do Ankhor para Windows: exporta o jogo com
 # o Godot (sem abrir a janela do editor), confere o resultado e monta o .zip que
 # vai para os testadores. Passo a passo e regras da versão em docs/producao/beta.md.
 #
@@ -41,12 +41,13 @@ def ler_versao():
 
 
 def versao_do_preset(versao):
-    """O preset guarda a versão do arquivo .exe como quatro números (0.1.0.1).
+    """O preset guarda a versão do arquivo .exe como quatro números (2.0.0.0).
     Confere se bate com a versão do projeto, senão o .exe mostraria outra."""
-    numeros = re.match(r"(\d+)\.(\d+)\.(\d+)-beta\.(\d+)", versao)
+    numeros = re.fullmatch(r"(\d+)\.(\d+)(?:\.(\d+))?(?:-beta\.(\d+))?", versao)
     if not numeros:
-        sys.exit(f"A versão {versao} não segue o formato 0.1.0-beta.1.")
-    esperado = ".".join(numeros.groups())
+        sys.exit(f"A versão {versao} não segue o formato 2.0 ou 0.1.0-beta.1.")
+    maior, menor, correcao, beta = numeros.groups()
+    esperado = ".".join((maior, menor, correcao or "0", beta or "0"))
     with open(os.path.join(RAIZ, "export_presets.cfg"), encoding="utf-8") as arquivo:
         texto = arquivo.read()
     for chave in ("file_version", "product_version"):
@@ -83,7 +84,7 @@ def montar_zip(versao, pasta, exe):
 
 
 def main():
-    analise = argparse.ArgumentParser(description="Gera a versão beta do Ankhor para Windows.")
+    analise = argparse.ArgumentParser(description="Gera uma versão de teste do Ankhor para Windows.")
     analise.add_argument("--godot", default=os.environ.get("GODOT", ""), help="caminho do Godot 4.7.2 (de preferência o _console.exe)")
     argumentos = analise.parse_args()
     if not argumentos.godot or not os.path.exists(argumentos.godot):
