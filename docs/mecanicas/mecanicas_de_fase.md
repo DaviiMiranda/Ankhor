@@ -4,10 +4,10 @@ Cada fase ensina **uma ação nova**, entrega **um item com custo** e cobra as d
 
 | Fase | Mecânica nova | Item novo | Desafio novo |
 |---|---|---|---|
-| Biblioteca | Esconder-se na cabine, com microgame de respiração | Nenhum: a fase já entrega lanterna, rádio e clarão | Voltar pelo salão iluminado usando as cabines como abrigo |
-| Bloco de salas | Ações demoradas e barulhentas (segurar `E`) | Walkman da Clarice | Cortar a corrente leva 5 s, no trecho da Sentinela |
+| Biblioteca | Esconder-se na cabine, com microgame de respiração | Nenhum: a fase já entrega rádio e clarão | Voltar pelo salão iluminado usando as cabines como abrigo |
+| Bloco de salas | Ações demoradas e barulhentas (segurar `E`) | Nenhum | Cortar a corrente leva 5 s, no trecho da Sentinela |
 | Labirinto | Sonar: a onda mostra corredores e robôs | Módulo de pulso do Zane | O Nó 3 não pausa, e o salão é um beco sem saída |
-| Centro de Convivência | Carga: a Célula pesa, zumbe e impede de correr | Mapa da Diana e caco de espelho (opcional) | Levar a Célula pela praça ou pela galeria |
+| Centro de Convivência | Carga: a Célula pesa, zumbe e impede de correr | Mapa da Diana | Levar a Célula pela praça ou pela galeria |
 | Bunker | Gás no setor B | Máscara de gás | Passar pelo Escafandro com a máscara, cuja respiração ele ouve |
 
 ---
@@ -40,25 +40,24 @@ Todo `Interagivel` tem `segundos_segurar` e `ruido_ao_segurar`. Com tempo maior 
 ### 1.5 Recursos
 
 - **Chave usada sai da mochila:** ao destrancar, a `Porta` tira a chave do inventário. Sem isso, a grade de 12 espaços encheria no meio do jogo.
-- **Pilha serve a três gadgets:** ao pegar uma pilha, ela vai para o que estiver mais fraco entre lanterna, walkman e notebook.
-- **Menos sobras:** o Centro de Convivência perdeu 2 pilhas (mezanino e cabine do cinema) e o Bunker perdeu 2 cápsulas de clarão (arsenal e depósito). O D-Tec não mudou.
+- **Pilha:** ao pegar uma pilha, ela recarrega o notebook se ele estiver abaixo de 95%; senão fica guardada para fabricar balas.
+- **Menos sobras:** o Centro de Convivência perdeu 2 pilhas (mezanino e cabine do cinema) e o Bunker perdeu 2 flashes (arsenal e depósito). O D-Tec não mudou.
 
 ---
 
 ## 2. Biblioteca: a cabine
 
-`cenas/sistemas/esconderijo_cabine.tscn`, duas no salão e duas na ala leste. `E` entra: o Gabriel some, a lanterna apaga e nenhum robô o vê ou encosta nele. Com um robô a menos de 110 px, começa o microgame: um cursor vai e volta numa barra, e `E` tem de cair na faixa verde.
+`cenas/sistemas/esconderijo_cabine.tscn`, duas no salão e duas na ala leste. `E` entra: o Gabriel some e nenhum robô o vê ou encosta nele. Com um robô a menos de 110 px, começa o microgame: um cursor vai e volta numa barra, e `E` tem de cair na faixa verde.
 
 - **Três acertos** acalmam: 2,5 s de folga antes de recomeçar, se o robô continuar perto.
 - **Duas falhas** (apertar fora da faixa ou deixar passar duas varreduras) fazem o Gabriel engasgar: ele sai da cabine e o robô mais perto o persegue.
-- **Quanto mais ansioso,** menor a faixa (de 34% para 16%) e mais rápido o cursor. **Cansado,** a faixa perde mais 25%. Entrar correndo de um robô é mais difícil do que entrar com calma.
+- **Cansado,** a faixa perde 25%. Entrar correndo de um robô é mais difícil do que entrar com calma. (Até 2026-11-08 a ansiedade também estreitava a faixa, de 34% para 16%, e acelerava o cursor.)
 
 ---
 
-## 3. Bloco de salas: o walkman e as ações demoradas
+## 3. Bloco de salas: as ações demoradas
 
-- **Walkman** (`dados/itens/walkman.tres`): a Clarice empresta ao devolver o molho. A tecla do gadget larga o walkman no chão, e ele toca por 15 s. A cada segundo faz um barulho de alcance 20 células, então os robôs que ouvem vão até lá e ficam enquanto toca. Cada uso gasta 25% da carga. Para usar de novo é preciso buscá-lo (`[E]`), e ele fica na sala até lá. Ao mudar de fase, volta sozinho para a mochila.
-- **A corrente da porta corta-fogo:** segurar `E` por 5 s, com barulho de alcance 40 a cada segundo. Como a Sentinela passa por ali depois do alicate, é preciso preparar a distração antes.
+- **A corrente da porta corta-fogo:** segurar `E` por 5 s, com barulho de alcance 40 a cada segundo. Como a Sentinela passa por ali depois do alicate, é preciso esperar a Sentinela passar antes de começar.
 - **O molho na areia:** segurar `E` por 2 s, sem barulho.
 
 ---
@@ -67,16 +66,16 @@ Todo `Interagivel` tem `segundos_segurar` e `ruido_ao_segurar`. Com tempo maior 
 
 - **Módulo de pulso** (`dados/itens/modulo_pulso.tres`): o Zane entrega com o notebook. Sem alvo de hack por perto, a tecla do notebook solta um pulso (`scripts/itens/pulso_sonar.gd`). A onda é uma BFS na grade da sala, até 450 px, e cada célula acende quando a frente chega. Robôs alcançados ganham uma marca vermelha por 2 s. O pulso gasta 10% da bateria e faz barulho de alcance 10. Funciona em qualquer sala com grade de robôs.
 - **Nó 3:** o minigame não pausa, e o nó grita ao cair (barulho de alcance 24).
-- **Nichos:** cada beco com pilha ganhou caixas e um `NichoEsconderijo`. Parado, de lanterna apagada, o Gabriel some da visão, como nos corredores do Bloco.
+- **Nichos:** cada beco com pilha ganhou caixas e um `NichoEsconderijo`. Parado, o Gabriel some da visão, como nos corredores do Bloco.
 
 ---
 
-## 5. Centro de Convivência: a carga, a galeria e o espelho
+## 5. Centro de Convivência: a carga e a galeria
 
 - **A Célula é carga** (`carga_pesada` em `celula_energia.tres`): com ela na mochila o Gabriel não corre e, a cada 1,5 s, o zumbido faz barulho de alcance 8 (`ZumbidoDaCarga`). A tecla `G` larga no chão. Ela fica onde caiu, mesmo depois de morrer ou trocar de sala (`Inventario.largados`, `ItensLargados`). O comutador consome a Célula.
+  - **Como o jogador fica sabendo:** enquanto carrega a Célula, a barra de estamina da HUD fica cinza e o rótulo troca de `ESTAMINA` para `CARGA: SEM CORRER [G]` (`hud.gd`). Cada vez que ele aperta correr com ela na mochila, aparece o aviso de que não dá para correr e de que `G` larga (`ZumbidoDaCarga`). Antes disso, a barra ficava cheia e normal, e um testador achou que a corrida tinha quebrado depois de a estamina zerar (2026-11-05).
 - **Mapa da Diana** (`mapa_diana.tres`): fica perto do balcão da Tapioca Orbital, e a Diana conta dele pelo rádio ao Gabriel entrar. Sem o mapa, as portinholas nem aparecem. Com ele, surgem no Self Nebulosa, na Pizzaria Quasar e no Churrasco Solar (`PortaDaGaleria`).
 - **A galeria** (`cenas/salas/centro_de_convivencia/galeria.tscn`): 2000 px de corredor escuro, chão de entulho (ruído ×1,5), um Rastreador e nenhum esconderijo. Encurta o caminho e evita as Sentinelas, mas quem leva a Célula não consegue correr dele e tem de largá-la.
-- **Caco de espelho** (`espelho.tres`, opcional, na Loja Universitária): a tecla abre uma janela de 0,5 s. Se uma Sentinela estiver vendo o Gabriel e ele estiver de frente para ela, a luz rebate pela reflexão `r = d − 2(d·n)n` e atordoa quem estiver na linha, por 4 s vezes o `fator_clarao`. Fora de hora, conta como luz acesa e deixa o Gabriel mais visível. Espera de 3 s. Só a Sentinela tem farol.
 - **Cofre do bufê e quadro do bar:** agora sem pausa, com o Rastreador e o Caçador por perto.
 
 ---

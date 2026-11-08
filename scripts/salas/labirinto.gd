@@ -10,7 +10,6 @@ const SALINHAS_POR_PONTO_DA_RONDA := 3
 const CENA_CHECKPOINT := preload("res://cenas/sistemas/checkpoint.tscn")
 const CENA_LAMPADA := preload("res://cenas/cenario/objetos/lampada.tscn")
 const CENA_PILHA := preload("res://cenas/itens/pilha_no_chao.tscn")
-const CENA_ITEM := preload("res://cenas/itens/item_no_chao.tscn")
 const CENA_NICHO := preload("res://cenas/sistemas/nicho_esconderijo.tscn")
 const CENA_CAIXAS := preload("res://cenas/cenario/dtec/objetos/caixas_lab.tscn")
 const NUMERO_DO_NO_SEM_PAUSA := 3
@@ -23,7 +22,6 @@ const CENA_PORTA := preload("res://cenas/sistemas/porta_da_sala.tscn")
 const CENA_PORTA_SALA_SEGURA := preload("res://cenas/sistemas/porta.tscn")
 const CENA_PAREDE_FALSA := preload("res://cenas/sistemas/parede_falsa.tscn")
 const CENA_COLECIONAVEL := preload("res://cenas/itens/colecionavel_no_mundo.tscn")
-const LANTERNA := preload("res://dados/itens/lanterna.tres")
 const PROPS := {
 	"b": preload("res://cenas/cenario/dtec/objetos/bancada_eletronica.tscn"),
 	"c": preload("res://cenas/cenario/dtec/objetos/console.tscn"),
@@ -78,6 +76,7 @@ const LUZ_EM_TUDO := 1 | 2
 @export_file("*.tscn") var cena_da_saida: String = ""
 @export var titulo_da_saida: String = ""
 @export var subtitulo_da_saida: String = ""
+@export var saida_com_tela := true
 
 var grade: GradeLabirinto
 var _perseguindo := {}
@@ -323,12 +322,6 @@ func _colocar_marcadores() -> void:
 			match mapa.letra(celula):
 				"G":
 					gabriel.global_position = posicao
-				"T":
-					if not Inventario.tem(LANTERNA.id):
-						var item := CENA_ITEM.instantiate()
-						item.name = "Lanterna"
-						item.item = LANTERNA
-						_colocar(item, posicao)
 				"C":
 					var posto := CENA_CHECKPOINT.instantiate()
 					posto.name = "Checkpoint_%d_%d" % [x, y]
@@ -410,6 +403,7 @@ func _colocar_saida(posicao: Vector2) -> void:
 func _colocar_alcapao(posicao: Vector2) -> void:
 	var alcapao: Alcapao = CENA_ALCAPAO.instantiate()
 	alcapao.name = "Alcapao"
+	alcapao.com_tela_de_saida = saida_com_tela
 	if not cena_da_saida.is_empty():
 		alcapao.cena_destino = cena_da_saida
 	if not titulo_da_saida.is_empty():

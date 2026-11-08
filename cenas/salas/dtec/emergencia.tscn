@@ -14,13 +14,17 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/cilindros.tscn" id="r12"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/dtec/objetos/planta.tscn" id="r13"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="r14"]
-[ext_resource type="Resource" path="res://dados/itens/lanterna.tres" id="r15"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r16"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="r17"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r18"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_emergencia.tscn" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r20"]
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/zane.tscn" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/clarice_em_pe.tscn" id="r23"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/diana.tscn" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/diana_sentada.tscn" id="r25"]
+[ext_resource type="Script" path="res://scripts/salas/emergencia_dtec.gd" id="r26"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.06, 0.12, 0.2, 1)
@@ -28,6 +32,7 @@ border_width_bottom = 1
 border_color = Color(0.24, 0.4, 0.6, 1)
 
 [node name="Emergencia" instance=ExtResource("r1")]
+script = ExtResource("r26")
 id = "dtec_emergencia"
 largura = 480
 
@@ -91,10 +96,6 @@ espelhado = true
 position = Vector2(300, 150)
 id = "dtec_chegada"
 
-[node name="Lanterna1" parent="Objetos" instance=ExtResource("r16")]
-position = Vector2(200, 160)
-item = ExtResource("r15")
-
 [node name="Pilha1" parent="Objetos" instance=ExtResource("r17")]
 position = Vector2(420, 165)
 
@@ -125,3 +126,20 @@ volume_db = -14.0
 pitch_scale = 1.15
 autoplay = true
 bus = &"Efeitos"
+
+[node name="Zane" parent="Objetos" instance=ExtResource("r22")]
+position = Vector2(180, 146)
+vista = "tres_quartos"
+olhando_para_esquerda = true
+
+[node name="Clarice" parent="Objetos" instance=ExtResource("r23")]
+position = Vector2(150, 166)
+vista = "tres_quartos"
+
+[node name="Diana" parent="Objetos" instance=ExtResource("r24")]
+position = Vector2(88, 162)
+vista = "tres_quartos"
+
+[node name="DianaSentada" parent="Objetos" instance=ExtResource("r25")]
+position = Vector2(98, 136)
+visible = false

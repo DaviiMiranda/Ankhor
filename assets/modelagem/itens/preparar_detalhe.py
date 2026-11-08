@@ -5,7 +5,7 @@
 #
 #   python assets/modelagem/itens/preparar_detalhe.py <imagem_crua> <id_do_item> [opções]
 #
-#   ex.: python assets/modelagem/itens/preparar_detalhe.py ~/Downloads/lanterna.webp lanterna
+#   ex.: python assets/modelagem/itens/preparar_detalhe.py ~/Downloads/radio.webp radio
 #
 # Opção:
 #   --furo X,Y      um vão fechado do desenho (o meio de uma argola, o espaço

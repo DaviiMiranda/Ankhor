@@ -4,7 +4,6 @@ extends CharacterBody2D
 signal passo_dado(correndo: bool)
 signal fadiga_mudou(estamina: float, maxima: float)
 signal exaustao_mudou(esta_exausto: bool)
-signal ansiedade_mudou(valor: float, maxima: float)
 signal tira_especial_mudou
 
 const COR_ESCONDIDO := Color(0.45, 0.45, 0.6)
@@ -12,7 +11,6 @@ const LARGURA_QUADRO := 96.0
 const SETORES_OLHAR := 8
 const MAOS := preload("res://scripts/personagens/maos_do_gabriel.gd").MAOS
 const MAOS_CORRENDO := preload("res://scripts/personagens/maos_correndo_gabriel.gd").MAOS_CORRENDO
-const CENA_ANSIEDADE := preload("res://cenas/sistemas/ansiedade.tscn")
 const PEITO_NO_QUADRO := {
 	"lado": Vector2(54, 40),
 	"frente": Vector2(47, 40),
@@ -77,8 +75,16 @@ const PEITO_NO_QUADRO := {
 @export var quadros_parado: int = 8
 @export var segundos_por_quadro_parado: float = 0.3
 
+var tabela_maos: Dictionary = MAOS
+var tabela_maos_correndo: Dictionary = MAOS_CORRENDO
+var tiras_do_gesto_da_mochila: Dictionary = GestoMochila.TIRAS
+var multiplicador_de_velocidade := 1.0
+var olhar_travado := false
 var jogador_controla := true
+var mirando := false
 var direcao_automatica := Vector2.ZERO
+var correr_sozinho := false
+var estamina_infinita := false
 var correndo := false
 var escondido := false
 var tira_especial := false
@@ -99,16 +105,12 @@ var _segundos_ofegando := 0.0
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var no_gadgets: Node2D = $Gadgets
 @onready var fadiga: Fadiga = $Fadiga
-var ansiedade: Ansiedade
 var acao_demorada: AcaoDemorada
 
 
 func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("jogador")
-	ansiedade = CENA_ANSIEDADE.instantiate() as Ansiedade
-	add_child(ansiedade)
-	ansiedade.mudou.connect(_ao_mudar_ansiedade)
 	acao_demorada = AcaoDemorada.new()
 	add_child(acao_demorada)
 	add_child(ItensLargados.new())
@@ -138,6 +140,8 @@ func _unhandled_input(evento: InputEvent) -> void:
 	for i in Inventario.ESPACOS_GADGET:
 		if evento.is_action_pressed("gadget_%d" % (i + 1)):
 			usar_gadget(i)
+	if evento.is_action_pressed("gadget_%d" % Inventario.TECLA_DO_BRACO):
+		_usar_item(Inventario.braco)
 
 
 func _largar_carga() -> void:
@@ -148,7 +152,10 @@ func _largar_carga() -> void:
 
 
 func usar_gadget(espaco: int) -> void:
-	var item: Item = Inventario.gadgets[espaco]
+	_usar_item(Inventario.gadgets[espaco])
+
+
+func _usar_item(item: Item) -> void:
 	if item == null:
 		return
 	var efeito := no_gadgets.get_node_or_null(NodePath(item.id))
@@ -158,7 +165,7 @@ func usar_gadget(espaco: int) -> void:
 
 func _atualizar_gadgets() -> void:
 	var equipados := {}
-	for item in Inventario.gadgets:
+	for item in Inventario.gadgets + [Inventario.braco]:
 		if item != null and item.cena_gadget:
 			equipados[item.id] = item
 	for efeito in no_gadgets.get_children():
@@ -181,14 +188,18 @@ func _physics_process(delta: float) -> void:
 	if jogador_controla:
 		direcao = Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
 
+	if mirando:
+		direcao = Vector2.ZERO
 	correndo = false
-	var velocidade := velocidade_andar
-	var pode_correr := (fadiga.pode_correr() if fadiga else true) and not Inventario.carregando_peso()
-	if jogador_controla and Input.is_action_pressed("correr") and direcao != Vector2.ZERO and pode_correr:
+	var velocidade := velocidade_andar * multiplicador_de_velocidade
+	var pode_correr := (fadiga.pode_correr() if fadiga else true) and not Inventario.carregando_peso() \
+			and multiplicador_de_velocidade >= 1.0
+	var quer_correr := correr_sozinho or (jogador_controla and Input.is_action_pressed("correr"))
+	if quer_correr and direcao != Vector2.ZERO and (pode_correr or correr_sozinho):
 		velocidade *= multiplicador_correr
 		correndo = true
-		if fadiga:
-			fadiga.consumir(delta, ansiedade.multiplicador_consumo_estamina())
+		if fadiga and not correr_sozinho and not estamina_infinita:
+			fadiga.consumir(delta)
 	elif fadiga:
 		fadiga.regenerar(delta, direcao == Vector2.ZERO)
 
@@ -207,7 +218,6 @@ func _physics_process(delta: float) -> void:
 		_ajustar_corpo(direcao, delta)
 
 	_piscar()
-	ansiedade.atualizar(global_position, delta)
 	_atualizar_respiracao_de_fuga(delta)
 
 
@@ -270,7 +280,7 @@ func posicao_do_peito() -> Vector2:
 
 
 func posicao_da_mao() -> Vector2:
-	var quadros: Array = MAOS_CORRENDO[vista] if _tira_da_mao == "correr" else MAOS[vista][_tira_da_mao]
+	var quadros: Array = tabela_maos_correndo[vista] if _tira_da_mao == "correr" else tabela_maos[vista][_tira_da_mao]
 	return ponto_do_quadro(quadros[mini(sprite.frame, quadros.size() - 1)])
 
 
@@ -299,7 +309,7 @@ func pode_mexer_na_mochila() -> bool:
 
 func comecar_gesto_da_mochila() -> void:
 	_velocidade_propria = Vector2.ZERO
-	tocar_tira(GestoMochila.TIRAS[vista], GestoMochila.QUADROS)
+	tocar_tira(tiras_do_gesto_da_mochila[vista], GestoMochila.QUADROS)
 
 
 func mostrar_quadro_tira(quadro: int) -> void:
@@ -321,6 +331,7 @@ func andar_sozinho(direcao: Vector2) -> void:
 
 func devolver_controle() -> void:
 	jogador_controla = true
+	correr_sozinho = false
 	direcao_automatica = Vector2.ZERO
 	collision_mask = _mascara_colisao
 
@@ -331,10 +342,6 @@ func _ao_receber_dano(origem: Vector2) -> void:
 
 func _ao_mudar_fadiga(atual: float, maxima: float) -> void:
 	fadiga_mudou.emit(atual, maxima)
-
-
-func _ao_mudar_ansiedade(atual: float, maxima: float) -> void:
-	ansiedade_mudou.emit(atual, maxima)
 
 
 func _ao_iniciar_exaustao() -> void:
@@ -369,6 +376,8 @@ func _virar(direcao: Vector2) -> void:
 
 
 func _virar_com_folga(direcao: Vector2, delta: float) -> void:
+	if olhar_travado:
+		return
 	if direcao == Vector2.ZERO:
 		_tempo_mudando_olhar = 0.0
 	elif _continua_no_setor(direcao):

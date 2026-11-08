@@ -1,5 +1,388 @@
 # Registro de decisões
 
+## 2026-11-08 — Saem a lanterna e a ansiedade; a parede do Baltazar fica à vista
+
+**Decisão:** a **lanterna** do Gabriel e a barra de **ansiedade** saíram do jogo. A parede falsa do esconderijo do Baltazar, no Labirinto, passou a ser **visível normalmente**: o painel solto, com o Cruzeiro do Sul e a cruz, está sempre à vista, sem precisar do feixe, e `E` o afasta.
+
+- **Lanterna.** Saíram o item, o gadget, os três sprites e a imagem detalhada, as lanternas do chão das salas (Cabine e Salão da Biblioteca, Corredor térreo do Bloco, Passarela, Emergência do D-Tec, sala de teste e a letra `T` do mapa do Labirinto) e a bateria. Sem lanterna, os robôs só enxergam mais longe (`fator_luz`, antes `fator_lanterna`) quando o **notebook** está ligado ou o Gabriel está perto de uma luz que revela (luar, luz de emergência). A pilha agora recarrega só o notebook; as outras ficam guardadas para fabricar balas.
+- **Ansiedade.** Saíram a cena e o script `ansiedade`, o shader, a barra e os efeitos de tela do HUD e o gasto maior de estamina ao correr. O relógio do Corredor do Tempo deixou de impor um piso à ansiedade (continua o mostrador, o tique-taque e o game over). Os minijogos de esconderijo ficaram com os valores que valiam "calmo": a cabine com faixa de 34% e cursor a 0,9, a respiração do Ciborgue com faixa de 28% e subida de 0,18 por segundo. O cansaço continua estreitando a faixa.
+- **Zane.** O kit emprestado é o flash e o braço de hack (o flash agora fica na tecla `1`). Sumiram a "lanterna infinita" e o "sem ansiedade" da ficha dele.
+- **Texto.** As falas do Zane que mandavam apontar a lanterna para a parede ou apagá-la viraram "olha bem pra parede: tem uns riscos ali que não são de obra" e "fica longe das luzes acesas". Os avisos de esconderijo do escritório perderam o "de lanterna apagada". No Enredo (`História_Completa.md` e `.docx`) mudaram a sala do Baltazar (o painel não precisa mais de luz), a abertura da Biblioteca (Gabriel acha pilhas, e não a lanterna), as regras que o diário ensina (silêncio, luz e esconderijos) e o glossário (sai "lanterna a pilha"). Também saíram as menções nas fichas (`baltazar`, `gabriel`, `resumo`, `robos`), em `Dialogos.docx` e em `Roteiro.docx`. A doc `iluminacao_e_lanterna.md` virou `iluminacao.md`, sem a lanterna.
+
+**Por quê:** pedido do Davi.
+
+**Ficou como está, de propósito.** A **lanterna do visor de realidade virtual** (a fase Hora Morta, `cenas/visor/hora_morta/`, que tem lanterna própria e usa `lanterna_clique.wav`). A **lanterna como emblema dos Faroleiros** (o símbolo da torre com os três raios, o boletim "em volta de uma lanterna") e as cartas deles, que são lore. "Ansioso" como traço de personagem (Diana, Henrique). Os dois documentos de entrega em `docs/entrega/` (`gdd_ankhor.docx` e `narrativa.docx`), que são cópias da entrega. As entradas antigas deste registro, que citam a lanterna e a ansiedade, ficam como histórico. Um save antigo com a lanterna na mochila ignora o item (o `Salvamento` pula item sem arquivo).
+
+**A decidir:** sem lanterna, o Labirinto (`CanvasModulate` em 0,13) fica quase preto fora das poças de luz e do raio de visão de 56 px. As outras salas usam a escuridão do modelo (0,52) e continuam legíveis. Se o Labirinto ficar escuro demais para jogar, as saídas são subir a luz ambiente, alargar os raios do `RaioDeVisao` ou pôr mais lampiões nos corredores. Não mexi nisso.
+
+**Conferido** no Godot 4.7.2 por script: as 900 cenas, recursos, scripts e shaders do projeto carregam sem erro; as 89 salas abrem e rodam 45 quadros sem erro de script; a parede falsa fica visível, o Gabriel que chega perto marca `esconderijo_baltazar_descoberto` e `E` abre a passagem; o relógio do Corredor do Tempo corre e, ao esgotar, derruba o Gabriel sem ansiedade; uma captura do Labirinto confirmou o escuro.
+
+**Afeta:** saíram `scripts/itens/lanterna.gd`, `cenas/itens/lanterna.tscn`, `dados/itens/lanterna.tres`, `assets/sprites/itens/lanterna*.png`, `scripts/sistemas/ansiedade.gd`, `cenas/sistemas/ansiedade.tscn` e `shaders/ansiedade.gdshader`. Mudaram `gabriel.gd`, `fadiga.gd`, `hud.gd`, `robo.gd` (e as oito cenas de robô), `pilha_no_chao.gd`, `tudo_coletado.gd`, `perfil_zane.gd`, `parede_falsa.gd`, `labirinto.gd`, `mapa_labirinto.tres`, `esconderijo_cabine.gd`, `respiracao_contida.gd`, `relogio_do_corredor.gd`, as seis salas com lanterna no chão, os quatro diálogos do Zane, os geradores em Python (`gerar_interface.py`, `gerar_labirinto.py`, `gerar_esconderijo.py`, `montar_escritorio.py`, `montar_dtec.py`, `salas_convivencia.py` e os de mão), os agentes `artista` e `sistemas` e as docs de mecânicas, fases, computação e história.
+
+## 2026-11-08 — Braço de hack só do Zane, lanterna sem clarear o próprio Gabriel e porta do Corredor do Tempo na sala de teste
+
+**Decisão:** três correções pedidas pelo Davi depois de testar a fase do Zane.
+
+- **O braço de hack é só do Zane.** O item ganhou `exclusivo_do_zane` (`dados/itens/braco_hack.tres`) e o `TudoColetado`, que as portas da sala de teste usam para encher a mochila do Gabriel, passou a pular esse item. Antes, o Gabriel testava as fases com o implante do Zane no espaço 4 (tecla `4`). Agora o braço só chega pelo kit emprestado (`PerfilZane.aplicar`), na parte jogável do Zane.
+- **A luz da lanterna não clareia mais quem a segura.** Com o Gabriel de frente ou de costas, o cone nascia na mão, dentro da silhueta, e iluminava as pernas, a mochila e a cabeça dele, parecendo estar por cima do personagem. Agora o cone começa onde a luz sai do corpo (nos pés, de frente; acima da cabeça, de costas; quase na mão, de lado). O brilho em volta da lente não mudou.
+- **A lanterna não troca mais de mão ao andar.** A tabela de posição da mão pegava, em cada quadro, a mancha de pele mais à direita; na caminhada em diagonal e de lado, a mão sumia atrás do corpo ou os dois braços se cruzavam, e a lanterna saltava para a outra mão (até 17 px do sprite). O medidor passou a seguir uma mão só pela tira e a reduzir o balanço a 60%.
+- **Porta nova na sala de teste: CORREDOR DO TEMPO**, entre LABIRINTO e BUNKER, direto para o puzzle com cronômetro do Labirinto. Ela apaga a marca `corredor_tempo_vencido`, então o relógio de 2 min corre de novo a cada entrada. As portas de Bunker, D-Tec, Zane e Fim do Bunker foram 80 px para a direita, e a sala ficou 80 px mais larga (de 1120 para 1200).
+
+**Por quê:** pedido do Davi, depois de testar.
+
+**Conferido** no Godot 4.7.2 por script e capturas de tela: a mochila de uma porta de teste não traz o braço e `PerfilZane.aplicar` o coloca no espaço 4; o relógio do corredor começa depois do fade e tranca a saída; a lanterna fica na mesma mão durante um ciclo inteiro de caminhada de lado e em diagonal.
+
+**Afeta:** `scripts/itens/item.gd` (`exclusivo_do_zane`), `dados/itens/braco_hack.tres`, `scripts/salas/tudo_coletado.gd`, `scripts/itens/lanterna.gd`, `assets/modelagem/personagens/medir_maos_gabriel.py` e `scripts/personagens/maos_do_gabriel.gd` (regerado), `cenas/salas/sala_teste.tscn`, `docs/mecanicas/combate.md`, `zane_jogavel.md` e `iluminacao_e_lanterna.md`.
+
+## 2026-11-07 — Sai o walkman
+
+**Decisão:** o item **walkman da Clarice** (gadget que, largado no chão, tocava por 15 s e atraía os robôs) foi removido do jogo. A Clarice continua devolvendo a chave da fita azul ao receber o molho, mas já não empresta nada. O walkman que ela usa no visual (fone no pescoço, aparelho no cós) fica, porque é parte da aparência dela.
+
+**Por quê:** pedido do Davi.
+
+**Afeta:** saíram `scripts/itens/walkman.gd`, `walkman_no_chao.gd`, `cenas/itens/walkman.tscn`, `walkman_no_chao.tscn`, `dados/itens/walkman.tres`, os três sprites `walkman*.png` e `walkman_fita.wav`. Foram limpos `clarice_posto.tscn` (sem `item_extra`), `sala_teste.tscn`, `pilha_no_chao.gd` (a pilha agora serve a lanterna e ao notebook), o diálogo `clarice_bloco_devolve_chave.json` (duas falas e um trecho da anotação), os geradores de ícone e de som, a seção 3 de `docs/mecanicas/mecanicas_de_fase.md` e as docs de mecânicas, fases e computação. No Enredo (`História_Completa.md` e `.docx`) saiu a frase do empréstimo, e em `docs/historia/dialogos/Dialogos.docx` saíram as duas falas da Clarice. Um save antigo com o walkman na mochila ignora o item (o `Salvamento` pula item sem arquivo). A corrente da porta corta-fogo continua em 5 s: sem o walkman, a Sentinela se evita esperando ela passar. As entradas antigas que citam o walkman ficam como histórico.
+
+## 2026-11-07 — Sai o caco de espelho
+
+**Decisão:** o item **caco de espelho** (gadget da Loja Universitária que rebatia o farol da Sentinela) foi removido do jogo. O espelho de pé da loja continua, só como cenário.
+
+**Por quê:** pedido do Davi.
+
+**Afeta:** saíram `scripts/itens/espelho.gd`, `cenas/itens/espelho.tscn`, `dados/itens/espelho.tres`, os três sprites `espelho*.png` de `assets/sprites/itens/` e `espelho_brilho.wav`. Foram limpos `robo.gd` (`luz_do_jogador_acesa` não olha mais o espelho), `loja_uni.tscn`, `sala_teste.tscn`, os geradores (`gerar_itens_de_fase.py`, `gerar_efeitos_itens_de_fase.py`, `salas_convivencia.py`) e as docs de mecânicas, fases e computação. As decisões antigas que citam o espelho (2026-11-05, rodada de dificuldade) ficam como histórico.
+
+## 2026-11-07 — Despertar em três ilustrações
+
+**Decisão:** o despertar de Gabriel deixa de usar vídeo e será contado em três ilustrações em pixel art, no estilo do prólogo: a cabine transformada, Gabriel despertando e o olhar dele para a Biblioteca. Até as imagens ficarem prontas, a cena mostra provisoriamente a ilustração da cabine do prólogo; mantém a transição para a sala e a opção de pular.
+
+**Por quê:** pedido para substituir o vídeo por quadros que serão produzidos no Nano Banana, mantendo o conteúdo já decidido para o despertar.
+
+**Afeta:** `cenas/cutscenes/seg_acordar.tscn`, `docs/historia/História_Completa.md`, `docs/historia/roteiro/cutscenes/seg_acordar.md` e `README.md`; o vídeo `assets/video/cutscenes/seg_acordar.ogv` e seu `.uid` foram removidos.
+
+## 2026-11-07 — Receitas com chips
+
+**Decisão:** na aba Criação, uma bala de impulso custa **1 chip e 3 pilhas**; um flash custa **1 chip e 1 pilha**. As setas escolhem a receita e `E` fabrica. As pilhas excedentes podem ser guardadas antes de obter a arma, mas recarregam primeiro o gadget com menos carga. Criar bala exige a arma; criar o primeiro flash exige espaço na mochila (o último chip consumido libera uma vaga). Mantêm-se os limites de 6 balas e 2 flashes.
+
+**Afeta:** `scripts/sistemas/criacao.gd`, `scripts/interface/painel_criacao.gd`, `scripts/interface/tela_inventario.gd`, `scripts/itens/pilha_no_chao.gd`, `dados/itens/arma_impulso.tres`, `docs/mecanicas/combate.md` e `docs/mecanicas/itens_e_inventario.md`.
+
+## 2026-11-07 — Chips eletrônicos no lugar da pedra
+
+**Decisão:** o item coletável Pedra deixa de ser um gadget de arremesso e passa a ser **Chips**, recursos eletrônicos destinados à fabricação de flashes e outros itens. Os pontos de coleta existentes passam a oferecer chips. Por enquanto, mantém-se o limite de 5 unidades e o visual é uma placa de microcontrolador verde com chip preto e trilhas de cobre, a partir da imagem fornecida pelo usuário. O ícone de 16 × 16 e o sprite do chão foram desenhados para combinar com ela. A fabricação foi definida na entrada de receitas com chips acima. O arremesso de pedra e a distração pelo buraco da sala 204 ficam indisponíveis com esse item.
+
+**Compatibilidade:** o arquivo e o identificador internos `pedra` são mantidos para preservar os pontos de coleta e o conteúdo de saves existentes; uma pedra equipada em um save deixa de ocupar o espaço de gadget ao carregá-lo. O chip dos óculos continua sendo uma peça de coleção separada.
+
+**Afeta:** `dados/itens/pedra.tres`, `dados/dialogos/clarice_bloco_pede_molho_de_novo.json`, `scripts/sistemas/salvamento.gd`, `scripts/salas/tudo_coletado.gd` e `docs/mecanicas/itens_e_inventario.md`. As cenas e artes existentes não foram editadas.
+
+## 2026-11-07 — Novo ícone do jogo: o "A" metálico com circuitos
+
+**Decisão:** o ícone do jogo (janela, projeto e `.exe`) passa a ser o **"A" metálico azul com circuitos luminosos** que o Davi mandou, no lugar do "A" em pixel art de antes. Os cantos ficam arredondados e transparentes, como no ícone anterior.
+
+**Por quê:** pedido do Davi.
+
+**Afeta:** `assets/icone/ankhor_icone.png` (512×512) e `assets/icone/ankhor_icone.ico` (16 a 256 px), que substituem os anteriores. Os caminhos no `project.godot` e no `export_presets.cfg` não mudam. Na próxima vez que o Godot abrir o projeto, ele reimporta o PNG sozinho. O `.exe` só mostra o ícone novo depois de exportar de novo.
+
+## 2026-11-07 — Fase do Zane: o ano do código não aparece mais desenhado no quadro das Reuniões
+
+**Decisão:** o quadro branco da sala de Reuniões tinha o **"1985" em vermelho, circulado e bem grande**, desenhado no próprio sprite: dava a resposta de longe, sem ler nada. Os quatro dígitos viraram um **rabisco vermelho ilegível dentro do mesmo círculo**. A pista continua inteira em "Ler o quadro" (`E`): "DATA-ALVO: 26/10/1985" e "O ano basta."
+
+**Por quê:** pedido do Davi, depois de ver o número grande na parede.
+
+**Afeta:** `assets/modelagem/cenario/gerar_escritorio.py` (`escritorio_quadro_branco`) e o sprite `escritorio_quadro_branco.png`, regerado (nenhuma outra peça do kit mudou), e `docs/fases/labirinto.md`. O código (`1985`), o texto do aviso e a fala do Zane não mudaram. **O Enredo não foi mexido.**
+
+## 2026-11-07 — Fase do Zane: o arquivo deslizante ganha limite de tentativas e um alarme
+
+**Decisão:** o puzzle da sala do Arquivo deixa de ser livre. Cada **tentativa** tem **10 trocas** (o mínimo é 6); gastas as 10 sem ordenar, as pastas voltam para onde estavam e a tentativa se perde. Com as **3 tentativas** perdidas, a **sirene** toca por **20 s** e o Rastreador (todos os robôs da sala) vai investigar o ponto da sirene, ao lado do painel, e fica por lá até o alarme acabar. O painel trava enquanto o alarme toca e depois volta com as 3 tentativas. As tentativas gastas ficam em `Progresso`, então sair da sala não zera. A fala de entrada do Zane avisa do limite.
+
+**Por quê:** pedido do Davi, para o puzzle ter risco como as outras salas (a Sentinela da segurança, a Mariposa das reuniões). Os números (3 tentativas, 10 trocas, 20 s) saíram da conta e ainda precisam de teste de jogo.
+
+**Afeta:** `scripts/sistemas/painel_ordenacao.gd` (campos novos em `Alarme`, desligados por padrão, então a arara da Loja Universitária não muda), `cenas/sistemas/painel_ordenacao.tscn` (som de erro), `scripts/sistemas/sirene.gd` (`soar()`, `esta_tocando()` e `teletransportar_robos`, que no Bloco de salas continua ligado), `cenas/salas/labirinto/escritorio/arquivo.tscn`, `dados/dialogos/zane_escritorio_arquivo.json` e `docs/fases/labirinto.md`. **O Enredo não foi mexido.**
+
+## 2026-11-07 — Fase do Zane: a sala não fica mais escura ao entrar
+
+**Problema (relato de teste):** na fase em que se joga com o Zane, toda sala em que ele entrava ficava quase preta.
+
+**Causa:** as quatro salas da ala do escritório têm um `GatilhoEntrada`, que abre a fala do Zane no primeiro quadro (ele já nasce dentro da área). O diálogo pausa o jogo, e a cortina preta de entrada (`Transicao/Escuro`, que clareia em `duracao_entrada`) era uma animação que pausa junto: parava em cerca de 97% de preto, até o jogador fechar a fala. As outras fases não tinham fala ao nascer, então não aparecia.
+
+**Correção:** em `Sala._ready`, a animação da cortina agora roda mesmo com o jogo pausado (`Tween.TWEEN_PAUSE_PROCESS`). Vale para toda sala. Conferido no Godot 4.7.2 por script, nas quatro salas: a cortina chega a 0 em 1 s, com o diálogo ainda aberto. A iluminação das salas (`Escuridao`) não foi mexida.
+
+**Afeta:** `scripts/salas/sala.gd`.
+
+## 2026-11-07 — O Gabriel mira com a arma de pulso em todas as direções
+
+**Decisão:** o braço com a arma de pulso, que só existia de lado, agora aparece **nas 8 direções da mira** (de lado, de frente, de costas e os dois três quartos; a esquerda é o sprite espelhado). A arma passou a ser **modelada em 3D** no Blender, presa ao antebraço, em vez de desenhada à mão: assim ela gira com o corpo e sai certa em cada vista. Cada vista tem dois quadros, `mirando` e `atirando`; o clarão do tiro sai do bocal da arma em cada uma. Se a mira girar no meio, a tira troca para a vista nova. O quadro "normal" (braço caído) deixou de existir: não era usado. De costas, a arma quase não aparece, porque o braço aponta para longe da câmera.
+
+**Por quê:** pedido do Davi. A versão de lado era só um começo.
+
+**Afeta:** `assets/modelagem/personagens/gerar_gabriel_arma.py` (reescrito: modelo 3D, cinco vistas), os sprites `gabriel_arma_<vista>.png` (cinco, no lugar do `gabriel_arma_lado.png` de 3 quadros), `scripts/personagens/quadros_arma_gabriel.gd` (agora `BOCAIS[vista]`), `scripts/itens/arma_impulso.gd` e a documentação do Gabriel e do combate. **Conferido** no Godot 4.7.2 por script, nas 8 direções: o braço aparece ao mirar e ao atirar, volta ao normal depois, e troca de vista se a mira girar. **O Enredo não foi mexido.**
+
+## 2026-11-07 — Respiração mais difícil no bunker
+
+**Decisão:** a faixa segura da respiração contida fica mais estreita, o marcador se move e oscila mais rápido, e o ruído acumula mais depressa e se recupera mais devagar. Ansiedade e cansaço continuam afetando a dificuldade; o tempo de espera do Ciborgue e a pausa dos painéis não mudam. Os valores estão em [`mecanicas/furtividade_e_esconderijos.md`](mecanicas/furtividade_e_esconderijos.md), seção 2.D.
+
+**Por quê:** pedido para aumentar a dificuldade de se esconder do robô no bunker. O equilíbrio precisa de teste humano com o controle.
+
+**Afeta:** `scripts/sistemas/respiracao_contida.gd`, `docs/mecanicas/furtividade_e_esconderijos.md`.
+
+## 2026-11-07 — Tempo de jogo da campanha e seis espaços de save
+
+**Decisão:** o jogo passa a contar o **tempo de jogo** da campanha, sem a pausa, e a ter **seis espaços de save**, como no *Resident Evil*.
+
+- **Tempo de jogo:** começa do zero no Novo jogo e continua do tempo do save ao carregar. Só para na tela **PAUSADO** e no menu principal; inventário, documentos, cutscenes e o quarto do visor contam. Aparece na pausa (*Tempo de jogo: 01:12:01*) e em cada espaço de save. Fica guardado no save.
+- **Salvar:** a TV do quarto do visor mostra os seis espaços (`3  01:02:05  Biblioteca` ou `Vazio`, com a data do escolhido embaixo). Espaço vazio grava direto; ocupado pergunta **Gravar por cima do espaço 3?** (o cursor começa no Não).
+- **Carregar:** o **Continuar** do menu principal abre a lista **CARREGAR**, com o cursor no save mais recente.
+- O save antigo (`user://salvamento.cfg`) vira o espaço 1 sozinho. A confirmação de voltar ao menu na pausa deixa de dizer que "o jogo ainda não salva".
+
+**Por quê:** pedido do Davi, para o jogador poder guardar mais de um ponto da campanha e ver quanto tempo já jogou.
+
+**Afeta:** `scripts/sistemas/tempo_de_jogo.gd` (autoload novo `TempoDeJogo`, em `project.godot`), `scripts/sistemas/salvamento.gd`, `scripts/sistemas/fase.gd` (`nome_da_cena`, também usado pelo quadro do quarto, que deixa de mostrar "?" no Labirinto), `scripts/sistemas/visor.gd`, `cenas/visor/menu_visor.tscn` e `scripts/visor/menu_visor.gd`, `scripts/visor/sala_visor.gd`, `foco_visor.gd`, `tela_do_visor.gd` e `quadro_do_visor.gd`, `cenas/menu_principal.tscn` e `scripts/menu_principal.gd` (painel Carregar), `cenas/interface/tela_pausa.tscn` e `scripts/interface/tela_pausa.gd`, `docs/mecanicas/salvamento_e_tempo_de_jogo.md` (novo), `sala_segura.md` e `visor_3d.md`. Não toca na história.
+
+## 2026-11-07 — A arma de impulso aparece no braço do Gabriel
+
+**Decisão:** ao mirar e ao atirar com a arma de impulso, o Gabriel **estende o braço com uma arma de pulso no antebraço** (canhão curto azulado com cabos e núcleo ciano, a partir da imagem de referência gerada no Nano Banana, reduzida para caber no braço). Mirando, o braço fica estendido com as luzes acesas; ao atirar, o bocal solta uma rajada pequena por 0,25 s e o braço volta à pose normal (ou antes, se o Gabriel andar). O clarão azul agora sai do bocal da arma. **Só na vista de lado**: nas outras vistas (frente, costas, três quartos) o sprite continua o de sempre e o cone e a onda mostram a direção. Ainda não há a arma nas caminhadas e na respiração.
+
+**Mais dois ajustes no mesmo PR:** (1) o **ícone da mochila**, o **sprite do chão** e a **imagem detalhada** (a da tela "Novo item", feita a partir da imagem do Nano Banana com `preparar_detalhe.py`) agora mostram a arma de pulso, no lugar da pistola antiga; (2) o tiro deixa os robôs que o cone acerta **bem mais lentos por 15 s** (35% da velocidade, azulados enquanto dura), além do empurrão e dos 0,9 s de paralisia que já tinha. A descrição do item diz isso.
+
+**Por quê:** pedido do Davi, para a arma ter um visual próprio no jogo.
+
+**Afeta:** `scripts/itens/arma_impulso.gd`, `scripts/personagens/robo.gd` (`deixar_lento`), `dados/itens/arma_impulso.tres`, `assets/modelagem/itens/gerar_arma_impulso.py` e os sprites do item (`arma_impulso.png`, `_chao.png`, novo `_detalhe.png`), o novo `assets/sprites/personagens/gabriel/gabriel_arma_lado.png` (3 quadros: normal, mirando, atirando), `scripts/personagens/quadros_arma_gabriel.gd` (onde fica o bocal em cada quadro) e `assets/modelagem/personagens/gerar_gabriel_arma.py`. **Conferido** no Godot 4.7.2 por script: o robô no cone fica a 35% da velocidade (de 18 para 6,3 px/s) e volta ao normal aos 15 s; a tela "Novo item" mostra a imagem nova; o braço aparece ao mirar e ao atirar, volta ao normal depois, e mirando para baixo o sprite não muda. **O Enredo não foi mexido.**
+
+## 2026-11-07 — Zane: estamina 160, efeitos no braço de hack e o casaco no lugar da mochila
+
+**Decisão:**
+- **Estamina:** a do Zane cai de 200 para **160** (o Gabriel tem 100).
+- **Energia no hack:** enquanto o braço estende e a invasão corre, a mão de metal brilha em ciano com faíscas e uma luz no braço, e o robô alvo fica ciano, pulsando e cheio de faíscas.
+- **Braço quente:** enquanto o implante esfria (6 s), a mão fica em brasa, com luz vermelha no braço e fumaça, apagando junto com a recarga.
+- **Inventário:** o Zane abre a jaqueta com as duas mãos, mostrando o forro com bolsos e linhas de luz, no lugar da animação da mochila (que era a do Gabriel, com o corpo do Gabriel).
+- A descrição do braço de hack no inventário não diz mais o alcance em pixels.
+
+**Por quê:** pedido do Davi.
+**Afeta:** `scripts/personagens/perfil_zane.gd`, `scripts/itens/braco_hack.gd` e `cenas/itens/braco_hack.tscn`, `dados/itens/braco_hack.tres`, `scripts/personagens/gabriel.gd` (`tiras_do_gesto_da_mochila`), `assets/modelagem/personagens/gerar_zane_casaco.py` (novo) e os sprites `zane_casaco_<vista>.png`, `docs/mecanicas/zane_jogavel.md`, `docs/fases/labirinto.md`.
+
+## 2026-11-07 — Fuga do bunker: o Gabriel não trava mais na comporta
+
+**Problema (relato de teste):** na fuga, o jogo "travava" e só os tiros continuavam. Quem chegava à comporta pela parte de cima do corredor (para onde se costuma ir para desviar) batia nos corpos do Zane, da Clarice e da Diana, que já tinham sumido com o fade mas continuavam com colisão na frente da comporta. O Gabriel parava antes do ponto de saída, e como o grupo e os robôs andam em relação a ele, tudo parecia parado, menos os atiradores.
+
+**Correção:** na fuga, o grupo não colide com o Gabriel (só corre na frente dele); quem entra na comporta sai da cena depois do fade; e a saída dispara 16 px antes da comporta (`FOLGA_DA_SAIDA`). Conferido por script: correndo colado em cima, colado embaixo e no meio, o Gabriel chega ao Laboratório.
+
+**Afeta:** `scripts/salas/fuga_do_bunker.gd`, `docs/fases/bunker.md`.
+
+## 2026-11-06 — Fuga jogável e mais longa, sprites antigos da Clarice, e a chegada ao Laboratório
+
+**Decisão (história):** o grupo chega junto ao Laboratório. Na Emergência do D-Tec eles conversam; a **Diana torce o tornozelo** na escada, e a **Clarice fica com ela**. O **Zane** sai com o Gabriel, mas **vai por outro caminho e some**, e o **Gabriel continua sozinho**. Para onde o Zane foi e se ele volta ficou pendente (Enredo, 10.4). Na fuga, os robôs **atiram**.
+
+**Decisão (jogo):**
+- **A fuga ficou jogável e duas vezes mais longa** (3200 px, uns 27 s correndo). O jogador corre com o Gabriel, com **estamina infinita** só ali, e **desvia saindo da linha dos tiros** (a esquiva com tecla continua fora). Atiradores com o corpo da Sentinela miram como o robô atirador do Centro de Convivência; o Ciborgue e um Caçador encostam. Velocidades no `montar_fuga.py`. Morrer recomeça a fuga.
+- **A Clarice voltou aos sprites renderizados** pelo `gerar_clarice.py`, no estilo dos outros (os desenhados à mão saíram, pedido do Davi). Os retratos ficaram os atuais.
+- **Corrida do grupo:** a Clarice e a Diana ganharam a tira de corrida de lado (24 quadros), gerada pelo `gerar_correr.py` com a mesma corrida do Gabriel; o Zane usa a corrida do Zane jogável (48 quadros, que chegou na main no mesmo dia). No lugar da caminhada acelerada.
+- **A chegada:** na Emergência, cena com falas genéricas (`dtec_chegada.json`). O `montar_dtec.py` passou a aceitar `script` e `instancias` por sala.
+- **Ajustes pedidos depois, no mesmo dia:** os robôs da fuga **ficam sempre na tela** (correm para alcançar, a câmera olha para trás e eles têm luz no corpo); os tiros ficaram **mais frequentes** (recarga de 0,9 a 1,5 s), mas os atiradores **se revezam**, uma mira por vez; o grupo de robôs anda **em formação, a uma boa distância**: o Ciborgue na frente e os atiradores atrás dele, sem um ficar por cima do outro (o Caçador e o quarto atirador saíram). Na Emergência, a **Diana senta numa cadeira** (sprite novo, `gerar_diana_sentada.py`).
+
+**Por quê:** pedido do Davi.
+
+**Cuidado:** o `montar_dtec.py` está desatualizado em relação a `corredor_norte` e `corredor_sul` (a Ronda e o Caçador foram postos à mão). Rodá-lo apaga esses robôs: só a `emergencia.tscn` foi regenerada.
+
+**Afeta:** `scripts/salas/fuga_do_bunker.gd`, `emergencia_dtec.gd` (novo) e `central_dados.gd`; `scripts/personagens/robo_de_cena.gd`, `ator_de_cena.gd` e `gabriel.gd` (`estamina_infinita`); `cenas/salas/bunker/fuga.tscn`, `cenas/salas/dtec/emergencia.tscn`, `cenas/salas/sala_teste.tscn`; `assets/modelagem/salas/bunker/montar_fuga.py`, `assets/modelagem/salas/dtec/montar_dtec.py`, `assets/modelagem/personagens/gerar_correr.py` e `gerar_diana_sentada.py` (novos), `cenas/personagens/diana_sentada.tscn` (nova); os sprites da Clarice e o `diana_sentada.png` e as tiras `_correr_lado` do Zane, da Clarice e da Diana; `dados/dialogos/dtec_chegada.json`; `docs/historia/História_Completa.md`, `docs/fases/bunker.md`, `docs/fases/dtec.md` e `assets/sprites/personagens/clarice/visual.md`.
+
+## 2026-11-06 — A cena do fim do Bunker no jogo: confronto, sumiço do Henrique e fuga
+
+**Decisão:** o fim do Bunker decidido no Enredo (entrada abaixo) entrou no jogo como uma **cena animada**, com **falas genéricas** por enquanto (pedido do Davi: com animação e um diálogo genérico rápido):
+- **Sala de dados:** o confronto (`bunker_encontro`), o Henrique brilhando e sumindo num clarão, o dispositivo caindo com close no **2900**, a reação do grupo e a "Voz nos alto-falantes" (`bunker_sumico`), que dispara a sirene e deixa a sala vermelha; os passos dos robôs e o "corre" do Zane (`bunker_fuga`).
+- **A fuga:** uma sala nova, `cenas/salas/bunker/fuga.tscn`: o grupo e o Gabriel correm sozinhos por um corredor vermelho, com o Ciborgue, um Caçador e um Rastreador atrás, até a comporta do núcleo, e de lá ao Laboratório (pelo `fim_do_bunker.tscn`, como antes).
+- **Escolhas de produção:** a fuga é **cena, não jogável** (o menor passo; virou jogável no mesmo dia, entrada acima). A voz do Carlos aparece como "Voz nos alto-falantes", sem nome nem retrato, porque quando o jogador descobre o nome dele está pendente. O dispositivo **fica no chão** (se o grupo o leva está pendente). O grupo **não aparece no D-Tec** (mudou no mesmo dia: entrada acima).
+- **Porta de teste:** a sala de teste ganhou a porta "FIM DO BUNKER" (a sala ficou 160 px mais larga; as portas das fases saíram da `sala_teste_fases` e foram para a `sala_teste` na main, no mesmo dia), que leva à porta da sala de dados com a energia ligada e as marcas da cena apagadas, para ver a cena de novo quantas vezes quiser. A `PortaDeTeste` ganhou `marcas_ao_entrar` e `marcas_apagadas_ao_entrar`, e o `Progresso`, `desmarcar`.
+- **Peças reaproveitáveis:** `SumicoDeEnergia` (o brilho e o clarão), `AtorDeCena.andar_ate` (personagem parado que anda em cena), `PersonagemParado.virar`, `RoboDeCena` (robô de enfeite) e `Gabriel.correr_sozinho`.
+
+**Por quê:** pedido do Davi, para a história do Bunker em diante já existir jogando, antes do roteiro final.
+
+**Afeta:** `scripts/salas/central_dados.gd` e `fuga_do_bunker.gd` (novos), `scripts/sistemas/sumico_de_energia.gd` e `cenas/sistemas/sumico_de_energia.tscn` (novos), `scripts/personagens/ator_de_cena.gd` e `robo_de_cena.gd` (novos), `personagem_parado.gd` (`virar`), `gabriel.gd` (`correr_sozinho`), `scripts/sistemas/perseguicao_entre_salas.gd` (a fuga é sala protegida), `objetivos.gd` (texto final do bunker), `porta_de_teste.gd` e `progresso.gd` (as marcas da porta de teste), `cenas/salas/sala_teste.tscn`, `cenas/salas/bunker/central_dados.tscn` e `fuga.tscn`, `cenas/cenario/objetos/dispositivo_2900.tscn`, os geradores `assets/modelagem/cenario/gerar_dispositivo_2900.py` e `assets/modelagem/salas/bunker/montar_fuga.py`, os diálogos `bunker_encontro.json`, `bunker_sumico.json` e `bunker_fuga.json`, `docs/fases/bunker.md` e `docs/mecanicas/combate.md`.
+
+## 2026-11-06 — O fim do Bunker: o confronto com o Henrique, o sumiço dele e a fuga até o Laboratório
+
+**Decisão (história):** o fim do Bunker deixa de ser um encontro de quem ainda confia no Henrique e vira o grande embate com ele:
+1. Na sala de dados, o grupo todo (Gabriel, Zane, Clarice, Diana) se reúne com o Henrique e **todos o questionam**. No fim, ele **admite** que está enganando o grupo, mas diz que **precisava**.
+2. O Henrique **começa a brilhar**, com energia em volta do corpo; todos se assustam, e ele **some como numa explosão de energia**. No chão fica um **dispositivo com o número 2900**.
+3. O **Carlos fala pelos alto-falantes** do bunker: quer todos fora do caminho dele. (Ele continua sem ir ao bunker: só a voz chega.)
+4. **Vários robôs** vêm atrás do grupo, e todos **fogem juntos por um corredor** até chegarem ao **Laboratório (D-Tec)**.
+
+Isso responde a pendência "o que muda no Bunker" (Enredo 10.3) e, em parte, "o que acontece com o Henrique no fim" (10.6) e "o que a Clarice e a Diana fazem depois" (10.4). Ficam novas pendências na 10.3 (o que são o brilho, o dispositivo e o 2900; se ele volta; como a parte dele, a teoria, chega ao grupo), na 10.2 (se o Carlos sabe o que aconteceu com o Henrique, ou se foi ele) e na 10.5 (se o grupo fica junto no Laboratório e quem o jogador controla).
+
+**Por quê:** decisão do Davi, ao começar a história das fases do Bunker em diante.
+
+**As falas ficam em aberto para o roteirista:** o Enredo só descreve a cena (pedido do Davi). A cena entrou no jogo no mesmo dia (entrada acima).
+
+**Afeta:** `docs/historia/História_Completa.md` (status, 3.1, 4.3, 6, Ato 3, "A virada", Ato 4 e pendências 10.2 a 10.6), `docs/historia/personagens/henrique.docx`, `docs/fases/bunker.md` e `docs/fases/dtec.md`. **`História_Completa.docx` ainda não foi atualizado.**
+## 2026-11-06 — O robô fica lento durante o hack do Zane, e o braço ganha o espaço 4
+
+**Decisão:**
+- **Robô lento durante o hack:** do momento em que o Zane estende o braço até ele recolher, o robô alvo anda a **30% da velocidade** (patrulha, investigação e perseguição). Dá tempo de terminar o minigame. Depois volta ao normal; se a invasão deu certo, ele continua desligado por 15 s, como antes.
+- **Espaço 4:** o braço de hack sai dos espaços de gadget 1 a 3 e ganha um **quarto espaço no HUD**, só dele, ativado com a tecla **`4`**. O espaço só aparece quando o braço está na mochila (com o Zane); o Gabriel continua com três. Mostra a recarga e acende durante a invasão.
+
+**Por quê:** pedido do Davi, para dar tempo de fazer o hack e deixar o braço numa tecla própria.
+**Afeta:** `scripts/personagens/robo.gd` (`fator_de_velocidade`), `scripts/itens/braco_hack.gd` (`lentidao_do_robo` e o estado no HUD), `scripts/itens/item.gd` (`vai_no_espaco_do_braco`), `dados/itens/braco_hack.tres`, `scripts/sistemas/inventario.gd` (`braco`, `TECLA_DO_BRACO`), `scripts/personagens/gabriel.gd`, `scripts/interface/hud.gd` e `tela_inventario.gd`, `project.godot` (ação `gadget_4`), o diálogo `zane_escritorio_seguranca.json`, `docs/mecanicas/zane_jogavel.md` e `docs/fases/labirinto.md`.
+
+## 2026-11-06 — A passagem do Zane vira uma mini fase de escritório: recepção e três salas
+
+**Decisão:** o duto de serviço por onde o Zane vai salvar o Gabriel não é mais um corredor com duas travas. Ele desemboca numa **ala de escritório escondida**, com cenário próprio (forro de placas, parede creme com lambri, carpete azul, piso vinílico, móveis bege dos anos 80), entre o duto e a câmara selada:
+- **Recepção** (960 x 360, o salão principal): várias fileiras de **cadeiras de espera**, o balcão (atrás dele dá para se esconder), o painel de senhas parado em 019 e a **porta restrita** do fundo, com **três lâmpadas**, uma por sala. Uma **Ronda** dá a volta nas cadeiras.
+- **Arquivo:** um **Rastreador** (ouve, não enxerga longe) entre fileiras de arquivos de aço. Puzzle: o **arquivo deslizante**, ordenar cinco pastas por ano (`painel_ordenacao`).
+- **Sala de reuniões:** uma **Mariposa** (vê de longe a luz acesa) e a mesa comprida. Puzzle: o **código `1985`** no painel, com a pista no quadro branco ("O ano basta.", de caneta vermelha).
+- **Sala de segurança:** uma **Sentinela** parada na frente do quadro de chaves. Puzzle: o **painel de chaves** em binário (alvo 19); a saída pensada é **hackear a Sentinela** com o braço do Zane para chegar ao painel.
+- Cada puzzle acende uma lâmpada. Com as três, o Zane fala e a porta restrita leva à câmara selada.
+- Os móveis grandes (arquivos, cadeiras, balcão, mesas) **tapam a visão dos robôs** e o caminho deles (camada 8, a das paredes): servem de cobertura.
+- O kit do Zane (lanterna infinita, flashes e braço) passa a ser emprestado **na primeira sala** e devolvido **só na câmara selada**: os flashes gastos não voltam ao trocar de sala.
+
+**Por quê:** pedido do Davi: uma mini fase com outro visual, em formato de escritório, com um salão principal de recepção e outras três salas.
+**Para conferir em jogo:** a rota da Ronda entre as cadeiras, a Sentinela da segurança (se dá para hackeá-la sem ser visto, a 150-170 px), a Mariposa no escuro da sala de reuniões e a claridade de cada sala (`Escuridao`).
+**Afeta:** `docs/historia/História_Completa.md` (Ato 2, o caminho do Zane); `assets/modelagem/cenario/gerar_escritorio.py` e `assets/modelagem/salas/labirinto/montar_escritorio.py` (novos); os sprites em `assets/sprites/cenario/escritorio/`; as cenas do kit em `cenas/cenario/escritorio/` e as salas em `cenas/salas/labirinto/escritorio/` (novas); `scripts/salas/sala_do_zane.gd` e `recepcao_do_escritorio.gd` (novos, no lugar de `passagem_do_zane.gd`); `camara_selada.gd`, `perfil_zane.gd`, `inventario.gd` (`limpar` também esquece o kit emprestado); `gerar_camaras.py` (só gera a câmara); `passagem_do_zane.tscn` e os diálogos `zane_passagem_inicio` e `zane_passagem_segundo_trecho` saem; quatro diálogos `zane_escritorio_*` novos, `zane_passagem_fim` e `camara_zane_resgate` revistos; `docs/fases/labirinto.md` (seção 5.1) e `docs/mecanicas/zane_jogavel.md`. **`História_Completa.docx` ainda não foi atualizado.**
+
+## 2026-11-06 — O Zane jogável ganha corrida própria, kit e hack à distância; a cápsula de clarão vira Flash
+
+**Decisão:**
+- **Corrida do Zane:** a corrida dele estava quebrada (usava a tira de caminhada, de 12 quadros, no lugar da de corrida, de 24). Agora tem uma tira própria de **48 quadros** por vista, **mais ereta** que a do Gabriel (o tronco quase não inclina, a cabeça fica erguida) e com passo largo e saltado.
+- **Kit do Zane:** ele entra na passagem com a **lanterna infinita**, **2 flashes** e o **braço de hack**. O kit é emprestado: a mochila do Gabriel é guardada e volta quando a cena acaba.
+- **Sem ansiedade e mais estamina:** o Zane não tem a mecânica de ansiedade (a barra e o efeito somem) e a estamina dele é **200**, o dobro da do Gabriel.
+- **Hack à distância:** com `3`, o Zane estende o braço de metal na direção do robô mais perto (até 170 px, em linha reta) e abre o minigame de hack em tempo real. Se der certo, o robô desliga por 15 s; se falhar, ele ouve. A dificuldade depende do robô.
+- **Andando devagar e só 3 tentativas:** enquanto hackeia, o Zane anda a 30% da velocidade (sem correr), com a direção travada no robô. Cada robô aguenta 2 falhas: na **3ª** ele bloqueia o acesso e não dá mais para hackeá-lo. Como o minigame de sequência usa WASD (as teclas de andar), o hack à distância usa sempre o de sincronia, que usa só o `E`.
+- **Flash:** o item "Cápsula de clarão" passa a se chamar **Flash** em todo o jogo e nos docs. O id interno continua `clarao` (`dados/itens/clarao.tres`).
+
+**Por quê:** pedido do Davi, focando na fase do Zane.
+**Para conferir em jogo:** o Zane começa com **2 flashes** (o máximo do item). Se for para ser só 1, é `maximo_unidades` ou o kit em `perfil_zane.gd`.
+**Afeta:** `scripts/personagens/gabriel.gd` (tabelas de mão e `lanterna_infinita`), `perfil_zane.gd` e `maos_do_zane.gd` (novos), `scripts/sistemas/inventario.gd` (`emprestar_kit` e `devolver_kit`), `ansiedade.gd`, `scripts/interface/hud.gd`, `scripts/itens/lanterna.gd`, `braco_hack.gd` (novo) e `clarao.gd`, `dados/itens/braco_hack.tres` e `clarao.tres`, `cenas/itens/braco_hack.tscn`, `scripts/salas/passagem_do_zane.gd`, os sprites `zane_correr_*` e `zane_hack_*`, os geradores `gerar_zane_movimentos.py` e `gerar_braco_hack.py` e `docs/mecanicas/zane_jogavel.md` (novo).
+## 2026-11-06 — As portas das fases ficam na própria sala de teste
+
+**Decisão:** a pedido do Davi, as seis portas (Convivência com modo combate, Bloco de salas, Labirinto, Bunker, D-Tec e a câmara selada do Zane) passaram para a `sala_teste`, a partir de onde o jogador nasce. A porta "FASES (TESTE)" e o corredor `sala_teste_fases` saíram. Quem dava todos os itens era o corredor (`TudoColetado`); agora a própria `PortaDeTeste` faz isso antes de trocar de cena, então os itens soltos da sala de teste continuam para testar à mão. A sala ficou 160 px mais larga.
+
+**Afeta:** `cenas/salas/sala_teste.tscn`, `scripts/sistemas/porta_de_teste.gd`, `sala_teste_fases.tscn` (apagada), `docs/mecanicas/combate.md`.
+
+## 2026-11-06 — Sai a esquiva do Gabriel
+
+**Decisão:** a esquiva (tecla `Espaço`), criada no PR #200 só para o Centro de Convivência, foi **removida** a pedido do Davi. Saem a ação `esquivar` do `project.godot`, a lógica no `gabriel.gd`, a propriedade `Sala.esquiva_permitida` (e a marca `esquiva_permitida = true` nas salas do Centro), o som `esquiva.wav` e o gerador dele. Fica o `Vida.proteger()`, que o modo combate ainda usa para dar 2 s de proteção ao renascer. Contra os raios do atirador, o jeito de se proteger agora é sair da linha da mira ou ficar atrás de uma mesa.
+
+**Por quê:** pedido do Davi. A ideia de testar uma esquiva continua nos melhoramentos futuros (`docs/sugestao-melhoramento-futuro.md`).
+
+**Afeta:** `scripts/personagens/gabriel.gd`, `scripts/salas/sala.gd`, `project.godot`, as salas de `cenas/salas/centro_de_convivencia/`, `assets/modelagem/audio/gerar_efeitos_combate.py`, `docs/mecanicas/combate.md`, `movimentacao_e_terreno.md`, `README.md` das mecânicas e `docs/fases/centro_de_convivencia.md`. As entradas antigas deste registro que falam da esquiva descrevem o que existia na época.
+
+## 2026-11-06 — Arma de impulso mirada, balas criadas com pilhas e raio mais rápido
+
+**Decisão:** três ajustes pedidos pelo Davi depois de testar o combate ([`mecanicas/combate.md`](mecanicas/combate.md)):
+- **O raio do robô atirador ficou mais rápido:** de 210 para 310 px/s.
+- **A arma de impulso é mirada, não mais um círculo:** aperta-se a tecla do gadget, o Gabriel para e mostra um **cone de 30° com 150 px de alcance**, com a **mira travada no robô mais próximo**; aperta-se **de novo** para disparar (`Shift` cancela; sem robô perto, aponta-se com `WASD`). Só os robôs dentro do cone são empurrados (antes era um círculo em volta do Gabriel). A primeira versão era "segurar e soltar"; o Davi trocou por "travar e apertar de novo" no mesmo dia.
+- **Balas e aba CRIAÇÃO:** a arma usa **balas** (até 6, começa com 2) que **não recarregam sozinhas**. O inventário ganhou a aba **CRIAÇÃO**, onde `E` cria 1 bala por **3 pilhas** ("baterias", no pedido). Para isso as pilhas passaram a poder ser **guardadas** (até 9): com a arma na mochila, a pilha do chão que não serve para recarregar a lanterna, o walkman ou o notebook é guardada. Sem a arma, nada muda para quem joga as outras fases.
+
+**Por quê:** pedido do Davi. Tratei "baterias" como as **pilhas** do jogo (o item que já existe); se era outra coisa, é só trocar `Criacao.PILHAS_POR_BALA` e o estoque. A mira travada no mais próximo e o `WASD` de reserva (em vez do mouse) seguem o resto do jogo, que é todo no teclado.
+
+**Afeta:** `scripts/itens/arma_impulso.gd` (reescrito), `dados/itens/arma_impulso.tres` (6 balas, 2 iniciais; campo novo `unidades_iniciais` em `item.gd`), `scripts/sistemas/raio_atirado.gd`, `inventario.gd` (estoque de pilhas), `pilha_no_chao.gd`, `gabriel.gd` (`mirando`), `tudo_coletado.gd`, `tela_inventario.gd` e `.tscn`, e os novos `criacao.gd`, `painel_criacao.gd` e `painel_criacao.tscn`. **Conferido** no Godot 4.7.2 por script: o cone empurra quem está dentro e deixa de fora quem está fora, a criação gasta 3 pilhas e dá 1 bala, e a pilha só é guardada com a arma. **O Enredo não foi mexido.**
+
+## 2026-11-06 — Ciborgue mais alto e mais rápido, volta logo, e nichos pelo bunker inteiro
+
+**Decisão:** três ajustes no Ciborgue do bunker (registro "O Ciborgue", mais abaixo neste arquivo):
+
+- **Mais alto:** o modelo é ampliado 1,25 vez, de 1,8 m para uns 2,25 m. Fica uma cabeça acima do Gabriel. A ampliação é no Blender, não no Godot, então o pixel continua do tamanho do dos outros personagens; o quadro do sprite cresceu para 112 × 136.
+- **Um pouco mais rápido:** perseguição de 36 para **40 px/s** (o Gabriel anda a 60). Deixa de ser o mais lento: o Escafandro corre a 38.
+- **Volta logo:** depois de desistir do Gabriel escondido e sair pela porta, volta **5 s** depois (eram 14).
+- **Nichos espalhados:** de 5 para **17**. O Corredor A e o Corredor B ficam com seis cada, e ganham um o dormitório, o refeitório, a enfermaria, o gerador e o depósito. É a mesma peça do vão do posto de máscaras de gás (`bunker_nicho`), no lugar de uma parede lisa, de canos, de armários ou de prateleiras. A entrada, o arsenal e as duas salas antigas ficaram sem: o arsenal e as salas antigas saem do `montar_salas_bunker.py`, e a parede da entrada não tem peça lisa.
+
+**Por quê:** pedido do Davi. Com o Ciborgue voltando mais rápido, o jogador precisa de esconderijo em mais lugares. **Conferido** no Godot 4.7.2 por script: os 17 nichos escondem o Gabriel, e a perseguição, o minijogo, a saída e a volta (em 4,8 s) continuam funcionando.
+
+**Afeta:** `assets/modelagem/personagens/gerar_ciborgue.py` e os sprites `ciborgue_*`, `cenas/personagens/ciborgue_do_carlos.tscn`, `scripts/sistemas/perseguidor_perpetuo.gd`, `scripts/personagens/ciborgue_do_carlos.gd`, as cenas `corredor_a`, `corredor_b`, `dormitorio`, `refeitorio`, `enfermaria`, `gerador` e `deposito` do bunker, `docs/historia/História_Completa.md`, `docs/historia/personagens/robos.docx`, `docs/fases/bunker.md`, `docs/computacao/ia_e_perseguicao.md`.
+
+## 2026-11-06 — A câmara selada no fim do Labirinto: o Zane salva o Gabriel e o grupo descobre a mentira do Henrique
+
+**Decisão:** o alçapão da oficina deixa de levar direto à passarela do Centro de Convivência. Ele leva a uma **câmara selada** (nova), que o Carlos lacrou:
+- O Gabriel cai nela e fica **preso** atrás de uma grade. O Zane vai salvá-lo **em pessoa e jogável**, pelo duto de serviço: dois trechos, uma Ronda e uma Sentinela, duas travas (um painel de chaves em binário e um código de quatro dígitos, `1985`).
+- Depois do resgate, os dois ouvem num terminal o **registro do Carlos**, em que o grupo **descobre a mentira do Henrique** (ele só atrasa os outros). Isso responde, em parte, à pendência 10.3 do Enredo (como e quando o grupo descobre).
+- O Zane sobe de volta para a oficina e continua só no rádio, então o Centro de Convivência segue sem ninguém em pessoa. O Gabriel sobe pelo duto até a passarela.
+- Tudo com o que já existe: painéis, grades, robôs e diálogos, sem mecânica nova.
+
+**Por quê:** pedido do Davi, para fechar o Labirinto com uma parte secreta em que o Zane tem papel e o grupo descobre os planos do Carlos.
+
+**Consequência que ainda falta tratar:** o Bunker (e a cena `bunker_encontro`) trata o Henrique como aliado. Fica em aberto como o grupo reage lá, agora que o Gabriel e o Zane sabem. A Clarice e a Diana, que confiam nele, ainda não sabem de nada.
+
+**Afeta:** `scripts/salas/camara_selada.gd`, `passagem_do_zane.gd`; `scripts/sistemas/grade_com_colisao.gd` (novo) e `alcapao.gd` (`com_tela_de_saida` e `marca_para_usar`); `scripts/salas/labirinto.gd` e `cenas/salas/labirinto.tscn` (o alçapão aponta para a câmara); as cenas `camara_selada.tscn` e `passagem_do_zane.tscn` e o gerador `assets/modelagem/salas/labirinto/gerar_camaras.py`; seis diálogos novos em `dados/dialogos/` (`camara_*` e `zane_passagem_*`); `docs/fases/labirinto.md` (seção 5.1), `centro_de_convivencia.md` e `docs/historia/História_Completa.md` (Ato 2, "A virada" e 10.3). **`História_Completa.docx` ainda não foi atualizado.**
+
+## 2026-11-06 — Sai a fresta de espiar da barricada (Bloco de salas)
+
+**Decisão:** a fresta da barricada da sala 103 ("Espiar o corredor") sai do jogo, junto com a lógica de espiar da `Porta`. Isso desfaz a linha "fresta da barricada" da entrada de 2026-10-12. O resto daquela entrada (nichos, fator de piso, mapa de giz, estalos, pedra pelo buraco) continua. `Gabriel.esconder()` fica, porque os nichos e as cabines usam.
+**Por quê:** pedido do Davi, para abrir espaço para uma parte nova no fim do Labirinto.
+**Afeta:** `scripts/sistemas/porta.gd` (sai `espiar()` e tudo o que mexia na câmera e na camada do Gabriel), `cenas/salas/bloco_de_salas/sala_103.tscn`, `cenas/personagens/fresta_da_barricada.tscn` e `scripts/personagens/fresta_da_barricada.gd` (apagados), `docs/fases/bloco_de_salas.md` (seções 12.4 e 12.8).
+
+## 2026-11-06 — Sala de teste só com a porta das fases
+
+**Decisão:** a pedido do Davi, a `sala_teste` perdeu as portas soltas (as seis de hackeamento, a do labirinto de robôs e a da safe room de teste, com o sinal dela). Sobrou só a porta "FASES (TESTE)", que leva à `sala_teste_fases`, onde ficam as portas de cada fase. A `sala_teste_fases` ganhou uma porta "ZANE (CÂMARA SELADA)", que leva à mini fase do Zane (`labirinto/camara_selada.tscn`).
+
+**Por quê:** a sala estava cheia de portas de testes antigos; o corredor de fases já cobre o que se testa no dia a dia.
+
+**Afeta:** `cenas/salas/sala_teste.tscn` e `sala_teste_fases.tscn` (a sala ficou 160 px mais larga para a porta nova). As cenas `labirinto_teste.tscn` e `sala_segura_teste.tscn` continuam no projeto, mas nenhuma porta leva até elas.
+
+## 2026-11-06 — Combate no Centro de Convivência: robô atirador, arma de impulso e esquiva
+
+**Decisão:** a pedido do Davi, três mecânicas novas, **só no Centro de Convivência** (detalhes em [`mecanicas/combate.md`](mecanicas/combate.md)):
+- **Robô atirador** (`Atirador1`), só na Praça Central: mira (0,7 s rastreando, 0,4 s travada, com uma linha vermelha que vira branca) e dispara um raio que tira 1 de vida. Mesas e árvores param o raio.
+- **Arma de impulso**, escondida no **cofre do cinema** (no lugar da cápsula de clarão que ele dava): empurra os robôs para longe e os paralisa por 0,9 s. 4 cargas que recarregam sozinhas.
+- **Esquiva** com `Espaço`: salto curto e invulnerável, só nas salas com `esquiva_permitida` (todas do Centro de Convivência, menos a sala segura e o fim da fase).
+- **Sala de teste:** nova porta "FASES (TESTE)" para a `sala_teste_fases`, com uma porta por fase. A do **Centro de Convivência** liga o **modo combate** (cápsulas e cargas infinitas, e morrer devolve ao meio da praça); Bloco de Salas, Labirinto, Bunker e D-Tec entram só com os itens no máximo. A Biblioteca ficou de fora por serem 4 portas pedidas.
+
+**Por quê:** pedido do Davi, para testar o combate. O Enredo diz que o Gabriel não é combatente e que o confronto com o Carlos é sem luta: a arma só afasta e a esquiva só evita dano, então nada contradiz o Enredo. **O Enredo não foi mexido.** Fica em aberto se a arma e a esquiva entram nas outras fases.
+
+**Efeitos colaterais:** o cofre do cinema deixou de dar cápsula de clarão (o Centro tem 1 cápsula a menos). O `TudoColetado` (safe room de teste e sala de fases) passou a pôr a arma, o clarão e a pedra primeiro e a **pular a Célula de Energia** (carga pesada: impedia de correr). A `sala_teste` ficou 160 px mais larga para caber a porta nova; os itens de 650 e 680 px, que estavam fora da sala, agora dá para pegar.
+
+**Afeta:** `scripts/personagens/robo.gd` (`empurrar`), `gabriel.gd` (esquiva), `scripts/salas/sala.gd` (`esquiva_permitida`), `vida.gd` (`proteger`), `checkpoints.gd`, `scripts/itens/clarao.gd`, `scripts/salas/tudo_coletado.gd`, `project.godot` (ação `esquivar`), as salas de `cenas/salas/centro_de_convivencia/`, `praca_central.tscn`, `cinema_cabine.tscn`, `sala_teste.tscn`, e os novos: `robo_atirador`, `raio_atirado`, `arma_impulso`, `modo_combate.gd`, `porta_de_teste.gd`, `placa_de_porta`, `sala_teste_fases.tscn` e os geradores `gerar_efeitos_combate.py` e `gerar_arma_impulso.py`. **Conferido** no Godot 4.7.2 por script: todas as portas, a mochila, o tiro, o empurrão, a esquiva e o renascimento no meio da praça.
+
+## 2026-11-06 — O Ciborgue: uma cópia do Carlos que caça o bunker inteiro
+
+**Decisão:** entra um robô novo no **bunker**, o **Ciborgue**. É o corpo do Carlos (rosto, jaleco, camiseta dos anos 80, jeans e tênis) com metal por baixo da pele: meio crânio e o queixo de metal, olhos e núcleo do peito no vermelho dos robôs, antebraço esquerdo exposto. Como o Carlos nunca vai ao bunker, mandou essa cópia.
+
+- **Persegue a fase toda:** chega 8 s depois de o Gabriel entrar no bunker e o segue de sala em sala até a comporta do núcleo. Sabe sempre onde ele está, menos quando está escondido. Pela porta, chega depois do tempo que levaria andando (distância / velocidade).
+- **Mais lento que os outros:** 36 px/s em perseguição (o Escafandro corre a 38, a Mariposa a 48, o Gabriel anda a 60).
+- **Invulnerável:** clarão e hack do notebook não fazem nada. Encostar tira um coração, como os outros.
+- **Esconderijo:** com o Gabriel escondido num nicho, ele espera do lado de fora de 7 a 11 s. Enquanto isso corre o minijogo novo de **respiração contida**: segurar `E` prende o ar, soltar respira, e é preciso manter a respiração na faixa verde do meio. Falhou, ele ouve e pega o Gabriel. Aguentou, ele sai por uma porta e volta 14 s depois.
+- **Não entra** na sala segura nem na sala de dados do Henrique. Ao sair delas, ele chega 6 s depois por outra porta. Depois do checkpoint, chega em 12 s.
+- **O jogo não diz de quem é o rosto.** Quando o jogador descobre que o Carlos existe continua pendente (Enredo, seção 10.2).
+
+**Por quê:** pedido do Davi: "um robô parecido com o Carlos, tipo um ciborgue dele, perseguidor perpétuo da fase toda, mais lento que os outros mas invulnerável", no Bunker, desde a entrada; no esconderijo, "espera do lado de fora e, enquanto está próximo, uma mecânica para manter a respiração numa média, senão o robô ouve e te pega". Completa o tipo "Perseguidor Persistente" planejado na ficha dos robôs, que já previa o controle de respiração. **Conferido** no Godot 4.7.2 por script, no Corredor A: chega em 8 s, alcança e ataca, ignora clarão e hack, espera no nicho, ouve quando a respiração sai do verde, desiste quando ela fica no verde, sai, volta, segue o Gabriel até o dormitório e não entra na sala segura. O minijogo com a tecla de verdade e o equilíbrio da fase inteira **não** foram testados por uma pessoa.
+
+**Afeta:** `scripts/personagens/ciborgue_do_carlos.gd`, `cenas/personagens/ciborgue_do_carlos.tscn`, `scripts/sistemas/perseguidor_perpetuo.gd` (autoload novo em `project.godot`), `scripts/sistemas/respiracao_contida.gd`, `cenas/sistemas/respiracao_contida.tscn`, `scripts/sistemas/porta.gd`, `scripts/sistemas/perseguicao_entre_salas.gd` (ignora o Ciborgue, que tem o próprio sistema), `assets/modelagem/personagens/gerar_ciborgue.py` (e `gerar_carlos.py`, que agora pode ser importado), `assets/sprites/personagens/robos/ciborgue_*`, `docs/historia/História_Completa.md` e `.docx`, `docs/historia/personagens/robos.docx`, `docs/fases/bunker.md`, `docs/mecanicas/furtividade_e_esconderijos.md`, `docs/computacao/ia_e_perseguicao.md`.
+
+## 2026-11-05 — Tela de carregamento ao pôr o visor VR
+
+**Decisão:** **toda vez** que o jogador põe um visor VR, antes do 3D aparece por **3 segundos** a tela **CARREGANDO MODO REALIDADE VIRTUAL**:
+- uma barra de progresso, a porcentagem e uma linha de etapa (*Ligando o visor*, *Calibrando as lentes*, *Montando o ambiente*, *Pronto*);
+- **por dentro de um visor**: em volta, a silhueta arredondada dos óculos VR (duas lentes, encaixe do nariz, borda ciano);
+- **o visor liga como um aparelho velho:** a tela pisca quatro vezes ao acender e, enquanto carrega, o texto e a barra falham de vez em quando;
+- **som de energia ligando** (`visor_ligando.wav`, 3 s, gerado por código): o relé fechando, um estalo a cada piscada, a energia subindo, o zumbido do aparelho e dois bipes no "Pronto". O som e o pisca-pisca andam juntos.
+
+É o **padrão de todo visor**: vale para as seis salas seguras e para a cabine do filme VR (*Hora Morta*), no Centro de Convivência. Enquanto a barra enche, a cena 3D é carregada em segundo plano, o que tira a parada de uns 2 s que havia na primeira entrada. Os textos das etapas não dizem nada de história.
+
+**Por quê:** pedido do Davi. Primeiro a tela era só na primeira vez; ele pediu a silhueta, depois que fosse padrão também no cinema e, por fim, as piscadas, o som e que aparecesse sempre. **Conferido** no Godot 4.7.2 por script, na sala segura da Biblioteca e na cabine do cinema: a tela pisca ao ligar, as falhas aparecem, o som toca, a barra chega a "Pronto 100%" em 3 s, o 3D abre logo depois e a tela volta na segunda vez. O som não foi ouvido, só conferido pela forma de onda.
+
+**Afeta:** `cenas/visor/tela_carregando_vr.tscn`, `scripts/visor/tela_carregando_vr.gd`, `shaders/silhueta_oculos_vr.gdshader`, `assets/modelagem/audio/gerar_efeitos_visor.py` e `assets/audio/efeitos/interface/visor_ligando.wav` (novos), `scripts/sistemas/maquina_de_salvar.gd` e `.tscn`, `assets/audio/README.md`, `docs/mecanicas/visor_3d.md` e `sala_segura.md`.
+
+## 2026-11-05 — Corrida depois da exaustão e aviso da carga
+
+**Decisão:** duas correções no que um testador relatou como "a corrida parou de funcionar no Centro de Convivência, mesmo depois de salvar e carregar":
+
+- **Depois da exaustão, só volta a correr com 30% de estamina** (`fracao_para_voltar_a_correr` na `Fadiga`). Antes, quem segurava o Shift durante a fuga ficava preso: a exaustão acabava, a estamina subia um quadro, a corrida gastava de novo e a exaustão recomeçava, sem fim, enquanto a tecla estivesse apertada. Agora o ciclo é: 3 s exausto, uns 2,5 s andando enquanto a estamina enche até 30%, e a corrida volta, mesmo com a tecla segura.
+- **A carga aparece na HUD.** Com a Célula de Energia na mochila, a barra de estamina fica cinza e o rótulo vira `CARGA: SEM CORRER [G]`. Cada vez que o jogador aperta correr com ela, aparece o aviso de que não dá e de que `G` larga. Antes a barra ficava cheia e normal, e o aviso só aparecia uma vez por sessão.
+
+**Por quê:** a parte que sobrevive a salvar e carregar só pode ser a Célula, porque o inventário é salvo e ela é o único item que impede de correr (a estamina nasce cheia em toda sala). O relato do testador não diz se ele estava com ela; a hipótese não foi confirmada com o save dele. **Conferido** no Godot 4.7.2 por script, na câmara fria: correndo com o Shift seguro até exaurir, e com a Célula na mochila.
+
+**Afeta:** `scripts/sistemas/fadiga.gd`, `scripts/interface/hud.gd`, `scripts/sistemas/zumbido_da_carga.gd`, `docs/mecanicas/mecanicas_de_fase.md` e `movimentacao_e_terreno.md`.
+
+## 2026-11-05 — Sem som de respiração no cansaço
+
+**Decisão:** o Gabriel não respira mais alto quando está cansado. Saíram os dois sons de cansaço da fadiga: o fraco, abaixo de 30% de estamina, e o forte, na exaustão. A respiração **em fuga** (registro de 2026-11-04, logo abaixo) continua, agora também durante a exaustão. A exaustão ainda emite o sinal `ofegante`, sem som.
+
+**Por quê:** pedido do Davi. **Conferido** no Godot 4.7.2 por script: abaixo de 30% e na exaustão não toca nada, em fuga toca, e o sinal `ofegante` continua saindo na exaustão.
+
+**Afeta:** `scripts/sistemas/fadiga.gd` e `docs/mecanicas/movimentacao_e_terreno.md`.
+
+## 2026-11-05 — Transmissão do rádio continua ao trocar de sala
+
+**Decisão:** a transmissão cortada por uma troca de sala **continua** na sala seguinte, na mesma fala e na mesma letra, sem o clique de início. Antes ela voltava para a primeira fala (registro do rádio com várias vozes, mais abaixo neste arquivo).
+
+**Por quê:** pedido do Davi. Em conversas longas, cada porta repetia tudo desde o começo. **Conferido** no Godot 4.7.2 por script, trocando entre o Balcão e o Acervo. A voz gravada continua do mesmo ponto no código, mas nenhuma transmissão tem voz ainda, então isso não foi testado.
+
+**Afeta:** `scripts/sistemas/radio.gd`, `scripts/interface/legenda_radio.gd` e `docs/mecanicas/registros_e_caderno.md`.
+
 ## 2026-11-04 — Gesto da mochila, respiração em fuga e polimento do inventário
 
 **Decisão:** quatro itens de `docs/sugestao-melhoramento-futuro.md` entram no jogo:

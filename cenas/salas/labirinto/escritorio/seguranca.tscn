@@ -1,0 +1,243 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="r1"]
+[ext_resource type="Script" path="res://scripts/salas/sala_do_zane.gd" id="r2"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/paredes/escritorio_porta.tscn" id="r3"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/paredes/escritorio_monitores.tscn" id="r4"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/paredes/escritorio_luminaria.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/paredes/escritorio_lisa.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/paredes/escritorio_painel.tscn" id="r7"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/paredes/pilar_escritorio.tscn" id="r8"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/chao/carpete_azul.tscn" id="r9"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/chao/carpete_azul_fundo.tscn" id="r10"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/paredes/escritorio_lateral.tscn" id="r11"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/objetos/console_seguranca.tscn" id="r12"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/objetos/cadeira_escritorio.tscn" id="r13"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/bunker/objetos/rack_servidor.tscn" id="r14"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/objetos/caixas_papel.tscn" id="r15"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/objetos/lixeira.tscn" id="r16"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/escritorio/objetos/mesa_escritorio.tscn" id="r17"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_tubo.tscn" id="r18"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r19"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/porta_abrir.wav" id="r20"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="r21"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/checkpoint.tscn" id="r22"]
+[ext_resource type="PackedScene" path="res://cenas/personagens/robo_sentinela.tscn" id="r23"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/gatilho_dialogo.tscn" id="r24"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/painel_bits.tscn" id="r25"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r26"]
+[ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r27"]
+
+[sub_resource type="StyleBoxFlat" id="Placa"]
+bg_color = Color(0.36, 0.28, 0.12, 1)
+border_width_bottom = 1
+border_color = Color(0.62, 0.5, 0.22, 1)
+
+[node name="Seguranca" instance=ExtResource("r1")]
+script = ExtResource("r2")
+id = "escritorio_seguranca"
+largura = 480
+altura = 360
+chao_frente = 356
+
+[node name="Parede01" parent="Paredes" instance=ExtResource("r3")]
+position = Vector2(0, 0)
+
+[node name="Parede02" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(80, 0)
+
+[node name="Parede03" parent="Paredes" instance=ExtResource("r4")]
+position = Vector2(160, 0)
+
+[node name="Parede04" parent="Paredes" instance=ExtResource("r5")]
+position = Vector2(240, 0)
+
+[node name="Parede05" parent="Paredes" instance=ExtResource("r6")]
+position = Vector2(320, 0)
+
+[node name="Parede06" parent="Paredes" instance=ExtResource("r7")]
+position = Vector2(400, 0)
+
+[node name="PilarEsquerda" parent="Paredes" instance=ExtResource("r8")]
+position = Vector2(0, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("r8")]
+position = Vector2(464, 0)
+flip_h = true
+
+[node name="Placa01" type="Label" parent="Paredes"]
+offset_left = 9.0
+offset_top = 26.0
+offset_right = 73.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.12, 0.09, 0.04, 1)
+theme_override_styles/normal = SubResource("Placa")
+text = "RECEPÇÃO"
+horizontal_alignment = 1
+
+[node name="Chao1" parent="Chao" instance=ExtResource("r9")]
+position = Vector2(0, 0)
+
+[node name="Fundo1_1" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(0, 180)
+
+[node name="Fundo1_2" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(0, 244)
+
+[node name="Fundo1_3" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(0, 308)
+
+[node name="Chao2" parent="Chao" instance=ExtResource("r9")]
+position = Vector2(128, 0)
+
+[node name="Fundo2_1" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(128, 180)
+
+[node name="Fundo2_2" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(128, 244)
+
+[node name="Fundo2_3" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(128, 308)
+
+[node name="Chao3" parent="Chao" instance=ExtResource("r9")]
+position = Vector2(256, 0)
+
+[node name="Fundo3_1" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(256, 180)
+
+[node name="Fundo3_2" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(256, 244)
+
+[node name="Fundo3_3" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(256, 308)
+
+[node name="Chao4" parent="Chao" instance=ExtResource("r9")]
+position = Vector2(384, 0)
+
+[node name="Fundo4_1" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(384, 180)
+
+[node name="Fundo4_2" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(384, 244)
+
+[node name="Fundo4_3" parent="Chao" instance=ExtResource("r10")]
+position = Vector2(384, 308)
+
+[node name="LateralEsq1" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 112)
+
+[node name="LateralDir1" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(464, 112)
+flip_h = true
+
+[node name="LateralEsq2" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 176)
+
+[node name="LateralDir2" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(464, 176)
+flip_h = true
+
+[node name="LateralEsq3" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 240)
+
+[node name="LateralDir3" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(464, 240)
+flip_h = true
+
+[node name="LateralEsq4" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(0, 304)
+
+[node name="LateralDir4" parent="Chao" instance=ExtResource("r11")]
+position = Vector2(464, 304)
+flip_h = true
+
+[node name="Gabriel" parent="Objetos"]
+position = Vector2(41, 140)
+
+[node name="ConsoleSeguranca1" parent="Objetos" instance=ExtResource("r12")]
+position = Vector2(160, 176)
+
+[node name="CadeiraEscritorio1" parent="Objetos" instance=ExtResource("r13")]
+position = Vector2(160, 200)
+
+[node name="RackServidor1" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(300, 300)
+
+[node name="RackServidor2" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(326, 300)
+
+[node name="RackServidor3" parent="Objetos" instance=ExtResource("r14")]
+position = Vector2(352, 300)
+
+[node name="CaixasPapel1" parent="Objetos" instance=ExtResource("r15")]
+position = Vector2(60, 330)
+
+[node name="Lixeira1" parent="Objetos" instance=ExtResource("r16")]
+position = Vector2(236, 140)
+
+[node name="MesaEscritorio1" parent="Objetos" instance=ExtResource("r17")]
+position = Vector2(120, 300)
+
+[node name="Luz1" parent="Luzes" instance=ExtResource("r18")]
+position = Vector2(280, 34)
+energy = 0.5
+
+[node name="Luz2" parent="Luzes" instance=ExtResource("r19")]
+position = Vector2(160, 150)
+energy = 0.4
+color = Color(0.4, 0.95, 0.6, 1)
+
+[node name="Luz3" parent="Luzes" instance=ExtResource("r19")]
+position = Vector2(330, 260)
+energy = 0.25
+
+[node name="Escuridao" parent="."]
+color = Color(0.3, 0.31, 0.34, 1)
+
+[node name="Porta_seguranca_recepcao" parent="." instance=ExtResource("r21")]
+position = Vector2(41, 124)
+id = "seguranca_recepcao"
+cena_destino = "res://cenas/salas/labirinto/escritorio/recepcao.tscn"
+porta_destino = "recepcao_seguranca"
+som_abrir = ExtResource("r20")
+
+[node name="Checkpoint" parent="Objetos" instance=ExtResource("r22")]
+position = Vector2(70, 168)
+id = "escritorio_seguranca"
+
+[node name="Sentinela" parent="Objetos" instance=ExtResource("r23")]
+position = Vector2(420, 176)
+pausa_no_ponto = 2.0
+rota = NodePath("../../RotaSentinela")
+
+[node name="RotaSentinela" type="Node2D" parent="."]
+
+[node name="Ponto1" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(390, 176)
+
+[node name="Ponto2" type="Marker2D" parent="RotaSentinela"]
+position = Vector2(452, 176)
+
+[node name="GatilhoEntrada" parent="." instance=ExtResource("r24")]
+position = Vector2(41, 150)
+dialogo = "res://dados/dialogos/zane_escritorio_seguranca.json"
+marca_ao_terminar = "zane_escritorio_seguranca_visto"
+
+[node name="QuadroDeChaves" parent="Objetos" instance=ExtResource("r25")]
+position = Vector2(440, 128)
+alvo = 19
+quantidade_chaves = 5
+marca = "escritorio_trava_seguranca"
+titulo = "TRAVA DA SEGURANÇA"
+texto_acao = "Mexer nas chaves"
+aviso_liberado = "A trava soltou. Lá na recepção, uma lâmpada acendeu."
+aviso_ja_liberado = "Essa trava já está solta."
+
+[node name="Zumbido" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("r26")
+volume_db = -16.0
+autoplay = true
+bus = &"Efeitos"
+
+[node name="RobosDaSala" type="Node" parent="."]
+script = ExtResource("r27")

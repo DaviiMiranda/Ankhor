@@ -8,6 +8,7 @@ signal estado_mudou(robo: Robo, novo_estado: Estado)
 enum Estado { PATRULHA, INVESTIGANDO, PERSEGUINDO, PROCURANDO, ATACOU, ATORDOADO }
 
 const CAMADA_PAREDES := 8
+const COR_LENTO := Color(0.6, 0.9, 1.0)
 const ALCANCE_SOM_CORRENDO := 14
 const ALCANCE_SOM_ANDANDO := 5
 const INTERVALO_NOVO_CAMINHO := 0.35
@@ -15,6 +16,7 @@ const DISTANCIA_CHEGOU := 4.0
 const ORIGEM_DA_SOMBRA := Vector2(0, -4)
 const RAIO_LUZ_QUE_REVELA := 56.0
 const SOM_BIPE := preload("res://assets/audio/efeitos/robos/robo_bipe.wav")
+const ATRITO_DO_IMPULSO := 420.0
 
 @export var nome_tipo: String = "Robô"
 
@@ -28,7 +30,7 @@ const SOM_BIPE := preload("res://assets/audio/efeitos/robos/robo_bipe.wav")
 @export_group("Visão")
 @export var alcance_visao: float = 140.0
 @export var angulo_visao: float = 70.0
-@export var fator_lanterna: float = 1.6
+@export var fator_luz: float = 1.6
 @export var alcance_sentir: float = 20.0
 
 @export_group("Audição")
@@ -85,6 +87,9 @@ var _tempo_desde_chegada := 0.0
 var _distancia := 0.0
 var _passos := 0
 var _segundos_atordoado := 0.0
+var fator_de_velocidade := 1.0
+var _fator_lento := 1.0
+var _segundos_lento := 0.0
 var _vista := "lado"
 var _sorteio := RandomNumberGenerator.new()
 var _indice_rota := -1
@@ -93,6 +98,7 @@ var _som_bipe: AudioStreamPlayer2D
 var _segundos_distraido := 0.0
 var _visitante := false
 var _saida_do_visitante := Vector2.ZERO
+var _impulso := Vector2.ZERO
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var olhos: Sprite2D = $Olhos
@@ -131,6 +137,7 @@ func _physics_process(delta: float) -> void:
 	if grade == null:
 		return
 	_tempo_no_estado += delta
+	_passar_lentidao(delta)
 	_decidir(delta)
 	_andar(delta)
 	_tentar_atacar()
@@ -223,6 +230,32 @@ func denunciar() -> void:
 static func fazer_barulho(arvore: SceneTree, origem: Vector2, alcance: float) -> void:
 	for no in arvore.get_nodes_in_group("robos"):
 		(no as Robo).ouvir_barulho(origem, alcance)
+
+
+func empurrar(direcao: Vector2, velocidade: float, segundos_atordoado: float) -> void:
+	if grade == null:
+		return
+	_impulso = direcao.normalized() * velocidade
+	atordoar(segundos_atordoado)
+
+
+func deixar_lento(fator: float, segundos: float) -> void:
+	_fator_lento = fator
+	_segundos_lento = segundos
+	sprite.self_modulate = COR_LENTO
+
+
+func esta_lento() -> bool:
+	return _segundos_lento > 0.0
+
+
+func _passar_lentidao(delta: float) -> void:
+	if _segundos_lento <= 0.0:
+		return
+	_segundos_lento -= delta
+	if _segundos_lento <= 0.0:
+		_fator_lento = 1.0
+		sprite.self_modulate = Color.WHITE
 
 
 func atordoar(segundos: float) -> void:
@@ -361,6 +394,10 @@ func _sair_da_sala() -> void:
 
 
 func _velocidade() -> float:
+	return _velocidade_do_estado() * fator_de_velocidade * _fator_lento
+
+
+func _velocidade_do_estado() -> float:
 	match estado:
 		Estado.PERSEGUINDO:
 			return velocidade_perseguicao
@@ -384,14 +421,20 @@ func _andar(delta: float) -> void:
 			_tempo_desde_chegada += delta
 			_olhar_em_volta(delta)
 			_ao_chegar()
-		move_and_slide()
+		_deslizar(delta)
 		return
 	var direcao := global_position.direction_to(_caminho[0])
 	velocity = Vector2(direcao.x, direcao.y * fator_profundidade) * _velocidade()
 	if velocity.length() > 1.0:
 		_virar_para(direcao, delta)
-	move_and_slide()
+	_deslizar(delta)
 	_evitar_ficar_preso(delta)
+
+
+func _deslizar(delta: float) -> void:
+	velocity += _impulso
+	move_and_slide()
+	_impulso = _impulso.move_toward(Vector2.ZERO, ATRITO_DO_IMPULSO * delta)
 
 
 func _para_o_gabriel() -> Vector2:
@@ -428,7 +471,7 @@ func _ve_o_jogador() -> bool:
 		return true
 	var alcance := alcance_visao
 	if luz_do_jogador_acesa() or _jogador_iluminado():
-		alcance *= fator_lanterna
+		alcance *= fator_luz
 	if distancia > alcance:
 		return false
 	if direcao_olhar.dot(para / distancia) < cos(deg_to_rad(angulo_visao / 2.0)):
@@ -443,8 +486,7 @@ func _linha_livre(ate: Vector2) -> bool:
 
 
 static func luz_do_jogador_acesa() -> bool:
-	return Inventario.estado_de("lanterna").get("aceso", false) or Inventario.estado_de("notebook").get("aceso", false) \
-			or Inventario.estado_de("espelho").get("aceso", false)
+	return Inventario.estado_de("notebook").get("aceso", false)
 
 
 func _jogador_iluminado() -> bool:

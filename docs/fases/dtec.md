@@ -42,18 +42,18 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 | Cena (`cenas/salas/dtec/`) | Tamanho | O que tem | Itens |
 |---|---|---|---|
 | `recepcao` | 640 × 400 | Letreiro DTEC, balcão da recepção, catracas, mesa, plantas, a saída lacrada | 1 pilha |
-| `emergencia` | 480 × 180 | **Onde o Gabriel chega:** a escada que desce para o bunker (a peça `bunker_escada_desce`, do kit do bunker), extintor, cilindros, luz de emergência. Checkpoint `dtec_chegada` | lanterna (só aparece se o Gabriel ainda não tem, ao começar pelo menu), 1 pilha |
-| `corredor_norte` | 2400 × 180 | Cinco portas com placa, janelas dos laboratórios, quadro, extintores, painel e a porta larga do Lab Central, fechada pela grade. **Quatro nichos**, uma **Sentinela** que vai e volta de x 560 a 2240 e um **Caçador** de x 900 a 2200 | 1 pilha, 1 cápsula de clarão |
-| `lab_central` | 960 × 560 | **A arena do Carlos** (seção 3.1, parte 3): a Âncora no centro, o Carlos no console do fundo com a lupa, os dois consoles hackeáveis na frente, racks, cilindros, telões e janelas. Um Rastreador de ronda e o checkpoint `dtec_arena` na entrada norte | 1 cápsula de clarão |
+| `emergencia` | 480 × 180 | **Onde o Gabriel chega:** a escada que desce para o bunker (a peça `bunker_escada_desce`, do kit do bunker), extintor, cilindros, luz de emergência. Checkpoint `dtec_chegada`. **A chegada do grupo** (`scripts/salas/emergencia_dtec.gd`, só quem vem da fuga, com a marca `bunker_henrique_sumiu`): o Zane, a Clarice e a Diana estão ali; a Diana torce o tornozelo, a conversa `dtec_chegada` (falas genéricas) começa sozinha; no fim, a Diana vai mancando até uma cadeira ao lado da escada e **senta** (`cenas/personagens/diana_sentada.tscn`, sprite `diana_sentada.png` gerado por `assets/modelagem/personagens/gerar_diana_sentada.py`, com a cadeira no mesmo sprite e a perna machucada esticada), o Zane sai pela porta do corredor e some, e a marca `dtec_grupo_separado` é gravada. Depois disso, a Clarice fica de pé ao lado da Diana sentada. Quem começa a fase pelo menu não vê ninguém | 1 pilha |
+| `corredor_norte` | 2400 × 180 | Cinco portas com placa, janelas dos laboratórios, quadro, extintores, painel e a porta larga do Lab Central, fechada pela grade. **Quatro nichos**, uma **Sentinela** que vai e volta de x 560 a 2240 e um **Caçador** de x 900 a 2200 | 1 pilha, 1 flash |
+| `lab_central` | 960 × 560 | **A arena do Carlos** (seção 3.1, parte 3): a Âncora no centro, o Carlos no console do fundo com a lupa, os dois consoles hackeáveis na frente, racks, cilindros, telões e janelas. Um Rastreador de ronda e o checkpoint `dtec_arena` na entrada norte | 1 flash |
 | `diretoria` | 480 × 360 | A mesa com as relíquias dos anos 80 (monitor de tubo verde, telefone bege, disquetes), a marca dos Faroleiros com os raios riscados em vermelho na parede, armário, rack, planta. Luz verde do monitor. Sem texto | 1 pilha |
 | `corredor_sul` | 2400 × 180 | O outro lado: seis portas (a Emergência e a DESCANSO logo no começo), telão, terminal e a porta larga do Lab Central, fechada pela grade. **Quatro nichos**, um **Rastreador** que vai e volta de x 900 a 2300 e uma **Ronda** de x 1000 a 2100 | 1 pilha, 2 pedras |
 | `corredor_servico` | 960 × 180 | A passagem de serviço que liga as pontas dos dois corredores (no lugar do depósito e do arquivo): canos, cabos no chão, racks e caixas. Um nicho e o checkpoint `dtec_servico` | 1 pedra |
 | `sala_segura` | 320 × 180 | A **sala segura** do modelo (os óculos do Zane para salvar, o piano), com luz mais fria. A porta é a DESCANSO no corredor sul, ao lado da Emergência (onde o Gabriel chega), com a **luz verde** em cima ([`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)) | — |
-| `lab_eletronica` | 480 × 560 | Três bancadas de eletrônica (osciloscópio, solda, placas), armário, cilindros | 1 pilha, 1 cápsula de clarão |
+| `lab_eletronica` | 480 × 560 | Três bancadas de eletrônica (osciloscópio, solda, placas), armário, cilindros | 1 pilha, 1 flash |
 | `lab_informatica` | 560 × 560 | Nove mesas com computador em três fileiras, rack, quadro | **notebook**, 1 pilha |
-| `sala_servidores` | 480 × 480 | Piso elevado e duas fileiras de racks com corredores entre eles, luz verde | 2 pilhas, 1 cápsula de clarão |
+| `sala_servidores` | 480 × 480 | Piso elevado e duas fileiras de racks com corredores entre eles, luz verde | 2 pilhas, 1 flash |
 | `lab_quimica` | 400 × 480 | Duas capelas de exaustão, bancadas, armários de reagentes, linhas de gás | 1 pilha |
-| `lab_robotica` | 560 × 560 | Braços robóticos, dois robôs desmontados nas mesas de manutenção, bancada | 2 cápsulas de clarão, 1 pilha |
+| `lab_robotica` | 560 × 560 | Braços robóticos, dois robôs desmontados nas mesas de manutenção, bancada | 2 flashes, 1 pilha |
 | `sala_controle` | 560 × 480 | Telões com o gráfico da Âncora, três consoles, mesas, janela | 1 pilha |
 
 ### Salas trancadas e lacradas
@@ -75,12 +75,12 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 
 #### Problemas da versão atual
 
-1. **Sem ameaça:** nenhum robô, esconderijo, checkpoint, documento ou música. As 6 cápsulas de clarão não têm uso.
+1. **Sem ameaça:** nenhum robô, esconderijo, checkpoint, documento ou música. Os 6 flashes não têm uso.
 2. **O objetivo acaba em 30 segundos:** a porta do Lab Central está aberta no corredor norte. As salas trancadas só guardam itens.
 3. **A chegada não faz sentido:** o Gabriel vem da comporta do núcleo do bunker (no subsolo) e aparece na recepção, cuja saída está "travada por fora".
 4. **O mapa é um pente:** dois corredores de 2400 px com salas sem saída, ligados só pelo Lab Central. O jogador atravessa a sala do clímax no meio da exploração. As portas lacradas são escolhas falsas.
 5. **O Carlos não aparece na casa dele:** nenhuma relíquia dos anos 80 (a Biblioteca tem). A Sala de Controle, com os telões da Âncora, guarda só uma pilha.
-6. **Itens repetidos:** o notebook (do Zane, desde o Labirinto) e a lanterna (da Biblioteca) aparecem de novo. Só servem para quem começa a fase pelo menu.
+6. **Itens repetidos:** o notebook (do Zane, desde o Labirinto) aparece de novo. Só servem para quem começa a fase pelo menu.
 7. **Nenhum conteúdo de computação**, que a disciplina exige.
 
 #### A ideia
@@ -109,7 +109,7 @@ O Carlos está preparando a **próxima tentativa** (cada uma puxa alguém novo e
 - **O Lab Central começa fechado**, com uma grade (`GradeSeguranca`) nas duas portas. A luz ciano vaza para os corredores, mas o clímax fica guardado para o fim.
 - **O corredor de serviço** liga as pontas dos dois corredores e fecha um **ciclo** no grafo das salas: dá para despistar um robô dando a volta (o A\* ganha caminho alternativo).
 - **Os corredores mantêm o tamanho** e ganham nichos (`NichoEsconderijo`) a cada ~400 px, uma **Sentinela** no norte e um **Rastreador** no sul.
-- **Itens repetidos:** o notebook e a lanterna só aparecem quando a fase começa pelo menu (o item único que o Gabriel já tem não aparece de novo no chão).
+- **Itens repetidos:** o notebook só aparece quando a fase começa pelo menu (o item único que o Gabriel já tem não aparece de novo no chão).
 
 #### Parte 1: Infiltração
 
@@ -129,6 +129,8 @@ O Gabriel chega pela Emergência (checkpoint). Na **Sala de Controle**, o telão
 | `controle` | `sala_controle` | (470, 335) |
 
 O telão (`cenas/sistemas/telao_rede.tscn`) fica na frente dos dois telões da Sala de Controle: `E` abre o grafo em tela cheia (o jogo pausa), com o caminho ativo em ciano, os relés cortados em vermelho e o comprimento de cada cabo.
+
+O telão também distingue os outros cabos ainda energizados em azul escuro. Assim, o jogador consegue ver rotas alternativas antes de cortar um relé; o rodapé informa se a Âncora ainda recebe energia e quantos relés já foram cortados.
 
 - Cada relé é um `NoHackeavel` (sem gasto de bateria). Cortar um relé faz o Carlos **redistribuir a energia pelo caminho mais curto (Dijkstra)**. O telão mostra o caminho novo, e um robô muda de rota para vigiar o próximo relé desse caminho.
 - **Sem código novo no robô:** `robo.gd` já troca de rota por marca (`rota_com_marca` e `marca_da_rota`). Cada corte só grava uma marca.
@@ -155,7 +157,7 @@ O Carlos fica no console do fundo do Lab Central, com a Âncora entre ele e o Ga
 |---|---|---|
 | A | Varredura lenta, um robô na arena | Invade o console 1 |
 | B | Fecha uma das portas (`GradeSeguranca`); a Âncora solta a **onda de choque a cada 2,4 s** (o ritmo da animação), que revela quem não está atrás de cobertura | Invade o console 2 |
-| C | Varredura rápida, os robôs da Robótica entram | Lança a **cápsula de clarão na lupa** (sensor óptico: fica atordoada como os olhos dos robôs) e avança até o núcleo entre uma onda e outra |
+| C | Varredura rápida, os robôs da Robótica entram | Lança o **flash na lupa** (sensor óptico: fica atordoada como os olhos dos robôs) e avança até o núcleo entre uma onda e outra |
 
 - Cada console invadido é um checkpoint.
 - **O fim:** a interação no núcleo leva a uma cena final que é **espaço vazio**: o que acontece com o Carlos e com a Âncora está nas pendências 10.2 e 10.6 do Enredo.
@@ -174,7 +176,7 @@ O Carlos fica no console do fundo do Lab Central, com a Âncora entre ele e o Ga
 
 #### O que reaproveita e o que é novo
 
-- **Reaproveita:** `Porta` com hack, `NoHackeavel`, `robo.gd` (troca de rota por marca), `GradeSeguranca`, `Sirene`, `NichoEsconderijo`, `Checkpoint`, `LuzPulsante`, cápsula de clarão, `gatilho_transmissao` e `SaidaFase`.
+- **Reaproveita:** `Porta` com hack, `NoHackeavel`, `robo.gd` (troca de rota por marca), `GradeSeguranca`, `Sirene`, `NichoEsconderijo`, `Checkpoint`, `LuzPulsante`, flash, `gatilho_transmissao` e `SaidaFase`.
 - **Novo:** `rede_energia_dtec.gd` (o grafo, o Dijkstra e o telão), `carlos_chefe.gd` (a máquina de estados e a lupa), `onda_ancora.gd`; `nucleo_ancora.gd`; as salas `emergencia`, `corredor_servico` e `diretoria`.
 - **Cuidado:** o `montar_dtec.py` sobrescreve as salas. As mudanças de mapa entram na descrição das salas dele.
 
@@ -189,7 +191,7 @@ O Carlos fica no console do fundo do Lab Central, com a Âncora entre ele e o Ga
 
 - **Enredo 10.2, como enfrentar o Carlos sem lutar:** esta seção é uma resposta possível do ponto de vista da mecânica. Só entra no Enredo se o grupo aprovar.
 - **Como o Carlos fala** (as falas dos alto-falantes) e **os registros dele** (ficha, seções 2 e 5), e se a diretoria é o lugar onde ele vive.
-- **Quem guia pelo rádio e se os outros estão presentes:** a proposta supõe o Zane, como no Labirinto e no Centro de Convivência (Enredo 3.1 e 10.6).
+- **Quem guia pelo rádio e se os outros estão presentes:** a proposta supõe o Gabriel sozinho, guiado pelo Zane pelo rádio. **Isso mudou em 2026-11-06:** o Enredo (seção 8, Ato 3) decidiu que o grupo todo (menos o Henrique, que sumiu) chega **junto** ao Laboratório, fugindo dos robôs do Carlos. Na **Emergência**, eles conversam, a Diana torce o tornozelo e fica com a Clarice, e o Zane sai pela porta do corredor e some: o resto da fase continua com o Gabriel sozinho, como a proposta supunha, mas sem o Zane no rádio (Enredo, Ato 4, "A chegada").
 - **Robôs capturam ou eliminam** (Enredo 10.2): se capturam, ser pego na arena pode virar uma cena em vez de game over.
 - **O que acontece com o Carlos e com a Âncora no fim** (Enredo 10.6).
 

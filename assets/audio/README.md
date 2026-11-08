@@ -64,7 +64,7 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `efeitos/robos/robo_zumbido.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | 2 s em loop: o motor do robô ligado (60 Hz, engrenagem, ventoinha) |
 | `efeitos/robos/robo_alerta.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | O guincho de quando o robô vê o Gabriel |
 | `efeitos/gabriel/gabriel_dano.wav`, `efeitos/interface/morte.wav`, `efeitos/interface/checkpoint.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | Pancada ao levar dano; tela de morte; posto de checkpoint acendendo |
-| `efeitos/objetos/lanterna_clique.wav`, `pilha_troca.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | Botão da lanterna; troca de pilha |
+| `efeitos/objetos/lanterna_clique.wav`, `pilha_troca.wav` | `assets/modelagem/audio/gerar_efeitos_labirinto.py` | Botão da lanterna do visor de RV (Hora Morta); troca de pilha |
 | `efeitos/interface/menu_passar.wav`, `menu_clique.wav` | `assets/modelagem/audio/gerar_efeitos_menu.py` | Bipe de computador velho ao passar por uma opção do menu; clique do mouse com bipe de confirmação ao escolher |
 | `efeitos/objetos/porta_abrir.wav` | `assets/modelagem/audio/gerar_efeitos_gadgets.py` | 1,4 s: trinco, dobradiça rangendo e a porta batendo. Toca ao atravessar uma porta (`cenas/sistemas/porta.tscn`) |
 | `efeitos/objetos/porta_correr.wav` | `assets/modelagem/audio/gerar_efeitos_porta_correr.py` | 1,3 s: porta de correr de madeira com batente de aço: trinco, rodinhas no trilho, raspar da folha e a batida no batente. Toca nas portas da Biblioteca (vem da `Folha` de `parede_porta_animada.tscn`) |
@@ -76,6 +76,7 @@ Alguns sons são compostos por script, sem gravação (e sem problema de licenç
 | `efeitos/objetos/porta_blindada.wav`, `porta_emperrada.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | Porta de aço de correr (trava, pistão, batida) e a maçaneta de uma porta lacrada |
 | `efeitos/objetos/teclado.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | 3 s em loop: a Clarice digitando |
 | `efeitos/interface/dialogo_bip.wav` | `assets/modelagem/audio/gerar_efeitos_bunker.py` | O bipe das letras na caixa de diálogo (o tom muda com quem fala) |
+| `efeitos/interface/visor_ligando.wav` | `assets/modelagem/audio/gerar_efeitos_visor.py` | 3 s: o visor VR ligando (relé, estalos das piscadas, energia subindo, zumbido de 120 Hz e dois bipes de pronto). Toca na tela de carregamento do visor (`cenas/visor/tela_carregando_vr.tscn`) |
 | `efeitos/interface/papel_folhear.wav` | `assets/modelagem/audio/gerar_efeitos_registros.py` | 0,35 s: uma folha virando. Toca ao abrir, folhear e fechar documentos e o caderno |
 
 Para mudar a música, edite o script (acordes, melodia, volumes estão no começo de cada função) e rode `python assets/modelagem/audio/gerar_trilha_menu.py`, `gerar_trilha_gameplay.py`, `gerar_trilha_bunker.py`, `gerar_trilha_sala_segura.py`, `gerar_trilha_labirinto.py` ou `gerar_trilha_perseguicao.py` (precisa de numpy e ffmpeg). Os efeitos saem de `gerar_efeitos_gabriel.py` (só numpy).

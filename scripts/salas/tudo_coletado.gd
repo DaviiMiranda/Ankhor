@@ -4,7 +4,8 @@ extends Node
 const PASTA_ITENS := "res://dados/itens/"
 const PASTA_TRANSMISSOES := "res://dados/transmissoes/"
 const PASTA_DIALOGOS := "res://dados/dialogos/"
-const ID_LANTERNA := "lanterna"
+const PRIORIDADE_DOS_GADGETS := ["arma_impulso", "clarao"]
+const PRIORIDADE_DAS_FERRAMENTAS := ["radio", "modulo_pulso", "mapa_diana", "alicate"]
 
 
 func _ready() -> void:
@@ -21,15 +22,29 @@ func _pegar_itens() -> void:
 	var itens_de_colecao := {}
 	for colecao in Colecionaveis.todas():
 		itens_de_colecao[colecao.item.id] = true
+	var itens: Array[Item] = []
 	for arquivo in ResourceLoader.list_directory(PASTA_ITENS):
 		if not arquivo.ends_with(".tres"):
 			continue
 		var item := load(PASTA_ITENS + arquivo) as Item
-		if item == null or itens_de_colecao.has(item.id):
+		if item == null or itens_de_colecao.has(item.id) or item.carga_pesada or item.exclusivo_do_zane:
 			continue
+		itens.append(item)
+	itens.sort_custom(func(a: Item, b: Item) -> bool: return _peso(a) < _peso(b))
+	for item in itens:
 		_pegar(item)
-	Inventario.estado_de(ID_LANTERNA)["carga"] = 1.0
+	Inventario.definir_pilhas(Inventario.MAXIMO_PILHAS)
 	Inventario.mudou.emit()
+
+
+func _peso(item: Item) -> int:
+	if item.id in PRIORIDADE_DOS_GADGETS:
+		return PRIORIDADE_DOS_GADGETS.find(item.id)
+	if item.equipavel:
+		return 10
+	if item.id in PRIORIDADE_DAS_FERRAMENTAS:
+		return 20 + PRIORIDADE_DAS_FERRAMENTAS.find(item.id)
+	return 100
 
 
 func _pegar(item: Item) -> void:

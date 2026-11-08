@@ -40,7 +40,7 @@ func _ready() -> void:
 	_ajustar_camera()
 	if escuro:
 		escuro.color.a = 1.0
-		var tween := create_tween()
+		var tween := create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		tween.tween_property(escuro, "color:a", 0.0, duracao_entrada)
 
 

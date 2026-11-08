@@ -1,0 +1,20 @@
+{
+	"id": "bunker_fuga",
+	"inicio": "fuga",
+	"trechos": {
+		"fuga": {
+			"falas": [
+				{
+					"quem": "Clarice",
+					"retrato": "clarice/clarice_retrato_seria",
+					"texto": "Passos. Muitos. Vindo do corredor."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_concentrado",
+					"texto": "A comporta do núcleo tá destravada. Todo mundo junto. Corre!"
+				}
+			]
+		}
+	}
+}

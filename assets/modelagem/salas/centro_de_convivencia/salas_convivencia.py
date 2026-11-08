@@ -82,7 +82,7 @@ PASSARELA = {
     ],
     "sinais_sala_segura": [(4 * PECA + X_PORTA, 4)],
     "objetos": [("vaso_planta", 330, 156), ("banco_curvo", 450, 160)],
-    "itens": [("pilha", 360, 168), ("lanterna", 140, 160), ("radio", 180, 160)],
+    "itens": [("pilha", 360, 168), ("radio", 180, 160)],
     "documentos": [("carta_faroleiro_neide", 270, 166, "Ler a carta")],
     "checkpoint": ("conv_passarela", 60, 140),
     "transmissoes": [("zane_convivencia_01", 220, 152, "")],
@@ -222,7 +222,7 @@ LOJA_2 = {
         ("cardapio_self_nebulosa", 258, 172, "Ler o cardápio do dia"),
     ],
     "cofres": [(440, 152, CODIGO_DO_COFRE_DO_BUFE, "clarao", 1, "cofre_bufe_aberto",
-                "O cofre do bufê abriu: caiu uma cápsula de clarão.")],
+                "O cofre do bufê abriu: caiu um flash.")],
     "nichos": [(360, 128)],
     "robos": [{"tipo": "rastreador", "pos": "(460, 220)", "rota": ["(180, 160)", "(480, 160)", "(540, 245)", "(180, 245)"]}],
     "zonas_piso": [
@@ -438,7 +438,7 @@ LOJA_UNI = {
         ("mesa_dobrados", 160, 208), ("arara_b", 262, 214), ("estante_moletons", 372, 216), ("cesto_promocao", 452, 208),
         ("espelho_standing", 526, 206),
     ],
-    "itens": [("pilha", 110, 228), ("pedra", 330, 232), ("espelho", 506, 218)],
+    "itens": [("pilha", 110, 228), ("pedra", 330, 232)],
     "documentos": [("aviso_loja_universitaria", 330, 170, "Ler o aviso do balcão")],
     "paineis": [{
         "nome": "AraraInteligente", "cena": "painel_ordenacao", "x": 215, "y": 160, "premio": ("pilha", 2),
@@ -481,7 +481,7 @@ GRAFICA = {
         "campos": [
             'texto_acao = "Mexer na trava do plotter"', 'titulo = "PLOTTER QX-9: TRAVA"', 'marca = "plotter_destravado"',
             f"alvo = {CODIGO_DA_TRAVA_DO_PLOTTER}", "quantidade_chaves = 7",
-            'aviso_liberado = "A gaveta de insumos do plotter abriu: tinha uma cápsula de clarão."',
+            'aviso_liberado = "A gaveta de insumos do plotter abriu: tinha um flash."',
             'aviso_ja_liberado = "A gaveta do plotter já está aberta."',
         ],
     }],
@@ -569,7 +569,7 @@ CINEMA_CABINE = {
     ],
     "documentos": [("canhoto_caio", 160, 196, "Ler o canhoto")],
     "cofres": [(340, 152, CODIGO_DO_COFRE_DO_CINEMA, "clarao", 1, "cofre_cinema_aberto",
-                "O cofre abriu: caiu uma cápsula de clarão.")],
+                "O cofre abriu: caiu um flash.")],
     "itens": [],
     "luzes": [
         ("luz_lampada", 200, 90, "energy = 0.7"),

@@ -50,5 +50,5 @@ func pode_ver_jogador(pos_robo: Vector2, pos_jogador: Vector2, dir_olhar: Vector
 - Utiliza funções de ruído procedural com coordenadas rotacionadas para criar faixas dinâmicas de luz solar que interagem com a poeira e pólen suspensos no ar.
 
 ### Atenuação e Tremor das Luzes de Emergência
-- No fragment shader de iluminação 2D, o decaimento luminoso é calculado com atenuação quadrática suave combinada a uma função senoidal lenta para o tremor das lâmpadas de emergência (o feixe da lanterna usa, além disso, a queda com o ângulo, calculada por produto escalar: ver `gerar_labirinto.py`, função `luz_cone`):
+- No fragment shader de iluminação 2D, o decaimento luminoso é calculado com atenuação quadrática suave combinada a uma função senoidal lenta para o tremor das lâmpadas de emergência (o cone do farol da Sentinela usa, além disso, a queda com o ângulo, calculada por produto escalar: ver `gerar_labirinto.py`, função `luz_cone`):
   $$\text{Intensidade}(r, t) = \frac{I_{base} + A \sin(\omega t)}{1.0 + k \cdot r^2}$$

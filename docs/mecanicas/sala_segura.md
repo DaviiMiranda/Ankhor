@@ -26,7 +26,7 @@ As seis herdam do mesmo modelo e mudam só a cor da `Escuridao` e da `LuzAmbient
 
 1. O Gabriel chega perto do pedestal e aparece **[E] Pôr os óculos**.
 2. Ele anda sozinho até o lado esquerdo do pedestal, de lado, e **pega os óculos do Zane**: inclina, estende o braço, pega, leva ao rosto e põe (12 quadros, 0,1 s cada).
-3. Com os óculos no rosto, a luz do pedestal acende, a tela escurece (como numa porta) e o jogo **vira 3D em primeira pessoa**: o Gabriel está no próprio quarto, a mente dele materializada, com o que ele já leu e anotou nas paredes e na mesa. Ele anda até a TV e salva pelo menu da tela (detalhes em [`visor_3d.md`](visor_3d.md)).
+3. Com os óculos no rosto, a luz do pedestal acende, a tela escurece (como numa porta) e o jogo **vira 3D em primeira pessoa**. Antes do quarto, toda vez, o visor liga: por 3 s aparece a tela **CARREGANDO MODO REALIDADE VIRTUAL**, piscando ao acender, com uma barra de progresso, a silhueta dos óculos VR em volta e o som de energia ligando (detalhes em [`visor_3d.md`](visor_3d.md), seção 2.1). O Gabriel está no próprio quarto, a mente dele materializada, com o que ele já leu e anotou nas paredes e na mesa. Ele anda até a TV e salva pelo menu da tela (detalhes em [`visor_3d.md`](visor_3d.md)).
 4. Ao salvar, toca o som de salvar (`efeitos/interface/salvar_jogo.wav`), o jogo grava o arquivo, a **vida volta a 3** e o pedestal vira o **checkpoint** da fase (morrer volta para a sala segura, ao lado da máquina).
 5. Ao tirar os óculos (Esc ou **Voltar** na TV), o jogo volta para a sala segura 2D, a tela clareia e ele **tira os óculos e devolve ao pedestal**: a mesma animação de trás para a frente. Se salvou, o HUD mostra **Jogo salvo**. O jogador volta a controlar o Gabriel.
 
@@ -39,11 +39,11 @@ As seis herdam do mesmo modelo e mudam só a cor da `Escuridao` e da `LuzAmbient
 
 ## 3. Continuar
 
-O botão **Continuar** do menu principal fica habilitado quando existe um save. Ele carrega o último save: o Gabriel reaparece na sala segura, ao lado da máquina, com tudo o que tinha.
+O botão **Continuar** do menu principal fica habilitado quando existe algum save. Ele abre a lista **CARREGAR** com os seis espaços (os vazios ficam apagados), com o cursor no save mais recente; **E** carrega o escolhido: o Gabriel reaparece na sala segura, ao lado da máquina, com tudo o que tinha e com o tempo de jogo daquele save.
 
-Novo jogo e a lista de fases **não apagam** o save: ele só é sobrescrito na próxima vez que o jogador salvar.
+Novo jogo e a lista de fases **não apagam** nenhum save: cada espaço só muda quando o jogador grava por cima dele. Os espaços e o tempo de jogo estão em [`salvamento_e_tempo_de_jogo.md`](salvamento_e_tempo_de_jogo.md).
 
-### O que o arquivo guarda (`user://salvamento.cfg`, `scripts/sistemas/salvamento.gd`)
+### O que o arquivo guarda (`user://salvamento_1.cfg` a `salvamento_6.cfg`, `scripts/sistemas/salvamento.gd`)
 
 | O quê | De onde vem |
 |---|---|
@@ -54,6 +54,8 @@ Novo jogo e a lista de fases **não apagam** o save: ele só é sobrescrito na p
 | Marcas de progresso (energia, grade aberta, invasões...) | `Progresso` |
 | Portas destrancadas | `Porta` |
 | Diálogos já vistos | `Dialogos` |
+| Peças das coleções | `Colecionaveis` |
+| Tempo de jogo, data e hora do save | `TempoDeJogo`, relógio do sistema |
 
 **Não é guardado:** a posição dos robôs (a fase recarrega do zero, como ao morrer) e estados soltos dentro das salas que não passam por `Progresso`. Se uma sala nova guardar o estado fora desses sistemas, ele se perde ao carregar: use `Progresso.marcar`.
 

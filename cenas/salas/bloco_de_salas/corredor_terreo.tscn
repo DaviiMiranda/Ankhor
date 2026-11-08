@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/livros.tscn" id="r19"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/objetos/estante_caida.tscn" id="r20"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="r21"]
-[ext_resource type="Resource" path="res://dados/itens/lanterna.tres" id="r22"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_fria.tscn" id="r23"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/luzes/luz_lampada.tscn" id="r24"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/efeitos/poeira.tscn" id="r25"]
@@ -333,10 +332,6 @@ position = Vector2(2470, 150)
 
 [node name="Entulho5" parent="Objetos" instance=ExtResource("r14")]
 position = Vector2(2500, 128)
-
-[node name="Lanterna1" parent="Objetos" instance=ExtResource("r21")]
-position = Vector2(140, 160)
-item = ExtResource("r22")
 
 [node name="Lua1" parent="Luzes" instance=ExtResource("r23")]
 position = Vector2(40, 50)

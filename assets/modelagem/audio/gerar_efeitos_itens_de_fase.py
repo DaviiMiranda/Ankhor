@@ -5,13 +5,11 @@
 #   python assets/modelagem/audio/gerar_efeitos_itens_de_fase.py
 #
 # Gera em assets/audio/efeitos/objetos/:
-#   walkman_fita.wav       8 s em loop: um teclado saturado, tocado numa fita gasta
 #   celula_zumbido.wav     2 s em loop: o transformador da Célula de Energia
 #   sonar_pulso.wav        o pulso do módulo do Zane
 #   mascara_respiracao.wav uma inspiração e uma expiração pelo filtro
 #   tosse.wav              uma tosse curta, no ar do gás
 #   gas_sibilo.wav         4 s em loop: gás escapando de um cano
-#   espelho_brilho.wav     o reflexo que rebate o farol
 #
 # - LOOP SEM EMENDA: as frequências têm um número inteiro de ciclos na duração,
 #   então o fim encaixa no começo; o ruído é filtrado pela FFT, que é circular.
@@ -51,22 +49,6 @@ def ruido_filtrado(amostras, baixa, alta):
     return np.fft.irfft(espectro, amostras)
 
 
-def walkman_fita():
-    t = tempo(8.0)
-    notas = [220.0, 261.63, 329.63, 293.66, 220.0, 196.0, 246.94, 293.66]
-    sinal = np.zeros_like(t)
-    for i, f in enumerate(notas):
-        trecho = (t >= i) & (t < i + 1)
-        local = t[trecho] - i
-        wow = 0.004 * np.sin(2 * np.pi * 0.5 * t[trecho])
-        fase = 2 * np.pi * f * (t[trecho] + wow)
-        sinal[trecho] += np.tanh(2.5 * np.sin(fase)) * np.exp(-1.6 * local)
-        sinal[trecho] += 0.5 * np.sin(fase / 2) * np.exp(-0.8 * local)
-    batida = (np.mod(t, 0.5) < 0.04) * ruido_filtrado(len(t), 1200, 6000) * 0.5
-    chiado = ruido_filtrado(len(t), 3000, 9000) * 0.12
-    salvar("walkman_fita.wav", sinal + batida + chiado)
-
-
 def celula_zumbido():
     t = tempo(2.0)
     sinal = sum(np.sin(2 * np.pi * f * t) / (i + 1) for i, f in enumerate([60, 120, 180, 240]))
@@ -103,21 +85,12 @@ def gas_sibilo():
     salvar("gas_sibilo.wav", ruido_filtrado(len(t), 2500, 8000) * (0.8 + 0.2 * np.sin(2 * np.pi * 0.5 * t)))
 
 
-def espelho_brilho():
-    t = tempo(0.6)
-    parciais = [2100, 3170, 4430, 5910]
-    sinal = sum(np.sin(2 * np.pi * f * t) * np.exp(-(5 + i * 2) * t) for i, f in enumerate(parciais))
-    salvar("espelho_brilho.wav", sinal)
-
-
 def main():
-    walkman_fita()
     celula_zumbido()
     sonar_pulso()
     mascara_respiracao()
     tosse()
     gas_sibilo()
-    espelho_brilho()
     print("efeitos dos itens de fase gerados")
 
 

@@ -1,0 +1,25 @@
+{
+	"id": "zane_escritorio_arquivo",
+	"inicio": "arquivo",
+	"trechos": {
+		"arquivo": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_concentrado",
+					"texto": "Arquivo morto. Um Rastreador: não enxerga longe, mas ouve tudo. Aqui dentro, nada de correr."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_desconfiado",
+					"texto": "A trava está no arquivo deslizante do fundo. Quer as pastas em ordem, da mais antiga para a mais nova. Burocracia com cadeado."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_concentrado",
+					"texto": "Só que o cadeado tem alarme. Cada tentativa vale dez trocas; gastou as dez, as pastas embaralham. Três tentativas perdidas e a sirene toca, e o Rastreador vem direto pra cá."
+				}
+			]
+		}
+	}
+}

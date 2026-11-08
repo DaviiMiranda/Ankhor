@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/item.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/arma_impulso.png" id="2_icone"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/arma_impulso_chao.png" id="3_chao"]
+[ext_resource type="PackedScene" path="res://cenas/itens/arma_impulso.tscn" id="4_gadget"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/arma_impulso_detalhe.png" id="5_detalhe"]
+
+[resource]
+script = ExtResource("1_item")
+id = "arma_impulso"
+nome = "Arma de impulso"
+descricao = "Aperte a tecla (1-3) para travar a mira no robô mais perto e de novo para atirar: cone de 30° que empurra os robôs e os deixa bem mais lentos por 15 s. Balas: aba Criação, 1 chip e 3 pilhas."
+icone = ExtResource("2_icone")
+sprite_chao = ExtResource("3_chao")
+imagem_detalhe = ExtResource("5_detalhe")
+equipavel = true
+cena_gadget = ExtResource("4_gadget")
+maximo_unidades = 6
+unidades_iniciais = 2

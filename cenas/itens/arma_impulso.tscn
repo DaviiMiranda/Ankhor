@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/itens/arma_impulso.gd" id="1_arma"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="2_luz"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/impulso_disparo.wav" id="3_som"]
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
+[node name="ArmaImpulso" type="Node2D"]
+material = SubResource("SemLuz")
+script = ExtResource("1_arma")
+
+[node name="Flash" type="PointLight2D" parent="."]
+position = Vector2(0, -22)
+color = Color(0.35, 0.92, 1, 1)
+energy = 0.0
+range_item_cull_mask = 3
+texture = ExtResource("2_luz")
+texture_scale = 3.0
+
+[node name="Som" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_som")
+bus = &"Efeitos"

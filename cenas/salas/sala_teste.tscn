@@ -3,12 +3,12 @@
 [ext_resource type="PackedScene" path="res://cenas/salas/modelo_sala.tscn" id="modelo"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/parede_porta.tscn" id="parede_porta"]
 [ext_resource type="PackedScene" path="res://cenas/sistemas/porta.tscn" id="porta"]
+[ext_resource type="Script" path="res://scripts/sistemas/porta_de_teste.gd" id="s_porta_teste"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/paredes/pilar.tscn" id="pilar"]
-[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/sinal_sala_segura.tscn" id="sinal_sala_segura"]
+[ext_resource type="PackedScene" path="res://cenas/cenario/objetos/placa_de_porta.tscn" id="placa"]
 [ext_resource type="PackedScene" path="res://cenas/cenario/chao/chao_lajotas.tscn" id="chao_lajotas"]
 [ext_resource type="PackedScene" path="res://cenas/itens/item_no_chao.tscn" id="i_item"]
 [ext_resource type="PackedScene" path="res://cenas/itens/pilha_no_chao.tscn" id="i_pilha"]
-[ext_resource type="Resource" path="res://dados/itens/lanterna.tres" id="i_lanterna"]
 [ext_resource type="Resource" path="res://dados/itens/radio.tres" id="i_radio"]
 [ext_resource type="Resource" path="res://dados/itens/clarao.tres" id="i_clarao"]
 [ext_resource type="Resource" path="res://dados/itens/pedra.tres" id="i_pedra"]
@@ -26,15 +26,14 @@
 [ext_resource type="PackedScene" path="res://cenas/personagens/diana.tscn" id="p_diana"]
 [ext_resource type="PackedScene" path="res://cenas/personagens/carlos.tscn" id="p_carlos"]
 [ext_resource type="Script" path="res://scripts/salas/escolha_personagem.gd" id="s_escolha"]
-[ext_resource type="Resource" path="res://dados/itens/walkman.tres" id="gd_walkman"]
+[ext_resource type="Script" path="res://scripts/salas/estamina_infinita_na_sala.gd" id="s_estamina"]
 [ext_resource type="Resource" path="res://dados/itens/modulo_pulso.tres" id="gd_modulo"]
 [ext_resource type="Resource" path="res://dados/itens/mapa_diana.tres" id="gd_mapa"]
 [ext_resource type="Resource" path="res://dados/itens/mascara_gas.tres" id="gd_mascara"]
-[ext_resource type="Resource" path="res://dados/itens/espelho.tres" id="gd_espelho"]
 
 [node name="SalaTeste" instance=ExtResource("modelo")]
 id = "sala_teste"
-largura = 640
+largura = 1200
 
 [node name="Parede01" parent="Paredes" instance=ExtResource("parede_porta")]
 position = Vector2(0, 0)
@@ -63,11 +62,29 @@ position = Vector2(480, 0)
 [node name="Parede08" parent="Paredes" instance=ExtResource("parede_porta")]
 position = Vector2(560, 0)
 
-[node name="PilarDireita" parent="Paredes" instance=ExtResource("pilar")]
-position = Vector2(624, 0)
+[node name="Parede09" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(640, 0)
 
-[node name="SinalSalaSegura" parent="Paredes" instance=ExtResource("sinal_sala_segura")]
-position = Vector2(601, 6)
+[node name="Parede10" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(720, 0)
+
+[node name="Parede11" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(800, 0)
+
+[node name="Parede12" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(880, 0)
+
+[node name="Parede13" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(960, 0)
+
+[node name="Parede14" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(1040, 0)
+
+[node name="Parede15" parent="Paredes" instance=ExtResource("parede_porta")]
+position = Vector2(1120, 0)
+
+[node name="PilarDireita" parent="Paredes" instance=ExtResource("pilar")]
+position = Vector2(1184, 0)
 
 [node name="Chao1" parent="Chao" instance=ExtResource("chao_lajotas")]
 position = Vector2(0, 0)
@@ -84,9 +101,20 @@ position = Vector2(384, 0)
 [node name="Chao5" parent="Chao" instance=ExtResource("chao_lajotas")]
 position = Vector2(512, 0)
 
-[node name="Lanterna" parent="Objetos" instance=ExtResource("i_item")]
-position = Vector2(110, 150)
-item = ExtResource("i_lanterna")
+[node name="Chao6" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(640, 0)
+
+[node name="Chao7" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(768, 0)
+
+[node name="Chao8" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(896, 0)
+
+[node name="Chao9" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(1024, 0)
+
+[node name="Chao10" parent="Chao" instance=ExtResource("chao_lajotas")]
+position = Vector2(1152, 0)
 
 [node name="Radio" parent="Objetos" instance=ExtResource("i_item")]
 position = Vector2(170, 150)
@@ -180,91 +208,132 @@ position = Vector2(336, 134)
 vista = "tres_quartos"
 olhando_para_esquerda = true
 
-[node name="PortaRobos" parent="." instance=ExtResource("porta")]
-position = Vector2(440, 124)
-id = "sala_teste"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-
 [node name="EscolhaPersonagem" type="Node" parent="."]
 script = ExtResource("s_escolha")
 
-[node name="HackSequenciaFacil" parent="." instance=ExtResource("porta")]
-position = Vector2(40, 124)
-id = "teste_hacksequenciafacil"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-trancada = true
-dificuldade_hack = 0
-minigame_hack = 1
-
-[node name="HackSequenciaMedio" parent="." instance=ExtResource("porta")]
-position = Vector2(120, 124)
-id = "teste_hacksequenciamedio"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-trancada = true
-dificuldade_hack = 1
-minigame_hack = 1
-
-[node name="HackSequenciaDificil" parent="." instance=ExtResource("porta")]
-position = Vector2(200, 124)
-id = "teste_hacksequenciadificil"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-trancada = true
-dificuldade_hack = 2
-minigame_hack = 1
-
-[node name="HackSincroniaFacil" parent="." instance=ExtResource("porta")]
-position = Vector2(280, 124)
-id = "teste_hacksincroniafacil"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-trancada = true
-dificuldade_hack = 0
-minigame_hack = 2
-
-[node name="HackSincroniaMedio" parent="." instance=ExtResource("porta")]
-position = Vector2(360, 124)
-id = "teste_hacksincroniamedio"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-trancada = true
-dificuldade_hack = 1
-minigame_hack = 2
-
-[node name="HackSincroniaDificil" parent="." instance=ExtResource("porta")]
-position = Vector2(520, 124)
-id = "teste_hacksincroniadificil"
-cena_destino = "res://cenas/salas/labirinto_teste.tscn"
-porta_destino = "labirinto_teste"
-trancada = true
-dificuldade_hack = 2
-minigame_hack = 2
-
-[node name="PortaSalaSegura" parent="." instance=ExtResource("porta")]
-position = Vector2(601, 124)
-id = "sala_segura_teste"
-cena_destino = "res://cenas/salas/sala_segura_teste.tscn"
-porta_destino = "safe_room_saida"
-
-[node name="Walkman" parent="Objetos" instance=ExtResource("i_item")]
-position = Vector2(560, 138)
-item = ExtResource("gd_walkman")
+[node name="EstaminaInfinita" type="Node" parent="."]
+script = ExtResource("s_estamina")
 
 [node name="ModuloPulso" parent="Objetos" instance=ExtResource("i_item")]
-position = Vector2(590, 138)
+position = Vector2(424, 138)
 item = ExtResource("gd_modulo")
 
 [node name="MapaDiana" parent="Objetos" instance=ExtResource("i_item")]
-position = Vector2(620, 138)
+position = Vector2(448, 138)
 item = ExtResource("gd_mapa")
 
 [node name="Mascara" parent="Objetos" instance=ExtResource("i_item")]
-position = Vector2(650, 138)
+position = Vector2(472, 138)
 item = ExtResource("gd_mascara")
 
-[node name="Espelho" parent="Objetos" instance=ExtResource("i_item")]
-position = Vector2(680, 138)
-item = ExtResource("gd_espelho")
+[node name="PortaConvivencia" parent="." instance=ExtResource("porta")]
+position = Vector2(600, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_convivencia"
+cena_destino = "res://cenas/salas/centro_de_convivencia/praca_central.tscn"
+porta_destino = ""
+com_combate = true
+
+[node name="PlacaConvivencia" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(600, 56)
+texto = "CONVIVÊNCIA
+(COMBATE)"
+cor_do_texto = Color(1.0, 0.8, 0.4, 1)
+
+[node name="PortaBloco" parent="." instance=ExtResource("porta")]
+position = Vector2(680, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_bloco"
+cena_destino = "res://cenas/salas/bloco_de_salas/corredor_terreo.tscn"
+porta_destino = ""
+com_combate = false
+
+[node name="PlacaBloco" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(680, 56)
+texto = "BLOCO DE
+SALAS"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)
+
+[node name="PortaLabirinto" parent="." instance=ExtResource("porta")]
+position = Vector2(760, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_labirinto"
+cena_destino = "res://cenas/salas/labirinto.tscn"
+porta_destino = ""
+com_combate = false
+
+[node name="PlacaLabirinto" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(760, 56)
+texto = "LABIRINTO"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)
+
+[node name="PortaCorredorDoTempo" parent="." instance=ExtResource("porta")]
+position = Vector2(840, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_corredor_do_tempo"
+cena_destino = "res://cenas/salas/labirinto/corredor_do_tempo.tscn"
+porta_destino = ""
+com_combate = false
+marcas_apagadas_ao_entrar = PackedStringArray("corredor_tempo_vencido")
+
+[node name="PlacaCorredorDoTempo" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(840, 56)
+texto = "CORREDOR
+DO TEMPO"
+cor_do_texto = Color(0.94, 0.7, 0.3, 1)
+
+[node name="PortaBunker" parent="." instance=ExtResource("porta")]
+position = Vector2(920, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_bunker"
+cena_destino = "res://cenas/salas/bunker/entrada.tscn"
+porta_destino = ""
+com_combate = false
+
+[node name="PlacaBunker" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(920, 56)
+texto = "BUNKER"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)
+
+[node name="PortaDtec" parent="." instance=ExtResource("porta")]
+position = Vector2(1000, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_dtec"
+cena_destino = "res://cenas/salas/dtec/emergencia.tscn"
+porta_destino = ""
+com_combate = false
+
+[node name="PlacaDtec" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(1000, 56)
+texto = "D-TEC"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)
+
+[node name="PortaZane" parent="." instance=ExtResource("porta")]
+position = Vector2(1080, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_zane"
+cena_destino = "res://cenas/salas/labirinto/camara_selada.tscn"
+porta_destino = ""
+com_combate = false
+
+[node name="PlacaZane" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(1080, 56)
+texto = "ZANE
+(CÂMARA SELADA)"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)
+
+[node name="PortaFimDoBunker" parent="." instance=ExtResource("porta")]
+position = Vector2(1160, 124)
+script = ExtResource("s_porta_teste")
+id = "fases_fim_do_bunker"
+cena_destino = "res://cenas/salas/bunker/central_dados.tscn"
+porta_destino = "central_dados"
+com_combate = false
+marcas_ao_entrar = PackedStringArray("bunker_energia")
+marcas_apagadas_ao_entrar = PackedStringArray("bunker_confronto_falado", "bunker_henrique_sumiu", "bunker_comporta_aberta", "dtec_grupo_separado")
+
+[node name="PlacaFimDoBunker" parent="Paredes" instance=ExtResource("placa")]
+position = Vector2(1160, 56)
+texto = "FIM DO
+BUNKER"
+cor_do_texto = Color(0.7, 1.0, 0.8, 1)

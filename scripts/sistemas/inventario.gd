@@ -8,17 +8,86 @@ signal aviso(texto: String)
 const LINHAS := 3
 const COLUNAS := 4
 const ESPACOS_GADGET := 3
+const TECLA_DO_BRACO := 4
+const MAXIMO_PILHAS := 9
+const ID_PILHAS := "pilhas"
 
 var grade: Array = []
 var gadgets: Array = []
+var braco: Item = null
 var estado: Dictionary = {}
 var pegos: Dictionary = {}
 var vistos: Dictionary = {}
 var largados: Dictionary = {}
+var _reserva: Dictionary = {}
 
 
 func _ready() -> void:
 	limpar()
+
+
+func emprestar_kit(kit: Array) -> void:
+	if _reserva.is_empty():
+		var copia_da_grade := []
+		for linha in grade:
+			copia_da_grade.append((linha as Array).duplicate())
+		_reserva = {
+			"grade": copia_da_grade,
+			"gadgets": gadgets.duplicate(),
+			"braco": braco,
+			"estado": estado.duplicate(true),
+			"vistos": vistos.duplicate(),
+			"largados": largados.duplicate(true),
+		}
+	_esvaziar()
+	for item: Item in kit:
+		vistos[item.id] = true
+		_guardar_na_primeira_vaga(item)
+		if item.maximo_unidades > 0:
+			definir_unidades(item, item.maximo_unidades)
+	mudou.emit()
+
+
+func devolver_kit() -> void:
+	if _reserva.is_empty():
+		return
+	grade = _reserva["grade"]
+	gadgets = _reserva["gadgets"]
+	braco = _reserva["braco"]
+	estado = _reserva["estado"]
+	vistos = _reserva["vistos"]
+	largados = _reserva["largados"]
+	_reserva = {}
+	mudou.emit()
+
+
+func com_kit_emprestado() -> bool:
+	return not _reserva.is_empty()
+
+
+func _esvaziar() -> void:
+	grade = []
+	for linha in LINHAS:
+		var colunas := []
+		colunas.resize(COLUNAS)
+		grade.append(colunas)
+	gadgets = []
+	gadgets.resize(ESPACOS_GADGET)
+	braco = null
+	estado = {}
+	largados = {}
+
+
+func _guardar_na_primeira_vaga(item: Item) -> void:
+	for linha in LINHAS:
+		for coluna in COLUNAS:
+			if grade[linha][coluna] == null:
+				grade[linha][coluna] = item
+				if item.vai_no_espaco_do_braco:
+					braco = item
+				if item.equipavel and gadgets.find(null) != -1:
+					gadgets[gadgets.find(null)] = item
+				return
 
 
 func limpar() -> void:
@@ -29,10 +98,12 @@ func limpar() -> void:
 		grade.append(colunas)
 	gadgets = []
 	gadgets.resize(ESPACOS_GADGET)
+	braco = null
 	estado = {}
 	pegos = {}
 	vistos = {}
 	largados = {}
+	_reserva = {}
 	mudou.emit()
 
 
@@ -45,7 +116,9 @@ func adicionar(item: Item) -> bool:
 			if grade[linha][coluna] == null:
 				grade[linha][coluna] = item
 				if item.maximo_unidades > 0:
-					definir_unidades(item, 1)
+					definir_unidades(item, item.unidades_iniciais)
+				if item.vai_no_espaco_do_braco:
+					braco = item
 				if item.equipavel and espaco_do_gadget(item) == -1:
 					var livre := gadgets.find(null)
 					if livre != -1:
@@ -66,6 +139,8 @@ func remover(id: String) -> void:
 				var espaco := espaco_do_gadget(item)
 				if espaco != -1:
 					gadgets[espaco] = null
+				if braco == item:
+					braco = null
 				mudou.emit()
 				return
 
@@ -132,6 +207,23 @@ func definir_unidades(item: Item, quantas: int) -> void:
 	var estado_item := estado_de(item.id)
 	estado_item["unidades"] = quantas
 	estado_item["carga"] = float(quantas) / item.maximo_unidades
+
+
+func pilhas() -> int:
+	return estado_de(ID_PILHAS).get("quantidade", 0)
+
+
+func definir_pilhas(quantas: int) -> void:
+	estado_de(ID_PILHAS)["quantidade"] = clampi(quantas, 0, MAXIMO_PILHAS)
+	mudou.emit()
+
+
+func guardar_pilha() -> bool:
+	if pilhas() >= MAXIMO_PILHAS:
+		aviso.emit("Pilhas no máximo: %d" % MAXIMO_PILHAS)
+		return false
+	definir_pilhas(pilhas() + 1)
+	return true
 
 
 func _somar_unidade(item: Item) -> bool:

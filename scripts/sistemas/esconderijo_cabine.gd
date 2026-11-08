@@ -17,11 +17,9 @@ static var _ja_ensinou := false
 @export var raio_perigo: float = 110.0
 @export var pulsos_para_acalmar: int = 3
 @export var falhas_permitidas: int = 2
-@export var largura_zona_calmo: float = 0.34
-@export var largura_zona_ansioso: float = 0.16
+@export var largura_zona: float = 0.34
 @export var fator_zona_cansado: float = 0.75
-@export var velocidade_calmo: float = 0.9
-@export var velocidade_ansioso: float = 1.5
+@export var velocidade: float = 0.9
 @export var segundos_de_folga: float = 2.5
 
 var _gabriel_dentro: Gabriel
@@ -30,7 +28,6 @@ var _no_microgame := false
 var _fase := 0.0
 var _zona := 0.5
 var _largura := 0.3
-var _velocidade := 1.0
 var _acertos := 0
 var _falhas := 0
 var _voltas_sem_apertar := 0.0
@@ -68,7 +65,6 @@ func interagir() -> void:
 	gabriel.esconder(true)
 	_camada = gabriel.collision_layer
 	gabriel.collision_layer = 0
-	Inventario.estado_de("lanterna")["aceso"] = false
 	_folga = 0.0
 	Inventario.aviso.emit(AVISO_DENTRO)
 
@@ -124,17 +120,15 @@ func _comecar_microgame() -> void:
 
 
 func _sortear_zona() -> void:
-	var ansiedade := _gabriel_dentro.ansiedade.valor
-	_largura = lerpf(largura_zona_calmo, largura_zona_ansioso, ansiedade)
+	_largura = largura_zona
 	if _gabriel_dentro.fadiga and _gabriel_dentro.fadiga.esta_cansado():
 		_largura *= fator_zona_cansado
-	_velocidade = lerpf(velocidade_calmo, velocidade_ansioso, ansiedade)
 	_zona = _sorteio.randf_range(_largura / 2.0, 1.0 - _largura / 2.0)
 
 
 func _avancar_microgame(delta: float) -> void:
-	_fase += delta * _velocidade
-	_voltas_sem_apertar += delta * _velocidade
+	_fase += delta * velocidade
+	_voltas_sem_apertar += delta * velocidade
 	if _voltas_sem_apertar >= 2.0:
 		_voltas_sem_apertar = 0.0
 		_falhar()

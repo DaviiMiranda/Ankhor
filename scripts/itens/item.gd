@@ -13,6 +13,9 @@ extends Resource
 @export var equipavel: bool = false
 @export var cena_gadget: PackedScene
 @export var maximo_unidades: int = 0
+@export var vai_no_espaco_do_braco: bool = false
+@export var exclusivo_do_zane: bool = false
+@export var unidades_iniciais: int = 1
 
 @export_group("No chão")
 @export var carga_pesada: bool = false

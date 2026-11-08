@@ -11,7 +11,7 @@ O quarto guarda o jogo até ali. Tudo o que aparece nele vem do estado do jogo n
 | **Cama** | **todos** os documentos que o Gabriel já leu, inclusive os de puzzle, espalhados sobre a colcha, cada um no papel dele (caderno, pergaminho, jornal...) | os documentos de `dados/documentos/` que já têm anotação no caderno |
 | **Farol**, na ponta da frente da escrivaninha | um farol aceso em 3D, só depois de juntar os três pingentes de farol da Biblioteca (ver [`colecionaveis.md`](colecionaveis.md)) | `Colecionaveis` |
 | **Disquetes**, na escrivaninha, na frente do farol | uma pilha de três disquetes coloridos, só depois de juntar os três disquetes do Bloco de salas | `Colecionaveis` |
-| **Tricórnio**, sobre o teclado do notebook, na escrivaninha | o chapéu do Baltazar com os três pingentes nas pontas, só depois de juntar os três pingentes do Labirinto (um deles só aparece depois de a lanterna revelar a parede falsa) | `Colecionaveis` |
+| **Tricórnio**, sobre o teclado do notebook, na escrivaninha | o chapéu do Baltazar com os três pingentes nas pontas, só depois de juntar os três pingentes do Labirinto (um deles só aparece depois de o Gabriel chegar perto da parede falsa) | `Colecionaveis` |
 | **Jaqueta**, pendurada no encosto da cadeira | a jaqueta da Diana, só depois de juntar os três botões do Centro de Convivência | `Colecionaveis` |
 | **Óculos**, em cima da escrivaninha | os óculos do Zane com os três chips acesos, só depois de juntar os três chips do Bunker | `Colecionaveis` |
 | **Gravura da nave**, na parede da direita, acima do criado-mudo | uma gravura emoldurada de uma nave imensa no espaço, só depois de juntar os três recortes de jornal | `Colecionaveis` |
@@ -31,7 +31,12 @@ Nada disso é texto novo de história: os cartões e os papéis mostram os títu
 | No quadro | **Esc** afasta a câmera |
 | Numa recompensa de coleção (farol, disquetes, tricórnio, jaqueta, óculos) | **WASD** (ou setas) e o **mouse** giram a peça, **Esc** afasta a câmera. Detalhes na seção 3.1 |
 
-O menu da TV tem **Salvar jogo** e **Voltar** (que tira os óculos). Em cima ele mostra a data e a hora do último save, ou "Nenhum jogo salvo". Ao salvar, toca o som de salvar, aparece **Jogo salvo** (ou **Não foi possível salvar**) e o quadro branco já mostra a hora nova. Dá para salvar quantas vezes quiser.
+O menu da TV mostra os **seis espaços de save**, um por linha, como no *Resident Evil*: o número, o **tempo de jogo** daquele save e a fase (`3  01:02:05  Biblioteca`), ou **Vazio**. Embaixo aparece a data e a hora do espaço escolhido. No fim da lista, **Voltar** tira os óculos. O cursor começa no espaço do último save carregado ou feito; num jogo novo, no primeiro espaço vazio.
+
+- **Espaço vazio:** salva direto.
+- **Espaço ocupado:** pergunta **Gravar por cima do espaço 3?** com **Sim, gravar por cima** e **Não** (o cursor começa no Não). **Esc** cancela a pergunta, sem afastar a câmera.
+
+Ao salvar, toca o som de salvar, aparece **Jogo salvo no espaço 3** (ou **Não foi possível salvar**), a linha do espaço já mostra o tempo novo e o quadro branco mostra a hora nova. Dá para salvar quantas vezes quiser, em quantos espaços quiser. Detalhes dos espaços e do tempo de jogo em [`salvamento_e_tempo_de_jogo.md`](salvamento_e_tempo_de_jogo.md).
 
 Salvar faz o mesmo que antes: a vida volta a 3 e o pedestal vira o checkpoint da fase. **Entrar no visor e sair sem salvar não muda nada.** O HUD da sala segura só mostra "Jogo salvo" na volta se o jogador salvou.
 
@@ -42,10 +47,29 @@ A pausa (Esc) não abre dentro do visor: lá o Esc serve para afastar ou tirar o
 A sala segura **não é recarregada**. O autoload `Visor` (`scripts/sistemas/visor.gd`):
 
 1. **`abrir(cena, posição)`**, chamado pela `MaquinaDeSalvar` com a tela já escura: tira a sala 2D da árvore de cenas (`remove_child`), **sem apagar**, e põe a cena 3D no lugar. A sala fica guardada na memória, com o Gabriel parado de óculos no rosto, a máquina no meio da animação e tudo o mais como estava.
-2. **`salvar()`**, chamado pelo menu da TV: limpa a vida, marca o checkpoint e grava o arquivo (`Salvamento.salvar`) com a cena e a posição que a máquina passou.
+2. **`salvar(espaco)`**, chamado pelo menu da TV: limpa a vida, marca o checkpoint e grava o espaço escolhido (`Salvamento.salvar`) com a cena e a posição que a máquina passou.
 3. **`fechar()`**, ao tirar os óculos: apaga a cena 3D, devolve a sala 2D à árvore e emite **`fechado(salvou)`**.
 
 A `MaquinaDeSalvar` fica esperando esse sinal (`await Visor.fechado`). Quando ele chega, ela clareia a tela e toca a animação de tirar os óculos de trás para a frente, como antes.
+
+### 2.1 A tela de carregamento do visor
+
+**Toda vez** que o jogador põe um visor (os óculos da sala segura ou o visor do cinema, na Sala VR do Centro de Convivência), entre a tela escurecer e o 3D aparecer, fica **3 segundos** a tela **CARREGANDO MODO REALIDADE VIRTUAL** (`cenas/visor/tela_carregando_vr.tscn`, script `scripts/visor/tela_carregando_vr.gd`): fundo escuro, o título em ciano (a cor da luz dos óculos do Zane), uma barra que enche, a porcentagem e uma linha que muda com a barra (*Ligando o visor*, *Calibrando as lentes*, *Montando o ambiente*, *Pronto*). Tudo isso aparece **por dentro de um visor**: em volta, a silhueta arredondada dos óculos VR (duas lentes unidas, com o encaixe do nariz embaixo e uma linha ciano na borda). A silhueta é o shader `shaders/silhueta_oculos_vr.gdshader`, num `ColorRect` por cima da tela (a conta está comentada no shader; o formato se ajusta pelos parâmetros dele).
+
+O visor **liga como um aparelho velho**:
+
+| Quando | Imagem | Som (`efeitos/interface/visor_ligando.wav`) |
+|---|---|---|
+| 0 s | tudo escuro | o relé fecha: clique metálico e um baque grave |
+| 0,10 a 0,43 s | a tela inteira (com a silhueta) **pisca** quatro vezes, em brilhos diferentes, até ficar acesa | um estalo elétrico e um zumbido curto a cada vez que acende; começa a subida da energia |
+| 0,43 a 2,65 s | a barra enche; de vez em quando (a cada 0,35 a 0,9 s, sorteado) o texto e a barra **falham**: o brilho cai para 35% por 0,05 s | a energia termina de subir (um tom de 60 Hz a 900 Hz) e fica o zumbido de 120 Hz do aparelho ligado |
+| 2,65 s | a barra chega a 100%: *Pronto* | dois bipes subindo |
+| 2,88 a 3,0 s | a tela apaga e entra o 3D | o zumbido some |
+
+- **O pisca-pisca e o som andam juntos.** Os trechos do pisca-pisca estão em `PISCADAS_AO_LIGAR` no script e, iguais, em `PISCADAS` no gerador do som (`assets/modelagem/audio/gerar_efeitos_visor.py`). Se mudar um, mude o outro e rode o gerador de novo.
+- **Ela carrega o 3D de verdade:** enquanto a barra enche, o `ResourceLoader` carrega a cena 3D em segundo plano (`load_threaded_request`). Sem isso, o jogo parava uns 2 s na tela preta na primeira entrada. Se o carregamento demorar mais que os 3 s, a barra para em 99% até terminar.
+- **Quem chama** é a `MaquinaDeSalvar` (`_mostrar_carregamento`), antes do `Visor.abrir`. A tela é o padrão de todo visor: está em `tela_de_carregamento` na cena-base `maquina_de_salvar.tscn`, então vale para as seis salas seguras e para a cabine do filme VR (`cabine_vr_filme.tscn`, que herda dela). Um visor novo feito a partir da máquina já ganha a tela; para tirar, esvazie `tela_de_carregamento` na instância.
+- **Ajustes** no nó raiz da cena: `segundos` (3), `segundos_cheia` (quanto a barra fica cheia antes de sumir), `segundos_apagando`, e as falhas (`intervalo_das_falhas`, `segundos_de_falha`, `brilho_na_falha`). Os textos estão em `ETAPAS` no script. Mudar `segundos` muda a tela, mas não o som (ele tem 3 s fixos).
 
 Por que não recarregar a sala: não precisa passar a posição do Gabriel nem um "estou voltando do visor" entre cenas, e nada da sala se perde (itens no chão, portas, música). Cuidados que isso exigiu:
 
@@ -189,6 +213,7 @@ As formas de colisão (chão, paredes, móvel da TV, estante, escrivaninha, cade
 | O quê | Onde |
 |---|---|
 | Troca 2D ↔ 3D e salvar (autoload `Visor`) | `scripts/sistemas/visor.gd` |
+| Tela de carregamento do visor | `cenas/visor/tela_carregando_vr.tscn`, `scripts/visor/tela_carregando_vr.gd`, `shaders/silhueta_oculos_vr.gdshader`, som de `assets/modelagem/audio/gerar_efeitos_visor.py`, chamada pela `MaquinaDeSalvar` |
 | Quarto (câmera, luzes, colisões, janela, pôsteres) | `cenas/visor/sala_visor.tscn`, `scripts/visor/sala_visor.gd` |
 | Jogador em primeira pessoa | `cenas/visor/jogador_visor.tscn`, `scripts/visor/jogador_visor.gd` |
 | Os lugares para focar | `scripts/visor/foco_visor.gd` (base), `cenas/visor/tela_do_visor.tscn`, `mural_do_visor.tscn`, `mesa_do_visor.tscn`, `quadro_do_visor.tscn` e os scripts com o mesmo nome |

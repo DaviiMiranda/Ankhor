@@ -29,10 +29,10 @@ func abrir(cena: String, posicao: Vector2, cena_do_visor: String = "") -> void:
 	_trocar_cena.call_deferred(_sala, _visor)
 
 
-func salvar() -> bool:
+func salvar(espaco: int) -> bool:
 	Vida.limpar()
 	Checkpoints.marcar(ID_CHECKPOINT, cena_do_save, posicao_do_save)
-	var deu_certo := Salvamento.salvar(cena_do_save, posicao_do_save)
+	var deu_certo := Salvamento.salvar(espaco, cena_do_save, posicao_do_save)
 	salvou = salvou or deu_certo
 	return deu_certo
 

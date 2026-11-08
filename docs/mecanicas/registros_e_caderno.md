@@ -115,7 +115,7 @@ A tela de leitura, a legenda e o inventário (com a aba Anotações) já estão 
    - `na_sala_inteira`: toca em qualquer ponto da sala, sem precisar entrar na área;
    - `depois_da_transmissao`: só toca depois que essa transmissão (o `id`) foi pedida, e entra na fila logo atrás dela;
    - `depois_do_dialogo`: só toca depois que esse diálogo (`.json`) terminou.
-6. Se o Gabriel trocar de sala no meio de uma transmissão, ela recomeça na sala seguinte: o `Radio` guarda as que ainda não terminaram (`Radio.pendentes`), e a anotação só vai para o caderno quando a última fala acaba.
+6. Se o Gabriel trocar de sala no meio de uma transmissão, ela continua na sala seguinte, na mesma fala e na mesma letra: o `Radio` guarda as que ainda não terminaram (`Radio.pendentes`) e o ponto em que a primeira parou (`fala_em_andamento` e `tempo_em_andamento`). A anotação só vai para o caderno quando a última fala acaba.
 
 ---
 

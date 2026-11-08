@@ -425,8 +425,14 @@ def montar_sala(sala):
             f'stream = ExtResource("{zumbido}")', f"position = Vector2({x}, {y})", "volume_db = 4.0",
             "pitch_scale = 0.5", "autoplay = true", "max_distance = 900.0", 'bus = &"Efeitos"'])
 
+    # Personagens e outras cenas inteiras: (nome, cena, x, y, propriedades extras...).
+    for (nome, caminho, x, y, *props) in sala.get("instancias", []):
+        m.instancia(nome, "Objetos", caminho, [f"position = Vector2({x}, {y})", *props])
+
     raiz = f'[node name="{pascal(id_sala)}" instance=ExtResource("r1")]'
     props_raiz = [f'id = "dtec_{id_sala}"', f"largura = {largura}"]
+    if sala.get("script"):
+        props_raiz.insert(0, f'script = ExtResource("{m.recurso("Script", sala["script"])}")')
     if funda:
         props_raiz += [f"altura = {altura}", f"chao_frente = {altura - 4}"]
     escrever(os.path.join(PASTA_SALAS, f"{id_sala}.tscn"), m.texto(raiz, props_raiz, [PLACA]))
@@ -448,6 +454,9 @@ def montar_sala(sala):
 # luzes:   (cena em cenas/cenario/luzes, x, y, propriedades extras...).
 # robos:   (sentinela ou rastreador, nome, x, y, [pontos da rota]).
 # checkpoints: (id, x, y).
+# script:  o script da sala (no lugar do sala.gd), para salas com cena.
+# instancias: (nome, cena, x, y, propriedades extras...): personagens e outras
+#          cenas inteiras, dentro de Objetos.
 # reles:   (relé da rede da Âncora, x, y): o terminal que o notebook corta.
 # telao_rede: (x, y): onde o Gabriel olha o grafo da rede na parede.
 # vigias:  {relé: [pontos]}: a rota que o primeiro robô da sala faz quando
@@ -588,10 +597,16 @@ SALAS = [
         "portas": [{"peca": 4, "tipo": "porta", "id": "emergencia_corredor", "placa": "CORREDOR",
                     "destino": "corredor_sul", "porta_destino": "sul_emergencia"}],
         "objetos": [("caixas_lab", 40, 160), ("cilindros", 260, 132), ("planta", 450, 150, True)],
-        "itens": [("lanterna", 200, 160), ("pilha", 420, 165)],
+        "itens": [("pilha", 420, 165)],
         "checkpoints": [("dtec_chegada", 300, 150)],
         "luzes": [("luz_emergencia", 120, 30, "energy = 0.7")],
         "escuridao": (0.26, 0.27, 0.33, 1),
+        # A chegada do grupo, vindo da fuga do bunker (scripts/salas/emergencia_dtec.gd).
+        "script": "res://scripts/salas/emergencia_dtec.gd",
+        "instancias": [("Zane", "res://cenas/personagens/zane.tscn", 180, 146, 'vista = "tres_quartos"', "olhando_para_esquerda = true"),
+                       ("Clarice", "res://cenas/personagens/clarice_em_pe.tscn", 150, 166, 'vista = "tres_quartos"'),
+                       ("Diana", "res://cenas/personagens/diana.tscn", 88, 162, 'vista = "tres_quartos"'),
+                       ("DianaSentada", "res://cenas/personagens/diana_sentada.tscn", 98, 136, "visible = false")],
     },
     {
         "id": "corredor_servico", "largura": 960, "altura": 180,

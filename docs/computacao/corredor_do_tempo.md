@@ -61,8 +61,7 @@ No pior caso são 12 tentativas, das quais 9 erradas (4 + 3 + 2), ou seja, 45 s 
 
 No código, `_ano_usado(opcao)` diz se o ano já foi dado a um quadro travado, e o cursor pula esses anos. Ele anda em círculo pelas opções com `posmod(i + passo, 5)`, o resto da divisão que nunca dá negativo: da última opção, a seta para a direita volta à primeira.
 
-## 5. O relógio do corredor e a ansiedade
+## 5. O relógio do corredor
 
-- **Pressão:** com $p = $ tempo gasto / tempo total $\in [0, 1]$, a pressão sobre a ansiedade é $p^{1{,}6}$. A curva cresce devagar no começo e rápido no fim: com metade do tempo gasto a pressão é 0,33; com 90%, 0,84. É o "quanto menor o tempo, maior a ansiedade".
+- **Progresso:** com $p = $ tempo gasto / tempo total $\in [0, 1]$, o relógio anda em $p$ de 0 a 1. Até 2026-11-08 a curva $p^{1{,}6}$ também empurrava a barra de ansiedade; a ansiedade saiu do jogo e $p$ só guia o tique-taque.
 - **Tique-taque:** o intervalo entre tiques é a interpolação linear $\text{lerp}(1{,}0;\ 0{,}22;\ p^{1{,}3})$ segundos.
-- **Piso da ansiedade:** a barra é atualizada como antes (sobe com robôs por perto, desce longe deles) e, no fim, `valor = max(valor, pressão)`.

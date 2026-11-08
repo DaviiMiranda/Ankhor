@@ -1,6 +1,6 @@
 # gerar_itens_de_fase.py — desenha, por código, os itens novos de cada fase
-# (placeholders no estilo do jogo): walkman, módulo de pulso, mapa da Diana,
-# máscara de gás e espelho, mais a portinhola da galeria e as caixas do nicho.
+# (placeholders no estilo do jogo): módulo de pulso, mapa da Diana,
+# máscara de gás, mais a portinhola da galeria e as caixas do nicho.
 #
 # Como rodar (Python 3 + Pillow):
 #   python assets/modelagem/itens/gerar_itens_de_fase.py
@@ -32,17 +32,6 @@ CONTORNO = (18, 18, 24, 255)
 
 # (x0, y0, x1, y1, cor): retângulos do fundo para a frente, em unidades de 1/16.
 FIGURAS = {
-    "walkman": [
-        (2, 3, 14, 14, CONTORNO),
-        (3, 4, 13, 13, (216, 120, 40, 255)),
-        (4, 6, 12, 11, (40, 38, 46, 255)),
-        (5, 7, 7, 10, (150, 148, 160, 255)),
-        (9, 7, 11, 10, (150, 148, 160, 255)),
-        (7, 8, 9, 9, (88, 84, 96, 255)),
-        (4, 4, 6, 5, (240, 214, 90, 255)),
-        (8, 4, 12, 5, (90, 60, 30, 255)),
-        (3, 1, 5, 3, (90, 88, 98, 255)),
-    ],
     "modulo_pulso": [
         (3, 4, 13, 12, CONTORNO),
         (4, 5, 12, 11, (46, 72, 84, 255)),
@@ -74,13 +63,6 @@ FIGURAS = {
         (7, 9, 9, 12, (120, 120, 112, 255)),
         (5, 14, 11, 15, (120, 120, 112, 255)),
         (7, 13, 9, 14, (72, 84, 62, 255)),
-    ],
-    "espelho": [
-        (4, 2, 12, 12, CONTORNO),
-        (5, 3, 11, 11, (176, 214, 226, 255)),
-        (6, 4, 8, 6, (240, 250, 255, 255)),
-        (8, 7, 10, 10, (118, 160, 178, 255)),
-        (7, 12, 9, 15, (120, 96, 66, 255)),
     ],
 }
 

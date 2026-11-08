@@ -1,0 +1,28 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/dispositivo_2900.png" id="1_dispositivo"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cenario/objetos/dispositivo_2900_luz.png" id="2_numeros"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="3_luz"]
+
+[sub_resource type="CanvasItemMaterial" id="Aceso"]
+blend_mode = 1
+
+[node name="Dispositivo2900" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dispositivo")
+centered = false
+offset = Vector2(-12, -14)
+
+[node name="Numeros" type="Sprite2D" parent="."]
+material = SubResource("Aceso")
+texture = ExtResource("2_numeros")
+centered = false
+offset = Vector2(-12, -14)
+
+[node name="Luz" type="PointLight2D" parent="."]
+position = Vector2(0, -8)
+color = Color(0.45, 0.92, 1, 1)
+energy = 0.7
+texture = ExtResource("3_luz")
+texture_scale = 0.25

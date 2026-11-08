@@ -5,7 +5,7 @@
 
 ## A ideia
 
-Um corredor do subsolo onde quem construiu a Âncora testava a calibração da máquina com coisas dos anos 80. Quatro salinhas, cada uma com um puzzle sobre uma coisa da época: **videogames, filmes, computadores e telefones**. Um relógio só conta para o corredor inteiro: quanto menos tempo sobra, mais a ansiedade do Gabriel sobe. Se o relógio zera, é **game over** (volta ao último checkpoint).
+Um corredor do subsolo onde quem construiu a Âncora testava a calibração da máquina com coisas dos anos 80. Quatro salinhas, cada uma com um puzzle sobre uma coisa da época: **videogames, filmes, computadores e telefones**. Um relógio só conta para o corredor inteiro: o tique-taque acelera conforme o tempo acaba. Se o relógio zera, é **game over** (volta ao último checkpoint).
 
 ## Como se joga
 
@@ -27,11 +27,11 @@ Um corredor do subsolo onde quem construiu a Âncora testava a calibração da m
 
 A computação e a matemática de cada um (fila, pilha, pulsos, arranjos) estão em [`../computacao/corredor_do_tempo.md`](../computacao/corredor_do_tempo.md).
 
-## O relógio e a ansiedade
+## O relógio
 
 - **Mostrador** no canto de cima à direita (`m:ss`). Nos últimos **15 s** vira décimos (`8.7`), fica vermelho e pisca.
 - **Tique-taque:** o intervalo entre tiques cai de 1 s para 0,22 s conforme o tempo passa.
-- **Ansiedade:** o relógio impõe um **piso** à barra de ansiedade do Gabriel: `pressão = (tempo gasto / tempo total)^1,6`. A barra nunca fica abaixo da pressão (robôs por perto ainda podem subi-la mais). Com ela vêm os efeitos de tela que a ansiedade já tinha (oscilação, separação de cores, vinheta vermelha) e o gasto maior de estamina ao correr. Ao vencer ou morrer, a pressão volta a zero.
+- **Sem ansiedade:** até 2026-11-08 o relógio impunha um piso à barra de ansiedade do Gabriel (efeitos de tela e mais gasto de estamina). A ansiedade saiu do jogo: o relógio agora só mostra o tempo e acelera o tique-taque.
 - **Tempo zerado:** o Gabriel perde as 3 vidas de uma vez; aparece a tela de morte e ele volta ao último checkpoint. O progresso das salas é perdido: na próxima entrada o desafio recomeça do zero.
 
 ## Ajustar

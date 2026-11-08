@@ -10,9 +10,9 @@ Quando um robô está patrulhando ou perseguindo Gabriel, a principal forma de q
 | **Cabine Individual de Estudo** | Biblioteca Central | Prender a respiração no timing correto | Médio (visível se tiver frestas) |
 | **Raízes Caídas e Mesas Quebradas** | Pátios e Convivência | Ficar imóvel (manter tecla pressionada) | Médio |
 | **Macas com Cortinas Desfiadas** | Enfermarias e Clínicas | Controle de batimento cardíaco / respiração | Médio-Alto |
-| **Nicho de parede** (bebedouro ou armários) | Corredores do Bloco de salas | Ficar imóvel, sem `E`: parado no nicho com a lanterna apagada | Médio (contato ainda denuncia) |
+| **Nicho de parede** (bebedouro ou armários) | Corredores do Bloco de salas | Ficar imóvel, sem `E`: parado no nicho | Médio (contato ainda denuncia) |
 
-**Já no jogo:** a cabine de estudo da Biblioteca, com o microgame de respiração (2026-11-04, [`mecanicas_de_fase.md`](mecanicas_de_fase.md), seção 2). O nicho de parede (2026-10-12). Ficar parado por 0,4 s dentro dele, com a lanterna apagada, esconde o Gabriel da visão dos robôs; andar ou acender a luz revela. Ver `docs/fases/bloco_de_salas.md`, seção 12.8. O Bunker usa o vão do posto de máscaras de gás (`bunker_nicho`, ver `docs/fases/bunker.md`), e o Laboratório usa o mesmo esconderijo com outra peça de parede, o vão da estação de emergência (`dtec_nicho`, ver `docs/fases/dtec.md`).
+**Já no jogo:** a cabine de estudo da Biblioteca, com o microgame de respiração (2026-11-04, [`mecanicas_de_fase.md`](mecanicas_de_fase.md), seção 2). O nicho de parede (2026-10-12). Ficar parado por 0,4 s dentro dele esconde o Gabriel da visão dos robôs; andar revela. Ver `docs/fases/bloco_de_salas.md`, seção 12.8. O Bunker usa o vão do posto de máscaras de gás (`bunker_nicho`, ver `docs/fases/bunker.md`), e o Laboratório usa o mesmo esconderijo com outra peça de parede, o vão da estação de emergência (`dtec_nicho`, ver `docs/fases/dtec.md`).
 
 ---
 
@@ -31,6 +31,23 @@ Ficar dentro de um esconderijo não é garantia passiva de imunidade. Se um rob�
 
 ### C. Imobilidade Absoluta (*Dead Silence*)
 - Requer não tocar em nenhum controle de direção ou ação durante a passagem do perseguidor por um período de 3 a 5 segundos.
+
+### D. Respiração Contida (no jogo desde 2026-11-06, com o Ciborgue do bunker)
+- **Quando:** só com o Gabriel **escondido** (parado num nicho) e o **Ciborgue** parado do lado de fora, a até 56 px. Fora do esconderijo não há minijogo: ele simplesmente pega o Gabriel.
+- **A barra:** acima da cabeça do Gabriel, com uma faixa verde no meio e um marcador. À esquerda é prender o ar demais; à direita, respirar alto (ofegante).
+- **O controle:** **segure `E`** para prender o ar (o marcador vai para a esquerda) e **solte** para respirar (vai para a direita). Sozinho, ele sobe, porque o Gabriel está ofegante; e balança um pouco, para não dar para achar um ritmo fixo. A tecla `E` não aciona nada perto do nicho enquanto o minijogo está aberto.
+- **O ruído:** fora do verde, uma segunda barra vermelha, embaixo, enche; dentro, ela esvazia. Cheia, o Gabriel engasga (tosse), o Ciborgue ouve, tira o Gabriel do esconderijo e o ataca.
+- **O cansaço pesa:** cansado, a faixa encolhe 20%. (Até 2026-11-08 a ansiedade também estreitava a faixa verde, de 28% para 18%, e acelerava a subida da respiração, de 0,18 para 0,28 por segundo.)
+- **Aguentar:** o Ciborgue espera de 7 a 11 s e vai embora. O minijogo termina quando ele se afasta.
+- **Números** (`scripts/sistemas/respiracao_contida.gd`, no Inspetor da cena `respiracao_contida.tscn`):
+
+| Parâmetro | Valor |
+|---|---|
+| Largura da faixa verde | 28% |
+| Subida sem apertar | 0,18 / s |
+| Descida segurando `E` | 0,38 / s |
+
+O balanço soma $0{,}20 \cdot \sin(2{,}1t)\,\sin(0{,}63t + 1)$ por segundo. O ruído enche 0,65 por segundo fora da faixa e esvazia 0,18 dentro: com a barra vazia, ficar fora continuamente causa o engasgo em cerca de 1,54 s.
 
 ---
 

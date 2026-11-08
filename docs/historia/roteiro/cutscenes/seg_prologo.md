@@ -101,7 +101,7 @@
 
 ## Especificações Técnicas para Produção
 
-1. **Resolução de Arte:** tela de 640×360, com as ilustrações do tamanho da tela (640×360, escala 1), com o dobro de detalhe do cenário das salas, como os sprites dos personagens humanos. As ilustrações saem das referências em `assets/modelagem/cutscenes/seg_prologo/referencia/` pelo script `assets/modelagem/cutscenes/seg_prologo/pixelar_seg_prologo.py`, que reduz cada uma para 640×360, fecha a paleta em 96 cores e redesenha o despertador da cena 1 marcando 06:15. Para trocar uma ilustração, substitua a referência e rode o script de novo.
+1. **Resolução de Arte:** tela de 640×360, com as ilustrações do tamanho da tela (640×360, escala 1), com o dobro de detalhe do cenário das salas, como os sprites dos personagens humanos. As ilustrações saem das referências em `assets/modelagem/cutscenes/seg_prologo/referencia/` pelo script `assets/modelagem/cutscenes/seg_prologo/pixelar_seg_prologo.py`, que reduz cada uma para 640×360 e fecha a paleta em 96 cores. Números e letras saem como o gerador desenhou (o visor da cena 1 precisa marcar 06:15: confira depois de rodar). Para trocar uma ilustração, substitua a referência e rode o script de novo.
 2. **Camadas por Ilustração (quando aplicável):** hoje cada ilustração é uma imagem só. Se quiserem paralaxe depois, a ilustração precisa ser separada em:
    - Camada 0: Fundo estático (arquitetura/céu).
    - Camada 1: Elementos intermediários / Gabriel.

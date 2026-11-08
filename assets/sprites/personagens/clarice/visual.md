@@ -24,20 +24,14 @@ Renderizada junto com ela, no mesmo sprite:
 
 ## Sprites
 
-Todos em `assets/sprites/personagens/clarice/`. Os **retratos** e as vistas **de frente, de costas, de lado e de 3/4 de costas** (parada, andando e respirando) são pixel art feita a partir das referências em `assets/modelagem/personagens/clarice_referencia/`, pelo `pixelar_clarice.py` (só Python, Pillow e NumPy):
-
-```bash
-python assets/modelagem/personagens/pixelar_clarice.py
-```
-
-O resto (a estação de trabalho e o 3/4 de frente) ainda sai de `assets/modelagem/personagens/gerar_clarice.py` (Blender, sem abrir a janela). Rodar o `gerar_clarice.py` sobrescreve os sprites novos: rode o `pixelar_clarice.py` logo depois.
+Todos em `assets/sprites/personagens/clarice/`. **Desde 2026-11-06**, o corpo dela (todas as vistas, parada, andando e respirando) voltou a ser o renderizado pelo `assets/modelagem/personagens/gerar_clarice.py` (Blender, sem abrir a janela), no mesmo estilo do Gabriel, do Zane e da Diana. Os desenhados à mão pelo `pixelar_clarice.py` saíram do jogo (continuam no histórico do git). Os **retratos** saem da folha `clarice_referencia/expressoes_oito.webp`, pelo `pixelar_retratos.py` (`python assets/modelagem/personagens/pixelar_retratos.py clarice`): não rode o `pixelar_clarice.py` inteiro, ou o corpo desenhado e os retratos antigos voltam. A corrida de lado (`clarice_correr_lado.png`) sai do `gerar_correr.py`.
 
 | Arquivo | Tamanho | O que é |
 |---|---|---|
 | `clarice_digitando.png` | 8 quadros de 160 × 128 | de costas para a câmera, digitando (as mãos e a cabeça acompanham o texto) |
 | `clarice_virando.png` | 5 quadros de 160 × 128 | a cadeira girando até ela olhar para a esquerda |
 | `clarice_olhando.png` | 6 quadros de 160 × 128 | virada para o Gabriel, respirando |
-| `clarice_retrato_<nome>.png` | 80 × 80 | retratos da caixa de diálogo (mostrados em 40 × 40): `normal`, `seria` (a referência "raiva": dentes cerrados), `triste`, `envergonhada` (corada, mão no queixo) e `sorrindo` (a referência "feliz") |
+| `clarice_retrato_<nome>.png` | 80 × 80 | retratos da caixa de diálogo (mostrados em 40 × 40): `normal`, `sorrindo`, `seria` (dentes cerrados), `ironica` (sobrancelha erguida, sorriso de canto), `surpresa`, `preocupada`, `triste` e `envergonhada` (corada, mão no queixo) |
 | `clarice_<vista>.png` | 96 × 112 | em pé, parada, nas vistas do Gabriel: `lado`, `frente`, `tres_quartos`, `costas`, `tres_quartos_costas` |
 | `clarice_andar_<vista>.png` | 12 quadros de 96 × 112 | caminhada, um arquivo por vista. De frente e de costas: as quatro poses da fileira de baixo da referência, três quadros cada. De lado: boneco recortado, 12 quadros diferentes. No 3/4 de costas: as poses desenhadas e, entre o passo aberto e a passagem, dois quadros gerados com as pernas fechando (ver abaixo). Para a esquerda o Godot espelha |
 | `clarice_parado_<vista>.png` | 8 quadros de 96 × 112 | em pé respirando, um arquivo por vista |

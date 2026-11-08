@@ -20,7 +20,7 @@ graph TD
     I --> A
 ```
 
-1. **Explorar Ruínas no Presente:** Navegar pelo campus desabado, recolhendo pilhas para a lanterna, bilhetes e itens-chave.
+1. **Explorar Ruínas no Presente:** Navegar pelo campus desabado, recolhendo pilhas para o notebook, bilhetes e itens-chave.
 2. **Evitar e Sobreviver aos Robôs:** Usar passos lentos, esconderijos com microgames interativos, gestão de luz e arremesso de objetos de distração.
 3. **Alcançar Sala Segura:** Localizar áreas estruturalmente intactas com trancas internas.
 4. **Dormir para Salvar:** Salvar o progresso e transitar para a dimensão do sonho.
@@ -30,18 +30,20 @@ graph TD
 
 ## 📂 Detalhamento dos Módulos
 
-- **[`mecanicas_de_fase.md`](mecanicas_de_fase.md):** O que cada fase acrescenta: a cabine, o walkman, o sonar, a Célula como carga, a galeria, o espelho, o gás e a máscara, mais a base (robô que atravessa a porta, puzzle sem pausa, segurar `E`).
+- **[`mecanicas_de_fase.md`](mecanicas_de_fase.md):** O que cada fase acrescenta: a cabine, o sonar, a Célula como carga, a galeria, o gás e a máscara, mais a base (robô que atravessa a porta, puzzle sem pausa, segurar `E`).
 - **[`movimentacao_e_terreno.md`](movimentacao_e_terreno.md):** Controles de locomoção, corrida, gestão de estamina, ruído de passos e navegação vertical/obstáculos.
+- **[`combate.md`](combate.md):** Robô atirador, arma de impulso e o modo combate da sala de teste (só no Centro de Convivência).
 - **[`furtividade_e_esconderijos.md`](furtividade_e_esconderijos.md):** Tipos de esconderijos (armários, cabines, raízes), microgames de tensão (respiração, imobilidade) e distrações.
-- **[`iluminacao_e_lanterna.md`](iluminacao_e_lanterna.md):** A lanterna a pilha, o dilema ver/ser visto, as luzes de emergência e as cápsulas de clarão (previstas).
+- **[`iluminacao.md`](iluminacao.md):** O dilema ver/ser visto, as luzes de emergência, o raio de visão e as pilhas.
 - **[`vida_e_checkpoint.md`](vida_e_checkpoint.md):** 3 corações, dano dos robôs, tela de morte e checkpoints.
-- **[`itens_e_inventario.md`](itens_e_inventario.md):** Pegar, guardar, equipar e usar itens: inventário em grade (matriz), espaços de gadget e a lanterna.
+- **[`salvamento_e_tempo_de_jogo.md`](salvamento_e_tempo_de_jogo.md):** Os seis espaços de save (gravar por cima ou num livre) e o tempo de jogo da campanha, sem a pausa.
+- **[`itens_e_inventario.md`](itens_e_inventario.md):** Pegar, guardar, equipar e usar itens: inventário em grade (matriz), espaços de gadget e as pilhas.
 - **[`cofre_e_codigos.md`](cofre_e_codigos.md):** Cofres com código de dígitos, em que o jogador junta as pistas da sala e testa as combinações (o primeiro está no cinema do Centro de Convivência).
 - **[`hackeamento.md`](hackeamento.md):** Minigames do notebook para abrir portas trancadas (Sequência e Sincronia), em três dificuldades.
-- **[`corredor_do_tempo.md`](corredor_do_tempo.md):** A sala opcional do Labirinto contra o relógio: quatro mecanismos para alinhar no tempo certo, a ansiedade subindo conforme o tempo acaba e game over se ele zera.
+- **[`corredor_do_tempo.md`](corredor_do_tempo.md):** A sala opcional do Labirinto contra o relógio: quatro mecanismos para alinhar no tempo certo, o relógio contando para o corredor inteiro e game over se ele zera.
 - **[`sala_segura.md`](sala_segura.md):** A sala segura de cada fase, onde nenhum robô entra, e os óculos do Zane como máquina de salvar.
 - **[`visor_3d.md`](visor_3d.md):** Com os óculos no rosto, o jogo vira 3D em primeira pessoa: o quarto do Gabriel, com as anotações no mural, os documentos na mesa, os números num quadro branco e o save no menu de uma TV.
 - **[`hora_morta.md`](hora_morta.md):** O mini game de terror em 3D da Sala VR: uma criatura que só existe onde há luz e a Varredura, em que o jogador precisa ficar totalmente parado.
-- **[`colecionaveis.md`](colecionaveis.md):** Uma coleção escondida em cada fase (Biblioteca: três pingentes de farol; Bloco de salas: três disquetes da Clarice; Labirinto: três pingentes do chapéu do Baltazar, um deles só depois de a lanterna revelar a parede falsa); ao juntar todas as peças de uma coleção, o quarto do Gabriel ganha uma recompensa (que dá para **examinar** lá: a peça sobe e gira, com nome e descrição) (um farol 3D na mesa, uma pilha de disquetes ao lado dele e o tricórnio sobre o notebook, tudo na mesa; Convivência: três botões da jaqueta da Diana, que põem a jaqueta na cama; Bunker: três chips dos óculos do Zane, que põem os óculos no criado-mudo).
+- **[`colecionaveis.md`](colecionaveis.md):** Uma coleção escondida em cada fase (Biblioteca: três pingentes de farol; Bloco de salas: três disquetes da Clarice; Labirinto: três pingentes do chapéu do Baltazar, um deles só depois de o Gabriel chegar perto da parede falsa); ao juntar todas as peças de uma coleção, o quarto do Gabriel ganha uma recompensa (que dá para **examinar** lá: a peça sobe e gira, com nome e descrição) (um farol 3D na mesa, uma pilha de disquetes ao lado dele e o tricórnio sobre o notebook, tudo na mesa; Convivência: três botões da jaqueta da Diana, que põem a jaqueta na cama; Bunker: três chips dos óculos do Zane, que põem os óculos no criado-mudo).
 - **[`registros_e_caderno.md`](registros_e_caderno.md):** Ler os documentos dos antecessores, as transmissões de rádio (a voz da Clarice) e o Caderno do Gabriel (aba Anotações do inventário, tecla N).
 - **[`sono_e_sonhos.md`](sono_e_sonhos.md):** Arquitetura do sistema de save game e jogabilidade investigativa nos sonhos.

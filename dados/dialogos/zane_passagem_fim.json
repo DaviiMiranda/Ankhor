@@ -1,0 +1,20 @@
+{
+	"id": "zane_passagem_fim",
+	"inicio": "fim",
+	"trechos": {
+		"fim": {
+			"falas": [
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Três lâmpadas acesas. A porta do fundo destravou."
+				},
+				{
+					"quem": "Zane",
+					"retrato": "zane/zane_retrato_normal",
+					"texto": "Gabriel, estou do outro lado da parede. Quatro segundos e eu entro."
+				}
+			]
+		}
+	}
+}

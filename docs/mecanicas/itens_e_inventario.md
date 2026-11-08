@@ -1,6 +1,6 @@
 # Mecânicas — Itens, Inventário e Gadgets
 
-Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão no documento da mecânica dele (a lanterna, por exemplo, em [`iluminacao_e_lanterna.md`](iluminacao_e_lanterna.md)). Aqui fica o sistema que serve para todos.
+Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão no documento da mecânica dele (o notebook, por exemplo, em [`hackeamento.md`](hackeamento.md)). Aqui fica o sistema que serve para todos.
 
 ---
 
@@ -8,54 +8,52 @@ Como o Gabriel pega, guarda, equipa e usa itens. As regras de cada item estão n
 
 | Tecla | O que faz |
 |---|---|
-| `E` | Interage com o que está mais perto: pega um item do chão, troca a pilha da lanterna |
+| `E` | Interage com o que está mais perto: pega um item do chão, troca a pilha do notebook |
 | `Tab` ou `I` | Abre e fecha o inventário na aba **Itens** (o jogo pausa enquanto ele está aberto) |
 | `N` | Abre o inventário direto na aba **Anotações** |
 | `Q` | Com o inventário aberto, passa para a próxima aba: **Itens**, **Anotações** e **Objetivo** (também dá para clicar na aba) |
 | `1`, `2`, `3` | Usam o gadget equipado naquele espaço. Com o inventário aberto, equipam o item escolhido |
 
 - **Inventário:** uma grade de **3 linhas × 4 colunas**. Todo item pego entra no primeiro espaço livre.
-- **Abrir a mochila:** ao abrir, o Gabriel para, tira a alça de um ombro, traz a mochila para a frente da barriga e abaixa a cabeça e puxa o zíper (24 quadros em 1 s). O som do zíper termina junto com o gesto, e só no fim dele o fundo escurece e a janela aparece. Ao fechar, a janela some primeiro e o gesto toca ao contrário (0,6 s). As durações são `SEGUNDOS_ABRINDO_MOCHILA` e `SEGUNDOS_FECHANDO_MOCHILA`, em `tela_inventario.gd`. **O mundo fica pausado desde o primeiro quadro**, então abrir o inventário nunca custa tempo diante de um robô. Sem o controle do Gabriel (porta, cutscene, óculos da sala segura), a janela abre direto, sem gesto. Tiras em `assets/sprites/personagens/gabriel/gabriel_mochila_*.png`, geradas por `assets/modelagem/personagens/gerar_gabriel_mochila.py`, uma por vista; `scripts/personagens/gesto_mochila.gd` as reúne e `scripts/interface/tela_inventario.gd` toca o gesto. A lanterna sai da mão enquanto qualquer tira especial toca.
+- **Abrir a mochila:** ao abrir, o Gabriel para, tira a alça de um ombro, traz a mochila para a frente da barriga e abaixa a cabeça e puxa o zíper (24 quadros em 1 s). O som do zíper termina junto com o gesto, e só no fim dele o fundo escurece e a janela aparece. Ao fechar, a janela some primeiro e o gesto toca ao contrário (0,6 s). As durações são `SEGUNDOS_ABRINDO_MOCHILA` e `SEGUNDOS_FECHANDO_MOCHILA`, em `tela_inventario.gd`. **O mundo fica pausado desde o primeiro quadro**, então abrir o inventário nunca custa tempo diante de um robô. Sem o controle do Gabriel (porta, cutscene, óculos da sala segura), a janela abre direto, sem gesto. Tiras em `assets/sprites/personagens/gabriel/gabriel_mochila_*.png`, geradas por `assets/modelagem/personagens/gerar_gabriel_mochila.py`, uma por vista; `scripts/personagens/gesto_mochila.gd` as reúne e `scripts/interface/tela_inventario.gd` toca o gesto.
 - **Ao escolher um espaço:** o ícone cresce 25% e volta, a moldura acende e o nome e a descrição do item aparecem em fade (`EspacoItem.destacar`).
 - **Ao equipar ou desequipar:** toca um estalo curto, mais agudo ao equipar e mais grave ao desequipar, e o espaço do gadget também pisca ao equipar. Pegar um item que se equipa sozinho não toca esse som.
 - **Cabeçalho com abas:** no alto da janela ficam **ITENS**, **ANOTAÇÕES** e **OBJETIVO**. A aba aberta fica clara e sublinhada. Quando há anotação não lida, a aba mostra um ponto (`ANOTAÇÕES •`). A aba Anotações está explicada em [`registros_e_caderno.md`](registros_e_caderno.md).
 - **Aba Objetivo:** mostra o **objetivo principal da fase** em que o jogador está (o nome da fase, o objetivo em duas ou três frases) e, embaixo, o que fazer **agora**: o primeiro passo que ainda não foi cumprido. Os passos acompanham as marcas de `Progresso` (por exemplo `energia`, `grade_aberta`, `bunker_energia`) e itens do inventário. Fora das fases (sala de teste), mostra só o objetivo geral do jogo. Os textos ficam em `scripts/sistemas/objetivos.gd`: para uma fase nova, acrescente uma entrada em `FASES` (a pasta da fase, o nome, o objetivo, os passos com as marcas e o passo final).
 - **Destaque no cenário:** todo item que dá para pegar (itens no chão e pilhas) tem uma **luz fraca que pulsa** em volta e, de tempos em tempos, um **brilho de pixel** que pisca em cima do desenho, visível até no escuro. Assim o jogador sabe o que é coletável sem precisar de seta ou contorno.
-- **Gadgets:** **3 espaços**, um para cada ferramenta equipável prevista em [`docs/historia/personagens/gabriel.docx`](../historia/personagens/gabriel.docx): lanterna, cápsulas de clarão e objetos de arremesso. Equipar não tira o item da grade; o espaço de gadget é um atalho para ele.
+- **Gadgets:** **3 espaços**, um para cada ferramenta equipável prevista em [`docs/historia/personagens/gabriel.docx`](../historia/personagens/gabriel.docx): flashes, notebook e objetos de arremesso. Equipar não tira o item da grade; o espaço de gadget é um atalho para ele.
 - **Aviso de `E`:** perto de um item ou de uma pilha, aparece só a tecla `[E]` em cima dele, sem texto. O nome do item aparece depois de pegar ("Você pegou: ...") e a descrição fica no inventário. Documentos continuam com o verbo (`[E] Ler o bilhete`), porque ler é uma ação diferente de pegar. Quem decide o texto é o `texto_acao` do `Interagivel`: vazio mostra só a tecla.
 - Ao pegar um gadget com um espaço livre, ele já é equipado.
 - **Item novo (primeira vez):** ao pegar um item pela primeira vez no jogo, o jogo pausa e abre a **tela de item novo**: a imagem detalhada, o nome e a descrição. `E` ou `Esc` guardam e voltam ao jogo. Detalhes na seção 3.
 - **Examinar:** no inventário, com um item escolhido, `E` abre a mesma tela (imagem detalhada, nome e descrição), com o título "Examinar" e o fundo opaco. `E` ou `Esc` voltam ao inventário. Serve para rever um item quando quiser.
-- **Item único já pego não aparece de novo:** um item que não empilha (lanterna, rádio, notebook) só aparece no chão se o Gabriel ainda não tiver um. Assim a mesma lanterna pode estar no começo de várias fases sem duplicar.
+- **Item único já pego não aparece de novo:** um item que não empilha (rádio, notebook) só aparece no chão se o Gabriel ainda não tiver um. Assim o mesmo item pode estar no começo de várias fases sem duplicar.
 - Na tela, os espaços de gadget ficam no canto de baixo à esquerda, com o número da tecla. A borda acende enquanto o gadget está em uso (pote destampado), e a barrinha embaixo mostra a carga.
-
-### Lanterna
-
-- Fica no chão, perto de onde o Gabriel acorda na Biblioteca (e perto do início do labirinto). Pegar com `E` já equipa no espaço 1.
-- Liga e desliga com a tecla do espaço. A bateria dura 4 minutos acesa; troca-se com **pilhas** achadas no mapa (`E` perto da pilha).
-- Regras completas em [`iluminacao_e_lanterna.md`](iluminacao_e_lanterna.md).
 
 ### Gadgets das fases
 
-Walkman, máscara de gás e caco de espelho são gadgets novos, e o módulo de pulso amplia o notebook: regras em [`mecanicas_de_fase.md`](mecanicas_de_fase.md). Quando os 3 espaços estão ocupados, o item novo vai só para a grade e é preciso equipar pelo inventário.
+A máscara de gás é um gadget novo, e o módulo de pulso amplia o notebook: regras em [`mecanicas_de_fase.md`](mecanicas_de_fase.md). Quando os 3 espaços estão ocupados, o item novo vai só para a grade e é preciso equipar pelo inventário.
 
-- **Largar no chão:** `Inventario.largar(item, cena, posicao)` tira o item da grade e guarda em `Inventario.largados` (salvo no arquivo). `ItensLargados` recria o item ao entrar na sala. Use `cena_largado` no `Item` para um objeto próprio, como o walkman; sem isso, vira um `ItemNoChao` com `reaparece`.
+- **Largar no chão:** `Inventario.largar(item, cena, posicao)` tira o item da grade e guarda em `Inventario.largados` (salvo no arquivo). `ItensLargados` recria o item ao entrar na sala. Use `cena_largado` no `Item` para um objeto próprio, como um item que vira objeto no chão; sem isso, vira um `ItemNoChao` com `reaparece`.
 - **Carga pesada:** `carga_pesada` no `Item` impede de correr, faz barulho e libera a tecla `G` para largar.
 - **Chave usada:** ao destrancar, a `Porta` tira a chave do inventário.
 
+### Chips eletrônicos
+
+**Chips** são recursos coletáveis, com até 5 unidades por espaço, usados na aba Criação: 1 chip e 1 pilha por flash, ou 1 chip e 3 pilhas por bala de impulso. Por compatibilidade com cenas e saves antigos, o arquivo e o id internos ainda se chamam `pedra`; a arte mostra uma placa de microcontrolador; o chip dos óculos continua uma peça de coleção separada. O item deixou de ser equipável e não pode ser arremessado. Assim, a distração pelo buraco da sala 204 está indisponível.
+
 ### Gadgets em teste (sala de teste)
 
-Os três estão na sala de teste (menu Fases → Teste, só pelo editor) e ainda não entraram em nenhuma fase. Os números estão no Inspetor da cena de cada um e são um primeiro chute para o grupo ajustar jogando.
+Os gadgets podem ser testados na sala de teste (menu Fases → Teste). Os números ficam no Inspetor da cena de cada um e podem ser ajustados após os testes.
 
 | Gadget | Como usa | O que faz | O custo |
 |---|---|---|---|
-| **Cápsula de clarão** (`clarao`) | Tecla do espaço | Flash que paralisa por 3,5 s os robôs a até 110 px. O tempo é multiplicado pelo `fator_clarao` do robô: Sentinela ×1,5 (enxerga, sofre mais), Rastreador ×0,6 | No máximo **2**. Paralisado, o robô apaga os olhos; depois procura o Gabriel onde está |
-| **Pedra** (`pedra`) | Tecla do espaço | Joga uma pedra ~110 px para onde o Gabriel olha (para antes de uma parede). Ela sai da altura do peito (`Gabriel.posicao_do_peito()`) e cai até o chão em arco. Onde cai, faz barulho: os robôs que ouvem vão investigar | No máximo **5**. Não serve numa perseguição |
-| **Notebook** (`notebook`) | Tecla do espaço, parado perto do alvo (44 px) | Hackeia: **porta trancada** abre ao vencer um minigame (ver [`hackeamento.md`](hackeamento.md)); **robô** fica desligado 8 s. Em robô, uma barra em cima do Gabriel mostra o progresso de 2,5 s | Gasta 25% da bateria (4 hacks). Durante o hack o Gabriel não se mexe e a tela acesa conta como lanterna para o Sentinela. Levar dano interrompe. Robô **só por trás** |
+| **Flash** (`clarao`) | Tecla do espaço | Flash que paralisa por 3,5 s os robôs a até 110 px. O tempo é multiplicado pelo `fator_clarao` do robô: Sentinela ×1,5 (enxerga, sofre mais), Rastreador ×0,6 | No máximo **2**. Paralisado, o robô apaga os olhos; depois procura o Gabriel onde está |
+| **Notebook** (`notebook`) | Tecla do espaço, parado perto do alvo (44 px) | Hackeia: **porta trancada** abre ao vencer um minigame (ver [`hackeamento.md`](hackeamento.md)); **robô** fica desligado 8 s. Em robô, uma barra em cima do Gabriel mostra o progresso de 2,5 s | Gasta 25% da bateria (4 hacks). Durante o hack o Gabriel não se mexe e a tela acesa conta como luz acesa para a Sentinela. Levar dano interrompe. Robô **só por trás** |
+| **Arma de impulso** (`arma_impulso`) | Apertar a tecla do espaço **trava a mira no robô mais próximo**; apertar **de novo** atira (`Shift` cancela) | Onda de choque num **cone de 30°, 150 px**: **empurra os robôs** e os paralisa por 0,9 s. Fica no cofre do cinema (Centro de Convivência). Ver [`combate.md`](combate.md) | Até **6 balas** (começa com 2), criadas na aba **Criação** a 1 chip e 3 pilhas cada. Não recarrega sozinha |
 
 - **Itens que empilham:** um item com `maximo_unidades` maior que 0 ocupa um espaço só; pegar outro soma 1 até o máximo (cheio, fica no chão com o aviso "no máximo N"). A barrinha do espaço mostra quantas unidades sobram e o número no canto de baixo à direita mostra a quantidade.
-- **Acabou:** quando um gadget chega a zero (unidades, ou bateria da lanterna e do notebook), o ícone fica escuro e aparece um **0 vermelho** no canto do espaço, no HUD e no inventário.
-- **Conteúdo de computação:** o barulho da pedra é a mesma **BFS** do som dos passos (`Robo.ouvir_barulho`); o "só por trás" do notebook é **produto escalar** entre a direção do olhar do robô e a direção até o Gabriel (negativo = atrás). Detalhes em [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md).
+- **Acabou:** quando um gadget chega a zero (unidades, ou bateria do notebook), o ícone fica escuro e aparece um **0 vermelho** no canto do espaço, no HUD e no inventário.
+- **Conteúdo de computação:** o som dos passos usa **BFS** (`Robo.ouvir_barulho`); o "só por trás" do notebook é **produto escalar** entre a direção do olhar do robô e a direção até o Gabriel (negativo = atrás). Detalhes em [`../computacao/ia_e_perseguicao.md`](../computacao/ia_e_perseguicao.md).
 - **Paralisado** é o estado `ATORDOADO` da máquina de estados do robô: não anda, não vê, não ouve, não ataca.
 
 ---
@@ -86,9 +84,8 @@ grade = [ [pote, null, null, null],     linha 0
 | Os itens do jogo | `dados/itens/*.tres` |
 | Item no chão | `cenas/itens/item_no_chao.tscn` |
 | Base de tudo que interage com `E` (`Interagivel`) | `scripts/itens/interagivel.gd` |
-| Efeito da lanterna equipada (a luz) | `cenas/itens/lanterna.tscn` |
 | Pilha no chão (recarga) | `cenas/itens/pilha_no_chao.tscn` |
-| Cápsula de clarão, pedra, notebook (efeitos) | `cenas/itens/clarao.tscn`, `pedra.tscn` (e `pedra_arremessada.tscn`), `notebook.tscn` |
+| Flash e notebook (efeitos) | `cenas/itens/clarao.tscn`, `notebook.tscn` |
 | Destaque dos coletáveis (luz que pulsa e brilho) | `cenas/itens/destaque_coletavel.tscn` |
 | HUD (espaços de gadget, aviso "[E]", mensagem) | `cenas/interface/hud.tscn` |
 | Tela do inventário (abas Itens e Anotações) | `cenas/interface/tela_inventario.tscn` |
@@ -104,7 +101,7 @@ O HUD e a tela do inventário já estão no `modelo_sala.tscn`: toda sala nova h
 
 1. **Desenho:** escreva a função do ícone (16 × 16) e, se quiser, a do item no chão em `gerar_interface.py`, adicione no dicionário `ICONES` e rode `python assets/modelagem/interface/gerar_interface.py`. Abra o Godot para gerar os `.import`.
 2. **Dados:** no Godot, botão direito em `dados/itens/` → *Novo* → *Recurso...* → `Item`. Preencha `id`, `nome`, `descricao`, `icone` e `sprite_chao`.
-3. **Se for gadget:** marque `equipavel` e crie a cena do efeito (como `cenas/itens/lanterna.tscn`), com um script que tenha a função `usar()`. Coloque essa cena em `cena_gadget`. Guarde o que precisa sobreviver à troca de sala em `Inventario.estado_de(id)`, não no script.
+3. **Se for gadget:** marque `equipavel` e crie a cena do efeito (como `cenas/itens/clarao.tscn`), com um script que tenha a função `usar()`. Coloque essa cena em `cena_gadget`. Guarde o que precisa sobreviver à troca de sala em `Inventario.estado_de(id)`, não no script.
 4. **No mapa:** arraste `cenas/itens/item_no_chao.tscn` para o nó `Objetos` da sala (a origem é o pé) e escolha o item no Inspetor. O destaque já vem junto e se ajusta ao tamanho do desenho.
 
 Para destacar outra coisa coletável, instancie `cenas/itens/destaque_coletavel.tscn` como filho dela: o brilho procura um irmão chamado `Sprite2D` e pisca só onde o desenho tem pixel. A intensidade da luz, o ritmo do pulso e a frequência do brilho estão no Inspetor.
@@ -123,21 +120,21 @@ Para destacar outra coisa coletável, instancie `cenas/itens/destaque_coletavel.
 
 A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo novo), o jogo pausa e mostra a imagem grande do item, o nome e a descrição. É como o Resident Evil faz ao pegar um objeto.
 
-- **Quem dispara:** `Inventario.adicionar()` registra o `id` em `Inventario.vistos` e emite o sinal `item_novo`. Pegar mais uma unidade de um item que empilha (pedra, clarão) não dispara de novo.
+- **Quem dispara:** `Inventario.adicionar()` registra o `id` em `Inventario.vistos` e emite o sinal `item_novo`. Pegar mais uma unidade de um item que empilha (chips, clarão) não dispara de novo.
 - **Quem mostra:** `cenas/interface/tela_item_novo.tscn`, um autoload chamado `ItemNovo`. Fica acima de todas as telas (camada 10). Se já houver outra tela aberta (menu de pausa, documento), ela espera fechar. Vários itens ao mesmo tempo entram numa fila.
 - **Fechar:** `E` ou `Esc`, só depois de 0,45 s.
 - **Sem imagem detalhada:** o item mostra o ícone de 16 × 16 ampliado em escala inteira, com a mesma descrição. Nenhum item fica sem a tela.
 - **A descrição** é o campo `descricao` do item (o mesmo que aparece no inventário). Cabem 7 linhas; se passar, o Godot avisa no console.
 - **Para testar:** a sala de teste tem um exemplar de cada item do jogo. Os das fases (chaves, molho de chaves, disquete e alicate) ficam em fila no canto direito, depois da porta dos robôs.
 - **Examinar pelo inventário:** `TelaInventario` chama `ItemNovo.examinar(item)`. Nesse modo a tela não despausa o jogo ao fechar (quem pausou foi o inventário), e o inventário ignora as teclas enquanto ela está aberta.
-- **Com imagem detalhada:** todos os 11 itens (lanterna, rádio, cápsula de clarão, pedra, notebook, as chaves da manutenção, da fita azul e do depósito, o molho de chaves, o alicate e o disquete da Clarice). A tela com o ícone ampliado continua existindo para um item novo que ainda não tenha imagem.
+- **Com imagem detalhada:** os itens com arte detalhada (rádio, flash, notebook, as chaves da manutenção, da fita azul e do depósito, o molho de chaves, o alicate e o disquete da Clarice). A tela com o ícone ampliado continua existindo para um item novo que ainda não tenha imagem.
 
 ### Como colocar a imagem detalhada de um item
 
 1. Gere a imagem no gerador de imagem, com o item inteiro e centralizado, sobre um **fundo escuro e liso**. Pode ter degradê, vinheta e um brilho atrás do item: o script tira. Peça **sem sombra no chão**, porque uma sombra de borda dura fica grudada no item. Estilo pixel art, o mesmo para todos os itens.
 2. Rode o script, que tira o fundo, corta rente e salva em `assets/sprites/itens/<id>_detalhe.png`:
    ```bash
-   python assets/modelagem/itens/preparar_detalhe.py caminho/da/imagem.webp lanterna
+   python assets/modelagem/itens/preparar_detalhe.py caminho/da/imagem.webp radio
    ```
    Se um vão fechado do desenho (o meio de uma argola, o espaço entre os cabos do alicate) ficar com uma mancha do brilho do fundo, rode de novo com `--furo X,Y`, onde X,Y é um ponto dentro do vão, em pixels da imagem original. Pode repetir a opção. Se sobrar um resto que o gerador desenhou colado no item, `--apagar X0,Y0,X1,Y1` apaga um retângulo da imagem original. Se, ao contrário, o fundo comer uma parte escura do item, diminua o `--passo` (padrão 7; tente 4 ou 5). Os comandos usados em cada item estão na tabela abaixo.
 3. Abra o projeto no Godot (ele cria o `.import`) e, em `dados/itens/<id>.tres`, arraste o PNG para o campo **Imagem Detalhe**.
@@ -150,7 +147,7 @@ A cada item pego pela **primeira vez** (conta por `id`, até começar um jogo no
 | `alicate` | `--furo 1062,524` |
 | `chave_deposito` | `--passo 4 --furo 1000,150 --furo 780,320` (o cone de luz de cima e o furo da cabeça; com o passo padrão o fundo comia a parte escura da chave) |
 | `pedra` | `--apagar 880,688,1110,720` (a faixa preta de "chão" que o gerador desenhou embaixo dela) |
-| `chave_manutencao`, `clarao`, `notebook`, `disquete_clarice` | nenhuma |
+| `chave_manutencao`, `clarao`, `notebook`, `disquete_clarice`, `arma_impulso` | nenhuma |
 | `radio` | feito com a versão anterior do script (commit `0399b1a` do PR #107), que tirava a sombra num fundo de uma cor só |
 
 ### Conteúdo de computação

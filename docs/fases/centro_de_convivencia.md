@@ -3,7 +3,7 @@
 > **Status:** Jogável (14 salas: a praça com 4 restaurantes, o segundo andar com 3 lojas e a sala segura; puzzle de Coloração de Grafos e mais seis puzzles opcionais (seção 8), Célula de Energia, letreiros e holofotes que acendem com a energia, transmissões do Zane pelo rádio)  
 > **Área:** o Centro de Convivência da Unifor, em 3026: uma praça de alimentação sob uma cúpula de vidro quebrada  
 > **Ordem na história:** **quarta fase**, depois do Labirinto ([`labirinto.md`](labirinto.md)) e antes do Bunker ([`bunker.md`](bunker.md)).  
-> **Como se chega:** Pelo duto do alçapão da oficina do Zane no fim do Labirinto, saindo em `passarela_acesso`.  
+> **Como se chega:** Pelo duto de volta da câmara selada, no fim do Labirinto (o alçapão da oficina do Zane leva primeiro à câmara; ver [`labirinto.md`](labirinto.md), seção 5.1), saindo em `passarela_acesso`.  
 > **Saída:** O elevador de carga do Churrasco Solar (`loja_4`), que desce para a entrada do Bunker (`fim_da_convivencia`).  
 > **No menu Fases:** Cadastrado em `dados/fases/04_convivencia.tres` ("Convivência").
 
@@ -58,7 +58,7 @@ O **segundo andar** (opcional, seção 7) é outro pedaço do grafo, pendurado n
 |---|---|---|---|---|---|---|
 | `passarela_acesso` | Passarela Superior (chegada, checkpoint, rádio) e a porta de vidro verde da **sala segura**, com a luz verde em cima | 640 × 180 px | chapa de aço | `praca_central`, `sala_segura` | — | Nenhuma |
 | `sala_segura` | **Sala segura** do modelo: os óculos do Zane para salvar, o piano ([`../mecanicas/sala_segura.md`](../mecanicas/sala_segura.md)) | 320 × 180 px | tapete | `passarela_acesso` | — | Nenhuma (robô não entra) |
-| `praca_central` | Praça Central, em arco, com 4 restaurantes, a entrada e a escada do mezanino | 2000 × 560 px | pedra e musgo | passarela, as 4 lojas e a escada | Mesas, árvores, 2 nichos de manutenção | 2 **Sentinelas** (rotas em volta das mesas) |
+| `praca_central` | Praça Central, em arco, com 4 restaurantes, a entrada e a escada do mezanino | 2000 × 560 px | pedra e musgo | passarela, as 4 lojas e a escada | Mesas, árvores, 2 nichos de manutenção | 2 **Sentinelas** (rotas em volta das mesas) e 1 **Atirador** (ronda pelo corredor do meio) |
 | `loja_1` | **Tapioca Orbital**: cafeteria protegida (sem robôs, com checkpoint), com a Ordem de Serviço e a **estufa de lanches** (seção 8.6) | 400 × 240 px | madeira clara | `praca_central` | — | Nenhuma |
 | `loja_2` | **Self Nebulosa**: restaurante de bufê, com a faixa de louça quebrada e o **cofre do bufê** (seção 8.1) | 640 × 280 px | xadrez brilhante | `praca_central`, `camara_fria` | Nicho de serviço | 1 **Rastreador** |
 | `camara_fria` | Câmara fria do Self Nebulosa: onde está a **Célula de Energia** | 400 × 240 px | grade de aço e gelo | `loja_2` | — | Nenhuma |
@@ -87,7 +87,7 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
 2. **Travessia da Praça (`praca_central`):**
    - Gabriel entra pelo portão do meio. As Sentinelas rondam em volta do conjunto de mesas, por corredores livres (`rota`). Mesas, árvores e postes cortam a linha de visão, e os 2 nichos de manutenção (nas fachadas) escondem quem fica parado no escuro. Há 3 pedras para distração.
 3. **Abrigo e Pista da Célula (`loja_1`):**
-   - Na Tapioca Orbital há um **checkpoint**, uma pilha, uma cápsula de clarão, a **estufa de lanches** (puzzle opcional, seção 8.6) e a **Ordem de Serviço** (`ordem_manutencao_convivencia`), que diz que a célula reserva foi levada para o gerador da **câmara fria do Self Nebulosa**.
+   - Na Tapioca Orbital há um **checkpoint**, uma pilha, um flash, a **estufa de lanches** (puzzle opcional, seção 8.6) e a **Ordem de Serviço** (`ordem_manutencao_convivencia`), que diz que a célula reserva foi levada para o gerador da **câmara fria do Self Nebulosa**.
 4. **Infiltração no Self Nebulosa (`loja_2` e `camara_fria`):**
    - No salão, um **Rastreador** patrulha perto de uma faixa de **cacos de louça e vidro** (`ZonaDePiso` com `fator_ruido = 2.0`).
    - O jogador contorna pelas passadeiras das pontas (`fator_ruido = 0.6`) ou distrai o Rastreador com pedras para entrar na câmara fria e pegar a **Célula de Energia** (`celula_energia.tres`) e 1 pilha.
@@ -100,13 +100,19 @@ Atravessar a praça, achar a **Célula de Energia** na câmara fria do Self Nebu
    - Ao entrar no Churrasco Solar, toca o recado do Henrique, pela Clarice, pedindo para não descer (`grupo_convivencia_03`). Gabriel decide descer.
    - Na `loja_4`, a porta do elevador de carga se recolhe e a porta leva a `fim_da_convivencia.tscn`, abrindo a entrada do **Bunker**.
 7. **Segundo andar (opcional):** a escada ao lado da entrada da praça sobe para o mezanino, que tem uma Ronda, mais pedras e pilhas, três lojas para explorar e dois nichos. Não é preciso para terminar a fase (seção 7).
-8. **Puzzles opcionais:** a estufa de lanches (Tapioca Orbital), o cofre do bufê (Self Nebulosa), o quadro do bar (Churrasco Solar), a trava do plotter (Gráfica), a arara (Loja Universitária) e o cofre do cinema dão pilhas e cápsulas de clarão. Nenhum é preciso para terminar a fase (seção 8).
+8. **Puzzles opcionais:** a estufa de lanches (Tapioca Orbital), o cofre do bufê (Self Nebulosa), o quadro do bar (Churrasco Solar), a trava do plotter (Gráfica), a arara (Loja Universitária) e o cofre do cinema dão pilhas e flashes. Nenhum é preciso para terminar a fase (seção 8).
+
+---
+
+## 3.2 O que mudou em 2026-11-06
+
+O Centro de Convivência ganhou combate: um **robô atirador** na praça, a **arma de impulso** no cofre do cinema (no lugar do flash). Detalhes em [`../mecanicas/combate.md`](../mecanicas/combate.md).
 
 ---
 
 ## 3.3 O que mudou em 2026-11-04
 
-A Célula de Energia virou carga: pesa, zumbe e impede de correr. O Mapa da Diana, na Tapioca Orbital, revela a **galeria** (`galeria.tscn`), que liga o Self Nebulosa, a Pizzaria Quasar e o Churrasco Solar por baixo da praça, com um Rastreador e sem esconderijo. O caco de espelho, opcional, fica na Loja Universitária. O cofre do bufê e o quadro do bar não pausam mais o jogo. As pilhas caíram de 8 para 6 (saíram a do mezanino e a da cabine do cinema). Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 5.
+A Célula de Energia virou carga: pesa, zumbe e impede de correr. O Mapa da Diana, na Tapioca Orbital, revela a **galeria** (`galeria.tscn`), que liga o Self Nebulosa, a Pizzaria Quasar e o Churrasco Solar por baixo da praça, com um Rastreador e sem esconderijo. O cofre do bufê e o quadro do bar não pausam mais o jogo. As pilhas caíram de 8 para 6 (saíram a do mezanino e a da cabine do cinema). Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 5.
 
 ---
 
@@ -116,7 +122,8 @@ A Célula de Energia virou carga: pesa, zumbe e impede de correr. O Mapa da Dian
 |---|---|---|
 | **Célula de Energia** | `dados/itens/celula_energia.tres` | `camara_fria` |
 | **Pilhas (8)** | `cenas/itens/pilha_no_chao.tscn` | `passarela_acesso`, `loja_1`, `camara_fria`, `segundo_andar`, `loja_uni`, `grafica`, `cinema`, `cinema_cabine` |
-| **Cápsulas de Clarão (2)** | `dados/itens/clarao.tres` | `loja_1` e o prêmio do cofre do `cinema` |
+| **Flash (1)** | `dados/itens/clarao.tres` | `loja_1` |
+| **Arma de impulso** | `dados/itens/arma_impulso.tres` | prêmio do cofre do `cinema` (cai no chão ao abrir). Ver [`../mecanicas/combate.md`](../mecanicas/combate.md) |
 | **Prêmios dos puzzles da seção 8** | caem no chão ao resolver (`Recompensa`) | 1 clarão no cofre do bufê (`loja_2`), 2 pilhas no quadro do bar (`loja_4`), 1 clarão na trava do plotter (`grafica`), 2 pilhas na arara (`loja_uni`), 2 pilhas na estufa de lanches (`loja_1`) |
 | **Pedras (10)** | `dados/itens/pedra.tres` | `praca_central` (3), `segundo_andar` (2), `grafica` (2), `loja_uni` (1), `cinema` (2) |
 | **Panfleto da Semana Universitária (2024)** | `dados/documentos/panfleto_universitario.tres` | `loja_3` |
@@ -222,7 +229,7 @@ Os **botões da jaqueta** da Diana (3, colecionáveis) ficam aqui: `BotaoJaqueta
 | Loja | Cor | O que tem |
 |---|---|---|
 | **Gráfica Quântica** (`grafica`, coluna 2) | limão | plotter, copiadora, guilhotina, impressora 3D, estante de resmas, mesa de corte; as faixas de segurança no piso; a Ordem de Impressão; 2 pedras, 1 pilha |
-| **Loja Universitária** (`loja_uni`, coluna 7) | azul | araras, manequins de moletom, estante de camisetas, espelho, o brasão da universidade e o provador de cortina (nicho); o aviso da loja; 1 pedra, 1 pilha |
+| **Loja Universitária** (`loja_uni`, coluna 7) | azul | araras, manequins de moletom, estante de camisetas, espelho de pé (cenário), o brasão da universidade e o provador de cortina (nicho); o aviso da loja; 1 pedra, 1 pilha |
 | **Cine Andrômeda** (`cinema`, coluna 22) | violeta | hall com bilheteria, bomboniere, fliperamas, sofá e cordões de fila; a **sala de projeção** (`cinema_sala`), separada do hall e com porta própria (o arco SALA 1), com a tela larga que chia ("sem sinal", animada, com a luz piscando) e três fileiras de poltronas, **A, B e C**, numeradas de 1 a 16, da esquerda para a direita; as letras aparecem em plaquinhas no carpete, na ponta e nos corredores de cada fileira; a **cabine de projeção** atrás da sala, com o cofre do lanterninha, e as pistas dele; 2 pilhas, 2 pedras |
 
 Cada loja tem a sua cor, a mesma da porta de vidro, do letreiro e da luz que a vitrine joga no chão do corredor. As portas de vidro e os letreiros são os mesmos tipos dos restaurantes (seção 5), em três cores novas (azul, limão e violeta).
@@ -237,7 +244,7 @@ Cada loja tem a sua cor, a mesma da porta de vidro, do letreiro e da luz que a v
 
 Cada sala do mezanino vai ganhar um puzzle próprio, mesmo que não leve a história adiante. O do **Cine Andrômeda** é o primeiro:
 
-- **O cofre cinza** fica na **cabine de projeção** (`cinema_cabine`), a salinha atrás da sala de cinema: a porta cinza com a plaquinha CABINE, na ponta direita da parede da sala (`cenas/sistemas/cofre.tscn`, código de 3 dígitos). O prêmio é **1 cápsula de clarão**, que cai no chão ao abrir.
+- **O cofre cinza** fica na **cabine de projeção** (`cinema_cabine`), a salinha atrás da sala de cinema: a porta cinza com a plaquinha CABINE, na ponta direita da parede da sala (`cenas/sistemas/cofre.tscn`, código de 3 dígitos). O prêmio é **1 flash**, que cai no chão ao abrir.
 - **O bilhete do lanterninha** (perto da bomboniere) diz onde está o cofre (na cabine, a porta cinza ao lado da tela) e que o código são as poltronas dos três amigos dele, o **Léo**, a **Bia** e o **Caio**, só o número, sem a fileira, e que **a ordem foi embaralhada de propósito**. Não dá o código.
 - **Os três canhotos** estão espalhados pelo cinema, cada um com o nome do amigo, a fileira e a poltrona: **Léo, fileira C, poltrona 4**, no hall; **Bia, fileira A, poltrona 7**, na sala de projeção, entre as fileiras de poltronas; **Caio, fileira B, poltrona 2**, na cabine de projeção, perto da mesa do lanterninha (o jogador só acha o terceiro número já dentro da sala do cofre). Há ainda um canhoto sem nome (fileira A, poltrona 12) que não faz parte do puzzle. A sala tem só as fileiras A, B e C, e os canhotos usam essas letras.
 - **A combinação** é **Bia, Caio, Léo: 7-2-4**. Com três números, o jogador testa no máximo 6 ordens (4-7-2, 4-2-7, 7-4-2, 7-2-4, 2-4-7, 2-7-4) até o cofre abrir. Errar não tem castigo.
@@ -271,14 +278,14 @@ O botão **Começar** do menu abre o jogo, uma nave com 6 salas e 4 corredores (
 
 ## 8. Os puzzles das outras salas
 
-Pedido do Davi (2026-10-21): enriquecer a fase com um puzzle nas salas que não tinham. São **opcionais** e dão **prêmios** que caem no chão ao resolver (pilhas e cápsulas de clarão). Errar não tem castigo, menos no quadro do bar. A matemática dos três de computação está em [`../computacao/binario_e_ordenacao.md`](../computacao/binario_e_ordenacao.md).
+Pedido do Davi (2026-10-21): enriquecer a fase com um puzzle nas salas que não tinham. São **opcionais** e dão **prêmios** que caem no chão ao resolver (pilhas e flashes). Errar não tem castigo, menos no quadro do bar. A matemática dos três de computação está em [`../computacao/binario_e_ordenacao.md`](../computacao/binario_e_ordenacao.md).
 
 ### 8.1 Self Nebulosa: o cofre do bufê
 
 - **O cofre** fica no salão, entre o nicho e a porta da câmara fria (`cofre.tscn`, código de 3 dígitos). O **Rastreador** patrulha bem ao lado.
 - **O bilhete da gerência**, perto da porta, diz que a senha são **as cubas do prato do dia, na ordem do cardápio**.
 - **O cardápio do dia** está **em cima do bufê**, no meio do salão, colado na faixa de cacos: para ler, o Gabriel tem de passar perto do Rastreador. Prato do dia: baião de dois (cuba 6), paçoca de pilão (cuba 1), vinagrete (cuba 9); os acompanhamentos e a sobremesa têm outras cubas, que não entram.
-- **Código: 619.** Prêmio: 1 cápsula de clarão.
+- **Código: 619.** Prêmio: 1 flash.
 
 ### 8.2 Churrasco Solar: o quadro do bar
 
@@ -291,7 +298,7 @@ Pedido do Davi (2026-10-21): enriquecer a fase com um puzzle nas salas que não 
 
 - **O painel** fica no plotter grande (`painel_bits.tscn`): 7 chaves com os pesos **64, 32, 16, 8, 4, 2, 1**. Cima liga, baixo desliga, E confirma.
 - **A etiqueta da trava**, no chão ao lado do plotter, diz que o código é **quantos avisos ainda faltam imprimir na ordem parada**. A **Ordem de Impressão** (no balcão) diz 4.000 pedidos e 3.912 impressos: faltam **88 = 64 + 16 + 8**.
-- Prêmio: 1 cápsula de clarão, da gaveta de insumos.
+- Prêmio: 1 flash, da gaveta de insumos.
 
 ### 8.4 Loja Universitária: a arara inteligente
 

@@ -34,6 +34,10 @@ func soltar() -> void:
 	menu.soltar()
 
 
+func voltar() -> bool:
+	return menu.voltar()
+
+
 func receber(evento: InputEvent) -> void:
 	if evento is InputEventKey:
 		imagem.push_input(evento)

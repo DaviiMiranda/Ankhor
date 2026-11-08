@@ -1,0 +1,75 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interface/painel_criacao.gd" id="1_painel"]
+[ext_resource type="Texture2D" path="res://assets/sprites/itens/arma_impulso.png" id="2_icone"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nome"]
+font_size = 8
+line_spacing = 0.0
+font_color = Color(0.64, 0.9, 0.85, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_texto"]
+font_size = 8
+line_spacing = 0.0
+font_color = Color(0.82, 0.8, 0.72, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_situacao"]
+font_size = 8
+line_spacing = 0.0
+font_color = Color(0.95, 0.88, 0.7, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 1)
+
+[node name="PainelCriacao" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 304.0
+offset_bottom = 164.0
+mouse_filter = 2
+script = ExtResource("1_painel")
+
+[node name="Icone" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 26.0
+offset_right = 58.0
+offset_bottom = 74.0
+texture = ExtResource("2_icone")
+expand_mode = 1
+texture_filter = 1
+
+[node name="Nome" type="Label" parent="."]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 26.0
+offset_right = 294.0
+offset_bottom = 40.0
+label_settings = SubResource("LabelSettings_nome")
+
+[node name="Descricao" type="Label" parent="."]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 42.0
+offset_right = 294.0
+offset_bottom = 84.0
+label_settings = SubResource("LabelSettings_texto")
+autowrap_mode = 3
+max_lines_visible = 3
+
+[node name="Estoque" type="Label" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 90.0
+offset_right = 294.0
+offset_bottom = 122.0
+label_settings = SubResource("LabelSettings_texto")
+
+[node name="Situacao" type="Label" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 126.0
+offset_right = 294.0
+offset_bottom = 140.0
+label_settings = SubResource("LabelSettings_situacao")

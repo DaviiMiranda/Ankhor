@@ -12,11 +12,12 @@ var item: Item
 
 
 func usar() -> void:
-	var restantes := Inventario.unidades(item.id)
-	if restantes <= 0:
-		Inventario.aviso.emit("Acabaram as cápsulas")
-		return
-	Inventario.definir_unidades(item, restantes - 1)
+	if not ModoCombate.ativo:
+		var restantes := Inventario.unidades(item.id)
+		if restantes <= 0:
+			Inventario.aviso.emit("Acabaram os flashes")
+			return
+		Inventario.definir_unidades(item, restantes - 1)
 	som.play()
 	_piscar()
 	for no in get_tree().get_nodes_in_group("robos"):

@@ -5,12 +5,10 @@ const SOM_ABRIR := preload("res://assets/audio/efeitos/objetos/porta_abrir.wav")
 const SOM_EMPERRADA := preload("res://assets/audio/efeitos/objetos/porta_emperrada.wav")
 const LARGURA_PECA_PAREDE := 80.0
 const TOLERANCIA_FOLHA := 12.0
-const DESLIZE_ESPIANDO := 130.0
-const AVISO_ESPIANDO := "Espiando pela fresta. E: sair. Para trás: voltar."
+const SEGUNDOS_PROTEGIDO_AO_ATRAVESSAR := 2.0
 
 static var _chegada := ""
 static var _destrancadas := {}
-static var _espiar_em := ""
 
 @export var id: String = ""
 @export_file("*.tscn") var cena_destino: String = ""
@@ -37,10 +35,6 @@ static var _espiar_em := ""
 
 var _atravessando := false
 var _folha: FolhaPorta
-var _vai_espiar := false
-var _espiando := false
-var _camada_gabriel := 0
-var _olhar: Tween
 
 
 static func destrancadas_salvas() -> Array:
@@ -61,11 +55,7 @@ func _ready() -> void:
 		trancada = false
 	if not id.is_empty() and _chegada == id:
 		_chegada = ""
-		if _espiar_em == id:
-			_espiar_em = ""
-			_comecar_espiada.call_deferred()
-		else:
-			_sair_pela_porta.call_deferred()
+		_sair_pela_porta.call_deferred()
 
 
 func segundos_de_espera() -> float:
@@ -108,11 +98,6 @@ func interagir() -> void:
 	if escuro:
 		animacao.tween_property(escuro, "color:a", 1.0, segundos_andando / 2.0).set_delay(segundos_andando / 2.0)
 	animacao.chain().tween_callback(_trocar_de_cena)
-
-
-func espiar() -> void:
-	_vai_espiar = not esta_bloqueada() and not trancada
-	interagir()
 
 
 func destrancar() -> void:
@@ -173,8 +158,9 @@ func tocar_abertura() -> void:
 
 func _trocar_de_cena() -> void:
 	PerseguicaoEntreSalas.anotar(get_tree(), self)
+	PerseguidorPerpetuo.gabriel_saiu_pela(self)
+	Vida.proteger(SEGUNDOS_PROTEGIDO_AO_ATRAVESSAR)
 	_chegada = porta_destino
-	_espiar_em = porta_destino if _vai_espiar else ""
 	get_tree().change_scene_to_file(cena_destino)
 
 
@@ -184,6 +170,7 @@ func _sair_pela_porta() -> void:
 		return
 	PerseguicaoEntreSalas.chamar(self)
 	_atravessando = true
+	Vida.proteger(SEGUNDOS_PROTEGIDO_AO_ATRAVESSAR)
 	_fechar_folha()
 	gabriel.global_position = global_position
 	var camera := gabriel.get_node_or_null("Camera2D") as Camera2D
@@ -194,65 +181,6 @@ func _sair_pela_porta() -> void:
 	var animacao := create_tween()
 	animacao.tween_property(gabriel, "modulate", Color.WHITE, segundos_andando)
 	animacao.tween_callback(_devolver_controle.bind(gabriel))
-
-
-func _comecar_espiada() -> void:
-	var gabriel := _gabriel()
-	if gabriel == null:
-		return
-	_atravessando = true
-	_espiando = true
-	gabriel.global_position = global_position
-	gabriel.modulate = Color(0, 0, 0, 0)
-	gabriel.andar_sozinho(Vector2.ZERO)
-	_camada_gabriel = gabriel.collision_layer
-	gabriel.collision_layer = 0
-	gabriel.esconder(true)
-	Inventario.aviso.emit(AVISO_ESPIANDO)
-	var camera := gabriel.get_node_or_null("Camera2D") as Camera2D
-	if camera == null:
-		return
-	camera.reset_smoothing()
-	_olhar = create_tween().set_loops()
-	_olhar.tween_property(camera, "offset:x", -DESLIZE_ESPIANDO, 1.6).set_trans(Tween.TRANS_SINE)
-	_olhar.tween_property(camera, "offset:x", DESLIZE_ESPIANDO, 3.2).set_trans(Tween.TRANS_SINE)
-	_olhar.tween_property(camera, "offset:x", 0.0, 1.6).set_trans(Tween.TRANS_SINE)
-
-
-func _unhandled_input(evento: InputEvent) -> void:
-	if not _espiando:
-		return
-	if evento.is_action_pressed("interagir") or evento.is_action_pressed(_acao_de(-direcao_entrar)):
-		get_viewport().set_input_as_handled()
-		_terminar_espiada(true)
-	elif evento.is_action_pressed(_acao_de(direcao_entrar)):
-		get_viewport().set_input_as_handled()
-		_terminar_espiada(false)
-
-
-func _acao_de(direcao: Vector2) -> StringName:
-	if absf(direcao.x) > absf(direcao.y):
-		return &"mover_direita" if direcao.x > 0.0 else &"mover_esquerda"
-	return &"mover_baixo" if direcao.y > 0.0 else &"mover_cima"
-
-
-func _terminar_espiada(sair: bool) -> void:
-	_espiando = false
-	if _olhar:
-		_olhar.kill()
-	var gabriel := _gabriel()
-	if gabriel == null:
-		return
-	gabriel.esconder(false)
-	gabriel.collision_layer = _camada_gabriel
-	var camera := gabriel.get_node_or_null("Camera2D") as Camera2D
-	if camera:
-		create_tween().tween_property(camera, "offset:x", 0.0, 0.3)
-	if sair:
-		_sair_pela_porta()
-	else:
-		_atravessando = false
-		interagir()
 
 
 func _devolver_controle(gabriel: Gabriel) -> void:

@@ -10,7 +10,7 @@
 ## 1. Visão geral
 
 - **Nome do local:** Bloco de salas de aula, em 3026.
-- **Ambientação:** **é noite.** Dois corredores longos, um em cima do outro, com seis salas de aula em cada. Pouca luz: o luar azulado entrando pelas janelas e pelos buracos do teto (céu escuro com estrelas, `ceu_noite.png`) e alguns lampiões espalhados. A lanterna faz diferença. O **térreo** está parcialmente enterrado na areia das dunas. No **primeiro andar** o teto caiu em vários pontos: céu, mato no chão e duas árvores crescendo no corredor. Em quase toda sala a lousa ainda está presa na parede, coberta de **tracinhos contados** em grupos de cinco.
+- **Ambientação:** **é noite.** Dois corredores longos, um em cima do outro, com seis salas de aula em cada. Pouca luz: o luar azulado entrando pelas janelas e pelos buracos do teto (céu escuro com estrelas, `ceu_noite.png`) e alguns lampiões espalhados. O **térreo** está parcialmente enterrado na areia das dunas. No **primeiro andar** o teto caiu em vários pontos: céu, mato no chão e duas árvores crescendo no corredor. Em quase toda sala a lousa ainda está presa na parede, coberta de **tracinhos contados** em grupos de cinco.
 - **Ideia da fase:** a mesma dinâmica da Biblioteca, inspirada em *Resident Evil*: portas trancadas, chaves em lugares vigiados, um cadeado de segredo com a pista espalhada pelas salas, um atalho que se abre por dentro e um caminho que obriga a ir e voltar entre os dois andares. A diferença é a **Clarice**: pela primeira vez o Gabriel encontra alguém **em pessoa**, e precisa ganhar a confiança dela.
 - **O que a fase ensina de novo:**
   - **barulho como ferramenta:** fazer um robô ir para onde você quer;
@@ -37,7 +37,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 | `sala_201` | Auditório: doze fileiras de cadeiras VR com dezenas de lentes acesas, dois painéis de ensino, um professor robô na doca ao lado do palco e dois painéis de óculos | tapete |
 | `sala_202` | Duas árvores furando o chão, cadeiras VR em volta, luar por cima; um rack de óculos com musgo e um professor robô na doca com raízes | mato e lajota |
 | `sala_203` | Sala dos professores: oito mesas com cadeiras VR de friso âmbar, um rack de óculos, a doca de um professor robô e o quadro de avisos | tapete e lajota |
-| `sala_204` | O chão cedeu: monte de entulho no meio, cadeiras VR tombadas, óculos pelo chão e um professor robô sem a cabeça na doca (1 cápsula de clarão) | lajota e areia |
+| `sala_204` | O chão cedeu: um monte grande de entulho no meio, com laje tombada e pedras em volta, cadeiras VR caídas em duas poses, óculos pelo chão e um professor robô sem a cabeça na doca (1 flash) | lajota com manchas de terra |
 | `sala_205` | Intacta demais: seis fileiras perfeitamente alinhadas, todas as lentes acesas, sem entulho, a mais clara; o painel e a doca do professor robô sem uma marca de uso. Estranha | lajota |
 | `sala_206` | Depósito: corredores de estantes (metade virou rack de óculos VR), cadeiras tombadas, peças do professor robô desmontado, um lampião (1 pilha) | lajota e areia |
 
@@ -78,7 +78,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 | 201 | Pista do código | Duas lousas; a da esquerda tem os tracinhos (2º número) | Entre as fileiras | Nenhuma |
 | 202 | Respiro e puzzle opcional | As duas árvores. 1 pedra. **Os desenhos do luar** (seção 5.7): 4 manchas no chão e a trava do rack | Atrás das árvores | Nenhuma |
 | 203 | Cadeado de segredo | O **claviculário** (armário de chaves) com cadeado de 3 números e o **quadro de avisos** com a pista | Debaixo das mesas | Nenhuma |
-| 204 | Atalho | O buraco no chão (desce para a 104). 1 cápsula de clarão | Atrás do entulho | Nenhuma |
+| 204 | Atalho | O buraco no chão (desce para a 104). 1 flash | Atrás do entulho | Nenhuma |
 | 205 | Pista do código e mistério | Lousa com tracinhos (3º número). A sala "intacta demais" continua sem explicação (seção 8) | Entre as fileiras | Nenhuma |
 | 206 | Ferramenta da saída | O **alicate corta-corrente**, 1 pilha. Porta trancada (chave do claviculário) | Os corredores entre as estantes | **Rastreador** (audição) |
 
@@ -102,7 +102,7 @@ Nos dois corredores as portas ficam na mesma ordem, do oeste (onde o Gabriel che
 6. **A confiança (sala 103).** O Gabriel devolve o molho. A Clarice confia nele, tira do molho a **chave da fita azul** e entrega: "Toma: a da fita azul é a da grade da escada. Fui eu que botei a fita." Daí em diante ela **guia o Gabriel pelo rádio**, do caderno de rondas dela: diz o que cada porta precisa e avisa por onde os robôs passam. **Esta é a parte da Clarice no bloco** (Enredo, seção 3.1: "mapeou as rondas dos robôs como um grafo e sabe o que cada chave abre"), mostrada pelo que ela fala, sem papel nem item. Ela conta que a saída do bloco é a **porta corta-fogo** lá em cima, acorrentada, e que a chave do **depósito (206)**, onde fica o alicate, está no **claviculário da sala dos professores (203)**, num cadeado de segredo que ela não abriu (são mil combinações, e o robô de cima enxerga longe). Ela também conta que está ali **desde que chegou**; que a **Diana** apareceu depois e ela a acolheu; e que as duas tentam descobrir o que aconteceu com a ajuda do **Henrique** pelo rádio (ele vê o campus pelas câmeras e disse que, de alguma forma, estão em 3026). A **103 vira a sala segura** (seção 6).
 7. **Subir (escada).** A **chave da fita azul** abre o cadeado da grade da escada.
 8. **O 1º andar (corredor).** Assim que o Gabriel sobe, a Clarice avisa pelo rádio como o robô de cima anda ("esse não escuta, esse enxerga longe. Ele para debaixo dos buracos do teto. Passa pelo escuro."). A **Sentinela** patrulha sob os buracos do teto. As faixas de luar no chão são onde ela vê de longe; nas sombras e no mato o Gabriel passa.
-   - *O que o jogador aprende:* a luz do céu também denuncia, não só a lanterna.
+   - *O que o jogador aprende:* a luz do céu também denuncia, como as luzes de emergência.
 9. **O cadeado (sala 203).** O claviculário tem um cadeado de **3 números**. No quadro de avisos, um papel: **"Conferir a contagem: 101 · 201 · 205"**. O Gabriel precisa **contar os tracinhos** das lousas dessas três salas. Duas estão no 1º andar; a **101 fica lá embaixo**, e é preciso descer de novo.
    - *O que o jogador aprende:* olhar o cenário com atenção; voltar faz parte.
 10. **O depósito (sala 206).** O claviculário dá a **chave do depósito**. Lá dentro, entre corredores de estantes, um **Rastreador** escuta. No fundo, o **alicate corta-corrente**.
@@ -131,11 +131,11 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 | Código do claviculário (**738**) | Tracinhos das lousas da 101 (7), 201 (3) e 205 (8) | Abrir o claviculário (203) |
 | Chave do depósito | Claviculário (203) | Abrir a 206 |
 | Alicate corta-corrente | 206 | Cortar a corrente da porta corta-fogo |
-| Cápsula de clarão | 204 (já está lá) e 202 (prêmio do rack, seção 5.7) | Defesa |
+| Flash | 204 (já está lá) e 202 (prêmio do rack, seção 5.7) | Defesa |
 | Pedras | 102 (3, já estão lá) e 202 (1) | Distração |
 | Disquetes coloridos (3) | 105 (canto esquerdo), 106 (lado esquerdo) e 202 (meio da sala) | Opcionais, fora do caminho obrigatório: ao juntar os três, o quarto do Gabriel ganha uma pilha de disquetes na mesa dele, ao lado do farol. Não ficam na mochila (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
 | Recorte de jornal 2 (colecionável) | Sala 203, no chão perto das mesas de leitura (190, 210) | Opcional: o boletim do Conselho sobre o embarque para o novo mundo (ver [`../mecanicas/colecionaveis.md`](../mecanicas/colecionaveis.md)) |
-| Pilhas | 103 (2), 105 (2, mais 2 de prêmio do professor, seção 5.6), 206 (1) | Lanterna |
+| Pilhas | 103 (2), 105 (2, mais 2 de prêmio do professor, seção 5.6), 206 (1) | Guardar para fabricar balas |
 | Rádio | Corredor do térreo, na chegada | Só aparece se o Gabriel ainda não tem (quem começa pelo menu Fases). Sem ele, as transmissões não tocam |
 
 ---
@@ -182,7 +182,7 @@ Para a apresentação da disciplina, é o mesmo modelo da Biblioteca: salas são
 
 ### 5.4.1 O que mudou em 2026-11-04
 
-Cortar a corrente pede segurar `E` por 5 s, com barulho; achar o molho na areia, 2 s. A Clarice empresta o walkman junto com a chave da fita azul. Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 3.
+Cortar a corrente pede segurar `E` por 5 s, com barulho; achar o molho na areia, 2 s. Detalhes em [`../mecanicas/mecanicas_de_fase.md`](../mecanicas/mecanicas_de_fase.md), seção 3.
 
 ### 5.5 O atalho (204 → 104)
 
@@ -202,7 +202,7 @@ Cortar a corrente pede segurar `E` por 5 s, com barulho; achar o molho na areia,
 - **Como funciona:** o luar que passa pelo teto desenha quatro símbolos no chão, longe uns dos outros: **estrela**, **raiz**, **lua** e **folha**. Olhar uma mancha diz o nome do desenho. A trava do rack de óculos tem um botão para cada símbolo e diz, no título: "SIGA O LUAR: DA JANELA À PORTA". A janela fica na ponta oeste da parede, e a porta, na leste.
 - **Mecânica:** um `QuadroEnergia` sem a caixa, com os nomes dos símbolos. As manchas são `mancha_luar.tscn`, sprites com mistura aditiva dentro de `Chao`. A sala mostra só parte do chão de cada vez, então o jogador precisa andar por ela para ver as quatro. Errar só volta ao começo, sem barulho. As manchas não revelam o Gabriel, porque a sala não tem robô.
 - **Solução:** a ordem das manchas de oeste para leste: **estrela (x 46), raiz (x 172), lua (x 330), folha (x 442)**.
-- **Prêmio:** 1 cápsula de clarão.
+- **Prêmio:** 1 flash.
 
 ---
 
@@ -257,7 +257,7 @@ A sala "intacta demais" entra no puzzle só como uma das lousas. **Por que ela e
 | Transmissões que esperam uma marca | `gatilho_transmissao.gd` com `marca_necessaria` (novo) |
 | Fim da fase | `cenas/salas/bloco_de_salas/fim_do_bloco.tscn`: a `SaidaFase` com `sair_ao_carregar` (novo), que mostra "Você saiu do bloco" e leva ao Labirinto (`cenas/salas/labirinto.tscn`) |
 | Itens novos | `dados/itens/molho_de_chaves.tres`, `chave_grade.tres`, `chave_deposito.tres`, `alicate.tres` |
-| Arte nova | `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` (ícones, claviculário, grade, corrente, buraco, sirene) e `gerar_kit.py` (lousas `parede_lousa_0`, `_3`, `_7`, `_8`) |
+| Arte nova | `assets/modelagem/cenario/gerar_objetos_bloco_de_salas.py` (ícones, claviculário, grade, corrente, buraco, sirene) e `gerar_kit.py` (lousas `parede_lousa_0`, `_3`, `_7`, `_8`). Escombros variados e manchas de terra: `gerar_escombros.py` |
 | Sons novos | `assets/modelagem/audio/gerar_efeitos_bloco_de_salas.py`: sirene (em loop), queda e corrente cortada |
 | Puzzles opcionais da 105 e da 202 | `cenas/itens/peca_no_chao.tscn` (`peca_no_chao.gd`), `cenas/cenario/objetos/mancha_luar.tscn` e campos novos em `quadro_energia.gd`: `com_caixa`, `marcas_necessarias`, `aviso_faltam_marcas`, `etiquetas`, `dica_controles`, `texto_desarmou` e `texto_pronto`. Marcas: `peca_105_bateria`, `peca_105_nucleo`, `peca_105_sensor`, `peca_105_voz`, `professor_105_remontado` e `rack_202_aberto`. A arte vem de `gerar_objetos_bloco_de_salas.py` |
 | Melhorias da seção 12 | Ver a tabela da seção 12.8 |
@@ -336,12 +336,11 @@ Para quebrar a monotonia dos 2560 px de corredor e criar ritmo de tensão e alí
 
 ---
 
-### 12.4 Proposta 3: Dinâmica da Sala Segura (Posto da 103) e Fresta de Espiar
+### 12.4 Proposta 3: Dinâmica da Sala Segura (Posto da 103)
 
-1. **Fresta de Observação da Barricada (`[E] Espiar Corredor`):**
-   - Na barricada de carteiras da 103, há uma fresta entre as madeiras que permite ao Gabriel olhar o corredor do térreo antes de pedir para a Clarice abrir a passagem.
-   - A câmera desliza suavemente para o corredor através da fresta, mostrando a iluminação e se o Rastreador está nas proximidades. Isso evita mortes injustas na saída.
-2. **Mural Tático de Giz:**
+> A proposta da fresta de espiar o corredor saiu do jogo (ver `decisoes.md`, 2026-11-06).
+
+1. **Mural Tático de Giz:**
    - Na lousa da 103, além do acampamento com lampiões, a Clarice desenhou um rascunho de giz da planta baixa do bloco com anotações lógicas ("escada trancada - grade", "sirene no leste", "depósito no 1º"). Serve como mapa visual, dentro do próprio cenário, para o jogador.
 
 ---
@@ -376,7 +375,7 @@ Para a defesa técnica e os relatórios da disciplina, o Bloco de salas demonstr
      $$W(u, v) = \text{Distância}(u, v) \times \text{FatorPiso}(u, v)$$
    - **No código**, os robôs andam por A* em grade (heurística octile, diagonal só sem obstáculo), sem pesar o piso, e patrulham uma sequência de pontos fixos, que muda com a marca do alicate. O fator de piso da fórmula entra no jogo só no som, como o `fator_ruido` das `ZonaDePiso` (item 3). O grafo de salas é o modelo de projeto, e o grafo de dependências dos puzzles está na seção 3.2 (ordenação topológica).
 2. **Campo de visão 2D por produto escalar (implementado):**
-   - Gabriel não é percebido enquanto estiver escondido num nicho (parado por $0{,}4$ s e sem lanterna); a audição e o contato continuam valendo. Fora do nicho, ele é percebido se estiver a até $20$ px do robô (percepção por proximidade) ou se
+   - Gabriel não é percebido enquanto estiver escondido num nicho (parado por $0{,}4$ s); a audição e o contato continuam valendo. Fora do nicho, ele é percebido se estiver a até $20$ px do robô (percepção por proximidade) ou se
      $$\lVert \vec{p}_{\text{gabriel}} - \vec{p}_{\text{robô}} \rVert \le R \quad \text{e} \quad \frac{(\vec{p}_{\text{gabriel}} - \vec{p}_{\text{robô}}) \cdot \vec{d}}{\lVert \vec{p}_{\text{gabriel}} - \vec{p}_{\text{robô}} \rVert} \ge \cos\left(\frac{\theta}{2}\right) \quad \text{e} \quad \text{LinhaLivre}(\vec{p}_{\text{robô}}, \vec{p}_{\text{gabriel}})$$
      onde $\vec{d}$ é a direção do olhar e `LinhaLivre` é um raio contra a camada de paredes.
    - $R$ e $\theta$ dependem do tipo de robô, e $R$ é multiplicado quando há luz:
@@ -386,7 +385,7 @@ Para a defesa técnica e os relatórios da disciplina, o Bloco de salas demonstr
      | Sentinela | 170 px | 60° | 289 px (×1,7) |
      | Rastreador | 80 px | 100° | 104 px (×1,3) |
 
-   - "Há luz" quer dizer: a lanterna (ou o notebook) acesa, ou Gabriel a menos de 56 px de uma luz que revela (luar, luz de emergência).
+   - "Há luz" quer dizer: o notebook aceso, ou Gabriel a menos de 56 px de uma luz que revela (luar, luz de emergência).
 3. **Propagação sonora por BFS e fator de piso (os dois implementados):**
    - **Base:** cada passo de Gabriel gera um evento com alcance-base $A_0$ de $5$ células andando e $14$ correndo (célula de $16$ px). O alcance de cada robô é
      $$A = \lfloor A_0 \cdot f_{\text{piso}} \cdot f_{\text{audição}} \rfloor$$
@@ -423,8 +422,7 @@ Todas as propostas acima entraram no jogo. Onde a implementação precisou de um
 | Porta de serviço 203 ↔ 206 | Uma porta de serviço nas paredes laterais (a direita da 203 e a esquerda da 206). Começa trancada; do lado do depósito há o trinco: o primeiro `E` na 206 destranca (marca `trinco_206`) sem atravessar, o segundo atravessa. Da 203, sem o trinco puxado, aparece "Trancada pelo outro lado" | `parede_lateral_porta.tscn` e a `Porta` "PortaDeServico", com o campo novo `trinco_deste_lado` |
 | Três setores nos corredores | O chão dos dois corredores foi trocado por setor: oeste (salas x01 e x02) de **areia** no térreo e **mato** no 1º andar; centro (x03 e x04) de **lajota e tapete** alternados; leste (x05, x06 e a escada) de **lajota solta** | as peças `Chao1` a `Chao20` dos corredores |
 | Fator de piso no som | Cada setor tem uma `ZonaDePiso` com o fator de ruído: oeste **0,5**, centro **1,0**, leste **1,5**. O alcance do passo é $A = \lfloor A_0 \cdot f_{\text{piso}} \cdot f_{\text{audição}} \rfloor$ (a tabela da seção 12.7). Fora das zonas (dentro das salas) o fator é 1 | `scripts/sistemas/zona_de_piso.gd`; `robo.gd` lê o fator em `_ao_ouvir_passo` |
-| Nichos de cobertura | Dois nichos por corredor (um com bebedouro, outro com armários): no térreo nos x 1280 e 1920, no 1º andar nos mesmos x, longe das faixas de luar. Ficar **parado** no nicho, com a lanterna apagada, por 0,4 s esconde o Gabriel (ele fica azulado): os robôs não o veem. Andar, ou acender a lanterna, revela. Um robô que encoste nele ainda ataca | `parede_nicho_bebedouro.tscn`, `parede_nicho_armario.tscn`, `cenas/sistemas/nicho_esconderijo.tscn` (`nicho_esconderijo.gd`) e `Gabriel.esconder()` |
-| Fresta da barricada (103) | Ao lado da porta da 103, "Espiar o corredor". O jogo abre o corredor com o Gabriel escondido atrás da porta (sem corpo e invisível para os robôs) e a câmera desliza para os dois lados. `E` (ou para baixo) sai para o corredor de verdade; para cima volta para a 103. O que se vê é o corredor que o jogador vai encontrar ao sair | `fresta_da_barricada.tscn` e `Porta.espiar()` |
+| Nichos de cobertura | Dois nichos por corredor (um com bebedouro, outro com armários): no térreo nos x 1280 e 1920, no 1º andar nos mesmos x, longe das faixas de luar. Ficar **parado** no nicho por 0,4 s esconde o Gabriel (ele fica azulado): os robôs não o veem. Andar revela. Um robô que encoste nele ainda ataca | `parede_nicho_bebedouro.tscn`, `parede_nicho_armario.tscn`, `cenas/sistemas/nicho_esconderijo.tscn` (`nicho_esconderijo.gd`) e `Gabriel.esconder()` |
 | Mural de giz (103) | A lousa da 103 virou o mapa do bloco desenhado pela Clarice (`parede_lousa_mapa`), com as anotações no aviso "Olhar a lousa" | `sala_103.tscn` |
 | Estalos no teto do térreo | Cinco pontos no corredor do térreo (x 600, 1000, 1300, 1800 e 2200) que, de tempos em tempos (12 a 28 s), estalam e soltam poeira de gesso, se o Gabriel estiver a menos de 280 px | `cenas/sistemas/estalo_do_teto.tscn` (`estalo_do_teto.gd`) e o som `estalo_laje.wav` |
 | Pedra pelo buraco (204 → 104) | Uma pedra que cai no buraco da 204 faz barulho na 104: por 18 s o Rastreador do térreo fica **dentro** da 104, investigando onde ela caiu. No corredor ele some nesse tempo (e mais 4 s, o tempo de sair da sala) e depois volta pela porta da 104. Quem descer pelo buraco nesse tempo cai perto dele | `cenas/sistemas/buraco_no_chao.tscn` (`buraco_no_chao.gd`), `robo_atraido_pelo_buraco.gd` no corredor e na 104, e `pedra_arremessada.gd` |

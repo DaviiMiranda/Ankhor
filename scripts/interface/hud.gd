@@ -3,12 +3,17 @@ extends CanvasLayer
 const CENA_ESPACO := preload("res://cenas/interface/espaco_item.tscn")
 const CORACAO_CHEIO := preload("res://assets/sprites/interface/coracao_cheio.png")
 const CORACAO_VAZIO := preload("res://assets/sprites/interface/coracao_vazio.png")
-const SHADER_ANSIEDADE := preload("res://shaders/ansiedade.gdshader")
+const COR_ESTAMINA := Color(0.9, 0.8, 0.55, 1.0)
+const COR_EXAUSTO := Color(0.85, 0.25, 0.2, 1.0)
+const COR_CARGA := Color(0.45, 0.45, 0.5, 1.0)
+const ROTULO_ESTAMINA := "ESTAMINA"
+const ROTULO_CARGA := "CARGA: SEM CORRER [G]"
 
 @export var duracao_mensagem: float = 3.5
 @export var segundos_por_caractere: float = 0.05
 
 var _espacos: Array[EspacoItem] = []
+var _espaco_do_braco: EspacoItem
 var _coracoes: Array[TextureRect] = []
 var _tween_mensagem: Tween
 var _tween_dano: Tween
@@ -16,11 +21,7 @@ var _jogador_conectado: Gabriel = null
 var _barra_estamina_fundo: ColorRect
 var _barra_estamina_preenchimento: ColorRect
 var _rotulo_estamina: Label
-var _barra_ansiedade_fundo: ColorRect
-var _barra_ansiedade_preenchimento: ColorRect
-var _rotulo_ansiedade: Label
-var _efeito_ansiedade: ColorRect
-var _material_ansiedade: ShaderMaterial
+var _exausto := false
 
 @onready var caixa_gadgets: HBoxContainer = $Gadgets
 @onready var aviso: Label = $Aviso
@@ -36,6 +37,9 @@ func _ready() -> void:
 		espaco.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		caixa_gadgets.add_child(espaco)
 		_espacos.append(espaco)
+	_espaco_do_braco = CENA_ESPACO.instantiate() as EspacoItem
+	_espaco_do_braco.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	caixa_gadgets.add_child(_espaco_do_braco)
 	for i in Vida.MAXIMA:
 		var coracao := TextureRect.new()
 		coracao.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -49,7 +53,8 @@ func _ready() -> void:
 	Vida.dano_recebido.connect(_ao_receber_dano)
 	_atualizar_coracoes(Vida.vida)
 	_configurar_barra_estamina()
-	_configurar_barra_ansiedade()
+	Inventario.mudou.connect(_pintar_barra_estamina)
+	_pintar_barra_estamina()
 	flash_dano.color.a = 0.0
 	mensagem.modulate.a = 0.0
 	aviso.hide()
@@ -63,14 +68,20 @@ func _process(_delta: float) -> void:
 
 func _atualizar_gadgets() -> void:
 	for i in _espacos.size():
-		var item: Item = Inventario.gadgets[i]
-		var carga := -1.0
-		var aceso := false
-		if item:
-			var estado: Dictionary = Inventario.estado.get(item.id, {})
-			carga = estado.get("carga", -1.0)
-			aceso = estado.get("aceso", false)
-		_espacos[i].mostrar(item, aceso, str(i + 1), carga)
+		_mostrar_no_espaco(_espacos[i], Inventario.gadgets[i], i + 1)
+	_espaco_do_braco.visible = Inventario.braco != null
+	if Inventario.braco:
+		_mostrar_no_espaco(_espaco_do_braco, Inventario.braco, Inventario.TECLA_DO_BRACO)
+
+
+func _mostrar_no_espaco(espaco: EspacoItem, item: Item, tecla: int) -> void:
+	var carga := -1.0
+	var aceso := false
+	if item:
+		var estado: Dictionary = Inventario.estado.get(item.id, {})
+		carga = estado.get("carga", -1.0)
+		aceso = estado.get("aceso", false)
+	espaco.mostrar(item, aceso, str(tecla), carga)
 
 
 func _atualizar_aviso() -> void:
@@ -143,48 +154,17 @@ func _configurar_barra_estamina() -> void:
 
 	_barra_estamina_preenchimento = ColorRect.new()
 	_barra_estamina_preenchimento.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_barra_estamina_preenchimento.color = Color(0.9, 0.8, 0.55, 1.0)
+	_barra_estamina_preenchimento.color = COR_ESTAMINA
 	_barra_estamina_preenchimento.position = Vector2(2.0, 2.0)
 	_barra_estamina_preenchimento.size = Vector2(64.0, 4.0)
 	_barra_estamina_fundo.add_child(_barra_estamina_preenchimento)
 
 	_rotulo_estamina = Label.new()
 	_rotulo_estamina.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_rotulo_estamina.text = "ESTAMINA"
+	_rotulo_estamina.text = ROTULO_ESTAMINA
 	_rotulo_estamina.position = Vector2(80.0, 26.0)
 	_rotulo_estamina.add_theme_font_size_override("font_size", 8)
 	add_child(_rotulo_estamina)
-
-
-func _configurar_barra_ansiedade() -> void:
-	_barra_ansiedade_fundo = ColorRect.new()
-	_barra_ansiedade_fundo.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_barra_ansiedade_fundo.color = Color(0.0, 0.0, 0.0, 0.65)
-	_barra_ansiedade_fundo.position = Vector2(8.0, 40.0)
-	_barra_ansiedade_fundo.size = Vector2(68.0, 8.0)
-	add_child(_barra_ansiedade_fundo)
-
-	_barra_ansiedade_preenchimento = ColorRect.new()
-	_barra_ansiedade_preenchimento.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_barra_ansiedade_preenchimento.position = Vector2(2.0, 2.0)
-	_barra_ansiedade_preenchimento.size = Vector2(0.0, 4.0)
-	_barra_ansiedade_fundo.add_child(_barra_ansiedade_preenchimento)
-
-	_rotulo_ansiedade = Label.new()
-	_rotulo_ansiedade.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_rotulo_ansiedade.text = "ANSIEDADE"
-	_rotulo_ansiedade.position = Vector2(80.0, 38.0)
-	_rotulo_ansiedade.add_theme_font_size_override("font_size", 8)
-	add_child(_rotulo_ansiedade)
-
-	_efeito_ansiedade = ColorRect.new()
-	_efeito_ansiedade.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_efeito_ansiedade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	_material_ansiedade = ShaderMaterial.new()
-	_material_ansiedade.shader = SHADER_ANSIEDADE
-	_efeito_ansiedade.material = _material_ansiedade
-	add_child(_efeito_ansiedade)
-	move_child(_efeito_ansiedade, 0)
 
 
 func _conectar_jogador() -> void:
@@ -195,11 +175,8 @@ func _conectar_jogador() -> void:
 		_jogador_conectado = jogador
 		_jogador_conectado.fadiga_mudou.connect(_ao_mudar_estamina)
 		_jogador_conectado.exaustao_mudou.connect(_ao_mudar_exaustao)
-		_jogador_conectado.ansiedade_mudou.connect(_ao_mudar_ansiedade)
 		if _jogador_conectado.fadiga:
 			_ao_mudar_estamina(_jogador_conectado.fadiga.estamina, _jogador_conectado.fadiga.estamina_maxima)
-		if _jogador_conectado.ansiedade:
-			_ao_mudar_ansiedade(_jogador_conectado.ansiedade.valor, 1.0)
 
 
 func _ao_mudar_estamina(atual: float, maxima: float) -> void:
@@ -210,23 +187,18 @@ func _ao_mudar_estamina(atual: float, maxima: float) -> void:
 
 
 func _ao_mudar_exaustao(esta_exausto: bool) -> void:
+	_exausto = esta_exausto
+	_pintar_barra_estamina()
+
+
+func _pintar_barra_estamina() -> void:
 	if _barra_estamina_preenchimento == null:
 		return
-	if esta_exausto:
-		_barra_estamina_preenchimento.color = Color(0.85, 0.25, 0.2, 1.0)
+	var carregando := Inventario.carregando_peso()
+	if _exausto:
+		_barra_estamina_preenchimento.color = COR_EXAUSTO
+	elif carregando:
+		_barra_estamina_preenchimento.color = COR_CARGA
 	else:
-		_barra_estamina_preenchimento.color = Color(0.9, 0.8, 0.55, 1.0)
-
-
-func _ao_mudar_ansiedade(atual: float, maxima: float) -> void:
-	if maxima <= 0.0 or _barra_ansiedade_preenchimento == null:
-		return
-	var proporcao := clampf(atual / maxima, 0.0, 1.0)
-	var cor_calma := Color(0.76, 0.69, 0.48, 1.0)
-	var cor_alerta := Color(0.9, 0.22, 0.16, 1.0)
-	_barra_ansiedade_preenchimento.size.x = roundf(64.0 * proporcao)
-	_barra_ansiedade_preenchimento.color = cor_calma.lerp(cor_alerta, proporcao)
-	_barra_ansiedade_fundo.visible = true
-	_rotulo_ansiedade.visible = true
-	_efeito_ansiedade.visible = proporcao > 0.005
-	_material_ansiedade.set_shader_parameter("intensidade", proporcao)
+		_barra_estamina_preenchimento.color = COR_ESTAMINA
+	_rotulo_estamina.text = ROTULO_CARGA if carregando else ROTULO_ESTAMINA

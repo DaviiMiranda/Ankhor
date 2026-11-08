@@ -1,10 +1,12 @@
 extends CanvasLayer
 
 const CENA_MENU := "res://cenas/menu_principal.tscn"
+const FORMATO_TEMPO := "Tempo de jogo: %s"
 
 var aberta := false
 var _tocar_ao_passar := false
 
+@onready var tempo_de_jogo: Label = $Janela/TempoDeJogo
 @onready var menu: VBoxContainer = $Janela/Menu
 @onready var opcoes: VBoxContainer = $Janela/Opcoes
 @onready var confirmar: VBoxContainer = $Janela/Confirmar
@@ -89,6 +91,8 @@ func _mostrar(painel: Control, foco: Button) -> void:
 	_tocar_ao_passar = false
 	for p: Control in [menu, opcoes, confirmar]:
 		p.visible = p == painel
+	tempo_de_jogo.visible = painel == menu and TempoDeJogo.contando
+	tempo_de_jogo.text = FORMATO_TEMPO % TempoDeJogo.texto()
 	_atualizar_textos()
 	foco.grab_focus()
 	set_deferred("_tocar_ao_passar", true)

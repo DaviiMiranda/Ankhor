@@ -42,7 +42,7 @@ docs/
 │   ├── README.md                  # Diagrama do Core Loop de gameplay
 │   ├── movimentacao_e_terreno.md  # Andar, correr, estamina, ruído e tipos de superfícies
 │   ├── furtividade_e_esconderijos.md # Esconderijos, microgames de tensão e distrações
-│   ├── iluminacao_e_lanterna.md   # Lanterna a pilha, dilema luz/perigo, luzes de emergência
+│   ├── iluminacao.md              # Dilema luz/perigo, luzes de emergência, raio de visão
 │   ├── vida_e_checkpoint.md       # 3 corações, dano, tela de morte e checkpoints
 │   ├── registros_e_caderno.md     # Documentos dos antecessores, rádio e o Caderno do Gabriel
 │   └── sono_e_sonhos.md           # Salas seguras, mecânica de save e investigação no passado
