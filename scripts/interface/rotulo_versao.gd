@@ -8,4 +8,4 @@ const TEXTO_SEM_VERSAO := "versão de desenvolvimento"
 
 func _ready() -> void:
 	var versao: String = ProjectSettings.get_setting("application/config/version", "")
-	rotulo.text = "v%s" % versao if not versao.is_empty() else TEXTO_SEM_VERSAO
+	rotulo.text = "BETA v%s" % versao if not versao.is_empty() else TEXTO_SEM_VERSAO
