@@ -1,0 +1,48 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/personagens/aranha_do_apagao.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/aranha.png" id="2_corpo"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/robos/aranha_olhos.png" id="3_olhos"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="4_luz"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/rastreador_passo.wav" id="5_passo"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/robos/robo_alerta.wav" id="6_alerta"]
+
+[sub_resource type="CanvasItemMaterial" id="SemLuz"]
+light_mode = 1
+
+[node name="AranhaDoApagao" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Gingado" type="Node2D" parent="."]
+
+[node name="Corpo" type="Sprite2D" parent="Gingado"]
+texture = ExtResource("2_corpo")
+centered = false
+offset = Vector2(-88, -166)
+
+[node name="Olhos" type="Sprite2D" parent="Gingado"]
+material = SubResource("SemLuz")
+texture = ExtResource("3_olhos")
+centered = false
+offset = Vector2(-88, -166)
+
+[node name="LuzDoOlhar" type="PointLight2D" parent="Gingado"]
+position = Vector2(9, -93)
+color = Color(1, 0.18, 0.1, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("4_luz")
+texture_scale = 3.5
+
+[node name="Passos" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_passo")
+volume_db = -2.0
+max_distance = 420.0
+attenuation = 1.3
+bus = &"Efeitos"
+
+[node name="Alerta" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_alerta")
+pitch_scale = 0.6
+max_distance = 700.0
+bus = &"Efeitos"
