@@ -1,0 +1,33 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interface/hack_da_aranha.gd" id="1_script"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/painel_tecla.wav" id="2_giro"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/disjuntor.wav" id="3_ligou"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/relogio_tique.wav" id="4_tique"]
+
+[node name="HackDaAranha" type="CanvasLayer"]
+layer = 9
+offset = Vector2(160, 6)
+script = ExtResource("1_script")
+
+[node name="Desenho" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+
+[node name="SomGiro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_giro")
+pitch_scale = 1.7
+bus = &"Efeitos"
+
+[node name="SomLigou" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ligou")
+bus = &"Efeitos"
+
+[node name="SomTique" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_tique")
+volume_db = -4.0
+pitch_scale = 1.4
+bus = &"Efeitos"
