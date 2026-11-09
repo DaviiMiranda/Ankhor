@@ -1,5 +1,23 @@
 # Registro de decisões
 
+## 2026-11-08 — Aranha 07: apagão e hack em tempo real na fase do Zane
+
+**Decisão:** a ala do escritório (a fase do Zane) ganha um robô e um evento novos, a **Aranha 07**. De tempos em tempos (de 20 a 40 s sem nada, no mínimo 25 s entre eventos) as luzes da sala apagam, os outros robôs da sala **param** e a Aranha aparece longe, só com os olhos vermelhos à vista, andando devagar na direção do Zane. O Zane fica parado e tem pouco tempo para **hackear** o núcleo dela num minigame de **ligar cabos** (girar peças até a energia ir da central ao núcleo; setas e `E`). Hackeou: a Aranha some e a luz volta. Não deu tempo: ela alcança o Zane, tira **1 coração** e some, e a luz volta do mesmo jeito. O tempo da barra do hack **é** a distância que falta para a Aranha chegar.
+
+- **Quantas vezes:** no máximo **4** eventos (marcas `escritorio_aranha_1` a `_4` em `Progresso`), nas quatro salas, e eles **param** quando as três travas estão soltas (`escritorio_tres_travas`). O relógio da espera só corre com o Zane vivo, no controle, sem diálogo aberto, sem puzzle em tempo real aberto e sem robô perseguindo.
+- **Dificuldade crescente** (grade, caminho a refazer e tempo): 5×3 e 18 s, 5×4 e 18 s, 6×4 e 17 s, 6×4 e 16 s. Os números estão em `HackDaAranha.NIVEIS` e o resto nos exports do `ApagaoDaAranha`.
+- **Minigame diferente do outro.** O Davi pediu algo parecido com o minigame de peças de cabo da branch `claude/phone-puzzle-maze-pieces-32eb4e` (commit `f49e4cc`), **mas visualmente diferente**. Aproveitei só a ideia (girar peças até a energia chegar), com código, regras de geração e visual **originais**: tema preto e vermelho com cabos chanfrados, barra do tempo com o olho da Aranha, tremor e tique-taque no fim. O gerador (`GradeDeCabos`) garante solução, e está explicado em `docs/computacao/cabos_e_energia.md`.
+- **Fora do Enredo.** A Aranha 07 **não está** em `História_Completa.md` nem na ficha dos robôs (`robos.docx`): o Davi pediu o robô pela imagem, como um robô a mais do Carlos (o número 07 está pintado no casco). Não mexi no Enredo. Se o grupo quiser mantê-la, vale ela entrar na ficha dos robôs e, no Enredo, como mais um robô da ala do escritório.
+- **Arte.** O sprite sai da imagem de referência do Davi (`assets/modelagem/personagens/aranha_referencia/aranha_07.webp`), recortada por `gerar_aranha.py` em `aranha.png` e `aranha_olhos.png` (os olhos num sprite à parte, sem luz, para brilhar no escuro). O fundo foi removido por fechamento morfológico e borda suavizada; se o grupo quiser um sprite refeito à mão, o gerador pode ser trocado sem mexer no resto.
+
+**Por quê:** pedido do Davi, para dar à ala do escritório um momento de pressão em tempo real que mistura robô e minigame, sem pausar o jogo.
+
+**Para decidir depois do primeiro teste:** os tempos de cada nível, o número de eventos e o dano de 1 coração foram **escolhas minhas, ainda não jogadas**; o apagão deixa o Zane quase invisível (só a Aranha, pelos olhos, e o painel do hack à vista); e os outros robôs ficarem parados durante o evento foi uma regra minha, para o jogador não morrer de coisa que não pode ver nem resolver.
+
+**Conferido** no Godot 4.7.2 por script: o gerador de tabuleiros em 12 mil sorteios (sem solução, já ligado e fora da faixa: zero); o evento inteiro numa sala real (espera, escuro, robôs parados, aparecimento a ~150 px, aranha andando e crescendo, barra igual ao tempo da aranha, vitória que religa a luz e solta tudo, falha que tira 1 coração, 2º nível com grade 5×4, parada nos 4 eventos e nas três travas, e o apagão não começar com diálogo aberto); e capturas de tela da sala no escuro, com a Aranha e o painel de hack. **Não** foi jogado com teclado de verdade.
+
+**Afeta:** novos `cenas/sistemas/apagao_da_aranha.tscn`, `cenas/personagens/aranha_do_apagao.tscn`, `cenas/interface/hack_da_aranha.tscn`, os scripts `apagao_da_aranha.gd`, `aranha_do_apagao.gd`, `hack_da_aranha.gd` e `grade_de_cabos.gd`, o gerador `gerar_aranha.py` e os sprites da Aranha; as quatro salas do escritório (`recepcao`, `arquivo`, `reunioes`, `seguranca`) ganham uma instância do apagão. Docs: `docs/mecanicas/aranha_do_apagao.md`, `docs/computacao/cabos_e_energia.md`, `docs/fases/labirinto.md`. Não muda o Enredo.
+
 ## 2026-11-08 — Transição de Novo jogo pela tela do notebook
 
 **Decisão:** ao apertar **Novo jogo** no menu 3D, a tela do notebook recebe estática e a câmera avança até a área da tela preencher a janela. Só depois dessa aproximação o prólogo começa. Os outros botões mantêm o comportamento atual. A transição dura cerca de 1,5 s e bloqueia novos comandos enquanto toca.
