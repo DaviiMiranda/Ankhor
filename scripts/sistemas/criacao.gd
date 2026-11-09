@@ -22,6 +22,8 @@ static func chips() -> int:
 
 static func motivo_de_nao_criar_bala() -> String:
 	if not Inventario.tem(ARMA.id):
+		if Inventario.bau.has(ARMA.id):
+			return "A arma de impulso está no baú"
 		return "Você ainda não tem a arma de impulso"
 	if balas() >= ARMA.maximo_unidades:
 		return "Balas no máximo"

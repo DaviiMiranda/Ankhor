@@ -1,0 +1,144 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interface/tela_bau.gd" id="1_tela"]
+[ext_resource type="Theme" path="res://cenas/interface/tema_jogo.tres" id="2_tema"]
+
+[sub_resource type="StyleBoxFlat" id="Janela"]
+bg_color = Color(0.085, 0.105, 0.11, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.5, 0.44, 1)
+
+[sub_resource type="StyleBoxFlat" id="Lista"]
+bg_color = Color(0.045, 0.06, 0.065, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.21, 0.27, 0.26, 1)
+content_margin_left = 7.0
+content_margin_top = 6.0
+content_margin_right = 7.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="Selecao"]
+bg_color = Color(0.22, 0.34, 0.29, 1)
+
+[node name="TelaBau" type="CanvasLayer"]
+process_mode = 3
+layer = 9
+visible = false
+script = ExtResource("1_tela")
+
+[node name="Fundo" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.015, 0.025, 0.03, 0.78)
+
+[node name="Janela" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -215.0
+offset_top = -118.0
+offset_right = 215.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_tema")
+theme_override_styles/panel = SubResource("Janela")
+
+[node name="Titulo" type="Label" parent="Janela"]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 310.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.96, 0.87, 0.67, 1)
+theme_override_font_sizes/font_size = 16
+text = "BAÚ DE ITENS"
+
+[node name="Fechar" type="Button" parent="Janela"]
+offset_left = 350.0
+offset_top = 12.0
+offset_right = 414.0
+offset_bottom = 34.0
+focus_mode = 0
+text = "Fechar"
+
+[node name="TituloMochila" type="Label" parent="Janela"]
+offset_left = 16.0
+offset_top = 44.0
+offset_right = 210.0
+offset_bottom = 58.0
+text = "MOCHILA"
+
+[node name="TituloBau" type="Label" parent="Janela"]
+offset_left = 220.0
+offset_top = 44.0
+offset_right = 414.0
+offset_bottom = 58.0
+text = "BAÚ COMPARTILHADO"
+
+[node name="Mochila" type="ItemList" parent="Janela"]
+offset_left = 16.0
+offset_top = 62.0
+offset_right = 210.0
+offset_bottom = 154.0
+focus_mode = 0
+theme_override_constants/v_separation = 4
+theme_override_styles/panel = SubResource("Lista")
+theme_override_styles/selected = SubResource("Selecao")
+theme_override_styles/selected_focus = SubResource("Selecao")
+fixed_icon_size = Vector2i(16, 16)
+
+[node name="Bau" type="ItemList" parent="Janela"]
+offset_left = 220.0
+offset_top = 62.0
+offset_right = 414.0
+offset_bottom = 154.0
+focus_mode = 0
+theme_override_constants/v_separation = 4
+theme_override_styles/panel = SubResource("Lista")
+theme_override_styles/selected = SubResource("Selecao")
+theme_override_styles/selected_focus = SubResource("Selecao")
+fixed_icon_size = Vector2i(16, 16)
+
+[node name="Guardar" type="Button" parent="Janela"]
+offset_left = 16.0
+offset_top = 161.0
+offset_right = 210.0
+offset_bottom = 185.0
+focus_mode = 0
+text = "Guardar  >"
+
+[node name="Retirar" type="Button" parent="Janela"]
+offset_left = 220.0
+offset_top = 161.0
+offset_right = 414.0
+offset_bottom = 185.0
+focus_mode = 0
+text = "<  Retirar"
+
+[node name="Mensagem" type="Label" parent="Janela"]
+offset_left = 16.0
+offset_top = 193.0
+offset_right = 414.0
+offset_bottom = 207.0
+theme_override_colors/font_color = Color(0.91, 0.83, 0.65, 1)
+horizontal_alignment = 1
+
+[node name="Dica" type="Label" parent="Janela"]
+offset_left = 16.0
+offset_top = 212.0
+offset_right = 414.0
+offset_bottom = 226.0
+theme_override_colors/font_color = Color(0.67, 0.73, 0.7, 1)
+text = "Setas para escolher    E para transferir    Esc para fechar"
+horizontal_alignment = 1

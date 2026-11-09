@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-09 — Baú compartilhado nas salas seguras
+
+**Decisão** — As salas seguras têm um baú que se abre com **E**. Todos os baús da campanha acessam o mesmo conteúdo, gravado junto com o inventário quando o jogador salva nos óculos. Ao carregar um save antigo, o baú começa vazio.
+
+**Transferências** — O baú aceita pilhas, chips eletrônicos, flashes e a arma de impulso com a munição que ela já tinha. Chaves e ferramentas de progressão ficam na mochila para evitar que o jogador as deixe para trás antes de uma passagem sem volta. O baú guarda a pilha inteira. Ao retirar, o que exceder o limite da mochila fica guardado.
+
+**No Godot** — A cena do baú é adicionada por `SalaSegura`, com posição ajustável pelo campo `posicao_bau`. No jogo, use as setas para escolher a coluna e o item, **E** para transferir e **Esc** para fechar.
+
 ## 2026-11-08 — Identificação da versão passa a 2.0
 
 **Decisão:** a versão beta passa a mostrar **BETA v2.0** no menu principal. A versão em `project.godot` é `2.0`, e as propriedades do executável Windows usam `2.0.0.0`, como exige o formato de quatro números. O gerador do pacote aceita esse número sem sufixo `-beta.N`, enquanto o menu, o executável e o LEIAME continuam identificando o jogo como beta. A primeira beta `0.1.0-beta.1` continua registrada abaixo como histórico.
