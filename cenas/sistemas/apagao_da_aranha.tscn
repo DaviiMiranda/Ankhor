@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/salas/apagao_da_aranha.gd" id="1_script"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/corrente_cortada.wav" id="2_apagao"]
+[ext_resource type="AudioStream" path="res://assets/audio/efeitos/objetos/disjuntor.wav" id="3_religar"]
+
+[node name="ApagaoDaAranha" type="Node"]
+script = ExtResource("1_script")
+
+[node name="SomApagao" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_apagao")
+bus = &"Efeitos"
+
+[node name="SomReligar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_religar")
+bus = &"Efeitos"
