@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" path="res://cenas/sistemas/painel_bits.tscn" id="r25"]
 [ext_resource type="AudioStream" path="res://assets/audio/ambiente/bunker/bunker_zumbido.wav" id="r26"]
 [ext_resource type="Script" path="res://scripts/salas/robos_da_sala.gd" id="r27"]
+[ext_resource type="PackedScene" path="res://cenas/sistemas/apagao_da_aranha.tscn" id="r_apagao"]
 
 [sub_resource type="StyleBoxFlat" id="Placa"]
 bg_color = Color(0.36, 0.28, 0.12, 1)
@@ -241,3 +242,5 @@ bus = &"Efeitos"
 
 [node name="RobosDaSala" type="Node" parent="."]
 script = ExtResource("r27")
+
+[node name="ApagaoDaAranha" parent="." instance=ExtResource("r_apagao")]

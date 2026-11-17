@@ -40,6 +40,7 @@ graph TD
 - **[`itens_e_inventario.md`](itens_e_inventario.md):** Pegar, guardar, equipar e usar itens: inventário em grade (matriz), espaços de gadget e as pilhas.
 - **[`cofre_e_codigos.md`](cofre_e_codigos.md):** Cofres com código de dígitos, em que o jogador junta as pistas da sala e testa as combinações (o primeiro está no cinema do Centro de Convivência).
 - **[`hackeamento.md`](hackeamento.md):** Minigames do notebook para abrir portas trancadas (Sequência e Sincronia), em três dificuldades.
+- **[`aranha_do_apagao.md`](aranha_do_apagao.md):** O evento da ala do escritório (fase do Zane): a luz cai, a Aranha 07 vem andando e o Zane tem poucos segundos para hackeá-la num minigame de cabos; até quatro vezes, cada vez mais difícil.
 - **[`corredor_do_tempo.md`](corredor_do_tempo.md):** A sala opcional do Labirinto contra o relógio: quatro mecanismos para alinhar no tempo certo, o relógio contando para o corredor inteiro e game over se ele zera.
 - **[`sala_segura.md`](sala_segura.md):** A sala segura de cada fase, onde nenhum robô entra, e os óculos do Zane como máquina de salvar.
 - **[`visor_3d.md`](visor_3d.md):** Com os óculos no rosto, o jogo vira 3D em primeira pessoa: o quarto do Gabriel, com as anotações no mural, os documentos na mesa, os números num quadro branco e o save no menu de uma TV.
