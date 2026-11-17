@@ -1,0 +1,37 @@
+{
+	"id": "final_chegada",
+	"inicio": "chegada",
+	"trechos": {
+		"chegada": {
+			"falas": [
+				{
+					"quem": "Gabriel",
+					"retrato": "gabriel/gabriel_retrato_assustado",
+					"texto": "Quem são vocês?"
+				},
+				{
+					"quem": "Carlos",
+					"retrato": "carlos/carlos_retrato_furioso",
+					"texto": "O que?! Vocês aqui?!?!"
+				},
+				{
+					"quem": "Homo sideralis",
+					"texto": "Seguimos o pulso. A máquina chamou, Carlos."
+				},
+				{
+					"quem": "Carlos",
+					"retrato": "carlos/carlos_retrato_maniaco",
+					"texto": "A máquina é minha! Fui eu que construí!"
+				},
+				{
+					"quem": "Homo sideralis",
+					"texto": "Com o que era nosso. Viagem no tempo é invenção nossa. Você nunca teve as anotações completas."
+				},
+				{
+					"quem": "Homo sideralis",
+					"texto": "Por isso ela erra. Nós temos o resto."
+				}
+			]
+		}
+	}
+}

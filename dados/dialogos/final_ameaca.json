@@ -1,0 +1,26 @@
+{
+	"id": "final_ameaca",
+	"inicio": "ameaca",
+	"anotacao": {
+		"titulo": "Eles voltaram",
+		"texto": "Os pulsos da Âncora chamaram os Homo sideralis de volta à Terra. Eles mataram o Carlos e terminaram a máquina.\n\nDisseram que vão invadir outros tempos para transformar os humanos antigos em humanos evoluídos."
+	},
+	"trechos": {
+		"ameaca": {
+			"falas": [
+				{
+					"quem": "Homo sideralis",
+					"texto": "Pronto. A Âncora está completa."
+				},
+				{
+					"quem": "Homo sideralis",
+					"texto": "Agora podemos ir a outros tempos."
+				},
+				{
+					"quem": "Homo sideralis",
+					"texto": "Vamos transformar os humanos antigos em humanos evoluídos. Em nós."
+				}
+			]
+		}
+	}
+}

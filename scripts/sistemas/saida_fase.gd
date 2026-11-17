@@ -4,6 +4,7 @@ extends Area2D
 @export_file("*.tscn") var cena_destino: String = "res://cenas/interface/menu_notebook.tscn"
 @export var espera: float = 3.5
 @export var sair_ao_carregar := false
+@export var automatica := true
 
 var _saiu := false
 
@@ -15,17 +16,18 @@ var _saiu := false
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	tela.visible = false
-	body_entered.connect(_ao_entrar)
+	if automatica:
+		body_entered.connect(_ao_entrar)
 	if sair_ao_carregar:
-		_comecar_saida.call_deferred()
+		comecar_saida.call_deferred()
 
 
 func _ao_entrar(corpo: Node2D) -> void:
 	if corpo is Gabriel:
-		_comecar_saida()
+		comecar_saida()
 
 
-func _comecar_saida() -> void:
+func comecar_saida() -> void:
 	if _saiu:
 		return
 	_saiu = true

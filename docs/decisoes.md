@@ -1,5 +1,13 @@
 # Registro de decisões
 
+## 2026-11-16 — A cena final entra no jogo
+
+**Decisão:** o núcleo da Âncora, no Lab Central, deixa de mostrar "Fim da versão de teste" e passa a tocar o final decidido no mesmo dia (entrada abaixo: a volta dos *Homo sideralis*). Quando o Gabriel entra no núcleo, os robôs e a lupa do Carlos param, a câmera abre o plano, quatro *Homo sideralis* aparecem num clarão e a conversa `final_chegada` roda. Depois dela o Carlos cai (sem sangue, só a queda e o corpo escurecendo), a Âncora pisca e treme, e a conversa `final_ameaca` anuncia a invasão de outros tempos e guarda uma anotação no caderno. A tela final diz "A ÂNCORA ESTÁ COMPLETA" e o jogo volta ao menu.
+
+**Provisório:** as falas (rascunho, para o roteirista), o sprite dos *Homo sideralis* (um placeholder gerado por script) e a falta de sons e música. O que o Enredo ainda não decidiu (quem do grupo está no salão, a reação do Gabriel, como são os *Homo sideralis*: seção 10.6) ficou de fora: o Gabriel não fala sobre o que sente e só ele está em cena com o Carlos.
+
+**Afeta:** `scripts/sistemas/cena_final.gd` (novo), `scripts/sistemas/nucleo_ancora.gd`, `scripts/sistemas/saida_fase.gd` (a saída ganha `automatica` e o método público `comecar_saida`), `cenas/sistemas/nucleo_ancora.tscn`, `cenas/personagens/sideralis.tscn`, `dados/dialogos/final_chegada.json` e `final_ameaca.json`, `assets/sprites/personagens/sideralis/` (gerado por `assets/modelagem/personagens/gerar_sideralis.py`), `docs/fases/dtec.md` e `docs/pendencias_de_producao.md`.
+
 ## 2026-11-16 — O final: a volta dos Homo sideralis
 
 **Decisão:** o jogo termina com a volta dos *Homo sideralis*. A Âncora passa a emitir pulsos eletromagnéticos muito fortes (de um tipo ligado à viagem no tempo), que atraem parte deles de volta à Terra, até a Unifor. Quando chegam ao Laboratório, todos ficam assustados, e o Carlos diz algo como "O que?! Vocês aqui?!?!": ele não esperava, porque só conseguiu construir a Âncora porque **os *Homo sideralis* inventaram a viagem no tempo**. Ele tinha parte da pesquisa deles e nunca a terminou porque lhe faltava o resto das pesquisas e das anotações (é por isso que a máquina é imprecisa). Os *Homo sideralis* **matam o Carlos**, **terminam a máquina** e dizem que vão **invadir outros tempos para transformar os *sapiens* do passado em *Homo sideralis***.

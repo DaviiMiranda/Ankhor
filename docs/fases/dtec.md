@@ -1,6 +1,6 @@
 # Fase — Laboratório (D-Tec)
 
-> **Status:** Mapa pronto (cenário, portas, luzes e itens). Sexta fase do jogo, depois do Bunker. Level design novo, com o confronto final com o Carlos, aprovado (seção 3.1): os quatro passos estão no jogo (mapa, rede de energia, arena do Carlos e diretoria). O final foi decidido em 2026-11-16 (a volta dos *Homo sideralis*: Enredo, seção 8, "O final") e ainda não está no jogo; faltam a cena, as falas do Carlos e os registros dele.  
+> **Status:** Mapa pronto (cenário, portas, luzes e itens). Sexta fase do jogo, depois do Bunker. Level design novo, com o confronto final com o Carlos, aprovado (seção 3.1): os quatro passos estão no jogo (mapa, rede de energia, arena do Carlos e diretoria). O final (a volta dos *Homo sideralis*: Enredo, seção 8, "O final") está no jogo desde 2026-11-16, com falas e sprites provisórios; faltam as falas do Carlos durante a fase e os registros dele.  
 > **Área:** o D-Tec, departamento de tecnologia: laboratórios, servidores e o salão da Âncora (a máquina central)  
 > **No menu Fases:** **Laboratório** (`dados/fases/09_dtec.tres`, começa na Emergência)
 
@@ -67,7 +67,7 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 ## 3. Objetivos e Progressão
 
 - **Hoje:** chegar pela Emergência, atravessar os corredores com a Sentinela e o Caçador, o Rastreador e a Ronda (nichos para se esconder, checkpoints na Emergência e no corredor de serviço), pegar o notebook na Informática, ler a rede no telão da Sala de Controle e cortar os três relés do gargalo (Eletrônica, Servidores e Robótica) para a grade do Lab Central abrir. No Lab Central, invadir os dois consoles sem ser pego pela lupa do Carlos e chegar ao núcleo da Âncora, que encerra a versão de teste.
-- **Falta:** a cena final no núcleo (decidida: os *Homo sideralis* chegam, matam o Carlos e terminam a Âncora; Enredo, seção 8, "O final"), as falas do Carlos e os registros dele (seção 3.1, "O que depende de decisão do grupo").
+- **Feito (2026-11-16):** a cena final no núcleo, com falas e sprites provisórios (seção 3.1, parte 3). **Falta:** as falas do Carlos durante a fase e os registros dele (seção 3.1, "O que depende de decisão do grupo").
 
 ### 3.1 Level design novo: "A Última Tentativa"
 
@@ -149,7 +149,7 @@ O telão também distingue os outros cabos ainda energizados em azul escuro. Ass
 > - **A onda** (`cenas/sistemas/onda_ancora.tscn`) sai do pé da Âncora no mesmo ritmo da animação (2,4 s; de 25% a 80% do ciclo). Quem ela alcança fora da sombra de um móvel fica à vista da lupa.
 > - **O clarão** atordoa a lupa por 6 s se for aceso perto do Carlos (110 px) ou dentro do feixe (`scripts/itens/clarao.gd` passou a atordoar também o grupo `atordoaveis`).
 > - **Checkpoints:** `dtec_arena` na entrada norte, e cada console invadido salva ali mesmo (`dtec_console_1` e `_2`).
-> - **O núcleo** (`cenas/sistemas/nucleo_ancora.tscn`), na frente da Âncora, acende na fase C. Entrar nele mostra "VOCÊ CHEGOU AO NÚCLEO DA ÂNCORA / Fim da versão de teste." e volta ao menu. A cena final continua **espaço vazio**.
+> - **O núcleo** (`cenas/sistemas/nucleo_ancora.tscn`), na frente da Âncora, acende na fase C. Entrar nele começa a **cena final** (`scripts/sistemas/cena_final.gd`, Enredo seção 8, "O final"): os robôs e a lupa do Carlos param, a câmera abre o plano mostrando o Gabriel, a Âncora e o Carlos, um clarão e quatro *Homo sideralis* aparecem em volta (`cenas/personagens/sideralis.tscn`), e a conversa `final_chegada` (o Carlos se assusta, e eles dizem que a máquina é deles) termina com o Carlos caindo. A Âncora pisca e treme, e a conversa `final_ameaca` anuncia que vão invadir outros tempos (e guarda uma anotação no caderno). A tela final diz "A ÂNCORA ESTÁ COMPLETA" e volta ao menu. Os sprites e as falas são provisórios.
 
 O Carlos fica no console do fundo do Lab Central, com a Âncora entre ele e o Gabriel. Racks, cilindros e consoles servem de cobertura. A **lupa varre a sala como um holofote**: cone de visão por produto escalar, com oclusão por raycast. Ser visto não mata: o Carlos chama os robôs pelas portas, e quem pega o Gabriel são os robôs.
 
@@ -160,7 +160,7 @@ O Carlos fica no console do fundo do Lab Central, com a Âncora entre ele e o Ga
 | C | Varredura rápida, os robôs da Robótica entram | Lança o **flash na lupa** (sensor óptico: fica atordoada como os olhos dos robôs) e avança até o núcleo entre uma onda e outra |
 
 - Cada console invadido é um checkpoint.
-- **O fim:** a interação no núcleo leva à cena final, **decidida em 2026-11-16** (Enredo, seção 8, "O final"): os *Homo sideralis*, atraídos pelos pulsos da Âncora, chegam ao salão, o Carlos se assusta ("O que?! Vocês aqui?!?!"), eles o matam, terminam a máquina e anunciam que vão invadir outros tempos. **Ainda não está no jogo** (o núcleo mostra "Fim da versão de teste"). Continuam pendentes, nas pendências 10.2 e 10.6 do Enredo, quem do grupo está no salão e o que acontece com o Gabriel depois.
+- **O fim:** a interação no núcleo leva à cena final, **decidida em 2026-11-16** (Enredo, seção 8, "O final"): os *Homo sideralis*, atraídos pelos pulsos da Âncora, chegam ao salão, o Carlos se assusta ("O que?! Vocês aqui?!?!"), eles o matam, terminam a máquina e anunciam que vão invadir outros tempos. **Está no jogo** (parte 3, "O núcleo"), com falas e sprites provisórios. Continuam pendentes, nas pendências 10.2 e 10.6 do Enredo, quem do grupo está no salão e o que acontece com o Gabriel depois.
 
 #### Computação (para a apresentação)
 

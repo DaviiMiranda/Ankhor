@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/personagens/sideralis/sideralis.png" id="1_sprite"]
+[ext_resource type="Texture2D" uid="uid://dtfpmqdy5b1wa" path="res://assets/sprites/cenario/luzes/luz.png" id="2_luz"]
+
+[node name="Sideralis" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sprite")
+centered = false
+scale = Vector2(0.5, 0.5)
+offset = Vector2(-48, -112)
+
+[node name="Luz" type="PointLight2D" parent="."]
+position = Vector2(0, -28)
+scale = Vector2(0.9, 0.9)
+color = Color(0.42, 0.95, 1, 1)
+energy = 0.7
+texture = ExtResource("2_luz")
