@@ -1,5 +1,21 @@
 # Registro de decisões
 
+## 2026-11-09 — Baú compartilhado nas salas seguras
+
+**Decisão** — As salas seguras têm um baú que se abre com **E**. Todos os baús da campanha acessam o mesmo conteúdo, gravado junto com o inventário quando o jogador salva nos óculos. Ao carregar um save antigo, o baú começa vazio.
+
+**Transferências** — O baú aceita pilhas, chips eletrônicos, flashes e a arma de impulso com a munição que ela já tinha. Chaves e ferramentas de progressão ficam na mochila para evitar que o jogador as deixe para trás antes de uma passagem sem volta. O baú guarda a pilha inteira. Ao retirar, o que exceder o limite da mochila fica guardado.
+
+**No Godot** — A cena do baú é adicionada por `SalaSegura`, com posição ajustável pelo campo `posicao_bau`. No jogo, use as setas para escolher a coluna e o item, **E** para transferir e **Esc** para fechar.
+
+## 2026-11-08 — Identificação da versão passa a 2.0
+
+**Decisão:** a versão beta passa a mostrar **BETA v2.0** no menu principal. A versão em `project.godot` é `2.0`, e as propriedades do executável Windows usam `2.0.0.0`, como exige o formato de quatro números. O gerador do pacote aceita esse número sem sufixo `-beta.N`, enquanto o menu, o executável e o LEIAME continuam identificando o jogo como beta. A primeira beta `0.1.0-beta.1` continua registrada abaixo como histórico.
+
+**Por quê:** pedido do Davi para atualizar o número da beta para 2.0.
+
+**Afeta:** `project.godot`, `export_presets.cfg`, `scripts/interface/rotulo_versao.gd`, `ferramentas/gerar_beta.py`, `ferramentas/leiame_beta.txt` e `docs/producao/beta.md`.
+
 ## 2026-11-08 — Corredor do Tempo: o telefone vira um puzzle de girar cabos
 
 **Decisão:** a salinha do **telefone** do Corredor do Tempo (Labirinto) deixa de ser "discar o ano do primeiro telefone, 1876" e vira um puzzle de **ligar a central ao telefone girando peças de cabo**. O painel mostra uma grade de 7 × 5 peças (reta, curva, T, cruz, ponta e vazio), com a central à esquerda e o telefone à direita. Setas escolhem a peça e `E` gira 90° para a direita. Os cabos que já recebem o sinal da central ficam verdes; quando o sinal chega ao telefone, a linha liga sozinha e o mecanismo alinha. O tabuleiro é sorteado a cada visita à sala (sempre com solução, caminho certo de 11 a 15 peças) e guardado se o jogador sair com `Esc`.
