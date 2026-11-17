@@ -3,14 +3,14 @@
 > [!IMPORTANT]
 > **Este documento é a lei do projeto**, junto com as fichas de [`personagens/`](personagens/) (uma por personagem), que fazem parte dele. Tudo o que diz respeito à história, ao mundo e aos personagens de **Ankhor** vale como está escrito aqui e nas fichas, **acima de qualquer outro documento**: GDD, fases, diálogos, arte, textos em `dados/` e o próprio `decisoes.md`. Em caso de dúvida em qualquer parte do jogo (o que uma fase conta, como um personagem fala, o que um objeto significa), consulte este documento e a ficha do personagem. Se outra parte do projeto contradisser o que está aqui, **a outra parte está errada** e deve ser corrigida.
 
-> **Status:** reescrito em 2026-10-06, quando a história mudou de rumo: saíram os loops e a revelação de "Gabriel é o paradoxo", e a fenda passou a ser **um acaso** para quem cai nela. Em 2026-10-07 entrou o antagonista, o **Carlos**. Em 2026-10-15 entraram os ***Homo sideralis*** (quem foi embora), os **Faroleiros** (quem ficou) e o conteúdo da mentira do **Henrique**. Em 2026-10-30, o **Baltazar** deixou de aparecer em pessoa (só os rastros dele) e entrou o nome da partida dos *Homo sideralis*: a **Grande Separação**. Em 2026-11-06 entrou o **Ciborgue**, a cópia de metal do Carlos que caça no bunker, e o **fim do Bunker**: o confronto com o Henrique, o sumiço dele e a fuga do grupo até o Laboratório, onde a Diana torce o tornozelo, a Clarice fica com ela e o Zane some por outro caminho.
+> **Status:** reescrito em 2026-10-06, quando a história mudou de rumo: saíram os loops e a revelação de "Gabriel é o paradoxo", e a fenda passou a ser **um acaso** para quem cai nela. Em 2026-10-07 entrou o antagonista, o **Carlos**. Em 2026-10-15 entraram os ***Homo sideralis*** (quem foi embora), os **Faroleiros** (quem ficou) e o conteúdo da mentira do **Henrique**. Em 2026-10-30, o **Baltazar** deixou de aparecer em pessoa (só os rastros dele) e entrou o nome da partida dos *Homo sideralis*: a **Grande Separação**. Em 2026-11-06 entrou o **Ciborgue**, a cópia de metal do Carlos que caça no bunker, e o **fim do Bunker**: o confronto com o Henrique, o sumiço dele e a fuga do grupo até o Laboratório, onde a Diana torce o tornozelo, a Clarice fica com ela e o Zane some por outro caminho. Em 2026-11-16 entrou o **final**: os pulsos da Âncora atraem os *Homo sideralis* de volta à Terra, o Carlos descobre que sua máquina nunca foi só dele, e eles o matam e terminam a Âncora (seção 8, "O final").
 > **Como mudar:** só por decisão do grupo. Toda mudança de história entra **no mesmo PR** neste documento e em [`../decisoes.md`](../decisoes.md) (que guarda o histórico de quando e por que mudou). Tudo o que ainda não foi decidido fica na **seção 10 ("Pendências")**, no fim, e não no meio da narrativa: o que está fora das pendências está decidido.
 
 ---
 
 ## 1. A história em um parágrafo
 
-Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Biblioteca da Unifor e acorda no ano de **3026**, no mesmo lugar, agora uma ruína tomada pela natureza. A sociedade e o planeta ficaram tão ruins que a humanidade se dividiu, na **Grande Separação**: os ***Homo sideralis***, uma espécie humana evoluída, feita para o espaço, foram embora para outro planeta, e os poucos *sapiens* que ficaram formaram uma resistência que defende a Terra, os **Faroleiros**. Um deles brigou com o grupo e se isolou na Unifor, abandonada havia muito tempo: **Carlos**, um cientista obcecado pelos **anos 80**, que construiu uma máquina no **D-Tec**, a parte de tecnologia da Unifor, no Bloco M: a **Âncora**, para ir viver naquela época. A Âncora é imprecisa: a cada tentativa do Carlos, abre uma **fenda** no tempo no chão da Biblioteca e puxa quem estiver naquele ponto, em alguma época. Para quem cai, **é um acaso**: o Carlos não escolhe ninguém. Gabriel não é o único: outros jovens de épocas diferentes caíram ali com dias de diferença, e cada um está tentando sobreviver num canto do campus. Os robôs, controlados pelo Carlos, caçam qualquer humano que aparecer. Gabriel precisa encontrar os outros, descobrir o que aconteceu e achar um jeito de todos voltarem para suas épocas. No caminho segue os rastros de um antepassado que passou por ali antes dele e desapareceu, descobre que um dos outros mente para o grupo a serviço do Carlos, e que por trás de tudo existe alguém.
+Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Biblioteca da Unifor e acorda no ano de **3026**, no mesmo lugar, agora uma ruína tomada pela natureza. A sociedade e o planeta ficaram tão ruins que a humanidade se dividiu, na **Grande Separação**: os ***Homo sideralis***, uma espécie humana evoluída, feita para o espaço, foram embora para outro planeta, e os poucos *sapiens* que ficaram formaram uma resistência que defende a Terra, os **Faroleiros**. Um deles brigou com o grupo e se isolou na Unifor, abandonada havia muito tempo: **Carlos**, um cientista obcecado pelos **anos 80**, que construiu uma máquina no **D-Tec**, a parte de tecnologia da Unifor, no Bloco M: a **Âncora**, para ir viver naquela época. A Âncora é imprecisa: a cada tentativa do Carlos, abre uma **fenda** no tempo no chão da Biblioteca e puxa quem estiver naquele ponto, em alguma época. Para quem cai, **é um acaso**: o Carlos não escolhe ninguém. Gabriel não é o único: outros jovens de épocas diferentes caíram ali com dias de diferença, e cada um está tentando sobreviver num canto do campus. Os robôs, controlados pelo Carlos, caçam qualquer humano que aparecer. Gabriel precisa encontrar os outros, descobrir o que aconteceu e achar um jeito de todos voltarem para suas épocas. No caminho segue os rastros de um antepassado que passou por ali antes dele e desapareceu, descobre que um dos outros mente para o grupo a serviço do Carlos, e que por trás de tudo existe alguém. No fim, os pulsos da Âncora chamam de volta à Terra os próprios *Homo sideralis*, que inventaram a viagem no tempo e de cuja pesquisa o Carlos tirou a máquina: eles matam o Carlos, terminam a Âncora e anunciam que vão invadir outros tempos para transformar os *sapiens* do passado em *Homo sideralis*.
 
 ---
 
@@ -20,6 +20,7 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 
 - **A Terra ficou muito ruim**: a sociedade e o planeta. Quase não restam humanos na Terra.
 - **Os *Homo sideralis* foram embora.** Ao longo dos séculos, parte da humanidade evoluiu numa espécie nova, os ***Homo sideralis*** ("o homem das estrelas"): aceitam melhor os implantes cibernéticos e vivem melhor no espaço e em planetas com outra temperatura ou outra gravidade. Foram eles que **partiram para outro planeta**, há **menos de 100 anos**. Essa partida se chama **Grande Separação**: separou famílias e amigos, que nunca mais se viram.
+- **Foram os *Homo sideralis* que inventaram a viagem no tempo** (decisão de 2026-11-16). O Carlos só conseguiu construir a Âncora porque tinha em mãos parte da pesquisa deles. Como ela chegou a ele está pendente (seção 10.2). O jogo só revela isso no final (seção 8, "O final").
 - **Os Faroleiros ficaram.** Os humanos ainda não evoluídos, os *sapiens*, não partiram. Os que ficaram formaram uma resistência que **defende o planeta**: os **Faroleiros**. Ainda existem, **longe do campus**. O símbolo deles está na seção 2.4.
 - **Havia um Conselho.** Antes da Grande Separação, as cidades eram governadas por um **Conselho**. O que ele era e quem o formava ficam em aberto: o jogo só o mostra nos recortes de jornal que o Carlos guardou (seção 4.3).
 - **Quanto mais no futuro, mais frias as relações.** Do passado para o futuro, as relações entre as pessoas esfriam: em 2123 já são mornas, mediadas por máquinas (é daí que vem o jeito do Zane), e em 3026, depois da Grande Separação, são geladas. Os **Faroleiros** são a exceção: mantêm a luz acesa, e as cartas deles são quentes.
@@ -71,11 +72,13 @@ Numa madrugada de 2026, o estudante **Gabriel Magalhães** pega no sono na Bibli
 |---|---|
 | **O que é a Âncora** | **Só uma máquina.** Um aparelho experimental de física do tempo. Não pensa, não quer nada, não escolhe ninguém |
 | **Onde está a Âncora** | No **D-Tec**, a parte de tecnologia da Unifor, no Bloco M, junto do laboratório do Carlos |
-| **Quem criou** | O **Carlos** (seção 4.3), para ir viver nos anos 80 |
+| **Quem criou** | O **Carlos** (seção 4.3), para ir viver nos anos 80, a partir da tecnologia de viagem no tempo que os ***Homo sideralis*** inventaram (seção 2.1) |
+| **Por que é imprecisa** | **Está incompleta.** O Carlos não tinha o resto das pesquisas e das anotações dos *Homo sideralis*, e por isso nunca a terminou |
 | **O que aconteceu** | O Carlos tenta usar a Âncora para ir para os anos 80, mas a máquina é **imprecisa**: não acerta a época nem escolhe quem puxa. Cada tentativa abre uma fenda no tempo |
 | **Onde a fenda se abre** | Sempre no mesmo ponto: o chão onde hoje fica a Biblioteca (ou onde ela ainda viria a ser construída) |
 | **Como a fenda age** | **Pulsa.** A cada tentativa do Carlos, a cada 3 dias, encosta numa época diferente e puxa quem estiver no ponto naquela noite. A cada pulso fica maior |
 | **Por que essas pessoas** | **Acaso.** O Carlos não escolhe quem a fenda puxa: estavam no lugar errado na noite errada |
+| **Os pulsos** | Cada pulso da fenda também emite um **pulso eletromagnético** forte, de um tipo ligado à viagem no tempo. Os pulsos ficam cada vez mais fortes, e no fim alcançam os *Homo sideralis* (seção 8, "O final") |
 | **A ameaça** | Enquanto o Carlos continuar tentando, gente nova continua caindo, e a fenda continua crescendo |
 | **Nome** | O aparelho se chama **Âncora**. **Ankhor** é o nome do jogo. Os dois não se confundem |
 
@@ -93,6 +96,8 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 | Henrique (2019) | A teoria por trás das equações. Ele some no fim do Bunker (seção 8, Ato 3): como essa parte chega ao grupo depois disso está pendente (seção 10.3) |
 | Zane (2123) | A tecnologia mais próxima da Âncora |
 | Gabriel (2026) | O caderno, como o lugar onde as partes de todos se juntam. O grupo está espalhado, e Gabriel é o único que passa por todos os esconderijos: anota o que cada um sabe, e no fim o caderno é o único lugar onde o quadro inteiro existe |
+
+> **Depois do final (decisão de 2026-11-16):** quem termina a Âncora são os *Homo sideralis*, não o grupo (seção 8, "O final"). Como as partes do grupo se encaixam nisso, e se alguém consegue voltar, está pendente (seção 10.6).
 
 ---
 
@@ -130,6 +135,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 - **O primeiro registro assinado dele:** a **Folha de calibração**, no Corredor do Tempo do Labirinto (opcional). Ali ele testava a calibração da Âncora com objetos dos anos 80 (um Genius, os três quadros de *De Volta para o Futuro*, um micro e um telefone de disco). Na folha ele conta que a máquina errou de novo, abriu a fenda na Biblioteca e puxou alguém que ele **nem foi ver**; diz que já foi um Faroleiro e que só quer o mundo dos anos 80. **Assina só "C."**: o jogador ainda não sabe o nome dele (quando descobre continua pendente, seção 10.2).
 - **Os recortes de jornal:** o Carlos guardou recortes de jornal e boletins do tempo da Grande Separação e escreveu na margem de cada um, **de caneta vermelha** (o vermelho é a cor dele). Hoje estão espalhados pelo campus, um em cada uma das três primeiras fases, como colecionável (`docs/mecanicas/colecionaveis.md`). Cada um tem uma foto e um texto, e os detalhes ficam em aberto (datas rasgadas, motivos "reservados"): **(1)** na **Biblioteca**, um jornal do começo do conflito: os *Homo sideralis* pedem voz no Conselho e a cidade se divide em dois lados; **(2)** no **Bloco de salas**, o boletim do Conselho sobre o embarque para o novo mundo, só para os *Homo sideralis*, com a manutenção das cidades da Terra encerrada por etapas, sem dizer por quê; **(3)** no **Labirinto**, o boletim feito à mão de quem ficou, reunido em volta de uma lanterna sob um farol desenhado (o começo dos Faroleiros). As notas dos dois primeiros não são assinadas ("Ainda dava para voltar atrás. Ninguém quis."; "Fui ver a fila de longe. Não entrei nela."). A do terceiro assina **"C."**, a mesma assinatura da Folha de calibração ("Aqui eu ainda era um deles."), e o jogador ainda não sabe quem é. Ao juntar os três, o quarto do Gabriel ganha a **gravura de uma nave imensa** cruzando o escuro, que não diz de onde saiu nem para onde vai. Na borda dela, de caneta vermelha e assinada "C.", há uma mensagem em cifra de César, com deslocamento 3 (a pista é a própria assinatura, C é a 3ª letra do alfabeto, e os três motores da nave). Decifrada, diz: "Quem eu amava embarcou. Só o passado é seguro contra incertezas."
 - **A voz no bunker:** no fim do Bunker, logo depois do sumiço do Henrique, o Carlos fala com o grupo pelos **alto-falantes**: quer todos fora do caminho dele, e manda os robôs atrás deles (seção 8, Ato 3). Ele continua sem ir ao bunker: só a voz chega lá.
+- **O fim dele (decisão de 2026-11-16):** o Carlos **morre**, morto pelos ***Homo sideralis***, que voltam à Terra atraídos pelos pulsos da Âncora. Ele não esperava por eles: a máquina só existe por causa da pesquisa deles, e ele nunca a terminou porque lhe faltava o resto (seção 8, "O final"). O grupo não o derrota: o enfrentamento no Laboratório continua sem luta (seção 10.2).
 - Muita coisa sobre o Carlos ainda está pendente (seção 10.2).
 
 ---
@@ -191,6 +197,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 4. **O primeiro puxado é o Henrique.** O Carlos promete levá-lo para antes da morte da mãe e passa a usá-lo.
 5. **Os outros pulsos:** com 3 dias de intervalo entre um e outro, a fenda puxa uma pessoa de cada época. Cada uma acorda sozinha, foge dos robôs e acha um canto para sobreviver. Todos chegam antes de Gabriel. O Zane chega antes da Clarice, e a Diana depois da Clarice.
 6. **O jogo:** Gabriel, o último, acorda na Biblioteca, encontra os outros um a um, descobre o que aconteceu e tenta consertar a Âncora para todos voltarem.
+7. **O final:** os pulsos da Âncora, cada vez mais fortes, alcançam os *Homo sideralis*, que voltam à Terra e chegam à Unifor. Matam o Carlos, terminam a Âncora com a pesquisa que ele não tinha e anunciam que vão invadir outros tempos (seção 8, "O final").
 
 **Em 2026, o sumiço do Henrique virou lenda do campus:** um aluno que sumiu na Biblioteca em 2019. A pesquisa dele sobre viagem no tempo, que ele estava fazendo quando foi puxado, foi levada adiante pelo orientador e virou a cadeira de **Modelagem e Simulação**, a que Gabriel cursa: as equações do caderno de Gabriel vêm dela, sem ele saber de quem eram. Gabriel conhece a lenda, e por isso reconhece o Henrique quando o encontra.
 
@@ -266,8 +273,19 @@ O jogador aprende aqui as regras do jogo (silêncio, luz e esconderijos) e que *
 - Com as partes de todos reunidas, Gabriel e os outros tentam consertar a Âncora e mandar cada um para a sua noite.
 - **O Zane:** o final dele está pendente (seção 10.4). O final antigo (ficar em 3026 para domar a IA) saiu, porque a IA não tem consciência.
 - **O Baltazar:** a trilha dele termina na Âncora, onde a luz nasce. O que aconteceu com ele fica em aberto (seção 5).
-- **O Carlos:** como o grupo o enfrenta, sem lutar, está pendente (seção 10.2).
-- Como isso acontece e como o jogo termina está nas pendências (seção 10.6).
+- **O Carlos:** o grupo não o derrota. Quem o mata são os *Homo sideralis*, no final (abaixo). Como o Gabriel o enfrenta antes disso, sem lutar, continua pendente (seção 10.2).
+- **Como o jogo termina:** com a volta dos *Homo sideralis*, logo abaixo. O que vem depois dela, para Gabriel e para o grupo, está nas pendências (seção 10.6).
+
+### O final — A volta dos *Homo sideralis*
+
+> Decisão de 2026-11-16, ideia do grupo. Descreve só o que acontece. **As falas ficam para o roteirista:** as frases entre aspas abaixo são o que o grupo propôs, em rascunho.
+
+- **Por que eles voltam:** a Âncora passou a emitir **pulsos eletromagnéticos muito fortes**, de um tipo ligado à viagem no tempo (seção 3). Os pulsos alcançam os *Homo sideralis*, e **parte deles** (não todos) vem até a fonte: a Unifor, onde o Carlos construiu a máquina. Atraíram-nos para a Terra sem que ninguém, nem o Carlos, quisesse.
+- **A chegada:** eles aparecem no Laboratório (D-Tec), diante da Âncora. **Todos os que estão ali ficam assustados.**
+- **A surpresa do Carlos:** ele fala algo como *"O que?! Vocês aqui?!?!"*. Não esperava por eles, porque na verdade **só conseguiu construir a máquina porque quem inventou a tecnologia de viagem no tempo foram os *Homo sideralis***. Ele tinha parte da pesquisa deles e **não terminou a Âncora porque faltava o resto das pesquisas e das anotações**. É por isso que ela é imprecisa (seção 3).
+- **A morte do Carlos:** os *Homo sideralis* **matam o Carlos** e **terminam a máquina**, porque têm o que faltava.
+- **A ameaça:** eles dizem que **vão invadir outros tempos** para **transformar os *sapiens* do passado em *Homo sideralis***. O jogo termina aqui, com a Âncora completa nas mãos deles. Como a transformação é feita, e se alguém consegue impedi-la, não está decidido (seção 10.6).
+- **O que muda para o jogador:** o Carlos deixa de ser o maior perigo no último momento. A ameaça maior, que o jogo só mostra no final, é a espécie que foi embora.
 
 ---
 
@@ -314,7 +332,7 @@ O que falta fazer em arte, mecânica e fases (e não muda a história) fica em [
 
 ### 10.2 O Carlos
 
-- Como ele consegue o conhecimento que falta para a Âncora funcionar? (A IA é uma ferramenta sem consciência e pode ser parte da resposta.)
+- Como a parte da pesquisa dos *Homo sideralis* que ele tinha chegou às mãos dele, e por que nunca teve o resto? (Já decidido: a tecnologia de viagem no tempo é deles, e ele a construiu incompleta: seção 3 e "O final". A IA é uma ferramenta sem consciência e pode ser parte da resposta.)
 - Quantas ferramentas de IA ele usa, e o que cada uma faz (os robôs, a Âncora, os sistemas do D-Tec)?
 - Por que os robôs caçam os humanos: para capturar e levar ao Bloco M, ou para eliminar quem atrapalha?
 - Por que o Carlos guardou os recortes de jornal e escreveu na margem de cada um? Como e quando foram parar espalhados pelo campus?
@@ -323,7 +341,8 @@ O que falta fazer em arte, mecânica e fases (e não muda a história) fica em [
 - Qual foi o desentendimento com os Faroleiros (no jogo fica em aberto), e há quantos anos ele está sozinho?
 - Quando o jogador descobre que ele existe? (A voz dele aparece no registro da câmara selada, no Labirinto, e ao vivo nos alto-falantes do fim do Bunker. Se ele diz o próprio nome em algum desses momentos, está em aberto.)
 - No fim do Bunker, o Carlos sabe o que aconteceu com o Henrique, ou foi ele quem fez? (As palavras dele nos alto-falantes ficam para o roteirista.)
-- Como o grupo o enfrenta sem lutar (Gabriel não é combatente)? O D-Tec é o último lugar do jogo?
+- Como o Gabriel o enfrenta sem lutar (não é combatente) antes da chegada dos *Homo sideralis*? (Já decidido: quem o mata são eles, no D-Tec, e o D-Tec é o último lugar do jogo: seção 8, "O final".)
+- O Carlos amava alguém que embarcou na Grande Separação (seção 4.3). Essa pessoa está entre os *Homo sideralis* que voltam? Isso muda a reação dele quando os vê?
 
 ### 10.3 O Henrique e a mentira
 
@@ -357,7 +376,13 @@ Já decidido: **Biblioteca → Bloco de salas → Labirinto → Centro de Conviv
 
 ### 10.6 A volta e o fim
 
-- Como cada um volta: todos de uma vez no final, ou um por um, conforme a Âncora vai sendo consertada?
+Já decidido (seção 8, "O final"): os *Homo sideralis* voltam atraídos pelos pulsos da Âncora, matam o Carlos, terminam a máquina e dizem que vão invadir outros tempos para transformar os *sapiens* em *Homo sideralis*. O jogo termina aí.
+
+- **Gabriel e o grupo na cena:** quem do grupo está no salão da Âncora quando eles chegam (a Clarice e a Diana ficaram na Emergência, e o Zane sumiu)? Como o Gabriel reage? O que os *Homo sideralis* fazem com ele e com quem estiver ali?
+- **O que vem depois:** a cena termina na ameaça, num final aberto, ou o jogo ainda mostra o que acontece com Gabriel (volta para 2026? é levado?)? Como cada um volta: todos de uma vez, um por um, ou ninguém? A Âncora terminada serve para voltar para casa ou só para invadir?
+- **Os *Homo sideralis*:** quantos voltam, de onde e como viajam, como são e como falam (implantes, rosto, voz), quem manda neles e por que querem transformar os *sapiens* (e como a transformação é feita).
+- **Quais tempos:** as épocas de onde vieram Gabriel e os outros (1750, 1978, 1990, 2019, 2026, 2123) são as que eles vão invadir primeiro? O Gabriel, a família Magalhães e o Baltazar entram nisso?
+- **Por que agora:** o que deixa os pulsos tão fortes só no fim: o tempo, as ações do Gabriel no Laboratório (cortar a rede, invadir os consoles, chegar ao núcleo) ou outra coisa?
+- **A morte do Carlos:** como a cena a mostra (em cena ou fora dela)? O que acontece com os robôs e com o Ciborgue quando ele morre?
 - Qual é o final de Gabriel e Clarice? O final antigo ("A mesma madrugada": os dois acordam juntos em 2026, e ela rasga a página das equações) foi escrito para a versão com loops e precisa ser revisto.
-- O que acontece com o Carlos no fim?
-- O que acontece com o Henrique no fim? (Ele some no fim do Bunker: ver seção 10.3.)
+- O que acontece com o Henrique no fim? (Ele some no fim do Bunker: ver seção 10.3.) Tem ligação com os *Homo sideralis*?

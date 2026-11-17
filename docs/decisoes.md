@@ -1,5 +1,15 @@
 # Registro de decisões
 
+## 2026-11-16 — O final: a volta dos Homo sideralis
+
+**Decisão:** o jogo termina com a volta dos *Homo sideralis*. A Âncora passa a emitir pulsos eletromagnéticos muito fortes (de um tipo ligado à viagem no tempo), que atraem parte deles de volta à Terra, até a Unifor. Quando chegam ao Laboratório, todos ficam assustados, e o Carlos diz algo como "O que?! Vocês aqui?!?!": ele não esperava, porque só conseguiu construir a Âncora porque **os *Homo sideralis* inventaram a viagem no tempo**. Ele tinha parte da pesquisa deles e nunca a terminou porque lhe faltava o resto das pesquisas e das anotações (é por isso que a máquina é imprecisa). Os *Homo sideralis* **matam o Carlos**, **terminam a máquina** e dizem que vão **invadir outros tempos para transformar os *sapiens* do passado em *Homo sideralis***.
+
+**O que muda no Enredo:** a pendência de como o Carlos consegue o conhecimento da Âncora ficou só com o "como chegou às mãos dele"; a de "o que acontece com o Carlos no fim" está respondida; o D-Tec é o último lugar do jogo; quem termina a Âncora são os *Homo sideralis*, não o grupo. Continuam pendentes (seção 10.6): o que acontece com Gabriel e o grupo na cena e depois dela, como cada um volta (ou se volta), como são os *Homo sideralis*, quais tempos eles invadem, e por que os pulsos ficam tão fortes só agora.
+
+**Por quê:** ideia do grupo para o final, que preenche a "cena final", que estava em aberto, com um antagonista maior que o Carlos. Usa o termo oficial *Homo sideralis* (o grupo escreveu "humanos evoluídos") e *sapiens* para os "humanos antigos" (Enredo, seção 9).
+
+**Afeta:** `docs/historia/História_Completa.md` (cabeçalho, seções 1, 2.1, 3, 3.1, 4.3, 7.2, 8 com a nova seção "O final", e as pendências 10.2 e 10.6), `docs/historia/personagens/carlos.docx` (história e pendências), `docs/fases/dtec.md` (a cena final deixa de ser espaço vazio). **Não está no jogo ainda:** hoje o núcleo da Âncora mostra "Fim da versão de teste". A cena, as falas (para o roteirista, no `Dialogos.docx`) e os sprites dos *Homo sideralis* estão por fazer.
+
 ## 2026-11-09 — Baú compartilhado nas salas seguras
 
 **Decisão** — As salas seguras têm um baú que se abre com **E**. Todos os baús da campanha acessam o mesmo conteúdo, gravado junto com o inventário quando o jogador salva nos óculos. Ao carregar um save antigo, o baú começa vazio.

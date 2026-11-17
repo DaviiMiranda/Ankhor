@@ -1,6 +1,6 @@
 # Fase — Laboratório (D-Tec)
 
-> **Status:** Mapa pronto (cenário, portas, luzes e itens). Sexta fase do jogo, depois do Bunker. Level design novo, com o confronto final com o Carlos, aprovado (seção 3.1): os quatro passos estão no jogo (mapa, rede de energia, arena do Carlos e diretoria). Faltam a cena final, as falas do Carlos e os registros dele, que dependem das pendências do Enredo.  
+> **Status:** Mapa pronto (cenário, portas, luzes e itens). Sexta fase do jogo, depois do Bunker. Level design novo, com o confronto final com o Carlos, aprovado (seção 3.1): os quatro passos estão no jogo (mapa, rede de energia, arena do Carlos e diretoria). O final foi decidido em 2026-11-16 (a volta dos *Homo sideralis*: Enredo, seção 8, "O final") e ainda não está no jogo; faltam a cena, as falas do Carlos e os registros dele.  
 > **Área:** o D-Tec, departamento de tecnologia: laboratórios, servidores e o salão da Âncora (a máquina central)  
 > **No menu Fases:** **Laboratório** (`dados/fases/09_dtec.tres`, começa na Emergência)
 
@@ -67,7 +67,7 @@ Cada ligação é uma `Porta` (`cenas/sistemas/porta.tscn`). O Lab Central fica 
 ## 3. Objetivos e Progressão
 
 - **Hoje:** chegar pela Emergência, atravessar os corredores com a Sentinela e o Caçador, o Rastreador e a Ronda (nichos para se esconder, checkpoints na Emergência e no corredor de serviço), pegar o notebook na Informática, ler a rede no telão da Sala de Controle e cortar os três relés do gargalo (Eletrônica, Servidores e Robótica) para a grade do Lab Central abrir. No Lab Central, invadir os dois consoles sem ser pego pela lupa do Carlos e chegar ao núcleo da Âncora, que encerra a versão de teste.
-- **Falta (depende do Enredo):** a cena final no núcleo, as falas do Carlos e os registros dele (seção 3.1, "O que depende de decisão do grupo").
+- **Falta:** a cena final no núcleo (decidida: os *Homo sideralis* chegam, matam o Carlos e terminam a Âncora; Enredo, seção 8, "O final"), as falas do Carlos e os registros dele (seção 3.1, "O que depende de decisão do grupo").
 
 ### 3.1 Level design novo: "A Última Tentativa"
 
@@ -160,7 +160,7 @@ O Carlos fica no console do fundo do Lab Central, com a Âncora entre ele e o Ga
 | C | Varredura rápida, os robôs da Robótica entram | Lança o **flash na lupa** (sensor óptico: fica atordoada como os olhos dos robôs) e avança até o núcleo entre uma onda e outra |
 
 - Cada console invadido é um checkpoint.
-- **O fim:** a interação no núcleo leva a uma cena final que é **espaço vazio**: o que acontece com o Carlos e com a Âncora está nas pendências 10.2 e 10.6 do Enredo.
+- **O fim:** a interação no núcleo leva à cena final, **decidida em 2026-11-16** (Enredo, seção 8, "O final"): os *Homo sideralis*, atraídos pelos pulsos da Âncora, chegam ao salão, o Carlos se assusta ("O que?! Vocês aqui?!?!"), eles o matam, terminam a máquina e anunciam que vão invadir outros tempos. **Ainda não está no jogo** (o núcleo mostra "Fim da versão de teste"). Continuam pendentes, nas pendências 10.2 e 10.6 do Enredo, quem do grupo está no salão e o que acontece com o Gabriel depois.
 
 #### Computação (para a apresentação)
 
@@ -193,7 +193,7 @@ O Carlos fica no console do fundo do Lab Central, com a Âncora entre ele e o Ga
 - **Como o Carlos fala** (as falas dos alto-falantes) e **os registros dele** (ficha, seções 2 e 5), e se a diretoria é o lugar onde ele vive.
 - **Quem guia pelo rádio e se os outros estão presentes:** a proposta supõe o Gabriel sozinho, guiado pelo Zane pelo rádio. **Isso mudou em 2026-11-06:** o Enredo (seção 8, Ato 3) decidiu que o grupo todo (menos o Henrique, que sumiu) chega **junto** ao Laboratório, fugindo dos robôs do Carlos. Na **Emergência**, eles conversam, a Diana torce o tornozelo e fica com a Clarice, e o Zane sai pela porta do corredor e some: o resto da fase continua com o Gabriel sozinho, como a proposta supunha, mas sem o Zane no rádio (Enredo, Ato 4, "A chegada").
 - **Robôs capturam ou eliminam** (Enredo 10.2): se capturam, ser pego na arena pode virar uma cena em vez de game over.
-- **O que acontece com o Carlos e com a Âncora no fim** (Enredo 10.6).
+- **O que acontece com Gabriel e o grupo depois da chegada dos *Homo sideralis*** (Enredo 10.6). O que acontece com o Carlos e com a Âncora já está decidido (Enredo, seção 8, "O final").
 
 ---
 
