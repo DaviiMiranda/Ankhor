@@ -22,7 +22,7 @@ Estes itens estavam nas pendências do Enredo até 2026-10-15 e saíram de lá q
 
 ## Fases e cenários
 
-- **Cena final (2026-11-16):** a cena existe (`scripts/sistemas/cena_final.gd`, [`fases/dtec.md`](fases/dtec.md)), mas com tudo provisório. Falta o **roteirista** reescrever as falas de `dados/dialogos/final_chegada.json` e `final_ameaca.json` (e passá-las para o `Dialogos.docx`), a arte definitiva dos *Homo sideralis* (hoje só `assets/sprites/personagens/sideralis/sideralis.png`, gerado por `gerar_sideralis.py`, depende do Enredo 10.6), a **música e os sons** da cena (não tem nenhum: pulso, chegada, queda do Carlos, a máquina terminando) e a cena em si para o que o Enredo 10.6 decidir (quem está no salão, o que acontece com o Gabriel).
+- **Cena final (2026-11-16):** a cena existe (`scripts/sistemas/cena_final.gd`, [`fases/dtec.md`](fases/dtec.md)), mas com tudo provisório. Falta o **roteirista** reescrever as falas de `dados/dialogos/final_chegada.json` e `final_ameaca.json` (e passá-las para o `Dialogos.docx`), a arte definitiva dos *Homo sideralis* (hoje só `assets/sprites/personagens/sideralis/sideralis.png`, gerado por `gerar_sideralis.py`, depende do Enredo 10.6), ouvir e ajustar os **sons e o tema** da cena (compostos por script, sem ninguém ter ouvido ainda: `gerar_som_cena_final.py`) e a cena em si para o que o Enredo 10.6 decidir (quem está no salão, o que acontece com o Gabriel).
 
 - **`montar_convivencia.py` desatualizado:** as cenas têm trabalho que não está na descrição das salas (coleções e robôs de 2026-11-04). Rodar o montador inteiro desfaz esse trabalho. Falta levar essas mudanças para `salas_convivencia.py`.
 

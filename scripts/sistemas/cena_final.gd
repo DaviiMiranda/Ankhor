@@ -20,6 +20,14 @@ const COR_DO_CLARAO := Color(0.7, 1.0, 1.0)
 const COR_DA_MORTE := Color(1.0, 0.25, 0.2)
 const COR_DO_CORPO := Color(0.45, 0.45, 0.55)
 const GRAUS_DA_QUEDA := 88.0
+const VOLUME_DO_TEMA_DB := -12.0
+const SEGUNDOS_ENTRANDO_O_TEMA := 3.0
+const SEGUNDOS_SAINDO_O_TEMA := 2.5
+const SOM_PULSO := preload("res://assets/audio/efeitos/objetos/final_pulso.wav")
+const SOM_SURGIR := preload("res://assets/audio/efeitos/objetos/final_sideralis_surgir.wav")
+const SOM_QUEDA := preload("res://assets/audio/efeitos/objetos/final_queda_carlos.wav")
+const SOM_MAQUINA := preload("res://assets/audio/efeitos/objetos/final_ancora_completa.wav")
+const TEMA := preload("res://assets/audio/musica/final/final_tema.ogg")
 
 @export var cena_sideralis: PackedScene
 
@@ -27,6 +35,7 @@ var _carlos: CarlosChefe
 var _gabriel: Gabriel
 var _camera: Camera2D
 var _clarao: ColorRect
+var _musica: AudioStreamPlayer
 var _comecou := false
 
 @onready var nucleo: Node2D = get_parent()
@@ -42,6 +51,7 @@ func comecar(carlos: CarlosChefe) -> void:
 	_camera = _gabriel.get_node_or_null("Camera2D") as Camera2D
 	_congelar_a_sala()
 	_criar_clarao()
+	_iniciar_o_tema()
 	Dialogos.terminou.connect(_ao_terminar_dialogo)
 	await _abrir_o_plano()
 	await _sideralis_chegam()
@@ -81,6 +91,7 @@ func _abrir_o_plano() -> void:
 
 
 func _sideralis_chegam() -> void:
+	_tocar(SOM_PULSO)
 	_piscar(COR_DO_CLARAO, 0.8, SEGUNDOS_DO_CLARAO)
 	_tremer_camera(1.2, 3.0)
 	for posicao in POSICOES_DOS_SIDERALIS:
@@ -94,6 +105,7 @@ func _aparecer(posicao: Vector2) -> void:
 	nucleo.get_parent().add_child(figura)
 	figura.global_position = nucleo.global_position + posicao
 	figura.modulate = Color(3.0, 3.0, 3.0, 0.0)
+	_tocar(SOM_SURGIR, -4.0, randf_range(0.9, 1.2))
 	var surgir := create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	surgir.tween_property(figura, "modulate", Color.WHITE, SEGUNDOS_APARECENDO)
 
@@ -103,11 +115,13 @@ func _ao_terminar_dialogo(caminho: String) -> void:
 		DIALOGO_CHEGADA:
 			_matar_o_carlos()
 		DIALOGO_AMEACA:
+			_apagar_o_tema()
 			saida.comecar_saida()
 
 
 func _matar_o_carlos() -> void:
 	await get_tree().create_timer(SEGUNDOS_ANTES_DA_MORTE).timeout
+	_tocar(SOM_QUEDA)
 	_piscar(COR_DA_MORTE, 0.7, 0.5)
 	_tremer_camera(0.5, 3.0)
 	var corpo := _carlos.get_node("Carlos") as Node2D
@@ -121,10 +135,41 @@ func _matar_o_carlos() -> void:
 
 
 func _terminar_a_maquina() -> void:
+	_tocar(SOM_MAQUINA)
 	_tremer_camera(SEGUNDOS_DA_MAQUINA, 4.0)
 	var clarao := _piscar(COR_DO_CLARAO, 1.0, SEGUNDOS_DA_MAQUINA)
 	await clarao.finished
 	await get_tree().create_timer(SEGUNDOS_DEPOIS_DA_MAQUINA).timeout
+
+
+func _tocar(som: AudioStream, volume_db := 0.0, pitch := 1.0) -> void:
+	var tocador := AudioStreamPlayer.new()
+	tocador.process_mode = Node.PROCESS_MODE_ALWAYS
+	tocador.stream = som
+	tocador.volume_db = volume_db
+	tocador.pitch_scale = pitch
+	tocador.bus = &"Efeitos"
+	add_child(tocador)
+	tocador.finished.connect(tocador.queue_free)
+	tocador.play()
+
+
+func _iniciar_o_tema() -> void:
+	TEMA.set("loop", true)
+	_musica = AudioStreamPlayer.new()
+	_musica.process_mode = Node.PROCESS_MODE_ALWAYS
+	_musica.stream = TEMA
+	_musica.bus = &"Musica"
+	_musica.volume_db = -60.0
+	add_child(_musica)
+	_musica.play()
+	var entrar := create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	entrar.tween_property(_musica, "volume_db", VOLUME_DO_TEMA_DB, SEGUNDOS_ENTRANDO_O_TEMA)
+
+
+func _apagar_o_tema() -> void:
+	var sair := create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	sair.tween_property(_musica, "volume_db", -60.0, SEGUNDOS_SAINDO_O_TEMA)
 
 
 func _piscar(cor: Color, pico: float, segundos: float) -> Tween:
