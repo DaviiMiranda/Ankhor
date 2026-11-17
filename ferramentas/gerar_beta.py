@@ -41,12 +41,13 @@ def ler_versao():
 
 
 def versao_do_preset(versao):
-    """O preset guarda a versão do arquivo .exe como quatro números (0.1.0.1).
+    """O preset guarda a versão do arquivo .exe como quatro números (2.0.0.0).
     Confere se bate com a versão do projeto, senão o .exe mostraria outra."""
-    numeros = re.match(r"(\d+)\.(\d+)\.(\d+)-beta\.(\d+)", versao)
+    numeros = re.fullmatch(r"(\d+)\.(\d+)(?:\.(\d+))?(?:-beta\.(\d+))?", versao)
     if not numeros:
-        sys.exit(f"A versão {versao} não segue o formato 0.1.0-beta.1.")
-    esperado = ".".join(numeros.groups())
+        sys.exit(f"A versão {versao} não segue o formato 2.0 ou 0.1.0-beta.1.")
+    maior, menor, correcao, beta = numeros.groups()
+    esperado = ".".join((maior, menor, correcao or "0", beta or "0"))
     with open(os.path.join(RAIZ, "export_presets.cfg"), encoding="utf-8") as arquivo:
         texto = arquivo.read()
     for chave in ("file_version", "product_version"):

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ankhor"
-config/version="0.1.0-beta.1"
+config/version="2.0"
 run/main_scene="res://cenas/interface/menu_notebook.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://assets/icone/ankhor_icone.png"

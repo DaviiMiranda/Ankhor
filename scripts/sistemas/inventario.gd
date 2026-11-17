@@ -11,6 +11,8 @@ const ESPACOS_GADGET := 3
 const TECLA_DO_BRACO := 4
 const MAXIMO_PILHAS := 9
 const ID_PILHAS := "pilhas"
+const ITENS_DO_BAU := ["clarao", "pedra", "arma_impulso"]
+const ID_ARMA := "arma_impulso"
 
 var grade: Array = []
 var gadgets: Array = []
@@ -19,6 +21,7 @@ var estado: Dictionary = {}
 var pegos: Dictionary = {}
 var vistos: Dictionary = {}
 var largados: Dictionary = {}
+var bau: Dictionary = {}
 var _reserva: Dictionary = {}
 
 
@@ -78,7 +81,7 @@ func _esvaziar() -> void:
 	largados = {}
 
 
-func _guardar_na_primeira_vaga(item: Item) -> void:
+func _guardar_na_primeira_vaga(item: Item) -> bool:
 	for linha in LINHAS:
 		for coluna in COLUNAS:
 			if grade[linha][coluna] == null:
@@ -87,7 +90,8 @@ func _guardar_na_primeira_vaga(item: Item) -> void:
 					braco = item
 				if item.equipavel and gadgets.find(null) != -1:
 					gadgets[gadgets.find(null)] = item
-				return
+				return true
+	return false
 
 
 func limpar() -> void:
@@ -103,11 +107,15 @@ func limpar() -> void:
 	pegos = {}
 	vistos = {}
 	largados = {}
+	bau = {}
 	_reserva = {}
 	mudou.emit()
 
 
 func adicionar(item: Item) -> bool:
+	if item.id == ID_ARMA and bau.has(ID_ARMA):
+		aviso.emit("A arma de impulso está no baú")
+		return false
 	largados.erase(item.id)
 	if item.maximo_unidades > 0 and tem(item.id):
 		return _somar_unidade(item)
@@ -128,6 +136,57 @@ func adicionar(item: Item) -> bool:
 				mudou.emit()
 				return true
 	return false
+
+
+func guardar_no_bau(item: Item) -> bool:
+	if com_kit_emprestado() or item.id not in ITENS_DO_BAU or not tem(item.id):
+		return false
+	bau[item.id] = int(bau.get(item.id, 0)) + unidades(item.id)
+	estado.erase(item.id)
+	remover(item.id)
+	return true
+
+
+func retirar_do_bau(item: Item) -> String:
+	if com_kit_emprestado() or item.id not in ITENS_DO_BAU or not bau.has(item.id):
+		return "Item indisponível"
+	var carregando := tem(item.id)
+	var atual := unidades(item.id) if carregando else 0
+	if carregando and (item.id == ID_ARMA or atual >= item.maximo_unidades):
+		return "Limite deste item na mochila"
+	if not carregando and not _guardar_na_primeira_vaga(item):
+		return "Mochila cheia"
+	var guardado: int = bau[item.id]
+	var retirado := mini(guardado, item.maximo_unidades - atual)
+	definir_unidades(item, atual + retirado)
+	if retirado == guardado:
+		bau.erase(item.id)
+	else:
+		bau[item.id] = guardado - retirado
+	mudou.emit()
+	return ""
+
+
+func transferir_pilhas(guardar: bool) -> String:
+	if com_kit_emprestado():
+		return "Pilhas indisponíveis"
+	var na_mochila := pilhas()
+	var guardadas: int = bau.get(ID_PILHAS, 0)
+	if guardar:
+		if na_mochila == 0:
+			return "Sem pilhas na mochila"
+		bau[ID_PILHAS] = guardadas + na_mochila
+		definir_pilhas(0)
+		return ""
+	var retiradas := mini(guardadas, MAXIMO_PILHAS - na_mochila)
+	if retiradas == 0:
+		return "Sem pilhas no baú" if guardadas == 0 else "Limite de pilhas na mochila"
+	if retiradas == guardadas:
+		bau.erase(ID_PILHAS)
+	else:
+		bau[ID_PILHAS] = guardadas - retiradas
+	definir_pilhas(na_mochila + retiradas)
+	return ""
 
 
 func remover(id: String) -> void:

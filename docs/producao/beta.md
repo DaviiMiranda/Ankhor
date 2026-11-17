@@ -1,17 +1,17 @@
 # Versões beta (builds de teste)
 
-Como gerar o `.exe` de teste do Ankhor, de onde vem o número da versão e o que fazer antes de mandar para alguém. A primeira beta é a **0.1.0-beta.1**.
+Como gerar o `.exe` de teste do Ankhor, de onde vem o número da versão e o que fazer antes de mandar para alguém. A beta atual é a **2.0**; a primeira beta foi a **0.1.0-beta.1**.
 
 ---
 
 ## 1. O número da versão
 
-- **Formato:** `MAIOR.MENOR.CORREÇÃO-beta.N`, por exemplo `0.1.0-beta.1`. O `0` do começo quer dizer "ainda não é o jogo final". O `beta.N` conta quantas betas já saíram dessa versão: a seguinte é `0.1.0-beta.2`, e quando entrar muita coisa nova (uma fase, uma mecânica) sobe o do meio: `0.2.0-beta.1`.
+- **Formato atual:** `MAIOR.MENOR`, como `2.0`. A identificação **BETA** aparece ao lado da versão no menu, no executável e no LEIAME. Uma correção pode acrescentar o terceiro número (`2.0.1`). O gerador também aceita o formato antigo com sufixo `-beta.N` para builds históricas.
 - **Onde ela vive:** em um lugar só, `application/config/version` em `project.godot`. O resto sai dela:
   - o canto de baixo do **menu principal** (`cenas/interface/rotulo_versao.tscn`), para o testador dizer qual versão estava jogando;
-  - o nome da pasta e do `.zip` (`Ankhor_0.1.0-beta.1`);
-  - a versão que o Windows mostra nas propriedades do `.exe` (`0.1.0.1`, em `export_presets.cfg`, campos `file_version` e `product_version`).
-- **Ao subir a versão,** mude **os dois lugares**: `config/version` em `project.godot` e os dois campos em `export_presets.cfg` (`0.1.0-beta.2` vira `0.1.0.2`). O `ferramentas/gerar_beta.py` confere e para se estiverem diferentes.
+  - o nome da pasta e do `.zip` (`Ankhor_2.0`);
+  - a versão que o Windows mostra nas propriedades do `.exe` (`2.0.0.0`, em `export_presets.cfg`, campos `file_version` e `product_version`).
+- **Ao subir a versão,** mude **os dois lugares**: `config/version` em `project.godot` e os dois campos em `export_presets.cfg` (`2.0` corresponde a `2.0.0.0`). O `ferramentas/gerar_beta.py` confere e para se estiverem diferentes.
 
 ## 2. O ícone
 
@@ -46,8 +46,8 @@ O preset **Windows Desktop** já está em `export_presets.cfg` (não tem senha n
 6. **Marque o commit** (depois do PR da versão mesclado), para saber para sempre o que foi para os testadores:
 
    ```bash
-   git tag -a v0.1.0-beta.1 -m "Primeira beta"
-   git push origin v0.1.0-beta.1
+   git tag -a v2.0 -m "Beta 2.0"
+   git push origin v2.0
    ```
 
 ## 5. Mandar para os testadores

@@ -14,6 +14,4 @@ paginas = PackedStringArray("Um selo dos Correios numa moldura dourada: um telef
 Embaixo, em letras pequenas: CENTENÁRIO DO TELEFONE.
 
 O carimbo por cima diz 1976.")
-anotacao = "Um selo do centenário do telefone, carimbado em 1976.
-
-Cem anos antes."
+anotacao = "Um selo do centenário do telefone, carimbado em 1976."
