@@ -95,6 +95,7 @@ func salvar(espaco: int, cena: String, posicao: Vector2) -> bool:
 	arquivo.set_value("inventario", "pegos", Inventario.pegos)
 	arquivo.set_value("inventario", "vistos", Inventario.vistos)
 	arquivo.set_value("inventario", "largados", Inventario.largados)
+	arquivo.set_value("inventario", "bau", Inventario.bau)
 	arquivo.set_value("caderno", "anotacoes", Caderno.anotacoes)
 	arquivo.set_value("radio", "ouvidas", Radio.ouvidas)
 	arquivo.set_value("progresso", "marcas", Progresso.marcas)
@@ -205,6 +206,7 @@ func _restaurar_inventario(arquivo: ConfigFile) -> void:
 	Inventario.pegos = arquivo.get_value("inventario", "pegos", {})
 	Inventario.vistos = arquivo.get_value("inventario", "vistos", {})
 	Inventario.largados = arquivo.get_value("inventario", "largados", {})
+	Inventario.bau = arquivo.get_value("inventario", "bau", {})
 	Inventario.mudou.emit()
 
 
