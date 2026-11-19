@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > **Este documento é a lei do projeto**, junto com as fichas de [`personagens/`](personagens/) (uma por personagem), que fazem parte dele. Tudo o que diz respeito à história, ao mundo e aos personagens de **Ankhor** vale como está escrito aqui e nas fichas, **acima de qualquer outro documento**: GDD, fases, diálogos, arte, textos em `dados/` e o próprio `decisoes.md`. Em caso de dúvida em qualquer parte do jogo (o que uma fase conta, como um personagem fala, o que um objeto significa), consulte este documento e a ficha do personagem. Se outra parte do projeto contradisser o que está aqui, **a outra parte está errada** e deve ser corrigida.
 
-> **Status:** reescrito em 2026-10-06, quando a história mudou de rumo: saíram os loops e a revelação de "Gabriel é o paradoxo", e a fenda passou a ser **um acaso** para quem cai nela. Em 2026-10-07 entrou o antagonista, o **Carlos**. Em 2026-10-15 entraram os ***Homo sideralis*** (quem foi embora), os **Faroleiros** (quem ficou) e o conteúdo da mentira do **Henrique**. Em 2026-10-30, o **Baltazar** deixou de aparecer em pessoa (só os rastros dele) e entrou o nome da partida dos *Homo sideralis*: a **Grande Separação**. Em 2026-11-06 entrou o **Ciborgue**, a cópia de metal do Carlos que caça no bunker, e o **fim do Bunker**: o confronto com o Henrique, o sumiço dele e a fuga do grupo até o Laboratório, onde a Diana torce o tornozelo, a Clarice fica com ela e o Zane some por outro caminho.
+> **Status:** reescrito em 2026-10-06, quando a história mudou de rumo: saíram os loops e a revelação de "Gabriel é o paradoxo", e a fenda passou a ser **um acaso** para quem cai nela. Em 2026-10-07 entrou o antagonista, o **Carlos**. Em 2026-10-15 entraram os ***Homo sideralis*** (quem foi embora), os **Faroleiros** (quem ficou) e o conteúdo da mentira do **Henrique**. Em 2026-10-30, o **Baltazar** deixou de aparecer em pessoa (só os rastros dele) e entrou o nome da partida dos *Homo sideralis*: a **Grande Separação**. Em 2026-11-06 entrou o **Ciborgue**, a cópia de metal do Carlos que caça no bunker, e o **fim do Bunker**: o confronto com o Henrique, o sumiço dele e a fuga do grupo até o Laboratório, onde a Diana torce o tornozelo, a Clarice fica com ela e o Zane some por outro caminho. Em 2026-11-19, o **Carlos** passou a ser o **Henrique mais velho** (a Âncora é um paradoxo de bootstrap, com o ano **2900**), e o Henrique deixou de sumir numa explosão: os robôs o pegam na fuga e uma cutscene no começo do Laboratório mostra o Carlos o mandando para 2900.
 > **Como mudar:** só por decisão do grupo. Toda mudança de história entra **no mesmo PR** neste documento e em [`../decisoes.md`](../decisoes.md) (que guarda o histórico de quando e por que mudou). Tudo o que ainda não foi decidido fica na **seção 10 ("Pendências")**, no fim, e não no meio da narrativa: o que está fora das pendências está decidido.
 
 ---
@@ -125,11 +125,13 @@ Para mandar cada pessoa de volta para a sua noite, é preciso consertar a Âncor
 
 O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e controla os robôs. Era um **Faroleiro**: há alguns anos teve um **desentendimento** com eles (o motivo fica em aberto no jogo) e se isolou na Unifor, abandonada havia muito tempo, sozinho durante anos, para ir viver nos anos 80. Quem ele é está na [ficha dele](personagens/carlos.docx).
 
-- **Ele e o Henrique:** quando o Henrique caiu, o primeiro de todos, o Carlos prometeu levá-lo de volta **para antes da morte da mãe dele** e assim ganhou a confiança do Henrique. Na verdade, só o usa: o Henrique serve para **atrasar os outros** enquanto o Carlos conserta a Âncora. O Carlos não se importa com os puxados (seção 8, "A virada").
+- **Ele e o Henrique:** quando o Henrique caiu, o primeiro de todos, o Carlos prometeu levá-lo de volta **para antes da morte da mãe dele** e assim ganhou a confiança do Henrique. Na verdade, só o usa: o Henrique serve para **atrasar os outros** enquanto o Carlos conserta a Âncora. O Carlos não se importa com os puxados (seção 8, "A virada"). O Henrique, sem saber, é o próprio Carlos jovem (ver abaixo).
 - **A Grande Separação e a loucura:** a partida dos *Homo sideralis* o separou dos amigos e das pessoas de quem gostava. Os anos sozinho, somados à frieza das relações do tempo dele, o **enlouqueceram**: acha que o passado é sempre melhor. Vive como se estivesse nos anos 80 (montou a **sala de estar dos anos 80** do Bunker, fala sozinho como um **locutor de rádio**, sem gírias, e dá aos robôs nomes de gente da época) e tem **medo do presente**: ficar preso em 3026, frio e sozinho para sempre.
 - **O primeiro registro assinado dele:** a **Folha de calibração**, no Corredor do Tempo do Labirinto (opcional). Ali ele testava a calibração da Âncora com objetos dos anos 80 (um Genius, os três quadros de *De Volta para o Futuro*, um micro e um telefone de disco). Na folha ele conta que a máquina errou de novo, abriu a fenda na Biblioteca e puxou alguém que ele **nem foi ver**; diz que já foi um Faroleiro e que só quer o mundo dos anos 80. **Assina só "C."**: o jogador ainda não sabe o nome dele (quando descobre continua pendente, seção 10.2).
 - **Os recortes de jornal:** o Carlos guardou recortes de jornal e boletins do tempo da Grande Separação e escreveu na margem de cada um, **de caneta vermelha** (o vermelho é a cor dele). Hoje estão espalhados pelo campus, um em cada uma das três primeiras fases, como colecionável (`docs/mecanicas/colecionaveis.md`). Cada um tem uma foto e um texto, e os detalhes ficam em aberto (datas rasgadas, motivos "reservados"): **(1)** na **Biblioteca**, um jornal do começo do conflito: os *Homo sideralis* pedem voz no Conselho e a cidade se divide em dois lados; **(2)** no **Bloco de salas**, o boletim do Conselho sobre o embarque para o novo mundo, só para os *Homo sideralis*, com a manutenção das cidades da Terra encerrada por etapas, sem dizer por quê; **(3)** no **Labirinto**, o boletim feito à mão de quem ficou, reunido em volta de uma lanterna sob um farol desenhado (o começo dos Faroleiros). As notas dos dois primeiros não são assinadas ("Ainda dava para voltar atrás. Ninguém quis."; "Fui ver a fila de longe. Não entrei nela."). A do terceiro assina **"C."**, a mesma assinatura da Folha de calibração ("Aqui eu ainda era um deles."), e o jogador ainda não sabe quem é. Ao juntar os três, o quarto do Gabriel ganha a **gravura de uma nave imensa** cruzando o escuro, que não diz de onde saiu nem para onde vai. Na borda dela, de caneta vermelha e assinada "C.", há uma mensagem em cifra de César, com deslocamento 3 (a pista é a própria assinatura, C é a 3ª letra do alfabeto, e os três motores da nave). Decifrada, diz: "Quem eu amava embarcou. Só o passado é seguro contra incertezas."
-- **A voz no bunker:** no fim do Bunker, logo depois do sumiço do Henrique, o Carlos fala com o grupo pelos **alto-falantes**: quer todos fora do caminho dele, e manda os robôs atrás deles (seção 8, Ato 3). Ele continua sem ir ao bunker: só a voz chega lá.
+- **A voz no bunker:** no fim do Bunker, logo depois do confronto com o Henrique, o Carlos fala com o grupo pelos **alto-falantes**: quer todos fora do caminho dele, e manda os robôs atrás deles (seção 8, Ato 3). Ele continua sem ir ao bunker: só a voz chega lá.
+- **Quem ele é de verdade (decisão de 2026-11-19):** o Carlos é o **Henrique, bem mais velho**. O Henrique, puxado em 2019, é mandado pelo próprio Carlos para o ano **2900**, onde o Carlos começa a desenvolver a Âncora. Ele só consegue **terminá-la cerca de 100 anos depois** (por volta do ano **3000**), e mesmo assim ela **não funciona direito**: a imprecisão da fenda vem daí. Em 3026 ele tem **mais de 100 anos**: vive muito mais do que um humano de 2019, como os *sapiens* daquela época. Foi por volta do ano 3000 que teve o **desentendimento com os Faroleiros** e se isolou na Unifor. É um **paradoxo de bootstrap**: a máquina existe porque o Henrique foi mandado, e o Henrique é mandado porque a máquina existe.
+- **Ele sabe, o jogador descobre no fim:** o Carlos sempre soube que o Henrique é ele. No final, explica que **precisava mandá-lo** para ele mesmo, do futuro, existir. A promessa de "levar o Henrique para antes da morte da mãe" é a isca com que o ganhou.
 - Muita coisa sobre o Carlos ainda está pendente (seção 10.2).
 
 ---
@@ -188,7 +190,7 @@ O antagonista é o **Carlos**, cientista *sapiens* de 3026 que criou a Âncora e
 1. **Antes do jogo:** a sociedade e o planeta ficam muito ruins. A humanidade se divide na **Grande Separação**: os *Homo sideralis* vão embora para outro planeta, há menos de 100 anos. Os *sapiens* que ficam formam os **Faroleiros**.
 2. **O Carlos sai dos Faroleiros**, há alguns anos, depois de um desentendimento, e se isola na Unifor, abandonada havia muito tempo. Passa anos sozinho, constrói a Âncora no D-Tec e toma o controle dos robôs.
 3. **3026:** o Carlos começa a tentar ir para os anos 80. A cada tentativa, a fenda se abre no chão da Biblioteca.
-4. **O primeiro puxado é o Henrique.** O Carlos promete levá-lo para antes da morte da mãe e passa a usá-lo.
+4. **O primeiro puxado é o Henrique.** O Carlos promete levá-lo para antes da morte da mãe e passa a usá-lo. No fim, ele o manda para **2900**, onde o Henrique vai se tornar o próprio Carlos (seção 4.3).
 5. **Os outros pulsos:** com 3 dias de intervalo entre um e outro, a fenda puxa uma pessoa de cada época. Cada uma acorda sozinha, foge dos robôs e acha um canto para sobreviver. Todos chegam antes de Gabriel. O Zane chega antes da Clarice, e a Diana depois da Clarice.
 6. **O jogo:** Gabriel, o último, acorda na Biblioteca, encontra os outros um a um, descobre o que aconteceu e tenta consertar a Âncora para todos voltarem.
 
@@ -239,10 +241,10 @@ O jogador aprende aqui as regras do jogo (silêncio, luz e esconderijos) e que *
 - **O fim da fase (decisão de 2026-11-06):**
   1. **O encontro:** Gabriel religa a energia do bunker e, com ela, o **Zane quebra a senha do setor B**. Na sala de dados, o grupo se encontra **pela primeira vez numa sala só**: Gabriel, o Henrique, o Zane, a Clarice e a Diana.
   2. **O confronto:** é o grande embate da história com o Henrique. O Gabriel e o Zane já sabem da mentira pelo registro do Carlos na câmara selada do Labirinto ("A virada"), e **todos questionam o Henrique**. No fim, ele **admite** que está enganando o grupo, mas diz que **precisava**.
-  3. **O sumiço:** logo depois, o Henrique **começa a brilhar**, com energia em volta do corpo. Todos se assustam. De repente ele **some, como numa explosão de energia**. No chão, onde ele estava, fica um **dispositivo com o número 2900**.
-  4. **A voz do Carlos:** o Carlos fala pelos **alto-falantes** do bunker: quer **todos fora do caminho dele**.
-  5. **A fuga:** **vários robôs** vêm atrás do grupo, **atirando**, e todos **fogem juntos por um corredor longo** até chegarem ao **Laboratório (D-Tec)**, pela comporta do núcleo. O Gabriel desvia dos tiros. É a primeira vez que o grupo anda junto.
-- **Ainda em aberto nessa cena:** o que é o brilho, para onde o Henrique foi, o que é o dispositivo e o que quer dizer o 2900 (seção 10.3); como a Clarice e a Diana chegam ao bunker (seção 10.4). **As falas ficam para o roteirista:** este documento só descreve o que acontece na cena. No jogo, a cena já existe com falas genéricas, provisórias (`dados/dialogos/bunker_encontro.json`, `bunker_sumico.json` e `bunker_fuga.json`), que o roteirista vai reescrever.
+  3. **A voz do Carlos:** o Carlos fala pelos **alto-falantes** do bunker: quer **todos fora do caminho dele**.
+  4. **A fuga:** **vários robôs** vêm atrás do grupo, **atirando**, e todos **fogem juntos por um corredor longo** até chegarem ao **Laboratório (D-Tec)**, pela comporta do núcleo. O Gabriel desvia dos tiros. É a primeira vez que o grupo anda junto.
+  5. **O Henrique é pego (decisão de 2026-11-19):** durante a fuga, os robôs **pegam o Henrique**. Ele **não brilha nem some** no bunker (a explosão de energia e o dispositivo com o 2900 saíram). O que ele passa a viver está no começo do Laboratório (Ato 4, "O Henrique na máquina").
+- **Ainda em aberto nessa cena:** se o grupo vê os robôs levarem o Henrique ou só percebe depois que ele não está; como a Clarice e a Diana chegam ao bunker (seção 10.4). **As falas ficam para o roteirista:** este documento só descreve o que acontece na cena. No jogo, a cena já existe com falas genéricas, provisórias (`dados/dialogos/bunker_encontro.json`, `bunker_sumico.json` e `bunker_fuga.json`), que o roteirista vai reescrever.
 - O **setor B** (laboratório, arquivo e a comporta do núcleo) leva à reta final: a comporta no fim do Corredor B abre o acesso à sexta fase, o **Laboratório (D-Tec)**. Até a energia voltar, o corredor do setor B está tomado por um gás que só sai quando os exaustores ligam. O bunker guarda máscaras de gás.
 
 ### A virada — A mentira do Henrique
@@ -256,17 +258,19 @@ O jogador aprende aqui as regras do jogo (silêncio, luz e esconderijos) e que *
 - **O que é verdade no que ele conta:** está mesmo no bunker, e estão mesmo em 3026 (ele sabe pelo Carlos). É mentira que esteja tentando consertar tudo.
 - **O Zane já desconfia dele** desde antes de Gabriel chegar, e é por isso que tenta invadir o bunker (Labirinto, Ato 2).
 - O grupo **descobre a mentira** no fim do **Labirinto** (decisão de 2026-11-06): Gabriel e o Zane ouvem, num terminal da câmara selada, um registro do Carlos que diz que o Henrique só atrasa os outros. Até o fim do Bunker, a Clarice e a Diana ainda confiam nele.
-- **A mentira vem à tona para todos no fim do Bunker** (decisão de 2026-11-06): no encontro da sala de dados, o grupo inteiro questiona o Henrique, e ele **admite** que enganou todo mundo, mas diz que precisava. Logo depois ele some numa explosão de energia (Ato 3).
+- **A mentira vem à tona para todos no fim do Bunker** (decisão de 2026-11-06): no encontro da sala de dados, o grupo inteiro questiona o Henrique, e ele **admite** que enganou todo mundo, mas diz que precisava. Depois, na fuga, os robôs o pegam (Ato 3).
+- **A verdade por trás do "precisava" (decisão de 2026-11-19):** o **Carlos é o próprio Henrique**, anos depois. A Âncora é um **paradoxo de bootstrap**: o Henrique é mandado para **2900**, e é lá que o Carlos (ele mesmo) começa a desenvolver a máquina; sem o Henrique ter sido mandado, a Âncora não existiria. O Carlos **sabe** que o Henrique é ele, e por isso o usa e o manda para 2900: **precisava fazer isso para ele mesmo, do futuro, existir**. O Carlos explica isso no final (seção 4.3).
 - É aí que todos **vão atrás do Carlos**: fogem juntos dos robôs dele até o Laboratório, no D-Tec (Ato 4, "A chegada").
 
 ### Ato 4 — Consertar a Âncora e voltar (Núcleo)
 
-- A reta final passa pela **comporta do núcleo**, no setor B do bunker. O grupo chega **junto** ao Laboratório, fugindo dos robôs do Carlos (fim do Ato 3), já sem o Henrique.
+- A reta final passa pela **comporta do núcleo**, no setor B do bunker. O grupo chega **junto** ao Laboratório, fugindo dos robôs do Carlos (fim do Ato 3), já sem o Henrique, que os robôs pegaram na fuga.
+- **O Henrique na máquina (decisão de 2026-11-19):** no **começo da fase do Laboratório**, numa das salas há uma **parte de ver câmeras**. Por ela, numa **cutscene**, Gabriel vê o **Henrique amarrado perto da Âncora** e o **Carlos configurando a máquina** para mandá-lo para **2900**. O ano aparece **discretamente** na tela da máquina: o jogador só nota se prestar atenção. O Henrique é mandado e some dali. É daqui que vem a explicação do Carlos (seção 4.3).
 - **A chegada (decisão de 2026-11-06):** o grupo sobe da comporta até a Emergência do D-Tec e, ali, conversa pela primeira vez a salvo: o que aconteceu, onde estão, o Henrique e o número no chão. A **Diana torce o tornozelo** na escada e não consegue seguir, então a **Clarice fica com ela** na Emergência. O **Zane** e o Gabriel saem juntos, mas o Zane **vai por outro caminho e some**. Daí em diante, o **Gabriel continua sozinho** pelo Laboratório. Para onde o Zane foi, e se ele volta, está pendente (seção 10.4). As falas no jogo são genéricas, para o roteirista reescrever.
 - Com as partes de todos reunidas, Gabriel e os outros tentam consertar a Âncora e mandar cada um para a sua noite.
 - **O Zane:** o final dele está pendente (seção 10.4). O final antigo (ficar em 3026 para domar a IA) saiu, porque a IA não tem consciência.
 - **O Baltazar:** a trilha dele termina na Âncora, onde a luz nasce. O que aconteceu com ele fica em aberto (seção 5).
-- **O Carlos:** como o grupo o enfrenta, sem lutar, está pendente (seção 10.2).
+- **O Carlos:** no final ele **conta ao grupo** que é o Henrique e explica o bootstrap (seção 4.3). Como o grupo o enfrenta, sem lutar, está pendente (seção 10.2).
 - Como isso acontece e como o jogo termina está nas pendências (seção 10.6).
 
 ---
@@ -318,9 +322,11 @@ O que falta fazer em arte, mecânica e fases (e não muda a história) fica em [
 - Quantas ferramentas de IA ele usa, e o que cada uma faz (os robôs, a Âncora, os sistemas do D-Tec)?
 - Por que os robôs caçam os humanos: para capturar e levar ao Bloco M, ou para eliminar quem atrapalha?
 - Por que o Carlos guardou os recortes de jornal e escreveu na margem de cada um? Como e quando foram parar espalhados pelo campus?
-- Quem o Carlos amava, que embarcou na Grande Separação (a mensagem cifrada da gravura da nave)?
-- Qual a idade dele, qual o defeito e qual o arco?
-- Qual foi o desentendimento com os Faroleiros (no jogo fica em aberto), e há quantos anos ele está sozinho?
+- Quem o Carlos amava, que embarcou na Grande Separação (a mensagem cifrada da gravura da nave)? Ele chegou de 2900: como conheceu essa pessoa?
+- Qual o defeito dele e qual o arco? (A idade está decidida: mais de 100 anos, por ser o Henrique que viveu desde 2900; seção 4.3.)
+- Qual foi o desentendimento com os Faroleiros (decidido: por volta do ano 3000; o motivo fica em aberto no jogo), e há quantos anos ele está sozinho?
+- Se a Âncora foi desenvolvida desde 2900, como e por que ela está na Unifor em 3026? Onde o Carlos viveu entre 2900 e 3000?
+- O que ele quer, agora que ele é o Henrique: ainda quer ir para os anos 80, e por quê? A promessa da mãe era só isca, ou ele ainda quer voltar para antes da morte dela?
 - Quando o jogador descobre que ele existe? (A voz dele aparece no registro da câmara selada, no Labirinto, e ao vivo nos alto-falantes do fim do Bunker. Se ele diz o próprio nome em algum desses momentos, está em aberto.)
 - No fim do Bunker, o Carlos sabe o que aconteceu com o Henrique, ou foi ele quem fez? (As palavras dele nos alto-falantes ficam para o roteirista.)
 - Como o grupo o enfrenta sem lutar (Gabriel não é combatente)? O D-Tec é o último lugar do jogo?
@@ -329,13 +335,13 @@ O que falta fazer em arte, mecânica e fases (e não muda a história) fica em [
 
 Já decidido (seção 8, "A virada"): ele trabalha para o Carlos por causa da promessa sobre a mãe, o Carlos só o usa para atrasar o grupo, ele finge consertar tudo e usa a IA na própria pesquisa.
 
-Também decidido: o Gabriel e o Zane descobrem a mentira no Labirinto; no fim do Bunker o grupo todo o confronta, ele admite que enganou todos "porque precisava", começa a brilhar e some numa explosão de energia, deixando no chão um dispositivo com o número 2900 (seção 8, Ato 3).
+Também decidido: o Gabriel e o Zane descobrem a mentira no Labirinto; no fim do Bunker o grupo todo o confronta e ele admite que enganou todos "porque precisava"; na fuga, os robôs o pegam; no começo do Laboratório, uma cutscene nas câmeras mostra o Carlos mandando o Henrique, amarrado, para **2900** (seção 8, Ato 3 e Ato 4). **O Carlos é o Henrique mais velho**, e a Âncora é um paradoxo de bootstrap (seção 4.3). O brilho, a explosão de energia e o dispositivo com o 2900 saíram.
 
-- **O brilho e o sumiço:** o que faz o Henrique brilhar e sumir? A Âncora (o Carlos o puxando, ou o descartando), um aparelho que ele mesmo construiu na pesquisa com a IA, ou outra coisa? Ele sabia que ia acontecer?
-- **O dispositivo e o 2900:** o que é o dispositivo? O 2900 é um ano (o lugar para onde ele foi)? O grupo leva o dispositivo, e ele serve para alguma coisa depois?
-- **Ele volta?** O Henrique aparece de novo no jogo (no Laboratório, no final), ou o sumiço é a última vez que o vemos?
-- **A parte dele:** a teoria por trás das equações era a parte do Henrique para consertar a Âncora (seção 3.1). Sem ele, como o grupo a consegue (o caderno do Gabriel, que tem as equações da pesquisa dele, o dispositivo, as anotações da sala de dados)?
-- O que é o "precisava" dele no confronto: ele fala da mãe e da promessa do Carlos para todos? Como é o arco dele ("da mentira à verdade") agora que ele some logo depois de admitir?
+- **O Henrique sabe?** O Henrique de 2019 sabe, em algum momento, que o Carlos é ele? Ou só descobre quando vê o ano 2900 na máquina, ou nunca?
+- **O que o Henrique vive em 2900:** o jogo mostra algo, ou só o Carlos conta no final?
+- **O "precisava" dele no confronto:** ele fala da mãe e da promessa do Carlos para todos? Como é o arco dele ("da mentira à verdade") agora que ele é pego logo depois de admitir?
+- **A parte dele:** a teoria por trás das equações era a parte do Henrique para consertar a Âncora (seção 3.1). Sem ele, como o grupo a consegue (o caderno do Gabriel, que tem as equações da pesquisa dele, as anotações da sala de dados)? E, com o Carlos sendo o autor delas, isso muda a explicação?
+- **A cutscene das câmeras:** quem vê a sala de câmeras (só o Gabriel, que continua sozinho)? Ele consegue interferir ou só assiste?
 - Como e quando a mãe dele morreu?
 - Onde a lenda do aluno que sumiu em 2019 aparece para o jogador (no prólogo, numa conversa, num cartaz do campus)?
 
@@ -360,4 +366,4 @@ Já decidido: **Biblioteca → Bloco de salas → Labirinto → Centro de Conviv
 - Como cada um volta: todos de uma vez no final, ou um por um, conforme a Âncora vai sendo consertada?
 - Qual é o final de Gabriel e Clarice? O final antigo ("A mesma madrugada": os dois acordam juntos em 2026, e ela rasga a página das equações) foi escrito para a versão com loops e precisa ser revisto.
 - O que acontece com o Carlos no fim?
-- O que acontece com o Henrique no fim? (Ele some no fim do Bunker: ver seção 10.3.)
+- O que acontece com o Henrique no fim? (Ele é mandado para 2900 no começo do Laboratório e vira o Carlos: ver seção 10.3. Se a Âncora, consertada, desfaz o paradoxo, está em aberto.)
