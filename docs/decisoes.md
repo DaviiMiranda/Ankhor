@@ -1,5 +1,16 @@
 # Registro de decisões
 
+## 2026-11-19 — O Carlos é o Henrique mais velho (paradoxo de bootstrap) e o fim do Henrique no Laboratório
+
+**Decisão (história):** o **Carlos é o próprio Henrique**, bem mais velho. A Âncora é um **paradoxo de bootstrap**: o Henrique é mandado para o ano **2900**, e é lá que o Carlos (ele mesmo) começa a desenvolver a máquina; sem isso a Âncora não existiria.
+
+- **Quando e quanto:** o Carlos não precisou começar a desenvolver em 2900, mas só consegue **terminar cerca de 100 anos depois** (por volta de **3000**), e a máquina **ainda não funciona direito** (a imprecisão da fenda). Em 3026 ele tem **mais de 100 anos**, porque os humanos daquela época vivem muito mais. O **desentendimento com os Faroleiros** foi por volta do ano 3000.
+- **Ele sabe:** o Carlos sempre soube que o Henrique é ele. **No final ele conta ao grupo** e explica que **precisava mandar o Henrique** para ele mesmo, do futuro, existir. A promessa sobre a mãe é a isca.
+- **O fim do Henrique muda.** Sai o **brilho e a explosão de energia** no bunker e sai o **dispositivo com o 2900**. Agora, depois do confronto, o grupo foge dos robôs e **os robôs pegam o Henrique** na fuga. No **começo da fase do Laboratório (D-Tec)**, numa sala com **parte de ver câmeras**, uma **cutscene** mostra o **Henrique amarrado perto da Âncora** e o **Carlos configurando a máquina** para mandá-lo para **2900**. O ano aparece **discretamente** na tela da máquina.
+- **Pendências novas** (Enredo, seções 10.2, 10.3 e 10.6): o Henrique sabe que o Carlos é ele?; se a Âncora está em 2900, por que está na Unifor em 3026?; o que o Carlos quer agora (ainda os anos 80? e a mãe?); se o grupo vê os robôs levarem o Henrique; quem vê a cutscene das câmeras e se Gabriel interfere; o que acontece com o paradoxo quando a Âncora for consertada.
+
+**Afeta:** `docs/historia/História_Completa.md` (status, seções 4.3, 7.2, 8, 10.2, 10.3 e 10.6). **Ainda não foi feito, só registrado:** (1) a ficha `docs/historia/personagens/carlos.docx` e a do Henrique (`.docx`), que o Davi precisa editar no Word; (2) `docs/fases/bunker.md` (seções do sumiço e do dispositivo) e `dtec.md` (a nova cutscene); (3) o código da cena do bunker (`central_dados.gd`, `fuga_do_bunker.gd`, `sumico_de_energia`, `dispositivo_2900.tscn`) e os diálogos `bunker_sumico.json` e `bunker_fuga.json`, que ainda mostram o brilho e o dispositivo; (4) a cutscene nova do Laboratório. Até lá, o jogo segue mostrando o sumiço antigo, que **contradiz o Enredo**.
+
 ## 2026-11-08 — Aranha 07: apagão e hack em tempo real na fase do Zane
 
 **Decisão:** a ala do escritório (a fase do Zane) ganha um robô e um evento novos, a **Aranha 07**. De tempos em tempos (de 20 a 40 s sem nada, no mínimo 25 s entre eventos) as luzes da sala apagam, os outros robôs da sala **param** e a Aranha aparece longe, só com os olhos vermelhos à vista, andando devagar na direção do Zane. O Zane fica parado e tem pouco tempo para **hackear** o núcleo dela num minigame de **ligar cabos** (girar peças até a energia ir da central ao núcleo; setas e `E`). Hackeou: a Aranha some e a luz volta. Não deu tempo: ela alcança o Zane, tira **1 coração** e some, e a luz volta do mesmo jeito. O tempo da barra do hack **é** a distância que falta para a Aranha chegar.
