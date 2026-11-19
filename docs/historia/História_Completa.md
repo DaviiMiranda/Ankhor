@@ -272,7 +272,7 @@ O jogador aprende aqui as regras do jogo (silêncio, luz e esconderijos) e que *
 - Com as partes de todos reunidas, Gabriel e os outros tentam consertar a Âncora e mandar cada um para a sua noite.
 - **O Zane:** o final dele está pendente (seção 10.4). O final antigo (ficar em 3026 para domar a IA) saiu, porque a IA não tem consciência.
 - **O Baltazar:** a trilha dele termina na Âncora, onde a luz nasce. O que aconteceu com ele fica em aberto (seção 5).
-- **O Carlos:** no final ele **conta ao grupo** que é o Henrique e explica o bootstrap (seção 4.3). Como o grupo o enfrenta, sem lutar, está pendente (seção 10.2).
+- **O Carlos:** no final ele **conta ao grupo** que é o Henrique e explica o bootstrap (seção 4.3). No fim, ele é **transportado sem querer para um ano aleatório** que ninguém sabe qual é (seção 10.6). Como o grupo o enfrenta, sem lutar, está pendente (seção 10.2).
 - Como isso acontece e como o jogo termina está nas pendências (seção 10.6).
 
 ---
@@ -364,5 +364,5 @@ Já decidido: **Biblioteca → Bloco de salas → Labirinto → Centro de Conviv
 
 - Como cada um volta: todos de uma vez no final, ou um por um, conforme a Âncora vai sendo consertada?
 - Qual é o final de Gabriel e Clarice? O final antigo ("A mesma madrugada": os dois acordam juntos em 2026, e ela rasga a página das equações) foi escrito para a versão com loops e precisa ser revisto.
-- O que acontece com o Carlos no fim?
+- **O Carlos no fim (decisão de 2026-11-19):** ele é **transportado sem querer para um ano aleatório**, e **qual ano é não se sabe**. Em aberto: como isso acontece (a Âncora, consertada ou não, falha com ele?) e se o jogo mostra algo depois.
 - O que acontece com o Henrique no fim? (Ele é mandado para 2900 no começo do Laboratório e vira o Carlos: ver seção 10.3. Se a Âncora, consertada, desfaz o paradoxo, está em aberto.)
